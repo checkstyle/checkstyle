@@ -130,119 +130,68 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p> To configure the check:</p>
-        <source>
-&lt;module name="AnnotationUseStyle"/&gt;
-        </source>
-        <p>
-          Example:
+        <p id="Example1-config">
+          To configure the check:
         </p>
-        <source>
-@SuppressWarnings("unchecked") // OK
-@Deprecated // OK
-@SomeArrays({"unchecked","unused"}) // OK
-public class TestOne
-{
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
 
-}
-
-@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
-@Deprecated() // Violation - cannot have a closing parenthesis
-@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
-class TestTwo {
-
-}
-        </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to enforce an <code>expanded</code> style,
-            with a closing parenthesis and a trailing array comma set to <code>never</code>.
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <source>
-&lt;module name="AnnotationUseStyle"&gt;
-  &lt;property name="elementStyle" value="expanded"/&gt;
-  &lt;property name="closingParens" value="never"/&gt;
-  &lt;property name="trailingArrayComma" value="never"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example:
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
         </p>
-        <source>
-@SuppressWarnings("unchecked") // Violation - parameters should be referenced
-@Deprecated // OK
-@SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
-public class TestOne
-{
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example3.txt"/>
+            <param name="type" value="code"/>
+        </macro>
 
-}
-
-@SuppressWarnings(value={"unchecked"}) // OK
-@Deprecated() // Violation - cannot have a closing parenthesis
-@SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
-class TestTwo {
-
-}
-        </source>
-        <p>
-          To configure the check to enforce a <code>compact</code> style,
-            with always including a closing parenthesis and ignoring a trailing array comma.
-        </p>
-        <source>
-&lt;module name="AnnotationUseStyle"&gt;
-  &lt;property name="elementStyle" value="compact"/&gt;
-  &lt;property name="closingParens" value="always"/&gt;
-  &lt;property name="trailingArrayComma" value="ignore"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example:
-        </p>
-        <source>
-@SuppressWarnings("unchecked") // OK
-@Deprecated // Violation - must have a closing parenthesis
-@SomeArrays({"unchecked","unused"}) // OK
-public class TestOne
-{
-
-}
-
-@SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
-@Deprecated() // OK
-@SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
-class TestTwo {
-
-}
-        </source>
-        <p>
+        <p id="Example4-config">
           To configure the check to enforce a trailing array comma,
-            with ignoring the elementStyle and a closing parenthesis.
+          with ignoring the elementStyle and a closing parenthesis.
         </p>
-        <source>
-&lt;module name="AnnotationUseStyle"&gt;
-  &lt;property name="elementStyle" value="ignore"/&gt;
-  &lt;property name="closingParens" value="ignore"/&gt;
-  &lt;property name="trailingArrayComma" value="always"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example:
-        </p>
-        <source>
-@SuppressWarnings("unchecked") // OK
-@Deprecated // OK
-@SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
-public class TestOne
-{
-
-}
-
-@SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
-@Deprecated() // OK
-@SomeArrays(value={"unchecked","unused",}) // OK
-class TestTwo {
-
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example4.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

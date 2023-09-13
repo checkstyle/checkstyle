@@ -43,46 +43,20 @@ public class StringUtils // not final to allow subclassing
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="HideUtilityClassConstructor"/&gt;
-        </source>
-        <p>
-          Example:
-        </p>
-        <source>
-class Test { // violation, class only has a static method and a constructor
-
-  public Test() {
-  }
-
-  public static void fun() {
-  }
-}
-
-class Foo { // OK
-
-  private Foo() {
-  }
-
-  static int n;
-}
-
-class Bar { // OK
-
-  protected Bar() {
-    // prevents calls from subclass
-    throw new UnsupportedOperationException();
-  }
-}
-
-class UtilityClass { // violation, class only has a static field
-
-  static float f;
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
