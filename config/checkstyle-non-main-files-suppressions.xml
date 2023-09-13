@@ -169,36 +169,6 @@
 
   <!-- Examples macro suppressions -->
   <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationlocation.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationonsameline.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationusestyle.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]missingdeprecated.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]missingoverride.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarnings.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]avoidnestedblocks.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptyblock.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptycatchblock.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]leftcurly.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]needbraces.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]rightcurly.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]designforextension.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]hideutilityclassconstructor.xml.template"/>
-  <suppress id="exampleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]importcontrol.xml.template"/>
   <suppress id="exampleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>

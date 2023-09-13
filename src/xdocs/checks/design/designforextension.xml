@@ -159,14 +159,19 @@ public abstract class Plant {
           </table>
         </div>
       </subsection>
+
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DesignForExtension&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
 public abstract class Foo {
   private int bar;
@@ -204,16 +209,21 @@ public abstract class Foo {
   }
 }
         </source>
-        <p>
+
+        <p id="Example2-config">
           To configure the check to allow methods which have @Override annotations to be
           designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DesignForExtension&quot;&gt;
+      &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example2-code">Example:</p>
         <source>
 public abstract class Foo {
   private int bar;
@@ -251,15 +261,21 @@ public abstract class Foo {
   }
 }
         </source>
-        <p>To configure the check to allow methods which contain a specified comment text pattern in
+
+        <p id="Example3-config">
+          To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DesignForExtension&quot;&gt;
+      &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example3-code">Example:</p>
         <source>
 public abstract class Foo {
   private int bar;
@@ -297,17 +313,22 @@ public abstract class Foo {
   }
 }
         </source>
-        <p>
+
+        <p id="Example4-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc which can span multiple lines to be designed for extension.
         </p>
         <source>
-&lt;module name=&quot;DesignForExtension&quot;&gt;
-  &lt;property name=&quot;requiredJavadocPhrase&quot;
-    value=&quot;This[\s\S]*implementation&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DesignForExtension&quot;&gt;
+      &lt;property name=&quot;requiredJavadocPhrase&quot;
+        value=&quot;This[\s\S]*implementation&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>Example:</p>
+        <p id="Example4-code">Example:</p>
         <source>
 public abstract class Foo {
   private int bar;
