@@ -230,7 +230,6 @@ public class XdocsPagesTest {
     private static final Set<String> MODULES_WITH_UNORDERED_PROPERTIES = Set.of(
         "Checker",
         "MissingJavadocMethod",
-        "VariableDeclarationUsageDistance",
         "LocalVariableName",
         "JavadocTagContinuationIndentation",
         "ClassFanOutComplexity",
@@ -259,7 +258,6 @@ public class XdocsPagesTest {
         "JavaNCSS",
         "EmptyCatchBlock",
         "ParameterName",
-        "IllegalThrows",
         "HiddenField",
         "SuppressionXpathSingleFilter",
         "WhitespaceAround",

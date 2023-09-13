@@ -10,19 +10,19 @@
  {@code java.lang.RuntimeException} is almost never acceptable.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable"
-                      name="illegalClassNames"
-                      type="java.lang.String[]">
-               <description>Specify throw class names to reject.</description>
+            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
+               <description>Allow to ignore checking overridden methods
+ (marked with {@code Override} or {@code java.lang.Override} annotation).</description>
             </property>
             <property default-value="finalize"
                       name="ignoredMethodNames"
                       type="java.lang.String[]">
                <description>Specify names of methods to ignore.</description>
             </property>
-            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>allow to ignore checking overridden methods
- (marked with {@code Override} or {@code java.lang.Override} annotation).</description>
+            <property default-value="Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable"
+                      name="illegalClassNames"
+                      type="java.lang.String[]">
+               <description>Specify throw class names to reject.</description>
             </property>
          </properties>
          <message-keys>
