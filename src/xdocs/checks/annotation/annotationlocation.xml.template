@@ -51,109 +51,65 @@ public String getNameIfPresent() { ... }
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the default check to allow one single parameterless annotation on the same
             line:
         </p>
-        <source>
-&lt;module name="AnnotationLocation"/&gt;
-        </source>
-        <p>
-          Example for above configuration:
-        </p>
-        <source>
-@NotNull private boolean field1; //ok
-@Override public int hashCode() { return 1; } //ok
-@NotNull //ok
-private boolean field2;
-@Override //ok
-public boolean equals(Object obj) { return true; }
-@Mock DataLoader loader; //ok
-@SuppressWarnings("deprecation") DataLoader loader; //violation
-@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
-@NotNull @Mock DataLoader loader; //violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
           Use the following configuration to allow multiple annotations on the same line:
         </p>
-        <source>
-&lt;module name="AnnotationLocation"&gt;
-  &lt;property name="allowSamelineMultipleAnnotations" value="true"/&gt;
-  &lt;property name="allowSamelineSingleParameterlessAnnotation"
-    value="false"/&gt;
-  &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow any location multiple annotations:
-        </p>
-        <source>
-@NotNull private boolean field1; //ok
-@Override public int hashCode() { return 1; } //ok
-@NotNull //ok
-private boolean field2;
-@Override //ok
-public boolean equals(Object obj) { return true; }
-@Mock DataLoader loader; //ok
-@SuppressWarnings("deprecation") DataLoader loader; //ok
-@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
-@NotNull @Mock DataLoader loader; //ok
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           Use the following configuration to allow only one and only parameterized annotation
           on the same line:
         </p>
-        <source>
-&lt;module name="AnnotationLocation"&gt;
-  &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
-  &lt;property name="allowSamelineSingleParameterlessAnnotation"
-    value="false"/&gt;
-  &lt;property name="allowSamelineParameterizedAnnotation" value="true"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow only one and only parameterized annotation on the same line:
-        </p>
-        <source>
-@NotNull private boolean field1; //violation
-@Override public int hashCode() { return 1; } //violation
-@NotNull //ok
-private boolean field2;
-@Override //ok
-public boolean equals(Object obj) { return true; }
-@Mock DataLoader loader; //violation
-@SuppressWarnings("deprecation") DataLoader loader; //ok
-@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
-@NotNull @Mock DataLoader loader; //violation
-        </source>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example3.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
           Use the following configuration to only validate annotations on methods to allow one
           single parameterless annotation on the same line:
         </p>
-        <source>
-&lt;module name="AnnotationLocation"&gt;
-  &lt;property name="tokens" value="METHOD_DEF"/&gt;
-  &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
-  &lt;property name="allowSamelineSingleParameterlessAnnotation"
-    value="true"/&gt;
-  &lt;property name="allowSamelineParameterizedAnnotation" value="false"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example for above configuration to check only methods:
-        </p>
-        <source>
-@NotNull private boolean field1; //ok
-@Override public int hashCode() { return 1; } //ok
-@NotNull //ok
-private boolean field2;
-@Override //ok
-public boolean equals(Object obj) { return true; }
-@Mock DataLoader loader; //ok
-@SuppressWarnings("deprecation") DataLoader loader; //ok
-@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
-@NotNull @Mock DataLoader loader; //ok
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example4.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

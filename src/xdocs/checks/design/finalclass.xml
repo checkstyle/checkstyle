@@ -35,56 +35,64 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;FinalClass&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;FinalClass&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
-            Example:
-        </p>
+        <p id="Example1-code">Example:</p>
         <source>
-final class MyClass { // OK
-  private MyClass() { }
-}
+public class Example1 { // ok, since it has a public constructor
 
-class MyClass { // violation, class should be declared final
-  private MyClass() { }
-}
-
-class MyClass { // OK, since it has a public constructor
-  int field1;
-  String field2;
-  private MyClass(int value) {
-    this.field1 = value;
-    this.field2 = &quot; &quot;;
+  final class A {
+    private A() {
+    }
   }
-  public MyClass(String value) {
-    this.field2 = value;
-    this.field1 = 0;
+
+  class B { // violation, 'Class B should be declared as final.'
+    private B() {
+    }
+  }
+
+  class C { // ok, since it has a public constructor
+    int field1;
+    String field2;
+
+    private C(int value) {
+      this.field1 = value;
+      this.field2 = &quot; &quot;;
+    }
+
+    public C(String value) {
+      this.field2 = value;
+      this.field1 = 0;
+    }
+  }
+
+  class AnonymousInner { // ok, class has an anonymous inner class.
+    public final AnonymousInner ONE
+            = new AnonymousInner() {
+            };
+
+    private AnonymousInner() {
+    }
+  }
+
+  class Class1 {
+
+    private class Class2 { // violation, 'Class Class2 should be declared as final'
+    }
+
+    public class Class3 {
+    }
+
   }
 }
-
-class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
-    public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
-
-    };
-
-    private TestAnonymousInnerClasses() {
-    }
-}
-
-class Class1 {
-
-    private class Class2 { // violation, class should be declared final
-    }
-
-    public class Class3 { // ok
-    }
-
-}
-
         </source>
       </subsection>
 

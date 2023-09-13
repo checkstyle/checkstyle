@@ -159,192 +159,70 @@ public abstract class Plant {
           </table>
         </div>
       </subsection>
+
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
-        <source>
-&lt;module name="DesignForExtension"/&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public abstract class Foo {
-  private int bar;
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
 
-  public int m1() {return 2;}  // Violation. No javadoc.
-
-  public int m2() {return 8;}  // Violation. No javadoc.
-
-  private void m3() {m4();}  // OK. Private method.
-
-  protected void m4() { }  // OK. No implementation.
-
-  public abstract void m5();  // OK. Abstract method.
-
-  /**
-   * This implementation ...
-   @return some int value.
-   */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
-
-  /**
-   * Some comments ...
-   */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
-
-  /**
-   * This
-   * implementation ...
-   */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
-
-  @Override
-  public String toString() {  // Violation. No javadoc for @Override method.
-    return "";
-  }
-}
-        </source>
-        <p>
+        <p id="Example2-config">
           To configure the check to allow methods which have @Override annotations to be
           designed for extension.
         </p>
-        <source>
-&lt;module name="DesignForExtension"&gt;
-  &lt;property name="ignoredAnnotations" value="Override"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public abstract class Foo {
-  private int bar;
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
 
-  public int m1() {return 2;}  // Violation. No javadoc.
-
-  public int m2() {return 8;}  // Violation. No javadoc.
-
-  private void m3() {m4();}  // OK. Private method.
-
-  protected void m4() { }  // OK. No implementation.
-
-  public abstract void m5();  // OK. Abstract method.
-
-  /**
-   * This implementation ...
-   @return some int value.
-   */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
-
-  /**
-   * Some comments ...
-   */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
-
-  /**
-   * This
-   * implementation ...
-   */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
-
-  @Override
-  public String toString() {  // OK. Have javadoc on overridable method.
-    return "";
-  }
-}
-        </source>
-        <p>To configure the check to allow methods which contain a specified comment text pattern in
+        <p id="Example3-config">
+          To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc to be designed for extension.
         </p>
-        <source>
-&lt;module name="DesignForExtension"&gt;
-  &lt;property name="requiredJavadocPhrase" value="This implementation"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public abstract class Foo {
-  private int bar;
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+            <param name="type" value="code"/>
+        </macro>
 
-  public int m1() {return 2;}  // Violation. No javadoc.
-
-  public int m2() {return 8;}  // Violation. No javadoc.
-
-  private void m3() {m4();}  // OK. Private method.
-
-  protected void m4() { }  // OK. No implementation.
-
-  public abstract void m5();  // OK. Abstract method.
-
-  /**
-   * This implementation ...
-   @return some int value.
-   */
-  public int m6() {return 1;}  // OK. Have required javadoc.
-
-  /**
-   * Some comments ...
-   */
-  public int m7() {return 1;}  // Violation. No required javadoc.
-
-  /**
-   * This
-   * implementation ...
-   */
-  public int m8() {return 2;}  // Violation. No required javadoc.
-
-  @Override
-  public String toString() {  // Violation. No required javadoc.
-    return "";
-  }
-}
-        </source>
-        <p>
+        <p id="Example4-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc which can span multiple lines to be designed for extension.
         </p>
-        <source>
-&lt;module name="DesignForExtension"&gt;
-  &lt;property name="requiredJavadocPhrase"
-    value="This[\s\S]*implementation"/&gt;
-&lt;/module&gt;
-        </source>
-        <p>Example:</p>
-        <source>
-public abstract class Foo {
-  private int bar;
-
-  public int m1() {return 2;}  // Violation. No javadoc.
-
-  public int m2() {return 8;}  // Violation. No javadoc.
-
-  private void m3() {m4();}
-
-  protected void m4() { }  // OK. No implementation.
-
-  public abstract void m5();  // OK. Abstract method.
-
-  /**
-   * This implementation ...
-   @return some int value.
-   */
-  public int m6() {return 1;}  // OK. Have required javadoc.
-
-  /**
-   * Some comments ...
-   */
-  public int m7() {return 1;}  // Violation. No required javadoc.
-
-  /**
-   * This
-   * implementation ...
-   */
-  public int m8() {return 2;}  // OK. Have required javadoc.
-
-  @Override
-  public String toString() {  // Violation. No required javadoc.
-    return "";
-  }
-}
-        </source>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+            <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -113,13 +113,15 @@ switch (a) {
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p> To configure the check: </p>
+        <p id="Example1-config"> To configure the check: </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyBlock&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example1-code">Example:</p>
         <source>
 public class Test {
   private void emptyLoop() {
@@ -134,17 +136,21 @@ public class Test {
   }
 }
         </source>
-        <p>
+        <p id="Example2-config">
           To configure the check for the <code>text</code>
           policy and only <code> try</code> blocks:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyBlock&quot;&gt;
+      &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p> Example: </p>
+        <p id="Example2-code">Example:</p>
         <source>
 public class Test {
   private void emptyLoop() {
@@ -161,15 +167,19 @@ public class Test {
   }
 }
         </source>
-        <p>
+        <p id="Example3-config">
           To configure the check for default in switch block:
         </p>
         <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EmptyBlock&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p> Example: </p>
+        <p id="Example3-code">Example:</p>
         <source>
 public class Test {
   private void test(int a) {

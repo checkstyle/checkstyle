@@ -43,15 +43,17 @@ public class StringUtils // not final to allow subclassing
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check:
         </p>
         <source>
-&lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HideUtilityClassConstructor&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
+        <p id="Example1-code">Example:</p>
         <source>
 class Test { // violation, class only has a static method and a constructor
 
