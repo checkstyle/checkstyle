@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MS
 
 import java.io.File;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importorder";
+    }
+
+    @Test
+    public void testVeryPreciseGrouping() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportOrder6.java"), expected);
     }
 
     @Test
