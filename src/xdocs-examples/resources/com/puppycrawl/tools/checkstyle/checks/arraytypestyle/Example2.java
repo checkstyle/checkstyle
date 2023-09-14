@@ -8,16 +8,18 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
+
 // xdoc section -- start
-public class MyClass {
-  int[] nums; // violation
-  String strings[]; // OK
+public class Example2 {
+  int[] nums; // violation, 'Array brackets at illegal position'
+  String strings[]; // OK as follows C style since 'javaStyle' set to false
 
   char[] toCharArray() { // OK
     return null;
   }
 
-  byte getData()[] { // violation
+  byte getData()[] { // violation, 'Array brackets at illegal position'
     return null;
   }
 }
