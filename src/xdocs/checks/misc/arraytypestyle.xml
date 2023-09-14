@@ -62,15 +62,15 @@
           Example:
         </p>
         <source>
-public class MyClass {
-  int[] nums; // OK
-  String strings[]; // violation
+public class Example1 {
+  int[] nums; // ok since default format checks for Java style
+  String strings[]; // violation, 'Array brackets at illegal position'
 
-  char[] toCharArray() { // OK
+  char[] toCharArray() {
     return null;
   }
 
-  byte getData()[] { // violation
+  byte getData()[] { // violation, 'Array brackets at illegal position'
     return null;
   }
 }
@@ -91,15 +91,15 @@ public class MyClass {
           Example:
         </p>
         <source>
-public class MyClass {
-  int[] nums; // violation
-  String strings[]; // OK
+public class Example2 {
+  int[] nums; // violation, 'Array brackets at illegal position'
+  String strings[]; // OK as follows C style since 'javaStyle' set to false
 
   char[] toCharArray() { // OK
     return null;
   }
 
-  byte getData()[] { // violation
+  byte getData()[] { // violation, 'Array brackets at illegal position'
     return null;
   }
 }
