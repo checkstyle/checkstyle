@@ -21,7 +21,7 @@
                <description>Specify names of methods to ignore.</description>
             </property>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>allow to ignore checking overridden methods
+               <description>Allow to ignore checking overridden methods
  (marked with {@code Override} or {@code java.lang.Override} annotation).</description>
             </property>
          </properties>
