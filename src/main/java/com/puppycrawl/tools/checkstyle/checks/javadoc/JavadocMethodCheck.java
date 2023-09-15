@@ -309,8 +309,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @since 8.42
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
-        this.accessModifiers =
-            Arrays.copyOf(accessModifiers, accessModifiers.length);
+        this.accessModifiers = accessModifiers;
     }
 
     /**
