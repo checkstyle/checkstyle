@@ -207,14 +207,14 @@
     <lineContent>foundThrows.add(documentedClassInfo.getName().getText());</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>setAccessModifiers</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>Arrays.copyOf(accessModifiers, accessModifiers.length);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
@@ -270,32 +270,32 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>JavadocNodeImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
-    <mutatedMethod>getChildren</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/Optional::map with receiver</description>
-    <lineContent>.map(array -&gt; Arrays.copyOf(array, array.length))</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocNodeImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
-    <mutatedMethod>lambda$getChildren$0</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>.map(array -&gt; Arrays.copyOf(array, array.length))</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>JavadocNodeImpl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</mutatedClass>
-    <mutatedMethod>setChildren</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>this.children = Arrays.copyOf(children, children.length);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>JavadocNodeImpl.java</sourceFile>
