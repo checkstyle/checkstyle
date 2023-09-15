@@ -45,7 +45,7 @@
             <tr>
               <td>ignoreOverriddenMethods</td>
               <td>
-                allow to ignore checking overridden methods (marked with <code>Override</code>
+                Allow to ignore checking overridden methods (marked with <code>Override</code>
                 or <code>java.lang.Override</code> annotation).
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
