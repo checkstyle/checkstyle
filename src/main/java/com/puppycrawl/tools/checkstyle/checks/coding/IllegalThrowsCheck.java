@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Default value is {@code finalize}.
  * </li>
  * <li>
- * Property {@code ignoreOverriddenMethods} - allow to ignore checking overridden methods
+ * Property {@code ignoreOverriddenMethods} - Allow to ignore checking overridden methods
  * (marked with {@code Override} or {@code java.lang.Override} annotation).
  * Type is {@code boolean}.
  * Default value is {@code true}.
