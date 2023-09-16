@@ -181,19 +181,16 @@ public class PackageObjectFactory implements ModuleFactory {
      */
     @Override
     public Object createModule(String name) throws CheckstyleException {
-        Object instance = null;
-        // if the name is a simple class name, try to find it in maps at first
-        if (!name.contains(PACKAGE_SEPARATOR)) {
-            instance = createFromStandardCheckSet(name);
-            // find the name in third party map
-            if (instance == null) {
-                if (thirdPartyNameToFullModuleNames == null) {
-                    thirdPartyNameToFullModuleNames =
-                            generateThirdPartyNameToFullModuleName(moduleClassLoader);
-                }
-                instance = createObjectFromMap(name, thirdPartyNameToFullModuleNames);
+        Object instance = createFromStandardCheckSet(name);
+        // find the name in third party map
+        if (instance == null) {
+            if (thirdPartyNameToFullModuleNames == null) {
+                thirdPartyNameToFullModuleNames =
+                        generateThirdPartyNameToFullModuleName(moduleClassLoader);
             }
+            instance = createObjectFromMap(name, thirdPartyNameToFullModuleNames);
         }
+
         if (instance == null) {
             instance = createObject(name);
         }
