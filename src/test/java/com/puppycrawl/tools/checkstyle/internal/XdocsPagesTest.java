@@ -304,7 +304,10 @@ public class XdocsPagesTest {
      */
     @BeforeAll
     public static void generateXdocContent() throws Exception {
+        final String originalLineSeperator = System.getProperty("line.separator");
+        System.setProperty("line.separator", "\n");
         XdocGenerator.generateXdocContent();
+        System.setProperty("line.separator", originalLineSeperator);
     }
 
     @Test
@@ -376,8 +379,7 @@ public class XdocsPagesTest {
                 assertWithMessage(
                     "The first sentence of the \"Description\" subsection for the check "
                         + checkName + " in the file \"" + fileName + "\" should end with a period")
-                    .that(matcher.find())
-                    .isTrue();
+                    .that(matcher.find()).isTrue();
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
                 assertWithMessage("The summary for check " + checkName
                         + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
@@ -1966,10 +1968,8 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            final String paramName = item.getAttributes()
-                    .getNamedItem("name").getTextContent();
-            final String paramValue = item.getAttributes()
-                    .getNamedItem("value").getTextContent();
+            final String paramName = item.getAttributes().getNamedItem("name").getTextContent();
+            final String paramValue = item.getAttributes().getNamedItem("value").getTextContent();
             if ("path".equals(paramName)) {
                 exampleName = paramValue.substring(paramValue.lastIndexOf('/') + 1,
                         paramValue.lastIndexOf('.'));
@@ -1980,8 +1980,7 @@ public class XdocsPagesTest {
         }
 
         final String id = idAttribute.getTextContent();
-        final String expectedId = String.format(Locale.ROOT, "%s-%s", exampleName,
-                exampleType);
+        final String expectedId = String.format(Locale.ROOT, "%s-%s", exampleName, exampleType);
         assertWithMessage(fileName
                 + ": paragraph before example macro should have the expected id value")
                 .that(id)
