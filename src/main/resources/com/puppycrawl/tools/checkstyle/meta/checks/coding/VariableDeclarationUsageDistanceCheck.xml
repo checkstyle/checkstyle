@@ -13,6 +13,9 @@
                <description>Specify distance between declaration
  of variable and its first usage. Values should be greater than 0.</description>
             </property>
+            <property default-value="true" name="ignoreFinal" type="boolean">
+               <description>Allow to ignore variables with a 'final' modifier.</description>
+            </property>
             <property default-value=""
                       name="ignoreVariablePattern"
                       type="java.util.regex.Pattern">
@@ -22,9 +25,6 @@
             <property default-value="false" name="validateBetweenScopes" type="boolean">
                <description>Allow to calculate the distance between
  declaration of variable and its first usage in the different scopes.</description>
-            </property>
-            <property default-value="true" name="ignoreFinal" type="boolean">
-               <description>Allow to ignore variables with a 'final' modifier.</description>
             </property>
          </properties>
          <message-keys>
