@@ -21,6 +21,7 @@ install:
   - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.6
   - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: git config core.autocrlf
+  - cmd: git config core.safecrlf false
   - cmd: mvn --version
   - cmd: java -version
 
@@ -70,6 +71,7 @@ build_script:
       } else {
         Write-Host "build is skipped ..."
       }
+  - ps: ./.ci/validation.cmd git_diff
   - ps: echo "Size of caches (bytes):"
   - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.6' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum
