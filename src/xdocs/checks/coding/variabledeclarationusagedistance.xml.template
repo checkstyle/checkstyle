@@ -37,6 +37,14 @@
             </tr>
 
             <tr>
+              <td>ignoreFinal</td>
+              <td>Allow to ignore variables with a 'final' modifier.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+
+            <tr>
               <td>ignoreVariablePattern</td>
               <td>
                 Define RegExp to ignore distance calculation for variables listed in this pattern.
@@ -55,13 +63,6 @@
               <td>5.8</td>
             </tr>
 
-            <tr>
-              <td>ignoreFinal</td>
-              <td>Allow to ignore variables with a 'final' modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.8</td>
-            </tr>
           </table>
         </div>
       </subsection>
