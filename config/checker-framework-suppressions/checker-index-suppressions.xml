@@ -3064,4 +3064,15 @@
       required: @MinLen(1) -- an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter newLength of copyOf.</message>
+    <lineContent>return Arrays.copyOf(array, length);</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
 </suppressedErrors>
