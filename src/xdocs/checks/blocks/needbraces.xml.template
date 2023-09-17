@@ -24,14 +24,14 @@
             </tr>
             <tr>
               <td>allowSingleLineStatement</td>
-              <td>allow single-line statements without braces.</td>
+              <td>Allow single-line statements without braces.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.5</td>
             </tr>
             <tr>
               <td>allowEmptyLoopBody</td>
-              <td>allow loops with empty bodies.</td>
+              <td>Allow loops with empty bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>

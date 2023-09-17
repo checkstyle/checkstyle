@@ -45,7 +45,7 @@
             </tr>
             <tr>
               <td>option</td>
-              <td>specify policy on the relative order between type imports and static imports.</td>
+              <td>Specify policy on the relative order between type imports and static imports.</td>
               <td><a href="../../property_types.html#ImportOrderOption">ImportOrderOption</a></td>
               <td><code>under</code></td>
               <td>5.0</td>
@@ -53,7 +53,7 @@
             <tr>
               <td>groups</td>
               <td>
-                specify list of <b>type import</b> groups. Every group identified either by a
+                Specify list of <b>type import</b> groups. Every group identified either by a
                 common prefix string, or by a regular expression enclosed
                 in forward slashes (e.g. <code>/regexp/</code>). All type imports,
                 which does not match any group, falls into an additional group, located at the end.
@@ -66,7 +66,7 @@
             </tr>
             <tr>
               <td>ordered</td>
-              <td>control whether type imports within each group should be sorted.
+              <td>Control whether type imports within each group should be sorted.
                 It doesn't affect sorting for static imports.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
@@ -75,7 +75,7 @@
             <tr>
               <td>separated</td>
               <td>
-                control whether type import groups should be separated by, at least, one
+                Control whether type import groups should be separated by, at least, one
                 blank line or comment and aren't separated internally.
                 It doesn't affect separations for static imports.
               </td>
@@ -86,7 +86,7 @@
             <tr>
               <td>separatedStaticGroups</td>
               <td>
-                control whether static import groups should be separated by, at least, one
+                Control whether static import groups should be separated by, at least, one
                 blank line or comment and aren't separated internally.
                 This property has effect only when the property <code>option</code>
                 is set to <code>top</code> or <code>bottom</code> and when property
@@ -98,7 +98,7 @@
             </tr>
             <tr>
               <td>caseSensitive</td>
-              <td>control whether string comparison should be case-sensitive or not.
+              <td>Control whether string comparison should be case-sensitive or not.
                 Case-sensitive sorting is in
                 <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
                 It affects both type imports and static imports.
@@ -110,7 +110,7 @@
             <tr>
               <td>staticGroups</td>
               <td>
-                specify list of <b>static</b> import groups. Every group identified either by a
+                Specify list of <b>static</b> import groups. Every group identified either by a
                 common prefix string, or by a regular expression enclosed
                 in forward slashes (e.g. <code>/regexp/</code>). All static imports,
                 which does not match any group, fall into an additional group, located at the
@@ -126,7 +126,7 @@
             <tr>
               <td>sortStaticImportsAlphabetically</td>
               <td>
-                control whether <b>static imports</b> located at <b>top</b> or
+                Control whether <b>static imports</b> located at <b>top</b> or
                 <b>bottom</b> are sorted within the group.
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -136,7 +136,7 @@
             <tr>
               <td>useContainerOrderingForStatic</td>
               <td>
-                control whether to use container ordering (Eclipse IDE term) for static
+                Control whether to use container ordering (Eclipse IDE term) for static
                 imports or not.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
