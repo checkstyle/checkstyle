@@ -12,7 +12,7 @@
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
   <suppress checks="FileLength"
-             files="TokenTypes.java|IndentationCheckTest.java"
+             files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest"
              lines="1"/>
 
   <!-- illegal words are part of Javadoc -->

@@ -63,7 +63,7 @@
  accessor methods for properties (setters and getters).</description>
             </property>
             <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
-               <description>ignore method whose names are matching specified
+               <description>Ignore method whose names are matching specified
  regex.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"

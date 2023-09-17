@@ -39,7 +39,7 @@ switch (a) {
             </tr>
             <tr>
               <td>option</td>
-              <td>specify the policy on block contents.</td>
+              <td>Specify the policy on block contents.</td>
               <td><a href="../../property_types.html#BlockOption">BlockOption</a></td>
               <td><code>statement</code></td>
               <td>3.0</td>
