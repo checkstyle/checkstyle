@@ -34,12 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowSingleLineStatement} - allow single-line statements without braces.
+ * Property {@code allowSingleLineStatement} - Allow single-line statements without braces.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowEmptyLoopBody} - allow loops with empty bodies.
+ * Property {@code allowEmptyLoopBody} - Allow loops with empty bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
