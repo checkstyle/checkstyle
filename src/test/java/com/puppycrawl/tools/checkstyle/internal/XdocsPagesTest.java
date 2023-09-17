@@ -1067,6 +1067,11 @@ public class XdocsPagesTest {
                         fileName, sectionName, propertyName)
                 .that(columns.get(1).getTextContent().trim())
                 .isNotEmpty();
+        assertWithMessage("%s section '%s' should have a description for %s"
+                        + " that starts with uppercase character",
+                        fileName, sectionName, propertyName)
+                .that(Character.isUpperCase(columns.get(1).getTextContent().trim().charAt(0)))
+                .isTrue();
 
         final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                 .replace("\r", "").replaceAll(" +", " ").trim();
