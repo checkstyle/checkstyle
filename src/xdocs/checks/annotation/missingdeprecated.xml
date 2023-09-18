@@ -138,7 +138,7 @@ class Example2 {
 
   /**
    * @deprecated
-   * &lt;p&gt;  // violation, 'javadoc.unclosedHtml'
+   * &lt;p&gt; // violation, 'Unclosed HTML tag found: p'
   */
   @Deprecated
   public static final int CONST = 12;
@@ -175,6 +175,11 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
               javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
             </a>
           </li>
           <li>
