@@ -98,7 +98,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code ignoreMethodNamesRegex} - ignore method whose names are matching specified
+ * Property {@code ignoreMethodNamesRegex} - Ignore method whose names are matching specified
  * regex.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.

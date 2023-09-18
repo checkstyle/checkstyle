@@ -26,7 +26,7 @@
             <property default-value="statement"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption">
-               <description>specify the policy on block contents.</description>
+               <description>Specify the policy on block contents.</description>
             </property>
             <property default-value="LITERAL_WHILE,LITERAL_TRY,LITERAL_FINALLY,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,INSTANCE_INIT,STATIC_INIT,LITERAL_SWITCH,LITERAL_SYNCHRONIZED"
                       name="tokens"

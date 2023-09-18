@@ -11,10 +11,10 @@
             <property default-value="false"
                       name="allowSingleLineStatement"
                       type="boolean">
-               <description>allow single-line statements without braces.</description>
+               <description>Allow single-line statements without braces.</description>
             </property>
             <property default-value="false" name="allowEmptyLoopBody" type="boolean">
-               <description>allow loops with empty bodies.</description>
+               <description>Allow loops with empty bodies.</description>
             </property>
             <property default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"
                       name="tokens"

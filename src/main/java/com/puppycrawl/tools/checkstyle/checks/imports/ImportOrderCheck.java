@@ -61,13 +61,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * <ul>
  * <li>
- * Property {@code option} - specify policy on the relative order between type imports and static
+ * Property {@code option} - Specify policy on the relative order between type imports and static
  * imports.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
  * Default value is {@code under}.
  * </li>
  * <li>
- * Property {@code groups} - specify list of <b>type import</b> groups. Every group identified
+ * Property {@code groups} - Specify list of <b>type import</b> groups. Every group identified
  * either by a common prefix string, or by a regular expression enclosed in forward slashes
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
@@ -76,21 +76,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ordered} - control whether type imports within each group should be
+ * Property {@code ordered} - Control whether type imports within each group should be
  * sorted.
  * It doesn't affect sorting for static imports.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code separated} - control whether type import groups should be separated
+ * Property {@code separated} - Control whether type import groups should be separated
  * by, at least, one blank line or comment and aren't separated internally.
  * It doesn't affect separations for static imports.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code separatedStaticGroups} - control whether static import groups should
+ * Property {@code separatedStaticGroups} - Control whether static import groups should
  * be separated by, at least, one blank line or comment and aren't separated internally.
  * This property has effect only when the property {@code option} is set to {@code top}
  * or {@code bottom} and when property {@code staticGroups} is enabled.
@@ -98,7 +98,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code caseSensitive} - control whether string comparison should be
+ * Property {@code caseSensitive} - Control whether string comparison should be
  * case-sensitive or not. Case-sensitive sorting is in
  * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
  * It affects both type imports and static imports.
@@ -106,7 +106,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code staticGroups} - specify list of <b>static</b> import groups. Every group
+ * Property {@code staticGroups} - Specify list of <b>static</b> import groups. Every group
  * identified either by a common prefix string, or by a regular expression enclosed in forward
  * slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
  * an additional group, located at the end. Thus, the empty list of static groups (the default
@@ -116,13 +116,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code sortStaticImportsAlphabetically} - control whether
+ * Property {@code sortStaticImportsAlphabetically} - Control whether
  * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code useContainerOrderingForStatic} - control whether to use container
+ * Property {@code useContainerOrderingForStatic} - Control whether to use container
  * ordering (Eclipse IDE term) for static imports or not.
  * Type is {@code boolean}.
  * Default value is {@code false}.

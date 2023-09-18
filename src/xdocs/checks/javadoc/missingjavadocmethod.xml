@@ -99,7 +99,7 @@ public boolean isSomething()
             </tr>
             <tr>
               <td>ignoreMethodNamesRegex</td>
-              <td>ignore method whose names are matching specified regex.</td>
+              <td>Ignore method whose names are matching specified regex.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>

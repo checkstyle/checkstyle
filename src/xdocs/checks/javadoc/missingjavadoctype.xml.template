@@ -30,14 +30,14 @@
             </tr>
             <tr>
               <td>scope</td>
-              <td>specify the visibility scope where Javadoc comments are checked.</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.20</td>
             </tr>
             <tr>
               <td>excludeScope</td>
-              <td>specify the visibility scope where Javadoc comments are not checked.</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.20</td>
@@ -45,7 +45,7 @@
             <tr>
               <td>skipAnnotations</td>
               <td>
-                specify annotations that allow missed documentation.
+                Specify annotations that allow missed documentation.
                 If annotation is present in target sources in multiple forms of qualified
                 name, all forms should be listed in this property.
               </td>
