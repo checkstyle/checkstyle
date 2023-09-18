@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import java.util.BitSet;
 
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -97,6 +98,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code javadoc.parse.rule.error}
  * </li>
  * <li>
+ * {@code javadoc.unclosedHtml}
+ * </li>
+ * <li>
  * {@code javadoc.wrong.singleton.html.tag}
  * </li>
  * </ul>
@@ -112,6 +116,9 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
             "annotation.missing.deprecated";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String MSG_UNCLOSED_HTML = JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
