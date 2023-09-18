@@ -45,7 +45,7 @@ public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "32: " + MSG_UNCLOSED_HTML_TAG,
+            "32: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

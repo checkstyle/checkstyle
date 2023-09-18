@@ -138,7 +138,7 @@ class Example2 {
 
   /**
    * @deprecated
-   * &lt;p&gt;  // violation, 'javadoc.unclosedHtml'
+   * &lt;p&gt; // violation, 'Unclosed HTML tag found: p'
   */
   @Deprecated
   public static final int CONST = 12;

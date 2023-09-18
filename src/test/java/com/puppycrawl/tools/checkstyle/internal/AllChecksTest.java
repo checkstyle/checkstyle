@@ -562,7 +562,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             for (Object key : pr.keySet()) {
                 // hidden exception messages
-                if ("translation.wrongLanguageCode".equals(key)) {
+                if ("translation.wrongLanguageCode".equals(key)
+                        || "javadoc.unclosedHtml".equals(key)) {
                     continue;
                 }
 
