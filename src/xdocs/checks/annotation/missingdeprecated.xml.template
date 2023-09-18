@@ -55,31 +55,34 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config"> To configure the check:</p>
+        <p id="Example1-config">
+          To configure the check:
+        </p>
         <macro name="example">
-             <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.txt"/>
-             <param name="type" value="config"/>
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
+          <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
-            <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.txt"/>
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
+
         <p id="Example2-config">
           To configure the check such that it prints violation
           messages if tight HTML rules are not obeyed
         </p>
         <macro name="example">
-            <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.txt"/>
-            <param name="type" value="config"/>
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
+          <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
-            <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.txt"/>
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
