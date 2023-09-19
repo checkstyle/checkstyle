@@ -102,16 +102,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code allowedAnnotations} - Specify annotations that allow missed documentation.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Override}.
- * </li>
- * <li>
- * Property {@code validateThrows} - Control whether to validate {@code throws} tags.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
  * Property {@code accessModifiers} - Specify the access modifiers where Javadoc comments are
  * checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
@@ -126,6 +116,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code allowMissingReturnTag} - Control whether to ignore violations
  * when a method returns non-void type and does not have a {@code return} tag in the javadoc.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowedAnnotations} - Specify annotations that allow missed documentation.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Override}.
+ * </li>
+ * <li>
+ * Property {@code validateThrows} - Control whether to validate {@code throws} tags.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>

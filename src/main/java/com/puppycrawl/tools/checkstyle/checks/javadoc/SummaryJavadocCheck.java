@@ -43,13 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$"}.
@@ -58,6 +51,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Property {@code period} - Specify the period symbol at the end of first javadoc sentence.
  * Type is {@code java.lang.String}.
  * Default value is {@code "."}.
+ * </li>
+ * <li>
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
  * <p>

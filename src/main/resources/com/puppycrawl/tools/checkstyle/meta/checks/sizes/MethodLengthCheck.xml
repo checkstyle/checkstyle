@@ -13,11 +13,11 @@
  individual methods that focus on a specific task.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="150" name="max" type="int">
-               <description>Specify the maximum number of lines allowed.</description>
-            </property>
             <property default-value="true" name="countEmpty" type="boolean">
                <description>Control whether to count empty lines and comments.</description>
+            </property>
+            <property default-value="150" name="max" type="int">
+               <description>Specify the maximum number of lines allowed.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
