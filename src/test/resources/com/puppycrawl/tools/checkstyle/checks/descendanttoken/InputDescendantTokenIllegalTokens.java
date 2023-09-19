@@ -15,7 +15,7 @@ tokens = (default)empty
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenIllegalTokens // ok
+public class InputDescendantTokenIllegalTokens
 {
     public void methodWithPreviouslyIllegalTokens()
     {
