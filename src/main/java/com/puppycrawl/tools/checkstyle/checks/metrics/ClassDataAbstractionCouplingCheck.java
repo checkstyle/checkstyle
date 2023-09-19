@@ -80,9 +80,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ol>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum threshold allowed.
- * Type is {@code int}.
- * Default value is {@code 7}.
+ * Property {@code excludeClassesRegexps} - Specify user-configured regular
+ * expressions to ignore classes.
+ * Type is {@code java.util.regex.Pattern[]}.
+ * Default value is {@code ^$}.
  * </li>
  * <li>
  * Property {@code excludedClasses} - Specify user-configured class names to ignore.
@@ -98,15 +99,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * float, int, long, short, var, void}.
  * </li>
  * <li>
- * Property {@code excludeClassesRegexps} - Specify user-configured regular
- * expressions to ignore classes.
- * Type is {@code java.util.regex.Pattern[]}.
- * Default value is {@code ^$}.
- * </li>
- * <li>
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum threshold allowed.
+ * Type is {@code int}.
+ * Default value is {@code 7}.
  * </li>
  * </ul>
  * <p>

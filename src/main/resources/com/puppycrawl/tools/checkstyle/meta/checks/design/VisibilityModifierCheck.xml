@@ -71,6 +71,26 @@
  won't be Check's violation.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="allowPublicFinalFields" type="boolean">
+               <description>Allow final fields to be declared as public.</description>
+            </property>
+            <property default-value="false"
+                      name="allowPublicImmutableFields"
+                      type="boolean">
+               <description>Allow immutable fields to be
+ declared as public if defined in final class.</description>
+            </property>
+            <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
+                      name="ignoreAnnotationCanonicalNames"
+                      type="java.lang.String[]">
+               <description>Specify annotations canonical
+ names which ignore variables in consideration.</description>
+            </property>
+            <property default-value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"
+                      name="immutableClassCanonicalNames"
+                      type="java.lang.String[]">
+               <description>Specify immutable classes canonical names.</description>
+            </property>
             <property default-value="false" name="packageAllowed" type="boolean">
                <description>Control whether package visible members are allowed.</description>
             </property>
@@ -81,26 +101,6 @@
                       name="publicMemberPattern"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for public members that should be ignored.</description>
-            </property>
-            <property default-value="false" name="allowPublicFinalFields" type="boolean">
-               <description>Allow final fields to be declared as public.</description>
-            </property>
-            <property default-value="false"
-                      name="allowPublicImmutableFields"
-                      type="boolean">
-               <description>Allow immutable fields to be
- declared as public if defined in final class.</description>
-            </property>
-            <property default-value="java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID"
-                      name="immutableClassCanonicalNames"
-                      type="java.lang.String[]">
-               <description>Specify immutable classes canonical names.</description>
-            </property>
-            <property default-value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule"
-                      name="ignoreAnnotationCanonicalNames"
-                      type="java.lang.String[]">
-               <description>Specify annotations canonical
- names which ignore variables in consideration.</description>
             </property>
          </properties>
          <message-keys>

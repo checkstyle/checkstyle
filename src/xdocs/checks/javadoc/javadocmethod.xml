@@ -94,20 +94,6 @@ public int checkReturnTag(final int aTagIndex,
               <th>since</th>
             </tr>
             <tr>
-              <td>allowedAnnotations</td>
-              <td>Specify annotations that allow missed documentation.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>Override</code></td>
-              <td>6.0</td>
-            </tr>
-            <tr>
-              <td>validateThrows</td>
-              <td>Control whether to validate <code>throws</code> tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.0</td>
-            </tr>
-            <tr>
               <td>accessModifiers</td>
               <td>Specify the access modifiers where Javadoc comments are checked.</td>
               <td>
@@ -133,6 +119,20 @@ public int checkReturnTag(final int aTagIndex,
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
+            </tr>
+            <tr>
+              <td>allowedAnnotations</td>
+              <td>Specify annotations that allow missed documentation.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>Override</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>validateThrows</td>
+              <td>Control whether to validate <code>throws</code> tags.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.0</td>
             </tr>
             <tr>
               <td>tokens</td>
