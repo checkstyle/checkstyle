@@ -1848,16 +1848,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceLabels.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]descendanttoken[\\/]InputDescendantTokenIllegalTokens5.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]descendanttoken[\\/]InputDescendantTokenIllegalTokens6.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]descendanttoken[\\/]InputDescendantTokenReturnFromFinally2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]descendanttoken[\\/]InputDescendantTokenTestLimitedToken.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionMultipleAnnotations.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]finalclass[\\/]InputFinalClass.java"/>
