@@ -69,10 +69,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code minLineCount} - Control the minimal amount of lines in method to allow no
- * documentation.
- * Type is {@code int}.
- * Default value is {@code -1}.
+ * Property {@code allowMissingPropertyJavadoc} - Control whether to allow missing Javadoc on
+ * accessor methods for properties (setters and getters).
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Configure annotations that allow missed
@@ -81,27 +81,27 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code Override}.
  * </li>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code public}.
- * </li>
- * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are
  * not checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code allowMissingPropertyJavadoc} - Control whether to allow missing Javadoc on
- * accessor methods for properties (setters and getters).
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
  * Property {@code ignoreMethodNamesRegex} - Ignore method whose names are matching specified
  * regex.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code minLineCount} - Control the minimal amount of lines in method to allow no
+ * documentation.
+ * Type is {@code int}.
+ * Default value is {@code -1}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
