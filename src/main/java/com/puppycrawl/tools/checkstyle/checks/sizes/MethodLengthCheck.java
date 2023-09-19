@@ -42,14 +42,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 150}.
- * </li>
- * <li>
  * Property {@code countEmpty} - Control whether to count empty lines and comments.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
+ * Default value is {@code 150}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

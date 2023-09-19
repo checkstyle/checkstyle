@@ -61,14 +61,6 @@
                            int aLineNo)
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="Override"
-                      name="allowedAnnotations"
-                      type="java.lang.String[]">
-               <description>Specify annotations that allow missed documentation.</description>
-            </property>
-            <property default-value="false" name="validateThrows" type="boolean">
-               <description>Control whether to validate {@code throws} tags.</description>
-            </property>
             <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
@@ -82,6 +74,14 @@
             <property default-value="false" name="allowMissingReturnTag" type="boolean">
                <description>Control whether to ignore violations
  when a method returns non-void type and does not have a {@code return} tag in the javadoc.</description>
+            </property>
+            <property default-value="Override"
+                      name="allowedAnnotations"
+                      type="java.lang.String[]">
+               <description>Specify annotations that allow missed documentation.</description>
+            </property>
+            <property default-value="false" name="validateThrows" type="boolean">
+               <description>Control whether to validate {@code throws} tags.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

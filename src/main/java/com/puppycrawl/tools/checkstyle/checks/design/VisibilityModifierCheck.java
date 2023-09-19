@@ -105,6 +105,33 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code allowPublicFinalFields} - Allow final fields to be declared as public.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowPublicImmutableFields} - Allow immutable fields to be
+ * declared as public if defined in final class.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreAnnotationCanonicalNames} - Specify annotations canonical
+ * names which ignore variables in consideration.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code com.google.common.annotations.VisibleForTesting,
+ * org.junit.ClassRule, org.junit.Rule}.
+ * </li>
+ * <li>
+ * Property {@code immutableClassCanonicalNames} - Specify immutable classes canonical names.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code java.io.File, java.lang.Boolean, java.lang.Byte,
+ * java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer,
+ * java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String,
+ * java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address,
+ * java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID}.
+ * </li>
+ * <li>
  * Property {@code packageAllowed} - Control whether package visible members are allowed.
  * Type is {@code boolean}.
  * Default value is {@code false}.
@@ -118,33 +145,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code publicMemberPattern} - Specify pattern for public members that should be ignored.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^serialVersionUID$"}.
- * </li>
- * <li>
- * Property {@code allowPublicFinalFields} - Allow final fields to be declared as public.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowPublicImmutableFields} - Allow immutable fields to be
- * declared as public if defined in final class.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code immutableClassCanonicalNames} - Specify immutable classes canonical names.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code java.io.File, java.lang.Boolean, java.lang.Byte,
- * java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer,
- * java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String,
- * java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address,
- * java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID}.
- * </li>
- * <li>
- * Property {@code ignoreAnnotationCanonicalNames} - Specify annotations canonical
- * names which ignore variables in consideration.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code com.google.common.annotations.VisibleForTesting,
- * org.junit.ClassRule, org.junit.Rule}.
  * </li>
  * </ul>
  * <p>

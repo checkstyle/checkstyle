@@ -31,13 +31,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
-              <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>150</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>countEmpty</td>
               <td>
                 Control whether to count empty lines and comments.
@@ -45,6 +38,13 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of lines allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>150</code></td>
+              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>

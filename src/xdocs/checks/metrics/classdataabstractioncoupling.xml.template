@@ -80,11 +80,11 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
-              <td>Specify the maximum threshold allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>7</code></td>
-              <td>3.4</td>
+              <td>excludeClassesRegexps</td>
+              <td>Specify user-configured regular expressions to ignore classes.</td>
+              <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
+              <td><code>^$</code></td>
+              <td>7.7</td>
             </tr>
             <tr>
               <td>excludedClasses</td>
@@ -105,18 +105,18 @@
               <td>5.7</td>
             </tr>
             <tr>
-              <td>excludeClassesRegexps</td>
-              <td>Specify user-configured regular expressions to ignore classes.</td>
-              <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
-              <td><code>^$</code></td>
-              <td>7.7</td>
-            </tr>
-            <tr>
               <td>excludedPackages</td>
               <td>Specify user-configured packages to ignore.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>7</code></td>
+              <td>3.4</td>
             </tr>
           </table>
         </div>

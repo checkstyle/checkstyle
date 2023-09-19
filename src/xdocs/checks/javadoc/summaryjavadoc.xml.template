@@ -31,17 +31,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>violateExecutionOnNonTightHtml</td>
-              <td>
-                Control when to print violations if the Javadoc being examined by this check
-                violates the tight html rules defined at
-                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.3</td>
-            </tr>
-            <tr>
               <td>forbiddenSummaryFragments</td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
@@ -54,6 +43,17 @@
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>"."</code></td>
               <td>6.2</td>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
             </tr>
           </table>
         </div>

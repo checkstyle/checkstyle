@@ -89,6 +89,43 @@
               <th>since</th>
             </tr>
             <tr>
+              <td>allowPublicFinalFields</td>
+              <td>Allow final fields to be declared as public.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.0</td>
+            </tr>
+            <tr>
+              <td>allowPublicImmutableFields</td>
+              <td>Allow immutable fields to be declared as public if defined in final class.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotationCanonicalNames</td>
+              <td>
+                Specify annotations canonical names which ignore variables in
+                consideration.
+              </td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>com.google.common.annotations.VisibleForTesting,
+                org.junit.ClassRule, org.junit.Rule</code></td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>immutableClassCanonicalNames</td>
+              <td>Specify immutable classes canonical names.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character,
+                java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long,
+                java.lang.Short, java.lang.StackTraceElement, java.lang.String,
+                java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address,
+                java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI,
+                java.net.URL, java.util.Locale, java.util.UUID</code></td>
+              <td>6.4.1</td>
+            </tr>
+            <tr>
               <td>packageAllowed</td>
               <td>Control whether package visible members are allowed.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -108,43 +145,6 @@
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^serialVersionUID$&quot;</code></td>
               <td>3.0</td>
-            </tr>
-            <tr>
-              <td>allowPublicFinalFields</td>
-              <td>Allow final fields to be declared as public.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>7.0</td>
-            </tr>
-            <tr>
-              <td>allowPublicImmutableFields</td>
-              <td>Allow immutable fields to be declared as public if defined in final class.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.4</td>
-            </tr>
-            <tr>
-              <td>immutableClassCanonicalNames</td>
-              <td>Specify immutable classes canonical names.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character,
-                java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long,
-                java.lang.Short, java.lang.StackTraceElement, java.lang.String,
-                java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address,
-                java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI,
-                java.net.URL, java.util.Locale, java.util.UUID</code></td>
-              <td>6.4.1</td>
-            </tr>
-            <tr>
-              <td>ignoreAnnotationCanonicalNames</td>
-              <td>
-                Specify annotations canonical names which ignore variables in
-                consideration.
-              </td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>com.google.common.annotations.VisibleForTesting,
-                org.junit.ClassRule, org.junit.Rule</code></td>
-              <td>6.5</td>
             </tr>
           </table>
         </div>
