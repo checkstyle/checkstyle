@@ -26,13 +26,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>allowOneCharVarInForLoop</td>
               <td>
                 Allow one character variable name in
@@ -43,6 +36,13 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td>3.0</td>
             </tr>
           </table>
         </div>
