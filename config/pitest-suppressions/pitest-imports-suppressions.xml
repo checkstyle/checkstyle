@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FileImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl::encloseInGroup with argument</description>
-    <lineContent>this.name = encloseInGroup(name);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ImportControlLoader.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
     <mutatedMethod>load</mutatedMethod>
