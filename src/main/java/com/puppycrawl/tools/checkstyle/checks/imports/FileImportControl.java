@@ -46,23 +46,13 @@ class FileImportControl extends AbstractImportControl {
 
         this.regex = regex;
         if (regex) {
-            this.name = encloseInGroup(name);
+            this.name = name;
             patternForExactMatch = createPatternForExactMatch(this.name);
         }
         else {
             this.name = name;
             patternForExactMatch = null;
         }
-    }
-
-    /**
-     * Enclose {@code expression} in a (non-capturing) group.
-     *
-     * @param expression the input regular expression
-     * @return a grouped pattern.
-     */
-    private static String encloseInGroup(String expression) {
-        return "(?:" + expression + ")";
     }
 
     /**
