@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
 
 import javax.swing.text.MutableAttributeSet;
@@ -40,6 +42,9 @@ public class XdocsTemplateSink extends XdocSink {
     /** Encoding of the writer. */
     private final String encoding;
 
+    /** Customized writer */
+    private Writer writer;
+
     /**
      * Create a new instance, initialize the Writer.
      *
@@ -48,7 +53,30 @@ public class XdocsTemplateSink extends XdocSink {
      */
     public XdocsTemplateSink(Writer writer, String encoding) {
         super(writer);
+        this.writer = new PrintWriter(writer);
         this.encoding = encoding;
+    }
+
+    /**
+     * Customized write function to force LF EOL.
+     * 
+     * @param text 
+     */
+    @Override
+    protected void write( String text ) {
+        try {
+            writer.write(text);
+        }
+        catch(IOException e) {
+        }
+    }
+
+    /**
+     * Customized WriteEOL method.
+     */
+    @Override
+    protected void writeEOL() {
+        write("\n");
     }
 
     /**
