@@ -439,6 +439,15 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
+    @Test
+    public void testImportControlFileName() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlTestRegexpInFile.java"), expected);
+    }
+
     /**
      * Returns String message of original exception that was thrown in
      * ImportControlCheck.setUrl or ImportControlCheck.setFile
