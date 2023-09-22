@@ -44,12 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code excludes} - Specify packages where starred class imports are
- * allowed and classes where starred static member imports are allowed.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
  * Property {@code allowClassImports} - Control whether to allow starred class
  * imports like {@code import java.util.*;}.
  * Type is {@code boolean}.
@@ -60,6 +54,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * static member imports like {@code import static org.junit.Assert.*;}.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code excludes} - Specify packages where starred class imports are
+ * allowed and classes where starred static member imports are allowed.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>
