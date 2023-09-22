@@ -37,7 +37,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test

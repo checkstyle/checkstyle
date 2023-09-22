@@ -37,6 +37,6 @@ public class InvalidJavadocPositionCheckExamplesTest extends AbstractExamplesMod
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }

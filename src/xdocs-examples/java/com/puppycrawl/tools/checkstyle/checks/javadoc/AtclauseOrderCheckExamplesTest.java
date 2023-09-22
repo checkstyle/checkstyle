@@ -37,6 +37,6 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
