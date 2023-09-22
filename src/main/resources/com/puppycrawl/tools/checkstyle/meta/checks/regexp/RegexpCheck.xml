@@ -58,16 +58,6 @@
  The regular expression should be entered on one line.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^$" name="format" type="java.util.regex.Pattern">
-               <description>Specify the pattern to match against.</description>
-            </property>
-            <property name="message" type="java.lang.String">
-               <description>Specify message which is used to notify about
- violations, if empty then the default (hard-coded) message is used.</description>
-            </property>
-            <property default-value="false" name="illegalPattern" type="boolean">
-               <description>Control whether the pattern is required or illegal.</description>
-            </property>
             <property default-value="0" name="duplicateLimit" type="int">
                <description>Control whether to check for duplicates
  of a required pattern, any negative value means no checking for duplicates,
@@ -78,8 +68,18 @@
                <description>Specify the maximum number of violations before
  the check will abort.</description>
             </property>
+            <property default-value="^$" name="format" type="java.util.regex.Pattern">
+               <description>Specify the pattern to match against.</description>
+            </property>
             <property default-value="false" name="ignoreComments" type="boolean">
                <description>Control whether to ignore matches found within comments.</description>
+            </property>
+            <property default-value="false" name="illegalPattern" type="boolean">
+               <description>Control whether the pattern is required or illegal.</description>
+            </property>
+            <property name="message" type="java.lang.String">
+               <description>Specify message which is used to notify about
+ violations, if empty then the default (hard-coded) message is used.</description>
             </property>
          </properties>
          <message-keys>

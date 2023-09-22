@@ -230,8 +230,6 @@ public class XdocsPagesTest {
     private static final Set<String> MODULES_WITH_UNORDERED_PROPERTIES = Set.of(
         "Checker",
         "Translation",
-        "MethodCount",
-        "Regexp",
         "Indentation",
         "MethodName",
         "AtclauseOrder",
