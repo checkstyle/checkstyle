@@ -37,6 +37,6 @@ public class OrderedPropertiesCheckExamplesTest extends AbstractExamplesModuleTe
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }

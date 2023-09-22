@@ -37,7 +37,7 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,6 +46,6 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
