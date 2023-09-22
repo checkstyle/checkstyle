@@ -74,17 +74,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code maxTotal} - Specify the maximum number of methods allowed at all scope levels.
+ * Property {@code maxPackage} - Specify the maximum number of {@code package} methods allowed.
  * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
  * <li>
  * Property {@code maxPrivate} - Specify the maximum number of {@code private} methods allowed.
- * Type is {@code int}.
- * Default value is {@code 100}.
- * </li>
- * <li>
- * Property {@code maxPackage} - Specify the maximum number of {@code package} methods allowed.
  * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
@@ -95,6 +90,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * <li>
  * Property {@code maxPublic} - Specify the maximum number of {@code public} methods allowed.
+ * Type is {@code int}.
+ * Default value is {@code 100}.
+ * </li>
+ * <li>
+ * Property {@code maxTotal} - Specify the maximum number of methods allowed at all scope levels.
  * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
