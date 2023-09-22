@@ -8,14 +8,15 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
 // xdoc section -- start
-class MyClass {
-  public int NUM1; // OK
-  protected int NUM2; // violation, name 'NUM2'
-                      // must match pattern '^[a-z][a-zA-Z0-9]*$'
-  int NUM3; // violation, name 'NUM3'
-            // must match pattern '^[a-z][a-zA-Z0-9]*$'
-  private int NUM4; // OK
+class Example3 {
+  public int NUM1;
+  protected int NUM2; // violation
+
+  int NUM3; // violation
+
+  private int NUM4;
 }
 // xdoc section -- end
