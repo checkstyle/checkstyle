@@ -108,8 +108,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthLongImportStatements.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>

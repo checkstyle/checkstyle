@@ -9,8 +9,6 @@ max = (default)80
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
-import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
-import static com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments.main;
 
 public class InputLineLengthLongImportStatements {
     @Override
