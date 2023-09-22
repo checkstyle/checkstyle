@@ -45,20 +45,20 @@
  }
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="100" name="maxTotal" type="int">
-               <description>Specify the maximum number of methods allowed at all scope levels.</description>
+            <property default-value="100" name="maxPackage" type="int">
+               <description>Specify the maximum number of {@code package} methods allowed.</description>
             </property>
             <property default-value="100" name="maxPrivate" type="int">
                <description>Specify the maximum number of {@code private} methods allowed.</description>
-            </property>
-            <property default-value="100" name="maxPackage" type="int">
-               <description>Specify the maximum number of {@code package} methods allowed.</description>
             </property>
             <property default-value="100" name="maxProtected" type="int">
                <description>Specify the maximum number of {@code protected} methods allowed.</description>
             </property>
             <property default-value="100" name="maxPublic" type="int">
                <description>Specify the maximum number of {@code public} methods allowed.</description>
+            </property>
+            <property default-value="100" name="maxTotal" type="int">
+               <description>Specify the maximum number of methods allowed at all scope levels.</description>
             </property>
             <property default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
