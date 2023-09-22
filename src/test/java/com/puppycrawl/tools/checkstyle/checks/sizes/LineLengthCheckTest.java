@@ -57,7 +57,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongImportStatements() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_KEY, 80, 100),
+            "16: " + getCheckMessage(MSG_KEY, 80, 100),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthLongImportStatements.java"), expected);
