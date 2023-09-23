@@ -53,11 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
  * Property {@code allowMultipleEmptyLines} - Allow multiple empty lines between class members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
@@ -67,6 +62,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * empty lines inside class members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

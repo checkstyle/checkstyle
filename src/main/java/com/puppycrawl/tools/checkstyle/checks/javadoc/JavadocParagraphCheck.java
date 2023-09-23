@@ -39,18 +39,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </ul>
  * <ul>
  * <li>
+ * Property {@code allowNewlineParagraph} - Control whether the &lt;p&gt; tag
+ * should be placed immediately before the first word.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
  * Tight-HTML Rules</a>.
  * Type is {@code boolean}.
  * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowNewlineParagraph} - Control whether the &lt;p&gt; tag
- * should be placed immediately before the first word.
- * Type is {@code boolean}.
- * Default value is {@code true}.
  * </li>
  * </ul>
  * <p>

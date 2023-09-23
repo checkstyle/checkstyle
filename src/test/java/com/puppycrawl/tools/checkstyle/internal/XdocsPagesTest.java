@@ -278,12 +278,7 @@ public class XdocsPagesTest {
         "NeedBraces",
         "SeverityMatchFilter",
         "SuppressWithNearbyCommentFilter",
-        "MultipleStringLiterals",
-        "LeftCurly",
-        "AbbreviationAsWordInName",
-        "EmptyLineSeparator",
-        "JavadocStyle",
-        "JavadocParagraph"
+        "MultipleStringLiterals"
     );
 
     /**

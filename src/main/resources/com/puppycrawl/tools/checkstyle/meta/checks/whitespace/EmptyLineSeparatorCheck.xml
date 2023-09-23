@@ -21,11 +21,6 @@
  Also, trailing comments are skipped.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="false"
-                      name="allowNoEmptyLineBetweenFields"
-                      type="boolean">
-               <description>Allow no empty line between fields.</description>
-            </property>
             <property default-value="true" name="allowMultipleEmptyLines" type="boolean">
                <description>Allow multiple empty lines between class members.</description>
             </property>
@@ -34,6 +29,11 @@
                       type="boolean">
                <description>Allow multiple
  empty lines inside class members.</description>
+            </property>
+            <property default-value="false"
+                      name="allowNoEmptyLineBetweenFields"
+                      type="boolean">
+               <description>Allow no empty line between fields.</description>
             </property>
             <property default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,STATIC_INIT,INSTANCE_INIT,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

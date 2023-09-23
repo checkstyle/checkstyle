@@ -38,13 +38,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowNoEmptyLineBetweenFields</td>
-              <td>Allow no empty line between fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
               <td>allowMultipleEmptyLines</td>
               <td>Allow multiple empty lines between class members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -57,6 +50,13 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.18</td>
+            </tr>
+            <tr>
+              <td>allowNoEmptyLineBetweenFields</td>
+              <td>Allow no empty line between fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
             </tr>
             <tr>
               <td>tokens</td>

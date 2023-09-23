@@ -26,18 +26,18 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
-              <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).</td>
-              <td><a href="../../property_types.html#LeftCurlyOption">LeftCurlyOption</a></td>
-              <td><code>eol</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>ignoreEnums</td>
               <td>Allow to ignore enums when left curly brace policy is EOL.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.9</td>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).</td>
+              <td><a href="../../property_types.html#LeftCurlyOption">LeftCurlyOption</a></td>
+              <td><code>eol</code></td>
+              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>

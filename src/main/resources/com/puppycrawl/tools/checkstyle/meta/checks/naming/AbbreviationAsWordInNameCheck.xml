@@ -43,16 +43,16 @@
             <property default-value="true" name="ignoreFinal" type="boolean">
                <description>Allow to skip variables with {@code final} modifier.</description>
             </property>
+            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
+               <description>Allow to ignore methods tagged with {@code @Override}
+ annotation (that usually mean inherited name).</description>
+            </property>
             <property default-value="true" name="ignoreStatic" type="boolean">
                <description>Allow to skip variables with {@code static} modifier.</description>
             </property>
             <property default-value="true" name="ignoreStaticFinal" type="boolean">
                <description>Allow to skip variables with both {@code static} and
  {@code final} modifiers.</description>
-            </property>
-            <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>Allow to ignore methods tagged with {@code @Override}
- annotation (that usually mean inherited name).</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
                       name="tokens"

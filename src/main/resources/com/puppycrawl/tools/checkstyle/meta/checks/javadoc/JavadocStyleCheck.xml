@@ -49,18 +49,16 @@
  available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="private"
-                      name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where
- Javadoc comments are not checked.</description>
+            <property default-value="false" name="checkEmptyJavadoc" type="boolean">
+               <description>Control whether to check if the Javadoc
+ is missing a describing text.</description>
             </property>
             <property default-value="true" name="checkFirstSentence" type="boolean">
                <description>Control whether to check the first
  sentence for proper end of sentence.</description>
+            </property>
+            <property default-value="true" name="checkHtml" type="boolean">
+               <description>Control whether to check for incomplete HTML tags.</description>
             </property>
             <property default-value="([.?!][ \t\n\r\f&amp;lt;])|([.?!]$)"
                       name="endOfSentenceFormat"
@@ -68,12 +66,14 @@
                <description>Specify the format for matching
  the end of a sentence.</description>
             </property>
-            <property default-value="false" name="checkEmptyJavadoc" type="boolean">
-               <description>Control whether to check if the Javadoc
- is missing a describing text.</description>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where
+ Javadoc comments are not checked.</description>
             </property>
-            <property default-value="true" name="checkHtml" type="boolean">
-               <description>Control whether to check for incomplete HTML tags.</description>
+            <property default-value="private"
+                      name="scope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
             <property default-value="ANNOTATION_DEF,ANNOTATION_FIELD_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,METHOD_DEF,PACKAGE_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

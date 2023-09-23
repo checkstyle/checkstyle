@@ -37,6 +37,16 @@
               <th>since</th>
             </tr>
             <tr>
+              <td>allowNewlineParagraph</td>
+              <td>
+                Control whether the &lt;p&gt; tag should be placed immediately before the first
+                word.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.9</td>
+            </tr>
+            <tr>
               <td>violateExecutionOnNonTightHtml</td>
               <td>
                 Control when to print violations if the Javadoc being examined by this check
@@ -46,16 +56,6 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
-            </tr>
-            <tr>
-              <td>allowNewlineParagraph</td>
-              <td>
-                Control whether the &lt;p&gt; tag should be placed immediately before the first
-                word.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>6.9</td>
             </tr>
           </table>
         </div>
