@@ -31,11 +31,11 @@
  not cause problems for other classes.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="4" name="max" type="int">
-               <description>Specify maximum allowed number of throws statements.</description>
-            </property>
             <property default-value="true" name="ignorePrivateMethods" type="boolean">
                <description>Allow private methods to be ignored.</description>
+            </property>
+            <property default-value="4" name="max" type="int">
+               <description>Specify maximum allowed number of throws statements.</description>
             </property>
          </properties>
          <message-keys>

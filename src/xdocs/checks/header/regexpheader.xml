@@ -97,13 +97,6 @@ line 6: ^\W*$
               <th>since</th>
             </tr>
             <tr>
-              <td>headerFile</td>
-              <td>Specify the name of the file containing the required header.</td>
-              <td><a href="../../property_types.html#URI">URI</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="../../property_types.html#String">String</a></td>
@@ -114,6 +107,13 @@ line 6: ^\W*$
                 </code>
               </td>
               <td>5.0</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>6.9</td>
             </tr>
             <tr>
               <td>header</td>
@@ -129,18 +129,18 @@ line 6: ^\W*$
               <td>5.0</td>
             </tr>
             <tr>
+              <td>headerFile</td>
+              <td>Specify the name of the file containing the required header.</td>
+              <td><a href="../../property_types.html#URI">URI</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
               <td>multiLines</td>
               <td>Specify the line numbers to repeat (zero or more times).</td>
               <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
               <td><code>{}</code></td>
               <td>3.4</td>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>6.9</td>
             </tr>
           </table>
         </div>

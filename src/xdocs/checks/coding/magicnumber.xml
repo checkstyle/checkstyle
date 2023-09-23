@@ -41,41 +41,6 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreNumbers</td>
-              <td>Specify non-magic numbers.</td>
-              <td><a href="../../property_types.html#double.5B.5D">double[]</a></td>
-              <td><code>-1, 0, 1, 2</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>ignoreHashCodeMethod</td>
-              <td>Ignore magic numbers in hashCode methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>ignoreAnnotation</td>
-              <td>Ignore magic numbers in annotation declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.4</td>
-            </tr>
-            <tr>
-              <td>ignoreFieldDeclaration</td>
-              <td>Ignore magic numbers in field declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.6</td>
-            </tr>
-            <tr>
-              <td>ignoreAnnotationElementDefaults</td>
-              <td>Ignore magic numbers in annotation elements defaults.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.23</td>
-            </tr>
-            <tr>
               <td>constantWaiverParentToken</td>
               <td>Specify tokens that are allowed in the AST path from the number literal to the
                   enclosing constant definition.</td>
@@ -111,6 +76,41 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 UNARY_PLUS</a>
               </td>
               <td>6.11</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotation</td>
+              <td>Ignore magic numbers in annotation declarations.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.4</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotationElementDefaults</td>
+              <td>Ignore magic numbers in annotation elements defaults.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>ignoreFieldDeclaration</td>
+              <td>Ignore magic numbers in field declarations.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.6</td>
+            </tr>
+            <tr>
+              <td>ignoreHashCodeMethod</td>
+              <td>Ignore magic numbers in hashCode methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>ignoreNumbers</td>
+              <td>Specify non-magic numbers.</td>
+              <td><a href="../../property_types.html#double.5B.5D">double[]</a></td>
+              <td><code>-1, 0, 1, 2</code></td>
+              <td>3.1</td>
             </tr>
             <tr>
               <td>tokens</td>
