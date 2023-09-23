@@ -103,10 +103,10 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     /**
-     * This tests that the check does not fail when the input file contains unmappable characters.
-     * The test file contains the character ü which is not mappable to US-ASCII. It makes sure that
-     * unmappable characters are replaced with the default replacement character using
-     * {@link CodingErrorAction#REPLACE}.
+     * This tests that the check does not fail when the input file contains malformed characters
+     * for a particular charset. The test file contains the character {@code ü} which is not
+     * mappable to US-ASCII. It makes sure that malformed characters than cannot be mapped are
+     * replaced with the default replacement character using {@link CodingErrorAction#REPLACE}.
      *
      * @throws Exception exception
      */
