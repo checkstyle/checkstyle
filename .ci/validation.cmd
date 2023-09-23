@@ -32,6 +32,19 @@ if "%OPTION%" ==  "site_without_verify" (
   goto :END_CASE
 )
 
+if "%OPTION%" == "git_diff" (
+  for /f "delims=" %%a in ('git status ^| findstr /c:"Changes not staged"') do set output=%%a
+  if defined output (
+    echo Please clean up or update .gitattributes file.
+    echo Git status output:
+    echo Top 300 lines of diff:
+    call git diff | find /v /n "" | findstr /R "^\[[1-2]*[1-9]*[0-9]\]"
+    echo There should be no changes in git repository after any CI job/task
+    goto :ERROR
+  )
+  goto :END_CASE
+)
+
 echo  Unexpected argument %OPTION%
 SET ERRORLEVEL=-1
 goto :END_CASE
