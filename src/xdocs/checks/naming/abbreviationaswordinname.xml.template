@@ -74,6 +74,14 @@
               <td>5.8</td>
             </tr>
             <tr>
+              <td>ignoreOverriddenMethods</td>
+              <td>Allow to ignore methods tagged with <code>@Override</code> annotation
+              (that usually mean inherited name).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
               <td>ignoreStatic</td>
               <td>Allow to skip variables with <code>static</code> modifier.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -87,14 +95,6 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.32</td>
-            </tr>
-            <tr>
-              <td>ignoreOverriddenMethods</td>
-              <td>Allow to ignore methods tagged with <code>@Override</code> annotation
-              (that usually mean inherited name).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.8</td>
             </tr>
             <tr>
               <td>tokens</td>

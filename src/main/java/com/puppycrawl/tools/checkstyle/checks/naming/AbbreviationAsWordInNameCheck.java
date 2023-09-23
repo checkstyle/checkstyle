@@ -78,6 +78,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
+ * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
+ * annotation (that usually mean inherited name).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code ignoreStatic} - Allow to skip variables with {@code static} modifier.
  * Type is {@code boolean}.
  * Default value is {@code true}.
@@ -85,12 +91,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code ignoreStaticFinal} - Allow to skip variables with both {@code static} and
  * {@code final} modifiers.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
- * annotation (that usually mean inherited name).
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
