@@ -51,4 +51,9 @@
          value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/LooseCoupling">
+    <properties>
+      <property name="violationSuppressXPath" value=".[typeIs('java.util.LinkedList')]"/>
+    </properties>
+  </rule>
 </ruleset>
