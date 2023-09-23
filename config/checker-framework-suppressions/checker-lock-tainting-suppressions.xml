@@ -1228,4 +1228,19 @@
       void accept(@GuardedBy ObjIntConsumer&lt;@GuardedBy BitSet&gt; this, @GuardedBy BitSet p0, @GuardedBy int p1)
     </details>
   </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public void println() {</lineContent>
+    <details>
+      found   : @GuardedBy CustomPrintWriter
+      required: @GuardSatisfied PrintWriter
+      Consequence: method in @GuardedBy CustomPrintWriter
+      void println(@GuardedBy CustomPrintWriter this)
+      cannot override method in @GuardedBy PrintWriter
+      void println(@GuardSatisfied PrintWriter this)
+    </details>
+  </checkerFrameworkError>
 </suppressedErrors>
