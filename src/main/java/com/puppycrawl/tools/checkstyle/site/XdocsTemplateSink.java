@@ -19,7 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.Writer;
+import java.util.LinkedList;
 
 import javax.swing.text.MutableAttributeSet;
 
@@ -27,6 +30,7 @@ import org.apache.maven.doxia.markup.HtmlMarkup;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
 import org.apache.maven.doxia.sink.SinkEventAttributes;
 import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
+import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
 
 /**
  * A sink for Checkstyle's xdoc templates.
@@ -40,6 +44,21 @@ public class XdocsTemplateSink extends XdocSink {
     /** Encoding of the writer. */
     private final String encoding;
 
+    /** The PrintWriter to write the result. */
+    private final PrintWriter writer;
+
+    /**
+     * The stack of StringWriter to write the table result temporary,
+     * so we could play with the output DOXIA-177.
+     */
+    private final LinkedList<StringWriter> tableContentWriterStack;
+
+    /** Stack for Pretty formatted XML. */
+    private final LinkedList<PrettyPrintXMLWriter> tableCaptionXmlWriterStack;
+
+    /** Linux Style End of Line. */
+    private final String endOfLine = "\n";
+
     /**
      * Create a new instance, initialize the Writer.
      *
@@ -49,6 +68,67 @@ public class XdocsTemplateSink extends XdocSink {
     public XdocsTemplateSink(Writer writer, String encoding) {
         super(writer);
         this.encoding = encoding;
+        this.writer = new PrintWriter(writer);
+        this.tableContentWriterStack = new LinkedList<>();
+        this.tableCaptionXmlWriterStack = new LinkedList<>();
+    }
+
+    /**
+     * Parses the given String and replaces all occurrences of
+     * '\n', '\r' and '\r\n' with the Linux system EOL. All Sinks should
+     * make sure that text output is filtered through this method.
+     *
+     * @param text the text to scan. May be null in which case null is returned.
+     * @return a String that contains only Linux System EOLs.
+     */
+    protected String unifyToLinuxEndOfLine(String text) {
+        final int length = text.length();
+        final StringBuilder buffer = new StringBuilder(length);
+
+        for (int id = 0; id < length; id++) {
+            if (text.charAt(id) == '\r') {
+                if ((id + 1) < length && text.charAt(id + 1) == '\n') {
+                    id++;
+                }
+                buffer.append(this.endOfLine);
+            }
+            else if (text.charAt(id) == '\n') {
+                buffer.append(this.endOfLine);
+            }
+            else {
+                buffer.append(text.charAt(id));
+            }
+        }
+        return buffer.toString();
+    }
+
+    @Override
+    protected void write(String text) {
+        String finalText = null;
+        
+        if(text != null) {
+            finalText = unifyToLinuxEndOfLine(text);
+        }
+
+        if (!this.tableCaptionXmlWriterStack.isEmpty()
+            && this.tableCaptionXmlWriterStack.getLast() != null) {
+            this.tableCaptionXmlWriterStack.getLast().writeMarkup(finalText);
+        }
+        else if (!this.tableContentWriterStack.isEmpty()
+                && this.tableContentWriterStack.getLast() != null) {
+            this.tableContentWriterStack.getLast().write(finalText);
+        }
+        else {
+            writer.write(finalText);
+        }
+    }
+
+    /**
+     * Writes a Linux endOfLine.
+     */
+    @Override
+    protected void writeEOL() {
+        write(this.endOfLine);
     }
 
     /**
