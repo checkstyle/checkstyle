@@ -956,6 +956,7 @@ ogg
 OI
 olddomain
 olympe
+Ommited
 onestatement
 onestatementperline
 onetoplevel
@@ -987,6 +988,7 @@ ove
 overloadmethodsdeclarationorder
 overloadsplit
 overridable
+Overriden
 OVERRIDERS
 packageannotation
 packagecomment
@@ -1462,7 +1464,7 @@ xffffffff
 xffffffffffffffff
 xg
 Xhenseval
-XHTML
+xhtml
 xm
 Xmaxerrs
 Xmaxwarns
