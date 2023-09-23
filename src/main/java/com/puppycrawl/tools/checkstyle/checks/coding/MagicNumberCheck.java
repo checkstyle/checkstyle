@@ -55,32 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code ignoreNumbers} - Specify non-magic numbers.
- * Type is {@code double[]}.
- * Default value is {@code -1, 0, 1, 2}.
- * </li>
- * <li>
- * Property {@code ignoreHashCodeMethod} - Ignore magic numbers in hashCode methods.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreAnnotation} - Ignore magic numbers in annotation declarations.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreFieldDeclaration} - Ignore magic numbers in field declarations.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreAnnotationElementDefaults} -
- * Ignore magic numbers in annotation elements defaults.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
  * Property {@code constantWaiverParentToken} - Specify tokens that are allowed in the AST path
  * from the number literal to the enclosing constant definition.
  * Type is {@code java.lang.String[]}.
@@ -112,6 +86,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * UNARY_MINUS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
  * UNARY_PLUS</a>.
+ * </li>
+ * <li>
+ * Property {@code ignoreAnnotation} - Ignore magic numbers in annotation declarations.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreAnnotationElementDefaults} -
+ * Ignore magic numbers in annotation elements defaults.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code ignoreFieldDeclaration} - Ignore magic numbers in field declarations.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreHashCodeMethod} - Ignore magic numbers in hashCode methods.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreNumbers} - Specify non-magic numbers.
+ * Type is {@code double[]}.
+ * Default value is {@code -1, 0, 1, 2}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
