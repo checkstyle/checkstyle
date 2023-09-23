@@ -36,14 +36,14 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 2000}.
- * </li>
- * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
+ * Default value is {@code 2000}.
  * </li>
  * </ul>
  * <p>

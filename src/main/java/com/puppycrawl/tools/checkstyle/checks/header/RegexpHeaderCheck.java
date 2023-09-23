@@ -98,15 +98,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code headerFile} - Specify the name of the file containing the required header.
- * Type is {@code java.net.URI}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
  * Type is {@code java.lang.String}.
  * Default value is {@code the charset property of the parent
  * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code header} - Define the required header specified inline.
@@ -119,13 +119,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code multiLines} - Specify the line numbers to repeat (zero or more times).
- * Type is {@code int[]}.
- * Default value is {@code ""}.
+ * Property {@code headerFile} - Specify the name of the file containing the required header.
+ * Type is {@code java.net.URI}.
+ * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process.
- * Type is {@code java.lang.String[]}.
+ * Property {@code multiLines} - Specify the line numbers to repeat (zero or more times).
+ * Type is {@code int[]}.
  * Default value is {@code ""}.
  * </li>
  * </ul>
