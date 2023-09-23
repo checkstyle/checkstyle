@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.PrintWriter;
 import java.io.Writer;
 
 import javax.swing.text.MutableAttributeSet;
@@ -37,8 +38,14 @@ import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
  */
 public class XdocsTemplateSink extends XdocSink {
 
+    /** Linux Style End of Line. */
+    private static final String LINUX_EOL = "\n";
+
     /** Encoding of the writer. */
     private final String encoding;
+
+    /** The PrintWriter to write the result. */
+    private final PrintWriter writer;
 
     /**
      * Create a new instance, initialize the Writer.
@@ -49,6 +56,43 @@ public class XdocsTemplateSink extends XdocSink {
     public XdocsTemplateSink(Writer writer, String encoding) {
         super(writer);
         this.encoding = encoding;
+        this.writer = new PrintWriter(writer);
+    }
+
+    /**
+     * Customization of org.apache.maven.doxia.sink.impl.XhtmlBaseSink.unifyEOL() method.
+     *
+     * @param text the text to scan.
+     * @return a String that contains only Linux System EOLs.
+     */
+    private static String unifyToLinuxEndOfLine(String text) {
+        return text
+                .replace("\r\n", LINUX_EOL)
+                .replace('\r', LINUX_EOL.charAt(0));
+    }
+
+    /**
+     * Overriden from org.apache.maven.doxia.sink.impl.XhtmlBaseSink class.
+     * 
+     * Ommited the usage of tableContentWriterStack, tableCaptionWriterStack and
+     * tableCaptionXMLWriterStack lists, since they are redundant in our current
+     * context and causing too many CI failures which includes PMD, Spotbugs and
+     * circleci - run inspections.
+     *
+     * @param text the text to write to the destination.
+     */
+    @Override
+    protected void write(String text) {
+        writer.write(unifyToLinuxEndOfLine(text));
+    }
+
+    /**
+     * Overriden from org.apache.maven.doxia.sink.impl.AbstractXmlSink class.
+     * Writes a Linux System end of line.
+     */
+    @Override
+    protected void writeEOL() {
+        write(LINUX_EOL);
     }
 
     /**
