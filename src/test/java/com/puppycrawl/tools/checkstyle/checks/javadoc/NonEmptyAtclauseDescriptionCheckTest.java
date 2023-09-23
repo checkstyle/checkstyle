@@ -22,10 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck.MSG_KEY;
 
+import java.nio.charset.CodingErrorAction;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends AbstractModuleTestSupport {
@@ -94,5 +100,31 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "77: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
+    }
+
+    /**
+     * This tests that the check does not fail when the input file contains unmappable characters.
+     * The test file contains the character ü which is not mappable to US-ASCII. It makes sure that
+     * unmappable characters are replaced with the default replacement character using
+     * {@link CodingErrorAction#REPLACE}.
+     *
+     * @throws Exception exception
+     */
+    @SuppressForbidden
+    @Test
+    public void testDecoderOnMalformedInput() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addProperty("charset", "US-ASCII");
+
+        verify(checkerConfig,
+                getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"), expected);
     }
 }
