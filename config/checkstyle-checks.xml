@@ -613,6 +613,11 @@
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MethodCount"/>
     </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files"
+                value=".*[\\/]xpath[\\/]AbstractElementNode.java"/>
+      <property name="checks" value="ImportControl"/>
+    </module>
     <!-- Fixing these cases will decrease code readability -->
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
