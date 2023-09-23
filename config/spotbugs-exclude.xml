@@ -288,4 +288,8 @@
     name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateSink"/>
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
+  </Match>
 </FindBugsFilter>

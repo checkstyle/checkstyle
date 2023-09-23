@@ -19,7 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.io.Writer;
+import java.util.LinkedList;
 
 import javax.swing.text.MutableAttributeSet;
 
@@ -27,6 +30,7 @@ import org.apache.maven.doxia.markup.HtmlMarkup;
 import org.apache.maven.doxia.module.xdoc.XdocSink;
 import org.apache.maven.doxia.sink.SinkEventAttributes;
 import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
+import org.codehaus.plexus.util.xml.PrettyPrintXMLWriter;
 
 /**
  * A sink for Checkstyle's xdoc templates.
@@ -37,8 +41,32 @@ import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
  */
 public class XdocsTemplateSink extends XdocSink {
 
+    /** Linux Style End of Line. */
+    private static final String LINUX_EOL = "\n";
+
     /** Encoding of the writer. */
     private final String encoding;
+
+    /** The PrintWriter to write the result. */
+    private final PrintWriter writer;
+
+    /**
+     * The stack of StringWriter to write the table result temporary.
+     * so we could play with the output DOXIA-177.
+     */
+    private final LinkedList<StringWriter> tableContentWriterStack;
+
+    /**
+     * The stack of StringWriter to write the table result temporary.
+     * so we could play with the output DOXIA-177.
+     */
+    private final LinkedList<StringWriter> tableCaptionWriterStack;
+
+    /**
+     * The stack of StringWriter to write the table result temporary.
+     * so we could play with the output DOXIA-177.
+     */
+    private final LinkedList<PrettyPrintXMLWriter> tableCaptionXMLWriterStack;
 
     /**
      * Create a new instance, initialize the Writer.
@@ -49,6 +77,51 @@ public class XdocsTemplateSink extends XdocSink {
     public XdocsTemplateSink(Writer writer, String encoding) {
         super(writer);
         this.encoding = encoding;
+        this.writer = new PrintWriter(writer);
+        tableContentWriterStack = new LinkedList<>();
+        tableCaptionWriterStack = new LinkedList<>();
+        tableCaptionXMLWriterStack = new LinkedList<>();
+    }
+
+    /**
+     * Customization of org.apache.maven.doxia.sink.impl.XhtmlBaseSink.unifyEOL() method.
+     *
+     * @param text the text to scan.
+     * @return a String that contains only Linux System EOLs.
+     */
+    private static String unifyToLinuxEndOfLine(String text) {
+        return text
+                .replace("\r\n", LINUX_EOL)
+                .replace('\r', LINUX_EOL.charAt(0));
+    }
+
+    /**
+     * Overriden from org.apache.maven.doxia.sink.impl.AbstractXmlSink class.
+     *
+     * @param text the text to write to the destination.
+     */
+    @Override
+    protected void write(String text) {
+        if (!this.tableCaptionWriterStack.isEmpty()
+                && this.tableCaptionXMLWriterStack.getLast() != null) {
+            this.tableCaptionXMLWriterStack.getLast().writeMarkup(unifyToLinuxEndOfLine(text));
+        }
+        else if (!this.tableContentWriterStack.isEmpty()
+                && this.tableContentWriterStack.getLast() != null) {
+            this.tableContentWriterStack.getLast().write(unifyToLinuxEndOfLine(text));
+        }
+        else {
+            writer.write(unifyToLinuxEndOfLine(text));
+        }
+    }
+
+    /**
+     * Overriden from org.apache.maven.doxia.sink.impl.AbstractXmlSink class.
+     * Writes a Linux System end of line.
+     */
+    @Override
+    protected void writeEOL() {
+        write(LINUX_EOL);
     }
 
     /**
