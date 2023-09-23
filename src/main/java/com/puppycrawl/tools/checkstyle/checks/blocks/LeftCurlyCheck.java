@@ -34,15 +34,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code option} - Specify the policy on placement of a left curly brace
  * (<code>'{'</code>).
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption}.
  * Default value is {@code eol}.
- * </li>
- * <li>
- * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
- * Type is {@code boolean}.
- * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

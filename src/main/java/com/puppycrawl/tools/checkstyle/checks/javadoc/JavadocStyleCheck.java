@@ -85,19 +85,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where
- * Javadoc comments are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
+ * Property {@code checkEmptyJavadoc} - Control whether to check if the Javadoc
+ * is missing a describing text.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code checkFirstSentence} - Control whether to check the first
  * sentence for proper end of sentence.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code checkHtml} - Control whether to check for incomplete HTML tags.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -108,15 +108,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code "([.?!][ \t\n\r\f&lt;])|([.?!]$)"}.
  * </li>
  * <li>
- * Property {@code checkEmptyJavadoc} - Control whether to check if the Javadoc
- * is missing a describing text.
- * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Property {@code excludeScope} - Specify the visibility scope where
+ * Javadoc comments are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code checkHtml} - Control whether to check for incomplete HTML tags.
- * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

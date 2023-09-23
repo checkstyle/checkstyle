@@ -73,17 +73,12 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
+              <td>checkEmptyJavadoc</td>
+              <td>
+                Control whether to check if the Javadoc is missing a describing text.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
               <td>3.4</td>
             </tr>
             <tr>
@@ -91,6 +86,13 @@
               <td>
                 Control whether to check the first sentence for proper end of sentence.
               </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>checkHtml</td>
+              <td>Control whether to check for incomplete HTML tags.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
@@ -105,19 +107,17 @@
               <td>5.0</td>
             </tr>
             <tr>
-              <td>checkEmptyJavadoc</td>
-              <td>
-                Control whether to check if the Javadoc is missing a describing text.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>checkHtml</td>
-              <td>Control whether to check for incomplete HTML tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>private</code></td>
               <td>3.2</td>
             </tr>
             <tr>
