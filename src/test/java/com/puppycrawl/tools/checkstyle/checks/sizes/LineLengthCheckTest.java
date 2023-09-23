@@ -21,9 +21,13 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.nio.charset.CodingErrorAction;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -118,4 +122,27 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             getNonCompilablePath("InputLineLengthIgnoringImportStatements.java"), expected);
     }
 
+    /**
+     * This tests that the check does not fail when the file contains unmappable characters.
+     * Unmappable characters should be replaced with the default replacement character
+     * {@link CodingErrorAction#REPLACE}. For example, the 0x80 (hex.) character is unmappable
+     * in the IBM1098 charset.
+     *
+     * @throws Exception exception
+     */
+    @SuppressForbidden
+    @Test
+    public void testUnmappableCharacters() throws Exception {
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_KEY, 75, 238),
+        };
+
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("max", "75");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addProperty("charset", "IBM1098");
+
+        verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
+    }
 }
