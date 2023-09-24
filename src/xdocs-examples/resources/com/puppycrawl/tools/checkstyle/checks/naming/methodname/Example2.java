@@ -8,10 +8,11 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
+
 // xdoc section -- start
-class MyClass {
-  public void myMethod() {} // OK
-  public void MyMethod() {} // violation, name "MyMethod"
-                            // should match the pattern "^[a-z](_?[a-zA-Z0-9]+)*$"
+class Example2 {
+  public void method1() {}
+  public void Method2() {} // violation
 }
 // xdoc section -- end
