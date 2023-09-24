@@ -15,16 +15,16 @@
  packages, set property {@code illegalPkgs} to a list of the illegal packages.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="sun" name="illegalPkgs" type="java.lang.String[]">
-               <description>Specify packages to reject, if &lt;b&gt;regexp&lt;/b&gt;
- property is not set, checks if import is the part of package. If &lt;b&gt;regexp&lt;/b&gt;
- property is set, then list of packages will be interpreted as regular expressions.
- Note, all properties for match will be used.</description>
-            </property>
             <property default-value="" name="illegalClasses" type="java.lang.String[]">
                <description>Specify class names to reject, if &lt;b&gt;regexp&lt;/b&gt;
  property is not set, checks if import equals class name. If &lt;b&gt;regexp&lt;/b&gt;
  property is set, then list of class names will be interpreted as regular expressions.
+ Note, all properties for match will be used.</description>
+            </property>
+            <property default-value="sun" name="illegalPkgs" type="java.lang.String[]">
+               <description>Specify packages to reject, if &lt;b&gt;regexp&lt;/b&gt;
+ property is not set, checks if import is the part of package. If &lt;b&gt;regexp&lt;/b&gt;
+ property is set, then list of packages will be interpreted as regular expressions.
  Note, all properties for match will be used.</description>
             </property>
             <property default-value="false" name="regexp" type="boolean">

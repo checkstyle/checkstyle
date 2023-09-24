@@ -49,20 +49,20 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * </p>
  * <ul>
  * <li>
- * Property {@code files} - Define the RegExp for matching against the file name associated with
- * an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code checks} - Define the RegExp for matching against the name of the check
  * associated with an audit event.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code message} - Define the RegExp for matching against the message of the check
- * associated with an audit event.
+ * Property {@code columns} - Specify a comma-separated list of values, where each value is an
+ * integer or a range of integers denoted by integer-integer.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code files} - Define the RegExp for matching against the file name associated with
+ * an audit event.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
@@ -79,9 +79,9 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code columns} - Specify a comma-separated list of values, where each value is an
- * integer or a range of integers denoted by integer-integer.
- * Type is {@code java.lang.String}.
+ * Property {@code message} - Define the RegExp for matching against the message of the check
+ * associated with an audit event.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * </ul>
