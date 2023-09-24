@@ -34,16 +34,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>exceptionVariableName</td>
-              <td>
-                Specify the RegExp for the name of the variable associated with exception.
-                If check meets variable name matching specified value - empty block is suppressed.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
-              <td>6.4</td>
-            </tr>
-            <tr>
               <td>commentFormat</td>
               <td>
                 Specify the RegExp for the first comment inside empty catch block.
@@ -52,6 +42,16 @@
               </td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td>exceptionVariableName</td>
+              <td>
+                Specify the RegExp for the name of the variable associated with exception.
+                If check meets variable name matching specified value - empty block is suppressed.
+              </td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^$"</code></td>
               <td>6.4</td>
             </tr>
           </table>

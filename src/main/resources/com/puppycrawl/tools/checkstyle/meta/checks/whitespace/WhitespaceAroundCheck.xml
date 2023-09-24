@@ -50,23 +50,23 @@
  of the catch block (right curly bracket).
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="allowEmptyCatches" type="boolean">
+               <description>Allow empty catch bodies.</description>
+            </property>
             <property default-value="false" name="allowEmptyConstructors" type="boolean">
                <description>Allow empty constructor bodies.</description>
+            </property>
+            <property default-value="false" name="allowEmptyLambdas" type="boolean">
+               <description>Allow empty lambda bodies.</description>
+            </property>
+            <property default-value="false" name="allowEmptyLoops" type="boolean">
+               <description>Allow empty loop bodies.</description>
             </property>
             <property default-value="false" name="allowEmptyMethods" type="boolean">
                <description>Allow empty method bodies.</description>
             </property>
             <property default-value="false" name="allowEmptyTypes" type="boolean">
                <description>Allow empty class, interface and enum bodies.</description>
-            </property>
-            <property default-value="false" name="allowEmptyLoops" type="boolean">
-               <description>Allow empty loop bodies.</description>
-            </property>
-            <property default-value="false" name="allowEmptyLambdas" type="boolean">
-               <description>Allow empty lambda bodies.</description>
-            </property>
-            <property default-value="false" name="allowEmptyCatches" type="boolean">
-               <description>Allow empty catch bodies.</description>
             </property>
             <property default-value="true" name="ignoreEnhancedForColon" type="boolean">
                <description>Ignore whitespace around colon in
