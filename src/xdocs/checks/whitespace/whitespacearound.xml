@@ -70,11 +70,32 @@ try {
               <th>since</th>
             </tr>
             <tr>
+              <td>allowEmptyCatches</td>
+              <td>Allow empty catch bodies.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.6</td>
+            </tr>
+            <tr>
               <td>allowEmptyConstructors</td>
               <td>Allow empty constructor bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
+            </tr>
+            <tr>
+              <td>allowEmptyLambdas</td>
+              <td>Allow empty lambda bodies.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.14</td>
+            </tr>
+            <tr>
+              <td>allowEmptyLoops</td>
+              <td>Allow empty loop bodies.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
             </tr>
             <tr>
               <td>allowEmptyMethods</td>
@@ -89,27 +110,6 @@ try {
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
-            </tr>
-            <tr>
-              <td>allowEmptyLoops</td>
-              <td>Allow empty loop bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>allowEmptyLambdas</td>
-              <td>Allow empty lambda bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.14</td>
-            </tr>
-            <tr>
-              <td>allowEmptyCatches</td>
-              <td>Allow empty catch bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>7.6</td>
             </tr>
             <tr>
               <td>ignoreEnhancedForColon</td>

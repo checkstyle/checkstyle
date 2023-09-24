@@ -44,6 +44,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code accessModifiers} - Access modifiers of methods where parameters are
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
+ * Default value is {@code public, protected, package, private}.
+ * </li>
+ * <li>
  * Property {@code format} - Specifies valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
@@ -53,12 +59,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * validation.
  * Type is {@code boolean}.
  * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code accessModifiers} - Access modifiers of methods where parameters are
- * checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
- * Default value is {@code public, protected, package, private}.
  * </li>
  * </ul>
  * <p>
