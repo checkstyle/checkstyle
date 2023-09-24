@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>AbstractElementNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractElementNode</mutatedClass>
-    <mutatedMethod>getPrecedingSiblings</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableList with argument</description>
-    <lineContent>return Collections.unmodifiableList(siblings.subList(0, indexAmongSiblings));</lineContent>
-  </mutation>
-
   <mutation unstable="true">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
@@ -24,24 +15,6 @@
     <mutatedMethod>iterateAxis</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
     <description>RemoveSwitch 2 (case value 2)</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="true">
-    <sourceFile>AbstractRootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_5</mutator>
-    <description>RemoveSwitch 5 (case value 5)</description>
-    <lineContent>switch (axisNumber) {</lineContent>
-  </mutation>
-
-  <mutation unstable="true">
-    <sourceFile>AbstractRootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
-    <mutatedMethod>iterateAxis</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_8</mutator>
-    <description>RemoveSwitch 8 (case value 8)</description>
     <lineContent>switch (axisNumber) {</lineContent>
   </mutation>
 
