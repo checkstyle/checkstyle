@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +34,32 @@ public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "21:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "25:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+            "27:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "16:14: " + getCheckMessage(MSG_INVALID_PATTERN, "num1", "^m[A-Z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "num4", "^m[A-Z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
