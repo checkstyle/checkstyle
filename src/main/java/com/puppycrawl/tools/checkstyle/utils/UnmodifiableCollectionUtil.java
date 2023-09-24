@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -59,5 +60,17 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <T> List<T> unmodifiableList(List<T> collection) {
         return Collections.unmodifiableList(collection);
+    }
+
+    /**
+     * Creates an copy of array.
+     *
+     * @param array Array to create a copy of
+     * @param length length of array
+     * @param <T> The type of array
+     * @return copy of array
+     */
+    public static <T> T[] copyOfArray(T[] array, int length) {
+        return Arrays.copyOf(array, length);
     }
 }
