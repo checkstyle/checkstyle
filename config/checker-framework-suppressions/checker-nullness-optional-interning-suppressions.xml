@@ -6550,6 +6550,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return Arrays.copyOf(array, length);</lineContent>
+    <details>
+      type of expression: T[ extends @Initialized @Nullable Object super @Initialized @Nullable Void] @Initialized @NonNull []
+      method return type: T[ extends @Initialized @Nullable Object super @Initialized @NonNull Void] @Initialized @NonNull []
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter name of AttributeNode.</message>
