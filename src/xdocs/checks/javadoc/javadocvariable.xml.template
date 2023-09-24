@@ -26,13 +26,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
@@ -45,6 +38,13 @@
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.8</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>

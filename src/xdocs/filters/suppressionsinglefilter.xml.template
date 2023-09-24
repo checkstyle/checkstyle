@@ -47,14 +47,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>files</td>
-              <td>Define the RegExp for matching against the file name associated
-                  with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>8.23</td>
-            </tr>
-            <tr>
               <td>checks</td>
               <td>Define the RegExp for matching against the name of the check
                   associated with an audit event.</td>
@@ -63,8 +55,16 @@
               <td>8.23</td>
             </tr>
             <tr>
-              <td>message</td>
-              <td>Define the RegExp for matching against the message of the check associated
+              <td>columns</td>
+              <td>Specify a comma-separated list of values, where each value is an integer or a
+                range of integers denoted by integer-integer.</td>
+              <td><a href="../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>files</td>
+              <td>Define the RegExp for matching against the file name associated
                   with an audit event.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
@@ -87,10 +87,10 @@
               <td>8.23</td>
             </tr>
             <tr>
-              <td>columns</td>
-              <td>Specify a comma-separated list of values, where each value is an integer or a
-                range of integers denoted by integer-integer.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td>message</td>
+              <td>Define the RegExp for matching against the message of the check associated
+                  with an audit event.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>

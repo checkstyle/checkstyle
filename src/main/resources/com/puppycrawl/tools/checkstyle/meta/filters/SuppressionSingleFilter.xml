@@ -26,17 +26,17 @@
  Checker as parent module.
  &lt;/p&gt;</description>
          <properties>
-            <property name="files" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the file name associated with
- an audit event.</description>
-            </property>
             <property name="checks" type="java.util.regex.Pattern">
                <description>Define the RegExp for matching against the name of the check
  associated with an audit event.</description>
             </property>
-            <property name="message" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the message of the check
- associated with an audit event.</description>
+            <property name="columns" type="java.lang.String">
+               <description>Specify a comma-separated list of values, where each value is an
+ integer or a range of integers denoted by integer-integer.</description>
+            </property>
+            <property name="files" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the file name associated with
+ an audit event.</description>
             </property>
             <property name="id" type="java.lang.String">
                <description>Specify a string matched against the ID of the check associated with
@@ -46,9 +46,9 @@
                <description>Specify a comma-separated list of values, where each value is an
  integer or a range of integers denoted by integer-integer.</description>
             </property>
-            <property name="columns" type="java.lang.String">
-               <description>Specify a comma-separated list of values, where each value is an
- integer or a range of integers denoted by integer-integer.</description>
+            <property name="message" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the message of the check
+ associated with an audit event.</description>
             </property>
          </properties>
       </filter>

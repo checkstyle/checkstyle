@@ -43,20 +43,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code illegalPkgs} - Specify packages to reject, if <b>regexp</b>
- * property is not set, checks if import is the part of package. If <b>regexp</b>
- * property is set, then list of packages will be interpreted as regular expressions.
- * Note, all properties for match will be used.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code sun}.
- * </li>
- * <li>
  * Property {@code illegalClasses} - Specify class names to reject, if <b>regexp</b>
  * property is not set, checks if import equals class name. If <b>regexp</b>
  * property is set, then list of class names will be interpreted as regular expressions.
  * Note, all properties for match will be used.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code illegalPkgs} - Specify packages to reject, if <b>regexp</b>
+ * property is not set, checks if import is the part of package. If <b>regexp</b>
+ * property is set, then list of packages will be interpreted as regular expressions.
+ * Note, all properties for match will be used.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code sun}.
  * </li>
  * <li>
  * Property {@code regexp} - Control whether the {@code illegalPkgs} and
