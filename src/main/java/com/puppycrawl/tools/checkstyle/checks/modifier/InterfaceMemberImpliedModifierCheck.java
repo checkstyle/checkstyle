@@ -95,19 +95,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code violateImpliedPublicField} - Control whether to enforce that {@code public}
- * is explicitly coded on interface fields.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code violateImpliedStaticField} - Control whether to enforce that {@code static}
- * is explicitly coded on interface fields.
+ * Property {@code violateImpliedAbstractMethod} - Control whether to enforce that {@code abstract}
+ * is explicitly coded on interface methods.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code violateImpliedFinalField} - Control whether to enforce that {@code final}
+ * is explicitly coded on interface fields.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code violateImpliedPublicField} - Control whether to enforce that {@code public}
  * is explicitly coded on interface fields.
  * Type is {@code boolean}.
  * Default value is {@code true}.
@@ -119,14 +119,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code violateImpliedAbstractMethod} - Control whether to enforce that {@code abstract}
- * is explicitly coded on interface methods.
+ * Property {@code violateImpliedPublicNested} - Control whether to enforce that {@code public}
+ * is explicitly coded on interface nested types.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code violateImpliedPublicNested} - Control whether to enforce that {@code public}
- * is explicitly coded on interface nested types.
+ * Property {@code violateImpliedStaticField} - Control whether to enforce that {@code static}
+ * is explicitly coded on interface fields.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>

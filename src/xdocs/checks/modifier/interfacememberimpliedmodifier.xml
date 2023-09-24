@@ -92,19 +92,10 @@ public interface AddressFactory {
               <th>since</th>
             </tr>
             <tr>
-              <td>violateImpliedPublicField</td>
+              <td>violateImpliedAbstractMethod</td>
               <td>
-                Control whether to enforce that <code>public</code> is explicitly coded
-                on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticField</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on interface fields.</td>
+                Control whether to enforce that <code>abstract</code> is explicitly coded
+                on interface methods.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
@@ -113,6 +104,15 @@ public interface AddressFactory {
               <td>violateImpliedFinalField</td>
               <td>
                 Control whether to enforce that <code>final</code> is explicitly coded
+                on interface fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicField</td>
+              <td>
+                Control whether to enforce that <code>public</code> is explicitly coded
                 on interface fields.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
@@ -128,19 +128,19 @@ public interface AddressFactory {
               <td>8.12</td>
             </tr>
             <tr>
-              <td>violateImpliedAbstractMethod</td>
+              <td>violateImpliedPublicNested</td>
               <td>
-                Control whether to enforce that <code>abstract</code> is explicitly coded
-                on interface methods.</td>
+                Control whether to enforce that <code>public</code> is explicitly coded
+                on interface nested types.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
-              <td>violateImpliedPublicNested</td>
+              <td>violateImpliedStaticField</td>
               <td>
-                Control whether to enforce that <code>public</code> is explicitly coded
-                on interface nested types.</td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on interface fields.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>

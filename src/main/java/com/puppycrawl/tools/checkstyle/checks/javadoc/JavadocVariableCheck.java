@@ -36,11 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc
  * comments are not checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
@@ -50,6 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code ignoreNamePattern} - Specify the regexp to define variable names to ignore.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
