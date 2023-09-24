@@ -5047,6 +5047,9 @@
                 <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListenerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilterTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>

@@ -515,4 +515,8 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+  <suppress-xpath
+          files="AbstractRootNodeTest.java"
+          checks="AbstractClassName"
+          query="/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='AbstractRootNodeTest']]"/>
 </suppressions>
