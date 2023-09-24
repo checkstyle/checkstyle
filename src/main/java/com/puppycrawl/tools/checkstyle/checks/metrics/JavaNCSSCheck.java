@@ -54,12 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code methodMaximum} - Specify the maximum allowed number of
- * non commenting lines in a method.
- * Type is {@code int}.
- * Default value is {@code 50}.
- * </li>
- * <li>
  * Property {@code classMaximum} - Specify the maximum allowed number of
  * non commenting lines in a class.
  * Type is {@code int}.
@@ -70,6 +64,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * non commenting lines in a file including all top level and nested classes.
  * Type is {@code int}.
  * Default value is {@code 2000}.
+ * </li>
+ * <li>
+ * Property {@code methodMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a method.
+ * Type is {@code int}.
+ * Default value is {@code 50}.
  * </li>
  * <li>
  * Property {@code recordMaximum} - Specify the maximum allowed number of

@@ -51,16 +51,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>methodMaximum</td>
-              <td>
-                Specify the maximum allowed number of non commenting lines in a
-                method.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>50</code></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
               <td>classMaximum</td>
               <td>
                 Specify the maximum allowed number of non commenting lines in a
@@ -78,6 +68,16 @@
               </td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>2000</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>methodMaximum</td>
+              <td>
+                Specify the maximum allowed number of non commenting lines in a
+                method.
+              </td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>50</code></td>
               <td>3.5</td>
             </tr>
             <tr>

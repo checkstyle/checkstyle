@@ -49,20 +49,14 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * </p>
  * <ul>
  * <li>
- * Property {@code files} - Define a Regular Expression matched against the file
- * name associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code checks} - Define a Regular Expression matched against the name
  * of the check associated with an audit event.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code message} - Define a Regular Expression matched against the message
- * of the check associated with an audit event.
+ * Property {@code files} - Define a Regular Expression matched against the file
+ * name associated with an audit event.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
@@ -70,6 +64,12 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * Property {@code id} - Define a string matched against the ID of the check
  * associated with an audit event.
  * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code message} - Define a Regular Expression matched against the message
+ * of the check associated with an audit event.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>

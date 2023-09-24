@@ -20,6 +20,12 @@
  LambdaParameterName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="public, protected, package, private"
+                      name="accessModifiers"
+                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+               <description>Access modifiers of methods where parameters are
+ checked.</description>
+            </property>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
@@ -28,12 +34,6 @@
             <property default-value="false" name="ignoreOverridden" type="boolean">
                <description>Allows to skip methods with Override annotation from
  validation.</description>
-            </property>
-            <property default-value="public, protected, package, private"
-                      name="accessModifiers"
-                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Access modifiers of methods where parameters are
- checked.</description>
             </property>
          </properties>
          <message-keys>

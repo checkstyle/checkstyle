@@ -29,10 +29,6 @@
  and/or functionalities which should be decomposed into smaller units.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="50" name="methodMaximum" type="int">
-               <description>Specify the maximum allowed number of
- non commenting lines in a method.</description>
-            </property>
             <property default-value="1500" name="classMaximum" type="int">
                <description>Specify the maximum allowed number of
  non commenting lines in a class.</description>
@@ -40,6 +36,10 @@
             <property default-value="2000" name="fileMaximum" type="int">
                <description>Specify the maximum allowed number of
  non commenting lines in a file including all top level and nested classes.</description>
+            </property>
+            <property default-value="50" name="methodMaximum" type="int">
+               <description>Specify the maximum allowed number of
+ non commenting lines in a method.</description>
             </property>
             <property default-value="150" name="recordMaximum" type="int">
                <description>Specify the maximum allowed number of
