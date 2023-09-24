@@ -75,15 +75,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code ignoreFormat} - Define the RegExp for names of variables
- * and parameters to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
+ * Property {@code ignoreAbstractMethods} - Control whether to ignore parameters
+ * of abstract methods.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreConstructorParameter} - Control whether to ignore constructor parameters.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code ignoreFormat} - Define the RegExp for names of variables
+ * and parameters to ignore.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code ignoreSetter} - Allow to ignore the parameter of a property setter method.
@@ -93,12 +99,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code setterCanReturnItsClass} - Allow to expand the definition of a setter method
  * to include methods that return the class' instance.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreAbstractMethods} - Control whether to ignore parameters
- * of abstract methods.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>

@@ -62,18 +62,24 @@ class PageBuilder {
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreFormat</td>
-              <td>Define the RegExp for names of variables and parameters to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
+              <td>ignoreAbstractMethods</td>
+              <td>Control whether to ignore parameters of abstract methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
             </tr>
-
             <tr>
               <td>ignoreConstructorParameter</td>
               <td>Control whether to ignore constructor parameters.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>ignoreFormat</td>
+              <td>Define the RegExp for names of variables and parameters to ignore.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
               <td>3.2</td>
             </tr>
 
@@ -96,14 +102,6 @@ class PageBuilder {
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
-            </tr>
-
-            <tr>
-              <td>ignoreAbstractMethods</td>
-              <td>Control whether to ignore parameters of abstract methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>4.0</td>
             </tr>
 
             <tr>

@@ -73,7 +73,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code allowEmptyCatches} - Allow empty catch bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code allowEmptyConstructors} - Allow empty constructor bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptyLambdas} - Allow empty lambda bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptyLoops} - Allow empty loop bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -84,21 +99,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code allowEmptyTypes} - Allow empty class, interface and enum bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyLoops} - Allow empty loop bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyLambdas} - Allow empty lambda bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyCatches} - Allow empty catch bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
