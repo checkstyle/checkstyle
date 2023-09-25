@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,19 +35,20 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z][a-zA-Z0-9]*$"),
+            "16:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "16:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z](_?[a-zA-Z0-9]+)*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,24 +57,25 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "17:15: " + getCheckMessage(MSG_KEY, "Example4"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "20:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z](_?[a-zA-Z0-9]+)*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }

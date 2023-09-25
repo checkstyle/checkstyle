@@ -107,13 +107,11 @@ class MyClass {
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-class MyClass {
-  public void firstMethod1() {} // OK
-  protected void secondMethod() {} // OK
-  private void ThirdMethod() {} // violation, method name must match to the
-                                // default pattern '^[a-z][a-zA-Z0-9]*$'
-  public void fourth_Method4() {} // violation, method name must match to the
-                                 // default pattern '^[a-z][a-zA-Z0-9]*$'
+class Example1 {
+  public void method1() {}
+  protected void method2() {}
+  private void Method3() {} // violation
+  public void Method4() {} // violation
 }
         </source>
         <p id="Example2-config">
@@ -131,10 +129,9 @@ class MyClass {
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
-  public void myMethod() {} // OK
-  public void MyMethod() {} // violation, name &quot;MyMethod&quot;
-                            // should match the pattern &quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;
+class Example2 {
+  public void method1() {}
+  public void Method2() {} // violation
 }
         </source>
         <p id="Example3-config">
@@ -153,10 +150,9 @@ class MyClass {
         </source>
         <p id="Example3-code">Code Example:</p>
         <source>
-class MyClass {
-  public MyClass() {} // OK
-  public void MyClass() {} // OK, method Name 'MyClass' is allowed to be
-                           // equal to the enclosing class name
+class Example3 {
+  public Example3() {}
+  public void Example3() {}
 }
         </source>
         <p id="Example4-config">
@@ -175,10 +171,9 @@ class MyClass {
         </source>
         <p id="Example4-code">Code Example:</p>
         <source>
-class MyClass {
-  public MyClass() {} // OK
-  public void MyClass() {} // violation, method Name 'MyClass' must not
-                           // equal the enclosing class name
+class Example4 {
+  public Example4() {}
+  public void Example4() {} // violation
 }
         </source>
         <p id="Example5-config">
@@ -197,13 +192,11 @@ class MyClass {
         </source>
         <p id="Example5-code">Code Example:</p>
         <source>
-class MyClass {
-  public void FirstMethod() {} // OK
-  protected void SecondMethod() {} // OK
-  private void ThirdMethod() {} // violation, name 'ThirdMethod' must match
-                                // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-  void FourthMethod() {} // violation, name 'FourthMethod' must match
-                         // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+class Example5 {
+  public void Method1() {}
+  protected void Method2() {}
+  private void Method3() {} // violation
+  void Method4() {} // violation
 }
         </source>
       </subsection>
