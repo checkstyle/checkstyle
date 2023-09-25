@@ -42,6 +42,10 @@
  }
  &lt;/pre&gt;</description>
          <properties>
+            <property default-value="4" name="arrayInitIndent" type="int">
+               <description>Specify how far an array initialisation
+ should be indented when on next line.</description>
+            </property>
             <property default-value="4" name="basicOffset" type="int">
                <description>Specify how far new indentation level should be
  indented when on the next line.</description>
@@ -54,23 +58,19 @@
                <description>Specify how far a case label should be indented
  when on next line.</description>
             </property>
-            <property default-value="4" name="throwsIndent" type="int">
-               <description>Specify how far a throws clause should be
- indented when on next line.</description>
-            </property>
-            <property default-value="4" name="arrayInitIndent" type="int">
-               <description>Specify how far an array initialisation
- should be indented when on next line.</description>
-            </property>
-            <property default-value="4" name="lineWrappingIndentation" type="int">
-               <description>Specify how far continuation line
- should be indented when line-wrapping is present.</description>
-            </property>
             <property default-value="false" name="forceStrictCondition" type="boolean">
                <description>Force strict indent level in line
  wrapping case. If value is true, line wrap indent have to be same as
  lineWrappingIndentation parameter. If value is false, line wrap indent
  could be bigger on any value user would like.</description>
+            </property>
+            <property default-value="4" name="lineWrappingIndentation" type="int">
+               <description>Specify how far continuation line
+ should be indented when line-wrapping is present.</description>
+            </property>
+            <property default-value="4" name="throwsIndent" type="int">
+               <description>Specify how far a throws clause should be
+ indented when on next line.</description>
             </property>
          </properties>
          <message-keys>

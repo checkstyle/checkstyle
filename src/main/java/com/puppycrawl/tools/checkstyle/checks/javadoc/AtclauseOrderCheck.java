@@ -45,11 +45,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <ul>
  * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations if the
- * Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Property {@code tagOrder} - Specify the order by tags.
+ * Type is {@code java.lang.String[]}.
+ * Default value is
+ * {@code @author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version}.
  * </li>
  * <li>
  * Property {@code target} - Specify block tags targeted.
@@ -74,10 +73,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * VARIABLE_DEF</a>.
  * </li>
  * <li>
- * Property {@code tagOrder} - Specify the order by tags.
- * Type is {@code java.lang.String[]}.
- * Default value is
- * {@code @author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version}.
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations if the
+ * Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
  * <p>
