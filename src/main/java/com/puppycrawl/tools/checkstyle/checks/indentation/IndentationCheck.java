@@ -68,6 +68,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code arrayInitIndent} - Specify how far an array initialisation
+ * should be indented when on next line.
+ * Type is {@code int}.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
  * Property {@code basicOffset} - Specify how far new indentation level should be
  * indented when on the next line.
  * Type is {@code int}.
@@ -86,16 +92,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Default value is {@code 4}.
  * </li>
  * <li>
- * Property {@code throwsIndent} - Specify how far a throws clause should be
- * indented when on next line.
- * Type is {@code int}.
- * Default value is {@code 4}.
- * </li>
- * <li>
- * Property {@code arrayInitIndent} - Specify how far an array initialisation
- * should be indented when on next line.
- * Type is {@code int}.
- * Default value is {@code 4}.
+ * Property {@code forceStrictCondition} - Force strict indent level in line
+ * wrapping case. If value is true, line wrap indent have to be same as
+ * lineWrappingIndentation parameter. If value is false, line wrap indent
+ * could be bigger on any value user would like.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code lineWrappingIndentation} - Specify how far continuation line
@@ -104,12 +106,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Default value is {@code 4}.
  * </li>
  * <li>
- * Property {@code forceStrictCondition} - Force strict indent level in line
- * wrapping case. If value is true, line wrap indent have to be same as
- * lineWrappingIndentation parameter. If value is false, line wrap indent
- * could be bigger on any value user would like.
- * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Property {@code throwsIndent} - Specify how far a throws clause should be
+ * indented when on next line.
+ * Type is {@code int}.
+ * Default value is {@code 4}.
  * </li>
  * </ul>
  * <p>

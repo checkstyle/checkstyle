@@ -78,6 +78,17 @@ messages.properties: Key 'ok' missing.
               <th>since</th>
             </tr>
             <tr>
+              <td>baseName</td>
+              <td>Specify
+                <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+                Base name</a> of resource bundles which contain message resources. It helps
+                the check to distinguish config and localization resources.
+              </td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^messages.*$"</code></td>
+              <td>6.17</td>
+            </tr>
+            <tr>
               <td>fileExtensions</td>
               <td>
                 Specify file type extension to identify translation files. Setting
@@ -88,17 +99,6 @@ messages.properties: Key 'ok' missing.
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>3.0</td>
-            </tr>
-            <tr>
-              <td>baseName</td>
-              <td>Specify
-                <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
-                Base name</a> of resource bundles which contain message resources. It helps
-                the check to distinguish config and localization resources.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^messages.*$"</code></td>
-              <td>6.17</td>
             </tr>
             <tr>
               <td>requiredTranslations</td>

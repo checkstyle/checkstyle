@@ -38,11 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
- * </li>
- * <li>
  * Property {@code allowClassName} - Controls whether to allow a method name to have the same name
  * as the residing class name. This is not to be confused with a constructor. An easy mistake is
  * to place a return type on a constructor declaration which turns it into a method. For example:
@@ -56,7 +51,12 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -66,14 +66,14 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
- * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
  * <p>
