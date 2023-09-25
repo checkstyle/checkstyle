@@ -33,13 +33,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>allowClassName</td>
               <td>
                 Controls whether to allow a method name to have the same
@@ -61,20 +54,6 @@ class MyClass {
               <td>5.0</td>
             </tr>
             <tr>
-              <td>applyToPublic</td>
-              <td>Controls whether to apply the check to public member.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.1</td>
-            </tr>
-            <tr>
-              <td>applyToProtected</td>
-              <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.1</td>
-            </tr>
-            <tr>
               <td>applyToPackage</td>
               <td>
                 Controls whether to apply the check to package-private member.
@@ -89,6 +68,27 @@ class MyClass {
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
+            </tr>
+            <tr>
+              <td>applyToProtected</td>
+              <td>Controls whether to apply the check to protected member.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>applyToPublic</td>
+              <td>Controls whether to apply the check to public member.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specifies valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
+              <td>3.0</td>
             </tr>
           </table>
         </div>

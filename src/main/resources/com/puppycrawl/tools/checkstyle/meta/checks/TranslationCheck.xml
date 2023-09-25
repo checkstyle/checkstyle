@@ -55,14 +55,6 @@
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/3539"&gt;issue&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value=".properties"
-                      name="fileExtensions"
-                      type="java.lang.String[]">
-               <description>Specify file type extension to identify
- translation files. Setting this property is typically only required if your
- translation files are preprocessed and the original files do not have
- the extension {@code .properties}</description>
-            </property>
             <property default-value="^messages.*$"
                       name="baseName"
                       type="java.util.regex.Pattern">
@@ -70,6 +62,14 @@
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html"&gt;
  Base name&lt;/a&gt; of resource bundles which contain message resources.
  It helps the check to distinguish config and localization resources.</description>
+            </property>
+            <property default-value=".properties"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
+               <description>Specify file type extension to identify
+ translation files. Setting this property is typically only required if your
+ translation files are preprocessed and the original files do not have
+ the extension {@code .properties}</description>
             </property>
             <property default-value=""
                       name="requiredTranslations"

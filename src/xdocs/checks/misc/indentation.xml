@@ -58,6 +58,13 @@ if ((condition1 &amp;&amp; condition2)
               <th>since</th>
             </tr>
             <tr>
+              <td>arrayInitIndent</td>
+              <td>Specify how far an array initialisation should be indented when on next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
               <td>basicOffset</td>
               <td>
                 Specify how far new indentation level should be indented when on the next line.
@@ -81,18 +88,13 @@ if ((condition1 &amp;&amp; condition2)
               <td>3.1</td>
             </tr>
             <tr>
-              <td>throwsIndent</td>
-              <td>Specify how far a throws clause should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>5.7</td>
-            </tr>
-            <tr>
-              <td>arrayInitIndent</td>
-              <td>Specify how far an array initialisation should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>5.8</td>
+              <td>forceStrictCondition</td>
+              <td>Force strict indent level in line wrapping case. If value is true, line wrap
+                  indent have to be same as lineWrappingIndentation parameter. If value is false,
+                  line wrap indent could be bigger on any value user would like.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.3</td>
             </tr>
             <tr>
               <td>lineWrappingIndentation</td>
@@ -104,13 +106,11 @@ if ((condition1 &amp;&amp; condition2)
               <td>5.9</td>
             </tr>
             <tr>
-              <td>forceStrictCondition</td>
-              <td>Force strict indent level in line wrapping case. If value is true, line wrap
-                  indent have to be same as lineWrappingIndentation parameter. If value is false,
-                  line wrap indent could be bigger on any value user would like.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.3</td>
+              <td>throwsIndent</td>
+              <td>Specify how far a throws clause should be indented when on next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.7</td>
             </tr>
           </table>
         </div>

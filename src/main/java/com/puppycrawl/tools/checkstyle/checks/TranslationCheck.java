@@ -105,20 +105,20 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension to identify
- * translation files. Setting this property is typically only required if your
- * translation files are preprocessed and the original files do not have
- * the extension {@code .properties}
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .properties}.
- * </li>
- * <li>
  * Property {@code baseName} - Specify
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
  * Base name</a> of resource bundles which contain message resources.
  * It helps the check to distinguish config and localization resources.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^messages.*$"}.
+ * </li>
+ * <li>
+ * Property {@code fileExtensions} - Specify file type extension to identify
+ * translation files. Setting this property is typically only required if your
+ * translation files are preprocessed and the original files do not have
+ * the extension {@code .properties}
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code .properties}.
  * </li>
  * <li>
  * Property {@code requiredTranslations} - Specify language codes of required
