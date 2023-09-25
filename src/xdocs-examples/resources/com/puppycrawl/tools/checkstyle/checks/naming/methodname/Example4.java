@@ -9,10 +9,11 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
+
 // xdoc section -- start
-class MyClass {
-  public MyClass() {} // OK
-  public void MyClass() {} // violation, method Name 'MyClass' must not
-                           // equal the enclosing class name
+class Example4 {
+  public Example4() {}
+  public void Example4() {} // violation
 }
 // xdoc section -- end
