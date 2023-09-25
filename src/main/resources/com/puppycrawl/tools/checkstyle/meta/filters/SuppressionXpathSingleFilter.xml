@@ -26,21 +26,21 @@
  SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
  &lt;/p&gt;</description>
          <properties>
-            <property name="files" type="java.util.regex.Pattern">
-               <description>Define a Regular Expression matched against the file
- name associated with an audit event.</description>
-            </property>
             <property name="checks" type="java.util.regex.Pattern">
                <description>Define a Regular Expression matched against the name
  of the check associated with an audit event.</description>
             </property>
-            <property name="message" type="java.util.regex.Pattern">
-               <description>Define a Regular Expression matched against the message
- of the check associated with an audit event.</description>
+            <property name="files" type="java.util.regex.Pattern">
+               <description>Define a Regular Expression matched against the file
+ name associated with an audit event.</description>
             </property>
             <property name="id" type="java.lang.String">
                <description>Define a string matched against the ID of the check
  associated with an audit event.</description>
+            </property>
+            <property name="message" type="java.util.regex.Pattern">
+               <description>Define a Regular Expression matched against the message
+ of the check associated with an audit event.</description>
             </property>
             <property name="query" type="java.lang.String">
                <description>Define a string xpath query.</description>

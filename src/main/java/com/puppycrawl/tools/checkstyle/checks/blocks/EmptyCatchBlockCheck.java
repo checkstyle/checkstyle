@@ -38,18 +38,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code exceptionVariableName} - Specify the RegExp for the name of the variable
- * associated with exception. If check meets variable name matching specified value - empty
- * block is suppressed.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
- * </li>
- * <li>
  * Property {@code commentFormat} - Specify the RegExp for the first comment inside empty
  * catch block. If check meets comment inside empty catch block matching specified format
  * - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ".*"}.
+ * </li>
+ * <li>
+ * Property {@code exceptionVariableName} - Specify the RegExp for the name of the variable
+ * associated with exception. If check meets variable name matching specified value - empty
+ * block is suppressed.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
  * </li>
  * </ul>
  * <p>
