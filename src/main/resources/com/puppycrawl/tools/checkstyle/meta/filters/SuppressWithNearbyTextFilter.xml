@@ -15,21 +15,12 @@
  out of the rest of the file as a suppression. See the default value as an example.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="SUPPRESS CHECKSTYLE (\w+)"
-                      name="nearbyTextPattern"
-                      type="java.util.regex.Pattern">
-               <description>Specify nearby text
- pattern to trigger filter to begin suppression.</description>
-            </property>
             <property default-value=".*"
                       name="checkPattern"
                       type="java.util.regex.Pattern">
                <description>Specify check name pattern to suppress.
  Property can also be a RegExp group index at {@code nearbyTextPattern} in
  format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
-            </property>
-            <property name="messagePattern" type="java.util.regex.Pattern">
-               <description>Specify check violation message pattern to suppress.</description>
             </property>
             <property name="idPattern" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
@@ -39,6 +30,15 @@
  defines the number of lines preceding/at/following the suppressing nearby text.
  Property can also be a RegExp group index at {@code nearbyTextPattern} in
  format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.</description>
+            </property>
+            <property name="messagePattern" type="java.util.regex.Pattern">
+               <description>Specify check violation message pattern to suppress.</description>
+            </property>
+            <property default-value="SUPPRESS CHECKSTYLE (\w+)"
+                      name="nearbyTextPattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify nearby text
+ pattern to trigger filter to begin suppression.</description>
             </property>
          </properties>
       </filter>
