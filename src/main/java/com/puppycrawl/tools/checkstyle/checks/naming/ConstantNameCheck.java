@@ -33,12 +33,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -48,14 +48,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Property {@code applyToPublic} - Controls whether to apply the check to public member.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
- * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
  * </li>
  * </ul>
  * <p>

@@ -25,14 +25,14 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
-                      name="format"
-                      type="java.util.regex.Pattern">
-               <description>Specify pattern for exception class names.</description>
-            </property>
-            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
                       name="extendedClassNameFormat"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for extended class names.</description>
+            </property>
+            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for exception class names.</description>
             </property>
          </properties>
          <message-keys>
