@@ -286,4 +286,32 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                     expected, suppressed);
         }
     }
+
+    @Test
+    public void testSuppression2() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+        };
+        final String[] suppressed = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionFilter7.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testSuppression3() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionFilter8.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
 }
