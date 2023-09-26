@@ -315,14 +315,14 @@
 
 
 
-  <mutation unstable="false">
-    <sourceFile>SuppressionFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
-    <mutatedMethod>finishLocalSetup</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable filters</description>
-    <lineContent>filters = new FilterSet();</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
 
 
