@@ -38,16 +38,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum number of components allowed in the header of a
- * record definition.
- * Type is {@code int}.
- * Default value is {@code 8}.
- * </li>
- * <li>
  * Property {@code accessModifiers} - Access modifiers of record definitions where
  * the number of record components should be checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
  * Default value is {@code public, protected, package, private}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum number of components allowed in the header of a
+ * record definition.
+ * Type is {@code int}.
+ * Default value is {@code 8}.
  * </li>
  * </ul>
  * <p>

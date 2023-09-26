@@ -25,13 +25,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
-              <td>Specify the maximum number of parameters allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>7</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>ignoreOverriddenMethods</td>
               <td>
                 Ignore number of parameters for methods with <code>@Override</code> annotation.
@@ -39,6 +32,13 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of parameters allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>7</code></td>
+              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>

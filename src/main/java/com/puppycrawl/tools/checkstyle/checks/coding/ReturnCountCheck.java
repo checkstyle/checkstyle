@@ -51,6 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
+ * Property {@code format} - Specify method names to ignore.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^equals$"}.
+ * </li>
+ * <li>
  * Property {@code max} - Specify maximum allowed number of return statements
  * in non-void methods/lambdas.
  * Type is {@code int}.
@@ -61,11 +66,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * in void methods/constructors/lambdas.
  * Type is {@code int}.
  * Default value is {@code 1}.
- * </li>
- * <li>
- * Property {@code format} - Specify method names to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^equals$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

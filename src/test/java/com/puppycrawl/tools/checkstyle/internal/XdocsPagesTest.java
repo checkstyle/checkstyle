@@ -228,11 +228,6 @@ public class XdocsPagesTest {
 
     // until https://github.com/checkstyle/checkstyle/issues/13666
     private static final Set<String> MODULES_WITH_UNORDERED_PROPERTIES = Set.of(
-        "ReturnCount",
-        "StaticVariableName",
-        "AvoidEscapedUnicodeCharacters",
-        "ParameterNumber",
-        "RecordComponentNumber",
         "RegexpSingleline",
         "RegexpOnFilename",
         "RegexpSinglelineJava",

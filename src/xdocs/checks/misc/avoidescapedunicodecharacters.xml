@@ -33,15 +33,15 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowEscapesForControlCharacters</td>
-              <td>Allow use escapes for non-printable, control characters.</td>
+              <td>allowByTailComment</td>
+              <td>Allow use escapes if trail comment is present.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>allowByTailComment</td>
-              <td>Allow use escapes if trail comment is present.</td>
+              <td>allowEscapesForControlCharacters</td>
+              <td>Allow use escapes for non-printable, control characters.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
