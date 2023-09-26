@@ -141,21 +141,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code standardPackageRegExp} - Specify RegExp for STANDARD_JAVA_PACKAGE group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(java|javax)\."}.
- * </li>
- * <li>
- * Property {@code thirdPartyPackageRegExp} - Specify RegExp for THIRD_PARTY_PACKAGE group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code specialImportsRegExp} - Specify RegExp for SPECIAL_IMPORTS group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
- * </li>
- * <li>
  * Property {@code separateLineBetweenGroups} - Force empty line separator between
  * import groups.
  * Type is {@code boolean}.
@@ -166,6 +151,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code specialImportsRegExp} - Specify RegExp for SPECIAL_IMPORTS group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
+ * </li>
+ * <li>
+ * Property {@code standardPackageRegExp} - Specify RegExp for STANDARD_JAVA_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^(java|javax)\."}.
+ * </li>
+ * <li>
+ * Property {@code thirdPartyPackageRegExp} - Specify RegExp for THIRD_PARTY_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code ".*"}.
  * </li>
  * </ul>
  * <p>

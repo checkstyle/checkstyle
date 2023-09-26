@@ -61,10 +61,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * <ul>
  * <li>
- * Property {@code option} - Specify policy on the relative order between type imports and static
- * imports.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
- * Default value is {@code under}.
+ * Property {@code caseSensitive} - Control whether string comparison should be
+ * case-sensitive or not. Case-sensitive sorting is in
+ * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+ * It affects both type imports and static imports.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code groups} - Specify list of <b>type import</b> groups. Every group identified
@@ -74,6 +76,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
  * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code option} - Specify policy on the relative order between type imports and static
+ * imports.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
+ * Default value is {@code under}.
  * </li>
  * <li>
  * Property {@code ordered} - Control whether type imports within each group should be
@@ -98,12 +106,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code caseSensitive} - Control whether string comparison should be
- * case-sensitive or not. Case-sensitive sorting is in
- * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
- * It affects both type imports and static imports.
+ * Property {@code sortStaticImportsAlphabetically} - Control whether
+ * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
  * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code staticGroups} - Specify list of <b>static</b> import groups. Every group
@@ -114,12 +120,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code option} is set to {@code top} or {@code bottom}.
  * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code sortStaticImportsAlphabetically} - Control whether
- * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
- * Type is {@code boolean}.
- * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code useContainerOrderingForStatic} - Control whether to use container

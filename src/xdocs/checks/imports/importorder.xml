@@ -44,11 +44,15 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
-              <td>Specify policy on the relative order between type imports and static imports.</td>
-              <td><a href="../../property_types.html#ImportOrderOption">ImportOrderOption</a></td>
-              <td><code>under</code></td>
-              <td>5.0</td>
+              <td>caseSensitive</td>
+              <td>Control whether string comparison should be case-sensitive or not.
+                Case-sensitive sorting is in
+                <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+                It affects both type imports and static imports.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.3</td>
             </tr>
             <tr>
               <td>groups</td>
@@ -63,6 +67,13 @@
               <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Specify policy on the relative order between type imports and static imports.</td>
+              <td><a href="../../property_types.html#ImportOrderOption">ImportOrderOption</a></td>
+              <td><code>under</code></td>
+              <td>5.0</td>
             </tr>
             <tr>
               <td>ordered</td>
@@ -97,15 +108,14 @@
               <td>8.12</td>
             </tr>
             <tr>
-              <td>caseSensitive</td>
-              <td>Control whether string comparison should be case-sensitive or not.
-                Case-sensitive sorting is in
-                <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
-                It affects both type imports and static imports.
+              <td>sortStaticImportsAlphabetically</td>
+              <td>
+                Control whether <b>static imports</b> located at <b>top</b> or
+                <b>bottom</b> are sorted within the group.
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.3</td>
+              <td><code>false</code></td>
+              <td>6.5</td>
             </tr>
             <tr>
               <td>staticGroups</td>
@@ -122,16 +132,6 @@
               <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>{}</code></td>
               <td>8.12</td>
-            </tr>
-            <tr>
-              <td>sortStaticImportsAlphabetically</td>
-              <td>
-                Control whether <b>static imports</b> located at <b>top</b> or
-                <b>bottom</b> are sorted within the group.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.5</td>
             </tr>
             <tr>
               <td>useContainerOrderingForStatic</td>

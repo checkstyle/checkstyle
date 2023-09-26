@@ -25,21 +25,6 @@
  can be suppressed by defining property {@code allowMissingParamTags}.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="private"
-                      name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc
- comments are not checked.</description>
-            </property>
-            <property name="authorFormat" type="java.util.regex.Pattern">
-               <description>Specify the pattern for {@code @author} tag.</description>
-            </property>
-            <property name="versionFormat" type="java.util.regex.Pattern">
-               <description>Specify the pattern for {@code @version} tag.</description>
-            </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
                <description>Control whether to ignore violations
  when a class has type parameters but does not have matching param tags in the Javadoc.</description>
@@ -53,6 +38,21 @@
                       type="java.lang.String[]">
                <description>Specify annotations that allow
  skipping validation at all. Only short names are allowed, e.g. {@code Generated}.</description>
+            </property>
+            <property name="authorFormat" type="java.util.regex.Pattern">
+               <description>Specify the pattern for {@code @author} tag.</description>
+            </property>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc
+ comments are not checked.</description>
+            </property>
+            <property default-value="private"
+                      name="scope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are checked.</description>
+            </property>
+            <property name="versionFormat" type="java.util.regex.Pattern">
+               <description>Specify the pattern for {@code @version} tag.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"

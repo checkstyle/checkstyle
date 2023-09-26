@@ -50,12 +50,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specify pattern for exception class names.
+ * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>
  * <li>
- * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
+ * Property {@code format} - Specify pattern for exception class names.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>

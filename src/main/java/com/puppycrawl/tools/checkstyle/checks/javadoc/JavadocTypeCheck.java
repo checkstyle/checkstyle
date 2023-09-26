@@ -63,27 +63,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc
- * comments are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code authorFormat} - Specify the pattern for {@code @author} tag.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code versionFormat} - Specify the pattern for {@code @version} tag.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code allowMissingParamTags} - Control whether to ignore violations
  * when a class has type parameters but does not have matching param tags in the Javadoc.
  * Type is {@code boolean}.
@@ -100,6 +79,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * skipping validation at all. Only short names are allowed, e.g. {@code Generated}.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code Generated}.
+ * </li>
+ * <li>
+ * Property {@code authorFormat} - Specify the pattern for {@code @author} tag.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc
+ * comments are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
+ * Property {@code versionFormat} - Specify the pattern for {@code @version} tag.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check

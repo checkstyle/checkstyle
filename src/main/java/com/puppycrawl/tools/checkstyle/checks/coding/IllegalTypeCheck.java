@@ -81,9 +81,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code validateAbstractClassNames} - Control whether to validate abstract class names.
- * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Property {@code ignoredMethodNames} - Specify methods that should not be checked.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code getEnvironment, getInitialContext}.
+ * </li>
+ * <li>
+ * Property {@code illegalAbstractClassNameFormat} - Specify RegExp for illegal abstract class
+ * names.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^(.*[.])?Abstract.*$"}.
  * </li>
  * <li>
  * Property {@code illegalClassNames} - Specify classes that should not be used
@@ -99,23 +105,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ignoredMethodNames} - Specify methods that should not be checked.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code getEnvironment, getInitialContext}.
- * </li>
- * <li>
- * Property {@code illegalAbstractClassNameFormat} - Specify RegExp for illegal abstract class
- * names.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(.*[.])?Abstract.*$"}.
- * </li>
- * <li>
  * Property {@code memberModifiers} - Control whether to check only methods and fields with any
  * of the specified modifiers.
  * This property does not affect method calls nor method references nor record components.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code validateAbstractClassNames} - Control whether to validate abstract class names.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
