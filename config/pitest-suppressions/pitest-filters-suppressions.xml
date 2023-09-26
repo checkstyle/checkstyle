@@ -306,14 +306,14 @@
     <lineContent>tagMessageRegexp = null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressionFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
-    <mutatedMethod>finishLocalSetup</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable filters</description>
-    <lineContent>filters = SuppressionsLoader.loadSuppressions(file);</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>SuppressionFilter.java</sourceFile>
@@ -324,23 +324,23 @@
     <lineContent>filters = new FilterSet();</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressionFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionFilter</mutatedClass>
-    <mutatedMethod>getExternalResourceLocations</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with Collections.emptySet for com/puppycrawl/tools/checkstyle/filters/SuppressionFilter::getExternalResourceLocations</description>
-    <lineContent>return Collections.singleton(file);</lineContent>
-  </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>SuppressionXpathFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter</mutatedClass>
-    <mutatedMethod>finishLocalSetup</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Set::addAll</description>
-    <lineContent>filters.addAll(SuppressionsLoader.loadXpathSuppressions(file));</lineContent>
-  </mutation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <mutation unstable="false">
     <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>

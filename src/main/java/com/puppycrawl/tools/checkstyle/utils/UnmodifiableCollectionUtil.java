@@ -73,4 +73,15 @@ public final class UnmodifiableCollectionUtil {
     public static <T> T[] copyOfArray(T[] array, int length) {
         return Arrays.copyOf(array, length);
     }
+
+    /**
+     * Returns an immutable set containing only the specified object.
+     *
+     * @param obj the type of object in the set
+     * @param <T> the type of object
+     * @return immutable set
+     */
+    public static <T> Set<T> singleton(T obj) {
+        return Collections.singleton(obj);
+    }
 }
