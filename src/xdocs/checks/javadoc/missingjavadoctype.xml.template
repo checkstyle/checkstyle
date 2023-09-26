@@ -29,17 +29,17 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>public</code></td>
-              <td>8.20</td>
-            </tr>
-            <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>public</code></td>
               <td>8.20</td>
             </tr>
             <tr>

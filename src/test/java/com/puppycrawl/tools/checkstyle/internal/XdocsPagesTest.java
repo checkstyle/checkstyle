@@ -233,12 +233,7 @@ public class XdocsPagesTest {
         "RegexpSinglelineJava",
         "DescendantToken",
         "NewlineAtEndOfFile",
-        "SingleLineJavadoc",
-        "MissingJavadocType",
-        "NeedBraces",
-        "SeverityMatchFilter",
-        "SuppressWithNearbyCommentFilter",
-        "MultipleStringLiterals"
+        "SingleLineJavadoc"
     );
 
     /**

@@ -31,13 +31,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>severity</td>
-              <td>Specify the severity level of this filter.</td>
-              <td><a href="../property_types.html#SeverityLevel">SeverityLevel</a></td>
-              <td><code>error</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
               <td>acceptOnMatch</td>
               <td>
                  Control whether the filter accepts an audit event if and only if there is
@@ -49,6 +42,13 @@
               </td>
               <td><a href="../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>severity</td>
+              <td>Specify the severity level of this filter.</td>
+              <td><a href="../property_types.html#SeverityLevel">SeverityLevel</a></td>
+              <td><code>error</code></td>
               <td>3.2</td>
             </tr>
           </table>

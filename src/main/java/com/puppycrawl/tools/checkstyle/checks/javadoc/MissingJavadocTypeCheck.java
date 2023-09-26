@@ -41,15 +41,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code public}.
- * </li>
- * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are not
  * checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code skipAnnotations} - Specify annotations that allow missed

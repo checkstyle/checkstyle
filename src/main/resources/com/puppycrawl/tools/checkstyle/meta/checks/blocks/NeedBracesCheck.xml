@@ -8,13 +8,13 @@
  Checks for braces around code blocks.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="allowEmptyLoopBody" type="boolean">
+               <description>Allow loops with empty bodies.</description>
+            </property>
             <property default-value="false"
                       name="allowSingleLineStatement"
                       type="boolean">
                <description>Allow single-line statements without braces.</description>
-            </property>
-            <property default-value="false" name="allowEmptyLoopBody" type="boolean">
-               <description>Allow loops with empty bodies.</description>
             </property>
             <property default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"
                       name="tokens"
