@@ -263,4 +263,15 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilter6.java"),
                                            expected, removeSuppressed(expected, suppressed));
     }
+
+    @Test
+    public void testXpathSuppression4() throws Exception {
+        final String[] suppressed = {
+            "20:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", PATTERN),
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilter7.java"),
+                                           ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
+    }
 }
