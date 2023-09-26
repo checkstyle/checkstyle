@@ -11,14 +11,14 @@
  {@code Scope} constants.
  &lt;/p&gt;</description>
          <properties>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are not
+ checked.</description>
+            </property>
             <property default-value="public"
                       name="scope"
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are not
- checked.</description>
             </property>
             <property default-value="Generated"
                       name="skipAnnotations"

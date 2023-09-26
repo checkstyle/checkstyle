@@ -51,17 +51,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code 1}.
  * </li>
  * <li>
- * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^""$"}.
- * </li>
- * <li>
  * Property {@code ignoreOccurrenceContext} - Specify token type names where duplicate
  * strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  * exclude syntactical contexts like annotations or static initializers from the check.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is {@code ANNOTATION}.
+ * </li>
+ * <li>
+ * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^""$"}.
  * </li>
  * </ul>
  * <p>

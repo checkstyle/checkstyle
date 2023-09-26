@@ -41,15 +41,6 @@
               <td>3.5</td>
             </tr>
             <tr>
-              <td>ignoreStringsRegexp</td>
-              <td>
-                Specify RegExp for ignored strings (with quotation marks).
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^""$"</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
               <td>ignoreOccurrenceContext</td>
               <td>
                 Specify token type names where duplicate strings are ignored even if they don't
@@ -64,6 +55,15 @@
                 <code>ANNOTATION</code>
               </td>
               <td>4.4</td>
+            </tr>
+            <tr>
+              <td>ignoreStringsRegexp</td>
+              <td>
+                Specify RegExp for ignored strings (with quotation marks).
+              </td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^""$"</code></td>
+              <td>4.0</td>
             </tr>
           </table>
         </div>

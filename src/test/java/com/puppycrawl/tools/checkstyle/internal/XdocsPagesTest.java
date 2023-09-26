@@ -245,12 +245,7 @@ public class XdocsPagesTest {
         "Header",
         "DescendantToken",
         "NewlineAtEndOfFile",
-        "SingleLineJavadoc",
-        "MissingJavadocType",
-        "NeedBraces",
-        "SeverityMatchFilter",
-        "SuppressWithNearbyCommentFilter",
-        "MultipleStringLiterals"
+        "SingleLineJavadoc"
     );
 
     /**

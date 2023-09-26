@@ -47,10 +47,17 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>commentFormat</td>
-              <td>Specify comment pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
+              <td>checkC</td>
+              <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
+              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>checkCPP</td>
+              <td>Control whether to check C++ style comments (<code>//</code>).</td>
+              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -61,10 +68,10 @@
               <td>5.0</td>
             </tr>
             <tr>
-              <td>messageFormat</td>
-              <td>Define message pattern to suppress.</td>
+              <td>commentFormat</td>
+              <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
+              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -83,17 +90,10 @@
               <td>5.0</td>
             </tr>
             <tr>
-              <td>checkCPP</td>
-              <td>Control whether to check C++ style comments (<code>//</code>).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>checkC</td>
-              <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
+              <td>messageFormat</td>
+              <td>Define message pattern to suppress.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
               <td>5.0</td>
             </tr>
           </table>

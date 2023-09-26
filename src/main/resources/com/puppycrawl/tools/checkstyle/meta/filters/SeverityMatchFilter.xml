@@ -12,17 +12,17 @@
  SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="error"
-                      name="severity"
-                      type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
-               <description>Specify the severity level of this filter.</description>
-            </property>
             <property default-value="true" name="acceptOnMatch" type="boolean">
                <description>Control whether the filter accepts an audit
  event if and only if there is a match between the event's severity level and
  property severity. If acceptOnMatch is {@code false}, then the filter accepts
  an audit event if and only if there is not a match between the event's severity
  level and property severity.</description>
+            </property>
+            <property default-value="error"
+                      name="severity"
+                      type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
+               <description>Specify the severity level of this filter.</description>
             </property>
          </properties>
       </filter>

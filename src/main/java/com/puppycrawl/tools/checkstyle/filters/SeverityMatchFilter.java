@@ -34,11 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * </p>
  * <ul>
  * <li>
- * Property {@code severity} - Specify the severity level of this filter.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
- * Default value is {@code error}.
- * </li>
- * <li>
  * Property {@code acceptOnMatch} - Control whether the filter accepts an audit
  * event if and only if there is a match between the event's severity level and
  * property severity. If acceptOnMatch is {@code false}, then the filter accepts
@@ -46,6 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * level and property severity.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code severity} - Specify the severity level of this filter.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
+ * Default value is {@code error}.
  * </li>
  * </ul>
  * <p>
