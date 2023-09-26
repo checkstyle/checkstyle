@@ -47,34 +47,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
-            </tr>
-            <tr>
-              <td>authorFormat</td>
-              <td>Specify the pattern for <code>@author</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>versionFormat</td>
-              <td>Specify the pattern for <code>@version</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
               <td>allowMissingParamTags</td>
               <td>Control whether to ignore violations when a class has type parameters
                   but does not have matching param tags in the Javadoc.</td>
@@ -98,6 +70,34 @@
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
               <td>8.15</td>
+            </tr>
+            <tr>
+              <td>authorFormat</td>
+              <td>Specify the pattern for <code>@author</code> tag.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>versionFormat</td>
+              <td>Specify the pattern for <code>@version</code> tag.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>

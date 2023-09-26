@@ -12,22 +12,22 @@
  &lt;/strong&gt;.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
-                      name="format"
-                      type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
-            </property>
-            <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Controls whether to apply the check to public member.</description>
-            </property>
-            <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Controls whether to apply the check to protected member.</description>
-            </property>
             <property default-value="true" name="applyToPackage" type="boolean">
                <description>Controls whether to apply the check to package-private member.</description>
             </property>
             <property default-value="true" name="applyToPrivate" type="boolean">
                <description>Controls whether to apply the check to private member.</description>
+            </property>
+            <property default-value="true" name="applyToProtected" type="boolean">
+               <description>Controls whether to apply the check to protected member.</description>
+            </property>
+            <property default-value="true" name="applyToPublic" type="boolean">
+               <description>Controls whether to apply the check to public member.</description>
+            </property>
+            <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specifies valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

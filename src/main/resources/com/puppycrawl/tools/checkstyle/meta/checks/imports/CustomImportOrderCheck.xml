@@ -111,21 +111,6 @@
                <description>Specify format of order declaration
  customizing by user.</description>
             </property>
-            <property default-value="^(java|javax)\."
-                      name="standardPackageRegExp"
-                      type="java.util.regex.Pattern">
-               <description>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</description>
-            </property>
-            <property default-value=".*"
-                      name="thirdPartyPackageRegExp"
-                      type="java.util.regex.Pattern">
-               <description>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</description>
-            </property>
-            <property default-value="^$"
-                      name="specialImportsRegExp"
-                      type="java.util.regex.Pattern">
-               <description>Specify RegExp for SPECIAL_IMPORTS group imports.</description>
-            </property>
             <property default-value="true"
                       name="separateLineBetweenGroups"
                       type="boolean">
@@ -137,6 +122,21 @@
                       type="boolean">
                <description>Force grouping alphabetically,
  in &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.</description>
+            </property>
+            <property default-value="^$"
+                      name="specialImportsRegExp"
+                      type="java.util.regex.Pattern">
+               <description>Specify RegExp for SPECIAL_IMPORTS group imports.</description>
+            </property>
+            <property default-value="^(java|javax)\."
+                      name="standardPackageRegExp"
+                      type="java.util.regex.Pattern">
+               <description>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</description>
+            </property>
+            <property default-value=".*"
+                      name="thirdPartyPackageRegExp"
+                      type="java.util.regex.Pattern">
+               <description>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</description>
             </property>
          </properties>
          <message-keys>

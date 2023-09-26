@@ -34,11 +34,18 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>validateAbstractClassNames</td>
-              <td>Control whether to validate abstract class names.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.10</td>
+              <td>ignoredMethodNames</td>
+              <td>Specify methods that should not be checked.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>getEnvironment, getInitialContext</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>illegalAbstractClassNameFormat</td>
+              <td>Specify RegExp for illegal abstract class names.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^(.*[.])?Abstract.*$&quot;</code></td>
+              <td>3.2</td>
             </tr>
             <tr>
               <td>illegalClassNames</td>
@@ -58,20 +65,6 @@
               <td>4.2</td>
             </tr>
             <tr>
-              <td>ignoredMethodNames</td>
-              <td>Specify methods that should not be checked.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>getEnvironment, getInitialContext</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>illegalAbstractClassNameFormat</td>
-              <td>Specify RegExp for illegal abstract class names.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(.*[.])?Abstract.*$&quot;</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
               <td>memberModifiers</td>
               <td>
                 Control whether to check only methods and fields with any of the specified
@@ -84,6 +77,13 @@
               </td>
               <td><code>{}</code></td>
               <td>6.3</td>
+            </tr>
+            <tr>
+              <td>validateAbstractClassNames</td>
+              <td>Control whether to validate abstract class names.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.10</td>
             </tr>
             <tr>
               <td>tokens</td>

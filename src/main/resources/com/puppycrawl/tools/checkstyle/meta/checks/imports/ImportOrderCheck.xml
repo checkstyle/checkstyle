@@ -34,11 +34,11 @@
  &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
-            <property default-value="under"
-                      name="option"
-                      type="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption">
-               <description>Specify policy on the relative order between type imports and static
- imports.</description>
+            <property default-value="true" name="caseSensitive" type="boolean">
+               <description>Control whether string comparison should be
+ case-sensitive or not. Case-sensitive sorting is in
+ &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.
+ It affects both type imports and static imports.</description>
             </property>
             <property default-value="" name="groups" type="java.util.regex.Pattern[]">
                <description>Specify list of &lt;b&gt;type import&lt;/b&gt; groups. Every group identified
@@ -46,6 +46,12 @@
  (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  additional group, located at the end.
  Thus, the empty list of type groups (the default value) means one group for all type imports.</description>
+            </property>
+            <property default-value="under"
+                      name="option"
+                      type="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption">
+               <description>Specify policy on the relative order between type imports and static
+ imports.</description>
             </property>
             <property default-value="true" name="ordered" type="boolean">
                <description>Control whether type imports within each group should be
@@ -63,11 +69,11 @@
  This property has effect only when the property {@code option} is set to {@code top}
  or {@code bottom} and when property {@code staticGroups} is enabled.</description>
             </property>
-            <property default-value="true" name="caseSensitive" type="boolean">
-               <description>Control whether string comparison should be
- case-sensitive or not. Case-sensitive sorting is in
- &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.
- It affects both type imports and static imports.</description>
+            <property default-value="false"
+                      name="sortStaticImportsAlphabetically"
+                      type="boolean">
+               <description>Control whether
+ &lt;b&gt;static imports&lt;/b&gt; located at &lt;b&gt;top&lt;/b&gt; or &lt;b&gt;bottom&lt;/b&gt; are sorted within the group.</description>
             </property>
             <property default-value=""
                       name="staticGroups"
@@ -78,12 +84,6 @@
  an additional group, located at the end. Thus, the empty list of static groups (the default
  value) means one group for all static imports. This property has effect only when the property
  {@code option} is set to {@code top} or {@code bottom}.</description>
-            </property>
-            <property default-value="false"
-                      name="sortStaticImportsAlphabetically"
-                      type="boolean">
-               <description>Control whether
- &lt;b&gt;static imports&lt;/b&gt; located at &lt;b&gt;top&lt;/b&gt; or &lt;b&gt;bottom&lt;/b&gt; are sorted within the group.</description>
             </property>
             <property default-value="false"
                       name="useContainerOrderingForStatic"

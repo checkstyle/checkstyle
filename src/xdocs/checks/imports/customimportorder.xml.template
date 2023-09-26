@@ -130,27 +130,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
               <td>5.8</td>
             </tr>
             <tr>
-              <td>standardPackageRegExp</td>
-              <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^(java|javax)\."</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>thirdPartyPackageRegExp</td>
-              <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>specialImportsRegExp</td>
-              <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
               <td>separateLineBetweenGroups</td>
               <td>Force empty line separator between import groups.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -165,6 +144,27 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>specialImportsRegExp</td>
+              <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^$"</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>standardPackageRegExp</td>
+              <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^(java|javax)\."</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>thirdPartyPackageRegExp</td>
+              <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>".*"</code></td>
               <td>5.8</td>
             </tr>
           </table>
