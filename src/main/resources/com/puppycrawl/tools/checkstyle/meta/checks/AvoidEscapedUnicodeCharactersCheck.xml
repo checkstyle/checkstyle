@@ -16,14 +16,14 @@
  allow using escapes if literal contains only them.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="allowByTailComment" type="boolean">
+               <description>Allow use escapes if trail comment is present.</description>
+            </property>
             <property default-value="false"
                       name="allowEscapesForControlCharacters"
                       type="boolean">
                <description>Allow use escapes for
  non-printable, control characters.</description>
-            </property>
-            <property default-value="false" name="allowByTailComment" type="boolean">
-               <description>Allow use escapes if trail comment is present.</description>
             </property>
             <property default-value="false"
                       name="allowIfAllCharactersEscaped"

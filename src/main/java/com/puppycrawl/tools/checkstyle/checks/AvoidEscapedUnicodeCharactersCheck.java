@@ -47,13 +47,13 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
- * non-printable, control characters.
+ * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
+ * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
+ * non-printable, control characters.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>

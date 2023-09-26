@@ -29,16 +29,6 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
-              <td>
-                Specify the maximum number of components allowed in the header
-                of a record definition.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>8</code></td>
-              <td>8.36</td>
-            </tr>
-            <tr>
               <td>accessModifiers</td>
               <td>
                 Access modifiers of record definitions where the number of record
@@ -50,6 +40,16 @@
                 </a>
               </td>
               <td><code>public, protected, package, private</code></td>
+              <td>8.36</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>
+                Specify the maximum number of components allowed in the header
+                of a record definition.
+              </td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>8</code></td>
               <td>8.36</td>
             </tr>
           </table>

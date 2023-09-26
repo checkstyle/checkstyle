@@ -8,12 +8,12 @@
  Checks the number of parameters of a method or constructor.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="7" name="max" type="int">
-               <description>Specify the maximum number of parameters allowed.</description>
-            </property>
             <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
                <description>Ignore number of parameters for
  methods with {@code @Override} annotation.</description>
+            </property>
+            <property default-value="7" name="max" type="int">
+               <description>Specify the maximum number of parameters allowed.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF"
                       name="tokens"

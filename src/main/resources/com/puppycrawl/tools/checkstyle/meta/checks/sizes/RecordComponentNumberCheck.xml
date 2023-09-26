@@ -10,15 +10,15 @@
  header&lt;/a&gt; of a record definition.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="8" name="max" type="int">
-               <description>Specify the maximum number of components allowed in the header of a
- record definition.</description>
-            </property>
             <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
                <description>Access modifiers of record definitions where
  the number of record components should be checked.</description>
+            </property>
+            <property default-value="8" name="max" type="int">
+               <description>Specify the maximum number of components allowed in the header of a
+ record definition.</description>
             </property>
          </properties>
          <message-keys>
