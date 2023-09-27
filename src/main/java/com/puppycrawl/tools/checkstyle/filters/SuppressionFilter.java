@@ -179,9 +179,6 @@ public class SuppressionFilter
                 if (FilterUtil.isFileExists(file)) {
                     filters = SuppressionsLoader.loadSuppressions(file);
                 }
-                else {
-                    filters = new FilterSet();
-                }
             }
             else {
                 filters = SuppressionsLoader.loadSuppressions(file);
