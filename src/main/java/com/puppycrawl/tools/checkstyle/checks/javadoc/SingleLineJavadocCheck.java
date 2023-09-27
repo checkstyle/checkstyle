@@ -35,11 +35,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Property {@code ignoreInlineTags} - Control whether
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * inline tags</a> must be ignored.
  * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoredTags} - Specify
@@ -49,11 +49,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ignoreInlineTags} - Control whether
- * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
- * inline tags</a> must be ignored.
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
  * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
  * <p>

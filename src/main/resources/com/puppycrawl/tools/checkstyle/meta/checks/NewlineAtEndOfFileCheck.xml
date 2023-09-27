@@ -48,13 +48,13 @@
  platforms, with the {@code lineSeparator} property.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify the file type extension of the files to check.</description>
+            </property>
             <property default-value="lf_cr_crlf"
                       name="lineSeparator"
                       type="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption">
                <description>Specify the type of line separator.</description>
-            </property>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file type extension of the files to check.</description>
             </property>
          </properties>
          <message-keys>

@@ -18,21 +18,21 @@
             <property default-value="$." name="format" type="java.util.regex.Pattern">
                <description>Specify the format of the regular expression to match.</description>
             </property>
-            <property name="message" type="java.lang.String">
-               <description>Specify the message which is used to notify about
- violations, if empty then default (hard-coded) message is used.</description>
-            </property>
             <property default-value="false" name="ignoreCase" type="boolean">
                <description>Control whether to ignore case when searching.</description>
             </property>
-            <property default-value="0" name="minimum" type="int">
-               <description>Specify the minimum number of matches required in each file.</description>
+            <property default-value="false" name="ignoreComments" type="boolean">
+               <description>Control whether to ignore text in comments when searching.</description>
             </property>
             <property default-value="0" name="maximum" type="int">
                <description>Specify the maximum number of matches required in each file.</description>
             </property>
-            <property default-value="false" name="ignoreComments" type="boolean">
-               <description>Control whether to ignore text in comments when searching.</description>
+            <property name="message" type="java.lang.String">
+               <description>Specify the message which is used to notify about
+ violations, if empty then default (hard-coded) message is used.</description>
+            </property>
+            <property default-value="0" name="minimum" type="int">
+               <description>Specify the minimum number of matches required in each file.</description>
             </property>
          </properties>
          <message-keys>
