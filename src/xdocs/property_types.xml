@@ -925,7 +925,7 @@
     <section name="String[]">
       <p>
         This type represents a set of strings. The string representation
-        is parsed as a set of comma (',') separated strings.
+        is parsed as a set of comma (',') separated strings. Extra spaces are allowed.
       </p>
       <p>
         Alternatively, a property of this type can be supplied multiple times which
@@ -933,7 +933,7 @@
         following:
       </p>
       <source>
-&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN, PLUS_ASSIGN&quot;/&gt;
       </source>
       <p>can instead be expressed as:</p>
       <source>
