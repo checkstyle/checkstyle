@@ -27,15 +27,15 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>violateExecutionOnNonTightHtml</td>
+              <td>ignoreInlineTags</td>
               <td>
-                Control when to print violations if the Javadoc being examined by this check
-                violates the tight html rules defined at
-                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+                Control whether
+                <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                inline tags</a> must be ignored.
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.3</td>
+              <td><code>true</code></td>
+              <td>6.8</td>
             </tr>
             <tr>
               <td>ignoredTags</td>
@@ -49,15 +49,15 @@
               <td>6.8</td>
             </tr>
             <tr>
-              <td>ignoreInlineTags</td>
+              <td>violateExecutionOnNonTightHtml</td>
               <td>
-                Control whether
-                <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
-                inline tags</a> must be ignored.
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
               </td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>6.8</td>
+              <td><code>false</code></td>
+              <td>8.3</td>
             </tr>
           </table>
         </div>

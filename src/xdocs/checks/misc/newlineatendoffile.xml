@@ -71,6 +71,13 @@ StaticMethodCandidateCheck.name = Static Method Candidate
               <th>since</th>
             </tr>
             <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of the files to check.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
               <td>lineSeparator</td>
               <td>Specify the type of line separator.</td>
               <td>
@@ -79,13 +86,6 @@ StaticMethodCandidateCheck.name = Static Method Candidate
                 </a>
               </td>
               <td><code>lf_cr_crlf</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of the files to check.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
               <td>3.1</td>
             </tr>
 
