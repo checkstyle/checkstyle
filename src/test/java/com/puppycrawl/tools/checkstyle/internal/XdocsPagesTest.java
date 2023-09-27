@@ -226,16 +226,6 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
-    // until https://github.com/checkstyle/checkstyle/issues/13666
-    private static final Set<String> MODULES_WITH_UNORDERED_PROPERTIES = Set.of(
-        "RegexpSingleline",
-        "RegexpOnFilename",
-        "RegexpSinglelineJava",
-        "DescendantToken",
-        "NewlineAtEndOfFile",
-        "SingleLineJavadoc"
-    );
-
     /**
      * Generate xdoc content from templates before validation.
      * This method will be removed once
@@ -810,9 +800,7 @@ public class XdocsPagesTest {
                 .that(table.getNodeName())
                 .isEqualTo("table");
 
-            if (!MODULES_WITH_UNORDERED_PROPERTIES.contains(sectionName)) {
-                validatePropertySectionPropertiesOrder(fileName, sectionName, table, properties);
-            }
+            validatePropertySectionPropertiesOrder(fileName, sectionName, table, properties);
 
             validatePropertySectionProperties(fileName, sectionName, table, instance,
                     properties);

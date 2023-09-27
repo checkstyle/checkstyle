@@ -74,14 +74,14 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <ul>
  * <li>
- * Property {@code lineSeparator} - Specify the type of line separator.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption}.
- * Default value is {@code lf_cr_crlf}.
- * </li>
- * <li>
  * Property {@code fileExtensions} - Specify the file type extension of the files to check.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
+ * </li>
+ * <li>
+ * Property {@code lineSeparator} - Specify the type of line separator.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption}.
+ * Default value is {@code lf_cr_crlf}.
  * </li>
  * </ul>
  * <p>

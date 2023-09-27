@@ -44,13 +44,6 @@
               <td>3.2</td>
             </tr>
             <tr>
-              <td>minimumDepth</td>
-              <td>Specify the minimum depth for descendant counts.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
               <td>maximumDepth</td>
               <td>Specify the maximum depth for descendant counts.</td>
               <td><a href="../../property_types.html#int">int</a></td>
@@ -58,10 +51,10 @@
               <td>3.2</td>
             </tr>
             <tr>
-              <td>minimumNumber</td>
-              <td>Specify a minimum count for descendants.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
+              <td>maximumMessage</td>
+              <td>Define the violation message when the maximum count is exceeded.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -69,6 +62,27 @@
               <td>Specify a maximum count for descendants.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>2147483647</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>minimumDepth</td>
+              <td>Specify the minimum depth for descendant counts.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>minimumMessage</td>
+              <td>Define the violation message when the minimum count is not reached.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>minimumNumber</td>
+              <td>Specify a minimum count for descendants.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -80,20 +94,6 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
-            </tr>
-            <tr>
-              <td>minimumMessage</td>
-              <td>Define the violation message when the minimum count is not reached.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>maximumMessage</td>
-              <td>Define the violation message when the maximum count is exceeded.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
             </tr>
             <tr>
               <td>tokens</td>

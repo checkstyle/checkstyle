@@ -22,29 +22,29 @@
                       validation-type="tokenTypesSet">
                <description>Specify set of tokens with limited occurrences as descendants.</description>
             </property>
-            <property default-value="0" name="minimumDepth" type="int">
-               <description>Specify the minimum depth for descendant counts.</description>
-            </property>
             <property default-value="2147483647" name="maximumDepth" type="int">
                <description>Specify the maximum depth for descendant counts.</description>
             </property>
-            <property default-value="0" name="minimumNumber" type="int">
-               <description>Specify a minimum count for descendants.</description>
+            <property name="maximumMessage" type="java.lang.String">
+               <description>Define the violation message
+ when the maximum count is exceeded.</description>
             </property>
             <property default-value="2147483647" name="maximumNumber" type="int">
                <description>Specify a maximum count for descendants.</description>
             </property>
-            <property default-value="false" name="sumTokenCounts" type="boolean">
-               <description>Control whether the number of tokens found
- should be calculated from the sum of the individual token counts.</description>
+            <property default-value="0" name="minimumDepth" type="int">
+               <description>Specify the minimum depth for descendant counts.</description>
             </property>
             <property name="minimumMessage" type="java.lang.String">
                <description>Define the violation message
  when the minimum count is not reached.</description>
             </property>
-            <property name="maximumMessage" type="java.lang.String">
-               <description>Define the violation message
- when the maximum count is exceeded.</description>
+            <property default-value="0" name="minimumNumber" type="int">
+               <description>Specify a minimum count for descendants.</description>
+            </property>
+            <property default-value="false" name="sumTokenCounts" type="boolean">
+               <description>Control whether the number of tokens found
+ should be calculated from the sum of the individual token counts.</description>
             </property>
             <property default-value="" name="tokens" type="anyTokenTypesSet">
                <description>tokens to check</description>
