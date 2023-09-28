@@ -2,10 +2,10 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="AnnotationLocation">
-      <property name="allowSamelineMultipleAnnotations" value="true"/>
       <property name="allowSamelineSingleParameterlessAnnotation"
                 value="false"/>
       <property name="allowSamelineParameterizedAnnotation" value="false"/>
+      <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
   </module>
 </module>
@@ -15,17 +15,23 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
+import org.antlr.v4.runtime.misc.NotNull;
+import org.mockito.Mock;
+
 // xdoc section -- start
 class Example2 {
-  @NotNull private boolean field1; //ok
-  @Override public int hashCode() { return 1; } //ok
-  @NotNull //ok
+  @NotNull
+  private boolean field1;
+  @Override public int hashCode() { return 1; } // ok
+  @NotNull
   private boolean field2;
-  @Override //ok
+  @Override
   public boolean equals(Object obj) { return true; }
-  @Mock DataLoader loader; //ok
-  @SuppressWarnings("deprecation") DataLoader loader; //ok
-  @SuppressWarnings("deprecation") public int foo() { return 1; } //ok
-  @NotNull @Mock DataLoader loader; //ok
+  @Mock
+  DataLoader loader1;
+  @SuppressWarnings("deprecation") DataLoader loader;
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
+  @NotNull @Mock DataLoader loader2;
+  // ok above as 'allowSamelineMultipleAnnotations' set to true
 }
 // xdoc section -- end
