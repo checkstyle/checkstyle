@@ -306,7 +306,8 @@ public class SuppressionXpathSingleFilterTest
         final String xpath = "//CLASS_DEF[@text='InputSuppressionXpathSingleFilterComplexQuery']";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilterComplexQuery",
-                        "Test", null, null, xpath);
+                        "Test", "Message", null, xpath);
+        filter.setFiles(null);
         final Violation message =
                 new Violation(3, 0, TokenTypes.CLASS_DEF, "",
                         "", null, null, "id19",
@@ -398,6 +399,37 @@ public class SuppressionXpathSingleFilterTest
         verifyFilterWithInlineConfigParser(
                 getPath("InputSuppressionXpathSingleFilterDecideById.java"),
                 expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void test() throws Exception {
+        final String xpath = "//*";
+        final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+
+        filter.setFiles(null);
+
+        final Violation message =
+                new Violation(19, 1, TokenTypes.CLASS_DEF, "",
+                        "", null, null, "007",
+                        getClass(), null);
+
+        final FileContents fileContents = new FileContents(new FileText(
+            new File(getPath("InputSuppressionXpathSingleFilterDecideById.java")),
+            StandardCharsets.UTF_8.name()));
+
+        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
+                "InputSuppressionXpathSingleFilterDecideById.java", message, null);
+
+        try {
+            filter.accept(ev);
+        }
+        catch (Exception ex) {
+            assertWithMessage("")
+                    .that(ex.getMessage())
+                    .isEqualTo("Cannot invoke \"com.puppycrawl.tools.checkstyle." +
+                            "filters.XpathFilterElement.accept(com.puppycrawl.tools." +
+                            "checkstyle.TreeWalkerAuditEvent)\" because \"this.xpathFilter\" is null");
+        }
     }
 
     private static SuppressionXpathSingleFilter createSuppressionXpathSingleFilter(
