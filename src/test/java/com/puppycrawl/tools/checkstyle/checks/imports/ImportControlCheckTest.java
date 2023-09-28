@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -437,6 +440,29 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testImportControlFileName() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlTestRegexpInFile.java"), expected);
+    }
+
+    @Test
+    public void testImportControlTestException() throws IOException {
+        final String filePathOfImportControlXml = getPath("InputImportControlTestException.xml");
+        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(getPath("InputImportControlTestException.java"));
+        });
+
+        assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
+                .isEqualTo("unable to parse file:" + filePathOfImportControlXml
+                 + " - Document root element \"import-control\", must match DOCTYPE"
+                 + " root \"null\".");
     }
 
     /**
