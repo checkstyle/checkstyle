@@ -47,9 +47,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testWithSupplied()
             throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "32:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "12:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "25:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "28:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault1.java"), expected);
@@ -89,9 +89,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalClasses()
             throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
-            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "14:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
+            "17:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "29:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault3.java"), expected);
@@ -101,9 +101,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalClassesStarImport()
             throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
-            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "12:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault4.java"), expected);
@@ -113,13 +112,12 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalPackagesRegularExpression()
             throws Exception {
         final String[] expected = {
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "15:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "34:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault5.java"), expected);
@@ -129,9 +127,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalClassesRegularExpression()
             throws Exception {
         final String[] expected = {
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "15:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault6.java"), expected);
@@ -141,17 +138,16 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testIllegalPackagesAndClassesRegularExpression()
             throws Exception {
         final String[] expected = {
-            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "35:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
-            "36:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
-            "37:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
-            "38:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "15:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "30:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
+            "31:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "32:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "33:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "34:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalImportDefault7.java"), expected);

@@ -9,12 +9,9 @@ regexp = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
-
 import java.io.*; // violation
 import java.lang.*;
 import java.sql.Connection;
-import java.util.List;
 import java.util.List;
 import java.lang.ArithmeticException;
 import org.junit.jupiter.api.*;
@@ -27,7 +24,6 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots; // violation
 
-import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile; // violation
 import org.junit.jupiter.api.*;
