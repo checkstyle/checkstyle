@@ -97,6 +97,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code javadoc.parse.rule.error}
  * </li>
  * <li>
+ * {@code javadoc.unclosedHtml}
+ * </li>
+ * <li>
  * {@code javadoc.wrong.singleton.html.tag}
  * </li>
  * </ul>
@@ -112,6 +115,9 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY_ANNOTATION_MISSING_DEPRECATED =
             "annotation.missing.deprecated";
+
+    /** Message property key for the Unclosed HTML message. */
+    public static final String MSG_KEY_UNCLOSED_HTML_TAG = "javadoc.unclosedHtml";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
