@@ -9,8 +9,6 @@ regexp = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
-
 import java.io.*; // violation
 import java.lang.*;
 import java.sql.Connection;
