@@ -4367,6 +4367,10 @@
                 <!-- kills mutation in ConfigurationLoader -->
                 <param>com.sun.checkstyle.test.chapter5comments.rule52documentationcomments.InvalidJavadocPositionTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
@@ -4692,6 +4696,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
