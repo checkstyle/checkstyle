@@ -32,6 +32,8 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
+
 /**
  * Contains the common implementation of a loader, for loading a configuration
  * from an XML file.
@@ -65,7 +67,8 @@ public class XmlLoader
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
-        this.publicIdToResourceNameMap = Map.copyOf(publicIdToResourceNameMap);
+        this.publicIdToResourceNameMap =
+                UnmodifiableCollectionUtil.copyOfMap(publicIdToResourceNameMap);
         parser = createXmlReader(this);
     }
 
