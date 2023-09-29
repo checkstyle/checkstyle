@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 /**
  * Unit test for ConfigurationLoader.
  */
-public class ConfigurationLoaderTest extends AbstractPathTestSupport {
+public class ConfigurationLoaderTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
