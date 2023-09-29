@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -74,6 +75,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
@@ -82,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 /**
  * CheckerTest.
@@ -1663,6 +1666,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
 
         checker.destroy();
+    }
+
+    @SuppressForbidden
+    @Test
+    public void testUnmappableCharacters() throws Exception {
+        final String[] expected = {
+            "4: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 238),
+        };
+
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("max", "75");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addProperty("charset", "IBM1098");
+
+        verify(checkerConfig, getPath("InputCheckerTestCharset.java"), expected);
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
