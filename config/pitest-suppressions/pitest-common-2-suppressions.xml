@@ -129,15 +129,6 @@
   <mutation unstable="false">
     <sourceFile>XmlLoader.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.XmlLoader</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Map::copyOf with argument</description>
-    <lineContent>this.publicIdToResourceNameMap = Map.copyOf(publicIdToResourceNameMap);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XmlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XmlLoader</mutatedClass>
     <mutatedMethod>resolveEntity</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to org/xml/sax/helpers/DefaultHandler::resolveEntity</description>
