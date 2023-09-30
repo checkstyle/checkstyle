@@ -80,6 +80,12 @@
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="ensureSpaceAfterSpecificSingleLineComment"/>
+    <property name="format" value="^//(ok|violation)"/>
+    <property name="message" value="There should be a space between '//' and 'ok' or 'violation'."/>
+    <property name="maximum" value="0"/>
+  </module>
 
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
