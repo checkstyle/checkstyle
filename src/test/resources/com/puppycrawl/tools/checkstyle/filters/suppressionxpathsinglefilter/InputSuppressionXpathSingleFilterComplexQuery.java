@@ -4,10 +4,7 @@ files = (default)(null)
 checks = (default)(null)
 message = (default)(null)
 id = (default)(null)
-query = /COMPILATION_UNIT/CLASS_DEF[./IDENT \
-        [@text='InputSuppressionXpathSingleFilterComplexQuery']]/OBJBLOCK/METHOD_DEF[./IDENT \
-        [@text='countTokens']]/SLIST/VARIABLE_DEF[./IDENT[@text='pi']] \
-        /ASSIGN/EXPR/NUM_FLOAT[@text='3.14']
+query = ./IDENT[@text='Filter']
 
 com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck
 ignoreNumbers = (default)-1, 0, 1, 2

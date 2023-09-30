@@ -31,6 +31,7 @@ import java.util.regex.PatternSyntaxException;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -398,6 +399,49 @@ public class SuppressionXpathSingleFilterTest
         verifyFilterWithInlineConfigParser(
                 getPath("InputSuppressionXpathSingleFilterDecideById.java"),
                 expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void test() throws Exception {
+        File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
+        System.out.println(file.getPath());
+//        final String xpath = "/COMPILATION_UNIT/CLASS_DEF[./IDENT" +
+//                "[@text='InputSuppressionXpathSingleFilterComplexQuery']]/OBJBLOCK/METHOD_DEF[./IDENT" +
+//                "[@text='countTokens']]/SLIST/VARIABLE_DEF[./IDENT[@text='pi']]" +
+//                "/ASSIGN/EXPR/NUM_FLOAT[@text='3.14']";
+
+        final String xpath = "./IDENT[@text='Filter']";
+
+        SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+        filter.setFiles(file.getPath());
+        filter.setQuery(xpath);
+        filter.finishLocalSetup();
+
+        final Violation violation = new Violation(27, 21, TokenTypes.NUM_DOUBLE , "",
+                        "", null, null, null,
+                        getClass(), null);
+
+        FileContents fileContents = new FileContents(new FileText(file, StandardCharsets.UTF_8.name()));
+
+        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
+                violation, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+
+        assertWithMessage("")
+                .that(filter.accept(ev))
+                .isTrue();
+
+        try {
+            filter.setFiles(null);
+            filter.setChecks("MagicNumber");
+            filter.setQuery("./IDENT[@text='Filter']");
+            filter.finishLocalSetup();
+            filter.accept(ev);
+        } catch (Exception ex) {
+            System.out.println("Exception");
+            assertWithMessage("")
+                    .that(ex.getMessage())
+                    .isEqualTo("");
+        }
     }
 
     private static SuppressionXpathSingleFilter createSuppressionXpathSingleFilter(
