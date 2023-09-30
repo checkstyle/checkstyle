@@ -424,6 +424,21 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testSystemEntity() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final DefaultConfiguration config =
+            (DefaultConfiguration) loadConfiguration(
+                "InputConfigurationLoaderSystemDoctype.xml", props);
+
+        final Properties atts = new Properties();
+        atts.setProperty("tabWidth", "4");
+
+        verifyConfigNode(config, "Checker", 0, atts);
+    }
+
+    @Test
     public void testExternalEntity() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
