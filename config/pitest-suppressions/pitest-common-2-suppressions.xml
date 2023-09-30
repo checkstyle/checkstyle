@@ -1,112 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- until https://github.com/checkstyle/checkstyle/issues/12186 -->
+  <mutation unstable="false">
+    <sourceFile>JavaParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaParser</mutatedClass>
+    <mutatedMethod>parse</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer::removeErrorListeners</description>
+    <lineContent>lexer.removeErrorListeners();</lineContent>
+  </mutation>
 
   <mutation unstable="false">
     <sourceFile>JavadocPropertiesGenerator.java</sourceFile>
@@ -124,24 +26,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to picocli/CommandLine::setUsageHelpWidth with receiver</description>
     <lineContent>final CommandLine cmd = new CommandLine(cliOptions).setUsageHelpWidth(USAGE_HELP_WIDTH);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XmlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XmlLoader</mutatedClass>
-    <mutatedMethod>resolveEntity</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to org/xml/sax/helpers/DefaultHandler::resolveEntity</description>
-    <lineContent>inputSource = super.resolveEntity(publicId, systemId);</lineContent>
-  </mutation>
-
-  <!-- until https://github.com/checkstyle/checkstyle/issues/12186 -->
-  <mutation unstable="false">
-    <sourceFile>JavaParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavaParser</mutatedClass>
-    <mutatedMethod>parse</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer::removeErrorListeners</description>
-    <lineContent>lexer.removeErrorListeners();</lineContent>
   </mutation>
 </suppressedMutations>
