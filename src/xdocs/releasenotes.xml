@@ -139,7 +139,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/13860">#13860</a>
           </li>
           <li>
-            Fix typo in Indentation check for word &#39;initialisation&#39;.
+            Fix typo in Indentation check for word &#39;initialization&#39;.
             Author: Suniti
             <a href="https://github.com/checkstyle/checkstyle/issues/13783">#13783</a>
           </li>

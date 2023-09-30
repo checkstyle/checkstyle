@@ -70,7 +70,7 @@
         <li>
           New: EmptyLineSeparator check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/186">#186</a>
         </li>
-        <li> Enable array initialisation indentation settings. Author: Vaclav Chalupa. </li>
+        <li> Enable array initialization indentation settings. Author: Vaclav Chalupa. </li>
         <li> Enhance WhitespaceAroundCheck to ignore Annotation Array Initialization curlies as it
         does for Array Initialization outside of annotations. Author: Jacob Tomaw </li>
         <li>
