@@ -174,15 +174,6 @@
   <mutation unstable="false">
     <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
-    <mutatedMethod>setFiles</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable files</description>
-    <lineContent>this.files = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
     <mutatedMethod>setMessage</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable message</description>
