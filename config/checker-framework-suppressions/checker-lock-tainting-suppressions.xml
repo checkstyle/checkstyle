@@ -145,14 +145,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method resolveEntity calls method getClassLoader with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>getClass().getClassLoader();</lineContent>
+    <lineContent>final ClassLoader loader = getClass().getClassLoader();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@Pure method resolveEntity calls method getResourceAsStream with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>loader.getResourceAsStream(dtdResourceName);</lineContent>
+    <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
