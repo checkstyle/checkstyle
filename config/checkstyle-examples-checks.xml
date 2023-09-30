@@ -82,11 +82,10 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="ensureSpaceAfterSpecificSingleLineComment"/>
-    <property name="format" value="^\s*//(ok|violation)[^ ]"/>
-    <property name="message" value="Comments like '//ok' or '//violation' should have a space after //."/>
+    <property name="format" value="^//(ok|violation)"/>
+    <property name="message" value="There should be a space between '//' and 'ok' or 'violation'."/>
     <property name="maximum" value="0"/>
   </module>
-
 
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
