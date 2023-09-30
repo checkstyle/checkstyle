@@ -16,8 +16,8 @@
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
+//violation 2 lines above ''package' should be separated from previous line'
+//violation 2 lines above ''import' should be separated from previous line'
 
 class Example5 {
 
