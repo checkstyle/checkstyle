@@ -48,33 +48,6 @@
   <mutation unstable="false">
     <sourceFile>Checker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>fireErrors</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::relativizeAndNormalizePath with argument</description>
-    <lineContent>final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>fireFileFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::relativizeAndNormalizePath with argument</description>
-    <lineContent>final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>fireFileStarted</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::relativizeAndNormalizePath with argument</description>
-    <lineContent>final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
     <mutatedMethod>getExternalResourceLocations</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::map with receiver</description>
@@ -97,15 +70,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/io/File::getPath</description>
     <lineContent>throw new Error(&quot;Error was thrown while processing &quot; + file.getPath(), error);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>setCharset</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable charset</description>
-    <lineContent>this.charset = charset;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -160,15 +124,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to org/xml/sax/Attributes::getValue with argument</description>
     <lineContent>final String value = attributes.getValue(VALUE);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ConfigurationLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader</mutatedClass>
-    <mutatedMethod>startElement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to org/xml/sax/Attributes::getValue</description>
-    <lineContent>overridePropsResolver, attributes.getValue(DEFAULT));</lineContent>
   </mutation>
 
   <mutation unstable="false">
