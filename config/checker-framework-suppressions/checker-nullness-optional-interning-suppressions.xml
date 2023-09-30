@@ -950,21 +950,32 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference loader</message>
-    <lineContent>loader.getResourceAsStream(dtdResourceName);</lineContent>
+    <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for publicId.</message>
-    <lineContent>public InputSource resolveEntity(String publicId, String systemId)</lineContent>
+    <lineContent>public InputSource resolveEntity(String publicId, String systemId) {</lineContent>
     <details>
       found   : @Initialized @NonNull String
       required: @Initialized @Nullable String
       Consequence: method in @Initialized @NonNull XmlLoader
-      @Initialized @NonNull InputSource resolveEntity(@Initialized @NonNull XmlLoader this, @Initialized @NonNull String p0, @Initialized @NonNull String p1) throws @Initialized @NonNull SAXException@Initialized @NonNull IOException
+      @Initialized @NonNull InputSource resolveEntity(@Initialized @NonNull XmlLoader this, @Initialized @NonNull String p0, @Initialized @NonNull String p1)
       cannot override method in @Initialized @NonNull EntityResolver
       @Initialized @Nullable InputSource resolveEntity(@Initialized @NonNull EntityResolver this, @Initialized @Nullable String p0, @Initialized @NonNull String p1) throws @Initialized @NonNull SAXException@Initialized @NonNull IOException
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return inputSource;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable InputSource
+      method return type: @Initialized @NonNull InputSource
     </details>
   </checkerFrameworkError>
 
