@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * <ul>
  * <li>
- * Property {@code arrayInitIndent} - Specify how far an array initialisation
+ * Property {@code arrayInitIndent} - Specify how far an array initialization
  * should be indented when on next line.
  * Type is {@code int}.
  * Default value is {@code 4}.
@@ -222,7 +222,7 @@ public class IndentationCheck extends AbstractCheck {
     /** Specify how far a throws clause should be indented when on next line. */
     private int throwsIndent = DEFAULT_INDENTATION;
 
-    /** Specify how far an array initialisation should be indented when on next line. */
+    /** Specify how far an array initialization should be indented when on next line. */
     private int arrayInitIndent = DEFAULT_INDENTATION;
 
     /** Specify how far continuation line should be indented when line-wrapping is present. */
