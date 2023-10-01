@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>FileImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable patternForExactMatch</description>
-    <lineContent>patternForExactMatch = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.FileImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl::encloseInGroup with argument</description>
-    <lineContent>this.name = encloseInGroup(name);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>PkgImportControl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
