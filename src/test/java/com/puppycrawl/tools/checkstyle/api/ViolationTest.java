@@ -20,17 +20,25 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
 
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck;
+import com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class ViolationTest {
+public class ViolationTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/api/violation";
+    }
 
     @Test
     public void testEqualsAndHashCode() {
@@ -211,4 +219,15 @@ public class ViolationTest {
                 EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
     }
 
+    @Test
+    public void testViolation() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
+                    MSG_KEY, "final"),
+            "20:5: " + getCheckMessage(InterfaceMemberImpliedModifierCheck.class,
+                    MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputViolation1.java"), expected);
+    }
 }
