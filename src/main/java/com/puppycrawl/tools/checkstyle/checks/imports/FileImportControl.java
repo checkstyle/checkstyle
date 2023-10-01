@@ -29,8 +29,7 @@ import java.util.regex.Pattern;
 class FileImportControl extends AbstractImportControl {
     /** The name for the file. */
     private final String name;
-    /** The regex pattern for exact matches - only not null if regex is true. */
-    private final Pattern patternForExactMatch;
+
     /** If this file name represents a regular expression. */
     private final boolean regex;
 
@@ -43,26 +42,8 @@ class FileImportControl extends AbstractImportControl {
      */
     /* package */ FileImportControl(PkgImportControl parent, String name, boolean regex) {
         super(parent, MismatchStrategy.DELEGATE_TO_PARENT);
-
         this.regex = regex;
-        if (regex) {
-            this.name = encloseInGroup(name);
-            patternForExactMatch = createPatternForExactMatch(this.name);
-        }
-        else {
-            this.name = name;
-            patternForExactMatch = null;
-        }
-    }
-
-    /**
-     * Enclose {@code expression} in a (non-capturing) group.
-     *
-     * @param expression the input regular expression
-     * @return a grouped pattern.
-     */
-    private static String encloseInGroup(String expression) {
-        return "(?:" + expression + ")";
+        this.name = name;
     }
 
     /**
@@ -93,6 +74,7 @@ class FileImportControl extends AbstractImportControl {
             result = false;
         }
         else if (regex) {
+            final Pattern patternForExactMatch = createPatternForExactMatch(name);
             result = patternForExactMatch.matcher(fileName).matches();
         }
         else {
