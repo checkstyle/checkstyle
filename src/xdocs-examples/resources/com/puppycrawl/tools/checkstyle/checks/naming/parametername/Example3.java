@@ -8,10 +8,12 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+
 // xdoc section -- start
-class MyClass {
-  void method1(int v1) {} // OK
-  void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+class Example3 {
+  void method1(int v1) {}
+  void method2(int V2) {} // violation
   @Override
   public boolean equals(Object V3) { // OK
     return true;
