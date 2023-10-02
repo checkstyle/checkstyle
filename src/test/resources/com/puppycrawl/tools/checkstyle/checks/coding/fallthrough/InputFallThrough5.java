@@ -44,7 +44,7 @@ public class InputFallThrough5 {
                 return null; /* block comment test for slist */
             }
         }
-        case "NEGATION": { // ok
+        case "NEGATION": {
             return booleanInvert(operandValue);
         }
         case "19": {
