@@ -2845,17 +2845,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>patternForExactMatch = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Pattern
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return finestMatch;</lineContent>
