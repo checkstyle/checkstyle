@@ -15,7 +15,7 @@ public class InputFallThroughWithEmoji {
         while (true) {
             int i = 0;
             switch ("👍") {
-                case "ds😂": // ok
+                case "ds😂":
                 case "": i++; break;
                 case "👇🏻":
                     i++;
@@ -62,7 +62,7 @@ public class InputFallThroughWithEmoji {
         int i = 0;
         switch ("") {
 
-            case "ds😂": // ok
+            case "ds😂":
             case "":
                 i++;
                 break;
@@ -97,7 +97,7 @@ public class InputFallThroughWithEmoji {
                 //🥳d🥳 fallthru
 
             case "10": String s2 = "s🥳d🥳s";
-            /*🥳🥳🥳🥳🥳🥳*/ /* fallthru */ default: i++; // ok
+            /*🥳🥳🥳🥳🥳🥳*/ /* fallthru */ default: i++;
 
     }
     }
