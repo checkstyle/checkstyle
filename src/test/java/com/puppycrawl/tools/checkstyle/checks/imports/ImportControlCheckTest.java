@@ -452,6 +452,14 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testImportControlFileName2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlTestRegexpInFile2.java"), expected);
+    }
+
+    @Test
     public void testImportControlTestException() {
         final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
             verifyWithInlineConfigParser(getPath("InputImportControlTestException.java"));
