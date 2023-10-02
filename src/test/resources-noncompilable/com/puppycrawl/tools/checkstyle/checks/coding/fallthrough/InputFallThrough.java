@@ -43,7 +43,7 @@ public class InputFallThrough
                 return;
             }
             finally {
-            } // ok
+            }
         case 6:
             try (final Resource resource = new Resource()) {
             }
