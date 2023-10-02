@@ -16,7 +16,7 @@ public class InputFallThrough4 {
             case 1:
                 throw new ArithmeticException("Rounding necessary");
 
-            case 2:  /* block */ // ok
+            case 2:  /* block */
                 if (Double.isNaN(3)) /* block */
                     return true; /* block */
                 else /* block */
