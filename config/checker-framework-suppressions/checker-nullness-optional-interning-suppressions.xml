@@ -1747,28 +1747,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter prevScopeUninitializedVariableData of updateAllUninitializedVariables.</message>
-    <lineContent>updateAllUninitializedVariables(prevScopeUninitializedVariableData);</lineContent>
-    <details>
-      found   : @Initialized @Nullable Deque&lt;@Initialized @NonNull DetailAST&gt;
-      required: @Initialized @NonNull Deque&lt;@Initialized @NonNull DetailAST&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter prevScopeUninitializedVariableData of updateAllUninitializedVariables.</message>
-    <lineContent>updateAllUninitializedVariables(prevScopeUninitializedVariableData);</lineContent>
-    <details>
-      found   : @Initialized @Nullable Deque&lt;@Initialized @NonNull DetailAST&gt;
-      required: @Initialized @NonNull Deque&lt;@Initialized @NonNull DetailAST&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference candidate</message>
     <lineContent>shouldRemove = candidate.alreadyAssigned;</lineContent>
