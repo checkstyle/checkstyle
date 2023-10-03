@@ -59,6 +59,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * {@code javadoc.tag.line.before}
  * </li>
  * <li>
+ * {@code javadoc.unclosedHtml}
+ * </li>
+ * <li>
  * {@code javadoc.wrong.singleton.html.tag}
  * </li>
  * </ul>
