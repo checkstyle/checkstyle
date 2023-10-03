@@ -126,7 +126,6 @@ public abstract class AbstractRootNode extends AbstractNode {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
-            case AxisInfo.ATTRIBUTE:
             case AxisInfo.PARENT:
             case AxisInfo.FOLLOWING:
             case AxisInfo.FOLLOWING_SIBLING:
