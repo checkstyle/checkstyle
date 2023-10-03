@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNCLOSED_HTML_TAG;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,7 @@ public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "32: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "32: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
