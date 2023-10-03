@@ -29,6 +29,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -108,6 +109,23 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid column number")
             .that(rootNode.getColumnNumber())
             .isEqualTo(0);
+    }
+
+    /**
+     * This test exists to cover pitest mutation.
+     * It is impossible to create RootNode that doesnot have column as 0.
+     */
+    @Test
+    public void testFakeGetColumnNumber() {
+        final DetailAstImpl fakeNode = new DetailAstImpl();
+        fakeNode.setType(TokenTypes.PACKAGE_DEF);
+        fakeNode.setLineNo(555);
+        fakeNode.setColumnNo(888);
+
+        RootNode rootNode = new RootNode(fakeNode);
+        assertWithMessage("Invalid column number")
+            .that(rootNode.getColumnNumber())
+            .isEqualTo(888);
     }
 
     @Test
