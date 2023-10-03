@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="true">
+  <mutation unstable="false">
     <sourceFile>AbstractRootNode.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.AbstractRootNode</mutatedClass>
     <mutatedMethod>iterateAxis</mutatedMethod>
@@ -35,23 +35,4 @@
     <description>Removed assignment to member variable items</description>
     <lineContent>this.items = null;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
-    <mutatedMethod>getColumnNumber</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
-    <lineContent>return detailAst.getColumnNo();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RootNode.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.RootNode</mutatedClass>
-    <mutatedMethod>getColumnNumber</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
-    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/xpath/RootNode::getColumnNumber</description>
-    <lineContent>return detailAst.getColumnNo();</lineContent>
-  </mutation>
-
 </suppressedMutations>
