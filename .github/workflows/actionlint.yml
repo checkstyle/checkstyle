@@ -6,7 +6,8 @@ on:
     paths:
       - '.github/workflows/**'
   pull_request:
-    branches: '*'
+    branches:
+      - '*'
     paths:
       - '.github/workflows/**'
 
