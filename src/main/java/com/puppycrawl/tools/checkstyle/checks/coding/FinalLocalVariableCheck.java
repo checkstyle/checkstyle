@@ -118,10 +118,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     /** Scope Deque. */
     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
 
-    /** Uninitialized variables of previous scope. */
-    private final Deque<Deque<DetailAST>> prevScopeUninitializedVariables =
-            new ArrayDeque<>();
-
     /** Assigned variables of current scope. */
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
             new ArrayDeque<>();
@@ -258,7 +254,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         Map<String, FinalVariableCandidate> scope = null;
-        final Deque<DetailAST> prevScopeUninitializedVariableData;
         final DetailAST parentAst = ast.getParent();
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
@@ -269,24 +264,20 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 break;
             case TokenTypes.EXPR:
                 // Switch labeled expression has no slist
-                if (parentAst.getType() == TokenTypes.SWITCH_RULE) {
-                    prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
-                    if (shouldUpdateUninitializedVariables(parentAst)) {
-                        updateAllUninitializedVariables(prevScopeUninitializedVariableData);
-                    }
+                if (parentAst.getType() == TokenTypes.SWITCH_RULE
+                    && shouldUpdateUninitializedVariables(parentAst)) {
+                    updateAllUninitializedVariables();
                 }
                 break;
             case TokenTypes.SLIST:
-                prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
                 boolean containsBreak = false;
                 if (parentAst.getType() != TokenTypes.CASE_GROUP
                     || findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
-                    prevScopeUninitializedVariables.pop();
                 }
                 if (containsBreak || shouldUpdateUninitializedVariables(parentAst)) {
-                    updateAllUninitializedVariables(prevScopeUninitializedVariableData);
+                    updateAllUninitializedVariables();
                 }
                 updateCurrentScopeAssignedVariables();
                 break;
@@ -383,26 +374,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final Deque<DetailAST> prevScopeUninitializedVariableData =
                 new ArrayDeque<>();
         scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
-        prevScopeUninitializedVariables.push(prevScopeUninitializedVariableData);
+        scopeData.prevScopeUninitializedVariables = prevScopeUninitializedVariableData;
     }
 
     /**
      * Update current scope data uninitialized variable according to the whole scope data.
-     *
-     * @param prevScopeUninitializedVariableData variable for previous stack of uninitialized
-     *     variables
-     * @noinspection MethodParameterNamingConvention
-     * @noinspectionreason MethodParameterNamingConvention - complicated check
-     *      requires descriptive naming
      */
-    private void updateAllUninitializedVariables(
-            Deque<DetailAST> prevScopeUninitializedVariableData) {
+    private void updateAllUninitializedVariables() {
         final boolean hasSomeScopes = !currentScopeAssignedVariables.isEmpty();
         if (hasSomeScopes) {
-            // Check for only previous scope
-            updateUninitializedVariables(prevScopeUninitializedVariableData);
-            // Check for rest of the scope
-            prevScopeUninitializedVariables.forEach(this::updateUninitializedVariables);
+            scopeStack.forEach(scopeData -> {
+                updateUninitializedVariables(scopeData.prevScopeUninitializedVariables);
+            });
         }
     }
 
@@ -734,6 +717,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
         /** Contains definitions of uninitialized variables. */
         private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
+
+        /** Contains definitions of previous scope uninitialized variables. */
+        private Deque<DetailAST> prevScopeUninitializedVariables = new ArrayDeque<>();
 
         /** Whether there is a {@code break} in the scope. */
         private boolean containsBreak;
