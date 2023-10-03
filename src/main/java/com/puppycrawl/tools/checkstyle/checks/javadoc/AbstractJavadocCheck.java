@@ -72,6 +72,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
 
     /**
+     * Message key of error message.
+     */
+    public static final String MSG_KEY_UNCLOSED_HTML_TAG =
+            JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
+
+    /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
      * to guarantee basic thread safety and avoid shared, mutable state when not necessary.
      */
@@ -319,7 +325,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
                     log(result.getFirstNonTightHtmlTag().getLine(),
-                            JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG,
+                            MSG_KEY_UNCLOSED_HTML_TAG,
                             result.getFirstNonTightHtmlTag().getText());
                 }
             }
