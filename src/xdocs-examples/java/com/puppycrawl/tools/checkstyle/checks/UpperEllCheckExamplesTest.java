@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UpperEllCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +34,9 @@ public class UpperEllCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13:15: " + getCheckMessage(MSG_KEY, "L"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
