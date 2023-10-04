@@ -33,9 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  */
 public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
-    /** Length of all separators. */
-    private static final int LENGTH_OF_ALL_SEPARATORS = 10;
-
     /** Suffix of module names like XXXXCheck. */
     private static final String SUFFIX = "Check";
 
@@ -55,9 +52,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
             severityLevelName = severityLevel.getName().toUpperCase(Locale.US);
         }
 
-        // Avoid StringBuffer.expandCapacity
-        final int bufLen = calculateBufferLength(event, severityLevelName.length());
-        final StringBuilder sb = new StringBuilder(bufLen);
+        final StringBuilder sb = new StringBuilder();
 
         sb.append('[').append(severityLevelName).append("] ")
             .append(fileName).append(':').append(event.getLine());
@@ -75,21 +70,6 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
         sb.append(']');
 
         return sb.toString();
-    }
-
-    /**
-     * Returns the length of the buffer for StringBuilder.
-     * bufferLength = fileNameLength + messageLength + lengthOfAllSeparators +
-     * + severityNameLength + checkNameLength.
-     *
-     * @param event audit event.
-     * @param severityLevelNameLength length of severity level name.
-     * @return the length of the buffer for StringBuilder.
-     */
-    private static int calculateBufferLength(AuditEvent event, int severityLevelNameLength) {
-        return LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
-            + event.getMessage().length() + severityLevelNameLength
-            + getCheckShortName(event).length();
     }
 
     /**

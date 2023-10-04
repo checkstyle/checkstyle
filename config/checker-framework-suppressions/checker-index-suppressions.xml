@@ -12,17 +12,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AuditEventDefaultFormatter.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter capacity of StringBuilder.</message>
-    <lineContent>final StringBuilder sb = new StringBuilder(bufLen);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of get.</message>
