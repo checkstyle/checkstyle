@@ -74,20 +74,6 @@ public class AuditEventDefaultFormatterTest {
                 .isEqualTo(expected);
     }
 
-    @Test
-    public void testCalculateBufferLength() throws Exception {
-        final Violation violation = new Violation(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                getClass(), null);
-        final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", violation);
-        final int result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
-                "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
-
-        assertWithMessage("Buffer length is not expected")
-                .that(result)
-                .isEqualTo(54);
-    }
-
     private static final class TestModuleCheck {
 
         // no code
