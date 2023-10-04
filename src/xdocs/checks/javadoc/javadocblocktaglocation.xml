@@ -92,6 +92,7 @@
  * Plain text with {@code @see} (OK)
  * A @custom tag (OK)
  *
+ */
         </source>
         <p id="Example2-config">
           To configure the check to verify tags from
@@ -110,15 +111,17 @@
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
         <source>
-&lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
-  &lt;!-- default tags --&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;author, deprecated, exception, hidden&quot;/&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;param, provides, return, see, serial&quot;/&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;serialData, serialField, since, throws&quot;/&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;uses, version&quot;/&gt;
-  &lt;!-- additional tags used in the project --&gt;
-  &lt;property name=&quot;tags&quot; value=&quot;noinspection&quot;/&gt;
-&lt;/module&gt;
+/**
+ * &lt;module name=&quot;JavadocBlockTagLocation&quot;&gt;
+ *   &lt;!-- default tags --&gt;
+ *   &lt;property name=&quot;tags&quot; value=&quot;author, deprecated, exception, hidden&quot;/&gt;
+ *   &lt;property name=&quot;tags&quot; value=&quot;param, provides, return, see, serial&quot;/&gt;
+ *   &lt;property name=&quot;tags&quot; value=&quot;serialData, serialField, since, throws&quot;/&gt;
+ *   &lt;property name=&quot;tags&quot; value=&quot;uses, version&quot;/&gt;
+ *   &lt;!-- additional tags used in the project --&gt;
+ *   &lt;property name=&quot;tags&quot; value=&quot;noinspection&quot;/&gt;
+ * &lt;/module&gt;
+ */
         </source>
       </subsection>
 
