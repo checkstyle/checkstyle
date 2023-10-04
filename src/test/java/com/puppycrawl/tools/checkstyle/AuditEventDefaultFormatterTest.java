@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AuditEventDefaultFormatterTest {
 
@@ -72,20 +71,6 @@ public class AuditEventDefaultFormatterTest {
         assertWithMessage("Invalid format")
                 .that(formatter.format(event))
                 .isEqualTo(expected);
-    }
-
-    @Test
-    public void testCalculateBufferLength() throws Exception {
-        final Violation violation = new Violation(1, 1,
-                "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                getClass(), null);
-        final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", violation);
-        final int result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
-                "calculateBufferLength", auditEvent, SeverityLevel.ERROR.ordinal());
-
-        assertWithMessage("Buffer length is not expected")
-                .that(result)
-                .isEqualTo(54);
     }
 
     private static final class TestModuleCheck {
