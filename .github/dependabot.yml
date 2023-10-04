@@ -11,3 +11,9 @@ updates:
           - "> 2.1"
     commit-message:
       prefix: dependency
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: actions
