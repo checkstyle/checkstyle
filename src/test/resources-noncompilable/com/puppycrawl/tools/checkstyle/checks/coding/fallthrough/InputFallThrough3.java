@@ -18,11 +18,11 @@ public class InputFallThrough3
             i++;
         case 2: // violation 'Fall\ through from previous branch of the switch statement.'
             yield 2;
-        case 3: // ok
+        case 3:
             // fall through
-        case 4: // ok
+        case 4:
             yield 5;
-        default: // ok
+        default:
             yield -1;
         };
     }
