@@ -73,8 +73,6 @@ Bugs and Feature requests (not the questions): https://github.com/checkstyle/che
 
 If you want to speed up fixing of issue and want to encourage somebody in
 internet to resolve any issue:
-[![][bountysource img]][bountysource]
-[![][salt.bountysource img]][salt.bountysource]
 [![][flattr img]][flattr]
 [![][liberapay img]][liberapay]
 [![][backers.opencollective img]][backers.opencollective]
@@ -160,12 +158,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [liberapay]:https://liberapay.com/checkstyle/
 [liberapay img]:https://liberapay.com/assets/widgets/donate.svg
-
-[bountysource]:https://www.bountysource.com/teams/checkstyle/issues
-[bountysource img]:https://api.bountysource.com/badge/team?team_id=3568&style=bounties_posted
-
-[salt.bountysource]:https://salt.bountysource.com/teams/checkstyle
-[salt.bountysource img]:https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
