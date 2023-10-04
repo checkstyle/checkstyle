@@ -128,7 +128,6 @@ Bludov
 BNOT
 booleanexpressioncomplexity
 bothfiles
-bountysource
 Bpmn
 bracesareused
 breadcrumbs
@@ -323,7 +322,7 @@ Dnew
 doccheck
 Dockter
 doclet
-DOCTYPE
+doctype
 documentationcomments
 donotignoreexceptions
 Dorekit
@@ -1178,6 +1177,7 @@ servlet
 SETPOINT
 severitymatchfilter
 sevntu
+shanegenschaw
 shellcheck
 shengchen
 Shiell

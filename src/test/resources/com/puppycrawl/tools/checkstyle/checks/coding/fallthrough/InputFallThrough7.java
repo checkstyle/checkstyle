@@ -77,7 +77,7 @@ public class InputFallThrough7 {
             case 3:
                 c = 4;
             // fall through
-            case 2: // ok
+            case 2:
             case 1:
             default:
                 c = 9;
@@ -93,7 +93,7 @@ public class InputFallThrough7 {
             case 3:
                 c = 4;
                 break;
-            case 2: // ok
+            case 2:
             case 1:
             default:
                 c = 9;

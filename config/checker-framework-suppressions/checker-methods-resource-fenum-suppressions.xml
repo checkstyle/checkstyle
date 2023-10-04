@@ -37,7 +37,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on dtdIs or any of its aliases.</message>
-    <lineContent>final InputStream dtdIs =</lineContent>
+    <lineContent>final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);</lineContent>
     <details>
       The type of object is: java.io.InputStream.
       Reason for going out of scope: regular method exit

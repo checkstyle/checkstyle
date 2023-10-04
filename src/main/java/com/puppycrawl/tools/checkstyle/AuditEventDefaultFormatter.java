@@ -55,9 +55,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
             severityLevelName = severityLevel.getName().toUpperCase(Locale.US);
         }
 
-        // Avoid StringBuffer.expandCapacity
-        final int bufLen = calculateBufferLength(event, severityLevelName.length());
-        final StringBuilder sb = new StringBuilder(bufLen);
+        final StringBuilder sb = initStringBuilderWithOptimalBuffer(event, severityLevelName);
 
         sb.append('[').append(severityLevelName).append("] ")
             .append(fileName).append(':').append(event.getLine());
@@ -78,18 +76,21 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
     }
 
     /**
-     * Returns the length of the buffer for StringBuilder.
+     * Returns the StringBuilder that should avoid StringBuffer.expandCapacity.
      * bufferLength = fileNameLength + messageLength + lengthOfAllSeparators +
      * + severityNameLength + checkNameLength.
+     * Method is excluded from pitest validation.
      *
      * @param event audit event.
-     * @param severityLevelNameLength length of severity level name.
-     * @return the length of the buffer for StringBuilder.
+     * @param severityLevelName severity level name.
+     * @return optimal StringBuilder.
      */
-    private static int calculateBufferLength(AuditEvent event, int severityLevelNameLength) {
-        return LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
-            + event.getMessage().length() + severityLevelNameLength
+    private static StringBuilder initStringBuilderWithOptimalBuffer(AuditEvent event,
+            String severityLevelName) {
+        final int bufLen = LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
+            + event.getMessage().length() + severityLevelName.length()
             + getCheckShortName(event).length();
+        return new StringBuilder(bufLen);
     }
 
     /**

@@ -26,6 +26,7 @@
          <message-keys>
             <message-key key="javadoc.missed.html.close"/>
             <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
             <message-key key="javadoc.wrong.singleton.html.tag"/>
             <message-key key="tag.continuation.indent"/>
          </message-keys>

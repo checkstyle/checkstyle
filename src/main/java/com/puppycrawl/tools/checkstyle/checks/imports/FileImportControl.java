@@ -43,26 +43,9 @@ class FileImportControl extends AbstractImportControl {
      */
     /* package */ FileImportControl(PkgImportControl parent, String name, boolean regex) {
         super(parent, MismatchStrategy.DELEGATE_TO_PARENT);
-
         this.regex = regex;
-        if (regex) {
-            this.name = encloseInGroup(name);
-            patternForExactMatch = createPatternForExactMatch(this.name);
-        }
-        else {
-            this.name = name;
-            patternForExactMatch = null;
-        }
-    }
-
-    /**
-     * Enclose {@code expression} in a (non-capturing) group.
-     *
-     * @param expression the input regular expression
-     * @return a grouped pattern.
-     */
-    private static String encloseInGroup(String expression) {
-        return "(?:" + expression + ")";
+        this.name = name;
+        patternForExactMatch = createPatternForExactMatch(name);
     }
 
     /**
