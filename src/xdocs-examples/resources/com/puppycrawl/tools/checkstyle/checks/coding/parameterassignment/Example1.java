@@ -32,14 +32,12 @@ public class Example1 {
 
   IntPredicate obj = a -> ++a == 12; // violation
   IntBinaryOperator obj2 = (int a, int b) -> {
-
     a++;  //violation
     b += 12; //violation
     return a+b;
 
   };
   IntPredicate obj3 = a -> {
-
     int b = a; // ok
     return ++b == 12;
   };
