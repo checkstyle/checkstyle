@@ -4369,6 +4369,7 @@
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
               <excludedMethods>
+                <param>format</param>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
               </excludedMethods>
