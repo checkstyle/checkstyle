@@ -2119,9 +2119,6 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
-            <!-- very frequent SocketTimeoutException : Read timed out -->
-            <excludedLink>https://www.bountysource.com/*</excludedLink>
-            <excludedLink>https://api.bountysource.com/*</excludedLink>
             <!-- This URL become to require to log in first to see content -->
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
