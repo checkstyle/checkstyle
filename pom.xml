@@ -2145,6 +2145,7 @@
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
+            <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
             <excludedLink>https://www.ietf.org/rfc/rfc4627.txt</excludedLink>
