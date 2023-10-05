@@ -175,12 +175,6 @@
   <suppress id="exampleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
 
-  <!-- Parent module macro suppressions -->
-  <suppress id="parentModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration.xml.template"/>
-  <suppress id="parentModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration.xml.template"/>
-
   <!-- Violations messages macro suppressions -->
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
