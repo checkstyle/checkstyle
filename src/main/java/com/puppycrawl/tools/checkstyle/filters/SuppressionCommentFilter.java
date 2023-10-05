@@ -179,7 +179,7 @@ public class SuppressionCommentFilter
      * are reassigned to the next FileContents, at which time filtering for
      * the current FileContents is finished.
      */
-    private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
+    private WeakReference<FileContents> fileContentsReference;
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
@@ -285,7 +285,7 @@ public class SuppressionCommentFilter
             // contents and tag suppressions
             final FileContents currentContents = event.getFileContents();
 
-            if (getFileContents() != currentContents) {
+            if (currentContents != null) {
                 setFileContents(currentContents);
                 tagSuppressions();
             }
