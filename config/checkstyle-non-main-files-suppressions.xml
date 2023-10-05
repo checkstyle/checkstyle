@@ -197,12 +197,6 @@
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]requireemptylinebeforeblocktaggroup.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
