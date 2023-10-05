@@ -221,9 +221,7 @@
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
 
-    <!-- Parent module macro suppressions -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationonsameline.xml.template"/>
+  <!-- Parent macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationusestyle.xml.template"/>
   <suppress id="propertiesMacroMustExist"
