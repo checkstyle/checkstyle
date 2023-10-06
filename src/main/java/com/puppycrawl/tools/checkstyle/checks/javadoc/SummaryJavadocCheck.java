@@ -467,9 +467,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param firstSentence string with first sentence.
      * @return {@code true} if first sentence contains forbidden summary fragment.
      */
-    private boolean containsForbiddenFragment(String firstSentence) {
+    public boolean containsForbiddenFragment(String firstSentence) {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
-                .matcher(firstSentence).replaceAll(" ").trim();
+                .matcher(firstSentence).replaceAll(" ");
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
     }
 
