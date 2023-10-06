@@ -59,25 +59,15 @@
             </tr>
             <tr>
               <td>format</td>
-              <td>
-                 Specify the RegExp to match against warnings. Any warning
-                 being suppressed matching this pattern will be flagged.
-              </td>
-              <td>
-                <a href="../../property_types.html#Pattern">Pattern</a>
-              </td>
-              <td>
-                <code>&quot;^\s*+$&quot;</code>
-              </td>
+              <td>Specify the RegExp to match against warnings. Any warning being suppressed matching this pattern will be flagged.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^\s*+$&quot;</code></td>
               <td>5.0</td>
             </tr>
-
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -104,7 +94,6 @@
                     RECORD_DEF</a>
                   .
               </td>
-
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
@@ -134,7 +123,6 @@
               </td>
               <td>5.0</td>
             </tr>
-
           </table>
         </div>
       </subsection>

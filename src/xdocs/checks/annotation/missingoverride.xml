@@ -52,15 +52,9 @@
             </tr>
             <tr>
               <td>javaFiveCompatibility</td>
-              <td>
-                Enable java 5 compatibility mode.
-              </td>
-              <td>
-                <a href="../../property_types.html#boolean">boolean</a>
-              </td>
-              <td>
-                <code>false</code>
-              </td>
+              <td>Enable java 5 compatibility mode.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
               <td>5.0</td>
             </tr>
           </table>
