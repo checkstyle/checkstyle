@@ -24,6 +24,9 @@ checkstyle.ipr
 checkstyle.iws
 .idea
 
+# Vscode project files
+.vscode
+
 # Temp files
 *~
 
