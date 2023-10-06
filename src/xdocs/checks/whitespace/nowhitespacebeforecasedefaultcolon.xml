@@ -73,12 +73,12 @@ class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages"
-        id="Violation_Messages">
+      <subsection name="Violation Messages" id="Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-              ws.preceded</a>
+              ws.preceded
+            </a>
           </li>
         </ul>
         <p>
