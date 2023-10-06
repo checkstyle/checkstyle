@@ -175,23 +175,9 @@
   <suppress id="exampleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
 
-  <!-- Violations messages macro suppressions -->
+  <!-- there is no messages in module by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonintrywithresources.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
