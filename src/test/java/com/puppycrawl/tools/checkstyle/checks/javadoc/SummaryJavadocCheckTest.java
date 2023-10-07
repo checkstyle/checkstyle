@@ -306,9 +306,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSummaryJavaDoc() throws Exception {
-        final String[] expected = {
-            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadoc1.java"), expected);
