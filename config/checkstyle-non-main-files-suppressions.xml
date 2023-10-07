@@ -175,23 +175,9 @@
   <suppress id="exampleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
 
-  <!-- Violations messages macro suppressions -->
+  <!-- there is no messages in module by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicolonintrywithresources.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]variabledeclarationusagedistance.xml.template"/>
-  <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
@@ -215,15 +201,10 @@
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
 
-  <!-- Parent macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
+  <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]annotationusestyle.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]missingoverride.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarnings.xml.template"/>
+            files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
+  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
