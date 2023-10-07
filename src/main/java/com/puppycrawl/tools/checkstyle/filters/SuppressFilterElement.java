@@ -91,7 +91,7 @@ public class SuppressFilterElement
             fileRegexp = null;
         }
         else {
-            fileRegexp = Pattern.compile(files);
+            fileRegexp = Pattern.compile(filePattern);
         }
         checkPattern = checks;
         if (checks == null) {
@@ -105,7 +105,7 @@ public class SuppressFilterElement
             messageRegexp = null;
         }
         else {
-            messageRegexp = Pattern.compile(message);
+            messageRegexp = Pattern.compile(messagePattern);
         }
         moduleId = modId;
         linesCsv = lines;
@@ -120,7 +120,7 @@ public class SuppressFilterElement
             columnFilter = null;
         }
         else {
-            columnFilter = new CsvFilterElement(columns);
+            columnFilter = new CsvFilterElement(columnsCsv);
         }
     }
 
@@ -142,7 +142,7 @@ public class SuppressFilterElement
         }
         else {
             filePattern = files.pattern();
-            fileRegexp = files;
+            fileRegexp = Pattern.compile(filePattern);
         }
         if (checks == null) {
             checkPattern = null;
@@ -150,7 +150,7 @@ public class SuppressFilterElement
         }
         else {
             checkPattern = checks.pattern();
-            checkRegexp = checks;
+            checkRegexp = Pattern.compile(checkPattern);
         }
         if (message == null) {
             messagePattern = null;
@@ -158,7 +158,7 @@ public class SuppressFilterElement
         }
         else {
             messagePattern = message.pattern();
-            messageRegexp = message;
+            messageRegexp = Pattern.compile(messagePattern);
         }
         this.moduleId = moduleId;
         if (lines == null) {
@@ -167,7 +167,7 @@ public class SuppressFilterElement
         }
         else {
             linesCsv = lines;
-            lineFilter = new CsvFilterElement(lines);
+            lineFilter = new CsvFilterElement(linesCsv);
         }
         if (columns == null) {
             columnsCsv = null;
@@ -175,7 +175,7 @@ public class SuppressFilterElement
         }
         else {
             columnsCsv = columns;
-            columnFilter = new CsvFilterElement(columns);
+            columnFilter = new CsvFilterElement(columnsCsv);
         }
     }
 

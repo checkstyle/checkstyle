@@ -111,7 +111,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             filePattern = files.pattern();
-            fileRegexp = files;
+            fileRegexp = Pattern.compile(filePattern);
         }
         if (checks == null) {
             checkPattern = null;
@@ -119,7 +119,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             checkPattern = checks.pattern();
-            checkRegexp = checks;
+            checkRegexp = Pattern.compile(checkPattern);
         }
         if (message == null) {
             messagePattern = null;
@@ -127,7 +127,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             messagePattern = message.pattern();
-            messageRegexp = message;
+            messageRegexp = Pattern.compile(messagePattern);
         }
         this.moduleId = moduleId;
         xpathQuery = query;
