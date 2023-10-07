@@ -32,6 +32,8 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
+
 /**
  * Contains the common implementation of a loader, for loading a configuration
  * from an XML file.
@@ -65,7 +67,8 @@ public class XmlLoader
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
-        this.publicIdToResourceNameMap = Map.copyOf(publicIdToResourceNameMap);
+        this.publicIdToResourceNameMap =
+                UnmodifiableCollectionUtil.copyOfMap(publicIdToResourceNameMap);
         parser = createXmlReader(this);
     }
 
@@ -82,26 +85,16 @@ public class XmlLoader
     }
 
     @Override
-    public InputSource resolveEntity(String publicId, String systemId)
-            throws SAXException, IOException {
-        final String dtdResourceName;
-        if (publicId == null) {
-            dtdResourceName = null;
-        }
-        else {
-            dtdResourceName = publicIdToResourceNameMap.get(publicId);
-        }
-        final InputSource inputSource;
-        if (dtdResourceName == null) {
-            inputSource = super.resolveEntity(publicId, systemId);
-        }
-        else {
-            final ClassLoader loader =
-                    getClass().getClassLoader();
-            final InputStream dtdIs =
-                    loader.getResourceAsStream(dtdResourceName);
+    public InputSource resolveEntity(String publicId, String systemId) {
+        InputSource inputSource = null;
+        if (publicId != null) {
+            final String dtdResourceName = publicIdToResourceNameMap.get(publicId);
 
-            inputSource = new InputSource(dtdIs);
+            if (dtdResourceName != null) {
+                final ClassLoader loader = getClass().getClassLoader();
+                final InputStream dtdIs = loader.getResourceAsStream(dtdResourceName);
+                inputSource = new InputSource(dtdIs);
+            }
         }
         return inputSource;
     }

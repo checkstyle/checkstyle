@@ -10,6 +10,142 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.4">
+      <div class="releaseDate">02.10.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingDeprecated shows unclear message on not closed html tag.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13745">#13745</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest survivals in modules - 5.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13809">#13809</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 4.
+            Author: Vyom-Yadav, Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13672">#13672</a>
+          </li>
+          <li>
+            Assert that properties are ordered alphabetically in xdoc.
+            Author: Stoyan Kostadinov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13666">#13666</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: piyush kumar sadangi, Guneetsinghtuli, Rohanraj123, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: Guneetsinghtuli
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: piyush kumar sadangi, Rohanraj123, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Surviving pitest mutations for conditions reducing time complexity at
+            PackageObjectFactory.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/11902">#11902</a>
+          </li>
+          <li>
+            Extend `generate-extra-site-links.sh` to not include deleted pages in comments.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13175">#13175</a>
+          </li>
+          <li>
+            Order properties alphabetically in xdocs and javadocs.
+            Author: Stoyan Kostadinov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13668">#13668</a>
+          </li>
+          <li>
+            Add Examples Macro Support to All Checks.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13732">#13732</a>
+          </li>
+          <li>
+            Typo.
+            Author: Clint-Mathews
+            <a href="https://github.com/checkstyle/checkstyle/issues/13735">#13735</a>
+          </li>
+          <li>
+            Fix Pitest script to recognize unstable mutations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/13492">#13492</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 3.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13501">#13501</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            Create checks to place violations on missing macros in templates.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13682">#13682</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            Update Violation Message in Input files for FallThroughCheck.
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/13552">#13552</a>
+          </li>
+          <li>
+            Simplify requirement for what we consider a setter method in
+            ClassAndPropertiesSettersJavadocScraper.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13680">#13680</a>
+          </li>
+          <li>
+            NonEmptyAtclauseDescription examples are cut in website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13660">#13660</a>
+          </li>
+          <li>
+            Move CheckUtil#isGetterMethod and CheckUtil#isSetterMethod to MissingJavadocMethodCheck.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13596">#13596</a>
+          </li>
+          <li>
+            Implement module properties macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13399">#13399</a>
+          </li>
+          <li>
+            Get rid of module javadoc examples.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13429">#13429</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.3">
       <div class="releaseDate">28.08.2023</div>
       <p>Bug fixes:</p>

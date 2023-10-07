@@ -36,6 +36,7 @@
             <message-key key="javadoc.paragraph.redundant.paragraph"/>
             <message-key key="javadoc.paragraph.tag.after"/>
             <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
             <message-key key="javadoc.wrong.singleton.html.tag"/>
          </message-keys>
       </check>

@@ -77,56 +77,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>closingParens</td>
-              <td>
-                Define the policy for ending parenthesis.
-              </td>
-              <td>
-                <a href="../../property_types.html#ClosingParensOption">ClosingParensOption</a>
-              </td>
-              <td>
-                <code>never</code>
-              </td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>elementStyle</td>
-              <td>
-                Define the annotation element styles.
-              </td>
-              <td>
-                <a href="../../property_types.html#ElementStyleOption">ElementStyleOption</a>
-              </td>
-              <td>
-                <code>compact_no_array</code>
-              </td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>trailingArrayComma</td>
-              <td>
-                Define the policy for trailing comma in arrays.
-              </td>
-              <td>
-                <a href="../../property_types.html#TrailingArrayCommaOption">
-                  TrailingArrayCommaOption
-                </a>
-              </td>
-              <td>
-                <code>never</code>
-              </td>
-              <td>5.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">

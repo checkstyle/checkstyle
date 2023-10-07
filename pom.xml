@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.12.4-SNAPSHOT</version>
+  <version>10.12.5-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -2119,9 +2119,6 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
-            <!-- very frequent SocketTimeoutException : Read timed out -->
-            <excludedLink>https://www.bountysource.com/*</excludedLink>
-            <excludedLink>https://api.bountysource.com/*</excludedLink>
             <!-- This URL become to require to log in first to see content -->
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
@@ -2148,6 +2145,7 @@
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
+            <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
             <excludedLink>https://www.ietf.org/rfc/rfc4627.txt</excludedLink>
@@ -4367,6 +4365,10 @@
                 <!-- kills mutation in ConfigurationLoader -->
                 <param>com.sun.checkstyle.test.chapter5comments.rule52documentationcomments.InvalidJavadocPositionTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
@@ -4691,7 +4693,11 @@
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
