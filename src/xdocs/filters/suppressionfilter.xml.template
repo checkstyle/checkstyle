@@ -20,37 +20,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>file</td>
-              <td>
-                Specify the location of the <em>suppressions XML document</em> file.
-              </td>
-              <td><a href="../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>optional</td>
-              <td>
-                Control what to do when the file is not existing. If
-                <code>optional</code> is set to <code>false</code> the file must exist, or else
-                it ends with error. On the other hand if optional is
-                <code>true</code> and file is not found, the filter accept all
-                audit events.
-              </td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.15</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Notes" id="Notes">
