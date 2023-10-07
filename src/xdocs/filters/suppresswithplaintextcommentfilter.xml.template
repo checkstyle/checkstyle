@@ -39,50 +39,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>checkFormat</td>
-              <td>Specify check pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>8.6</td>
-            </tr>
-            <tr>
-              <td>idFormat</td>
-              <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>8.24</td>
-            </tr>
-            <tr>
-              <td>messageFormat</td>
-              <td>Specify message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>8.6</td>
-            </tr>
-            <tr>
-              <td>offCommentFormat</td>
-              <td>Specify comment pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"// CHECKSTYLE:OFF"</code></td>
-              <td>8.6</td>
-            </tr>
-            <tr>
-              <td>onCommentFormat</td>
-              <td>Specify comment pattern to trigger filter to end suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"// CHECKSTYLE:ON"</code></td>
-              <td>8.6</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Notes" id="Notes">
