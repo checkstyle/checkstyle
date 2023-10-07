@@ -562,9 +562,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             for (Object key : pr.keySet()) {
                 // hidden exception messages
-                // unclosedHtml until https://github.com/checkstyle/checkstyle/issues/13775
-                if ("translation.wrongLanguageCode".equals(key)
-                        || "javadoc.unclosedHtml".equals(key)) {
+                if ("translation.wrongLanguageCode".equals(key)) {
                     continue;
                 }
 
