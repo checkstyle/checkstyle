@@ -4372,6 +4372,8 @@
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
+                <!-- performance optimization -->
+                <param>initStringBuilderWithOptimalBuffer</param>
               </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
