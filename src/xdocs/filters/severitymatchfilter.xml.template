@@ -22,36 +22,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>acceptOnMatch</td>
-              <td>
-                 Control whether the filter accepts an audit event if and only if there is
-                 a match between the event's severity level and property
-                 severity. If acceptOnMatch
-                 is <code>false</code>, then the filter
-                 accepts an audit event if and only if there is not a match
-                 between the event's severity level and property severity.
-              </td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>severity</td>
-              <td>Specify the severity level of this filter.</td>
-              <td><a href="../property_types.html#SeverityLevel">SeverityLevel</a></td>
-              <td><code>error</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SeverityMatchFilter.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">

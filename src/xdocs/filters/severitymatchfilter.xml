@@ -32,14 +32,7 @@
             </tr>
             <tr>
               <td>acceptOnMatch</td>
-              <td>
-                 Control whether the filter accepts an audit event if and only if there is
-                 a match between the event's severity level and property
-                 severity. If acceptOnMatch
-                 is <code>false</code>, then the filter
-                 accepts an audit event if and only if there is not a match
-                 between the event's severity level and property severity.
-              </td>
+              <td>Control whether the filter accepts an audit event if and only if there is a match between the event's severity level and property severity. If acceptOnMatch is <code>false</code>, then the filter accepts an audit event if and only if there is not a match between the event's severity level and property severity.</td>
               <td><a href="../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>

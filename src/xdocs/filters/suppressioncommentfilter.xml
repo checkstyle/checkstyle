@@ -57,7 +57,7 @@
             </tr>
             <tr>
               <td>checkC</td>
-              <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
+              <td>Control whether to check C style comments (<code>&#47;* ... *&#47;</code>).</td>
               <td><a href="../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.5</td>

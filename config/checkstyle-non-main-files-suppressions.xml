@@ -566,27 +566,8 @@
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]whitespaceafter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]whitespacearound.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]severitymatchfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppressioncommentfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppressionsinglefilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathsinglefilter.xml.template"/>
+  <!-- no properties by design -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbycommentfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbytextfilter.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
 
 </suppressions>

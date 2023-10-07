@@ -47,32 +47,28 @@
             </tr>
             <tr>
               <td>checks</td>
-              <td>Define a Regular Expression matched against the name of the check
-                  associated with an audit event.</td>
+              <td>Define a Regular Expression matched against the name of the check associated with an audit event.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>files</td>
-              <td>Define a Regular Expression matched against the file name associated
-                  with an audit event.</td>
+              <td>Define a Regular Expression matched against the file name associated with an audit event.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>id</td>
-              <td>Define a string matched against the ID of the check associated with an audit
-                  event.</td>
+              <td>Define a string matched against the ID of the check associated with an audit event.</td>
               <td><a href="../property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>message</td>
-              <td>Define a Regular Expression matched against the message of the check associated
-                  with an audit event.</td>
+              <td>Define a Regular Expression matched against the message of the check associated with an audit event.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
