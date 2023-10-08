@@ -204,21 +204,10 @@
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
-  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
+  <!-- until https://github.com/checkstyle/checkstyle/issues/13839 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]avoidnestedblocks.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptyblock.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]emptycatchblock.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]leftcurly.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]needbraces.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]blocks[\\/]rightcurly.xml.template"/>
+  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
   <suppress id="propertiesMacroMustExist"
