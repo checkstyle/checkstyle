@@ -11,3 +11,10 @@ updates:
           - "> 2.1"
     commit-message:
       prefix: dependency
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: dependency
