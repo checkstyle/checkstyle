@@ -62,8 +62,8 @@
   &lt;module name=&quot;ParameterNumber&quot;&gt;
     &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
   &lt;/module&gt;
-  &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
-
+  &lt;module name=
+    &quot;NoWhitespaceAfter&quot;/&gt;
   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
   &lt;/module&gt;
   &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
@@ -71,30 +71,25 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class Test {
+class Example1 {
+  private int K; // violation, 'Name 'K' must match pattern'
+  @SuppressWarnings({&quot;membername&quot;})
+  private int J; // violation suppressed
 
-   private int K; // violation
-   @SuppressWarnings({&quot;membername&quot;})
-   private int J; // violation suppressed
+  private static final int i = 0; // violation, 'Name 'i' must match pattern'
+  @SuppressWarnings(&quot;checkstyle:constantname&quot;)
+  private static final int m = 0; // violation suppressed
 
-   private static final int i = 0; // violation
-   @SuppressWarnings(&quot;checkstyle:constantname&quot;)
-   private static final int m = 0; // violation suppressed
+  @SuppressWarnings(&quot;ParamNumberId&quot;)
+    public void needsLotsOfParameters1 (int a, // violation suppressed
+     int b, int c, int d, int e, int f, int g, int h) {
+     // ...
+  }
 
-   public void needsLotsOfParameters (int a, // violation
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   @SuppressWarnings(&quot;ParamNumberId&quot;)
-   public void needsLotsOfParameters1 (int a, // violation suppressed
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   private int [] ARR; // 2 violations
-   @SuppressWarnings(&quot;all&quot;)
-   private int [] ARRAY; // violations suppressed
+  private int [] ARR; // violation ''int' is followed by whitespace'
+  // violation above, 'Name 'ARR' must match pattern'
+  @SuppressWarnings(&quot;all&quot;)
+  private int [] ARRAY; // violations suppressed
 }
         </source>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
@@ -110,7 +105,6 @@ class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;module name=&quot;ParameterNumber&quot;/&gt;
-
   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
     &lt;property name=&quot;aliasList&quot; value=
       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
@@ -121,18 +115,18 @@ class Test {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-class Test {
+class Example2 {
+  // violation below, 'More than 7 parameters (found 8)'
+  public void needsLotsOfParameters (int a,
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
 
-   public void needsLotsOfParameters (int a, // violation
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
-
-   @SuppressWarnings(&quot;paramnum&quot;)
-   public void needsLotsOfParameters1 (int a, // violation suppressed
-      int b, int c, int d, int e, int f, int g, int h) {
-      // ...
-   }
+  @SuppressWarnings(&quot;paramnum&quot;)
+  public void needsLotsOfParameters1 (int a, // violation suppressed
+    int b, int c, int d, int e, int f, int g, int h) {
+    // ...
+  }
 
 }
         </source>
