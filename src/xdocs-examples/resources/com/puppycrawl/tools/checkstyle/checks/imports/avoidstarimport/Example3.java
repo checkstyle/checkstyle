@@ -8,6 +8,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
+
 // xdoc section -- start
 import java.util.Scanner;         // OK
 import java.io.*;                 // OK
@@ -15,3 +17,5 @@ import static java.lang.Math.*;   // violation
 import java.util.*;               // OK
 import java.net.*;                // OK
 // xdoc section -- end
+
+class Example3 {}
