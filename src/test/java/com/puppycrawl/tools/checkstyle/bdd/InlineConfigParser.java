@@ -276,23 +276,84 @@ public final class InlineConfigParser {
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
             throws CheckstyleException {
         String fullyQualifiedClassName;
-        if (moduleName.startsWith("com.")) {
-            fullyQualifiedClassName = moduleName;
+        final String resolvedModuleName = resolveModuleName(moduleName);
+        if (resolvedModuleName.startsWith("com.")) {
+            fullyQualifiedClassName = resolvedModuleName;
         }
         else {
             final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
-            final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
+            final int endIndex = path.lastIndexOf(resolvedModuleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
-                throw new CheckstyleException("Unable to resolve module name: " + moduleName
+                throw new CheckstyleException("Unable to resolve module name: " + resolvedModuleName
                 + ". Please check for spelling errors or specify fully qualified class name.");
             }
             final int beginIndex = path.indexOf("com.puppycrawl");
-            fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
+            fullyQualifiedClassName = path.substring(beginIndex, endIndex) + resolvedModuleName;
             if (!fullyQualifiedClassName.endsWith("Filter")) {
                 fullyQualifiedClassName += "Check";
             }
         }
         return fullyQualifiedClassName;
+    }
+
+    private static String resolveModuleName(String simpleName) {
+        String resolvedName = simpleName;
+
+        final String[] packagesToSearch = new String[] {
+            "com.puppycrawl.tools.checkstyle.checks",
+            "com.puppycrawl.tools.checkstyle.checks.annotation",
+            "com.puppycrawl.tools.checkstyle.checks.blocks",
+            "com.puppycrawl.tools.checkstyle.checks.coding",
+            "com.puppycrawl.tools.checkstyle.checks.design",
+            "com.puppycrawl.tools.checkstyle.checks.header",
+            "com.puppycrawl.tools.checkstyle.checks.imports",
+            "com.puppycrawl.tools.checkstyle.checks.indentation",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc",
+            "com.puppycrawl.tools.checkstyle.checks.metrics",
+            "com.puppycrawl.tools.checkstyle.checks.modifier",
+            "com.puppycrawl.tools.checkstyle.checks.naming",
+            "com.puppycrawl.tools.checkstyle.checks.regexp",
+            "com.puppycrawl.tools.checkstyle.checks.sizes",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace",
+            "com.puppycrawl.tools.checkstyle.filters",
+        };
+
+        // Loop through the packages and try to find the class.
+        for (String packagePath : packagesToSearch) {
+            String fullyQualifiedName;
+
+            // Special cases for filters and SuppressWarningsHolder
+            if (simpleName.endsWith("Filter") || "SuppressWarningsHolder".equals(simpleName)) {
+                fullyQualifiedName = packagePath + "." + simpleName;
+                if (isClassExists(fullyQualifiedName)) {
+                    resolvedName = fullyQualifiedName;
+                    break;
+                }
+            }
+
+            // For checks: Append "Check" to fully qualified name
+            fullyQualifiedName = packagePath + "." + simpleName + "Check";
+            if (isClassExists(fullyQualifiedName)) {
+                resolvedName = fullyQualifiedName;
+                break;
+            }
+        }
+        return resolvedName;
+    }
+
+    private static boolean isClassExists(String fullyQualifiedName) {
+        boolean classExists;
+
+        try {
+            Class.forName(fullyQualifiedName);
+            classExists = true;
+        }
+        catch (ClassNotFoundException ex) {
+            classExists = false;
+        }
+
+        // Single return statement
+        return classExists;
     }
 
     private static String getFilePath(String fileName, String inputFilePath) {
