@@ -20,14 +20,15 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_FOLLOWED;
 
-import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-
-
+import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -37,12 +38,16 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample1() throws Exception {
-        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
         final String[] expected = {
-                "15: " + MSG_INVALID_PATTERN,
-                "19: " + MSG_INVALID_PATTERN,
-                "31: " + MSG_WS_FOLLOWED,
-                "31: " + MSG_INVALID_PATTERN,
+            "21:15: " + getCheckMessage(MemberNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "K", "^[a-z][a-zA-Z0-9]*$"),
+            "25:28: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "i", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "35:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                        NoWhitespaceAfterCheck.MSG_KEY, "int"),
+            "35:18: " + getCheckMessage(MemberNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "ARR", "^[a-z][a-zA-Z0-9]*$"),
+
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,14 +55,12 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample2() throws Exception {
-        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
         final String[] expected = {
-
+            "20:15: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
 
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
-
-//      "20:16: " + getCheckMessage(ParameterNumberCheck.MSG_KEY, 7,8),
 }
