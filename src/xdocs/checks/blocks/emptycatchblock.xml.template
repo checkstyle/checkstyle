@@ -25,36 +25,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>commentFormat</td>
-              <td>
-                Specify the RegExp for the first comment inside empty catch block.
-                If check meets comment inside empty catch block matching specified format - empty
-                block is suppressed. If it is multi-line comment - only its first line is analyzed.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>6.4</td>
-            </tr>
-            <tr>
-              <td>exceptionVariableName</td>
-              <td>
-                Specify the RegExp for the name of the variable associated with exception.
-                If check meets variable name matching specified value - empty block is suppressed.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
-              <td>6.4</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
