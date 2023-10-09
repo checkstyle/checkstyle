@@ -65,7 +65,7 @@ jobs:
         if: 'true'
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Getting PR description
         env:
@@ -113,7 +113,7 @@ jobs:
     steps:
 
       - name: Download checkstyle
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download files
         env:
@@ -144,7 +144,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Download contribution
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
@@ -213,7 +213,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get message
         env:
