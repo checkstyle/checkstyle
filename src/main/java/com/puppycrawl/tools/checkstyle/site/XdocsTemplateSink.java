@@ -84,7 +84,8 @@ public class XdocsTemplateSink extends XdocSink {
      */
     @Override
     protected void write(String text) {
-        writer.write(unifyToLinuxEndOfLine(text));
+        final String newlinesOnlyText = LINE_BREAK_ESCAPE.matcher(text).replaceAll("\n");
+        writer.write(unifyToLinuxEndOfLine(newlinesOnlyText));
     }
 
     /**
