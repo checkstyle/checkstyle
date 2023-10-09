@@ -33,7 +33,7 @@
           Example:
         </p>
         <source>
-class MyClass {
+class Example1 {
   int methodOne(int parameter) {
     if (parameter &lt;= 0 ) {
       throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
@@ -53,13 +53,13 @@ class MyClass {
 
   IntPredicate obj = a -&gt; ++a == 12; // violation
   IntBinaryOperator obj2 = (int a, int b) -&gt; {
-      a++;     // violation
-      b += 12; // violation
-      return a + b;
+    a++;     // violation
+    b += 12; // violation
+    return a + b;
   };
   IntPredicate obj3 = a -&gt; {
-      int b = a; // ok
-      return ++b == 12;
+    int b = a; // ok
+    return ++b == 12;
   };
 }
         </source>
