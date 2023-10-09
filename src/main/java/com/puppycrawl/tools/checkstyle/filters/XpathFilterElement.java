@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -47,20 +46,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 
-    /** The pattern for file names. */
-    private final String filePattern;
-
     /** The regexp to match check names against. */
     private final Pattern checkRegexp;
 
-    /** The pattern for check class names. */
-    private final String checkPattern;
-
     /** The regexp to match message names against. */
     private final Pattern messageRegexp;
-
-    /** The pattern for message names. */
-    private final String messagePattern;
 
     /** Module id filter. */
     private final String moduleId;
@@ -105,30 +95,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     public XpathFilterElement(Pattern files, Pattern checks, Pattern message,
                            String moduleId, String query) {
-        if (files == null) {
-            filePattern = null;
-            fileRegexp = null;
-        }
-        else {
-            filePattern = files.pattern();
-            fileRegexp = files;
-        }
-        if (checks == null) {
-            checkPattern = null;
-            checkRegexp = null;
-        }
-        else {
-            checkPattern = checks.pattern();
-            checkRegexp = checks;
-        }
-        if (message == null) {
-            messagePattern = null;
-            messageRegexp = null;
-        }
-        else {
-            messagePattern = message.pattern();
-            messageRegexp = message;
-        }
+        fileRegexp = files;
+        checkRegexp = checks;
+        messageRegexp = message;
         this.moduleId = moduleId;
         xpathQuery = query;
         if (xpathQuery == null) {
@@ -237,27 +206,4 @@ public class XpathFilterElement implements TreeWalkerFilter {
         }
         return items;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern,
-            moduleId, xpathQuery);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null || getClass() != other.getClass()) {
-            return false;
-        }
-        final XpathFilterElement xpathFilter = (XpathFilterElement) other;
-        return Objects.equals(filePattern, xpathFilter.filePattern)
-                && Objects.equals(checkPattern, xpathFilter.checkPattern)
-                && Objects.equals(messagePattern, xpathFilter.messagePattern)
-                && Objects.equals(moduleId, xpathFilter.moduleId)
-                && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
-    }
-
 }
