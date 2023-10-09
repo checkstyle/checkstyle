@@ -77,14 +77,14 @@ jobs:
       message: ${{ steps.out.outputs.message}}
     steps:
       - name: Checkout repository from origin
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle for PR
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         env:
           USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
@@ -138,7 +138,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get message
         env:

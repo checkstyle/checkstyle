@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Download checkstyle
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup local maven cache
         uses: actions/cache@v3
