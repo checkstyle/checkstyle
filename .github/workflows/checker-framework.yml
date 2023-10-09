@@ -39,7 +39,7 @@ jobs:
         run: sudo apt install groovy
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup local maven cache
         uses: actions/cache@v3
