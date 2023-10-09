@@ -74,11 +74,7 @@ public class XdocsTemplateSink extends XdocSink {
     }
 
     /**
-     * Overriden from org.apache.maven.doxia.sink.impl.Xhtml5BaseSink class.
-     * Ommited the usage of tableContentWriterStack, tableCaptionWriterStack and
-     * tableCaptionXMLWriterStack lists, since they are redundant in our current
-     * context and causing too many CI failures which includes PMD, Spotbugs and
-     * circleci - run inspections.
+     * Writes text to a file, converting any line breaks to newlines.
      *
      * @param text the text to write to the destination.
      */
