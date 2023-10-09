@@ -30,14 +30,16 @@
             Example:
         </p>
         <source>
-public void foo() {
-  int i = 5;
-  if (i &gt; 3); // violation, &quot;;&quot; right after if statement
+public class Example1 {
+  public void foo() {
+    int i = 5;
+    if(i &gt; 3); // violation
     i++;
-  for (i = 0; i &lt; 5; i++); // violation
+    for (i = 0; i &lt; 5; i++); // violation
     i++;
-  while (i &gt; 10) // OK
-    i++;
+    while (i &gt; 10)
+      i++;
+  }
 }
         </source>
       </subsection>
