@@ -6,9 +6,13 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
+
 // xdoc section -- start
 import static java.lang.Math.pow;          // violation
 import static java.lang.System.*;          // violation
 import java.io.File;                       // OK
 import java.util.*;                        // OK
+
+class Example1{}
 // xdoc section -- end
