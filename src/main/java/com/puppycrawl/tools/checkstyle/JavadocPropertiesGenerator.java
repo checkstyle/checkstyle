@@ -204,18 +204,16 @@ public final class JavadocPropertiesGenerator {
      */
     private static String getFirstJavadocSentence(DetailAST ast) throws CheckstyleException {
         String firstSentence = null;
-        for (DetailAST child = ast.getFirstChild(); child != null && firstSentence == null;
-                child = child.getNextSibling()) {
-            // If there is an annotation, the javadoc comment will be a child of it.
-            if (child.getType() == TokenTypes.ANNOTATION) {
-                firstSentence = getFirstJavadocSentence(child);
-            }
-            // Otherwise, the javadoc comment will be right here.
-            else if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
-                    && JavadocUtil.isJavadocComment(child)) {
-                final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(child);
-                firstSentence = getFirstJavadocSentence(tree);
-            }
+        DetailAST child = ast.getFirstChild();
+        // If there is an annotation, the javadoc comment will be a child of it.
+        if (child.getType() == TokenTypes.ANNOTATION) {
+            firstSentence = getFirstJavadocSentence(child);
+        }
+        // Otherwise, the javadoc comment will be right here.
+        else if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && JavadocUtil.isJavadocComment(child)) {
+            final DetailNode tree = DetailNodeTreeStringPrinter.parseJavadocAsDetailNode(child);
+            firstSentence = getFirstJavadocSentence(tree);
         }
         return firstSentence;
     }
