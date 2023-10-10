@@ -28,6 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -457,6 +459,42 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputImportControlTestRegexpInFile2.java"), expected);
+    }
+
+    @Test
+    public void testPathWithNonAsciiCharacters() throws Exception {
+        final Path dirWithNonAsciiCharacters = temporaryFolder.toPath()
+                .resolve("\\u00e6\\u00f8\\u00e5")
+                .resolve("com/puppycrawl/tools/checkstyle/checks/imports/importcontrol");
+        dirWithNonAsciiCharacters.toFile().mkdirs();
+        final Path configInDirWithNonAsciiCharacters = dirWithNonAsciiCharacters.resolve(
+                "InputImportControl8.java");
+
+        for (String file : List.of("InputImportControl8.java", "InputImportControlBroken.xml")) {
+
+            Files.copy(Paths.get(getPath(file)), dirWithNonAsciiCharacters.resolve(file));
+        }
+
+        try {
+            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+            verifyWithInlineConfigParser(configInDirWithNonAsciiCharacters.toString(), expected);
+            assertWithMessage("Test should fail if exception was not thrown").fail();
+        }
+        catch (CheckstyleException ex) {
+            final String message = getCheckstyleExceptionMessage(ex);
+            final String messageStart = "Unable to load ";
+
+            assertWithMessage("Invalid message, should start with: %s", messageStart)
+                    .that(message)
+                    .startsWith(messageStart);
+
+            final String asciiUri = dirWithNonAsciiCharacters.toUri().toASCIIString()
+                    .replaceAll("file:/*", "");
+            assertWithMessage("Invalid message, should contain URI of file: %s", asciiUri)
+                    .that(message)
+                    .contains(asciiUri);
+
+        }
     }
 
     @Test

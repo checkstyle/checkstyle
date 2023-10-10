@@ -204,7 +204,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
         final HeaderCheck check = new HeaderCheck();
-        check.setHeaderFile(new URI("test://bad"));
+        final String nonAscii = "\u00e6\u00f8\u00e5";
+        final URI uri = new URI("test://bad" + nonAscii);
+        check.setHeaderFile(uri);
 
         final ReflectiveOperationException ex = assertThrows(ReflectiveOperationException.class,
             () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
@@ -297,7 +299,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
         assertWithMessage("Invalid resource location")
             .that(results.iterator().next())
-            .isEqualTo(uri.toString());
+            .isEqualTo(uri.toASCIIString());
     }
 
     @Test

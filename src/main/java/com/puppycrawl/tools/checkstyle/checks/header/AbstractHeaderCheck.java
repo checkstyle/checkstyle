@@ -203,7 +203,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
             result = Collections.emptySet();
         }
         else {
-            result = Collections.singleton(headerFile.toString());
+            result = Collections.singleton(headerFile.toASCIIString());
         }
 
         return result;
