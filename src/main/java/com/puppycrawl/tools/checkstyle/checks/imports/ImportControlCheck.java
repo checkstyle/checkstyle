@@ -253,7 +253,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file.toString());
+        return Collections.singleton(file.toASCIIString());
     }
 
     /**
