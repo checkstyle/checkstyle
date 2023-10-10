@@ -26,23 +26,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>illegalClassNames</td>
-              <td>Specify exception class names to reject.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
-                java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalCatchCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
