@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,25 +34,9 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-                "18:7: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "23:7: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "28:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "32:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "35:16: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "39:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "49:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "55:13: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "57:13: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "60:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "64:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "67:9: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "72:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "78:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "82:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
-                "86:10: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY)
 
         };
 
-        verifyWithInlineConfigParser(getPath("InputEmptyStatement.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
     }
 }
