@@ -27,46 +27,41 @@
             <tr>
               <td>option</td>
               <td>Specify policy on how to wrap lines.</td>
-              <td>
-                <a href="../../property_types.html#WrapOption">WrapOption</a>
-              </td>
+              <td><a href="../../property_types.html#WrapOption">WrapOption</a></td>
               <td><code>eol</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
-                  DOT</a>
+                    DOT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
+                    COMMA</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
-                  SEMI</a>
+                    SEMI</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>
+                    ELLIPSIS</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">
-                  AT</a>
+                    AT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">
-                  LPAREN</a>
+                    LPAREN</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">
-                  RPAREN</a>
+                    RPAREN</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-                  ARRAY_DECLARATOR</a>
+                    ARRAY_DECLARATOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">
-                  RBRACK</a>
+                    RBRACK</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                  METHOD_REF</a>
+                    METHOD_REF</a>
                   .
               </td>
-
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
-                  DOT</a>
+                    DOT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
+                    COMMA</a>
                   .
               </td>
               <td>5.8</td>
