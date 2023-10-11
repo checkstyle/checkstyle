@@ -35,21 +35,14 @@
             </tr>
             <tr>
               <td>commentFormat</td>
-              <td>
-                Specify the RegExp for the first comment inside empty catch block.
-                If check meets comment inside empty catch block matching specified format - empty
-                block is suppressed. If it is multi-line comment - only its first line is analyzed.
-              </td>
+              <td>Specify the RegExp for the first comment inside empty catch block. If check meets comment inside empty catch block matching specified format - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td>exceptionVariableName</td>
-              <td>
-                Specify the RegExp for the name of the variable associated with exception.
-                If check meets variable name matching specified value - empty block is suppressed.
-              </td>
+              <td>Specify the RegExp for the name of the variable associated with exception. If check meets variable name matching specified value - empty block is suppressed.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot;</code></td>
               <td>6.4</td>

@@ -25,57 +25,10 @@
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>checkPattern</td>
-              <td>Specify check name pattern to suppress. Property can
-                also be a RegExp group index at <code>nearbyTextPattern</code>
-                in format of <code>$x</code> and be picked from line
-                that matches <code>nearbyTextPattern</code>.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>10.10.0</td>
-            </tr>
-            <tr>
-              <td>idPattern</td>
-              <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>10.10.0</td>
-            </tr>
-            <tr>
-              <td>lineRange</td>
-              <td>Specify negative/zero/positive value that defines the number of lines
-                preceding/at/following the suppressing nearby text. Property can
-                also be a RegExp group index at <code>nearbyTextPattern</code>
-                in format of <code>$x</code> and be picked from line
-                that matches <code>nearbyTextPattern</code>.</td>
-              <td><a href="../property_types.html#String">String</a></td>
-              <td><code>"0"</code></td>
-              <td>10.10.0</td>
-            </tr>
-            <tr>
-              <td>messagePattern</td>
-              <td>Specify check violation message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>10.10.0</td>
-            </tr>
-            <tr>
-              <td>nearbyTextPattern</td>
-              <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
-              <td>10.10.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
+          </macro>
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">

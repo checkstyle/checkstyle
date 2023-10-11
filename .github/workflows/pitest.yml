@@ -67,7 +67,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Generate pitest-${{ matrix.profile }} report
         run: |
@@ -89,7 +89,7 @@ jobs:
 
       - name: Archive code coverage results
         if: failure() || github.ref == 'refs/heads/master'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pitest-${{ matrix.profile }}-coverage-report
           path: |

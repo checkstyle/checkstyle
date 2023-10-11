@@ -9,22 +9,4 @@
     <description>removed call to com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer::removeErrorListeners</description>
     <lineContent>lexer.removeErrorListeners();</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocPropertiesGenerator.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mutatedClass>
-    <mutatedMethod>getFirstJavadocSentence</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
-    <lineContent>child = child.getNextSibling()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocPropertiesGenerator.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mutatedClass>
-    <mutatedMethod>main</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to picocli/CommandLine::setUsageHelpWidth with receiver</description>
-    <lineContent>final CommandLine cmd = new CommandLine(cliOptions).setUsageHelpWidth(USAGE_HELP_WIDTH);</lineContent>
-  </mutation>
 </suppressedMutations>

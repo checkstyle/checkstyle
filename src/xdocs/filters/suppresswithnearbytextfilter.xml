@@ -35,10 +35,7 @@
             </tr>
             <tr>
               <td>checkPattern</td>
-              <td>Specify check name pattern to suppress. Property can
-                also be a RegExp group index at <code>nearbyTextPattern</code>
-                in format of <code>$x</code> and be picked from line
-                that matches <code>nearbyTextPattern</code>.</td>
+              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>10.10.0</td>
@@ -52,11 +49,7 @@
             </tr>
             <tr>
               <td>lineRange</td>
-              <td>Specify negative/zero/positive value that defines the number of lines
-                preceding/at/following the suppressing nearby text. Property can
-                also be a RegExp group index at <code>nearbyTextPattern</code>
-                in format of <code>$x</code> and be picked from line
-                that matches <code>nearbyTextPattern</code>.</td>
+              <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppressing nearby text. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#String">String</a></td>
               <td><code>&quot;0&quot;</code></td>
               <td>10.10.0</td>

@@ -41,36 +41,35 @@
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
+                    LITERAL_DO</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
+                    LITERAL_ELSE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
+                    LITERAL_FOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
+                    LITERAL_IF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
+                    LITERAL_WHILE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                  LITERAL_CASE</a>
+                    LITERAL_CASE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
-                  LITERAL_DEFAULT</a>
+                    LITERAL_DEFAULT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>
-                .
+                    LAMBDA</a>
+                  .
               </td>
-
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                  LITERAL_DO</a>
+                    LITERAL_DO</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
-                  LITERAL_ELSE</a>
+                    LITERAL_ELSE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                  LITERAL_FOR</a>
+                    LITERAL_FOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                  LITERAL_IF</a>
+                    LITERAL_IF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                  LITERAL_WHILE</a>
-                .
+                    LITERAL_WHILE</a>
+                  .
               </td>
               <td>3.0</td>
             </tr>

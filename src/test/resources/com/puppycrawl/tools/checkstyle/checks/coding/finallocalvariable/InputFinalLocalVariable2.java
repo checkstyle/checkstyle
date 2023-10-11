@@ -446,12 +446,13 @@ class class52 {
     }
 
     public void test5() {
-        InputFinalLocalVariable table = new InputFinalLocalVariable();
+        InputFinalLocalVariableFive table
+            = new InputFinalLocalVariableFive();
         new Runnable() {
             @Override
             public void run() {
-                InputFinalLocalVariable table = null;
-                table = new InputFinalLocalVariable();
+                InputFinalLocalVariableFive table = null;
+                table = new InputFinalLocalVariableFive();
             }
         };
     }

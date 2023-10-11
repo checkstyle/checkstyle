@@ -48,7 +48,7 @@
             </tr>
             <tr>
               <td>checkC</td>
-              <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
+              <td>Control whether to check C style comments (<code>&#47;* ... *&#47;</code>).</td>
               <td><a href="../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
@@ -83,8 +83,7 @@
             </tr>
             <tr>
               <td>influenceFormat</td>
-              <td>Specify negative/zero/positive value that defines the number of
-                  lines preceding/at/following the suppression comment.</td>
+              <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppression comment.</td>
               <td><a href="../property_types.html#String">String</a></td>
               <td><code>&quot;0&quot;</code></td>
               <td>5.0</td>
