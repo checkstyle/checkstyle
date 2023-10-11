@@ -31,15 +31,15 @@
         </p>
         <source>
 public class Example1 {
-    public void foo() {
-        int i = 5;
-        if (i &gt; 3); // violation
-          i++;
-        for (i = 0; i &lt; 5; i++); // violation
-          i++;
-        while (i &gt; 10) // OK
-            i++;
-    }
+  public void foo() {
+    int i = 5;
+    if(i &gt; 3); // violation
+    i++;
+    for (i = 0; i &lt; 5; i++); // violation
+    i++;
+    while (i &gt; 10) // OK
+    i++;
+  }
 }
         </source>
       </subsection>
