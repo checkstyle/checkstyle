@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.junit.jupiter.api.Test;
-
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck.MSG_KEY;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +33,10 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "15:19: " + getCheckMessage(MSG_KEY),
+                "17:32: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
