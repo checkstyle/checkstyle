@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -62,7 +63,10 @@ public class PropertiesMacro extends AbstractMacro {
     /** A newline with 20 spaces of indentation. */
     private static final String INDENT_LEVEL_20 = SiteUtil.getNewlineAndIndentSpaces(20);
 
-    /** The name of the current module being processed. */
+    /** The name of the token property being processed. */
+    private static final String TOKENS_PROPERTY = "tokens";
+
+    /** The file of the current module being processed. */
     private static String currentModuleName = "";
 
     /** The file of the current module being processed. */
@@ -158,11 +162,32 @@ public class PropertiesMacro extends AbstractMacro {
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
                 .getPropertiesJavadocs(properties, currentModuleName, currentModuleFile);
 
-        for (String property : properties) {
+        final Set<String> validProperties = orderProperties(properties);
+
+        for (String property : validProperties) {
             final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
             final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
             writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
         }
+    }
+
+    /**
+     * Rearrange properties alphabetically with property 'tokens' always last.
+     *
+     * @param parameters the javadoc properties.
+     * @return LinkedHashSet contains valid properties for the javadoc.
+     *
+     */
+    private static Set<String> orderProperties(Set<String> parameters) {
+
+        final Set<String> validProperties = new LinkedHashSet<>(parameters);
+
+        if (validProperties.remove(TOKENS_PROPERTY)) {
+            validProperties.add(TOKENS_PROPERTY);
+        }
+
+        return validProperties;
+
     }
 
     /**
