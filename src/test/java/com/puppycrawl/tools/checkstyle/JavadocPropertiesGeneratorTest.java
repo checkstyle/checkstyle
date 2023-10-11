@@ -355,4 +355,23 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testGetFirstJavadocSentence(@SysErr Capturable systemErr,
+                                            @SysOut Capturable systemOut) throws Exception {
+        final String expectedContent = "EOF1=First Javadoc Sentence.";
+
+        JavadocPropertiesGenerator.main(
+                getPath("InputJavadocPropertiesGeneratorGetFirstJavadocSentence.java"),
+            "--destfile", DESTFILE_ABSOLUTE_PATH);
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        final String fileContent = FileUtils.readFileToString(DESTFILE, StandardCharsets.UTF_8);
+        assertWithMessage("File content is not expected")
+            .that(fileContent.trim())
+            .isEqualTo(expectedContent.trim());
+    }
 }
