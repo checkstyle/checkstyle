@@ -37,9 +37,6 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
                 "17:32: " + getCheckMessage(MSG_KEY),
         };
 
-        String message =  "15:19: "+ getCheckMessage(MSG_KEY) + " ; right after if statement.";
-        System.out.println(message);
-
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
