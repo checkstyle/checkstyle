@@ -79,10 +79,17 @@
           Examples of using Unicode:
         </p>
         <source>
-String unitAbbrev = &quot;&#x3bc;s&quot;;     // OK, perfectly clear even without a comment.
-String unitAbbrev = &quot;\u03bcs&quot;;// violation, the reader has no idea what this is.
-return '\ufeff' + content;    // OK, an example of non-printable,
-                              // control characters (byte order mark).
+public class Example1 {
+  String unitAbbrev = &quot;&#x3bc;s&quot;;     // OK, perfectly clear even without a comment.
+  //for the below line the reader has no idea what this is.
+  String unitAbbrev2 = &quot;\u03bcs&quot;;// violation
+  public static int content() {
+    char content = 'r';
+    return '\ufeff' + content;    //violation
+    // OK, an example of non-printable,
+    // control characters (byte order mark).
+  }
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check to allow using escapes
@@ -101,9 +108,15 @@ return '\ufeff' + content;    // OK, an example of non-printable,
           Example of using escapes for non-printable, control characters:
         </p>
         <source>
-String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
-String unitAbbrev = &quot;\u03bcs&quot;; // violation, &quot;\u03bcs&quot; is a printable character.
-return '\ufeff' + content;     // OK, non-printable control character.
+public class Example2 {
+  String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
+  //In the below line &quot;\u03bcs&quot; is a printable character.
+  String unitAbbrev2 = &quot;\u03bcs&quot;; // violation
+  public static int content() {
+    char content = 'r';
+    return '\ufeff' + content;     // OK, non-printable control character.
+  }
+}
         </source>
         <p id="Example3-config">
           An example of how to configure the check to allow using escapes
@@ -122,10 +135,15 @@ return '\ufeff' + content;     // OK, non-printable control character.
           Example of using escapes if trail comment is present:
         </p>
         <source>
-String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
-String unitAbbrev = &quot;\u03bcs&quot;; // OK, Greek letter mu, &quot;s&quot;
-return '\ufeff' + content;
-// -----^--------------------- violation, comment is not used within same line.
+public class Example3 {
+  String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
+  String unitAbbrev2 = &quot;\u03bcs&quot;; // OK, Greek letter mu, &quot;s&quot;
+  public static int content() {
+    char content = 'r';
+    return '\ufeff' + content;     // OK, an example of non-printable,
+    // -----^--------------------- violation, comment is not used within same line.
+  }
+}
         </source>
         <p id="Example4-config">
           An example of how to configure the check to allow if
@@ -142,11 +160,18 @@ return '\ufeff' + content;
         </source>
         <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
         <source>
-String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
-String unitAbbrev = &quot;\u03bcs&quot;; // violation, not all characters are escaped ('s').
-String unitAbbrev = &quot;\u03bc\u03bc\u03bc&quot;; // OK
-String unitAbbrev = &quot;\u03bc\u03bcs&quot;;// violation, not all characters are escaped ('s').
-return '\ufeff' + content;          // OK, all control characters are escaped
+public class Example4 {
+  String unitAbbrev = &quot;&#x3bc;s&quot;;      // OK, a normal String
+  //In the below line not all characters are escaped ('s').
+  String unitAbbrev2 = &quot;\u03bcs&quot;; // violation
+  String unitAbbrev3 = &quot;\u03bc\u03bc\u03bc&quot;; // OK
+  //In the below line not all characters are escaped ('s').
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;// violation
+  public static int content() {
+    char content = 'r';
+    return '\ufeff' + content;// OK, all control characters are escaped
+  }
+}
         </source>
         <p id="Example5-config">
           An example of how to configure the check to allow using escapes
@@ -163,11 +188,19 @@ return '\ufeff' + content;          // OK, all control characters are escaped
         </source>
         <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
         <source>
-String unitAbbrev = &quot;&#x3bc;s&quot;;       // OK, a normal String
-String unitAbbrev1 = &quot;\u03bcs&quot;; // violation, printable escape character.
-String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;; // violation, printable escape character.
-String unitAbbrev3 = &quot;\u03bc\u03bcs&quot;;// violation, printable escape character.
-return '\ufeff' + content;           // OK, non-printable escape character.
+public class Example5 {
+  String unitAbbrev = &quot;&#x3bc;s&quot;;       // OK, a normal String
+  // In the below line, printable escape character.
+  String unitAbbrev1 = &quot;\u03bcs&quot;; // violation
+  // In the below line, printable escape character.
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;; // violation
+  // In the below line, printable escape character.
+  String unitAbbrev3 = &quot;\u03bc\u03bcs&quot;;// violation
+  public static int content() {
+    char content = 'r';
+    return '\ufeff' + content;           // OK, non-printable escape character.
+  }
+}
         </source>
       </subsection>
 
