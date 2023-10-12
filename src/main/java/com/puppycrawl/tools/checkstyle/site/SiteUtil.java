@@ -116,6 +116,9 @@ public final class SiteUtil {
     /** The string 'src'. */
     private static final String SRC = "src";
 
+    /** Precompiled regex pattern to remove the "Setter to " prefix from strings. */
+    private static final Pattern SETTER_PATTERN = Pattern.compile("^Setter to ");
+
     /** Class name and their corresponding parent module name. */
     private static final Map<Class<?>, String> CLASS_TO_PARENT_MODULE = Map.ofEntries(
         Map.entry(AbstractCheck.class, TreeWalker.class.getSimpleName()),
@@ -183,7 +186,9 @@ public final class SiteUtil {
         new File(Paths.get(MAIN_FOLDER_PATH,
                 "api", "AbstractFileSetCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
-                CHECKS, "header", "AbstractHeaderCheck.java").toString())
+                CHECKS, "header", "AbstractHeaderCheck.java").toString()),
+        new File(Paths.get(MAIN_FOLDER_PATH,
+                CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
     /**
@@ -664,9 +669,10 @@ public final class SiteUtil {
             description = "javadoc tokens to check";
         }
         else {
-            final String descriptionString = DescriptionExtractor
-                    .getDescriptionFromJavadoc(javadoc, moduleName)
-                    .substring("Setter to ".length());
+            final String descriptionString = SETTER_PATTERN.matcher(
+                    DescriptionExtractor.getDescriptionFromJavadoc(javadoc, moduleName))
+                    .replaceFirst("");
+
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
                     .toUpperCase(Locale.ROOT);
             description = firstLetterCapitalized + descriptionString.substring(1);

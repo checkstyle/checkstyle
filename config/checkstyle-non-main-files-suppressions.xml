@@ -516,9 +516,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespaceafter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebefore.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13867 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]typecastparenpad.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]parenpad.xml.template"/>
   <!-- no properties by design -->
