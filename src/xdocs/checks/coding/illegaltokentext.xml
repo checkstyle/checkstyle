@@ -41,8 +41,7 @@
             </tr>
             <tr>
               <td>message</td>
-              <td>Define the message which is used to notify about violations;
-              if empty then the default message is used.</td>
+              <td>Define the message which is used to notify about violations; if empty then the default message is used.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>&quot;&quot;</code></td>
               <td>3.2</td>
@@ -52,24 +51,24 @@
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>
+                    NUM_DOUBLE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>
+                    NUM_FLOAT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>
+                    NUM_INT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>
+                    NUM_LONG</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                IDENT</a>
+                    IDENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
-                COMMENT_CONTENT</a>
+                    COMMENT_CONTENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                STRING_LITERAL</a>
+                    STRING_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
-                CHAR_LITERAL</a>
-                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
-                TEXT_BLOCK_CONTENT</a>
-                .
+                    CHAR_LITERAL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                    TEXT_BLOCK_CONTENT</a>
+                  .
               </td>
               <td><code>empty</code></td>
               <td>3.2</td>
