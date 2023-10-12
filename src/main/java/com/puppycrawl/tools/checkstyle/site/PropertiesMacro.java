@@ -68,6 +68,16 @@ public class PropertiesMacro extends AbstractMacro {
     /** The file of the current module being processed. */
     private static File currentModuleFile = new File("");
 
+    /**
+     * Reflects start of a code segment.
+     */
+    private static final String CODE_START = "<code>";
+
+    /**
+     * Reflects end of a code segment.
+     */
+    private static final String CODE_END = "</code>";
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426
@@ -224,6 +234,7 @@ public class PropertiesMacro extends AbstractMacro {
         sink.tableCell();
         final String description = SiteUtil
                 .getPropertyDescription(propertyName, propertyJavadoc, currentModuleName);
+
         sink.rawText(description);
         sink.tableCell_();
     }
@@ -306,9 +317,16 @@ public class PropertiesMacro extends AbstractMacro {
             }
             writeLinkToToken(sink, tokenTypesLink, token);
         }
-        sink.rawText(INDENT_LEVEL_18);
-        sink.text(SiteUtil.DOT);
-        sink.rawText(INDENT_LEVEL_14);
+        if (tokens.isEmpty()) {
+            sink.rawText(CODE_START);
+            sink.text("empty");
+            sink.rawText(CODE_END);
+        }
+        else {
+            sink.rawText(INDENT_LEVEL_18);
+            sink.text(SiteUtil.DOT);
+            sink.rawText(INDENT_LEVEL_14);
+        }
     }
 
     /**
@@ -373,9 +391,9 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
-            sink.rawText("<code>");
+            sink.rawText(CODE_START);
             sink.text(defaultValue);
-            sink.rawText("</code>");
+            sink.rawText(CODE_END);
         }
 
         sink.tableCell_();
