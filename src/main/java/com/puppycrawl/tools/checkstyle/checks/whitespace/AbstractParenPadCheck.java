@@ -71,7 +71,7 @@ public abstract class AbstractParenPadCheck
     private PadOption option = PadOption.NOSPACE;
 
     /**
-     * Set the option to enforce.
+     * Specify policy on how to pad parentheses.
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
