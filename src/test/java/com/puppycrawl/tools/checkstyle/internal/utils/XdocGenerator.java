@@ -22,7 +22,10 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.File;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Set;
 
 import org.apache.maven.doxia.parser.Parser;
@@ -31,6 +34,7 @@ import org.apache.maven.doxia.sink.SinkFactory;
 import org.codehaus.plexus.DefaultPlexusContainer;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.util.ReaderFactory;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser;
 import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
@@ -41,7 +45,11 @@ import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
  */
 public final class XdocGenerator {
+
     private static final String XDOCS_TEMPLATE_HINT = "xdocs-template";
+
+    @TempDir
+    private static File temporaryFolder;
 
     private XdocGenerator() {
     }
@@ -53,12 +61,11 @@ public final class XdocGenerator {
         for (Path path : templatesFilePaths) {
             final String pathToFile = path.toString();
             final File inputFile = new File(pathToFile);
-            final File outputFile = new File(pathToFile.replace(".template", ""));
-
+            final File tempFile = File.createTempFile(pathToFile.replace(".template", ""), "");
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
                     plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
-            final Sink sink = sinkFactory.createSink(outputFile.getParentFile(),
-                    outputFile.getName(), String.valueOf(StandardCharsets.UTF_8));
+            final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
+                    tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
             final XdocsTemplateParser parser = (XdocsTemplateParser)
                     plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
             try (Reader reader = ReaderFactory.newReader(inputFile,
@@ -66,8 +73,18 @@ public final class XdocGenerator {
                 parser.parse(reader, sink);
             }
             finally {
+
                 sink.close();
             }
+
+            final File outputFile = new File(pathToFile.replace(".template", ""));
+
+            final Object exp = StandardCopyOption.REPLACE_EXISTING;
+
+            Files.copy(tempFile.toPath(), outputFile.toPath(), (CopyOption) exp);
+
+            tempFile.delete();
+
         }
     }
 }
