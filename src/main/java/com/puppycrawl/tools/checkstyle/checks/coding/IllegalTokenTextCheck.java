@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
- * Default value is: {@code ""}.
+ * Default value is: .
  * </li>
  * </ul>
  * <p>
