@@ -44,22 +44,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>classes</td>
-              <td>Specify fully qualified class names that should not be instantiated.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>{}</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
