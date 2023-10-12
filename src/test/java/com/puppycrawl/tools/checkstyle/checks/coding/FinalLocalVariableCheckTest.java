@@ -126,15 +126,54 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testParameter() throws Exception {
+    public void testInputFinalLocalVariable2One() throws Exception {
 
         final String[] expected = {
-            "53:28: " + getCheckMessage(MSG_KEY, "aArg"),
-            "157:36: " + getCheckMessage(MSG_KEY, "_o"),
-            "162:37: " + getCheckMessage(MSG_KEY, "_o1"),
+            "52:28: " + getCheckMessage(MSG_KEY, "aArg"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariable2.java"), expected);
+                getPath("InputFinalLocalVariable2One.java"), expected);
+    }
+
+    @Test
+    public void testInputFinalLocalVariable2Two() throws Exception {
+
+        final String[] excepted = {
+            "78:36: " + getCheckMessage(MSG_KEY, "_o"),
+            "83:37: " + getCheckMessage(MSG_KEY, "_o1"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariable2Two.java"), excepted);
+    }
+
+    @Test
+    public void testInputFinalLocalVariable2Three() throws Exception {
+
+        final String[] excepted = {
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariable2Three.java"), excepted);
+    }
+
+    @Test
+    public void testInputFinalLocalVariable2Four() throws Exception {
+
+        final String[] excepted = {
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariable2Four.java"), excepted);
+    }
+
+    @Test
+    public void testInputFinalLocalVariable2Five() throws Exception {
+
+        final String[] excepted = {
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariable2Five.java"), excepted);
     }
 
     @Test

@@ -62,14 +62,12 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-class MyClass {
+class Example1 {
   void MyMethod() {
-    for (int var = 1; var &lt; 10; var++) {} // OK
-    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
-                                          // pattern '^[a-z][a-zA-Z0-9]*$'
-    for (int i = 1; i &lt; 10; i++) {} // OK
-    for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation, name 'var_1' must match
-                                                   // pattern '^[a-z][a-zA-Z0-9]*$'
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation
   }
 }
         </source>
@@ -88,13 +86,12 @@ class MyClass {
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
+class Example2 {
   void MyMethod() {
-    for (int var = 1; var &lt; 10; var++) {} // OK
-    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation, name 'VAR' must match
-                                             // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-    for (int i = 1; i &lt; 10; i++) {} // OK
-    for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // OK
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
   }
 }
         </source>
@@ -103,11 +100,15 @@ class MyClass {
           in FOR loop:
         </p>
         <source>
-for(int i = 1; i &lt; 10; i++) {}
-for(int K = 1; K &lt; 10; K++) {}
-List list = new ArrayList();
-for (Object o : list) {}
-for (Object O : list) {}
+class Example3 {
+  void myMethod () {
+    for(int i = 1; i &lt; 10; i++) {}
+    for(int K = 1; K &lt; 10; K++) {} // violation
+    List list = new ArrayList();
+    for (Object o : list) {}
+    for (Object O : list) {} // violation
+  }
+}
         </source>
 
         <p id="Example4-config">
@@ -127,22 +128,22 @@ for (Object O : list) {}
         </source>
         <p id="Example4-code">Code Example:</p>
         <source>
-class MyClass {
+class Example4 {
   void MyMethod() {
     int good = 1;
     int g = 0; // violation
-    for (int v = 1; v &lt; 10; v++) { // OK
-        int a = 1; // violation
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1; // violation
     }
-    for (int V = 1; V &lt; 10; V++) { // OK
-        int I = 1; // violation
+    for (int V = 1; V &lt; 10; V++) {
+      int I = 1; // violation
     }
     List list = new ArrayList();
-    for (Object o : list) { // OK
-        String a = &quot;&quot;; // violation
+    for (Object o : list) {
+      String a = &quot;&quot;; // violation
     }
-    for (Object O : list) { // OK
-        String A = &quot;&quot;; // violation
+    for (Object O : list) {
+      String A = &quot;&quot;; // violation
     }
   }
 }
@@ -161,11 +162,11 @@ class MyClass {
         </source>
         <p id="Example5-code">Code Example:</p>
         <source>
-class MyClass {
+class Example5 {
   void MyMethod() {
     int goodName = 0;
     int i = 1; // violation
-    for (int var = 1; var &lt; 10; var++) { //OK
+    for (int var = 1; var &lt; 10; var++) {
       int j = 1; // violation
     }
   }
