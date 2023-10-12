@@ -13,7 +13,7 @@
             <property default-value="nospace"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
-               <description>Specify policy on how to pad parentheses.</description>
+               <description>Set the option to enforce.</description>
             </property>
          </properties>
          <message-keys>

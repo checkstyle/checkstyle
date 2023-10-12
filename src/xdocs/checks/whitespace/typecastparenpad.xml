@@ -28,7 +28,7 @@
             </tr>
             <tr>
               <td>option</td>
-              <td>Specify policy on how to pad parentheses.</td>
+              <td>Set the option to enforce.</td>
               <td><a href="../../property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.2</td>
