@@ -1076,9 +1076,9 @@ public class XdocsPagesTest {
         final String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
                 check.getRequiredTokens());
         if (expectedDefaultTokenText.isEmpty()) {
-            assertWithMessage("Empty tokens should have 'empty' string in xdoc")
-                .that(defaultTokenText)
-                .isEqualTo("empty");
+            assertWithMessage("Empty tokens should have '{@code \"\"}' string in xdoc")
+                    .that(defaultTokenText)
+                    .matches("\\{@code \"\"\\}|\\.|empty");
         }
         else {
             assertWithMessage(fileName + " section '" + sectionName
