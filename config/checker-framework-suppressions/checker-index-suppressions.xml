@@ -2613,17 +2613,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of substring.</message>
-    <lineContent>.substring(&quot;Setter to &quot;.length());</lineContent>
-    <details>
-      found   : @LTEqLengthOf(&quot;&quot;Setter to &quot;&quot;) int
-      required: @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.site.SiteUtil.DescriptionExtractor.getDescriptionFromJavadoc(javadoc, moduleName)&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
     <lineContent>description = firstLetterCapitalized + descriptionString.substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
