@@ -55,13 +55,13 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -70,13 +70,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-code">
@@ -85,7 +85,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -96,13 +96,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -110,13 +110,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
