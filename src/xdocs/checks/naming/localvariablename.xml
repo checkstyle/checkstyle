@@ -128,7 +128,7 @@ class Example3 {
         </source>
         <p id="Example4-code">Code Example:</p>
         <source>
-Example4 {
+class Example4 {
     void MyMethod() {
         int good = 1;
         int g = 0; // violation
@@ -140,14 +140,13 @@ Example4 {
         }
         List list = new ArrayList();
         for (Object o : list) {
-            String a = ""; // violation
+            String a = &quot;&quot;; // violation
         }
         for (Object O : list) {
-            String A = ""; // violation
+            String A = &quot;&quot;; // violation
         }
     }
 }
-
         </source>
         <p id="Example5-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
