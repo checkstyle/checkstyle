@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -158,7 +159,15 @@ public class PropertiesMacro extends AbstractMacro {
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
                 .getPropertiesJavadocs(properties, currentModuleName, currentModuleFile);
 
-        for (String property : properties) {
+        final Set<String> validProperties = new LinkedHashSet<>(properties);
+
+        final String value = "tokens";
+
+        if (validProperties.remove(value)) {
+            validProperties.add(value);
+        }
+
+        for (String property : validProperties) {
             final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
             final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
             writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
