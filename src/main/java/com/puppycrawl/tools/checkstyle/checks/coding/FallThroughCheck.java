@@ -414,6 +414,7 @@ public class FallThroughCheck extends AbstractCheck {
         return Optional.ofNullable(getNextNonCommentAst(ast))
                 .map(DetailAST::getPreviousSibling)
                 .map(previous -> previous.getFirstChild().getText())
+
                 .map(text -> reliefPattern.matcher(text).find())
                 .orElse(Boolean.FALSE);
     }
