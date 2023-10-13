@@ -225,9 +225,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13893 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltype.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13860 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltoken.xml.template"/>
   <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
