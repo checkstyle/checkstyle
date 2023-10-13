@@ -1075,10 +1075,12 @@ public class XdocsPagesTest {
         final String defaultTokenText = columns.get(3).getTextContent().trim();
         final String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
                 check.getRequiredTokens());
+        // Until https://github.com/checkstyle/checkstyle/issues/13876
         if (expectedDefaultTokenText.isEmpty()) {
-            assertWithMessage("Empty tokens should have 'empty' string in xdoc")
-                .that(defaultTokenText)
-                .isEqualTo("empty");
+            assertWithMessage("Empty tokens should have"
+                    + " '.', '<code>&quot;&quot;</code>','empty' string in xdoc")
+                    .that(".".equals(defaultTokenText) || "empty".equals(defaultTokenText))
+                    .isTrue();
         }
         else {
             assertWithMessage(fileName + " section '" + sectionName
