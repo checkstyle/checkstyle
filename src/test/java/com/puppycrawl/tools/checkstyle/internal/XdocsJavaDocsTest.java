@@ -306,7 +306,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             String typeText = "java.lang.String[]";
             final String propertyType = property.get(2).getTextContent();
-            final boolean isSpecialAllTokensType = propertyType.contains("set of any supported");
+            // until https://github.com/checkstyle/checkstyle/issues/13885
+            final boolean isSpecialAllTokensType = propertyType.contains("set of any supported")
+                    || "TokenTypes".equals(propertyType);
             final boolean isPropertyTokenType = isSpecialAllTokensType
                     || propertyType.contains("subset of tokens")
                     || propertyType.contains("subset of javadoc tokens");
