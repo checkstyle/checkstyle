@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -64,6 +65,9 @@ public class PropertiesMacro extends AbstractMacro {
 
     /** The name of the current module being processed. */
     private static String currentModuleName = "";
+
+    /** The name of the token property being processed. */
+    private static final String TOKEN_PROPERTY = "tokens";
 
     /** The file of the current module being processed. */
     private static File currentModuleFile = new File("");
@@ -158,11 +162,32 @@ public class PropertiesMacro extends AbstractMacro {
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
                 .getPropertiesJavadocs(properties, currentModuleName, currentModuleFile);
 
-        for (String property : properties) {
+        final Set<String> validProperties = orderProperties(properties);
+
+        for (String property : validProperties) {
             final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
             final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
             writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
         }
+    }
+
+    /**
+     * Rearrange properties alphabetically with property 'tokens' always last.
+     *
+     * @param parameters the javadoc properties.
+     * @return LinkedHashSet contains valid properties for the javadoc.
+     *
+     */
+    private static Set<String> orderProperties(Set<String> parameters) {
+
+        final Set<String> validProperties = new LinkedHashSet<>(parameters);
+
+        if (validProperties.remove(TOKEN_PROPERTY)) {
+            validProperties.add(TOKEN_PROPERTY);
+        }
+
+        return validProperties;
+
     }
 
     /**
