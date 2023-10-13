@@ -689,6 +689,7 @@ public final class SiteUtil {
             throws MacroExecutionException {
         final String sinceVersion;
         if (SINCE_VERSION_FOR_INHERITED_PROPERTY.containsKey(moduleName + DOT + propertyName)) {
+
             sinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
                     .get(moduleName + DOT + propertyName);
         }
