@@ -74,6 +74,13 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputFallThrough.java"),
                expected);
     }
+     @Test
+    public void Check() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("temp.java"),
+               expected);
+    }
 
     @Test
     public void testTryCatchInSwitch() throws Exception {
