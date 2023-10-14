@@ -30,16 +30,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportExcludes.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault2.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault3.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault4.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault5.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault2.java"/>
