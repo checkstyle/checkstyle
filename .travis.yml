@@ -18,6 +18,7 @@ before_install:
 
 install:
   - sudo apt install -y xmlstarlet
+  - "mvn -e --no-transfer-progress -N io.takari:maven:wrapper -Dmaven=3.8.6"
 
 jobs:
   fast_finish: true
