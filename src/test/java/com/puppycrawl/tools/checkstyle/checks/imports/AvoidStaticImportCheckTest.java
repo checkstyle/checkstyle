@@ -48,16 +48,16 @@ public class AvoidStaticImportCheckTest
     public void testDefaultOperation()
             throws Exception {
         final String[] expected = {
-            "26:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "29:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            "30:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "31:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
-            "32:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
-            "33:113: " + getCheckMessage(MSG_KEY,
+            "17:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "19:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "20:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "21:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
+            "22:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
+            "23:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
+            "24:113: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
-            "34:124: " + getCheckMessage(MSG_KEY,
+            "25:124: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
@@ -71,13 +71,13 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
-            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
-            "32:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
-            "33:113: " + getCheckMessage(MSG_KEY,
+            "22:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "25:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
+            "26:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
+            "27:113: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
-            "34:124: " + getCheckMessage(MSG_KEY,
+            "28:124: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
@@ -90,14 +90,14 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         // allow the java.io.File.listRoots and java.lang.Math.E member imports
         final String[] expected = {
-            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "29:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            "30:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "32:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
-            "33:113: " + getCheckMessage(MSG_KEY,
+            "22:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "23:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "24:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
+            "26:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
+            "27:113: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
-            "34:124: " + getCheckMessage(MSG_KEY,
+            "28:124: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
@@ -110,16 +110,16 @@ public class AvoidStaticImportCheckTest
             throws Exception {
         // should NOT mask anything
         final String[] expected = {
-            "28:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            "32:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "33:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
-            "34:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
-            "35:113: " + getCheckMessage(MSG_KEY,
+            "22:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "24:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "25:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "26:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
+            "27:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
+            "28:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
+            "29:113: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
-            "36:124: " + getCheckMessage(MSG_KEY,
+            "30:124: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one"),
         };
@@ -133,13 +133,13 @@ public class AvoidStaticImportCheckTest
         // should mask com.puppycrawl.tools.checkstyle.imports.avoidstaticimport.
         // InputAvoidStaticImportNestedClass.InnerClass.one
         final String[] expected = {
-            "27:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "30:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
-            "32:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
-            "33:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
-            "34:113: " + getCheckMessage(MSG_KEY,
+            "21:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "23:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "24:27: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "25:27: " + getCheckMessage(MSG_KEY, "java.io.File.pathSeparator"),
+            "26:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.E"),
+            "27:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sqrt"),
+            "28:113: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.imports."
                     + "avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass"),
         };

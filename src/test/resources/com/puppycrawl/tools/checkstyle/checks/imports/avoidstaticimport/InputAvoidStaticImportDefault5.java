@@ -8,21 +8,15 @@ excludes = com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.\
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;
-import java.util.List;
-import java.util.List;
-import java.lang.*;
 import java.util.Iterator;
 import java.util.Enumeration;
 import java.util.Arrays;
 
 import javax.swing.JToolBar;
 import javax.swing.JToggleButton;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots; // violation
 
@@ -32,12 +26,9 @@ import static java.io.File.pathSeparator; // violation
 import static java.lang.Math.E; // violation
 import static java.lang.Math.sqrt; // violation
 import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass; // violation
-import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.InputAvoidStaticImportNestedClass.InnerClass.one;
 
-import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
-import java.awt.Label;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
