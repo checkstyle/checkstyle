@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.regex.Pattern;
 
 import javax.swing.text.MutableAttributeSet;
 
@@ -32,13 +34,24 @@ import org.apache.maven.doxia.sink.impl.SinkEventAttributeSet;
  * A sink for Checkstyle's xdoc templates.
  * This module will be removed once
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
+ * This class is required until
+ * <a href="https://issues.apache.org/jira/browse/DOXIA-707">DOXIA-707</a> is resolved.
  *
  * @see <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api">Doxia Sink API</a>
  */
 public class XdocsTemplateSink extends XdocSink {
 
+    /** Linux Style End of Line. */
+    private static final String NEWLINE_CHARACTER = "\n";
+
+    /** Single compiled line break patterns. */
+    private static final Pattern LINE_BREAK_ESCAPE = Pattern.compile("\\R");
+
     /** Encoding of the writer. */
     private final String encoding;
+
+    /** The PrintWriter to write the result. */
+    private final PrintWriter writer;
 
     /**
      * Create a new instance, initialize the Writer.
@@ -49,6 +62,27 @@ public class XdocsTemplateSink extends XdocSink {
     public XdocsTemplateSink(Writer writer, String encoding) {
         super(writer);
         this.encoding = encoding;
+        this.writer = new PrintWriter(writer);
+    }
+
+    /**
+     * Writes text to a file, converting any line breaks to newlines.
+     *
+     * @param text the text to write to the destination.
+     */
+    @Override
+    protected void write(String text) {
+        final String newlinesOnlyText =
+            LINE_BREAK_ESCAPE.matcher(text).replaceAll(NEWLINE_CHARACTER);
+        writer.write(newlinesOnlyText);
+    }
+
+    /**
+     * Writes newline to file.
+     */
+    @Override
+    protected void writeEOL() {
+        write(NEWLINE_CHARACTER);
     }
 
     /**
