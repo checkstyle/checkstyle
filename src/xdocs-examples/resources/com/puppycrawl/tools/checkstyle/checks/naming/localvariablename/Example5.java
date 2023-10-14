@@ -8,14 +8,19 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
+
 // xdoc section -- start
-class MyClass {
+class Example5 {
   void MyMethod() {
     int goodName = 0;
     int i = 1; // violation
-    for (int var = 1; var < 10; var++) { //OK
+    for (int var = 1; var < 10; var++) {
       int j = 1; // violation
     }
   }
 }
 // xdoc section -- end
+
+
+
