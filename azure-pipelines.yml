@@ -174,3 +174,11 @@ steps:
                  eq(variables['Build.Reason'], 'Schedule')
                )
            )
+
+  - script: |
+      wget https://downloads.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz
+      tar xzvf apache-maven-3.8.6-bin.tar.gz
+      sudo mv apache-maven-3.8.6 /usr/local/
+      echo "M2_HOME=/usr/local/apache-maven-3.8.6" >> $GITHUB_ENV
+      echo "/usr/local/apache-maven-3.8.6/bin" >> $GITHUB_PATH
+      - task: JavaToolInstaller@0
