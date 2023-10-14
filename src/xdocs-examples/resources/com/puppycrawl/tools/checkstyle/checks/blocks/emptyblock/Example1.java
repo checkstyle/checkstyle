@@ -6,13 +6,15 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+
 // xdoc section -- start
-public class Test {
+public class Example1 {
   private void emptyLoop() {
-    for (int i = 0; i < 10; i++) { // violation
+    for (int i = 0; i < 10; i++) { // violation 'Must have at least one statement'
     }
 
-    try { // violation
+    try { // violation 'Must have at least one statement'
 
     } catch (Exception e) {
       // ignored
@@ -20,3 +22,7 @@ public class Test {
   }
 }
 // xdoc section -- end
+
+
+
+

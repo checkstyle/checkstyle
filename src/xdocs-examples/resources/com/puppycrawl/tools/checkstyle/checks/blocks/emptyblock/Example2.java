@@ -9,19 +9,22 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+
 // xdoc section -- start
-public class Test {
+public class Example2 {
   private void emptyLoop() {
     for (int i = 0; i < 10; i++) {
       // ignored
     }
 
-    // violation on next line
     try {
-
-    } catch (Exception e) {
+    }  // violation above 'Empty try block'
+    catch (Exception e) {
       // ignored
     }
   }
 }
 // xdoc section -- end
+
+
