@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UnusedImportsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,18 +34,21 @@ public class UnusedImportsCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "19:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "22:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
+            "24:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "26:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
