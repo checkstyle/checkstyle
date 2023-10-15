@@ -307,7 +307,14 @@ public class PropertiesMacro extends AbstractMacro {
             writeLinkToToken(sink, tokenTypesLink, token);
         }
         sink.rawText(INDENT_LEVEL_18);
-        sink.text(SiteUtil.DOT);
+
+        if (tokens.isEmpty()) {
+            sink.text("empty");
+        }
+        else {
+            sink.text(SiteUtil.DOT);
+        }
+
         sink.rawText(INDENT_LEVEL_14);
     }
 
