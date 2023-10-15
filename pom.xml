@@ -24,8 +24,8 @@
   <inceptionYear>2001</inceptionYear>
   <licenses>
     <license>
-      <name>LGPL-2.1+</name>
-      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+      <name>LGPL-2.1-or-later</name>
+      <url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
     </license>
   </licenses>
 
