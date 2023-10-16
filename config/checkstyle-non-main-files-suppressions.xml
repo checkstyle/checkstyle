@@ -235,8 +235,6 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltokentext.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltype.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]magicnumber.xml.template"/>
