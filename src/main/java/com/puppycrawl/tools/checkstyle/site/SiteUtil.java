@@ -688,9 +688,10 @@ public final class SiteUtil {
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
-        if (SINCE_VERSION_FOR_INHERITED_PROPERTY.containsKey(moduleName + DOT + propertyName)) {
-            sinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                    .get(moduleName + DOT + propertyName);
+        final String containsVal = SINCE_VERSION_FOR_INHERITED_PROPERTY
+                   .get(moduleName + DOT + propertyName);
+        if (containsVal != null) {
+            sinceVersion = containsVal;
         }
         else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)
                 || TOKENS.equals(propertyName)
@@ -707,7 +708,6 @@ public final class SiteUtil {
                     "Failed to find since version for %s", propertyName);
             throw new MacroExecutionException(message);
         }
-
         return sinceVersion;
     }
 
