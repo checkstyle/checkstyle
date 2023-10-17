@@ -102,7 +102,7 @@ public void method();
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -111,7 +111,7 @@ public void method();
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -120,7 +120,7 @@ public void method();
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -129,7 +129,7 @@ public void method();
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
