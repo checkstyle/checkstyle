@@ -80,6 +80,14 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
+    public void testInnerAssignmentWithEnhancedSwitch() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentWithEnhancedSwitch.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
