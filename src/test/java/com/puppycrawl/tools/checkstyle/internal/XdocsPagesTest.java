@@ -1058,7 +1058,11 @@ public class XdocsPagesTest {
                 + CheckUtil.getTokenText(check.getAcceptableTokens(),
                 check.getRequiredTokens());
         if (isAllTokensAcceptable(check)) {
-            expectedAcceptableTokenText = "set of any supported tokens";
+            expectedAcceptableTokenText = "TokenTypes";
+            // until https://github.com/checkstyle/checkstyle/issues/13885
+            if ("descendanttoken.xml".equals(fileName)) {
+                expectedAcceptableTokenText = "set of any supported tokens";
+            }
         }
         assertWithMessage(fileName + " section '" + sectionName
                         + "' should have all the acceptable tokens")
