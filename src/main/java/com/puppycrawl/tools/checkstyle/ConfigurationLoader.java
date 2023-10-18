@@ -262,7 +262,7 @@ public final class ConfigurationLoader {
             throws CheckstyleException {
         // figure out if this is a File or a URL
         final URI uri = CommonUtil.getUriByFilename(config);
-        final InputSource source = new InputSource(uri.toString());
+        final InputSource source = new InputSource(uri.toASCIIString());
         return loadConfiguration(source, overridePropsResolver,
                 ignoredModulesOptions, threadModeSettings);
     }
