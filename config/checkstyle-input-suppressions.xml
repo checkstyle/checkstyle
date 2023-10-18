@@ -5,10 +5,10 @@
         "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-
-  <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
+  <!-- permanent suppression as import needs to be of same package where class is -->
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
+            files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial.java"/>
   <suppress id="noCheckstyleInInputs"
