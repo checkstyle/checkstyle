@@ -89,19 +89,8 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>fileExtensions = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, cacheFile</message>
+    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, fileExtensions, cacheFile</message>
     <lineContent>public Checker() {</lineContent>
   </checkerFrameworkError>
 
