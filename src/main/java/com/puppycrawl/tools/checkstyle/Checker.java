@@ -314,7 +314,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 }
 
                 // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + file.getPath(), error);
+                throw new Error("Error was thrown while processing "
+                        + file.getAbsolutePath(), error);
             }
         }
     }
