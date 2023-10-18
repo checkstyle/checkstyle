@@ -135,4 +135,19 @@ public class RedundantImportCheckTest
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testPkgImport() throws Exception {
+        final String file1 = getPath("InputRedundantImportCheckClearState.java");
+        final String file2 = getPath("InputRedundantImportPkgImportControl.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+                "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.Arrays.asList"),
+                "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(
+                "8:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+                "9:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
+        );
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
 }

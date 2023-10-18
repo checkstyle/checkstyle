@@ -18,12 +18,4 @@
     <lineContent>patternForPartialMatch = null;</lineContent>
   </mutation>
 
-  <mutation unstable="false">
-    <sourceFile>PkgImportControl.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable regex</description>
-    <lineContent>this.regex = false;</lineContent>
-  </mutation>
 </suppressedMutations>
