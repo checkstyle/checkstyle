@@ -26,13 +26,4 @@
     <description>Removed assignment to member variable regex</description>
     <lineContent>this.regex = false;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RedundantImportCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable pkgName</description>
-    <lineContent>pkgName = null;</lineContent>
-  </mutation>
 </suppressedMutations>

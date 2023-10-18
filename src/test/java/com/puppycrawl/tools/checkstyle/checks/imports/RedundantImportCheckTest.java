@@ -130,8 +130,8 @@ public class RedundantImportCheckTest
             "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
         );
         final List<String> expectedSecondInput = Arrays.asList(
-            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
-            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
+            "8:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }

@@ -46,7 +46,6 @@ import java.util.BitSet;
 
 
 import static java.lang.Math.PI;
-import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
 
 /**
  * Test case for imports
