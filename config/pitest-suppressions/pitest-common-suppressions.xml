@@ -39,15 +39,6 @@
   <mutation unstable="false">
     <sourceFile>Checker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>processFiles</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>throw new Error(&quot;Error was thrown while processing &quot; + file.getPath(), error);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
     <mutatedMethod>setFileExtensions</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable fileExtensions</description>

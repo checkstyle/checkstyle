@@ -815,6 +815,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .hasCauseThat()
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
+            assertWithMessage("")
+                    .that(error.getMessage())
+                    .isEqualTo("Error was thrown while processing "
+                            + filesToProcess.get(0).getAbsolutePath());
+
         }
     }
 
