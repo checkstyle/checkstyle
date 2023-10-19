@@ -227,24 +227,6 @@
 
   <mutation unstable="false">
     <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
-    <mutatedMethod>getSuppression</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Matcher::start</description>
-    <lineContent>lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</mutatedClass>
-    <mutatedMethod>getSuppression</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/regex/Matcher::start</description>
-    <lineContent>lineNo + 1, onCommentMatcher.start(), SuppressionType.ON, this);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
@@ -259,24 +241,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable eventMessageRegexp</description>
     <lineContent>eventMessageRegexp = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable columnNo</description>
-    <lineContent>this.columnNo = columnNo;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressWithPlainTextCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter$Suppression</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable text</description>
-    <lineContent>this.text = text;</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -305,42 +269,6 @@
     <description>Removed assignment to member variable tagMessageRegexp</description>
     <lineContent>tagMessageRegexp = null;</lineContent>
   </mutation>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <mutation unstable="false">
     <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
