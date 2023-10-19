@@ -114,8 +114,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]covariantequals[\\/]InputCovariantEqualsRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
