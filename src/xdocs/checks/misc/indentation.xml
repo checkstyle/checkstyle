@@ -59,7 +59,7 @@ if ((condition1 &amp;&amp; condition2)
             </tr>
             <tr>
               <td>arrayInitIndent</td>
-              <td>Specify how far an array initialisation should be indented when on next line.</td>
+              <td>Specify how far an array initialization should be indented when on next line.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>5.8</td>
