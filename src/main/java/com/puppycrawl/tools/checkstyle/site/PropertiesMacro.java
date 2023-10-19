@@ -82,6 +82,7 @@ public class PropertiesMacro extends AbstractMacro {
         }
 
         final String modulePath = (String) request.getParameter("modulePath");
+
         configureGlobalProperties(modulePath);
 
         writePropertiesTable((XdocSink) sink);
@@ -255,7 +256,8 @@ public class PropertiesMacro extends AbstractMacro {
             final AbstractCheck check = (AbstractCheck) instance;
             if (check.getRequiredTokens().length == 0
                     && Arrays.equals(check.getAcceptableTokens(), TokenUtil.getAllTokenIds())) {
-                sink.text(SiteUtil.TOKEN_TYPES);
+                sink.text("set of any supported");
+                writeLink(sink);
             }
             else {
                 final List<String> configurableTokens = SiteUtil
@@ -265,6 +267,7 @@ public class PropertiesMacro extends AbstractMacro {
                         .map(TokenUtil::getTokenName)
                         .collect(Collectors.toList());
                 sink.text("subset of tokens");
+
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES);
             }
         }
@@ -293,6 +296,24 @@ public class PropertiesMacro extends AbstractMacro {
             sink.link_();
         }
         sink.tableCell_();
+    }
+
+    /**
+     * Write a link when all types of token supported.
+     *
+     * @param sink sink to write to.
+     * @throws MacroExecutionException if link cannot be constructed.
+     */
+    private static void writeLink(Sink sink)
+            throws MacroExecutionException {
+        sink.rawText(INDENT_LEVEL_16);
+        final String link =
+                SiteUtil.getLinkToDocument(currentModuleName, SiteUtil.PATH_TO_TOKEN_TYPES);
+        sink.link(link);
+        sink.rawText(INDENT_LEVEL_20);
+        sink.text(SiteUtil.TOKENS);
+        sink.link_();
+        sink.rawText(INDENT_LEVEL_14);
     }
 
     /**
