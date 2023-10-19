@@ -8,8 +8,12 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
+
+import static com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier.InputRedundantModifierFinalInEnumStaticMethods.TestEnum.someMethod;
+
 // xdoc section -- start
-public class Test {
+public class Example3 {
   private void test(int a) {
     switch (a) {
       case 1: someMethod();
@@ -17,7 +21,7 @@ public class Test {
     }
     switch (a) {
       case 1: someMethod();
-      default: {} // violation
+      default: {} // violation 'Must have at least one statement'
     }
   }
 }

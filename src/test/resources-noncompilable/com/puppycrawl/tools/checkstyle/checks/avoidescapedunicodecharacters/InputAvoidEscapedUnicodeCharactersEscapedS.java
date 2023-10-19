@@ -12,8 +12,8 @@ allowNonPrintableEscapes = (default)false
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 public class InputAvoidEscapedUnicodeCharactersEscapedS {
-    String value1 = "\u03bc\t"; // ok
-    String value2 = "\u03bc\s"; // ok
+    String value1 = "\u03bc\t";
+    String value2 = "\u03bc\s";
     String value3 = "\u03bc\s not all escaped chars"; // violation
     String value31 = "\u03bc\n not all escaped chars"; // violation
     String value4 = """

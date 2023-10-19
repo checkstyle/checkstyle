@@ -8,8 +8,6 @@ excludes = com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport.\
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;
