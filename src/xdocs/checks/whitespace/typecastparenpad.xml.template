@@ -18,22 +18,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>option</td>
-              <td>Specify policy on how to pad parentheses.</td>
-              <td><a href="../../property_types.html#PadOption">PadOption</a></td>
-              <td><code>nospace</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypecastParenPadCheck.java"/>
+         </macro>
         </div>
       </subsection>
 
