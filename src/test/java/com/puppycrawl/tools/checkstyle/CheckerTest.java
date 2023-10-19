@@ -1684,6 +1684,28 @@ public class CheckerTest extends AbstractModuleTestSupport {
         verify(checkerConfig, getPath("InputCheckerTestCharset.java"), expected);
     }
 
+    @Test
+    public void testViolationMessageOnIoException() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CheckWhichThrowsError.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+
+        checkerConfig.addProperty("haltOnException", "false");
+        final File file = new File("InputNonChecker.java");
+        final String filePath = file.getAbsolutePath();
+        final String[] expected = {
+            "1: " + getCheckMessage(EXCEPTION_MSG, filePath
+                        + " (No such file or directory)"),
+        };
+
+        verify(checkerConfig, filePath, expected);
+    }
+
     public static class DefaultLoggerWithCounter extends DefaultLogger {
 
         private int fileStartedCount;
