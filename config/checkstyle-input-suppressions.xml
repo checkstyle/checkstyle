@@ -116,10 +116,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]covariantequals[\\/]InputCovariantEqualsRecords.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
