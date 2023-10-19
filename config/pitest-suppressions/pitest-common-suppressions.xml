@@ -30,15 +30,6 @@
   <mutation unstable="false">
     <sourceFile>Checker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>processFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/IOException::getMessage</description>
-    <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
     <mutatedMethod>processFiles</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/io/File::getPath</description>
