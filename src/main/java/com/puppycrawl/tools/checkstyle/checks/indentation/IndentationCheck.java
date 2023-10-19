@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </pre>
  * <ul>
  * <li>
- * Property {@code arrayInitIndent} - Specify how far an array initialisation
+ * Property {@code arrayInitIndent} - Specify how far an array initialization
  * should be indented when on next line.
  * Type is {@code int}.
  * Default value is {@code 4}.
@@ -222,7 +222,7 @@ public class IndentationCheck extends AbstractCheck {
     /** Specify how far a throws clause should be indented when on next line. */
     private int throwsIndent = DEFAULT_INDENTATION;
 
-    /** Specify how far an array initialisation should be indented when on next line. */
+    /** Specify how far an array initialization should be indented when on next line. */
     private int arrayInitIndent = DEFAULT_INDENTATION;
 
     /** Specify how far continuation line should be indented when line-wrapping is present. */
@@ -335,9 +335,9 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify how far an array initialisation should be indented when on next line.
+     * Setter to specify how far an array initialization should be indented when on next line.
      *
-     * @param arrayInitIndent the array initialisation indentation level
+     * @param arrayInitIndent the array initialization indentation level
      * @since 5.8
      */
     public void setArrayInitIndent(int arrayInitIndent) {
@@ -345,9 +345,9 @@ public class IndentationCheck extends AbstractCheck {
     }
 
     /**
-     * Getter to query how far an array initialisation should be indented when on next line.
+     * Getter to query how far an array initialization should be indented when on next line.
      *
-     * @return the initialisation indentation level
+     * @return the initialization indentation level
      */
     public int getArrayInitIndent() {
         return arrayInitIndent;
