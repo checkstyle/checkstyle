@@ -56,13 +56,13 @@
         <p id="Example1-config">To use default module configuration:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
@@ -76,13 +76,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 

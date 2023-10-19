@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ParameterAssignmentCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +34,12 @@ public class ParameterAssignmentCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "21:15: " + getCheckMessage(MSG_KEY, "parameter"),
+            "34:27: " + getCheckMessage(MSG_KEY, "a"),
+            "36:6: " + getCheckMessage(MSG_KEY, "a"),
+            "37:7: " + getCheckMessage(MSG_KEY, "b"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }

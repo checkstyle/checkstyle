@@ -16,62 +16,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>option</td>
-              <td>Specify policy on how to wrap lines.</td>
-              <td>
-                <a href="../../property_types.html#WrapOption">WrapOption</a>
-              </td>
-              <td><code>eol</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
-                  DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
-                  SEMI</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">
-                  AT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">
-                  LPAREN</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">
-                  RPAREN</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-                  ARRAY_DECLARATOR</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">
-                  RBRACK</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                  METHOD_REF</a>
-                  .
-              </td>
-
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
-                  DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
-                  .
-              </td>
-              <td>5.8</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SeparatorWrapCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
