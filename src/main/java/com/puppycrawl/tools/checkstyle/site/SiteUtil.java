@@ -183,7 +183,9 @@ public final class SiteUtil {
         new File(Paths.get(MAIN_FOLDER_PATH,
                 "api", "AbstractFileSetCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
-                CHECKS, "header", "AbstractHeaderCheck.java").toString())
+                CHECKS, "header", "AbstractHeaderCheck.java").toString()),
+        new File(Paths.get(MAIN_FOLDER_PATH,
+                CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
     /**
@@ -666,7 +668,7 @@ public final class SiteUtil {
         else {
             final String descriptionString = DescriptionExtractor
                     .getDescriptionFromJavadoc(javadoc, moduleName)
-                    .substring("Setter to ".length());
+                    .replaceFirst("^Setter to ", "");
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
                     .toUpperCase(Locale.ROOT);
             description = firstLetterCapitalized + descriptionString.substring(1);
