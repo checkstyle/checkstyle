@@ -142,6 +142,13 @@ steps:
       gem install mdl
     condition: eq(variables.NEED_MDL, 'true')
 
+  - script: |
+      wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.6/apache-maven-3.8.6-bin.tar.gz
+      tar xzvf apache-maven-3.8.6-bin.tar.gz
+      sudo mv apache-maven-3.8.6 /usr/local/
+      echo "M2_HOME=/usr/local/apache-maven-3.8.6" >> $GITHUB_ENV
+      echo "/usr/local/apache-maven-3.8.6/bin" >> $GITHUB_PATH
+
   - task: JavaToolInstaller@0
     inputs:
       versionSpec: 11
