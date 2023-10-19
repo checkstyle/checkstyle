@@ -19,13 +19,11 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeGregCal.SubCal;
-
 public class InputIllegalTypeSameFileNameFalsePositive
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance(); // ok
     Date date = null;
-    SubCal subCalendar = null; // violation
+    InputIllegalTypeGregCal.SubCal subCalendar = null; // violation
 
     private static class AnObject extends InputIllegalTypeGregCal { // ok
 

@@ -139,8 +139,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameFalsePositive() throws Exception {
         final String[] expected = {
-            "28:5: " + getCheckMessage(MSG_KEY, "SubCal"),
-            "43:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "26:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal.SubCal"),
+            "41:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
 
         verifyWithInlineConfigParser(
@@ -150,14 +150,14 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameGeneral() throws Exception {
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "29:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "31:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
-            "39:9: " + getCheckMessage(MSG_KEY, "List"),
-            "40:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
-            "42:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "43:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
-            "44:13: " + getCheckMessage(MSG_KEY, "Boolean"),
+            "23:5: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "27:43: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "29:23: " + getCheckMessage(MSG_KEY, "InputIllegalTypeGregCal"),
+            "37:9: " + getCheckMessage(MSG_KEY, "List"),
+            "38:9: " + getCheckMessage(MSG_KEY, "java.io.File"),
+            "40:5: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "41:13: " + getCheckMessage(MSG_KEY, "ArrayList"),
+            "42:13: " + getCheckMessage(MSG_KEY, "Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeTestSameFileNameGeneral.java"), expected);
@@ -236,7 +236,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testStarImports() throws Exception {
 
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, "List"),
+            "24:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
         verifyWithInlineConfigParser(
