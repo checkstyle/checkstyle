@@ -286,8 +286,7 @@ public class SuppressFilterElementTest {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressFilterElement.class)
                 .usingGetClass()
-                .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp", "columnFilter",
-                        "lineFilter")
+                .withIgnoredFields("columnFilter", "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .report();
         assertWithMessage("Error: " + ev.getMessage())
