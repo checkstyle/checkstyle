@@ -47,7 +47,7 @@ public class XdocsTemplateSink extends XdocSink {
      * @param encoding encoding of the writer.
      */
     public XdocsTemplateSink(Writer writer, String encoding) {
-        super(writer);
+        super(new CustomPrintWriter(writer));
         this.encoding = encoding;
     }
 
@@ -105,4 +105,5 @@ public class XdocsTemplateSink extends XdocSink {
     public void tableRows(int[] justification, boolean grid) {
         writeStartTag(HtmlMarkup.TABLE);
     }
+
 }
