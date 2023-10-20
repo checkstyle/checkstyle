@@ -73,7 +73,7 @@ public final class XdocGenerator {
             final File outputFile = new File(pathToFile.replace(".template", ""));
             final StandardCopyOption exp = StandardCopyOption.REPLACE_EXISTING;
             Files.copy(tempFile.toPath(), outputFile.toPath(), exp);
-            tempFile.deleteOnExit();
+            tempFile.delete();
 
         }
     }
