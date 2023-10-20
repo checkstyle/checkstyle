@@ -108,7 +108,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private Context childContext;
 
     /** The file extensions that are accepted. */
-    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
+    private String[] fileExtensions;
 
     /**
      * The severity level of any violations found by submodules.
@@ -547,10 +547,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *     initial '.' character of an extension is automatically added.
      */
     public final void setFileExtensions(String... extensions) {
-        if (extensions == null) {
-            fileExtensions = null;
-        }
-        else {
+        if (extensions != null) {
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];

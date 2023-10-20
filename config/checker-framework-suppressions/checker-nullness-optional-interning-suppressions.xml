@@ -89,19 +89,8 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>fileExtensions = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull String @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, cacheFile</message>
+    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, fileExtensions, cacheFile</message>
     <lineContent>public Checker() {</lineContent>
   </checkerFrameworkError>
 
@@ -1753,28 +1742,6 @@
     <details>
       type of expression: @Initialized @Nullable String
       method return type: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter prevScopeUninitializedVariableData of updateAllUninitializedVariables.</message>
-    <lineContent>updateAllUninitializedVariables(prevScopeUninitializedVariableData);</lineContent>
-    <details>
-      found   : @Initialized @Nullable Deque&lt;@Initialized @NonNull DetailAST&gt;
-      required: @Initialized @NonNull Deque&lt;@Initialized @NonNull DetailAST&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter prevScopeUninitializedVariableData of updateAllUninitializedVariables.</message>
-    <lineContent>updateAllUninitializedVariables(prevScopeUninitializedVariableData);</lineContent>
-    <details>
-      found   : @Initialized @Nullable Deque&lt;@Initialized @NonNull DetailAST&gt;
-      required: @Initialized @NonNull Deque&lt;@Initialized @NonNull DetailAST&gt;
     </details>
   </checkerFrameworkError>
 

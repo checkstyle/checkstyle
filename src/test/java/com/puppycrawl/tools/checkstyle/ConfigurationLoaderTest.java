@@ -30,6 +30,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -312,11 +313,16 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
         final Configuration[] children = config.getChildren();
         final Configuration[] grandchildren = children[0].getChildren();
-
+        final List<String> messages = new ArrayList<>(grandchildren[0].getMessages().values());
         final String expectedKey = "name.invalidPattern";
+        final List<String> expectedMessages = Collections
+                .singletonList("Member ''{0}'' must start with ''m'' (checked pattern ''{1}'').");
         assertWithMessage("Messages should contain key: " + expectedKey)
                 .that(grandchildren[0].getMessages())
                 .containsKey(expectedKey);
+        assertWithMessage("Message is not expected")
+                .that(messages)
+                .isEqualTo(expectedMessages);
     }
 
     private static void verifyConfigNode(

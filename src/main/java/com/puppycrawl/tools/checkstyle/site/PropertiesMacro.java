@@ -49,6 +49,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @Component(role = Macro.class, hint = "properties")
 public class PropertiesMacro extends AbstractMacro {
 
+    /** Reflects start of a code segment. */
+    private static final String CODE_START = "<code>";
+
+    /** Reflects end of a code segment. */
+    private static final String CODE_END = "</code>";
+
     /** A newline with 10 spaces of indentation. */
     private static final String INDENT_LEVEL_10 = SiteUtil.getNewlineAndIndentSpaces(10);
     /** A newline with 12 spaces of indentation. */
@@ -224,6 +230,7 @@ public class PropertiesMacro extends AbstractMacro {
         sink.tableCell();
         final String description = SiteUtil
                 .getPropertyDescription(propertyName, propertyJavadoc, currentModuleName);
+
         sink.rawText(description);
         sink.tableCell_();
     }
@@ -306,9 +313,16 @@ public class PropertiesMacro extends AbstractMacro {
             }
             writeLinkToToken(sink, tokenTypesLink, token);
         }
-        sink.rawText(INDENT_LEVEL_18);
-        sink.text(SiteUtil.DOT);
-        sink.rawText(INDENT_LEVEL_14);
+        if (tokens.isEmpty()) {
+            sink.rawText(CODE_START);
+            sink.text("empty");
+            sink.rawText(CODE_END);
+        }
+        else {
+            sink.rawText(INDENT_LEVEL_18);
+            sink.text(SiteUtil.DOT);
+            sink.rawText(INDENT_LEVEL_14);
+        }
     }
 
     /**
@@ -373,9 +387,9 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
-            sink.rawText("<code>");
+            sink.rawText(CODE_START);
             sink.text(defaultValue);
-            sink.rawText("</code>");
+            sink.rawText(CODE_END);
         }
 
         sink.tableCell_();

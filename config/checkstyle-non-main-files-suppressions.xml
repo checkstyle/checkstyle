@@ -203,11 +203,7 @@
 
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13839 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
-  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
   <suppress id="propertiesMacroMustExist"
@@ -220,22 +216,19 @@
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]emptystatement.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]equalshashcode.xml.template"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/13839 -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/13853 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]finallocalvariable.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]hiddenfield.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegalcatch.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegalinstantiation.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegalthrows.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltoken.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltokentext.xml.template"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/13893 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltype.xml.template"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/13860 -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltoken.xml.template"/>
+  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
@@ -520,9 +513,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespaceafter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebefore.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13867 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]typecastparenpad.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]parenpad.xml.template"/>
   <!-- no properties by design -->

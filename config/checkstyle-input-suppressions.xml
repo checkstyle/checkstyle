@@ -30,16 +30,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportExcludes.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault2.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault3.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault4.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault5.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault2.java"/>
@@ -123,16 +113,6 @@
           files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperWriteTagCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersEscapedS.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersEscapedS.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]covariantequals[\\/]InputCovariantEqualsRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -991,12 +971,6 @@
             files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull.java"/>
   <suppress id="UnnecessaryOkComment"
