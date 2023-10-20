@@ -114,10 +114,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSwitchExpressionsSkipIfLast.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
@@ -975,12 +971,6 @@
             files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull.java"/>
   <suppress id="UnnecessaryOkComment"
