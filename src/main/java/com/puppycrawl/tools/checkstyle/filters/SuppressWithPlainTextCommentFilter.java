@@ -261,11 +261,11 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         Suppression suppression = null;
         if (onCommentMatcher.find()) {
             suppression = new Suppression(onCommentMatcher.group(0),
-                lineNo + 1, onCommentMatcher.start(), SuppressionType.ON, this);
+                lineNo + 1, SuppressionType.ON, this);
         }
         if (offCommentMatcher.find()) {
             suppression = new Suppression(offCommentMatcher.group(0),
-                lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);
+                lineNo + 1, SuppressionType.OFF, this);
         }
 
         return Optional.ofNullable(suppression);
@@ -310,12 +310,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /** The regexp which is used to match the event ID.*/
         private final Pattern eventIdRegexp;
 
-        /** Suppression text.*/
-        private final String text;
         /** Suppression line.*/
         private final int lineNo;
-        /** Suppression column number.*/
-        private final int columnNo;
+
         /** Suppression type. */
         private final SuppressionType suppressionType;
 
@@ -324,7 +321,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
          *
          * @param text suppression text.
          * @param lineNo suppression line number.
-         * @param columnNo suppression column number.
          * @param suppressionType suppression type.
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
          * @throws IllegalArgumentException if there is an error in the filter regex syntax.
@@ -332,13 +328,10 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         private Suppression(
             String text,
             int lineNo,
-            int columnNo,
             SuppressionType suppressionType,
             SuppressWithPlainTextCommentFilter filter
         ) {
-            this.text = text;
             this.lineNo = lineNo;
-            this.columnNo = columnNo;
             this.suppressionType = suppressionType;
 
             final Pattern commentFormat;
@@ -396,9 +389,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
-                    && Objects.equals(columnNo, suppression.columnNo)
                     && Objects.equals(suppressionType, suppression.suppressionType)
-                    && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
                     && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
@@ -407,7 +398,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
+                lineNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
                 eventIdRegexp);
         }
 
