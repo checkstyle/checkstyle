@@ -247,8 +247,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private Set<String> getExternalResourceLocations() {
         return Stream.concat(fileSetChecks.stream(), filters.getFilters().stream())
             .filter(ExternalResourceHolder.class::isInstance)
-            .map(ExternalResourceHolder.class::cast)
-            .flatMap(resource -> resource.getExternalResourceLocations().stream())
+            .flatMap(resource -> {
+                return ((ExternalResourceHolder) resource)
+                        .getExternalResourceLocations().stream();
+            })
             .collect(Collectors.toSet());
     }
 
