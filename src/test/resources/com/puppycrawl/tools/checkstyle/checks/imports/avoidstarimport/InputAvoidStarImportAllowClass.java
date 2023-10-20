@@ -9,8 +9,6 @@ allowStaticMemberImports = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*; // ok as all class star imports allowed
-
 import java.io.*; // ok as all class star imports allowed
 import java.lang.*; // ok as all class star imports allowed
 import java.sql.Connection;

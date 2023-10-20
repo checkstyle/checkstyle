@@ -22,14 +22,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeTestStarImports.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowClass.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportAllowStaticMember.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportDefault.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]avoidstarimport[\\/]InputAvoidStarImportExcludes.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderDefault2.java"/>
