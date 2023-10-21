@@ -20,21 +20,27 @@ excludedPackages = com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.a.aa.AAClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.a.ab.ABClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.b.BClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c.CClass;
-
 public class InputClassFanOutComplexityExcludedPackagesCommonPackage { // violation
+    public static class AAClass {
+
+    }
     public AAClass aa;
+    public static class ABClass {
+    }
     public ABClass ab;
 
     class Inner { // violation
+        public class BClass {
+        }
         public BClass b;
+        public class CClass {
+        }
         public CClass c;
     }
 }
 
 class InputClassFanOutComplexityExcludedPackagesCommonPackageHidden { // violation
+    public class CClass {
+    }
     public CClass c;
 }
