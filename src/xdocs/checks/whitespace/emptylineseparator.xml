@@ -63,7 +63,7 @@
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                  PACKAGE_DEF</a>
+                    PACKAGE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
                     IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
@@ -74,7 +74,7 @@
                     INTERFACE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                     ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
                     STATIC_INIT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
                     INSTANCE_INIT</a>
@@ -88,7 +88,7 @@
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
-                    .
+                  .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
@@ -103,7 +103,7 @@
                     INTERFACE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                     ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
                     STATIC_INIT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
                     INSTANCE_INIT</a>
