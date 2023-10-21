@@ -43,7 +43,7 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="4" name="arrayInitIndent" type="int">
-               <description>Specify how far an array initialisation
+               <description>Specify how far an array initialization
  should be indented when on next line.</description>
             </property>
             <property default-value="4" name="basicOffset" type="int">
