@@ -21,68 +21,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowLineBreaks</td>
-              <td>
-                Control whether whitespace is allowed if the token is at a linebreak.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
-                  SEMI</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
-                  POST_INC</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
-                  POST_DEC</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
-                  DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_START">
-                  GENERIC_START</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GENERIC_END">
-                  GENERIC_END</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
-                  LABELED_STAT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                  METHOD_REF</a>
-                  .
-              </td>
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
-                  COMMA</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
-                  SEMI</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
-                  POST_INC</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
-                  POST_DEC</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
-                  LABELED_STAT</a>
-                  .
-              </td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceBeforeCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

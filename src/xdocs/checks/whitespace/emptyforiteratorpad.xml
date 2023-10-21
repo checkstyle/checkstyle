@@ -22,7 +22,7 @@ for (Iterator foo = very.long.line.iterator();
         </source>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+     <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -41,7 +41,7 @@ for (Iterator foo = very.long.line.iterator();
             </tr>
           </table>
         </div>
-      </subsection>
+     </subsection>
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">

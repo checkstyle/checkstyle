@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * INTERFACE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
  * ENUM_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
  * STATIC_INIT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
  * INSTANCE_INIT</a>,
