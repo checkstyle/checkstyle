@@ -39,13 +39,11 @@ public class AvoidStarImportCheckTest
     public void testDefaultOperation()
             throws Exception {
         final String[] expected = {
-            "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
-                    + "tools.checkstyle.checks.imports.*"),
-            "14:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "15:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
-            "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
+            "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "13:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
+            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -58,9 +56,7 @@ public class AvoidStarImportCheckTest
             throws Exception {
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
-            "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
-                    + "tools.checkstyle.checks.imports.*"),
-            "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
+            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportExcludes.java"),
@@ -71,9 +67,9 @@ public class AvoidStarImportCheckTest
     public void testAllowClassImports() throws Exception {
         // allow all class star imports
         final String[] expected2 = {
-            "30:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "31:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
-            "33:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
+            "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "29:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "31:27: " + getCheckMessage(MSG_KEY, "java.io.File.*"), };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowClass.java"), expected2);
     }
@@ -82,10 +78,8 @@ public class AvoidStarImportCheckTest
     public void testAllowStaticMemberImports() throws Exception {
         // allow all static star imports
         final String[] expected2 = {
-            "12:54: " + getCheckMessage(MSG_KEY, "com.puppycrawl."
-                    + "tools.checkstyle.checks.imports.*"),
-            "14:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "15:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
+            "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "13:17: " + getCheckMessage(MSG_KEY, "java.lang.*"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidStarImportAllowStaticMember.java"), expected2);
