@@ -694,9 +694,10 @@ public final class SiteUtil {
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
-        if (SINCE_VERSION_FOR_INHERITED_PROPERTY.containsKey(moduleName + DOT + propertyName)) {
-            sinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                    .get(moduleName + DOT + propertyName);
+        final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
+                   .get(moduleName + DOT + propertyName);
+        if (superClassSinceVersion != null) {
+            sinceVersion = superClassSinceVersion;
         }
         else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)
                 || TOKENS.equals(propertyName)
