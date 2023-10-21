@@ -22,7 +22,9 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.File;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Set;
 
 import org.apache.maven.doxia.parser.Parser;
@@ -53,12 +55,12 @@ public final class XdocGenerator {
         for (Path path : templatesFilePaths) {
             final String pathToFile = path.toString();
             final File inputFile = new File(pathToFile);
-            final File outputFile = new File(pathToFile.replace(".template", ""));
-
+            final File tempFile = File.createTempFile(pathToFile.replace(".template", ""), "");
+            tempFile.deleteOnExit();
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
                     plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
-            final Sink sink = sinkFactory.createSink(outputFile.getParentFile(),
-                    outputFile.getName(), String.valueOf(StandardCharsets.UTF_8));
+            final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
+                    tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
             final XdocsTemplateParser parser = (XdocsTemplateParser)
                     plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
             try (Reader reader = ReaderFactory.newReader(inputFile,
@@ -68,6 +70,9 @@ public final class XdocGenerator {
             finally {
                 sink.close();
             }
+            final File outputFile = new File(pathToFile.replace(".template", ""));
+            final StandardCopyOption copyOption = StandardCopyOption.REPLACE_EXISTING;
+            Files.copy(tempFile.toPath(), outputFile.toPath(), copyOption);
         }
     }
 }
