@@ -84,10 +84,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>

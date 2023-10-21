@@ -54,14 +54,14 @@ public class EmptyLineSeparatorCheckTest
 
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-            "31:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "34:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
-            "35:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
-            "39:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INSTANCE_INIT"),
-            "53:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
-            "58:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "75:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "106:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "28:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "31:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "32:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "36:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INSTANCE_INIT"),
+            "50:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "55:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "72:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "103:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparator.java"), expected);
@@ -72,13 +72,13 @@ public class EmptyLineSeparatorCheckTest
 
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-            "31:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "35:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
-            "39:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INSTANCE_INIT"),
-            "53:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
-            "58:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "75:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-            "106:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "28:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "32:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "STATIC_INIT"),
+            "36:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INSTANCE_INIT"),
+            "50:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CTOR_DEF"),
+            "55:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "72:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "103:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparator2.java"), expected);
