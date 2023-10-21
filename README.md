@@ -27,8 +27,7 @@ or set of validation rules (best practices).
 
 [![][milestone img]][milestone]
 
-Members chat: [![][gitter_mem img]][gitter_mem]
-Contributors chat: [![][gitter_con img]][gitter_con]
+Contributors chat: [![][matrix_con img]][matrix_con]
 
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
@@ -126,11 +125,8 @@ are in the file named "LICENSE.apache20" in this directory.
 [mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
 [mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
-[gitter_mem]:https://gitter.im/checkstyle
-[gitter_mem img]:https://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
-
-[gitter_con]:https://gitter.im/checkstyle/checkstyle
-[gitter_con img]:https://badges.gitter.im/Join%20Chat.svg
+[matrix_con]:https://matrix.to/#/#checkstyle_checkstyle:gitter.im
+[matrix_con img]:https://matrix.to/img/matrix-badge.svg
 
 [stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
