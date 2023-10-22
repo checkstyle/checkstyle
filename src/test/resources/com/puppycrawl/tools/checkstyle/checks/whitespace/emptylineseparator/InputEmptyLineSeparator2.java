@@ -14,13 +14,12 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
 import java.io.Serializable; // violation ''import' should be separated from previous line.'
 import java.util.ArrayList; /*no violation: trailing comment*/
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
 /* no violation: block comment after token*/
 
-import com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.InputEmptyLineSeparator;
+import java.util.List;
 //no violation: single-line comment after token
 
 import javax.swing.AbstractAction; /* no violation: no trailing comment
