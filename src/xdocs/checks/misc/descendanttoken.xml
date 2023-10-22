@@ -36,10 +36,7 @@
             <tr>
               <td>limitedTokens</td>
               <td>Specify set of tokens with limited occurrences as descendants.</td>
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-              </td>
+              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
@@ -87,10 +84,7 @@
             </tr>
             <tr>
               <td>sumTokenCounts</td>
-              <td>
-                Control whether the number of tokens found should be calculated
-                from the sum of the individual token counts.
-              </td>
+              <td>Control whether the number of tokens found should be calculated from the sum of the individual token counts.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
