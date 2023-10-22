@@ -62,25 +62,25 @@ public void guessTheOutput()
         <p id="Example1-config">To configure the check:</p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.txt"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.java"/>
              <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">To configure the check to allow nested blocks in switch case:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
