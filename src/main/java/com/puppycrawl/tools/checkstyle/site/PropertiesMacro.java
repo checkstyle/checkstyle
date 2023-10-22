@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -68,7 +69,10 @@ public class PropertiesMacro extends AbstractMacro {
     /** A newline with 20 spaces of indentation. */
     private static final String INDENT_LEVEL_20 = SiteUtil.getNewlineAndIndentSpaces(20);
 
-    /** The name of the current module being processed. */
+    /** The property being process with all tokens. */
+    private static final String TOKENS_PROPERTY = SiteUtil.TOKENS;
+
+    /** The file of the current module being processed. */
     private static String currentModuleName = "";
 
     /** The file of the current module being processed. */
@@ -165,11 +169,32 @@ public class PropertiesMacro extends AbstractMacro {
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
                 .getPropertiesJavadocs(properties, currentModuleName, currentModuleFile);
 
-        for (String property : properties) {
+        final List<String> orderProperties = orderProperties(properties);
+
+        for (String property : orderProperties) {
             final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
             final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
             writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
         }
+    }
+
+    /**
+     * Reorder properties to always have the 'tokens' property last (if present).
+     *
+     * @param properties module properties.
+     * @return Collection of ordered properties.
+     *
+     */
+    private static List<String> orderProperties(Set<String> properties) {
+
+        final List<String> validProperties = new LinkedList<>(properties);
+
+        if (validProperties.remove(TOKENS_PROPERTY)) {
+            validProperties.add(TOKENS_PROPERTY);
+        }
+
+        return validProperties;
+
     }
 
     /**
