@@ -351,8 +351,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 xpathEvaluator.createExpression("//METHOD_DEF"),
                 xpathEvaluator.createExpression("//VARIABLE_DEF"))
                 .usingGetClass()
-                .withIgnoredFields("fileRegexp", "checkRegexp", "messageRegexp",
-                    "xpathExpression", "isEmptyConfig")
+                .withIgnoredFields("xpathExpression", "isEmptyConfig")
                 .report();
         assertWithMessage("Error: " + ev.getMessage())
                 .that(ev.isSuccessful())
