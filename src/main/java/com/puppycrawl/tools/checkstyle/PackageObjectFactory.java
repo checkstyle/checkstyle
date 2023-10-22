@@ -284,7 +284,6 @@ public class PackageObjectFactory implements ModuleFactory {
         }
         else {
             final String optionalNames = fullModuleNames.stream()
-                    .sorted()
                     .collect(Collectors.joining(STRING_SEPARATOR));
             final LocalizedMessage exceptionMessage = new LocalizedMessage(
                     Definitions.CHECKSTYLE_BUNDLE, getClass(),
