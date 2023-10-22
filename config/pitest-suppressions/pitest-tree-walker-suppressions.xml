@@ -93,15 +93,6 @@
   <mutation unstable="false">
     <sourceFile>TreeWalker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>getExternalResourceLocations</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::map with receiver</description>
-    <lineContent>.map(ExternalResourceHolder.class::cast)</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
     <mutatedMethod>lambda$createNewCheckSortedSet$3</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
     <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/TreeWalker::lambda$createNewCheckSortedSet$3</description>
