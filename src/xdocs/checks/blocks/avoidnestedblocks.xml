@@ -81,22 +81,23 @@ public void guessTheOutput()
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println(&quot;myInteger = &quot; + myInteger);
+public class Example1 {
+  public void foo() {
+    int myInteger = 0;
+    {                      // violation
+      myInteger = 2;
+    }
+    System.out.println(&quot;myInteger = &quot; + myInteger);
 
-  switch (a) {
-    case 1:
-      {                    // violation
+    switch (a) {
+      case 1: {                    // violation
         System.out.println(&quot;Case 1&quot;);
         break;
       }
-    case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
-      break;
+      case 2:
+        System.out.println(&quot;Case 2&quot;);
+        break;
+    }
   }
 }
         </source>
@@ -112,23 +113,23 @@ public void foo() {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public void foo() {
-  int myInteger = 0;
-  {                      // violation
-    myInteger = 2;
-  }
-  System.out.println(&quot;myInteger = &quot; + myInteger);
+public class Example2 {
+  public void foo() {
+    int myInteger = 0;
+    {                      // violation
+      myInteger = 2;
+    }
+    System.out.println(&quot;myInteger = &quot; + myInteger);
 
-  switch (a)
-  {
-    case 1:
-      {                    // OK
+    switch (a) {
+      case 1: {
         System.out.println(&quot;Case 1&quot;);
         break;
       }
-    case 2:
-      System.out.println(&quot;Case 2&quot;);     // OK
-      break;
+      case 2:
+        System.out.println(&quot;Case 2&quot;);
+        break;
+    }
   }
 }
         </source>
