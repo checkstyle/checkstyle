@@ -156,7 +156,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      */
     private boolean sumTokenCounts;
     /** Specify set of tokens with limited occurrences as descendants. */
-    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    @XdocsPropertyType(PropertyType.STRING_ARRAY)
     private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
     /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;
