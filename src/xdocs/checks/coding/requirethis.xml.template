@@ -48,36 +48,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>checkFields</td>
-              <td>Control whether to check references to fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.4</td>
-            </tr>
-            <tr>
-              <td>checkMethods</td>
-              <td>Control whether to check references to methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.4</td>
-            </tr>
-            <tr>
-              <td>validateOnlyOverlapping</td>
-              <td>Control whether to check only overlapping by variables or arguments.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>6.17</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

@@ -14,22 +14,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>1</code></td>
-              <td>5.3</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedForDepthCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
