@@ -25,87 +25,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>limitedTokens</td>
-              <td>Specify set of tokens with limited occurrences as descendants.</td>
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-              </td>
-              <td><code>{}</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>maximumDepth</td>
-              <td>Specify the maximum depth for descendant counts.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>2147483647</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>maximumMessage</td>
-              <td>Define the violation message when the maximum count is exceeded.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>maximumNumber</td>
-              <td>Specify a maximum count for descendants.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>2147483647</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>minimumDepth</td>
-              <td>Specify the minimum depth for descendant counts.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>minimumMessage</td>
-              <td>Define the violation message when the minimum count is not reached.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>minimumNumber</td>
-              <td>Specify a minimum count for descendants.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>sumTokenCounts</td>
-              <td>
-                Control whether the number of tokens found should be calculated
-                from the sum of the individual token counts.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-              <td>set of any supported
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">
-                    tokens</a>
-              </td>
-              <td><code>empty</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java"/>
+         </macro>
         </div>
       </subsection>
 

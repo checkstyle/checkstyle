@@ -43,7 +43,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code limitedTokens} - Specify set of tokens with limited occurrences as descendants.
+ * Property {@code limitedTokens} - Specify set of
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">tokens</a>
+ * with limited occurrences as descendants.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is {@code ""}.
@@ -155,8 +157,12 @@ public class DescendantTokenCheck extends AbstractCheck {
      * the sum of the individual token counts.
      */
     private boolean sumTokenCounts;
-    /** Specify set of tokens with limited occurrences as descendants. */
-    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
+    /**
+     * Specify set of
+     * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">tokens</a>
+     * with limited occurrences as descendants.
+     */
+    @XdocsPropertyType(PropertyType.STRING_ARRAY)
     private int[] limitedTokens = CommonUtil.EMPTY_INT_ARRAY;
     /** Define the violation message when the minimum count is not reached. */
     private String minimumMessage;
@@ -296,7 +302,9 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify set of tokens with limited occurrences as descendants.
+     * Setter to specify set of
+     * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">tokens</a>
+     * with limited occurrences as descendants.
      *
      * @param limitedTokensParam tokens to ignore.
      * @since 3.2
