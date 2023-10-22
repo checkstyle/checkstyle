@@ -375,8 +375,6 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]commentsindentation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]descendanttoken.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]finalparameters.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]indentation.xml.template"/>

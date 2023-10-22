@@ -40,7 +40,10 @@ public enum PropertyType {
     STRING("String"),
 
     /** This property is a set of tokens. */
-    TOKEN_ARRAY("subset of tokens TokenTypes");
+    TOKEN_ARRAY("subset of tokens TokenTypes"),
+
+    /** This property is a string array. */
+    STRING_ARRAY("String[]");
 
     /** The human-readable property description. */
     private final String description;
