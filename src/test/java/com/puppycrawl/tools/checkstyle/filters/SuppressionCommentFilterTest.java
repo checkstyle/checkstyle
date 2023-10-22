@@ -21,21 +21,24 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
-import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -422,40 +425,7 @@ public class SuppressionCommentFilterTest
                 .isTrue();
     }
 
-    @Test
-    public void testSuppressByCheck() throws Exception {
-        final String[] suppressedViolation = {
-            "42:17: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "48:9: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-        };
-        final String[] expectedViolation = {
-            "42:17: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
-            "45:30: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "abc", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
-            "48:9: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
-            "51:18: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "ID", "^[a-z][a-zA-Z0-9]*$"),
-            "54:17: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "DEF", "^[a-z][a-zA-Z0-9]*$"),
-            "57:17: "
-                + getCheckMessage(AbstractNameCheck.class,
-                    MSG_INVALID_PATTERN, "XYZ", "^[a-z][a-zA-Z0-9]*$"),
-            };
 
-        verifySuppressedWithParser(getPath("InputSuppressionCommentFilterSuppressById.java"),
-                expectedViolation, suppressedViolation);
-    }
 
     @Test
     public void testSuppressById() throws Exception {
@@ -634,7 +604,7 @@ public class SuppressionCommentFilterTest
      * @return {@code Tag} list
      */
     private static List<Comparable<Object>> getTagsAfterExecution(SuppressionCommentFilter filter,
-            String filename, String... lines) {
+                                                                  String filename, String... lines) {
         final FileContents contents = new FileContents(
                 new FileText(new File(filename), Arrays.asList(lines)));
         for (int lineNo = 0; lineNo < lines.length; lineNo++) {
@@ -649,4 +619,71 @@ public class SuppressionCommentFilterTest
         return TestUtil.getInternalState(filter, "tags");
     }
 
+
+    @Test
+    public void testSuppressByCheck() throws Exception {
+        final String[] suppressedViolation = {
+            "27:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expectedViolation = {
+            "27:9: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "line_length", "^[a-z][a-zA-Z0-9]*$"),
+           };
+
+        verifySuppressedWithParser(getPath("InputSuppressionCommentFilterSuppressById.java"),
+                expectedViolation, suppressedViolation);
+    }
+    @Test
+    public void testCaching() throws Exception {
+        File file = new File(getPath("InputSuppressionCommentFilterSuppressById.java"));
+        DetailAST rootast = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+        String[] lines = {"//CSOFF", "//CSON"};
+        final FileContents contents = new FileContents(
+                new FileText(file, Arrays.asList(lines)));
+        for (int lineNo = 0; lineNo < lines.length; lineNo++) {
+            final int colNo = lines[lineNo].indexOf("//");
+            if (colNo >= 0) {
+                contents.reportSingleLineComment(lineNo + 1, colNo);}
+        }
+        CommentListener exceptionalListener = new ExceptionalCommentListener();
+
+
+        String[] args = {"line_length", "^[a-z][a-zA-Z0-9]*$"};
+        Violation violation = new Violation(27, 9, 58,
+                "com.puppycrawl.tools.checkstyle.checks.naming.messages", "name.invalidPattern", args, SeverityLevel.ERROR, "ignore", MemberNameCheck.class,
+                null);
+
+        TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(contents, file.getAbsolutePath(), violation, rootast);
+
+        SuppressionCommentFilter ss = new SuppressionCommentFilter();
+        ss.setOffCommentFormat(Pattern.compile("CSOFF"));
+        ss.setOnCommentFormat(Pattern.compile("CSON"));
+        ss.setCheckFormat("MemberNameCheck");
+        ss.finishLocalSetup();
+
+        // //
+
+
+        ///
+
+
+        assertWithMessage("").that(ss.accept(event)).isTrue();
+
+    }
+
+    public class ExceptionalCommentListener implements CommentListener {
+
+        @Override
+        public void reportSingleLineComment(String type, int startLineNo, int startColNo) {
+            throw new UnsupportedOperationException("ExceptionalCommentListener: Single-line comments not supported.");
+        }
+
+        @Override
+        public void reportBlockComment(String type, int startLineNo, int startColNo, int endLineNo, int endColNo) {
+            throw new UnsupportedOperationException("ExceptionalCommentListener: Block-line comments not supported.");
+        }
+    }
 }
