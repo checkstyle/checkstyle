@@ -342,7 +342,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWildcard() throws Exception {
         final String[] expected = {
-            "25:1: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
+            "24:1: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
         };
 
         verifyWithInlineConfigParser(
@@ -353,7 +353,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testWildcardUnspecified() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
-                "com.puppycrawl.tools.checkstyle.checks.imports.importorder.InputImportOrderBug"),
+                "javax.crypto.Cipher"),
         };
 
         verifyWithInlineConfigParser(
