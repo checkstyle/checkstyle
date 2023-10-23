@@ -58,10 +58,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrder_OverlappingPatterns.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]importorder[\\/]InputImportOrder_Wildcard.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]importorder[\\/]InputImportOrder_WildcardUnspecified.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImports.java"/>
