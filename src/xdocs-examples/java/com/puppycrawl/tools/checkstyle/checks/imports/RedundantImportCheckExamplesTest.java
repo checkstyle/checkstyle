@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_DUPLICATE;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_LANG;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RedundantImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +36,12 @@ public class RedundantImportCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:1: " + getCheckMessage(MSG_SAME,
+                    "com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1"),
+            "17:1: " + getCheckMessage(MSG_LANG, "java.lang.String"),
+            "19:1: " + getCheckMessage(MSG_DUPLICATE, 18, "java.util.Scanner"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
