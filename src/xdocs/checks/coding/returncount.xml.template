@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="ReturnCount">
-      <p>Since Checkstyle 3.2</p>
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <p>
           Restricts the number of return statements in methods, constructors and lambda expressions.
