@@ -214,8 +214,11 @@ public final class XpathUtil {
         final XPathDynamicContext xpathDynamicContext = xpathExpression
                 .createDynamicContext(rootNode);
         final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
-        return items.stream()
-                .map(NodeInfo.class::cast)
-                .collect(Collectors.toUnmodifiableList());
+        final List<NodeInfo> nodeInfoList = new ArrayList<>();
+        for (Item item : items) {
+            final NodeInfo nodeInfo = (NodeInfo) item;
+            nodeInfoList.add(nodeInfo);
+        }
+        return UnmodifiableCollectionUtil.unmodifiableList(nodeInfoList);
     }
 }
