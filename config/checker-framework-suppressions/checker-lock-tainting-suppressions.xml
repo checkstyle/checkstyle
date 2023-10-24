@@ -1185,6 +1185,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public void write(String s, int off, int len) {</lineContent>
+    <details>
+      found   : @GuardedBy CustomPrintWriter
+      required: @GuardSatisfied PrintWriter
+      Consequence: method in @GuardedBy CustomPrintWriter
+      void write(@GuardedBy CustomPrintWriter this, @GuardedBy String p0, @GuardedBy int p1, @GuardedBy int p2)
+      cannot override method in @GuardedBy PrintWriter
+      void write(@GuardSatisfied PrintWriter this, @GuardedBy String p0, @GuardedBy int p1, @GuardedBy int p2)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
