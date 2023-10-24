@@ -139,7 +139,7 @@ public class IllegalImportCheck
         illegalPkgs = from.clone();
         illegalPkgsRegexps.clear();
         for (String illegalPkg : illegalPkgs) {
-            illegalPkgsRegexps.add(CommonUtil.createPattern("^" + illegalPkg + "\\..*"));
+            illegalPkgsRegexps.add(CommonUtil.createPattern(illegalPkg + "\\..*"));
         }
     }
 
