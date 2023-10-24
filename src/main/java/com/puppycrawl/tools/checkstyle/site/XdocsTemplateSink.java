@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.regex.Pattern;
 
 import javax.swing.text.MutableAttributeSet;
 
@@ -112,6 +113,12 @@ public class XdocsTemplateSink extends XdocSink {
      */
     private static final class CustomPrintWriter extends PrintWriter {
 
+        /** A Regex pattern to represent all kinds of newline character. */
+        private static final Pattern LINE_BREAK_ESCAPE = Pattern.compile("\\R");
+
+        /** Unix-Style newline character. */
+        private static final String NEWLINE_CHARACTER = "\n";
+
         /**
          * Creates a new instance of this custom writer.
          *
@@ -122,11 +129,24 @@ public class XdocsTemplateSink extends XdocSink {
         }
 
         /**
-         * Enforces Unix-Style Newline character.
+         * Enforces Unix-style newline character.
          */
         @Override
         public void println() {
-            write("\n");
+            write(NEWLINE_CHARACTER, 0, 1);
+        }
+
+        /**
+         * Unifies all newline characters to Unix-Style Newline character.
+         *
+         * @param s   text that is to be written in the output file.
+         * @param off starting offset value for writing data.
+         * @param len total length of string to be written.
+         */
+        @Override
+        public void write(String s, int off, int len) {
+            final String text = LINE_BREAK_ESCAPE.matcher(s).replaceAll(NEWLINE_CHARACTER);
+            super.write(text, 0, text.length());
         }
     }
 }
