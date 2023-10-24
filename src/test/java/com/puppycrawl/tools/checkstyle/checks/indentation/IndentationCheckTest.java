@@ -1277,7 +1277,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "111:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "112:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialisation
+            // following are tests for annotation array initialization
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
             "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
@@ -1389,7 +1389,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "111:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "112:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialisation
+            // following are tests for annotation array initialization
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
             "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
