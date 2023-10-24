@@ -70,11 +70,7 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesAllIgnored.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesCommonPackage.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
+          files="[\\/]checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
