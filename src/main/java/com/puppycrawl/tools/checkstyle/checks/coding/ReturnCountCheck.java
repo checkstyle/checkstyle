@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @since 3.2
+ * @since 3.4
  */
 @FileStatefulCheck
 public final class ReturnCountCheck extends AbstractCheck {
@@ -164,7 +164,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * in non-void methods/lambdas.
      *
      * @param max maximum allowed number of return statements.
-     * @since 3.2
+     * @since 3.4
      */
     public void setMax(int max) {
         this.max = max;
