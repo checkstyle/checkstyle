@@ -841,6 +841,69 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(suppressElement.checkRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(suppressElement.fileRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(suppressElement.messageRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -1107,6 +1170,69 @@
       cannot override method in @GuardedBy Object
       @GuardedBy int hashCode(@GuardSatisfied Object this)
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; Objects.equals(getPatternSafely(messageRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(xpathFilter.checkRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(xpathFilter.fileRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(xpathFilter.messageRegexp))</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.equals(getPatternSafely(fileRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getPatternSafely(messageRegexp), moduleId, xpathQuery);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getPatternSafely with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
