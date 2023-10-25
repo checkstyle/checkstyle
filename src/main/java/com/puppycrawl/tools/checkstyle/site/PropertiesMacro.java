@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -67,6 +68,12 @@ public class PropertiesMacro extends AbstractMacro {
     private static final String INDENT_LEVEL_18 = SiteUtil.getNewlineAndIndentSpaces(18);
     /** A newline with 20 spaces of indentation. */
     private static final String INDENT_LEVEL_20 = SiteUtil.getNewlineAndIndentSpaces(20);
+
+    /**
+     * This property is used to change the existing properties for javadoc.
+     * Tokens always present at the end of all properties.
+    */
+    private static final String TOKENS_PROPERTY = SiteUtil.TOKENS;
 
     /** The name of the current module being processed. */
     private static String currentModuleName = "";
@@ -165,11 +172,31 @@ public class PropertiesMacro extends AbstractMacro {
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
                 .getPropertiesJavadocs(properties, currentModuleName, currentModuleFile);
 
-        for (String property : properties) {
+        final List<String> orderedProperties = orderProperties(properties);
+
+        for (String property : orderedProperties) {
             final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
             final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
             writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
         }
+    }
+
+    /**
+     * Reorder properties to always have the 'tokens' property last (if present).
+     *
+     * @param properties module properties.
+     * @return Collection of ordered properties.
+     *
+     */
+    private static List<String> orderProperties(Set<String> properties) {
+
+        final List<String> orderProperties = new LinkedList<>(properties);
+
+        if (orderProperties.remove(TOKENS_PROPERTY)) {
+            orderProperties.add(TOKENS_PROPERTY);
+        }
+        return List.copyOf(orderProperties);
+
     }
 
     /**
