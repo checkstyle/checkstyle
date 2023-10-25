@@ -245,6 +245,11 @@
       </source>
 
       <p>
+        ATTENTION: default value is applied to module property value if at least one expansion
+        property is not defined.
+      </p>
+
+      <p>
         This feature is a great help when setting up a centralized
         configuration file (e.g. one file for the whole company) to
         lower configuration maintenance costs.  Projects that are happy
