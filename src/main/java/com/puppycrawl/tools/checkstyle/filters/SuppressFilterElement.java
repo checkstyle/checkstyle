@@ -43,20 +43,11 @@ public class SuppressFilterElement
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 
-    /** The pattern for file names. */
-    private final String filePattern;
-
     /** The regexp to match check names against. */
     private final Pattern checkRegexp;
 
-    /** The pattern for check class names. */
-    private final String checkPattern;
-
     /** The regexp to match message names against. */
     private final Pattern messageRegexp;
-
-    /** The pattern for message names. */
-    private final String messagePattern;
 
     /** Module id filter. */
     private final String moduleId;
@@ -86,21 +77,18 @@ public class SuppressFilterElement
      */
     public SuppressFilterElement(String files, String checks,
                            String message, String modId, String lines, String columns) {
-        filePattern = files;
         if (files == null) {
             fileRegexp = null;
         }
         else {
             fileRegexp = Pattern.compile(files);
         }
-        checkPattern = checks;
         if (checks == null) {
             checkRegexp = null;
         }
         else {
             checkRegexp = Pattern.compile(checks);
         }
-        messagePattern = message;
         if (message == null) {
             messageRegexp = null;
         }
@@ -136,30 +124,9 @@ public class SuppressFilterElement
      */
     public SuppressFilterElement(Pattern files, Pattern checks, Pattern message, String moduleId,
             String lines, String columns) {
-        if (files == null) {
-            filePattern = null;
-            fileRegexp = null;
-        }
-        else {
-            filePattern = files.pattern();
-            fileRegexp = files;
-        }
-        if (checks == null) {
-            checkPattern = null;
-            checkRegexp = null;
-        }
-        else {
-            checkPattern = checks.pattern();
-            checkRegexp = checks;
-        }
-        if (message == null) {
-            messagePattern = null;
-            messageRegexp = null;
-        }
-        else {
-            messagePattern = message.pattern();
-            messageRegexp = message;
-        }
+        fileRegexp = files;
+        checkRegexp = checks;
+        messageRegexp = message;
         this.moduleId = moduleId;
         if (lines == null) {
             linesCsv = null;
@@ -224,8 +191,8 @@ public class SuppressFilterElement
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern, moduleId, linesCsv,
-                columnsCsv);
+        return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),
+                getPatternSafely(messageRegexp), moduleId, linesCsv, columnsCsv);
     }
 
     @Override
@@ -237,12 +204,29 @@ public class SuppressFilterElement
             return false;
         }
         final SuppressFilterElement suppressElement = (SuppressFilterElement) other;
-        return Objects.equals(filePattern, suppressElement.filePattern)
-                && Objects.equals(checkPattern, suppressElement.checkPattern)
-                && Objects.equals(messagePattern, suppressElement.messagePattern)
+        return Objects.equals(getPatternSafely(fileRegexp),
+                    getPatternSafely(suppressElement.fileRegexp))
+                && Objects.equals(getPatternSafely(checkRegexp),
+                    getPatternSafely(suppressElement.checkRegexp))
+                && Objects.equals(getPatternSafely(messageRegexp),
+                    getPatternSafely(suppressElement.messageRegexp))
                 && Objects.equals(moduleId, suppressElement.moduleId)
                 && Objects.equals(linesCsv, suppressElement.linesCsv)
                 && Objects.equals(columnsCsv, suppressElement.columnsCsv);
     }
 
+    /**
+     * Util method to get pattern String value from Pattern object safely, return null if
+     * pattern object is null.
+     *
+     * @param pattern pattern object
+     * @return value of pattern or null
+     */
+    private static String getPatternSafely(Pattern pattern) {
+        String result = null;
+        if (pattern != null) {
+            result = pattern.pattern();
+        }
+        return result;
+    }
 }
