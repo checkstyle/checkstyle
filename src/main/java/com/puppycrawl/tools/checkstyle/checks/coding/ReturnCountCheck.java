@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @since 3.2
+ * @since 3.4
  */
 @FileStatefulCheck
 public final class ReturnCountCheck extends AbstractCheck {

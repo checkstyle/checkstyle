@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="ReturnCount">
-      <p>Since Checkstyle 3.2</p>
+      <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <p>
           Restricts the number of return statements in methods, constructors and lambda expressions.
@@ -48,7 +48,7 @@
               <td>Specify method names to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^equals$&quot;</code></td>
-              <td>3.2</td>
+              <td>3.4</td>
             </tr>
             <tr>
               <td>max</td>
@@ -85,7 +85,7 @@
                     LAMBDA</a>
                   .
               </td>
-              <td>3.2</td>
+              <td>3.4</td>
             </tr>
           </table>
         </div>
