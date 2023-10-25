@@ -156,6 +156,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid file extension")
                 .that(CommonUtil.matchesFileExtension(javaFile, fileExtensions))
                 .isTrue();
+        final File invalidJavaFile = new File("file,java");
+        assertWithMessage("Invalid file extension")
+                .that(CommonUtil.matchesFileExtension(invalidJavaFile, fileExtensions))
+                .isFalse();
         final File emptyExtensionFile = new File("file.");
         assertWithMessage("Invalid file extension")
                 .that(CommonUtil.matchesFileExtension(emptyExtensionFile, ""))
