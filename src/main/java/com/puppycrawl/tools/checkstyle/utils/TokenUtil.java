@@ -97,7 +97,7 @@ public final class TokenUtil {
         return Arrays.stream(cls.getDeclaredFields())
             .filter(fld -> Modifier.isPublic(fld.getModifiers()) && fld.getType() == Integer.TYPE)
             .collect(Collectors.toUnmodifiableMap(
-                Field::getName, fld -> getIntFromField(fld, fld.getName()))
+                Field::getName, fld -> getIntFromField(fld, null))
             );
     }
 
