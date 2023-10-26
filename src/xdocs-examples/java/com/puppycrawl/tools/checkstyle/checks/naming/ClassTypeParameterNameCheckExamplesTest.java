@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ClassTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,28 +33,39 @@ public class ClassTypeParameterNameCheckExamplesTest extends AbstractExamplesMod
 
     @Test
     public void testExample1() throws Exception {
+        final String pattern = "^[A-Z]$";
         final String[] expected = {
-
+            "14:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "t", pattern),
+            "15:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "abc", pattern),
+            "16:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "LISTENER", pattern),
+            "17:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "RequestT", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+        final String pattern = "^[A-Z]{2,}$";
         final String[] expected = {
-
+            "15:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "T", pattern),
+            "16:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "t", pattern),
+            "17:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "abc", pattern),
+            "19:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "RequestT", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+        final String pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
         final String[] expected = {
-
+            "16:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "t", pattern),
+            "17:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "abc", pattern),
+            "18:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "LISTENER", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
