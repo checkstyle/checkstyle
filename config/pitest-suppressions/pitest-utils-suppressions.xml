@@ -10,24 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>CommonUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
-    <mutatedMethod>relativizeAndNormalizePath</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/nio/file/Path::normalize with receiver</description>
-    <lineContent>final Path pathAbsolute = Paths.get(path).normalize();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommonUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.CommonUtil</mutatedClass>
-    <mutatedMethod>relativizeAndNormalizePath</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/nio/file/Path::normalize with receiver</description>
-    <lineContent>final Path pathBase = Paths.get(baseDirectory).normalize();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ModuleReflectionUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
     <mutatedMethod>getCheckstyleModules</mutatedMethod>
