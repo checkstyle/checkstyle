@@ -201,7 +201,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testRelativeNormalizedPath() {
-        final String relativePath = CommonUtil.relativizeAndNormalizePath("/home", "/home/test");
+        final String relativePath = CommonUtil.relativizePath("/home", "/home/test");
 
         assertWithMessage("Invalid relative path")
             .that(relativePath)
@@ -210,7 +210,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testRelativeNormalizedPathWithNullBaseDirectory() {
-        final String relativePath = CommonUtil.relativizeAndNormalizePath(null, "/tmp");
+        final String relativePath = CommonUtil.relativizePath(null, "/tmp");
 
         assertWithMessage("Invalid relative path")
             .that(relativePath)
@@ -223,7 +223,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String absoluteFilePath = sampleAbsolutePath + "/SampleFile.java";
         final String basePath = sampleAbsolutePath + PATH_DENORMALIZER;
 
-        final String relativePath = CommonUtil.relativizeAndNormalizePath(basePath,
+        final String relativePath = CommonUtil.relativizePath(basePath,
             absoluteFilePath);
 
         assertWithMessage("Invalid relative path")
