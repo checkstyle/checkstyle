@@ -20,10 +20,14 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import net.sf.saxon.om.Item;
 
 /**
  * <p>Note: it simply wraps the existing JDK methods to provide a workaround
@@ -61,6 +65,20 @@ public final class UnmodifiableCollectionUtil {
      */
     public static <T> List<T> unmodifiableList(List<T> collection) {
         return Collections.unmodifiableList(collection);
+    }
+
+    /**
+     * Returns an unmodifiable view of a List containing elements of a specific type.
+     *
+     * @param items The List of items to make unmodifiable.
+     * @param elementType The Class object representing the type of elements in the list.
+     * @param <T> The type of elements in the resulting unmodifiable List.
+     * @return An unmodifiable List containing elements of the specified type.
+     */
+    public static <T> List<T> unmodifiableList(Collection<Item> items, Class<T> elementType) {
+        return items.stream()
+                .map(elementType::cast)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**

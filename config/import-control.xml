@@ -117,6 +117,9 @@
     <file name="ModuleReflectionUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
+    <file name="UnmodifiableCollectionUtil">
+      <allow pkg="net.sf.saxon"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
