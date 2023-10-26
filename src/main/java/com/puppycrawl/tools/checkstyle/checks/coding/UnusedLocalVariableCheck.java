@@ -962,7 +962,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
         public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
-            final DetailAST updatedScope = literalNewAst.getLastChild();
+            final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
                 final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
