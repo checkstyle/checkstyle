@@ -46,11 +46,13 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class MyClass1&lt;T&gt; {}        // OK
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // violation
-class MyClass5&lt;RequestT&gt; {} // violation
+class Example1 {
+  class MyClass1&lt;T&gt; {}
+  class MyClass2&lt;t&gt; {}        // violation
+  class MyClass3&lt;abc&gt; {}      // violation
+  class MyClass4&lt;LISTENER&gt; {} // violation
+  class MyClass5&lt;RequestT&gt; {} // violation
+}
         </source>
         <p id="Example2-config">
           To configure the check for names that are uppercase word:
@@ -66,11 +68,13 @@ class MyClass5&lt;RequestT&gt; {} // violation
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-class MyClass1&lt;T&gt; {}        // violation
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // OK
-class MyClass5&lt;RequestT&gt; {} // violation
+class Example2 {
+  class MyClass1&lt;T&gt; {}        // violation
+  class MyClass2&lt;t&gt; {}        // violation
+  class MyClass3&lt;abc&gt; {}      // violation
+  class MyClass4&lt;LISTENER&gt; {}
+  class MyClass5&lt;RequestT&gt; {} // violation
+}
         </source>
         <p id="Example3-config">
           To configure the check for names that are camel case word with T as suffix
@@ -87,11 +91,13 @@ class MyClass5&lt;RequestT&gt; {} // violation
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-class MyClass1&lt;T&gt; {}        // violation
-class MyClass2&lt;t&gt; {}        // violation
-class MyClass3&lt;abc&gt; {}      // violation
-class MyClass4&lt;LISTENER&gt; {} // violation
-class MyClass5&lt;RequestT&gt; {} // OK
+class Example3 {
+  class MyClass1&lt;T&gt; {}
+  class MyClass2&lt;t&gt; {}        // violation
+  class MyClass3&lt;abc&gt; {}      // violation
+  class MyClass4&lt;LISTENER&gt; {} // violation
+  class MyClass5&lt;RequestT&gt; {}
+}
         </source>
       </subsection>
 
