@@ -73,15 +73,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>TokenUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.TokenUtil</mutatedClass>
-    <mutatedMethod>lambda$nameToValueMapFromPublicIntFields$1</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/reflect/Field::getName</description>
-    <lineContent>Field::getName, fld -&gt; getIntFromField(fld, fld.getName()))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XpathUtil.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.utils.XpathUtil</mutatedClass>
     <mutatedMethod>getXpathItems</mutatedMethod>
