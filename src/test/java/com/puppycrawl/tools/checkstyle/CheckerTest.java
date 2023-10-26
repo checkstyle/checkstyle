@@ -1706,6 +1706,50 @@ public class CheckerTest extends AbstractModuleTestSupport {
         verify(checkerConfig, filePath, expected);
     }
 
+    /**
+     * This test is created to cover pitest mutation over Error message.
+     * Usually Exceptions are thrown , not Error, so we need to mock creation of Error.
+     *
+     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
+     *      for test does not require serialization
+     */
+    @Test
+    public void testCatchErrorWithFileName() throws Exception {
+        final String errorMessage = "Error was thrown while processing ";
+        final Error expectedError = new IOError(new InternalError(errorMessage));
+
+        final File file = new File(getPath("InputChecker.java")) {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * Test is checking catch clause when exception is thrown.
+             *
+             * @noinspection ProhibitedExceptionThrown
+             * @noinspectionreason ProhibitedExceptionThrown - we require mocked file to
+             *      throw exception as part of test
+             */
+            @Override
+            public long lastModified() {
+                throw expectedError;
+            }
+        };
+
+        final Checker checker = new Checker();
+        final List<File> filesToProcess = new ArrayList<>();
+        filesToProcess.add(file);
+        try {
+            checker.process(filesToProcess);
+            assertWithMessage("IOError is expected!").fail();
+        }
+        // -@cs[IllegalCatchExtended] Testing for catch Error is part of 100% coverage.
+        catch (Error error) {
+            assertWithMessage("Error message is not expected")
+                    .that(error.getMessage())
+                    .isEqualTo(errorMessage + file.getPath());
+        }
+    }
+
     public static class DefaultLoggerWithCounter extends DefaultLogger {
 
         private int fileStartedCount;
