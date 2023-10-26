@@ -261,8 +261,8 @@ public final class CommonUtil {
             resultPath = path;
         }
         else {
-            final Path pathAbsolute = Paths.get(path).normalize();
-            final Path pathBase = Paths.get(baseDirectory).normalize();
+            final Path pathAbsolute = Paths.get(path);
+            final Path pathBase = Paths.get(baseDirectory);
             resultPath = pathBase.relativize(pathAbsolute).toString();
         }
         return resultPath;
