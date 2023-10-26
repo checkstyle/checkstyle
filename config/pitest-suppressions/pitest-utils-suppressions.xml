@@ -80,13 +80,4 @@
     <description>removed call to java/lang/reflect/Field::getName</description>
     <lineContent>Field::getName, fld -&gt; getIntFromField(fld, fld.getName()))</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XpathUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.XpathUtil</mutatedClass>
-    <mutatedMethod>getXpathItems</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::map with receiver</description>
-    <lineContent>.map(NodeInfo.class::cast)</lineContent>
-  </mutation>
 </suppressedMutations>
