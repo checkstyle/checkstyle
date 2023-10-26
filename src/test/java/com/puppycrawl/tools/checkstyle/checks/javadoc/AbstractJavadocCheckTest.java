@@ -107,8 +107,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCustomTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocCustomTag.java"), expected);
+        execute(checkConfig, getPath("InputAbstractJavadocCustomTag.java"));
     }
 
     @Test
@@ -184,8 +183,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
+        execute(checkConfig, getPath("InputAbstractJavadocPosition.java"));
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             .isEqualTo(65);
@@ -196,9 +194,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-            getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
+        execute(checkConfig,
+            getPath("InputAbstractJavadocPositionWithSinglelineComments.java"));
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             .isEqualTo(65);
@@ -209,8 +206,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         JavadocCatchCheck.clearCounter();
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocCatchCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocPositionOnlyComments.java"), expected);
+        execute(checkConfig, getPath("InputAbstractJavadocPositionOnlyComments.java"));
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             .isEqualTo(0);
@@ -283,8 +279,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         final String path = getPath("InputAbstractJavadocTokensFail.java");
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, path, expected);
+            execute(checkConfig, path);
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
@@ -304,8 +299,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
         checkConfig.addProperty("javadocTokens", "DEPRECATED_LITERAL");
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocTokensPass.java"), expected);
+        execute(checkConfig, getPath("InputAbstractJavadocTokensPass.java"));
     }
 
     @Test
@@ -316,8 +310,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 File.createTempFile("empty", ".java", temporaryFolder).getPath();
 
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, pathToEmptyFile, expected);
+            execute(checkConfig, pathToEmptyFile);
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
@@ -335,8 +328,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocVisitLeaveCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
+        execute(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"));
         assertWithMessage("Javadoc visit count should be greater than zero")
                 .that(JavadocVisitLeaveCheck.visitCount)
                 .isGreaterThan(0);
@@ -414,9 +406,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNonTightHtmlTagIntolerantCheckReportingNoViolation() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"),
-                expected);
+        execute(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"));
     }
 
     @Test
