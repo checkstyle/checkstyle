@@ -20,7 +20,8 @@
                       name="limitedTokens"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Specify set of tokens with limited occurrences as descendants.</description>
+               <description>Specify set of
+ &lt;a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html"&gt;tokens&lt;/a&gt;.</description>
             </property>
             <property default-value="2147483647" name="maximumDepth" type="int">
                <description>Specify the maximum depth for descendant counts.</description>
