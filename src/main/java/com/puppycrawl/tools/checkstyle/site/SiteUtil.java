@@ -699,13 +699,14 @@ public final class SiteUtil {
         if (superClassSinceVersion != null) {
             sinceVersion = superClassSinceVersion;
         }
-        else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)
-                || TOKENS.equals(propertyName)
+        else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)) {
+            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
+        }
+        else if (TOKENS.equals(propertyName)
                 || JAVADOC_TOKENS.equals(propertyName)) {
             // Use module's since version for inherited properties
             sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
-        }
-        else {
+        } else {
             sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
         }
 
