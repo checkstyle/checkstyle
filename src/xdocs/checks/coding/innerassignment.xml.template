@@ -52,13 +52,13 @@ while ((line = bufferedReader.readLine()) != null); // OK
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

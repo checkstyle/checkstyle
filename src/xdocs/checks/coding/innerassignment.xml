@@ -59,16 +59,15 @@ while ((line = bufferedReader.readLine()) != null); // OK
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class MyClass {
-
-  void foo() {
+public class Example1 {
+  void foo() throws IOException {
     int a, b;
-    a = b = 5; // violation, assignment to each variable should be in a separate statement
+    a = b = 5; // violation
     a = b += 5; // violation
 
-    a = 5; // OK
-    b = 5; // OK
-    a = 5; b = 5; // OK
+    a = 5;
+    b = 5;
+    a = 5; b = 5;
 
     double myDouble;
     double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
@@ -77,20 +76,20 @@ class MyClass {
     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
     myList.add(nameOne = &quot;tom&quot;); // violation
 
-    for (int k = 0; k &lt; 10; k = k + 2) { // OK
-      // some code
+    for (int k = 0; k &lt; 10; k = k + 2) {
+        // some code
     }
 
     boolean someVal;
     if (someVal = true) { // violation
-      // some code
+        // some code
     }
 
     while (someVal = false) {} // violation
 
     InputStream is = new FileInputStream(&quot;textFile.txt&quot;);
     while ((b = is.read()) != -1) { // OK, this is a common idiom
-      // some code
+        // some code
     }
   }
 
