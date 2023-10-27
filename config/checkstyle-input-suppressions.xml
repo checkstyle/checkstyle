@@ -58,8 +58,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsShadowed.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"/>
