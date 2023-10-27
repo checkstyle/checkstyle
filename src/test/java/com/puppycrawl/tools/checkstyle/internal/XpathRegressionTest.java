@@ -122,7 +122,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "RedundantModifier",
             "SeparatorWrap",
             "SimplifyBooleanExpression",
-            "StaticVariableName",
             "SuperClone",
             "SuperFinalize",
             "SuppressWarnings",
