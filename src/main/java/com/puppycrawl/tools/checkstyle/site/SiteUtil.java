@@ -149,7 +149,7 @@ public final class SiteUtil {
     /** Properties that can not be gathered from class instance. */
     private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
         // static field (all upper case)
-        "SuppressWarningsHolderCheck.aliasList",
+        "SuppressWarningsHolder.aliasList",
         // loads string into memory similar to file
         "HeaderCheck.header",
         "RegexpHeaderCheck.header",
@@ -280,14 +280,34 @@ public final class SiteUtil {
      */
     public static Object getFieldValue(Field field, Object instance)
             throws MacroExecutionException {
+        Object returnValue = null;
+
         try {
-            // required for package/private classes
-            field.trySetAccessible();
-            return field.get(instance);
+            if (field != null) {
+                // required for package/private classes
+                field.trySetAccessible();
+                returnValue = field.get(instance);
+            }
+            else {
+                final Set<String> properties =
+                        SiteUtil.getPropertiesForDocumentation(instance.getClass(), instance);
+                final String fullClassName = instance.getClass().getName();
+                final String className =
+                        fullClassName.substring(fullClassName.lastIndexOf('.') + 1);
+                for (String property : properties) {
+                    final String formattedString = className + DOT + property;
+
+                    if (PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD.contains(formattedString)) {
+                        returnValue = null;
+                        break;
+                    }
+                }
+            }
         }
         catch (IllegalAccessException ex) {
             throw new MacroExecutionException("Couldn't get field value", ex);
         }
+        return returnValue;
     }
 
     /**

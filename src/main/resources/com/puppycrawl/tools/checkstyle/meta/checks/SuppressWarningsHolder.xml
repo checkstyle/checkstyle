@@ -14,7 +14,7 @@
  You can also define aliases for check names that need to be suppressed.
  &lt;/p&gt;</description>
          <properties>
-            <property name="aliasList" type="java.lang.String[]">
+            <property default-value="" name="aliasList" type="java.lang.String[]">
                <description>Specify aliases for check names that can be used in code
  within {@code SuppressWarnings}.</description>
             </property>

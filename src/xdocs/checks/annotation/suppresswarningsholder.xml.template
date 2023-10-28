@@ -26,29 +26,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>aliasList</td>
-              <td>
-                Specify aliases for check names that can be used in code within
-                <code>SuppressWarnings</code>.
-              </td>
-              <td>
-                <a href="../../property_types.html#String.5B.5D">String[]</a>
-                in a format of comma separated attribute=value entries.
-                The attribute is the fully qualified name of the Check and value is its alias.
-              </td>
-              <td><code>null</code></td>
-              <td>5.7</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
+          </macro>
         </div>
       </subsection>
 
