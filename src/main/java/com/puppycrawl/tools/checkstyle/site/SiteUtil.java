@@ -76,6 +76,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -149,7 +150,7 @@ public final class SiteUtil {
     /** Properties that can not be gathered from class instance. */
     private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
         // static field (all upper case)
-        "SuppressWarningsHolderCheck.aliasList",
+        "SuppressWarningsHolder.aliasList",
         // loads string into memory similar to file
         "HeaderCheck.header",
         "RegexpHeaderCheck.header",
@@ -278,9 +279,31 @@ public final class SiteUtil {
     public static Object getFieldValue(Field field, Object instance)
             throws MacroExecutionException {
         try {
-            // required for package/private classes
-            field.trySetAccessible();
-            return field.get(instance);
+            if (field != null) {
+                field.trySetAccessible();
+                return field.get(instance);
+            }
+
+            // field is null here, handle special cases based on class type
+            if (instance instanceof SuppressWarningsHolder) {
+                try {
+                    final Field checkAliasMapField =
+                            instance.getClass().getDeclaredField("CHECK_ALIAS_MAP");
+                    checkAliasMapField.setAccessible(true);
+                    final Map<String, String> aliasMap =
+                            (Map<String, String>) checkAliasMapField.get(instance);
+
+                    if (aliasMap.isEmpty()) {
+                        return null;
+                    }
+                    return aliasMap;
+                }
+                catch (NoSuchFieldException | IllegalAccessException ex) {
+                    throw new MacroExecutionException("Couldn't access CHECK_ALIAS_MAP", ex);
+                }
+            }
+
+            throw new IllegalArgumentException("Couldn't find field");
         }
         catch (IllegalAccessException ex) {
             throw new MacroExecutionException("Couldn't get field value", ex);
