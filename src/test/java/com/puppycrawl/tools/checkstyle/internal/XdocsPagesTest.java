@@ -1017,8 +1017,7 @@ public class XdocsPagesTest {
         final String expectedTypeName;
         // SuppressWarningsHolder#aliasList is backed by a static (upper case) property.
         if ("SuppressWarningsHolder".equals(sectionName) && "aliasList".equals(propertyName)) {
-            expectedTypeName = "String[] in a format of comma separated attribute=value entries. "
-                + "The attribute is the fully qualified name of the Check and value is its alias.";
+            expectedTypeName = "String[]";
         }
         else {
             expectedTypeName = Optional.ofNullable(field)

@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -76,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -149,7 +151,7 @@ public final class SiteUtil {
     /** Properties that can not be gathered from class instance. */
     private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
         // static field (all upper case)
-        "SuppressWarningsHolderCheck.aliasList",
+        "SuppressWarningsHolder.aliasList",
         // loads string into memory similar to file
         "HeaderCheck.header",
         "RegexpHeaderCheck.header",
@@ -275,17 +277,64 @@ public final class SiteUtil {
      * @return the value of the field.
      * @throws MacroExecutionException if the value could not be retrieved.
      */
-    public static Object getFieldValue(Field field, Object instance)
-            throws MacroExecutionException {
+    public static Object getFieldValue(Field field, Object instance) throws MacroExecutionException {
         try {
-            // required for package/private classes
-            field.trySetAccessible();
-            return field.get(instance);
-        }
-        catch (IllegalAccessException ex) {
-            throw new MacroExecutionException("Couldn't get field value", ex);
+            if (field != null) {
+                // required for package/private classes
+                field.setAccessible(true);
+                return field.get(instance);
+            } else {
+                final Set<String> properties = SiteUtil.getPropertiesForDocumentation(instance.getClass(), instance);
+                for (String propertyName : properties) {
+                    Method setter = findSetterForPropertyName(instance.getClass(), propertyName);
+                    if (setter != null) {
+                        return getTypeFromSetter(setter);
+                    }
+                }
+                throw new IllegalArgumentException("No setter found for the properties.");
+            }
+        } catch (IllegalAccessException ex) {
+            throw new MacroExecutionException("Couldn't get field value or type from setter", ex);
         }
     }
+
+    public static Method findSetterForPropertyName(Class<?> clazz, String propertyName) {
+        String setterName = "set" + capitalizeFirstLetter(propertyName);
+        try {
+            for (Method method : clazz.getMethods()) {
+                if (method.getName().equals(setterName)) {
+                    return method;
+                }
+            }
+        } catch (Exception ex) {
+            // Handle any exception that might arise while looking for the setter
+        }
+        return null;
+    }
+
+    public static String capitalizeFirstLetter(String original) {
+        if (original == null || original.length() == 0) {
+            return original;
+        }
+        return original.substring(0, 1).toUpperCase() + original.substring(1);
+    }
+
+    public static Class<?> getTypeFromSetter(Method setter) throws MacroExecutionException {
+        try {
+            // Get the parameter types of the setter
+            Class<?>[] paramTypes = setter.getParameterTypes();
+
+            // A typical setter has only one parameter, so we'll return its type.
+            if (paramTypes.length != 1) {
+                throw new IllegalArgumentException("Invalid setter method. Expected exactly one parameter.");
+            }
+
+            return paramTypes[0];
+        } catch (Exception ex) {
+            throw new MacroExecutionException("Couldn't get type from setter", ex);
+        }
+    }
+
 
     /**
      * Returns the instance of the module with the given name.
@@ -940,6 +989,7 @@ public final class SiteUtil {
             valuesStream = collection.stream();
         }
         else {
+            System.out.println("value: " + value);
             final Object[] array = (Object[]) value;
             valuesStream = Arrays.stream(array);
         }
