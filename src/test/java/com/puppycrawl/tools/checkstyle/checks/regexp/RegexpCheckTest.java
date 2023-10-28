@@ -138,7 +138,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyGood()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic9.java"), expected);
@@ -148,7 +148,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic10.java"), expected);
@@ -158,7 +158,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad2()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic11.java"), expected);
@@ -167,7 +167,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
@@ -177,7 +177,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseFalse() throws Exception {
         final String[] expectedTrue = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
