@@ -6407,6 +6407,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter object of getIntFromField.</message>
+    <lineContent>Field::getName, fld -&gt; getIntFromField(fld, null))</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
