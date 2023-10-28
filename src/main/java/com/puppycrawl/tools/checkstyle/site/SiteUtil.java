@@ -149,7 +149,7 @@ public final class SiteUtil {
     /** Properties that can not be gathered from class instance. */
     private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
         // static field (all upper case)
-        "SuppressWarningsHolderCheck.aliasList",
+        "SuppressWarningsHolder.aliasList",
         // loads string into memory similar to file
         "HeaderCheck.header",
         "RegexpHeaderCheck.header",

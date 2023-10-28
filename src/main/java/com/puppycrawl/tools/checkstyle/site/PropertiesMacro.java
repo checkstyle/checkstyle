@@ -495,9 +495,15 @@ public class PropertiesMacro extends AbstractMacro {
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {
-            final String defaultValue = SiteUtil.getDefaultValue(
-                    propertyName, field, instance, currentModuleName);
+            final String defaultValue;
 
+            if (field != null) {
+                defaultValue = SiteUtil.getDefaultValue(
+                        propertyName, field, instance, currentModuleName);
+            }
+            else {
+                defaultValue = CURLY_BRACKET;
+            }
             final String checkName = CHECK_PATTERN
                     .matcher(instance.getClass().getSimpleName()).replaceAll("");
 
