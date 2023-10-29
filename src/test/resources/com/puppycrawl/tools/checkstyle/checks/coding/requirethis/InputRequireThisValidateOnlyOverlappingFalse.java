@@ -223,7 +223,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
         String field1 = "Hello";
         field1 = "Java"; // No violation. Local var allowed
         this.booleanField = true;
-        this.booleanField = booleanField; // violation '.* variable 'booleanField' needs "this.".'
+        this.booleanField = booleanField;
     }
 
     void foo25() {
