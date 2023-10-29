@@ -365,11 +365,11 @@ public final class ConfigurationLoader {
                 fragment = props.resolve(propertyName);
                 if (fragment == null) {
                     if (defaultValue != null) {
-                        sb.replace(0, sb.length(), defaultValue);
-                        break;
+                        sb.append(defaultValue);
+                    } else {
+                        throw new CheckstyleException(
+                                "Property ${" + propertyName + "} has not been set");
                     }
-                    throw new CheckstyleException(
-                        "Property ${" + propertyName + "} has not been set");
                 }
             }
             sb.append(fragment);
