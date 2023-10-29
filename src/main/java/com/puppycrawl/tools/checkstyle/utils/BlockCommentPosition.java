@@ -154,7 +154,7 @@ public final class BlockCommentPosition {
      * @return true if node is before method
      */
     public static boolean isOnMethod(DetailAST blockComment) {
-        return isOnPlainClassMember(blockComment, TokenTypes.METHOD_DEF)
+        return isOnPlainClassMember(blockComment)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.METHOD_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.METHOD_DEF);
     }
@@ -166,7 +166,7 @@ public final class BlockCommentPosition {
      * @return true if node is before field
      */
     public static boolean isOnField(DetailAST blockComment) {
-        return isOnPlainClassMember(blockComment, TokenTypes.VARIABLE_DEF)
+        return isOnPlainClassMember(blockComment)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.VARIABLE_DEF)
                     && blockComment.getParent().getParent().getParent()
                         .getType() == TokenTypes.OBJBLOCK
@@ -185,7 +185,7 @@ public final class BlockCommentPosition {
         return isOnPlainToken(blockComment, TokenTypes.CTOR_DEF, TokenTypes.IDENT)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.CTOR_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.CTOR_DEF)
-                || isOnPlainClassMember(blockComment, TokenTypes.CTOR_DEF);
+                || isOnPlainClassMember(blockComment);
     }
 
     /**
@@ -230,7 +230,7 @@ public final class BlockCommentPosition {
      * @return true if node is before annotation field
      */
     public static boolean isOnAnnotationField(DetailAST blockComment) {
-        return isOnPlainClassMember(blockComment, TokenTypes.ANNOTATION_FIELD_DEF)
+        return isOnPlainClassMember(blockComment)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.ANNOTATION_FIELD_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.ANNOTATION_FIELD_DEF);
     }
@@ -281,10 +281,9 @@ public final class BlockCommentPosition {
      * Checks that block comment is on specified class member without any modifiers.
      *
      * @param blockComment block comment start DetailAST
-     * @param memberType parent token type
      * @return true if block comment is on specified token without modifiers
      */
-    private static boolean isOnPlainClassMember(DetailAST blockComment, int memberType) {
+    private static boolean isOnPlainClassMember(DetailAST blockComment) {
         DetailAST parent = blockComment.getParent();
         // type could be in fully qualified form, so we go up to Type token
         while (parent.getType() == TokenTypes.DOT) {
@@ -292,7 +291,6 @@ public final class BlockCommentPosition {
         }
         return (parent.getType() == TokenTypes.TYPE
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
-                && parent.getParent().getType() == memberType
                 // previous parent sibling is always TokenTypes.MODIFIERS
                 && !parent.getPreviousSibling().hasChildren()
                 && parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;
