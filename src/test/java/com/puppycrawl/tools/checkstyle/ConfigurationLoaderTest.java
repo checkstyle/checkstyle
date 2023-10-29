@@ -769,4 +769,17 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     .contains("query");
         }
     }
+
+    @Test
+    public void testLengthInReplaceProperties() throws Exception {
+        final String[] testValues = {"${a}", "x${a}"};
+        final Properties props = new Properties();
+        for (String testValue : testValues) {
+            final String value = (String) getReplacePropertiesMethod().invoke(
+                    null, testValue, new PropertiesExpander(props), "DefaultValue");
+            assertWithMessage("\"" + testValue + "\"")
+                    .that(value)
+                    .isEqualTo("DefaultValue");
+        }
+    }
 }
