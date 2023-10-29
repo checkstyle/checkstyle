@@ -422,6 +422,24 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testReplacePropertiesReplaceWithDefault() throws Exception {
+        final String[][] testValues = {
+            {"${a}", "Default"},
+            {"x${a}", "xDefault"},
+            {"${a}x", "Defaultx"},
+            {"${a}x${b}", "DefaultxDefault"},
+        };
+        final Properties props = new Properties();
+        for (String[] testValue : testValues) {
+            final String value = (String) getReplacePropertiesMethod().invoke(
+                null, testValue[0], new PropertiesExpander(props), "Default");
+            assertWithMessage("\"" + testValue[0] + "\"")
+                .that(value)
+                .isEqualTo(testValue[1]);
+        }
+    }
+
     private static Properties initProperties() {
         final Properties props = new Properties();
         props.setProperty("a", "A");
@@ -770,16 +788,4 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         }
     }
 
-    @Test
-    public void testLengthInReplaceProperties() throws Exception {
-        final String[] testValues = {"${a}", "x${a}"};
-        final Properties props = new Properties();
-        for (String testValue : testValues) {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                    null, testValue, new PropertiesExpander(props), "DefaultValue");
-            assertWithMessage("\"" + testValue + "\"")
-                    .that(value)
-                    .isEqualTo("DefaultValue");
-        }
-    }
 }
