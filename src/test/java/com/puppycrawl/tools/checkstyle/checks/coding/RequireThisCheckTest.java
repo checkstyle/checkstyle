@@ -233,7 +233,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "194:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "198:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "219:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "226:29: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
             "237:21: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "247:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "262:9: " + getCheckMessage(MSG_VARIABLE, "booleanField", ""),
@@ -507,6 +506,30 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputRequireThisLocalClassesInsideLambdas.java"),
+            expected);
+    }
+
+    @Test
+    public void testParametersSameName() throws Exception {
+         final String[] expected = {
+            "19:10: " + getCheckMessage(MSG_VARIABLE, "index", ""),
+            "20:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "21:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "22:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "23:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "24:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "26:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "27:10: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "40:5: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "46:5: " + getCheckMessage(MSG_VARIABLE, "c", ""),
+
+
+
+
+
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisSameParameters.java"),
             expected);
     }
 

@@ -628,8 +628,9 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if token is part of expression, false otherwise
      */
     private static boolean isInExpression(DetailAST ast) {
+
         return TokenTypes.DOT == ast.getParent().getType()
-                || TokenTypes.METHOD_REF == ast.getParent().getType();
+                || TokenTypes.METHOD_REF == ast.getParent().getType() || TokenTypes.ASSIGN == ast.getParent().getType();
     }
 
     /**
