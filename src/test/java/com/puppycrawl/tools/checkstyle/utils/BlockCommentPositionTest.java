@@ -47,7 +47,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
     public void testJavaDocsRecognition() throws Exception {
         final List<BlockCommentPositionTestMetadata> metadataList = Arrays.asList(
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnClass.java",
-                        BlockCommentPosition::isOnClass, 3),
+                        BlockCommentPosition::isOnClass, 4),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnMethod.java",
                         BlockCommentPosition::isOnMethod, 6),
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnField.java",
