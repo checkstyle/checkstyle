@@ -6419,6 +6419,21 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
+    <specifier>methodref.return</specifier>
+    <message>Incompatible return type</message>
+    <lineContent>.map(elementType::cast)</lineContent>
+    <details>
+      found   : T[ extends @Initialized @Nullable Object super @Initialized @Nullable Void]
+      required: T[ extends @Initialized @Nullable Object super @Initialized @NonNull Void]
+      Consequence: method in @Initialized @NonNull Class&lt;T extends @Initialized @Nullable Object&gt;
+      T extends @Initialized @Nullable Object cast(@Initialized @NonNull Class&lt;T extends @Initialized @Nullable Object&gt; this, @Initialized @Nullable Object p0)
+      is not a valid method reference for method in @Initialized @NonNull Function&lt;S extends @Initialized @Nullable Object, T extends @Initialized @Nullable Object&gt;
+      T extends @Initialized @Nullable Object apply(@Initialized @NonNull Function&lt;S extends @Initialized @Nullable Object, T extends @Initialized @Nullable Object&gt; this, S extends @Initialized @Nullable Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return Arrays.copyOf(array, length);</lineContent>
