@@ -130,9 +130,6 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
                 privateMethod(null, null);
             }
 
-            /**
-             * Javadoc
-             */
             private String privateMethod(String a, String b) {
                 return null;
             }
@@ -145,9 +142,6 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
             publicMethod(null, null);
         }
 
-        /**
-         * Javadoc
-         */
         public String publicMethod(String a, String b) {
             return null;
         }
