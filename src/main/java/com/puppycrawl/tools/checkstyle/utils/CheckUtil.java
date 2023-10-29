@@ -379,9 +379,6 @@ public final class CheckUtil {
                 || type == TokenTypes.ENUM_DEF) {
                 returnValue = getAccessModifierFromModifiersToken(token);
             }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                break;
-            }
         }
 
         return returnValue;
