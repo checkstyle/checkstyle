@@ -236,7 +236,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     public void testStarImports() throws Exception {
 
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, "List"),
+            "24:5: " + getCheckMessage(MSG_KEY, "List"),
         };
 
         verifyWithInlineConfigParser(
