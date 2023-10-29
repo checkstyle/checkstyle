@@ -141,8 +141,8 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
             "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"));
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck"));
 
     /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
