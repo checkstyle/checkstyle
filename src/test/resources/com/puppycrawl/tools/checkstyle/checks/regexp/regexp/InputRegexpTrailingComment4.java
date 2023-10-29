@@ -28,7 +28,7 @@ public class InputRegexpTrailingComment4 {
       Let's check multi-line comments.
     */
     /* c-style */ // cpp-style
-    /* c-style 1 */ /*c-style 2 */ // violation
+    /* c-style 1 */ /*c-style 2 */ // violation 'Line matches the illegal pattern'
 
     void method2(long ms /* we should ignore this */) {
         /* comment before text */int z;
