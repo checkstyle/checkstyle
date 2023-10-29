@@ -522,4 +522,13 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod3.java"), expected);
     }
+
+    @Test
+    public void test4() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAnonymousMethod.java"), expected);
+    }
 }
