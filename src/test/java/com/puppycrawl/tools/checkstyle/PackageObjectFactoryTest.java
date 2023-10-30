@@ -515,6 +515,35 @@ public class PackageObjectFactoryTest {
 
     }
 
+    @Test
+    public void testExceptionMessage() {
+        final String barPackage = BASE_PACKAGE + ".packageobjectfactory.bar";
+        final String fooPackage = BASE_PACKAGE + ".packageobjectfactory.foo";
+        final String zooPackage = BASE_PACKAGE + ".packageobjectfactory.zoo";
+        final String abcPackage = BASE_PACKAGE + ".packageobjectfactory.abc";
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final PackageObjectFactory objectFactory = new PackageObjectFactory(
+                new HashSet<>(Arrays.asList(abcPackage, barPackage,
+                        fooPackage, zooPackage)), classLoader);
+        final String name = "FooCheck";
+        try {
+            objectFactory.createModule(name);
+            assertWithMessage("Exception is expected").fail();
+        }
+        catch (CheckstyleException ex) {
+            final String optionalNames = abcPackage + PACKAGE_SEPARATOR + name
+                    + STRING_SEPARATOR + barPackage + PACKAGE_SEPARATOR + name
+                    + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name
+                    + STRING_SEPARATOR + zooPackage + PACKAGE_SEPARATOR + name;
+            final LocalizedMessage exceptionMessage = new LocalizedMessage(
+                    Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE, name, optionalNames);
+            assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo(exceptionMessage.getMessage());
+        }
+    }
+
     private static final class FailConstructorFileSet extends AbstractFileSetCheck {
 
         private FailConstructorFileSet() {
