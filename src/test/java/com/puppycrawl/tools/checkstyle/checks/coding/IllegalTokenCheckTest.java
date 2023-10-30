@@ -86,15 +86,15 @@ public class IllegalTokenCheckTest
                             + lineSeparator)),
             "10:3: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            "* // violation" + lineSeparator
+                            "*" + lineSeparator
                             + " * Test for illegal tokens"
                             + lineSeparator + " ")),
             "38:29: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some comment href // violation" + lineSeparator)),
+                            " some comment href" + lineSeparator)),
             "42:28: " + getCheckMessage(MSG_KEY,
                         JavadocUtil.escapeAllControlChars(
-                            " some a href // violation" + lineSeparator)),
+                            " some a href" + lineSeparator)),
         };
         verifyWithInlineConfigParser(path, expected);
     }
