@@ -22,11 +22,13 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -50,6 +52,25 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @Component(role = Macro.class, hint = "properties")
 public class PropertiesMacro extends AbstractMacro {
+
+    /** Set of properties not inherited from the base token configuration. */
+    public static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
+            Arrays.stream(new String[] {
+                "AtclauseOrder - target",
+                "DescendantToken - limitedTokens",
+                "IllegalType - memberModifiers",
+                "MagicNumber - constantWaiverParentToken",
+                "MultipleStringLiterals - ignoreOccurrenceContext",
+            }).collect(Collectors.toSet()));
+
+    /** The precompiled pattern for a comma followed by a space. */
+    private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
+
+    /** The precompiled pattern for a Check. */
+    private static final Pattern CHECK_PATTERN = Pattern.compile("Check$");
+
+    /** The string '{}'. */
+    private static final String CURLY_BRACKET = "{}";
 
     /** Represents the relative path to the property types XML. */
     private static final String PROPERTY_TYPES_XML = "property_types.xml";
@@ -399,7 +420,7 @@ public class PropertiesMacro extends AbstractMacro {
         }
         else {
             sink.rawText(INDENT_LEVEL_18);
-            sink.text(SiteUtil.DOT);
+            sink.rawText(SiteUtil.DOT);
             sink.rawText(INDENT_LEVEL_14);
         }
     }
@@ -466,9 +487,23 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
-            sink.rawText(CODE_START);
-            sink.text(defaultValue);
-            sink.rawText(CODE_END);
+
+            final String checkName = CHECK_PATTERN
+                    .matcher(instance.getClass().getSimpleName()).replaceAll("");
+
+            final boolean isSpecialTokenProp = NON_BASE_TOKEN_PROPERTIES.stream()
+                    .anyMatch(tokenProp -> tokenProp.equals(checkName + " - " + propertyName));
+
+            if (isSpecialTokenProp && !CURLY_BRACKET.equals(defaultValue)) {
+                final List<String> defaultValuesList =
+                        Arrays.asList(COMMA_SPACE_PATTERN.split(defaultValue));
+                writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES);
+            }
+            else {
+                sink.rawText(CODE_START);
+                sink.text(defaultValue);
+                sink.rawText(CODE_END);
+            }
         }
 
         sink.tableCell_();
