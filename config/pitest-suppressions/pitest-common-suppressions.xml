@@ -73,15 +73,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createObjectFromFullModuleNames</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::sorted with receiver</description>
-    <lineContent>.sorted()</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>addError</mutatedMethod>

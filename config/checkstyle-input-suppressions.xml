@@ -76,6 +76,10 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
+          files="[\\/]packageobjectfactory[\\/]abc[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
+          files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
+  <suppress id="noCheckstyleInInputs"
           files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAbstractSuperCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAnnotationUseStyleCheck.java"/>
