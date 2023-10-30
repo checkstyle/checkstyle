@@ -1037,7 +1037,8 @@ public class XdocsPagesTest {
         if (expectedValue != null) {
             final String actualValue = columns.get(3).getTextContent().trim()
                     .replaceAll("\\s+", " ")
-                    .replaceAll("\\s,", ",");
+                    .replaceAll("\\s,", ",")
+                    .replaceAll("\\s*\\.$", "");
 
             assertWithMessage(fileName + " section '" + sectionName
                             + "' should have the value for " + propertyName)
