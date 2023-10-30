@@ -140,7 +140,6 @@ public final class InlineConfigParser {
      * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
      */
     private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"));
 
     /**
