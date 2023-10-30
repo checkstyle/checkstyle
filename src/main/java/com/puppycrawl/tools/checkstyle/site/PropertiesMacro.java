@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +51,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @Component(role = Macro.class, hint = "properties")
 public class PropertiesMacro extends AbstractMacro {
+
+    /** The string '{}'. */
+    private static final String CURLY_BRACKET = "{}";
+
+    /** Set of properties not inherited from the base token configuration. */
+    private static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
+            Arrays.stream(new String[] {
+                "AtclauseOrder - target",
+                "DescendantToken - limitedTokens",
+                "IllegalType - memberModifiers",
+                "MagicNumber - constantWaiverParentToken",
+                "MultipleStringLiterals - ignoreOccurrenceContext",
+            }).collect(Collectors.toSet()));
 
     /** Represents the relative path to the property types XML. */
     private static final String PROPERTY_TYPES_XML = "property_types.xml";
@@ -100,6 +114,15 @@ public class PropertiesMacro extends AbstractMacro {
         configureGlobalProperties(modulePath);
 
         writePropertiesTable((XdocSink) sink);
+    }
+
+    /**
+     * Gets the unmodifiable set of non-base token properties.
+     *
+     * @return the set of non-base token properties as an unmodifiable set
+     */
+    public static Set<String> getNonBaseTokenProperties() {
+        return NON_BASE_TOKEN_PROPERTIES;
     }
 
     /**
@@ -399,7 +422,7 @@ public class PropertiesMacro extends AbstractMacro {
         }
         else {
             sink.rawText(INDENT_LEVEL_18);
-            sink.text(SiteUtil.DOT);
+            sink.rawText(SiteUtil.DOT);
             sink.rawText(INDENT_LEVEL_14);
         }
     }
@@ -466,9 +489,19 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
-            sink.rawText(CODE_START);
-            sink.text(defaultValue);
-            sink.rawText(CODE_END);
+
+            final boolean isNonBaseTokenProp = NON_BASE_TOKEN_PROPERTIES.stream()
+                    .anyMatch(tokenProp -> tokenProp.endsWith(" - " + propertyName));
+
+            if (isNonBaseTokenProp && !CURLY_BRACKET.equals(defaultValue)) {
+                final List<String> defaultValuesList = Arrays.asList(defaultValue.split(", "));
+                writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES);
+            }
+            else {
+                sink.rawText(CODE_START);
+                sink.text(defaultValue);
+                sink.rawText(CODE_END);
+            }
         }
 
         sink.tableCell_();
