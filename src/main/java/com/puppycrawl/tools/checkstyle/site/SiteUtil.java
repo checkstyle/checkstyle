@@ -695,23 +695,18 @@ public final class SiteUtil {
             throws MacroExecutionException {
         final String sinceVersion;
         final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
+                .get(moduleName + DOT + propertyName);
         if (superClassSinceVersion != null) {
             sinceVersion = superClassSinceVersion;
-        }
-        else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)
-                || TOKENS.equals(propertyName)
-                || JAVADOC_TOKENS.equals(propertyName)) {
+        } else if (TOKENS.equals(propertyName) || JAVADOC_TOKENS.equals(propertyName)) {
             // Use module's since version for inherited properties
             sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
-        }
-        else {
+        } else {
             sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
         }
 
         if (sinceVersion == null) {
-            final String message = String.format(Locale.ROOT,
-                    "Failed to find since version for %s", propertyName);
+            final String message = String.format(Locale.ROOT, "Failed to find since version for %s", propertyName);
             throw new MacroExecutionException(message);
         }
 
