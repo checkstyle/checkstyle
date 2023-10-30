@@ -246,7 +246,7 @@ public final class CommonUtil {
     }
 
     /**
-     * Constructs a normalized relative path between base directory and a given path.
+     * Constructs a relative path between base directory and a given path.
      *
      * @param baseDirectory
      *            the base path to which given path is relativized
@@ -255,14 +255,14 @@ public final class CommonUtil {
      * @return the relative normalized path between base directory and
      *     path or path if base directory is null.
      */
-    public static String relativizeAndNormalizePath(final String baseDirectory, final String path) {
+    public static String relativizePath(final String baseDirectory, final String path) {
         final String resultPath;
         if (baseDirectory == null) {
             resultPath = path;
         }
         else {
-            final Path pathAbsolute = Paths.get(path).normalize();
-            final Path pathBase = Paths.get(baseDirectory).normalize();
+            final Path pathAbsolute = Paths.get(path);
+            final Path pathBase = Paths.get(baseDirectory);
             resultPath = pathBase.relativize(pathAbsolute).toString();
         }
         return resultPath;

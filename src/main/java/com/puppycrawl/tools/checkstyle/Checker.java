@@ -375,7 +375,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizePath(basedir, fileName);
         return beforeExecutionFileFilters.accept(stripped);
     }
 
@@ -387,7 +387,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizePath(basedir, fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileStarted(event);
@@ -402,7 +402,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireErrors(String fileName, SortedSet<Violation> errors) {
-        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizePath(basedir, fileName);
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
@@ -426,7 +426,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireFileFinished(String fileName) {
-        final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
+        final String stripped = CommonUtil.relativizePath(basedir, fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(event);
