@@ -139,8 +139,7 @@ public final class InlineConfigParser {
      * one violation message key.
      * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
      */
-    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
+    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(List.of(
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"));
 
     /**
