@@ -27,14 +27,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -70,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
+import com.puppycrawl.tools.checkstyle.site.PropertiesMacro;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -104,18 +102,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("WrapOption", WrapOption.class)
             .put("PARAM_LITERAL", int[].class).build();
 
-    private static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
-        Arrays.stream(new String[] {
-            "AtclauseOrder - target",
-            "DescendantToken - limitedTokens",
-            "IllegalType - memberModifiers",
-            "MagicNumber - constantWaiverParentToken",
-            "MultipleStringLiterals - ignoreOccurrenceContext",
-        }).collect(Collectors.toSet()));
-
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
+    private static final Set<String> NON_BASE_TOKEN_PROPERTIES =
+            PropertiesMacro.getNonBaseTokenProperties();
 
     private static Checker checker;
 
