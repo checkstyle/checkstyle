@@ -42,38 +42,35 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             </tr>
             <tr>
               <td>constantWaiverParentToken</td>
-              <td>Specify tokens that are allowed in the AST path from the number literal to the
-                  enclosing constant definition.</td>
-              <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-              </td>
+              <td>Specify tokens that are allowed in the AST path from the number literal to the enclosing constant definition.</td>
+              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
-                ARRAY_INIT</a>
+                    ARRAY_INIT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>
+                    ASSIGN</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
-                DIV</a>
+                    DIV</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
-                ELIST</a>
+                    ELIST</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                EXPR</a>
+                    EXPR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
+                    LITERAL_NEW</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>
+                    METHOD_CALL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
-                MINUS</a>
+                    MINUS</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
-                PLUS</a>
+                    PLUS</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
-                STAR</a>
+                    STAR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
-                TYPECAST</a>
+                    TYPECAST</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
-                UNARY_MINUS</a>
+                    UNARY_MINUS</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
-                UNARY_PLUS</a>
+                    UNARY_PLUS</a>
               </td>
               <td>6.11</td>
             </tr>
@@ -117,25 +114,25 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>
+                    NUM_DOUBLE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>
+                    NUM_FLOAT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>
+                    NUM_INT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>
-                .
+                    NUM_LONG</a>
+                  .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>
+                    NUM_DOUBLE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>
+                    NUM_FLOAT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>
+                    NUM_INT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>
-                .
+                    NUM_LONG</a>
+                  .
               </td>
               <td>3.1</td>
             </tr>
