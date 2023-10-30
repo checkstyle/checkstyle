@@ -1,13 +1,13 @@
-/* // violation
+/*
 IllegalToken
 tokens = COMMENT_CONTENT
 
 
 */
-
+// violation 6 lines above, 'Using 'tokens = COMMENT_CONTENT' is not allowed.'
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
-
-/** // violation
+// violation below
+/**
  * Test for illegal tokens
  */
 public class InputIllegalTokens4
@@ -34,12 +34,13 @@ public class InputIllegalTokens4
 
     public void methodWithLabels() {
         label:
-        {
-            anotherLabel: // some comment href // violation
+        {   // violation below
+            anotherLabel: // some comment href
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href // violation
+            break label; // some a href
+            // violation above
         }
     }
 }
