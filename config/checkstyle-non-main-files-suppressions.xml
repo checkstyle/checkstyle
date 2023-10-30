@@ -253,12 +253,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13839 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13893 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltype.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13930 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]magicnumber.xml.template"/>
   <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]designforextension.xml.template"/>
@@ -288,8 +282,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]importorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]unusedimports.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]atclauseorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadocblocktaglocation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
