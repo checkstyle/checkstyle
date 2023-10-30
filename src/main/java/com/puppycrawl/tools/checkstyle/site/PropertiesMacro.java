@@ -466,6 +466,11 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
+            if ("constantWaiverParentToken".equals(defaultValue)) {
+                final List<String> defaultValuesList = Arrays.asList(defaultValue.split(", "));
+                writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES);
+            }
+
             sink.rawText(CODE_START);
             sink.text(defaultValue);
             sink.rawText(CODE_END);
