@@ -179,6 +179,13 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "87:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "92:37: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
             "102:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aA"),
+            "136: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "136:49: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "136:59: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "b"),
+            "154: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "154:43: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+            "154:53: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "b"),
+
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodPublicOnly.java"), expected);
@@ -521,5 +528,14 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod3.java"), expected);
+    }
+
+    @Test
+    public void test4() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "a"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodAnonymousMethod.java"), expected);
     }
 }
