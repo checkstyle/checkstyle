@@ -60,7 +60,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesDirectPackages() throws Exception {
         final String[] expected = {
-            "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "24:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "32:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "42:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -70,9 +72,9 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludedPackagesCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0),
+            "23:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "31:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "41:1: " + getCheckMessage(MSG_KEY, 1, 0),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExcludedPackagesCommonPackage.java"), expected);
@@ -108,7 +110,11 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExcludedPackagesAllIgnored() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "35:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "45:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExcludedPackagesAllIgnored.java"), expected);
     }
