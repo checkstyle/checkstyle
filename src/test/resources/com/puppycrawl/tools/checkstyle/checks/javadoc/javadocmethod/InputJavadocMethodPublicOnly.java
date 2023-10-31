@@ -127,13 +127,16 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
         return new Thread() {
             @Override
             public void run() {
-                privateMethod(null, null);
+                privateMethod(null,null);
             }
 
-            /**
-             * Javadoc
-             */
+           /**
+           * Javadoc
+           */
             private String privateMethod(String a, String b) {
+                 // violation above '@return tag should be present and have description.'
+                 // violation 2 lines above 'Expected @param tag for 'a'.'
+                // violation 3 lines above 'Expected @param tag for 'b'.'
                 return null;
             }
         };
@@ -142,13 +145,16 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     private final Thread anonymousClassInField = new Thread() {
         @Override
         public void run() {
-            publicMethod(null, null);
+            publicMethod(null,null);
         }
 
         /**
          * Javadoc
          */
         public String publicMethod(String a, String b) {
+                 // violation above '@return tag should be present and have description.'
+                 // violation 2 lines above 'Expected @param tag for 'a'.'
+                // violation 3 lines above 'Expected @param tag for 'b'.'
             return null;
         }
     };
