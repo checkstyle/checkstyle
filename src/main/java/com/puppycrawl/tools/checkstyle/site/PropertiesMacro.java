@@ -50,6 +50,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @Component(role = Macro.class, hint = "properties")
 public class PropertiesMacro extends AbstractMacro {
 
+    /** The string 'subset of tokens'. */
+    public static final String SUBSET_TOKENS = "subset of tokens";
+
+    /** Represents the relative path to the property types XML. */
+    private static final String PROPERTY_TYPES_XML = "property_types.xml";
+
+    /** Represents the format string for constructing URLs with two placeholders. */
+    private static final String URL_F = "%s#%s";
+
     /** Reflects start of a code segment. */
     private static final String CODE_START = "<code>";
 
@@ -74,6 +83,9 @@ public class PropertiesMacro extends AbstractMacro {
      * Tokens always present at the end of all properties.
     */
     private static final String TOKENS_PROPERTY = SiteUtil.TOKENS;
+
+    /** The constant represents 'TokenTypes'. */
+    private static final String TOKEN_TYPES_PROPERTY = SiteUtil.TOKEN_TYPES;
 
     /** The name of the current module being processed. */
     private static String currentModuleName = "";
@@ -293,7 +305,7 @@ public class PropertiesMacro extends AbstractMacro {
                         .stream()
                         .map(TokenUtil::getTokenName)
                         .collect(Collectors.toList());
-                sink.text("subset of tokens");
+                sink.text(SUBSET_TOKENS);
 
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES);
             }
@@ -311,18 +323,40 @@ public class PropertiesMacro extends AbstractMacro {
         }
         else {
             final String type = SiteUtil.getType(field, propertyName, currentModuleName, instance);
-            final String relativePathToPropertyTypes =
-                    SiteUtil.getLinkToDocument(currentModuleName, "property_types.xml");
-            final String escapedType = type
-                    .replace("[", ".5B")
-                    .replace("]", ".5D");
-            final String url =
-                    String.format(Locale.ROOT, "%s#%s", relativePathToPropertyTypes, escapedType);
-            sink.link(url);
-            sink.text(type);
-            sink.link_();
+            if ((SUBSET_TOKENS + " " + TOKEN_TYPES_PROPERTY).equals(type)) {
+                processLinkForTokenTypes(sink);
+            }
+            else {
+                final String relativePathToPropertyTypes =
+                        SiteUtil.getLinkToDocument(currentModuleName, PROPERTY_TYPES_XML);
+                final String escapedType = type
+                        .replace("[", ".5B")
+                        .replace("]", ".5D");
+                final String url =
+                        String.format(Locale.ROOT, URL_F, relativePathToPropertyTypes, escapedType);
+                sink.link(url);
+                sink.text(type);
+                sink.link_();
+            }
         }
         sink.tableCell_();
+    }
+
+    /**
+     * Writes a formatted link for "TokenTypes" to the given sink.
+     *
+     * @param sink The output target where the link is written.
+     * @throws MacroExecutionException If an error occurs during the link processing.
+     */
+    private static void processLinkForTokenTypes(Sink sink)
+            throws MacroExecutionException {
+        final String link =
+                SiteUtil.getLinkToDocument(currentModuleName, SiteUtil.PATH_TO_TOKEN_TYPES);
+
+        sink.text("subset of tokens ");
+        sink.link(link);
+        sink.text("TokenTypes");
+        sink.link_();
     }
 
     /**
