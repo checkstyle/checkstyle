@@ -130,10 +130,13 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
                 privateMethod(null, null);
             }
 
-            /**
-             * Javadoc
-             */
+           /**
+           * Javadoc
+           */
             private String privateMethod(String a, String b) {
+                // violation above '@return tag should be present and have description.'
+                // violation 2 lines above 'Expected @param tag for 'a'.'
+                // violation 3 lines above 'Expected @param tag for 'b'.'
                 return null;
             }
         };
@@ -149,6 +152,9 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
          * Javadoc
          */
         public String publicMethod(String a, String b) {
+            // violation above '@return tag should be present and have description.'
+            // violation 2 lines above 'Expected @param tag for 'a'.'
+            // violation 3 lines above 'Expected @param tag for 'b'.'
             return null;
         }
     };
