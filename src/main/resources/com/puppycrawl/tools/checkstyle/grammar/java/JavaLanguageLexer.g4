@@ -110,7 +110,10 @@ tokens {
 
     LITERAL_NON_SEALED, LITERAL_SEALED, LITERAL_PERMITS,
     PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN,
-    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS
+    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
+
+    STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END, STRING_FRAGMENT,
+    TEXT_BLOCK_TEMPLATE_BEGIN, TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_FRAGMENT
 }
 
 @header {
@@ -148,6 +151,10 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     /** Tracks the starting column of a block comment. */
     int startCol = -1;
+
+    private boolean isTextBlockMode() {
+        return _modeStack.size() > 0 && _modeStack.peek() == TextBlock;
+    }
 }
 
 // Keywords and restricted identifiers
@@ -242,7 +249,12 @@ LITERAL_FALSE:           'false';
 
 CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
-STRING_LITERAL:          '"' (EscapeSequence | ~["\\\r\n])* '"';
+fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
+
+STRING_LITERAL:          '"' StringFragment '"';
+STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{';
+STRING_TEMPLATE_MID:     '}' StringFragment '\\' '{';
+STRING_TEMPLATE_END:     '}' StringFragment '"';
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -403,7 +415,20 @@ fragment Letter
 // Text block lexical mode
 mode TextBlock;
     TEXT_BLOCK_CONTENT
-        : ( TwoDoubleQuotes
+        : TextBlockFragment
+        ;
+
+    TEXT_BLOCK_TEMPLATE_BEGIN
+        : TextBlockFragment '\\' '{' -> pushMode(DEFAULT_MODE);
+
+    TEXT_BLOCK_TEMPLATE_MID
+        : '}' TextBlockFragment '\\' '{';
+
+    TEXT_BLOCK_TEMPLATE_END
+        : '}' TextBlockFragment TEXT_BLOCK_LITERAL_END -> popMode;
+
+    fragment TextBlockFragment
+        :    ( TwoDoubleQuotes
           | OneDoubleQuote
           | Newline
           | ~'"'
