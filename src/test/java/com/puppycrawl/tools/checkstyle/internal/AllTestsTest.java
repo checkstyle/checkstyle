@@ -146,7 +146,9 @@ public class AllTestsTest {
             // until https://github.com/checkstyle/checkstyle/issues/5105
             if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
                     && !path.contains(File.separatorChar + "foo" + File.separatorChar)
-                    && !path.contains(File.separatorChar + "bar" + File.separatorChar)) {
+                    && !path.contains(File.separatorChar + "bar" + File.separatorChar)
+                    && !path.contains(File.separator + "abc" + File.separatorChar)
+                    && !path.contains(File.separator + "zoo" + File.separatorChar)) {
                 String fileName = file.getName();
                 final boolean skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
 
