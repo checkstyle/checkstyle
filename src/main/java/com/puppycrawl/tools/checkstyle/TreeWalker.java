@@ -424,10 +424,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private static SortedSet<AbstractCheck> createNewCheckSortedSet() {
         return new TreeSet<>(
-                Comparator.<AbstractCheck, String>comparing(check -> check.getClass().getName())
-                        .thenComparing(AbstractCheck::getId,
-                                Comparator.nullsLast(Comparator.naturalOrder()))
-                        .thenComparing(AbstractCheck::hashCode));
+                Comparator.comparing(AbstractCheck::hashCode));
     }
 
     /**
