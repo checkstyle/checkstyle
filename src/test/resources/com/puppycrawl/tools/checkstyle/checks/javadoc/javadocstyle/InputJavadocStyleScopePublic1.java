@@ -72,8 +72,9 @@ public class InputJavadocStyleScopePublic1 // ok
     */
    void method7() {} // ok
 
-   /** // violation
-    * Public check should fail</code> // violation
+   // violation below
+   /** // violation below
+    * Public check should fail</code>
     * should fail <
     */ // violation above
    public void method8() {}

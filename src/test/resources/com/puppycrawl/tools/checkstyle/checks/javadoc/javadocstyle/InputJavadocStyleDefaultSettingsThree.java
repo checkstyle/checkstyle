@@ -100,9 +100,9 @@ public class InputJavadocStyleDefaultSettingsThree
      * Checks HTML tags in javadoc.
      *
      * HTML no good tag
-     * <string>Tests</string> // violation
+     * <string>Tests</string>
      *
-     */
+     */ // violation 2 lines above
     public void method21() {}
 
     /**

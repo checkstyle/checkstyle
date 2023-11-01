@@ -65,8 +65,8 @@ public class InputJavadocStyleExcludeScope2 // ok
 
     /**
      * Some problematic javadoc. Sample usage:
-     * <blockquote> // violation
-     */
+     * <blockquote>
+     */ // violation above
 
     private void method14() {}
 

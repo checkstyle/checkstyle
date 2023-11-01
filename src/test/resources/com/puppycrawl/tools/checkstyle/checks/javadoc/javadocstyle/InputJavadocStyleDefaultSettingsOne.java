@@ -50,30 +50,34 @@ public class InputJavadocStyleDefaultSettingsOne // ok
     */
    private void method4() {}
 
-   /**
+   /** // violation 3 lines below
     * Test HTML in Javadoc comment
     * <dl>
-    * <dt><b>This guy is missing end of bold tag // violation
+    * <dt><b>
     * <dd>The dt and dd don't require end tags.
     * </dl>
-    * </td>Extra tag shouldn't be here // violation
-    * <style>this tag isn't supported in Javadoc</style> // violation
-    * @param arg1 <code>dummy. // violation
-    */
+    * </td>
+    * <style>this tag isn't supported in Javadoc</style>
+    * @param arg1 <code>dummy
+    */ // violation 3 lines above
+   // violation 3 lines above
+   // violation 3 lines above
+
    private void method5(int arg1) {}
 
    /** // violation
-    * Protected check <b>should fail // violation
-    */
+    * Protected check <b>
+    */ // violation above
    protected void method6() {}
 
    /** // violation
-    * Package protected check <b>should fail // violation
-    */
+    * Package protected check <b>
+    */  // violation above
    void method7() {}
 
-   /** // violation
-    * Public check should fail</code> // violation
+   // violation below
+   /** // violation below
+    * Public check should fail</code>
     * should fail <
     */ // violation above
    public void method8() {}
@@ -81,16 +85,14 @@ public class InputJavadocStyleDefaultSettingsOne // ok
    /** {@inheritDoc} **/
    public void method9() {} // ok
 
-
     // Testcases to exercise the Tag parser (bug 843887)
-
     /**
      * Real men don't use XHTML.
      * <br />
      * <hr/>
      * < br/>
-     * <img src="schattenparker.jpg"/></img> // violation
-     */
+     * <img src="schattenparker.jpg"/></img>
+     */ // violation above
     private void method10() {}
 
     /**
@@ -109,7 +111,6 @@ public class InputJavadocStyleDefaultSettingsOne // ok
      * <!-- comments <div> should not be checked. -->
      */
     private void method11() {} // ok
-
     /**
      * Tags for two lines.
      * <a href="some_link"
@@ -117,4 +118,3 @@ public class InputJavadocStyleDefaultSettingsOne // ok
      */
     private void method12() {} // ok
 }
-
