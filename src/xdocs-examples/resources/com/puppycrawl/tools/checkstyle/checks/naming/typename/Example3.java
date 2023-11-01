@@ -11,8 +11,11 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.typename;
+
 // xdoc section -- start
-public interface I_firstName {} // OK
-interface SecondName {} // violation, name 'SecondName'
-                       // must match pattern '^I_[a-zA-Z0-9]*$'
+class Example3{
+  public interface I_firstName {}
+  interface SecondName {} // violation
+}
 // xdoc section -- end

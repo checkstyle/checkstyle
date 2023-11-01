@@ -104,13 +104,13 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -120,13 +120,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -136,13 +136,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
