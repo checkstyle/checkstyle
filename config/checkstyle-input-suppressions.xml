@@ -12,6 +12,12 @@
             files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeSameFileNameFalsePositive.java"/>
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeTestSameFileNameGeneral.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesAllIgnored.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesCommonPackage.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityExcludedPackagesDirectPackages.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyAndSpecial.java"/>
