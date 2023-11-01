@@ -64,8 +64,8 @@ public class InputJavadocStyleHtml2 {
 
     /**
      * Some problematic javadoc. Sample usage:
-     * <blockquote> // violation
-     */
+     * <blockquote>
+     */ // violation above
 
     private void method14() {}
 

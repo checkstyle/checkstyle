@@ -63,17 +63,18 @@ public class InputJavadocStyleScopePackage1
     private void method5(int arg1) {} // ok
 
     /** // violation
-     * Protected check <b>should fail // violation
-     */
+     * Protected check <b>
+     */ // violation above
     protected void method6() {}
 
     /** // violation
-     * Package protected check <b>should fail // violation
-     */
+     * Package protected check <b>
+     */ // violation above
     void method7() {}
 
-    /** // violation
-     * Public check should fail</code> // violation
+    // violation below
+    /** // violation below
+     * Public check should fail</code>
      * should fail <
      */ // violation above
     public void method8() {}

@@ -26,8 +26,8 @@ public class InputJavadocStyleDefaultSettingsFour
 
     /**
      * This Javadoc contains unclosed tag.
-     * <code>unclosed 'code' tag<code> // violation
-     */
+     * <code>unclosed 'code' tag<code>
+     */ // violation above
     private void unclosedTag() {}
 
     void javadocLikeCommentInMethod() {
@@ -36,15 +36,15 @@ public class InputJavadocStyleDefaultSettingsFour
          */
         final int i = 0; // ok
     }
-    // violation below
-    /**
+
+    /** // violation
      * {@inheritDoc}
      */
     private void inheritDoc() {}
 
     /**
-     * <p><b>Note:<b> it's unterminated tag.</p> // violation
-     */
+     * <p><b>Note:<b> it's unterminated tag.</p>
+     */ // violation above
     private void unterminatedTag() {}
 
     /** // violation

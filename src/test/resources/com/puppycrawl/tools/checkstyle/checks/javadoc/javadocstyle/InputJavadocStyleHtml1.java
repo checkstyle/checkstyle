@@ -49,30 +49,35 @@ public class InputJavadocStyleHtml1 {
     */
    private void method4() {} // ok
 
+   // violation 4 lines below
    /**
     * Test HTML in Javadoc comment
     * <dl>
-    * <dt><b>This guy is missing end of bold tag // violation
+    * <dt><b>
     * <dd>The dt and dd don't require end tags.
     * </dl>
-    * </td>Extra tag shouldn't be here // violation
-    * <style>this tag isn't supported in Javadoc</style> // violation
-    * @param arg1 <code>dummy. // violation
+    * </td>
+    * <style>this tag isn't supported in Javadoc</style>
+    * @param arg1 <code>dummy
     */
+   // violation 4 lines above
+   // violation 4 lines above
+   // violation 4 lines above
    private void method5(int arg1) {}
 
    /**
-    * Protected check <b>should fail // violation
-    */
+    * Protected check <b>
+    */ // violation above
    protected void method6() {}
 
    /**
-    * Package protected check <b>should fail // violation
-    */
+    * Package protected check <b>
+    */ // violation above
    void method7() {}
 
+   // violation 2 lines below
    /**
-    * Public check should fail</code> // violation
+    * Public check should fail</code>
     * should fail <
     */ // violation above
    public void method8() {}
@@ -88,8 +93,8 @@ public class InputJavadocStyleHtml1 {
      * <br />
      * <hr/>
      * < br/>
-     * <img src="schattenparker.jpg"/></img> // violation
-     */
+     * <img src="schattenparker.jpg"/></img>
+     */ // violation above
     private void method10() {}
 
     /**
