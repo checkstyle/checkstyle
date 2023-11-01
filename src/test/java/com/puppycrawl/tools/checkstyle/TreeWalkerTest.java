@@ -33,6 +33,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -679,6 +680,38 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checkerConfig, filePath, expected);
     }
 
+    /**
+     * This test is checking that Checks execution ordered by name.
+     *
+     * @throws Exception if file is not found
+     */
+    @Test
+    public void testOrderOfCheckExecution() throws Exception {
+
+        final DefaultConfiguration configuration1 = createModuleConfig(AaCheck.class);
+        configuration1.addProperty("id", "2");
+        final DefaultConfiguration configuration2 = createModuleConfig(BbCheck.class);
+        configuration2.addProperty("id", "1");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(configuration2);
+        treeWalkerConfig.addChild(configuration1);
+
+        final List<File> files =
+                Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
+        final Checker checker = createChecker(treeWalkerConfig);
+
+        try {
+            checker.process(files);
+            assertWithMessage("exception is expected").fail();
+        }
+        catch (CheckstyleException exception) {
+            assertWithMessage("wrong order of Check executions")
+                    .that(exception.getCause().getMessage())
+                    .isEqualTo(AaCheck.class.toString());
+        }
+    }
+
     public static class BadJavaDocCheck extends AbstractCheck {
 
         @Override
@@ -769,6 +802,54 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         @Override
         public boolean isCommentNodesRequired() {
             return true;
+        }
+
+    }
+
+    public static class AaCheck extends AbstractCheck {
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public void beginTree(DetailAST rootAST) {
+            throw new IllegalStateException(AaCheck.class.toString());
+        }
+
+    }
+
+    public static class BbCheck extends AbstractCheck {
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public void beginTree(DetailAST rootAST) {
+            throw new IllegalStateException(BbCheck.class.toString());
         }
 
     }
