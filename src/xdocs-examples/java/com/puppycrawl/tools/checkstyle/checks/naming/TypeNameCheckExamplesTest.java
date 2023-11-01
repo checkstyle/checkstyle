@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +34,30 @@ public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", "^[A-Z][a-zA-Z0-9]*$"),
+            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", "^[A-Z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "16:7: " + getCheckMessage(MSG_INVALID_PATTERN, "Example2", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19:13: " + getCheckMessage(MSG_INVALID_PATTERN, "SecondName", "^I_[a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
