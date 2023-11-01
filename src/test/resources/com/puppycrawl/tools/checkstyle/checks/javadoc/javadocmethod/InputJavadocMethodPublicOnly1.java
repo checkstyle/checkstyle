@@ -133,7 +133,7 @@ public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
             /**
              * Javadoc
              */
-            private String privateMethod(String a, String b) {
+            private String privateMethod(String ax, String bx) {
                 return null;
             }
         };
