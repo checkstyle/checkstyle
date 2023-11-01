@@ -50,16 +50,18 @@ public class InputJavadocStyleExcludeScope1 // ok
     */
    private void method4() {}
 
-   /**
+   /** // violation 3 lines below
     * Test HTML in Javadoc comment
     * <dl>
-    * <dt><b>This guy is missing end of bold tag // violation
+    * <dt><b>
     * <dd>The dt and dd don't require end tags.
     * </dl>
-    * </td>Extra tag shouldn't be here // violation
-    * <style>this tag isn't supported in Javadoc</style> // violation
-    * @param arg1 <code>dummy. // violation
-    */
+    * </td>
+    * <style>this tag isn't supported in Javadoc</style>
+    * @param arg1 <code>dummy
+    */ // violation 3 lines above
+   // violation 3 lines above
+   // violation 3 lines above
    private void method5(int arg1) {}
 
    /**
@@ -68,8 +70,8 @@ public class InputJavadocStyleExcludeScope1 // ok
    protected void method6() {} // ok
 
    /** // violation
-    * Package protected check <b>should fail // violation
-    */
+    * Package protected check <b>
+    */ // violation above
    void method7() {}
 
    /**
@@ -89,8 +91,8 @@ public class InputJavadocStyleExcludeScope1 // ok
      * <br />
      * <hr/>
      * < br/>
-     * <img src="schattenparker.jpg"/></img> // violation
-     */
+     * <img src="schattenparker.jpg"/></img>
+     */ // violation above
     private void method10() {}
 
     /**

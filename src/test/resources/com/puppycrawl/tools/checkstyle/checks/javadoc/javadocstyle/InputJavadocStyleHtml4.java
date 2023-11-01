@@ -25,8 +25,8 @@ public class InputJavadocStyleHtml4 {
 
     /**
      * This Javadoc contains unclosed tag.
-     * <code>unclosed 'code' tag<code> // violation
-     */
+     * <code>unclosed 'code' tag<code>
+     */ // violation above
     private void unclosedTag() {}
 
     void javadocLikeCommentInMethod() { // ok
@@ -41,8 +41,9 @@ public class InputJavadocStyleHtml4 {
      */
     private void inheritDoc() {} // ok
 
-    /**
-     * <p><b>Note:<b> it's unterminated tag.</p> // violation
+    /** // violation below
+     * <p><b>
+     * </p>
      */
     private void unterminatedTag() {}
 

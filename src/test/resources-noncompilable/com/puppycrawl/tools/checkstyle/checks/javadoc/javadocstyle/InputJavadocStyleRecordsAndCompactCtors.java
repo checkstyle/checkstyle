@@ -46,17 +46,21 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
         private void method4() {
         }
 
+        // violation 4 lines below
         /**
          * Test HTML in Javadoc comment
          * <dl>
-         * <dt><b>This guy is missing end of bold tag // violation
+         * <dt><b>
          * <dd>The dt and dd don't require end tags.
          * </dl>
-         * </td>Extra tag shouldn't be here // violation
-         * <style>this tag isn't supported in Javadoc</style> // violation
+         * </td>
+         * <style>this tag isn't supported in Javadoc</style>
          *
-         * @param arg1 <code>dummy. // violation
+         * @param arg1 <code>dummy
          */
+        // violation 5 lines above
+        // violation 5 lines above
+        // violation 4 lines above
         private void method5(int arg1) {
         }
     }
@@ -68,9 +72,10 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
         static String props = "";
 
         /** // violation
-         * Public check should fail</code> // violation
+         * Public check should fail</code>
          * should fail <
-         */ // violation above
+         */ // violation 2 lines above
+        // violation 2 lines above
         public void method8() {
         }
     }
@@ -84,8 +89,9 @@ public class InputJavadocStyleRecordsAndCompactCtors { // ok
     public record MyFourthRecord(String myString) { // ok
         /**
          * This Javadoc contains unclosed tag.
-         * <code>unclosed 'code' tag<code> // violation
+         * <code>unclosed 'code' tag<code>
          */
+        // violation 2 lines above
         private static void unclosedTag() {
             System.out.println("stuff");
         }
