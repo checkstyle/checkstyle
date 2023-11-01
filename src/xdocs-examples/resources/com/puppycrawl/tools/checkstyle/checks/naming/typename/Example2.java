@@ -10,10 +10,13 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.typename;
+
 // xdoc section -- start
-public interface firstName {} // OK
-public class SecondName {} // violation, name 'SecondName'
-                          // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-protected class ThirdName {} // OK
-private class FourthName {} // OK
+class Example2 {   // violation
+  public interface firstName {}
+  public class SecondName {} // violation
+  protected class ThirdName {}
+  private class FourthName {}
+}
 // xdoc section -- end
