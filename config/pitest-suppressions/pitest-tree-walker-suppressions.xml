@@ -80,13 +80,4 @@
     <description>removed call to java/util/Comparator::naturalOrder</description>
     <lineContent>Comparator.nullsLast(Comparator.naturalOrder()))</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>lambda$createNewCheckSortedSet$3</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
-    <description>replaced return value with &quot;&quot; for com/puppycrawl/tools/checkstyle/TreeWalker::lambda$createNewCheckSortedSet$3</description>
-    <lineContent>Comparator.&lt;AbstractCheck, String&gt;comparing(check -&gt; check.getClass().getName())</lineContent>
-  </mutation>
 </suppressedMutations>
