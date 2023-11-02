@@ -126,6 +126,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code Override}.
  * </li>
  * <li>
+ * Property {@code validateInAnonymousClasses} - Control whether to validateInAnonymousClasses.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code validateThrows} - Control whether to validate {@code throws} tags.
  * Type is {@code boolean}.
  * Default value is {@code false}.
@@ -269,6 +274,11 @@ public class JavadocMethodCheck extends AbstractCheck {
     private boolean validateThrows;
 
     /**
+     * Control whether to validateInAnonymousClasses.
+     */
+    private boolean validateInAnonymousClasses;
+
+    /**
      * Control whether to ignore violations when a method has parameters but does
      * not have matching {@code param} tags in the javadoc.
      */
@@ -291,6 +301,16 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     public void setValidateThrows(boolean value) {
         validateThrows = value;
+    }
+
+    /**
+     * Setter to control whether to validateInAnonymousClasses.
+     *
+     * @param value user's value.
+     * @since 6.0
+     */
+    public void setvalidateInAnonymousClasses(boolean value) {
+        validateInAnonymousClasses = value;
     }
 
     /**
@@ -402,7 +422,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private boolean shouldCheck(final DetailAST ast) {
         final AccessModifierOption surroundingAccessModifier = CheckUtil
-                .getSurroundingAccessModifier(ast);
+                .getSurroundingAccessModifier(ast, validateInAnonymousClasses);
         final AccessModifierOption accessModifier = CheckUtil
                 .getAccessModifierFromModifiersToken(ast);
         return surroundingAccessModifier != null
