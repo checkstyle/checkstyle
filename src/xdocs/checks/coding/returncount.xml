@@ -48,7 +48,7 @@
               <td>Specify method names to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^equals$&quot;</code></td>
-              <td>3.2</td>
+              <td>3.4</td>
             </tr>
             <tr>
               <td>max</td>
