@@ -80,6 +80,11 @@
                       type="java.lang.String[]">
                <description>Specify annotations that allow missed documentation.</description>
             </property>
+            <property default-value="false"
+                      name="validateInAnonymousClasses"
+                      type="boolean">
+               <description>Control whether to validateInAnonymousClasses.</description>
+            </property>
             <property default-value="false" name="validateThrows" type="boolean">
                <description>Control whether to validate {@code throws} tags.</description>
             </property>
