@@ -493,6 +493,33 @@ public class PackageObjectFactoryTest {
             .isInstanceOf(MockClass.class);
     }
 
+    /**
+    * This test case is designed to verify the behavior of the PackageObjectFactory's
+    * createModule method when it is provided with a class name containing a package separator.
+    * It ensures that the method correctly handles such input and returns an instance of the
+    * specified class, even when external module retrieval results in an exception.
+    * This test case will helpful to save the time complexity
+    */
+    @Test
+    public void testCreateObjectWithNameContainingPackageSeparator2() throws Exception {
+        final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final PackageObjectFactory objectFactory =
+            new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
+
+        try (MockedStatic<ModuleReflectionUtil> utilities =
+                     mockStatic(ModuleReflectionUtil.class)) {
+            utilities.when(() -> ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
+                    .thenThrow(new IllegalStateException("creation of objects by fully qualified "
+                            + "names Should not call for search of modules in classpath"));
+
+            final Object object = objectFactory.createModule(MockClass.class.getName());
+            assertWithMessage("Object should be an instance of MockClass")
+                    .that(object)
+                    .isInstanceOf(MockClass.class);
+        }
+    }
+
     @Test
     public void testCreateModuleWithTryInAllRegisteredPackages() {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
