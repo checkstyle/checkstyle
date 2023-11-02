@@ -284,6 +284,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
             String fileName = null;
+            final String filePath = file.getPath();
             try {
                 fileName = file.getAbsolutePath();
                 final long timestamp = file.lastModified();
@@ -308,7 +309,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
                 throw new CheckstyleException("Exception was thrown while processing "
-                        + file.getPath(), ex);
+                        + filePath, ex);
             }
             catch (Error error) {
                 if (fileName != null && cacheFile != null) {
@@ -316,7 +317,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 }
 
                 // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + file.getPath(), error);
+                throw new Error("Error was thrown while processing " + filePath, error);
             }
         }
     }
