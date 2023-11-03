@@ -6469,6 +6469,15 @@ public final class TokenTypes {
     public static final int RECORD_PATTERN_COMPONENTS =
             JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
 
+    public static final int STRING_TEMPLATE_BEGIN =
+            JavaLanguageLexer.STRING_TEMPLATE_BEGIN;
+    public static final int STRING_TEMPLATE_MID =
+            JavaLanguageLexer.STRING_TEMPLATE_MID;
+    public static final int STRING_TEMPLATE_END =
+            JavaLanguageLexer.STRING_TEMPLATE_END;
+    public static final int EMBEDDED_EXPRESSION =
+            JavaLanguageLexer.EMBEDDED_EXPRESSION;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }

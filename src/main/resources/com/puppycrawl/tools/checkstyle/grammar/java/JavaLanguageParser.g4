@@ -688,7 +688,7 @@ expression
 
 expr
     : primary                                                              #primaryExp
-    | expr templateExpression #templateExp
+    | expr DOT templateArgument                                            #templateExp
     | expr bop=DOT id                                                      #refOp
     | expr bop=DOT id LPAREN expressionList? RPAREN                        #methodCall
     | expr bop=DOT LITERAL_THIS                                            #thisExp
@@ -696,7 +696,6 @@ expr
       innerCreator                                                         #initExp
     | expr bop=DOT nonWildcardTypeArguments?
       LITERAL_SUPER superSuffix?                                           #superExp
-   // | expr templateExpression                                              #templateExp
     | expr bop=DOT
       nonWildcardTypeArguments
       id LPAREN expressionList? RPAREN                                     #invOp
@@ -759,10 +758,6 @@ primary
       DOT LITERAL_CLASS                                                    #primitivePrimary
     ;
 
-templateExpression
-    : DOT templateArgument
-    ;
-
 templateArgument
     : template
     | STRING_LITERAL
@@ -774,7 +769,11 @@ template
     ;
 
 stringTemplate
-    : STRING_TEMPLATE_BEGIN expr* (STRING_TEMPLATE_MID expr*)* STRING_TEMPLATE_END
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    ;
+
+stringTemplateMiddle
+    : STRING_TEMPLATE_MID expr?
     ;
 
 classType
