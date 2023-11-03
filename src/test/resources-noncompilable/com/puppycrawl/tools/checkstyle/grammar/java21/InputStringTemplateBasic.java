@@ -39,6 +39,7 @@ public class InputStringTemplateBasic {
             y(y("y")) + y(y("y"))
             } there \{
             y(y("y")) + y(y("y"))
+            + STR."x\{ x }x"
             }";
 
 
