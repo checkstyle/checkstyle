@@ -48,24 +48,6 @@
   <mutation unstable="false">
     <sourceFile>PackageObjectFactory.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::contains</description>
-    <lineContent>if (!name.contains(PACKAGE_SEPARATOR)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (!name.contains(PACKAGE_SEPARATOR)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
     <mutatedMethod>createObjectFromFullModuleNames</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::sorted with receiver</description>
