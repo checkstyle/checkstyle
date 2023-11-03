@@ -256,9 +256,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13893 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]illegaltype.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13930 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]magicnumber.xml.template"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/13933 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]multiplestringliterals.xml.template"/>
