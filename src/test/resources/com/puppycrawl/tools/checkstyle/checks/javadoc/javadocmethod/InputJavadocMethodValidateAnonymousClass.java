@@ -18,9 +18,18 @@ public class InputJavadocMethodValidateAnonymousClass {
 
      Thread ob = new Thread(){
 
-     /**
+    /**
      *
      */
         void print(int a){} //violation 'Expected @param tag for 'a''
+
+     /**
+     *
+     */
+        void println(int a, int b){
+             // violation 1 lines above 'Expected @param tag for 'a'.'
+             // violation 2 lines above 'Expected @param tag for 'b'.'
+        }
+
     };
 }
