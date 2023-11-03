@@ -67,6 +67,10 @@ public final class XdocGenerator {
                     String.valueOf(StandardCharsets.UTF_8))) {
                 parser.parse(reader, sink);
             }
+            catch (Exception ex) {
+                throw new IllegalStateException("Exception was thrown while processing "
+                        + inputFile.getPath(), ex);
+            }
             finally {
                 sink.close();
             }
