@@ -12,15 +12,6 @@
   <mutation unstable="false">
     <sourceFile>Checker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>processFiles</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/File::getPath</description>
-    <lineContent>throw new Error(&quot;Error was thrown while processing &quot; + file.getPath(), error);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
     <mutatedMethod>setSeverity</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/SeverityLevel::getInstance</description>
@@ -52,24 +43,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable args</description>
     <lineContent>this.args = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::contains</description>
-    <lineContent>if (!name.contains(PACKAGE_SEPARATOR)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PackageObjectFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.PackageObjectFactory</mutatedClass>
-    <mutatedMethod>createModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (!name.contains(PACKAGE_SEPARATOR)) {</lineContent>
   </mutation>
 
   <mutation unstable="false">

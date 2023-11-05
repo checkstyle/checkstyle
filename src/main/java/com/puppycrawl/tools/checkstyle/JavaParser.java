@@ -85,7 +85,6 @@ public final class JavaParser {
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
         lexer.setCommentListener(contents);
-        lexer.removeErrorListeners();
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
