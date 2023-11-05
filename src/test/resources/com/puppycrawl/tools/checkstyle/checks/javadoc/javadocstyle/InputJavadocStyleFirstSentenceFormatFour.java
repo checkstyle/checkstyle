@@ -36,7 +36,7 @@ public class InputJavadocStyleFirstSentenceFormatFour
          */
         final int i = 0; // ok
     }
-    // violation below
+    // violation below 'First sentence should end with a period.'
     /**
      * {@inheritDoc}
      */
@@ -47,18 +47,21 @@ public class InputJavadocStyleFirstSentenceFormatFour
      */
     private void unterminatedTag() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Javadoc without dot
      */
     public interface TestInterface {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         void method();
     }
 
     static class TestStaticClass { // ok
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         public int field;
@@ -70,7 +73,8 @@ public class InputJavadocStyleFirstSentenceFormatFour
      */
     void foo() throws Exception {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * text /
      * @throws Exception if an error occurs
      */
@@ -83,7 +87,8 @@ public class InputJavadocStyleFirstSentenceFormatFour
      */
     void inheritDocWithThrows() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * /
      *
      **

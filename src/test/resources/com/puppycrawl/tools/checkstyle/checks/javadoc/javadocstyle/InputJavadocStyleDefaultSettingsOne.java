@@ -20,7 +20,8 @@ public class InputJavadocStyleDefaultSettingsOne // ok
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
    private String first; // ok
 
-   /** This Javadoc is missing an ending period */ // violation
+   // violation below 'First sentence should end with a period.'
+   /** This Javadoc is missing an ending period */
    private String second;
 
    /**
@@ -45,12 +46,17 @@ public class InputJavadocStyleDefaultSettingsOne // ok
     */
    private void method3() {} // ok
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * This should fail even.though.there are embedded periods
     */
    private void method4() {}
 
-   /** // violation 3 lines below
+   // violation 7 lines below 'Unclosed HTML tag found: <b>'
+   // violation 9 lines below 'Extra HTML tag found: </td>'
+   // violation 9 lines below 'Extra HTML tag found: </style>'
+   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
+   /**
     * Test HTML in Javadoc comment
     * <dl>
     * <dt><b>
@@ -59,41 +65,34 @@ public class InputJavadocStyleDefaultSettingsOne // ok
     * </td>
     * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy
-    */ // violation 3 lines above
-   // violation 3 lines above
-   // violation 3 lines above
-
+    */
    private void method5(int arg1) {}
 
-   /** // violation
+   // violation 2 lines below 'First sentence should end with a period.'
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
+   /**
     * Protected check <b>
-    */ // violation above
+    */
    protected void method6() {}
 
-   /** // violation
+   // violation 2 lines below 'First sentence should end with a period.'
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
+   /**
     * Package protected check <b>
-    */  // violation above
+    */
    void method7() {}
 
-   // violation below
-   /** // violation below
+   // violation 3 lines below 'First sentence should end with a period.'
+   // violation 3 lines below 'Extra HTML tag found: </code>'
+   // violation 3 lines below 'should fail <'
+   /**
     * Public check should fail</code>
     * should fail <
-    */ // violation above
+    */
    public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {} // ok
-
-    // Testcases to exercise the Tag parser (bug 843887)
-    /**
-     * Real men don't use XHTML.
-     * <br />
-     * <hr/>
-     * < br/>
-     * <img src="schattenparker.jpg"/></img>
-     */ // violation above
-    private void method10() {}
 
     /**
      * Tag content can be really mean.
@@ -110,11 +109,11 @@ public class InputJavadocStyleDefaultSettingsOne // ok
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
+    private void method10() {} // ok
     /**
      * Tags for two lines.
      * <a href="some_link"
      * >Link Text</a>
      */
-    private void method12() {} // ok
+    private void method11() {} // ok
 }

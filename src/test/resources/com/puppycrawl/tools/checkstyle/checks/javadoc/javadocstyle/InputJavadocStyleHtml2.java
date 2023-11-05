@@ -62,10 +62,11 @@ public class InputJavadocStyleHtml2 {
      */
     private void method13() {} // ok
 
+    // violation 3 lines below 'Unclosed HTML tag found: <blockquote>'
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
-     */ // violation above
+     */
 
     private void method14() {}
 
