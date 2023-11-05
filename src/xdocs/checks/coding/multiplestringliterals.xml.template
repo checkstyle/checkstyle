@@ -22,50 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowedDuplicates</td>
-              <td>
-                Specify the maximum number of occurrences to allow without generating a
-                warning.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>1</code></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
-              <td>ignoreOccurrenceContext</td>
-              <td>
-                Specify token type names where duplicate strings are ignored even if they don't
-                match ignoredStringsRegexp. This allows you to exclude syntactical contexts like
-                annotations or static initializers from the check.
-              </td>
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-              </td>
-              <td>
-                <code>ANNOTATION</code>
-              </td>
-              <td>4.4</td>
-            </tr>
-            <tr>
-              <td>ignoreStringsRegexp</td>
-              <td>
-                Specify RegExp for ignored strings (with quotation marks).
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^""$"</code></td>
-              <td>4.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java"/>
+         </macro>
         </div>
       </subsection>
 

@@ -259,9 +259,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13930 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]magicnumber.xml.template"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/13933 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]multiplestringliterals.xml.template"/>
   <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]designforextension.xml.template"/>
@@ -347,8 +344,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]avoidescapedunicodecharacters.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]commentsindentation.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]descendanttoken.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]finalparameters.xml.template"/>
   <suppress id="propertiesMacroMustExist"

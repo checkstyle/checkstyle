@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
@@ -533,6 +534,33 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         verify(treeWalkerConfig,
                 getPath("InputTreeWalkerMultiCheckOrder.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiCheckOfSameTypeNoIdResultsInOrderingByHash() throws Exception {
+
+        final DefaultConfiguration configuration1 = createModuleConfig(ParameterNameCheck.class);
+        configuration1.addProperty("format", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$");
+        configuration1.addProperty("accessModifiers", "protected, package, private");
+
+        final DefaultConfiguration configuration2 = createModuleConfig(ParameterNameCheck.class);
+        configuration2.addProperty("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
+        configuration2.addProperty("accessModifiers", "PUBLIC");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(configuration1);
+        treeWalkerConfig.addChild(configuration2);
+
+        final String[] expected = {
+            "5:28: " + getCheckMessage(ParameterNameCheck.class,
+                    "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
+            "7:25: " + getCheckMessage(ParameterNameCheck.class,
+                    "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
+        };
+
+        verify(treeWalkerConfig,
+                getPath("InputTreeWalkerMultiCheckOrder2.java"),
                 expected);
     }
 
