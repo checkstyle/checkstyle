@@ -13,7 +13,8 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-/** // violation
+// violation below 'First sentence should end with a period.'
+/**
  * blah blah
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle.pkginfo.invalidformat;
