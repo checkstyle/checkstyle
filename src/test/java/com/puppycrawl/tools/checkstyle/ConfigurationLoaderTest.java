@@ -769,4 +769,24 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     .contains("query");
         }
     }
+
+    @Test
+    public void testDefaultValuesForNonDefinedProperties() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.charsetbase", "UTF");
+
+        final File file = new File(
+                getPath("InputConfigurationLoaderDefaultProperty.xml"));
+        final DefaultConfiguration config =
+            (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                    file.toURI().toString(), new PropertiesExpander(props));
+
+        final Properties expectedPropertyValues = new Properties();
+        expectedPropertyValues.setProperty("tabWidth", "2");
+        expectedPropertyValues.setProperty("basedir", ".");
+        // charset property uses 2 variables, one is not defined, so default becomes a result value
+        expectedPropertyValues.setProperty("charset", "ASCII");
+        verifyConfigNode(config, "Checker", 0, expectedPropertyValues);
+    }
+
 }
