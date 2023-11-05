@@ -24,10 +24,11 @@ public class InputJavadocStyleExcludeScope4 // ok
      */
     void tagInTwoLines() {} // ok
 
+    // violation 3 lines below 'Unclosed HTML tag found: <code>'
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code>
-     */ // violation above
+     */
     private void unclosedTag() {}
 
     void javadocLikeCommentInMethod() { // ok
@@ -36,15 +37,17 @@ public class InputJavadocStyleExcludeScope4 // ok
          */
         final int i = 0; // ok
     }
-    // violation below
+
+    // violation below 'First sentence should end with a period.'
     /**
      * {@inheritDoc}
      */
     private void inheritDoc() {}
 
+    // violation 2 lines below 'Unclosed HTML tag found: <b>Note:<b> it's unterminated tag.</p>'
     /**
      * <p><b>Note:<b> it's unterminated tag.</p>
-     */ // violation above
+     */
     private void unterminatedTag() {}
 
     /**
@@ -58,7 +61,8 @@ public class InputJavadocStyleExcludeScope4 // ok
     }
 
     static class TestStaticClass { // ok
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         public int field;
@@ -70,7 +74,8 @@ public class InputJavadocStyleExcludeScope4 // ok
      */
     void foo() throws Exception {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * text /
      * @throws Exception if an error occurs
      */

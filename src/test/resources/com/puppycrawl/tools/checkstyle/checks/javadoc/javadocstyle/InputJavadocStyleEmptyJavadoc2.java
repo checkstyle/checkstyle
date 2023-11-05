@@ -71,26 +71,28 @@ public class InputJavadocStyleEmptyJavadoc2 { // ok
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
-     // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      */
     public void method16() {}
-     // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @param a A parameter
      */
     protected void method17(String a) {}
-     // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @exception RuntimeException should be thrown
      */
     void method18(String a) {}
-     // violation below
+
+    // violation below 'Javadoc has empty description section'
     /**
      */
     private static int ASDF = 0;
 
-    /** @see Object */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** @see Object */
     public void method19() {}
 
     public enum Test
