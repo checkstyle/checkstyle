@@ -144,9 +144,7 @@ public class AllTestsTest {
             }
 
             // until https://github.com/checkstyle/checkstyle/issues/5105
-            if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
-                    && !path.contains(File.separatorChar + "foo" + File.separatorChar)
-                    && !path.contains(File.separatorChar + "bar" + File.separatorChar)) {
+            if (shouldSkipFileProcessing(path)) {
                 String fileName = file.getName();
                 final boolean skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
 
@@ -202,6 +200,20 @@ public class AllTestsTest {
                 + "for test 'MyCustomCheckTest': " + path)
                 .that(found)
                 .isTrue();
+    }
+
+    /**
+     * Checks if the file processing should be skipped based on the path.
+     *
+     * @param path The path to check for skip conditions.
+     * @return true if file processing should be skipped, false otherwise.
+     */
+    private static boolean shouldSkipFileProcessing(String path) {
+        return !path.contains(File.separatorChar + "grammar" + File.separatorChar)
+                && !path.contains(File.separatorChar + "foo" + File.separatorChar)
+                && !path.contains(File.separatorChar + "bar" + File.separatorChar)
+                && !path.contains(File.separator + "abc" + File.separatorChar)
+                && !path.contains(File.separator + "zoo" + File.separatorChar);
     }
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
