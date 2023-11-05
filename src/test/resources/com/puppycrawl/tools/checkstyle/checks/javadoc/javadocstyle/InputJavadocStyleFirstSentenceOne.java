@@ -20,7 +20,8 @@ public class InputJavadocStyleFirstSentenceOne
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
    private String first; // ok
 
-   /** This Javadoc is missing an ending period */ // violation
+   // violation below 'First sentence should end with a period.'
+   /** This Javadoc is missing an ending period */
    private String second;
 
    /**
@@ -45,7 +46,8 @@ public class InputJavadocStyleFirstSentenceOne
     */
    private void method3() {} // ok
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * This should fail even.though.there are embedded periods
     */
    private void method4() {}
@@ -62,17 +64,20 @@ public class InputJavadocStyleFirstSentenceOne
     */
    private void method5(int arg1) {} // ok
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * Protected check <b>should fail
     */
    protected void method6() {}
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * Package protected check <b>should fail
     */
    void method7() {}
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * Public check should fail</code>
     * should fail <
     */
@@ -109,11 +114,4 @@ public class InputJavadocStyleFirstSentenceOne
      * <!-- comments <div> should not be checked. -->
      */
     private void method11() {} // ok
-
-    /**
-     * Tags for two lines.
-     * <a href="some_link"
-     * >Link Text</a>
-     */
-    private void method12() {} // ok
 }
