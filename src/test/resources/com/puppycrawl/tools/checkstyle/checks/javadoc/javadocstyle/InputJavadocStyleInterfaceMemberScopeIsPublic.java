@@ -17,10 +17,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public interface InputJavadocStyleInterfaceMemberScopeIsPublic {
 
-    /** */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** */
     enum Enum {
 
-        /** */ // violation
+        // violation below 'Javadoc has empty description section'
+        /** */
         CONSTANT(0);
 
         /** */ // ok

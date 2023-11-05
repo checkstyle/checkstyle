@@ -15,13 +15,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleRestrictedTokenSet4 // ok
 {
-     /**
-     * First sentence.
-     * <
-     * /a>
-     */
-    void tagClosedInNextLine() {} // ok
-
     /**
      * Link to some page in two lines.
      * <a
@@ -56,7 +49,8 @@ public class InputJavadocStyleRestrictedTokenSet4 // ok
      * Javadoc without dot
      */
     public interface TestInterface { // ok
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         void method();
@@ -88,7 +82,8 @@ public class InputJavadocStyleRestrictedTokenSet4 // ok
      */
     void inheritDocWithThrows() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * /
      *
      **
