@@ -49,7 +49,10 @@ public class InputJavadocStyleHtml1 {
     */
    private void method4() {} // ok
 
-   // violation 4 lines below
+   // violation 7 lines below 'Unclosed HTML tag found: <b>'
+   // violation 9 lines below 'Extra HTML tag found: </td>'
+   // violation 9 lines below 'Extra HTML tag found: </style>'
+   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
    /**
     * Test HTML in Javadoc comment
     * <dl>
@@ -60,41 +63,41 @@ public class InputJavadocStyleHtml1 {
     * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy
     */
-   // violation 4 lines above
-   // violation 4 lines above
-   // violation 4 lines above
    private void method5(int arg1) {}
 
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
    /**
     * Protected check <b>
-    */ // violation above
+    */
    protected void method6() {}
 
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
    /**
     * Package protected check <b>
-    */ // violation above
+    */
    void method7() {}
 
-   // violation 2 lines below
+   // violation 3 lines below 'Extra HTML tag found: </code>'
+   // violation 3 lines below 'should fail <'
    /**
     * Public check should fail</code>
     * should fail <
-    */ // violation above
+    */
    public void method8() {}
 
    /** {@inheritDoc} **/
    public void method9() {} // ok
 
 
-    // Testcases to exercise the Tag parser (bug 843887)
-
+   // Testcases to exercise the Tag parser (bug 843887)
+   // violation 6 lines below  'Extra HTML tag found: </img>'
     /**
      * Real men don't use XHTML.
      * <br />
      * <hr/>
      * < br/>
      * <img src="schattenparker.jpg"/></img>
-     */ // violation above
+     */
     private void method10() {}
 
     /**

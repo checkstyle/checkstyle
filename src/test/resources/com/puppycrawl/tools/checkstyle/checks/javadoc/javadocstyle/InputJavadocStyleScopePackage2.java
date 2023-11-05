@@ -18,6 +18,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleScopePackage2
 {
     /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * >Link Text</a>
+     */
+    private void method12() {} // ok
+
+    /**
      * First sentence.
      * <pre>
      * +--LITERAL_DO (do)
@@ -72,16 +79,16 @@ public class InputJavadocStyleScopePackage2
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
-    // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      */
     public void method16() {}
-    // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @param a A parameter
      */
     protected void method17(String a) {}
-    // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @exception RuntimeException should be thrown
      */
@@ -91,12 +98,14 @@ public class InputJavadocStyleScopePackage2
      */
     private static int ASDF = 0; // ok
 
-    /** @see Object */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** @see Object */
     public void method19() {}
 
     public enum Test
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,

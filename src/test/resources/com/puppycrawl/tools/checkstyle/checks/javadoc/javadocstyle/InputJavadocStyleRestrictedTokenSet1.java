@@ -70,7 +70,8 @@ public class InputJavadocStyleRestrictedTokenSet1 // ok
     */
    void method7() {} // ok
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * Public check should fail</code>
     * should fail <
     */

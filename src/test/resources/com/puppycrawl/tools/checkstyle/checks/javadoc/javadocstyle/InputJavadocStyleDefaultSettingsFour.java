@@ -24,10 +24,11 @@ public class InputJavadocStyleDefaultSettingsFour
      */
     void tagInTwoLines() {} // ok
 
+    // violation 3 lines below 'Unclosed HTML tag found: <code>'
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code>
-     */ // violation above
+     */
     private void unclosedTag() {}
 
     void javadocLikeCommentInMethod() {
@@ -37,28 +38,33 @@ public class InputJavadocStyleDefaultSettingsFour
         final int i = 0; // ok
     }
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * {@inheritDoc}
      */
     private void inheritDoc() {}
 
+    // violation 2 lines below 'Unclosed HTML tag found: <b>Note:<b> it's unterminated tag.</p>'
     /**
      * <p><b>Note:<b> it's unterminated tag.</p>
-     */ // violation above
+     */
     private void unterminatedTag() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Javadoc without dot
      */
     public interface TestInterface {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         void method();
     }
 
     static class TestStaticClass {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         public int field;
@@ -70,7 +76,8 @@ public class InputJavadocStyleDefaultSettingsFour
      */
     void foo() throws Exception {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * text /
      * @throws Exception if an error occurs
      */
@@ -83,7 +90,8 @@ public class InputJavadocStyleDefaultSettingsFour
      */
     void inheritDocWithThrows() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * /
      *
      **
@@ -91,9 +99,6 @@ public class InputJavadocStyleDefaultSettingsFour
      * @return Return
      */
     public int test(String s) { return 0; }
-
-    /** Set of all class field names.*/
-    public String field; // ok
 
     /**
      * <p>Test.</p>

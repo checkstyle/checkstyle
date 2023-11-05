@@ -62,9 +62,11 @@ public class InputJavadocStyleScopeProtected1 // ok
     */
    private void method5(int arg1) {} // ok
 
-   /** // violation
+   // violation 2 lines below 'First sentence should end with a period.'
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
+   /**
     * Protected check <b>
-    */ // violation above
+    */
    protected void method6() {}
 
    /**
@@ -72,11 +74,13 @@ public class InputJavadocStyleScopeProtected1 // ok
     */
    void method7() {} // ok
 
-    // violation below
-   /** // violation below
+   // violation 3 lines below 'First sentence should end with a period.'
+   // violation 3 lines below 'Extra HTML tag found: </code>'
+   // violation 3 lines below 'should fail <'
+   /**
     * Public check should fail</code>
     * should fail <
-    */ // violation above
+    */
    public void method8() {}
 
    /** {@inheritDoc} **/
@@ -110,11 +114,4 @@ public class InputJavadocStyleScopeProtected1 // ok
      * <!-- comments <div> should not be checked. -->
      */
     private void method11() {} // ok
-
-    /**
-     * Tags for two lines.
-     * <a href="some_link"
-     * >Link Text</a>
-     */
-    private void method12() {} // ok
 }

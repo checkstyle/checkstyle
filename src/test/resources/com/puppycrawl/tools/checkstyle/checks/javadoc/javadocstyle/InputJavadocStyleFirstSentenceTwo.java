@@ -63,7 +63,8 @@ public class InputJavadocStyleFirstSentenceTwo
 
     private void method14() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
@@ -96,7 +97,8 @@ public class InputJavadocStyleFirstSentenceTwo
 
     public enum Test // ok
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,
@@ -106,4 +108,11 @@ public class InputJavadocStyleFirstSentenceTwo
          */
         value2, // ok
     }
+
+    /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * >Link Text</a>
+     */
+    private void method12() {} // ok
 }
