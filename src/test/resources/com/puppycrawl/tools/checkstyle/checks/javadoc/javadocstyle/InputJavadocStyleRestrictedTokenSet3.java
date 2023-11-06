@@ -16,6 +16,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleRestrictedTokenSet3 // ok
 {
     /**
+     * First sentence.
+     * <
+     * /a>
+     */
+    void tagClosedInNextLine() {} // ok
+
+    /**
     * A test class.
     * @param <T1> this is NOT an unclosed T1 tag
     * @param <KEY_T> for bug 1649020.
@@ -102,5 +109,4 @@ public class InputJavadocStyleRestrictedTokenSet3 // ok
      *
      */
     public void method21() {} // ok
-
 }

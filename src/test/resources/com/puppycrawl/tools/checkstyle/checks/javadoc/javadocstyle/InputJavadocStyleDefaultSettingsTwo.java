@@ -17,6 +17,16 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleDefaultSettingsTwo
 {
+    // violation 6 lines below  'Extra HTML tag found: </img>'
+    /**
+     * Real men don't use XHTML.
+     * <br />
+     * <hr/>
+     * < br/>
+     * <img src="schattenparker.jpg"/></img>
+     */
+    private void method12() {}
+
     /**
      * First sentence.
      * <pre>
@@ -56,14 +66,15 @@ public class InputJavadocStyleDefaultSettingsTwo
      */
     private void method13() {} // ok
 
+    // violation 3 lines below 'Unclosed HTML tag found: <blockquote>'
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
-     */ // violation above
-
+     */
     private void method14() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
@@ -93,16 +104,16 @@ public class InputJavadocStyleDefaultSettingsTwo
     /** @see java.lang.Object */
     public void method19() {} // ok
 
-    public enum Test // ok
-    {
-        /** // violation
-         * Value 1 without a period
-         */
-        value1,
+    // violation 5 lines below 'Extra HTML tag found: </string>'
+    /**
+     * Checks HTML tags in javadoc.
+     *
+     * HTML no good tag
+     * <string>Tests</string>
+     *
+     */
+    public void method20() {}
 
-        /**
-         * Value 2 with a period.
-         */
-        value2, // ok
-    }
+    /** Set of all class field names.*/
+    public String field; // ok
 }
