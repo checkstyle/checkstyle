@@ -18,6 +18,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleFirstSentenceFormatTwo
 {
     /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * >Link Text</a>
+     */
+    private void method12() {} // ok
+
+    /**
      * First sentence.
      * <pre>
      * +--LITERAL_DO (do)
@@ -63,7 +70,8 @@ public class InputJavadocStyleFirstSentenceFormatTwo
 
     private void method14() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
@@ -96,7 +104,8 @@ public class InputJavadocStyleFirstSentenceFormatTwo
 
     public enum Test // ok
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,

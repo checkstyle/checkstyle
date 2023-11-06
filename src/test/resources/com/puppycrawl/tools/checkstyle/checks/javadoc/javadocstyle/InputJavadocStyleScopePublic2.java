@@ -79,7 +79,7 @@ public class InputJavadocStyleScopePublic2 // ok
 
     /** Description of field: {@value}. */
     public static final int dummy = 4911; // ok
-     // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      */
     public void method16() {}
@@ -98,12 +98,14 @@ public class InputJavadocStyleScopePublic2 // ok
      */
     private static int ASDF = 0; // ok
 
-    /** @see Object */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** @see Object */
     public void method19() {}
 
     public enum Test
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,
