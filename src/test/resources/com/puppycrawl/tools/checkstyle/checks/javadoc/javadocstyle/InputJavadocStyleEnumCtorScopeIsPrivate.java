@@ -17,10 +17,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public enum InputJavadocStyleEnumCtorScopeIsPrivate {
 
-    /** */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** */
     CONSTANT(0);
 
-    /** */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** */
     final int value;
 
     /** */ // ok
@@ -28,7 +30,8 @@ public enum InputJavadocStyleEnumCtorScopeIsPrivate {
         this.value = value;
     }
 
-    /** */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** */
     void method() {
     }
 

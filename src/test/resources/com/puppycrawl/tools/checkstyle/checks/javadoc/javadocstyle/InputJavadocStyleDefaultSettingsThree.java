@@ -94,16 +94,7 @@ public class InputJavadocStyleDefaultSettingsThree
      * @param strings this is a List<String>
      * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
      */
-    public void method20() {} // ok
-
-    /**
-     * Checks HTML tags in javadoc.
-     *
-     * HTML no good tag
-     * <string>Tests</string>
-     *
-     */ // violation 2 lines above
-    public void method21() {}
+    public void method21() {} // ok
 
     /**
      * First sentence.
@@ -111,4 +102,18 @@ public class InputJavadocStyleDefaultSettingsThree
      * /a>
      */
     void tagClosedInNextLine() {} // ok
+
+    public enum Test // ok
+    {
+        // violation below 'First sentence should end with a period.'
+        /**
+         * Value 1 without a period
+         */
+        value1,
+
+        /**
+         * Value 2 with a period.
+         */
+        value2, // ok
+    }
 }
