@@ -111,11 +111,12 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-public interface FirstName {} // OK
-protected class SecondName {} // OK
-enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z0-9]*$'
-private class FourthName_ {} // violation, name 'FourthName_'
-                            // must match pattern '^[A-Z][a-zA-Z0-9]*$'
+class Example1 {
+  public interface FirstName {}
+  protected class SecondName {}
+  enum Third_Name {} // violation
+  private class FourthName_ {} // violation
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
@@ -135,11 +136,12 @@ private class FourthName_ {} // violation, name 'FourthName_'
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-public interface firstName {} // OK
-public class SecondName {} // violation, name 'SecondName'
-                          // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-protected class ThirdName {} // OK
-private class FourthName {} // OK
+class Example2 {   // violation
+  public interface firstName {}
+  public class SecondName {} // violation
+  protected class ThirdName {}
+  private class FourthName {}
+}
         </source>
         <p id="Example3-config">
           The following configuration element ensures that
@@ -160,9 +162,10 @@ private class FourthName {} // OK
         </source>
         <p id="Example3-code">Code Example:</p>
         <source>
-public interface I_firstName {} // OK
-interface SecondName {} // violation, name 'SecondName'
-                       // must match pattern '^I_[a-zA-Z0-9]*$'
+class Example3 {
+  public interface I_firstName {}
+  interface SecondName {} // violation
+}
         </source>
 
       </subsection>
