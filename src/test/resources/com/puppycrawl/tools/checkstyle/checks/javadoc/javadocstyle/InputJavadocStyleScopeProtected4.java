@@ -47,11 +47,13 @@ public class InputJavadocStyleScopeProtected4 // ok
      */
     private void unterminatedTag() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Javadoc without dot
      */
     public interface TestInterface {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         void method();
@@ -83,7 +85,8 @@ public class InputJavadocStyleScopeProtected4 // ok
      */
     void inheritDocWithThrows() {} // ok
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * /
      *
      **

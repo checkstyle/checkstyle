@@ -63,14 +63,16 @@ public class InputJavadocStyleExcludeScope2 // ok
      */
     private void method13() {} // ok
 
+    // violation 3 lines below 'Unclosed HTML tag found: <blockquote>'
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
-     */ // violation above
+     */
 
     private void method14() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */

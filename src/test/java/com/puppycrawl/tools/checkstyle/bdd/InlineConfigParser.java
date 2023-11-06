@@ -29,7 +29,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -133,14 +132,6 @@ public final class InlineConfigParser {
             "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
-
-    /**
-     * Checks in which violation message is not specified in input file and have more than
-     * one violation message key.
-     * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
-     */
-    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(List.of(
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"));
 
     /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
@@ -440,7 +431,6 @@ public final class InlineConfigParser {
             throws ClassNotFoundException, CheckstyleException {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
-                && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
                 && getNumberOfMessages(moduleLists.get(0).getModuleName()) > 1;
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
