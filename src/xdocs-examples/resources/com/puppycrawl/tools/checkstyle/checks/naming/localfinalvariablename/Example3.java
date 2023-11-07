@@ -9,15 +9,19 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
+
+import java.util.Scanner;
+
 // xdoc section -- start
-class MyClass {
+class Example3 {
   void MyMethod() {
-    try(Scanner scanner = new Scanner()) { // violation, name 'scanner' must
-                                           // match pattern '^[A-Z][A-Z0-9]*$'
+    try(Scanner scanner = new Scanner(System.in)) { // violation
+
       final int VAR1 = 5; // OK
       final int var1 = 10; // OK
-    } catch (final Exception ex) { // violation, name 'ex'
-                                   // must match pattern '^[A-Z][A-Z0-9]*$'
+    } catch (final Exception ex) { // violation
+
       final int VAR2 = 15; // OK
       final int var2 = 20; // OK
     }
