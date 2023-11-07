@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.site;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +51,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @Component(role = Macro.class, hint = "properties")
 public class PropertiesMacro extends AbstractMacro {
+
+    /** Set of properties not inherited from the base token configuration. */
+    private static final Set<String> NON_BASE_TOKEN_PROP = Collections.unmodifiableSet(
+            Arrays.stream(new String[] {
+                    "AtclauseOrder - target",
+                    "MagicNumber - constantWaiverParentToken",
+            }).collect(Collectors.toSet()));
 
     /** Represents the relative path to the property types XML. */
     private static final String PROPERTY_TYPES_XML = "property_types.xml";
@@ -399,7 +407,7 @@ public class PropertiesMacro extends AbstractMacro {
         }
         else {
             sink.rawText(INDENT_LEVEL_18);
-            sink.text(SiteUtil.DOT);
+            sink.rawText(SiteUtil.DOT);
             sink.rawText(INDENT_LEVEL_14);
         }
     }
@@ -466,9 +474,19 @@ public class PropertiesMacro extends AbstractMacro {
         else {
             final String defaultValue = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
-            sink.rawText(CODE_START);
-            sink.text(defaultValue);
-            sink.rawText(CODE_END);
+
+            final boolean isNonBaseTokenProp = NON_BASE_TOKEN_PROP.stream()
+                    .anyMatch(tokenProp -> tokenProp.endsWith(" - " + propertyName));
+
+            if (isNonBaseTokenProp) {
+                final List<String> defaultValuesList = Arrays.asList(defaultValue.split(", "));
+                writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES);
+            }
+            else {
+                sink.rawText(CODE_START);
+                sink.text(defaultValue);
+                sink.rawText(CODE_END);
+            }
         }
 
         sink.tableCell_();
