@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +34,30 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "17:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR2", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "18:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1", "^[A-Z][A-Z0-9]*$"),
+            "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2", "^[A-Z][A-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
+            "23:30: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", "^[A-Z][A-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
