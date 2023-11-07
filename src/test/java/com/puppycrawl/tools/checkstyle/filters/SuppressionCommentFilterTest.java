@@ -21,24 +21,33 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -647,6 +656,54 @@ public class SuppressionCommentFilterTest
                 new Violation(1, null, null, null, null, Object.class, ""), null);
         filter.accept(dummyEvent);
         return TestUtil.getInternalState(filter, "tags");
+    }
+
+    @Test
+    public void testCachingByFileContentsInstance() throws Exception {
+
+        final File file = new File(getPath("InputSuppressionCommentFilterSuppressById6.java"));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
+        final String[] lines = {"//CSOFF", "//CSON"};
+        final FileContents fileContents = new FileContents(
+                new FileText(file, Arrays.asList(lines)));
+        for (int lineNo = 0; lineNo < lines.length; lineNo++) {
+            final int colNo = lines[lineNo].indexOf("//");
+            if (colNo >= 0) {
+                fileContents.reportSingleLineComment(lineNo + 1, colNo);
+            }
+        }
+
+        final FileContents mockedContents = mock(FileContents.class);
+        final Map<Integer, TextBlock> returnValue = fileContents.getSingleLineComments();
+        when(mockedContents.getSingleLineComments())
+                .thenReturn(returnValue)
+                .thenThrow(new IllegalStateException("Second call is not allowed"));
+
+        final String[] args = {"line_length", "^[a-z][a-zA-Z0-9]*$"};
+        final Violation violation = new Violation(27, 9, 58,
+                "com.puppycrawl.tools.checkstyle.checks.naming.messages",
+                "name.invalidPattern",
+                args,
+                SeverityLevel.ERROR,
+                "ignore",
+                MemberNameCheck.class,
+                null);
+
+        final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(
+                mockedContents, file.getAbsolutePath(), violation, rootAst);
+
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        filter.setOffCommentFormat(Pattern.compile("CSOFF"));
+        filter.setOnCommentFormat(Pattern.compile("CSON"));
+        filter.setCheckFormat("MemberNameCheck");
+        filter.finishLocalSetup();
+
+        assertWithMessage("should accept")
+                .that(filter.accept(event)).isTrue();
+        // due to caching in filter second execution should not do parsing of comments in file
+        // so exception is not expected
+        assertWithMessage("should accept")
+                .that(filter.accept(event)).isTrue();
     }
 
 }
