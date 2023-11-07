@@ -67,8 +67,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
           An example of how to configure the check for names that are only upper case letters and
@@ -76,13 +82,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -91,13 +97,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
