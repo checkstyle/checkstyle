@@ -8,15 +8,17 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
+
 // xdoc section -- start
-class MyClass {
+class Example2 {
   void MyMethod() {
     try {
       final int VAR1 = 5; // OK
-      final int var1 = 10; // violation,  name 'var1' must match pattern "^[A-Z][A-Z0-9]*$"
+      final int var1 = 10; // violation
     } catch (Exception ex) {
       final int VAR2 = 15; // OK
-      final int var2 = 20; // violation,  name 'var2' must match pattern "^[A-Z][A-Z0-9]*$"
+      final int var2 = 20; // violation
     }
   }
 }
