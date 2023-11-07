@@ -6,5 +6,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
+
 // xdoc section -- start
+class Example1{}
 // xdoc section -- end
