@@ -679,6 +679,42 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checkerConfig, filePath, expected);
     }
 
+    @Test
+    public void testMultiCheckOfSameType() throws Exception {
+
+        final DefaultConfiguration configuration1 = createModuleConfig(ParameterNameCheck.class);
+        configuration1.addProperty("format", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$");
+        configuration1.addProperty("accessModifiers", "protected, package, private");
+        configuration1.addProperty("id", "checkk");
+        final DefaultConfiguration configuration2 = createModuleConfig(ParameterNameCheck.class);
+        configuration2.addProperty("format", "^[0-1]([a-z0-9][a-zA-Z0-9]*)?$");
+        configuration2.addProperty("accessModifiers", "protected, package, private");
+        configuration2.addProperty("id", "checkk");
+        final DefaultConfiguration configuration3 = createModuleConfig(WhitespaceAfterCheck.class);
+        final DefaultConfiguration configuration4 = createModuleConfig(WhitespaceAroundCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(configuration1);
+        treeWalkerConfig.addChild(configuration2);
+        treeWalkerConfig.addChild(configuration3);
+        treeWalkerConfig.addChild(configuration4);
+
+        final String[] expected = {
+            "5:28: " + getCheckMessage(ParameterNameCheck.class,
+                    "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
+            "5:28: " + getCheckMessage(ParameterNameCheck.class,
+                    "name.invalidPattern", "V2", "^[0-1]([a-z0-9][a-zA-Z0-9]*)?$"),
+            "5:32: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "{"),
+            "5:33: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notPreceded", "}"),
+            "10:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "10:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+        };
+
+        verify(treeWalkerConfig,
+                getPath("InputTreeWalker2.java"),
+                expected);
+    }
+
     public static class BadJavaDocCheck extends AbstractCheck {
 
         @Override
