@@ -7,5 +7,7 @@
 */
 
 // xdoc section -- start
-package com.example.annotations.packageannotation; //ok
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example2 {}
 // xdoc section -- end

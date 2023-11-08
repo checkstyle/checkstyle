@@ -37,19 +37,23 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example of validating MyClass.java:</p>
+        <p id="Example1-code">Example of class with violation:</p>
+        <source>
+@Deprecated // violation below
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example1 {}
+        </source>
+        <p id="Example2-code">Example of class without violation:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example2 {}
+        </source>
+        <p id="package-info-code">Example of validating package-info.java:</p>
         <source>
 @Deprecated
-package com.example.annotations.packageannotation; //violation
-        </source>
-        <p id="Example2-code">Example of fixing violation in MyClass.java:</p>
-        <source>
-package com.example.annotations.packageannotation; //ok
-        </source>
-        <p id="Example3-code">Example of validating package-info.java:</p>
-        <source>
-@Deprecated
-package com.example.annotations.packageannotation; //ok
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.example3;
         </source>
       </subsection>
 
