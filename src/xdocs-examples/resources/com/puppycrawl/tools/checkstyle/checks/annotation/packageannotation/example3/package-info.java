@@ -8,5 +8,6 @@
 
 // xdoc section -- start
 @Deprecated
-package com.example.annotations.packageannotation; //ok
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.example3;
+
 // xdoc section -- end
