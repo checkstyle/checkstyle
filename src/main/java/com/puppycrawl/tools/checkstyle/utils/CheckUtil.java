@@ -365,9 +365,11 @@ public final class CheckUtil {
      * Returns the access modifier of the surrounding "block".
      *
      * @param node the node to return the access modifier for
+     * @param validateAnonymousClasses check to validateInAnonymousClasses
      * @return the access modifier of the surrounding block
      */
-    public static AccessModifierOption getSurroundingAccessModifier(DetailAST node) {
+    public static AccessModifierOption getSurroundingAccessModifier(DetailAST node,
+         boolean validateAnonymousClasses) {
         AccessModifierOption returnValue = null;
         for (DetailAST token = node;
              returnValue == null && !TokenUtil.isRootNode(token);
@@ -379,7 +381,7 @@ public final class CheckUtil {
                 || type == TokenTypes.ENUM_DEF) {
                 returnValue = getAccessModifierFromModifiersToken(token);
             }
-            else if (type == TokenTypes.LITERAL_NEW) {
+            else if (type == TokenTypes.LITERAL_NEW && !validateAnonymousClasses) {
                 break;
             }
         }
