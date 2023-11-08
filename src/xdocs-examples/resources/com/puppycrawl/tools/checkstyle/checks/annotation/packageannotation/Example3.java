@@ -6,6 +6,8 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
 // xdoc section -- start
-package com.example.annotations.packageannotation; //ok
+class Example3 {}
 // xdoc section -- end
