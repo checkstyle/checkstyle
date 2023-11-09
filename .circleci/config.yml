@@ -78,11 +78,10 @@ jobs:
 
   sonarqube:
     docker:
-      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
+      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
 
     steps:
       - checkout
-      - run: apt-get install -y jq
       - run:
           name: Run sonarqube
           command: |
@@ -118,19 +117,19 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
+          image-name: &cs_img "checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc"
       - validate-with-maven-script:
           name: "no-exception-hadoop-apache-groovy-scouter-javadoc"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc"
       - validate-with-maven-script:
           name: "no-exception-only-javadoc"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/no-exception-test.sh no-exception-only-javadoc"
 
       # validation script
@@ -140,83 +139,83 @@ workflows:
           command: "./.ci/validation.sh no-error-xwiki"
       - validate-with-maven-script:
           name: "no-error-pmd"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-error-pmd"
       - validate-with-maven-script:
           name: "no-exception-struts"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-struts"
       - validate-with-maven-script:
           name: "no-exception-checkstyle-sevntu"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-checkstyle-sevntu"
       - validate-with-maven-script:
           name: "no-exception-checkstyle-sevntu-javadoc"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-checkstyle-sevntu-javadoc"
       - validate-with-maven-script:
           name: "no-exception-guava"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-guava"
       - validate-with-maven-script:
           name: "no-exception-hibernate-orm"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-hibernate-orm"
       - validate-with-maven-script:
           name: "no-exception-spotbugs"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-spotbugs"
       - validate-with-maven-script:
           name: "no-exception-spoon"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-spoon"
       - validate-with-maven-script:
           name: "no-exception-spring-framework"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-spring-framework"
       - validate-with-maven-script:
           name: "no-exception-hbase"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-hbase"
       - validate-with-maven-script:
           name: "no-exception-Pmd-elasticsearch-lombok-ast"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-Pmd-elasticsearch-lombok-ast"
       - validate-with-maven-script:
           name: "no-exception-alot-of-projects"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-exception-alot-of-projects"
       - validate-with-maven-script:
           name: "no-warning-imports-guava"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-warning-imports-guava"
       - validate-with-maven-script:
           name: "no-warning-imports-java-design-patterns"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-warning-imports-java-design-patterns"
       - validate-with-maven-script:
           name: "checkstyle-and-sevntu"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh checkstyle-and-sevntu"
       - validate-with-maven-script:
           name: "spotbugs-and-pmd"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh spotbugs-and-pmd"
       - validate-with-maven-script:
           name: "site"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh site"
       - validate-with-maven-script:
           name: "release-dry-run"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh release-dry-run"
       - validate-with-maven-script:
           name: "assembly-run-all-jar"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh assembly-run-all-jar"
       - validate-with-maven-script:
           name: "no-error-test-sbe"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh no-error-test-sbe"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
@@ -291,5 +290,5 @@ workflows:
           command: "./.ci/validation.sh package-site"
       - validate-with-maven-script:
           name: "jdk11-package-site"
-          image-name: *custom_img
+          image-name: *cs_img
           command: "./.ci/validation.sh package-site"
