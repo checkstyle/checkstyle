@@ -60,6 +60,16 @@ public class JavadocTag {
     }
 
     /**
+     * Constructs the object.
+     *
+     * @param line the line number of the tag
+     * @param tag the tag string
+     **/
+     public JavadocTag(int line, String tag) {
+        this(line, 0, tag, null);
+     }
+
+    /**
      * Gets tag name.
      *
      * @return the tag string
