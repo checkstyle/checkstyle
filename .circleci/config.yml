@@ -78,11 +78,10 @@ jobs:
 
   sonarqube:
     docker:
-      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3
+      - image: relentlesspursuit/test:11.0.13__3.0.9__2.25.1__3.9.5
 
     steps:
       - checkout
-      - run: apt-get install -y jq
       - run:
           name: Run sonarqube
           command: |
@@ -118,7 +117,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &custom_img "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
+          image-name: &custom_img "relentlesspursuit/test:11.0.13__3.0.9__2.25.1__3.9.5"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
