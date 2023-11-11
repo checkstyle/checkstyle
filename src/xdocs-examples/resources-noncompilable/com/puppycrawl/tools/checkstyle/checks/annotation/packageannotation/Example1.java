@@ -7,6 +7,8 @@
 */
 
 // xdoc section -- start
-@Deprecated
-package com.example.annotations.packageannotation; //violation
+@Deprecated // violation below
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example1 {}
 // xdoc section -- end
