@@ -481,7 +481,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @return list of actual violations.
      * @throws Exception if exception occurs during verification process.
      */
-    private List<String> getActualViolationsForFile(Configuration config,
+    protected List<String> getActualViolationsForFile(Configuration config,
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
