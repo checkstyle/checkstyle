@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -37,7 +35,7 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,7 +44,7 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -55,6 +53,6 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
