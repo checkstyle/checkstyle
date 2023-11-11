@@ -99,7 +99,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "DesignForExtension",
             "EqualsHashCode",
             "ExecutableStatementCount",
-            "FinalLocalVariable",
             "FinalParameters",
             "HideUtilityClassConstructor",
             "IllegalInstantiation",
