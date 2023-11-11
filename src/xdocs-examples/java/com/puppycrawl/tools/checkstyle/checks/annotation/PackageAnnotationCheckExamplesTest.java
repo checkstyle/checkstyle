@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
@@ -32,10 +35,10 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "11:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
@@ -53,6 +56,6 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("example3/package-info.java"), expected);
     }
 }

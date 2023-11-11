@@ -6,8 +6,9 @@
 </module>
 */
 
+// xdoc section -- start
+@Deprecated // violation below
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
-// xdoc section -- start
 class Example1 {}
 // xdoc section -- end
