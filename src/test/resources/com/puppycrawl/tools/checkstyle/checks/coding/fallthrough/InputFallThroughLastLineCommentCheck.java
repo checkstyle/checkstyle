@@ -30,7 +30,7 @@ public class InputFallThroughLastLineCommentCheck {
             case 1:
                 i++;
                 /* block */ /* fallthru */ // comment
-            case 2: // violation 'Fall\ through from previous branch of the switch statement'
+            case 2:
                 // this is comment
                 i++;
                 // fall through
@@ -104,8 +104,7 @@ public class InputFallThroughLastLineCommentCheck {
    void method7(int i, int j, boolean cond) {
       while (true) {
           switch (i){
-          case 5: // violation 'Fall\ through from the last branch of the switch statement'
-              i++;
+          case 5:
               /* block */ i++; /* fallthru */ // comment
           }
       }
