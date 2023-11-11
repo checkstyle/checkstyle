@@ -14,15 +14,15 @@ public class InputFallThrough8 {
             switch (i) {
                 case 0:
                     i++;
-                    /* block */ // comment
-                    // fall thru
+                 // block
+                 // fall thru
                 case 1:
                     i++;
                     break;
                 case 2:
                     i++;
-                    /* comment */ /* fall thru */ /* comment */
-                case 3: // violation 'Fall\ through from previous branch of the switch statement'
+                 /* block */ /* Fallthru */ // comment
+                case 3:  // violation 'Fall\ through from previous branch of the switch statement.'
                     i--;
                     break;
             }
@@ -33,7 +33,7 @@ public class InputFallThrough8 {
         switch (i) {
             case 0: // violation 'Fall\ through from the last branch of the switch statement'
                 i++;
-                /* comment */ /* fall thru */ /* comment */
+                /* comment */ /* Fall thru */ /* comment */
         }
     }
 
