@@ -411,11 +411,30 @@ public class FallThroughCheck extends AbstractCheck {
      * @return true if relief comment found
      */
     private boolean hasReliefComment(DetailAST ast) {
-        return Optional.ofNullable(getNextNonCommentAst(ast))
-                .map(DetailAST::getPreviousSibling)
-                .map(previous -> previous.getFirstChild().getText())
-                .map(text -> reliefPattern.matcher(text).find())
-                .orElse(Boolean.FALSE);
+DetailAST result = getNextNonCommentAst(ast);
+if (result != null) {
+    DetailAST previous = result.getPreviousSibling();
+    if (previous != null) {
+        int line = previous.getLineNo();
+        while (previous != null) {
+            DetailAST firstChild = previous.getFirstChild();
+            if (line != previous.getLineNo()) {
+                return false;
+            }
+            if (firstChild != null) {
+                String text = firstChild.getText();
+                if (text != null) {
+                    if (reliefPattern.matcher(text).find()) {
+                        return true;
+                    }
+                }
+            }
+            previous = previous.getPreviousSibling();
+        }
     }
+    return false;
+}
+return false;
 
+    }
 }
