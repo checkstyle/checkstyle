@@ -32,25 +32,25 @@
         <p id="Example1-config"> To configure the check:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example of validating MyClass.java:</p>
+        <p id="Example1-code">Example of class with violation:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example2-code">Example of fixing violation in MyClass.java:</p>
+        <p id="Example2-code">Example of class without violation:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example3-code">Example of validating package-info.java:</p>
+        <p id="package-info-code">Example of validating package-info.java:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/example3/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
