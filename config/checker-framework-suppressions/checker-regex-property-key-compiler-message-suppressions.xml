@@ -332,7 +332,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>group.count</specifier>
     <message>invalid groups parameter 1. Only 0 groups are guaranteed to exist for noargCurlyMatcher.</message>
-    <lineContent>tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher.group(1)));</lineContent>
+    <lineContent>tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

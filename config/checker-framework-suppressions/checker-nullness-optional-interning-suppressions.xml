@@ -3906,6 +3906,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <lineContent>tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter tag of JavadocTag.</message>
     <lineContent>tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3918,17 +3929,6 @@
     <specifier>argument</specifier>
     <message>incompatible argument for parameter tag of JavadocTag.</message>
     <lineContent>tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
-    <lineContent>tags.add(new JavadocTag(currentLine, col, noargCurlyMatcher.group(1)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
