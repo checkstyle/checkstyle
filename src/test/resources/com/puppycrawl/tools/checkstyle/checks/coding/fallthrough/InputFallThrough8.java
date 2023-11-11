@@ -22,7 +22,7 @@ public class InputFallThrough8 {
                 case 2:
                     i++;
                     /* comment */ /* fall thru */ /* comment */
-                case 3: // violation 'Fall\ through from previous branch of the switch statement'
+                case 3:
                     i--;
                     break;
             }
@@ -31,7 +31,7 @@ public class InputFallThrough8 {
 
     void testLastCase(int i) {
         switch (i) {
-            case 0: // violation 'Fall\ through from the last branch of the switch statement'
+            case 0:
                 i++;
                 /* comment */ /* fall thru */ /* comment */
         }
@@ -43,6 +43,7 @@ public class InputFallThrough8 {
                 i++;
                 /* comment */ /* comment */
                 /* fall thru */
+
         }
     }
 }
