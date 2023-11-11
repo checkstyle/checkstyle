@@ -324,13 +324,9 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]writetag.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]metrics[\\/]booleanexpressioncomplexity.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]metrics[\\/]cyclomaticcomplexity.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]metrics[\\/]javancss.xml.template"/>
   <suppress id="propertiesMacroMustExist"
