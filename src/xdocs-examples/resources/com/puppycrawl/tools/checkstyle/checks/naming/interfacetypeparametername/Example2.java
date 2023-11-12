@@ -8,9 +8,12 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername;
+
 // xdoc section -- start
-interface FirstInterface<T> {} // OK
-interface SecondInterface<t> {} // OK
-interface ThirdInterface<type> {} // violation, name 'type' must
-                                        // match pattern '^[a-zA-Z]$'
+class Example2 {
+  interface FirstInterface<T> {}
+  interface SecondInterface<t> {}
+  interface ThirdInterface<type> {} // violation
+}
 // xdoc section -- end
