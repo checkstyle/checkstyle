@@ -530,6 +530,14 @@
                   in your repository sources, and apply their related linters. Available as GitHub
                   Action, other CI tools and locally</td>
             </tr>
+            <tr>
+              <td>
+                <a href="https://rife2.com/bld">bld</a>
+              </td>
+              <td>Erik C. Thauvin</td>
+              <td><a href="https://github.com/rife2/bld-checkstyle">Checkstyle Extension</a> for bld</td>
+              <td>An extension for checking source code in a bld project</td>
+            </tr>
           </table>
         </div>
       </subsection>
