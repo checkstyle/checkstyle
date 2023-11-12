@@ -48,8 +48,10 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern '^[A-Z]$'
+class Example1 {
+  interface FirstInterface&lt;T&gt; {}
+  interface SecondInterface&lt;t&gt; {} // violation
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check for names that are only a single
@@ -66,10 +68,11 @@ interface SecondInterface&lt;t&gt; {} // violation, name 't' must match pattern 
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-interface FirstInterface&lt;T&gt; {} // OK
-interface SecondInterface&lt;t&gt; {} // OK
-interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
-                                        // match pattern '^[a-zA-Z]$'
+class Example2 {
+  interface FirstInterface&lt;T&gt; {}
+  interface SecondInterface&lt;t&gt; {}
+  interface ThirdInterface&lt;type&gt; {} // violation
+}
         </source>
       </subsection>
 
