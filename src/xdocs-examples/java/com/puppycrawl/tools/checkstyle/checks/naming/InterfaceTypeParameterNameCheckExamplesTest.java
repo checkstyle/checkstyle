@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,19 +33,20 @@ public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExample
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
 
+        final String[] expected = {
+            "14:29: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[A-Z]$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "17:28: " + getCheckMessage(MSG_INVALID_PATTERN, "type", "^[a-zA-Z]$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
