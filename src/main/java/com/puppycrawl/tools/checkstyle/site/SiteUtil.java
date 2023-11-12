@@ -164,7 +164,10 @@ public final class SiteUtil {
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", "8.24"),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
-        Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3")
+        Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
+        Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
+        Map.entry("ParenPadCheck.option", "3.0"),
+        Map.entry("TypecastParenPadCheck.option", "3.2")
     );
 
     /** Map of all superclasses properties and their javadocs. */
@@ -699,8 +702,7 @@ public final class SiteUtil {
         if (superClassSinceVersion != null) {
             sinceVersion = superClassSinceVersion;
         }
-        else if (SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(propertyName)
-                || TOKENS.equals(propertyName)
+        else if (TOKENS.equals(propertyName)
                 || JAVADOC_TOKENS.equals(propertyName)) {
             // Use module's since version for inherited properties
             sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
