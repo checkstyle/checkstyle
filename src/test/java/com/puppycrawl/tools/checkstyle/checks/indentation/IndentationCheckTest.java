@@ -2831,6 +2831,22 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "42:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "50:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+            "58:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+        };
+        verifyWarns(checkConfig,
+            getNonCompilablePath(
+                    "InputIndentationCheckSwitchExpressionDeclarationLCurlyNewLine.java"),
+            expected);
+    }
+
+    @Test
     public void testIndentationRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");

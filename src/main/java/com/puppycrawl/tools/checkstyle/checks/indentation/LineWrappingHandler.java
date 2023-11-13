@@ -81,6 +81,7 @@ public class LineWrappingHandler {
      * @see CaseHandler#getIndentImpl()
      */
     private static final int[] IGNORED_LIST = {
+        TokenTypes.LCURLY,
         TokenTypes.RCURLY,
         TokenTypes.LITERAL_NEW,
         TokenTypes.ARRAY_INIT,
