@@ -349,10 +349,13 @@ SINGLE_LINE_COMMENT:
     } -> channel(COMMENTS);
 
 // Identifiers
-
-IDENT:         Letter LetterOrDigit*;
+IDENT:         Letter LetterOrDigit* | UnnamedVariableIdentifier;
 
 // Fragment rules
+
+fragment UnnamedVariableIdentifier
+    : '_'
+    ;
 
 fragment ExponentPart
     : [eE] [+-]? Digits
