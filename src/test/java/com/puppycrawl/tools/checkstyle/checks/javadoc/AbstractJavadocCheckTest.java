@@ -323,7 +323,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         catch (IllegalStateException ex) {
             final String expected = "Javadoc Token \""
                     + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
-                    + " javadoc tokens was not found in default javadoc tokens list in check";
+                    + " javadoc tokens was not found in default javadoc tokens list in check "
+                    + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
             assertWithMessage("Invalid exception, should start with: " + expected)
                     .that(ex.getMessage())
                     .startsWith(expected);
