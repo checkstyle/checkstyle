@@ -2816,25 +2816,35 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("lineWrappingIndentation", "8");
         final String[] expected = {
-            "49:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "50:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "58:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "59:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "66:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "67:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "74:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "75:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
-            "82:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "83:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "91:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "92:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "99:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "100:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "108:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "109:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "33:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+            "34:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+            "41:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+            "42:17: " + getCheckMessage(MSG_CHILD_ERROR, "case", 16, 12),
+            "49:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "50:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "57:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "58:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
         };
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationCheckSwitchExpressionDeclaration.java"),
+            expected);
+    }
+
+    @Test
+    public void testIndentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "42:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "50:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+            "58:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+        };
+        verifyWarns(checkConfig,
+            getNonCompilablePath(
+                    "InputIndentationCheckSwitchExpressionDeclarationLCurlyNewLine.java"),
             expected);
     }
 
