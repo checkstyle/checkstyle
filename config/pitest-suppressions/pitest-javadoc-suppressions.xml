@@ -3,15 +3,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractJavadocCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>init</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Class::getName</description>
-    <lineContent>JavadocUtil.getTokenName(javadocTokenId), getClass().getName());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
     <mutatedMethod>validateDefaultJavadocTokens</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
