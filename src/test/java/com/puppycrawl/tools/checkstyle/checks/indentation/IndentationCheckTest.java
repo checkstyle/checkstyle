@@ -2834,8 +2834,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     public void testIndentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
-        checkConfig.addProperty("caseIndent", "4");
-        checkConfig.addProperty("lineWrappingIndentation", "8");
         final String[] expected = {
             "34:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
             "42:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
