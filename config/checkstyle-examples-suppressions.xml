@@ -18,6 +18,10 @@
   <suppress id="exampleFileXmlConfigPresence"
     files="abbreviationaswordinname[\\/]SuperClass.java"/>
 
+  <!-- non class example files -->
+  <suppress id="exampleFileName" files="package-info.java"/>
+  <suppress id="exampleClassName" files="package-info.java"/>
+
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
     files="filetabcharacter[\\/]Example\d+.java"/>
