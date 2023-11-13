@@ -12,37 +12,21 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;         
  * forceStrictCondition = false                                                     //indent:1 exp:1
  */                                                                                 //indent:1 exp:1
 public class InputIndentationCheckSwitchExpressionDeclaration {                     //indent:0 exp:0
-
+                                                                                  //indent:82 exp:82
     public void validDeclare() {                                                    //indent:4 exp:4
         String requestId = switch ("in") {                                          //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
             default -> "also correct";                                            //indent:12 exp:12
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-
-    public void validDeclareLeftCurlyOnNewLine() {                                 //indent:4 exp:4
-        String requestId = switch ("in")                                          //indent:8 exp:8
-        {                                                                         //indent:8 exp:8
-            case "correct" -> "true";                                             //indent:12 exp:12
-            default -> "also correct";                                            //indent:12 exp:12
-        };                                                                          //indent:8 exp:8
-    }                                                                               //indent:4 exp:4
-
+                                                                                  //indent:82 exp:82
     public void validAssign(String result) {                                        //indent:4 exp:4
         result = switch ("in") {                                                    //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
             default -> "also correct";                                            //indent:12 exp:12
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-
-    public void validAssignLeftCurlyOnNewLine(String result) {                      //indent:4 exp:4
-        result = switch ("in")                                                    //indent:8 exp:8
-        {                                                                         //indent:8 exp:8
-            case "correct" -> "true";                                             //indent:12 exp:12
-            default -> "also correct";                                            //indent:12 exp:12
-        };                                                                          //indent:8 exp:8
-    }                                                                               //indent:4 exp:4
-
+                                                                                  //indent:82 exp:82
     public void invalidDeclareWithBiggerIndent() {                                  //indent:4 exp:4
         String requestId = switch ("in") {                                          //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
@@ -50,16 +34,7 @@ public class InputIndentationCheckSwitchExpressionDeclaration {                 
                 default -> "also incorrect";                                 //indent:16 exp:12 warn
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-
-    public void invalidDeclareWithBiggerIndentLeftCurlyOnNewLine() {               //indent:4 exp:4
-        String requestId = switch ("in")                                          //indent:8 exp:8
-        {                                                                         //indent:8 exp:8
-            case "correct" -> "true";                                             //indent:12 exp:12
-                case "incorrect" -> "true";                                  //indent:16 exp:12 warn
-                default -> "also incorrect";                                 //indent:16 exp:12 warn
-        };                                                                          //indent:8 exp:8
-    }                                                                               //indent:4 exp:4
-
+                                                                                  //indent:82 exp:82
     public void invalidAssignWithBiggerIndent(String result) {                      //indent:4 exp:4
         result = switch ("in") {                                                    //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
@@ -67,15 +42,7 @@ public class InputIndentationCheckSwitchExpressionDeclaration {                 
                 default -> "also incorrect";                                 //indent:16 exp:12 warn
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-    public void invalidAssignWithBiggerIndentLeftCurlyOnNewLine(String result) { //indent:4 exp:4
-        result = switch ("in")                                                   //indent:8 exp:8
-        {                                                                        //indent:8 exp:8
-            case "correct" -> "true";                                            //indent:12 exp:12
-                case "incorrect" -> "true";                                //indent:16 exp:12 warn
-                default -> "also incorrect";                               //indent:16 exp:12 warn
-        };                                                                       //indent:8 exp:8
-    }                                                                            //indent:4 exp:4
-
+                                                                                  //indent:82 exp:82
     public void invalidDeclareWithLesserIndent() {                                  //indent:4 exp:4
         String requestId = switch ("in") {                                          //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
@@ -83,16 +50,7 @@ public class InputIndentationCheckSwitchExpressionDeclaration {                 
         default -> "also incorrect";                                          //indent:8 exp:12 warn
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-
-    public void invalidDeclareWithLesserIndentLeftCurlyOnNewLine() {     //indent:4 exp:4
-        String requestId = switch ("in")                                 //indent:8 exp:8
-        {                                                                //indent:8 exp:8
-            case "correct" -> "true";                                    //indent:12 exp:12
-        case "incorrect" -> "true";                                      //indent:8 exp:12 warn
-        default -> "also incorrect";                                     //indent:8 exp:12 warn
-        };                                                               //indent:8 exp:8
-    }                                                                    //indent:4 exp:4
-
+                                                                                  //indent:82 exp:82
     public void invalidAssignWithLesserIndent(String result) {                      //indent:4 exp:4
         result = switch ("in") {                                                    //indent:8 exp:8
             case "correct" -> "true";                                             //indent:12 exp:12
@@ -100,13 +58,5 @@ public class InputIndentationCheckSwitchExpressionDeclaration {                 
         default -> "also incorrect";                                          //indent:8 exp:12 warn
         };                                                                          //indent:8 exp:8
     }                                                                               //indent:4 exp:4
-
-    public void invalidAssignWithLesserIndentLeftCurlyOnNewLine(String result) { //indent:4 exp:4
-        result = switch ("in")                                                   //indent:8 exp:8
-        {                                                                        //indent:8 exp:8
-            case "correct" -> "true";                                            //indent:12 exp:12
-        case "incorrect" -> "true";                                          //indent:8 exp:12 warn
-        default -> "also incorrect";                                         //indent:8 exp:12 warn
-        };                                                                       //indent:8 exp:8
-    }                                                                            //indent:4 exp:4
-}                                                                                //indent:0 exp:0
+}                                                                                   //indent:0 exp:0
+                                                                                  //indent:82 exp:82
