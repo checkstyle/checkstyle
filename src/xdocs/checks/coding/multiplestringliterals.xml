@@ -41,7 +41,10 @@
               <td>ignoreOccurrenceContext</td>
               <td>Specify token type names where duplicate strings are ignored even if they don't match ignoredStringsRegexp. This allows you to exclude syntactical contexts like annotations or static initializers from the check.</td>
               <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
-              <td><code>ANNOTATION</code></td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+                    ANNOTATION</a>
+              </td>
               <td>4.4</td>
             </tr>
             <tr>
