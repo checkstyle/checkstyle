@@ -44,8 +44,8 @@ public final class ScopeUtil {
      */
     public static Scope getDeclaredScopeFromMods(DetailAST aMods) {
         Scope result = null;
-        for (DetailAST token = aMods.getFirstChild(); token != null && result == null;
-                token = token.getNextSibling()) {
+        for (DetailAST token = aMods.getFirstChild(); token != null;
+             token = token.getNextSibling()) {
             switch (token.getType()) {
                 case TokenTypes.LITERAL_PUBLIC:
                     result = Scope.PUBLIC;
