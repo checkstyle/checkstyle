@@ -108,7 +108,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "JavaNCSS",
             "LocalFinalVariableName",
             "LocalVariableName",
-            "MagicNumber",
             "MethodLength",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
