@@ -56,7 +56,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * exclude syntactical contexts like annotations or static initializers from the check.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
- * Default value is {@code ANNOTATION}.
+ * Default value is
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+ * ANNOTATION</a>.
  * </li>
  * <li>
  * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
