@@ -23,36 +23,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify file extensions that are accepted.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>8.24</td>
-            </tr>
-            <tr>
-              <td>ignorePattern</td>
-              <td>Specify pattern for lines to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^(package|import) .*"</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify the maximum line length allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>80</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
