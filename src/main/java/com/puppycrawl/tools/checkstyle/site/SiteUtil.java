@@ -158,14 +158,20 @@ public final class SiteUtil {
     );
 
     /**
+     * Frequent version.
+     */
+    private static final String V824 = "8.24";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", "8.24"),
+        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
+        Map.entry("LineLengthCheck.fileExtensions", V824),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", "3.2")
     );
@@ -697,18 +703,27 @@ public final class SiteUtil {
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
-        final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
-                   .get(moduleName + DOT + propertyName);
-        if (superClassSinceVersion != null) {
-            sinceVersion = superClassSinceVersion;
+        try {
+            final String superClassSinceVersion = SINCE_VERSION_FOR_INHERITED_PROPERTY
+                               .get(moduleName + DOT + propertyName);
+            if (superClassSinceVersion != null) {
+                sinceVersion = superClassSinceVersion;
+            }
+            else if (TOKENS.equals(propertyName)
+                            || JAVADOC_TOKENS.equals(propertyName)) {
+                // Use module's since version for inherited properties
+                sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
+            }
+            else {
+                sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
+            }
         }
-        else if (TOKENS.equals(propertyName)
-                        || JAVADOC_TOKENS.equals(propertyName)) {
-            // Use module's since version for inherited properties
-            sinceVersion = getSinceVersionFromJavadoc(moduleJavadoc);
-        }
-        else {
-            sinceVersion = getSinceVersionFromJavadoc(propertyJavadoc);
+        // -@cs[IllegalCatch] we need to get details in wrapping exception
+        catch (Exception exc) {
+            final String message = String.format(Locale.ROOT,
+                    "Exception while handling moduleName: %s propertyName: %s",
+                    moduleName, propertyName);
+            throw new MacroExecutionException(message, exc);
         }
 
         if (sinceVersion == null) {
