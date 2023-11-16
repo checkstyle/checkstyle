@@ -35,29 +35,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>extendedClassNameFormat</td>
-              <td>Specify pattern for extended class names.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
-              <td>6.2</td>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify pattern for exception class names.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/MutableExceptionCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

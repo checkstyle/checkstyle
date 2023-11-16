@@ -127,36 +127,13 @@ public abstract class Plant {
 }
         </source>
       </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>ignoredAnnotations</td>
-              <td>
-                Specify annotations which allow the check to skip the method from validation.
-              </td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>After, AfterClass, Before, BeforeClass, Test</code></td>
-              <td>7.2</td>
-            </tr>
-            <tr>
-              <td>requiredJavadocPhrase</td>
-              <td>
-                Specify the comment text pattern which qualifies a method as designed for
-                extension. Supports multi-line regex.
-              </td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>8.40</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
