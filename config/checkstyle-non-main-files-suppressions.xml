@@ -255,16 +255,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
   <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]designforextension.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]interfaceistype.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]mutableexception.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]throwscount.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]visibilitymodifier.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]header[\\/]header.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]header[\\/]regexpheader.xml.template"/>
