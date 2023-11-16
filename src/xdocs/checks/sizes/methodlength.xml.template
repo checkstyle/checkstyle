@@ -22,57 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>countEmpty</td>
-              <td>
-                Control whether to count empty lines and comments.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>150</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
-                .
-              </td>
-
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                 COMPACT_CTOR_DEF</a>
-                .
-              </td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

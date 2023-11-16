@@ -111,7 +111,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * ENUM_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
  * INTERFACE_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>.
