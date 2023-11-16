@@ -36,7 +36,7 @@
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify file extensions that are accepted.</description>
+               <description>Specify the file type extension of files to process.</description>
             </property>
             <property default-value="^(package|import) .*"
                       name="ignorePattern"
