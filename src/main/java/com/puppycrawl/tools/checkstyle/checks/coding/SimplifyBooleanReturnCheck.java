@@ -94,19 +94,23 @@ public class SimplifyBooleanReturnCheck
         // thenStatement
         // [ LITERAL_ELSE (with the elseStatement as a child) ]
 
-        // don't bother if this is not if then else
-        final DetailAST elseLiteral =
-            ast.findFirstToken(TokenTypes.LITERAL_ELSE);
-        if (elseLiteral != null) {
-            final DetailAST elseStatement = elseLiteral.getFirstChild();
+        // skip '(' and ')'
+        final DetailAST condition = ast.getFirstChild().getNextSibling();
+        final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
 
-            // skip '(' and ')'
-            final DetailAST condition = ast.getFirstChild().getNextSibling();
-            final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
-
-            if (canReturnOnlyBooleanLiteral(thenStatement)
-                && canReturnOnlyBooleanLiteral(elseStatement)) {
-                log(ast, MSG_KEY);
+        if (canReturnOnlyBooleanLiteral(thenStatement)) {
+            final DetailAST elseLiteral = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+            if (elseLiteral != null) {
+                final DetailAST elseStatement = elseLiteral.getFirstChild();
+                if (canReturnOnlyBooleanLiteral(elseStatement)) {
+                    log(ast, MSG_KEY);
+                }
+            }
+            else {
+                final DetailAST statementAfterLiteralIf = ast.getNextSibling();
+                if (isBooleanLiteralReturnStatement(statementAfterLiteralIf)) {
+                    log(ast, MSG_KEY);
+                }
             }
         }
     }

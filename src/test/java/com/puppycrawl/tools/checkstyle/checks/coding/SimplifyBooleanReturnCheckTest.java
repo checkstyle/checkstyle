@@ -39,6 +39,7 @@ public class SimplifyBooleanReturnCheckTest
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY),
             "35:9: " + getCheckMessage(MSG_KEY),
+            "74:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanReturn.java"), expected);
