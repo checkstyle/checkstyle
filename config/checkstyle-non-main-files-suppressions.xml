@@ -418,16 +418,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]lambdabodylength.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]linelength.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]methodcount.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]methodlength.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]outertypenumber.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]parameternumber.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]recordcomponentnumber.xml.template"/>
   <!-- no properties by design -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
