@@ -127,6 +127,7 @@ public abstract class Plant {
 }
         </source>
       </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -139,19 +140,14 @@ public abstract class Plant {
             </tr>
             <tr>
               <td>ignoredAnnotations</td>
-              <td>
-                Specify annotations which allow the check to skip the method from validation.
-              </td>
+              <td>Specify annotations which allow the check to skip the method from validation.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>After, AfterClass, Before, BeforeClass, Test</code></td>
               <td>7.2</td>
             </tr>
             <tr>
               <td>requiredJavadocPhrase</td>
-              <td>
-                Specify the comment text pattern which qualifies a method as designed for
-                extension. Supports multi-line regex.
-              </td>
+              <td>Specify the comment text pattern which qualifies a method as designed for extension. Supports multi-line regex.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>8.40</td>

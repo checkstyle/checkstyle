@@ -104,25 +104,16 @@
             </tr>
             <tr>
               <td>ignoreAnnotationCanonicalNames</td>
-              <td>
-                Specify annotations canonical names which ignore variables in
-                consideration.
-              </td>
+              <td>Specify annotations canonical names which ignore variables in consideration.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>com.google.common.annotations.VisibleForTesting,
-                org.junit.ClassRule, org.junit.Rule</code></td>
+              <td><code>com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule</code></td>
               <td>6.5</td>
             </tr>
             <tr>
               <td>immutableClassCanonicalNames</td>
               <td>Specify immutable classes canonical names.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character,
-                java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long,
-                java.lang.Short, java.lang.StackTraceElement, java.lang.String,
-                java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address,
-                java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI,
-                java.net.URL, java.util.Locale, java.util.UUID</code></td>
+              <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID</code></td>
               <td>6.4.1</td>
             </tr>
             <tr>

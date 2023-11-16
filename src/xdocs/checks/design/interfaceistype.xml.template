@@ -31,25 +31,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowMarkerInterfaces</td>
-              <td>
-                Control whether marker interfaces like Serializable are
-                allowed.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>3.1</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InterfaceIsTypeCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
