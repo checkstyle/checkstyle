@@ -44,7 +44,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
- * <a href="https://pmd.github.io/">PMD</a> rule.
+ * <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
+ *     PMD</a> rule.
  * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

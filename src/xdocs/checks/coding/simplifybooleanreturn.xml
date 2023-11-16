@@ -29,7 +29,8 @@ return !valid();
 
         <p>
           The idea for this Check has been shamelessly stolen from the
-          equivalent <a href="https://pmd.github.io/">PMD</a> rule.
+          equivalent <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
+          PMD</a> rule.
         </p>
       </subsection>
 
