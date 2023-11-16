@@ -55,89 +55,10 @@ public class ExampleClass {
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>maxPackage</td>
-              <td>Specify the maximum number of <code>package</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>maxPrivate</td>
-              <td>Specify the maximum number of <code>private</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>maxProtected</td>
-              <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>maxPublic</td>
-              <td>Specify the maximum number of <code>public</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>maxTotal</td>
-              <td>Specify the maximum number of methods allowed at all scope levels.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>5.3</td>
-            </tr>
-
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  ANNOTATION_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                RECORD_DEF</a>
-                .
-              </td>
-
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  ANNOTATION_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                RECORD_DEF</a>
-                .
-              </td>
-              <td>5.3</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
