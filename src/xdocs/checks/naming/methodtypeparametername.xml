@@ -48,11 +48,11 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // violation, name 'a' must match pattern '^[A-Z]$'
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // violation, name 'k' must match pattern '^[A-Z]$'
+class Example1 {
+  public &lt;T&gt; void method1() {}
+  public &lt;a&gt; void method2() {} // violation
+  public &lt;K, V&gt; void method3() {}
+  public &lt;k, V&gt; void method4() {} // violation
 }
         </source>
         <p id="Example2-config">
@@ -69,11 +69,11 @@ class MyClass {
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
-  public &lt;T&gt; void method1() {} // OK
-  public &lt;a&gt; void method2() {} // OK
-  public &lt;K, V&gt; void method3() {} // OK
-  public &lt;k, V&gt; void method4() {} // OK
+class Example2 {
+  public &lt;T&gt; void method1() {}
+  public &lt;a&gt; void method2() {}
+  public &lt;K, V&gt; void method3() {}
+  public &lt;k, V&gt; void method4() {}
 }
         </source>
       </subsection>
