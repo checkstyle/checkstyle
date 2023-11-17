@@ -45,12 +45,7 @@
             </tr>
             <tr>
               <td>excludes</td>
-              <td>
-                Control whether to allow for certain classes via a star notation to be
-                excluded such as <code>java.lang.Math.*</code> or specific static
-                members to be excluded like <code>java.lang.System.out</code> for a variable or
-                <code>java.lang.Math.random</code> for a method. See notes section for details.
-              </td>
+              <td>Control whether to allow for certain classes via a star notation to be excluded such as <code>java.lang.Math.*</code> or specific static members to be excluded like <code>java.lang.System.out</code> for a variable or <code>java.lang.Math.random</code> for a method. See notes section for details.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.0</td>

@@ -30,46 +30,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowClassImports</td>
-              <td>
-                Control whether to allow starred class imports like
-                <code>import java.util.*;</code>.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>allowStaticMemberImports</td>
-              <td>
-                Control whether to allow starred static member imports like
-                <code>import static org.junit.Assert.*;</code>.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.3</td>
-            </tr>
-            <tr>
-              <td>excludes</td>
-              <td>
-                Specify packages where starred class imports are
-                allowed and classes where starred static member imports are
-                allowed.
-              </td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>{}</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStarImportCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
