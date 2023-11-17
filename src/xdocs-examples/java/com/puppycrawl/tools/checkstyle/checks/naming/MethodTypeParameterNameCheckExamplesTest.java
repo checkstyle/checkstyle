@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -34,10 +36,11 @@ public class MethodTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "14:11: " + getCheckMessage(MSG_INVALID_PATTERN, "a", "^[A-Z]$"),
+            "16:11: " + getCheckMessage(MSG_INVALID_PATTERN, "k", "^[A-Z]$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,6 +49,6 @@ public class MethodTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
