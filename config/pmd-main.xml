@@ -51,4 +51,18 @@
          value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+    <properties>
+      <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
+      <property name="violationSuppressXPath"
+         value="//ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+                        //MethodDeclaration[@Name='writeTablePropertiesRows']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='processFiles']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='processFile']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                        //MethodDeclaration[@Name='getTranslationKeys']"/>
+    </properties>
+  </rule>
 </ruleset>

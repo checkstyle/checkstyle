@@ -208,9 +208,18 @@ public class PropertiesMacro extends AbstractMacro {
         final List<String> orderedProperties = orderProperties(properties);
 
         for (String property : orderedProperties) {
-            final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
-            final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
-            writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
+            try {
+                final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
+                final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
+                writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
+            }
+            // -@cs[IllegalCatch] we need to get details in wrapping exception
+            catch (Exception exc) {
+                final String message = String.format(Locale.ROOT,
+                        "Exception while handling moduleName: %s propertyName: %s",
+                        currentModuleName, property);
+                throw new MacroExecutionException(message, exc);
+            }
         }
     }
 
