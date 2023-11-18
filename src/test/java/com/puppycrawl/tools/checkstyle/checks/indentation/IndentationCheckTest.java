@@ -2257,13 +2257,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
         final String[] expected = {
-            "40:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "42:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "48:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
-            "60:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
-            "66:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "69:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
-            "75:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "38:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "40:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "46:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "58:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
+            "64:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "67:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
+            "73:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"), expected);
