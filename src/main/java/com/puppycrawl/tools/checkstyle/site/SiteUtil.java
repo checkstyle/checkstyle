@@ -719,7 +719,8 @@ public final class SiteUtil {
 
         if (sinceVersion == null) {
             final String message = String.format(Locale.ROOT,
-                    "Failed to find since version for %s", propertyName);
+                    "Failed to find '@since' version for '%s' property"
+                            + " in '%s' and all parent classes of it", propertyName, moduleName);
             throw new MacroExecutionException(message);
         }
 
@@ -734,10 +735,14 @@ public final class SiteUtil {
      */
     private static String getSinceVersionFromJavadoc(DetailNode javadoc) {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
-        final DetailNode description = JavadocUtil.findFirstToken(sinceJavadocTag,
-                JavadocTokenTypes.DESCRIPTION);
-        final DetailNode text = JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT);
-        return text.getText();
+        String result = null;
+        if (sinceJavadocTag != null) {
+            final DetailNode description = JavadocUtil.findFirstToken(sinceJavadocTag,
+                    JavadocTokenTypes.DESCRIPTION);
+            final DetailNode text = JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT);
+            result = text.getText();
+        }
+        return result;
     }
 
     /**
