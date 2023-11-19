@@ -197,6 +197,8 @@ public final class SiteUtil {
         new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "header", "AbstractHeaderCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
+                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
+        new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
 
