@@ -257,6 +257,11 @@ public class PropertiesMacro extends AbstractMacro {
                                             DetailNode moduleJavadoc)
             throws MacroExecutionException {
         final Field field = SiteUtil.getField(instance.getClass(), propertyName);
+        if (field == null) {
+            String message = String.format("'%s' class field with name '%s' is not found",
+                    currentModuleName, propertyName);
+            throw new MacroExecutionException(message);
+        }
 
         sink.rawText(INDENT_LEVEL_12);
         sink.tableRow();
