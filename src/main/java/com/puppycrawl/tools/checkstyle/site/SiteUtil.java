@@ -204,7 +204,11 @@ public final class SiteUtil {
         Map.entry(REGEXP_HEADER_CHECK_HEADER, VERSION_5_0),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
+        Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
+        // until https://github.com/checkstyle/checkstyle/issues/14052
+        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
+        Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", VERSION_3_2)
     );

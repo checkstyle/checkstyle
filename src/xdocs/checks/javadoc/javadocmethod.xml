@@ -96,26 +96,20 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td>accessModifiers</td>
               <td>Specify the access modifiers where Javadoc comments are checked.</td>
-              <td>
-                <a href="../../property_types.html#AccessModifierOption.5B.5D">
-                  AccessModifierOption[]
-                </a>
-              </td>
+              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.42</td>
             </tr>
             <tr>
               <td>allowMissingParamTags</td>
-              <td>Control whether to ignore violations when a method has parameters
-              but does not have matching <code>param</code> tags in the javadoc.</td>
+              <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td>allowMissingReturnTag</td>
-              <td>Control whether to ignore violations when a method returns
-              non-void type and does not have a <code>return</code> tag in the javadoc.</td>
+              <td>Control whether to ignore violations when a method returns non-void type and does not have a <code>return</code> tag in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
@@ -137,28 +131,26 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
-                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
-                ,<a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>3.0</td>
