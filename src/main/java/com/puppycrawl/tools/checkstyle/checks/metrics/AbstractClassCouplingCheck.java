@@ -88,7 +88,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Pattern to match brackets in a full type name. */
     private static final Pattern BRACKET_PATTERN = Pattern.compile("\\[[^]]*]");
 
-    /** Specify user-configured regular expressions to ignore classes. */
+    /**
+     * Specify user-configured regular expressions to ignore classes. All excluded packages
+     * should end with a period, so it also appends a dot to a package name.
+     */
     private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
     /** A map of (imported class name -&gt; class name with package) pairs. */
@@ -138,6 +141,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * Setter to specify the maximum threshold allowed.
      *
      * @param max allowed complexity.
+     * @since 3.4
      */
     public final void setMax(int max) {
         this.max = max;
@@ -147,15 +151,18 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * Setter to specify user-configured class names to ignore.
      *
      * @param excludedClasses classes to ignore.
+     * @since 5.7
      */
     public final void setExcludedClasses(String... excludedClasses) {
         this.excludedClasses = Set.of(excludedClasses);
     }
 
     /**
-     * Setter to specify user-configured regular expressions to ignore classes.
+     * Setter to specify user-configured regular expressions to ignore classes. All excluded
+     * packages should end with a period, so it also appends a dot to a package name.
      *
      * @param from array representing regular expressions of classes to ignore.
+     * @since 7.7
      */
     public void setExcludeClassesRegexps(String... from) {
         Arrays.stream(from)
@@ -169,6 +176,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      *
      * @param excludedPackages packages to ignore.
      * @throws IllegalArgumentException if there are invalid identifiers among the packages.
+     * @since 7.7
      */
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
