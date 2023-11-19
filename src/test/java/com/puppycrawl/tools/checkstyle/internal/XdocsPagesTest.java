@@ -1164,7 +1164,8 @@ public class XdocsPagesTest {
                 result = "UTF-8";
             }
             else if ("charset".equals(propertyName)) {
-                result = "the charset property of the parent Checker module";
+                result = "the charset property of the parent"
+                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
             }
             else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
                 result = "null (no cache file)";
