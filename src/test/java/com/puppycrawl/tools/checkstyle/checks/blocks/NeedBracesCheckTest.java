@@ -138,8 +138,11 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSingleLineCaseDefault() throws Exception {
         final String[] expected = {
+            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "81:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "84:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "87:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "88:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
             "131:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "133:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
