@@ -40,7 +40,7 @@
             <property name="header" type="java.lang.String">
                <description>Specify the required header specified inline.
  Individual header lines must be separated by the string {@code "\n"}
- (even on platforms with a different line separator), see examples below.</description>
+ (even on platforms with a different line separator).</description>
             </property>
             <property name="headerFile" type="java.net.URI">
                <description>Specify the name of the file containing the required header.</description>
