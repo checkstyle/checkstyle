@@ -32,7 +32,8 @@
                       name="excludeClassesRegexps"
                       type="java.util.regex.Pattern[]">
                <description>Specify user-configured regular
- expressions to ignore classes.</description>
+ expressions to ignore classes. All excluded packages should end with a period,
+ so it also appends a dot to a package name.</description>
             </property>
             <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double, float, int, long, short, var, void"
                       name="excludedClasses"
