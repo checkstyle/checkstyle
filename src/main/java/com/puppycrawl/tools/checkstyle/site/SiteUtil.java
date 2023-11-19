@@ -160,6 +160,21 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
+    private static final String V69 = "6.9";
+
+    /**
+     * Frequent version.
+     */
+    private static final String V50 = "5.0";
+
+    /**
+     * Frequent version.
+     */
+    private static final String V32 = "3.2";
+
+    /**
+     * Frequent version.
+     */
     private static final String V824 = "8.24";
 
     /**
@@ -169,11 +184,19 @@ public final class SiteUtil {
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
+        Map.entry("HeaderCheck.charset", V50),
+        Map.entry("HeaderCheck.fileExtensions", V69),
+        Map.entry("HeaderCheck.headerFile", V32),
+        Map.entry("HeaderCheck.header", V50),
+        Map.entry("RegexpHeaderCheck.charset", V50),
+        Map.entry("RegexpHeaderCheck.fileExtensions", V69),
+        Map.entry("RegexpHeaderCheck.headerFile", V32),
+        Map.entry("RegexpHeaderCheck.header", V50),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
-        Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
+        Map.entry("FileTabCharacterCheck.fileExtensions", V50),
         Map.entry("LineLengthCheck.fileExtensions", V824),
         Map.entry("ParenPadCheck.option", "3.0"),
-        Map.entry("TypecastParenPadCheck.option", "3.2")
+        Map.entry("TypecastParenPadCheck.option", V32)
     );
 
     /** Map of all superclasses properties and their javadocs. */
@@ -803,7 +826,8 @@ public final class SiteUtil {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
         if (CHARSET.equals(propertyName)) {
-            result = "the charset property of the parent Checker module";
+            result = "the charset property of the parent"
+                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
         }
         else if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";
@@ -1021,14 +1045,7 @@ public final class SiteUtil {
                         "Could not find field " + propertyName + " in class " + moduleName);
             }
 
-            try {
-                final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
-                    propertyName);
-                result = descriptor.getPropertyType();
-            }
-            catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
-                throw new MacroExecutionException(exc.getMessage(), exc);
-            }
+            result = getPropertyClass(propertyName, instance);
         }
         if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
@@ -1053,6 +1070,29 @@ public final class SiteUtil {
             result = int[].class;
         }
 
+        return result;
+    }
+
+    /**
+     * Gets the class of the given java property.
+     *
+     * @param propertyName the name of the property.
+     * @param instance the instance of the module.
+     * @return the class of the java property.
+     * @throws MacroExecutionException if an error occurs during getting the class.
+     */
+    // -@cs[ForbidWildcardAsReturnType] Object is received as param, no prediction on type of field
+    public static Class<?> getPropertyClass(String propertyName, Object instance)
+            throws MacroExecutionException {
+        final Class<?> result;
+        try {
+            final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
+                    propertyName);
+            result = descriptor.getPropertyType();
+        }
+        catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
+            throw new MacroExecutionException(exc.getMessage(), exc);
+        }
         return result;
     }
 
