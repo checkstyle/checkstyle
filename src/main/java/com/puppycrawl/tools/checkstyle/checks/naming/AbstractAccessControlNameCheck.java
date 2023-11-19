@@ -116,6 +116,7 @@ public abstract class AbstractAccessControlNameCheck
      * Setter to control whether we should apply the check to public members.
      *
      * @param applyTo new value of the property.
+     * @since 5.0
      */
     public void setApplyToPublic(boolean applyTo) {
         applyToPublic = applyTo;
@@ -125,6 +126,7 @@ public abstract class AbstractAccessControlNameCheck
      * Setter to control whether we should apply the check to protected members.
      *
      * @param applyTo new value of the property.
+     * @since 5.0
      */
     public void setApplyToProtected(boolean applyTo) {
         applyToProtected = applyTo;
@@ -134,6 +136,7 @@ public abstract class AbstractAccessControlNameCheck
      * Setter to control whether we should apply the check to package-private members.
      *
      * @param applyTo new value of the property.
+     * @since 5.0
      */
     public void setApplyToPackage(boolean applyTo) {
         applyToPackage = applyTo;
@@ -143,6 +146,7 @@ public abstract class AbstractAccessControlNameCheck
      * Setter to control whether we should apply the check to private members.
      *
      * @param applyTo new value of the property.
+     * @since 5.0
      */
     public void setApplyToPrivate(boolean applyTo) {
         applyToPrivate = applyTo;
