@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
+
 public class EmptyCatchBlockCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,28 +35,31 @@ public class EmptyCatchBlockCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:45: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "31:38: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY)
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "33:38: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY)
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "18:45: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "25:43: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "33:38 " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY)
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -64,6 +68,6 @@ public class EmptyCatchBlockCheckExamplesTest extends AbstractExamplesModuleTest
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
