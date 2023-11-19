@@ -803,7 +803,8 @@ public final class SiteUtil {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
         if (CHARSET.equals(propertyName)) {
-            result = "the charset property of the parent Checker module";
+            result = "the charset property of the parent"
+                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
         }
         else if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";
@@ -1021,14 +1022,7 @@ public final class SiteUtil {
                         "Could not find field " + propertyName + " in class " + moduleName);
             }
 
-            try {
-                final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
-                    propertyName);
-                result = descriptor.getPropertyType();
-            }
-            catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
-                throw new MacroExecutionException(exc.getMessage(), exc);
-            }
+            result = getPropertyClass(propertyName, instance);
         }
         if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
@@ -1053,6 +1047,28 @@ public final class SiteUtil {
             result = int[].class;
         }
 
+        return result;
+    }
+
+    /**
+     * Gets the class of the given java property.
+     *
+     * @param propertyName the name of the property.
+     * @param instance the instance of the module.
+     * @return the class of the java property.
+     * @throws MacroExecutionException if an error occurs during getting the class.
+     */
+    public static Class<?> getPropertyClass(String propertyName, Object instance)
+            throws MacroExecutionException {
+        final Class<?> result;
+        try {
+            final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
+                    propertyName);
+            result = descriptor.getPropertyType();
+        }
+        catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException exc) {
+            throw new MacroExecutionException(exc.getMessage(), exc);
+        }
         return result;
     }
 
