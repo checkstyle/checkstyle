@@ -61,13 +61,8 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td>
-                <code>
-                  the charset property of the parent<a href="../../config.html#Checker">
-                  Checker</a> module
-                </code>
-              </td>
-              <td>5.0</td>
+              <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
+              <td>4.4</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
@@ -78,21 +73,17 @@ line 5: ////////////////////////////////////////////////////////////////////
             </tr>
             <tr>
               <td>header</td>
-              <td>
-                Specify the required header specified inline. Individual header lines
-                must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with
-                a different line separator), see examples below.
-              </td>
+              <td>Specify the required header specified inline. Individual header lines must be separated by the string <code>"\n"</code>(even on platforms with a different line separator).</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>null</code></td>
-              <td>5.0</td>
+              <td>4.4</td>
             </tr>
             <tr>
               <td>headerFile</td>
               <td>Specify the name of the file containing the required header.</td>
               <td><a href="../../property_types.html#URI">URI</a></td>
               <td><code>null</code></td>
-              <td>3.2</td>
+              <td>4.4</td>
             </tr>
             <tr>
               <td>ignoreLines</td>
