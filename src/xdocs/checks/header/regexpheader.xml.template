@@ -88,61 +88,10 @@ line 6: ^\W*$
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>charset</td>
-              <td>Specify the character encoding to use when reading the headerFile.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td>
-                <code>
-                  the charset property of the parent<a href="../../config.html#Checker">
-                  Checker</a> module
-                </code>
-              </td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>6.9</td>
-            </tr>
-            <tr>
-              <td>header</td>
-              <td>
-                Define the required header specified inline. Individual header lines
-                must be separated by the string <code>"\n"</code> (even on platforms with
-                a different line separator). For header lines containing
-                <code>"\n\n"</code> checkstyle will forcefully expect an empty line to
-                exist. See examples below. Regular expressions must not span multiple lines.
-              </td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>headerFile</td>
-              <td>Specify the name of the file containing the required header.</td>
-              <td><a href="../../property_types.html#URI">URI</a></td>
-              <td><code>null</code></td>
-              <td>3.2</td>
-            </tr>
-            <tr>
-              <td>multiLines</td>
-              <td>Specify the line numbers to repeat (zero or more times).</td>
-              <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
-              <td><code>{}</code></td>
-              <td>3.4</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

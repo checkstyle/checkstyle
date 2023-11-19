@@ -803,7 +803,8 @@ public final class SiteUtil {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
         if (CHARSET.equals(propertyName)) {
-            result = "the charset property of the parent Checker module";
+            result = "the charset property of the parent"
+                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
         }
         else if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";

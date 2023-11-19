@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * forcefully expect an empty line to exist. See examples below.
  * Regular expressions must not span multiple lines.
  * Type is {@code java.lang.String}.
- * Default value is {@code null}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code headerFile} - Specify the name of the file containing the required header.
