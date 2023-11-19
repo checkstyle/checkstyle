@@ -71,54 +71,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>excludeClassesRegexps</td>
-              <td>Specify user-configured regular expressions to ignore classes.</td>
-              <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
-              <td><code>^$</code></td>
-              <td>7.7</td>
-            </tr>
-            <tr>
-              <td>excludedClasses</td>
-              <td>Specify user-configured class names to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>
-                ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte,
-                Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet,
-                Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException,
-                IllegalStateException, IndexOutOfBoundsException, IntStream, Integer,
-                LinkedHashMap, LinkedHashSet, LinkedList, List, Long, LongStream, Map,
-                NullPointerException, Object, Optional, OptionalDouble, OptionalInt, OptionalLong,
-                Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short,
-                SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder,
-                SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void,
-                boolean, byte, char, double, float, int, long, short, var, void</code>
-              </td>
-              <td>5.7</td>
-            </tr>
-            <tr>
-              <td>excludedPackages</td>
-              <td>Specify user-configured packages to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>{}</code></td>
-              <td>7.7</td>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify the maximum threshold allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>7</code></td>
-              <td>3.4</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
