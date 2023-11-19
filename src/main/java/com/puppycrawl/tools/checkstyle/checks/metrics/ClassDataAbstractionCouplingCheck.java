@@ -81,7 +81,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code excludeClassesRegexps} - Specify user-configured regular
- * expressions to ignore classes.
+ * expressions to ignore classes. All excluded packages should end with a period,
+ * so it also appends a dot to a package name.
  * Type is {@code java.util.regex.Pattern[]}.
  * Default value is {@code ^$}.
  * </li>
@@ -100,6 +101,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * <li>
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
+ * All excluded packages should end with a period, so it also appends a dot to a package name.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
