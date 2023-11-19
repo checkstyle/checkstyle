@@ -367,14 +367,8 @@
          files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexpsinglelinejava.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]anoninnerlength.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]executablestatementcount.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]filelength.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]lambdabodylength.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]linelength.xml.template"/>
+
+
   <!-- no properties by design -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>

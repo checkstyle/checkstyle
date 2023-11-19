@@ -188,8 +188,14 @@ public final class SiteUtil {
     private static final String V824 = "8.24";
 
     /**
+     * Frequent version.
+     */
+    private static final String VERSION_3_0 = "3.0";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
@@ -209,8 +215,9 @@ public final class SiteUtil {
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
-        Map.entry("ParenPadCheck.option", "3.0"),
-        Map.entry("TypecastParenPadCheck.option", VERSION_3_2)
+        Map.entry("ParenPadCheck.option", VERSION_3_0),
+        Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
+        Map.entry("FileLengthCheck.fileExtensions", VERSION_5_0)
     );
 
     /** Map of all superclasses properties and their javadocs. */
