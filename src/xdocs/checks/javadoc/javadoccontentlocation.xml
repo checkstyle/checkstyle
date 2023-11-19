@@ -84,10 +84,7 @@ public void method();
             <tr>
               <td>location</td>
               <td>Specify the policy on placement of the Javadoc content.</td>
-              <td>
-                <a href="../../property_types.html#JavadocContentLocationOption">
-                    JavadocContentLocationOption</a>
-              </td>
+              <td><a href="../../property_types.html#JavadocContentLocationOption">JavadocContentLocationOption</a></td>
               <td><code>second_line</code></td>
               <td>8.27</td>
             </tr>

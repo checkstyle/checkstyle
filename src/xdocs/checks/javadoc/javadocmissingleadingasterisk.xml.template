@@ -25,26 +25,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>violateExecutionOnNonTightHtml</td>
-              <td>
-                Control when to print violations if the Javadoc being examined by this check
-                violates the tight html rules defined at
-                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.38</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingLeadingAsteriskCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
