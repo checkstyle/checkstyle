@@ -170,8 +170,12 @@ public final class SiteUtil {
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
+        Map.entry("JavadocPackageCheck.fileExtensions", "4.4"),
         Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
         Map.entry("LineLengthCheck.fileExtensions", V824),
+        // until https://github.com/checkstyle/checkstyle/issues/14052
+        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
+        Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", "3.2")
     );
