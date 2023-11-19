@@ -27,8 +27,8 @@ while (counter < 10)                            // OK
    ++count;
 while (value.incrementValue() < 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
+  case 1: counter++; break;         // violation, single-line statements not allowed without braces
+  case 6: counter += 10; break;     // violation, single-line statements not allowed without braces
+  default: counter = 100; break;    // violation, single-line statements not allowed without braces
 }
 // xdoc section -- end
