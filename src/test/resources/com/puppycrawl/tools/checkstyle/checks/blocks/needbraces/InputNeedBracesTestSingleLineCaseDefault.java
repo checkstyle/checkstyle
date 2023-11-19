@@ -77,15 +77,15 @@ public class InputNeedBracesTestSingleLineCaseDefault
     {
         int counter = 0;
         switch (num) {
-            case 1: counter++; break;
+            case 1: counter++; break; // violation
             case 2: // violation
                 counter += 2;
                 break;
             case 3: // violation
                 counter += 3;
                 break;
-            case 6: counter += 10; break;
-            default: counter = 100; break;
+            case 6: counter += 10; break; // violation
+            default: counter = 100; break; // violation
         }
         return counter;
     }
