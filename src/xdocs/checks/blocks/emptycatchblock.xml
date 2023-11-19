@@ -64,27 +64,37 @@
         </source>
         <p id="Example1-code">Such empty blocks would be both suppressed:</p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // violation
+public class Example1 {
+    private void exampleMethod1() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException expected) {
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // ok, catch block has comment
+    private void exampleMethod2() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ignore) {
+            // no handling
+        } // ok, catch block has comment
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+    private void exampleMethod3 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException o) {
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+    private void exampleMethod4 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ex) {
+            // This is expected
+        } // ok
+    }
+}
         </source>
 
         <p id="Example2-config">
@@ -102,27 +112,37 @@ try {
         </source>
         <p id="Example2-code">Such empty blocks would be both suppressed:</p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // ok
+public class Example2 {
+    private void exampleMethod1() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException expected) {
+        } // ok
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // ok
+    private void exampleMethod2() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ignore) {
+            // no handling
+        } // ok
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+    private void exampleMethod3 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException o) {
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+    private void exampleMethod4 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ex) {
+            // This is expected
+        } // ok
+    }
+}
         </source>
 
         <p id="Example3-config">
@@ -140,27 +160,37 @@ try {
         </source>
         <p id="Example3-code">Such empty blocks would be both suppressed:</p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException expected) {
-} // violation
+public class Example3 {
+    private void exampleMethod1() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException expected) {
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ignore) {
-  // no handling
-} // violation
+    private void exampleMethod2() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ignore) {
+        // no handling
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException o) {
-} // violation
+    private void exampleMethod3 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException o) {
+        } // violation
+    }
 
-try {
-  throw new RuntimeException();
-} catch (RuntimeException ex) {
-  // This is expected
-} // ok
+    private void exampleMethod4 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException ex) {
+        // This is expected
+        } // ok
+    }
+}
         </source>
 
         <p id="Example4-config">
@@ -180,45 +210,59 @@ try {
         </source>
         <p id="Example4-code">Such empty blocks would be both suppressed:</p>
         <source>
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  //This is expected
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  //   This is expected
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  // This is expected
-  // some another comment
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  /* This is expected */
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException e) {
-  /*
-  *
-  * This is expected
-  * some another comment
-  */
-}
-...
-try {
-  throw new RuntimeException();
-} catch (RuntimeException myException) {
+public class Example4 {
+    private void exampleMethod1() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            //This is expected
+        }
+    }
 
+    private void exampleMethod2() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            //   This is expected
+        }
+    }
+
+    private void exampleMethod3 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            // This is expected
+            // some another comment
+        }
+    }
+
+    private void exampleMethod4 () {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            /* This is expected */
+        }
+    }
+
+    private void exampleMethod5() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException e) {
+            /*
+            *
+            * This is expected
+            * some another comment
+            */
+        }
+    }
+
+    private void exampleMethod6() {
+        try {
+            throw new RuntimeException();
+        } catch (RuntimeException myException) {
+
+        }
+    }
 }
         </source>
       </subsection>
