@@ -71,25 +71,28 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * Return the header lines to check against.
      *
      * @return the header lines to check against.
+     * @since 3.4
      */
     protected List<String> getHeaderLines() {
         return List.copyOf(readerLines);
     }
 
     /**
-     * Setter to specify the charset to use when reading the headerFile.
+     * Setter to specify the character encoding to use when reading the headerFile.
      *
      * @param charset the charset name to use for loading the header from a file
+     * @since 5.0
      */
     public void setCharset(String charset) {
         this.charset = createCharset(charset);
     }
 
     /**
-     * Setter to specify the name of the file containing the required header..
+     * Setter to specify the name of the file containing the required header.
      *
      * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
+     * @since 3.2
      */
     public void setHeaderFile(URI uri) throws CheckstyleException {
         if (uri == null) {
@@ -147,11 +150,13 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Set the header to check against. Individual lines in the header
-     * must be separated by '\n' characters.
+     * Specify the required header specified inline.
+     * Individual header lines must be separated by the string
+     * {@code "\n"}(even on platforms with a different line separator).
      *
      * @param header header content to check against.
      * @throws IllegalArgumentException if the header cannot be interpreted
+     * @since 5.0
      */
     public void setHeader(String header) {
         if (!CommonUtil.isBlank(header)) {
