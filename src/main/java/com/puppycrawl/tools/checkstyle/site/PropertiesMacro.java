@@ -511,7 +511,14 @@ public class PropertiesMacro extends AbstractMacro {
                         propertyName, field, instance, currentModuleName);
             }
             else {
-                defaultValue = CURLY_BRACKET;
+                final Class<?> fieldClass = SiteUtil.getFieldClass(
+                        field, propertyName, currentModuleName, instance);
+                if (fieldClass.isArray()) {
+                    defaultValue = CURLY_BRACKET;
+                }
+                else {
+                    defaultValue = "null";
+                }
             }
             final String checkName = CHECK_PATTERN
                     .matcher(instance.getClass().getSimpleName()).replaceAll("");
