@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -484,11 +482,32 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current switch member is single-line statement.
      */
     private static boolean isSingleLineCaseGroup(DetailAST ast) {
-        return Optional.of(ast)
-            .map(DetailAST::getNextSibling)
-            .map(DetailAST::getLastChild)
-            .map(lastToken -> TokenUtil.areOnSameLine(ast, lastToken))
-            .orElse(Boolean.TRUE);
+        DetailAST first = ast.getNextSibling();
+        boolean singleLineGroup = false;
+        if (first == null) {
+            singleLineGroup = true;
+        }
+        else
+            if (!TokenUtil.areOnSameLine(first, ast)) {
+                singleLineGroup = false;
+            }
+            else
+                if (first.getFirstChild() != null) {
+                    first = first.getFirstChild();
+                    if (first.getNextSibling() == null) {
+                        singleLineGroup = true;
+                    }
+                    else {
+                        first = first.getNextSibling();
+                        if (first.getNextSibling() != null) {
+                            singleLineGroup = false;
+                        }
+                        else {
+                            singleLineGroup = true;
+                        }
+                    }
+                }
+        return singleLineGroup;
     }
 
     /**
