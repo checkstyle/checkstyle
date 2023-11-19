@@ -172,6 +172,7 @@ public final class SiteUtil {
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
         Map.entry("LineLengthCheck.fileExtensions", V824),
+        Map.entry("FileLengthCheck.fileExtensions", V824),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", "3.2")
     );
