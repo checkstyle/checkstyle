@@ -51,6 +51,9 @@ import org.apache.commons.beanutils.*;
 // comment between import groups
 
 
+import com.puppycrawl.tools.checkstyle.*; // violation '.* should be separated from previous import group by one line'
+
+
 // comment between import groups
 import picocli.*; // violation '.* should be separated from previous import group by one line'
 

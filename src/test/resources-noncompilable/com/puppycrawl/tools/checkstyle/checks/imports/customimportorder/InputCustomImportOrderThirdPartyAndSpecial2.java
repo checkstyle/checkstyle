@@ -39,6 +39,11 @@ import org.apache.commons.beanutils.*;
 
 import org.apache.commons.collections.*; // violation 'Extra separation in import group before .*'
 
+import com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportControl; // SAME_PACKAGE(6)
+
+
+import com.puppycrawl.tools.checkstyle.checks.imports.AbstractImportRule; // violation 'Extra separation in import group before .*'
+
 import antlr.*; // NONGROUP
 import antlr.CommonASTWithHiddenTokens;
 

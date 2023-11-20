@@ -29,6 +29,8 @@ import java.io.IOException; // violation 'wrong order..* expecting group .* on t
 import java.io.InputStream; // violation 'wrong order..* expecting group .* on this line'
 import java.io.Reader; // violation 'wrong order..* expecting group .* on this line'
 
+import com.puppycrawl.tools.checkstyle.*;
+
 import com.google.common.collect.*;
 import org.junit.*;
 
