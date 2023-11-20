@@ -16,8 +16,6 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import java.util.*;
 import java.util.StringTokenizer;
-import com.puppycrawl.tools.checkstyle.checks.*;
-import com.puppycrawl.tools.checkstyle.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import org.apache.commons.beanutils.*;
 
 public class InputCustomImportOrder_NoSeparator {
