@@ -29,8 +29,6 @@ import java.io.IOException; // violation 'Wrong lexicographical order for.*. Sho
 import java.io.InputStream; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import java.io.Reader; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
-import com.puppycrawl.tools.checkstyle.*; // violation 'wrong order..* expecting group .* on this line'
-
 import com.google.common.collect.*; // violation '.* should be placed at the end of the import list: .*'
 import org.junit.*; // violation '.* should be separated from previous import group by one line'
 

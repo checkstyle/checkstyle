@@ -22,10 +22,7 @@ import java.util.*; // violation 'Wrong lexicographical order for.*. Should be b
 import java.util.concurrent.AbstractExecutorService; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import java.util.concurrent.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
-import com.puppycrawl.tools.checkstyle.checks.*;
-import com.puppycrawl.tools.checkstyle.*; // violation 'Wrong lexicographical order for.*. Should be before .*'
-
-import com.google.common.base.*; // 2 violations
+import com.google.common.base.*;
 import org.junit.*;
 
 public class InputCustomImportOrderDefault2 {
