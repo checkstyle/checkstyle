@@ -19,9 +19,6 @@ import org.junit.runner.*;
 import org.junit.validator.*;
 
 
-import com.puppycrawl.tools.checkstyle.*; // violation '.* should be separated from previous import group by one line'
-
-
 
 import picocli.*; // violation '.* should be separated from previous import group by one line'
 
