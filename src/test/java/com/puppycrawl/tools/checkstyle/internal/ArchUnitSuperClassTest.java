@@ -44,7 +44,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13544")
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/14053")
 public class ArchUnitSuperClassTest {
 
     /**

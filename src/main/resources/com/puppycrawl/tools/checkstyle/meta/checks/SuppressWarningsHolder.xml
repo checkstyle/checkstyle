@@ -16,7 +16,8 @@
          <properties>
             <property default-value="" name="aliasList" type="java.lang.String[]">
                <description>Specify aliases for check names that can be used in code
- within {@code SuppressWarnings}.</description>
+ within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+ The attribute is the fully qualified name of the Check and value is its alias.</description>
             </property>
          </properties>
       </check>
