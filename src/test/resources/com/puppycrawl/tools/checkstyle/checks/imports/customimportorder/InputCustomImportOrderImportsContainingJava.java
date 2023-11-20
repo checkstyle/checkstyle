@@ -14,6 +14,5 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import java.io.File;
 import javax.lang.model.SourceVersion;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck; // violation '.* should be separated from previous import group by one line'
 
 public class InputCustomImportOrderImportsContainingJava {}

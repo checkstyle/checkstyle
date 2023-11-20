@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import com.puppycrawl.tools.checkstyle.*; // violation 'Extra separation in import group before .*'
+import javax.crypto.Cipher; // violation 'Extra separation in import group before .*'
 
 import com.google.common.collect.*; // violation 'Extra separation in import group before .*'
 import org.junit.*;
