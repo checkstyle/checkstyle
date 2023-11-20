@@ -188,6 +188,11 @@ public final class SiteUtil {
     private static final String V824 = "8.24";
 
     /**
+     * Frequent version.
+     */
+    private static final String VERSION_3_0 = "3.0";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
      */
@@ -205,8 +210,18 @@ public final class SiteUtil {
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
-        Map.entry("ParenPadCheck.option", "3.0"),
-        Map.entry("TypecastParenPadCheck.option", VERSION_3_2)
+        Map.entry("ParenPadCheck.option", VERSION_3_0),
+        Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
+        Map.entry("StaticVariableNameCheck.applyToPackage", VERSION_5_0),
+        Map.entry("StaticVariableNameCheck.applyToPrivate", VERSION_5_0),
+        Map.entry("StaticVariableNameCheck.applyToProtected", VERSION_5_0),
+        Map.entry("StaticVariableNameCheck.applyToPublic", VERSION_5_0),
+        Map.entry("StaticVariableNameCheck.format", VERSION_3_0),
+        Map.entry("TypeNameCheck.applyToPackage", VERSION_5_0),
+        Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
+        Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
+        Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
+        Map.entry("TypeNameCheck.format", VERSION_3_0)
     );
 
     /** Map of all superclasses properties and their javadocs. */
@@ -752,7 +767,8 @@ public final class SiteUtil {
 
         if (sinceVersion == null) {
             final String message = String.format(Locale.ROOT,
-                    "Failed to find since version for %s", propertyName);
+                    "Failed to find '@since' version for '%s' property"
+                            + " in '%s' and all parent classes of it", propertyName, moduleName);
             throw new MacroExecutionException(message);
         }
 
@@ -767,10 +783,14 @@ public final class SiteUtil {
      */
     private static String getSinceVersionFromJavadoc(DetailNode javadoc) {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
-        final DetailNode description = JavadocUtil.findFirstToken(sinceJavadocTag,
-                JavadocTokenTypes.DESCRIPTION);
-        final DetailNode text = JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT);
-        return text.getText();
+        String result = null;
+        if (sinceJavadocTag != null) {
+            final DetailNode description = JavadocUtil.findFirstToken(sinceJavadocTag,
+                    JavadocTokenTypes.DESCRIPTION);
+            final DetailNode text = JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT);
+            result = text.getText();
+        }
+        return result;
     }
 
     /**
