@@ -29,9 +29,6 @@ import java.io.IOException; // violation 'Wrong lexicographical order for.*. Sho
 import java.io.InputStream; // violation 'Wrong lexicographical order for.*. Should be before .*'
 import java.io.Reader; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
-import com.puppycrawl.tools.checkstyle.*;
-
-import com.google.common.collect.*; // 2 violations
 import org.junit.*;
 
 public class InputCustomImportOrderDefault3 {
