@@ -66,6 +66,7 @@ public abstract class AbstractNameCheck
      * Set the format for the specified regular expression.
      *
      * @param pattern the new pattern
+     * @since 3.0
      */
     public final void setFormat(Pattern pattern) {
         format = pattern;
