@@ -47,9 +47,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code aliasList} - Specify aliases for check names that can be used in code
- * within {@code SuppressWarnings}.
+ * within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+ * The attribute is the fully qualified name of the Check and value is its alias.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code null}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>
@@ -149,10 +150,12 @@ public class SuppressWarningsHolder
 
     /**
      * Setter to specify aliases for check names that can be used in code
-     * within {@code SuppressWarnings}.
+     * within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+     * The attribute is the fully qualified name of the Check and value is its alias.
      *
      * @param aliasList comma-separated alias assignments
      * @throws IllegalArgumentException when alias item does not have '='
+     * @since 5.7
      */
     public void setAliasList(String... aliasList) {
         for (String sourceAlias : aliasList) {
