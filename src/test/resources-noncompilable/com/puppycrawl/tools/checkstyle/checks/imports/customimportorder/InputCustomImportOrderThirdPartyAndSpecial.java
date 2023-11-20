@@ -12,6 +12,9 @@ sortImportsInGroupAlphabetically = (default)false
 
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck;
+import com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck;
 
 import org.apache.commons.io.ByteOrderMark;
 
