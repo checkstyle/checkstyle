@@ -348,10 +348,6 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]naming[\\/]recordtypeparametername.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]naming[\\/]staticvariablename.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]naming[\\/]typename.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexp.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexpmultiline.xml.template"/>
