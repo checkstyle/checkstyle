@@ -149,7 +149,7 @@ public final class SiteUtil {
     /** Properties that can not be gathered from class instance. */
     private static final Set<String> PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD = Set.of(
         // static field (all upper case)
-        "SuppressWarningsHolderCheck.aliasList",
+        "SuppressWarningsHolder.aliasList",
         // loads string into memory similar to file
         "HeaderCheck.header",
         "RegexpHeaderCheck.header",
@@ -803,7 +803,8 @@ public final class SiteUtil {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
         if (CHARSET.equals(propertyName)) {
-            result = "the charset property of the parent Checker module";
+            result = "the charset property of the parent"
+                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
         }
         else if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";
