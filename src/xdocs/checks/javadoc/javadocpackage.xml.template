@@ -23,31 +23,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowLegacy</td>
-              <td>
-                Allow legacy <code>package.html</code> file to be used.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>.java</code></td>
-              <td>5.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
