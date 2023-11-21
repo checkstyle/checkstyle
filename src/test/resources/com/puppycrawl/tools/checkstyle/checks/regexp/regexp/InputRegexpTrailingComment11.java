@@ -1,18 +1,14 @@
 /*
 Regexp
 format = don't use trailing comments
-message = (default)null
-illegalPattern = (default)false
-duplicateLimit = (default)0
-errorLimit = (default)100
 ignoreComments = true
 
-
 */
+// violation 7 lines above 'Required pattern 'don't use trailing comments' missing in file.'
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment11 { // violation
+public class InputRegexpTrailingComment11 {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
