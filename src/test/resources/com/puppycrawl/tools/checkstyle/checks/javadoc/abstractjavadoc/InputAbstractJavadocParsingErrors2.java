@@ -1,19 +1,19 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: TempCheck
- */
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TempCheck
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <unclosedTag>
  */
-// violation above 'Unclosed HTML tag found: unclosedTag'
+// violation 2 lines above
 class InputAbstractJavadocParsingErrors2 {
     /**
      * <img src="singletonTag"/></img>
      */
-    // violation above 'Javadoc comment at column 35 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: img.'
+    // violation 2 lines above
     void singletonTag() {
     }
 }
