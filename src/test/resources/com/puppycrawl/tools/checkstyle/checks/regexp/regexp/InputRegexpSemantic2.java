@@ -10,6 +10,7 @@ ignoreComments = (default)false
 
 */
 
+// violation 13 lines above 'Required pattern 'This\\stext is not in the file' missing in file.'
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 import java.awt.*;
