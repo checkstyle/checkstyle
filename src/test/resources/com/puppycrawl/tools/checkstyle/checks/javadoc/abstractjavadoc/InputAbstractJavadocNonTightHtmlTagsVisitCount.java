@@ -1,10 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: NonTightHtmlTagIntolerantCheck
- * violateExecutionOnNonTightHtml = true
- * reportVisitJavadocToken = true
- */
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TightHtmlTagCheck
+violateExecutionOnNonTightHtml = true
+reportVisitJavadocToken = true
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <body>
@@ -14,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-// violation above 'Unclosed HTML tag found: p' <li> neither is opening every tag <p> </li>
+// violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
@@ -27,14 +28,14 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
      * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
-    // violation above 'Unclosed HTML tag found: p'
+    // violation 2 lines above 'Unclosed HTML tag found: p'
     private int field3;
 
     /**
      * <li> Complete <p> nesting </p> </li>
      * <tr> Zero </p> nesting despite `tr` is closed </tr>
      */
-    // violation above 'Unclosed HTML tag found: tr'
+    // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int field4;
 
     /**
@@ -42,7 +43,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
      * <li> Outer tag <li> Inner tag nested </li> not nested </li>
      */
-    // violation above 'Unclosed HTML tag found: li'
+    // violation 2 lines above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**
@@ -56,7 +57,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <head> head with <img src="~/singletonElement.jpg" alt="" width="100" height="150">
      * singletonElement </head>
      */
-    // violation above 'First sentence of Javadoc is missing an ending period.'
+    // violation 8 lines above 'First sentence of Javadoc is missing an ending period.'
     private int field6;
 
     /**
@@ -64,7 +65,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      *
      * @return <li> <li> outer list isn't nested in parse tree </li> </li>
      */
-    // violation above 'Unclosed HTML tag found: li'
+    // violation 2 lines above 'Unclosed HTML tag found: li'
     int getField1() {return field1;}
 
     /***/
@@ -75,7 +76,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      *
      * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
      */
-    // violation above 'First sentence of Javadoc is missing an ending period.'
+    // violation 4 lines above 'First sentence of Javadoc is missing an ending period.'
     void setField1(int field1) {this.field1 = field1;}
 
     /**
@@ -83,7 +84,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * And paraTag shall be nested in parse tree </p>
      * @param field2 <p> setter
      */
-    // violation above 'Unclosed HTML tag found: p'
+    // violation 2 lines above 'Unclosed HTML tag found: p'
     void setField2(int field2) {this.field2 = field2;}
 
     /**
@@ -93,7 +94,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
      *     <tr> nonTight </th>
      */
-    // violation above 'Unclosed HTML tag found: tr'
+    // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
 
     /**
@@ -114,7 +115,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <p> </p>
      * @param field4 value to which {@link #field4} is to be set to
      */
-    // violation above 'First sentence of Javadoc is missing an ending period.'
+    // violation 3 lines above 'First sentence of Javadoc is missing an ending period.'
     private void setField4(int field4) {this.field4 = field4;}
 
     /**
@@ -134,8 +135,8 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      * <tFoot> </TfOOT>
      * @param field5 value to which {@link #field5} is to be set to
      */
-    // violation above 'First sentence of Javadoc is missing an ending period.'
-    // violation above 'First sentence of Javadoc is missing an ending period.'
+    // violation 16 lines above 'First sentence of Javadoc is missing an ending period.'
+    // violation 13 lines above 'First sentence of Javadoc is missing an ending period.'
     private void setField5(int field5) {this.field5 = field5;}
 
     /**
@@ -143,5 +144,6 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
      *      <tFoot>
      * @param field6 </p> value to which {@link #field6} is to be set to
      */
+    // violation 4 lines above 'Unclosed HTML tag found: p'
     private void setField6(int field6) {this.field6 = field6;}
 }
