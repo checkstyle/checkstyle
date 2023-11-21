@@ -1,42 +1,38 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: TempCheck
- */
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TempCheck
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocWrongSingletonTagInJavadoc {
     /**
      * </embed>
      */
-    // violation above 'Javadoc comment at column 9 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: embed.'
+    // violation 2 lines above
     private int field1;
 
     /**
      * </keygen>
      */
-    // violation above 'Javadoc comment at column 9 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: keygen.'
+    // violation 2 lines above
     private int field2;
 
     /**
      * </SOURCE>
      */
-    // violation above 'Javadoc comment at column 9 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: SOURCE.'
+    // violation 2 lines above
     private int field3;
 
     /**
      * </TRACK>
      */
-    // violation above 'Javadoc comment at column 9 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: TRACK.'
+    // violation 2 lines above
     private int field4;
 
     /**
      * </WBR>
      */
-    // violation above 'Javadoc comment at column 9 has parse error.
-    // It is forbidden to close singleton HTML tags. Tag: WBR.'
+    // violation 2 lines above
     private int field5;
 }
