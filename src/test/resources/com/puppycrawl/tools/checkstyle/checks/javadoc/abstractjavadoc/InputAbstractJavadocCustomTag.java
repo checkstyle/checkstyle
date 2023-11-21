@@ -1,8 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: TempCheck
- */
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TempCheck
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocCustomTag {
     /**
