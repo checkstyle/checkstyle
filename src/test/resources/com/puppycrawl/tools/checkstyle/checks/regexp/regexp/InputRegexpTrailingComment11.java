@@ -9,10 +9,11 @@ ignoreComments = true
 
 
 */
-
+// violation 11 lines above 'Required pattern .* missing'
+// violation due to ignoreComments=true
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-public class InputRegexpTrailingComment11 { // violation
+public class InputRegexpTrailingComment11 {
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */

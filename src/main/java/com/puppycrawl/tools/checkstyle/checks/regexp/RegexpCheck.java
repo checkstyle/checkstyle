@@ -327,7 +327,8 @@ public class RegexpCheck extends AbstractCheck {
             }
         }
         else if (!illegalPattern && matchCount == 0) {
-            logMessage(0);
+            final String msg = getMessage();
+            log(1, MSG_REQUIRED_REGEXP, msg);
         }
     }
 
@@ -378,6 +379,22 @@ public class RegexpCheck extends AbstractCheck {
      * @param lineNumber the line number the message relates to.
      */
     private void logMessage(int lineNumber) {
+        final String msg = getMessage();
+
+        if (illegalPattern) {
+            log(lineNumber, MSG_ILLEGAL_REGEXP, msg);
+        }
+        else {
+            log(lineNumber, MSG_DUPLICATE_REGEXP, msg);
+        }
+    }
+
+    /**
+     * Provide right message.
+     *
+     * @return message for violation.
+     */
+    private String getMessage() {
         String msg;
 
         if (message == null || message.isEmpty()) {
@@ -391,17 +408,7 @@ public class RegexpCheck extends AbstractCheck {
             msg = ERROR_LIMIT_EXCEEDED_MESSAGE + msg;
         }
 
-        if (illegalPattern) {
-            log(lineNumber, MSG_ILLEGAL_REGEXP, msg);
-        }
-        else {
-            if (lineNumber > 0) {
-                log(lineNumber, MSG_DUPLICATE_REGEXP, msg);
-            }
-            else {
-                log(lineNumber, MSG_REQUIRED_REGEXP, msg);
-            }
-        }
+        return msg;
     }
 
 }
