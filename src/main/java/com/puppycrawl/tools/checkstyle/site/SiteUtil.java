@@ -163,14 +163,21 @@ public final class SiteUtil {
     private static final String V824 = "8.24";
 
     /**
+     * Frequent version.
+     */
+    private static final String V50 = "5.0";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
-        Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
+        Map.entry("FileTabCharacterCheck.fileExtensions", V50),
+        Map.entry("FileLengthCheck.fileExtensions", V50),
         Map.entry("LineLengthCheck.fileExtensions", V824),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", "3.2")
