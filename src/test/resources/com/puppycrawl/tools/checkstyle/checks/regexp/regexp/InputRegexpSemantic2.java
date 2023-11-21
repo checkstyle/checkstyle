@@ -9,6 +9,7 @@ ignoreComments = (default)false
 
 
 */
+// violation 12 lines above 'Required pattern 'This\\stext is not in the file' missing in file.'
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
