@@ -1,19 +1,19 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: TempCheck
- */
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TempCheck
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <unclosedTag>
  */
-// violation above 'Unclosed HTML tag found: unclosedTag'
+// violation 2 lines above
 class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
     /**
      * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
      */
-    // violation above 'Javadoc comment at column 82 has parse error.
-    // Details: mismatched input '(' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     void invalidAtSeeReference() {
     }
 }
