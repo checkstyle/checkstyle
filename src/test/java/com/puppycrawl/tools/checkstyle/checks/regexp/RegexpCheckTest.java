@@ -64,13 +64,10 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRequiredFail() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "This\\stext is not in the file");
         final String[] expected = {
             "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, "This\\stext is not in the file"),
         };
-        verify(checkConfig, getPath("InputRegexpSemantic2.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpSemantic2.java"), expected);
     }
 
     @Test
@@ -273,9 +270,8 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpStartingWithEmptyLine.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpStartingWithEmptyLine.java"), expected);
     }
 
     @Test
@@ -289,7 +285,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, "don't use trailing comments"),
         };
-        verify(checkConfig, getPath("InputRegexpTrailingComment11.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpTrailingComment11.java"), expected);
     }
 
     @Test
