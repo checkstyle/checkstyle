@@ -1,11 +1,12 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TempCheck
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.ObjectStreamField;
 import java.io.Serializable;
-
-/*
- * Config: TempCheck
- */
 
 /**
  * @author author-name <link rel="author license" href="/about">
@@ -19,24 +20,21 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      * href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial">
      * oracle docs</a> Syntax: <b>@serial field-description | include | exclude</b>
      */
-    // violation above 'Javadoc comment at column 23 has parse error.
-    // Details: mismatched input 'd' expecting <EOF> while parsing JAVADOC'
+    // violation 5 lines above
     private static final long serialVersionUID = 8669426759693842025L;
 
     /**
      * Parse Error from ANTLR.
      * @serialField Fieldname-fieldtype-fielddescription
      */
-    // violation above 'Javadoc comment at column 30 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static ObjectStreamField objectStreamField1;
 
     /**
      * Parse Error from ANTLR.
      * @serialField Fieldname fieldtype-fielddescription
      */
-    // violation above 'Javadoc comment at column 39 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static ObjectStreamField objectStreamField2;
 
     /**
@@ -49,8 +47,7 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      * Parse Error from ANTLR.
      * @exception RuntimeException-description
      */
-    // violation above 'Javadoc comment at column 34 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static void method1() {
 
     }
@@ -59,8 +56,7 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      * Parse Error from ANTLR.
      * @throws RuntimeException-description
      */
-    // violation above 'Javadoc comment at column 31 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static void method2() {
 
     }
@@ -70,8 +66,7 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
      *
      * @param a-description
      */
-    // violation above 'Javadoc comment at column 15 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static void method3(int a) {
 
     }
@@ -79,14 +74,12 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
     /**
      * @see #objectStreamField1-description
      */
-    // violation above 'Javadoc comment at column 33 has parse error.
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines above
     private static void method4() {
 
     }
 
-    // violation below 'Javadoc comment at column 17 has parse error.
-    // Details: mismatched input '<' expecting <EOF> while parsing JAVADOC'
+    // violation 2 lines below
     /**
      * @customTag<description>}
      */
@@ -97,23 +90,20 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
     /**
      * {@link #objectStreamField2-description}
      */
-    // violation above 'Javadoc comment at column 34 has parse error.
-    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG'
+    // violation 2 lines above
     private static void method5() {
     }
     /**
      * {@linkplain #objectStreamField3-description}
      */
-    // violation above 'Javadoc comment at column 39 has parse error.
-    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG'
+    // violation 2 lines above
     private static void method6() {
 
     }
     /**
      * {@customlink<description>}
      */
-    // violation above 'Javadoc comment at column 34 has parse error.
-    // Details: no viable alternative at input '<' while parsing JAVADOC_INLINE_TAG'
+    // violation 2 lines above
     private static void method7() {
     }
 }
