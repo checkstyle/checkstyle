@@ -1,12 +1,10 @@
-/*
+/* // violation above 'Required pattern 'This\\stext is not in the file' missing in file.'
 Regexp
 format = This\\stext is not in the file
-message = (default)null
 illegalPattern = (default)false
 duplicateLimit = (default)0
 errorLimit = (default)100
 ignoreComments = (default)false
-
 
 */
 
