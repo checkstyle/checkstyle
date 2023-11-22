@@ -128,8 +128,16 @@ variables:
   NEED_XMLSTARLET: $(needXmlstarlet)
   NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
+  M2_HOME: '/usr/local/apache-maven-3.8.6'
+  PATH: '/usr/local/apache-maven-3.8.6/bin:$(PATH)'
 
 steps:
+  - bash: |
+      wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.6/apache-maven-3.8.6-bin.tar.gz
+      tar xzvf apache-maven-3.8.6-bin.tar.gz
+      sudo mv apache-maven-3.8.6 /usr/local/
+      displayName: Setup Maven
+
   - bash: |
       apt-fast install -y xmlstarlet
     condition: |
