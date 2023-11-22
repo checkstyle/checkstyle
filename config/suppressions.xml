@@ -60,6 +60,8 @@
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
   <!-- Apart from complex logic, there is a nested class which contains many methods.  -->
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
+  <!-- Utility class is combination of a lot of different methods .  -->
+  <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
