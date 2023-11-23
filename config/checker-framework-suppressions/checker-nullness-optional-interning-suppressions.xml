@@ -6381,7 +6381,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a value.</message>
-    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods.getParent()));</lineContent>
+    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
