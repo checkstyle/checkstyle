@@ -85,7 +85,7 @@ public final class ScopeUtil {
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
-                .orElseGet(() -> getDefaultScope(aMods.getParent()));
+                .orElseGet(() -> getDefaultScope(aMods));
     }
 
     /**
