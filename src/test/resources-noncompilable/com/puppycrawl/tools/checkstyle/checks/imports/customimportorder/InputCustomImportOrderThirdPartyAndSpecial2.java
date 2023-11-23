@@ -28,7 +28,7 @@ import java.awt.Frame;
 import java.awt.Dialog; // violation 'Extra separation in import group before .*'
 import java.io.File;
 
-import com.google.thirdparty.publicsuffix.*; // THIRD_PARTY_PACKAGE
+import com.puppycrawl.tools.*; // THIRD_PARTY_PACKAGE
 
 
 import com.google.common.*; // violation 'Extra separation in import group before .*'

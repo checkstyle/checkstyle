@@ -35,7 +35,7 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.EvaluationResult;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/14053")
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/13544")
 public class ArchUnitTest {
 
     /**

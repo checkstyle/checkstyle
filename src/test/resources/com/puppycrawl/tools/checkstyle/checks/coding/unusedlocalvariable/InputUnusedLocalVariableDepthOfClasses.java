@@ -36,21 +36,21 @@ public class InputUnusedLocalVariableDepthOfClasses {
 
     class r {
         class k {
-            int s = 12;
+            int p = 12;
         }
     }
 
-    static class s {
+    static class p {
         class r {
             class k {
                 int a = 13;
 
                 void method() {
                     int a = 1; // violation
-                    int s = 1;
+                    int p = 1;
                     r.k obj = new r().new k() {
                         void method() {
-                            a += s;
+                            a += p;
                         }
                     };
                     obj.getClass();
