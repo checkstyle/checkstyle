@@ -35,13 +35,4 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>token != null &amp;&amp; !returnValue;</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ScopeUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ScopeUtil</mutatedClass>
-    <mutatedMethod>lambda$getScopeFromMods$1</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
-    <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods.getParent()));</lineContent>
-  </mutation>
 </suppressedMutations>
