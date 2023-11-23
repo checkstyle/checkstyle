@@ -1014,10 +1014,17 @@ public class XdocsPagesTest {
         final Class<?> fieldClass = getFieldClass(fileName, sectionName, instance, field,
                 propertyName);
 
-        final String expectedTypeName = Optional.ofNullable(field)
+        final String expectedTypeName;
+        // SuppressWarningsHolder#aliasList is backed by a static (upper case) property.
+        if ("SuppressWarningsHolder".equals(sectionName) && "aliasList".equals(propertyName)) {
+            expectedTypeName = "String[]";
+        }
+        else {
+            expectedTypeName = Optional.ofNullable(field)
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
                 .orElse(fieldClass.getSimpleName());
+        }
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClass, instance);
 
