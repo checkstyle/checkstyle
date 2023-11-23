@@ -14,8 +14,6 @@ sortImportsInGroupAlphabetically = (default)false
 //non-compiled with javac: special package and requires imports from the same package
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 
 // every import from javadoc package has comment in brackets indicating presence of keywords
