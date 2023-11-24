@@ -28,6 +28,8 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
@@ -176,6 +178,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocPosition.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            .isEqualTo(65);
     }
 
     @Test
@@ -184,6 +189,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            .isEqualTo(65);
     }
 
     @Test
@@ -446,11 +454,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     public static class JavadocCatchCheck extends AbstractJavadocCheck {
-
         private static int javadocsNumber;
+        private static Set<String> visitedTokens = new HashSet<>();
 
         public static void clearCounter() {
             javadocsNumber = 0;
+            visitedTokens.clear();
         }
 
         @Override
@@ -460,17 +469,24 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public void visitJavadocToken(DetailNode ast) {
-            assertWithMessage(ast.toString())
-                .that(ast.getText())
-                .isEqualTo("JAVADOC");
-            final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocTokenTypes.TEXT);
-            assertWithMessage("Empty javadoc text at " + ast)
-                .that(text)
-                .isNotNull();
-            assertWithMessage(ast.toString())
-                .that(text.getText())
-                .isEqualTo("Javadoc");
-            javadocsNumber++;
+            final String tokenIdentifier = ast.getLineNumber()
+                                   + "-" + ast.getColumnNumber() + "-" + ast.getText();
+
+            if (!visitedTokens.contains(tokenIdentifier)) {
+                visitedTokens.add(tokenIdentifier);
+
+                assertWithMessage(ast.toString())
+                        .that(ast.getText())
+                        .isEqualTo("JAVADOC");
+                final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocTokenTypes.TEXT);
+                assertWithMessage("Empty javadoc text at " + ast)
+                        .that(text)
+                        .isNotNull();
+                assertWithMessage(ast.toString())
+                        .that(text.getText())
+                        .isEqualTo("Javadoc");
+                javadocsNumber++;
+            }
         }
 
     }
