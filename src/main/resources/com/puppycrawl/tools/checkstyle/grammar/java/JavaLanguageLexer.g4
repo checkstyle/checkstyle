@@ -252,9 +252,27 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
 STRING_LITERAL:          '"' StringFragment '"';
-STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{';
-STRING_TEMPLATE_MID:     '}' StringFragment '\\' '{';
-STRING_TEMPLATE_END:     '}' StringFragment '"';
+STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
+    {
+             final CommonToken token = new CommonToken(STRING_TEMPLATE_BEGIN, getText());
+                    token.setLine(_tokenStartLine);
+                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                    emit(token);
+    };
+STRING_TEMPLATE_MID:     '}' StringFragment '\\' '{'
+    {
+             final CommonToken token = new CommonToken(STRING_TEMPLATE_MID, getText());
+                    token.setLine(_tokenStartLine);
+                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                    emit(token);
+    };
+STRING_TEMPLATE_END:     '}' StringFragment '"'
+    {
+            final CommonToken token = new CommonToken(STRING_TEMPLATE_END, getText());
+                    token.setLine(_tokenStartLine);
+                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                    emit(token);
+    };
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
