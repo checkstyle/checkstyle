@@ -113,7 +113,8 @@ tokens {
     RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
 
     STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END,
-    EMBEDDED_EXPRESSION
+    EMBEDDED_EXPRESSION, STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSSION_BEGIN,
+    EMBEDDED_EXPRESSION_END
 }
 
 @header {
@@ -252,26 +253,35 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
 STRING_LITERAL:          '"' StringFragment '"';
-STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:   '"'
+    StringFragment
     {
-             final CommonToken token = new CommonToken(STRING_TEMPLATE_BEGIN, getText());
-                    token.setLine(_tokenStartLine);
-                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
-                    emit(token);
+
+    }
+    '\\' '{'
+    {
+         final CommonToken token = new CommonToken(STRING_TEMPLATE_BEGIN, getText());
+                token.setLine(_tokenStartLine);
+                token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                emit(token);
     };
-STRING_TEMPLATE_MID:     '}' StringFragment '\\' '{'
+STRING_TEMPLATE_MID:     '}' StringFragment
     {
-             final CommonToken token = new CommonToken(STRING_TEMPLATE_MID, getText());
-                    token.setLine(_tokenStartLine);
-                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
-                    emit(token);
+
+    }
+    '\\' '{'
+    {
+         final CommonToken token = new CommonToken(STRING_TEMPLATE_MID, getText());
+                token.setLine(_tokenStartLine);
+                token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                emit(token);
     };
 STRING_TEMPLATE_END:     '}' StringFragment '"'
     {
-            final CommonToken token = new CommonToken(STRING_TEMPLATE_END, getText());
-                    token.setLine(_tokenStartLine);
-                    token.setCharPositionInLine(_tokenStartCharPositionInLine);
-                    emit(token);
+        final CommonToken token = new CommonToken(STRING_TEMPLATE_END, getText());
+                token.setLine(_tokenStartLine);
+                token.setCharPositionInLine(_tokenStartCharPositionInLine);
+                emit(token);
     };
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
