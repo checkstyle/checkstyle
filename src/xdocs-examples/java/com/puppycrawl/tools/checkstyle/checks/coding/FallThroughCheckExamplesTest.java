@@ -36,8 +36,7 @@ public class FallThroughCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "32:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "33:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
