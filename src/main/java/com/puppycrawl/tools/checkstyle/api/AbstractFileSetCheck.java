@@ -90,6 +90,9 @@ public abstract class AbstractFileSetCheck
         // No code by default, should be overridden only by demand at subclasses
     }
 
+
+
+
     @Override
     public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
