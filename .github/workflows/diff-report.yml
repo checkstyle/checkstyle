@@ -27,15 +27,9 @@ permissions:
   contents: read
   pull-requests: write
 
-# Current behavior for concurrency in GitHub Actions:
-# 1) If a Diff-Report workflow is NOT running for this PR, start a new one.
-# 2) If a Diff-Report workflow is running for this PR, queue this workflow.
-# 3) If a Diff-Report workflow is queued for this PR, cancel it and queue this workflow.
-#
-# It would be best to always queue a new workflow, but we are limited by
-# https://github.com/orgs/community/discussions/12835.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  # run_id is guaranteed to be unique and present
+  group: ${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
