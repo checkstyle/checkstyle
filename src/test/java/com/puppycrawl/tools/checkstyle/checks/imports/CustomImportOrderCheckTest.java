@@ -286,7 +286,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testThirdPartyAndSpecialImports() throws Exception {
         final String[] expected = {
-            "20:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
+            "23:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
                 "com.google.common.collect.HashMultimap"),
         };
 
