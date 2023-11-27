@@ -74,17 +74,17 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "java.io.File.createTempFile"),
             "17:1: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*",
                     "java.io.File.createTempFile"),
-            "20:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Button"),
-            "21:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Frame"),
-            "22:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.Dialog"),
-            "23:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.color.ColorSpace"),
-            "24:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.awt.event.ActionEvent"),
-            "25:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "javax.swing.JComponent"),
-            "26:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "javax.swing.JTable"),
-            "27:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.File"),
-            "28:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.IOException"),
-            "29:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.InputStream"),
-            "30:1: " + getCheckMessage(MSG_ORDER, STD, SAME, "java.io.Reader"),
+            "20:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.awt.Button"),
+            "21:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.awt.Frame"),
+            "22:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.awt.Dialog"),
+            "23:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.awt.color.ColorSpace"),
+            "24:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.awt.event.ActionEvent"),
+            "25:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "javax.swing.JComponent"),
+            "26:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "javax.swing.JTable"),
+            "27:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.File"),
+            "28:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.IOException"),
+            "29:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.InputStream"),
+            "30:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.Reader"),
         };
 
         verifyWithInlineConfigParser(
@@ -109,7 +109,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "30:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
             "34:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
-                    "com.puppycrawl.tools.checkstyle.*"),
+                    "com.google.errorprone.annotations.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -164,11 +164,11 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                     "javax.swing.WindowConstants.*"),
             "23:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.*",
                     "javax.swing.WindowConstants.*"),
-            "26:1: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.checkstyle.*",
-                    "com.puppycrawl.tools.checkstyle.checks.*"),
+            "26:1: " + getCheckMessage(MSG_LEX, "com.google.errorprone.annotations.*",
+                    "com.google.errorprone.annotations.concurrent.*"),
             "28:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.base.*"),
             "28:1: " + getCheckMessage(MSG_LEX, "com.google.common.base.*",
-                    "com.puppycrawl.tools.checkstyle.checks.*"),
+                    "com.google.errorprone.annotations.concurrent.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -224,8 +224,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.io.File.createTempFile",
                 "javax.swing.WindowConstants.*"),
-            "20:1: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.checkstyle.*",
-                "com.puppycrawl.tools.checkstyle.checks.*"),
+            "20:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.locks.*",
+                "java.util.concurrent.locks.AbstractOwnableSynchronizer.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -286,7 +286,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testThirdPartyAndSpecialImports() throws Exception {
         final String[] expected = {
-            "23:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
+            "20:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
                 "com.google.common.collect.HashMultimap"),
         };
 
@@ -339,7 +339,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testImportsContainingJava() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
-                    "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"),
+                    "com.google.errorprone.annotations.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -542,7 +542,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Button"),
-            "32:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.puppycrawl.tools.checkstyle.*"),
+            "32:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.*"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
         };
         verifyWithInlineConfigParser(
