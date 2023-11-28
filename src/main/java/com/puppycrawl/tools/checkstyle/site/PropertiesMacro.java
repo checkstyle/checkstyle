@@ -504,15 +504,7 @@ public class PropertiesMacro extends AbstractMacro {
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {
-            final String defaultValue;
-
-            if (field != null) {
-                defaultValue = SiteUtil.getDefaultValue(
-                        propertyName, field, instance, currentModuleName);
-            }
-            else {
-                defaultValue = CURLY_BRACKET;
-            }
+            final String defaultValue = getDefaultValue(propertyName, field, instance);
             final String checkName = CHECK_PATTERN
                     .matcher(instance.getClass().getSimpleName()).replaceAll("");
 
@@ -532,6 +524,36 @@ public class PropertiesMacro extends AbstractMacro {
         }
 
         sink.tableCell_();
+    }
+
+    /**
+     * Get the default value of the property.
+     *
+     * @param propertyName the name of the property.
+     * @param field the field of the property.
+     * @param instance the instance of the module.
+     * @return the default value of the property.
+     * @throws MacroExecutionException if an error occurs during retrieval of the default value.
+     */
+    private static String getDefaultValue(String propertyName, Field field, Object instance)
+            throws MacroExecutionException {
+        final String result;
+
+        if (field != null) {
+            result = SiteUtil.getDefaultValue(
+                    propertyName, field, instance, currentModuleName);
+        }
+        else {
+            final Class<?> fieldClass = SiteUtil.getPropertyClass(propertyName, instance);
+
+            if (fieldClass.isArray()) {
+                result = CURLY_BRACKET;
+            }
+            else {
+                result = "null";
+            }
+        }
+        return result;
     }
 
     /**
