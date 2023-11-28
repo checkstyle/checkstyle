@@ -41,6 +41,7 @@
  */
         </source>
       </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -55,17 +56,13 @@
               <td>tags</td>
               <td>Specify the javadoc tags to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>author, deprecated, exception, hidden, param, provides, return,
-                see, serial, serialData, serialField, since, throws, uses, version</code></td>
+              <td><code>author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td>violateExecutionOnNonTightHtml</td>
-              <td>
-                Control when to print violations if the Javadoc being examined by this check
-                violates the tight html rules defined at
-                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
-              </td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
