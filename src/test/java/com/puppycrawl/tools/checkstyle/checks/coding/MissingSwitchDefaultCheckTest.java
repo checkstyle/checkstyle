@@ -73,6 +73,22 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
+    public void testNullCaseLabel() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckNullCaseLabel.java"),
+            expected);
+    }
+
+    @Test
+    public void testNullCaseLabelTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckNullCaseLabelTwo.java"),
+            expected);
+    }
+
+    @Test
     public void testMissingSwitchDefaultSwitchExpressionsTwo() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
