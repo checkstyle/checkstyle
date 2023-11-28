@@ -73,6 +73,24 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
+    public void testInputMissingSwitchDefaultCheckSwitchExpressionsFour() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsFour.java"),
+            expected);
+    }
+
+    @Test
+    public void testInputMissingSwitchDefaultCheckSwitchExpressionsFive() throws Exception {
+        final String[] expected = {
+            "49:9: " + getCheckMessage(MSG_KEY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsFive.java"),
+            expected);
+    }
+
+    @Test
     public void testMissingSwitchDefaultSwitchExpressionsTwo() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
