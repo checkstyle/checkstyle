@@ -24,22 +24,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>20</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/AnonInnerLengthCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
