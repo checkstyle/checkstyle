@@ -97,6 +97,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         if (!containsDefaultLabel(ast)
                 && !containsPatternCaseLabelElement(ast)
                 && !containsDefaultCaseLabelElement(ast)
+                && !containsNullCaseLabelElement(ast)
                 && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
@@ -143,6 +144,19 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if a switch block contains a null case label.
+     *
+     * @param detailAst first case group to check.
+     * @return true if switch block contains null case label
+     */
+    private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
+        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
+            return ast.getFirstChild() != null
+                     && hasNullCaseLabel(ast.getFirstChild());
+        }).isPresent();
+    }
+
+    /**
      * Checks if this LITERAL_SWITCH token is part of a switch expression.
      *
      * @param ast the switch statement we are checking
@@ -151,5 +165,18 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean isSwitchExpression(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.EXPR
                 || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+    }
+
+    /**
+     * Checks if the case contains null label.
+     *
+     * @param ast the switch statement we are checking
+     * @return returnValue the ast of null label
+     */
+    private static boolean hasNullCaseLabel(DetailAST ast) {
+        final DetailAST firstChild = ast.getFirstChild();
+        return firstChild != null
+                && TokenUtil.isOfType(firstChild.getFirstChild(), TokenTypes.LITERAL_NULL);
+
     }
 }
