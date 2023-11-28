@@ -325,7 +325,8 @@ variableDeclarator[List<ModifierContext> mods, TypeTypeContext type]
     ;
 
 variableDeclaratorId[List<VariableModifierContext> mods, ParserRuleContext type]
-    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*
+    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*     #varDeclaratorId
+    | LITERAL_UNDERSCORE                                                        #unnamedVarDeclaratorId
     ;
 
 variableInitializer
@@ -918,4 +919,5 @@ id  : LITERAL_RECORD
     | LITERAL_PERMITS
     | IDENT
     | LITERAL_WHEN
+    | LITERAL_UNDERSCORE
     ;
