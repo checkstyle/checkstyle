@@ -523,8 +523,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitVariableDeclaratorId(
-            JavaLanguageParser.VariableDeclaratorIdContext ctx) {
+    public DetailAstImpl visitVarDeclaratorId(
+            JavaLanguageParser.VarDeclaratorIdContext ctx) {
         final DetailAstImpl root = new DetailAstImpl();
         root.addChild(createModifiers(ctx.mods));
         final DetailAstImpl type = visit(ctx.type);
@@ -547,6 +547,12 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         ctx.arrayDeclarator().forEach(child -> type.addChild(visit(child)));
 
         return root.getFirstChild();
+    }
+
+    @Override
+    public DetailAstImpl visitUnnamedVarDeclaratorId(
+            JavaLanguageParser.UnnamedVarDeclaratorIdContext ctx) {
+        return flattenedTree(ctx);
     }
 
     @Override
@@ -645,8 +651,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitFormalParameter(JavaLanguageParser.FormalParameterContext ctx) {
-        final DetailAstImpl variableDeclaratorId =
-                visitVariableDeclaratorId(ctx.variableDeclaratorId());
+        final DetailAstImpl variableDeclaratorId = visit(ctx.variableDeclaratorId());
         final DetailAstImpl parameterDef = createImaginary(TokenTypes.PARAMETER_DEF);
         parameterDef.addChild(variableDeclaratorId);
         return parameterDef;
