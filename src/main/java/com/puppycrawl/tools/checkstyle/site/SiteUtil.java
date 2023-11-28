@@ -163,6 +163,21 @@ public final class SiteUtil {
     private static final String V824 = "8.24";
 
     /**
+     * Frequent version.
+     */
+    private static final String V77 = "7.7";
+
+    /**
+     * Frequent version.
+     */
+    private static final String V57 = "5.7";
+
+    /**
+     * Frequent version.
+     */
+    private static final String V34 = "3.4";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
      */
@@ -172,6 +187,14 @@ public final class SiteUtil {
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", "5.0"),
         Map.entry("LineLengthCheck.fileExtensions", V824),
+        Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", V77),
+        Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", V57),
+        Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", V77),
+        Map.entry("ClassDataAbstractionCouplingCheck.max", V34),
+        Map.entry("ClassFanOutComplexityCheck.excludeClassesRegexps", V77),
+        Map.entry("ClassFanOutComplexityCheck.excludedClasses", V57),
+        Map.entry("ClassFanOutComplexityCheck.excludedPackages", V77),
+        Map.entry("ClassFanOutComplexityCheck.max", V34),
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", "3.2")
     );
@@ -196,6 +219,8 @@ public final class SiteUtil {
                 "api", "AbstractFileSetCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "header", "AbstractHeaderCheck.java").toString()),
+        new File(Paths.get(MAIN_FOLDER_PATH,
+                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );

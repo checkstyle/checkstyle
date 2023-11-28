@@ -88,7 +88,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Pattern to match brackets in a full type name. */
     private static final Pattern BRACKET_PATTERN = Pattern.compile("\\[[^]]*]");
 
-    /** Specify user-configured regular expressions to ignore classes. */
+    /**
+     * Specify user-configured regular expressions to ignore classes. All excluded packages
+     * should end with a period, so it also appends a dot to a package name.
+     */
     private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
     /** A map of (imported class name -&gt; class name with package) pairs. */
@@ -153,7 +156,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify user-configured regular expressions to ignore classes.
+     * Setter to specify user-configured regular expressions to ignore classes. All excluded
+     * packages should end with a period, so it also appends a dot to a package name.
      *
      * @param from array representing regular expressions of classes to ignore.
      */
