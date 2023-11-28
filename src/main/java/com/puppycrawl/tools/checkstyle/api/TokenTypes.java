@@ -6707,6 +6707,9 @@ public final class TokenTypes {
     public static final int EMBEDDED_EXPRESSION_END =
             JavaLanguageLexer.EMBEDDED_EXPRESSION_END;
 
+    public static final int LITERAL_UNDERSCORE =
+            JavaLanguageLexer.LITERAL_UNDERSCORE;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
