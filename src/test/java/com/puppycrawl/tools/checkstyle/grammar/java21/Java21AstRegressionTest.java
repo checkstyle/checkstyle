@@ -39,4 +39,22 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputStringTemplateBasic.java"));
     }
 
+    @Test
+    public void testUnnamedVariableBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedUnnamedVariableBasic.txt"),
+                getNonCompilablePath(
+                        "InputUnnamedVariableBasic.java"));
+    }
+
+    @Test
+    public void testUnnamedVariableSwitch() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedUnnamedVariableSwitch.txt"),
+                getNonCompilablePath(
+                        "InputUnnamedVariableSwitch.java"));
+    }
+
 }
