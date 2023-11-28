@@ -617,6 +617,21 @@ javac20)
   fi
   ;;
 
+javac21)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java21' \
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java21 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 21 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
 package-site)
   mvn -e --no-transfer-progress package -Passembly,no-validations
   mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
