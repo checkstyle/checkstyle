@@ -325,7 +325,9 @@ variableDeclarator[List<ModifierContext> mods, TypeTypeContext type]
     ;
 
 variableDeclaratorId[List<VariableModifierContext> mods, ParserRuleContext type]
-    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*
+    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*     #varDeclaratorId
+        // can the following be removed? Maybe not...
+    | LITERAL_UNDERSCORE                                                        #unnamedVarDeclaratorId
     ;
 
 variableInitializer
@@ -913,7 +915,8 @@ primaryPattern
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
     ;
 
 recordPattern
@@ -936,4 +939,5 @@ id  : LITERAL_RECORD
     | LITERAL_PERMITS
     | IDENT
     | LITERAL_WHEN
+    | LITERAL_UNDERSCORE
     ;
