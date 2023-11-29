@@ -7,9 +7,9 @@ processJavadoc = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports. //violation
-        InputUnusedImportsBug;
+import com.google.errorprone.annotations.*;
+import com.google.errorprone.annotations.concurrent.GuardedBy; //violation
+
 import java.io.*;
 import java.lang.*;
 import java.lang.String; // violation
@@ -38,14 +38,14 @@ import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
 
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.CheckerTest;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImports15Extensions;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest;
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DefaultLogger; // violation
+import com.google.errorprone.annotations.CheckReturnValue;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import com.google.errorprone.annotations.CompatibleWith;
+import com.google.errorprone.annotations.concurrent.LazyInit;
+import com.google.errorprone.annotations.DoNotCall;
+import com.google.errorprone.annotations.CompileTimeConstant;
+import com.google.errorprone.annotations.FormatString;
+import com.google.errorprone.annotations.ForOverride; // violation
 
 /**
  * Test case for imports
@@ -102,13 +102,14 @@ class InputUnusedImports
     public void render() {}
 
     /**
-     * First is a class with a method with arguments {@link Checker#method1(CheckerTest)}.
+     * First is a class with a method with arguments
+     * {@link CheckReturnValue#method1(CanIgnoreReturnValue)}.
      * Next is a class with typed method
-     * {@link BaseFileSetCheckTestSupport#method2(Definitions, InputUnusedImports15Extensions)}.
+     * {@link BaseFileSetCheckTestSupport#method2(CompatibleWith, LazyInit)}.
      *
-     * @param param1 with a link {@link ConfigurationLoaderTest}
-     * @throws PackageNamesLoader when broken
-     * @deprecated in 1 for removal in 2. Use {@link DefaultConfiguration}
+     * @param param1 with a link {@link DoNotCall}
+     * @throws CompileTimeConstant when broken
+     * @deprecated in 1 for removal in 2. Use {@link FormatString}
      */
     public void aMethodWithManyLinks() {}
 }

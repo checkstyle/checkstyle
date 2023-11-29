@@ -32,17 +32,11 @@
             files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSpanMultipleLines.java"/>
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrder_OverlappingPatterns.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsShadowed.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsAnnotations.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImports.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImports2.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsShadowed.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
   <suppress id="noCheckstyleInInputs"
