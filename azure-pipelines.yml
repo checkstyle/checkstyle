@@ -160,6 +160,7 @@ steps:
 
   - bash: |
       set -e
+      mvn --version
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
       echo "cmd: "$(cmd)
