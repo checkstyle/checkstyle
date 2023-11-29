@@ -38,13 +38,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example1.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
 
@@ -54,48 +54,64 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example2.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
 
         <p id="Example3-config">
           To configure the check to suppress empty catch block if single-line comment inside
-           is "//This is expected":
+           is "This is expected":
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example3.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
 
         <p id="Example4-config">
           To configure the check to suppress empty catch block if single-line comment inside
-          is "//This is expected" or exception's
-          variable name is "myException" (any option is matching):
+          is "This is expected":
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.java"/>
             <param name="type" value="code"/>
         </macro>
+
+        <p id="Example5-config">
+          To configure the check to suppress empty catch block if
+          exception's variable name is "myException":
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Such empty blocks would be both suppressed:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example5.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
