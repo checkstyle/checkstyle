@@ -254,12 +254,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                       String filePath2,
                                                       String... expected)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
+        final TestInputConfiguration testInputConfiguration1 =
                 InlineConfigParser.parse(filePath1);
         final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
-        verifyViolations(parsedConfig, filePath2, testInputConfiguration.getViolations());
+                testInputConfiguration1.createConfiguration();
+        final TestInputConfiguration testInputConfiguration2 =
+                InlineConfigParser.parse(filePath2);
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration1.getViolations());
+        verifyViolations(parsedConfig, filePath2, testInputConfiguration2.getViolations());
         verify(createChecker(parsedConfig),
                 new File[] {new File(filePath1), new File(filePath2)},
                 filePath1,
