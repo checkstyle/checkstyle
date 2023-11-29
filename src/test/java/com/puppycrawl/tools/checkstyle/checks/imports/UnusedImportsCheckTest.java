@@ -69,8 +69,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testWithoutProcessJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks."
-                + "imports.unusedimports.InputUnusedImportsBug"),
+                "com.google.errorprone.annotations."
+                + "concurrent.GuardedBy"),
             "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -85,19 +85,22 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "37:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
             "38:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "39:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
-            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
-            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "43:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
+            "41:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CheckReturnValue"),
+            "42:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CanIgnoreReturnValue"),
+            "43:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CompatibleWith"),
             "44:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports."
-                        + "InputUnusedImports15Extensions"),
+                "com.google.errorprone.annotations.concurrent."
+                        + "LazyInit"),
             "45:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
+                "com.google.errorprone.annotations.DoNotCall"),
             "46:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
+                "com.google.errorprone.annotations.CompileTimeConstant"),
             "47:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
-            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+                "com.google.errorprone.annotations.FormatMethod"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone.annotations.FormatString"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports2.java"), expected);
@@ -107,8 +110,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
-                    "com.puppycrawl.tools.checkstyle.checks."
-                    + "imports.unusedimports.InputUnusedImportsBug"),
+                    "com.google.errorprone.annotations."
+                    + "concurrent.GuardedBy"),
             "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -118,7 +121,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "31:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             // "30:8: Unused import - java.awt.Component.", // Should be detected
             "36:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone.annotations.ForOverride"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports.java"), expected);
