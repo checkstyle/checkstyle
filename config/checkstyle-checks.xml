@@ -139,13 +139,6 @@
                 value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpSingleline">
-    <property name="id" value="assertThatShouldBeOnSeparateLine"/>
-    <property name="format" value="assertWithMessage\(.*\).that\("/>
-    <property name="fileExtensions" value="java"/>
-    <property name="message"
-                value="Truth''s ''that'' method call should be on separate line"/>
-  </module>
-  <module name="RegexpSingleline">
     <property name="id" value="lineLengthGrammar"/>
     <property name="format" value="^(?!(.*http|import)).{101,}$"/>
     <property name="fileExtensions" value="g, g4"/>
@@ -946,6 +939,10 @@
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround"/>
+    <module name="ChainedMethodCallWrap">
+      <property name="identifierPattern" value="^assert.*"/>
+      <property name="maxCallsInSingleLine" value="2" />
+    </module>
 
   </module>
 
