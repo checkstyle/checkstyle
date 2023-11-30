@@ -9,6 +9,323 @@
     <lineContent>charset = null;</lineContent>
   </mutation>
 
+  <!-- TEMPORARY SUPPRESSION LIST STARTS -->
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>extractFullIdent(full, ast.getFirstChild());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::extractFullIdent</description>
+    <lineContent>extractFullIdent(full, ast.getFirstChild());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>extractFullIdent(full, ast.getFirstChild());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::extractFullIdentFromTypecastAst</description>
+    <lineContent>extractFullIdentFromTypecastAst(full, ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_0</mutator>
+    <description>RemoveSwitch 0 (case value 23)</description>
+    <lineContent>switch (typeOfAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_1</mutator>
+    <description>RemoveSwitch 1 (case value 24)</description>
+    <lineContent>switch (typeOfAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveSwitchMutator_2</mutator>
+    <description>RemoveSwitch 2 (case value 27)</description>
+    <lineContent>switch (typeOfAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; (secondChildToExtract.getType() == TokenTypes.RPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; (secondChildToExtract.getType() == TokenTypes.RPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>firstChildToExtract = firstChildToExtract.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>firstChildToExtract = firstChildToExtract.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>secondChildToExtract = secondChildToExtract.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>secondChildToExtract = secondChildToExtract.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>while (firstChildToExtract.getType() == TokenTypes.LPAREN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>while (firstChildToExtract.getType() == TokenTypes.LPAREN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>while (secondChildToExtract != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>while (secondChildToExtract != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>while (secondChildToExtract != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>|| secondChildToExtract.getType() == TokenTypes.TYPE_ARGUMENTS)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromDotAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| secondChildToExtract.getType() == TokenTypes.TYPE_ARGUMENTS)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
+    <lineContent>DetailAST childAst = typecastAst.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>DetailAST childAst = typecastAst.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
+    <lineContent>DetailAST childAst = typecastAst.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST childAst = typecastAst.getFirstChild().getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>childAst = childAst.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>childAst = childAst.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/FullIdent::extractFullIdent</description>
+    <lineContent>extractFullIdent(full, childAst);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>while (childAst.getType() == TokenTypes.LPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>while (childAst.getType() == TokenTypes.LPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>while (childAst.getType() == TokenTypes.LPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>while (childAst.getType() == TokenTypes.LPAREN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| childAst.getType() == TokenTypes.RPAREN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>|| childAst.getType() == TokenTypes.RPAREN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| childAst.getType() == TokenTypes.RPAREN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FullIdent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
+    <mutatedMethod>extractFullIdentFromTypecastAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| childAst.getType() == TokenTypes.RPAREN) {</lineContent>
+  </mutation>
+  <!-- TEMPORARY SUPPRESSION LIST ENDS -->
+
   <mutation unstable="false">
     <sourceFile>Violation.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
