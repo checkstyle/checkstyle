@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -174,7 +176,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @param tokenType the tokenType of null literal
      * @return returnValue the ast of null label
      */
-    private static DetailAST verifyNullCaseLabel(DetailAST ast, int tokenType) {
+    private static @Nullable DetailAST verifyNullCaseLabel(DetailAST ast, int tokenType) {
         DetailAST returnValue = null;
         if (ast.getFirstChild() != null) {
             final DetailAST value = ast.getFirstChild().getFirstChild();
