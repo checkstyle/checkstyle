@@ -13,30 +13,28 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
 excludeClassesRegexps = (default)^$
-excludedPackages = com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.\
-                   inputs.c, com.puppycrawl.tools.checkstyle.checks.metrics.\
-                   classdataabstractioncoupling.inputs.b
+excludedPackages = org.apache.hc.core5.http.nio.ssl, org.apache.hc.core5.http.nio.command
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.aa.AAClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.ab.ABClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.b.BClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
+import org.apache.hc.core5.http.ssl.TlsCiphers;
+import org.apache.hc.core5.http.protocol.BasicHttpContext;
+import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
+import org.apache.hc.core5.http.nio.command.CommandSupport;
 
 public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { // violation
-    public AAClass aa = new AAClass();
-    public ABClass ab = new ABClass();
+    public TlsCiphers aa = new TlsCiphers();
+    public BasicHttpContext ab = new BasicHttpContext();
 
     class Inner { // total: ok
-        public BClass b = new BClass(); // ok
-        public CClass c = new CClass(); // ok
+        public BasicClientTlsStrategy b = new BasicClientTlsStrategy(); // ok
+        public CommandSupport c = new CommandSupport(); // ok
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesDirectPackagesHidden { // total: ok
-    public CClass c = new CClass(); // ok
+    public CommandSupport c = new CommandSupport(); // ok
 }
