@@ -72,7 +72,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageDirectPackages() throws Exception {
         final String[] expected = {
-            "30:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
         };
 
         verifyWithInlineConfigParser(
@@ -83,9 +83,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AAClass, ABClass]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BClass, CClass]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CClass]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicClientTlsStrategy, CommandSupport]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CommandSupport]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),

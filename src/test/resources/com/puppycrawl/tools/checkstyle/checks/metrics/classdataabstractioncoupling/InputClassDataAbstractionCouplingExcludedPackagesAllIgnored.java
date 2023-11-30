@@ -13,33 +13,30 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
 excludeClassesRegexps = (default)^$
-excludedPackages = com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.\
-                   inputs.a.aa, com.puppycrawl.tools.checkstyle.checks.metrics.\
-                   classdataabstractioncoupling.inputs.a.ab, com.puppycrawl.tools.checkstyle.\
-                   checks.metrics.classdataabstractioncoupling.inputs.b, com.puppycrawl.tools.\
-                   checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c
+excludedPackages = org.apache.hc.core5.http.ssl, org.apache.hc.core5.http.protocol, \
+org.apache.hc.core5.http.nio.ssl, org.apache.hc.core5.http.nio.command
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.aa.AAClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.a.ab.ABClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.b.BClass;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c.CClass;
+import org.apache.hc.core5.http.ssl.TlsCiphers;
+import org.apache.hc.core5.http.protocol.BasicHttpContext;
+import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
+import org.apache.hc.core5.http.nio.command.CommandSupport;
 
 public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored { // ok
-    public AAClass aa = new AAClass(); // ok
-    public ABClass ab = new ABClass(); // ok
+    public TlsCiphers aa = new TlsCiphers(); // ok
+    public BasicHttpContext ab = new BasicHttpContext(); // ok
 
     class Inner { // total: ok
-        public BClass b = new BClass(); // ok
-        public CClass c = new CClass(); // ok
+        public BasicClientTlsStrategy b = new BasicClientTlsStrategy(); // ok
+        public CommandSupport c = new CommandSupport(); // ok
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesAllIgnoredHidden { // total: ok
-    public CClass c = new CClass(); // ok
+    public CommandSupport c = new CommandSupport(); // ok
 }
 
