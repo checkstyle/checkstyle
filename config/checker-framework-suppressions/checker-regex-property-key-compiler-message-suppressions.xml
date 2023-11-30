@@ -382,6 +382,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ChainedMethodCallWrapCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of compile.</message>
+    <lineContent>private Pattern identifierPattern = Pattern.compile(DEFAULT_PATTERN);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ChainedMethodCallWrapCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of matches.</message>
+    <lineContent>return Pattern.matches(identifierPattern.pattern(), getCompleteMethodChainName);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of compile.</message>

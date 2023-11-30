@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheck"
+              name="ChainedMethodCallWrap"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks whether method calls specified by identifier pattern are wrapped onto
+ the subsequent line(s). Line wrapping means to insert line breaks in code to make
+ it more readable and adhere to line length standards.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Long chained method calls are difficult to read and comprehend, and sometimes
+ require horizontal scrolling to read the complete method call chain. Wrapping method calls
+ onto the following line(s) enhances readability.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^$"
+                       name="identifierPattern"
+                       type="java.util.regex.Pattern">
+               <description>Specify method calls to be checked. By default,
+ identifierPattern matches nothing, so no method calls are checked. This property must be
+ set in order to use the check.</description>
+            </property>
+            <property default-value="1" name="maxCallsInMultiLine" type="int">
+               <description>Specify maximum number of method calls per lines if we
+ are wrapping the method calls. If all the method calls span over a single line then this
+ property has no effect.</description>
+            </property>
+            <property default-value="1" name="maxCallsInSingleLine" type="int">
+               <description>Specify maximum number of method calls if all chained
+ method calls span over a single line. If chained method calls span over multiple lines then
+ this property has no effect.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="too.many.single.line"/>
+            <message-key key="wrap.method.call"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

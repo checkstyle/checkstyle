@@ -4684,6 +4684,10 @@
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
                 <!-- 1% mutation in FullIdent -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <!-- 2% mutation in FullIdent -->
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.ChainedMethodCallWrapCheckTest</param>
+                <!-- 1% mutation in FullIdent -->
+                <param>com.puppycrawl.tools.checkstyle.utils.AnnotationUtilTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest</param>
