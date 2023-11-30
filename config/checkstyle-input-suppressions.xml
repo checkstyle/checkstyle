@@ -38,12 +38,6 @@
   <suppress id="noCheckstyleInInputs"
           files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
   <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"/>
-  <suppress id="noCheckstyleInInputs"
-          files="[\\/]checks[\\/]metrics[\\/]classdataabstractioncoupling[\\/]InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"/>
-  <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]foo[\\/]FooCheck.java"/>
