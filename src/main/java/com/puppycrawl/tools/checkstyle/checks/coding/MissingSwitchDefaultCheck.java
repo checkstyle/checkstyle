@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -97,6 +99,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         if (!containsDefaultLabel(ast)
                 && !containsPatternCaseLabelElement(ast)
                 && !containsDefaultCaseLabelElement(ast)
+                && !containsNullCaseLabelElement(ast)
                 && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
@@ -143,6 +146,19 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if a switch block contains a null case label.
+     *
+     * @param detailAst first case group to check.
+     * @return true if switch block contains null case label
+     */
+    private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
+        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
+            return ast.getFirstChild() != null
+                     && verifyNullCaseLabel(ast.getFirstChild(), TokenTypes.LITERAL_NULL) != null;
+        }).isPresent();
+    }
+
+    /**
      * Checks if this LITERAL_SWITCH token is part of a switch expression.
      *
      * @param ast the switch statement we are checking
@@ -151,5 +167,23 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean isSwitchExpression(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.EXPR
                 || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+    }
+
+    /**
+     * Checks if the case contains null label.
+     *
+     * @param ast the switch statement we are checking
+     * @param tokenType the tokenType of null literal
+     * @return returnValue the ast of null label
+     */
+    private static @Nullable DetailAST verifyNullCaseLabel(DetailAST ast, int tokenType) {
+        DetailAST returnValue = null;
+        if (ast.getFirstChild() != null) {
+            final DetailAST value = ast.getFirstChild().getFirstChild();
+            if (value != null && value.getType() == tokenType) {
+                returnValue = ast;
+            }
+        }
+        return returnValue;
     }
 }
