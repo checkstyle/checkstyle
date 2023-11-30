@@ -699,11 +699,13 @@ public class SuppressionCommentFilterTest
         filter.finishLocalSetup();
 
         assertWithMessage("should accept")
-                .that(filter.accept(event)).isTrue();
+                .that(filter.accept(event))
+                .isTrue();
         // due to caching in filter second execution should not do parsing of comments in file
         // so exception is not expected
         assertWithMessage("should accept")
-                .that(filter.accept(event)).isTrue();
+                .that(filter.accept(event))
+                .isTrue();
     }
 
 }

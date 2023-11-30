@@ -514,7 +514,8 @@ public class PackageObjectFactoryTest {
 
             final String fullyQualifiedName = MockClass.class.getName();
             assertWithMessage("class name is not in expected format")
-                    .that(fullyQualifiedName).contains(".");
+                    .that(fullyQualifiedName)
+                    .contains(".");
             final Object object = objectFactory.createModule(fullyQualifiedName);
             assertWithMessage("Object should be an instance of MockClass")
                     .that(object)
