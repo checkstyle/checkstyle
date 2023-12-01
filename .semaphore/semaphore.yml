@@ -8,7 +8,24 @@ auto_cancel:
   running:
     when: "branch != 'master'"
 blocks:
-  - name: "Linux openjdk build"
+  - name: "Linux openjdk build (no maven cache)"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sudo apt-get update
+          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+          - export GRADLE_OPTS=-Dorg.gradle.console=plain
+      jobs:
+        - name: codenarc analysis
+          commands:
+            - ./.ci/codenarc.sh
+        # until https://github.com/checkstyle/checkstyle/issues/14086
+        # - name: no-exception-samples-ant
+        #  commands:
+        #    - .ci/no-exception-test.sh no-exception-samples-ant
+
+  - name: "Linux openjdk build (with maven cache)"
     task:
       prologue:
         commands:
@@ -31,11 +48,6 @@ blocks:
           commands:
             - mvn -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
 
-        - name: codenarc analysis
-          commands:
-            - rm -rf $HOME/.m2
-            - ./.ci/codenarc.sh
-
         - name: ensure that all modules are used in no exception configs
           commands:
             - export PULL_REQUEST=$SEMAPHORE_GIT_PR_NUMBER
@@ -51,7 +63,6 @@ blocks:
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
-                - .ci/no-exception-test.sh no-exception-samples-ant
                 - .ci/validation.sh nondex
                 # until https://github.com/checkstyle/checkstyle/issues/9807
                 # - mvn -e --no-transfer-progress clean package -Passembly,no-validations
