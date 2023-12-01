@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
  */
 public class LocalizedMessageTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @DefaultLocale("en")
     @Test

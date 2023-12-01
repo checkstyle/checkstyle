@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @AfterEach
     public void tearDown() {
