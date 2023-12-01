@@ -150,6 +150,10 @@ public final class TestInputConfiguration {
             violations.add(new TestInputViolation(violationLine, violationMessage));
         }
 
+        public void addViolations(List<TestInputViolation> inputViolations) {
+            violations.addAll(inputViolations);
+        }
+
         public void addFilteredViolation(int violationLine, String violationMessage) {
             filteredViolations.add(new TestInputViolation(violationLine, violationMessage));
         }
