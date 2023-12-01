@@ -19,10 +19,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 // violation 9 lines above 'tag BODY_TAG_START'
 // violation 9 lines above 'tag P_TAG_START'
-// 2 violations 8 lines above
+// 2 violations 8 lines above:
 //                            'Unclosed HTML tag found: p'
 //                            'tag P_TAG_START'
-// 2 violations 10 lines above
+// 2 violations 10 lines above:
 //                            'tag LI_TAG_START'
 //                            'tag P_TAG_START'
 
@@ -45,7 +45,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
     // violation 3 lines above 'P_TAG_START'
-    // 3 violations 3 lines above
+    // 3 violations 3 lines above:
     //                    'Unclosed HTML tag found: p'
     //                    'tag LI_TAG_START'
     //                    'tag P_TAG_START'
@@ -55,7 +55,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * <li> Complete <p> nesting </p> </li>
      * <tr> Zero </p> nesting despite `tr` is closed </tr>
      */
-    // 2 violations 3 lines above
+    // 2 violations 3 lines above:
     //                            'tag LI_TAG_START'
     //                            'tag P_TAG_START'
     // violation 5 lines above 'Unclosed HTML tag found: tr'
@@ -68,7 +68,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      */
     // violation 4 lines above 'tag P_TAG_START'
     // violation 4 lines above 'tag P_TAG_START'
-    // 3 violations 4 lines above
+    // 3 violations 4 lines above:
     //                            'Unclosed HTML tag found: li'
     //                            'tag LI_TAG_START'
     //                            'tag LI_TAG_START'
@@ -79,11 +79,11 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      *
      * @return <li> <li> outer list isn't nested in parse tree </li> </li>
      */
-    // 3 violations 4 lines above
+    // 3 violations 4 lines above:
     //                            'tag BODY_TAG_START'
-    //                            'tag LI_TAG_START'
     //                            'tag P_TAG_START'
-    // 3 violations 6 lines above
+    //                            'tag LI_TAG_START'
+    // 3 violations 6 lines above:
     //                            'Unclosed HTML tag found: li'
     //                            'tag LI_TAG_START'
     //                            'tag LI_TAG_START'
@@ -98,7 +98,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * @param field2 <p> setter
      */
     // violation 4 lines above 'tag P_TAG_START'
-    // 2 violations 3 lines above
+    // 2 violations 3 lines above:
     //                            'Unclosed HTML tag found: p'
     //                            'tag P_TAG_START'
     void setField2(int field2) {this.field2 = field2;}
