@@ -253,7 +253,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testCacheDirectoryDoesNotExistAndShouldBeCreated() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = String.format(Locale.getDefault(), "%s%2$stemp%2$scache.temp",
+        final String filePath = String.format(Locale.UK, "%s%2$stemp%2$scache.temp",
             temporaryFolder, File.separator);
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
