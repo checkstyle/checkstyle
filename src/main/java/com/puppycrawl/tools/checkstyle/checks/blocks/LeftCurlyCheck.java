@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -288,7 +290,7 @@ public class LeftCurlyCheck
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
-    private static DetailAST getBraceFromSwitchMember(DetailAST ast) {
+    private static @Nullable DetailAST getBraceFromSwitchMember(DetailAST ast) {
         final DetailAST brace;
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SWITCH_RULE) {
@@ -307,7 +309,7 @@ public class LeftCurlyCheck
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
-    private static DetailAST getBraceAsFirstChild(DetailAST ast) {
+    private static @Nullable DetailAST getBraceAsFirstChild(DetailAST ast) {
         DetailAST brace = null;
         if (ast != null) {
             final DetailAST candidate = ast.getFirstChild();

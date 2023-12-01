@@ -20,6 +20,7 @@
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>
   <allow pkg="javax.xml.parsers"/>
+  <allow class="javax.annotation.Nullable"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
   <allow pkg="org.xml.sax"/>
