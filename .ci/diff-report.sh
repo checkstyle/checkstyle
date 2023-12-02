@@ -95,6 +95,11 @@ parse-pr-description-text)
   NEW_MODULE_CONFIG_LINK=$(echo "$NEW_MODULE_CONFIG_PARAMETER" | sed -E 's/New module config: //')
   PATCH_CONFIG_LINK=$(echo "$PATCH_CONFIG_PARAMETER" | sed -E 's/Diff Regression patch config: //')
   REPORT_LABEL=$(echo "$REPORT_LABEL_PARAMETER" | sed -E 's/Report label: //')
+  # trim
+  PROJECTS_LINK=$(echo "$PROJECTS_LINK" | tr -d '[:space:]')
+  CONFIG_LINK=$(echo "$CONFIG_LINK" | tr -d '[:space:]')
+  NEW_MODULE_CONFIG_LINK=$(echo "$NEW_MODULE_CONFIG_LINK" | tr -d '[:space:]')
+  PATCH_CONFIG_LINK=$(echo "$PATCH_CONFIG_LINK" | tr -d '[:space:]')
 
   echo "URLs extracted from parameters:"
   echo "PROJECTS_LINK: '$PROJECTS_LINK'"
