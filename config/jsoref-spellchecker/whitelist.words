@@ -1340,6 +1340,7 @@ ttf
 tvf
 tw
 typecastparenpad
+TYPEDECL
 typename
 typevariablenames
 uber
