@@ -1,4 +1,10 @@
+/*
+com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck
+
+*/
+
 package com.puppycrawl.tools.checkstyle.api.abstractcheck;
+// violation above
 
 /**
  * I'm a javadoc
