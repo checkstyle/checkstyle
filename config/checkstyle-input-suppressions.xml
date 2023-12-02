@@ -54,7 +54,6 @@
             files="[\\/]checks[\\/]imports[\\/]unusedimports[\\/]InputUnusedImportsShadowed.java"/>
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithChecker.java"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/4845 -->
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]bar[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
