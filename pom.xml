@@ -577,7 +577,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.0</version>
+                <version>7.6.2</version>
               </plugin>
             </plugins>
           </configuration>
@@ -1812,22 +1812,8 @@
                 <!-- due to https://github.com/checkstyle/checkstyle/pull/13193 All the code needs to be in single line -->
                 <exclude>**/OneStatementPerLineCheckTest.class</exclude>
 
-                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-
-                <!-- usage of custom internal module, 'execute' method should be used -->
-                <exclude>**/FileSetCheckTest.class</exclude>
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
-
-                <exclude>**/DetailAstImplTest.class</exclude>
-
-                <exclude>**/TreeWalkerTest.class</exclude>
-
-                <exclude>**/CheckerTest.class</exclude>
-
-                <exclude>**/AllBlockCommentsTest.class</exclude>
-
-                <!-- test needs to be updated -->
-                <exclude>**/SuppressionCommentFilterTest.class</exclude>
+                <!-- this class contain forbidden verify method -->
+                <exclude>**/AbstractModuleTestSupport.class</exclude>
 
                 <!-- due to https://github.com/checkstyle/checkstyle/issues/11846 -->
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
@@ -1837,17 +1823,14 @@
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
-                <!-- test should be updated -->
+                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
+                <exclude>**/FileSetCheckTest.class</exclude>
+                <exclude>**/AbstractFileSetCheckTest.class</exclude>
+                <exclude>**/DetailAstImplTest.class</exclude>
+                <exclude>**/TreeWalkerTest.class</exclude>
+                <exclude>**/CheckerTest.class</exclude>
+                <exclude>**/AllBlockCommentsTest.class</exclude>
                 <exclude>**/AbstractCheckTest.class</exclude>
-
-                <!-- tests need to be updated -->
-                <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
-
-                <!-- this class contain forbidden verify method -->
-                <exclude>**/AbstractModuleTestSupport.class</exclude>
-
-                <!-- tests should be updated -->
-                <exclude>**/AbstractJavadocCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
