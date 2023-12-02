@@ -120,7 +120,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * An array of blocks in which local anon inner classes can exist.
      */
-    private static final int[] CONTAINERS_FOR_ANON_INNERS = {
+    private static final int[] TYPEDECL_BODY_DECLARATION_TOKENS = {
         TokenTypes.METHOD_DEF,
         TokenTypes.CTOR_DEF,
         TokenTypes.STATIC_INIT,
@@ -155,7 +155,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
-     * Set of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
+     * Set of tokens of type {@link UnusedLocalVariableCheck#TYPEDECL_BODY_DECLARATION_TOKENS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
     private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
@@ -397,7 +397,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        while (!TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
+        while (!TokenUtil.isOfType(currentAst, TYPEDECL_BODY_DECLARATION_TOKENS)) {
             if (currentAst.getType() == TokenTypes.LAMBDA
                     && currentAst.getParent()
                     .getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
