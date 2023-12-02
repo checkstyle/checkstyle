@@ -133,10 +133,10 @@ steps:
   - bash: |
       apt-fast install -y xmlstarlet
     condition: |
-        and(
-             ne(variables['Agent.OS'], 'Darwin'),
-             eq(variables.NEED_XMLSTARLET, 'true')
-           )
+      and(
+           ne(variables['Agent.OS'], 'Darwin'),
+           eq(variables.NEED_XMLSTARLET, 'true')
+         )
 
   - bash: |
       gem install mdl
@@ -168,10 +168,10 @@ steps:
       ./.ci/validation.sh git-diff
       ./.ci/validation.sh ci-temp-check
     condition: |
-        or (
-            ne(variables.ON_CRON_ONLY, 'true'),
-            and(
-                 eq(variables.ON_CRON_ONLY, 'true'),
-                 eq(variables['Build.Reason'], 'Schedule')
-               )
-           )
+      or (
+          ne(variables.ON_CRON_ONLY, 'true'),
+          and(
+               eq(variables.ON_CRON_ONLY, 'true'),
+               eq(variables['Build.Reason'], 'Schedule')
+             )
+         )

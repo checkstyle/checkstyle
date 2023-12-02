@@ -18,6 +18,7 @@ install:
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
+
   - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.8
   - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: git config core.autocrlf
