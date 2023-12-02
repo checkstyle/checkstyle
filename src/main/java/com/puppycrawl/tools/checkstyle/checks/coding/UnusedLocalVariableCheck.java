@@ -397,15 +397,34 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        while (!TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA
-                    && currentAst.getParent()
-                    .getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
+        while (result == null) {
+            if (!isTokenNestedUnderContainerForAnonInners(currentAst)) {
                 result = currentAst;
-                break;
             }
             currentAst = currentAst.getParent();
-            result = currentAst;
+        }
+        return result;
+    }
+
+    /**
+     * Whether the ast is nested under tokens of type
+     * {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS} or {@link TokenTypes#LAMBDA}.
+     *
+     * @param ast ast node
+     * @return {@code true} if ast is nested under tokens of type
+     *         {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
+     *         or {@link TokenTypes#LAMBDA}
+     */
+    public static boolean isTokenNestedUnderContainerForAnonInners(DetailAST ast) {
+        boolean result = false;
+        DetailAST parentAst = ast.getParent();
+        while (parentAst != null) {
+            if (TokenUtil.isOfType(parentAst, CONTAINERS_FOR_ANON_INNERS)
+                    || parentAst.getType() == TokenTypes.LAMBDA) {
+                result = true;
+                break;
+            }
+            parentAst = parentAst.getParent();
         }
         return result;
     }
