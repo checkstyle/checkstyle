@@ -164,7 +164,7 @@
   </Match>
   <Match>
     <!-- Check is broken and does not clearly report where the fault is.
-         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
+         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/453 -->
     <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
   </Match>
   <Match>
