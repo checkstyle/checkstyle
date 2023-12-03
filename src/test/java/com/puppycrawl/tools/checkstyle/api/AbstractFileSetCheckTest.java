@@ -187,7 +187,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testLineColumnLog() throws Exception {
         final ViolationFileSetCheck check = new ViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
-        final File file = new File(getPath("InputAbstractFileSetLineColumn.txt"));
+        final File file = new File(getPath("InputAbstractFileSetLineColumn.java"));
         final FileText theText = new FileText(file.getAbsoluteFile(),
                 StandardCharsets.UTF_8.name());
         final SortedSet<Violation> internalViolations = check.process(file, theText);
@@ -218,12 +218,10 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCheck() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ViolationFileSetCheck.class);
-
         final String[] expected = {
             "1:6: Violation.",
         };
-        verify(checkConfig, getPath("InputAbstractFileSetLineColumn.txt"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractFileSetLineColumn.java"), expected);
     }
 
     @Test
