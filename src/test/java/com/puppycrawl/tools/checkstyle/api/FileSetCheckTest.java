@@ -26,7 +26,6 @@ import java.io.File;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FileSetCheckTest
     extends AbstractModuleTestSupport {
@@ -40,8 +39,8 @@ public class FileSetCheckTest
     public void testTranslation() throws Exception {
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
+        final String path = getPath("InputFileSetIllegalTokens.java");
+        execute(checkConfig, path);
 
         assertWithMessage("destroy() not called by Checker")
                 .that(TestFileSetCheck.isDestroyed())
@@ -52,9 +51,8 @@ public class FileSetCheckTest
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
         final Configuration checkConfig =
             createModuleConfig(TestFileSetCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
+        final String path = getPath("InputFileSetIllegalTokens.java");
+        execute(checkConfig, path);
 
         assertWithMessage("FileContent should be available during finishProcessing() call")
                 .that(TestFileSetCheck.isFileContentAvailable())
