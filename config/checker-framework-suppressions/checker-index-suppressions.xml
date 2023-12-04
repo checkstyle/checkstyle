@@ -1790,28 +1790,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;text[toPoint.getLineNo()]&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter index of charAt.</message>
     <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
     <details>
@@ -1954,17 +1932,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
     <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
@@ -2034,17 +2001,6 @@
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
     <lineContent>while (line &lt; text.length &amp;&amp; column &gt;= text[line].length()) {</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
