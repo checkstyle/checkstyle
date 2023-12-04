@@ -29,7 +29,7 @@ task:
     MAVEN_OPTS: "-Dhttp.keepAlive=false \
       -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
       -Dmaven.wagon.http.retryHandler.count=3"
-    MAVEN_VERSION: "3.8.4"
+    MAVEN_VERSION: "3.8.8"
     PATH: "%PATH%;C:/Program Files/OpenJDK/%OPENJDK_PATH%/bin;\
       C:/ProgramData/chocolatey/lib/maven/apache-maven-%MAVEN_VERSION%/bin;\
       C:/ProgramData/chocolatey/bin"
