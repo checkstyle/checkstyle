@@ -11,21 +11,21 @@ branches:
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
-      if (!(Test-Path -Path "C:\maven\apache-maven-3.8.8" )) {
+      if (!(Test-Path -Path "C:\maven\apache-maven-3.8.6" )) {
         (new-object System.Net.WebClient).DownloadFile(
-          'https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.zip',
+          'https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip',
           'C:\maven-bin.zip'
         )
         [System.IO.Compression.ZipFile]::ExtractToDirectory("C:\maven-bin.zip", "C:\maven")
       }
-  - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.8
+  - cmd: SET M2_HOME=C:\maven\apache-maven-3.8.6
   - cmd: SET PATH=%M2_HOME%\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: git config core.autocrlf
   - cmd: mvn --version
   - cmd: java -version
 
 cache:
-  - C:\maven\apache-maven-3.8.8
+  - C:\maven\apache-maven-3.8.6
   - C:\Users\appveyor\.m2
 
 matrix:
@@ -72,5 +72,5 @@ build_script:
       }
   - ps: ./.ci/validation.cmd git_diff
   - ps: echo "Size of caches (bytes):"
-  - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.8' | Measure-Object -Property Length -Sum
+  - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.8.6' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum
