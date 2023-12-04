@@ -252,7 +252,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return Some nearest empty line in javadoc.
      */
     private static DetailNode getNearestEmptyLine(DetailNode node) {
-        DetailNode newLine = JavadocUtil.getPreviousSibling(node);
+        DetailNode newLine = node;
         while (newLine != null) {
             final DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
             if (newLine.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(newLine)) {
