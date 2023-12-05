@@ -35,7 +35,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of Violation.</message>
+    <message>incompatible argument for parameter args of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
       found   : @Initialized @Nullable String @Initialized @NonNull []
@@ -46,7 +46,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
       found   : null (NullType)
@@ -57,7 +57,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>null, getClass(), null));</lineContent>
     <details>
       found   : null (NullType)
@@ -68,7 +68,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleId of Violation.</message>
+    <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
       found   : null (NullType)
@@ -79,7 +79,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleId of Violation.</message>
+    <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>null, getClass(), null));</lineContent>
     <details>
       found   : null (NullType)
@@ -108,7 +108,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of add.</message>
+    <message>incompatible argument for parameter arg0 of Collection.add.</message>
     <lineContent>fragments.add(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -312,7 +312,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter child of addChild.</message>
+    <message>incompatible argument for parameter child of DetailAstImpl.addChild.</message>
     <lineContent>bop.addChild(descendantList.poll());</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAstImpl
@@ -440,7 +440,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of createJavadocNode.</message>
+    <message>incompatible argument for parameter parent of JavadocDetailNodeParser.createJavadocNode.</message>
     <lineContent>final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);</lineContent>
     <details>
       found   : null (NullType)
@@ -555,7 +555,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter loader of getBundle.</message>
+    <message>incompatible argument for parameter loader of ResourceBundle.getBundle.</message>
     <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -588,7 +588,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of getRootModule.</message>
+    <message>incompatible argument for parameter moduleClassLoader of Main.getRootModule.</message>
     <lineContent>final RootModule rootModule = getRootModule(config.getName(), moduleClassLoader);</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -694,7 +694,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of contains.</message>
+    <message>incompatible argument for parameter arg0 of Set.contains.</message>
     <lineContent>if (packageNames.contains(null)) {</lineContent>
     <details>
       found   : null (NullType)
@@ -705,7 +705,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of LocalizedMessage.</message>
+    <message>incompatible argument for parameter args of LocalizedMessage constructor.</message>
     <lineContent>UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE, name, attemptedNames);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -725,21 +725,6 @@
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: thirdPartyNameToFullModuleNames, moduleLoadOption</message>
     <lineContent>public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
-    <specifier>methodref.return</specifier>
-    <message>Incompatible return type</message>
-    <lineContent>Class::getCanonicalName,</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-      Consequence: method in @Initialized @NonNull Class&lt;/*INFERENCE FAILED for:*/ ? extends @Initialized @NonNull Object&gt;
-      @Initialized @Nullable String getCanonicalName(@Initialized @NonNull Class&lt;/*INFERENCE FAILED for:*/ ? extends @Initialized @NonNull Object&gt; this)
-      is not a valid method reference for method in @Initialized @NonNull Function&lt;/*INFERENCE FAILED for:*/ ? extends @Initialized @Nullable Object, @Initialized @NonNull String&gt;
-      @Initialized @NonNull String apply(@Initialized @NonNull Function&lt;/*INFERENCE FAILED for:*/ ? extends @Initialized @Nullable Object, @Initialized @NonNull String&gt; this, /*INFERENCE FAILED for:*/ ? extends @Initialized @Nullable Object p0)
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -847,7 +832,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter s of parseInt.</message>
+    <message>incompatible argument for parameter s of Integer.parseInt.</message>
     <lineContent>final int columnNumber = Integer.parseInt(matcher.group(2));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -858,7 +843,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter s of parseInt.</message>
+    <message>incompatible argument for parameter s of Integer.parseInt.</message>
     <lineContent>final int lineNumber = Integer.parseInt(matcher.group(1));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -898,7 +883,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter messages of writeFileMessages.</message>
+    <message>incompatible argument for parameter messages of XMLLogger.writeFileMessages.</message>
     <lineContent>writeFileMessages(fileName, messages);</lineContent>
     <details>
       found   : @Initialized @Nullable FileMessages
@@ -916,7 +901,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter byteStream of InputSource.</message>
+    <message>incompatible argument for parameter byteStream of InputSource constructor.</message>
     <lineContent>inputSource = new InputSource(dtdIs);</lineContent>
     <details>
       found   : @Initialized @Nullable InputStream
@@ -927,7 +912,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter handler of createXmlReader.</message>
+    <message>incompatible argument for parameter handler of XmlLoader.createXmlReader.</message>
     <lineContent>parser = createXmlReader(this);</lineContent>
     <details>
       found   : @UnderInitialization(org.xml.sax.helpers.DefaultHandler.class) @NonNull XmlLoader
@@ -982,7 +967,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter checkstyleVersion of realExecute.</message>
+    <message>incompatible argument for parameter checkstyleVersion of CheckstyleAntTask.realExecute.</message>
     <lineContent>realExecute(version);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -993,7 +978,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of PackageObjectFactory.</message>
+    <message>incompatible argument for parameter moduleClassLoader of PackageObjectFactory constructor.</message>
     <lineContent>Checker.class.getPackage().getName() + &quot;.&quot;, moduleClassLoader);</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -1004,7 +989,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of setModuleClassLoader.</message>
+    <message>incompatible argument for parameter moduleClassLoader of RootModule.setModuleClassLoader.</message>
     <lineContent>rootModule.setModuleClassLoader(moduleClassLoader);</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -1085,7 +1070,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getCustomMessages().get(key)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1096,7 +1081,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getCustomMessages().get(key)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1107,7 +1092,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getCustomMessages().get(key)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1136,7 +1121,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getCustomMessages().get(key)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1147,7 +1132,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getCustomMessages().get(key)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1197,7 +1182,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AuditEvent.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter fileName of AuditEvent.</message>
+    <message>incompatible argument for parameter fileName of AuditEvent constructor.</message>
     <lineContent>this(source, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1208,7 +1193,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AuditEvent.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter violation of AuditEvent.</message>
+    <message>incompatible argument for parameter violation of AuditEvent constructor.</message>
     <lineContent>this(src, fileName, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1374,7 +1359,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of log.</message>
+    <message>incompatible argument for parameter args of AbstractFileSetCheck.log.</message>
     <lineContent>log(1, MSG_IO_EXCEPTION_KEY, file.getPath(), ex.getLocalizedMessage());</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1476,7 +1461,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of Violation.</message>
+    <message>incompatible argument for parameter args of Violation constructor.</message>
     <lineContent>args,</lineContent>
     <details>
       found   : @Initialized @NonNull String @Initialized @Nullable []
@@ -1487,7 +1472,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter customMessage of Violation.</message>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>getClass(), null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1498,7 +1483,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter languageCode of getMissingFileName.</message>
+    <message>incompatible argument for parameter languageCode of TranslationCheck.getMissingFileName.</message>
     <lineContent>getMissingFileName(bundle, null)</lineContent>
     <details>
       found   : null (NullType)
@@ -1531,7 +1516,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of createFullIdent.</message>
+    <message>incompatible argument for parameter ast of FullIdent.createFullIdent.</message>
     <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1556,7 +1541,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of log.</message>
+    <message>incompatible argument for parameter args of AbstractFileSetCheck.log.</message>
     <lineContent>ex.getLocalizedMessage());</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1596,7 +1581,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter nextToken of Details.</message>
+    <message>incompatible argument for parameter nextToken of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1607,7 +1592,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter rcurly of Details.</message>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, getNextToken(ast), true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1618,7 +1603,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter rcurly of Details.</message>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, false);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1629,7 +1614,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter rcurly of Details.</message>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1640,7 +1625,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter rcurly of Details.</message>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1662,7 +1647,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter state of processModifiersState.</message>
+    <message>incompatible argument for parameter state of DeclarationOrderCheck.processModifiersState.</message>
     <lineContent>final boolean isStateValid = processModifiersState(ast, state);</lineContent>
     <details>
       found   : @Initialized @Nullable ScopeState
@@ -1701,7 +1686,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of FieldFrame.</message>
+    <message>incompatible argument for parameter parent of FieldFrame constructor.</message>
     <lineContent>currentFrame = new FieldFrame(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1892,7 +1877,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frameName of FieldFrame.</message>
+    <message>incompatible argument for parameter frameName of FieldFrame constructor.</message>
     <lineContent>final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1903,7 +1888,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frameName of FieldFrame.</message>
+    <message>incompatible argument for parameter frameName of FieldFrame constructor.</message>
     <lineContent>frame = new FieldFrame(null, true, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -1914,7 +1899,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of FieldFrame.</message>
+    <message>incompatible argument for parameter parent of FieldFrame constructor.</message>
     <lineContent>frame = new FieldFrame(null, true, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -2065,7 +2050,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of push.</message>
+    <message>incompatible argument for parameter arg0 of Deque.push.</message>
     <lineContent>current.push(frames.get(ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2076,7 +2061,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of push.</message>
+    <message>incompatible argument for parameter arg0 of Deque.push.</message>
     <lineContent>current.push(frames.get(ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2087,7 +2072,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of put.</message>
+    <message>incompatible argument for parameter arg1 of Map.put.</message>
     <lineContent>frames.put(ast, frameStack.poll());</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2098,7 +2083,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of put.</message>
+    <message>incompatible argument for parameter arg1 of Map.put.</message>
     <lineContent>frames.put(ast, frameStack.poll());</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2109,7 +2094,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frame of collectMethodDeclarations.</message>
+    <message>incompatible argument for parameter frame of RequireThisCheck.collectMethodDeclarations.</message>
     <lineContent>collectMethodDeclarations(frameStack, ast, frame);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2120,7 +2105,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frame of collectVariableDeclarations.</message>
+    <message>incompatible argument for parameter frame of RequireThisCheck.collectVariableDeclarations.</message>
     <lineContent>collectVariableDeclarations(ast, frame);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2131,7 +2116,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frame of findFrame.</message>
+    <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
     <lineContent>frame = findFrame(frame, name, lookForMethod);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2142,7 +2127,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter frame of findFrame.</message>
+    <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
     <lineContent>return findFrame(current.peek(), name, lookForMethod);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2153,7 +2138,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ident of ClassFrame.</message>
+    <message>incompatible argument for parameter ident of ClassFrame constructor.</message>
     <lineContent>super(parent, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -2164,7 +2149,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of AnonymousClassFrame.</message>
+    <message>incompatible argument for parameter parent of AnonymousClassFrame constructor.</message>
     <lineContent>frameStack.addFirst(new AnonymousClassFrame(frame,</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2175,7 +2160,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of BlockFrame.</message>
+    <message>incompatible argument for parameter parent of BlockFrame constructor.</message>
     <lineContent>frameStack.addFirst(new BlockFrame(frame, ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2186,7 +2171,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of CatchFrame.</message>
+    <message>incompatible argument for parameter parent of CatchFrame constructor.</message>
     <lineContent>final AbstractFrame catchFrame = new CatchFrame(frame, ast);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2197,7 +2182,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of ClassFrame.</message>
+    <message>incompatible argument for parameter parent of ClassFrame constructor.</message>
     <lineContent>frameStack.addFirst(new ClassFrame(frame, classFrameNameIdent));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2208,7 +2193,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of ConstructorFrame.</message>
+    <message>incompatible argument for parameter parent of ConstructorFrame constructor.</message>
     <lineContent>frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2219,7 +2204,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of ForFrame.</message>
+    <message>incompatible argument for parameter parent of ForFrame constructor.</message>
     <lineContent>final AbstractFrame forFrame = new ForFrame(frame, ast);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2230,7 +2215,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of TryWithResourcesFrame.</message>
+    <message>incompatible argument for parameter parent of TryWithResourcesFrame constructor.</message>
     <lineContent>frameStack.addFirst(new TryWithResourcesFrame(frame, ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
@@ -2380,7 +2365,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of put.</message>
+    <message>incompatible argument for parameter arg1 of Map.put.</message>
     <lineContent>anonInnerAstToTypeDeclDesc.put(literalNewAst, typeDeclarations.peek());</lineContent>
     <details>
       found   : @Initialized @Nullable TypeDeclDesc
@@ -2391,7 +2376,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter outerClassQualifiedName of getQualifiedTypeDeclarationName.</message>
+    <message>incompatible argument for parameter outerClassQualifiedName of CheckUtil.getQualifiedTypeDeclarationName.</message>
     <lineContent>.getQualifiedTypeDeclarationName(packageName, outerClassQualifiedName, className);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -2402,7 +2387,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter scope of VariableDesc.</message>
+    <message>incompatible argument for parameter scope of VariableDesc constructor.</message>
     <lineContent>this(name, null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -2413,7 +2398,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter typeAst of VariableDesc.</message>
+    <message>incompatible argument for parameter typeAst of VariableDesc constructor.</message>
     <lineContent>this(name, null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -2424,7 +2409,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter typeAst of VariableDesc.</message>
+    <message>incompatible argument for parameter typeAst of VariableDesc constructor.</message>
     <lineContent>this(name, null, scope);</lineContent>
     <details>
       found   : null (NullType)
@@ -2566,7 +2551,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of SimpleEntry.</message>
+    <message>incompatible argument for parameter key of SimpleEntry constructor.</message>
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -2577,7 +2562,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of SimpleEntry.</message>
+    <message>incompatible argument for parameter key of SimpleEntry constructor.</message>
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -2674,7 +2659,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter outerClassQualifiedName of getQualifiedTypeDeclarationName.</message>
+    <message>incompatible argument for parameter outerClassQualifiedName of CheckUtil.getQualifiedTypeDeclarationName.</message>
     <lineContent>outerTypeDeclarationQualifiedName,</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -2738,7 +2723,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter typeDef of isPublic.</message>
+    <message>incompatible argument for parameter typeDef of OneTopLevelClassCheck.isPublic.</message>
     <lineContent>if (publicTypeFound &amp;&amp; !isPublic(firstType)) {</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -2791,7 +2776,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter previousImport of isAlphabeticalOrderBroken.</message>
+    <message>incompatible argument for parameter previousImport of CustomImportOrderCheck.isAlphabeticalOrderBroken.</message>
     <lineContent>if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -2802,7 +2787,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter previousImport of validateExtraEmptyLine.</message>
+    <message>incompatible argument for parameter previousImport of CustomImportOrderCheck.validateExtraEmptyLine.</message>
     <lineContent>validateExtraEmptyLine(previousImportObjectFromCurrentGroup,</lineContent>
     <details>
       found   : @Initialized @Nullable ImportDetails
@@ -2813,7 +2798,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter previousImport of validateMissedEmptyLine.</message>
+    <message>incompatible argument for parameter previousImport of CustomImportOrderCheck.validateMissedEmptyLine.</message>
     <lineContent>validateMissedEmptyLine(previousImportObjectFromCurrentGroup,</lineContent>
     <details>
       found   : @Initialized @Nullable ImportDetails
@@ -2899,7 +2884,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of FileImportControl.</message>
+    <message>incompatible argument for parameter parent of FileImportControl constructor.</message>
     <lineContent>final AbstractImportControl importControl = new FileImportControl(parentImportControl,</lineContent>
     <details>
       found   : @Initialized @Nullable PkgImportControl
@@ -2910,7 +2895,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of PkgImportControl.</message>
+    <message>incompatible argument for parameter parent of PkgImportControl constructor.</message>
     <lineContent>final AbstractImportControl importControl = new PkgImportControl(parentImportControl,</lineContent>
     <details>
       found   : @Initialized @Nullable PkgImportControl
@@ -2960,7 +2945,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of AbstractImportControl.</message>
+    <message>incompatible argument for parameter parent of AbstractImportControl constructor.</message>
     <lineContent>super(null, strategyOnMismatch);</lineContent>
     <details>
       found   : null (NullType)
@@ -3044,7 +3029,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of Frame.</message>
+    <message>incompatible argument for parameter parent of Frame constructor.</message>
     <lineContent>return new Frame(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -3055,7 +3040,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter type of topLevelType.</message>
+    <message>incompatible argument for parameter type of UnusedImportsCheck.topLevelType.</message>
     <lineContent>references.add(topLevelType(matcher.group(1)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3221,7 +3206,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter constructor of invokeConstructor.</message>
+    <message>incompatible argument for parameter constructor of CommonUtil.invokeConstructor.</message>
     <lineContent>handlerCtor, indentCheck, ast, parent);</lineContent>
     <details>
       found   : @Initialized @Nullable Constructor&lt;capture extends @Initialized @Nullable Object&gt;
@@ -3661,7 +3646,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>type.argument</specifier>
-    <message>incompatible type argument for type parameter T extends Object of invokeConstructor.</message>
+    <message>incompatible type argument for type parameter T extends Object of CommonUtil.invokeConstructor.</message>
     <lineContent>resultHandler = (AbstractExpressionHandler) CommonUtil.invokeConstructor(</lineContent>
     <details>
       found   : capture[ extends @UnknownKeyFor Object super @KeyForBottom Void]
@@ -3672,7 +3657,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter instance of LineWrappingHandler.</message>
+    <message>incompatible argument for parameter instance of LineWrappingHandler constructor.</message>
     <lineContent>private final LineWrappingHandler lineWrappingHandler = new LineWrappingHandler(this);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractCheck.class) @NonNull IndentationCheck
@@ -3683,7 +3668,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of getHandler.</message>
+    <message>incompatible argument for parameter parent of HandlerFactory.getHandler.</message>
     <lineContent>handlers.peek());</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractExpressionHandler
@@ -3748,7 +3733,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter expr of AbstractExpressionHandler.</message>
+    <message>incompatible argument for parameter expr of AbstractExpressionHandler constructor.</message>
     <lineContent>super(indentCheck, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -3759,7 +3744,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of AbstractExpressionHandler.</message>
+    <message>incompatible argument for parameter parent of AbstractExpressionHandler constructor.</message>
     <lineContent>super(indentCheck, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -3770,7 +3755,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter typeName of AbstractExpressionHandler.</message>
+    <message>incompatible argument for parameter typeName of AbstractExpressionHandler constructor.</message>
     <lineContent>super(indentCheck, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -3843,7 +3828,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of contains.</message>
+    <message>incompatible argument for parameter arg0 of Set.contains.</message>
     <lineContent>if (tags.contains(tagName)) {</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3872,7 +3857,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag.</message>
+    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
     <lineContent>javadocArgMatcher.group(2)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3883,7 +3868,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag.</message>
+    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
     <lineContent>javadocArgMissingDescriptionMatcher.group(2)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3894,7 +3879,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
     <lineContent>javadocArgMissingDescriptionMatcher.group(1),</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3905,7 +3890,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
     <lineContent>tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3916,7 +3901,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
     <lineContent>tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3927,7 +3912,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
     <lineContent>tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -3938,7 +3923,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter tag of JavadocTag.</message>
+    <message>incompatible argument for parameter tag of JavadocTag constructor.</message>
     <lineContent>tags.add(new JavadocTag(tagLine, col, param1));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4040,7 +4025,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of add.</message>
+    <message>incompatible argument for parameter arg0 of Set.add.</message>
     <lineContent>final boolean isDirChecked = !directoriesChecked.add(dir);</lineContent>
     <details>
       found   : @Initialized @Nullable File
@@ -4069,7 +4054,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter firstArg of JavadocTag.</message>
+    <message>incompatible argument for parameter firstArg of JavadocTag constructor.</message>
     <lineContent>this(line, column, tag, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -4157,7 +4142,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter javadocInlineTag of isInlineReturnTag.</message>
+    <message>incompatible argument for parameter javadocInlineTag of SummaryJavadocCheck.isInlineReturnTag.</message>
     <lineContent>else if (inlineTag.isPresent() &amp;&amp; isInlineReturnTag(inlineTagNode)) {</lineContent>
     <details>
       found   : @Initialized @Nullable DetailNode
@@ -4168,7 +4153,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter javadocInlineTag of isSummaryTag.</message>
+    <message>incompatible argument for parameter javadocInlineTag of SummaryJavadocCheck.isSummaryTag.</message>
     <lineContent>&amp;&amp; isSummaryTag(inlineTagNode)</lineContent>
     <details>
       found   : @Initialized @Nullable DetailNode
@@ -4222,7 +4207,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/BlockTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter name of TagInfo.</message>
+    <message>incompatible argument for parameter name of TagInfo constructor.</message>
     <lineContent>tags.add(new TagInfo(tagName, tagValue, position));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4233,7 +4218,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/InlineTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter name of TagInfo.</message>
+    <message>incompatible argument for parameter name of TagInfo constructor.</message>
     <lineContent>tags.add(new TagInfo(tagName, tagValue, position));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4244,7 +4229,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/InlineTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter source of removeLeadingJavaDoc.</message>
+    <message>incompatible argument for parameter source of InlineTagUtil.removeLeadingJavaDoc.</message>
     <lineContent>matchedTagValue = removeLeadingJavaDoc(matchedTagValue);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4255,7 +4240,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/AbstractClassCouplingCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of ClassContext.</message>
+    <message>incompatible argument for parameter ast of ClassContext constructor.</message>
     <lineContent>classesContexts.push(new ClassContext(&quot;&quot;, null));</lineContent>
     <details>
       found   : null (NullType)
@@ -4454,7 +4439,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineJavaCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter val of suppressor.</message>
+    <message>incompatible argument for parameter val of Builder.suppressor.</message>
     <lineContent>.suppressor(suppressor)</lineContent>
     <details>
       found   : @Initialized @Nullable MatchSuppressor
@@ -4472,7 +4457,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter ast of Context.</message>
+    <message>incompatible argument for parameter ast of Context constructor.</message>
     <lineContent>context = new Context(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -4759,7 +4744,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of addTag.</message>
+    <message>incompatible argument for parameter text of SuppressWithNearbyCommentFilter.addTag.</message>
     <lineContent>addTag(matcher.group(0), line);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4846,7 +4831,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of Suppression.</message>
+    <message>incompatible argument for parameter text of Suppression constructor.</message>
     <lineContent>suppression = new Suppression(text, lineNo + 1, this);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4900,7 +4885,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of Suppression.</message>
+    <message>incompatible argument for parameter text of Suppression constructor.</message>
     <lineContent>suppression = new Suppression(offCommentMatcher.group(0),</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4911,7 +4896,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of Suppression.</message>
+    <message>incompatible argument for parameter text of Suppression constructor.</message>
     <lineContent>suppression = new Suppression(onCommentMatcher.group(0),</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -4995,7 +4980,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of addTag.</message>
+    <message>incompatible argument for parameter text of SuppressionCommentFilter.addTag.</message>
     <lineContent>addTag(offMatcher.group(0), line, column, TagType.OFF);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -5006,7 +4991,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter text of addTag.</message>
+    <message>incompatible argument for parameter text of SuppressionCommentFilter.addTag.</message>
     <lineContent>addTag(onMatcher.group(0), line, column, TagType.ON);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -5257,7 +5242,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter checks of XpathFilterElement.</message>
+    <message>incompatible argument for parameter checks of XpathFilterElement constructor.</message>
     <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
     <details>
       found   : @Initialized @Nullable Pattern
@@ -5268,7 +5253,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter contextItem of createDynamicContext.</message>
+    <message>incompatible argument for parameter contextItem of XPathExpression.createDynamicContext.</message>
     <lineContent>xpathExpression.createDynamicContext(rootNode);</lineContent>
     <details>
       found   : @Initialized @Nullable RootNode
@@ -5279,7 +5264,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter files of XpathFilterElement.</message>
+    <message>incompatible argument for parameter files of XpathFilterElement constructor.</message>
     <lineContent>this(Optional.ofNullable(files).map(Pattern::compile).orElse(null),</lineContent>
     <details>
       found   : @Initialized @Nullable Pattern
@@ -5290,7 +5275,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of XpathFilterElement.</message>
+    <message>incompatible argument for parameter message of XpathFilterElement constructor.</message>
     <lineContent>Optional.ofNullable(message).map(Pattern::compile).orElse(null),</lineContent>
     <details>
       found   : @Initialized @Nullable Pattern
@@ -5371,7 +5356,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of getImage.</message>
+    <message>incompatible argument for parameter arg0 of Toolkit.getImage.</message>
     <lineContent>setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource(ICON)));</lineContent>
     <details>
       found   : @Initialized @Nullable URL
@@ -5382,7 +5367,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter event of actionPerformed.</message>
+    <message>incompatible argument for parameter event of ReloadAction.actionPerformed.</message>
     <lineContent>reloadAction.actionPerformed(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -5393,7 +5378,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter sourceFile of openFile.</message>
+    <message>incompatible argument for parameter sourceFile of MainFrame.openFile.</message>
     <lineContent>openFile(file);</lineContent>
     <details>
       found   : @Initialized @Nullable File
@@ -5422,7 +5407,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrameModel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter parseTree of ParseTreeTableModel.</message>
+    <message>incompatible argument for parameter parseTree of ParseTreeTableModel constructor.</message>
     <lineContent>parseTreeTableModel = new ParseTreeTableModel(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -5451,7 +5436,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter childIndices of fireTreeStructureChanged.</message>
+    <message>incompatible argument for parameter childIndices of ParseTreeTableModel.fireTreeStructureChanged.</message>
     <lineContent>fireTreeStructureChanged(this, path, null, (Object[]) null);</lineContent>
     <details>
       found   : null (NullType)
@@ -5462,7 +5447,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter children of fireTreeStructureChanged.</message>
+    <message>incompatible argument for parameter children of ParseTreeTableModel.fireTreeStructureChanged.</message>
     <lineContent>fireTreeStructureChanged(this, path, null, (Object[]) null);</lineContent>
     <details>
       found   : @Initialized @NonNull Object @FBCBottom @Nullable []
@@ -5513,7 +5498,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter font of getFontMetrics.</message>
+    <message>incompatible argument for parameter font of JComponent.getFontMetrics.</message>
     <lineContent>final FontMetrics fontMetrics = getFontMetrics(getFont());</lineContent>
     <details>
       found   : @Initialized @Nullable Font
@@ -5524,7 +5509,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter jTreeTable of ListToTreeSelectionModelWrapper.</message>
+    <message>incompatible argument for parameter jTreeTable of ListToTreeSelectionModelWrapper constructor.</message>
     <lineContent>ListToTreeSelectionModelWrapper(this);</lineContent>
     <details>
       found   : @UnderInitialization(javax.swing.JTable.class) @NonNull TreeTable
@@ -5535,7 +5520,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter selectionModel of setSelectionModel.</message>
+    <message>incompatible argument for parameter selectionModel of JTree.setSelectionModel.</message>
     <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
@@ -5546,7 +5531,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter treeTable of TreeTableCellRenderer.</message>
+    <message>incompatible argument for parameter treeTable of TreeTableCellRenderer constructor.</message>
     <lineContent>tree = new TreeTableCellRenderer(this, treeTableModel);</lineContent>
     <details>
       found   : @UnderInitialization(javax.swing.JTable.class) @NonNull TreeTable
@@ -5740,7 +5725,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of add.</message>
+    <message>incompatible argument for parameter arg0 of Set.add.</message>
     <lineContent>tokens.add(matcher.group(0));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -5751,7 +5736,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter nodeTag of getTextFromTag.</message>
+    <message>incompatible argument for parameter nodeTag of JavadocMetadataScraper.getTextFromTag.</message>
     <lineContent>return getTextFromTag(tagNode);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailNode
@@ -5775,28 +5760,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to &lt;X&gt;orElseThrow(java.util.function.Supplier&lt;? extends X&gt;) not allowed on the given receiver.</message>
-    <lineContent>.orElseThrow(() -&gt; {</lineContent>
-    <details>
-      found   : @MaybePresent Optional&lt;/*INFERENCE FAILED for:*/ ? extends Object&gt;
-      required: @Present Optional&lt;/*INFERENCE FAILED for:*/ ? extends Object&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to &lt;X&gt;orElseThrow(java.util.function.Supplier&lt;? extends X&gt;) not allowed on the given receiver.</message>
-    <lineContent>.orElseThrow(() -&gt; {</lineContent>
-    <details>
-      found   : @MaybePresent Optional&lt;/*INFERENCE FAILED for:*/ ? extends Object&gt;
-      required: @Present Optional&lt;/*INFERENCE FAILED for:*/ ? extends Object&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>.orElse(null);</lineContent>
@@ -5809,7 +5772,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of setModuleClassLoader.</message>
+    <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
     <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -5890,18 +5853,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter description of setDescription.</message>
-    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter description of setDescription.</message>
+    <message>incompatible argument for parameter description of ModuleDetails.setDescription.</message>
     <lineContent>.getFirstChild().getNodeValue());</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -5912,7 +5864,18 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter element of getAttributeValue.</message>
+    <message>incompatible argument for parameter description of ModulePropertyDetails.setDescription.</message>
+    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter element of XmlMetaReader.getAttributeValue.</message>
     <lineContent>listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));</lineContent>
     <details>
       found   : @Initialized @Nullable Element
@@ -5923,7 +5886,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter element of getAttributeValue.</message>
+    <message>incompatible argument for parameter element of XmlMetaReader.getAttributeValue.</message>
     <lineContent>propertyDetails.setName(getAttributeValue(prop, XML_TAG_NAME));</lineContent>
     <details>
       found   : @Initialized @Nullable Element
@@ -5934,7 +5897,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleMetadataStream of read.</message>
+    <message>incompatible argument for parameter moduleMetadataStream of XmlMetaReader.read.</message>
     <lineContent>moduleDetails = read(XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName),</lineContent>
     <details>
       found   : @Initialized @Nullable InputStream
@@ -6020,7 +5983,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter justification of tableRows.</message>
+    <message>incompatible argument for parameter justification of XdocSink.tableRows.</message>
     <lineContent>sink.tableRows(null, false);</lineContent>
     <details>
       found   : null (NullType)
@@ -6031,7 +5994,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleJavadoc of writePropertyRow.</message>
+    <message>incompatible argument for parameter moduleJavadoc of PropertiesMacro.writePropertyRow.</message>
     <lineContent>writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailNode
@@ -6042,7 +6005,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter propertyJavadoc of writePropertyRow.</message>
+    <message>incompatible argument for parameter propertyJavadoc of PropertiesMacro.writePropertyRow.</message>
     <lineContent>writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailNode
@@ -6053,7 +6016,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter classLoader of getPackageNames.</message>
+    <message>incompatible argument for parameter classLoader of PackageNamesLoader.getPackageNames.</message>
     <lineContent>final Set&lt;String&gt; packageNames = PackageNamesLoader.getPackageNames(cl);</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -6064,7 +6027,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter message of MacroExecutionException.</message>
+    <message>incompatible argument for parameter message of MacroExecutionException constructor.</message>
     <lineContent>throw new MacroExecutionException(exc.getMessage(), exc);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -6075,7 +6038,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of setModuleClassLoader.</message>
+    <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
     <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -6210,7 +6173,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <message>incompatible argument for parameter arg0 of XmlPullParser.getAttributeValue.</message>
     <lineContent>.getAttributeValue(null, Attribute.NAME.toString());</lineContent>
     <details>
       found   : null (NullType)
@@ -6221,7 +6184,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <message>incompatible argument for parameter arg0 of XmlPullParser.getAttributeValue.</message>
     <lineContent>.getAttributeValue(null, Attribute.VALUE.toString());</lineContent>
     <details>
       found   : null (NullType)
@@ -6232,7 +6195,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of getAttributeValue.</message>
+    <message>incompatible argument for parameter arg0 of XmlPullParser.getAttributeValue.</message>
     <lineContent>macroName = parser.getAttributeValue(null, Attribute.NAME.toString());</lineContent>
     <details>
       found   : null (NullType)
@@ -6281,7 +6244,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter input of matcher.</message>
+    <message>incompatible argument for parameter input of Pattern.matcher.</message>
     <lineContent>final Matcher matcher = PROPERTY_VARIABLE_PATTERN.matcher(propertyValue);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -6303,7 +6266,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter replacement of replaceAll.</message>
+    <message>incompatible argument for parameter replacement of String.replaceAll.</message>
     <lineContent>result = result.replaceAll(&quot;\\$&quot; + i, matcher.group(i));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -6409,7 +6372,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter object of getIntFromField.</message>
+    <message>incompatible argument for parameter object of TokenUtil.getIntFromField.</message>
     <lineContent>Field::getName, fld -&gt; getIntFromField(fld, null))</lineContent>
     <details>
       found   : null (NullType)
@@ -6446,7 +6409,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter name of AttributeNode.</message>
+    <message>incompatible argument for parameter name of AttributeNode constructor.</message>
     <lineContent>private static final AttributeNode ATTRIBUTE_NODE_UNINITIALIZED = new AttributeNode(null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -6457,7 +6420,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter nodes of OfNodes.</message>
+    <message>incompatible argument for parameter nodes of OfNodes constructor.</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractNode @Initialized @NonNull []
@@ -6468,7 +6431,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter nodes of OfNodes.</message>
+    <message>incompatible argument for parameter nodes of OfNodes constructor.</message>
     <lineContent>getFollowingSiblings().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractNode @Initialized @NonNull []
@@ -6479,7 +6442,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter value of AttributeNode.</message>
+    <message>incompatible argument for parameter value of AttributeNode constructor.</message>
     <lineContent>private static final AttributeNode ATTRIBUTE_NODE_UNINITIALIZED = new AttributeNode(null, null);</lineContent>
     <details>
       found   : null (NullType)
@@ -6550,7 +6513,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractRootNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter nodes of OfNodes.</message>
+    <message>incompatible argument for parameter nodes of OfNodes constructor.</message>
     <lineContent>getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractNode @Initialized @NonNull []
@@ -6579,7 +6542,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AttributeNode.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter treeInfo of AbstractNode.</message>
+    <message>incompatible argument for parameter treeInfo of AbstractNode constructor.</message>
     <lineContent>super(null);</lineContent>
     <details>
       found   : null (NullType)
@@ -6601,7 +6564,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/XpathQueryGenerator.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter root of getXpathQuery.</message>
+    <message>incompatible argument for parameter root of XpathQueryGenerator.getXpathQuery.</message>
     <lineContent>final StringBuilder xpathQueryBuilder = new StringBuilder(getXpathQuery(null, ast));</lineContent>
     <details>
       found   : null (NullType)
@@ -6757,6 +6720,17 @@
     <details>
       type of expression: @Initialized @Nullable NodeInfo
       method return type: @Initialized @NonNull NodeInfo
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter c of ArrayList constructor.</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      found   : @UnknownKeyFor Collection&lt;capture[ extends @UnknownKeyFor NodeInfo super @KeyForBottom Void]&gt;
+      required: @UnknownKeyFor Collection&lt;?[ extends capture[ extends @UnknownKeyFor NodeInfo super @UnknownKeyFor Void] super @KeyForBottom Void]&gt;
     </details>
   </checkerFrameworkError>
 
