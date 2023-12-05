@@ -480,7 +480,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                     })
                     .findFirst();
             if (classWithCompletePackageName.isPresent()) {
-                obtainedClass = classWithCompletePackageName.get();
+                obtainedClass = classWithCompletePackageName.orElseThrow();
             }
         }
         else {

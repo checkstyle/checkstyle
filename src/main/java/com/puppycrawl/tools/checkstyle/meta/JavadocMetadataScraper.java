@@ -297,7 +297,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         final Optional<DetailNode> propertyNameNode = getFirstChildOfType(nodeLi,
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
         if (propertyNameNode.isPresent()) {
-            final DetailNode propertyNameTag = propertyNameNode.get();
+            final DetailNode propertyNameTag = propertyNameNode.orElseThrow();
             final String propertyName = getTextFromTag(propertyNameTag);
 
             final DetailNode propertyType = getFirstChildOfMatchingText(nodeLi, TYPE_TAG)
@@ -318,7 +318,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             final Optional<DetailNode> validationTypeNodeOpt = getFirstChildOfMatchingText(nodeLi,
                 VALIDATION_TYPE_TAG);
             if (validationTypeNodeOpt.isPresent()) {
-                final DetailNode validationTypeNode = validationTypeNodeOpt.get();
+                final DetailNode validationTypeNode = validationTypeNodeOpt.orElseThrow();
                 modulePropertyDetails.setValidationType(getTagTextFromProperty(nodeLi,
                     validationTypeNode));
             }
@@ -349,7 +349,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, propertyMeta.getIndex() + 1);
         DetailNode tagNode = null;
         if (tagNodeOpt.isPresent()) {
-            tagNode = tagNodeOpt.get();
+            tagNode = tagNodeOpt.orElseThrow();
         }
         return getTextFromTag(tagNode);
     }
@@ -444,7 +444,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, defaultValueNode.getIndex() + 1);
         final String result;
         if (propertyDefaultValueTag.isPresent()) {
-            result = getTextFromTag(propertyDefaultValueTag.get());
+            result = getTextFromTag(propertyDefaultValueTag.orElseThrow());
         }
         else {
             final String tokenText = constructSubTreeText(nodeLi,
@@ -644,7 +644,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                             && child.getType() == TokenTypes.IDENT;
                 });
         return className.isPresent()
-                && getModuleSimpleName().equals(className.get().getText());
+                && getModuleSimpleName().equals(className.orElseThrow().getText());
     }
 
     /**
