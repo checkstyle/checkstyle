@@ -3,7 +3,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getString.</message>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
     <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -14,7 +14,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>.map(pattern -&gt; Pattern.compile(&quot;^&quot; + pattern + &quot;$&quot;))</lineContent>
     <details>
       found   : String
@@ -25,7 +25,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -36,7 +36,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedHashSum = details.getProperty(location);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -47,7 +47,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedHashSum = details.getProperty(resource.location);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -58,7 +58,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String lastChecked = details.getProperty(uncheckedFileName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -69,7 +69,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>return details.getProperty(name);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -80,7 +80,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>.forEach(resource -&gt; details.setProperty(resource.location, resource.contentHashSum));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -91,7 +91,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>details.setProperty(CONFIG_HASH_KEY, configHash);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -102,7 +102,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>details.setProperty(checkedFileName, Long.toString(timestamp));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -113,7 +113,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>returnValue.setProperty(entry.getKey(), value);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -124,7 +124,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>returnValue.setProperty(p.getKey(), p.getValue());</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -135,7 +135,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>+ &quot;|\&quot;&quot;</lineContent>
     <details>
       found   : String
@@ -146,7 +146,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(keyPatternString);</lineContent>
     <details>
       found   : String
@@ -157,7 +157,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of matches.</message>
+    <message>incompatible argument for parameter regex of Pattern.matches.</message>
     <lineContent>if (Pattern.matches(fileNameRegexp, currentFile.getName())) {</lineContent>
     <details>
       found   : String
@@ -168,7 +168,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of replaceAll.</message>
+    <message>incompatible argument for parameter regex of String.replaceAll.</message>
     <lineContent>return fileName.replaceAll(removePattern, &quot;&quot;);</lineContent>
     <details>
       found   : String
@@ -179,7 +179,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(keyPatternString);</lineContent>
     <details>
       found   : String
@@ -190,7 +190,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/MutableExceptionCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>private Pattern extendedClassNameFormat = Pattern.compile(DEFAULT_FORMAT);</lineContent>
     <details>
       found   : String
@@ -201,7 +201,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>headerRegexps.add(Pattern.compile(line));</lineContent>
     <details>
       found   : String
@@ -212,7 +212,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ClassImportRule.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of matches.</message>
+    <message>incompatible argument for parameter regex of String.matches.</message>
     <lineContent>classMatch = forImport.matches(className);</lineContent>
     <details>
       found   : String
@@ -223,7 +223,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/FileImportControl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(expression);</lineContent>
     <details>
       found   : String
@@ -234,7 +234,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>grp = Pattern.compile(pkg);</lineContent>
     <details>
       found   : String
@@ -245,7 +245,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(expression + &quot;(?:\\..*)?&quot;);</lineContent>
     <details>
       found   : String
@@ -256,7 +256,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(expression);</lineContent>
     <details>
       found   : String
@@ -267,7 +267,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportRule.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of matches.</message>
+    <message>incompatible argument for parameter regex of String.matches.</message>
     <lineContent>pkgMatch = !forImport.matches(pkgName + &quot;\\..*\\..*&quot;);</lineContent>
     <details>
       found   : String
@@ -278,7 +278,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportRule.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of matches.</message>
+    <message>incompatible argument for parameter regex of String.matches.</message>
     <lineContent>pkgMatch = forImport.matches(pkgName + &quot;\\..*&quot;);</lineContent>
     <details>
       found   : String
@@ -373,7 +373,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(formatValue, options);</lineContent>
     <details>
       found   : String
@@ -384,7 +384,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>checkRegexp = Pattern.compile(checks);</lineContent>
     <details>
       found   : String
@@ -395,7 +395,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>fileRegexp = Pattern.compile(files);</lineContent>
     <details>
       found   : String
@@ -406,7 +406,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressFilterElement.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>messageRegexp = Pattern.compile(message);</lineContent>
     <details>
       found   : String
@@ -417,7 +417,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>private Pattern commentFormat = Pattern.compile(DEFAULT_COMMENT_FORMAT);</lineContent>
     <details>
       found   : String
@@ -428,7 +428,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagCheckRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -439,7 +439,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagIdRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -450,7 +450,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagMessageRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -461,7 +461,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventIdRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -472,7 +472,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventMessageRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -483,7 +483,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventSourceRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -494,7 +494,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>private Pattern nearbyTextPattern = Pattern.compile(DEFAULT_NEARBY_TEXT_PATTERN);</lineContent>
     <details>
       found   : String
@@ -505,7 +505,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventIdRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -516,7 +516,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventMessageRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -527,7 +527,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>eventSourceRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -538,7 +538,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>private Pattern offCommentFormat = Pattern.compile(DEFAULT_OFF_FORMAT);</lineContent>
     <details>
       found   : String
@@ -549,7 +549,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>private Pattern onCommentFormat = Pattern.compile(DEFAULT_ON_FORMAT);</lineContent>
     <details>
       found   : String
@@ -560,7 +560,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagCheckRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -571,7 +571,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagIdRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -582,7 +582,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>tagMessageRegexp = Pattern.compile(format);</lineContent>
     <details>
       found   : String
@@ -593,7 +593,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>this.checks = Pattern.compile(checks);</lineContent>
     <details>
       found   : String
@@ -604,7 +604,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>this.checks = Pattern.compile(checks);</lineContent>
     <details>
       found   : String
@@ -615,7 +615,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>this.files = Pattern.compile(files);</lineContent>
     <details>
       found   : String
@@ -626,7 +626,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>this.message = Pattern.compile(message);</lineContent>
     <details>
       found   : String
@@ -667,7 +667,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of matches.</message>
+    <message>incompatible argument for parameter regex of String.matches.</message>
     <lineContent>.filter(path -&gt; path.toString().matches(fileNamePattern))</lineContent>
     <details>
       found   : String
@@ -678,7 +678,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>String propertyValue = properties.getProperty(propertyName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -689,7 +689,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>properties.getProperty(unresolvedPropertyName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -700,7 +700,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>properties.setProperty(propertyName, propertyValue);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -711,7 +711,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>Pattern.compile(pattern);</lineContent>
     <details>
       found   : String
@@ -722,7 +722,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of compile.</message>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
     <lineContent>return Pattern.compile(pattern, flags);</lineContent>
     <details>
       found   : String
@@ -733,7 +733,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter regex of replaceAll.</message>
+    <message>incompatible argument for parameter regex of String.replaceAll.</message>
     <lineContent>result = result.replaceAll(&quot;\\$&quot; + i, matcher.group(i));</lineContent>
     <details>
       found   : String
@@ -751,7 +751,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter key of getString.</message>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
     <lineContent>return bundle.getString(name);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
