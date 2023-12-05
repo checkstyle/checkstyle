@@ -121,7 +121,7 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
             .map(DetailAST::getFirstChild);
         boolean result = false;
         if (firstAnnotationChild.isPresent()) {
-            for (DetailAST child = firstAnnotationChild.get(); child != null;
+            for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
                  child = child.getNextSibling()) {
                 if (isJavadoc(child)) {
                     result = true;
