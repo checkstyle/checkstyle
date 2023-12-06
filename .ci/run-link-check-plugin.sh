@@ -15,7 +15,8 @@ OPTION=$1
 
 echo "------------ grep of linkcheck.html--BEGIN"
 LINKCHECK_ERRORS=$(grep -E "doesn't exist|externalLink" target/site/linkcheck.html \
-  | grep -v 'Read timed out' | sed 's/<\/table><\/td><\/tr>//g' || true)
+  | grep -v 'Read timed out' | sed 's/<\/table><\/td><\/tr>//g' \
+  | sed 's/<td><i>//g' | sed 's/<\/i><\/td><\/tr>//g' | sed 's/<\/table><\/section>//g' || true)
 
 if [[ $OPTION == "--skip-external" ]]; then
   echo "Checking internal (checkstyle website) links only."
@@ -25,8 +26,7 @@ else
   echo "$LINKCHECK_ERRORS" | sort > .ci-temp/linkcheck-errors-sorted.txt
 fi
 
-sort config/linkcheck-suppressions.txt | sed 's/<\/table><\/td><\/tr>//g' \
-  > .ci-temp/linkcheck-suppressions-sorted.txt
+sort config/linkcheck-suppressions.txt > .ci-temp/linkcheck-suppressions-sorted.txt
 
 # Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572
 diff -u .ci-temp/linkcheck-suppressions-sorted.txt .ci-temp/linkcheck-errors-sorted.txt || true
