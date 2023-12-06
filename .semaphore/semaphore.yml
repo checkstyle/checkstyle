@@ -47,7 +47,8 @@ blocks:
               values:
                 - .ci/validation.sh all-sevntu-checks
                 - .ci/validation.sh check-missing-pitests
-                - .ci/validation.sh eclipse-static-analysis
+                # until https://github.com/checkstyle/checkstyle/issues/13209
+                # - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
