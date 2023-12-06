@@ -29,7 +29,7 @@ sort config/linkcheck-suppressions.txt | sed 's/<\/table><\/td><\/tr>//g' \
   > .ci-temp/linkcheck-suppressions-sorted.txt
 
 # Suppressions exist until https://github.com/checkstyle/checkstyle/issues/11572
-diff .ci-temp/linkcheck-suppressions-sorted.txt .ci-temp/linkcheck-errors-sorted.txt || true
+diff -u .ci-temp/linkcheck-suppressions-sorted.txt .ci-temp/linkcheck-errors-sorted.txt || true
 echo "------------ grep of linkcheck.html--END"
 
 RESULT=$(diff -y --suppress-common-lines .ci-temp/linkcheck-suppressions-sorted.txt \
