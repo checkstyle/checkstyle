@@ -199,7 +199,8 @@ workflows:
           command: "./.ci/validation.sh checkstyle-and-sevntu"
       - validate-with-maven-script:
           name: "spotbugs-and-pmd"
-          image-name: *cs_img
+          # old image
+          image-name: "checkstyle/jdk-11-groovy-git-mvn:11.0.13__3.0.9__2.25.1__3.6.3"
           command: "./.ci/validation.sh spotbugs-and-pmd"
       - validate-with-maven-script:
           name: "site"
