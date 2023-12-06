@@ -231,7 +231,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
-                        determineAssignmentConditions(ast, candidate.get());
+                        determineAssignmentConditions(ast, candidate.orElseThrow());
                         currentScopeAssignedVariables.peek().add(ast);
                     }
                     removeFinalVariableCandidateFromStack(ast);
@@ -736,7 +736,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             final Optional<FinalVariableCandidate> candidate =
                 Optional.ofNullable(scope.get(ast.getText()));
             if (candidate.isPresent()) {
-                storedVariable = candidate.get().variableIdent;
+                storedVariable = candidate.orElseThrow().variableIdent;
             }
             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
                 result = candidate;

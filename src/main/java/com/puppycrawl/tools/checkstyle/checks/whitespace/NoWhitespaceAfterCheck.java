@@ -422,7 +422,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                     .findFirstToken(TokenTypes.GENERIC_END);
         }
         else if (objectArrayType.isPresent()) {
-            typeLastNode = objectArrayType.get();
+            typeLastNode = objectArrayType.orElseThrow();
         }
         else {
             typeLastNode = parent.getFirstChild();
@@ -495,7 +495,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         // qualified name case
         else {
-            result = dot.get().getFirstChild().getNextSibling();
+            result = dot.orElseThrow().getFirstChild().getNextSibling();
         }
         return result;
     }
