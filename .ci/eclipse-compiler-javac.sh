@@ -19,7 +19,7 @@ ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downlo
 # ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
 # echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
-ECJ_MAVEN_VERSION="R-4.27-202303020300"
+ECJ_MAVEN_VERSION="R-4.30-202312010110"
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
