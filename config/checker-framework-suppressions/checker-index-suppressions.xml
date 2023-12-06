@@ -3,7 +3,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>baseIndentation = baseIndentation.substring(0, baseIndentation.length() - 2);</lineContent>
     <details>
       found   : int
@@ -14,7 +14,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return getBranchTokenTypes().get(tokenType);</lineContent>
     <details>
       found   : int
@@ -25,7 +25,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>branchTokenTypes.set(type);</lineContent>
     <details>
       found   : int
@@ -36,7 +36,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return className.substring(0, className.length() - contextLength);</lineContent>
     <details>
       found   : int
@@ -48,22 +48,21 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final String ruleName = recognizer.getRuleNames()[ruleIndex];</lineContent>
+    <lineContent>children[i] = child;</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;recognizer.getRuleNames()&quot;) or @LTLengthOf(&quot;recognizer.getRuleNames()&quot;) -- an integer less than recognizer.getRuleNames()&apos;s length
+      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>array.access.unsafe.high.range</specifier>
+    <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>children[i] = child;</lineContent>
+    <lineContent>final String ruleName = recognizer.getRuleNames()[ruleIndex];</lineContent>
     <details>
-      index type found: @IntRange(from=-2147483648) int
-      array type found: DetailNode []
-      required        : index of type @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;), or array of type @MinLen(-9223372036854775808)
+      found   : int
+      required: @IndexFor(&quot;recognizer.getRuleNames()&quot;) or @LTLengthOf(&quot;recognizer.getRuleNames()&quot;) -- an integer less than recognizer.getRuleNames()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -103,7 +102,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>ent.substring(prefixLength, ent.length() - 1), radix);</lineContent>
     <details>
       found   : int
@@ -114,7 +113,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (ent.charAt(0) == &apos;&amp;&apos; &amp;&amp; ent.endsWith(&quot;;&quot;)) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(0) int
@@ -125,7 +124,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (ent.charAt(1) == &apos;#&apos;) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -136,7 +135,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (ent.charAt(2) == &apos;x&apos;) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(2) int
@@ -191,7 +190,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String[] txt = {line.substring(startColNo)};</lineContent>
     <details>
       found   : int
@@ -202,7 +201,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnValue[0] = line(startLineNo - 1).substring(startColNo);</lineContent>
     <details>
       found   : int
@@ -213,7 +212,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnValue[0] = line(startLineNo - 1).substring(startColNo,</lineContent>
     <details>
       found   : int
@@ -224,7 +223,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String[] txt = {line.substring(startColNo)};</lineContent>
     <details>
       found   : int
@@ -235,7 +234,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnValue[0] = line(startLineNo - 1).substring(startColNo);</lineContent>
     <details>
       found   : int
@@ -246,7 +245,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnValue[0] = line(startLineNo - 1).substring(startColNo,</lineContent>
     <details>
       found   : int
@@ -257,7 +256,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>endColNo + 1);</lineContent>
     <details>
       found   : int
@@ -268,7 +267,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>endColNo + 1);</lineContent>
     <details>
       found   : int
@@ -279,7 +278,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>endColNo + 1);</lineContent>
     <details>
       found   : int
@@ -290,7 +289,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileContents.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>endColNo + 1);</lineContent>
     <details>
       found   : int
@@ -368,6 +367,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>lineBreakPositions[lineNo] = matcher.end();</lineContent>
+    <details>
+      found   : int
+      required: @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;) -- an integer less than lineBreakPositions&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>return lines[lineNo];</lineContent>
     <details>
       found   : int
@@ -383,18 +393,6 @@
     <details>
       found   : int []
       required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>array.access.unsafe.high.range</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>lineBreakPositions[lineNo] = matcher.end();</lineContent>
-    <details>
-      index type found: @IntRange(from=-2147483648) int
-      array type found: int []
-      required        : index of type @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;), or array of type @MinLen(-9223372036854775808)
     </details>
   </checkerFrameworkError>
 
@@ -434,7 +432,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>comment.getEndColNo() + 1, codePoints.length));</lineContent>
     <details>
       found   : int
@@ -445,7 +443,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>comment.getEndColNo() + 1, codePoints.length));</lineContent>
     <details>
       found   : int
@@ -511,7 +509,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>&amp;&amp; primitiveDataTypes.get(parameterType.getType())) {</lineContent>
     <details>
       found   : int
@@ -522,7 +520,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter pos of seek.</message>
+    <message>incompatible argument for parameter pos of RandomAccessFile.seek.</message>
     <lineContent>file.seek(file.length() - len);</lineContent>
     <details>
       found   : long
@@ -544,7 +542,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -555,7 +553,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -566,7 +564,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return sourceNameLower.substring(startIndex, endIndex);</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;sourceName&quot;) int
@@ -577,7 +575,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return sourceNameLower.substring(startIndex, endIndex);</lineContent>
     <details>
       found   : int
@@ -588,7 +586,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>lastChild.getColumnNo() + 2, lineCodePoints.length);</lineContent>
     <details>
       found   : int
@@ -599,7 +597,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>lastChild.getColumnNo() + 2, lineCodePoints.length);</lineContent>
     <details>
       found   : int
@@ -610,7 +608,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String removePattern = regexp.substring(&quot;^.+&quot;.length());</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;&quot;^.+&quot;&quot;) int
@@ -621,7 +619,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>.substring(0, fileNameWithPath.lastIndexOf(File.separator));</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -632,7 +630,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>if (TYPES_HASH_SET.get(type)) {</lineContent>
     <details>
       found   : int
@@ -654,7 +652,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>return warning.substring(1, warning.length() - 1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -665,7 +663,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return warning.substring(1, warning.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -676,7 +674,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>slistColNo + 1, codePointsFirstLine.length);</lineContent>
     <details>
       found   : int
@@ -687,7 +685,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>slistColNo + 1, rcurlyColNo);</lineContent>
     <details>
       found   : int
@@ -698,7 +696,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>slistColNo + 1, codePointsFirstLine.length);</lineContent>
     <details>
       found   : int
@@ -709,7 +707,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>slistColNo + 1, rcurlyColNo);</lineContent>
     <details>
       found   : int
@@ -720,7 +718,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>|| braceLine.charAt(brace.getColumnNo() + 1) != &apos;}&apos;) {</lineContent>
     <details>
       found   : int
@@ -731,7 +729,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>|| braceLine.charAt(brace.getColumnNo() + 1) != &apos;}&apos;) {</lineContent>
     <details>
       found   : int
@@ -742,7 +740,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidDoubleBraceInitializationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>token -&gt; !IGNORED_TYPES.get(token.getType());</lineContent>
     <details>
       found   : int
@@ -753,7 +751,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return ASSIGN_OPERATOR_TYPES.get(parentType);</lineContent>
     <details>
       found   : int
@@ -764,7 +762,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return LOOP_TYPES.get(ast);</lineContent>
     <details>
       found   : int
@@ -775,7 +773,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -786,7 +784,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>setterName = name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -797,7 +795,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (name.length() == 1 || !Character.isUpperCase(name.charAt(1))) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -808,7 +806,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; illegal.charAt(pkgNameLen) == &apos;.&apos;</lineContent>
     <details>
       found   : int
@@ -819,7 +817,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; illegal.charAt(pkgNameLen) == &apos;.&apos;</lineContent>
     <details>
       found   : int
@@ -830,7 +828,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>if (memberModifiers.get(modifier.getType())) {</lineContent>
     <details>
       found   : int
@@ -841,18 +839,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/InnerAssignmentCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
-    <lineContent>return COMPARISON_TYPES.get(astType);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/InnerAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>while (skipTokens.get(result.getType())) {</lineContent>
     <details>
       found   : int
@@ -863,7 +850,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>if (!constantWaiverParentToken.get(type)) {</lineContent>
     <details>
       found   : int
@@ -874,7 +861,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return MUTATION_OPERATIONS.get(iteratingExpressionAST.getType());</lineContent>
     <details>
       found   : int
@@ -885,7 +872,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>if (ignoreOccurrenceContext.get(type)) {</lineContent>
     <details>
       found   : int
@@ -896,7 +883,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>ignoreOccurrenceContext.set(type);</lineContent>
     <details>
       found   : int
@@ -907,7 +894,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PackageDeclarationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return fileName.substring(0, lastSeparatorPos);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -918,7 +905,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return ASSIGN_TOKENS.get(tokenType);</lineContent>
     <details>
       found   : int
@@ -929,7 +916,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return COMPOUND_ASSIGN_TOKENS.get(tokenType);</lineContent>
     <details>
       found   : int
@@ -940,7 +927,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DECLARATION_TOKENS.get(parentType);</lineContent>
     <details>
       found   : int
@@ -951,7 +938,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InnerTypeLastCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>&amp;&amp; CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {</lineContent>
     <details>
       found   : int
@@ -962,7 +949,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return ignoreLines.get(lineNo);</lineContent>
     <details>
       found   : int
@@ -973,7 +960,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return multiLines.get(lineNo + 1);</lineContent>
     <details>
       found   : int
@@ -984,7 +971,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>excludeMinusDotStar.length() + 1);</lineContent>
     <details>
       found   : @LTLengthOf(value={&quot;exclude.substring(0, exclude.length() - 2)&quot;, &quot;excludeMinusDotStar&quot;}, offset={&quot;-2&quot;, &quot;-2&quot;}) int
@@ -995,7 +982,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>ruleStr.indexOf(&apos;)&apos;));</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -1018,22 +1005,21 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>if (CommonUtil.isBlank(lines[i - 1])) {</lineContent>
+    <lineContent>final String import2Token = import2Tokens[i];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) -- an integer less than lines&apos;s length
+      required: @IndexFor(&quot;import2Tokens&quot;) or @LTLengthOf(&quot;import2Tokens&quot;) -- an integer less than import2Tokens&apos;s length
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
-    <specifier>array.access.unsafe.high.range</specifier>
+    <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final String import2Token = import2Tokens[i];</lineContent>
+    <lineContent>if (CommonUtil.isBlank(lines[i - 1])) {</lineContent>
     <details>
-      index type found: @IntRange(from=-2147483648) int
-      array type found: String @ArrayLenRange(from=1) []
-      required        : index of type @IndexFor(&quot;import2Tokens&quot;) or @LTLengthOf(&quot;import2Tokens&quot;), or array of type @MinLen(-9223372036854775808)
+      found   : int
+      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) -- an integer less than lines&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1051,7 +1037,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return qualifiedImportName.substring(0, lastDotIndex);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -1062,7 +1048,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; (pkg.length() == length || pkg.charAt(length) == &apos;.&apos;);</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;this.fullPackageName&quot;) int
@@ -1073,7 +1059,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>final String front = importName.substring(0, index);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -1084,7 +1070,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>while (Character.isWhitespace(line.charAt(index))) {</lineContent>
     <details>
       found   : int
@@ -1095,7 +1081,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; Character.isWhitespace(line.charAt(realColumnNo))) {</lineContent>
     <details>
       found   : int
@@ -1128,7 +1114,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ArrayInitHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; Character.isWhitespace(line.charAt(realColumnNo))) {</lineContent>
     <details>
       found   : int
@@ -1216,20 +1202,19 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
-    <specifier>array.access.unsafe.high.range</specifier>
+    <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>types[index] = val;</lineContent>
     <details>
-      index type found: @IntRange(from=-2147483648) int
-      array type found: int []
-      required        : index of type @IndexFor(&quot;types&quot;) or @LTLengthOf(&quot;types&quot;), or array of type @MinLen(-9223372036854775808)
+      found   : int
+      required: @IndexFor(&quot;types&quot;) or @LTLengthOf(&quot;types&quot;) -- an integer less than types&apos;s length
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return levels.get(indent);</lineContent>
     <details>
       found   : int
@@ -1240,7 +1225,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>levels.set(i + offset);</lineContent>
     <details>
       found   : int
@@ -1251,7 +1236,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>levels.set(indent);</lineContent>
     <details>
       found   : int
@@ -1262,7 +1247,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>result.levels.set(addition);</lineContent>
     <details>
       found   : int
@@ -1273,7 +1258,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>while (Character.isWhitespace(line.charAt(index))) {</lineContent>
     <details>
       found   : int
@@ -1284,7 +1269,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/SlistHandler.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return PARENT_TOKEN_TYPES.get(parentType);</lineContent>
     <details>
       found   : int
@@ -1295,7 +1280,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AtclauseOrderCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>if (target.get(parentType)) {</lineContent>
     <details>
       found   : int
@@ -1306,7 +1291,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>return text.substring(startOfText, endOfText);</lineContent>
     <details>
       found   : int
@@ -1317,7 +1302,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>return text.substring(startOfText, endOfText);</lineContent>
     <details>
       found   : int
@@ -1328,7 +1313,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return text.substring(startOfText, endOfText);</lineContent>
     <details>
       found   : int
@@ -1339,7 +1324,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>return position != text.length() - 1 &amp;&amp; text.charAt(position + 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
@@ -1350,7 +1335,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>return position != text.length() - 1 &amp;&amp; text.charAt(position + 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
@@ -1383,7 +1368,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {</lineContent>
     <details>
       found   : int
@@ -1394,7 +1379,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {</lineContent>
     <details>
       found   : int
@@ -1405,7 +1390,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>builder.append(line.substring(textStart));</lineContent>
     <details>
       found   : int
@@ -1416,7 +1401,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>builder.append(line.substring(textStart));</lineContent>
     <details>
       found   : int
@@ -1427,18 +1412,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
-    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
-    <details>
-      found   : int
-      required: @LTLengthOf(&quot;line&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of AbstractStringBuilder.charAt.</message>
     <lineContent>if (Character.isWhitespace(builder.charAt(index))) {</lineContent>
     <details>
       found   : int
@@ -1449,18 +1423,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
-    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of AbstractStringBuilder.charAt.</message>
     <lineContent>while (builder.charAt(index - 1) == &apos;*&apos;) {</lineContent>
     <details>
       found   : int
@@ -1471,7 +1434,29 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of deleteCharAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
+    <details>
+      found   : int
+      required: @LTLengthOf(&quot;line&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of StringBuilder.deleteCharAt.</message>
     <lineContent>builder.deleteCharAt(index - 1);</lineContent>
     <details>
       found   : int
@@ -1482,7 +1467,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of deleteCharAt.</message>
+    <message>incompatible argument for parameter index of StringBuilder.deleteCharAt.</message>
     <lineContent>builder.deleteCharAt(index);</lineContent>
     <details>
       found   : int
@@ -1515,7 +1500,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagContinuationIndentationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>else if (!CommonUtil.isBlank(text.substring(1, offset + 1))) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -1526,7 +1511,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagContinuationIndentationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>else if (!CommonUtil.isBlank(text.substring(1, offset + 1))) {</lineContent>
     <details>
       found   : int
@@ -1537,7 +1522,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1548,7 +1533,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1559,7 +1544,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1570,7 +1555,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1581,7 +1566,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1592,7 +1577,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1603,7 +1588,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1614,7 +1599,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES.get(astType)</lineContent>
     <details>
       found   : int
@@ -1625,7 +1610,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return DEF_TOKEN_TYPES_DEPRECATED.get(astType)</lineContent>
     <details>
       found   : int
@@ -1647,22 +1632,11 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>&amp;&amp; ALLOWED_TYPES.get(child.getType())) {</lineContent>
     <details>
       found   : int
       required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter end of append.</message>
-    <lineContent>result.append(text, 0, text.indexOf(periodSuffix) + 1);</lineContent>
-    <details>
-      found   : @LTLengthOf(value=&quot;text&quot;, offset=&quot;-2&quot;) int
-      required: @LTEqLengthOf(&quot;text&quot;) int
     </details>
   </checkerFrameworkError>
 
@@ -1768,7 +1742,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>text = text.substring(column).trim();</lineContent>
     <details>
       found   : int
@@ -1779,7 +1753,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>tagId = text.substring(0, position);</lineContent>
     <details>
       found   : int
@@ -1790,7 +1764,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
     <details>
       found   : int
@@ -1801,7 +1775,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
     <details>
       found   : int
@@ -1812,7 +1786,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
     <details>
       found   : int
@@ -1823,7 +1797,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>.charAt(endTag.getColumnNo() - 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
@@ -1834,7 +1808,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
     <details>
       found   : int
@@ -1845,7 +1819,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>.charAt(endTag.getColumnNo() - 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
@@ -1856,7 +1830,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (text.charAt(column) == &apos;/&apos;) {</lineContent>
     <details>
       found   : int
@@ -1867,7 +1841,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>|| Character.isJavaIdentifierStart(text.charAt(column))</lineContent>
     <details>
       found   : int
@@ -1878,7 +1852,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>|| text.charAt(column) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
@@ -2054,7 +2028,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String content = commentValue.substring(contentStart);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -2065,7 +2039,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String content = commentValue.substring(contentStart);</lineContent>
     <details>
       found   : int
@@ -2076,7 +2050,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/BlockTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String remainder = line.substring(tagMatcher.end(1));</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -2087,7 +2061,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/BlockTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>final String remainder = line.substring(tagMatcher.end(1));</lineContent>
     <details>
       found   : int
@@ -2098,7 +2072,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/InlineTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of subSequence.</message>
+    <message>incompatible argument for parameter endIndex of String.subSequence.</message>
     <lineContent>final String precedingText = source.subSequence(0, index).toString();</lineContent>
     <details>
       found   : int
@@ -2109,7 +2083,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/utils/InlineTagUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of subSequence.</message>
+    <message>incompatible argument for parameter endIndex of String.subSequence.</message>
     <lineContent>final String precedingText = source.subSequence(0, index).toString();</lineContent>
     <details>
       found   : int
@@ -2120,7 +2094,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/AbstractClassCouplingCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>classNameWithPackage.substring(0, lastDotIndex);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -2131,7 +2105,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex);</lineContent>
     <details>
       found   : int
@@ -2142,7 +2116,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
     <details>
       found   : int
@@ -2153,7 +2127,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex);</lineContent>
     <details>
       found   : int
@@ -2164,7 +2138,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
     <details>
       found   : int
@@ -2175,7 +2149,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
     <details>
       found   : int
@@ -2186,7 +2160,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
     <details>
       found   : int
@@ -2197,7 +2171,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/SinglelineDetector.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter start of find.</message>
+    <message>incompatible argument for parameter start of Matcher.find.</message>
     <lineContent>final boolean foundMatch = matcher.find(startPosition);</lineContent>
     <details>
       found   : int
@@ -2208,7 +2182,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of set.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>usedLines.set(lineIndex);</lineContent>
     <details>
       found   : int
@@ -2219,7 +2193,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter fromIndex of set.</message>
+    <message>incompatible argument for parameter fromIndex of BitSet.set.</message>
     <lineContent>usedLines.set(lineIndex, endLineIndex + 1);</lineContent>
     <details>
       found   : int
@@ -2230,7 +2204,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter toIndex of set.</message>
+    <message>incompatible argument for parameter toIndex of BitSet.set.</message>
     <lineContent>usedLines.set(lineIndex, endLineIndex + 1);</lineContent>
     <details>
       found   : int
@@ -2340,7 +2314,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return acceptableTokens.get(ast.getType());</lineContent>
     <details>
       found   : int
@@ -2351,7 +2325,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SeparatorWrapCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)</lineContent>
     <details>
       found   : @LTLengthOf(value={&quot;ast.getText()&quot;, &quot;text&quot;}, offset={&quot;-colNo - 1&quot;, &quot;-colNo - 1&quot;}) int
@@ -2362,7 +2336,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SeparatorWrapCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of copyOfRange.</message>
+    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
     <lineContent>Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)</lineContent>
     <details>
       found   : int
@@ -2535,7 +2509,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>result.addLast(fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length()));</lineContent>
     <details>
       found   : int
@@ -2546,7 +2520,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length());</lineContent>
     <details>
       found   : int
@@ -2557,7 +2531,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter initialCapacity of ArrayList.</message>
+    <message>incompatible argument for parameter initialCapacity of ArrayList constructor.</message>
     <lineContent>final List&lt;ModulePropertyDetails&gt; result = new ArrayList&lt;&gt;(propertyListLength);</lineContent>
     <details>
       found   : int
@@ -2568,7 +2542,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter initialCapacity of ArrayList.</message>
+    <message>incompatible argument for parameter initialCapacity of ArrayList constructor.</message>
     <lineContent>final List&lt;String&gt; listContent = new ArrayList&lt;&gt;(nodeListLength);</lineContent>
     <details>
       found   : int
@@ -2579,10 +2553,10 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaWriter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>+ moduleFilePath.substring(indexOfCheckstyle + 1) + xmlExtension;</lineContent>
     <details>
-      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 2&quot;, &quot;-12&quot;, &quot;-checkstyleString.length() - 2&quot;}) int
+      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 2&quot;, &quot;-11&quot;, &quot;-checkstyleString.length() - 1&quot;}) int
       required: @LTEqLengthOf(&quot;moduleFilePath&quot;) int
     </details>
   </checkerFrameworkError>
@@ -2590,10 +2564,10 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaWriter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>+ moduleFilePath.substring(0, indexOfCheckstyle) + &quot;/meta/&quot;</lineContent>
     <details>
-      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 1&quot;, &quot;-11&quot;, &quot;-checkstyleString.length() - 1&quot;}) int
+      found   : @LTLengthOf(value={&quot;checkstyleString&quot;, &quot;moduleFilePath&quot;, &quot;moduleFilePath&quot;}, offset={&quot;-moduleFilePath.indexOf(checkstyleString) - 1&quot;, &quot;-10&quot;, &quot;-checkstyleString.length()&quot;}) int
       required: @LTEqLengthOf(&quot;moduleFilePath&quot;) int
     </details>
   </checkerFrameworkError>
@@ -2601,7 +2575,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ClassAndPropertiesSettersJavadocScraper.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>return Introspector.decapitalize(setterName.substring(&quot;set&quot;.length()));</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;&quot;set&quot;&quot;) int
@@ -2612,7 +2586,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>description = firstLetterCapitalized + descriptionString.substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -2623,7 +2597,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>href = href.substring(1, href.length() - 1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -2634,7 +2608,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>href = href.substring(1, href.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -2645,7 +2619,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>final String firstLetterCapitalized = descriptionString.substring(0, 1)</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -2667,7 +2641,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>return variableExpression.substring(propertyStartIndex, propertyEndIndex);</lineContent>
     <details>
       found   : @GTENegativeOne int
@@ -2678,7 +2652,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
@@ -2689,7 +2663,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
@@ -2700,7 +2674,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>returnString = line.substring(indent, lastNonWhitespace);</lineContent>
     <details>
       found   : int
@@ -2711,7 +2685,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>final boolean negative = txt.charAt(0) == &apos;-&apos;;</lineContent>
     <details>
       found   : @UpperBoundLiteral(0) int
@@ -2722,7 +2696,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseInt.</message>
     <lineContent>result = Integer.parseInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2733,7 +2707,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseInt.</message>
     <lineContent>result = Integer.parseInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2744,29 +2718,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseLong.</message>
-    <lineContent>result = Long.parseLong(txt, radix);</lineContent>
-    <details>
-      found   : int
-      required: @IntRange(from=2, to=36) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseLong.</message>
-    <lineContent>result = Long.parseLong(txt, radix);</lineContent>
-    <details>
-      found   : int
-      required: @Positive int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseUnsignedInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseUnsignedInt.</message>
     <lineContent>result = Integer.parseUnsignedInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2777,7 +2729,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseUnsignedInt.</message>
+    <message>incompatible argument for parameter radix of Integer.parseUnsignedInt.</message>
     <lineContent>result = Integer.parseUnsignedInt(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2788,7 +2740,29 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseUnsignedLong.</message>
+    <message>incompatible argument for parameter radix of Long.parseLong.</message>
+    <lineContent>result = Long.parseLong(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @IntRange(from=2, to=36) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of Long.parseLong.</message>
+    <lineContent>result = Long.parseLong(txt, radix);</lineContent>
+    <details>
+      found   : int
+      required: @Positive int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter radix of Long.parseUnsignedLong.</message>
     <lineContent>result = Long.parseUnsignedLong(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2799,7 +2773,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CheckUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter radix of parseUnsignedLong.</message>
+    <message>incompatible argument for parameter radix of Long.parseUnsignedLong.</message>
     <lineContent>result = Long.parseUnsignedLong(txt, radix);</lineContent>
     <details>
       found   : int
@@ -2810,7 +2784,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>.substring(lastIndexOfClasspathProtocol));</lineContent>
     <details>
       found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.utils.CommonUtil.CLASSPATH_URL_PROTOCOL&quot;) int
@@ -2821,7 +2795,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (filename.charAt(0) == &apos;/&apos;) {</lineContent>
     <details>
       found   : @UpperBoundLiteral(0) int
@@ -2832,7 +2806,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));</lineContent>
     <details>
       found   : @UpperBoundLiteral(0) int
@@ -2843,7 +2817,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of charAt.</message>
+    <message>incompatible argument for parameter index of String.charAt.</message>
     <lineContent>if (!Character.isWhitespace(line.charAt(i))) {</lineContent>
     <details>
       found   : int
@@ -2854,7 +2828,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of codePointAt.</message>
+    <message>incompatible argument for parameter index of String.codePointAt.</message>
     <lineContent>if (inputString.codePointAt(idx) == &apos;\t&apos;) {</lineContent>
     <details>
       found   : int
@@ -2898,7 +2872,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>return commentContent.getText().substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -3002,7 +2976,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter newLength of copyOf.</message>
+    <message>incompatible argument for parameter newLength of Arrays.copyOf.</message>
     <lineContent>return Arrays.copyOf(array, length);</lineContent>
     <details>
       found   : int
@@ -3013,7 +2987,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of substring.</message>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>text = text.substring(1, text.length() - 1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
@@ -3024,7 +2998,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of get.</message>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
     <lineContent>return TOKEN_TYPES_WITH_TEXT_ATTRIBUTE.get(ast.getType());</lineContent>
     <details>
       found   : int
@@ -3035,7 +3009,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of substring.</message>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
     <lineContent>text = text.substring(1, text.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
