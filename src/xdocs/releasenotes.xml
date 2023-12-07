@@ -10,6 +10,112 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.12.6">
+      <div class="releaseDate">07.12.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Regexp: violation pointing to line 0 while other Checks count first line as 1.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/14064">#14064</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: piyush bakde, Pubudu Fernando
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Update CI to have Maven Version 3.8.8, update min required maven version in pom to
+            3.5.4 .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13970">#13970</a>
+          </li>
+          <li>
+            Fix typo in Indentation check for word &#39;initialisation&#39;.
+            Author: Redeem-Grimm-Satoshi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13783">#13783</a>
+          </li>
+          <li>
+            Remove ArchUnit FreezingArchRule as it unstable to skip line numbers and any other
+            extra changes .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14053">#14053</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: rishivardhanm, Yukai Xiao
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            use valid SPDX license identifier.
+            Author: Michael Keppler
+            <a href="https://github.com/checkstyle/checkstyle/issues/13889">#13889</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Re-enable ArchUnit Testing.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13544">#13544</a>
+          </li>
+          <li>
+            Surefire test exclusion can cause NoClassDefFoundError on case-insensitive file system.
+            Author: Stephan Schroevers
+            <a href="https://github.com/checkstyle/checkstyle/issues/14042">#14042</a>
+          </li>
+          <li>
+            migrate SuppressWarningsHolder to use property macro.
+            Author: piyush kumar sadangi, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13839">#13839</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            doc: add direct link to check.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 4.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13672">#13672</a>
+          </li>
+          <li>
+            Migrate magicnumber.xml.template to use properties template.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13930">#13930</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.5">
       <div class="releaseDate">14.11.2023</div>
       <p>Bug fixes:</p>
