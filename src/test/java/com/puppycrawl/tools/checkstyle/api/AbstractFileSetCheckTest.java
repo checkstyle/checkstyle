@@ -39,7 +39,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/api/abstractfileset";
+        return "com/puppycrawl/tools/checkstyle/api/abstractfilesetcheck";
     }
 
     @Test
