@@ -288,4 +288,28 @@
     name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
+  <Match>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/14121 -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+    <Method name="indentationLog"/>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- there is strict order of method executions, call in misorder will result in failure -->
+    <Class name="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
+    <Method name="setupChild"/>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+    </Or>
+    <Bug pattern="CT_CONSTRUCTOR_THROW"/>
+  </Match>
 </FindBugsFilter>
