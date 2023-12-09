@@ -77,7 +77,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the charset to use when reading the headerFile.
+     * Setter to specify the character encoding to use when reading the headerFile.
      *
      * @param charset the charset name to use for loading the header from a file
      */
@@ -86,7 +86,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the name of the file containing the required header..
+     * Setter to specify the name of the file containing the required header.
      *
      * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
@@ -147,8 +147,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Set the header to check against. Individual lines in the header
-     * must be separated by '\n' characters.
+     * Specify the required header specified inline.
+     * Individual header lines must be separated by the string
+     * {@code "\n"}(even on platforms with a different line separator).
      *
      * @param header header content to check against.
      * @throws IllegalArgumentException if the header cannot be interpreted
