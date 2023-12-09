@@ -219,7 +219,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCheck() throws Exception {
         final String[] expected = {
-            "1:6: Violation.",
+            "1:1: Violation.",
         };
         verifyWithInlineConfigParser(getPath("InputAbstractFileSetLineColumn.java"), expected);
     }
@@ -294,7 +294,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         @Override
         protected void processFiltered(File file, FileText fileText) {
-            log(1, 5, MSG_KEY);
+            log(1, 0, MSG_KEY);
         }
 
     }

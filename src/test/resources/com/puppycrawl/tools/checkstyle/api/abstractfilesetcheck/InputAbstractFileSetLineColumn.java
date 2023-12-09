@@ -1,8 +1,8 @@
 /*
-com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck$ViolationAstCheck
+com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheckTest$ViolationFileSetCheck
 
 */
-
+// violation 4 lines above 'Violation.'
 package com.puppycrawl.tools.checkstyle.api.abstractfilesetcheck;
 
 public class InputAbstractFileSetLineColumn {
