@@ -271,6 +271,8 @@ public final class InlineConfigParser {
         String fullyQualifiedClassName;
         // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
         final Map<String, String> moduleMappings = new HashMap<>();
+        moduleMappings.put("com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck$ViolationAstCheck",
+                "AbstractFileSetCheck");
         moduleMappings.put("ParameterNumber",
                 "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck");
         moduleMappings.put("SuppressWarningsHolder",
