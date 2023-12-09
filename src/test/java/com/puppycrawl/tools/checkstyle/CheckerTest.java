@@ -1822,7 +1822,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
-                final String msg = String.format(Locale.getDefault(),
+                final String msg = String.format(Locale.ENGLISH,
                     "AST node in no comment tree has wrong number of children. "
                             + "Expected is %d but was %d",
                     METHOD_DEF_CHILD_COUNT, childCount);
@@ -1836,7 +1836,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
             final int cacheChildCount = ast.getFirstChild().getChildCount();
             if (cacheChildCount != actualChildCount) {
-                final String msg = String.format(Locale.getDefault(),
+                final String msg = String.format(Locale.ENGLISH,
                         "AST node with no comment has wrong number of children. "
                                 + "Expected is %d but was %d",
                         cacheChildCount, actualChildCount);
@@ -1871,6 +1871,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             return new int[] {TokenTypes.METHOD_DEF};
         }
 
+        // Locale.ENGLISH until #12104
         @Override
         public void visitToken(DetailAST ast) {
             if (ast.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(
@@ -1879,7 +1880,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
             final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
-                final String msg = String.format(Locale.getDefault(),
+                final String msg = String.format(Locale.ENGLISH,
                     "AST node in comment tree has wrong number of children. "
                             + "Expected is %d but was %d",
                     METHOD_DEF_CHILD_COUNT, childCount);
@@ -1893,7 +1894,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
             final int cacheChildCount = ast.getFirstChild().getChildCount();
             if (cacheChildCount != actualChildCount) {
-                final String msg = String.format(Locale.getDefault(),
+                final String msg = String.format(Locale.ENGLISH,
                         "AST node with comment has wrong number of children. "
                                 + "Expected is %d but was %d",
                         cacheChildCount, actualChildCount);
