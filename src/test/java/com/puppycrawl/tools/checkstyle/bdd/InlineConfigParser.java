@@ -26,6 +26,7 @@ import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -50,6 +51,12 @@ public final class InlineConfigParser {
     /** A pattern matching the symbol: "\" or "/". */
     private static final Pattern SLASH_PATTERN = Pattern.compile("[\\\\/]");
 
+    /**
+     * Pattern for lines under
+     * {@link InlineConfigParser#MULTIPLE_VIOLATIONS_SOME_LINES_ABOVE_PATTERN}.
+     */
+    private static final Pattern VIOLATION_MESSAGE_PATTERN = Pattern
+            .compile(".*//\\s*(?:['\"](.*)['\"])?$");
     /**
      * A pattern that matches the following comments formats.
      * <ol>
@@ -125,9 +132,20 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
 
-    /** A pattern to find the string: "// X violations Y lines above". */
+    /**
+     * <p>
+     * Multiple violations for line. Violations are Y lines above, messages are X lines below.
+     * {@code
+     *   // X violations Y lines above:
+     *   //                            'violation message1'
+     *   //                            'violation messageX'
+     * }
+     *
+     * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
+     * </p>
+     */
     private static final Pattern MULTIPLE_VIOLATIONS_SOME_LINES_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*(\\d+) violations (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
+            .compile(".*//\\s*(\\d+) violations (\\d+) lines above:\\s*(?:['\"](.*)['\"])?$");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
@@ -543,16 +561,9 @@ public final class InlineConfigParser {
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (multipleViolationsSomeLinesAboveMatcher.matches()) {
-            final int linesAbove =
-                Integer.parseInt(multipleViolationsSomeLinesAboveMatcher.group(2));
-            final int violationLineNum = lineNo - linesAbove + 1;
-
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsSomeLinesAboveMatcher.group(1)),
-                        violationLineNum)
-                    .forEach(actualLineNumber -> {
-                        inputConfigBuilder.addViolation(actualLineNumber, null);
-                    });
+            inputConfigBuilder.addViolations(
+                getExpectedMultipleViolations(
+                    lines, lineNo, multipleViolationsSomeLinesAboveMatcher));
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections
@@ -580,6 +591,35 @@ public final class InlineConfigParser {
             setFilteredViolation(inputConfigBuilder, lineNo + 1,
                     lines.get(lineNo), specifyViolationMessage);
         }
+    }
+
+    private static List<TestInputViolation> getExpectedMultipleViolations(
+                                              List<String> lines, int lineNo,
+                                              Matcher matcher) {
+        final List<TestInputViolation> result = new ArrayList<>();
+        final int linesAbove =
+            Integer.parseInt(matcher.group(2));
+        final int violationLineNum = lineNo - linesAbove + 1;
+
+        final int expectedMessageCount =
+            Integer.parseInt(matcher.group(1));
+        int actualMessageCount = 0;
+        for (int index = 1; index <= expectedMessageCount; index++) {
+            final String lineWithMessage = lines.get(lineNo + index);
+            final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
+            if (messageMatcher.matches()) {
+                final String violationMessage = messageMatcher.group(1);
+                result.add(new TestInputViolation(violationLineNum, violationMessage));
+                actualMessageCount++;
+            }
+        }
+        if (actualMessageCount != expectedMessageCount) {
+            final String message = String.format(Locale.ROOT,
+                "Declared amount of violation messages at line %s is %s but found %s",
+                lineNo + 1, expectedMessageCount, actualMessageCount);
+            throw new IllegalStateException(message);
+        }
+        return result;
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
