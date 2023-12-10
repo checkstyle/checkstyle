@@ -254,10 +254,6 @@ public class HiddenFieldCheck
         // class body in addition to enum constant class bodies)
         // but not attempted as it seems out of the scope of this
         // check.
-        final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStaticInnerType =
-                typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
@@ -267,7 +263,18 @@ public class HiddenFieldCheck
         else {
             frameName = null;
         }
-        final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
+
+        final FieldFrame newFrame;
+        if (ast.getType() == TokenTypes.RECORD_DEF) {
+            newFrame = new FieldFrame(frame, true, frameName);
+        }
+        else {
+            final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
+            final boolean isStaticInnerType =
+                typeMods != null
+                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+            newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
+        }
 
         // add fields to container
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
