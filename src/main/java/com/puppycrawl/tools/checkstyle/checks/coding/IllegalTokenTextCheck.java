@@ -113,6 +113,7 @@ public class IllegalTokenTextCheck
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.STRING_TEMPLATE_CONTENT,
         };
     }
 
