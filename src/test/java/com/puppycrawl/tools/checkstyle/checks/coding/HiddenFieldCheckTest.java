@@ -470,6 +470,26 @@ public class HiddenFieldCheckTest
             expected);
     }
 
+    @Test
+    public void testHiddenFieldRecords2() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecords2.java"), expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecords3() throws Exception {
+
+        final String[] expected = {
+            "44:27: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecords3.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
