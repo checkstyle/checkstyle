@@ -257,7 +257,8 @@ public class HiddenFieldCheck
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
                 typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                        || ast.getType() == TokenTypes.RECORD_DEF;
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
