@@ -688,6 +688,7 @@ expression
 
 expr
     : primary                                                              #primaryExp
+    | expr DOT templateArgument                                            #templateExp
     | expr bop=DOT id                                                      #refOp
     | expr bop=DOT id LPAREN expressionList? RPAREN                        #methodCall
     | expr bop=DOT LITERAL_THIS                                            #thisExp
@@ -755,6 +756,24 @@ primary
       DOT LITERAL_CLASS                                                    #classRefPrimary
     | type=primitiveType arrayDeclarator*
       DOT LITERAL_CLASS                                                    #primitivePrimary
+    ;
+
+templateArgument
+    : template
+    | STRING_LITERAL
+    | TEXT_BLOCK_LITERAL_BEGIN TEXT_BLOCK_CONTENT TEXT_BLOCK_LITERAL_END
+    ;
+
+template
+    : stringTemplate
+    ;
+
+stringTemplate
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    ;
+
+stringTemplateMiddle
+    : STRING_TEMPLATE_MID expr?
     ;
 
 classType
