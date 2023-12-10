@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -170,7 +169,7 @@ public class IllegalTokenTextCheckTest
 
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         final int[] allowedTokens = check.getAcceptableTokens();
-        final List<Integer> tokenTypesWithMutableText = Arrays.asList(
+        final List<Integer> tokenTypesWithMutableText = List.of(
             TokenTypes.NUM_DOUBLE,
             TokenTypes.NUM_FLOAT,
             TokenTypes.NUM_INT,
