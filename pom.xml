@@ -1824,7 +1824,6 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/FileSetCheckTest.class</exclude>
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
                 <exclude>**/DetailAstImplTest.class</exclude>
                 <exclude>**/TreeWalkerTest.class</exclude>
