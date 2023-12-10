@@ -88,7 +88,12 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitClassType",
             "visitClassOrInterfaceTypeExtended",
             "visitQualifiedNameExtended",
-            "visitGuard"
+            "visitGuard",
+
+            // until https://github.com/checkstyle/checkstyle/issues/14195 (text block template support)
+            "visitTemplate",
+            // handled as a list in the parent rule
+            "visitStringTemplateMiddle"
     );
 
     @Override

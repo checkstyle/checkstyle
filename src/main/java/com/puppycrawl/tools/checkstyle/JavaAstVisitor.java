@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -35,6 +36,7 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
@@ -102,6 +104,15 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     /** String representation of the right shift operator. */
     private static final String RIGHT_SHIFT = ">>";
+
+    /** String representation of the double quote character. */
+    private static final String QUOTE = "\"";
+
+    /** String representation of the string template embedded expression starting delimiter. */
+    private static final String EMBEDDED_EXPRESSION_BEGIN = "\\{";
+
+    /** String representation of the string template embedded expression ending delimiter. */
+    private static final String EMBEDDED_EXPRESSION_END = "}";
 
     /**
      * The tokens here are technically expressions, but should
@@ -1534,6 +1545,14 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
+    public DetailAstImpl visitTemplateExp(JavaLanguageParser.TemplateExpContext ctx) {
+        final DetailAstImpl dot = create(ctx.DOT());
+        dot.addChild(visit(ctx.expr()));
+        dot.addChild(visit(ctx.templateArgument()));
+        return dot;
+    }
+
+    @Override
     public DetailAstImpl visitPostfix(JavaLanguageParser.PostfixContext ctx) {
         final DetailAstImpl postfix;
         if (ctx.postfix.getType() == JavaLanguageLexer.INC) {
@@ -1740,6 +1759,216 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         ctx.arrayDeclarator().forEach(child -> dot.addChild(visit(child)));
         dot.addChild(create(ctx.LITERAL_CLASS()));
         return dot;
+    }
+
+    @Override
+    public DetailAstImpl visitTemplateArgument(JavaLanguageParser.TemplateArgumentContext ctx) {
+        return Objects.requireNonNullElseGet(visit(ctx.template()),
+                () -> buildSimpleStringTemplateArgument(ctx));
+    }
+
+    /**
+     * Builds a simple string template argument AST, which basically means that we
+     * transform a string literal into a string template AST because it is a
+     * string template argument.
+     *
+     * @param ctx the TemplateArgumentContext to build AST from
+     * @return DetailAstImpl of string template argument
+     */
+    private static DetailAstImpl buildSimpleStringTemplateArgument(
+            JavaLanguageParser.TemplateArgumentContext ctx
+    ) {
+        final int startColumn = ctx.start.getCharPositionInLine();
+        final int endColumn = startColumn + ctx.getText().length() - 1;
+        final int lineNumber = ctx.start.getLine();
+
+        final DetailAstImpl templateArgument = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
+                lineNumber, startColumn
+        );
+
+        final int quoteLength = QUOTE.length();
+        final int tokenTextLength = ctx.getText().length();
+
+        final String actualContent = ctx.getText()
+                    .substring(quoteLength, tokenTextLength - quoteLength);
+
+        final DetailAstImpl content = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_CONTENT, actualContent,
+                lineNumber, startColumn + quoteLength
+        );
+        templateArgument.addChild(content);
+
+        final DetailAstImpl end = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_END, QUOTE,
+                lineNumber, endColumn
+        );
+        templateArgument.addChild(end);
+
+        return templateArgument;
+    }
+
+    @Override
+    public DetailAstImpl visitStringTemplate(JavaLanguageParser.StringTemplateContext ctx) {
+        final DetailAstImpl begin = buildStringTemplateBeginning(ctx);
+
+        final Optional<DetailAST> startExpression = Optional.ofNullable(ctx.expr())
+                .map(this::visit);
+
+        if (startExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(startExpression.orElseThrow());
+            begin.addChild(imaginaryExpr);
+        }
+
+        ctx.stringTemplateMiddle().stream()
+                .map(this::buildStringTemplateMiddle)
+                .collect(Collectors.toList())
+                .forEach(begin::addChild);
+
+        final DetailAstImpl end = buildStringTemplateEnd(ctx);
+        begin.addChild(end);
+        return begin;
+    }
+
+    /**
+     * Builds the beginning of a string template AST.
+     *
+     * @param ctx the StringTemplateContext to build AST from
+     * @return string template AST
+     */
+    private static DetailAstImpl buildStringTemplateBeginning(
+            JavaLanguageParser.StringTemplateContext ctx) {
+
+        // token looks like '"' StringFragment '\{'
+        final TerminalNode context = ctx.STRING_TEMPLATE_BEGIN();
+        final Token token = context.getSymbol();
+        final String tokenText = context.getText();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl stringTemplateBegin = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '"' and '\{'
+        final String stringFragment = tokenText.substring(
+                QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());
+
+        final DetailAstImpl stringTemplateContent = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber, tokenStartIndex + QUOTE.length()
+        );
+        stringTemplateBegin.addChild(stringTemplateContent);
+
+        final DetailAstImpl embeddedBegin = buildImaginaryWithDetails(
+                TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+        stringTemplateBegin.addChild(embeddedBegin);
+        return stringTemplateBegin;
+    }
+
+    /**
+     * Builds the middle of a string template AST.
+     *
+     * @param middleContext the StringTemplateMiddleContext to build AST from
+     * @return DetailAstImpl of string template middle
+     */
+    private DetailAstImpl buildStringTemplateMiddle(
+            JavaLanguageParser.StringTemplateMiddleContext middleContext) {
+
+        // token looks like '}' StringFragment '\{'
+        final TerminalNode context = middleContext.STRING_TEMPLATE_MID();
+        final Token token = context.getSymbol();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final String tokenText = context.getText();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl embeddedExpressionEnd = buildImaginaryWithDetails(
+                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '}' and '\\' '{'
+        final String stringFragment = tokenText.substring(
+                EMBEDDED_EXPRESSION_END.length(),
+                tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+
+        final DetailAstImpl content = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber, tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
+        );
+        embeddedExpressionEnd.addNextSibling(content);
+
+        final DetailAstImpl embeddedBegin = buildImaginaryWithDetails(
+                TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+        content.addNextSibling(embeddedBegin);
+
+        final Optional<DetailAST> embeddedExpression = Optional.ofNullable(middleContext.expr())
+                .map(this::visit);
+
+        if (embeddedExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(embeddedExpression.orElseThrow());
+            embeddedExpressionEnd.addNextSibling(imaginaryExpr);
+        }
+
+        return embeddedExpressionEnd;
+    }
+
+    /**
+     * Builds the end of a string template AST.
+     *
+     * @param ctx the StringTemplateContext to build AST from
+     * @return DetailAstImpl of string template end
+     */
+    private static DetailAstImpl buildStringTemplateEnd(
+            JavaLanguageParser.StringTemplateContext ctx) {
+
+        // token looks like '}' StringFragment '"'
+        final TerminalNode context = ctx.STRING_TEMPLATE_END();
+        final Token token = context.getSymbol();
+        final String tokenText = context.getText();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl embeddedExpressionEnd = buildImaginaryWithDetails(
+                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '}' and '"'
+        final String stringFragment = tokenText.substring(
+                EMBEDDED_EXPRESSION_END.length(),
+                tokenTextLength - QUOTE.length()
+        );
+
+        final DetailAstImpl endContent = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber,
+                tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
+        );
+        embeddedExpressionEnd.addNextSibling(endContent);
+
+        final DetailAstImpl stringTemplateEnd = buildImaginaryWithDetails(
+                TokenTypes.STRING_TEMPLATE_END, QUOTE,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - QUOTE.length()
+        );
+        endContent.addNextSibling(stringTemplateEnd);
+        return embeddedExpressionEnd;
     }
 
     @Override
@@ -2197,6 +2426,24 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             }
             nextSibling.setNextSibling(sibling);
         }
+    }
+
+    /**
+     * Builds an imaginary DetailAstImpl with the given token details.
+     *
+     * @param tokenType the token type of this DetailAstImpl
+     * @param text the text of this DetailAstImpl
+     * @param lineNumber the line number of this DetailAstImpl
+     * @param columnNumber the column number of this DetailAstImpl
+     * @return imaginary DetailAstImpl from given details
+     */
+    private static DetailAstImpl buildImaginaryWithDetails(
+            int tokenType, String text, int lineNumber, int columnNumber) {
+        final DetailAstImpl imaginary = createImaginary(tokenType);
+        imaginary.setText(text);
+        imaginary.setLineNo(lineNumber);
+        imaginary.setColumnNo(columnNumber);
+        return imaginary;
     }
 
     @Override
