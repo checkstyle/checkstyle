@@ -77,7 +77,8 @@ public class InputNoEnumTrailingComma {
     }
 
     enum Foo20 {
-        FOO;
+        FOO
+        ;
     }
 
     public enum Foo21
