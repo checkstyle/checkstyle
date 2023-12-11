@@ -135,7 +135,7 @@ public class RedundantModifierCheckTest
         };
 
         verifyWithInlineConfigParser(
-            getPath("InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers.java"),
+            getPath("InputRedundantModifierNestedClassInInt.java"),
             expected);
     }
 
