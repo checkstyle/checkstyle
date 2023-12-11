@@ -3317,68 +3317,10 @@
                 <mutator>PRIMITIVE_RETURNS</mutator>
               </mutators>
               <targetClasses>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck*</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck*</param>
               </targetClasses>
               <targetTests>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NestedTryDepthCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheckTest</param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>
