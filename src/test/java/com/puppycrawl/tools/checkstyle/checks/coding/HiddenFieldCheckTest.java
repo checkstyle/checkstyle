@@ -470,6 +470,30 @@ public class HiddenFieldCheckTest
             expected);
     }
 
+    @Test
+    public void testHiddenFieldInnerRecordsImplicitlyStatic() throws Exception {
+
+        final String[] expected = {
+            "35:30: " + getCheckMessage(MSG_KEY, "pointer"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldInnerRecordsImplicitlyStatic.java"),
+                expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
+
+        final String[] expected = {
+            "44:27: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecordsImplicitlyStaticClassComparison.java"),
+                expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation

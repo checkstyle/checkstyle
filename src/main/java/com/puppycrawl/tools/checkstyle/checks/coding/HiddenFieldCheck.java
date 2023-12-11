@@ -211,7 +211,6 @@ public class HiddenFieldCheck
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.PARAMETER_DEF:
             case TokenTypes.PATTERN_VARIABLE_DEF:
-            case TokenTypes.RECORD_COMPONENT_DEF:
                 processVariable(ast);
                 break;
             case TokenTypes.LAMBDA:
@@ -257,7 +256,9 @@ public class HiddenFieldCheck
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
                 typeMods != null
-                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                        && typeMods.findFirstToken(TokenTypes.LITERAL_STATIC) != null
+                        // inner record is implicitly static
+                        || ast.getType() == TokenTypes.RECORD_DEF;
         final String frameName;
 
         if (type == TokenTypes.CLASS_DEF
