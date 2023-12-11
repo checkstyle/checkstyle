@@ -8,7 +8,7 @@ tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF,
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModifiers {
+public interface InputRedundantModifierNestedClassInInt {
     interface PublicInnerInterface {
         interface PublicInnerInnerInterface {
             class PublicInnerClassInNestedPublicInterfaces {
@@ -16,14 +16,14 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
             }
         }
     }
-    class PublicClassInsideInterface {
-        private interface PrivateNestedInterface {
-            class ClassInPrivateNestedInterface {
-                public ClassInPrivateNestedInterface() { } // violation
+    class PublicClassInsideInt {
+        private interface PrivateNestedInt {
+            class ClassInPrivateNestedInt {
+                public ClassInPrivateNestedInt() { } // violation
             }
-            public interface PrivateNestedInterfaceWithPublicModifier { // violation
-                class ClassInPrivateNestedInterface {
-                    public ClassInPrivateNestedInterface() { } // violation
+            public interface PrivateNestedIntWithPublicModifier { // violation
+                class ClassInPrivateNestedInt {
+                    public ClassInPrivateNestedInt() { } // violation
                 }
             }
         }
@@ -33,13 +33,13 @@ public interface InputRedundantModifierNestedClassInPublicInterfaceRedundantModi
             }
         }
         protected interface PublicInnerInnerProtectedInterface {
-          class PublicInnerClassInNestedProtectedInterfaces {
-           public PublicInnerClassInNestedProtectedInterfaces() { } // violation
+          class PublicInnerClassInNestedProtectedInt {
+           public PublicInnerClassInNestedProtectedInt() { } // violation
           }
         }
     }
-    class PublicNestedClassInInterfaceWithPublicConstructor {
-        public PublicNestedClassInInterfaceWithPublicConstructor() { } // OK in public class
+    class PublicNestedClassInInterfaceWithPublicConst {
+        public PublicNestedClassInInterfaceWithPublicConst() { } // OK in public class
         private class PrivateClassInPublicNestedClass {
             public class PublicInPrivateClass {
                 public PublicInPrivateClass() { } // violation
