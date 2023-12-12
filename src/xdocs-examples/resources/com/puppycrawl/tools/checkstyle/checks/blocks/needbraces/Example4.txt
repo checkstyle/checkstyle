@@ -27,8 +27,8 @@ while (counter < 10)                            // OK
    ++count;
 while (value.incrementValue() < 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
+  case 1: counter++; break;         // OK, 'break' is not counted to allow compact view
+  case 6: counter += 10; break;     // OK, 'break' is not counted to allow compact view
+  default: counter = 100; break;    // OK, 'break' is not counted to allow compact view
 }
 // xdoc section -- end
