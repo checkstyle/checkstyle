@@ -28,7 +28,7 @@ while (counter < 10)                 // OK
    ++count;
 while (value.incrementValue() < 5);  // violation, empty loop body not allowed
 switch (num) {
-  case 1: counter++; break;          // OK
+  case 1: counter++; break;          // OK, Exception Case
 }
 while (obj.isValid()) return true;   // OK
 do this.notify(); while (o != null); // OK
