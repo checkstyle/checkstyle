@@ -10,6 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <p> Checks for braces around code blocks. </p>
+        <p> Attention: The break in case blocks is not counted to allow compact view. </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
