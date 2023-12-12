@@ -77,7 +77,7 @@
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
                     |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
-                    |AbstractCheckTest)\.java"/>
+                    |AbstractCheckTest|InlineConfigParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
