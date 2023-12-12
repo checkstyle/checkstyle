@@ -105,7 +105,7 @@ while (counter &lt; 10)          // violation, single-line statements not allowe
     ++count;
 while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
 switch (num) {
-  case 1: counter++; break;         // OK
+  case 1: counter++; break;         // OK, Exception Case
 }
         </source>
         <p id="Example2-config">
@@ -140,7 +140,7 @@ while (counter &lt; 10)                            // OK
     ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
+  case 1: counter++; break;         // OK, Exception Case
 }
         </source>
         <p id="Example3-config">
@@ -177,7 +177,7 @@ while (counter &lt; 10)                 // OK
    ++count;
 while (value.incrementValue() &lt; 5);  // violation, empty loop body not allowed
 switch (num) {
-  case 1: counter++; break;          // OK
+  case 1: counter++; break;          // OK, Exception Case
 }
 while (obj.isValid()) return true;   // OK
 do this.notify(); while (o != null); // OK
@@ -218,9 +218,9 @@ while (counter &lt; 10)                            // OK
    ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
+  case 1: counter++; break;         // OK, Exception Case
+  case 6: counter += 10; break;     // OK, Exception Case
+  default: counter = 100; break;    // OK, Exception Case
 }
         </source>
         <p id="Example5-config">
@@ -255,7 +255,7 @@ while (counter &lt; 10)           // violation, single-line statements not allow
    ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-case 1: counter++; break;           // OK
+case 1: counter++; break;           // OK, Exception Case
 }
         </source>
         <p id="Example6-config">
