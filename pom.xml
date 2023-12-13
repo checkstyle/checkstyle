@@ -412,6 +412,11 @@
           <groupId>commons-codec</groupId>
           <artifactId>commons-codec</artifactId>
         </exclusion>
+        <!-- Excluded due to https://github.com/checkstyle/checkstyle/issues/14123 -->
+        <exclusion>
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
