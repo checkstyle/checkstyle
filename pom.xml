@@ -238,6 +238,17 @@
     <doxia.version>1.12.0</doxia.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- Upgrade from 2.1.0 to fix https://github.com/checkstyle/checkstyle/issues/14123 -->
+      <dependency>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-container-default</artifactId>
+        <version>2.1.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>info.picocli</groupId>
