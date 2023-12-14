@@ -101,8 +101,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
 
     /**
-     * Specify user-configured packages to ignore. All excluded packages
-     * should end with a period, so it also appends a dot to a package name.
+     * Specify user-configured packages to ignore.
      */
     private Set<String> excludedPackages = DEFAULT_EXCLUDED_PACKAGES;
 
@@ -164,8 +163,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify user-configured packages to ignore. All excluded packages
-     * should end with a period, so it also appends a dot to a package name.
+     * Setter to specify user-configured packages to ignore.
      *
      * @param excludedPackages packages to ignore.
      * @throws IllegalArgumentException if there are invalid identifiers among the packages.

@@ -67,7 +67,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * <li>
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
- * All excluded packages should end with a period, so it also appends a dot to a package name.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
