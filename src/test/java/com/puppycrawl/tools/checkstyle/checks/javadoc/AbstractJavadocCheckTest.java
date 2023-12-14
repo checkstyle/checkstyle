@@ -185,25 +185,25 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testPosition() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPosition.java"), expected);
+        verifyOnceWithInlineConfigParser(getPath("InputAbstractJavadocPosition.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
             // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(130);
+            .isEqualTo(65);
     }
 
     @Test
     public void testPositionWithSinglelineComments() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
+        verifyOnceWithInlineConfigParser(
                 getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
             // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(130);
+            .isEqualTo(65);
     }
 
     @Test

@@ -299,6 +299,24 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the file with the given file path using specified configuration
+     * and the array of expected messages. Unlike verifyWithInlineConfigParser, this method
+     * does not perform an additional verification step, thereby executing the Check only once.
+     *
+     * @param filePath file path to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyOnceWithInlineConfigParser(String filePath, String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
