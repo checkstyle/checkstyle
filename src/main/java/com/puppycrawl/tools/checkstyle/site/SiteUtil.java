@@ -188,6 +188,21 @@ public final class SiteUtil {
     private static final String V824 = "8.24";
 
     /**
+     * Frequent version.
+     */
+    private static final String VERSION_7_7 = "7.7";
+
+    /**
+     * Frequent version.
+     */
+    private static final String VERSION_5_7 = "5.7";
+
+    /**
+     * Frequent version.
+     */
+    private static final String VERSION_3_4 = "3.4";
+
+    /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
      */
@@ -206,9 +221,20 @@ public final class SiteUtil {
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
         Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
+
+        Map.entry("ClassDataAbstractionCouplingCheck.excludeClassesRegexps", VERSION_7_7),
+        Map.entry("ClassDataAbstractionCouplingCheck.excludedClasses", VERSION_5_7),
+        Map.entry("ClassDataAbstractionCouplingCheck.excludedPackages", VERSION_7_7),
+        Map.entry("ClassDataAbstractionCouplingCheck.max", VERSION_3_4),
+        Map.entry("ClassFanOutComplexityCheck.excludeClassesRegexps", VERSION_7_7),
+        Map.entry("ClassFanOutComplexityCheck.excludedClasses", VERSION_5_7),
+        Map.entry("ClassFanOutComplexityCheck.excludedPackages", VERSION_7_7),
+        Map.entry("ClassFanOutComplexityCheck.max", VERSION_3_4),
+
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
+
         Map.entry("ParenPadCheck.option", "3.0"),
         Map.entry("TypecastParenPadCheck.option", VERSION_3_2)
     );
@@ -233,6 +259,8 @@ public final class SiteUtil {
                 "api", "AbstractFileSetCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "header", "AbstractHeaderCheck.java").toString()),
+        new File(Paths.get(MAIN_FOLDER_PATH,
+                CHECKS, "metrics", "AbstractClassCouplingCheck.java").toString()),
         new File(Paths.get(MAIN_FOLDER_PATH,
                 CHECKS, "whitespace", "AbstractParenPadCheck.java").toString())
     );
