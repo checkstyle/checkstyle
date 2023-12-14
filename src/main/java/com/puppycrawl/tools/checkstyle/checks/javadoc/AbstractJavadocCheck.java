@@ -312,8 +312,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             // store as field, to share with child Checks
             context.get().blockCommentAst = blockCommentNode;
 
-            final LineColumn treeCacheKey = new LineColumn(blockCommentNode.getLineNo(),
-                    blockCommentNode.getColumnNo());
+            final LineColumn treeCacheKey = new LineColumn(blockCommentNode.getLineNo(), 0);
 
             final ParseStatus result = TREE_CACHE.get().computeIfAbsent(treeCacheKey, key -> {
                 return context.get().parser.parseJavadocAsDetailNode(blockCommentNode);
