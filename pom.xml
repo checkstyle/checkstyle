@@ -1553,7 +1553,7 @@
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
             <manifestEntries>
-              <Automatic-Module-Name>com.puppycrawl.tools.checkstyle</Automatic-Module-Name>
+              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
             </manifestEntries>
           </archive>
           <excludes>
