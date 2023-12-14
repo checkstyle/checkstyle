@@ -22,29 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>max</td>
-              <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>2000</code></td>
-              <td>3.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/FileLengthCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
