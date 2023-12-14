@@ -59,7 +59,7 @@ jobs:
 
       - name: Share patch as artifact to apply on local
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: checker-${{ matrix.profile }}-patch
           path: target/checker-${{ matrix.profile }}.patch
