@@ -323,7 +323,18 @@ public class LineWrappingHandler {
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
                         || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
                     || TokenUtil.areOnSameLine(node, atNode))) {
-                logWarningMessage(node, firstNodeIndent);
+
+                if (parentNode.getType() == TokenTypes.ANNOTATION &&
+                    parentNode.getPreviousSibling() != null &&
+                    parentNode.getPreviousSibling().getType() == TokenTypes.ANNOTATION &&
+                    parentNode.getPreviousSibling().getFirstChild() != null &&
+                    parentNode.getPreviousSibling().getFirstChild().getType() == TokenTypes.AT) {
+
+                    logWarningMessage(node, currentIndent);
+                }
+                else {
+                    logWarningMessage(node, firstNodeIndent);
+                }
             }
             else if (!isArrayInitPresentInAncestors) {
                 logWarningMessage(node, currentIndent);
