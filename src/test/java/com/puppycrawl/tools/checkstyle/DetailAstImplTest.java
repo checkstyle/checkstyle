@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * TestCase to check DetailAST.
@@ -695,8 +694,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkConfig = createModuleConfig(TodoCommentCheck.class);
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getAbsolutePath(), expected);
+        execute(checkConfig, file.getAbsolutePath());
     }
 
     @Test
