@@ -12,15 +12,6 @@
   <mutation unstable="false">
     <sourceFile>AbstractJavadocCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
-    <mutatedMethod>visitToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
-    <lineContent>blockCommentNode.getColumnNo());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>AbstractJavadocCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</mutatedClass>
     <mutatedMethod>walk</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
     <description>removed conditional - replaced equality check with false</description>
