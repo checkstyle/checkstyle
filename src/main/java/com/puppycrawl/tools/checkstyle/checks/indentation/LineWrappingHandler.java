@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NavigableMap;
+import java.util.Optional;
 import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -292,6 +293,43 @@ public class LineWrappingHandler {
     }
 
     /**
+     * Checks whether current node is an annotation wrapped within a class definition.
+     *
+     * @param node It is the current node in consideration.
+     * @param parentNode It is the parent node of the current node.
+     * @return true if the current node is annotation
+     *     and present between access specifier and class keyword.
+     */
+    private static boolean isCurrentNodeAnnotationLineWrappedInClassDef(DetailAST node,
+            DetailAST parentNode) {
+        final boolean isPreviousToPreviousSiblingAccessModifier =
+            Optional.ofNullable(parentNode).map(DetailAST::getPreviousSibling)
+                .map(DetailAST::getPreviousSibling)
+                .filter(sibling -> {
+                    return TokenUtil.isOfType(sibling, TokenTypes.LITERAL_PUBLIC,
+                    TokenTypes.LITERAL_PRIVATE, TokenTypes.LITERAL_PROTECTED);
+                }).isPresent();
+        return TokenUtil.isOfType(node, TokenTypes.AT)
+            && TokenUtil.isOfType(parentNode.getPreviousSibling(), TokenTypes.ANNOTATION)
+            && isPreviousToPreviousSiblingAccessModifier;
+    }
+
+    /**
+     * Checks whether current node is close annotation and alone in line.
+     *
+     * @param node is the current node in consideration.
+     * @param lastAnnotationNode is last child of current atNode.
+     * @return true if current node is a close annotation and alone in line
+     *     or current node is '@' node or not else false.
+     */
+    private static boolean isCurrentNodeCloseAnnotationAloneInLine(
+        DetailAST node, DetailAST lastAnnotationNode) {
+        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
+        return node.getLineNo() == lastAnnotationLine
+            && isEndOfScope(lastAnnotationNode, node);
+    }
+
+    /**
      * Checks line wrapping into annotations.
      *
      * @param atNode block tag node.
@@ -305,7 +343,6 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
@@ -315,14 +352,19 @@ public class LineWrappingHandler {
             final boolean isArrayInitPresentInAncestors =
                 isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
-                node.getLineNo() == lastAnnotationLine
-                    && isEndOfScope(lastAnnotationNode, node);
-            if (!isArrayInitPresentInAncestors
-                    && (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
+                isCurrentNodeCloseAnnotationAloneInLine(node, lastAnnotationNode);
+
+            final boolean condition = !isArrayInitPresentInAncestors
+                && (isCurrentNodeCloseAnnotationAloneInLine
+                    || TokenUtil.isOfType(node, TokenTypes.AT)
+                    && TokenUtil.isOfType(parentNode.getParent(),
+                        TokenTypes.MODIFIERS, TokenTypes.ANNOTATIONS)
+                    || TokenUtil.areOnSameLine(node, atNode));
+
+            if (condition && isCurrentNodeAnnotationLineWrappedInClassDef(node, parentNode)) {
+                logWarningMessage(node, currentIndent);
+            }
+            else if (condition) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
