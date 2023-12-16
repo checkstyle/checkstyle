@@ -32,10 +32,12 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
 import org.antlr.v4.runtime.CommonToken;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -43,7 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * TestCase to check DetailAST.
@@ -693,10 +694,15 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             bw.write("}\n");
         }
 
+        final int initialFileCount = Objects.requireNonNull(temporaryFolder.list()).length;
+
         final DefaultConfiguration checkConfig = createModuleConfig(TodoCommentCheck.class);
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getAbsolutePath(), expected);
+        execute(checkConfig, file.getAbsolutePath());
+
+        final int finalFileCount = Objects.requireNonNull(temporaryFolder.list()).length;
+
+        Assertions.assertEquals(initialFileCount, finalFileCount);
     }
 
     @Test
