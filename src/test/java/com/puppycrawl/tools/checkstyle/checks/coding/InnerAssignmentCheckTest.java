@@ -93,4 +93,12 @@ public class InnerAssignmentCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testInnerAssignmentWithEnhancedSwitch() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentWithEnhancedSwitch.java"),
+                expected);
+    }
+
 }
