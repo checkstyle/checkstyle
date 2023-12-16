@@ -1,3 +1,7 @@
+/*
+com.puppycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerMultiCheckOrder2
+
+*/
 package com.puppycrawl.tools.checkstyle.treewalker;
 
 public class InputTreeWalkerMultiCheckOrder2 {
