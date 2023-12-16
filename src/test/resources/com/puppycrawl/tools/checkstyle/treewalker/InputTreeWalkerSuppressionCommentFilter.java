@@ -1,3 +1,7 @@
+/*
+com.pupprycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerSuppressionCommentFilter
+
+*/
 package com.puppycrawl.tools.checkstyle.treewalker;
 
 public class InputTreeWalkerSuppressionCommentFilter {

@@ -56,7 +56,12 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheckTest$ViolationFileSetCheck",
-            "com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck"
+            "com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck",
+            "com.puppycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerCheck",
+            "com.puppycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerMultiCheckOrder",
+            "com.pupprycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerSuppressionCommentFilter",
+            "com.puppycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerJavadoc",
+            "com.puppycrawl.tools.checkstyle.TreeWalkerTest$ViolationTreeWalkerMultiCheckOrder2"
     ));
 
     private final List<ModuleInputConfiguration> childrenModules;
