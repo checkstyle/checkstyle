@@ -160,27 +160,20 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoJavadocs() throws Exception {
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_MISSING_TAG, "null"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputWriteTagNoJavadoc.java"), expected);
     }
 
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
-            "33: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "37: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
-            "44: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "48: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
-            "56: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
-            "58: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
             "62: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "Failed to recognize 'record' introduced in Java 14."),
         };
