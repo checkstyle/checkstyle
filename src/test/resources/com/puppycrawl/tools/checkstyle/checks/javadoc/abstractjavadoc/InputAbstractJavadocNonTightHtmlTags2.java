@@ -28,14 +28,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocNonTightHtmlTags2 {
     /** <p> <p> paraception </p> </p> */
-    // 3 violations above
+    // 3 violations above:
     //                    'Unclosed HTML tag found: p'
     //                    'tag P_TAG_START'
     //                    'tag P_TAG_START'
     private int field1;
 
     /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
-    // 2 violations above
+    // 2 violations above:
     //                    'Unclosed HTML tag found: li'
     //                    'tag LI_TAG_START'
     private int field2;
