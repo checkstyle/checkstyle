@@ -220,7 +220,7 @@
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.16.2</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.12.0</maven.compiler.plugin.version>
     <java.version>11</java.version>
     <pitest.plugin.version>1.15.3</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
