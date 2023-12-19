@@ -337,42 +337,42 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.ELIST));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.ELIST));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.ELIST));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.ELIST));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.ELIST));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; createImaginary(TokenTypes.PARAMETERS));</lineContent>
   </checkerFrameworkError>
 
@@ -1563,8 +1563,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElse(modifiers);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(Boolean.TRUE);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1717,6 +1724,13 @@
       type of expression: @Initialized @Nullable String
       method return type: @Initialized @NonNull String
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(Boolean.FALSE);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2745,9 +2759,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- This is not possible to fix because if we initialize this in constructor or in
-       field itself pitest will be failed. This is conflict with pitest but value of
-       pitest is above checker -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/AbstractHeaderCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
@@ -3698,6 +3709,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MemberDefHandler.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(assign);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/MethodDefHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
@@ -4012,6 +4030,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(EMPTY_DETAIL_NODE_ARRAY);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Set.add.</message>
@@ -4298,6 +4323,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCheck.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.ifPresent(modifiers -&gt; {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
@@ -4340,14 +4372,21 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>message = Optional.ofNullable(message).orElse(&quot;&quot;);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>pattern = Optional.ofNullable(format).map(this::createPattern).orElse(null);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/DetectorOptions.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);</lineContent>
   </checkerFrameworkError>
 
@@ -5285,6 +5324,27 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>Optional.ofNullable(message).map(Pattern::compile).orElse(null),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>this(Optional.ofNullable(files).map(Pattern::compile).orElse(null),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
@@ -5749,6 +5809,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>return Optional.ofNullable(nodeTag).map(JavadocMetadataScraper::getText).orElse(&quot;&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>.orElse(null);</lineContent>
@@ -6044,6 +6111,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElseGet(fieldClass::getSimpleName);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>methodref.return</specifier>
     <message>Incompatible return type</message>
     <lineContent>.mapToInt(int.class::cast);</lineContent>
@@ -6156,9 +6230,6 @@
     <lineContent>+ clss.getPackage().getName().replace(&quot;.&quot;, &quot;%2F&quot;)</lineContent>
   </checkerFrameworkError>
 
-  <!-- First parameter is namespace of the attribute and documentation states that null should
-       be passed whenever namespaces are not enabled
-       https://github.com/sonatype/plexus-utils/blob/master/src/main/java/org/codehaus/plexus/util/xml/pull/XmlPullParser.java#L895 -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>argument</specifier>
@@ -6192,7 +6263,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- Value is reset after parsing is done. -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>assignment</specifier>
@@ -6204,7 +6274,6 @@
     </details>
   </checkerFrameworkError>
 
-  <!-- The following 2 fields are initialized during parsing step -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateParser.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
@@ -6332,8 +6401,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
     <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a value.</message>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElseGet(() -&gt; getDefaultScope(aMods));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ScopeUtil.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElseGet(() -&gt; getDefaultScope(ast));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6437,6 +6513,13 @@
       found   : null (NullType)
       required: @Initialized @NonNull String
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/AbstractElementNode.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
