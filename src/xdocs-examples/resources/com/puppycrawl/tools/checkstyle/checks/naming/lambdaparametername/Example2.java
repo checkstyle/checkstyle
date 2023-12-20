@@ -8,17 +8,21 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.lambdaparametername;
+
+import java.util.function.Function;
+
+import java.util.stream.Stream;
+
 // xdoc section -- start
-class MyClass {
-  Function<String, String> function1 = str -> str.toUpperCase().trim(); // OK
+class Example2 {
+  Function<String, String> function1 = str -> str.toUpperCase().trim();
   Function<String, String> function2 = _s -> _s.trim(); // violation, name '_s'
-                                             // must match pattern '^[a-z]([a-zA-Z]+)*$'
 
   public boolean myMethod(String sentence) {
     return Stream.of(sentence.split(" "))
-            .map(word -> word.trim()) // OK
+            .map(word -> word.trim())
             .anyMatch(Word -> "in".equals(Word)); // violation, name 'Word'
-                                   // must match pattern '^[a-z]([a-zA-Z]+)*$'
   }
 }
 // xdoc section -- end
