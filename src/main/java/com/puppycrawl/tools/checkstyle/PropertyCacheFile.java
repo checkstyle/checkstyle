@@ -143,8 +143,21 @@ public final class PropertyCacheFile {
      */
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
-        final Path directory = path.getParent();
+        Path directory = path.getParent();
+
         if (directory != null) {
+            if (Files.isSymbolicLink(directory)) {
+                final Path actualDir = Files.readSymbolicLink(directory);
+
+                if (Files.exists(actualDir) && Files.isDirectory(actualDir)) {
+                    directory = actualDir;
+                }
+                else {
+                    throw new IOException(
+                            "Resolved symbolic link " + directory
+                                    + " does not exist or is not a directory.");
+                }
+            }
             Files.createDirectories(directory);
         }
         try (OutputStream out = Files.newOutputStream(path)) {
