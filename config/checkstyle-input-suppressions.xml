@@ -1603,8 +1603,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration[\\/]InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableTernaryAndExpressions.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance3.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance3.java"/>
