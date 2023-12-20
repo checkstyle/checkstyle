@@ -20,7 +20,7 @@ public record InputFinalClassNestedInRecord(int a) {
         c obj = new c() {
         };
 
-        class c { // ok
+        class c {
             private c() {
             }
         }
@@ -40,7 +40,7 @@ public record InputFinalClassNestedInRecord(int a) {
             final static f.j obj = new f.j() {
             };
 
-            static class j { // ok
+            static class j {
                 private j() {
                 }
             }
