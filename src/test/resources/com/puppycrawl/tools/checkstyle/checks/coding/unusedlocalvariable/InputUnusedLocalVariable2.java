@@ -60,18 +60,18 @@ public class InputUnusedLocalVariable2 {
     public Object testDifferentAssignments(Object obj) {
         int a = 12; // violation
         a = 13;
-        int b = 13; // ok
+        int b = 13;
         b /= 12;
-        int c = 1; // ok
+        int c = 1;
         c -= this.a;
-        int h = 1; // ok
+        int h = 1;
         h <<= 12;
         return null;
     }
 
     public void testDoWhileLoops(int s) {
         do {
-            int a = 12; // ok
+            int a = 12;
             do {
                 int b = 1; // violation
                 b = a;

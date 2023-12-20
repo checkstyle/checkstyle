@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 
 public class InputUnusedLocalVariableNestedClasses3 {
     void method() {
-        final OuterClass outerClass = new OuterClass(); // ok
+        final OuterClass outerClass = new OuterClass();
         final OuterClass.InnerClass innerClass = outerClass.new InnerClass();
         System.out.println(innerClass);
     }
@@ -31,7 +31,7 @@ class Outer {
 
 class Test {
     void m() {
-        @A Outer p1 = new @A Outer(); // ok
+        @A Outer p1 = new @A Outer();
         // violation below 'Unused local variable 'p2'.'
         @A Outer.@B Inner p2 = p1.new @B Inner();
     }
@@ -48,7 +48,7 @@ class H006_ComplexConstructors<T> {
 
     class Inner3 {
         Inner3(int x) {
-            H006_ComplexConstructors<Integer> instance = // ok
+            H006_ComplexConstructors<Integer> instance =
                     new <String>H006_ComplexConstructors<Integer>(0, "");
             // violation below 'Unused local variable 'o'.'
             Object o = instance.new Inner3(5).new <String>InnerInner3("hey");
