@@ -21,7 +21,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
 
     class Mw {
         static class B {
-            static class C { // ok
+            static class C {
                 private C() {
                 }
             }
@@ -30,7 +30,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
 
     class A {
         class B { // violation
-            class C { // ok
+            class C {
                 private C() {}
             }
             class D extends C {
@@ -50,7 +50,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
     class P extends Q {
     }
 
-    class Q { // ok
+    class Q {
         private Q() {
         }
     }
