@@ -25,13 +25,13 @@
         <p id="Example1-config"> To configure the check: </p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example1.txt"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example1.java"/>
              <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example1.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -40,13 +40,13 @@
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example2.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example2.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example2.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -55,13 +55,13 @@
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -70,7 +70,7 @@
         </p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.txt"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
              <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -78,7 +78,7 @@
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -86,13 +86,13 @@
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
             <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -100,13 +100,13 @@
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">Results in following:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.txt"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
