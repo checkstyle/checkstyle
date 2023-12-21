@@ -27,6 +27,6 @@ while (counter < 10)           // violation, single-line statements not allowed 
    ++count;
 while (value.incrementValue() < 5); // OK
 switch (num) {
-case 1: counter++; break;           // OK
+case 1: counter++; break;           // OK, 'break' is not counted to allow compact view
 }
 // xdoc section -- end
