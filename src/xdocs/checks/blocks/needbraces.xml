@@ -88,24 +88,40 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
-if (true) {                     // OK
+class Example1 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  public boolean Example1() {
+    if (obj.equals(num)) return true;
+    // violation above, ''if' construct must use '{}'s.'
+    if (true) {
+      count = 2;
+    } else
+        // violation above, ''else' construct must use '{}'s.'
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;
+    }
+    do  // violation, ''do' construct must use '{}'s.'
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // violation above, ''for' construct must use '{}'s.'
+    for(int i = 0; i &lt; 10; value.equals(12));
+    // violation above, ''for' construct must use '{}'s.'
+    while (counter &lt; 10)
+        // violation above, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // violation above, ''while' construct must use '{}'s.'
+    switch (num) {
+      case 1: counter++; break;
+    }
     return true;
-} else                          // violation, single-line statements not allowed without braces
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // violation, single-line statements not allowed without braces
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
-for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
-while (counter &lt; 10)          // violation, single-line statements not allowed without braces
-    ++count;
-while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
-switch (num) {
-  case 1: counter++; break;         // OK
+  }
 }
         </source>
         <p id="Example2-config">
@@ -123,24 +139,38 @@ switch (num) {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
-if (true) {                     // OK
+class Example2 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  public boolean Example2() {
+    if (obj.equals(12)) return true;
+    // violation above, ''if' construct must use '{}'s.'
+    if (true) {
+      obj.equals(11);
+    } else
+        // violation above, ''else' construct must use '{}'s.'
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;
+    }
+    do
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+
+    for(int i = 0; i &lt; 10; value.charAt(1));
+
+    while (counter &lt; 10)
+        ++count;
+    while (value.charAt(1) &lt; 5);
+    switch (num) {
+      case 1: counter++; break;
+    }
     return true;
-} else                          // violation, single-line statements not allowed without braces
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)                            // OK
-    ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-  case 1: counter++; break;         // OK
+  }
 }
         </source>
         <p id="Example3-config">
@@ -160,28 +190,37 @@ switch (num) {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-if (obj.isValid()) return true;  // OK
-if (true) {                      // OK
-    return true;
-} else                           // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {    // OK
-    ++count;
+class Example3 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example3() {
+    if (obj.equals(13)) return true;
+    if (true) {
+      obj.equals(1);
+    } else
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do  // violation, ''do' construct must use '{}'s.'
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    for(int i = 0; i &lt; 10; value.charAt(2));
+    while (counter &lt; 10) // violation, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(2) &lt; 5);
+    switch (num) {
+      case 1: counter++; break;
+    }
+    while (obj.equals(2)) return true;
+    do this.notify(); while (o != null);
+    for (int i = 0; ; ) this.notify();
+  }
 }
-do                               // OK
-   ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);                   // violation, empty loop body not allowed
-for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
-while (counter &lt; 10)                 // OK
-   ++count;
-while (value.incrementValue() &lt; 5);  // violation, empty loop body not allowed
-switch (num) {
-  case 1: counter++; break;          // OK
-}
-while (obj.isValid()) return true;   // OK
-do this.notify(); while (o != null); // OK
-for (int i = 0; ; ) this.notify();   // OK
         </source>
         <p id="Example4-config">
           To configure the check to allow <code>case, default</code> single-line statements
@@ -201,26 +240,37 @@ for (int i = 0; ; ) this.notify();   // OK
         Next statements won't be violated by check:
         </p>
         <source>
-if (obj.isValid()) return true; // OK
-if (true) {                     // OK
+class Example4 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+
+  public boolean Example4() {
+    if (obj.equals(1)) return true;
+    if (true) {
+      obj.equals(2);
+    } else
+      return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;
+    }
+    do
+      ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    for(int i = 0; i &lt; 10; value.charAt(9));
+    while (counter &lt; 10)
+      ++count;
+    while (value.charAt(3) &lt; 5);
+    switch (num) {
+      case 1: counter++; break;
+      case 6: counter += 10; break;
+      default: counter = 100; break;
+    }
     return true;
-} else                          // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)                            // OK
-   ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
+  }
 }
         </source>
         <p id="Example5-config">
@@ -238,24 +288,37 @@ switch (num) {
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-if (obj.isValid()) return true; // OK
-if (true) {                     // OK
+class Example5 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  public boolean Example5() {
+    if (obj.equals(3)) return true;
+    if (true) {
+      obj.equals(4);
+    } else
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;
+    }
+    do
+        ++count;
+
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+
+    for(int i = 0; i &lt; 10; value.charAt(2));
+    while (counter &lt; 10)
+        // violation above, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(2) &lt; 5);
+    switch (num) {
+      case 1: counter++; break;
+    }
     return true;
-} else                          // OK
-    return false;
-for (int i = 0; i &lt; 5; i++) {   // OK
-     ++count;
-}
-do                              // OK
-    ++count;
-while (false);
-for (int j = 0; j &lt; 10; j++);   // OK
-for(int i = 0; i &lt; 10; value.incrementValue()); // OK
-while (counter &lt; 10)           // violation, single-line statements not allowed without braces
-   ++count;
-while (value.incrementValue() &lt; 5); // OK
-switch (num) {
-case 1: counter++; break;           // OK
+  }
 }
         </source>
         <p id="Example6-config">
@@ -273,15 +336,35 @@ case 1: counter++; break;           // OK
         </source>
         <p id="Example6-code">Results in following:</p>
         <source>
-allowedFuture.addCallback(result -&gt; assertEquals(&quot;Invalid response&quot;,
-  EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
-  ex -&gt; fail(ex.getMessage())); // OK
-
-allowedFuture.addCallback(result -&gt; {
-  return assertEquals(&quot;Invalid response&quot;,
-    EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
-  }, // OK
-  ex -&gt; fail(ex.getMessage()));
+class Example6 {
+  enum HttpMethod {GET, OPTIONS}
+  Object result = new Object();
+  private CustomCompletableFuture&lt;Object&gt; allowedFuture;
+  Example6() {
+    allowedFuture = new CustomCompletableFuture&lt;&gt;();
+    allowedFuture.addCallback(result -&gt; assertEquals(&quot;Invalid response&quot;, // violation
+                    EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result),
+            ex -&gt; fail(ex.getMessage()));
+    allowedFuture.addCustomCallback(() -&gt; {
+      return assertEquals(&quot;Invalid response&quot;,
+              EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);},
+            ex -&gt; fail(ex.getMessage()));}
+  private Object assertEquals(String invalidResponse, EnumSet&lt;HttpMethod&gt; get,
+                              Object result) {
+    return result;}
+  private String fail(String message) {
+    return message;
+  }}
+class CustomCompletableFuture&lt;T&gt; {
+  private CompletableFuture&lt;T&gt; allowedFuture;
+  public CustomCompletableFuture() {
+    allowedFuture = new CompletableFuture&lt;&gt;();
+  }
+  public void addCallback(java.util.function.Consumer&lt;T&gt; successCallback,
+          java.util.function.Consumer&lt;Throwable&gt; failureCallback) {}
+  public void addCustomCallback(java.util.function.Supplier&lt;Object&gt; successLambda,
+          java.util.function.Consumer&lt;Throwable&gt; failureLambda) {}
+}
         </source>
       </subsection>
 
