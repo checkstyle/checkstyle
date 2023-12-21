@@ -233,8 +233,9 @@
     <junit.version>5.10.1</junit.version>
     <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <error-prone.version>2.23.0</error-prone.version>
     <checkerframework.version>3.42.0</checkerframework.version>
+    <error-prone.version>2.23.0</error-prone.version>
+    <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
   </properties>
 
@@ -411,6 +412,10 @@
         <exclusion>
           <groupId>commons-codec</groupId>
           <artifactId>commons-codec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -2385,6 +2390,11 @@
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
                     </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
+                    </path>
                   </annotationProcessorPaths>
                 </configuration>
               </execution>
@@ -2438,6 +2448,11 @@
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
                     </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
+                    </path>b
                   </annotationProcessorPaths>
                 </configuration>
               </execution>
