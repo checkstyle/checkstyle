@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck.MSG_KEY_NEED_BRACES;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,54 +35,61 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "19:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "23:7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "28:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "31:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "33:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "35:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "38:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "25:7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
+            "33:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "40:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "38:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "24:38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }
