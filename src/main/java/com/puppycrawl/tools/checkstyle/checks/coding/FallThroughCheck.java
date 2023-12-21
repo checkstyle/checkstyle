@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -411,11 +410,27 @@ public class FallThroughCheck extends AbstractCheck {
      * @return true if relief comment found
      */
     private boolean hasReliefComment(DetailAST ast) {
-        return Optional.ofNullable(getNextNonCommentAst(ast))
-                .map(DetailAST::getPreviousSibling)
-                .map(previous -> previous.getFirstChild().getText())
-                .map(text -> reliefPattern.matcher(text).find())
-                .orElse(Boolean.FALSE);
+        final DetailAST result = getNextNonCommentAst(ast);
+        boolean hasReliefComment = false;
+        boolean firstChildStatus = true;
+        if (result != null) {
+            DetailAST previous = result.getPreviousSibling();
+            final int line = previous.getLineNo();
+            while (previous != null && line == previous.getLineNo() && firstChildStatus) {
+                final DetailAST firstChild = previous.getFirstChild();
+                if (firstChild != null) {
+                    final String text = firstChild.getText();
+                    if (reliefPattern.matcher(text).find()) {
+                        hasReliefComment = true;
+                        break;
+                    }
+                    previous = previous.getPreviousSibling();
+                }
+                else {
+                    firstChildStatus = false;
+                }
+            }
+        }
+        return hasReliefComment;
     }
-
 }
