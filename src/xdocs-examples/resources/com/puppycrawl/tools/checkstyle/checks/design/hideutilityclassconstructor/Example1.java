@@ -18,10 +18,10 @@ class Test { // violation, class only has a static method and a constructor
 
 class Foo {
 
-    static int n;
-
     private Foo() {
     }
+
+    static int n;
 }
 
 class Bar {
