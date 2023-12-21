@@ -582,7 +582,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.3</version>
+                <version>7.6.4</version>
               </plugin>
             </plugins>
           </configuration>
