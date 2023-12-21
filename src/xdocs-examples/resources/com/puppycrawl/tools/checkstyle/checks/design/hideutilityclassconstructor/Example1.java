@@ -9,31 +9,31 @@
 // xdoc section -- start
 class Test { // violation, class only has a static method and a constructor
 
-  public Test() {
-  }
+    public Test() {
+    }
 
-  public static void fun() {
-  }
+    public static void fun() {
+    }
 }
 
-class Foo { // OK
+class Foo {
 
-  private Foo() {
-  }
+    static int n;
 
-  static int n;
+    private Foo() {
+    }
 }
 
-class Bar { // OK
+class Bar {
 
-  protected Bar() {
-    // prevents calls from subclass
-    throw new UnsupportedOperationException();
-  }
+    protected Bar() {
+        // prevents calls from subclass
+        throw new UnsupportedOperationException();
+    }
 }
 
 class UtilityClass { // violation, class only has a static field
 
-  static float f;
+    static float f;
 }
 // xdoc section -- end
