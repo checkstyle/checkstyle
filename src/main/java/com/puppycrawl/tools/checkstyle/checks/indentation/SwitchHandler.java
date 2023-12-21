@@ -65,6 +65,22 @@ public class SwitchHandler extends BlockParentHandler {
         return null;
     }
 
+    @Override
+    protected IndentLevel getIndentImpl() {
+        final IndentLevel indentLevel;
+        final DetailAST ast = getMainAst();
+        if (ast.getParent().getParent().getType() == TokenTypes.METHOD_CALL) {
+            indentLevel = new IndentLevel(ast.getPreviousSibling().getColumnNo());
+        }
+        else if (ast.getParent().getParent().getType() == TokenTypes.LITERAL_YIELD) {
+            indentLevel = new IndentLevel(ast.getParent().getParent().getColumnNo());
+        }
+        else {
+            indentLevel = super.getIndentImpl();
+        }
+        return indentLevel;
+    }
+
     /**
      * Check the indentation of the switch expression.
      */
