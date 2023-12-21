@@ -3019,6 +3019,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String fileName = getNonCompilablePath("InputIndentationCheckSwitchExpression1.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testCustomSwitch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("caseIndent", "2");
+        final String fileName = getNonCompilablePath("InputIndentationCheckSwitchExpression2.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
