@@ -7,7 +7,7 @@
 */
 
 // xdoc section -- start
-class Test { // violation, class only has a static method and a constructor
+class Test { // violation, 'Utility classes should not have a public or default constructor'
 
   public Test() {
   }
@@ -16,7 +16,7 @@ class Test { // violation, class only has a static method and a constructor
   }
 }
 
-class Foo { // OK
+class Foo {
 
   private Foo() {
   }
@@ -24,7 +24,7 @@ class Foo { // OK
   static int n;
 }
 
-class Bar { // OK
+class Bar {
 
   protected Bar() {
     // prevents calls from subclass
@@ -32,7 +32,7 @@ class Bar { // OK
   }
 }
 
-class UtilityClass { // violation, class only has a static field
+class UtilityClass { // violation, 'Utility classes should not have a public or default constructor'
 
   static float f;
 }
