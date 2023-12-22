@@ -588,24 +588,7 @@
             files="checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon[\\/]InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon[\\/]InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]operatorwrap[\\/]InputOperatorWrapGuardedPatterns.java"/>
+  
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadCheckRecords.java"/>
   <suppress id="UnnecessaryOkComment"
