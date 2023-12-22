@@ -317,7 +317,26 @@ public class LineWrappingHandler {
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
-            if (!isArrayInitPresentInAncestors
+            final boolean isCurrentNodeAnnotationPartOfClassDefinitionBetweenModifierAndClass =
+                node.getType() == TokenTypes.AT && parentNode.getType() == TokenTypes.ANNOTATION
+                    && parentNode.getPreviousSibling() != null
+                    && parentNode.getPreviousSibling().getType() == TokenTypes.ANNOTATION
+                    && parentNode.getPreviousSibling().getPreviousSibling() != null
+                    && parentNode.getPreviousSibling().getPreviousSibling().getParent().getType()
+                        == TokenTypes.MODIFIERS
+                    && parentNode.getPreviousSibling().getFirstChild() != null
+                    && parentNode.getPreviousSibling().getFirstChild().getType() == TokenTypes.AT;
+
+            if ((!isArrayInitPresentInAncestors
+                    && (isCurrentNodeCloseAnnotationAloneInLine
+                    || node.getType() == TokenTypes.AT
+                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                    || TokenUtil.areOnSameLine(node, atNode)))
+                && isCurrentNodeAnnotationPartOfClassDefinitionBetweenModifierAndClass) {
+                    logWarningMessage(node, currentIndent);
+            }
+            else if (!isArrayInitPresentInAncestors
                     && (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
