@@ -33,7 +33,6 @@ import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
@@ -266,18 +265,125 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testPathToCacheContainsOnlyFileName() throws IOException {
+    public void testPersistCreatesDirectoryIfNotExists() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String fileName = "temp.cache";
-        final Path filePath = Paths.get(fileName);
-        final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
+        final String directoryPath = temporaryFolder + File.separator + "newDir";
+        final String filePath = directoryPath + File.separator + "cache.temp";
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
-        // no exception expected
         cache.persist();
-        assertWithMessage("Cache file does not exist")
-                .that(Files.exists(filePath))
+
+        final File createdDir = new File(directoryPath);
+        assertWithMessage("Directory should be created")
+                .that(createdDir.exists() && createdDir.isDirectory())
                 .isTrue();
-        Files.delete(filePath);
+
+        assertWithMessage("Cache file should be created in the new directory")
+                .that(new File(filePath).exists())
+                .isTrue();
+    }
+
+    @Test
+    public void testPersistWithSymbolicLinkToDirectory() throws IOException {
+        final Path tempDirectory = Files.createTempDirectory("tempDir");
+        final Path symLinkDirectory = Files.createTempDirectory("symLinkDir").resolve("symLink");
+        Files.createSymbolicLink(symLinkDirectory, tempDirectory);
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final String cacheFilePath = symLinkDirectory.resolve("cache.temp").toString();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFilePath);
+
+        cache.persist();
+
+        final Path expectedFilePath = tempDirectory.resolve("cache.temp");
+        assertWithMessage("Cache file should be created in the actual directory")
+                .that(Files.exists(expectedFilePath))
+                .isTrue();
+    }
+
+    @Test
+    public void testPersistNormalOperation() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+
+        cache.persist();
+
+        assertWithMessage("Cache file should be created")
+                .that(new File(filePath).exists())
+                .isTrue();
+    }
+
+    @Test
+    public void testSymbolicLinkResolution() throws IOException {
+        final Path tempDirectory = Files.createTempDirectory("tempDir");
+        final Path symLinkDirectory = Files.createTempDirectory("symLinkDir").resolve("symLink");
+        Files.createSymbolicLink(symLinkDirectory, tempDirectory);
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final String cacheFilePath = symLinkDirectory.resolve("cache.temp").toString();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFilePath);
+
+        cache.persist();
+
+        final Path expectedFilePath = tempDirectory.resolve("cache.temp");
+        assertWithMessage(
+                "Cache file should be created in the actual directory.")
+                .that(Files.exists(expectedFilePath))
+                .isTrue();
+    }
+
+    @Test
+    public void testSymbolicLinkToNonDirectory() throws IOException {
+        final Path tempFile = Files.createTempFile("tempFile", null);
+        final Path symLinkDirectory = Files.createTempDirectory("symLinkDir");
+        final Path symLink = symLinkDirectory.resolve("symLink");
+        Files.createSymbolicLink(symLink, tempFile);
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final String cacheFilePath = symLink.resolve("cache.temp").toString();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFilePath);
+
+        final IOException thrown = assertThrows(IOException.class, cache::persist);
+
+        final String expectedMessage = "Resolved symbolic link " + symLink
+                + " does not exist or is not a directory.";
+
+        assertWithMessage(
+                "Expected IOException when symlink is not a directory")
+                .that(thrown.getMessage())
+                .contains(expectedMessage);
+    }
+
+    @Test
+    public void testSymbolicLinkToNonExistentLocationAndNonDirectory() throws IOException {
+        final Path symLinkDirectory = Files.createTempDirectory("symLinkDir");
+        final Path nonExistentPath = symLinkDirectory.resolve("nonExistentDir");
+        final Path symLink = symLinkDirectory.resolve("symLink");
+
+        // Create symbolic link to a non-existent location
+        Files.createSymbolicLink(symLink, nonExistentPath);
+
+        final Configuration config = new DefaultConfiguration("myName");
+        final String cacheFilePath = symLink.resolve("cache.temp").toString();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFilePath);
+
+        // Test for non-existent location
+        final IOException thrownForNonExistent = assertThrows(IOException.class, cache::persist);
+        assertWithMessage("Expected IOException for invalid symlink to non-existent location")
+                .that(thrownForNonExistent.getMessage())
+                .contains("does not exist or is not a directory");
+
+        // Change the symbolic link to point to a non-directory (a file)
+        Files.delete(symLink);
+        final Path tempFile = Files.createTempFile(symLinkDirectory, "tempFile", null);
+        Files.createSymbolicLink(symLink, tempFile);
+
+        // Test for symbolic link to a non-directory
+        final IOException thrownForNonDirectory = assertThrows(IOException.class, cache::persist);
+        assertWithMessage("Expected IOException when symlink is not a directory")
+                .that(thrownForNonDirectory.getMessage())
+                .contains("does not exist or is not a directory");
     }
 
     @Test
