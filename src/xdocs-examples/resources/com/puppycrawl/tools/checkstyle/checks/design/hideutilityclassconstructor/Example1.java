@@ -16,7 +16,7 @@ class Test { // violation, class only has a static method and a constructor
   }
 }
 
-class Foo { // OK
+class Foo {
 
   private Foo() {
   }
@@ -24,7 +24,7 @@ class Foo { // OK
   static int n;
 }
 
-class Bar { // OK
+class Bar {
 
   protected Bar() {
     // prevents calls from subclass
