@@ -48,9 +48,11 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
-Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
-                                               // must match pattern '^[a-z][a-zA-Z0-9]*$'
+class Example1 {
+  Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase();
+  Function&lt;String, String&gt; function2 =
+          S -&gt; S.toLowerCase(); // violation, name 'S'
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
@@ -67,16 +69,14 @@ Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
-  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
+class Example2 {
+  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim();
   Function&lt;String, String&gt; function2 = _s -&gt; _s.trim(); // violation, name '_s'
-                                             // must match pattern '^[a-z]([a-zA-Z]+)*$'
 
   public boolean myMethod(String sentence) {
     return Stream.of(sentence.split(&quot; &quot;))
-            .map(word -&gt; word.trim()) // OK
+            .map(word -&gt; word.trim())
             .anyMatch(Word -&gt; &quot;in&quot;.equals(Word)); // violation, name 'Word'
-                                   // must match pattern '^[a-z]([a-zA-Z]+)*$'
   }
 }
         </source>
