@@ -234,7 +234,7 @@
     <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.42.0</checkerframework.version>
-    <error-prone.version>2.23.0</error-prone.version>
+    <error-prone.version>2.24.0</error-prone.version>
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
   </properties>
@@ -582,7 +582,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.3</version>
+                <version>7.6.4</version>
               </plugin>
             </plugins>
           </configuration>
