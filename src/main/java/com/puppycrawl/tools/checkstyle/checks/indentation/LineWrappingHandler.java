@@ -317,7 +317,32 @@ public class LineWrappingHandler {
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
+            final boolean isPreviousToPreviousSiblingAccessModifier = 
+                parentNode.getPreviousSibling().getPreviousSibling().getType()
+                    == TokenTypes.LITERAL_PUBLIC
+                    || parentNode.getPreviousSibling().getPreviousSibling().getType()
+                    == TokenTypes.LITERAL_PRIVATE
+                    || parentNode.getPreviousSibling().getPreviousSibling().getType()
+                    == TokenTypes.LITERAL_PROTECTED;
+            final boolean isCurrentNodeAnnotationLineWrappedInClassDef = 
+                node.getType() == TokenTypes.AT && parentNode.getType() == TokenTypes.ANNOTATION
+                    && parentNode.getPreviousSibling() != null
+                    && parentNode.getPreviousSibling().getType() == TokenTypes.ANNOTATION
+                    && parentNode.getPreviousSibling().getPreviousSibling() != null
+                    && isPreviousToPreviousSiblingAccessModifier
+                    && parentNode.getPreviousSibling().getFirstChild() != null
+                    && parentNode.getPreviousSibling().getFirstChild().getType() == TokenTypes.AT;
+
             if (!isArrayInitPresentInAncestors
+                    && (isCurrentNodeCloseAnnotationAloneInLine
+                    || node.getType() == TokenTypes.AT
+                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                    || TokenUtil.areOnSameLine(node, atNode))
+                && isCurrentNodeAnnotationLineWrappedInClassDef) {
+                logWarningMessage(node, currentIndent);
+            }
+            else if (!isArrayInitPresentInAncestors
                     && (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
