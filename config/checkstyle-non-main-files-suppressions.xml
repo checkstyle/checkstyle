@@ -250,9 +250,8 @@
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unusedlocalvariable.xml.template"/>
+
   <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]customimportorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadocparagraph.xml.template"/>
   <suppress id="propertiesMacroMustExist"
