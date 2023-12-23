@@ -537,20 +537,24 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static String getDefaultValue(String propertyName, Field field, Object instance)
             throws MacroExecutionException {
-        final String result;
+        String result;
 
         if (field != null) {
             result = SiteUtil.getDefaultValue(
                     propertyName, field, instance, currentModuleName);
         }
         else {
-            final Class<?> fieldClass = SiteUtil.getPropertyClass(propertyName, instance);
+            result = SiteUtil.getSpecialDefaultValue(propertyName, currentModuleName);
 
-            if (fieldClass.isArray()) {
-                result = CURLY_BRACKET;
-            }
-            else {
-                result = "null";
+            if (result == null) {
+                final Class<?> fieldClass = SiteUtil.getPropertyClass(propertyName, instance);
+
+                if (fieldClass.isArray()) {
+                    result = CURLY_BRACKET;
+                }
+                else {
+                    result = "null";
+                }
             }
         }
         return result;
