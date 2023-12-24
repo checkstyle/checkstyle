@@ -6,44 +6,49 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
+
 // xdoc section -- start
-public class Test {
+public class Example1 {
 
   public void test() {
 
+    boolean foo = false;
     if (foo) {
       bar();
-    }           // violation, right curly must be in the same line as the 'else' keyword
+    } // violation, ''}' at column 5 should be on the same line*'
     else {
       bar();
     }
 
     if (foo) {
       bar();
-    } else {     // OK
+    } else {
       bar();
     }
 
-    if (foo) { bar(); } int i = 0;  // violation
-                  // ^^^ statement is not allowed on same line after curly right brace
+    if (foo) { bar(); } int i = 0; // violation, ''}' at column 23 should be*'
 
-    if (foo) { bar(); }            // OK
-    int i = 0;
+    if (foo) { bar(); }
+    i = 0;
 
     try {
       bar();
-    }           // violation, rightCurly must be in the same line as 'catch' keyword
+    } // violation, ''}' at column 5 should be on the same line*'
     catch (Exception e) {
       bar();
     }
 
     try {
       bar();
-    } catch (Exception e) { // OK
+    } catch (Exception e) {
       bar();
     }
 
-  }                         // OK
+  }
+
+  private void bar() {
+  }
 
   public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
