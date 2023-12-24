@@ -165,10 +165,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationRecords.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLine.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectory2.java"/>
@@ -1056,11 +1052,11 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberDefault1.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberDefault1.java"/>
+            files="checks[\\/]coding[\\/]magicnumber[\\/]InputDefault1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberDefault1.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclaration1.java"/>
+            files="checks[\\/]coding[\\/]magicnumber[\\/]InputIgnoreFieldDeclaration1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclaration1.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -1068,7 +1064,7 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclaration1.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclaration1.java"/>
+            files="checks[\\/]coding[\\/][\\/]InputIgnoreFieldDeclaration1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclaration1.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -1084,7 +1080,7 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreHashCodeMethod1.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreHashCodeMethod1.java"/>
+            files="checks[\\/]coding[\\/][\\/]InputMagicNumberIgnoreHashCodeMethod1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreHashCodeMethod1.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -1213,10 +1209,6 @@
             files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTree2.java"/>
   <suppress id="UnnecessaryOkComment"

@@ -11,7 +11,7 @@ public class InputNoFinalizerFallThrough
     void method(int i, int j, boolean cond) {
         while (true) {
             switch (i) {
-            case 0: // ok
+            case 0: 
             case 1:
                 i++;
                 break;
@@ -141,7 +141,7 @@ public class InputNoFinalizerFallThrough
           switch (i) {
           case -1: // FALLTHRU
 
-          case 0: // ok
+          case 0: 
           case 1:
               i++;
               break;
