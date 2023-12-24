@@ -601,14 +601,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, tmpFile.getPath(), expected);
+        verifyWithInlineConfigParser(tmpFile.getPath(), expected);
         final Properties cacheAfterFirstRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // one more time to reuse cache
-        verify(checkerConfig, tmpFile.getPath(), expected);
+        verifyWithInlineConfigParser(tmpFile.getPath(), expected);
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
