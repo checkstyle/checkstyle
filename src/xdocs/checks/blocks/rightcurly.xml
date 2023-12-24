@@ -113,45 +113,48 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
+public class Example1 {
 
   public void test() {
 
+    boolean foo = false;
     if (foo) {
       bar();
-    }           // violation, right curly must be in the same line as the 'else' keyword
+    } // violation, ''}' at column 5 should be on the same line*'
     else {
       bar();
     }
 
     if (foo) {
       bar();
-    } else {     // OK
+    } else {
       bar();
     }
 
-    if (foo) { bar(); } int i = 0;  // violation
-                  // ^^^ statement is not allowed on same line after curly right brace
+    if (foo) { bar(); } int i = 0; // violation, ''}' at column 23 should be*'
 
-    if (foo) { bar(); }            // OK
-    int i = 0;
+    if (foo) { bar(); }
+    i = 0;
 
     try {
       bar();
-    }           // violation, rightCurly must be in the same line as 'catch' keyword
+    } // violation, ''}' at column 5 should be on the same line*'
     catch (Exception e) {
       bar();
     }
 
     try {
       bar();
-    } catch (Exception e) { // OK
+    } catch (Exception e) {
       bar();
     }
 
-  }                         // OK
+  }
 
-  public void testSingleLine() { bar(); } // OK, because singleline is allowed
+  private void bar() {
+  }
+
+  public void testSingleLine() { bar(); }
 }
         </source>
         <p id="Example2-config">
@@ -172,33 +175,37 @@ public class Test {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
+public class Example2 {
 
   public void test() {
 
+    boolean foo = false;
     if (foo) {
       bar();
-    } else { bar(); }   // violation, right curly must be alone on line
+    } else { bar(); } // violation, ''}' at column 21 should be alone on a line.'
 
     if (foo) {
       bar();
     } else {
       bar();
-    }                   // OK
+    }
 
     try {
       bar();
-    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+    } catch (Exception e) {
       bar();
     }
 
-  }                         // OK
+  }
 
-  public void violate() { bar; } // violation, singleline is not allowed here
+  private void bar() {
+  }
+
+  public void violate() { Object bar = &quot;bar&quot;; } // violation, ''}' at column 47*'
 
   public void ok() {
     bar();
-  }                              // OK
+  }
 }
         </source>
         <p id="Example3-config">
@@ -219,28 +226,28 @@ public class Test {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-class Test {
+class Example3 {
 
-    public void method0() {
-        int mode = 0;
-        switch (mode) {
-            case 1:
-                int x = 1;
-                break;
-            default:
-                x = 0;
-        } // ok, RightCurly is alone
+  public void method0() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 1;
+        break;
+      default:
+        x = 0;
     }
+  }
 
-    public void method0() {
-        int mode = 0;
-        switch (mode) {
-            case 1:
-                int x = 1;
-                break;
-            default:
-                x = 0; } // violation, RightCurly should be alone on a line
-    }
+  public void method01() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 1;
+        break;
+      default:
+        x = 0; } // violation, ''}' at column 16 should be alone on a line.'
+  }
 
 }
         </source>
@@ -263,32 +270,36 @@ class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
+public class Example4 {
 
   public void test() {
 
+    boolean foo = false;
     if (foo) {
       bar();
-    } else {        // violation, right curly must be alone on line
+    } else { // violation, ''}' at column 5 should be alone on a line.'
       bar();
     }
 
     if (foo) {
       bar();
-    }               // OK
+    }
     else {
       bar();
     }
 
     try {
       bar();
-    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
+    } catch (Exception e) {
       bar();
     }
 
-  }                                // OK
+  }
 
-  public void violate() { bar(); } // OK , because singleline
+  private void bar() {
+  }
+
+  public void violate() { bar(); }
 }
         </source>
         <p id="Example5-config">
@@ -309,32 +320,32 @@ public class Test {
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-class Test {
+class Example5 {
 
-    public void method0() {
-        int mode = 0;
-        switch (mode) {
-            case 1:
-                int x = 1;
-                break;
-            default:
-                x = 0;
-        } // ok
+  public void method0() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 1;
+        break;
+      default:
+        x = 0;
     }
+  }
 
-    public static void method7() {
-        int mode = 0;
-        int x;
-        switch (mode) { case 1: x = 5; } // ok, RightCurly is on the same line as LeftCurly
-    }
+  public static void method7() {
+    int mode = 0;
+    int x;
+    switch (mode) { case 1: x = 5; }
+  }
 
-    public void method() {
-        int mode = 0;
-        int x;
-        switch (mode) {
-            case 1:
-                x = 1; } // violation, right curly should be alone on line
-    }
+  public void method() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1:
+        x = 1; } // violation, ''}' at column 16 should be alone on a line.'
+  }
 }
         </source>
       </subsection>
