@@ -27,8 +27,10 @@ class Example5 {
 
   public static void method7() {
     int mode = 0;
-    int x;
-    switch (mode) { case 1: x = 5; }
+    switch (mode) {
+      case 1:
+        int x = 5;
+    }
   }
 
   public void method() {
