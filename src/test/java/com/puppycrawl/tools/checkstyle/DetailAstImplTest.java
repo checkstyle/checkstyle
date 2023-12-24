@@ -41,7 +41,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -686,6 +685,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final File file = new File(temporaryFolder, "InputDetailASTManyComments.java");
 
         try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks.TodoCommentCheck\n\n\n\n*/\n");
             bw.write("class C {\n");
             for (int i = 0; i <= 30000; i++) {
                 bw.write("// " + i + "\n");
@@ -693,10 +693,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             bw.write("}\n");
         }
 
-        final DefaultConfiguration checkConfig = createModuleConfig(TodoCommentCheck.class);
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getAbsolutePath(), expected);
+        verifyWithInlineConfigParser(file.getAbsolutePath(), expected);
     }
 
     @Test
