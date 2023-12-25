@@ -154,7 +154,7 @@ public class Example1 {
   private void bar() {
   }
 
-  public void testSingleLine() { bar(); }
+  public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
         </source>
         <p id="Example2-config">
@@ -192,7 +192,7 @@ public class Example2 {
 
     try {
       bar();
-    } catch (Exception e) {
+    } catch (Exception e) { // OK because config is set to token*
       bar();
     }
 
@@ -236,7 +236,7 @@ class Example3 {
         break;
       default:
         x = 0;
-    }
+    } // ok, RightCurly is alone
   }
 
   public void method01() {
@@ -290,7 +290,7 @@ public class Example4 {
 
     try {
       bar();
-    } catch (Exception e) {
+    } catch (Exception e) { // OK because config did not set token LITERAL_TRY
       bar();
     }
 
@@ -299,7 +299,7 @@ public class Example4 {
   private void bar() {
   }
 
-  public void violate() { bar(); }
+  public void violate() { bar(); } // OK , because singleline
 }
         </source>
         <p id="Example5-config">
@@ -338,7 +338,7 @@ class Example5 {
     switch (mode) {
       case 1:
         int x = 5;
-    }
+    } // ok, RightCurly is on*
   }
 
   public void method() {

@@ -30,7 +30,7 @@ class Example5 {
     switch (mode) {
       case 1:
         int x = 5;
-    }
+    } // ok, RightCurly is on*
   }
 
   public void method() {

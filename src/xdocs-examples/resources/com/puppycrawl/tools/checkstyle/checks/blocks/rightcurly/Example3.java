@@ -22,7 +22,7 @@ class Example3 {
         break;
       default:
         x = 0;
-    }
+    } // ok, RightCurly is alone
   }
 
   public void method01() {

@@ -29,7 +29,7 @@ public class Example2 {
 
     try {
       bar();
-    } catch (Exception e) {
+    } catch (Exception e) { // OK because config is set to token*
       bar();
     }
 

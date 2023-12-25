@@ -32,7 +32,7 @@ public class Example4 {
 
     try {
       bar();
-    } catch (Exception e) {
+    } catch (Exception e) { // OK because config did not set token LITERAL_TRY
       bar();
     }
 
@@ -41,6 +41,6 @@ public class Example4 {
   private void bar() {
   }
 
-  public void violate() { bar(); }
+  public void violate() { bar(); } // OK , because singleline
 }
 // xdoc section -- end

@@ -50,6 +50,6 @@ public class Example1 {
   private void bar() {
   }
 
-  public void testSingleLine() { bar(); }
+  public void testSingleLine() { bar(); } // OK, because singleline is allowed
 }
 // xdoc section -- end
