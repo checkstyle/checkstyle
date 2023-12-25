@@ -75,43 +75,64 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Correct Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
-        <p id="Example2-config">
-          To configure the check to always use Unix-style line separators:
-        </p>
+        <p id="Example2-code">Violation Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.txt"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
         <p id="Example3-config">
-          To configure the check to work only on Java, XML and Python files:
+          To configure the check to always use Unix-style line separators:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check to work only on Java, XML and Python files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Python file <code>Example4.py</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
