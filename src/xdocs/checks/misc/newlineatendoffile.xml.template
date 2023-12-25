@@ -99,13 +99,13 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -114,13 +114,13 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -129,13 +129,13 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

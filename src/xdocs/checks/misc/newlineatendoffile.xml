@@ -104,14 +104,12 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-// File ending with a new line
-public class Test {&#x2936;
+public class Example1 {&#x2936;
 &#x2936;
-}&#x2936; // ok
-Note: The comment // ok is a virtual, not actually present in the file
+}&#x2936;
 
 // File ending without a new line
-public class Test1 {&#x2936;
+class A {&#x2936;
 &#x2936;
 } // violation, the file does not end with a new line
         </source>
@@ -129,13 +127,12 @@ public class Test1 {&#x2936;
         <p id="Example2-code">Example:</p>
         <source>
 // File ending with a new line
-public class Test {&#x2936;
+public class Example2 {&#x2936;
 &#x2936;
-}&#x2936; // ok
-Note: The comment // ok is a virtual, not actually present in the file
+}&#x2936;
 
 // File ending without a new line
-public class Test1 {&#x2936;
+class B {&#x2936;
 &#x2936;
 }&#x240d;&#x2936; // violation, expected line ending for file is LF(\n), but CRLF(\r\n) is detected
         </source>
@@ -153,14 +150,14 @@ public class Test1 {&#x2936;
         <p id="Example3-code">Example:</p>
         <source>
 // Any java file
-public class Test {&#x2936;
+public class Example3 {&#x2936;
 } // violation, file should end with a new line.
 
 // Any py file
 print(&quot;Hello World&quot;) // violation, file should end with a new line.
 
 // Any txt file
-This is a sample text file. // ok, this file is not specified in the config.
+// This is a sample text file. // ok, this file is not specified in the config.
         </source>
       </subsection>
 
