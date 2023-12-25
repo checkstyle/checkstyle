@@ -221,7 +221,6 @@ class TagParser {
      */
     private static Point skipHtmlComment(String[] text, Point fromPoint) {
         Point toPoint = fromPoint;
-        toPoint = findChar(text, '>', toPoint);
         while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
                 .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
             toPoint = findChar(text, '>', getNextPoint(text, toPoint));
