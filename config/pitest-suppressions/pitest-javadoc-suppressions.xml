@@ -292,54 +292,9 @@
     <sourceFile>TagParser.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
     <mutatedMethod>getTagId</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Character::isJavaIdentifierStart</description>
-    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>getTagId</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::charAt</description>
-    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>getTagId</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>getTagId</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/lang/String::trim with receiver</description>
     <lineContent>text = text.substring(column).trim();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>parseTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>if (incompleteTag) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
@@ -349,23 +304,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
     <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, getNextPoint(text, toPoint));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
-    <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, toPoint);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
-    <description>removed conditional - replaced comparison check with false</description>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
   </mutation>
 </suppressedMutations>

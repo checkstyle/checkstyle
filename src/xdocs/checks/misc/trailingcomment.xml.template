@@ -73,30 +73,10 @@ d = e / f;        // Another comment for this line
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify pattern for strings allowed before the comment.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[\s});]*$"</code></td>
-              <td>3.4</td>
-            </tr>
-            <tr>
-              <td>legalComment</td>
-              <td>Define pattern for text allowed in trailing comments. This
-                  pattern will not be applied to multiline comments.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>4.2</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

@@ -35,8 +35,7 @@
             </tr>
             <tr>
               <td>excludedClasses</td>
-              <td>Specify pattern for qualified names of classes which are allowed
-              to have a <code>main</code> method.</td>
+              <td>Specify pattern for qualified names of classes which are allowed to have a <code>main</code> method.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot;</code></td>
               <td>3.2</td>

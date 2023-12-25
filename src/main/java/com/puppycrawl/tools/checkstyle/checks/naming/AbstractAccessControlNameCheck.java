@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -113,7 +113,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to public members.
+     * Setter to control if check should apply to public members.
      *
      * @param applyTo new value of the property.
      */
@@ -122,7 +122,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to protected members.
+     * Setter to control if check should apply to protected members.
      *
      * @param applyTo new value of the property.
      */
@@ -131,7 +131,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to package-private members.
+     * Setter to control if check should apply to package-private members.
      *
      * @param applyTo new value of the property.
      */
@@ -140,7 +140,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to private members.
+     * Setter to control if check should apply to private members.
      *
      * @param applyTo new value of the property.
      */

@@ -24,13 +24,9 @@
             </tr>
             <tr>
               <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td>
-                <a href="../../property_types.html#Pattern">Pattern</a>
-              </td>
-              <td>
-                <code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code>
-              </td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>8.40</td>
             </tr>
           </table>

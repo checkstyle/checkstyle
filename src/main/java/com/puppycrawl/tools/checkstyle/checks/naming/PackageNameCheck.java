@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Control the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z]+(\.[a-zA-Z_]\w*)*$"}.
  * </li>
@@ -71,14 +71,14 @@ public class PackageNameCheck
      */
     public static final String MSG_KEY = "name.invalidPattern";
 
-    /** Specifies valid identifiers. */
+    /** Control the pattern to match valid identifiers. */
     // Uppercase letters seem rather uncommon, but they're allowed in
     // https://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
     private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_]\\w*)*$");
 
     /**
-     * Setter to specifies valid identifiers.
+     * Setter to control the pattern to match valid identifiers.
      *
      * @param pattern the new pattern
      * @since 3.0
