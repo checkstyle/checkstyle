@@ -1,0 +1,10 @@
+/*xml
+<module name="Checker">
+  <module name="NewlineAtEndOfFile">
+    <property name="fileExtensions" value="java, xml, py"/>
+  </module>
+</module>
+*/
+// xdoc section -- start
+Sample txt file. // ok, this file is not specified in the config.
+// xdoc section -- end
