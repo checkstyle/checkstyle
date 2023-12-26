@@ -1,0 +1,9 @@
+/*xml
+<module name="Checker">
+  <module name="NewlineAtEndOfFile"/>
+</module>
+*/
+
+// xdoc section -- start
+Sample txt file. // violation, the file does not end with a new line.
+// xdoc section -- end

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,6 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:1 " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -43,7 +43,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20:1 " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "13:1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -52,9 +52,18 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:1 " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+            "14:1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
     }
 }
