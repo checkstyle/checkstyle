@@ -804,4 +804,11 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleCheck5.java"),
                 expected);
     }
+
+    @Test
+    public void testTagId() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(getPath("InputJavadocStyleTagId.java"), expected);
+    }
 }
