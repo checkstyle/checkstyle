@@ -8,13 +8,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 
-// xdoc section -- start
-// File ending with a new line
-public class Example2 {// ⤶
+public class Example2 { // ⤶
 // ⤶
-}// ⤶
-
-// File ending without a new line
-class B { // ⤶
-// ⤶
-} // ␍⤶ // violation, expected line ending for file is LF(\n), but CRLF(\r\n) is detected
+} // violation, file should end with a new line.
