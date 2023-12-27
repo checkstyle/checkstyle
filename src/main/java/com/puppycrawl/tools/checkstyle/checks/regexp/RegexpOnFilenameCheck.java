@@ -72,9 +72,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process. If this is
- * specified, then only files that match these types are examined with the other
- * patterns.
+ * Property {@code fileExtensions} - Specify the file type extension of files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.</li>
  * <li>
