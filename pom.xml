@@ -237,6 +237,19 @@
     <error-prone.version>2.24.0</error-prone.version>
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
+    <error-prone.configuration-args>
+      <!--
+      Error Prone Support configuration:
+      -->
+      -Xep:JUnitClassModifiers:OFF
+      -Xep:JUnitMethodDeclaration:OFF
+      <!-- Check is not configurable yet. -->
+      -Xep:LexicographicalAnnotationListing:OFF
+      <!-- Too many false positives. -->
+      -Xep:MethodReferenceUsage:OFF
+      -Xep:JUnitValueSource:OFF
+      -Xep:StaticImport:OFF
+    </error-prone.configuration-args>
   </properties>
 
   <dependencies>
@@ -2380,7 +2393,7 @@
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
-                      -Xplugin:ErrorProne
+                      -Xplugin:ErrorProne ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2438,7 +2451,8 @@
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
                       -Xplugin:ErrorProne \
-                      -XepExcludedPaths:.*[\\/]resources[\\/].*
+                      -XepExcludedPaths:.*[\\/]resources[\\/].* \
+                      ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
