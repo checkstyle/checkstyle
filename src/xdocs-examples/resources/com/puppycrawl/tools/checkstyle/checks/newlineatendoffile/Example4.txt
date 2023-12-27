@@ -1,0 +1,7 @@
+/*xml
+<module name="Checker">
+  <module name="NewlineAtEndOfFile"/>
+</module>
+*/
+
+Sample txt file. // violation, the file does not end with a new line.
