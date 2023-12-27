@@ -35,6 +35,7 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
@@ -1811,14 +1812,15 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitStringTemplate(JavaLanguageParser.StringTemplateContext ctx) {
         final DetailAstImpl begin = buildStringTemplateBeginning(ctx);
 
-        Optional.ofNullable(ctx.expr())
-                .map(this::visit)
-                .ifPresent(expr -> {
-                    final DetailAstImpl imaginaryExpr =
-                            createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-                    imaginaryExpr.addChild(expr);
-                    begin.addChild(imaginaryExpr);
-                });
+        final Optional<DetailAST> startExpression = Optional.ofNullable(ctx.expr())
+                .map(this::visit);
+
+        if (startExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(startExpression.orElseThrow());
+            begin.addChild(imaginaryExpr);
+        }
 
         ctx.stringTemplateMiddle().stream()
                 .map(this::buildStringTemplateMiddle)
@@ -1912,14 +1914,15 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         );
         content.addNextSibling(embeddedBegin);
 
-        Optional.ofNullable(middleContext.expr())
-                .map(this::visit)
-                .ifPresent(expr -> {
-                    final DetailAstImpl imaginaryExpr =
-                            createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-                    imaginaryExpr.addChild(expr);
-                    embeddedExpressionEnd.addNextSibling(imaginaryExpr);
-                });
+        final Optional<DetailAST> embeddedExpression = Optional.ofNullable(middleContext.expr())
+                .map(this::visit);
+
+        if (embeddedExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(embeddedExpression.orElseThrow());
+            embeddedExpressionEnd.addNextSibling(imaginaryExpr);
+        }
 
         return embeddedExpressionEnd;
     }
