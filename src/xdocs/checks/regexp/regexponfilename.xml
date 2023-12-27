@@ -61,11 +61,10 @@
             </tr>
             <tr>
               <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process. If this is specified, then
-              only files that match these types are examined with the other patterns.</td>
+              <td>Specify the file type extension of files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
-              <td>6.15</td>
+              <td>5.0</td>
             </tr>
             <tr>
               <td>fileNamePattern</td>
@@ -90,8 +89,7 @@
             </tr>
             <tr>
               <td>match</td>
-              <td>Control whether to look for a match or mismatch on the file name, if the
-              fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
+              <td>Control whether to look for a match or mismatch on the file name, if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.15</td>

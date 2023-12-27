@@ -347,18 +347,6 @@
          files="src[\\/]xdocs[\\/]checks[\\/]naming[\\/]recordcomponentname.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]naming[\\/]recordtypeparametername.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexp.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexpmultiline.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexponfilename.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexpsingleline.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]regexp[\\/]regexpsinglelinejava.xml.template"/>
-  <suppress id="propertiesMacroMustExist"
-         files="src[\\/]xdocs[\\/]checks[\\/]sizes[\\/]anoninnerlength.xml.template"/>
 
 
   <!-- no properties by design -->
