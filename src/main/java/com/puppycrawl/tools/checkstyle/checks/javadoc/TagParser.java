@@ -97,7 +97,7 @@ class TagParser {
      */
     private void parseTags(String[] text, int lineNo) {
         final int nLines = text.length;
-        Point position = findChar(text, '<', new Point(0, 0));
+        Point position = new Point(0, 0);
         while (position.getLineNo() < nLines) {
             // if this is html comment then skip it
             if (isCommentTag(text, position)) {
@@ -221,7 +221,6 @@ class TagParser {
      */
     private static Point skipHtmlComment(String[] text, Point fromPoint) {
         Point toPoint = fromPoint;
-        toPoint = findChar(text, '>', toPoint);
         while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
                 .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
             toPoint = findChar(text, '>', getNextPoint(text, toPoint));
