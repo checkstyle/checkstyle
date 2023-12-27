@@ -238,16 +238,12 @@
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
-      <!--
-      Error Prone Support configuration:
-      -->
+      <!-- Disabled rules as we do not see value in them. -->
       -Xep:JUnitClassModifiers:OFF
       -Xep:JUnitMethodDeclaration:OFF
-      <!-- Check is not configurable yet. -->
-      -Xep:LexicographicalAnnotationListing:OFF
-      <!-- Too many false positives. -->
-      -Xep:MethodReferenceUsage:OFF
       -Xep:JUnitValueSource:OFF
+      -Xep:LexicographicalAnnotationListing:OFF
+      -Xep:MethodReferenceUsage:OFF
       -Xep:StaticImport:OFF
     </error-prone.configuration-args>
   </properties>
@@ -2465,7 +2461,7 @@
                       <groupId>tech.picnic.error-prone-support</groupId>
                       <artifactId>error-prone-contrib</artifactId>
                       <version>${error-prone-support.version}</version>
-                    </path>b
+                    </path>
                   </annotationProcessorPaths>
                 </configuration>
               </execution>
