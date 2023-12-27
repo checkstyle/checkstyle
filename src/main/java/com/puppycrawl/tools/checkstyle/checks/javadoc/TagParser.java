@@ -127,14 +127,7 @@ class TagParser {
         final Point endTag = findChar(text, '>', position);
         final boolean incompleteTag = endTag.getLineNo() >= nLines;
         // get tag id (one word)
-        final String tagId;
-
-        if (incompleteTag) {
-            tagId = "";
-        }
-        else {
-            tagId = getTagId(text, position);
-        }
+        final String tagId = getTagId(text, position);
         // is this closed tag
         final boolean closedTag =
                 endTag.getLineNo() < nLines
