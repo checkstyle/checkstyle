@@ -60,8 +60,7 @@
             </tr>
             <tr>
               <td>message</td>
-              <td>Specify the message which is used to notify about violations,
-              if empty then default (hard-coded) message is used.</td>
+              <td>Specify the message which is used to notify about violations, if empty then default (hard-coded) message is used.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>6.0</td>
