@@ -337,35 +337,8 @@
     <sourceFile>TagParser.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
     <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
-    <description>removed conditional - replaced equality check with false</description>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
     <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
     <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, getNextPoint(text, toPoint));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
-    <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, toPoint);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TagParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
-    <mutatedMethod>skipHtmlComment</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
-    <description>removed conditional - replaced comparison check with false</description>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
   </mutation>
 </suppressedMutations>
