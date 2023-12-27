@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -162,7 +161,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testAcceptableTokensMakeSense() {
-        final int expectedTokenTypesTotalNumber = 188;
+        final int expectedTokenTypesTotalNumber = 194;
         assertWithMessage("Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.")
             .that(TokenUtil.getTokenTypesTotalNumber())
@@ -170,7 +169,7 @@ public class IllegalTokenTextCheckTest
 
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         final int[] allowedTokens = check.getAcceptableTokens();
-        final List<Integer> tokenTypesWithMutableText = Arrays.asList(
+        final List<Integer> tokenTypesWithMutableText = List.of(
             TokenTypes.NUM_DOUBLE,
             TokenTypes.NUM_FLOAT,
             TokenTypes.NUM_INT,
@@ -179,7 +178,8 @@ public class IllegalTokenTextCheckTest
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
-            TokenTypes.TEXT_BLOCK_CONTENT
+            TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.STRING_TEMPLATE_CONTENT
         );
         for (int tokenType : allowedTokens) {
             assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
