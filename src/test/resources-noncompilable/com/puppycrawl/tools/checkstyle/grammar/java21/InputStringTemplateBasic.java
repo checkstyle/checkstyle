@@ -61,5 +61,6 @@ public class InputStringTemplateBasic {
         list.get(0)."";
         list.get(0)."\{  }";
         list.get(0). "x\{ x }x";
+        list.get(0). ".\{ x }.\{ y }.\{ x }.\{}.\{}";
     }
 }
