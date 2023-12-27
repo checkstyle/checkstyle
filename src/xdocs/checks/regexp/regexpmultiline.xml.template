@@ -22,65 +22,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify the format of the regular expression to match.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"$."</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>ignoreCase</td>
-              <td>Control whether to ignore case when searching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>matchAcrossLines</td>
-              <td>Control whether to match expressions across multiple lines.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>8.25</td>
-            </tr>
-            <tr>
-              <td>maximum</td>
-              <td>Specify the maximum number of matches required in each file.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>message</td>
-              <td>Specify the message which is used to notify about violations,
-              if empty then default (hard-coded) message is used.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>minimum</td>
-              <td>Specify the minimum number of matches required in each file.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>5.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

@@ -46,9 +46,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file type extension of files to process. If this is
- specified, then only files that match these types are examined with the other
- patterns.</description>
+               <description>Specify the file type extension of files to process.</description>
             </property>
             <property name="fileNamePattern" type="java.util.regex.Pattern">
                <description>Specify the regular expression to match the file name against.</description>
