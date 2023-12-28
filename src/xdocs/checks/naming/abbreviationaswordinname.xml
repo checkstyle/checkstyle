@@ -52,9 +52,7 @@
             </tr>
             <tr>
               <td>allowedAbbreviationLength</td>
-              <td>Indicate the number of consecutive capital letters allowed in targeted
-               identifiers (abbreviations in the classes, interfaces, variables and methods
-               names, ... ).</td>
+              <td>Indicate the number of consecutive capital letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
@@ -75,8 +73,7 @@
             </tr>
             <tr>
               <td>ignoreOverriddenMethods</td>
-              <td>Allow to ignore methods tagged with <code>@Override</code> annotation
-              (that usually mean inherited name).</td>
+              <td>Allow to ignore methods tagged with <code>@Override</code> annotation (that usually mean inherited name).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
@@ -90,8 +87,7 @@
             </tr>
             <tr>
               <td>ignoreStaticFinal</td>
-              <td>Allow to skip variables with both <code>static</code>
-                and <code>final</code> modifiers.</td>
+              <td>Allow to skip variables with both <code>static</code> and <code>final</code> modifiers.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.32</td>
@@ -99,57 +95,56 @@
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
+                    CLASS_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
+                    INTERFACE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
+                    ENUM_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                  ANNOTATION_DEF</a>
+                    ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>
+                    PARAMETER_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>
+                    VARIABLE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF</a>
+                    ENUM_CONSTANT_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
-                  PATTERN_VARIABLE_DEF</a>
+                    PATTERN_VARIABLE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
+                    RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
-                  RECORD_COMPONENT_DEF</a>
+                    RECORD_COMPONENT_DEF</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
+                    CLASS_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
+                    INTERFACE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
+                    ENUM_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                  ANNOTATION_DEF</a>
+                    ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>
+                    PARAMETER_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>
+                    VARIABLE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
-                  PATTERN_VARIABLE_DEF</a>
+                    PATTERN_VARIABLE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
-                  RECORD_DEF</a>
+                    RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
-                  RECORD_COMPONENT_DEF</a>
+                    RECORD_COMPONENT_DEF</a>
                   .
               </td>
               <td>5.8</td>

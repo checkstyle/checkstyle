@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code format} - Set the format for the specified regular expression.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[A-Z][a-zA-Z0-9]*$"}.
  * </li>
