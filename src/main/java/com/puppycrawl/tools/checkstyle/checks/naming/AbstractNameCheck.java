@@ -63,7 +63,7 @@ public abstract class AbstractNameCheck
     protected abstract boolean mustCheckName(DetailAST ast);
 
     /**
-     * Set the format for the specified regular expression.
+     * Sets the pattern to match valid identifiers.
      *
      * @param pattern the new pattern
      */

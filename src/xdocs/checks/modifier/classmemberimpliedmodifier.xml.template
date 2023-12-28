@@ -41,42 +41,10 @@ public final class Person {
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticOnNestedEnum</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on nested enums in classes and records.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.16</td>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticOnNestedInterface</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on nested interfaces in classes and records.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.16</td>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticOnNestedRecord</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on nested records in classes and records.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.36</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ClassMemberImpliedModifierCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

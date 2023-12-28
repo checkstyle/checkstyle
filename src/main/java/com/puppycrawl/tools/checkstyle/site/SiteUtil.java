@@ -255,7 +255,10 @@ public final class SiteUtil {
         Map.entry("TypeNameCheck.format", VERSION_3_0),
         Map.entry("RegexpMultilineCheck.fileExtensions", VERSION_5_0),
         Map.entry("RegexpOnFilenameCheck.fileExtensions", "6.15"),
-        Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0)
+        Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0),
+        Map.entry("ClassTypeParameterNameCheck.format", VERSION_5_0),
+        Map.entry("CatchParameterNameCheck.format", "6.14"),
+        Map.entry("TypeNameCheck.format", VERSION_3_0)
     );
 
     /** Map of all superclasses properties and their javadocs. */
