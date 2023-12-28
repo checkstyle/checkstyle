@@ -29,24 +29,12 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]FirstChar2.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/13830 -->
+<!-- until https://github.com/checkstyle/checkstyle/issues/14195 (text block templates) -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]StringTemplateTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplate.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]micro[\\/]org[\\/]openjdk[\\/]bench[\\/]java[\\/]lang[\\/]StringTemplateFMT.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]Basic.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]FormatterBuilder.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]template[\\/]T8312814.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/13987 -->
