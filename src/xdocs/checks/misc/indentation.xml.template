@@ -49,70 +49,10 @@ if ((condition1 &amp;&amp; condition2)
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>arrayInitIndent</td>
-              <td>Specify how far an array initialization should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>basicOffset</td>
-              <td>
-                Specify how far new indentation level should be indented when on the next line.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>braceAdjustment</td>
-              <td>Specify how far a braces should be indented when on the next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>caseIndent</td>
-              <td>Specify how far a case label should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>forceStrictCondition</td>
-              <td>Force strict indent level in line wrapping case. If value is true, line wrap
-                  indent have to be same as lineWrappingIndentation parameter. If value is false,
-                  line wrap indent could be bigger on any value user would like.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>6.3</td>
-            </tr>
-            <tr>
-              <td>lineWrappingIndentation</td>
-              <td>
-                Specify how far continuation line should be indented when line-wrapping is present.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>5.9</td>
-            </tr>
-            <tr>
-              <td>throwsIndent</td>
-              <td>Specify how far a throws clause should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>4</code></td>
-              <td>5.7</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

@@ -36,9 +36,7 @@
             </tr>
             <tr>
               <td>javaStyle</td>
-              <td>
-                Control whether to enforce Java style (true) or C style (false).
-              </td>
+              <td>Control whether to enforce Java style (true) or C style (false).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.1</td>
