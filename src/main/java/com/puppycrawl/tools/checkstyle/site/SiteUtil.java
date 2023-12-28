@@ -252,6 +252,8 @@ public final class SiteUtil {
         Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
+        Map.entry("ClassTypeParameterNameCheck.format", VERSION_5_0),
+        Map.entry("CatchParameterNameCheck.format", "6.14"),
         Map.entry("TypeNameCheck.format", VERSION_3_0)
     );
 
