@@ -42,55 +42,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>classMaximum</td>
-              <td>
-                Specify the maximum allowed number of non commenting lines in a
-                class.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>1500</code></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
-              <td>fileMaximum</td>
-              <td>
-                Specify the maximum allowed number of non commenting lines in a
-                file including all top level and nested classes.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>2000</code></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
-              <td>methodMaximum</td>
-              <td>
-                Specify the maximum allowed number of non commenting lines in a
-                method.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>50</code></td>
-              <td>3.5</td>
-            </tr>
-            <tr>
-              <td>recordMaximum</td>
-              <td>
-                  Specify the maximum allowed number of non commenting lines in a
-                  record.
-              </td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>150</code></td>
-              <td>8.36</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/JavaNCSSCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
