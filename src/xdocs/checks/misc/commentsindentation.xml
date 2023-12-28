@@ -17,6 +17,7 @@
           here</a>
         </p>
       </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -30,19 +31,18 @@
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
+                    SINGLE_LINE_COMMENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
+                    BLOCK_COMMENT_BEGIN</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
+                    SINGLE_LINE_COMMENT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
+                    BLOCK_COMMENT_BEGIN</a>
                   .
               </td>
               <td>6.10</td>
