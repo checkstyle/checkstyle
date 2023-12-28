@@ -237,6 +237,20 @@
     <error-prone.version>2.24.0</error-prone.version>
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
+    <error-prone.configuration-args>
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
+      -Xep:JUnitClassModifiers:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
+      -Xep:JUnitMethodDeclaration:OFF
+      <!-- We prefer different style of writing tests. -->
+      -Xep:JUnitValueSource:OFF
+      <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
+      -Xep:LexicographicalAnnotationListing:OFF
+      <!-- This check is not finalized. -->
+      -Xep:MethodReferenceUsage:OFF
+      <!-- We prefer to qualify all static method calls with class name. -->
+      -Xep:StaticImport:OFF
+    </error-prone.configuration-args>
   </properties>
 
   <dependencies>
@@ -2380,7 +2394,7 @@
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
-                      -Xplugin:ErrorProne
+                      -Xplugin:ErrorProne ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2438,7 +2452,8 @@
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
                       -Xplugin:ErrorProne \
-                      -XepExcludedPaths:.*[\\/]resources[\\/].*
+                      -XepExcludedPaths:.*[\\/]resources[\\/].* \
+                      ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2451,7 +2466,7 @@
                       <groupId>tech.picnic.error-prone-support</groupId>
                       <artifactId>error-prone-contrib</artifactId>
                       <version>${error-prone-support.version}</version>
-                    </path>b
+                    </path>
                   </annotationProcessorPaths>
                 </configuration>
               </execution>
