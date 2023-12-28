@@ -25,7 +25,7 @@
             <property default-value="^[A-Z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Set the format for the specified regular expression.</description>
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
