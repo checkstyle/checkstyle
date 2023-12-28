@@ -11,7 +11,7 @@
             <property default-value="^[A-Z]$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+               <description>Set the format for the specified regular expression.</description>
             </property>
          </properties>
          <message-keys>

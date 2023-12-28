@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Set the format for the specified regular expression.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"}.
  * </li>
