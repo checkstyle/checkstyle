@@ -127,6 +127,15 @@
   </mutation>
 
   <mutation unstable="false">
+    <sourceFile>LineWrappingHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler</mutatedClass>
+    <mutatedMethod>isPreviousSiblingAnnotation</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler::isPreviousSiblingAnnotation</description>
+    <lineContent>return parentNode.getPreviousSibling() != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>MethodDefHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
     <mutatedMethod>getMethodDefLineStart</mutatedMethod>
