@@ -182,7 +182,7 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = true;
                 break;
             case TokenTypes.LITERAL_BREAK:
-                terminated = useBreak;
+                terminated = useBreak || isLabeledBreakTerminatingSwitch(ast);
                 break;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated = useContinue;
@@ -211,6 +211,29 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = false;
         }
         return terminated;
+    }
+
+    private boolean isLabeledBreakTerminatingSwitch(final DetailAST breakAst) {
+        final DetailAST literalBreakLabel = breakAst.findFirstToken(TokenTypes.IDENT);
+
+        if (literalBreakLabel == null) {
+            return false;
+        }
+            DetailAST ancestor = breakAst.getParent();
+             while (ancestor != null)  {
+
+            if (ancestor.getType() == TokenTypes.LITERAL_SWITCH) {
+
+                DetailAST switchLabelOrStatement = ancestor.getPreviousSibling();
+
+                if (switchLabelOrStatement != null) {
+                    return true;
+                }
+            }
+            ancestor = ancestor.getParent();
+        }
+
+        return false;
     }
 
     /**
