@@ -365,4 +365,15 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getPath("InputFallThrough8.java"),
                 expected);
     }
+
+    @Test
+    public void testLabeledBreak() throws Exception {
+        final String[] expected = {
+
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughLabeledBreak.java"),
+                expected);
+    }
+
 }
