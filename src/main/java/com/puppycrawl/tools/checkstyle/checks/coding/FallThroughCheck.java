@@ -182,8 +182,12 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = true;
                 break;
             case TokenTypes.LITERAL_BREAK:
-                terminated = useBreak;
-                break;
+                // Check if it's a labeled break that matches an outer switch label
+                if (isLabeledBreakTerminatingSwitch(ast)) {
+                    return true;
+                }
+                // Handle unlabeled breaks as normal
+                return useBreak;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated = useContinue;
                 break;
@@ -211,6 +215,27 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = false;
         }
         return terminated;
+    }
+
+    private boolean isLabeledBreakTerminatingSwitch(final DetailAST breakAst) {
+        final DetailAST literalBreak = breakAst.getFirstChild();
+        if (literalBreak != null && literalBreak.getType() == TokenTypes.IDENT) {
+            // Check if the label of the break matches any outer switch label
+            DetailAST parent = breakAst.getParent();
+            while (parent != null) {
+                if (parent.getType() == TokenTypes.LITERAL_SWITCH) {
+                    final DetailAST switchLabel = parent.getPreviousSibling();
+                    if (switchLabel != null && switchLabel.getType() == TokenTypes.IDENT &&
+                            switchLabel.getText().equals(literalBreak.getText())) {
+                        // The break label matches the switch label, so it terminates the switch
+                        return true;
+                    }
+                }
+                parent = parent.getParent();
+            }
+        }
+        // It is a normal break if it is not labeled or no matching label found in outer switch statements
+        return false;
     }
 
     /**
