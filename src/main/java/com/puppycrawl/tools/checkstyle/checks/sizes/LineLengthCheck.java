@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </ul>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
