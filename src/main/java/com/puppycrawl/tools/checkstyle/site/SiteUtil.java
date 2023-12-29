@@ -235,6 +235,7 @@ public final class SiteUtil {
         Map.entry("ClassFanOutComplexityCheck.max", VERSION_3_4),
         Map.entry("NonEmptyAtclauseDescriptionCheck.javadocTokens", "7.3"),
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
+        Map.entry("NewlineAtEndOfFileCheck.fileExtensions", "3.1"),
         Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
         // until https://github.com/checkstyle/checkstyle/issues/14052

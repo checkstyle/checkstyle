@@ -44,23 +44,22 @@
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                  LITERAL_CATCH</a>
+                    LITERAL_CATCH</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#FOR_EACH_CLAUSE">
-                  FOR_EACH_CLAUSE</a>
+                    FOR_EACH_CLAUSE</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                   .
               </td>
               <td>3.0</td>

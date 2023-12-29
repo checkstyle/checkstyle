@@ -24,43 +24,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowByTailComment</td>
-              <td>Allow use escapes if trail comment is present.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>allowEscapesForControlCharacters</td>
-              <td>Allow use escapes for non-printable, control characters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>allowIfAllCharactersEscaped</td>
-              <td>Allow if all characters in literal are escaped.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>allowNonPrintableEscapes</td>
-              <td>Allow use escapes for non-printable, whitespace characters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
