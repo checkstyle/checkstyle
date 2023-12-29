@@ -143,10 +143,21 @@ public final class PropertyCacheFile {
      */
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
-        final Path directory = path.getParent();
+        Path directory = path.getParent();
+
         if (directory != null) {
+            if (Files.isSymbolicLink(directory)) {
+                directory = directory.toRealPath();
+            }
+
+            if (!Files.isDirectory(directory)) {
+                throw new IOException(
+                        "Resolved path " + directory + " is not a directory.");
+            }
+
             Files.createDirectories(directory);
         }
+
         try (OutputStream out = Files.newOutputStream(path)) {
             details.store(out, null);
         }
