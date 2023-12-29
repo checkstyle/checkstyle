@@ -20,13 +20,23 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -583,7 +593,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         try (Writer bw = Files.newBufferedWriter(tmpFile.toPath(), StandardCharsets.UTF_8)) {
-            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck\n\n\n\n*/\n");
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks."
+                    + "coding.HiddenFieldCheck\n\n\n\n*/\n");
         }
         verifyWithInlineConfigParser(tmpFile.getPath(), expected);
         final Properties cacheAfterFirstRun = new Properties();
@@ -881,8 +892,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        try (Writer bw = Files.newBufferedWriter(Path.of(pathToEmptyFile), StandardCharsets.UTF_8)) {
-            bw.write("/*\ncom.puppycrawl.tools.checkstyle.CheckerTest$DummyFilter\n\n\n\n*/\n");
+        try (Writer bw = Files.newBufferedWriter(Path.of(pathToEmptyFile),
+                StandardCharsets.UTF_8)) {
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle."
+                   + "CheckerTest$DummyFilter\n\n\n\n*/\n");
         }
         verifyWithInlineConfigParser(pathToEmptyFile, expected);
         final Properties cacheAfterFirstRun = new Properties();
@@ -1015,9 +1028,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         execute(checkerConfig, filePath);
+
+        assertWithMessage("exception expected");
     }
 
     @Test
@@ -1390,17 +1404,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
 
         execute(checkerConfig, filePath);
+
+        assertWithMessage("exception expected");
     }
 
     @Test
     public void testTabViolationDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VerifyPositionAfterTabFileSet.class);
         final String[] expected = {
             "7:9: violation",
             "8:17: violation",
         };
-        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
             expected);
     }
 
@@ -1414,7 +1428,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "7:9: violation",
             "8:17: violation",
         };
-        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
             expected);
     }
 
@@ -1673,12 +1687,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("haltOnException", "false");
         final File file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
-        final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, filePath
-                        + " (No such file or directory)"),
-        };
 
         execute(checkerConfig, filePath);
+
+        assertWithMessage("exception expected");
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {

@@ -252,7 +252,10 @@ public final class SiteUtil {
         Map.entry("TypeNameCheck.applyToPrivate", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToProtected", VERSION_5_0),
         Map.entry("TypeNameCheck.applyToPublic", VERSION_5_0),
-        Map.entry("TypeNameCheck.format", VERSION_3_0)
+        Map.entry("TypeNameCheck.format", VERSION_3_0),
+        Map.entry("RegexpMultilineCheck.fileExtensions", VERSION_5_0),
+        Map.entry("RegexpOnFilenameCheck.fileExtensions", "6.15"),
+        Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0)
     );
 
     /** Map of all superclasses properties and their javadocs. */
