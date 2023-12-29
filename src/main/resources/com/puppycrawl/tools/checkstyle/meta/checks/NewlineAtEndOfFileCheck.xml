@@ -49,7 +49,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file type extension of files to process.</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
             <property default-value="lf_cr_crlf"
                       name="lineSeparator"

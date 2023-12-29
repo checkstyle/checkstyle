@@ -54,7 +54,7 @@ public abstract class AbstractFileSetCheck
     private MessageDispatcher messageDispatcher;
 
     /**
-     * Specify the file type extension of files to process.
+     * Specify the file extensions of the files to process.
      * Default is uninitialized as the value is inherited from the parent module.
      */
     private String[] fileExtensions;
@@ -163,7 +163,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the file type extension of files to process.
+     * Setter to specify the file extensions of the files to process.
      *
      * @param extensions the set of file extensions. A missing
      *         initial '.' character of an extension is automatically added.
