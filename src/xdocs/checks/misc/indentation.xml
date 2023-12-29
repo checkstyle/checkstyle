@@ -66,9 +66,7 @@ if ((condition1 &amp;&amp; condition2)
             </tr>
             <tr>
               <td>basicOffset</td>
-              <td>
-                Specify how far new indentation level should be indented when on the next line.
-              </td>
+              <td>Specify how far new indentation level should be indented when on the next line.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>3.1</td>
@@ -89,18 +87,14 @@ if ((condition1 &amp;&amp; condition2)
             </tr>
             <tr>
               <td>forceStrictCondition</td>
-              <td>Force strict indent level in line wrapping case. If value is true, line wrap
-                  indent have to be same as lineWrappingIndentation parameter. If value is false,
-                  line wrap indent could be bigger on any value user would like.</td>
+              <td>Force strict indent level in line wrapping case. If value is true, line wrap indent have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
             </tr>
             <tr>
               <td>lineWrappingIndentation</td>
-              <td>
-                Specify how far continuation line should be indented when line-wrapping is present.
-              </td>
+              <td>Specify how far continuation line should be indented when line-wrapping is present.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>5.9</td>
