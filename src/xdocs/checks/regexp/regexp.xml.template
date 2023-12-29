@@ -58,61 +58,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>duplicateLimit</td>
-              <td>Control whether to check for duplicates of a required pattern,
-                any negative value means no checking for duplicates, any positive
-                value is used as the maximum number of allowed duplicates, if the
-                limit is exceeded violations will be logged.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>0</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>errorLimit</td>
-              <td>Specify the maximum number of violations before the check will abort.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
-              <td><code>100</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify the pattern to match against.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>ignoreComments</td>
-              <td>Control whether to ignore matches found within comments.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>illegalPattern</td>
-              <td>Control whether the pattern is required or illegal.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>4.0</td>
-            </tr>
-            <tr>
-              <td>message</td>
-              <td>Specify message which is used to notify about violations,
-                if empty then the default (hard-coded) message is used.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>null</code></td>
-              <td>4.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
