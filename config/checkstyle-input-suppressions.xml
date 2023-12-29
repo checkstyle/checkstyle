@@ -5442,16 +5442,7 @@
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]parenpad[\\/]InputParenPadWithSpaceAndDisabledLambda.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForInvalidOption.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapWithEmoji.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]separatorwrap[\\/]InputSeparatorWrapWithEmoji.java"/>
+ 
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorCommentsWithEmoji.java"/>
   <suppress id="UnnecessaryOkComment"
