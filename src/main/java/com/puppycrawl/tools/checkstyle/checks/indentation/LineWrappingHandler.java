@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NavigableMap;
+import java.util.Set;
 import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -292,6 +293,79 @@ public class LineWrappingHandler {
     }
 
     /**
+     * Checks whether the given node is next to an access specifier.
+     *
+     * @param parentNode the wrapped annotation.
+     * @return true if this node appears after an access specifier.
+     */
+    private static boolean isPreviousToPreviousSiblingAccessModifier(final DetailAST parentNode) {
+        return parentNode.getPreviousSibling() != null
+            && parentNode.getPreviousSibling().getPreviousSibling() != null
+            && Set.of(TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_PRIVATE,
+                    TokenTypes.LITERAL_PROTECTED)
+                .contains(parentNode.getPreviousSibling().getPreviousSibling().getType());
+    }
+
+    /**
+     * Checks if the previous sibling is an annotation or not.
+     *
+     * @param parentNode the wrapped annotation node.
+     * @return true if the previous sibling is an annotation else returns false.
+     */
+    private static boolean isPreviousSiblingAnnotation(final DetailAST parentNode) {
+        return parentNode.getPreviousSibling() != null
+            && parentNode.getPreviousSibling().getType() == TokenTypes.ANNOTATION;
+    }
+
+    /**
+     * Checks whether current node is an annotation wrapped within a class definition.
+     *
+     * @param node It is the current node in consideration.
+     * @param parentNode It is the parent node of the current node.
+     * @return true if the current node is annotation
+     *     and present between access specifier and class keyword.
+     */
+    private static boolean isCurrentNodeAnnotationLineWrappedInClassDef(DetailAST node,
+            DetailAST parentNode) {
+        final boolean isPreviousSiblingAnnotation = isPreviousSiblingAnnotation(parentNode);
+        final boolean isPreviousToPreviousSiblingAccessModifier =
+            isPreviousToPreviousSiblingAccessModifier(parentNode);
+        final boolean isCurrentNodeAtNode = node.getType() == TokenTypes.AT;
+        return isCurrentNodeAtNode
+            && isPreviousSiblingAnnotation
+            && isPreviousToPreviousSiblingAccessModifier;
+    }
+
+    /**
+     * Checks Parent node is Modifier OR Annotation.
+     *
+     * @param parentNode is the parent to the current node.
+     * @return true if parent node is either modifier or annotation
+     *     else false.
+     */
+    private static boolean isParentNodeModifierOrAnnotation(DetailAST parentNode) {
+        return parentNode.getParent().getType() == TokenTypes.MODIFIERS
+            || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS;
+    }
+
+    /**
+     * Checks whether current node is close annotation and alone in line
+     * or current node is '@' node or not.
+     *
+     * @param node is the current node in consideration.
+     * @param lastAnnotationNode is last child of current atNode.
+     * @return true if current node is a close annotation and alone in line
+     *     or current node is '@' node or not else false.
+     */
+    private static boolean isCurrentNodeCloseAnnotationAloneInLineOrCurrentIsAtNode(
+        DetailAST node, DetailAST lastAnnotationNode) {
+        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
+        return node.getLineNo() == lastAnnotationLine
+                    && isEndOfScope(lastAnnotationNode, node)
+                || node.getType() == TokenTypes.AT;
+    }
+
+    /**
      * Checks line wrapping into annotations.
      *
      * @param atNode block tag node.
@@ -305,7 +379,6 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
@@ -314,15 +387,22 @@ public class LineWrappingHandler {
             final DetailAST parentNode = node.getParent();
             final boolean isArrayInitPresentInAncestors =
                 isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
-            final boolean isCurrentNodeCloseAnnotationAloneInLine =
-                node.getLineNo() == lastAnnotationLine
-                    && isEndOfScope(lastAnnotationNode, node);
-            if (!isArrayInitPresentInAncestors
-                    && (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
+            final boolean isCurrentNodeCloseAnnotAloneOrCurrentIsAt =
+                isCurrentNodeCloseAnnotationAloneInLineOrCurrentIsAtNode(node, lastAnnotationNode);
+            final boolean isParentNodeModifierOrAnnotation =
+                isParentNodeModifierOrAnnotation(parentNode);
+            final boolean isCurrentNodeAnnotationLineWrappedInClassDef =
+                isCurrentNodeAnnotationLineWrappedInClassDef(node, parentNode);
+
+            final boolean condition = !isArrayInitPresentInAncestors
+                && (isCurrentNodeCloseAnnotAloneOrCurrentIsAt
+                    && isParentNodeModifierOrAnnotation
+                    || TokenUtil.areOnSameLine(node, atNode));
+
+            if (condition && isCurrentNodeAnnotationLineWrappedInClassDef) {
+                logWarningMessage(node, currentIndent);
+            }
+            else if (condition) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {
