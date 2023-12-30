@@ -59,9 +59,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$DummyFilter",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$CheckWhichDoesNotRequireCommentNodes",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$CheckWhichRequiresCommentNodes"
+            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
     ));
 
     private final List<ModuleInputConfiguration> childrenModules;

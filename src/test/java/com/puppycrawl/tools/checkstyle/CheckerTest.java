@@ -1980,5 +1980,4 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
     }
-
 }
