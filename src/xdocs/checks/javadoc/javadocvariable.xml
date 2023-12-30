@@ -51,14 +51,12 @@
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF
-                </a>
+                    ENUM_CONSTANT_DEF</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF
-                </a>
+                    ENUM_CONSTANT_DEF</a>
                   .
               </td>
               <td>3.0</td>
