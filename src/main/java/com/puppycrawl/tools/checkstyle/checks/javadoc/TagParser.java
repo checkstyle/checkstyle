@@ -214,9 +214,27 @@ class TagParser {
      */
     private static Point skipHtmlComment(String[] text, Point fromPoint) {
         Point toPoint = fromPoint;
+
+        // Find next occurrence of '>'
+        String line = text[toPoint.getLineNo()];
+        int charIndex = line.indexOf('>', toPoint.getColumnNo());
+        if (charIndex != -1) {
+            toPoint = new Point(toPoint.getLineNo(), charIndex);
+        }
+
         while (toPoint.getLineNo() < text.length && !text[toPoint.getLineNo()]
                 .substring(0, toPoint.getColumnNo() + 1).endsWith("-->")) {
-            toPoint = findChar(text, '>', getNextPoint(text, toPoint));
+            line = text[toPoint.getLineNo()];
+            charIndex = line.indexOf('>', toPoint.getColumnNo());
+            if (charIndex != -1) {
+                toPoint = new Point(toPoint.getLineNo(), charIndex);
+            }
+            else {
+                // If '>' not found in current line, move to next line
+                if (toPoint.getLineNo() < text.length - 1) {
+                    toPoint = new Point(toPoint.getLineNo() + 1, 0);
+                }
+            }
         }
         return toPoint;
     }
