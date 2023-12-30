@@ -26,11 +26,8 @@
             </tr>
             <tr>
               <td>violateExecutionOnNonTightHtml</td>
-              <td>
-                Control when to print violations if the Javadoc being examined by this check
-                violates the tight html rules defined at
-                <a href="../../writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
-              </td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -40,28 +37,28 @@
               <td>javadoc tokens to check</td>
               <td>subset of javadoc tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                  PARAM_LITERAL</a>
+                    PARAM_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                  RETURN_LITERAL</a>
+                    RETURN_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                  THROWS_LITERAL</a>
+                    THROWS_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
-                  EXCEPTION_LITERAL</a>
+                    EXCEPTION_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                  DEPRECATED_LITERAL</a>
+                    DEPRECATED_LITERAL</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                  PARAM_LITERAL</a>
+                    PARAM_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                  RETURN_LITERAL</a>
+                    RETURN_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                  THROWS_LITERAL</a>
+                    THROWS_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
-                  EXCEPTION_LITERAL</a>
+                    EXCEPTION_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                  DEPRECATED_LITERAL</a>
+                    DEPRECATED_LITERAL</a>
                   .
               </td>
               <td>7.3</td>

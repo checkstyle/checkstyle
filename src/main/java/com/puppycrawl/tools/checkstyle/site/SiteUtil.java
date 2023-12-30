@@ -241,6 +241,7 @@ public final class SiteUtil {
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
+        Map.entry("RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml", "8.36"),
         Map.entry("ParenPadCheck.option", VERSION_3_0),
         Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
         Map.entry("FileLengthCheck.fileExtensions", VERSION_5_0),
