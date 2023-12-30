@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import static com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck.MSG_INVALID_PATTERN;
 
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
@@ -34,18 +34,20 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "21:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123", "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"),
+                "24:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab", "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"),
+                "28:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC", "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$")
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+                "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthException", "^[a-z][a-zA-Z0-9]+$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
