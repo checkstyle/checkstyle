@@ -17,34 +17,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>allowOneCharVarInForLoop</td>
-              <td>
-                Allow one character variable name in
-                <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
-                  initialization expressions</a> in FOR loop if one char variable name
-                  is prohibited by {@code format} regexp.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalVariableNameCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
