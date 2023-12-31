@@ -100,7 +100,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>.collect(Collectors.toMap(Function.identity(), properties::getProperty));</lineContent>
+    <lineContent>.collect(ImmutableMap.toImmutableMap(Function.identity(), properties::getProperty));</lineContent>
     <details>
       found   : @GuardedBy Properties
       required: @GuardSatisfied Properties

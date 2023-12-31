@@ -25,11 +25,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -46,7 +46,7 @@ public class XdocsPropertyTypeTest {
             .map(field -> field.getAnnotation(XdocsPropertyType.class))
             .filter(Objects::nonNull)
             .map(XdocsPropertyType::value)
-            .collect(Collectors.toSet());
+            .collect(ImmutableSet.toImmutableSet());
 
         assertWithMessage("All property types should be used")
             .that(propertyTypes)

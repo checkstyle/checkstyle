@@ -37,10 +37,10 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.xml.sax.InputSource;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -258,7 +258,7 @@ public final class InlineConfigParser {
         return lines.stream()
                 .skip(1)
                 .takeWhile(line -> !line.startsWith("*/"))
-                .collect(Collectors.toList());
+                .collect(ImmutableList.toImmutableList());
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,

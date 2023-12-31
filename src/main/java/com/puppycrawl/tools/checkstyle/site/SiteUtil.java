@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import static java.util.stream.Collectors.toCollection;
+
 import java.beans.PropertyDescriptor;
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +58,8 @@ import javax.annotation.Nullable;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -466,7 +470,7 @@ public final class SiteUtil {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(ImmutableSet.toImmutableSet());
         }
         catch (IOException ioException) {
             throw new MacroExecutionException("Failed to find xdocs templates", ioException);
@@ -527,7 +531,7 @@ public final class SiteUtil {
                     .filter(prop -> {
                         return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
                     })
-                    .collect(Collectors.toSet());
+                    .collect(toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
     }
@@ -1175,11 +1179,11 @@ public final class SiteUtil {
     public static List<Integer> getDifference(int[] tokens, int... subtractions) {
         final Set<Integer> subtractionsSet = Arrays.stream(subtractions)
                 .boxed()
-                .collect(Collectors.toSet());
+                .collect(ImmutableSet.toImmutableSet());
         return Arrays.stream(tokens)
                 .boxed()
                 .filter(token -> !subtractionsSet.contains(token))
-                .collect(Collectors.toList());
+                .collect(ImmutableList.toImmutableList());
     }
 
     /**

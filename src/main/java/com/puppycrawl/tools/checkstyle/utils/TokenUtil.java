@@ -32,6 +32,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -109,7 +110,7 @@ public final class TokenUtil {
      */
     public static Map<Integer, String> invertMap(Map<String, Integer> map) {
         return map.entrySet().stream()
-            .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+            .collect(ImmutableMap.toImmutableMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     /**

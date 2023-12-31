@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -107,7 +105,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .filter(method -> method.getName().contains("visit"))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(Collectors.toSet());
+                .collect(ImmutableSet.toImmutableSet());
 
         final ImmutableSet<String> filteredVisitMethodNames = Arrays.stream(visitMethods)
                 .filter(method -> method.getName().contains("visit"))
@@ -116,7 +114,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .filter(method -> !"visit".equals(method.getName()))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(toImmutableSet());
+                .collect(ImmutableSet.toImmutableSet());
 
         final String message = "Visit methods in 'JavaLanguageParserBaseVisitor' generated from "
                 + "production rules and labeled alternatives in 'JavaLanguageParser.g4' should "

@@ -25,7 +25,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -37,6 +36,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
  * XdocUtil.
@@ -65,7 +66,7 @@ public final class XdocUtil {
                             && (path.toString().endsWith(".xml")
                             || path.toString().endsWith(".xml.vm"));
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(ImmutableSet.toImmutableSet());
         }
     }
 
@@ -84,7 +85,7 @@ public final class XdocUtil {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(ImmutableSet.toImmutableSet());
         }
     }
 

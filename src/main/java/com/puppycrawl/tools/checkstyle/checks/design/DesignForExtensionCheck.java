@@ -26,8 +26,8 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -196,7 +196,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
-        "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
+        "BeforeClass", "AfterClass", }).collect(ImmutableSet.toImmutableSet());
 
     /**
      * Specify the comment text pattern which qualifies a method as designed for extension.
@@ -211,7 +211,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @since 7.2
      */
     public void setIgnoredAnnotations(String... ignoredAnnotations) {
-        this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(Collectors.toSet());
+        this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(ImmutableSet.toImmutableSet());
     }
 
     /**

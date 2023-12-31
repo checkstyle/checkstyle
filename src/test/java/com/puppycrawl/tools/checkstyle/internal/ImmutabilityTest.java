@@ -31,10 +31,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -219,7 +219,7 @@ public class ImmutabilityTest {
      */
     private static final Map<String, ModuleDetails> MODULE_DETAILS_MAP =
         XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
-            .collect(Collectors.toMap(ModuleDetails::getFullQualifiedName,
+            .collect(ImmutableMap.toImmutableMap(ModuleDetails::getFullQualifiedName,
                                       Function.identity()));
 
     /**

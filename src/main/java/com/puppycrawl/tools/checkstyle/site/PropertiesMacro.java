@@ -29,7 +29,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -39,6 +38,8 @@ import org.apache.maven.doxia.module.xdoc.XdocSink;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -66,7 +67,7 @@ public class PropertiesMacro extends AbstractMacro {
                 "IllegalType - memberModifiers",
                 "MagicNumber - constantWaiverParentToken",
                 "MultipleStringLiterals - ignoreOccurrenceContext",
-            }).collect(Collectors.toSet()));
+            }).collect(ImmutableSet.toImmutableSet()));
 
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
@@ -337,7 +338,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toList());
+                        .collect(ImmutableList.toImmutableList());
                 sink.text("subset of tokens");
 
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
@@ -350,7 +351,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toList());
+                    .collect(ImmutableList.toImmutableList());
             sink.text("subset of javadoc tokens");
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
@@ -492,7 +493,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toList());
+                        .collect(ImmutableList.toImmutableList());
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
             }
         }
@@ -503,7 +504,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toList());
+                    .collect(ImmutableList.toImmutableList());
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {

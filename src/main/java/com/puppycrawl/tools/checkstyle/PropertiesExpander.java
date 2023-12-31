@@ -22,7 +22,8 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.Map;
 import java.util.Properties;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+
+import com.google.common.collect.ImmutableMap;
 
 /**
  * Resolves external properties from an
@@ -48,7 +49,7 @@ public final class PropertiesExpander
         }
         values = properties.stringPropertyNames()
                 .stream()
-                .collect(Collectors.toMap(Function.identity(), properties::getProperty));
+                .collect(ImmutableMap.toImmutableMap(Function.identity(), properties::getProperty));
     }
 
     @Override

@@ -32,12 +32,13 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
@@ -222,7 +223,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         final List<File> targetFiles = files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toList());
+                .collect(ImmutableList.toImmutableList());
         processFiles(targetFiles);
 
         // Finish up
@@ -251,7 +252,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })
-            .collect(Collectors.toSet());
+            .collect(ImmutableSet.toImmutableSet());
     }
 
     /** Notify all listeners about the audit start. */

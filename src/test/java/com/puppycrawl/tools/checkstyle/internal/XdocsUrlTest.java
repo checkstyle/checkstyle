@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -41,6 +40,7 @@ import org.junit.jupiter.api.Test;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -76,7 +76,7 @@ public class XdocsUrlTest {
                     return AbstractCheck.class.isAssignableFrom(clazz)
                             || AbstractFileSetCheck.class.isAssignableFrom(clazz);
                 })
-                .collect(Collectors.toSet());
+                .collect(ImmutableSet.toImmutableSet());
         for (Class<?> check : treeWalkerOrFileSetCheckSet) {
             final String checkName = check.getSimpleName();
             if (!TREE_WORKER.equals(checkName)) {
