@@ -99,12 +99,12 @@ public class CliOptionsXdocsSyncTest {
         final Set<String> shortParamsMain = commandLine.getCommandSpec().options()
                         .stream()
                         .map(OptionSpec::shortestName)
-                        .collect(Collectors.toSet());
+                        .collect(Collectors.toUnmodifiableSet());
         final Set<String> longParamsMain = commandLine.getCommandSpec().options()
                         .stream()
                         .map(OptionSpec::longestName)
                         .filter(names -> names.length() != 2)
-                        .collect(Collectors.toSet());
+                        .collect(Collectors.toUnmodifiableSet());
 
         assertWithMessage("Short parameters in Main.java and cmdline"
                 + ".xml.vm should match")
@@ -140,7 +140,7 @@ public class CliOptionsXdocsSyncTest {
             result = XmlUtil.getChildrenElements(node)
                     .stream()
                     .map(Node::getTextContent)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toUnmodifiableSet());
         }
         return result;
     }

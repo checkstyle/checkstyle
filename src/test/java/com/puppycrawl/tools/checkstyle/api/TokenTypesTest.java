@@ -43,7 +43,7 @@ public class TokenTypesTest {
         final Set<String> expected = Arrays.stream(TokenUtil.getAllTokenIds())
             .mapToObj(TokenUtil::getTokenName)
             .filter(name -> name.charAt(0) != '$')
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
         final Set<String> actual = bundle.keySet();
         assertWithMessage("TokenTypes without description")
                 .that(actual)
@@ -56,7 +56,8 @@ public class TokenTypesTest {
             .mapToObj(TokenUtil::getTokenName)
             .filter(name -> name.charAt(0) != '$')
             .map(TokenUtil::getShortDescription)
-            .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(Collectors.toSet());
+            .filter(desc -> desc.charAt(desc.length() - 1) != '.')
+            .collect(Collectors.toUnmodifiableSet());
         assertWithMessage("Malformed TokenType descriptions")
                 .that(badDescriptions)
                 .isEqualTo(Collections.emptySet());
