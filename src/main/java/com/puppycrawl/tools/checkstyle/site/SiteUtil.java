@@ -466,7 +466,7 @@ public final class SiteUtil {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(Collectors.toUnmodifiableSet());
         }
         catch (IOException ioException) {
             throw new MacroExecutionException("Failed to find xdocs templates", ioException);
@@ -527,7 +527,7 @@ public final class SiteUtil {
                     .filter(prop -> {
                         return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
                     })
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
     }
@@ -1175,11 +1175,11 @@ public final class SiteUtil {
     public static List<Integer> getDifference(int[] tokens, int... subtractions) {
         final Set<Integer> subtractionsSet = Arrays.stream(subtractions)
                 .boxed()
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
         return Arrays.stream(tokens)
                 .boxed()
                 .filter(token -> !subtractionsSet.contains(token))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**
