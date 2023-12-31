@@ -319,7 +319,7 @@ public class CommitValidationTest {
         final Spliterator<RevCommit> spliterator =
             Spliterators.spliteratorUnknownSize(previousCommitsIterator, Spliterator.ORDERED);
         return StreamSupport.stream(spliterator, false).limit(PREVIOUS_COMMITS_TO_CHECK_COUNT)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(

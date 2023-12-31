@@ -76,7 +76,7 @@ public class XdocsUrlTest {
                     return AbstractCheck.class.isAssignableFrom(clazz)
                             || AbstractFileSetCheck.class.isAssignableFrom(clazz);
                 })
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
         for (Class<?> check : treeWalkerOrFileSetCheckSet) {
             final String checkName = check.getSimpleName();
             if (!TREE_WORKER.equals(checkName)) {

@@ -440,7 +440,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         checker.process(files);
         checker.destroy();
     }
@@ -461,10 +461,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);

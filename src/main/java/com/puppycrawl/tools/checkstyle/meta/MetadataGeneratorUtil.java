@@ -99,7 +99,7 @@ public final class MetadataGeneratorUtil {
                                     || fileName.endsWith("Check.java")
                                     || fileName.endsWith("Filter.java");
                         })
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toUnmodifiableList()));
             }
         }
 
