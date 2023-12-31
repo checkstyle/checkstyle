@@ -26,28 +26,28 @@
             </tr>
             <tr>
               <td>applyToPackage</td>
-              <td>Control whether we should apply the check to package-private members.</td>
+              <td>Controls whether to apply the check to package-private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
-              <td>Control whether we should apply the check to private members.</td>
+              <td>Controls whether to apply the check to private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
-              <td>Control whether we should apply the check to protected members.</td>
+              <td>Controls whether to apply the check to protected members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
-              <td>Control whether we should apply the check to public members.</td>
+              <td>Controls whether to apply the check to public members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>

@@ -19,52 +19,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>applyToPackage</td>
-              <td>
-                Controls whether to apply the check to package-private member.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>applyToPrivate</td>
-              <td>Controls whether to apply the check to private member.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>applyToProtected</td>
-              <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>applyToPublic</td>
-              <td>Controls whether to apply the check to public member.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.0</td>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ConstantNameCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

@@ -34,61 +34,45 @@
             </tr>
             <tr>
               <td>allowClassName</td>
-              <td>
-                Controls whether to allow a method name to have the same
-                name as the residing class name. This is not to be confused
-                with a constructor. An easy mistake is to place a return
-                type on a constructor declaration which turns it into a
-                method. For example:
-                <div class="wrapper">
-                  <pre>
-class MyClass {
-    public void MyClass() {} //this is a method
-    public MyClass() {} //this is a constructor
-}
-                  </pre>
-                </div>
-              </td>
+              <td>Controls whether to allow a method name to have the same name as the residing class name. This is not to be confused with a constructor.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPackage</td>
-              <td>
-                Controls whether to apply the check to package-private member.
-              </td>
+              <td>Controls whether to apply the check to package-private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
-              <td>Controls whether to apply the check to private member.</td>
+              <td>Controls whether to apply the check to private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
-              <td>Controls whether to apply the check to protected member.</td>
+              <td>Controls whether to apply the check to protected members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
-              <td>Controls whether to apply the check to public member.</td>
+              <td>Controls whether to apply the check to public members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>format</td>
-              <td>Specifies valid identifiers.</td>
+              <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
-              <td>3.0</td>
+              <td>5.1</td>
             </tr>
           </table>
         </div>

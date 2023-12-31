@@ -29,7 +29,7 @@
             <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
             <property default-value="false" name="ignoreOverridden" type="boolean">
                <description>Allows to skip methods with Override annotation from

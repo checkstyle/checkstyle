@@ -39,39 +39,32 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <ul>
  * <li>
  * Property {@code allowClassName} - Controls whether to allow a method name to have the same name
- * as the residing class name. This is not to be confused with a constructor. An easy mistake is
- * to place a return type on a constructor declaration which turns it into a method. For example:
- * <pre>
- * class MyClass {
- *     public void MyClass() {} //this is a method
- *     public MyClass() {} //this is a constructor
- * }
- * </pre>
+ * as the residing class name. This is not to be confused with a constructor.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Property {@code applyToPackage} - Controls whether to apply the check to package-private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Property {@code applyToPrivate} - Controls whether to apply the check to private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Property {@code applyToProtected} - Controls whether to apply the check to protected members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Property {@code applyToPublic} - Controls whether to apply the check to public members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
@@ -104,14 +97,7 @@ public class MethodNameCheck
 
     /**
      * Controls whether to allow a method name to have the same name as the residing class name.
-     * This is not to be confused with a constructor. An easy mistake is to place a return type on
-     * a constructor declaration which turns it into a method. For example:
-     * <pre>
-     * class MyClass {
-     *     public void MyClass() {} //this is a method
-     *     public MyClass() {} //this is a constructor
-     * }
-     * </pre>
+     * This is not to be confused with a constructor.
      */
     private boolean allowClassName;
 
@@ -165,14 +151,7 @@ public class MethodNameCheck
 
     /**
      * Setter to controls whether to allow a method name to have the same name as the residing
-     * class name. This is not to be confused with a constructor. An easy mistake is to place
-     * a return type on a constructor declaration which turns it into a method. For example:
-     * <pre>
-     * class MyClass {
-     *     public void MyClass() {} //this is a method
-     *     public MyClass() {} //this is a constructor
-     * }
-     * </pre>
+     * class name. This is not to be confused with a constructor.
      *
      * @param allowClassName true to allow false to disallow
      * @since 5.0
