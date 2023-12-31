@@ -17,53 +17,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
-            </tr>
-            <tr>
-              <td>ignoreNamePattern</td>
-              <td>Specify the regexp to define variable names to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>null</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-              <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF
-                </a>
-                  .
-              </td>
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                  ENUM_CONSTANT_DEF
-                </a>
-                  .
-              </td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
