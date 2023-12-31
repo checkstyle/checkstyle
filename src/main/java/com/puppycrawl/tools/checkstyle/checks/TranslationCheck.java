@@ -113,10 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code "^messages.*$"}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension to identify
- * translation files. Setting this property is typically only required if your
- * translation files are preprocessed and the original files do not have
- * the extension {@code .properties}
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li>
