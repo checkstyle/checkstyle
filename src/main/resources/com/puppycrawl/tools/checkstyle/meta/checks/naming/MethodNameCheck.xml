@@ -17,32 +17,26 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowClassName" type="boolean">
-               <description>Controls whether to allow a method name to have the same name
- as the residing class name. This is not to be confused with a constructor. An easy mistake is
- to place a return type on a constructor declaration which turns it into a method. For example:
- &lt;pre&gt;
- class MyClass {
-     public void MyClass() {} //this is a method
-     public MyClass() {} //this is a constructor
- }
- &lt;/pre&gt;</description>
+               <description>Control whether to allow a method name to have the same name
+ as the enclosing class name. Setting this property {@code false} helps to avoid
+ confusion between constructors and methods.</description>
             </property>
             <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Controls whether to apply the check to package-private member.</description>
+               <description>Control if check should apply to package-private members.</description>
             </property>
             <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Controls whether to apply the check to private member.</description>
+               <description>Control if check should apply to private members.</description>
             </property>
             <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Controls whether to apply the check to protected member.</description>
+               <description>Control if check should apply to protected members.</description>
             </property>
             <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Controls whether to apply the check to public member.</description>
+               <description>Control if check should apply to public members.</description>
             </property>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

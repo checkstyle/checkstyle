@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Control the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z]+(\.[a-zA-Z_]\w*)*$"}.
  * </li>
@@ -71,14 +71,14 @@ public class PackageNameCheck
      */
     public static final String MSG_KEY = "name.invalidPattern";
 
-    /** Specifies valid identifiers. */
+    /** Control the pattern to match valid identifiers. */
     // Uppercase letters seem rather uncommon, but they're allowed in
     // https://docs.oracle.com/javase/specs/
     //  second_edition/html/packages.doc.html#40169
     private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_]\\w*)*$");
 
     /**
-     * Setter to specifies valid identifiers.
+     * Setter to control the pattern to match valid identifiers.
      *
      * @param pattern the new pattern
      * @since 3.0
