@@ -392,7 +392,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**

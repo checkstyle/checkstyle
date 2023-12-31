@@ -587,7 +587,7 @@ public class CheckstyleAntTask extends Task {
         return Arrays.stream(fileNames)
             .map(name -> scanner.getBasedir() + File.separator + name)
             .map(File::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
