@@ -9,18 +9,18 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Control whether we should apply the check to package-private
+               <description>Control if check should apply to package-private
    members.</description>
             </property>
             <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Control whether we should apply the check to private members.</description>
+               <description>Control if check should apply to private members.</description>
             </property>
             <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Control whether we should apply the check to protected
+               <description>Control if check should apply to protected
    members.</description>
             </property>
             <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Control whether we should apply the check to public members.</description>
+               <description>Control if check should apply to public members.</description>
             </property>
             <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"

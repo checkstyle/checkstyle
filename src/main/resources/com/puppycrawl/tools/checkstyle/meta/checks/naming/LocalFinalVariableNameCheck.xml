@@ -13,7 +13,7 @@
             <property default-value="^[a-z][a-zA-Z0-9]*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
             <property default-value="VARIABLE_DEF,PARAMETER_DEF,RESOURCE"
                       name="tokens"
