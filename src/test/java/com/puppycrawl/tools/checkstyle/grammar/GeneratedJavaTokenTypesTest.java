@@ -740,7 +740,7 @@ public class GeneratedJavaTokenTypesTest {
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
 
         // Since the following tokens are not declared in the 'tokens' block,
         // they will always appear last in the list of symbolic names provided
