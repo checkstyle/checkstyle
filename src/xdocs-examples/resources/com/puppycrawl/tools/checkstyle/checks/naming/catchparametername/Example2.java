@@ -8,10 +8,16 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
+
+
+import java.io.IOException;
+
 // xdoc section -- start
-public class MyTest {
+public class Example2 {
   public void myTest() {
     try {
+      throw new IOException();
       // ...
     } catch (ArithmeticException ex) { // OK
       // ...
@@ -19,8 +25,8 @@ public class MyTest {
       // ...
     } catch (IOException thirdException) { // OK
       // ...
-    } catch (Exception FourthException) { // violation, the initial letter
-                                          // should be lowercase
+    } catch (Exception FourthException) {
+      // violation above, 'Name 'FourthException' must match pattern'
       // ...
     }
   }
