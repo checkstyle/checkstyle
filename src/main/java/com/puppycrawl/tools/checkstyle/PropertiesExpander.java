@@ -48,7 +48,8 @@ public final class PropertiesExpander
         }
         values = properties.stringPropertyNames()
                 .stream()
-                .collect(Collectors.toMap(Function.identity(), properties::getProperty));
+                .collect(
+                    Collectors.toUnmodifiableMap(Function.identity(), properties::getProperty));
     }
 
     @Override
