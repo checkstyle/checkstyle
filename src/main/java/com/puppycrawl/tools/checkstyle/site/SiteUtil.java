@@ -192,6 +192,11 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
+    private static final String VERSION_8_36 = "8.36";
+
+    /**
+     * Frequent version.
+     */
     private static final String VERSION_3_0 = "3.0";
 
     /**
@@ -207,12 +212,20 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
+    private static final String VERSION_5_1 = "5.1";
+
+    /**
+     * Frequent version.
+     */
     private static final String VERSION_3_4 = "3.4";
 
     /**
      * Map of properties whose since version is different from module version but
      * are not specified in code because they are inherited from their super class(es).
      * Until <a href="https://github.com/checkstyle/checkstyle/issues/14052">#14052</a>.
+     *
+     * @noinspection JavacQuirks
+     * @noinspectionreason JavacQuirks until #14052
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
         Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
@@ -242,7 +255,8 @@ public final class SiteUtil {
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry(
-            "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml", "8.36"),
+            "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
+            VERSION_8_36),
         Map.entry("ParenPadCheck.option", VERSION_3_0),
         Map.entry("TypecastParenPadCheck.option", VERSION_3_2),
         Map.entry("FileLengthCheck.fileExtensions", VERSION_5_0),
@@ -260,6 +274,31 @@ public final class SiteUtil {
         Map.entry("RegexpSinglelineCheck.fileExtensions", VERSION_5_0),
         Map.entry("ClassTypeParameterNameCheck.format", VERSION_5_0),
         Map.entry("CatchParameterNameCheck.format", "6.14"),
+        Map.entry("LambdaParameterNameCheck.format", "8.11"),
+        Map.entry("IllegalIdentifierNameCheck.format", VERSION_8_36),
+        Map.entry("ConstantNameCheck.format", VERSION_3_0),
+        Map.entry("ConstantNameCheck.applyToPackage", VERSION_5_0),
+        Map.entry("ConstantNameCheck.applyToPrivate", VERSION_5_0),
+        Map.entry("ConstantNameCheck.applyToProtected", VERSION_5_0),
+        Map.entry("ConstantNameCheck.applyToPublic", VERSION_5_0),
+        Map.entry("InterfaceTypeParameterNameCheck.format", "5.8"),
+        Map.entry("LocalFinalVariableNameCheck.format", VERSION_3_0),
+        Map.entry("LocalVariableNameCheck.format", VERSION_3_0),
+        Map.entry("MemberNameCheck.format", VERSION_3_0),
+        Map.entry("MemberNameCheck.applyToPackage", VERSION_3_4),
+        Map.entry("MemberNameCheck.applyToPrivate", VERSION_3_4),
+        Map.entry("MemberNameCheck.applyToProtected", VERSION_3_4),
+        Map.entry("MemberNameCheck.applyToPublic", VERSION_3_4),
+        Map.entry("MethodNameCheck.format", VERSION_3_0),
+        Map.entry("MethodNameCheck.applyToPackage", VERSION_5_1),
+        Map.entry("MethodNameCheck.applyToPrivate", VERSION_5_1),
+        Map.entry("MethodNameCheck.applyToProtected", VERSION_5_1),
+        Map.entry("MethodNameCheck.applyToPublic", VERSION_5_1),
+        Map.entry("MethodTypeParameterNameCheck.format", VERSION_5_0),
+        Map.entry("ParameterNameCheck.format", VERSION_3_0),
+        Map.entry("PatternVariableNameCheck.format", VERSION_8_36),
+        Map.entry("RecordTypeParameterNameCheck.format", VERSION_8_36),
+        Map.entry("RecordComponentNameCheck.format", "8.40"),
         Map.entry("TypeNameCheck.format", VERSION_3_0)
     );
 

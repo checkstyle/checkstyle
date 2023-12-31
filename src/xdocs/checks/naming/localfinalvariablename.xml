@@ -28,7 +28,7 @@
             </tr>
             <tr>
               <td>format</td>
-              <td>Specifies valid identifiers.</td>
+              <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>3.0</td>
@@ -36,8 +36,7 @@
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                     VARIABLE_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">

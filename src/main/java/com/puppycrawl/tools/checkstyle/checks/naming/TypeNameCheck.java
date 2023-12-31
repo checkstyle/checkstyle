@@ -28,24 +28,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code applyToPackage} - Control whether we should apply the check to package-private
+ * Property {@code applyToPackage} - Control if check should apply to package-private
  *   members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPrivate} - Control whether we should apply the check to private members.
+ * Property {@code applyToPrivate} - Control if check should apply to private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToProtected} - Control whether we should apply the check to protected
+ * Property {@code applyToProtected} - Control if check should apply to protected
  *   members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPublic} - Control whether we should apply the check to public members.
+ * Property {@code applyToPublic} - Control if check should apply to public members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
