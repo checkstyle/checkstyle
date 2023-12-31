@@ -194,7 +194,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         validateDefaultJavadocTokens();
         if (javadocTokens.isEmpty()) {
             javadocTokens.addAll(
-                    Arrays.stream(getDefaultJavadocTokens()).boxed().collect(Collectors.toList()));
+                    Arrays.stream(getDefaultJavadocTokens()).boxed()
+                        .collect(Collectors.toUnmodifiableList()));
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
