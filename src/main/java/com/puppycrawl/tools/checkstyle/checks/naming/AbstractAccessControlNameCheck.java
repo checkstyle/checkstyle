@@ -113,7 +113,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to public members.
+     * Setter to controls whether to apply the check to public members.
      *
      * @param applyTo new value of the property.
      */
@@ -122,7 +122,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to protected members.
+     * Setter to controls whether to apply the check to protected members.
      *
      * @param applyTo new value of the property.
      */
@@ -131,7 +131,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to package-private members.
+     * Setter to controls whether to apply the check to package-private members.
      *
      * @param applyTo new value of the property.
      */
@@ -140,7 +140,7 @@ public abstract class AbstractAccessControlNameCheck
     }
 
     /**
-     * Setter to control whether we should apply the check to private members.
+     * Setter to controls whether to apply the check to private members.
      *
      * @param applyTo new value of the property.
      */
