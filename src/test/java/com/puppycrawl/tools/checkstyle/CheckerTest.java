@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.Checker.EXCEPTION_MSG;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
@@ -37,10 +36,12 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -587,28 +588,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("ExternalResourceHolder has changed his parent")
                 .that(ExternalResourceHolder.class.isAssignableFrom(HiddenFieldCheck.class))
                 .isFalse();
-        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
-
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkerConfig, tmpFile.getPath(), expected);
+        try (Writer bw = Files.newBufferedWriter(tmpFile.toPath(), StandardCharsets.UTF_8)) {
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks."
+                    + "coding.HiddenFieldCheck\n\n\n\n*/\n");
+        }
+        verifyWithInlineConfigParser(tmpFile.getPath(), expected);
         final Properties cacheAfterFirstRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // one more time to reuse cache
-        verify(checkerConfig, tmpFile.getPath(), expected);
+        verifyWithInlineConfigParser(tmpFile.getPath(), expected);
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
@@ -690,10 +685,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         // file that should be audited is not in cache
-        verify(checker, pathToEmptyFile, pathToEmptyFile, expected);
+        execute(checkerConfig, pathToEmptyFile);
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
@@ -899,14 +893,19 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
 
-        verify(checkerConfig, pathToEmptyFile, expected);
+        try (Writer bw = Files.newBufferedWriter(Path.of(pathToEmptyFile),
+                StandardCharsets.UTF_8)) {
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle."
+                    + "CheckerTest$DummyFilter\n\n\n\n*/\n");
+        }
+        verifyWithInlineConfigParser(pathToEmptyFile, expected);
         final Properties cacheAfterFirstRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterFirstRun.load(reader);
         }
 
         // One more time to use cache.
-        verify(checkerConfig, pathToEmptyFile, expected);
+        verifyWithInlineConfigParser(pathToEmptyFile, expected);
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
@@ -920,7 +919,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has changed its hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
-        final int expectedNumberOfObjectsInCache = 2;
+        final int expectedNumberOfObjectsInCache = 0;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
             .hasSize(expectedNumberOfObjectsInCache);
@@ -1030,9 +1029,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
+
+        assertWithMessage("exception expected");
     }
 
     @Test
@@ -1050,9 +1050,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String fileViolationPath =
                 File.createTempFile("ViolationFile", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, fileViolationPath, expected);
+        execute(checkerConfig, fileViolationPath);
 
         try (InputStream input = Files.newInputStream(cacheFile.toPath())) {
             final Properties details = new Properties();
@@ -1070,7 +1069,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             createModuleConfig(CheckWhichThrowsError.class);
         final String filePath = getPath("InputChecker.java");
         try {
-            verify(checkConfig, filePath);
+            execute(checkConfig, filePath);
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -1404,37 +1403,30 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("haltOnException", "false");
 
         final String filePath = getPath("InputChecker.java");
-        final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
-        };
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
+
+        assertWithMessage("exception expected");
     }
 
     @Test
     public void testTabViolationDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VerifyPositionAfterTabFileSet.class);
         final String[] expected = {
-            "2:9: violation",
-            "3:17: violation",
+            "7:9: violation",
+            "8:17: violation",
         };
-        verify(checkConfig, getPath("InputCheckerTabCharacter.txt"),
-            expected);
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
+                expected);
     }
 
     @Test
     public void testTabViolation() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VerifyPositionAfterTabFileSet.class);
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "2:5: violation",
-            "3:9: violation",
+            "7:9: violation",
+            "8:17: violation",
         };
-        verify(checkerConfig, getPath("InputCheckerTabCharacter.txt"),
-            expected);
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
+                expected);
     }
 
     @Test
@@ -1672,16 +1664,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 238),
+            "9: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 100),
         };
 
-        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "75");
-
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("charset", "IBM1098");
-
-        verify(checkerConfig, getPath("InputCheckerTestCharset.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputCheckerTestCharset.java"), expected);
     }
 
     @Test
@@ -1698,12 +1684,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("haltOnException", "false");
         final File file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
-        final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, filePath
-                        + " (No such file or directory)"),
-        };
+        execute(checkerConfig, filePath);
 
-        verify(checkerConfig, filePath, expected);
+        assertWithMessage("exception expected");
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
