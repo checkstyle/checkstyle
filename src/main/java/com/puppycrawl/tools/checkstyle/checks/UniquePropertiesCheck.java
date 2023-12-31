@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension of the files to check.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li>
