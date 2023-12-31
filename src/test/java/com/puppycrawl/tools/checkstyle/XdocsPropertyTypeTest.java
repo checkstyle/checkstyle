@@ -46,7 +46,7 @@ public class XdocsPropertyTypeTest {
             .map(field -> field.getAnnotation(XdocsPropertyType.class))
             .filter(Objects::nonNull)
             .map(XdocsPropertyType::value)
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
 
         assertWithMessage("All property types should be used")
             .that(propertyTypes)
