@@ -109,7 +109,7 @@ public final class TokenUtil {
      */
     public static Map<Integer, String> invertMap(Map<String, Integer> map) {
         return map.entrySet().stream()
-            .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+            .collect(Collectors.toUnmodifiableMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     /**

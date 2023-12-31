@@ -240,6 +240,8 @@
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
       -Xep:AssertJIsNull:ERROR
+      <!-- Better suggestion after https://github.com/PicnicSupermarket/error-prone-support/issues/954. -->
+      -Xep:CollectorMutability:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
