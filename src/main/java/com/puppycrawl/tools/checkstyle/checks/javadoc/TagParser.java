@@ -183,8 +183,7 @@ class TagParser {
             // Character.isJavaIdentifier... may not be a valid HTML
             // identifier but is valid for generics
             while (position < text.length()
-                    && (Character.isJavaIdentifierStart(text.charAt(position))
-                        || Character.isJavaIdentifierPart(text.charAt(position)))) {
+                    && Character.isJavaIdentifierPart(text.charAt(position))) {
                 position++;
             }
 
@@ -296,7 +295,5 @@ class TagParser {
         public int getColumnNo() {
             return columnNo;
         }
-
     }
-
 }
