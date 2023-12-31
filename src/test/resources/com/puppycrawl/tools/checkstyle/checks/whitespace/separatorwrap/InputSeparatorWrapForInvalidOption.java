@@ -8,7 +8,7 @@ tokens = (default)DOT, COMMA
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 
-public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption // ok
+public class InputSeparatorWrapForInvalidOption<T extends FooForInvalidOption
         & BarForInvalidOption> {
     public void goodCase() throws FooException4IO, BarException4IO
     {
