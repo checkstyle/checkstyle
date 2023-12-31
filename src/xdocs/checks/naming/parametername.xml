@@ -41,26 +41,20 @@
             <tr>
               <td>accessModifiers</td>
               <td>Access modifiers of methods where parameters are checked.</td>
-              <td>
-                <a href="../../property_types.html#AccessModifierOption.5B.5D">
-                  AccessModifierOption[]
-                </a>
-              </td>
+              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>7.5</td>
             </tr>
             <tr>
               <td>format</td>
-              <td>Specifies valid identifiers.</td>
+              <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>ignoreOverridden</td>
-              <td>
-                Allows to skip methods with Override annotation from validation.
-              </td>
+              <td>Allows to skip methods with Override annotation from validation.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
