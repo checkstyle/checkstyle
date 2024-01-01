@@ -21,10 +21,10 @@ public class InputSeparatorWrapForTestTrailingWhitespace {
     public void foo(int a,  
                     int b) {
         int r
-            , t; // OK
+            , t;
     }
 
     public void bar(int p
-            , int q) {  // OK
+            , int q) {
     }
 }
