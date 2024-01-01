@@ -67,20 +67,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullEnhancedInstanceof.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullTextBlocks.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]finallocalvariable[\\/]InputFinalLocalVariableCheckRecords.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]hiddenfield[\\/]InputHiddenFieldClassNestedInRecord.java"/>
