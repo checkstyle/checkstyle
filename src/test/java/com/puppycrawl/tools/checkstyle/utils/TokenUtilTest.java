@@ -228,7 +228,7 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token total number")
             .that(tokenTypesTotalNumber)
-            .isEqualTo(188);
+            .isEqualTo(196);
     }
 
     @Test
@@ -238,10 +238,10 @@ public class TokenUtilTest {
 
         assertWithMessage("Invalid token length")
             .that(allTokenIds.length)
-            .isEqualTo(188);
+            .isEqualTo(196);
         assertWithMessage("invalid sum")
             .that(sum)
-            .isEqualTo(19595);
+            .isEqualTo(20917);
     }
 
     @Test

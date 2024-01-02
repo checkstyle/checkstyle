@@ -325,7 +325,9 @@ variableDeclarator[List<ModifierContext> mods, TypeTypeContext type]
     ;
 
 variableDeclaratorId[List<VariableModifierContext> mods, ParserRuleContext type]
-    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*
+    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*     #varDeclaratorId
+        // can the following be removed? Maybe not...
+    | LITERAL_UNDERSCORE                                                        #unnamedVarDeclaratorId
     ;
 
 variableInitializer
@@ -688,6 +690,7 @@ expression
 
 expr
     : primary                                                              #primaryExp
+    | expr DOT templateArgument                                            #templateExp
     | expr bop=DOT id                                                      #refOp
     | expr bop=DOT id LPAREN expressionList? RPAREN                        #methodCall
     | expr bop=DOT LITERAL_THIS                                            #thisExp
@@ -755,6 +758,23 @@ primary
       DOT LITERAL_CLASS                                                    #classRefPrimary
     | type=primitiveType arrayDeclarator*
       DOT LITERAL_CLASS                                                    #primitivePrimary
+    ;
+
+templateArgument
+    : template
+    | STRING_LITERAL
+    ;
+
+template
+    : stringTemplate
+    ;
+
+stringTemplate
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    ;
+
+stringTemplateMiddle
+    : STRING_TEMPLATE_MID expr?
     ;
 
 classType
@@ -895,7 +915,8 @@ primaryPattern
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
     ;
 
 recordPattern
@@ -910,8 +931,14 @@ permittedSubclassesAndInterfaces
     : LITERAL_PERMITS classOrInterfaceType[false] (COMMA classOrInterfaceType[false])*
     ;
 
+id
+    : LITERAL_UNDERSCORE
+    | identifier
+    ;
+
 // Handle the 'keyword as identifier' problem
-id  : LITERAL_RECORD
+identifier
+    : LITERAL_RECORD
     | LITERAL_YIELD
     | LITERAL_NON_SEALED
     | LITERAL_SEALED
