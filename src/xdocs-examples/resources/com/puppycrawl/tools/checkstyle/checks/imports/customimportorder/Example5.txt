@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="CustomImportOrder">
       <property name="customImportOrderRules"
-        value="STATIC###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE"/>
+        value="STATIC, SPECIAL_IMPORTS, STANDARD_JAVA_PACKAGE"/>
       <property name="specialImportsRegExp" value="^org\."/>
     </module>
   </module>

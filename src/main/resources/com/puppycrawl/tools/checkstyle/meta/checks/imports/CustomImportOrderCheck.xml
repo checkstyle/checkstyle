@@ -53,9 +53,6 @@
  &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
- Use the separator '###' between rules.
- &lt;/p&gt;
- &lt;p&gt;
  To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
  thirdPartyPackageRegExp and standardPackageRegExp options.
  &lt;/p&gt;
@@ -107,9 +104,8 @@
          <properties>
             <property default-value=""
                       name="customImportOrderRules"
-                      type="java.lang.String">
-               <description>Specify format of order declaration
- customizing by user.</description>
+                      type="java.lang.String[]">
+               <description>Specify list of import groups.</description>
             </property>
             <property default-value="true"
                       name="separateLineBetweenGroups"
