@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import org.antlr.v4.runtime.Token;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -63,6 +65,150 @@ public class SwitchHandler extends BlockParentHandler {
     @Override
     protected DetailAST getNonListChild() {
         return null;
+    }
+
+    @Override
+    protected IndentLevel getIndentImpl() {
+        IndentLevel indentLevel = super.getIndentImpl();
+        DetailAST ast = getMainAst();
+        loop: while (ast != null) {
+            switch (ast.getType()) {
+                case TokenTypes.METHOD_CALL:
+                    indentLevel = getIndentOfMethod(ast);
+                    break loop;
+                case TokenTypes.VARIABLE_DEF:
+                    if(getIndentLevelVariable(ast) != null) {
+                        indentLevel = getIndentLevelVariable(ast);
+                    }
+                    break loop;
+                case TokenTypes.LITERAL_FOR:
+                    indentLevel = getIndentLevelForLoop(ast);
+                    break loop;
+                case TokenTypes.LITERAL_WHILE:
+                    indentLevel = getIndentLevelWhileLoop(ast);
+                    break loop;
+                case TokenTypes.LITERAL_IF:
+                    indentLevel = getIndentLevelForIf(ast);
+                    break loop;
+                case TokenTypes.LITERAL_YIELD:
+                    indentLevel = getIndentForYield(ast);
+                    break loop;
+                case TokenTypes.LITERAL_DO:
+                    indentLevel = getIndentLevelVariabledoWhileLoop(ast);
+                    break loop;
+            }
+            ast = ast.getParent();
+        }
+
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentOfMethod(DetailAST ast) {
+        IndentLevel indentLevel = super.getIndentImpl();
+        if (getMainAst().getPreviousSibling() != null) {
+            indentLevel = new IndentLevel(getMainAst().getPreviousSibling().getColumnNo());
+        }
+        DetailAST currentAst = ast;
+        while (currentAst != null) {
+            if (currentAst.getType() == TokenTypes.LITERAL_FOR) {
+                indentLevel = getIndentLevelForLoop(currentAst);
+                break;
+            }
+            if (currentAst.getType() == TokenTypes.VARIABLE_DEF) {
+                indentLevel = getIndentLevelVariable(currentAst);
+                break;
+            }
+            currentAst = currentAst.getParent();
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentLevelVariable(DetailAST ast) {
+        DetailAST childAst = ast;
+        IndentLevel indentLevel = null;
+        if (ast.getParent().getParent().getType() == TokenTypes.LITERAL_FOR) {
+            indentLevel = getIndentLevelForLoop(ast.getParent().getParent());
+        }
+        while (childAst != null) {
+            if (childAst.getType() == TokenTypes.METHOD_CALL) {
+                indentLevel = new IndentLevel(ast.getColumnNo());
+                break;
+            }
+            childAst = childAst.getLastChild();
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentLevelForIf(DetailAST ast) {
+        IndentLevel indentLevel = super.getIndentImpl();
+        if (getMainAst().getParent().getType() == TokenTypes.EXPR) {
+            indentLevel = new  IndentLevel(ast.getColumnNo());
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentLevelForLoop(DetailAST ast) {
+        DetailAST ast1 = ast;
+        DetailAST switchAst = getMainAst();
+        IndentLevel indentLevel = new IndentLevel(ast.getColumnNo());
+        if (ast.getLineNo() != getMainAst().getLineNo()) {
+            while (switchAst.getType() != TokenTypes.LITERAL_FOR) {
+                if (switchAst.getType() == TokenTypes.FOR_CONDITION
+                        || switchAst.getType() == TokenTypes.FOR_INIT
+                        || switchAst.getType() == TokenTypes.FOR_ITERATOR) {
+                    indentLevel = new IndentLevel(getMainAst().getColumnNo());
+                    break;
+                }
+                switchAst = switchAst.getParent();
+            }
+        }
+        while (ast1 != null) {
+            if (ast1.getType() == TokenTypes.METHOD_CALL) {
+                indentLevel = new IndentLevel(ast1.getFirstChild().getColumnNo());
+                break;
+            }
+            ast1 = ast1.getLastChild();
+            if (ast1 != null && ast1.getType() == TokenTypes.SLIST) {
+                ast1 = ast1.getFirstChild();
+            }
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentLevelWhileLoop(DetailAST ast) {
+        IndentLevel indentLevel = new IndentLevel(ast.getColumnNo());
+        if (ast.getLineNo() != getMainAst().getLineNo()) {
+            indentLevel = new IndentLevel(getMainAst().getColumnNo());
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentLevelVariabledoWhileLoop(DetailAST ast) {
+        DetailAST Rcurly = ast.findFirstToken(TokenTypes.SLIST).findFirstToken(TokenTypes.RCURLY);
+        DetailAST doWhile = ast.findFirstToken(TokenTypes.DO_WHILE);
+        IndentLevel indentLevel;
+        if (Rcurly.getLineNo() == doWhile.getLineNo() && doWhile.getLineNo() == getMainAst().getLineNo())  {
+            indentLevel = new IndentLevel(Rcurly.getColumnNo());
+        }
+        else if (Rcurly.getLineNo() != doWhile.getLineNo() && doWhile.getLineNo() == getMainAst().getLineNo()) {
+            indentLevel = new IndentLevel(doWhile.getColumnNo());
+
+        }
+        else {
+            indentLevel = new IndentLevel(getMainAst().getColumnNo());
+        }
+        return indentLevel;
+    }
+
+    private IndentLevel getIndentForYield(DetailAST ast) {
+        final IndentLevel indentLevel;
+        if (ast.getLineNo() == getMainAst().getLineNo()) {
+            indentLevel = new IndentLevel(ast.getColumnNo());
+        }
+        else {
+            indentLevel = new IndentLevel(getMainAst().getColumnNo());
+        }
+        return indentLevel;
     }
 
     /**
