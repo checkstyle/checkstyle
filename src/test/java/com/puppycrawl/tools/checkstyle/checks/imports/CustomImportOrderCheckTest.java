@@ -116,6 +116,35 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 getPath("InputCustomImportOrderDefault3.java"), expected);
     }
 
+    @Test
+    public void testStaticStandardThirdListCustomRules() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
+                    "java.io.File.createTempFile"),
+            "17:1: " + getCheckMessage(MSG_LEX, "java.awt.print.Paper.*",
+                    "java.io.File.createTempFile"),
+            "22:1: " + getCheckMessage(MSG_LEX, "java.awt.Dialog", "java.awt.Frame"),
+            "27:1: " + getCheckMessage(MSG_LEX, "java.io.File", "javax.swing.JTable"),
+            "28:1: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
+            "29:1: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
+            "30:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
+            "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
+            "34:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
+                    "com.google.errorprone.annotations.*"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputCustomImportOrderListRules.java"), expected);
+    }
+
+    @Test
+    public void testStaticStandardThirdListCustomRulesWhitespace() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputCustomImportOrderListRulesWhitespace.java"), expected);
+    }
+
     /**
      * Checks different combinations for same_package group.
      */
