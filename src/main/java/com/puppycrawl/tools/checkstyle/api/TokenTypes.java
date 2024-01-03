@@ -6504,7 +6504,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int STRING_TEMPLATE_BEGIN =
             JavaLanguageLexer.STRING_TEMPLATE_BEGIN;
@@ -6544,7 +6544,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int STRING_TEMPLATE_END =
             JavaLanguageLexer.STRING_TEMPLATE_END;
@@ -6584,7 +6584,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int STRING_TEMPLATE_CONTENT =
             JavaLanguageLexer.STRING_TEMPLATE_CONTENT;
@@ -6623,7 +6623,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int EMBEDDED_EXPRESSION_BEGIN =
             JavaLanguageLexer.EMBEDDED_EXPRESSION_BEGIN;
@@ -6662,7 +6662,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int EMBEDDED_EXPRESSION =
             JavaLanguageLexer.EMBEDDED_EXPRESSION;
@@ -6702,7 +6702,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.12.7
+     * @since 10.12.8
      */
     public static final int EMBEDDED_EXPRESSION_END =
             JavaLanguageLexer.EMBEDDED_EXPRESSION_END;
