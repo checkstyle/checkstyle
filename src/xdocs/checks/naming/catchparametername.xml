@@ -63,30 +63,33 @@
         <p id="Example1-code">Example:
         </p>
         <source>
-public class MyTest {
+public class Example1 {
   public void myTest() {
     try {
       // ...
+      throw new InterruptedException();
     } catch (ArithmeticException e) { // OK
       // ...
     } catch (ArrayIndexOutOfBoundsException ex) { // OK
       // ...
-    } catch (Throwable t) { // OK
+    } catch (IndexOutOfBoundsException e123) {
+      // violation above, 'Name 'e123' must match pattern'
+      // not allowed
       // ...
-    } catch (IndexOutOfBoundsException e123) { // violation, digits
-                                               // not allowed
-      // ...
-    } catch (NullPointerException ab) { // violation, should have at least
-                                        // three characters if not e|t|ex
+    } catch (NullPointerException ab) {
+      // violation above, 'Name 'ab' must match pattern'
       // ...
     } catch (ArrayStoreException abc) { // OK
       // ...
-    } catch (InterruptedException aBC) { // violation, first two characters
-                                         // should be in lowercase
+    } catch (InterruptedException aBC) {
+      // violation above, 'Name 'aBC' must match pattern'
+      // should be in lowercase
       // ...
     } catch (RuntimeException abC) { // OK
       // ...
     } catch (Exception abCD) { // OK
+      // ...
+    } catch (Throwable t) { // OK
       // ...
     }
   }
@@ -108,9 +111,10 @@ public class MyTest {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
+public class Example2 {
   public void myTest() {
     try {
+      throw new IOException();
       // ...
     } catch (ArithmeticException ex) { // OK
       // ...
@@ -118,8 +122,8 @@ public class MyTest {
       // ...
     } catch (IOException thirdException) { // OK
       // ...
-    } catch (Exception FourthException) { // violation, the initial letter
-                                          // should be lowercase
+    } catch (Exception FourthException) {
+      // violation above, 'Name 'FourthException' must match pattern'
       // ...
     }
   }
