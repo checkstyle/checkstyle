@@ -1781,7 +1781,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final int endColumn = startColumn + ctx.getText().length() - 1;
         final int lineNumber = ctx.start.getLine();
 
-        final DetailAstImpl templateArgument = buildImaginaryWithDetails(
+        final DetailAstImpl templateArgument = createImaginary(
                 TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
                 lineNumber, startColumn
         );
@@ -1792,13 +1792,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final String actualContent = ctx.getText()
                     .substring(quoteLength, tokenTextLength - quoteLength);
 
-        final DetailAstImpl content = buildImaginaryWithDetails(
+        final DetailAstImpl content = createImaginary(
                 TokenTypes.STRING_TEMPLATE_CONTENT, actualContent,
                 lineNumber, startColumn + quoteLength
         );
         templateArgument.addChild(content);
 
-        final DetailAstImpl end = buildImaginaryWithDetails(
+        final DetailAstImpl end = createImaginary(
                 TokenTypes.STRING_TEMPLATE_END, QUOTE,
                 lineNumber, endColumn
         );
@@ -1823,7 +1823,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
         ctx.stringTemplateMiddle().stream()
                 .map(this::buildStringTemplateMiddle)
-                .collect(Collectors.toList())
+                .collect(Collectors.toUnmodifiableList())
                 .forEach(begin::addChild);
 
         final DetailAstImpl end = buildStringTemplateEnd(ctx);
@@ -1848,7 +1848,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final int tokenLineNumber = token.getLine();
         final int tokenTextLength = tokenText.length();
 
-        final DetailAstImpl stringTemplateBegin = buildImaginaryWithDetails(
+        final DetailAstImpl stringTemplateBegin = createImaginary(
                 TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
                 tokenLineNumber, tokenStartIndex
         );
@@ -1857,13 +1857,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final String stringFragment = tokenText.substring(
                 QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());
 
-        final DetailAstImpl stringTemplateContent = buildImaginaryWithDetails(
+        final DetailAstImpl stringTemplateContent = createImaginary(
                 TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
                 tokenLineNumber, tokenStartIndex + QUOTE.length()
         );
         stringTemplateBegin.addChild(stringTemplateContent);
 
-        final DetailAstImpl embeddedBegin = buildImaginaryWithDetails(
+        final DetailAstImpl embeddedBegin = createImaginary(
                 TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
                 tokenLineNumber,
                 tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
@@ -1889,7 +1889,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final String tokenText = context.getText();
         final int tokenTextLength = tokenText.length();
 
-        final DetailAstImpl embeddedExpressionEnd = buildImaginaryWithDetails(
+        final DetailAstImpl embeddedExpressionEnd = createImaginary(
                 TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
                 tokenLineNumber, tokenStartIndex
         );
@@ -1900,13 +1900,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
         );
 
-        final DetailAstImpl content = buildImaginaryWithDetails(
+        final DetailAstImpl content = createImaginary(
                 TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
                 tokenLineNumber, tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
         );
         embeddedExpressionEnd.addNextSibling(content);
 
-        final DetailAstImpl embeddedBegin = buildImaginaryWithDetails(
+        final DetailAstImpl embeddedBegin = createImaginary(
                 TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
                 tokenLineNumber,
                 tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
@@ -1943,7 +1943,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final int tokenLineNumber = token.getLine();
         final int tokenTextLength = tokenText.length();
 
-        final DetailAstImpl embeddedExpressionEnd = buildImaginaryWithDetails(
+        final DetailAstImpl embeddedExpressionEnd = createImaginary(
                 TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
                 tokenLineNumber, tokenStartIndex
         );
@@ -1954,14 +1954,14 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 tokenTextLength - QUOTE.length()
         );
 
-        final DetailAstImpl endContent = buildImaginaryWithDetails(
+        final DetailAstImpl endContent = createImaginary(
                 TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
                 tokenLineNumber,
                 tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
         );
         embeddedExpressionEnd.addNextSibling(endContent);
 
-        final DetailAstImpl stringTemplateEnd = buildImaginaryWithDetails(
+        final DetailAstImpl stringTemplateEnd = createImaginary(
                 TokenTypes.STRING_TEMPLATE_END, QUOTE,
                 tokenLineNumber,
                 tokenStartIndex + tokenTextLength - QUOTE.length()
@@ -2322,7 +2322,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      * should be used for imaginary nodes only, i.e. 'OBJBLOCK -&gt; OBJBLOCK',
      * where the text on the RHS matches the text on the LHS.
      *
-     * @param tokenType  the token type of this DetailAstImpl
+     * @param tokenType the token type of this DetailAstImpl
      * @return new DetailAstImpl of given type
      */
     private static DetailAstImpl createImaginary(int tokenType) {
@@ -2330,6 +2330,39 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         detailAst.setType(tokenType);
         detailAst.setText(TokenUtil.getTokenName(tokenType));
         return detailAst;
+    }
+
+    /**
+     * Create a DetailAstImpl from a given token type and text. This method
+     * should be used for imaginary nodes only, i.e. 'OBJBLOCK -&gt; OBJBLOCK',
+     * where the text on the RHS matches the text on the LHS.
+     *
+     * @param tokenType the token type of this DetailAstImpl
+     * @param text the text of this DetailAstImpl
+     * @return new DetailAstImpl of given type
+     */
+    private static DetailAstImpl createImaginary(int tokenType, String text) {
+        final DetailAstImpl imaginary = new DetailAstImpl();
+        imaginary.setType(tokenType);
+        imaginary.setText(text);
+        return imaginary;
+    }
+
+    /**
+     * Creates an imaginary DetailAstImpl with the given token details.
+     *
+     * @param tokenType the token type of this DetailAstImpl
+     * @param text the text of this DetailAstImpl
+     * @param lineNumber the line number of this DetailAstImpl
+     * @param columnNumber the column number of this DetailAstImpl
+     * @return imaginary DetailAstImpl from given details
+     */
+    private static DetailAstImpl createImaginary(
+            int tokenType, String text, int lineNumber, int columnNumber) {
+        final DetailAstImpl imaginary = createImaginary(tokenType, text);
+        imaginary.setLineNo(lineNumber);
+        imaginary.setColumnNo(columnNumber);
+        return imaginary;
     }
 
     /**
@@ -2425,24 +2458,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             }
             nextSibling.setNextSibling(sibling);
         }
-    }
-
-    /**
-     * Builds an imaginary DetailAstImpl with the given token details.
-     *
-     * @param tokenType the token type of this DetailAstImpl
-     * @param text the text of this DetailAstImpl
-     * @param lineNumber the line number of this DetailAstImpl
-     * @param columnNumber the column number of this DetailAstImpl
-     * @return imaginary DetailAstImpl from given details
-     */
-    private static DetailAstImpl buildImaginaryWithDetails(
-            int tokenType, String text, int lineNumber, int columnNumber) {
-        final DetailAstImpl imaginary = createImaginary(tokenType);
-        imaginary.setText(text);
-        imaginary.setLineNo(lineNumber);
-        imaginary.setColumnNo(columnNumber);
-        return imaginary;
     }
 
     @Override
