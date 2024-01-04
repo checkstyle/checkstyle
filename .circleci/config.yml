@@ -1,6 +1,51 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.4.0
+
 jobs:
+  windows-verify:
+    executor:
+      name: win/default
+    working_directory: C:\Users\circleci\project
+    steps:
+      - checkout:
+          path: C:\Users\circleci\project
+      # add cache here?
+      - run:
+          name: "Install dependencies"
+          command: |
+            # remove openjdk 12
+            # choco uninstall -y openjdk
+            # choco install -y openjdk --version=17.0.2
+            choco install -y maven
+      - run: java --version
+      - run:
+          name: run test
+          command: |
+            powershell
+            
+            $username = "circleci"
+            
+              # Get the SID (Security Identifier) of the user using whoami
+            $userSID = whoami /user | Select-String -Pattern "$username"
+            
+            # If whoami command doesn't return the SID directly, try fetching it using PowerShell
+            if (!$userSID) {
+                $userSID = (New-Object System.Security.Principal.NTAccount($username)).Translate([System.Security.Principal.SecurityIdentifier]).Value
+            }
+            
+            # If the user SID is still not found, display an error message
+            if (!$userSID) {
+                Write-Host "Error: Unable to determine the SID for the specified user."
+            } else {
+                # Deny the SeCreateSymbolicLinkPrivilege to the user
+                icacls "C:\Path\To\Target\Directory" /deny "$userSID`:M"
+            }
+            
+            # Run the test
+            mvn -Dtest=PropertyCacheFileTest test
+      # save cache here?
 
   run-inspections:
     docker:
@@ -106,6 +151,9 @@ jobs:
           command: yamllint -f parsable -c config/yamllint.yaml .
 
 workflows:
+  windows_verify:
+    jobs:
+      - windows-verify
   sonarqube:
     jobs:
       - sonarqube:
