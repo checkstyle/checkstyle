@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -36,12 +36,10 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1015,7 +1013,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClearLazyLoadCacheInDetailAST() throws Exception {
+    public void testForClearLazyLoadCacheInDetailAST() throws Exception {
         final DefaultConfiguration checkConfig1 =
             createModuleConfig(CheckWhichDoesNotRequireCommentNodes.class);
         final DefaultConfiguration checkConfig2 =
@@ -1030,8 +1028,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
 
         execute(checkerConfig, filePath);
-
-        assertWithMessage("exception expected");
     }
 
     @Test
@@ -1389,7 +1385,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHaltOnExceptionOff() throws Exception {
+    public void testForHaltOnExceptionOff() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CheckWhichThrowsError.class);
 
@@ -1404,8 +1400,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputChecker.java");
 
         execute(checkerConfig, filePath);
-
-        assertWithMessage("exception expected");
     }
 
     @Test
@@ -1670,7 +1664,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testViolationMessageOnIoException() throws Exception {
+    public void testForViolationMessageOnIoException() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(CheckWhichThrowsError.class);
 
@@ -1684,8 +1678,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
         execute(checkerConfig, filePath);
-
-        assertWithMessage("exception expected");
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
