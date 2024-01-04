@@ -1,6 +1,31 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.4.0
+
 jobs:
+  windows-build:
+    executor:
+      name: win/default
+    working_directory: C:\Users\circleci\project
+    steps:
+      - checkout:
+          path: C:\Users\circleci\project
+      # add cache here?
+      - run:
+          name: "Install dependencies"
+          command: |
+            choco install -y jdk17
+            choco install -y maven
+            choco install -y git
+            choco install -y xmlstarlet
+            choco install -y jq
+            java --version
+
+      - run:
+          name: "mvn clean verify"
+          command: mvn clean verify
+      # save cache here?
 
   run-inspections:
     docker:
@@ -106,6 +131,9 @@ jobs:
           command: yamllint -f parsable -c config/yamllint.yaml .
 
 workflows:
+  windows:
+    jobs:
+      - windows-build
   sonarqube:
     jobs:
       - sonarqube:
