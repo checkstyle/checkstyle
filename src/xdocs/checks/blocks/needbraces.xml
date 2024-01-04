@@ -10,6 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <p> Checks for braces around code blocks. </p>
+        <p> Attention: The break in case blocks is not counted to allow compact view. </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -105,7 +106,7 @@ while (counter &lt; 10)          // violation, single-line statements not allowe
     ++count;
 while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
 switch (num) {
-  case 1: counter++; break;         // OK
+  case 1: counter++; break;         // OK, 'break' is not counted to allow compact view
 }
         </source>
         <p id="Example2-config">
@@ -140,7 +141,7 @@ while (counter &lt; 10)                            // OK
     ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
+  case 1: counter++; break;        // OK, 'break' is not counted to allow compact view
 }
         </source>
         <p id="Example3-config">
@@ -177,7 +178,7 @@ while (counter &lt; 10)                 // OK
    ++count;
 while (value.incrementValue() &lt; 5);  // violation, empty loop body not allowed
 switch (num) {
-  case 1: counter++; break;          // OK
+  case 1: counter++; break;          // OK, 'break' is not counted to allow compact view
 }
 while (obj.isValid()) return true;   // OK
 do this.notify(); while (o != null); // OK
@@ -218,9 +219,9 @@ while (counter &lt; 10)                            // OK
    ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-  case 1: counter++; break;         // OK
-  case 6: counter += 10; break;     // OK
-  default: counter = 100; break;    // OK
+  case 1: counter++; break;         // OK, 'break' is not counted to allow compact view
+  case 6: counter += 10; break;     // OK, 'break' is not counted to allow compact view
+  default: counter = 100; break;    // OK, 'break' is not counted to allow compact view
 }
         </source>
         <p id="Example5-config">
@@ -255,7 +256,7 @@ while (counter &lt; 10)           // violation, single-line statements not allow
    ++count;
 while (value.incrementValue() &lt; 5); // OK
 switch (num) {
-case 1: counter++; break;           // OK
+case 1: counter++; break;           // OK, 'break' is not counted to allow compact view
 }
         </source>
         <p id="Example6-config">

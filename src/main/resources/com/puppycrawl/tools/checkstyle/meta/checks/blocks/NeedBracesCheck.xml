@@ -6,6 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks for braces around code blocks.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Attention: The break in case blocks is not counted to allow compact view.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowEmptyLoopBody" type="boolean">
