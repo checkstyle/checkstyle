@@ -61,10 +61,7 @@ public boolean isSomething()
             </tr>
             <tr>
               <td>allowMissingPropertyJavadoc</td>
-              <td>
-                Control whether to allow missing Javadoc on accessor methods for
-                properties (setters and getters).
-              </td>
+              <td>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.21</td>
@@ -107,28 +104,26 @@ public boolean isSomething()
             <tr>
               <td>tokens</td>
               <td>tokens to check</td>
-
-              <td>
-                subset of tokens
+              <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
+                    METHOD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
+                    CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>
+                    ANNOTATION_FIELD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
-                  COMPACT_CTOR_DEF</a>
+                    COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>8.21</td>
