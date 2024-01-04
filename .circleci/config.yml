@@ -1,6 +1,28 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.4.0
+
 jobs:
+  windows-build:
+    executor:
+      name: win/default
+    working_directory: C:\Users\circleci\project
+    steps:
+      - checkout:
+          path: C:\Users\circleci\project
+      # add cache here?
+      - run:
+          name: "Install dependencies"
+          command: |
+            choco uninstall -y openjdk
+            choco install -y openjdk --version=17.0.2
+            choco install -y maven
+      - run: java --version
+      - run:
+          name: run test
+          command: mvn -Dtest=PropertyCacheFileTest test
+      # save cache here?
 
   run-inspections:
     docker:
@@ -106,6 +128,9 @@ jobs:
           command: yamllint -f parsable -c config/yamllint.yaml .
 
 workflows:
+  windows:
+    jobs:
+      - windows-build
   sonarqube:
     jobs:
       - sonarqube:
