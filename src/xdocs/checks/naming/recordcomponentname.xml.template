@@ -14,26 +14,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specifies valid identifiers.</td>
-              <td>
-                <a href="../../property_types.html#Pattern">Pattern</a>
-              </td>
-              <td>
-                <code>"^[a-z][a-zA-Z0-9]*$"</code>
-              </td>
-              <td>8.40</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/RecordComponentNameCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
