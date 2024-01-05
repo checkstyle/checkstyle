@@ -27,7 +27,8 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
-    private static final String CATCH_PARAM_NAME_PATTERN = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
+    private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
+    private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
 
     @Override
     protected String getPackageLocation() {
@@ -37,12 +38,12 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "21:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
-                    CATCH_PARAM_NAME_PATTERN),
-            "25:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
-                    CATCH_PARAM_NAME_PATTERN),
-            "30:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
-                    CATCH_PARAM_NAME_PATTERN),
+            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "23:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "28:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
+                    CATCH_PARAM_NAME_PATTERN_1),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,8 +52,12 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthException",
-                    "^[a-z][a-zA-Z0-9]+$"),
+            "18:34: " + getCheckMessage(MSG_INVALID_PATTERN, "e",
+                    CATCH_PARAM_NAME_PATTERN_2),
+            "33:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+                    CATCH_PARAM_NAME_PATTERN_2),
+            "36:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
+                    CATCH_PARAM_NAME_PATTERN_2),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);

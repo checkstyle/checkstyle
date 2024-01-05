@@ -63,37 +63,7 @@
         <p id="Example1-code">Example:
         </p>
         <source>
-public class Example1 {
-  public void myTest() {
-    try {
-      // ...
-      throw new InterruptedException();
-    } catch (ArithmeticException e) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex) { // OK
-      // ...
-    } catch (IndexOutOfBoundsException e123) {
-      // violation above, 'Name 'e123' must match pattern'
-      // not allowed
-      // ...
-    } catch (NullPointerException ab) {
-      // violation above, 'Name 'ab' must match pattern'
-      // ...
-    } catch (ArrayStoreException abc) { // OK
-      // ...
-    } catch (InterruptedException aBC) {
-      // violation above, 'Name 'aBC' must match pattern'
-      // should be in lowercase
-      // ...
-    } catch (RuntimeException abC) { // OK
-      // ...
-    } catch (Exception abCD) { // OK
-      // ...
-    } catch (Throwable t) { // OK
-      // ...
-    }
-  }
-}
+
         </source>
         <p>
           An example of how to configure the check for names that begin with
@@ -114,17 +84,28 @@ public class Example1 {
 public class Example2 {
   public void myTest() {
     try {
-      throw new IOException();
-      // ...
-    } catch (ArithmeticException ex) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex2) { // OK
-      // ...
-    } catch (IOException thirdException) { // OK
-      // ...
-    } catch (Exception FourthException) {
-      // violation above, 'Name 'FourthException' must match pattern'
-      // ...
+      throw new InterruptedException();
+    } catch (ArithmeticException e) {
+      // violation above, 'Name 'e' must match pattern'
+
+    } catch (ArrayIndexOutOfBoundsException ex) {
+
+    } catch (IndexOutOfBoundsException e123) {
+
+    } catch (NullPointerException ab) {
+
+    } catch (ArrayStoreException abc) {
+
+    } catch (InterruptedException aBC) {
+
+    } catch (RuntimeException abC) {
+
+    } catch (Exception EighthException) {
+      // violation above, 'Name 'EighthException' must match pattern'
+
+    } catch (Throwable t) {
+      // violation above, 'Name 't' must match pattern'
+
     }
   }
 }
