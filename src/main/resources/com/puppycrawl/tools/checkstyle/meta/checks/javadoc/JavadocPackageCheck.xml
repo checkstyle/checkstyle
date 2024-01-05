@@ -19,7 +19,7 @@
             <property default-value=".java"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify the file type extension of files to process.</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
          </properties>
          <message-keys>

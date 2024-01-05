@@ -83,78 +83,10 @@ public interface AddressFactory {
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>violateImpliedAbstractMethod</td>
-              <td>
-                Control whether to enforce that <code>abstract</code> is explicitly coded
-                on interface methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedFinalField</td>
-              <td>
-                Control whether to enforce that <code>final</code> is explicitly coded
-                on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedPublicField</td>
-              <td>
-                Control whether to enforce that <code>public</code> is explicitly coded
-                on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedPublicMethod</td>
-              <td>
-                Control whether to enforce that <code>public</code> is explicitly coded
-                on interface methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedPublicNested</td>
-              <td>
-                Control whether to enforce that <code>public</code> is explicitly coded
-                on interface nested types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticField</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-            <tr>
-              <td>violateImpliedStaticNested</td>
-              <td>
-                Control whether to enforce that <code>static</code> is explicitly coded
-                on interface nested types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>8.12</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/InterfaceMemberImpliedModifierCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

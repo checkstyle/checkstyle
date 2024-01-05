@@ -15,7 +15,7 @@ import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
 
-public class InputReturnCountLambda4 { // ok
+public class InputReturnCountLambda4 {
 
     Runnable fieldWithOneReturnInLambda = () -> {
         return;

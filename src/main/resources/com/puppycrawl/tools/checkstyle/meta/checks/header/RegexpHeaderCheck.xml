@@ -73,7 +73,7 @@
                <description>Specify the character encoding to use when reading the headerFile.</description>
             </property>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify the file type extension of files to process.</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
             <property name="header" type="java.lang.String">
                <description>Define the required header specified inline.
