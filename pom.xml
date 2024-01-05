@@ -1843,7 +1843,6 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/TreeWalkerTest.class</exclude>
                 <exclude>**/CheckerTest.class</exclude>
                 <exclude>**/AllBlockCommentsTest.class</exclude>
               </excludes>
