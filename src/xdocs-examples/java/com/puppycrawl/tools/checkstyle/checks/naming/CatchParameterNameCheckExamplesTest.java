@@ -27,8 +27,10 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
-    private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
-    private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
+    private static final String CATCH_PARAM_NAME_PATTERN_1 =
+            "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
+    private static final String CATCH_PARAM_NAME_PATTERN_2 =
+            "^[a-z][a-zA-Z0-9]+$";
 
     @Override
     protected String getPackageLocation() {
