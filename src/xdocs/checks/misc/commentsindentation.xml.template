@@ -17,37 +17,13 @@
           here</a>
         </p>
       </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>tokens</td>
-              <td>tokens to check</td>
-              <td>
-                subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
-                  .
-              </td>
-              <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
-                  SINGLE_LINE_COMMENT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
-                  BLOCK_COMMENT_BEGIN</a>
-                  .
-              </td>
-              <td>6.10</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
+          </macro>
         </div>
       </subsection>
 

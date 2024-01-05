@@ -27,35 +27,35 @@
             </tr>
             <tr>
               <td>applyToPackage</td>
-              <td>Control whether we should apply the check to package-private members.</td>
+              <td>Control if check should apply to package-private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
-              <td>Control whether we should apply the check to private members.</td>
+              <td>Control if check should apply to private members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
-              <td>Control whether we should apply the check to protected members.</td>
+              <td>Control if check should apply to protected members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
-              <td>Control whether we should apply the check to public members.</td>
+              <td>Control if check should apply to public members.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>format</td>
-              <td>Set the format for the specified regular expression.</td>
+              <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
               <td>3.0</td>

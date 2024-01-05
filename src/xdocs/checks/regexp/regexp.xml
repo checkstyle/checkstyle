@@ -68,10 +68,7 @@
             </tr>
             <tr>
               <td>duplicateLimit</td>
-              <td>Control whether to check for duplicates of a required pattern,
-                any negative value means no checking for duplicates, any positive
-                value is used as the maximum number of allowed duplicates, if the
-                limit is exceeded violations will be logged.</td>
+              <td>Control whether to check for duplicates of a required pattern, any negative value means no checking for duplicates, any positive value is used as the maximum number of allowed duplicates, if the limit is exceeded violations will be logged.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>4.0</td>
@@ -106,8 +103,7 @@
             </tr>
             <tr>
               <td>message</td>
-              <td>Specify message which is used to notify about violations,
-                if empty then the default (hard-coded) message is used.</td>
+              <td>Specify message which is used to notify about violations, if empty then the default (hard-coded) message is used.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>4.0</td>

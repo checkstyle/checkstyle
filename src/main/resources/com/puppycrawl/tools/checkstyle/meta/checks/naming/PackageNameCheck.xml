@@ -20,7 +20,7 @@
             <property default-value="^[a-z]+(\.[a-zA-Z_]\w*)*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+               <description>Control the pattern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,29 +29,29 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code applyToPackage} - Control whether we should apply the check to package-private
+ * Property {@code applyToPackage} - Control if check should apply to package-private
  *   members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPrivate} - Control whether we should apply the check to private members.
+ * Property {@code applyToPrivate} - Control if check should apply to private members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToProtected} - Control whether we should apply the check to protected
+ * Property {@code applyToProtected} - Control if check should apply to protected
  *   members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code applyToPublic} - Control whether we should apply the check to public members.
+ * Property {@code applyToPublic} - Control if check should apply to public members.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code format} - Set the format for the specified regular expression.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>

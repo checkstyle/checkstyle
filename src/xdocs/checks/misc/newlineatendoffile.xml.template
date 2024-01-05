@@ -62,34 +62,10 @@ StaticMethodCandidateCheck.name = Static Method Candidate
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>fileExtensions</td>
-              <td>Specify the file type extension of the files to check.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>all files</code></td>
-              <td>3.1</td>
-            </tr>
-            <tr>
-              <td>lineSeparator</td>
-              <td>Specify the type of line separator.</td>
-              <td>
-                <a href="../../property_types.html#LineSeparatorOption">
-                  LineSeparatorOption
-                </a>
-              </td>
-              <td><code>lf_cr_crlf</code></td>
-              <td>3.1</td>
-            </tr>
-
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
