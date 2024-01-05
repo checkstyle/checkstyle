@@ -239,6 +239,7 @@
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
+      -Xep:AssertJIsNull:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -922,6 +923,9 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+
+                    <!-- OS specific utility providing class -->
+                    <exclude>com.puppycrawl.tools.checkstyle.PropertyCacheFile.OsSpecificUtil</exclude>
                   </excludes>
                   <limits>
                     <limit>
