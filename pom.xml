@@ -238,6 +238,8 @@
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
+      <!-- Prefer `.isNull()` over `.isEqualTo(null)`. -->
+      -Xep:AssertJIsNull:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
