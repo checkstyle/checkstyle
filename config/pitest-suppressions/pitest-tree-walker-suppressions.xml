@@ -80,4 +80,130 @@
     <description>removed call to java/util/Comparator::naturalOrder</description>
     <lineContent>Comparator.nullsLast(Comparator.naturalOrder()))</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/TreeWalker::setFileExtensions</description>
+    <lineContent>setFileExtensions(&quot;java&quot;);</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>createNewCheckSortedSet</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/Comparator::thenComparing with receiver</description>
+    <lineContent>.thenComparing(AbstractCheck::hashCode));</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/File::getAbsolutePath</description>
+    <lineContent>getFilteredViolations(file.getAbsolutePath(), contents, rootAST);</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::isEmpty</description>
+    <lineContent>if (!commentChecks.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!commentChecks.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::isEmpty</description>
+    <lineContent>if (!ordinaryChecks.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!ordinaryChecks.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Set::isEmpty</description>
+    <lineContent>if (filters.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>processFiltered</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (filters.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable fileName</description>
+    <lineContent>this.fileName = fileName;</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
+    <mutatedMethod>getColumnCharIndex</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Violation::getColumnCharIndex</description>
+    <lineContent>return violation.getColumnCharIndex();</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
+    <mutatedMethod>getColumnCharIndex</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/TreeWalkerAuditEvent::getColumnCharIndex</description>
+    <lineContent>return violation.getColumnCharIndex();</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
+    <mutatedMethod>getTokenType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Violation::getTokenType</description>
+    <lineContent>return violation.getTokenType();</lineContent>
+  </mutation>
+
+  <mutation>
+    <sourceFile>TreeWalkerAuditEvent.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent</mutatedClass>
+    <mutatedMethod>getTokenType</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/TreeWalkerAuditEvent::getTokenType</description>
+    <lineContent>return violation.getTokenType();</lineContent>
+  </mutation>
 </suppressedMutations>
