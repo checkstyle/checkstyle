@@ -30,9 +30,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -392,7 +392,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })
-            .collect(Collectors.toSet());
+            .collect(ImmutableSet.toImmutableSet());
     }
 
     /**

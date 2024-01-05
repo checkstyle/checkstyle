@@ -24,8 +24,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -246,7 +246,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
             this.allowedAbbreviations =
-                Arrays.stream(allowedAbbreviations).collect(Collectors.toSet());
+                Arrays.stream(allowedAbbreviations).collect(ImmutableSet.toImmutableSet());
         }
     }
 

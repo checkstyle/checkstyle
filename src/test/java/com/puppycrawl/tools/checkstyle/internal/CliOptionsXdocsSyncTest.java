@@ -31,13 +31,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import picocli.CommandLine;
 import picocli.CommandLine.Model.OptionSpec;
@@ -99,12 +99,12 @@ public class CliOptionsXdocsSyncTest {
         final Set<String> shortParamsMain = commandLine.getCommandSpec().options()
                         .stream()
                         .map(OptionSpec::shortestName)
-                        .collect(Collectors.toSet());
+                        .collect(ImmutableSet.toImmutableSet());
         final Set<String> longParamsMain = commandLine.getCommandSpec().options()
                         .stream()
                         .map(OptionSpec::longestName)
                         .filter(names -> names.length() != 2)
-                        .collect(Collectors.toSet());
+                        .collect(ImmutableSet.toImmutableSet());
 
         assertWithMessage("Short parameters in Main.java and cmdline"
                 + ".xml.vm should match")
@@ -140,7 +140,7 @@ public class CliOptionsXdocsSyncTest {
             result = XmlUtil.getChildrenElements(node)
                     .stream()
                     .map(Node::getTextContent)
-                    .collect(Collectors.toSet());
+                    .collect(ImmutableSet.toImmutableSet());
         }
         return result;
     }

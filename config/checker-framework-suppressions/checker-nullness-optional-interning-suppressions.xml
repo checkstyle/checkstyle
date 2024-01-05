@@ -775,7 +775,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
     <specifier>methodref.return</specifier>
     <message>Incompatible return type</message>
-    <lineContent>.collect(Collectors.toMap(Function.identity(), properties::getProperty));</lineContent>
+    <lineContent>.collect(ImmutableMap.toImmutableMap(Function.identity(), properties::getProperty));</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String

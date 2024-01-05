@@ -27,11 +27,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.VocabularyImpl;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 
 /**
@@ -740,7 +740,7 @@ public class GeneratedJavaTokenTypesTest {
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .collect(ImmutableList.toImmutableList());
 
         // Since the following tokens are not declared in the 'tokens' block,
         // they will always appear last in the list of symbolic names provided

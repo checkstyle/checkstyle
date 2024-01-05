@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -156,7 +156,7 @@ public class MatchXpathCheck extends AbstractCheck {
             final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
                     .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
-                    .collect(Collectors.toList());
+                    .collect(ImmutableList.toImmutableList());
         }
         catch (XPathException ex) {
             throw new IllegalStateException("Evaluation of Xpath query failed: " + query, ex);

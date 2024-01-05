@@ -37,11 +37,11 @@ import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
@@ -254,7 +254,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @since 6.11
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
+        requiredTranslations = Arrays.stream(translationCodes).collect(ImmutableSet.toImmutableSet());
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -520,7 +520,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
-                .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
+                .filter(key -> !currentFileKeys.contains(key)).collect(ImmutableSet.toImmutableSet());
             if (!missingKeys.isEmpty()) {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();

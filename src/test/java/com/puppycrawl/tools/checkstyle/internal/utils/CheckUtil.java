@@ -39,6 +39,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
@@ -151,7 +152,7 @@ public final class CheckUtil {
         final String packageName = "com.puppycrawl.tools.checkstyle";
         return getCheckstyleModulesRecursive(packageName, loader).stream()
                 .filter(ModuleReflectionUtil::isCheckstyleTreeWalkerCheck)
-                .collect(Collectors.toSet());
+                .collect(ImmutableSet.toImmutableSet());
     }
 
     /**
@@ -183,7 +184,7 @@ public final class CheckUtil {
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .filter(CheckUtil::isFromAllowedPackages)
-                .collect(Collectors.toSet());
+                .collect(ImmutableSet.toImmutableSet());
     }
 
     /**

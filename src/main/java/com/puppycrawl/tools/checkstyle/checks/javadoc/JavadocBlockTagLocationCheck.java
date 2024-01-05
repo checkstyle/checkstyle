@@ -23,8 +23,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -152,7 +152,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @since 8.24
      */
     public final void setTags(String... values) {
-        tags = Arrays.stream(values).collect(Collectors.toSet());
+        tags = Arrays.stream(values).collect(ImmutableSet.toImmutableSet());
     }
 
     /**

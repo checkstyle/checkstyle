@@ -28,9 +28,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -99,7 +99,7 @@ public final class MetadataGeneratorUtil {
                                     || fileName.endsWith("Check.java")
                                     || fileName.endsWith("Filter.java");
                         })
-                        .collect(Collectors.toList()));
+                        .collect(ImmutableList.toImmutableList()));
             }
         }
 

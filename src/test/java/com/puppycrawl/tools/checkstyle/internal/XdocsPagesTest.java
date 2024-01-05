@@ -63,6 +63,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
@@ -1409,7 +1410,7 @@ public class XdocsPagesTest {
             result = XmlUtil.getChildrenElements(node)
                     .stream()
                     .map(Node::getTextContent)
-                    .collect(Collectors.toSet());
+                    .collect(ImmutableSet.toImmutableSet());
         }
         return result;
     }

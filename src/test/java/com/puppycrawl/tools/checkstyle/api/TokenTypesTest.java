@@ -27,10 +27,10 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class TokenTypesTest {
@@ -43,7 +43,7 @@ public class TokenTypesTest {
         final Set<String> expected = Arrays.stream(TokenUtil.getAllTokenIds())
             .mapToObj(TokenUtil::getTokenName)
             .filter(name -> name.charAt(0) != '$')
-            .collect(Collectors.toSet());
+            .collect(ImmutableSet.toImmutableSet());
         final Set<String> actual = bundle.keySet();
         assertWithMessage("TokenTypes without description")
                 .that(actual)
@@ -56,7 +56,7 @@ public class TokenTypesTest {
             .mapToObj(TokenUtil::getTokenName)
             .filter(name -> name.charAt(0) != '$')
             .map(TokenUtil::getShortDescription)
-            .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(Collectors.toSet());
+            .filter(desc -> desc.charAt(desc.length() - 1) != '.').collect(ImmutableSet.toImmutableSet());
         assertWithMessage("Malformed TokenType descriptions")
                 .that(badDescriptions)
                 .isEqualTo(Collections.emptySet());

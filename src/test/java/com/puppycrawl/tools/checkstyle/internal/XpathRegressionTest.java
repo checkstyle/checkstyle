@@ -38,6 +38,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
@@ -149,7 +151,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private static Map<String, String> getAllowedDirectoryAndChecks() {
         return SIMPLE_CHECK_NAMES
             .stream()
-            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
+            .collect(ImmutableMap.toImmutableMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
     }
 
     private static Set<String> getInternalModules() {
@@ -158,7 +160,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
             })
-            .collect(Collectors.toSet());
+            .collect(ImmutableSet.toImmutableSet());
     }
 
     @BeforeEach

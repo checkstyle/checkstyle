@@ -32,6 +32,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.common.collect.ImmutableList;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -389,7 +390,7 @@ public class PackageObjectFactory implements ModuleFactory {
         final List<String> possibleNames = packages.stream()
             .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
             .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
-            .collect(Collectors.toList());
+            .collect(ImmutableList.toImmutableList());
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);
