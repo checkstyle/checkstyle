@@ -33,7 +33,7 @@
             </tr>
             <tr>
               <td>fileExtensions</td>
-              <td>Specify file type extension of the files to check.</td>
+              <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>5.7</td>

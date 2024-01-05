@@ -93,6 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * of default translation files in project.
  * </p>
  * <p>
+ * Note: If your project uses preprocessed translation files and the original files do not have the
+ * {@code properties} extension, you can specify additional file extensions
+ * via the {@code fileExtensions} property.
+ * </p>
+ * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
  * TranslationCheck will rise violation that the language code is incorrect.
@@ -113,10 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code "^messages.*$"}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension to identify
- * translation files. Setting this property is typically only required if your
- * translation files are preprocessed and the original files do not have
- * the extension {@code .properties}
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li>

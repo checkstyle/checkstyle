@@ -250,6 +250,9 @@ public final class SiteUtil {
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
         Map.entry("NewlineAtEndOfFileCheck.fileExtensions", "3.1"),
         Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
+        Map.entry("OrderedPropertiesCheck.fileExtensions", "8.22"),
+        Map.entry("UniquePropertiesCheck.fileExtensions", VERSION_5_7),
+        Map.entry("TranslationCheck.fileExtensions", VERSION_3_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
