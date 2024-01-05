@@ -16,7 +16,7 @@
             <property default-value=".properties"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify file type extension of the files to check.</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
          </properties>
          <message-keys>

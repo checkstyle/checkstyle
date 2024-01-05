@@ -90,8 +90,7 @@ d = e / f;        // Another comment for this line
             </tr>
             <tr>
               <td>legalComment</td>
-              <td>Define pattern for text allowed in trailing comments. This
-                  pattern will not be applied to multiline comments.</td>
+              <td>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
