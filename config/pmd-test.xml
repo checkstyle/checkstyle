@@ -121,7 +121,9 @@
                    | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
                    | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
-                       //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
+                       //MethodDeclaration[starts-with(@Name, 'testMain')]
+                   | //ClassOrInterfaceDeclaration[@SimpleName='CheckerTest']
+                       //MethodDeclaration[starts-with(@Name, 'testFor')]"/>
     </properties>
   </rule>
 
