@@ -1843,11 +1843,7 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-<<<<<<< HEAD
-                <exclude>**/TreeWalkerTest.class</exclude>
-=======
                 <exclude>**/AbstractFileSetCheckTest.class</exclude>
->>>>>>> ac884fa26 (Issue #11446: Replace verify with execute in TreeWalkerTest)
                 <exclude>**/CheckerTest.class</exclude>
                 <exclude>**/AllBlockCommentsTest.class</exclude>
               </excludes>
