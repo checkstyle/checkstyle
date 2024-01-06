@@ -170,6 +170,15 @@ public final class SiteUtil {
     );
 
     /**
+     * Map of properties whose default values are special that is not possible to get
+     * from setter or field.
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/14178">#14178</a>.
+     */
+    private static final Map<String, String> PROPERTY_SPECIAL_DEFAULTS = Map.ofEntries(
+        Map.entry("HeaderCheck.header", "null"),
+        Map.entry("RegexpHeaderCheck.header", "null")
+    );
+    /**
      * Frequent version.
      */
     private static final String VERSION_6_9 = "6.9";
@@ -187,7 +196,7 @@ public final class SiteUtil {
     /**
      * Frequent version.
      */
-    private static final String V824 = "8.24";
+    private static final String VERSION_8_24 = "8.24";
 
     /**
      * Frequent version.
@@ -228,7 +237,7 @@ public final class SiteUtil {
      * @noinspectionreason JavacQuirks until #14052
      */
     private static final Map<String, String> SINCE_VERSION_FOR_INHERITED_PROPERTY = Map.ofEntries(
-        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", V824),
+        Map.entry("MissingDeprecatedCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
         Map.entry("NonEmptyAtclauseDescriptionCheck.violateExecutionOnNonTightHtml", "8.3"),
         Map.entry("HeaderCheck.charset", VERSION_5_0),
         Map.entry("HeaderCheck.fileExtensions", VERSION_6_9),
@@ -253,9 +262,9 @@ public final class SiteUtil {
         Map.entry("OrderedPropertiesCheck.fileExtensions", "8.22"),
         Map.entry("UniquePropertiesCheck.fileExtensions", VERSION_5_7),
         Map.entry("TranslationCheck.fileExtensions", VERSION_3_0),
-        Map.entry("LineLengthCheck.fileExtensions", V824),
-        // until https://github.com/checkstyle/checkstyle/issues/14052
-        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
+        Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
+            // until https://github.com/checkstyle/checkstyle/issues/14052
+        Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry(
             "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
@@ -914,6 +923,18 @@ public final class SiteUtil {
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
                 .orElseGet(fieldClass::getSimpleName);
+    }
+
+    /**
+     * Get the default value of the property from hardcoded map.
+     *
+     * @param propertyName the name of the property.
+     * @param moduleName the name of the module.
+     * @return the default value of the property.
+     */
+    @Nullable
+    public static String getSpecialDefaultValue(String propertyName, String moduleName) {
+        return PROPERTY_SPECIAL_DEFAULTS.get(moduleName + DOT + propertyName);
     }
 
     /**

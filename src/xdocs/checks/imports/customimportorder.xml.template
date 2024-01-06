@@ -114,60 +114,10 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>customImportOrderRules</td>
-              <td>Specify format of order declaration customizing by user.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>""</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>separateLineBetweenGroups</td>
-              <td>Force empty line separator between import groups.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>true</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>sortImportsInGroupAlphabetically</td>
-              <td>Force grouping alphabetically, in
-                <a href="https://en.wikipedia.org/wiki/ASCII#Order">
-                  ASCII sort order</a>.
-              </td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
-              <td><code>false</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>specialImportsRegExp</td>
-              <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>standardPackageRegExp</td>
-              <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^(java|javax)\."</code></td>
-              <td>5.8</td>
-            </tr>
-            <tr>
-              <td>thirdPartyPackageRegExp</td>
-              <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>".*"</code></td>
-              <td>5.8</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
