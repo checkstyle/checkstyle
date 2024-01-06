@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NavigableMap;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.TreeMap;
 
@@ -296,25 +297,29 @@ public class LineWrappingHandler {
      * Checks whether current node is an annotation wrapped within a class definition.
      *
      * @param node It is the current node in consideration.
-     * @param parentNode It is the parent node of the current node.
      * @return true if the current node is annotation
      *     and present between access specifier and class keyword.
      */
-    private static boolean isCurrentNodeAnnotationLineWrappedInClassDef(DetailAST node,
-            DetailAST parentNode) {
-        final boolean isPreviousToPreviousSiblingAccessModifier =
-            Optional.ofNullable(parentNode).map(DetailAST::getPreviousSibling)
+    private static boolean isCurrentNodeAnnotationLineWrappedInClassDef(DetailAST node) {
+        boolean isPreviousToPreviousSiblingAccessModifier = false;
+        try {
+            Optional.ofNullable(node)
+                .filter(thisNode -> TokenUtil.isOfType(thisNode, TokenTypes.AT))
+                .map(DetailAST::getParent)
+                .map(DetailAST::getPreviousSibling)
+                .filter(sibling -> TokenUtil.isOfType(sibling, TokenTypes.ANNOTATION))
                 .map(DetailAST::getPreviousSibling)
                 .filter(sibling -> {
                     return TokenUtil.isOfType(sibling, TokenTypes.LITERAL_PUBLIC,
                     TokenTypes.LITERAL_PRIVATE, TokenTypes.LITERAL_PROTECTED);
-                }).isPresent();
-        final boolean isCurrentNodeAtNode = TokenUtil.isOfType(node, TokenTypes.AT);
-        final boolean isPreviousSiblingAnnotation =
-                TokenUtil.isOfType(parentNode.getPreviousSibling(), TokenTypes.ANNOTATION);
-        return isCurrentNodeAtNode
-            && isPreviousSiblingAnnotation
-            && isPreviousToPreviousSiblingAccessModifier;
+                })
+                .orElseThrow(() -> new NoSuchElementException());
+            isPreviousToPreviousSiblingAccessModifier = true;
+        }
+        catch (NoSuchElementException exception) {
+            isPreviousToPreviousSiblingAccessModifier = false;
+        }
+        return isPreviousToPreviousSiblingAccessModifier;
     }
 
     /**
@@ -364,7 +369,7 @@ public class LineWrappingHandler {
                         TokenTypes.MODIFIERS, TokenTypes.ANNOTATIONS)
                     || TokenUtil.areOnSameLine(node, atNode));
 
-            if (condition && isCurrentNodeAnnotationLineWrappedInClassDef(node, parentNode)) {
+            if (condition && isCurrentNodeAnnotationLineWrappedInClassDef(node)) {
                 logWarningMessage(node, currentIndent);
             }
             else if (condition) {
