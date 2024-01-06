@@ -25,6 +25,8 @@ import java.util.NavigableMap;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -302,13 +304,16 @@ public class LineWrappingHandler {
      */
     private static boolean isCurrentNodeAnnotationLineWrappedInClassDef(DetailAST node,
             DetailAST parentNode) {
+        DetailAST tempNode = parentNode;
+        while (ObjectUtils.anyNotNull(tempNode)
+                && !TokenUtil.isOfType(tempNode, TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_PRIVATE,
+                    TokenTypes.LITERAL_PROTECTED)) {
+            tempNode = tempNode.getPreviousSibling();
+        }
         final boolean isPreviousToPreviousSiblingAccessModifier =
-            Optional.ofNullable(parentNode).map(DetailAST::getPreviousSibling)
-                .map(DetailAST::getPreviousSibling)
-                .filter(sibling -> {
-                    return TokenUtil.isOfType(sibling, TokenTypes.LITERAL_PUBLIC,
-                    TokenTypes.LITERAL_PRIVATE, TokenTypes.LITERAL_PROTECTED);
-                }).isPresent();
+            ObjectUtils.anyNotNull(tempNode)
+                && TokenUtil.isOfType(tempNode, TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_PRIVATE,
+                    TokenTypes.LITERAL_PROTECTED);
         final boolean isCurrentNodeAtNode = TokenUtil.isOfType(node, TokenTypes.AT);
         final boolean isPreviousSiblingAnnotation =
                 TokenUtil.isOfType(parentNode.getPreviousSibling(), TokenTypes.ANNOTATION);
