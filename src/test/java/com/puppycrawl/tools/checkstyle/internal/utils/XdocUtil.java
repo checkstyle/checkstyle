@@ -65,7 +65,7 @@ public final class XdocUtil {
                             && (path.toString().endsWith(".xml")
                             || path.toString().endsWith(".xml.vm"));
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(Collectors.toUnmodifiableSet());
         }
     }
 
@@ -84,7 +84,7 @@ public final class XdocUtil {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(Collectors.toUnmodifiableSet());
         }
     }
 

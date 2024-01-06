@@ -59,14 +59,13 @@ public class PropertiesMacro extends AbstractMacro {
     public static final String EMPTY = "empty";
 
     /** Set of properties not inherited from the base token configuration. */
-    public static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
-            Arrays.stream(new String[] {
+    public static final Set<String> NON_BASE_TOKEN_PROPERTIES = Arrays.stream(new String[]{
                 "AtclauseOrder - target",
                 "DescendantToken - limitedTokens",
                 "IllegalType - memberModifiers",
                 "MagicNumber - constantWaiverParentToken",
                 "MultipleStringLiterals - ignoreOccurrenceContext",
-            }).collect(Collectors.toSet()));
+            }).collect(Collectors.toUnmodifiableSet());
 
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
@@ -337,7 +336,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toUnmodifiableList());
                 sink.text("subset of tokens");
 
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
@@ -350,7 +349,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toUnmodifiableList());
             sink.text("subset of javadoc tokens");
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
@@ -492,7 +491,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toList());
+                        .collect(Collectors.toUnmodifiableList());
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
             }
         }
@@ -503,7 +502,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toUnmodifiableList());
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {
