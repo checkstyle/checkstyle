@@ -129,7 +129,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <tr>
               <td>customImportOrderRules</td>
               <td>Specify ordered list of import groups.</td>
-              <td><a href="../../property_types.html#String[]">String[]</a></td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
@@ -142,10 +142,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             </tr>
             <tr>
               <td>sortImportsInGroupAlphabetically</td>
-              <td>Force grouping alphabetically, in
-                <a href="https://en.wikipedia.org/wiki/ASCII#Order">
-                  ASCII sort order</a>.
-              </td>
+              <td>Force grouping alphabetically, in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
