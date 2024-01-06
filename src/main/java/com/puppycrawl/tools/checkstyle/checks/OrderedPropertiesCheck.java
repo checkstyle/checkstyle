@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Known limitation: The key should not contain a newline.
  * The string compare will work, but not the line number reporting.</p>
  * <ul><li>
- * Property {@code fileExtensions} - Specify file type extension of the files to check.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li></ul>

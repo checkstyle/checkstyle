@@ -44,6 +44,11 @@
  of default translation files in project.
  &lt;/p&gt;
  &lt;p&gt;
+ Note: If your project uses preprocessed translation files and the original files do not have the
+ {@code properties} extension, you can specify additional file extensions
+ via the {@code fileExtensions} property.
+ &lt;/p&gt;
+ &lt;p&gt;
  Attention: the check will perform the validation of ISO codes if the option
  is used. So, if you specify, for example, "mm" for language code,
  TranslationCheck will rise violation that the language code is incorrect.
@@ -66,10 +71,7 @@
             <property default-value=".properties"
                       name="fileExtensions"
                       type="java.lang.String[]">
-               <description>Specify file type extension to identify
- translation files. Setting this property is typically only required if your
- translation files are preprocessed and the original files do not have
- the extension {@code .properties}</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
             <property default-value=""
                       name="requiredTranslations"

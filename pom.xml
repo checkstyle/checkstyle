@@ -1571,6 +1571,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
+            </manifestEntries>
           </archive>
           <excludes>
             <exclude>**/Input*.*</exclude>
@@ -1843,7 +1846,6 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
                 <exclude>**/TreeWalkerTest.class</exclude>
                 <exclude>**/CheckerTest.class</exclude>
                 <exclude>**/AllBlockCommentsTest.class</exclude>
