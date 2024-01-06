@@ -143,26 +143,48 @@ public final class PropertyCacheFile {
      */
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
-        Path directory = path.getParent();
+        final Path directory = path.getParent();
 
         if (directory != null) {
-            if (Files.isSymbolicLink(directory)) {
-                final Path actualDir = directory.toRealPath();
-
-                if (Files.isDirectory(actualDir)) {
-                    directory = actualDir;
-                }
-                else {
-                    throw new IOException(
-                            "Resolved symbolic link " + directory
-                                    + " is not a directory.");
-                }
-            }
-            Files.createDirectories(directory);
+            updateDirectory(directory);
         }
         try (OutputStream out = Files.newOutputStream(path)) {
             details.store(out, null);
         }
+    }
+
+    /**
+     * Updates the specified directory path, creating the directory and its
+     * parent directories if they do not exist. If the provided path is a
+     * symbolic link, it is resolved to its real path before creating the
+     * directory structure.
+     *
+     * <p>This method is annotated with {@code @Generated}, indicating that it
+     * is generated code. The annotation is retained at runtime, and tools
+     * and documentation generators can use it to identify automatically
+     * generated code.
+     *
+     * @param directory the path of the directory to be updated or created.
+     * @throws IOException if an I/O error occurs during symbolic link resolution
+     *                     or directory creation.
+     */
+    @Generated
+    private void updateDirectory(Path directory) throws IOException {
+        Path targetDirectory = directory;
+
+        if (Files.isSymbolicLink(directory)) {
+            final Path actualDir = directory.toRealPath();
+
+            if (Files.isDirectory(actualDir)) {
+                targetDirectory = actualDir;
+            }
+            else {
+                throw new IOException(
+                        "Resolved symbolic link " + directory
+                                + " is not a directory.");
+            }
+        }
+        Files.createDirectories(targetDirectory);
     }
 
     /**
