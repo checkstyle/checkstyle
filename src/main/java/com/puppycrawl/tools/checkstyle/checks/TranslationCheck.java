@@ -256,7 +256,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @since 6.11
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
+        requiredTranslations = Arrays.stream(translationCodes)
+            .collect(Collectors.toUnmodifiableSet());
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -522,7 +523,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
-                .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
+                .filter(key -> !currentFileKeys.contains(key))
+                .collect(Collectors.toUnmodifiableSet());
             if (!missingKeys.isEmpty()) {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();
