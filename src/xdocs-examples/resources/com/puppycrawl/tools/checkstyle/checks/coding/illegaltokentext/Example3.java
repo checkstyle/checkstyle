@@ -1,3 +1,4 @@
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
@@ -10,8 +11,9 @@
 */
 
 // xdoc section -- start
-public void myTest() {
-    final String quote = """
-               \""""; // violation
+public class Example3 {
+    public void myTest() {
+        final String quote = "           \"";  // violation
+    }
 }
 // xdoc section -- end
