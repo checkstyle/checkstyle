@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
