@@ -7,7 +7,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void foo() {
         try {
             throw new RuntimeException();
-        } catch (Exception expected) //ok
+        } catch (Exception expected)
         {
             //Expected
         }
@@ -52,7 +52,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             /* ololo
              * blalba
@@ -62,7 +62,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some1() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             /* lalala
              * This is expected
@@ -72,7 +72,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some2() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             /*
              * This is expected
@@ -83,7 +83,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some3() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             // some comment
             //This is expected
@@ -92,7 +92,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some4() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             //This is expected
             // some comment
@@ -101,7 +101,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void some5() {
         try {
             throw new IOException();
-        } catch (IOException e) //ok
+        } catch (IOException e)
         {
             /* some comment */
             //This is expected
