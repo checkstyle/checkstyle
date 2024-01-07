@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.12.7-SNAPSHOT</version>
+  <version>10.12.8-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -234,10 +234,12 @@
     <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.42.0</checkerframework.version>
-    <error-prone.version>2.24.0</error-prone.version>
+    <error-prone.version>2.24.1</error-prone.version>
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
+      -Xep:AmbiguousJsonCreator:ERROR
+      -Xep:AssertJIsNull:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -1571,6 +1573,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
+            </manifestEntries>
           </archive>
           <excludes>
             <exclude>**/Input*.*</exclude>
@@ -1843,7 +1848,6 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
                 <exclude>**/TreeWalkerTest.class</exclude>
                 <exclude>**/CheckerTest.class</exclude>
                 <exclude>**/AllBlockCommentsTest.class</exclude>

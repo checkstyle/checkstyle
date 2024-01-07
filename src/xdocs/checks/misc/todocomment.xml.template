@@ -20,22 +20,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify pattern to match comments against.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"TODO:"</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TodoCommentCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
