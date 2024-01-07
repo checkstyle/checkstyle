@@ -19,13 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
+    public static final String STATIC_VAR_NAME_PATTERN_1 = "^[a-z][a-zA-Z0-9]*$";
+    public static final String STATIC_VAR_NAME_PATTERN_2 = "^[a-z](_?[a-zA-Z0-9]+)*$";
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename";
@@ -34,27 +38,50 @@ public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_1),
+            "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_1),
+            "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "it_static", STATIC_VAR_NAME_PATTERN_1),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_1),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_2),
+            "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_2),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_2 ),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
