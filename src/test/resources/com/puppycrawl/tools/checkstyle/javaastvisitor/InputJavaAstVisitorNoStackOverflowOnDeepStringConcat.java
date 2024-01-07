@@ -43,5 +43,5 @@ public class InputJavaAstVisitorNoStackOverflowOnDeepStringConcat {
  "a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+
  "a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+"a"+
 
-         "b"; // ok
+         "b";
 }
