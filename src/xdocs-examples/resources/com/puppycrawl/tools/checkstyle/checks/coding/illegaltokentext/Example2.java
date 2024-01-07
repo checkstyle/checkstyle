@@ -1,4 +1,3 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
@@ -11,11 +10,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
+
 // xdoc section -- start
 public class Example2 {
     public void myTest() {
         String test = "a href"; // violation
-        String test2 = "A href"; // violation, case is ignored
+        String test2 = "A href"; // violation
     }
 }
 // xdoc section -- end

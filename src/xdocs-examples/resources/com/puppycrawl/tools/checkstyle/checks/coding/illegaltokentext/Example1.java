@@ -1,4 +1,3 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
@@ -9,6 +8,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
   </module>
 </module>
 */
+
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 // xdoc section -- start
 public class Example1 {

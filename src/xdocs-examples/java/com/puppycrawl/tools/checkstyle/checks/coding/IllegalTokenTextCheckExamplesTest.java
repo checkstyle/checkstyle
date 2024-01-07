@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+
+import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
 public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -33,7 +34,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "17:23: " + getCheckMessage(MSG_KEY, "a href"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -42,7 +43,8 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "18:23: " + getCheckMessage(MSG_KEY, "a href"),
+            "19:24: " + getCheckMessage(MSG_KEY, "a href"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -60,7 +62,8 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "21:21: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
+            "23:22: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
