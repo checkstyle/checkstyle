@@ -77,10 +77,24 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-class MyClass {
-  public static int goodStatic = 2; // OK
-  private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+class Example1 {
+  public static int goodStatic = 2;
+  private static int badStatic = 2;
+  public static int GoodStatic1 = 2;
+  // violation above, 'Name 'GoodStatic1' must match pattern'
+  protected static int GoodStatic2 = 2;
+  // violation above, 'Name 'GoodStatic2' must match pattern'
+  private static int BadStatic = 2;
+  // violation above, 'Name 'BadStatic' must match pattern'
+  public static int good_static = 2;
+  // violation above, 'Name 'good_static' must match pattern'
+  public static int Bad_Static = 2;
+  // violation above, 'Name 'Bad_Static' must match pattern'
+  private static int Good_Static1 = 2;
+  // violation above, 'Name 'Good_Static1' must match pattern'
+  static int Good_Static2 = 2;
+  // violation above, 'Name 'Good_Static2' must match pattern'
+
 }
         </source>
         <p id="Example2-config">
@@ -98,12 +112,19 @@ class MyClass {
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
-  public static int GoodStatic1 = 2; // OK
-  protected static int GoodStatic2 = 2; //OK
-  private static int goodStatic = 2 // OK
-  private static int BadStatic = 2; // violation, name 'BadStatic'
-                                    // must match pattern '^[a-z][a-zA-Z0-9]*$'
+class Example2 {
+  public static int goodStatic = 2;
+  private static int badStatic = 2;
+  public static int GoodStatic1 = 2;
+  protected static int GoodStatic2 = 2;
+  private static int BadStatic = 2;
+  // violation above, 'Name 'BadStatic' must match pattern'
+  public static int good_static = 2;
+  public static int Bad_Static = 2;
+  private static int Good_Static1 = 2;
+  // violation above, 'Name 'Good_Static1' must match pattern'
+  static int Good_Static2 = 2;
+  // violation above, 'Name 'Good_Static2' must match pattern'
 }
         </source>
         <p id="Example3-config">
@@ -124,12 +145,19 @@ class MyClass {
         </source>
         <p id="Example3-code">Code Example:</p>
         <source>
-class MyClass {
-  public static int good_static = 2; // OK
-  public static int Bad_Static = 2; // violation, name 'Bad_Static'
-                                    // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-  private static int Good_Static1 = 2; // OK
-  static int Good_Static2 = 2; // OK
+class Example3 {
+    public static int goodStatic = 2;
+    private static int badStatic = 2;
+    public static int GoodStatic1 = 2;
+    // violation above, 'Name 'GoodStatic1' must match pattern'
+    protected static int GoodStatic2 = 2;
+    // violation above, 'Name 'GoodStatic2' must match pattern'
+    private static int BadStatic = 2;
+    public static int good_static = 2;
+    public static int Bad_Static = 2;
+    // violation above, 'Name 'Bad_Static' must match pattern'
+    private static int Good_Static1 = 2;
+    static int Good_Static2 = 2;
 }
         </source>
       </subsection>
