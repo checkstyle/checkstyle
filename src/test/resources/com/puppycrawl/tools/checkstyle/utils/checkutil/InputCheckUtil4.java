@@ -6,7 +6,6 @@ accessModifiers = public
 
 package com.puppycrawl.tools.checkstyle.utils.checkutil;
 
-// ok
 public interface InputCheckUtil4 {
 
     /**

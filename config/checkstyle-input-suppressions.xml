@@ -5527,8 +5527,6 @@
   <suppress id="UnnecessaryOkComment"
             files="utils[\\/]annotationutil[\\/]InputAnnotationUtil2.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtil4.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="utils[\\/]checkutil[\\/]InputCheckUtilPackage.java"/>
   <suppress id="UnnecessaryOkComment"
             files="utils[\\/]checkutil[\\/]package-info.java"/>
