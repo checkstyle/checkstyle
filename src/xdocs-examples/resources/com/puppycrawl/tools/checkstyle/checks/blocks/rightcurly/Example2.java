@@ -9,33 +9,42 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
+
 // xdoc section -- start
-public class Test {
+public class Example2 {
 
   public void test() {
 
+    boolean foo = false;
     if (foo) {
       bar();
-    } else { bar(); }   // violation, right curly must be alone on line
+    } else { bar(); }
+    // violation above, 'should be alone on a line.'
 
     if (foo) {
       bar();
     } else {
       bar();
-    }                   // OK
+    }
 
     try {
       bar();
-    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+    } catch (Exception e) {
+      // OK above because config is set to token METHOD_DEF and LITERAL_ELSE
       bar();
     }
 
-  }                         // OK
+  }
 
-  public void violate() { bar; } // violation, singleline is not allowed here
+  private void bar() {
+  }
+
+  public void violate() { Object bar = "bar"; }
+  // violation above, 'should be alone on a line.'
 
   public void ok() {
     bar();
-  }                              // OK
+  }
 }
 // xdoc section -- end
