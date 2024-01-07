@@ -9,9 +9,13 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
+
 // xdoc section -- start
-public void myTest() {
-    String test = "a href"; // violation
-    String test2 = "A href"; // OK, case is sensitive
+public class Example1 {
+    public void myTest() {
+        String test = "a href"; // violation
+        String test2 = "A href"; // OK, case is sensitive
+    }
 }
 // xdoc section -- end
