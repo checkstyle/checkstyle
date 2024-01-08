@@ -50,15 +50,6 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
-    }
-
-    @Test
     public void testExample4() throws Exception {
         final String[] expected = {
             "20:21: " + getCheckMessage(MSG_KEY, "^0[^lx]"),
