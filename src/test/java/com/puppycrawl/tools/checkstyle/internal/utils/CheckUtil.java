@@ -151,7 +151,7 @@ public final class CheckUtil {
         final String packageName = "com.puppycrawl.tools.checkstyle";
         return getCheckstyleModulesRecursive(packageName, loader).stream()
                 .filter(ModuleReflectionUtil::isCheckstyleTreeWalkerCheck)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -183,7 +183,7 @@ public final class CheckUtil {
                 .map(ClassPath.ClassInfo::load)
                 .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .filter(CheckUtil::isFromAllowedPackages)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
