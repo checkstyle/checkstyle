@@ -246,7 +246,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     public void setAllowedAbbreviations(String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
             this.allowedAbbreviations =
-                Arrays.stream(allowedAbbreviations).collect(Collectors.toSet());
+                Arrays.stream(allowedAbbreviations).collect(Collectors.toUnmodifiableSet());
         }
     }
 
