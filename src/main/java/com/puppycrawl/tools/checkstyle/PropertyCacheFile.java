@@ -404,6 +404,7 @@ public final class PropertyCacheFile {
      * Class which provides OS related utilities.
      */
     public static class OsSpecificUtil {
+
         /**
          * Updates the specified directory by resolving symbolic links, ensuring it exists,
          * and creating any necessary parent directories. If the provided path is a symbolic
@@ -431,5 +432,6 @@ public final class PropertyCacheFile {
             }
             Files.createDirectories(targetDirectory);
         }
+
     }
 }
