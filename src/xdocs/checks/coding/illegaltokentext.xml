@@ -94,9 +94,11 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public void myTest() {
-    String test = &quot;a href&quot;; // violation
-    String test2 = &quot;A href&quot;; // OK, case is sensitive
+public class Example1 {
+    public void myTest() {
+        String test = &quot;a href&quot;; // violation
+        String test2 = &quot;A href&quot;; // OK, case is sensitive
+    }
 }
         </source>
         <p id="Example2-config">
@@ -116,9 +118,11 @@ public void myTest() {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public void myTest() {
-    String test = &quot;a href&quot;; // violation
-    String test2 = &quot;A href&quot;; // violation, case is ignored
+public class Example2 {
+    public void myTest() {
+        String test = &quot;a href&quot;; // violation
+        String test2 = &quot;A href&quot;; // violation
+    }
 }
         </source>
         <p id="Example3-config">
@@ -137,9 +141,11 @@ public void myTest() {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public void myTest() {
-    final String quote = &quot;&quot;&quot;
-               \&quot;&quot;&quot;&quot;; // violation
+public class Example3 {
+    public void myTest() {
+        final String quote = &quot;&quot;&quot;
+                   \&quot;&quot;&quot;&quot;;
+    }
 }
         </source>
         <p id="Example4-config">
@@ -159,13 +165,15 @@ public void myTest() {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public void myTest() {
-    int test1 = 0; // OK
-    int test2 = 0x111; // OK
-    int test3 = 0X111; // OK, case is ignored
-    int test4 = 010; // violation
-    long test5 = 0L; // OK
-    long test6 = 010L; // violation
+public class Example4 {
+    public void myTest() {
+        int test1 = 0; // OK
+        int test2 = 0x111; // OK
+        int test3 = 0X111; // OK, case is ignored
+        int test4 = 010; // violation
+        long test5 = 0L; // OK
+        long test6 = 010L; // violation
+    }
 }
         </source>
       </subsection>
