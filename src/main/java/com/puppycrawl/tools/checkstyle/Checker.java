@@ -222,7 +222,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         final List<File> targetFiles = files.stream()
                 .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         processFiles(targetFiles);
 
         // Finish up
@@ -251,7 +251,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /** Notify all listeners about the audit start. */

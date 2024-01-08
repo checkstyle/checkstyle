@@ -143,7 +143,7 @@ public class XpathQueryGenerator {
         return getMatchingAstElements()
             .stream()
             .map(XpathQueryGenerator::generateXpathQuery)
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     }
 
     /**
