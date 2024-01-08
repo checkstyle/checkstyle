@@ -156,7 +156,7 @@ public class MatchXpathCheck extends AbstractCheck {
             final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
                     .map(item -> (DetailAST) ((AbstractNode) item).getUnderlyingNode())
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toUnmodifiableList());
         }
         catch (XPathException ex) {
             throw new IllegalStateException("Evaluation of Xpath query failed: " + query, ex);
