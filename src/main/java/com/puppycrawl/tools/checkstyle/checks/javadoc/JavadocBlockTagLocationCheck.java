@@ -152,7 +152,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @since 8.24
      */
     public final void setTags(String... values) {
-        tags = Arrays.stream(values).collect(Collectors.toSet());
+        tags = Arrays.stream(values).collect(Collectors.toUnmodifiableSet());
     }
 
     /**
