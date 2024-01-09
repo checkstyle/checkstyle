@@ -922,7 +922,6 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
-
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.PropertyCacheFile.OsSpecificUtil</exclude>
                   </excludes>
