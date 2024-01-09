@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="CustomImportOrder">
       <property name="customImportOrderRules"
-        value="SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS"/>
+        value="SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STATIC, SPECIAL_IMPORTS"/>
       <property name="specialImportsRegExp" value="^android\."/>
     </module>
   </module>

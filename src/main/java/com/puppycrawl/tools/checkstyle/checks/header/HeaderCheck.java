@@ -125,6 +125,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * @return if {@code lineNo} is one of the ignored header lines.
      */
     private boolean isIgnoreLine(int lineNo) {
+        this.setHeader();
         return ignoreLines.get(lineNo);
     }
 
