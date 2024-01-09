@@ -925,6 +925,8 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+                    <!-- OS specific utility providing class -->
+                    <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1520,7 +1522,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.5</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
