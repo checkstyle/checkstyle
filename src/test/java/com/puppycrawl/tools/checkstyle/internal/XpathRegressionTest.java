@@ -103,7 +103,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "IllegalTokenText",
             "InnerTypeLast",
             "InterfaceTypeParameterName",
-            "JavaNCSS",
             "LocalFinalVariableName",
             "LocalVariableName",
             "MethodLength",
