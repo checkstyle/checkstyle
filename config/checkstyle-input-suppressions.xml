@@ -843,8 +843,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullIgnoreCase.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullSuperClass.java"/>
