@@ -46,6 +46,7 @@ public final class OsSpecificUtil {
      *                     not a directory.
      */
     public static void updateDirectory(Path directory) throws IOException {
+
         Path targetDirectory = directory;
 
         if (Files.isSymbolicLink(directory)) {
