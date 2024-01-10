@@ -14,9 +14,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 public class Example3 {
-    public void myTest() {
-        final String quote = """
-                   \"""";
-    }
+  public void myTest() {
+    final String quote = """
+            \""""; // violation above
+  }
 }
 // xdoc section -- end
