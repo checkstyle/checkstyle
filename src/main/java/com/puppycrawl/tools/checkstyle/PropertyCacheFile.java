@@ -41,6 +41,7 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
@@ -143,22 +144,10 @@ public final class PropertyCacheFile {
      */
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
-        Path directory = path.getParent();
+        final Path directory = path.getParent();
 
         if (directory != null) {
-            if (Files.isSymbolicLink(directory)) {
-                final Path actualDir = directory.toRealPath();
-
-                if (Files.isDirectory(actualDir)) {
-                    directory = actualDir;
-                }
-                else {
-                    throw new IOException(
-                            "Resolved symbolic link " + directory
-                                    + " is not a directory.");
-                }
-            }
-            Files.createDirectories(directory);
+            OsSpecificUtil.updateDirectory(directory);
         }
         try (OutputStream out = Files.newOutputStream(path)) {
             details.store(out, null);
@@ -411,5 +400,4 @@ public final class PropertyCacheFile {
         }
 
     }
-
 }
