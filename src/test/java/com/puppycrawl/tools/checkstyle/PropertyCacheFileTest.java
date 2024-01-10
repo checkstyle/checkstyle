@@ -42,6 +42,8 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -282,6 +284,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
         final Path tempDirectory = Files.createTempDirectory("tempDir");
         final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
@@ -301,6 +304,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkResolution() throws IOException {
         final Path tempDirectory = Files.createTempDirectory("tempDir");
         final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
@@ -321,6 +325,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final Path tempFile = Files.createTempFile("tempFile", null);
         final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir");
@@ -343,6 +348,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testMultipleSymbolicLinkResolution() throws IOException {
         final Path actualDirectory = Files.createTempDirectory("actualDir");
         final Path firstSymbolicLink = Files.createTempDirectory("firstLinkDir")
