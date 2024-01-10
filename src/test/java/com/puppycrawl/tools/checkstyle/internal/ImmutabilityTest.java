@@ -219,7 +219,7 @@ public class ImmutabilityTest {
      */
     private static final Map<String, ModuleDetails> MODULE_DETAILS_MAP =
         XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().stream()
-            .collect(Collectors.toMap(ModuleDetails::getFullQualifiedName,
+            .collect(Collectors.toUnmodifiableMap(ModuleDetails::getFullQualifiedName,
                                       Function.identity()));
 
     /**
