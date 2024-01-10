@@ -1627,7 +1627,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
                     .limit(expected.length)
                     .sorted()
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toUnmodifiableList());
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {
