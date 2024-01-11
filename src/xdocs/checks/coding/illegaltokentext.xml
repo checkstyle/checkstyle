@@ -96,7 +96,7 @@
         <source>
 public class Example1 {
   public void myTest() {
-    String test = &quot;a href&quot;;  // violation
+    String test  = &quot;a href&quot;; // violation
     String test2 = &quot;A href&quot;; // OK, case is sensitive
   }
 }
