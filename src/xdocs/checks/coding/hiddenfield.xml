@@ -152,7 +152,7 @@ public class SomeClass {
   public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // violation, 'testField' param
                                                // hides 'testField' field
