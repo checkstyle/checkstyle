@@ -6469,6 +6469,244 @@ public final class TokenTypes {
     public static final int RECORD_PATTERN_COMPONENTS =
             JavaLanguageLexer.RECORD_PATTERN_COMPONENTS;
 
+    /**
+     * A string template opening delimiter. This element ({@code "}) appears
+     * at the beginning of a string template.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int STRING_TEMPLATE_BEGIN =
+            JavaLanguageLexer.STRING_TEMPLATE_BEGIN;
+
+    /**
+     * A string template closing delimiter. This element ({@code "}) appears
+     * at the end of a string template.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int STRING_TEMPLATE_END =
+            JavaLanguageLexer.STRING_TEMPLATE_END;
+
+    /**
+     * The (possibly empty) content of a string template. A given string
+     * template may have more than one node of this type.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int STRING_TEMPLATE_CONTENT =
+            JavaLanguageLexer.STRING_TEMPLATE_CONTENT;
+
+    /**
+     * The opening delimiter of an embedded expression within a string template.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int EMBEDDED_EXPRESSION_BEGIN =
+            JavaLanguageLexer.EMBEDDED_EXPRESSION_BEGIN;
+
+    /**
+     * An expression embedded within a string template.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int EMBEDDED_EXPRESSION =
+            JavaLanguageLexer.EMBEDDED_EXPRESSION;
+
+    /**
+     * The closing delimiter of an embedded expression within a string
+     * template.
+     * <p>For example:</p>
+     * <pre>
+     *     String s = STR."Hello, \{name}!";
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--IDENT -&gt; s
+     *     `--ASSIGN -&gt; =
+     *         `--EXPR -&gt; EXPR
+     *              `--DOT -&gt; .
+     *                  |--IDENT -&gt; STR
+     *                  `--STRING_TEMPLATE_BEGIN -&gt; "
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; Hello,
+     *                      |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *                      |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *                      |   `--IDENT -&gt; name
+     *                      |--EMBEDDED_EXPRESSION_END -&gt; }
+     *                      |--STRING_TEMPLATE_CONTENT -&gt; !
+     *                      `--STRING_TEMPLATE_END -&gt; "
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.12.8
+     */
+    public static final int EMBEDDED_EXPRESSION_END =
+            JavaLanguageLexer.EMBEDDED_EXPRESSION_END;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
