@@ -47,6 +47,8 @@
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSingleLine.java"/>
   <suppress id="noCheckstyleInInputs"
+            files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSingleLineList.java"/>
+  <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrderSpanMultipleLines.java"/>
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]customimportorder[\\/]InputCustomImportOrder_OverlappingPatterns.java"/>
