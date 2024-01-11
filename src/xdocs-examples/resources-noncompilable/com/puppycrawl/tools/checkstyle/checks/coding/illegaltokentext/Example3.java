@@ -8,10 +8,15 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java14
 
 // xdoc section -- start
-public void myTest() {
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
+
+public class Example3 {
+  public void myTest() {
     final String quote = """
-               \""""; // violation
+            \""""; // violation above
+  }
 }
 // xdoc section -- end
