@@ -43,7 +43,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:19: " + getCheckMessage(MSG_KEY, "a href"),
+            "18:20: " + getCheckMessage(MSG_KEY, "a href"),
             "19:20: " + getCheckMessage(MSG_KEY, "a href"),
         };
 
