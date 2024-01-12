@@ -31,20 +31,46 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          To configure the check:
+          To configure the check tp accept files with up to 2000 lines:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example2-config">
-          To configure the check to accept files with up to 1500 lines:
+          To configure the check to accept files with up to 5 lines:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check to accept files without txt extension:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
