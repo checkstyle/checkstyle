@@ -201,15 +201,6 @@
   <mutation unstable="false">
     <sourceFile>JavadocStyleCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
-    <mutatedMethod>findTextStart</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator</mutator>
-    <description>Removed increment 2</description>
-    <lineContent>index += 2;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocStyleCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
     <mutatedMethod>trimTail</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/StringBuilder::deleteCharAt</description>
