@@ -50,7 +50,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          To configure the check:
+          To configure the check tp accept files with up to 2000 lines:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -58,12 +58,23 @@
 &lt;/module&gt;
         </source>
         <p id="Example2-config">
-          To configure the check to accept files with up to 1500 lines:
+          To configure the check to accept files with up to 5 lines:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;FileLength&quot;&gt;
-    &lt;property name=&quot;max&quot; value=&quot;1500&quot;/&gt;
+    &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-config">
+          To configure the check to accept files without txt extension:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;FileLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;txt&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
