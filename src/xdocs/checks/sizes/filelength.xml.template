@@ -35,7 +35,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-config">
@@ -43,7 +43,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
       </subsection>

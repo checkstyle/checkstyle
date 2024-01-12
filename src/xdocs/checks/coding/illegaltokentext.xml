@@ -94,6 +94,7 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
+// xdoc section -- start
 public class Example1 {
   public void myTest() {
     String test  = &quot;a href&quot;; // violation
@@ -118,6 +119,7 @@ public class Example1 {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
+// xdoc section -- start
 public class Example2 {
   public void myTest() {
     String test  = &quot;a href&quot;; // violation
@@ -142,7 +144,7 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <source>
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-
+// xdoc section -- start
 public class Example3 {
   public void myTest() {
     final String quote = &quot;&quot;&quot;
@@ -167,6 +169,7 @@ public class Example3 {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
+// xdoc section -- start
 public class Example4 {
   public void myTest() {
     int test1 = 0; // OK
