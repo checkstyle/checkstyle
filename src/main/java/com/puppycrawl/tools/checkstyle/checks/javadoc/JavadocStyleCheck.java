@@ -408,7 +408,7 @@ public class JavadocStyleCheck
         while (index < line.length()) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 if (line.regionMatches(index, "/**", 0, "/**".length())) {
-                    index += 2;
+                    index = index;
                 }
                 else if (line.regionMatches(index, "*/", 0, 2)) {
                     index++;
