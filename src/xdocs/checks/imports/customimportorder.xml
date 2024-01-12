@@ -66,7 +66,11 @@ import java.util.regex.Matcher; //#8
 
       <subsection name="Notes" id="Notes">
         <p>
-          Use the separator '###' between rules.
+          Rules are configured as a comma-separated ordered list.
+        </p>
+        <p>
+          Note: '###' group separator is deprecated (in favor of a comma-separated list),
+          but is currently supported for backward compatibility.
         </p>
         <p>
           To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -124,9 +128,9 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             </tr>
             <tr>
               <td>customImportOrderRules</td>
-              <td>Specify format of order declaration customizing by user.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>&quot;&quot;</code></td>
+              <td>Specify ordered list of import groups.</td>
+              <td><a href="../../property_types.html#String[]">String[]</a></td>
+              <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
             <tr>
@@ -203,7 +207,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, THIRD_PARTY_PACKAGE&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -232,7 +236,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, THIRD_PARTY_PACKAGE&quot;/&gt;
       &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -263,7 +267,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, SPECIAL_IMPORTS, THIRD_PARTY_PACKAGE&quot;/&gt;
       &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -293,7 +297,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, SPECIAL_IMPORTS, STANDARD_JAVA_PACKAGE&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -323,7 +327,7 @@ import org.apache.commons.io.FileUtils; // violation
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, SPECIAL_IMPORTS, THIRD_PARTY_PACKAGE&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
       &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
       &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
@@ -354,7 +358,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, SPECIAL_IMPORTS, THIRD_PARTY_PACKAGE&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
       &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
       &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
@@ -399,7 +403,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, SPECIAL_IMPORTS&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
       &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
       &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
@@ -438,7 +442,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, STANDARD_JAVA_PACKAGE, SPECIAL_IMPORTS, THIRD_PARTY_PACKAGE&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
       &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
       &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
@@ -485,7 +489,7 @@ import org.apache.commons.io.FileUtils;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC&quot;/&gt;
+        value=&quot;THIRD_PARTY_PACKAGE, SPECIAL_IMPORTS, STANDARD_JAVA_PACKAGE, STATIC&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^javax\.&quot;/&gt;
       &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
       &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
@@ -553,7 +557,7 @@ import org.apache.commons.io.FileUtils; // should not be separated by line
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
+        value=&quot;STATIC, SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STANDARD_JAVA_PACKAGE&quot;/&gt;
       &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
       &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
     &lt;/module&gt;
@@ -652,7 +656,7 @@ import android.*;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;CustomImportOrder&quot;&gt;
       &lt;property name=&quot;customImportOrderRules&quot;
-        value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
+        value=&quot;SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STATIC, SPECIAL_IMPORTS&quot;/&gt;
       &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;

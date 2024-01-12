@@ -66,7 +66,11 @@ import java.util.regex.Matcher; //#8
 
       <subsection name="Notes" id="Notes">
         <p>
-          Use the separator '###' between rules.
+          Rules are configured as a comma-separated ordered list.
+        </p>
+        <p>
+          Note: '###' group separator is deprecated (in favor of a comma-separated list),
+          but is currently supported for backward compatibility.
         </p>
         <p>
           To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -124,9 +128,9 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             </tr>
             <tr>
               <td>customImportOrderRules</td>
-              <td>Specify format of order declaration customizing by user.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>""</code></td>
+              <td>Specify ordered list of import groups.</td>
+              <td><a href="../../property_types.html#String[]">String[]</a></td>
+              <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
             <tr>
