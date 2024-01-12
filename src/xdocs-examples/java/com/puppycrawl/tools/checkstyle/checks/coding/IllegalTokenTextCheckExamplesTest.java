@@ -53,7 +53,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "18:29: " + getCheckMessage(MSG_KEY, '"'),
+            "17:29: " + getCheckMessage(MSG_KEY, '"'),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
