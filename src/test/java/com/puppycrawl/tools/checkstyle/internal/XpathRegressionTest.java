@@ -101,7 +101,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "HideUtilityClassConstructor",
             "IllegalInstantiation",
             "IllegalTokenText",
-            "InnerTypeLast",
             "InterfaceTypeParameterName",
             "LocalFinalVariableName",
             "LocalVariableName",
