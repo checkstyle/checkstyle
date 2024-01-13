@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
@@ -41,8 +43,18 @@ public class FileLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, 17, 5),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
