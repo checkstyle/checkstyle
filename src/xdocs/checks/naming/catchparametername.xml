@@ -63,31 +63,23 @@
         <p id="Example1-code">Example:
         </p>
         <source>
-public class MyTest {
+public class Example1 {
   public void myTest() {
     try {
-      // ...
-    } catch (ArithmeticException e) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex) { // OK
-      // ...
-    } catch (Throwable t) { // OK
-      // ...
-    } catch (IndexOutOfBoundsException e123) { // violation, digits
-                                               // not allowed
-      // ...
-    } catch (NullPointerException ab) { // violation, should have at least
-                                        // three characters if not e|t|ex
-      // ...
-    } catch (ArrayStoreException abc) { // OK
-      // ...
-    } catch (InterruptedException aBC) { // violation, first two characters
-                                         // should be in lowercase
-      // ...
-    } catch (RuntimeException abC) { // OK
-      // ...
-    } catch (Exception abCD) { // OK
-      // ...
+      throw new InterruptedException();
+    } catch (ArithmeticException e) {
+    } catch (ArrayIndexOutOfBoundsException ex) {
+    } catch (IndexOutOfBoundsException e123) {
+      // violation above, 'Name 'e123' must match pattern'
+    } catch (NullPointerException ab) {
+      // violation above, 'Name 'ab' must match pattern'
+    } catch (ArrayStoreException abc) {
+    } catch (InterruptedException aBC) {
+      // violation above, 'Name 'aBC' must match pattern'
+    } catch (RuntimeException abC) {
+    } catch (Exception EighthException) {
+      // violation above, 'Name 'EighthException' must match pattern'
+    } catch (Throwable t) {
     }
   }
 }
@@ -108,19 +100,22 @@ public class MyTest {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
+public class Example2 {
   public void myTest() {
     try {
-      // ...
-    } catch (ArithmeticException ex) { // OK
-      // ...
-    } catch (ArrayIndexOutOfBoundsException ex2) { // OK
-      // ...
-    } catch (IOException thirdException) { // OK
-      // ...
-    } catch (Exception FourthException) { // violation, the initial letter
-                                          // should be lowercase
-      // ...
+      throw new InterruptedException();
+    } catch (ArithmeticException e) {
+      // violation above, 'Name 'e' must match pattern'
+    } catch (ArrayIndexOutOfBoundsException ex) {
+    } catch (IndexOutOfBoundsException e123) {
+    } catch (NullPointerException ab) {
+    } catch (ArrayStoreException abc) {
+    } catch (InterruptedException aBC) {
+    } catch (RuntimeException abC) {
+    } catch (Exception EighthException) {
+      // violation above, 'Name 'EighthException' must match pattern'
+    } catch (Throwable t) {
+      // violation above, 'Name 't' must match pattern'
     }
   }
 }
