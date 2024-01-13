@@ -141,8 +141,6 @@ public class Example2 {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-
 public class Example3 {
   public void myTest() {
     final String quote = &quot;&quot;&quot;
