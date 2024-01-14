@@ -68,6 +68,8 @@
                     CHAR_LITERAL</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
                     TEXT_BLOCK_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_TEMPLATE_CONTENT">
+                    STRING_TEMPLATE_CONTENT</a>
                   .
               </td>
               <td><code>empty</code></td>
