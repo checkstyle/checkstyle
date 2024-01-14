@@ -11,6 +11,7 @@ guava-with-google-checks)
   echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
@@ -21,6 +22,7 @@ guava-with-google-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -33,6 +35,7 @@ guava-with-sun-checks)
   echo CS_version: "$CS_POM_VERSION"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
@@ -43,6 +46,7 @@ guava-with-sun-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -56,6 +60,7 @@ openjdk17-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   cp ../../../config/projects-to-test/openjdk-17-projects-to-test-on.config \
       openjdk-17-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk17-excluded.files' \
@@ -65,6 +70,7 @@ openjdk17-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
+      --useShallowClone \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
 
   cd ../../
@@ -78,6 +84,7 @@ openjdk19-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   cp ../../../config/projects-to-test/openjdk-19-projects-to-test-on.config \
       openjdk-19-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk19-excluded.files' \
@@ -87,6 +94,7 @@ openjdk19-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
+      --useShallowClone \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
 
   cd ../../
@@ -100,6 +108,7 @@ openjdk20-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   cp ../../../config/projects-to-test/openjdk-20-projects-to-test-on.config \
       openjdk-20-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk20-excluded.files' \
@@ -109,6 +118,7 @@ openjdk20-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
+      --useShallowClone \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
 
   cd ../../
@@ -122,6 +132,7 @@ openjdk21-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   cp ../../../config/projects-to-test/openjdk-21-projects-to-test-on.config \
       openjdk-21-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk21-excluded.files' \
@@ -131,6 +142,7 @@ openjdk21-with-checks-nonjavadoc-error)
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
+      --useShallowClone \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
 
   cd ../../
@@ -145,6 +157,7 @@ no-exception-lucene-and-others-javadoc)
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
       .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#infinispan/infinispan/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#protonpack/protonpack/' projects-for-no-exception-javadoc.config
@@ -154,6 +167,7 @@ no-exception-lucene-and-others-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -167,6 +181,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
       .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#storm/storm/' projects-for-no-exception-javadoc.config
@@ -175,6 +190,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -188,6 +204,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   cp config/projects-to-test/projects-for-no-exception-javadoc.config \
       .ci-temp/contribution/checkstyle-tester
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-no-exception-javadoc.config
   sed -i'' 's/#hadoop/hadoop/' projects-for-no-exception-javadoc.config
@@ -197,6 +214,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   groovy ./diff.groovy --listOfProjects projects-for-no-exception-javadoc.config \
       --patchConfig checks-only-javadoc-error.xml \
       --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -208,6 +226,7 @@ no-exception-only-javadoc)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   sed -i.'' 's/#nbia-dcm4che-tools/nbia-dcm4che-tools/' projects-to-test-on.properties
@@ -218,6 +237,7 @@ no-exception-only-javadoc)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml --allowExcludes \
       --mode single -xm "-Dcheckstyle.failsOnError=false" \
+      --useShallowClone \
       -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution

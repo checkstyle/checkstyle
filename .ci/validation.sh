@@ -873,10 +873,12 @@ no-exception-struts)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -890,11 +892,13 @@ no-exception-checkstyle-sevntu)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -907,11 +911,13 @@ no-exception-checkstyle-sevntu-javadoc)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-to-test-on.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -924,10 +930,12 @@ no-exception-guava)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#guava/guava/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -939,10 +947,12 @@ no-exception-hibernate-orm)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
        --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -954,10 +964,12 @@ no-exception-spotbugs)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -969,10 +981,12 @@ no-exception-spoon)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -984,10 +998,12 @@ no-exception-spring-framework)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
        --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -999,10 +1015,12 @@ no-exception-hbase)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1014,12 +1032,14 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1031,6 +1051,7 @@ no-exception-alot-of-projects)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
   sed -i.'' 's/#java-design-patterns/java-design-patterns/' projects-to-test-on.properties
@@ -1040,6 +1061,7 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../.. \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1054,8 +1076,10 @@ no-warning-imports-guava)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../.. \
+      --useShallowClone \
       --mode single -xm "-Dcheckstyle.failsOnError=false"
   RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
@@ -1079,8 +1103,10 @@ no-warning-imports-java-design-patterns)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git checkout i818-shallow-clone
   groovy ./diff.groovy --listOfProjects $PROJECTS --patchConfig $CONFIG \
       --allowExcludes -p "$BRANCH" -r ../../..\
+      --useShallowClone \
       --mode single
   RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
   cd ../../
