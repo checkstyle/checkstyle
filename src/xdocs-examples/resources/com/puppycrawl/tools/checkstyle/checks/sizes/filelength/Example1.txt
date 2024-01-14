@@ -1,8 +1,0 @@
-/*xml
-<module name="Checker">
-  <module name="FileLength"/>
-</module>
-*/
-
-// xdoc section -- start
-// xdoc section -- end
