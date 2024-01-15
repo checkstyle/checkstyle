@@ -194,16 +194,42 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionWithSinglelineComments() throws Exception {
+    public void testPositionWithSinglelineCommentsOne() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
+                getPath("InputAbstractJavadocPositionWithSinglelineCommentsOne.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(130);
+            // actual javadoc count is 21, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(42);
+    }
+
+    @Test
+    public void testPositionWithSinglelineCommentsTwo() throws Exception {
+        JavadocCatchCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocPositionWithSinglelineCommentsTwo.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            // until https://github.com/checkstyle/checkstyle/issues/12586
+            // actual javadoc count is 29, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(58);
+    }
+
+    @Test
+    public void testPositionWithSinglelineCommentsThree() throws Exception {
+        JavadocCatchCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocPositionWithSinglelineCommentsThree.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            // until https://github.com/checkstyle/checkstyle/issues/12586
+            // actual javadoc count is 15, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(30);
     }
 
     @Test
