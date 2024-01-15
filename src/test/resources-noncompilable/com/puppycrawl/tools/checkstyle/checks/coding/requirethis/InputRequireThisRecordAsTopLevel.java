@@ -36,7 +36,7 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
 
     void method1() {
         i = 3 + y; // violation 'Reference to instance variable 'y' needs "this.".'
-        int w = this.x; // ok
+        int w = this.x;
     }
 
     void method2(int i) {
@@ -44,7 +44,7 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
         this.setI(i);
         method1(); // violation 'Method call to 'method1' needs "this.".'
         try {
-            this.method1(); // ok
+            this.method1();
         } catch (RuntimeException e) {
             e.toString();
         }
@@ -54,10 +54,10 @@ public record InputRequireThisRecordAsTopLevel(int x, int y) {
     }
 
     <T> void method3() {
-        setI(3); // ok
+        setI(3);
     }
 
     void method4() {
-        this.<String>method3(); // ok
+        this.<String>method3();
     }
 }
