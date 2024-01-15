@@ -204,7 +204,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             // actual javadoc count is 29, but verifyWithInlineConfigParser verify file twice
             .isEqualTo(58);
     }
-    
+
     @Test
     public void testPositionThree() throws Exception {
         JavadocCatchCheck.clearCounter();
@@ -216,7 +216,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             // actual javadoc count is 15, but verifyWithInlineConfigParser verify file twice
             .isEqualTo(30);
     }
-    
+
     @Test
     public void testPositionWithSinglelineComments() throws Exception {
         JavadocCatchCheck.clearCounter();
