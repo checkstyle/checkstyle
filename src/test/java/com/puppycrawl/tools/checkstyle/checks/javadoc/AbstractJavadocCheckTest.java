@@ -182,15 +182,39 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPosition() throws Exception {
+    public void testPositionOne() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPosition.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionOne.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(130);
+            // actual javadoc count is 21, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(42);
+    }
+
+    @Test
+    public void testPositionTwo() throws Exception {
+        JavadocCatchCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionTwo.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            // until https://github.com/checkstyle/checkstyle/issues/12586
+            // actual javadoc count is 29, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(58);
+    }
+
+    @Test
+    public void testPositionThree() throws Exception {
+        JavadocCatchCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionThree.java"), expected);
+        assertWithMessage("Invalid number of javadocs")
+            .that(JavadocCatchCheck.javadocsNumber)
+            // until https://github.com/checkstyle/checkstyle/issues/12586
+            // actual javadoc count is 15, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(30);
     }
 
     @Test
