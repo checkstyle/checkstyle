@@ -75,20 +75,20 @@ jobs:
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
-
-  sonarqube:
-    docker:
-      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
-
-    steps:
-      - checkout
-      - run:
-          name: Run sonarqube
-          command: |
-            export PR_NUMBER=$CIRCLE_PR_NUMBER
-            export PR_BRANCH_NAME=$CIRCLE_BRANCH
-            export SONAR_API_TOKEN=$SONAR_TOKEN
-            ./.ci/validation.sh sonarqube
+  #  until https://github.com/checkstyle/checkstyle/issues/13209
+  #  sonarqube:
+  #    docker:
+  #      - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
+  #
+  #    steps:
+  #      - checkout
+  #      - run:
+  #          name: Run sonarqube
+  #          command: |
+  #            export PR_NUMBER=$CIRCLE_PR_NUMBER
+  #            export PR_BRANCH_NAME=$CIRCLE_BRANCH
+  #            export SONAR_API_TOKEN=$SONAR_TOKEN
+  #            ./.ci/validation.sh sonarqube
 
   yamllint:
     docker:
