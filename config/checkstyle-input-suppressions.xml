@@ -1663,10 +1663,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTags2.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsNoViolation.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsNoViolation.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPositionOnlyComments.java"/>
