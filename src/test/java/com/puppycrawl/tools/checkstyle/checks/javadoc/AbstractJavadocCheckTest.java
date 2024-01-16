@@ -424,10 +424,17 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckReportingNoViolation() throws Exception {
+    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"), expected);
+                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationOne.java"), expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationTwo.java"), expected);
     }
 
     @Test
