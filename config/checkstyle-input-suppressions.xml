@@ -1667,8 +1667,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocNonTightHtmlTagsNoViolation.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocPositionOnlyComments.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocTokensPass.java"/>
