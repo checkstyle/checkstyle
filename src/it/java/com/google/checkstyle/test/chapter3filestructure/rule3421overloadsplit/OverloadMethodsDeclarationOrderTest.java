@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OverloadMethodsDeclarationOrderTest extends AbstractGoogleModuleTestSupport {
 
@@ -50,6 +51,18 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractGoogleModuleTes
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("OverloadMethodsDeclarationOrder");
+        final String filePath = getPath(
+                "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java");
+
+        verify(checkConfig, filePath, expected);
     }
 
 }
