@@ -513,12 +513,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]annotation[\\/]packageannotation[\\/]InputPackageAnnotation.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsConstants.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsConstants.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsValuePair.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
