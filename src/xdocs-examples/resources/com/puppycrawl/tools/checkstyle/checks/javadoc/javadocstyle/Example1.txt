@@ -14,6 +14,11 @@ public class Test {
     private void methodWithValidCommentStyle() {}
 
     /**
+     * {@return something} // OK, @return tag automatically inserts a period after the text
+     */
+    private void methodWithValidCommentStyle2() {}
+
+    /**
      * Some description here // violation, the sentence must end with a proper punctuation
      */
     private void methodWithInvalidCommentStyle() {}
