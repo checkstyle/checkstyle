@@ -472,26 +472,37 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckVisitCount() throws Exception {
+    public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "29: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "36: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "44: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "52:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "75:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "85: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "95: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "115:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "122:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "126:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "143: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "46:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocNonTightHtmlTagsVisitCount.java"),
+                getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java"),
+                expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckVisitCountTwo() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "27: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "35:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "49: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "58:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "65:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "69:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "86: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java"),
                 expected);
     }
 
