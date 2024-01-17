@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDecla
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OverloadMethodsDeclarationOrderCheckTest
     extends AbstractModuleTestSupport {
@@ -58,6 +59,17 @@ public class OverloadMethodsDeclarationOrderCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
             expected);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java"
+                ), expected);
     }
 
     @Test
