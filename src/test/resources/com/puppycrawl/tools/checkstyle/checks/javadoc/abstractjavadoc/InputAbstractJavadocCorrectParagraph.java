@@ -6,17 +6,12 @@ target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
 tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
            @see, @serial, @serialData, @serialField, @since, @throws, @version
 
-
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
 violateExecutionOnNonTightHtml = (default)false
 allowNewlineParagraph = (default)true
-
-
 */
 
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /**
  * Some Javadoc.
  *
@@ -24,7 +19,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  */
 class InputAbstractJavadocCorrectParagraph {
-
     /**
      * Some Javadoc.
      *
@@ -33,7 +27,6 @@ class InputAbstractJavadocCorrectParagraph {
      * @since 8.0
      */
     public static final byte NUL = 0;
-
     /**
      * Some Javadoc.
      *
@@ -50,7 +43,6 @@ class InputAbstractJavadocCorrectParagraph {
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-
     /**
      * Some Javadoc.
      *
@@ -63,7 +55,6 @@ class InputAbstractJavadocCorrectParagraph {
      * </pre>
      */
     boolean test() {return false;}
-
     /**
      * Some Javadoc.
      *
@@ -71,7 +62,6 @@ class InputAbstractJavadocCorrectParagraph {
      *
      */
      class InnerInputCorrectJavaDocParagraphCheck {
-
         /**
          * Some Javadoc.
          *
@@ -82,7 +72,6 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-
         /**
          * Some Javadoc.
          *
@@ -106,7 +95,6 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-
         /**
          * Some Javadoc with space at the end of first line.
          *
