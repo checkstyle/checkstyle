@@ -6,14 +6,11 @@ target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
 tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
            @see, @serial, @serialData, @serialField, @since, @throws, @version
 
-
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
 violateExecutionOnNonTightHtml = (default)false
 allowNewlineParagraph = (default)true
 
-
 */
-
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
@@ -23,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * <p>Some Javadoc.
  *
  */
-class InputAbstractJavadocCorrectParagraph {
+class InputAbstractJavadocCorrectParagraphOne {
 
     /**
      * Some Javadoc.
@@ -120,10 +117,3 @@ class InputAbstractJavadocCorrectParagraph {
         boolean emulated() {return false;}
     };
 }
-
-/*
- *  This comment has paragraph without '<p>' tag. // ok
- *
- *  It's fine, because this is plain comment.
- */
-class ClassWithPlainComment {}

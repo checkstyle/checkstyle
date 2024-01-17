@@ -1481,7 +1481,7 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationWithInMethodCallWithSameIndent.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCorrectParagraph.java"/>
+            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCorrectParagraphTwo.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCustomTag.java"/>
   <suppress id="UnnecessaryOkComment"
