@@ -26,7 +26,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 class InputAbstractJavadocCorrectParagraphTwo {}
 
 /*
- *  This comment has paragraph without '<p>' tag. // ok
+ *  This comment has paragraph without '<p>' tag.
  *
  *  It's fine, because this is plain comment.
  */
