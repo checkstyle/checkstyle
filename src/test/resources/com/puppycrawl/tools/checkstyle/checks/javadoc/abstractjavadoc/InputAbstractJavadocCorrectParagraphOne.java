@@ -9,19 +9,24 @@ tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
 violateExecutionOnNonTightHtml = (default)false
 allowNewlineParagraph = (default)true
+
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * Some Javadoc.
+ * 
  * <p>Some Javadoc.
+ * 
  */
-class InputAbstractJavadocCorrectParagraph {
+class InputAbstractJavadocCorrectParagraphOne {
     
     /**
      * Some Javadoc.
+     * 
      * <p>{@code function} will never be invoked with a null value.
+     * 
      * @since 8.0
      */
     public static final byte NUL = 0;
@@ -58,7 +63,9 @@ class InputAbstractJavadocCorrectParagraph {
     
     /**
      * Some Javadoc.
+     * 
      * <p>Some Javadoc.
+     * 
      */
      class InnerInputCorrectJavaDocParagraphCheck {
          
@@ -110,9 +117,3 @@ class InputAbstractJavadocCorrectParagraph {
         boolean emulated() {return false;}
     };
 }
-
-/*
- *  This comment has paragraph without '<p>' tag. // ok
- *  It's fine, because this is plain comment.
- */
-class ClassWithPlainComment {}
