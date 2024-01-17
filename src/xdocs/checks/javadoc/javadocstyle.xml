@@ -198,6 +198,15 @@ public class Test {
      */
     private void methodWithValidCommentStyle() {}
 
+    // ok below, @return tag automatically inserts a period after the text
+    /**
+     * {@return something}
+     */
+    private String methodWithValidCommentStyle2()
+    {
+        return &quot;Hello, World&quot;;
+    }
+
     /**
      * Some description here // violation, the sentence must end with a proper punctuation
      */
