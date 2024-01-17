@@ -18,7 +18,7 @@ public class InputUnnecessaryParenthesesIfStatement {
     void method(String sectionName) {
         if ("Content".equals(sectionName) || "Overview".equals(sectionName)
                 || (!"A".equals(sectionName) // violation 'Unnecessary paren.* around expression'
-                && !"AbstractClassName".equals(sectionName) // ok
+                && !"AbstractClassName".equals(sectionName)
         )) {
             System.out.println("sd");
         }
@@ -29,7 +29,7 @@ public class InputUnnecessaryParenthesesIfStatement {
         x = 0;
         y = 0;
 
-        z = (x < y) ? x : y; // ok
+        z = (x < y) ? x : y;
 
         if ((x < y)           // violation 'Unnecessary parentheses around expression'
                 && (x > z)) { // violation 'Unnecessary parentheses around expression'
@@ -41,7 +41,7 @@ public class InputUnnecessaryParenthesesIfStatement {
             return;
         }
 
-        if (!(x <= y)          // ok
+        if (!(x <= y)
                 || (x >= z)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
@@ -59,7 +59,7 @@ public class InputUnnecessaryParenthesesIfStatement {
         }
 
         if ((Integer.valueOf(x) instanceof Integer) // violation 'parentheses around expression'
-                || Integer.valueOf(y) instanceof Integer) { // ok
+                || Integer.valueOf(y) instanceof Integer) {
             return;
         }
         if (x == ((y<z) ? y : z) &&
@@ -72,7 +72,7 @@ public class InputUnnecessaryParenthesesIfStatement {
                  || (z >= 3 && x <= 7)) { // violation 'Unnecessary parentheses around expression'
             return;
         }
-        if(x>= 0 && (x<=8 || y<=11) && y>=8) { // ok
+        if(x>= 0 && (x<=8 || y<=11) && y>=8) {
             return;
         }
         if((y>=11 && x<=5)            // violation 'Unnecessary parentheses around expression'
@@ -82,16 +82,16 @@ public class InputUnnecessaryParenthesesIfStatement {
     }
     private void check() {
         String sectionName = "Some String";
-        if ("Some content".equals(sectionName) || "Some overview".equals(sectionName) // ok
+        if ("Some content".equals(sectionName) || "Some overview".equals(sectionName)
                 || (!"A".equals(sectionName) // violation 'Unnecessary paren.* around expression'
-                && !"AbstractClassName".equals(sectionName) // ok
+                && !"AbstractClassName".equals(sectionName)
         )) {
             return;
         }
 
-        if (sectionName instanceof String && "Other Overview".equals(sectionName) // ok
-                && (!"AbbreviationAsWordInName".equals(sectionName) // ok
-                || !"AbstractClassName".equals(sectionName) // ok
+        if (sectionName instanceof String && "Other Overview".equals(sectionName)
+                && (!"AbbreviationAsWordInName".equals(sectionName)
+                || !"AbstractClassName".equals(sectionName)
         )) {
             return;
         }

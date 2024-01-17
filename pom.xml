@@ -238,6 +238,13 @@
     <error-prone-support.version>0.14.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
+      -Xep:AmbiguousJsonCreator:ERROR
+      -Xep:AssertJIsNull:ERROR
+      -Xep:AutowiredConstructor:ERROR
+      -Xep:CanonicalAnnotationSyntax:ERROR
+      -Xep:DirectReturn:ERROR
+      -Xep:CollectorMutability:ERROR
+      -Xep:EmptyMethod:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -352,7 +359,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.15.5</version>
+      <version>3.15.6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -376,7 +383,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.10</version>
+      <version>2.0.11</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -921,6 +928,8 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+                    <!-- OS specific utility providing class -->
+                    <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1489,7 +1498,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.5</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1516,7 +1525,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.5</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
@@ -1571,6 +1580,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
+            </manifestEntries>
           </archive>
           <excludes>
             <exclude>**/Input*.*</exclude>
@@ -1843,9 +1855,8 @@
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
                 <exclude>**/TreeWalkerTest.class</exclude>
-                <exclude>**/AllBlockCommentsTest.class</exclude>
+                <exclude>**/CheckerTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -1915,7 +1926,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.2.3</version>
+        <version>3.2.5</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -4847,6 +4858,7 @@
                 <param>isFileExists</param>
               </excludedMethods>
               <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
               </excludedClasses>
               <targetTests>

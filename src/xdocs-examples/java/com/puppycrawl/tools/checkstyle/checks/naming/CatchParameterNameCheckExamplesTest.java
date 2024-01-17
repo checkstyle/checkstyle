@@ -19,13 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
+    private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
+    private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/catchparametername";
@@ -34,18 +38,30 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "18:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "20:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "23:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "26:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+                    CATCH_PARAM_NAME_PATTERN_1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "18:34: " + getCheckMessage(MSG_INVALID_PATTERN, "e",
+                    CATCH_PARAM_NAME_PATTERN_2),
+            "26:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+                    CATCH_PARAM_NAME_PATTERN_2),
+            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
+                    CATCH_PARAM_NAME_PATTERN_2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }

@@ -98,13 +98,10 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "DesignForExtension",
             "EqualsHashCode",
             "ExecutableStatementCount",
-            "FinalParameters",
             "HideUtilityClassConstructor",
             "IllegalInstantiation",
             "IllegalTokenText",
-            "InnerTypeLast",
             "InterfaceTypeParameterName",
-            "JavaNCSS",
             "LocalFinalVariableName",
             "LocalVariableName",
             "MethodLength",
@@ -112,7 +109,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "ModifiedControlVariable",
             "MultipleStringLiterals",
             "MutableException",
-            "PackageName",
             "ParameterAssignment",
             "ParameterNumber",
             "RedundantModifier",
@@ -149,7 +145,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private static Map<String, String> getAllowedDirectoryAndChecks() {
         return SIMPLE_CHECK_NAMES
             .stream()
-            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
+            .collect(Collectors.toUnmodifiableMap(
+                id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
     }
 
     private static Set<String> getInternalModules() {
@@ -158,7 +155,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
             })
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     @BeforeEach

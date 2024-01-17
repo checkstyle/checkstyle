@@ -213,6 +213,6 @@
     <mutatedMethod>isXpathQueryMatching</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
     <description>replaced call to java/util/stream/Stream::map with receiver</description>
-    <lineContent>.stream().map(AbstractNode.class::cast).collect(Collectors.toList());</lineContent>
+    <lineContent>.stream().map(AbstractNode.class::cast)</lineContent>
   </mutation>
 </suppressedMutations>

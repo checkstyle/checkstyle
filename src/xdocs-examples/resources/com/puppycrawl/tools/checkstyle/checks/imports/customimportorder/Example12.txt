@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="CustomImportOrder">
       <property name="customImportOrderRules"
-        value="STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE"/>
+        value="STATIC, SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STANDARD_JAVA_PACKAGE"/>
       <property name="thirdPartyPackageRegExp" value="^(com|org)\."/>
       <property name="standardPackageRegExp" value="^(java|javax)\."/>
     </module>

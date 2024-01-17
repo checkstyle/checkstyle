@@ -94,21 +94,21 @@ public class InputSimplifyBooleanExpression
         int c = 13;
         boolean m = c > 1 ? true : false; // violation
         boolean e = (a == true) // violation
-                ? c > 1 : false; // ok
+                ? c > 1 : false;
         boolean h = false ? c > 13 : c < 21; // violation
-        boolean f = a == b ? false : c > 1; // ok
+        boolean f = a == b ? false : c > 1;
         boolean q = c > 1 ? (c < 15
-                ? false : b) // ok
+                ? false : b)
                 : a != b;
         boolean v = c > 0 ? true :
                 c < 0 ? false : true; // violation
         boolean g = (c > 0 ? true : c < 0)
                 ? false : false; // violation
         Boolean value = null;
-        boolean temp = value != null ? value : false; // ok
+        boolean temp = value != null ? value : false;
         temp = true ? a() : b(); // violation
         int d = false ? 1 : 2; // violation
         temp = a() ? true : true; // violation
-        temp = value != null ? value : (false); // ok
+        temp = value != null ? value : (false);
     }
 }

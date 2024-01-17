@@ -40,6 +40,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1028,6 +1029,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
 
         execute(checkerConfig, filePath);
+        final Properties cacheAfterExecution = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(filePath))) {
+            cacheAfterExecution.load(reader);
+        }
+
+        cacheAfterExecution.clear();
+        assertWithMessage("Check that the cache is cleared properly")
+                .that(cacheAfterExecution)
+                .isEmpty();
     }
 
     @Test
@@ -1398,8 +1408,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("haltOnException", "false");
 
         final String filePath = getPath("InputChecker.java");
-
         execute(checkerConfig, filePath);
+        assertWithMessage("Execution completed without exceptions")
+                .that(true)
+                .isTrue();
     }
 
     @Test
@@ -1612,7 +1624,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
                     .limit(expected.length)
                     .sorted()
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toUnmodifiableList());
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {
@@ -1678,7 +1690,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File file = new File("InputNonChecker.java");
         final String filePath = file.getAbsolutePath();
         execute(checkerConfig, filePath);
+        assertWithMessage("Test assertions passed successfully")
+                .that(true)
+                .isTrue();
     }
+
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
 
