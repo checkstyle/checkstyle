@@ -14,6 +14,8 @@
  &lt;li&gt;
  Ensures the first sentence ends with proper punctuation
  (That is a period, question mark, or exclamation mark, by default).
+ This is not for &lt;code&gt;@return&lt;/code&gt;, since it automatically inserts
+ a period after the text.
  Javadoc automatically places the first sentence in the method summary
  table and index. Without proper punctuation the Javadoc may be malformed.
  All items eligible for the {@code {@inheritDoc}} tag are exempt from this
