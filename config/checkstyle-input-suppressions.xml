@@ -79,12 +79,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTextBlocks.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]magicnumber[\\/]InputMagicNumberIgnoreFieldDeclarationRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
