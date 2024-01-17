@@ -215,6 +215,9 @@ public class JavadocStyleCheck
         "tr", "tt", "u", "ul", "var"
     );
 
+    /** Specify the format for inline return Javadoc. */
+    private final Pattern inlineReturnTagPattern = Pattern.compile("\\{@return.*?\\}\\s*");
+
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
@@ -346,13 +349,35 @@ public class JavadocStyleCheck
      */
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
+        final String firstSentence = getFirstSentence(commentText);
 
         if (!commentText.isEmpty()
             && !endOfSentenceFormat.matcher(commentText).find()
+            && !inlineReturnTagPattern.matcher(firstSentence).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
             log(comment.getStartLineNo(), MSG_NO_PERIOD);
         }
+    }
+
+    /**
+     * Returns the first sentence of a given text. The method splits the text on a period followed
+     * by whitespace or the end of the string, then returns the first sentence without any leading
+     * or trailing whitespace.
+     *
+     * @param text the input text to extract the first sentence from.
+     * @return the first sentence of the input text, or an empty string if the input text is empty.
+     */
+    private static String getFirstSentence(String text) {
+        // split on period followed by whitespace or the end of string
+        final String[] sentences = text.split("\\.(?=\\s|$)");
+        String sentenceToReturn = "";
+
+        // return first sentence without leading/trailing whitespace
+        if (sentences.length > 0) {
+            sentenceToReturn = sentences[0].trim();
+        }
+        return sentenceToReturn;
     }
 
     /**
