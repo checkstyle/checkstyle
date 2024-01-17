@@ -115,14 +115,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPackageClassName.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderLotsOfRecords1.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderLotsOfRecords2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderLotsOfRecords3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderLotsOfRecords4.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodCompilationUnit.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodRecordsAndCompactCtors.java"/>

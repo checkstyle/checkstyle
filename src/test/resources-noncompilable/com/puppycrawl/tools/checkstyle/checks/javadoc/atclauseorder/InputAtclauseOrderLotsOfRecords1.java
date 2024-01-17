@@ -52,7 +52,7 @@ public class InputAtclauseOrderLotsOfRecords1 {
      * @param theta not really a param
      * @return
      */
-    public record Polar(double r, double theta) implements Coords { // ok
+    public record Polar(double r, double theta) implements Coords {
         @Override
         public double x() {
             return r * Math.cos(theta);
