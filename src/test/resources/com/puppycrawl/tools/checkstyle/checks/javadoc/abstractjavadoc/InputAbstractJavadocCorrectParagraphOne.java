@@ -6,34 +6,31 @@ target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
 tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
            @see, @serial, @serialData, @serialField, @since, @throws, @version
 
-
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
 violateExecutionOnNonTightHtml = (default)false
 allowNewlineParagraph = (default)true
 
-
 */
-
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * Some Javadoc.
- *
+ * 
  * <p>Some Javadoc.
- *
+ * 
  */
-class InputAbstractJavadocCorrectParagraph {
-
+class InputAbstractJavadocCorrectParagraphOne {
+    
     /**
      * Some Javadoc.
-     *
+     * 
      * <p>{@code function} will never be invoked with a null value.
-     *
+     * 
      * @since 8.0
      */
     public static final byte NUL = 0;
-
+    
     /**
      * Some Javadoc.
      *
@@ -50,7 +47,7 @@ class InputAbstractJavadocCorrectParagraph {
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
-
+    
     /**
      * Some Javadoc.
      *
@@ -63,15 +60,15 @@ class InputAbstractJavadocCorrectParagraph {
      * </pre>
      */
     boolean test() {return false;}
-
+    
     /**
      * Some Javadoc.
-     *
+     * 
      * <p>Some Javadoc.
-     *
+     * 
      */
      class InnerInputCorrectJavaDocParagraphCheck {
-
+         
         /**
          * Some Javadoc.
          *
@@ -82,7 +79,7 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-
+        
         /**
          * Some Javadoc.
          *
@@ -106,7 +103,7 @@ class InputAbstractJavadocCorrectParagraph {
          * @since 8.0
          */
         public static final byte NUL = 0;
-
+        
         /**
          * Some Javadoc with space at the end of first line.
          *
@@ -120,10 +117,3 @@ class InputAbstractJavadocCorrectParagraph {
         boolean emulated() {return false;}
     };
 }
-
-/*
- *  This comment has paragraph without '<p>' tag. // ok
- *
- *  It's fine, because this is plain comment.
- */
-class ClassWithPlainComment {}
