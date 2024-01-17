@@ -1695,7 +1695,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-
     public static class DefaultLoggerWithCounter extends DefaultLogger {
 
         private int fileStartedCount;

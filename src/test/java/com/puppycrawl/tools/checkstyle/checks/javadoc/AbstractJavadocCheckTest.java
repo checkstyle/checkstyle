@@ -430,28 +430,45 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheck() throws Exception {
+    public void testNonTightHtmlTagIntolerantCheckOne() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "43: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "92: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "137: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "54: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocNonTightHtmlTags.java"), expected);
+                getPath("InputAbstractJavadocNonTightHtmlTagsOne.java"), expected);
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckReportingNoViolation() throws Exception {
+    public void testNonTightHtmlTagIntolerantCheckTwo() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "25: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "46: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "80: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsTwo.java"), expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"), expected);
+                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationOne.java"), expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationTwo.java"), expected);
     }
 
     @Test

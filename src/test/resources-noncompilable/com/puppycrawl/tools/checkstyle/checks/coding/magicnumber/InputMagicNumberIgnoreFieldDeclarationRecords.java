@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 public class InputMagicNumberIgnoreFieldDeclarationRecords {
     @anno(6) // violation
     public record MyRecord() {
-        private static int myInt = 7; // ok
+        private static int myInt = 7;
 
         public MyRecord{
             int i = myInt + 1; // no violation, 1 is defined as non-magic
@@ -41,9 +41,9 @@ public class InputMagicNumberIgnoreFieldDeclarationRecords {
 }
 
 class TestClass {
-    static int X = 42; // ok
+    static int X = 42;
 }
 
 record TestRecord() {
-    static int X = 42; // ok
+    static int X = 42;
 }
