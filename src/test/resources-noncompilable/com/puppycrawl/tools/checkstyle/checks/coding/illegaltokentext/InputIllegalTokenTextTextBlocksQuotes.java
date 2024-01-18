@@ -16,13 +16,13 @@ public class InputIllegalTokenTextTextBlocksQuotes {
         final String ref = "<a href=\""; // violation
         final String refCase1 = "<A hReF=\""; // violation
 
-        final String ref2 = """
+        final String ref2 = """git
                 <a href=\""""; // violation above
         final String refCase2 = """
                 <A hReF=\""""; // violation above
 
         String escape = """
-                <html>\u000D\u000A\n
+                <html>\u000D\u000A\ngit
                     <body>\u000D\u000A\n
                         <p>Hello, world</p>\u000D\u000A\n
                     </body>\u000D\u000A\n
