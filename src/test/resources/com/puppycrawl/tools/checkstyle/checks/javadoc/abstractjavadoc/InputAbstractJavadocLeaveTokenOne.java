@@ -38,7 +38,7 @@ class/**nope*/ InputAbstractJavadocLeaveTokenOne/**nope*/{
 
 /**Javadoc*/
 class/**nope*/ AA1/**nope*/{
-    /**Javadoc*/ // ok
+    /**Javadoc*/
     AA1/**nope*/(/**nope*/)/**nope*/{/**nope*/}/**nope*/
 }
 
