@@ -85,12 +85,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLine.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectory2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtParent2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtSubpackage2.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]stringliteralequality[\\/]InputStringLiteralEqualityCheckTextBlocks.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]stringliteralequality[\\/]InputStringLiteralEqualityCheckTextBlocks.java"/>
