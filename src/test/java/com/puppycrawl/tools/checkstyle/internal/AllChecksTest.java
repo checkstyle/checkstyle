@@ -234,9 +234,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
-                // all other java tokens and text are allowed
+                // non text literals are ignored
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
+                // comments should be skipped as nobody write in octal or unicode code style
+                "COMMENT_CONTENT",
+                // until #14291
+                "TEXT_BLOCK_CONTENT")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
                 // specifically allowed via '4.5.1 Where to break' because the following are
