@@ -245,6 +245,7 @@
       -Xep:DirectReturn:ERROR
       -Xep:CollectorMutability:ERROR
       -Xep:EmptyMethod:ERROR
+      -Xep:ExplicitEnumOrdering:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
