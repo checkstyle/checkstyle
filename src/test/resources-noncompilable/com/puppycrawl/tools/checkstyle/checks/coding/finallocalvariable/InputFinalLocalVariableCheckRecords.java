@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public record InputFinalLocalVariableCheckRecords(boolean t, boolean f) {
     public InputFinalLocalVariableCheckRecords {
-        int a = 0; // ok
+        int a = 0;
         a = 1;
     }
 
