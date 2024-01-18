@@ -61,12 +61,19 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testItOne() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testItTwo() throws Exception {
         final String[] expected = {
-            "76:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
+            "16:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMethodLengthSimple.java"), expected);
+                getPath("InputMethodLengthSimpleTwo.java"), expected);
     }
 
     @Test
