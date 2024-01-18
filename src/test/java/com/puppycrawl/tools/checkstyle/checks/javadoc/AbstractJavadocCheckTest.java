@@ -380,10 +380,36 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitLeaveToken() throws Exception {
+    public void testVisitLeaveTokenOne() throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveToken.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenOne.java"), expected);
+        assertWithMessage("Javadoc visit count should be greater than zero")
+                .that(JavadocVisitLeaveCheck.visitCount)
+                .isGreaterThan(0);
+        assertWithMessage("Javadoc visit and leave count should be equal")
+            .that(JavadocVisitLeaveCheck.leaveCount)
+            .isEqualTo(JavadocVisitLeaveCheck.visitCount);
+    }
+
+    @Test
+    public void testVisitLeaveTokenTwo() throws Exception {
+        JavadocVisitLeaveCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenTwo.java"), expected);
+        assertWithMessage("Javadoc visit count should be greater than zero")
+                .that(JavadocVisitLeaveCheck.visitCount)
+                .isGreaterThan(0);
+        assertWithMessage("Javadoc visit and leave count should be equal")
+            .that(JavadocVisitLeaveCheck.leaveCount)
+            .isEqualTo(JavadocVisitLeaveCheck.visitCount);
+    }
+
+    @Test
+    public void testVisitLeaveTokenThree() throws Exception {
+        JavadocVisitLeaveCheck.clearCounter();
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenThree.java"), expected);
         assertWithMessage("Javadoc visit count should be greater than zero")
                 .that(JavadocVisitLeaveCheck.visitCount)
                 .isGreaterThan(0);
