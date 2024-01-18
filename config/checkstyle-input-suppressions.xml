@@ -85,6 +85,10 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]stringliteralequality[\\/]InputStringLiteralEqualityCheckTextBlocks.java"/>
   <suppress id="UnnecessaryOkComment"
+            files="checks[\\/]coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesCheckPatterns.java"/>
+  <suppress id="UnnecessaryOkComment"
+            files="checks[\\/]coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesCheckPatterns.java"/>
+  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]unusedlocalvariable[\\/]InputUnusedLocalVariableRecords.java"/>

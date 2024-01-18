@@ -18,7 +18,7 @@ public class InputUnnecessaryParenthesesCheckPatterns {
     void method() {
         Object o = "";
 
-        boolean result = (o instanceof String a) ?
-                (o instanceof String x) : (!(o instanceof String y));git
+        boolean result = (o instanceof String a) ? // ok
+                (o instanceof String x) : (!(o instanceof String y)); // ok
     }
 }
