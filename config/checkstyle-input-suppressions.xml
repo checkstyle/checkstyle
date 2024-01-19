@@ -4543,8 +4543,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthCountEmptySmallSize.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthModifier.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple1.java"/>
