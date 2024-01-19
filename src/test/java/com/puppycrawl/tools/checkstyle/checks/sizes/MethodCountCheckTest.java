@@ -78,7 +78,22 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrees() throws Exception {
+    public void testThreesOne() throws Exception {
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 20, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodCount1One.java"), expected);
+    }
+
+    @Test
+    public void testThreesTwo() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
@@ -93,7 +108,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputMethodCount1.java"), expected);
+                getPath("InputMethodCount1Two.java"), expected);
     }
 
     @Test
