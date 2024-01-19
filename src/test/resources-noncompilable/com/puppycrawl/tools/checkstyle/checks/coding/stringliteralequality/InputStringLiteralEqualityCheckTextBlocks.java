@@ -13,7 +13,7 @@ public class InputStringLiteralEqualityCheckTextBlocks {
 
         boolean flag1 = (status1 == "done"); // violation
 
-        boolean flag2 = (status1.equals("done")); // ok
+        boolean flag2 = (status1.equals("done"));
 
 
         String status2 = """
@@ -29,7 +29,7 @@ public class InputStringLiteralEqualityCheckTextBlocks {
                 done"""); // violation above
 
         boolean flag4 = (status2.equals("""
-                done""")); // ok
+                done"""));
 
     }
 }
