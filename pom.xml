@@ -208,7 +208,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.8.2.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.8.3.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.21.2</maven.pmd.plugin.version>
     <pmd.version>6.55.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.11</maven.jacoco.plugin.version>
@@ -245,6 +245,7 @@
       -Xep:DirectReturn:ERROR
       -Xep:CollectorMutability:ERROR
       -Xep:EmptyMethod:ERROR
+      -Xep:ExplicitEnumOrdering:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -253,6 +254,7 @@
       -Xep:JUnitValueSource:OFF
       <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
       -Xep:LexicographicalAnnotationListing:OFF
+      -Xep:NestedOptionals:ERROR
       <!-- This check is not finalized. -->
       -Xep:MethodReferenceUsage:OFF
       <!-- We prefer to qualify all static method calls with class name. -->

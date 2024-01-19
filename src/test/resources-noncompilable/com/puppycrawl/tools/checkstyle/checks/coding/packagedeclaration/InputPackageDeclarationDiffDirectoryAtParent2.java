@@ -5,7 +5,7 @@ matchDirectoryStructure = false
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding; // ok
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
 public class InputPackageDeclarationDiffDirectoryAtParent2 {
     public String value;

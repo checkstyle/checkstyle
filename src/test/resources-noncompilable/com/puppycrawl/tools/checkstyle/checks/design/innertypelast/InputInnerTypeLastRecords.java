@@ -9,9 +9,9 @@ package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
 public class InputInnerTypeLastRecords {
     record Test() {
-        private static String s; // ok
+        private static String s;
 
-        record InnerTest1() { // ok
+        record InnerTest1() {
         }
 
         public void test() { // violation
@@ -22,7 +22,7 @@ public class InputInnerTypeLastRecords {
     }
 
     record Test3() {
-        private static String s; // ok
+        private static String s;
 
         class InnerTest1 {
         }
@@ -32,7 +32,7 @@ public class InputInnerTypeLastRecords {
     }
 
     record Test4() {
-        private static String s; // ok
+        private static String s;
 
         record MyInnerRecord() {
             void foo() {}
@@ -54,10 +54,10 @@ public class InputInnerTypeLastRecords {
     }
 
     record Test5() {
-        private static String s; // ok
-        static Test3 myRecordTest = new Test3(); //ok
+        private static String s;
+        static Test3 myRecordTest = new Test3();
 
         public void test() {
-        } // ok
+        }
     }
 }

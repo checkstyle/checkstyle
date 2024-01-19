@@ -5,7 +5,7 @@ matchDirectoryStructure = false
 
 */
 
-package com.testing.packagediffdirectory; // ok
+package com.testing.packagediffdirectory;
 
 public class InputPackageDeclarationDiffDirectory2 {
     public String value;
