@@ -367,8 +367,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount1\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthSimple\.java"/>
