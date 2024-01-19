@@ -12,7 +12,7 @@ tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, ANNOTAT
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-public class InputMethodCount1 { // 5 violations
+public class InputMethodCount1Two { // 5 violations
 
   /**
    * Dummy inner class to check that the inner-classes methods are not counted
@@ -79,102 +79,6 @@ public class InputMethodCount1 { // 5 violations
      * Dummy method doing nothing
      */
     void doNothing64();
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  public void doNothing00() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  public void doNothing01() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  public void doNothing02() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  public void doNothing03() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  public void doNothing04() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  protected void doNothing10() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  protected void doNothing11() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  protected void doNothing12() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  protected void doNothing13() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  protected void doNothing14() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  void doNothing20() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  void doNothing21() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  void doNothing22() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  void doNothing23() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  void doNothing24() {
-  }
-
-  /**
-   * Dummy method doing nothing
-   */
-  private void doNothing30() {
   }
 
   /**
