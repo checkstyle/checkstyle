@@ -1379,10 +1379,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]mutableexception[\\/]InputMutableExceptionClassExtendsGenericClass.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]onetoplevelclass[\\/]InputOneTopLevelClass.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassAnnotation.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEnum.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassInterface.java"/>
