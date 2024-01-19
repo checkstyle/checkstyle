@@ -4033,14 +4033,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]metrics[\\/]cyclomaticcomplexity[\\/]InputCyclomaticComplexitySwitchBlocks4.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSS2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSS3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSResolveMutation.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSResolveMutation.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]metrics[\\/]npathcomplexity[\\/]InputNPathComplexityDefault2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]modifier[\\/]classmemberimpliedmodifier[\\/]InputClassMemberImpliedModifierOnClassNoViolations.java"/>
