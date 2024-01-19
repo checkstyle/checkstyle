@@ -19,5 +19,5 @@ public record InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords() {
 record OuterRecord() {
     record InnerRecord() {
 
-    }; // ok
+    };
 }; // violation
