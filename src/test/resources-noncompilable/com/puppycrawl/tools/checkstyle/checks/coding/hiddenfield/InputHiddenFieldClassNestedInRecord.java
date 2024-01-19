@@ -25,7 +25,7 @@ public class InputHiddenFieldClassNestedInRecord {
                 return foo.this;
             }
 
-            foo2 setB(int b) { // ok
+            foo2 setB(int b) {
                 this.b = b;
                 return this;
             }
