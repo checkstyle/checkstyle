@@ -184,6 +184,8 @@
     files="[\\/]InputNoWhitespaceBeforeTextBlocksTabIndent\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputJava14TextBlocksTabSize\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputStringTemplateBasicWithTabs\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
