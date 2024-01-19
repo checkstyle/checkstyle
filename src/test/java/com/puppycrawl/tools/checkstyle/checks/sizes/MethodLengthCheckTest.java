@@ -107,10 +107,17 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAbstract() throws Exception {
+    public void testAbstractOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputMethodLengthModifier.java"), expected);
+                getPath("InputMethodLengthModifierOne.java"), expected);
+    }
+
+    @Test
+    public void testAbstractTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputMethodLengthModifierTwo.java"), expected);
     }
 
     @Test
