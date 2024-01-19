@@ -5,10 +5,29 @@ tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
 
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
+
+
+
+
+
 /**
  * Contains examples of using comments at the end of the block.
  */
 public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
+
+    public void foo30() {
+        // comment
+        int a = 5;
+//        violation '.* incorrect .* level 0, expected is 8, .* same .* as line 220.'
+    }
+
+    public void foo31() {
+        String s = new String ("A"
+                + "B"
+                + "C");
+        // comment
+    }
+
     public void foo32() {
         String s = new String ("A"
                 + "B"
@@ -97,22 +116,4 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlockThree {
         // comment
     }
 
-    public void foo45() {
-        int ar = 5;
-        // comment
-        ar = 6;
-        // violation '.* incorrect .* level 9, expected is 8, .* same .* as line 322.'
-    }
-    public void foo46() {
-// comment
-// block
-// violation '.* incorrect .* level 0, expected is 4, .* same .* as line 330.'
-    }
-
-    public void foo47() {
-        int a = 5;
-        // comment
-        // block
-        // comment
-    }
 }
