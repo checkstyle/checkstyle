@@ -16,7 +16,7 @@ import java.awt.event.ItemListener;
 
 
 //should give an ncss of 22
-public class InputJavaNCSS3 { // ok
+public class InputJavaNCSS3 {
 
     private Object mObject;
 
