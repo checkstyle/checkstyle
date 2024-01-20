@@ -115,8 +115,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexityRecordLeaves.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
