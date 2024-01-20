@@ -578,7 +578,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testLoadSuppressionsUriSyntaxException() throws Exception {
-        final URL configUrl = mock(URL.class);
+        final URL configUrl = mock();
         when(configUrl.toURI()).thenThrow(URISyntaxException.class);
         try (MockedStatic<CommonUtil> utilities =
                      mockStatic(CommonUtil.class, CALLS_REAL_METHODS)) {
