@@ -211,7 +211,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldAcceptDirectory() {
-        final File directory = mock(File.class);
+        final File directory = mock();
         when(directory.isDirectory()).thenReturn(true);
         assertWithMessage("MainFrame should accept directory")
                 .that(MainFrameModel.shouldAcceptFile(directory))
@@ -228,7 +228,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldNotAcceptNonJavaFile() {
-        final File nonJavaFile = mock(File.class);
+        final File nonJavaFile = mock();
         when(nonJavaFile.isDirectory()).thenReturn(false);
         when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
         assertWithMessage("MainFrame should not accept non-Java file")
@@ -247,7 +247,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     @Test
     public void testOpenFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
-        final ParseMode mock = mock(ParseMode.class);
+        final ParseMode mock = mock();
         model.setParseMode(mock);
         final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
             model.openFile(javaFile);
