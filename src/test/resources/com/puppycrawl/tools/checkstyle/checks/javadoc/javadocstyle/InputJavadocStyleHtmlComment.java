@@ -15,7 +15,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleHtmlComment // ok
+public class InputJavadocStyleHtmlComment
 {
     /**
      * sometimes a tag starts
@@ -25,7 +25,7 @@ public class InputJavadocStyleHtmlComment // ok
      * and ends afterwards
      * </pre>
      */
-    private void method1() {} // ok
+    private void method1() {}
 
     /**
      * sometimes a tag starts
@@ -37,7 +37,7 @@ public class InputJavadocStyleHtmlComment // ok
      * and ends afterwards
      * </pre>
      */
-    private void method2() {} // ok
+    private void method2() {}
 
     /**
      * sometimes a tag starts
@@ -48,7 +48,7 @@ public class InputJavadocStyleHtmlComment // ok
      * multiple lines --></pre>
      * and ends on the same line
      */
-    private void method3() {} // ok
+    private void method3() {}
 
     /**
      * sometimes a tag starts
@@ -58,18 +58,18 @@ public class InputJavadocStyleHtmlComment // ok
      * and ends afterwards
      * </pre>
      */
-    private void method4() {} // ok
+    private void method4() {}
 
     /**
      * sometimes a tag starts
      * <pre><!-- ignore this --></pre>
      * and ends with a comment in the middle
      */
-    private void method5() {} // ok
+    private void method5() {}
 
     /**
      * Parameterized interface.
      * @param <I>
      */
-    interface Interface<I> {} // ok
+    interface Interface<I> {}
 }
