@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>baseIndentation = baseIndentation.substring(0, baseIndentation.length() - 2);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
@@ -474,131 +463,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final int tokenCount = counts[element - 1];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) -- an integer less than this.counts&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>total += counts[element - 1];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) -- an integer less than this.counts&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>counts[type - 1]++;</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>final int tokenCount = counts[element - 1];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>total += counts[element - 1];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>&amp;&amp; primitiveDataTypes.get(parameterType.getType())) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter pos of RandomAccessFile.seek.</message>
-    <lineContent>file.seek(file.length() - len);</lineContent>
-    <details>
-      found   : long
-      required: @NonNegative long
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java</fileName>
-    <specifier>array.length.negative</specifier>
-    <message>Variable used in array creation could be negative.</message>
-    <lineContent>final byte[] lastBytes = new byte[len];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>lastChild.getColumnNo() + 2, lineCodePoints.length);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;lineCodePoints&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>lastChild.getColumnNo() + 2, lineCodePoints.length);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>final String removePattern = regexp.substring(&quot;^.+&quot;.length());</lineContent>
+    <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
-      found   : @LTEqLengthOf(&quot;&quot;^.+&quot;&quot;) int
-      required: @LTEqLengthOf(&quot;regexp&quot;) int
+      found   : @UpperBoundLiteral(1) int
+      required: @LTEqLengthOf(&quot;quotedText&quot;) int
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>.substring(0, fileNameWithPath.lastIndexOf(File.separator));</lineContent>
+    <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
       required: @NonNegative int
@@ -606,76 +485,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>slistColNo + 1, codePointsFirstLine.length);</lineContent>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>return sourceNameLower.substring(startIndex, endIndex);</lineContent>
     <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;codePointsFirstLine&quot;) int
+      found   : @LTEqLengthOf(&quot;sourceName&quot;) int
+      required: @LTEqLengthOf(&quot;sourceNameLower&quot;) int
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>slistColNo + 1, rcurlyColNo);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;this.getLineCodePoints(slistLineNo - 1)&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>slistColNo + 1, codePointsFirstLine.length);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
-    <lineContent>slistColNo + 1, rcurlyColNo);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidDoubleBraceInitializationCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>token -&gt; !IGNORED_TYPES.get(token.getType());</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/InnerAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>return COMPARISON_TYPES.get(astType);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/InnerAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>while (skipTokens.get(result.getType())) {</lineContent>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>return sourceNameLower.substring(startIndex, endIndex);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -705,6 +529,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
+    <lineContent>return ignoreLines.get(lineNo);</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
@@ -716,21 +551,10 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>excludeMinusDotStar.length() + 1);</lineContent>
-    <details>
-      found   : @LTLengthOf(value={&quot;exclude.substring(0, exclude.length() - 2)&quot;, &quot;excludeMinusDotStar&quot;}, offset={&quot;-2&quot;, &quot;-2&quot;}) int
-      required: @LTEqLengthOf(&quot;classOrStaticMember&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>return qualifiedImportName.substring(0, lastDotIndex);</lineContent>
+    <lineContent>ruleStr.indexOf(&apos;)&apos;));</lineContent>
     <details>
       found   : @GTENegativeOne int
       required: @NonNegative int
@@ -738,13 +562,57 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/PkgImportControl.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>&amp;&amp; (pkg.length() == length || pkg.charAt(length) == &apos;.&apos;);</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>final String import1Token = import1Tokens[i];</lineContent>
     <details>
-      found   : @LTEqLengthOf(&quot;this.fullPackageName&quot;) int
-      required: @LTLengthOf(&quot;pkg&quot;) int
+      found   : int
+      required: @IndexFor(&quot;import1Tokens&quot;) or @LTLengthOf(&quot;import1Tokens&quot;) -- an integer less than import1Tokens&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>final String import2Token = import2Tokens[i];</lineContent>
+    <details>
+      found   : int
+      required: @IndexFor(&quot;import2Tokens&quot;) or @LTLengthOf(&quot;import2Tokens&quot;) -- an integer less than import2Tokens&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>if (CommonUtil.isBlank(lines[i - 1])) {</lineContent>
+    <details>
+      found   : int
+      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) -- an integer less than lines&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
+    <specifier>array.access.unsafe.low</specifier>
+    <message>Potentially unsafe array access: the index could be negative.</message>
+    <lineContent>if (CommonUtil.isBlank(lines[i - 1])) {</lineContent>
+    <details>
+      found   : int
+      required: an integer &gt;= 0 (@NonNegative or @Positive)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>final String front = importName.substring(0, index);</lineContent>
+    <details>
+      found   : @GTENegativeOne int
+      required: @NonNegative int
     </details>
   </checkerFrameworkError>
 
@@ -756,39 +624,6 @@
     <details>
       found   : int
       required: @LTLengthOf(&quot;line&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>&amp;&amp; Character.isWhitespace(line.charAt(realColumnNo))) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final String line = getIndentCheck().getLines()[lineNo - 1];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;this.getIndentCheck().getLines()&quot;) or @LTLengthOf(&quot;this.getIndentCheck().getLines()&quot;) -- an integer less than this.getIndentCheck().getLines()&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AnnotationArrayInitHandler.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>final String line = getIndentCheck().getLines()[lineNo - 1];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 
@@ -855,226 +690,6 @@
     <details>
       found   : int
       required: @LTLengthOf(&quot;line&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/SlistHandler.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>return PARENT_TOKEN_TYPES.get(parentType);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>return text.substring(startOfText, endOfText);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;this.text&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>return text.substring(startOfText, endOfText);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>return text.substring(startOfText, endOfText);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>return position != text.length() - 1 &amp;&amp; text.charAt(position + 1) == &apos;/&apos;;</lineContent>
-    <details>
-      found   : int
-      required: @LTLengthOf(&quot;this.text&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/HtmlTag.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>return position != text.length() - 1 &amp;&amp; text.charAt(position + 1) == &apos;/&apos;;</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) -- an integer less than lines&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>&amp;&amp; !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {</lineContent>
-    <details>
-      found   : int
-      required: @LTLengthOf(&quot;text&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>&amp;&amp; !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>builder.append(line.substring(textStart));</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;line&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>builder.append(line.substring(textStart));</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of AbstractStringBuilder.charAt.</message>
-    <lineContent>if (Character.isWhitespace(builder.charAt(index))) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of AbstractStringBuilder.charAt.</message>
-    <lineContent>while (builder.charAt(index - 1) == &apos;*&apos;) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
-    <details>
-      found   : int
-      required: @LTLengthOf(&quot;line&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of String.charAt.</message>
-    <lineContent>if (line.charAt(textStart) == &apos;@&apos;) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of StringBuilder.deleteCharAt.</message>
-    <lineContent>builder.deleteCharAt(index - 1);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter index of StringBuilder.deleteCharAt.</message>
-    <lineContent>builder.deleteCharAt(index);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>text[tag.getLineNo() - lineNo]);</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>text[tag.getLineNo() - lineNo]);</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 
@@ -1178,54 +793,10 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/RequireEmptyLineBeforeBlockTagGroupCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>tagNode.getChildren()[0].getText());</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/AbstractClassCouplingCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>classNameWithPackage.substring(0, lastDotIndex);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;str&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;str&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex);</lineContent>
+    <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
+    <lineContent>usedLines.set(lineIndex);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -1233,10 +804,10 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
+    <message>incompatible argument for parameter fromIndex of BitSet.set.</message>
+    <lineContent>usedLines.set(lineIndex, endLineIndex + 1);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -1244,46 +815,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;str&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
+    <message>incompatible argument for parameter toIndex of BitSet.set.</message>
+    <lineContent>usedLines.set(lineIndex, endLineIndex + 1);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/AbstractParenPadCheck.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; line[before] != OPEN_PARENTHESIS) {</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) -- an integer less than line&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/AbstractParenPadCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>&amp;&amp; line[after] != CLOSE_PARENTHESIS) {</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 
@@ -1310,43 +848,98 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SingleSpaceSeparatorCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>result.addLast(fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length()));</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>return fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length());</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <lineContent>.substring(lastIndexOfClasspathProtocol));</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.utils.CommonUtil.CLASSPATH_URL_PROTOCOL&quot;) int
+      required: @LTEqLengthOf(&quot;filename&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>if (filename.charAt(0) == &apos;/&apos;) {</lineContent>
+    <details>
+      found   : @UpperBoundLiteral(0) int
+      required: @LTLengthOf(&quot;filename&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));</lineContent>
+    <details>
+      found   : @UpperBoundLiteral(0) int
+      required: @LTLengthOf(&quot;str&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>if (!Character.isWhitespace(line.charAt(i))) {</lineContent>
+    <details>
+      found   : int
+      required: @LTLengthOf(&quot;line&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.codePointAt.</message>
+    <lineContent>if (inputString.codePointAt(idx) == &apos;\t&apos;) {</lineContent>
+    <details>
+      found   : int
+      required: @LTLengthOf(&quot;inputString&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>return line[columnNo] == &apos; &apos;;</lineContent>
+    <lineContent>final char character = Character.toChars(codePoints[index])[0];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) -- an integer less than line&apos;s length
+      required: @IndexFor(&quot;codePoints&quot;) or @LTLengthOf(&quot;codePoints&quot;) -- an integer less than codePoints&apos;s length
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SingleSpaceSeparatorCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>return line[columnNo] == &apos; &apos;;</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheck.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>final int codePoint = line[after];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>array.access.unsafe.high.constant</specifier>
     <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>final char nextChar = Character.toChars(line[after])[0];</lineContent>
+    <lineContent>final char character = Character.toChars(codePoints[index])[0];</lineContent>
     <details>
       found   : char []
       required: @MinLen(1) -- an array guaranteed to have at least 1 elements
@@ -1354,10 +947,10 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>final char nextChar = Character.toChars(line[after])[0];</lineContent>
+    <lineContent>final char character = Character.toChars(codePoints[index])[0];</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -1365,101 +958,46 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelectorPresentation.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>detailNode.getChildren()[detailNode.getChildren().length - 1];</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>result = ((DetailNode) parent).getChildren()[index];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;(DetailNode)parent.getChildren()&quot;) or @LTLengthOf(&quot;(DetailNode)parent.getChildren()&quot;) -- an integer less than (DetailNode)parent.getChildren()&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>return COLUMN_NAMES[column];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) -- an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>result = ((DetailNode) parent).getChildren()[index];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>return COLUMN_NAMES[column];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>return variableExpression.substring(propertyStartIndex, propertyEndIndex);</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>text = text.substring(1, text.length() - 1);</lineContent>
+    <lineContent>return commentContent.getText().substring(1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
-      required: @LTEqLengthOf(&quot;text&quot;) int
+      required: @LTEqLengthOf(&quot;commentContent.getText()&quot;) int
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>return TOKEN_TYPES_WITH_TEXT_ATTRIBUTE.get(ast.getType());</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>previousSibling = children[previousSiblingIndex];</lineContent>
     <details>
       found   : int
-      required: @NonNegative int
+      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/XpathUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>text = text.substring(1, text.length() - 1);</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>array.access.unsafe.high.constant</specifier>
+    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
+    <lineContent>resultNode = node.getChildren()[0];</lineContent>
     <details>
-      found   : @GTENegativeOne int
-      required: @NonNegative int
+      found   : DetailNode []
+      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
+    <specifier>array.access.unsafe.low</specifier>
+    <message>Potentially unsafe array access: the index could be negative.</message>
+    <lineContent>nextSibling = children[nextSiblingIndex];</lineContent>
+    <details>
+      found   : int
+      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 </suppressedErrors>
