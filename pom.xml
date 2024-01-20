@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.12.8-SNAPSHOT</version>
+  <version>10.13.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -689,8 +689,8 @@
             <execution>
               <id>attach-sources</id>
               <goals>
-                <goal>test-jar</goal>
-                <goal>jar</goal>
+                <goal>test-jar-no-fork</goal>
+                <goal>jar-no-fork</goal>
               </goals>
             </execution>
           </executions>
