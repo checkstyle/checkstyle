@@ -1866,7 +1866,7 @@ public class MainTest {
      *                     mock getRuntime to avoid VM termination.
      */
     private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
-        final Runtime mock = mock(Runtime.class);
+        final Runtime mock = mock();
         try (MockedStatic<Runtime> runtime = mockStatic(Runtime.class)) {
             runtime.when(Runtime::getRuntime)
                     .thenReturn(mock);
