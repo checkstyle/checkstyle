@@ -15,7 +15,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleEmptyJavadoc2 { // ok
+public class InputJavadocStyleEmptyJavadoc2 {
         /**
      * First sentence.
      * <pre>
@@ -53,24 +53,24 @@ public class InputJavadocStyleEmptyJavadoc2 { // ok
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
+    private void method13() {}
 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14() {} // ok
+    private void method14() {}
 
     /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // ok
+    private void method15() {}
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
+    public static final int dummy = 4911;
     // violation below 'Javadoc has empty description section'
     /**
      */
@@ -100,11 +100,11 @@ public class InputJavadocStyleEmptyJavadoc2 { // ok
         /**
          * Value 1 without a period
          */
-        value1, // ok
+        value1,
 
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2,
     }
 }
