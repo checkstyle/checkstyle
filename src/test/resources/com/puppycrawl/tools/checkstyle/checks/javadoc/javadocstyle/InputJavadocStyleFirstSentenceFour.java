@@ -22,19 +22,19 @@ public class InputJavadocStyleFirstSentenceFour
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
+    void tagInTwoLines() {}
 
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code>
      */
-    private void unclosedTag() {} // ok
+    private void unclosedTag() {}
 
-    void javadocLikeCommentInMethod() { // ok
+    void javadocLikeCommentInMethod() {
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0;
     }
     // violation below 'First sentence should end with a period.'
     /**
@@ -45,7 +45,7 @@ public class InputJavadocStyleFirstSentenceFour
     /**
      * <p><b>Note:<b> it's unterminated tag.</p>
      */
-    private void unterminatedTag() {} // ok
+    private void unterminatedTag() {}
 
     // violation below 'First sentence should end with a period.'
     /**
@@ -59,7 +59,7 @@ public class InputJavadocStyleFirstSentenceFour
         void method();
     }
 
-    static class TestStaticClass { // ok
+    static class TestStaticClass {
         // violation below 'First sentence should end with a period.'
         /**
          * Javadoc without dot
@@ -71,7 +71,7 @@ public class InputJavadocStyleFirstSentenceFour
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
+    void foo() throws Exception {}
 
     // violation below 'First sentence should end with a period.'
     /**
@@ -85,7 +85,7 @@ public class InputJavadocStyleFirstSentenceFour
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
+    void inheritDocWithThrows() {}
 
     // violation below 'First sentence should end with a period.'
     /**
@@ -98,7 +98,7 @@ public class InputJavadocStyleFirstSentenceFour
     public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
-    public String field; // ok
+    public String field;
 
     /**
      * <p>Test.</p>
@@ -107,7 +107,7 @@ public class InputJavadocStyleFirstSentenceFour
      ; i &lt; j; i++, j--) {}
      </pre>
      */
-    public void test2() {} // ok
+    public void test2() {}
 
     /**
      * <p>Test.</p>
@@ -115,5 +115,5 @@ public class InputJavadocStyleFirstSentenceFour
      public class SampleTest {
      }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {}
 }
