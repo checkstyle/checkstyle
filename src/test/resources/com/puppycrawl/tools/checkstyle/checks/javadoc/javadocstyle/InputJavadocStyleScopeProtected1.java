@@ -15,40 +15,40 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleScopeProtected1 // ok
+public class InputJavadocStyleScopeProtected1
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
+   private String first;
 
    /** This Javadoc is missing an ending period */
-   private String second; // ok
+   private String second;
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleScopeProtected1() {} // ok
+   public InputJavadocStyleScopeProtected1() {}
 
    /**
     * This is ok!
     */
-   private void method1() {} // ok
+   private void method1() {}
 
    /**
     * This is ok?
     */
-   private void method2() {} // ok
+   private void method2() {}
 
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
+   private void method3() {}
 
    /**
     * This should fail even.though.there are embedded periods
     */
-   private void method4() {} // ok
+   private void method4() {}
 
    /**
     * Test HTML in Javadoc comment
@@ -60,7 +60,7 @@ public class InputJavadocStyleScopeProtected1 // ok
     * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy.
     */
-   private void method5(int arg1) {} // ok
+   private void method5(int arg1) {}
 
    // violation 2 lines below 'First sentence should end with a period.'
    // violation 2 lines below 'Unclosed HTML tag found: <b>'
@@ -72,7 +72,7 @@ public class InputJavadocStyleScopeProtected1 // ok
    /**
     * Package protected check <b>should fail
     */
-   void method7() {} // ok
+   void method7() {}
 
    // violation 3 lines below 'First sentence should end with a period.'
    // violation 3 lines below 'Extra HTML tag found: </code>'
@@ -84,7 +84,7 @@ public class InputJavadocStyleScopeProtected1 // ok
    public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
+   public void method9() {}
 
 
     // Testcases to exercise the Tag parser (bug 843887)
@@ -96,7 +96,7 @@ public class InputJavadocStyleScopeProtected1 // ok
      * < br/>
      * <img src="schattenparker.jpg"/></img>
      */
-    private void method10() {} // ok
+    private void method10() {}
 
     /**
      * Tag content can be really mean.
@@ -113,5 +113,5 @@ public class InputJavadocStyleScopeProtected1 // ok
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
+    private void method11() {}
 }

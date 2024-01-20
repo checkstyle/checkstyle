@@ -15,27 +15,27 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleNoJavadoc2 // OK
+public class InputJavadocStyleNoJavadoc2
 {
-    private class PrivateInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    private class PrivateInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
-    class IgnoredName { // ok
+    class IgnoredName {
         // ignore by name
-        private int logger; // ok
+        private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc
-        private static final long serialVersionUID = 0; // ok
+        private static final long serialVersionUID = 0;
     }
 
     /**/
-    void methodWithTwoStarComment() {} // ok
+    void methodWithTwoStarComment() {}
 }
