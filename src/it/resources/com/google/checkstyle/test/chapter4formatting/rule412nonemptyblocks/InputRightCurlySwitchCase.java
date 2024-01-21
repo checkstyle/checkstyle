@@ -27,7 +27,7 @@ public class InputRightCurlySwitchCase {
                 break;
             default:
                 x = 0;
-        } // ok
+        }
     }
 
     public static void method3() {
@@ -35,7 +35,7 @@ public class InputRightCurlySwitchCase {
         switch (mode) {
         default :
                int x = 0;
-        } // ok
+        }
     }
 
     public static void method4() {
@@ -45,6 +45,6 @@ public class InputRightCurlySwitchCase {
                 int  y = 2;
             default :
                int x = 0;
-        } // ok
+        }
     }
 }

@@ -175,7 +175,7 @@ class AsInput1 {
     int abc = 0;
     String string
         = "string";
-    double PI = // ok
+    double PI =
             3.1415;
 }
 
