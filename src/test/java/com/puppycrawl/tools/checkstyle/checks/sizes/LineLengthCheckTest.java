@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -37,14 +38,22 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimple()
+    public void testSimpleOne()
             throws Exception {
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_KEY, 80, 81),
-            "149: " + getCheckMessage(MSG_KEY, 80, 83),
+            "21: " + getCheckMessage(MSG_KEY, 80, 81),
+            "104: " + getCheckMessage(MSG_KEY, 80, 83),
         };
         verifyWithInlineConfigParser(
-                getPath("InputLineLengthSimple.java"), expected);
+                getPath("InputLineLengthSimpleOne.java"), expected);
+    }
+
+    @Test
+    public void testSimpleTwo()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputLineLengthSimpleTwo.java"), expected);
     }
 
     @Test
