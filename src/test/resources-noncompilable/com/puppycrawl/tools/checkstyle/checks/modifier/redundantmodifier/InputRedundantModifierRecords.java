@@ -49,8 +49,8 @@ final record testRecord(int a) { // violation 'Redundant 'final' modifier'
     }
 }
 
-record anotherRecord(int b) { // ok
+record anotherRecord(int b) {
 
-    record nestedRecord(int a, int p) { // ok
+    record nestedRecord(int a, int p) {
     }
 }
