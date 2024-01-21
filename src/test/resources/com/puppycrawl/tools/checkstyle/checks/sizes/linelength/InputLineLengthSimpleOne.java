@@ -4,7 +4,6 @@ fileExtensions = (default)all files
 ignorePattern = ^.*is OK.*regexp.*$
 max = (default)80
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
@@ -17,10 +16,10 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputLineLengthSimple
+final class InputLineLengthSimpleOne
 {
     // Long line --------------------------------------------------- // violation
-    // Contains a tab ->	<-
+    // Contains a tab -><-
     // Contains trailing whitespace ->
 
     // Name format tests
@@ -46,9 +45,8 @@ final class InputLineLengthSimple
     private int[] mInts = new int[] {1,2, 3,
                                      4};
 
-    //
     // Accessor tests
-    //
+
     /** should be private **/
     public static int sTest1;
     /** should be private **/
@@ -61,9 +59,7 @@ final class InputLineLengthSimple
     /** should be private **/
     public int mTest2;
 
-    //
     // Parameter name format tests
-    //
 
     /**
      * @return hack
@@ -77,42 +73,6 @@ final class InputLineLengthSimple
         throws Exception
     {
         return 0;
-    }
-
-    /** method that is 20 lines long **/
-    private void longMethod()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-    }
-
-    /** constructor that is 10 lines long **/
-    private InputLineLengthSimple()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
     }
 
     /** test local variables */
@@ -137,17 +97,12 @@ final class InputLineLengthSimple
         }
     }
 
-    /** test method pattern */
-    void ALL_UPPERCASE_METHOD()
-    {
-    }
-
     /** test illegal constant **/
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // line has a tab ->	<- and but OK if tab counted as 1 char // violation
-    // tabs that count as one char because of their position ->	<-   ->	<-, OK
+    // line has a tab -><- and but OK if tab counted as 1 char // violation
+    // tabs that count as one char because of their position ->	<-->	<-, OK
 
     /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
@@ -161,69 +116,4 @@ final class InputLineLengthSimple
   	  	int tab4 =1;
   	        int tab5 =1;
     }
-
-    // MEMME:
-    /* MEMME: a
-     * MEMME:
-     * OOOO
-     */
-    /* NOTHING */
-    /* YES */ /* MEMME: x */ /* YES!! */
-
-    /** test long comments **/
-    void veryLong()
-    {
-        /*
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          enough talk */
-    }
-
-    /**
-     * @see to lazy to document all args. Testing excessive # args
-     **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
-                    int aArg6, int aArg7, int aArg8, int aArg9)
-    {
-    }
-}
-
-/** Test class for variable naming in for each clause. */
-class InputLineLengthSimple2
-{
-    /** Some more Javadoc. */
-    public void doSomething()
-    {
-        //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
-        {
-
-        }
-    }
-}
-
-/** Test enum for member naming check */
-enum MyEnum1
-{
-    /** ABC constant */
-    ABC,
-
-    /** XYZ constant */
-    XYZ;
-
-    /** Should be mSomeMember */
-    private int someMember;
 }
