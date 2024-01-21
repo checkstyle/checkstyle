@@ -2941,8 +2941,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]modifier[\\/]interfacememberimpliedmodifier[\\/]InputInterfaceMemberImpliedModifierPrivateMethods.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]modifier[\\/]modifierorder[\\/]InputModifierOrderDefaultMethods.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]modifier[\\/]redundantmodifier[\\/]InputRedundantModifierStaticMethodInInterface.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameAbstractMultisetSetCount.java"/>
