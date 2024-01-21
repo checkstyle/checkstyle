@@ -6,7 +6,7 @@ strictfp abstract class InputModifierOrder //warn
 
     volatile public int whatImReading; //warn
 
-    public volatile boolean sModifierOrderVar = false; // ok
+    public volatile boolean sModifierOrderVar = false;
 
     /**
      * Illegal order of modifiers for methods. Make sure that the
@@ -97,7 +97,7 @@ final class RedundantFinalClass
 
     static protected @MyAnnotation2 synchronized native void fooMethod1(); // warn
 
-    @MyAnnotation2 protected synchronized native void fooMethod2(); // ok
+    @MyAnnotation2 protected synchronized native void fooMethod2();
 
     native synchronized protected static @MyAnnotation2 void fooMethod3(); // warn
 
@@ -138,7 +138,7 @@ class WithInner
 
         volatile public int whatImReading; //warn
 
-        @MyAnnotation2 protected synchronized native void fooMethod(); // ok
+        @MyAnnotation2 protected synchronized native void fooMethod();
 
         protected @MyAnnotation2 synchronized native void fooMethod1(); // warn
 
@@ -177,7 +177,7 @@ class WithInner
 
             native synchronized protected @MyAnnotation2 void fooMethod3(); // warn
 
-            @MyAnnotation2 protected synchronized native void fooMethod4(); // ok
+            @MyAnnotation2 protected synchronized native void fooMethod4();
 
             public @MyAnnotation2 synchronized native void fooMethod5(); // warn
 
