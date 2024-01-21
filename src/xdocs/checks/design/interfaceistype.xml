@@ -63,17 +63,21 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public interface Test1 { // violation
+class Example1 {
+  // violation below, 'interfaces should describe a type and hence have methods.'
+  interface Test1 {
     int a = 3;
-}
+  }
 
-public interface Test2 { // OK
+  // ok below, because marker interfaces are allowed by default.
+  interface Test2 {
 
-}
+  }
 
-public interface Test3 { // OK
+  interface Test3 { // ok, because it has a method.
     int a = 3;
     void test();
+  }
 }
         </source>
         <p id="Example2-config">
@@ -90,12 +94,21 @@ public interface Test3 { // OK
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public interface Test1 { // violation
+class Example2 {
+  // violation below, 'interfaces should describe a type and hence have methods.'
+  interface Test1 {
     int a = 3;
-}
+  }
 
-public interface Test2 { // violation
+  // violation below, 'interfaces should describe a type and hence have methods.'
+  interface Test2 {
 
+  }
+
+  interface Test3 { // ok, because it has a method.
+    int a = 3;
+    void test();
+  }
 }
         </source>
       </subsection>
