@@ -126,8 +126,8 @@ class EnumContainerAlone {
 }
 
 class WithArraysAlone {
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
+    String[] s = {""};
+    String[] empty = {};
     String[] s1 = {
         "foo", "foo",
     }; // ok

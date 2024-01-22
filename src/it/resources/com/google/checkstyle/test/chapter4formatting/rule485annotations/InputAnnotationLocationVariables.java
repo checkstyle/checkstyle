@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule485annotations;
 
-@MyAnnotation2 @MyAnnotation1 // ok - in variables config
+@MyAnnotation2 @MyAnnotation1 // in variables config
 class InputAnnotationLocationVariables
 {
 
@@ -17,20 +17,20 @@ class InputAnnotationLocationVariables
     public int d;
 
     @MyAnnotation2
-        @MyAnnotation1 // ok - in variables config
+        @MyAnnotation1 // in variables config
     public InputAnnotationLocationVariables() {}
 
     @MyAnnotationWithParam("foo")
     @MyAnnotation2 void foo1() {}
 
     @MyAnnotation1
-       @MyAnnotation2 // ok - in variables config
+       @MyAnnotation2 // in variables config
     void foo2() {}
 
     @MyAnnotation1
-        @MyAnnotation2 // ok - in variables config
-      @MyAnnotation3 // ok - in variables configwarn
-          @MyAnnotation4 // ok - in variables config
+        @MyAnnotation2 //  in variables config
+      @MyAnnotation3 //  in variables configwarn
+          @MyAnnotation4 // in variables config
     class InnerClass
     {
         @MyAnnotation2 @MyAnnotation1
@@ -51,11 +51,11 @@ class InputAnnotationLocationVariables
             // OOOO Auto-generated constructor stub
         }
         @MyAnnotation1
-            @MyAnnotation2 // ok - in variables config
+            @MyAnnotation2 // in variables config
         void foo1() {}
 
         @MyAnnotation1
-            @MyAnnotation2 // ok - in variables config
+            @MyAnnotation2 // in variables config
         void foo2() {}
     }
 
@@ -75,10 +75,10 @@ class InputAnnotationLocationVariables
         public int d;
 
         @MyAnnotation1
-           @MyAnnotation2 void foo1() {} // ok - in variables config
+           @MyAnnotation2 void foo1() {} // in variables config
 
         @MyAnnotation1
-          @MyAnnotation2 // ok - in variables config
+          @MyAnnotation2 //  in variables config
         void foo2() {}
 
         @MyAnnotation1 void foo42() {}
@@ -87,7 +87,7 @@ class InputAnnotationLocationVariables
 }
 
 @MyAnnotation1
- @MyAnnotation2 // ok - in variables config
+ @MyAnnotation2 // in variables config
 class FooVariables {}
 
 @interface MyAnnotationVariables1 {}
