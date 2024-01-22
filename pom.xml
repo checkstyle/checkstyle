@@ -247,6 +247,8 @@
       -Xep:EmptyMethod:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
+      -Xep:MockitoMockClassReference:ERROR
+      -Xep:NestedOptionals:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -255,7 +257,6 @@
       -Xep:JUnitValueSource:OFF
       <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
       -Xep:LexicographicalAnnotationListing:OFF
-      -Xep:NestedOptionals:ERROR
       <!-- This check is not finalized. -->
       -Xep:MethodReferenceUsage:OFF
       <!-- We prefer to qualify all static method calls with class name. -->

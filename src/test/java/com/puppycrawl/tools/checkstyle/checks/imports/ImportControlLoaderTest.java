@@ -146,11 +146,11 @@ public class ImportControlLoaderTest {
 
     @Test
     public void testInputStreamFailsOnRead() throws Exception {
-        try (InputStream inputStream = mock(InputStream.class)) {
+        try (InputStream inputStream = mock()) {
             final int available = doThrow(IOException.class).when(inputStream).available();
-            final URL url = mock(URL.class);
+            final URL url = mock();
             when(url.openStream()).thenReturn(inputStream);
-            final URI uri = mock(URI.class);
+            final URI uri = mock();
             when(uri.toURL()).thenReturn(url);
 
             final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
