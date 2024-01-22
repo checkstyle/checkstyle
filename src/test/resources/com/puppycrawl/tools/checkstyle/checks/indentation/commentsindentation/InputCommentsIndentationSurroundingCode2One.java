@@ -1,6 +1,6 @@
 /*
 CommentsIndentation
-tokens = BLOCK_COMMENT_BEGIN
+tokens = SINGLE_LINE_COMMENT
 
 
 */
@@ -11,12 +11,13 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 import java.util.Arrays;
 
 // some
-public class InputCommentsIndentationSurroundingCode3
+public class InputCommentsIndentationSurroundingCode2One
 {
     private void foo1() {
         if (true) {
             // here initialize some variables
             int k = 0; // trailing comment
+              // violation '.* incorrect .* level 14, expected is 12, .* same .* as line 21.'
             int b = 10;
             // sss
         }
@@ -26,13 +27,12 @@ public class InputCommentsIndentationSurroundingCode3
         if (true) {
             /* some */
             int k = 0;
-            // violation below '.* incorrect .* level 16, expected is 12, .* same .* as line 31.'
-                /* some comment */
+                /* violation */
             int b = 10;
-                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 34.'
+                /* violation
                  * */
             double d; /* trailing comment */
-                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 38.'
+                /* violation
              *
                 */
             boolean bb;
@@ -54,7 +54,8 @@ public class InputCommentsIndentationSurroundingCode3
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                       /* // violation '.* incorrect .* level 23, expected is 36, .* as line 59.'
+                           /// violation '.* incorrect .* level 27, expected is 36, .* as line 60.'
+                       /* violation
                         * one fine day ... */
                                     && b == 1)   ) {
         }
@@ -93,6 +94,7 @@ public class InputCommentsIndentationSurroundingCode3
               // ...
               // block
               // ...
+              // violation '.* incorrect .* level 14, expected is 8, .* same .* as line 98.'
         String someStr = new String();
     }
 
@@ -100,62 +102,9 @@ public class InputCommentsIndentationSurroundingCode3
              // comment
              // ...
              // block
+             // violation '.* incorrect .* level 13, expected is 8, .* same .* as line 107.'
         // comment
         String someStr = new String();
-    }
-
-    public void foo8() {
-        String s = new String(); // comment
-                                 // ...
-                                 // block
-                                 // ...
-        String someStr = new String();
-    }
-
-
-    public String foo9(String s1, String s2, String s3) {
-        return "";
-    }
-
-    public void foo10()
-        throws Exception {
-
-        final String pattern = "^foo$";
-
-        final String[] expected = {
-            "7:13: " + foo9("", "", ""),
-            // comment
-        };
-    }
-
-    public void foo11() {
-        // violation below '.* incorrect .* level 12, expected is 8, .* same .* as line 134.'
-            /* some comment */
-        hashCode();
-    }
-
-    public void foo12() {
-        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 140.'
-    /* some comment */
-        hashCode();
-    }
-
-    public void foo13() {
-        hashCode();
-        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 144.'
-    /* some comment */
-    }
-
-    public void foo14() {
-        hashCode();
-        /*
-
-        Test
-        */
-        // Test
-    }
-
-    public InputCommentsIndentationSurroundingCode3() {
     }
 
     // Test
