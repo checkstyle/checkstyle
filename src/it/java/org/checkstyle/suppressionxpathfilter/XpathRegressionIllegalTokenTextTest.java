@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -81,11 +80,13 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]/ASSIGN/EXPR[./STRING_LITERAL[@text='forbiddenText']]",
+                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
+                    + "/ASSIGN/EXPR[./STRING_LITERAL[@text='forbiddenText']]",
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
+                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
+                    + "/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
