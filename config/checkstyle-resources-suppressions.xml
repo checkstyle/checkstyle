@@ -305,15 +305,9 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]todocomment[\\/]InputTodoCommentSimple\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationSurroundingCode\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInSwitchBlock\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationSurroundingCode2\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationInMultiblockStructures\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationSurroundingCode3\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]indentation[\\/]indentation[\\/]InputIndentationInvalidMethodIndent\.java"/>
   <suppress checks="FileLength"
