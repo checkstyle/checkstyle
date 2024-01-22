@@ -176,7 +176,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSurroundingCode() throws Exception {
+    public void testSurroundingCodeOne() throws Exception {
         final String[] expected = {
             "20:15: " + getCheckMessage(MSG_KEY_SINGLE, 21, 14, 12),
             "31:17: " + getCheckMessage(MSG_KEY_BLOCK, 32, 16, 12),
@@ -186,12 +186,20 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "59:24: " + getCheckMessage(MSG_KEY_BLOCK, 61, 23, 36),
             "98:15: " + getCheckMessage(MSG_KEY_SINGLE, 99, 14, 8),
             "106:14: " + getCheckMessage(MSG_KEY_SINGLE, 108, 13, 8),
-            "116:34: " + getCheckMessage(MSG_KEY_SINGLE, 117, 33, 8),
-            "138:13: " + getCheckMessage(MSG_KEY_BLOCK, 139, 12, 8),
-            "144:5: " + getCheckMessage(MSG_KEY_BLOCK, 145, 4, 8),
-            "151:5: " + getCheckMessage(MSG_KEY_BLOCK, 149, 4, 8),
         };
-        final String testInputFile = "InputCommentsIndentationSurroundingCode.java";
+        final String testInputFile = "InputCommentsIndentationSurroundingCodeOne.java";
+        verifyWithInlineConfigParser(getPath(testInputFile), expected);
+    }
+
+    @Test
+    public void testSurroundingCodeTwo() throws Exception {
+        final String[] expected = {
+            "20:34: " + getCheckMessage(MSG_KEY_SINGLE, 21, 33, 8),
+            "42:13: " + getCheckMessage(MSG_KEY_BLOCK, 43, 12, 8),
+            "48:5: " + getCheckMessage(MSG_KEY_BLOCK, 49, 4, 8),
+            "55:5: " + getCheckMessage(MSG_KEY_BLOCK, 53, 4, 8),
+        };
+        final String testInputFile = "InputCommentsIndentationSurroundingCodeTwo.java";
         verifyWithInlineConfigParser(getPath(testInputFile), expected);
     }
 
