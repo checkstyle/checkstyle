@@ -1,6 +1,6 @@
 /*
 CommentsIndentation
-tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
+tokens = SINGLE_LINE_COMMENT
 
 
 */
@@ -8,10 +8,10 @@ tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
 // comment
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-import java.util.*;
+import java.util.Arrays;
 
 // some
-public class InputCommentsIndentationSurroundingCode
+public class InputCommentsIndentationSurroundingCode2One
 {
     private void foo1() {
         if (true) {
@@ -27,13 +27,12 @@ public class InputCommentsIndentationSurroundingCode
         if (true) {
             /* some */
             int k = 0;
-            // violation below '.* incorrect .* level 16, expected is 12, .* same .* as line 32.'
-                /* some comment */
+                /* violation */
             int b = 10;
-                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 35.'
+                /* violation
                  * */
             double d; /* trailing comment */
-                /* // violation '.* incorrect .* level 16, expected is 12, .* same .* as line 39.'
+                /* violation
              *
                 */
             boolean bb;
@@ -55,8 +54,8 @@ public class InputCommentsIndentationSurroundingCode
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                           /// violation '.* incorrect .* level 27, expected is 36, .* as line 61.'
-                       /* // violation '.* incorrect .* level 23, expected is 36, .* as line 61.'
+                           /// violation '.* incorrect .* level 27, expected is 36, .* as line 60.'
+                       /* violation
                         * one fine day ... */
                                     && b == 1)   ) {
         }
@@ -95,7 +94,7 @@ public class InputCommentsIndentationSurroundingCode
               // ...
               // block
               // ...
-              // violation '.* incorrect .* level 14, expected is 8, .* same .* as line 99.'
+              // violation '.* incorrect .* level 14, expected is 8, .* same .* as line 98.'
         String someStr = new String();
     }
 
@@ -103,7 +102,7 @@ public class InputCommentsIndentationSurroundingCode
              // comment
              // ...
              // block
-             // violation '.* incorrect .* level 13, expected is 8, .* same .* as line 108.'
+             // violation '.* incorrect .* level 13, expected is 8, .* same .* as line 107.'
         // comment
         String someStr = new String();
     }
@@ -113,56 +112,8 @@ public class InputCommentsIndentationSurroundingCode
                                  // ...
                                  // block
                                  // ...
-                                 // violation '.* incorrect.*level 33, expected is 8,.*as line 117.'
+                                 // violation '.*incorrect.*level 33, expected is 8,.*as line 116.'
         String someStr = new String();
     }
-
-
-    public String foo9(String s1, String s2, String s3) {
-        return "";
-    }
-
-    public void foo10()
-        throws Exception {
-
-        final String pattern = "^foo$";
-
-        final String[] expected = {
-            "7:13: " + foo9("", "", ""),
-            // comment
-        };
-    }
-
-    public void foo11() {
-        // violation below '.* incorrect .* level 12, expected is 8, .* same .* as line 139.'
-            /* empty */
-        hashCode();
-    }
-
-    public void foo12() {
-        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 145.'
-    /* empty */
-        hashCode();
-    }
-
-    public void foo13() {
-        hashCode();
-        // violation below '.* incorrect .* level 4, expected is 8, .* same .* as line 149.'
-    /* empty */
-    }
-
-    public void foo14() {
-        hashCode();
-        /*
-
-        Test
-        */
-        // Test
-    }
-
-    public InputCommentsIndentationSurroundingCode() {
-    }
-
     // Test
-} // The Check should not throw NPE here!
-// The Check should not throw NPE here!
+}
