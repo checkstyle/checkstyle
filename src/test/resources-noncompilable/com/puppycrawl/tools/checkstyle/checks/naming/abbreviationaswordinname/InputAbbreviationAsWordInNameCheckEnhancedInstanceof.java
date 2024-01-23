@@ -26,18 +26,18 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceof {
                 && (o2 instanceof Integer INTEGER)) {} // violation
 
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
-        if (arrayList instanceof ArrayList<Integer> aXML) { // ok
+        if (arrayList instanceof ArrayList<Integer> aXML) {
             System.out.println("BlahBlah");
         }
 
         boolean result = (o1 instanceof String a1) ?
-                (o1 instanceof String aTXT) :   // ok
+                (o1 instanceof String aTXT) :
                 (!(o1 instanceof String ssSTRING)); // violation
 
         String formatted;
         if (o1 instanceof Integer XMLHTTP) formatted = // violation
                 String.format("int %d", XMLHTTP);
-        else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT); // ok
+        else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT);
         else formatted = String.format("Something else "+ o1.toString());
 
     }
