@@ -18,7 +18,7 @@ public class InputIllegalIdentifierNameLambda {
     public static void main(String... args) {
         Function<String, String> f1 = var -> var; // violation
         Function<String, String> f2 = (var) -> var; // violation
-        Function<String, String> f3 = myLambdaParam -> myLambdaParam; // ok
+        Function<String, String> f3 = myLambdaParam -> myLambdaParam;
     }
 
     enum Day {
