@@ -90,7 +90,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207
     private static final Set<String> MISSING_CHECK_NAMES = Set.of(
-            "CatchParameterName",
             "ClassDataAbstractionCoupling",
             "ClassFanOutComplexity",
             "ClassTypeParameterName",
