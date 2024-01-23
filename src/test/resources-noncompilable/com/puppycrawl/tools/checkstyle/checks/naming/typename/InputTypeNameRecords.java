@@ -15,10 +15,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
 public class InputTypeNameRecords {
     interface FirstName {
-    } // OK
+    }
 
     class SecondName {
-    } // OK
+    }
 
     enum Third_Name {} // violation
 
@@ -35,5 +35,5 @@ public class InputTypeNameRecords {
     }
 
     record GoodName() {
-    } // ok
+    }
 }
