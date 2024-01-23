@@ -20,7 +20,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
-         * @throws java.lang.IllegalStateException when argument is wrong // ok
+         * @throws java.lang.IllegalStateException when argument is wrong
          */
         public void doSomething4(String properties) {
             // here is NPE possible
@@ -34,7 +34,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
-         * @throws java.lang.IllegalStateException when argument is wrong // ok
+         * @throws java.lang.IllegalStateException when argument is wrong
          */
         public void doSomething5(String properties) {
             // here is NPE possible
@@ -53,7 +53,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
-         * @throws java.lang.IllegalStateException when argument is wrong // ok
+         * @throws java.lang.IllegalStateException when argument is wrong
          */
         // violation 3 lines above 'Unused Javadoc tag.'
         public MySecondRecord {
@@ -71,7 +71,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
-         * @throws java.lang.IllegalStateException when argument is wrong // ok
+         * @throws java.lang.IllegalStateException when argument is wrong
          */
         // violation 3 lines above 'Unused Javadoc tag.'
         public MyThirdRecord {
@@ -89,7 +89,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
-         * @throws java.lang.IllegalStateException when argument is wrong // ok
+         * @throws java.lang.IllegalStateException when argument is wrong
          */
         // violation 3 lines above 'Unused @param tag for 'properties'.'
         // violation below 'Expected @param tag for 'myInt'.'
