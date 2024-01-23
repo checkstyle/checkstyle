@@ -318,8 +318,8 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommentsInSameMethodCallWithSameIndent() throws Exception {
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_KEY_SINGLE, 24, 6, 4),
-            "30:11: " + getCheckMessage(MSG_KEY_SINGLE, 31, 10, 4),
+            "22:7: " + getCheckMessage(MSG_KEY_SINGLE, 23, 6, 4),
+            "29:11: " + getCheckMessage(MSG_KEY_SINGLE, 30, 10, 4),
         };
         verifyWithInlineConfigParser(
             getPath("InputCommentsIndentationWithInMethodCallWithSameIndent.java"),
@@ -372,7 +372,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommentsAtTheEndOfMethodCall() throws Exception {
         final String[] expected = {
-            "24:16: " + getCheckMessage(MSG_KEY_SINGLE, 20, 15, 8),
+            "21:16: " + getCheckMessage(MSG_KEY_SINGLE, 18, 15, 8),
         };
         verifyWithInlineConfigParser(
             getPath("InputCommentsIndentationCommentsAfterMethodCall.java"),
