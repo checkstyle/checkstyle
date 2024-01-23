@@ -1,3 +1,13 @@
-//has no tabs
-	//has tab
-		//has 2 tabs
+/*
+com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet
+
+*/
+
+// has no tabs
+line1
+
+// has a tab
+line4	// violation
+
+// has 2 tabs
+line5	// violation	// violation
