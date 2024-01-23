@@ -37,7 +37,7 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1
         String formatted;
         if (o1 instanceof Integer XMLHTTP) formatted = // violation
                 String.format("int %d", XMLHTTP);
-        else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT); // ok
+        else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT);
         else formatted = String.format("Something else "+ o1.toString());
 
     }
