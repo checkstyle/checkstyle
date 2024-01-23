@@ -123,8 +123,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]typename[\\/]InputTypeNameRecords.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]outertypefilename[\\/]package-info.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]lambdabodylength[\\/]InputLambdaBodyLengthSwitchExps.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]linelength[\\/]InputLineLengthIgnoringImportStatements.java"/>
@@ -237,8 +235,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]recordcomponentnumber[\\/]InputRecordComponentNumberTopLevel2.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]uncommentedmain[\\/]InputUncommentedMainRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorRecordsAndCompactCtors.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorRecordsAndCompactCtors.java"/>
@@ -348,8 +344,6 @@
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundRecordsAllowEmptyTypes.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]annotation[\\/]packageannotation[\\/]InputPackageAnnotation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -1293,19 +1287,11 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]design[\\/]visibilitymodifier[\\/]inputs[\\/]InetSocketAddress.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]finalparameters[\\/]InputFinalParametersReceiver.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlock.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlock.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentsAfterMethodCall.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentsAfterMethodCall.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentsAfterMethodCall.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationNoNpe.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationWithInMethodCallWithSameIndent.java"/>
   <suppress id="UnnecessaryOkComment"
