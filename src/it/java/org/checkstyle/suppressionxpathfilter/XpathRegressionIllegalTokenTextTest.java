@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -43,8 +44,8 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                 new File(getPath("SuppressionXpathRegressionIllegalTokenText1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addAttribute("format", "12345");
-        moduleConfig.addAttribute("tokens", "NUM_INT");
+        moduleConfig.addProperty("format", "12345");
+        moduleConfig.addProperty("tokens", "NUM_INT");
         final String[] expectedViolation = {
             "4:33: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "12345"),
@@ -70,8 +71,8 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                 new File(getPath("SuppressionXpathRegressionIllegalTokenText2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addAttribute("format", "forbiddenText");
-        moduleConfig.addAttribute("tokens", "STRING_LITERAL");
+        moduleConfig.addProperty("format", "forbiddenText");
+        moduleConfig.addProperty("tokens", "STRING_LITERAL");
         final String[] expectedViolation = {
             "5:32: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "forbiddenText"),
@@ -99,13 +100,13 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
                 new File(getPath("SuppressionXpathRegressionIllegalTokenText3.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
-        moduleConfig.addAttribute("format", "invalidIdentifier");
-        moduleConfig.addAttribute("tokens", "IDENT");
+        moduleConfig.addProperty("format", "invalidIdentifier");
+        moduleConfig.addProperty("tokens", "IDENT");
         final String[] expectedViolation = {
             "4:10: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
         };
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText3']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
