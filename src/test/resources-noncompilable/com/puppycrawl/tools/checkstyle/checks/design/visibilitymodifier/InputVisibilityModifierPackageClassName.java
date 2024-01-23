@@ -17,6 +17,6 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import com.PackageClass.*;
 
-public final class InputVisibilityModifierPackageClassName { // ok
+public final class InputVisibilityModifierPackageClassName {
     public final PackageClass o = new PackageClass();
 }

@@ -69,22 +69,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]designforextension[\\/]InputDesignForExtensionRecords.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]onetoplevelclass[\\/]InputOneTopLevelClassEmpty.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]onetoplevelclass[\\/]package-info.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]design[\\/]visibilitymodifier[\\/]InputVisibilityModifierPackageClassName.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexityRecordLeaves.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]metrics[\\/]javancss[\\/]InputJavaNCSSRecordsAndCompactCtors.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"/>
