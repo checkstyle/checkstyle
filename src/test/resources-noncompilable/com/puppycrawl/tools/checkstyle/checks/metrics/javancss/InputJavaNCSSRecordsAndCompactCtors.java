@@ -84,14 +84,14 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 87 (max 
     }
   } // 6
 
-  record MyRecord4(int x, int y) { // ok
+  record MyRecord4(int x, int y) {
     //should give an ncss of 2
     record TestInnerRecord() {
       private static Object test;
     }
   }
 
-  record MyRecord5(int x, int y) { // ok
+  record MyRecord5(int x, int y) {
     //should give an ncss of 4
     public MyRecord5{
       if(x > 5) {
@@ -100,7 +100,7 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 87 (max 
     }
   }
 
-  record MyRecord6(int x, int y) { // ok
+  record MyRecord6(int x, int y) {
     //should give an ncss of 2
     public MyRecord6{
     }
