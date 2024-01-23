@@ -31,11 +31,11 @@ record Other <T extends Serializable & Cloneable> // violation
         return null;
     }
 
-    <foo extends Runnable> foo getShadow() { // ok
+    <foo extends Runnable> foo getShadow() {
         return null;
     }
 
-    static record Junk <foo>() { // ok
+    static record Junk <foo>() {
         <_fo extends foo> void getMoreFoo() {
         }
     }

@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 
 import org.w3c.dom.Node;
 
-public record InputRecordComponentNameDefault(int x, String str, Double myValue1, int i1) { // ok
+public record InputRecordComponentNameDefault(int x, String str, Double myValue1, int i1) {
 }
 
 record DefaultFirstRecord(String value_123, // violation
