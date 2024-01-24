@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+  <suppress files="[/\\]\..+" checks=".*"/>
+</suppressions>
+<!--
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
@@ -110,3 +119,4 @@
     </details>
   </checkerFrameworkError>
 </suppressedErrors>
+-->
