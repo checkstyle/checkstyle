@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_PRECEDED;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class GenericWhitespaceCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,18 +37,14 @@ public class GenericWhitespaceCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "27:9: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "37:24: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "38:9: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "41:18: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "44:30: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
-    }
 }
