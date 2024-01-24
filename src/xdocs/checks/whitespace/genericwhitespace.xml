@@ -49,34 +49,63 @@
           Examples with correct spacing:
         </p>
         <source>
-// Generic methods definitions
-public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
-// Generic type definition
-class name&lt;T1, T2, ..., Tn&gt; {}
-// Generic type reference
-OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
-// Generic preceded method name
-boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
-// Diamond operator
-Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);
-// Method reference
-List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
-// Method reference
-sort(list, Comparable::&lt;String&gt;compareTo);
-// Constructor call
-MyClass obj = new &lt;String&gt;MyClass();
+public class Example1 {
+
+  // Generic methods definitions
+  public static &lt;K, V&gt; boolean foo(K key, V value) {
+    // Implementation details
+    return false;
+  }
+
+  // Generic type definition
+  class name&lt;T1, T2&gt; {
+    // Implementation details
+  }
+
+  public void examples() {
+    // Generic type reference
+    Map&lt;String, List&lt;Integer&gt;&gt; p;
+
+    // Generic preceded method name
+    boolean same = Example1.&lt;Object, Object&gt;foo(null, null);
+
+    // Diamond operator
+    Map&lt;Integer, String&gt; p1;
+
+    // Method reference
+    List&lt;String&gt; list = ImmutableList.&lt;String&gt;builder().build();
+
+    // Method reference
+    Collections.sort(list, Comparable::&lt;String&gt;compareTo);
+
+    // Constructor call
+    MyClass&lt;String&gt; obj = new MyClass&lt;&gt;();
+
+  }
+}
+        </source>
+        <p id="Example2-config">
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;GenericWhitespace&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
         </source>
         <p id="Example2-code">
           Examples with incorrect spacing:
         </p>
         <source>
-List&lt; String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
-Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, &quot;&lt;&quot; preceded with whitespace
-public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
+public class Example2 {
+  List&lt; String&gt; l; // violation, ''&lt;' is followed by whitespace.'
+  Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, ''&lt;' is preceded with whitespace.'
+  public&lt;T&gt; void foo() {} // violation, ''&lt;' is not preceded with whitespace.'
 
-List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
-Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
-Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
+  List a = new ArrayList&lt;&gt;  (); // ok, until #14344
+  Map&lt;Integer, String&gt;m; // violation, ''&gt;' is followed by an illegal character.'
+  Pair&lt;Integer, Integer &gt; p; // violation, ''&gt;' is preceded with whitespace.'
+}
         </source>
       </subsection>
 
