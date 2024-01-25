@@ -19,21 +19,21 @@ import org.w3c.dom.Node;
 
 public class InputRecordComponentNumberMax20 {
 
-    public record TestRecord1(int x){ // ok
+    public record TestRecord1(int x){
         public TestRecord1{
 
         }
     }
 
-    public record TestRecord2(int x, int y){ // ok
+    public record TestRecord2(int x, int y){
 
     }
 
-    public record TestRecord3(String str, int x, int y){ // ok
+    public record TestRecord3(String str, int x, int y){
 
     }
 
-    public record TestRecord4(Node node, // ok
+    public record TestRecord4(Node node,
                               Point x,
                               Point y,
                               int translation,
@@ -49,37 +49,37 @@ public class InputRecordComponentNumberMax20 {
         }
     }
 
-    public record TestRecord5(int x, int y, int z, // ok
+    public record TestRecord5(int x, int y, int z,
                               int a, int b, int c, int d){
 
     }
 
-    public record TestRecord6(int x, int y, int z, // ok
+    public record TestRecord6(int x, int y, int z,
                               int a, int b, int c,
                               int d, int e, int f,
                               int g, int h, int i,
                               int j, int k){
 
     }
-    public record TestRecord7(int y){ // ok
+    public record TestRecord7(int y){
 
-        record InnerRecordOk(int x, int y, int z){ // ok
+        record InnerRecordOk(int x, int y, int z){
 
         }
 
-        private record InnerRecordBad(int x, int y, int z, // ok
+        private record InnerRecordBad(int x, int y, int z,
                                       int a, int b, int c,
                                       int d, int e, int f,
                                       int g, int h, int i,
                                       int j, int k){
 
-            private record InnerRecordCeptionBad(int x, int y, int z, // ok
+            private record InnerRecordCeptionBad(int x, int y, int z,
                                                  int a, int b, int c,
                                                  int d, int e, int f,
                                                  int g, int h, int i,
                                                  int j, int k) {
 
-                public record InnerPublicBad(int[] arr, // ok
+                public record InnerPublicBad(int[] arr,
                                              LinkedHashMap<String, Node> linkedHashMap,
                                              int x,
                                              ArrayDeque<Node> arrayDeque,
@@ -93,11 +93,11 @@ public class InputRecordComponentNumberMax20 {
         }
     }
 
-    public record TestRecord8(int x, int y, int z, String... myVarargs){ // ok
+    public record TestRecord8(int x, int y, int z, String... myVarargs){
 
     }
 
-    public record TestRecord9(int x, int y, int z, // ok
+    public record TestRecord9(int x, int y, int z,
                               int a, int b, int c,
                               int d, int e, int f,
                               int g, int h, int i,
@@ -105,10 +105,10 @@ public class InputRecordComponentNumberMax20 {
 
     }
 
-    public record TestRecord10(String... myVarargs){} // ok
+    public record TestRecord10(String... myVarargs){}
 
-    public record TestRecord11(int[] arr, LinkedHashMap<String, Node> linkedHashMap, int x){} // ok
-    public record TestRecord12(int[] arr, // ok
+    public record TestRecord11(int[] arr, LinkedHashMap<String, Node> linkedHashMap, int x){}
+    public record TestRecord12(int[] arr,
                                LinkedHashMap<String, Node> linkedHashMap,
                                int x,
                                ArrayDeque<Node> arrayDeque,
@@ -117,8 +117,8 @@ public class InputRecordComponentNumberMax20 {
 
     }
 
-    private static record MyPrivateRecord1() {} // ok
+    private static record MyPrivateRecord1() {}
 
-    private static record MyPrivateRecord2(int x, int y) {} // ok
+    private static record MyPrivateRecord2(int x, int y) {}
 
 }
