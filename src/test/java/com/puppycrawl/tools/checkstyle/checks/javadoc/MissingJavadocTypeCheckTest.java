@@ -63,14 +63,41 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void testTagsOne() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "308:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "333:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "44:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "69:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingJavadocTypeTags.java"), expected);
+                getPath("InputMissingJavadocTypeTagsOne.java"), expected);
+    }
+
+    @Test
+    public void testTagsTwo() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsTwo.java"), expected);
+    }
+
+    @Test
+    public void testTagsThree() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsThree.java"), expected);
+    }
+
+    @Test
+    public void testTagsFour() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsFour.java"), expected);
     }
 
     @Test
