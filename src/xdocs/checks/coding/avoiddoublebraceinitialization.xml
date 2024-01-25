@@ -45,19 +45,19 @@
           Which results in the following violations:
         </p>
         <source>
-class MyClass {
-    List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
-        {
-            add(1);
-        }
-    };
-    List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
+class Example1 {
+  List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
+    {
+      add(1);
+    }
+  };
+  List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
         ;
-        // comments and semicolons are ignored
-        {
-            add(&quot;foo&quot;);
-        }
-    };
+    // comments and semicolons are ignored
+    {
+      add(&quot;foo&quot;);
+    }
+  };
 }
         </source>
         <p id="Example2-code">
@@ -67,13 +67,13 @@ class MyClass {
           the extra class members can produce side effects if changed incorrectly.
         </p>
         <source>
-class MyClass {
-    List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
-        private int field;
-        {
-            add(new Object());
-        }
-    };
+class Example2 {
+  List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
+    private int field;
+    {
+      add(new Object());
+    }
+  };
 }
         </source>
       </subsection>
