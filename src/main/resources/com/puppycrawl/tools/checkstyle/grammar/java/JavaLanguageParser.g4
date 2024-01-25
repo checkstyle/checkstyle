@@ -913,7 +913,8 @@ primaryPattern
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
     ;
 
 recordPattern
@@ -929,7 +930,8 @@ permittedSubclassesAndInterfaces
     ;
 
 // Handle the 'keyword as identifier' problem
-id  : LITERAL_RECORD
+id:  LITERAL_UNDERSCORE
+    | LITERAL_RECORD
     | LITERAL_YIELD
     | LITERAL_NON_SEALED
     | LITERAL_SEALED
