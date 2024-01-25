@@ -6743,6 +6743,74 @@ public final class TokenTypes {
     public static final int EMBEDDED_EXPRESSION_END =
             JavaLanguageLexer.EMBEDDED_EXPRESSION_END;
 
+    /**
+     * The {@code _} reserved keyword. Appears as part of a variable definition in
+     * place of an identifier value, and is not used as a token type explicitly. This
+     * is to maintain backwards compatibility with older versions of Java that considered
+     * {@code _} to be a valid identifier. There is no reason to use this token type
+     * directly.
+     * <p>For example:</p>
+     * <pre>
+     *     int _ = 0;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; _
+     *  `--ASSIGN -&gt; =
+     *      `--EXPR -&gt; EXPR
+     *          `--NUM_INT -&gt; 0
+     * </pre>
+     *
+     * @see #IDENT
+     * @since 10.14.0
+     */
+    public static final int LITERAL_UNDERSCORE =
+            JavaLanguageLexer.LITERAL_UNDERSCORE;
+
+    /**
+     * An unnamed pattern variable definition. Appears as part of a pattern definition.
+     * <p>For example:</p>
+     * <pre>
+     *    if (r instanceof R(_)) {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     *  |       |--IDENT -&gt; r
+     *  |       `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     *  |           |--MODIFIERS -&gt; MODIFIERS
+     *  |           |--TYPE -&gt; TYPE
+     *  |           |   `--IDENT -&gt; R
+     *  |           |--LPAREN -&gt; (
+     *  |           |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     *  |           |   `--UNNAMED_PATTERN_DEF -&gt; _
+     *  |           `--RPAREN -&gt; )
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see #RECORD_PATTERN_COMPONENTS
+     * @see #RECORD_PATTERN_DEF
+     * @see #LITERAL_SWITCH
+     * @see #LITERAL_INSTANCEOF
+     * @see #SWITCH_RULE
+     * @see #LITERAL_WHEN
+     * @see #PATTERN_VARIABLE_DEF
+     * @see #PATTERN_DEF
+     *
+     * @since 10.14.0
+     */
+    public static final int UNNAMED_PATTERN_DEF =
+            JavaLanguageLexer.UNNAMED_PATTERN_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
