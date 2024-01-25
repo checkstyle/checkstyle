@@ -325,7 +325,9 @@ variableDeclarator[List<ModifierContext> mods, TypeTypeContext type]
     ;
 
 variableDeclaratorId[List<VariableModifierContext> mods, ParserRuleContext type]
-    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*
+    : (LITERAL_THIS | (qualifiedName (DOT LITERAL_THIS)?)) arrayDeclarator*     #varDeclaratorId
+        // can the following be removed? Maybe not...
+    | LITERAL_UNDERSCORE                                                        #unnamedVarDeclaratorId
     ;
 
 variableInitializer
@@ -913,7 +915,8 @@ primaryPattern
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
     ;
 
 recordPattern
@@ -928,8 +931,14 @@ permittedSubclassesAndInterfaces
     : LITERAL_PERMITS classOrInterfaceType[false] (COMMA classOrInterfaceType[false])*
     ;
 
+id
+    : LITERAL_UNDERSCORE
+    | identifier
+    ;
+
 // Handle the 'keyword as identifier' problem
-id  : LITERAL_RECORD
+identifier
+    : LITERAL_RECORD
     | LITERAL_YIELD
     | LITERAL_NON_SEALED
     | LITERAL_SEALED
