@@ -5,7 +5,7 @@ public class SuppressionXpathRegressionEqualsHashCodeNestedCase {
         return false;
     }
     public static class innerClass {
-        public int hashCode() { // No problem, as
+        public int hashCode() { // No problem, as equals() also appears
             return 0;
         }
         public boolean equals(Object obj) {
