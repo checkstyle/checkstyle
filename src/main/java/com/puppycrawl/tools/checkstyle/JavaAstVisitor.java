@@ -2239,14 +2239,19 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitTypePattern(
-            JavaLanguageParser.TypePatternContext ctx) {
+    public DetailAstImpl visitTypePatternDef(
+            JavaLanguageParser.TypePatternDefContext ctx) {
         final DetailAstImpl type = visit(ctx.type);
         final DetailAstImpl patternVariableDef = createImaginary(TokenTypes.PATTERN_VARIABLE_DEF);
         patternVariableDef.addChild(createModifiers(ctx.mods));
         patternVariableDef.addChild(type);
         patternVariableDef.addChild(visit(ctx.id()));
         return patternVariableDef;
+    }
+
+    @Override
+    public DetailAstImpl visitUnnamedPatternDef(JavaLanguageParser.UnnamedPatternDefContext ctx) {
+        return create(TokenTypes.UNNAMED_PATTERN_DEF, ctx.start);
     }
 
     @Override
