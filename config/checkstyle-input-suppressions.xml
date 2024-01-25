@@ -3199,12 +3199,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]lambdabodylength[\\/]InputLambdaBodyLengthMax.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]methodcount[\\/]InputMethodCount6.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthCountEmptyIsFalse.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthCountEmptySmallSize.java"/>
