@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 public class InputMethodLengthCompactCtorsCountEmpty {
 
     record MyTestRecord() {
-        static { // ok
+        static {
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");
@@ -42,7 +42,7 @@ public class InputMethodLengthCompactCtorsCountEmpty {
     }
 
     record MyTestRecord5() {
-        public MyTestRecord5() { // ok
+        public MyTestRecord5() {
             // some comment
             /*
             block comment
