@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class AvoidDoubleBraceInitializationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,18 +35,11 @@ public class AvoidDoubleBraceInitializationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:43: " + getCheckMessage(MSG_KEY, "list1"),
+            "21:42: " + getCheckMessage(MSG_KEY, "list2"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
-    }
 }
