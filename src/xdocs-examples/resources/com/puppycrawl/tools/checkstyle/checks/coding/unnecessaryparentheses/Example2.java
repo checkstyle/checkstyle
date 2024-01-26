@@ -7,27 +7,28 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 // xdoc section -- start
-class Test {
+class Example2 {
 
     void method() {
         int x = 9, y = 8;
-        if(x>= 0 ^ (x<=8 & y<=11) // violation, unnecessary parenthesis
+        if(x>= 0 ^ (x<=8 & y<=11) // violation 'Unnecessary parentheses around expression'
             ^ y>=8) {
             return;
         }
-         if(x>= 0 ^ x<=8 & y<=11 ^ y>=8) { // ok
+         if(x>= 0 ^ x<=8 & y<=11 ^ y>=8) {
             return;
         }
-        if(x>= 0 || (x<=8 & y<=11) // violation, unnecessary parenthesis
+        if(x>= 0 || (x<=8 & y<=11) // violation 'Unnecessary parentheses around expression'
             && y>=8) {
             return;
         }
-        if(x>= 0 || x<=8 & y<=11 && y>=8) { // ok
+        if(x>= 0 || x<=8 & y<=11 && y>=8) {
             return;
         }
-        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) { // ok
+        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) {
             return;
         }
     }
