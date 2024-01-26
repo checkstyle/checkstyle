@@ -12,6 +12,19 @@
       <property name="basedir" value="${basedir}"/>
   -->
 
+  <!-- Temporary Suppressions for failing checker-checks -->
+  <module name="SuppressionFilter">
+    <property name="file"
+             value="config/checker-framework-suppressions/checker-index-suppressions.xml"/>
+    <property name="optional" value="false"/>
+  </module>
+
+  <module name="SuppressionFilter">
+    <property name="file"
+             value="config/checker-framework-suppressions/checker-methods-resource-fenum-suppressions.xml"/>
+    <property name="optional" value="false"/>
+  </module>
+
   <metadata name="org.checkstyle.principle" value="Practice What You Preach"/>
   <metadata name="org.checkstyle.principle.description"
             value="In our config we should use all Checks that Checkstyle has"/>
