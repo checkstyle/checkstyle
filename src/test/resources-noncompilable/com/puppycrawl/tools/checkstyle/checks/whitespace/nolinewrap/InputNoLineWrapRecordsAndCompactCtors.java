@@ -9,26 +9,26 @@ tokens = RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
 public class InputNoLineWrapRecordsAndCompactCtors {
-    class Bar { // OK
+    class Bar {
         public // violation
         Bar() {
         }
-        public void fun() { // OK
+        public void fun() {
         }
     }
     record // violation
     MyRecord1() {
-        public MyRecord1() { // OK
+        public MyRecord1() {
         }
         public static void
         doSomething() {
         }
     }
-    record MyRecord2() { // OK
+    record MyRecord2() {
         public // violation
         MyRecord2() {
         }
-        public void fun() { // OK
+        public void fun() {
         }
     }
     record MyRecord3(String str, int // violation
