@@ -45,35 +45,26 @@
           Which results in the following violations:
         </p>
         <source>
-class MyClass {
-    List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
-        {
-            add(1);
-        }
-    };
-    List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
+class Example1 {
+  List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
+    {
+      add(1);
+    }
+  };
+  List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
         ;
-        // comments and semicolons are ignored
-        {
-            add(&quot;foo&quot;);
-        }
-    };
-}
-        </source>
-        <p id="Example2-code">
-          Check only looks for double brace initialization and it ignores cases
-          where the anonymous class has fields or methods.
-          Though these might create the same memory issues as double brace,
-          the extra class members can produce side effects if changed incorrectly.
-        </p>
-        <source>
-class MyClass {
-    List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
-        private int field;
-        {
-            add(new Object());
-        }
-    };
+    // comments and semicolons are ignored
+    {
+      add(&quot;foo&quot;);
+    }
+  };
+  List&lt;Object&gt; list = new ArrayList&lt;&gt;() {
+    // OK, as it is not pure double brace pattern
+    private int field;
+    {
+      add(new Object());
+    }
+  };
 }
         </source>
       </subsection>
