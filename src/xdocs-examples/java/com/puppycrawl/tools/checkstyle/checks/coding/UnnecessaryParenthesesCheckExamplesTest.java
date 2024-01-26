@@ -19,12 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_ASSIGN;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_EXPR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_IDENT;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_LITERAL;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck.MSG_LAMBDA;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,18 +38,27 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:22: " + getCheckMessage(MSG_ASSIGN),
+            "17:17: " + getCheckMessage(MSG_IDENT, "square"),
+            "21:23: " + getCheckMessage(MSG_LITERAL, "0"),
+            "22:21: " + getCheckMessage(MSG_ASSIGN),
+            "23:26: " + getCheckMessage(MSG_ASSIGN),
+            "23:30: " + getCheckMessage(MSG_IDENT, "square"),
+            "29:25: " + getCheckMessage(MSG_LAMBDA),
+            "35:13: " + getCheckMessage(MSG_EXPR),
+            "36:20: " + getCheckMessage(MSG_EXPR),
+            "37:20: " + getCheckMessage(MSG_EXPR),
+            "40:13: " + getCheckMessage(MSG_EXPR),
         };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "17:20: " + getCheckMessage(MSG_EXPR),
+            "24:21: " + getCheckMessage(MSG_EXPR),
         };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
