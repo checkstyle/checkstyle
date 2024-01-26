@@ -248,6 +248,7 @@
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
+      -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
