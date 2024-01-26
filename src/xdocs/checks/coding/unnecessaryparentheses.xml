@@ -285,36 +285,56 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
           Which results in the following violations:
         </p>
         <source>
-public int square(int a, int b){
-  int square = (a * b); // violation
-  return (square);      // violation
-}
-int sumOfSquares = 0;
-for(int i=(0); i&lt;10; i++){          // violation
-  int x = (i + 1);                  // violation
-  sumOfSquares += (square(x * x));  // violation
-}
-double num = (10.0); //violation
-List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
-myList.stream()
-  .filter((s) -&gt; s.startsWith(&quot;c&quot;)) // violation
-  .forEach(System.out::println);
-int a = 10, b = 12, c = 15;
-boolean x = true, y = false, z= true;
-if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
-         || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
-         || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
-    return;
-}
-if ((-a) != -27 // violation, unnecessary parenthesis
-         &amp;&amp; b &gt; 5) {
-    return;
-}
-if (x==(a &lt;= 15)) { // ok
-    return;
-}
-if (x==(y == z)) { // ok
-    return;
+class Example1 {
+
+  public int square(int a, int b) {
+    // violation below, 'Unnecessary parentheses around assignment right-hand side'
+    int square = (a * b);
+    // violation below, 'Unnecessary parentheses around identifier 'square''
+    return (square);
+  }
+
+  int sumOfSquares = 0;
+  public void sumOfSquares() {
+    // violation below, 'Unnecessary parentheses around literal '0''
+    for (int i = (0); i &lt; 10; i++) {
+      // violation below, 'Unnecessary parentheses around assignment right-hand side'
+      int x = (i + 1);
+      sumOfSquares += (square(x,x));  // 2 violations
+    }
+  }
+
+  List&lt;String&gt; myList = List.of(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
+  public void filter() {
+    myList.stream()
+        // violation below, 'Unnecessary parentheses around lambda value'
+        .filter((s) -&gt; s.startsWith(&quot;c&quot;))
+            .forEach(System.out::println);
+  }
+
+  int a = 10, b = 12, c = 15;
+  boolean x = true, y = false, z= true;
+  public void test() {
+    // violation below, 'Unnecessary parentheses around expression'
+    if ((a &gt;= 0 &amp;&amp; b &lt;= 9)
+                // violation below, 'Unnecessary parentheses around expression'
+                || (c &gt;= 5 &amp;&amp; b &lt;= 5)
+                // violation below, 'Unnecessary parentheses around expression'
+                || (c &gt;= 3 &amp;&amp; a &lt;= 7)) {
+      return;
+    }
+    // violation below, 'Unnecessary parentheses around expression'
+    if ((-a) != -27
+            &amp;&amp; b &gt; 5) {
+      return;
+    }
+    if (x == (a &lt;= 15)) {
+      return;
+    }
+    if (x == (y == z)) {
+      return;
+    }
+  }
 }
         </source>
         <p id="Example2-config">
@@ -333,28 +353,30 @@ if (x==(y == z)) { // ok
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-class Test {
+class Example2 {
 
-    void method() {
-        int x = 9, y = 8;
-        if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
-            ^ y&gt;=8) {
-            return;
-        }
-         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
-            return;
-        }
-        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
-            &amp;&amp; y&gt;=8) {
-            return;
-        }
-        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
-            return;
-        }
-        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
-            return;
-        }
+  void method() {
+    int x = 9, y = 8;
+    // violation below, 'Unnecessary parentheses around expression'
+    if (x&gt;= 0 ^ (x &lt;= 8 &amp; y &lt;= 11)
+         ^ y &gt;= 8) {
+      return;
     }
+    if (x &gt;= 0 ^ x &lt;= 8 &amp; y &lt;= 11 ^ y &gt;= 8) {
+      return;
+    }
+    // violation below, 'Unnecessary parentheses around expression'
+    if (x &gt;= 0 || (x &lt;= 8 &amp; y &lt;= 11)
+        &amp;&amp; y &gt;= 8) {
+      return;
+    }
+    if (x &gt;= 0 || x &lt;= 8 &amp; y &lt;= 11 &amp;&amp; y &gt;= 8) {
+      return;
+    }
+    if (x &gt;= 0 &amp; (x &lt;= 8 ^ y &lt;= 11) &amp; y &gt;= 8) {
+      return;
+    }
+  }
 
 }
         </source>
