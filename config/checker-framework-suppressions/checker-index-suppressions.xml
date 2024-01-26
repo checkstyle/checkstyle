@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+  <suppress files="[/\\]\..+" checks=".*"/>
+</suppressions>
+<!--
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.java</fileName>
@@ -139,7 +148,7 @@
     <lineContent>children[i] = child;</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
+      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) - an integer less than children&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -150,7 +159,7 @@
     <lineContent>final String ruleName = recognizer.getRuleNames()[ruleIndex];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;recognizer.getRuleNames()&quot;) or @LTLengthOf(&quot;recognizer.getRuleNames()&quot;) -- an integer less than recognizer.getRuleNames()&apos;s length
+      required: @IndexFor(&quot;recognizer.getRuleNames()&quot;) or @LTLengthOf(&quot;recognizer.getRuleNames()&quot;) - an integer less than recognizer.getRuleNames()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -194,7 +203,7 @@
     <lineContent>getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.getLines()&quot;) or @LTLengthOf(&quot;this.getLines()&quot;) -- an integer less than this.getLines()&apos;s length
+      required: @IndexFor(&quot;this.getLines()&quot;) or @LTLengthOf(&quot;this.getLines()&quot;) - an integer less than this.getLines()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -205,7 +214,7 @@
     <lineContent>getLines()[lineNo - 1], colNo, tabWidth);</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.getLines()&quot;) or @LTLengthOf(&quot;this.getLines()&quot;) -- an integer less than this.getLines()&apos;s length
+      required: @IndexFor(&quot;this.getLines()&quot;) or @LTLengthOf(&quot;this.getLines()&quot;) - an integer less than this.getLines()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -348,7 +357,7 @@
     <lineContent>returnValue[i - startLineNo + 1] = line(i);</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;returnValue&quot;) or @LTLengthOf(&quot;returnValue&quot;) -- an integer less than returnValue&apos;s length
+      required: @IndexFor(&quot;returnValue&quot;) or @LTLengthOf(&quot;returnValue&quot;) - an integer less than returnValue&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -359,7 +368,7 @@
     <lineContent>returnValue[0] = line(startLineNo - 1).substring(startColNo);</lineContent>
     <details>
       found   : String []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+      required: @MinLen(1) - an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
 
@@ -403,7 +412,7 @@
     <lineContent>final int startOfLine = lineBreakPositions[lineNo];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;) -- an integer less than lineBreakPositions&apos;s length
+      required: @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;) - an integer less than lineBreakPositions&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -414,7 +423,7 @@
     <lineContent>lineBreakPositions[lineNo] = matcher.end();</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;) -- an integer less than lineBreakPositions&apos;s length
+      required: @IndexFor(&quot;lineBreakPositions&quot;) or @LTLengthOf(&quot;lineBreakPositions&quot;) - an integer less than lineBreakPositions&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -425,7 +434,7 @@
     <lineContent>return lines[lineNo];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.lines&quot;) or @LTLengthOf(&quot;this.lines&quot;) -- an integer less than this.lines&apos;s length
+      required: @IndexFor(&quot;this.lines&quot;) or @LTLengthOf(&quot;this.lines&quot;) - an integer less than this.lines&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -436,7 +445,7 @@
     <lineContent>lineBreakPositions[0] = 0;</lineContent>
     <details>
       found   : int []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+      required: @MinLen(1) - an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
 
@@ -480,7 +489,7 @@
     <lineContent>final int tokenCount = counts[element - 1];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) -- an integer less than this.counts&apos;s length
+      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) - an integer less than this.counts&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -491,7 +500,7 @@
     <lineContent>total += counts[element - 1];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) -- an integer less than this.counts&apos;s length
+      required: @IndexFor(&quot;this.counts&quot;) or @LTLengthOf(&quot;this.counts&quot;) - an integer less than this.counts&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -777,7 +786,7 @@
     <lineContent>final String line = getIndentCheck().getLines()[lineNo - 1];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;this.getIndentCheck().getLines()&quot;) or @LTLengthOf(&quot;this.getIndentCheck().getLines()&quot;) -- an integer less than this.getIndentCheck().getLines()&apos;s length
+      required: @IndexFor(&quot;this.getIndentCheck().getLines()&quot;) or @LTLengthOf(&quot;this.getIndentCheck().getLines()&quot;) - an integer less than this.getIndentCheck().getLines()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -799,7 +808,7 @@
     <lineContent>types[index] = val;</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;types&quot;) or @LTLengthOf(&quot;types&quot;) -- an integer less than types&apos;s length
+      required: @IndexFor(&quot;types&quot;) or @LTLengthOf(&quot;types&quot;) - an integer less than types&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -931,7 +940,7 @@
     <lineContent>multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) -- an integer less than lines&apos;s length
+      required: @IndexFor(&quot;lines&quot;) or @LTLengthOf(&quot;lines&quot;) - an integer less than lines&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1063,7 +1072,7 @@
     <lineContent>text[tag.getLineNo() - lineNo]);</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
+      required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) - an integer less than text&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1184,7 +1193,7 @@
     <lineContent>tagNode.getChildren()[0].getText());</lineContent>
     <details>
       found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+      required: @MinLen(1) - an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
 
@@ -1272,7 +1281,7 @@
     <lineContent>&amp;&amp; line[before] != OPEN_PARENTHESIS) {</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) -- an integer less than line&apos;s length
+      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) - an integer less than line&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1316,7 +1325,7 @@
     <lineContent>return line[columnNo] == &apos; &apos;;</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) -- an integer less than line&apos;s length
+      required: @IndexFor(&quot;line&quot;) or @LTLengthOf(&quot;line&quot;) - an integer less than line&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1349,7 +1358,7 @@
     <lineContent>final char nextChar = Character.toChars(line[after])[0];</lineContent>
     <details>
       found   : char []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+      required: @MinLen(1) - an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
 
@@ -1382,7 +1391,7 @@
     <lineContent>result = ((DetailNode) parent).getChildren()[index];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;(DetailNode)parent.getChildren()&quot;) or @LTLengthOf(&quot;(DetailNode)parent.getChildren()&quot;) -- an integer less than (DetailNode)parent.getChildren()&apos;s length
+      required: @IndexFor(&quot;(DetailNode)parent.getChildren()&quot;) or @LTLengthOf(&quot;(DetailNode)parent.getChildren()&quot;) - an integer less than (DetailNode)parent.getChildren()&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1393,7 +1402,7 @@
     <lineContent>return COLUMN_NAMES[column];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) -- an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&apos;s length
+      required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) - an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -1463,3 +1472,4 @@
     </details>
   </checkerFrameworkError>
 </suppressedErrors>
+-->
