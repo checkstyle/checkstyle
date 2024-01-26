@@ -3229,10 +3229,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]packageinfo[\\/]test2[\\/]package-info.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nowhitespaceafter[\\/]InputNoWhitespaceAfterArrayDeclarations3.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]nowhitespaceafter[\\/]InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"/>
