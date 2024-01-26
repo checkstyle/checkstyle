@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<suppressions>
+  <suppress files="[/\\]\..+" checks=".*"/>
+</suppressions>
+<!--
 <suppressedErrors>
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
@@ -110,3 +115,4 @@
     </details>
   </checkerFrameworkError>
 </suppressedErrors>
+-->
