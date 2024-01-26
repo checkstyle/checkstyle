@@ -365,12 +365,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]declarationorder[\\/]InputDeclarationOrder2.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalshashcode[\\/]InputEqualsHashCode.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]equalshashcode[\\/]InputEqualsHashCode.java"/>
