@@ -96,19 +96,22 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
         final String[] expectedViolation = {
-            "4:5: " + getCheckMessage(EqualsHashCodeCheck.class,
+            "5:9: " + getCheckMessage(EqualsHashCodeCheck.class,
                     EqualsHashCodeCheck.MSG_KEY_HASHCODE),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
