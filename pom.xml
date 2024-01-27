@@ -249,6 +249,7 @@
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:TimeZoneUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
