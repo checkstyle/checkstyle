@@ -42,7 +42,7 @@ public class InputMethodCountRecords {
         }
     }
     //compact ctor
-    record MyTestRecord3() { // ok
+    record MyTestRecord3() {
         void foo() {
         }
 
