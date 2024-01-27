@@ -2524,7 +2524,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2579,11 +2579,12 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
+              <skipTests>true</skipTests>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2642,7 +2643,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2696,11 +2697,12 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
+              <skipTests>true</skipTests>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2757,7 +2759,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2815,7 +2817,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2875,7 +2877,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2934,7 +2936,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
