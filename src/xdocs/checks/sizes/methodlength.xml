@@ -84,8 +84,8 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyClass {
-  public MyClass() {  // constructor (line 1)
+public class Example1 {
+  public Example1() {  // constructor (line 1)
       /* line 2
           ...
          line 150 */
@@ -94,14 +94,14 @@ public class MyClass {
   public void firstExample() { // line 1
 
       // line 3
-      System.out.println(&quot;line 4&quot;);
+      System.out.println("line 4");
       /* line 5
          line 6 */
   } // line 7, OK, as it is less than 150
 
   public void secondExample() { // line 1
       // line 2
-      System.out.println(&quot;line 3&quot;);
+      System.out.println("line 3");
 
       /* line 5
           ...
@@ -125,29 +125,31 @@ public class MyClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
-      int var1 = 2;           // line 2
-      int var2 = 4;           // line 3
-      int sum = var1 + var2;  // line 4
+public class Example2 {
+  public Example2()  {          // constructor (line 1)
+    int var1 = 2;           // line 2
+    int var2 = 4;           // line 3
+    int sum = var1 + var2;  // line 4
   } // line 5, OK, constructor is not mentioned in the tokens
 
   public void firstMethod() { // line 1
-      // comment (line 2)
-      System.out.println(&quot;line 3&quot;);
+    // comment (line 2)
+    System.out.println(&quot;line 3&quot;);
   } // line 4, OK, as it allows at most 4 lines
 
-  public void secondMethod() { // line 1
-      int index = 0;   // line 2
-      if (index &lt; 5) { // line 3
-          index++;     // line 4
-      }                // line 5
+  // violation below, 'Method length is 6 lines (max allowed is 4).'
+  public void secondMethod() {
+    int index = 0;   // line 2
+    if (index &lt; 5) { // line 3
+      index++;     // line 4
+    }                // line 5
   } // line 6, violation, as it is over 4 lines
 
-  public void thirdMethod() { // line 1
+  // violation below, 'Method length is 5 lines (max allowed is 4).'
+  public void thirdMethod() {
 
-      // comment (line 3)
-      System.out.println(&quot;line 4&quot;);
+    // comment (line 3)
+    System.out.println(&quot;line 4&quot;);
   } // line 5, violation, as it is over 4 lines
 }
         </source>
@@ -168,29 +170,30 @@ public class MyTest {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
-      int var1 = 2;           // line 2
-      int var2 = 4;           // line 3
-      int sum = var1 + var2;  // line 4
+public class Example3 {
+  public Example3()  {          // constructor (line 1)
+    int var1 = 2;           // line 2
+    int var2 = 4;           // line 3
+    int sum = var1 + var2;  // line 4
   } // line 5, OK, constructor is not mentioned in the tokens
 
   public void firstMethod() { // line 1
-      // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
+    // comment - not counted as line
+    System.out.println(&quot;line 2&quot;);
   } // line 3, OK, as it allows at most 4 lines
 
-  public void secondMethod() { // line 1
-      int index = 0;   // line 2
-      if (index &lt; 5) { // line 3
-          index++;     // line 4
-      }                // line 5
+  // violation below, 'Method length is 6 lines (max allowed is 4).'
+  public void secondMethod() {
+    int index = 0;   // line 2
+    if (index &lt; 5) { // line 3
+      index++;     // line 4
+    }                // line 5
   } // line 6, violation, as it is over 4 lines
 
   public void thirdMethod() { // line 1
 
-      // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
+    // comment - not counted as line
+    System.out.println(&quot;line 2&quot;);
   } // line 3, OK, as it allows at most 4 lines
 }
         </source>
