@@ -84,8 +84,8 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyClass {
-  public MyClass() {  // constructor (line 1)
+public class Example1 {
+  public Example1() {  // constructor (line 1)
       /* line 2
           ...
          line 150 */
@@ -125,8 +125,8 @@ public class MyClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
+public class Example2 {
+  public Example2()  {          // constructor (line 1)
       int var1 = 2;           // line 2
       int var2 = 4;           // line 3
       int sum = var1 + var2;  // line 4
@@ -168,8 +168,8 @@ public class MyTest {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
+public class Example3 {
+  public Example3()  {          // constructor (line 1)
       int var1 = 2;           // line 2
       int var2 = 4;           // line 3
       int sum = var1 + var2;  // line 4
