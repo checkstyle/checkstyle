@@ -421,13 +421,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             .hasSize(1);
     }
 
-    /**
-     * Test functionality when toByteArray throws an exception.
-     *
-     * @noinspection ResultOfMethodCallIgnored
-     * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito to only
-     *                     mock toByteArray to throw exception.
-     */
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
@@ -444,24 +437,19 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .that(hash)
                 .isNotNull();
 
-        try (MockedStatic<ByteStreams> byteStream = mockStatic(ByteStreams.class)) {
-            byteStream.when(() -> ByteStreams.toByteArray(any(BufferedInputStream.class)))
-                .thenThrow(IOException.class);
+        // apply new external resource to clear cache
+        final Set<String> resources = new HashSet<>();
+        final String resource = getPath("InputPropertyCacheFile.header");
+        resources.add(resource);
+        cache.putExternalResources(resources);
 
-            // apply new external resource to clear cache
-            final Set<String> resources = new HashSet<>();
-            final String resource = getPath("InputPropertyCacheFile.header");
-            resources.add(resource);
-            cache.putExternalResources(resources);
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache(myFile, 1))
+                .isFalse();
 
-            assertWithMessage("Should return false in file is not in cache")
-                    .that(cache.isInCache(myFile, 1))
-                    .isFalse();
-
-            assertWithMessage("Should return false in file is not in cache")
-                    .that(cache.isInCache(resource, 1))
-                    .isFalse();
-        }
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache(resource, 1))
+                .isFalse();
     }
 
     @Test
