@@ -84,13 +84,13 @@
           Example:
         </p>
         <source>
-public class Point {
-  public Point() { } // ok
-  public Point(final int m) { } // ok
-  public Point(final int m,int n) { } // violation, n should be final
-  public void methodOne(final int x) { } // ok
-  public void methodTwo(int x) { } // violation, x should be final
-  public static void main(String[] args) { } // violation, args should be final
+public class Example1 {
+  public Example1() { }
+  public Example1(final int m) { }
+  public Example1(final int m,int n) { } // violation, 'n should be final'
+  public void methodOne(final int x) { }
+  public void methodTwo(int x) { } // violation, 'x should be final'
+  public static void main(String[] args) { } // violation, 'args should be final'
 }
         </source>
         <p id="Example2-config">
@@ -110,13 +110,13 @@ public class Point {
           Example:
         </p>
         <source>
-public class Point {
-  public Point() { } // ok
-  public Point(final int m) { } // ok
-  public Point(final int m,int n) { } // violation, n should be final
-  public void methodOne(final int x) { } // ok
-  public void methodTwo(int x) { } // ok
-  public static void main(String[] args) { } // ok
+public class Example2 {
+  public Example2() { }
+  public Example2(final int m) { }
+  public Example2(final int m,int n) { } // violation, 'n should be final'
+  public void methodOne(final int x) { }
+  public void methodTwo(int x) { }
+  public static void main(String[] args) { }
 }
         </source>
         <p id="Example3-config">
@@ -137,13 +137,13 @@ public class Point {
           Example:
         </p>
         <source>
-public class Point {
-  public Point() { } // ok
-  public Point(final int m) { } // ok
-  public Point(final int m,int n) { } // ok
-  public void methodOne(final int x) { } // ok
-  public void methodTwo(int x) { } // ok
-  public static void main(String[] args) { } // violation, args should be final
+public class Example3 {
+  public Example3() { }
+  public Example3(final int m) { }
+  public Example3(final int m,int n) { }
+  public void methodOne(final int x) { }
+  public void methodTwo(int x) { }
+  public static void main(String[] args) { } // violation, 'args should be final'
 }
         </source>
       </subsection>
