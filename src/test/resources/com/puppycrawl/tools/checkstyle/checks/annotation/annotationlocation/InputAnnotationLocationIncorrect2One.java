@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 @MyAnn_22 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn_2
 (value = "")
-class InputAnnotationLocationIncorrect2
+class InputAnnotationLocationIncorrect2One
 {
 
     @MyAnn_22 @MyAnnotation_12(value = "")
@@ -32,7 +32,7 @@ class InputAnnotationLocationIncorrect2
     @MyAnn_22
         @MyAnnotation_12 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
-    public InputAnnotationLocationIncorrect2() {}
+    public InputAnnotationLocationIncorrect2One() {}
 
     @MyAnnotation_12("foo") @MyAnn_22 void foo1() {}
 
@@ -101,18 +101,6 @@ class InputAnnotationLocationIncorrect2
 
 }
 
-   @MyAnnotation_12
-(value = "")
-@MyAnn_22 // violation '.*'MyAnn_22' have incorrect indentation level 0, .* should be 3.'
-class Foo2 {
-    public void method1(@MyAnnotation_32 @MyAnn_22 Object param1) {
-        try {
-        }
-        catch (@MyAnnotation_32 @MyAnn_22 Exception e) {
-        }
-        return;
-    }
-}
 
 @interface MyAnnotation_12 {
 

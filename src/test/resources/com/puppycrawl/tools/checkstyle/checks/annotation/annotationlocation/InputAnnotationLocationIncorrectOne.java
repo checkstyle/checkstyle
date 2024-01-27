@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 // violation below 'Annotation 'MyAnn' should be alone on line.'
 @MyAnn_21 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn
 (value = "")
-class InputAnnotationLocationIncorrect
+class InputAnnotationLocationIncorrectOne
 {
 
     @MyAnn_21 @MyAnnotation1(value = "") // violation '.* should be alone on line.'
@@ -33,7 +33,7 @@ class InputAnnotationLocationIncorrect
     @MyAnn_21
         @MyAnnotation1 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
-    public InputAnnotationLocationIncorrect() {}
+    public InputAnnotationLocationIncorrectOne() {}
 
     @MyAnnotation1("foo") @MyAnn_21 void foo1() {} // 2 violations
 
@@ -101,18 +101,6 @@ class InputAnnotationLocationIncorrect
 
 }
 
-   @MyAnnotation1
-(value = "")
-@MyAnn_21 // violation '.* incorrect .* level 0, .* should be 3.'
-class Foo {
-    public void method1(@MyAnnotation3 @MyAnn_21 Object param1) {
-        try {
-        }
-        catch (@MyAnnotation3 @MyAnn_21 Exception e) {
-        }
-        return;
-    }
-}
 
 @interface MyAnnotation1 {
 
