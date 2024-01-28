@@ -66,6 +66,6 @@ record MyRecord4() { // violation 'missing @author tag.'
 
 }
 
-record MyRecord5() { // ok
+record MyRecord5() {
 
 }

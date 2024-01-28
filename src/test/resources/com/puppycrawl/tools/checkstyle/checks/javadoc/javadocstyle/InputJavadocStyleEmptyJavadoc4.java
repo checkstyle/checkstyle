@@ -15,72 +15,72 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleEmptyJavadoc4 { // ok
+public class InputJavadocStyleEmptyJavadoc4 {
         /**
      * Link to some page in two lines.
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
+    void tagInTwoLines() {}
 
     /**
      * This Javadoc contains unclosed tag.
      * <code>unclosed 'code' tag<code>
      */
-    private void unclosedTag() {} // ok
+    private void unclosedTag() {}
 
-    void javadocLikeCommentInMethod() { // ok
+    void javadocLikeCommentInMethod() {
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0;
     }
 
     /**
      * {@inheritDoc}
      */
-    private void inheritDoc() {} // ok
+    private void inheritDoc() {}
 
     /**
      * <p><b>Note:<b> it's unterminated tag.</p>
      */
-    private void unterminatedTag() {} // ok
+    private void unterminatedTag() {}
 
     /**
      * Javadoc without dot
      */
-    public interface TestInterface { // ok
+    public interface TestInterface {
         /**
          * Javadoc without dot
          */
-        void method(); // ok
+        void method();
     }
 
-    static class TestStaticClass { // ok
+    static class TestStaticClass {
         /**
          * Javadoc without dot
          */
-        public int field; // ok
+        public int field;
     }
 
     /**
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
+    void foo() throws Exception {}
 
     /**
      * text /
      * @throws Exception if an error occurs
      */
-    void bar() throws Exception {} // ok
+    void bar() throws Exception {}
 
     /**
      * {@inheritDoc}
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
+    void inheritDocWithThrows() {}
 
     /**
      * /
@@ -89,10 +89,10 @@ public class InputJavadocStyleEmptyJavadoc4 { // ok
      * @param s
      * @return Return
      */
-    public int test(String s) { return 0; } // ok
+    public int test(String s) { return 0; }
 
     /** Set of all class field names.*/
-    public String field; // ok
+    public String field;
 
     /**
      * <p>Test.</p>
@@ -101,7 +101,7 @@ public class InputJavadocStyleEmptyJavadoc4 { // ok
           ; i &lt; j; i++, j--) {}
        </pre>
      */
-    public void test2() {} // ok
+    public void test2() {}
 
     /**
      * <p>Test.</p>
@@ -109,5 +109,5 @@ public class InputJavadocStyleEmptyJavadoc4 { // ok
 public class SampleTest {
 }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {}
 }

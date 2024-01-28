@@ -15,14 +15,14 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleScopePublic2 // ok
+public class InputJavadocStyleScopePublic2
 {
      /**
      * Tags for two lines.
      * <a href="some_link"
      * >Link Text</a>
      */
-    private void method12() {} // ok
+    private void method12() {}
 
     /**
      * First sentence.
@@ -61,24 +61,24 @@ public class InputJavadocStyleScopePublic2 // ok
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
+    private void method13() {}
 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14() {} // ok
+    private void method14() {}
 
     /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // ok
+    private void method15() {}
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
+    public static final int dummy = 4911;
     // violation below 'Javadoc has empty description section'
     /**
      */
@@ -87,16 +87,16 @@ public class InputJavadocStyleScopePublic2 // ok
     /**
      * @param a A parameter
      */
-    protected void method17(String a) {} // ok
+    protected void method17(String a) {}
 
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a) {} // ok
+    void method18(String a) {}
 
     /**
      */
-    private static int ASDF = 0; // ok
+    private static int ASDF = 0;
 
     // violation below 'Javadoc has empty description section'
     /** @see Object */
@@ -113,7 +113,7 @@ public class InputJavadocStyleScopePublic2 // ok
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2,
     }
 
 }

@@ -19,7 +19,7 @@ import org.w3c.dom.Node;
 
 public class InputRecordComponentNumberMax1 {
 
-    public record TestRecord1(int x){ // ok
+    public record TestRecord1(int x){
         public TestRecord1{
 
         }
@@ -61,7 +61,7 @@ public class InputRecordComponentNumberMax1 {
                               int j, int k){
 
     }
-    public record TestRecord7(int y){ // ok
+    public record TestRecord7(int y){
 
         record InnerRecordOk(int x, int y, int z){ // violation
 
@@ -105,7 +105,7 @@ public class InputRecordComponentNumberMax1 {
 
     }
 
-    public record TestRecord10(String... myVarargs){} // ok
+    public record TestRecord10(String... myVarargs){}
 
     public record TestRecord11(int[] arr, // violation
                                LinkedHashMap<String, Node> linkedHashMap,
@@ -120,7 +120,7 @@ public class InputRecordComponentNumberMax1 {
 
     }
 
-    private static record MyPrivateRecord1() {} // ok
+    private static record MyPrivateRecord1() {}
 
     private static record MyPrivateRecord2(int x, int y) {} // violation
 

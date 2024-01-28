@@ -14,7 +14,7 @@ public class InputLambdaBodyLengthSwitchExps {
 
     boolean method1(Nums k, String string) {
         switch (k) {
-        case ONE -> { // ok
+        case ONE -> {
             System.out.println(2);
             System.out.println(3);
             System.out.println(4);

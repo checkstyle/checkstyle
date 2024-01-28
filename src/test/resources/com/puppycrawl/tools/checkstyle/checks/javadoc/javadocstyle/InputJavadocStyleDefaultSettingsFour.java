@@ -22,7 +22,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
+    void tagInTwoLines() {}
 
     // violation 3 lines below 'Unclosed HTML tag found: <code>'
     /**
@@ -35,7 +35,7 @@ public class InputJavadocStyleDefaultSettingsFour
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0;
     }
 
     // violation below 'First sentence should end with a period.'
@@ -74,7 +74,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
+    void foo() throws Exception {}
 
     // violation below 'First sentence should end with a period.'
     /**
@@ -88,7 +88,7 @@ public class InputJavadocStyleDefaultSettingsFour
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
+    void inheritDocWithThrows() {}
 
     // violation below 'First sentence should end with a period.'
     /**
@@ -107,7 +107,7 @@ public class InputJavadocStyleDefaultSettingsFour
      ; i &lt; j; i++, j--) {}
      </pre>
      */
-    public void test2() {} // ok
+    public void test2() {}
 
     /**
      * <p>Test.</p>
@@ -115,5 +115,5 @@ public class InputJavadocStyleDefaultSettingsFour
      public class SampleTest {
      }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {}
 }

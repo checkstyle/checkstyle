@@ -5,4 +5,4 @@ OneTopLevelClass
 */
 
 /* Comment only. This file is compilable,
-but causes DetailAstImplTest#testTreeStructure to fail. */ // ok
+but causes DetailAstImplTest#testTreeStructure to fail. */
