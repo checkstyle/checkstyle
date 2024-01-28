@@ -38,20 +38,36 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiCaseClass() throws Exception {
+    public void testMultiCaseClassOne() throws Exception {
         final String[] expected = {
             "13:59: " + getCheckMessage(MSG_KEY),
             "93:21: " + getCheckMessage(MSG_KEY),
-            "120:14: " + getCheckMessage(MSG_KEY),
-            "146:15: " + getCheckMessage(MSG_KEY),
-            "158:23: " + getCheckMessage(MSG_KEY),
-            "178:19: " + getCheckMessage(MSG_KEY),
-            "181:59: " + getCheckMessage(MSG_KEY),
         };
-
         verifyWithInlineConfigParser(
-                getPath("InputOneStatementPerLineSingleLine.java"),
-            expected);
+                getPath("InputOneStatementPerLineSingleLineOne.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiCaseClassTwo() throws Exception {
+        final String[] expected = {
+            "33:18: " + getCheckMessage(MSG_KEY),
+            "59:17: " + getCheckMessage(MSG_KEY),
+            "71:25: " + getCheckMessage(MSG_KEY),
+            "91:23: " + getCheckMessage(MSG_KEY),
+            "94:63: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLineTwo.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiCaseClassThree() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLineThree.java"),
+                expected);
     }
 
     @Test
