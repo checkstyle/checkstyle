@@ -23,6 +23,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return instance;</lineContent>
+    <details>
+      type of expression: @FenumTop Object
+      method return type: @FenumUnqualified Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>required.method.not.called</specifier>
     <message>@MustCall method close may not have been invoked on dtdIs or any of its aliases.</message>
@@ -41,6 +52,62 @@
     <details>
       type of expression: @FenumTop AbstractExpressionHandler
       method return type: @FenumUnqualified AbstractExpressionHandler
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter horizontalAlignment of JLabel constructor.</message>
+    <lineContent>final JLabel modesLabel = new JLabel(&quot;Modes:&quot;, SwingConstants.RIGHT);</lineContent>
+    <details>
+      found   : @SwingHorizontalOrientation int
+      required: @FenumUnqualified int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>.mapToInt(int.class::cast);</lineContent>
+    <details>
+      found   : @FenumUnqualified Object
+      required: capture extends @FenumTop Object
+      Consequence: method in @FenumUnqualified Class&lt;@FenumUnqualified Integer&gt;
+      @FenumUnqualified Integer cast(@FenumUnqualified Class&lt;@FenumUnqualified Integer&gt; this, @FenumUnqualified Object p0)
+      is not a valid method reference for method in @FenumUnqualified ToIntFunction&lt;capture extends @FenumTop Object&gt;
+      @FenumUnqualified int applyAsInt(@FenumUnqualified ToIntFunction&lt;capture extends @FenumTop Object&gt; this, capture extends @FenumTop Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>.map(Pattern.class::cast)</lineContent>
+    <details>
+      found   : @FenumUnqualified Object
+      required: capture extends @FenumTop Object
+      Consequence: method in @FenumUnqualified Class&lt;@FenumUnqualified Pattern&gt;
+      @FenumUnqualified Pattern cast(@FenumUnqualified Class&lt;@FenumUnqualified Pattern&gt; this, @FenumUnqualified Object p0)
+      is not a valid method reference for method in @FenumUnqualified Function&lt;capture extends @FenumTop Object, @FenumUnqualified Pattern&gt;
+      @FenumUnqualified Pattern apply(@FenumUnqualified Function&lt;capture extends @FenumTop Object, @FenumUnqualified Pattern&gt; this, capture extends @FenumTop Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>.map(String.class::cast)</lineContent>
+    <details>
+      found   : @FenumUnqualified Object
+      required: capture extends @FenumTop Object
+      Consequence: method in @FenumUnqualified Class&lt;@FenumUnqualified String&gt;
+      @FenumUnqualified String cast(@FenumUnqualified Class&lt;@FenumUnqualified String&gt; this, @FenumUnqualified Object p0)
+      is not a valid method reference for method in @FenumUnqualified Function&lt;capture extends @FenumTop Object, @FenumUnqualified String&gt;
+      @FenumUnqualified String apply(@FenumUnqualified Function&lt;capture extends @FenumTop Object, @FenumUnqualified String&gt; this, capture extends @FenumTop Object p0)
     </details>
   </checkerFrameworkError>
 
