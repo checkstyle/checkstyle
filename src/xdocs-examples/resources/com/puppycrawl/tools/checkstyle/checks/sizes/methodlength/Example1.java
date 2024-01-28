@@ -1,0 +1,39 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodLength"/>
+  </module>
+</module>
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
+
+// xdoc section -- start
+public class Example1 {
+  // violation below, 'Method length is 151 lines (max allowed is 150).'
+  public Example1() {
+      /* line 2
+          ...
+        line 150 */
+  } // line 151, violation, as it is over 150
+
+  public void firstExample() { // line 1
+
+    // line 3
+    System.out.println("line 4");
+    /* line 5
+        line 6 */
+  } // line 7, OK, as it is less than 150
+
+  // violation below, 'Method length is 151 lines (max allowed is 150).'
+  public void secondExample() {
+    // line 2
+    System.out.println("line 3");
+
+    /* line 5
+          ...
+        line 150 */
+  } // line 151, violation, as it is over 150
+
+}
+// xdoc section -- end
