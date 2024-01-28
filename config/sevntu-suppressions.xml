@@ -50,4 +50,9 @@
   <!-- Required for reversing a list -->
   <suppress checks="ForbidCertainImports" files="SiteUtil\.java"/>
 
+  <!-- Required for enabling MethodLengthCheckExamplesTest -->
+  <suppress checks="FileLengthCheckExamplesTest"
+             files="[\\/]src[\\/]xdocs-examples[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]methodlength[\\/]Example1\.java"/>
+
 </suppressions>
+
