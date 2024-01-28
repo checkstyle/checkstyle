@@ -47,12 +47,14 @@
           </li>
           <li>
             Enable examples tests.
-            Author: Gahlot Kapil, Coding-Aliens, sktpy, Mauryan Kansara, Rohanraj123, Charisma Kausar
+            Author: Gahlot Kapil, Coding-Aliens, sktpy, Mauryan Kansara, Rohanraj123,
+            Charisma Kausar
             <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
           </li>
           <li>
             Remove &#39;//ok&#39; comments from Input files .
-            Author: Coding-Aliens, mahfouz72, sktpy, Charisma Kausar, MANISH-K-07, ChristianCecili, Tahanima Chowdhury
+            Author: Coding-Aliens, mahfouz72, sktpy, Charisma Kausar, MANISH-K-07,
+            ChristianCecili, Tahanima Chowdhury
             <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
           </li>
           <li>
