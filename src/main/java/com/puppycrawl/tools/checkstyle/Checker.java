@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -245,13 +246,21 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *         checks and filters.
      */
     private Set<String> getExternalResourceLocations() {
-        return Stream.concat(fileSetChecks.stream(), filters.getFilters().stream())
-            .filter(ExternalResourceHolder.class::isInstance)
-            .flatMap(resource -> {
-                return ((ExternalResourceHolder) resource)
-                        .getExternalResourceLocations().stream();
-            })
-            .collect(Collectors.toUnmodifiableSet());
+        try (
+                Stream<FileSetCheck> fileSetChecksStream = fileSetChecks.stream();
+                Stream<Filter> filtersStream = filters.getFilters().stream();
+        ) {
+            return Stream.of(fileSetChecksStream, filtersStream)
+                    .flatMap(Function.identity())
+                    .filter(resource -> {
+                        return resource instanceof ExternalResourceHolder;
+                    })
+                    .flatMap(resource -> {
+                        return ((ExternalResourceHolder) resource)
+                                .getExternalResourceLocations().stream();
+                    })
+                    .collect(Collectors.toUnmodifiableSet());
+        }
     }
 
     /** Notify all listeners about the audit start. */
