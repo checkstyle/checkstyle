@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +34,19 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "28:3: " + getCheckMessage(MSG_KEY, 6, 4, "secondMethod"),
+            "36:3: " + getCheckMessage(MSG_KEY, 5, 4, "thirdMethod"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "29:3: " + getCheckMessage(MSG_KEY, 6, 4, "secondMethod"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
-    }
-
-    @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
