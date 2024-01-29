@@ -455,14 +455,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTreeTest.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLine.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLine.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLine.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineSingleLine.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTest.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResources.java"/>
