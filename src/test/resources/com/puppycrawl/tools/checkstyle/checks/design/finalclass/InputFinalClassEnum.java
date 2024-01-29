@@ -28,7 +28,7 @@ public enum InputFinalClassEnum {
         return initial;
     }
 
-    static final class FinalClass { // ok
+    static final class FinalClass {
         private FinalClass() {}
     }
 
@@ -36,7 +36,7 @@ public enum InputFinalClassEnum {
         private DerivedClass() {}
     }
 
-    static class SuperClass { // ok
+    static class SuperClass {
         private SuperClass() {}
     }
 

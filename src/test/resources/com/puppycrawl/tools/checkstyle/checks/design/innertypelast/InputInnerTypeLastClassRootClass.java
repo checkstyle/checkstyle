@@ -6,7 +6,7 @@ InnerTypeLast
 
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-public enum InputInnerTypeLastClassRootClass { // ok
+public enum InputInnerTypeLastClassRootClass {
 
     ALWAYS(Bits.YES), NEVER(Bits.NO);
 

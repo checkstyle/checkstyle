@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
-public class InputVisibilityModifiersPublicImmutable3 { // ok
+public class InputVisibilityModifiersPublicImmutable3 {
     public final int someIntValue;
     public final ImmutableSet<String> includes;
     public final String notes;
