@@ -54,7 +54,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIncorrect() throws Exception {
+    public void testIncorrectOne() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn"),
             "20:15: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
@@ -79,14 +79,22 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "94:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 11, 8),
             "97:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 10, 8),
             "99:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
-            "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrect.java"), expected);
+                getPath("InputAnnotationLocationIncorrectOne.java"), expected);
     }
 
     @Test
-    public void testIncorrectAllTokens() throws Exception {
+    public void testIncorrectTwo() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationLocationIncorrectTwo.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectAllTokensOne() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn3"),
             "20:15: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation_13"),
@@ -111,10 +119,18 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "95:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 11, 8),
             "98:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 10, 8),
             "101:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation_13"),
-            "108:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrect3.java"), expected);
+                getPath("InputAnnotationLocationIncorrect3One.java"), expected);
+    }
+
+    @Test
+    public void testIncorrectAllTokensTwo() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationLocationIncorrect3Two.java"), expected);
     }
 
     @Test
@@ -148,7 +164,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithParameters() throws Exception {
+    public void testWithParametersOne() throws Exception {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
             "33:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
@@ -162,10 +178,18 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "78:8: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 7, 4),
             "93:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 11, 8),
             "96:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 10, 8),
-            "106:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationLocationIncorrect2.java"), expected);
+                getPath("InputAnnotationLocationIncorrect2One.java"), expected);
+    }
+
+    @Test
+    public void testWithParametersTwo() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationLocationIncorrect2Two.java"), expected);
     }
 
     @Test

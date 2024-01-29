@@ -12,7 +12,7 @@ tokens = ENUM_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-public class InputMethodCount6 { // ok
+public class InputMethodCount6 {
     void method1() {
     }
 }

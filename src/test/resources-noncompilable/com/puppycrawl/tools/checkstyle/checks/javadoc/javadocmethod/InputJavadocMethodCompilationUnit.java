@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 @Deprecated @ProblemCauser
 public record InputJavadocMethodCompilationUnit() {
 
-    public void doThing() { // ok
+    public void doThing() {
         // No error unless an annotation is present
         @ProblemCauser
         record Test(String hello, int world) {}

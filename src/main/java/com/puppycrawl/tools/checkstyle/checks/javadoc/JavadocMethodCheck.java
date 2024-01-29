@@ -686,7 +686,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true if throwAst is inside a block that should be ignored
      */
     private static boolean isInIgnoreBlock(DetailAST methodBodyAst, DetailAST throwAst) {
-        DetailAST ancestor = throwAst.getParent();
+        DetailAST ancestor = throwAst;
         while (ancestor != methodBodyAst) {
             if (ancestor.getType() == TokenTypes.LITERAL_TRY
                     && ancestor.findFirstToken(TokenTypes.LITERAL_CATCH) != null

@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param value Sponge Bob rules the world!
  */
-public record InputJavadocTypeRecordComponents2(String value) { // ok
+public record InputJavadocTypeRecordComponents2(String value) {
 }
 
 /**

@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 import java.util.logging.LogRecord;
 
 public class InputIllegalIdentifierName {
-    public Class<Record[]> getRecordType() { // ok
+    public Class<Record[]> getRecordType() {
         return Record[].class;
     }
 
@@ -24,7 +24,7 @@ public class InputIllegalIdentifierName {
         }
     }
 
-    class yieldClass { // ok
+    class yieldClass {
         int yield = 6; // violation
 
         public void yield() { // violation
@@ -68,8 +68,8 @@ public class InputIllegalIdentifierName {
         record MyRecord() {} // ok, part of another word
         var variable = 2; // ok, part of another word
 
-        String recordString = "record"; // ok
-        recordString = recordString.substring(record, 20); // ok
+        String recordString = "record";
+        recordString = recordString.substring(record, 20);
 
         record MyOtherRecord(String record, String yield, String... var) { // 3 violations
         }
