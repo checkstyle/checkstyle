@@ -71,7 +71,7 @@
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTag::getLineNo</description>
     <lineContent>final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag</lineContent>
   </mutation>
-  
+
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
