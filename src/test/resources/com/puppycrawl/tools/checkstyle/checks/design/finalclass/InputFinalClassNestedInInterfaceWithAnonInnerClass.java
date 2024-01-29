@@ -6,7 +6,7 @@ FinalClass
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
-    class a { // ok
+    class a {
         private a() {
         }
     }
@@ -15,7 +15,7 @@ public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
     };
 
     interface foo {
-        class m { // ok
+        class m {
             private m() {
             }
         }
@@ -33,7 +33,7 @@ public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
     }
 
     @interface annotatedInterface {
-        class b { // ok
+        class b {
             private b() {
             }
         }
@@ -41,7 +41,7 @@ public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
         b obj = new b () {
         };
 
-        class c { // ok
+        class c {
             private c() {
             }
         }
