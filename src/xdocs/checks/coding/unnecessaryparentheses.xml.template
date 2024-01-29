@@ -90,7 +90,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -98,7 +98,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -108,13 +108,13 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
