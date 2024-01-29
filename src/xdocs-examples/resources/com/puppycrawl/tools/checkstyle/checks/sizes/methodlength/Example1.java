@@ -7,12 +7,12 @@
 */
 
 // xdoc section -- start
-public class MyClass {
-  public MyClass() {  // constructor (line 1)
+public class Example1 {
+  public Example1() {  // constructor (line 1)
       /* line 2
           ...
-         line 150 */
-  } // line 151, violation, as it is over 150
+         line 4 */
+  } // line 5, OK, as it is less than 150
 
   public void firstExample() { // line 1
 
@@ -28,7 +28,7 @@ public class MyClass {
 
       /* line 5
           ...
-         line 150 */
-  } // line 151, violation, as it is over 150
+         line 7 */
+  } // line 8, OK, as it is less than 150
 }
 // xdoc section -- end
