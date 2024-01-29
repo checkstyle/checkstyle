@@ -4,7 +4,7 @@ No Config
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-public class InputVisibilityModifierGregorianCalendar // ok
+public class InputVisibilityModifierGregorianCalendar
 {
     class SubCalendar {
 

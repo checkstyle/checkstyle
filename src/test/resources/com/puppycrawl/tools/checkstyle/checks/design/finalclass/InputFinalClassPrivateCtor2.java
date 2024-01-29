@@ -8,11 +8,11 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassPrivateCtor2 {
 
-    private static class c { // ok
+    private static class c {
        private c(){}
     }
 
-    class x extends c {} // ok
+    class x extends c {}
 
     private class a {
     }
@@ -68,7 +68,7 @@ class CheckCode {
     }
 }
 
-class a { // ok
+class a {
     private class Class {
     }
 

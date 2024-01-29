@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import java.util.Arrays;
 
-public final class InputVisibilityModifierImmutableStarImport // ok
+public final class InputVisibilityModifierImmutableStarImport
 {
     public final Arrays f = null; // If Arrays is specified as immutable class,
                                   // no matter of canonical name
