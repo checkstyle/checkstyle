@@ -116,7 +116,8 @@ tokens {
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
     EMBEDDED_EXPRESSION_END,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF, TEXT_BLOCK_TEMPLATE_BEGIN,
+    TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_TEMPLATE_CONTENT
 }
 
 @header {
@@ -156,6 +157,8 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
+
+    private int textBlockTemplateDepth = 0;
 }
 
 // Keywords and restricted identifiers
@@ -323,18 +326,58 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:   '"'  StringFragment? '\\' '{'
                          {stringTemplateDepth++;}
                          ;
 
 STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '\\' '{'
+                         '}' StringFragment? '\\' '{'
                          ;
 
 STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '"'
+                         '}' StringFragment? '"'
                          {stringTemplateDepth--;}
                          ;
+
+// Text block Templates
+TEXT_BLOCK_TEMPLATE_BEGIN: '"' '"' '"' TextBlockTemplateContent '\\' '{'
+                           {textBlockTemplateDepth++;}
+                           ;
+
+TEXT_BLOCK_TEMPLATE_MID:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockTemplateContent? '\\' '{'
+                            ;
+
+TEXT_BLOCK_TEMPLATE_END:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockTemplateContent? '"' '"' '"'
+                           {textBlockTemplateDepth--;}
+                           ;
+
+// text block content for text block templates
+fragment TextBlockTemplateContent
+    : ( TwoDoubleQuotes
+      | OneDoubleQuote
+      | Newline
+      | ~'"'
+      | TextBlockStandardEscape
+      )+
+    ;
+
+fragment TextBlockStandardEscape
+    :   '\\' [btnfrs"'\\]
+    ;
+
+fragment Newline
+    :  '\n' | '\r' ('\n')?
+    ;
+
+fragment TwoDoubleQuotes
+    :   '"''"' ( Newline | ~'"' )
+    ;
+
+fragment OneDoubleQuote
+    :   '"' ( Newline | ~'"' )
+    ;
 
 // Whitespace and comments
 
@@ -438,21 +481,4 @@ mode TextBlock;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
-        ;
-
-    // Text block fragment rules
-    fragment TextBlockStandardEscape
-        :   '\\' [btnfrs"'\\]
-        ;
-
-    fragment Newline
-        :  '\n' | '\r' ('\n')?
-        ;
-
-    fragment TwoDoubleQuotes
-        :   '"''"' ( Newline | ~'"' )
-        ;
-
-    fragment OneDoubleQuote
-        :   '"' ( Newline | ~'"' )
         ;

@@ -72,4 +72,12 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputUnnamedVariableSwitch.java"));
     }
 
+    @Test
+    public void testTextBlockTemplateBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateBasic.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateBasic.java"));
+    }
 }
