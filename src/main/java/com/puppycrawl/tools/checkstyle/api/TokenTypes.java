@@ -6783,6 +6783,24 @@ public final class TokenTypes {
     public static final int UNNAMED_PATTERN_DEF =
             JavaLanguageLexer.UNNAMED_PATTERN_DEF;
 
+    /**
+     *
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_BEGIN =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_BEGIN;
+
+    /**
+     *
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_END =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_END;
+
+    /**
+     *
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_CONTENT =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_CONTENT;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
