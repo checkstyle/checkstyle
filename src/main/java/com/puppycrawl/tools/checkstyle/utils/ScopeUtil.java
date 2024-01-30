@@ -131,23 +131,21 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = node.getParent();
-             token != null;
-             token = token.getParent()) {
+        DetailAST token = node;
+        while (token != null) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final Scope tokenScope = getScope(token);
                 if (returnValue == null || returnValue.isIn(tokenScope)) {
                     returnValue = tokenScope;
                 }
-            }
-            else if (type == TokenTypes.LITERAL_NEW) {
+            } else if (type == TokenTypes.LITERAL_NEW) {
                 returnValue = Scope.ANONINNER;
                 // because Scope.ANONINNER is not in any other Scope
                 break;
             }
+            token = node.getParent();
         }
-
         return returnValue;
     }
 
