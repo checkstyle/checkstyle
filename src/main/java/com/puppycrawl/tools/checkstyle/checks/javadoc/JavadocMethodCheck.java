@@ -632,8 +632,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<ExceptionInfo> getThrowed(DetailAST methodAst) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
-        final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
-        if (blockAst != null) {
+        final DetailAST blockAst = methodAst;
             final List<DetailAST> throwLiterals = findTokensInAstByType(blockAst,
                     TokenTypes.LITERAL_THROW);
             for (DetailAST throwAst : throwLiterals) {
@@ -645,7 +644,6 @@ public class JavadocMethodCheck extends AbstractCheck {
                     }
                 }
             }
-        }
         return returnValue;
     }
 
@@ -748,9 +746,8 @@ public class JavadocMethodCheck extends AbstractCheck {
                 continue;
             }
             // backtrack to parent if last child, stopping at root
-            while (curNode != root && curNode.getNextSibling() == null) {
                 curNode = curNode.getParent();
-            }
+
             // explore siblings if not root
             if (curNode != root) {
                 curNode = curNode.getNextSibling();
