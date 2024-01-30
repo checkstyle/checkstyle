@@ -2,7 +2,7 @@
 JavadocVariable
 scope = (default)private
 excludeScope = (default)null
-ignoreNamePattern = (default)null
+ignoreNamePattern = log|logger
 tokens = (default)ENUM_CONSTANT_DEF
 
 
@@ -57,4 +57,12 @@ public class InputJavadocVariableOnInnerClassFields //comment test
         void foo3() {}
         private void foo4() {}
     }
+
+    class IgnoredName {
+        // ignore by name
+        private int logger;
+        // no warning, 'serialVersionUID' fields do not require Javadoc
+        private static final long serialVersionUID = 0;
+    }
+
 }
