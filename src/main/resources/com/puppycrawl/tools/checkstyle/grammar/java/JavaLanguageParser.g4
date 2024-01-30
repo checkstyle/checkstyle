@@ -760,19 +760,21 @@ primary
 
 templateArgument
     : template
+    | textBlockLiteral
     | STRING_LITERAL
     ;
 
 template
-    : stringTemplate
-    ;
-
-stringTemplate
-    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END #stringTemplate
+    | TEXT_BLOCK_TEMPLATE_BEGIN expr? textBlockTemplateMiddle* TEXT_BLOCK_TEMPLATE_END #textBlockTemplate
     ;
 
 stringTemplateMiddle
     : STRING_TEMPLATE_MID expr?
+    ;
+
+textBlockTemplateMiddle
+    : TEXT_BLOCK_TEMPLATE_MID expr?
     ;
 
 classType
