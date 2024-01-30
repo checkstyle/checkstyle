@@ -115,4 +115,21 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         + "            ' expecting TEXT_BLOCK_LITERAL_END");
 
     }
+    @Test
+    public void testTextBlockTemplateBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateBasic.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateBasic.java"));
+    }
+
+    @Test
+    public void testTextBlockTemplateInlineCodeTricky() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateInlineCodeTricky.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateInlineCodeTricky.java"));
+    }
 }

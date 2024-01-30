@@ -3,6 +3,9 @@
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8654-->
 <module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]TextBlockIllegalEscape.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]doclet[\\/]testSupplementary[\\/]C.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
