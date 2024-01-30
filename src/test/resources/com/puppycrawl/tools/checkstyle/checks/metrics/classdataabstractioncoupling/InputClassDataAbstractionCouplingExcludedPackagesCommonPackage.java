@@ -26,8 +26,8 @@ import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
 import org.apache.hc.core5.http.nio.command.CommandSupport;
 
 public class InputClassDataAbstractionCouplingExcludedPackagesCommonPackage { // violation
-    public TlsCiphers aa = new TlsCiphers(); // ok
-    public BasicHttpContext ab = new BasicHttpContext(); // ok
+    public TlsCiphers aa = new TlsCiphers();
+    public BasicHttpContext ab = new BasicHttpContext();
 
     class Inner { // violation
         public BasicClientTlsStrategy b = new BasicClientTlsStrategy();
