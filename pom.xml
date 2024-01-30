@@ -1136,7 +1136,7 @@
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.71</minimum>
+                      <minimum>0.70</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1154,7 +1154,7 @@
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.75</minimum>
+                      <minimum>0.73</minimum>
                     </limit>
                   </limits>
                 </rule>

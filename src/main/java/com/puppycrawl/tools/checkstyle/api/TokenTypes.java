@@ -6786,6 +6786,147 @@ public final class TokenTypes {
     public static final int UNNAMED_PATTERN_DEF =
             JavaLanguageLexer.UNNAMED_PATTERN_DEF;
 
+    /**
+     * The opening delimiter of a text block template. This element ({@code """}) appears
+     * at the beginning of a text block template.
+     * <p>For example:</p>
+     *     String s = STR."""
+     *             Hello, \{ fetchName(uuid) }!
+     *             """;
+     * <pre>
+     * <p>parses as:</p>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |--TYPE -&gt; TYPE
+     *    |   `--IDENT -&gt; String
+     *    |--IDENT -&gt; s
+     *    |--ASSIGN -&gt; =
+     *    |   `--EXPR -&gt; EXPR
+     *    |       `--DOT -&gt; .
+     *    |           |--IDENT -&gt; STR
+     *    |           `--TEXT_BLOCK_TEMPLATE_BEGIN -&gt; """
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; \n            Hello,
+     *    |               |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *    |               |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *    |               |   `--METHOD_CALL -&gt; (
+     *    |               |       |--IDENT -&gt; fetchName
+     *    |               |       |--ELIST -&gt; ELIST
+     *    |               |       |   `--EXPR -&gt; EXPR
+     *    |               |       |       `--IDENT -&gt; uuid
+     *    |               |       `--RPAREN -&gt; )
+     *    |               |--EMBEDDED_EXPRESSION_END -&gt; }
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; !\n
+     *    |               `--STRING_TEMPLATE_END -&gt; """
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
+     * @see #TEXT_BLOCK_TEMPLATE_END
+     * @see #TEXT_BLOCK_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #TEXT_BLOCK_LITERAL_BEGIN
+     *
+     * @since 10.13.0
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_BEGIN =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_BEGIN;
+
+    /**
+     * The closing delimiter of a text block template. This element ({@code """}) appears
+     * at the end of a text block template.
+     * <p>For example:</p>
+     *     String s = STR."""
+     *             Sum: \{ calculateSum(x, y) }!
+     *             """;
+     * <pre>
+     * <p>parses as:</p>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |--TYPE -&gt; TYPE
+     *    |   `--IDENT -&gt; String
+     *    |--IDENT -&gt; s
+     *    |--ASSIGN -&gt; =
+     *    |   `--EXPR -&gt; EXPR
+     *    |       `--DOT -&gt; .
+     *    |           |--IDENT -&gt; STR
+     *    |           `--TEXT_BLOCK_TEMPLATE_BEGIN -&gt; """
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; \n            Sum:
+     *    |               |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *    |               |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *    |               |   `--METHOD_CALL -&gt; (
+     *    |               |       |--IDENT -&gt; calculateSum
+     *    |               |       |--ELIST -&gt; ELIST
+     *    |               |       |   |--EXPR -&gt; EXPR
+     *    |               |       |   |   `--IDENT -&gt; x
+     *    |               |       |   |--COMMA -&gt; ,
+     *    |               |       |   `--EXPR -&gt; EXPR
+     *    |               |       |       `--IDENT -&gt; y
+     *    |               |       `--RPAREN -&gt; )
+     *    |               |--EMBEDDED_EXPRESSION_END -&gt; }
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; !\n
+     *    |               `--STRING_TEMPLATE_END -&gt; """
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.13.0
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_END =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_END;
+
+    /**
+     * The content of a text block template. A given text block template may
+     * have more than one node of this type.
+     * <p>For example:</p>
+     *     String s = STR."""
+     *             dx/dy: \{ derivative("x^2") }!
+     *             """;
+     * <pre>
+     * <p>parses as:</p>
+     * `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |--TYPE -&gt; TYPE
+     *    |   `--IDENT -&gt; String
+     *    |--IDENT -&gt; s
+     *    |--ASSIGN -&gt; =
+     *    |   `--EXPR -&gt; EXPR
+     *    |       `--DOT -&gt; .
+     *    |           |--IDENT -&gt; STR
+     *    |           `--TEXT_BLOCK_TEMPLATE_BEGIN -&gt; """
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; \n            dx/dy:
+     *    |               |--EMBEDDED_EXPRESSION_BEGIN -&gt; \{
+     *    |               |--EMBEDDED_EXPRESSION -&gt; EMBEDDED_EXPRESSION
+     *    |               |   `--METHOD_CALL -&gt; (
+     *    |               |       |--IDENT -&gt; derivative
+     *    |               |       |--ELIST -&gt; ELIST
+     *    |               |       |   `--EXPR -&gt; EXPR
+     *    |               |       |       `--STRING_LITERAL -&gt; "x^2"
+     *    |               |       `--RPAREN -&gt; )
+     *    |               |--EMBEDDED_EXPRESSION_END -&gt; }
+     *    |               |--TEXT_BLOCK_TEMPLATE_CONTENT -&gt; !\n
+     *    |               `--STRING_TEMPLATE_END -&gt; """
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
+     * @see #STRING_TEMPLATE_END
+     * @see #STRING_TEMPLATE_CONTENT
+     * @see #EMBEDDED_EXPRESSION_BEGIN
+     * @see #EMBEDDED_EXPRESSION
+     * @see #EMBEDDED_EXPRESSION_END
+     * @see #STRING_LITERAL
+     *
+     * @since 10.13.0
+     */
+    public static final int TEXT_BLOCK_TEMPLATE_CONTENT =
+            JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_CONTENT;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
