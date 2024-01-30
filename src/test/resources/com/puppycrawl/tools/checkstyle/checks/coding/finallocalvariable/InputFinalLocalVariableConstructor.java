@@ -26,10 +26,10 @@ public class InputFinalLocalVariableConstructor {
 
 class Mutation {
 
-    Mutation(final int a) { // ok
+    Mutation(final int a) {
     }
 
-    Mutation(final String check) { // ok
+    Mutation(final String check) {
     }
 
     Mutation(String str, final int b) {

@@ -63,14 +63,41 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void testTagsOne() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "308:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "333:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "44:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "69:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingJavadocTypeTags.java"), expected);
+                getPath("InputMissingJavadocTypeTagsOne.java"), expected);
+    }
+
+    @Test
+    public void testTagsTwo() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsTwo.java"), expected);
+    }
+
+    @Test
+    public void testTagsThree() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsThree.java"), expected);
+    }
+
+    @Test
+    public void testTagsFour() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeTagsFour.java"), expected);
     }
 
     @Test
@@ -150,21 +177,31 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testScopes() throws Exception {
+    public void testScopesOne() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "37:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "49:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "62:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "73:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "85:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "97:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "109:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "121:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingJavadocTypeNoJavadoc1.java"),
+                getPath("InputMissingJavadocTypeNoJavadoc1One.java"),
+               expected);
+    }
+
+    @Test
+    public void testScopesTwo() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "50:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "62:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "74:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocTypeNoJavadoc1Two.java"),
                expected);
     }
 
