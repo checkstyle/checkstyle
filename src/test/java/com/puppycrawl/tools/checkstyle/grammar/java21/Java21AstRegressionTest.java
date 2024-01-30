@@ -19,9 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.java21;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.Assert.assertThrows;
+
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
@@ -72,4 +79,48 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputUnnamedVariableSwitch.java"));
     }
 
+    @Test
+    public void testTextBlockTemplateBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateBasic.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateBasic.java"));
+    }
+
+    @Test
+    public void testTextBlockTemplateInlineCodeTricky() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateInlineCodeTricky.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateInlineCodeTricky.java"));
+    }
+
+    @Test
+    public void testTextBlockParsingFail() throws Exception {
+        final File file =
+                new File(getNonCompilablePath("InputTextBlockParsingFail.java"));
+
+        final Throwable throwable =
+                assertThrows("Exception should be thrown due to parsing failure.",
+                        CheckstyleException.class,
+                        () -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS)
+                );
+
+        final String incorrectThrowableCauseMessage =
+                "Cause of CheckstyleException should be IllegalStateException.";
+
+        assertWithMessage(incorrectThrowableCauseMessage)
+                .that(throwable.getCause())
+                .isInstanceOf(IllegalStateException.class);
+
+        final String incorrectParsingFailureMessage =
+                "Message of IllegalStateException should contain the parsing failure.";
+
+        assertWithMessage(incorrectParsingFailureMessage)
+                .that(throwable.getCause().getMessage())
+                .contains("9:15: no viable alternative at input '\"\"\"\\n            \\{'");
+
+    }
 }
