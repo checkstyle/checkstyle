@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.grammar.comments;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -29,9 +30,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
@@ -48,14 +51,12 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllBlockComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(BlockCommentListenerCheck.class);
         final String path = getPath("InputFullOfBlockComments.java");
         lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
-        execute(checkConfig, path);
-        assertWithMessage("All comments should be empty")
-            .that(ALL_COMMENTS)
-            .isEmpty();
+        final String[] expected = {
+            "17:13: " + "Nested block should be indented.",
+        };
+        verifyWithInlineConfigParser(path, expected);
     }
 
     public static class BlockCommentListenerCheck extends AbstractCheck {
@@ -101,6 +102,15 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
                     .isTrue();
         }
 
+    }
+
+    public static class ViolationFullOfBlockComments
+            extends AbstractFileSetCheck {
+
+        @Override
+        protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+            log(17, 12, "Nested block should be indented.");
+        }
     }
 
 }
