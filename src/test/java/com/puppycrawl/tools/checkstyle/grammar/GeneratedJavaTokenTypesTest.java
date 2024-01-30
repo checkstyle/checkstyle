@@ -742,6 +742,18 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
             .that(JavaLanguageLexer.UNNAMED_PATTERN_DEF)
             .isEqualTo(225);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_BEGIN)
+            .isEqualTo(226);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_MID)
+            .isEqualTo(227);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_END)
+            .isEqualTo(228);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.TEXT_BLOCK_TEMPLATE_CONTENT)
+            .isEqualTo(229);
 
         final int tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
                 .filter(GeneratedJavaTokenTypesTest::isPublicStaticFinalInt)
@@ -752,7 +764,7 @@ public class GeneratedJavaTokenTypesTest {
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(237);
+            .isEqualTo(241);
     }
 
     /**
