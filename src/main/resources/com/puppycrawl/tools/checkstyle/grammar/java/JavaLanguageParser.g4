@@ -760,19 +760,29 @@ primary
 
 templateArgument
     : template
+    | textBlockLiteral
     | STRING_LITERAL
     ;
 
 template
-    : stringTemplate
+    : STRING_TEMPLATE_BEGIN
+      expr? stringTemplateMiddle*
+      STRING_TEMPLATE_END                                                  #stringTemplate
+
+    | TEXT_BLOCK_TEMPLATE_BEGIN
+      expr? textBlockTemplateMiddle*
+      TEXT_BLOCK_TEMPLATE_END                                              #textBlockTemplate
     ;
 
-stringTemplate
-    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
-    ;
-
+// 'isEmptyTextBlockMiddle' is used to distinguish between empty string and empty text block
+// middle. This is necessary because the lexer cannot distinguish between the two.
 stringTemplateMiddle
     : STRING_TEMPLATE_MID expr?
+    ;
+
+textBlockTemplateMiddle
+    : middle=STRING_TEMPLATE_MID expr?
+    | middle=TEXT_BLOCK_TEMPLATE_MID expr?
     ;
 
 classType
