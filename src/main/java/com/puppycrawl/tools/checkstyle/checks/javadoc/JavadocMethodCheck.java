@@ -632,7 +632,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<ExceptionInfo> getThrowed(DetailAST methodAst) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
-        final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
+        final DetailAST blockAst = methodAst;
         if (blockAst != null) {
             final List<DetailAST> throwLiterals = findTokensInAstByType(blockAst,
                     TokenTypes.LITERAL_THROW);
