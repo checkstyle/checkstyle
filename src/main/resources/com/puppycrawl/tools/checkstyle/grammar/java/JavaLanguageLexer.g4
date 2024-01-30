@@ -116,7 +116,8 @@ tokens {
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
     EMBEDDED_EXPRESSION_END,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF, TEXT_BLOCK_TEMPLATE_BEGIN,
+    TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_TEMPLATE_CONTENT
 }
 
 @header {
@@ -156,6 +157,8 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
+
+    private int textBlockTemplateDepth = 0;
 }
 
 // Keywords and restricted identifiers
@@ -336,6 +339,52 @@ STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
                          {stringTemplateDepth--;}
                          ;
 
+// Text block Templates
+TEXT_BLOCK_TEMPLATE_BEGIN: '"' '"' '"' TextBlockTemplateContent ~'\\' '\\' '{'
+                           {textBlockTemplateDepth++;}
+                           ;
+
+// TODO: try to remove ~'\\'from here and above
+TEXT_BLOCK_TEMPLATE_MID:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockTemplateContent? ~'\\' '\\' '{'
+                            ;
+
+TEXT_BLOCK_TEMPLATE_END:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockTemplateContent? '"' '"' '"'
+                           {textBlockTemplateDepth--;}
+                           ;
+
+// Text block fragments
+
+fragment TextBlockTemplateContent
+    : ( TwoDoubleQuotes
+      | OneDoubleQuote
+      | Newline
+      | TextBlockCharacter
+      | TextBlockStandardEscape
+      )+
+    ;
+
+fragment TextBlockCharacter
+    :   ~[\t\n\r\f"\\]
+    ;
+
+fragment TextBlockStandardEscape
+    :   '\\' [btnfrs"'\\]
+    ;
+
+fragment Newline
+    :  '\n' | '\r' ('\n')?
+    ;
+
+fragment TwoDoubleQuotes
+    :   '"''"' ( Newline | ~'"' )
+    ;
+
+fragment OneDoubleQuote
+    :   '"' ( Newline | ~'"' )
+    ;
+
 // Whitespace and comments
 
 WS:                      [ \t\r\n\u000C]+ -> skip;
@@ -427,32 +476,9 @@ fragment Letter
 
 // Text block lexical mode
 mode TextBlock;
-    TEXT_BLOCK_CONTENT
-        : ( TwoDoubleQuotes
-          | OneDoubleQuote
-          | Newline
-          | ~'"'
-          | TextBlockStandardEscape
-          )+
-        ;
+
+    TEXT_BLOCK_CONTENT: TextBlockTemplateContent;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
-        ;
-
-    // Text block fragment rules
-    fragment TextBlockStandardEscape
-        :   '\\' [btnfrs"'\\]
-        ;
-
-    fragment Newline
-        :  '\n' | '\r' ('\n')?
-        ;
-
-    fragment TwoDoubleQuotes
-        :   '"''"' ( Newline | ~'"' )
-        ;
-
-    fragment OneDoubleQuote
-        :   '"' ( Newline | ~'"' )
         ;
