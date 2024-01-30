@@ -116,7 +116,8 @@ tokens {
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
     EMBEDDED_EXPRESSION_END,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF, TEXT_BLOCK_TEMPLATE_BEGIN,
+    TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_TEMPLATE_CONTENT
 }
 
 @header {
@@ -156,6 +157,8 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
+
+    private int textBlockTemplateDepth = 0;
 }
 
 // Keywords and restricted identifiers
@@ -321,11 +324,12 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
                          {stringTemplateDepth++;}
                          ;
 
-STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
+// this is also used for text block template middles that have no content
+STRING_TEMPLATE_MID:     {stringTemplateDepth > 0 || textBlockTemplateDepth > 0}?
                          '}' StringFragment '\\' '{'
                          ;
 
@@ -333,6 +337,64 @@ STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
                          '}' StringFragment '"'
                          {stringTemplateDepth--;}
                          ;
+
+// Text Block Templates
+
+TEXT_BLOCK_TEMPLATE_BEGIN: '"' '"' '"' TextBlockContent ~'\\' '\\' '{'
+                           {textBlockTemplateDepth++;}
+                           ;
+
+// We do not make TextBlockTemplateContent optional here, because this token
+// would then match the STRING_TEMPLATE_MID token above when there is no content.
+//
+// Example:
+// String s = STR."""
+// \{}\{}""";
+//   ^ this (`}\{`) is matched by STRING_TEMPLATE_MID
+//
+// In order to make this token work for these lexemes, we would need to add
+// more semantic predicates to both tokens,
+// which would be more complex than just reusing the STRING_TEMPLATE_MID token.
+TEXT_BLOCK_TEMPLATE_MID:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockContent ~'\\' '\\' '{'
+                            ;
+
+TEXT_BLOCK_TEMPLATE_END:   {textBlockTemplateDepth > 0}?
+                           '}' TextBlockContent? '"' '"' '"'
+                           {textBlockTemplateDepth--;}
+                           ;
+
+// Text block fragments
+
+fragment TextBlockContent
+    : ( TwoDoubleQuotes
+      | OneDoubleQuote
+      | Newline
+      | TextBlockCharacter
+      )+
+    ;
+
+fragment TextBlockCharacter
+    :   ~["\\]
+    | TextBlockStandardEscape
+    | EscapeSequence
+    ;
+
+fragment TextBlockStandardEscape
+    :   '\\' ( [btnfrs"'\\] | Newline | OneDoubleQuote )
+    ;
+
+fragment Newline
+    :  '\n' | '\r' ('\n')?
+    ;
+
+fragment TwoDoubleQuotes
+    :   {_input.LA(3) != '"'}? '"''"'
+    ;
+
+fragment OneDoubleQuote
+    :   {_input.LA(2) != '"'}?  '"'
+    ;
 
 // Whitespace and comments
 
@@ -425,32 +487,9 @@ fragment Letter
 
 // Text block lexical mode
 mode TextBlock;
-    TEXT_BLOCK_CONTENT
-        : ( TwoDoubleQuotes
-          | OneDoubleQuote
-          | Newline
-          | ~'"'
-          | TextBlockStandardEscape
-          )+
-        ;
+
+    TEXT_BLOCK_CONTENT: TextBlockContent;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
-        ;
-
-    // Text block fragment rules
-    fragment TextBlockStandardEscape
-        :   '\\' [btnfrs"'\\]
-        ;
-
-    fragment Newline
-        :  '\n' | '\r' ('\n')?
-        ;
-
-    fragment TwoDoubleQuotes
-        :   '"''"' ( Newline | ~'"' )
-        ;
-
-    fragment OneDoubleQuote
-        :   '"' ( Newline | ~'"' )
         ;
