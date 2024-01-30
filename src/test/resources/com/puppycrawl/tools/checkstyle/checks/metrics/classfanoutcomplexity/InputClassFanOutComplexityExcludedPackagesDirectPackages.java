@@ -31,11 +31,11 @@ public class InputClassFanOutComplexityExcludedPackagesDirectPackages { // viola
     public ABClass ab;
 
     class Inner { // total: ok
-        public BClass b; // ok
-        public CClass c; // ok
+        public BClass b;
+        public CClass c;
     }
 }
 
 class InputClassFanOutComplexityExcludedPackagesDirectPackagesHidden { // total: ok
-    public CClass c; // ok
+    public CClass c;
 }

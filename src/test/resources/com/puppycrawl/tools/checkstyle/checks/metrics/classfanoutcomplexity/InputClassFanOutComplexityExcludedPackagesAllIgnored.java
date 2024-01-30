@@ -30,17 +30,17 @@ import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inpu
 import com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.inputs.c.CClass;
 
 public class InputClassFanOutComplexityExcludedPackagesAllIgnored { // total: ok
-    public AAClass aa; // ok
-    public ABClass ab; // ok
+    public AAClass aa;
+    public ABClass ab;
 
     class Inner { // total: ok
-        public BClass b; // ok
-        public CClass c; // ok
+        public BClass b;
+        public CClass c;
     }
 }
 
 class InputClassFanOutComplexityExcludedPackagesAllIgnoredHidden { // total: ok
-    public CClass c; // ok
+    public CClass c;
 }
 
 
