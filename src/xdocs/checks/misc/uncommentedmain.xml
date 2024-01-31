@@ -57,28 +57,28 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Game {
-   public static void main(String... args){}   // violation
+public class Example1 {
+   public static void main(String... args){}   // violation, 'Uncommented main method found'
 }
 
 public class Main {
-   public static void main(String[] args){}   // violation
+   public static void main(String[] args){}   // violation, 'Uncommented main method found'
 }
 
 public class Launch {
-   //public static void main(String[] args){} // OK
+   //public static void main(String[] args){}
 }
 
 public class Start {
-   public void main(){}                       // OK
+   public void main(){}
 }
 
 public record MyRecord1 {
-    public void main(){}                       // violation
+    public void main(){}                       // violation, 'Uncommented main method found'
 }
 
 public record MyRecord2 {
-    //public void main(){}                     // OK
+    //public void main(){}
 }
         </source>
         <p id="Example2-config">
@@ -96,24 +96,24 @@ public record MyRecord2 {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Game {
-   public static void main(String... args){}   // violation
+public class Example2 {
+   public static void main(String... args){}   // violation, 'Uncommented main method found'
 }
 
 public class Main {
-   public static void main(String[] args){}   // OK
+   public static void main(String[] args){}
 }
 
 public class Launch {
-   //public static void main(String[] args){} // OK
+   //public static void main(String[] args){}
 }
 
 public class Start {
-   public void main(){}                       // OK
+   public void main(){}
 }
 
 public record MyRecord1 {
-    public void main(){}                      // OK
+    public void main(){}
 }
         </source>
       </subsection>
