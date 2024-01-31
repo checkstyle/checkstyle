@@ -13,7 +13,7 @@ public class InputParameterNameWhitespaceInAccessModifierProperty {
 
     public InputParameterNameWhitespaceInAccessModifierProperty(int parameter1) {} // violation
 
-    public void v1(int h) { // ok
+    public void v1(int h) {
         new Object () {
             public void i(int parameter2) {} // violation
         };
