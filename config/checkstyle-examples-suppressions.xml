@@ -6,6 +6,12 @@
 
 <suppressions>
 
+  <!-- These files have no class in java file by design. -->
+  <suppress id="exampleClassName"
+    files="nocodeinfile[\\/]Example1.java"/>
+  <suppress id="exampleClassName"
+    files="nocodeinfile[\\/]Example2.java"/>
+
   <!-- The file is used so examples can show how overridden methods are treated. -->
   <suppress id="exampleClassName"
     files="abbreviationaswordinname[\\/]SuperClass.java"/>
