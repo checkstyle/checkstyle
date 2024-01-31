@@ -3,13 +3,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- This parent is requirements for deploy of artifacts to maven central -->
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>9</version>
-  </parent>
-
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
   <version>10.13.1-SNAPSHOT</version>
@@ -483,9 +476,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
-          <!-- version is same as in supper-pom as it is better to use same version
-               as in sonatype-nexus-staging -->
-          <version>2.1</version>
+          <version>2.2</version>
         </plugin>
         <!-- from super-pom END -->
         <plugin>
