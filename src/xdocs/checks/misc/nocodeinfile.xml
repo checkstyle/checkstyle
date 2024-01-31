@@ -45,11 +45,11 @@
           Content of the files:
         </p>
         <source>
-// single-line comment // violation
+// single-line comment // violation, 'The file does not contain any code'
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-/* // violation
+/* // violation, 'The file does not contain any code'
  block comment
 */
         </source>
