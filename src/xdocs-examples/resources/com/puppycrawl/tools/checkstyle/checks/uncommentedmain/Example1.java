@@ -1,0 +1,35 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UncommentedMain"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Example1 {
+    public class Game {
+       public static void main(String... args){}   // violation, 'Uncommented main method found'
+    }
+
+    public class Main {
+       public static void main(String[] args){}   // violation, 'Uncommented main method found'
+    }
+
+    public class Launch {
+       //public static void main(String[] args){}
+    }
+
+    public class Start {
+       public void main(){}
+    }
+
+    public record MyRecord1 {
+        public void main(){}                       // violation, 'Uncommented main method found'
+    }
+
+    public record MyRecord2 {
+        //public void main(){}
+    }
+}
+// xdoc section -- end
