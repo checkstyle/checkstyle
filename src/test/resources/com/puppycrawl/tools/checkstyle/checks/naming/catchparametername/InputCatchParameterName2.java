@@ -32,10 +32,10 @@ public class InputCatchParameterName2 {
         }
         try {
             throw new InterruptedException("interruptedException");
-        } catch (InterruptedException ie) { // ok
+        } catch (InterruptedException ie) {
         }
         try {
-        } catch (Exception iException) { // ok
+        } catch (Exception iException) {
         }
         try {
         } catch (Exception ok) {
