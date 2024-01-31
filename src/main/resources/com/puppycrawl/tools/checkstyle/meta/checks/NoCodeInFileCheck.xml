@@ -5,7 +5,9 @@
              name="NoCodeInFile"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks whether file contains code. Files which are considered to have no code:
+ Checks whether file contains code.
+ Java compiler is not raising errors on files with no code or all commented out.
+ Files which are considered to have no code:
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
