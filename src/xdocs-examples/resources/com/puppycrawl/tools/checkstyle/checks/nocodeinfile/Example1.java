@@ -6,6 +6,8 @@
 </module>
 */
 
+// violation 8 lines above
+
 // xdoc section -- start
-// single-line comment // violation
+// single-line comment
 // xdoc section -- end
