@@ -8,7 +8,7 @@ tokens = (default)LAND, BAND, LOR, BOR, BXOR
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-public class InputBooleanExpressionComplexitySmall { // ok
+public class InputBooleanExpressionComplexitySmall {
     public void method() {
         java.awt.EventQueue.invokeLater(() -> {
             try {
