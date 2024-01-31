@@ -6,6 +6,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.nocodeinfile;
+
 // xdoc section -- start
-// single-line comment // violation
+public class Example1 {
+// single-line comment
+}
 // xdoc section -- end
