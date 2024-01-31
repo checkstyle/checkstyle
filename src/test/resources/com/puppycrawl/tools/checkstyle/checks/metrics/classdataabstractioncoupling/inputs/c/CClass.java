@@ -6,5 +6,5 @@ No config
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.inputs.c;
 
-public class CClass { // ok
+public class CClass {
 }
