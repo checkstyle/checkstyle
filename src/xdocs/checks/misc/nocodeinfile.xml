@@ -12,6 +12,7 @@
       <subsection name="Description" id="Description">
         <p>
           Checks whether file contains code.
+          Java compiler is not raising errors on files with no code or all commented out.
           Files which are considered to have no code:
         </p>
         <ul>
@@ -38,19 +39,18 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p>
-          Example:
-        </p>
-        <p id="Example1-code">
-          Content of the files:
-        </p>
+        <p id="Example1-code">Example:</p>
         <source>
-// single-line comment // violation
+// public class Example1 {
+// single-line comment is not code
+// }
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-/* // violation
- block comment
+/*
+ public class Example2 {
+ block comment is not code
+ }
 */
         </source>
       </subsection>
