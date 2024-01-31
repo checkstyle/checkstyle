@@ -20,7 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_CONSTRUCTOR;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,10 +40,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     public void testDefault() throws Exception {
 
         final String[] expected = {
-            "32:5: " + getCheckMessage(MSG_KEY, 21),
-            "60:9: " + getCheckMessage(MSG_KEY, 49),
-            "72:5: " + getCheckMessage(MSG_KEY, 70),
-            "115:5: " + getCheckMessage(MSG_KEY, 104),
+            "32:5: " + getCheckMessage(MSG_METHOD, 21),
+            "60:9: " + getCheckMessage(MSG_METHOD, 49),
+            "72:5: " + getCheckMessage(MSG_METHOD, 70),
+            "115:5: " + getCheckMessage(MSG_METHOD, 104),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
@@ -52,9 +53,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
     public void testOverloadMethodsDeclarationOrderRecords() throws Exception {
 
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY, 15),
-            "41:9: " + getCheckMessage(MSG_KEY, 35),
-            "57:9: " + getCheckMessage(MSG_KEY, 50),
+            "21:9: " + getCheckMessage(MSG_METHOD, 15),
+            "41:9: " + getCheckMessage(MSG_METHOD, 35),
+            "57:9: " + getCheckMessage(MSG_METHOD, 50),
+            "63:9: " + getCheckMessage(MSG_METHOD, 57),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
@@ -70,6 +72,19 @@ public class OverloadMethodsDeclarationOrderCheckTest
                 getPath(
                         "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java"
                 ), expected);
+    }
+
+    @Test
+    public void testOverloadMethodsDeclarationOrderConstructors() throws Exception {
+
+        final String[] expected = {
+            "23:5: " + getCheckMessage(MSG_CONSTRUCTOR, 14),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOverloadMethodsDeclarationOrderConstructors.java"),
+                expected
+        );
     }
 
     @Test

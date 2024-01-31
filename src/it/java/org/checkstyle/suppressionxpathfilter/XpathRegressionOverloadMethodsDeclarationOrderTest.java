@@ -47,7 +47,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final String[] expectedViolation = {
             "14:5: " + getCheckMessage(clazz,
-                        OverloadMethodsDeclarationOrderCheck.MSG_KEY, "5"),
+                        OverloadMethodsDeclarationOrderCheck.MSG_METHOD, "5"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -75,7 +75,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final String[] expectedViolation = {
             "30:9: " + getCheckMessage(clazz,
-                    OverloadMethodsDeclarationOrderCheck.MSG_KEY, "21"),
+                    OverloadMethodsDeclarationOrderCheck.MSG_METHOD, "21"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
