@@ -6,8 +6,14 @@
 </module>
 */
 
+// violation 8 lines above
+
+package com.puppycrawl.tools.checkstyle.checks.nocodeinfile;
+
 // xdoc section -- start
-/* // violation
+public class Example2 {
+/*
  block comment
 */
+}
 // xdoc section -- end
