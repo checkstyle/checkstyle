@@ -7,25 +7,26 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 // xdoc section -- start
-public class Game {
-   public static void main(String... args){}   // violation
+public class Example2 {
+   public static void main(String... args){}   // violation, 'Uncommented main method found'
 }
 
 public class Main {
-   public static void main(String[] args){}   // OK
+   public static void main(String[] args){}
 }
 
 public class Launch {
-   //public static void main(String[] args){} // OK
+   //public static void main(String[] args){}
 }
 
 public class Start {
-   public void main(){}                       // OK
+   public void main(){}
 }
 
 public record MyRecord1 {
-    public void main(){}                      // OK
+    public void main(){}
 }
 // xdoc section -- end
