@@ -69,7 +69,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
-import com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -93,18 +92,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testProperFileExtension() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
-        final File file = new File(temporaryFolder, "file.java");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            final String content = "public class Main { public static final int k = 5 + 4; }";
-            writer.write(content);
-        }
-        final String[] expected1 = {
-            "1:45: " + getCheckMessage(ConstantNameCheck.class,
-                    MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        final String path = getPath("InputTreeWalkerProperFileExtension.java");
+        final String[] expected = {
+            "10:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
-        verify(checkConfig, file.getPath(), expected1);
+        verifyWithInlineConfigParser(path, expected);
     }
 
     /**
@@ -131,16 +124,15 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testNoAuditEventsWithoutFilters() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
-            "5:1: " + getCheckMessage(OneTopLevelClassCheck.class,
-                    OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
+            "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                        OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
         try (MockedConstruction<TreeWalkerAuditEvent> mocked =
-                 Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
-                     throw new CheckstyleException("No audit events expected");
-                 })) {
-            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+                     Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
+                         throw new CheckstyleException("No audit events expected");
+                     })) {
+            verifyWithInlineConfigParser(getPath("InputTreeWalker.java"), expected);
         }
     }
 
@@ -150,9 +142,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(JavadocParagraphCheck.class,
+            "7: " + getCheckMessage(JavadocParagraphCheck.class,
                     JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
         };
         final String path = getPath("InputTreeWalkerJavadoc.java");
@@ -166,7 +157,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             // This will re-enable walk(..., AstState.WITH_COMMENTS)
             parser.when(() -> JavaParser.appendHiddenCommentNodes(mockAst)).thenReturn(realAst);
 
-            verify(checkConfig, path, expected);
+            verifyWithInlineConfigParser(path, expected);
         }
     }
 
@@ -176,9 +167,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testConditionRequiredWithoutCommentChecks() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
-            "5:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+            "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                     OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
         try (MockedStatic<JavaParser> parser =
@@ -187,7 +177,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             parser.when(() -> JavaParser.appendHiddenCommentNodes(any(DetailAST.class)))
                     .thenThrow(IllegalStateException.class);
 
-            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+            verifyWithInlineConfigParser(getPath("InputTreeWalker.java"), expected);
         }
     }
 
@@ -236,8 +226,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, pathToEmptyFile, expected);
     }
 
@@ -369,8 +359,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
         final File file = File.createTempFile("file", ".java", temporaryFolder);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checker, file.getPath(), expected);
     }
 
@@ -502,38 +492,28 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBehaviourWithChecksAndFilters() throws Exception {
-        final DefaultConfiguration filterConfig =
-                createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addProperty("checkCPP", "false");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
-        treeWalkerConfig.addChild(filterConfig);
 
         final String[] expected = {
-            "9:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
+            "17:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
                     "^[a-z][a-zA-Z0-9]*$"),
-            "4:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
+            "12:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verify(treeWalkerConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTreeWalkerSuppressionCommentFilter.java"),
                 expected);
     }
 
     @Test
     public void testMultiCheckOrder() throws Exception {
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(createModuleConfig(WhitespaceAroundCheck.class));
-        treeWalkerConfig.addChild(createModuleConfig(WhitespaceAfterCheck.class));
 
         final String[] expected = {
-            "6:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
-            "6:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+            "13:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "13:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
-        verify(treeWalkerConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTreeWalkerMultiCheckOrder.java"),
                 expected);
     }
@@ -541,26 +521,14 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testMultiCheckOfSameTypeNoIdResultsInOrderingByHash() throws Exception {
 
-        final DefaultConfiguration configuration1 = createModuleConfig(ParameterNameCheck.class);
-        configuration1.addProperty("format", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$");
-        configuration1.addProperty("accessModifiers", "protected, package, private");
-
-        final DefaultConfiguration configuration2 = createModuleConfig(ParameterNameCheck.class);
-        configuration2.addProperty("format", "^[a-z][a-z0-9][a-zA-Z0-9]*$");
-        configuration2.addProperty("accessModifiers", "PUBLIC");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(configuration1);
-        treeWalkerConfig.addChild(configuration2);
-
         final String[] expected = {
-            "5:28: " + getCheckMessage(ParameterNameCheck.class,
+            "15:28: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
-            "7:25: " + getCheckMessage(ParameterNameCheck.class,
+            "17:25: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
         };
 
-        verify(treeWalkerConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputTreeWalkerMultiCheckOrder2.java"),
                 expected);
     }
@@ -631,8 +599,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkerConfig, filePath, expected);
         // One more time to use cache.
         verify(checkerConfig, filePath, expected);
@@ -656,8 +624,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         // test is only valid when relative paths are given
         final String filePath = "src/test/resources/" + getPackageLocation()
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(treeWalkerConfig, filePath, expected);
     }
 
@@ -675,8 +643,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkerConfig, filePath, expected);
     }
 
