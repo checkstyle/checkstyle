@@ -13,25 +13,25 @@ public class InputParameterNameAccessModifier {
 
     public InputParameterNameAccessModifier(int pubconstr) {} // violation
 
-    public void v1(int h) { // ok
+    public void v1(int h) {
         new Object () {
             public void i(int inner) {} // violation
         };
     }
 
-    protected void v4(int h) {} // ok
+    protected void v4(int h) {}
 
-    void v2(int h) {} // ok
+    void v2(int h) {}
 
-    private void v3(int h) {} // ok
+    private void v3(int h) {}
 
     public void i1(int pubpub) {} // violation
 
-    protected void i4(int pubprot) {} // ok
+    protected void i4(int pubprot) {}
 
-    void i2(int pubpack) {} // ok
+    void i2(int pubpack) {}
 
-    private void i3(int pubpriv) {} // ok
+    private void i3(int pubpriv) {}
 
     public interface InterfaceScope {
         void v1(int h);
@@ -42,21 +42,21 @@ public class InputParameterNameAccessModifier {
 
 class PrivateScope {
 
-    public void v1(int h) {} // ok
+    public void v1(int h) {}
 
-    protected void v4(int h) {} // ok
+    protected void v4(int h) {}
 
-    void v2(int h) {} // ok
+    void v2(int h) {}
 
-    private void v3(int h) {} // ok
+    private void v3(int h) {}
 
     public void i1(int packpub) {} // violation
 
-    protected void i4(int packprot) {} // ok
+    protected void i4(int packprot) {}
 
-    void i2(int packpack) {} // ok
+    void i2(int packpack) {}
 
-    private void i3(int packpriv) { // ok
+    private void i3(int packpriv) {
         try {
             /* Make sure catch var is ignored */
         } catch (Exception exc) {
@@ -64,20 +64,18 @@ class PrivateScope {
     }
 
     interface InterfaceScope {
-        void v1(int h); // ok
+        void v1(int h);
 
         void i1(int packifc); // violation
     }
 
     interface FuncIfc {
-        void a(int h); // ok
+        void a(int h);
     }
 
-    public void l() { // ok
+    public void l() {
         FuncIfc l1 = (int lexp)->{};
 
         FuncIfc l2 = (limp)->{};
     }
 }
-
-
