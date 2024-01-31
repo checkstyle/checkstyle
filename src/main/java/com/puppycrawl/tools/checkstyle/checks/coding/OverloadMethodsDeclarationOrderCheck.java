@@ -52,10 +52,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
+     * A key for overloaded method pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "overload.methods.declaration";
+    public static final String MSG_METHOD = "overload.methods.declaration";
+
+    /**
+     * A key for overloaded constructor pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_CONSTRUCTOR = "overload.constructors.declaration";
 
     @Override
     public int[] getDefaultTokens() {
@@ -103,6 +109,9 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
         DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
+        final Map<String, Integer> constructorIndexMap = new HashMap<>();
+        final Map<String, Integer> constructorLineNumberMap = new HashMap<>();
+
         int currentIndex = 0;
         while (currentToken != null) {
             if (currentToken.getType() == TokenTypes.METHOD_DEF) {
@@ -113,14 +122,28 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 if (previousIndex != null && currentIndex - previousIndex > allowedDistance) {
                     final int previousLineWithOverloadMethod =
                             methodLineNumberMap.get(methodName);
-                    log(currentToken, MSG_KEY,
+                    log(currentToken, MSG_METHOD,
                             previousLineWithOverloadMethod);
                 }
                 methodIndexMap.put(methodName, currentIndex);
                 methodLineNumberMap.put(methodName, currentToken.getLineNo());
             }
+
+            if (currentToken.getType() == TokenTypes.CTOR_DEF) {
+                currentIndex++;
+                final String constructorName =
+                        currentToken.findFirstToken(TokenTypes.IDENT).getText();
+                final Integer previousIndex = constructorIndexMap.get(constructorName);
+                if (previousIndex != null && currentIndex - previousIndex > allowedDistance) {
+                    final int previousLineWithOverloadConstructor =
+                            constructorLineNumberMap.get(constructorName);
+                    log(currentToken, MSG_CONSTRUCTOR,
+                            previousLineWithOverloadConstructor);
+                }
+                constructorIndexMap.put(constructorName, currentIndex);
+                constructorLineNumberMap.put(constructorName, currentToken.getLineNo());
+            }
             currentToken = currentToken.getNextSibling();
         }
     }
-
 }

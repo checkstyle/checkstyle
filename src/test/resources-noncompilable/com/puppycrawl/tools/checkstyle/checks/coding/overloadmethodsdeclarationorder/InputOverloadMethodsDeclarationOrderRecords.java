@@ -18,7 +18,7 @@ public class InputOverloadMethodsDeclarationOrderRecords {
         public void notFoo() {
         }
 
-        public void foo(int i, String s) { // violation
+        public void foo(int i, String s) { // violation 'overloaded.methods'
         }
 
         public void foo(String s, int i) {
@@ -38,7 +38,7 @@ public class InputOverloadMethodsDeclarationOrderRecords {
 
          }
 
-        public void foo() { // violation
+        public void foo() { // violation 'overloaded.methods'
         }
 
         public MyRecord2{}
@@ -54,13 +54,13 @@ public class InputOverloadMethodsDeclarationOrderRecords {
         }
 
 
-        public void foo() { // violation
+        public void foo() { // violation 'overloaded.methods'
         }
 
         public MyClass() {
         }
 
-        public void foo(int i, String s) {
+        public void foo(int i, String s) { // violation 'overloaded.methods'
         }
 
         public void foo(String s, int i) {

@@ -29,7 +29,7 @@ class InputOverloadMethodsDeclarationOrder
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) // violation
+    public void overloadMethod(String s, Boolean b, int i) // violation 'overloaded.methods'
     {
         //some foo code
     }
@@ -57,7 +57,7 @@ class InputOverloadMethodsDeclarationOrder
         }
 
         //violation: because overloads never split
-        public void overloadMethod(String s, Boolean b, int i) // violation
+        public void overloadMethod(String s, Boolean b, int i) // violation 'overloaded.methods'
         {
             //some foo code
         }
@@ -69,7 +69,7 @@ interface Fooable
     public abstract void foo(int i);
     public abstract void foo(String s);
     public abstract void noFoo();
-    public abstract void foo(String s, Boolean b, int i); // violation
+    public abstract void foo(String s, Boolean b, int i); // violation 'overloaded.methods'
 }
 
 enum FooType {
@@ -112,7 +112,7 @@ enum FooType {
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) // violation
+    public void overloadMethod(String s, Boolean b, int i) // violation 'overloaded.methods'
     {
         //some foo code
     }
