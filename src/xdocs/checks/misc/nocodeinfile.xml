@@ -45,13 +45,17 @@
           Content of the files:
         </p>
         <source>
-// single-line comment // violation
+Example1 {
+// single-line comment
+}
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-/* // violation
+Example2 {
+/*
  block comment
 */
+}
         </source>
       </subsection>
 
