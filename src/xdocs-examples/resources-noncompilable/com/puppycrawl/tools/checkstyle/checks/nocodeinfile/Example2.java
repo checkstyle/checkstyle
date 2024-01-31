@@ -5,9 +5,14 @@
   </module>
 </module>
 */
+//non-compiled with javac: No code in file
+
+// violation 9 lines above
 
 // xdoc section -- start
-/* // violation
- block comment
+/*
+public class Example2 {
+// Whole code is commented out , violation on first line of file
+}
 */
 // xdoc section -- end
