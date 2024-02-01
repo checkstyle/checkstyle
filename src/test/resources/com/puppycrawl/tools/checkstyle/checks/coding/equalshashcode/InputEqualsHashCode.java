@@ -6,7 +6,7 @@ EqualsHashCode
 
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
-public class InputEqualsHashCode { // ok
+public class InputEqualsHashCode { 
     public boolean notEquals() { // ok
         return true;
     }
