@@ -29,6 +29,8 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -106,7 +108,7 @@ public abstract class AbstractAutomaticBean
      */
     private static BeanUtilsBean createBeanUtilsBean() {
         final ConvertUtilsBean cub = new ConvertUtilsBean();
-
+        
         registerIntegralTypes(cub);
         registerCustomTypes(cub);
 
@@ -338,6 +340,7 @@ public abstract class AbstractAutomaticBean
 
         @SuppressWarnings("unchecked")
         @Override
+        @Nullable
         public Object convert(Class type, Object value) {
             final String url = value.toString();
             URI result = null;
