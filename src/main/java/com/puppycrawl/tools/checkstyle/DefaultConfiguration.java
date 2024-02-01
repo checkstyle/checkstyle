@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -87,6 +89,7 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
+    @Nullable
     public String[] getPropertyNames() {
         final Set<String> keySet = propertyMap.keySet();
         return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);
@@ -102,6 +105,7 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
+    @Nullable
     public Configuration[] getChildren() {
         return children.toArray(
                 EMPTY_CONFIGURATION_ARRAY);
