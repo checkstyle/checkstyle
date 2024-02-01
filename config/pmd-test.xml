@@ -190,7 +190,9 @@
                  | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
                  | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
-                     //MethodDeclaration[@Name='testClose']"/>
+                     //MethodDeclaration[@Name='testClose']
+                 | //ClassOrInterfaceDeclaration[@SimpleName='CheckerTest']
+                     //MethodDeclaration[@Name='testCatchErrorInProcessFilesMethod']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
