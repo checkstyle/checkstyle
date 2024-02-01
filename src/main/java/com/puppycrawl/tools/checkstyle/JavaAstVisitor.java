@@ -107,6 +107,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     /** String representation of the double quote character. */
     private static final String QUOTE = "\"";
 
+    /** String representation of the triple quote character. */
+    private static final String TRIPLE_QUOTE = "\"\"\"";
+
     /** String representation of the string template embedded expression starting delimiter. */
     private static final String EMBEDDED_EXPRESSION_BEGIN = "\\{";
 
@@ -1830,6 +1833,153 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         return begin;
     }
 
+    @Override
+    public DetailAstImpl visitTextBlockTemplate(JavaLanguageParser.TextBlockTemplateContext ctx) {
+        final DetailAstImpl begin = buildTextBlockTemplateBeginning(ctx);
+
+        final Optional<DetailAstImpl> startExpression = Optional.ofNullable(ctx.expr())
+            .map(this::visit);
+
+        if (startExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(startExpression.orElseThrow());
+            begin.addChild(imaginaryExpr);
+        }
+
+        ctx.textBlockTemplateMiddle().stream()
+                .map(this::buildTextBlockTemplateMiddle)
+                .collect(Collectors.toUnmodifiableList())
+                .forEach(begin::addChild);
+
+        final DetailAstImpl end = buildTextBlockTemplateEnd(ctx);
+        begin.addChild(end);
+        return begin;
+    }
+
+    private static DetailAstImpl buildTextBlockTemplateEnd(
+            JavaLanguageParser.TextBlockTemplateContext ctx) {
+
+        // token looks like '}' StringFragment '"""'
+        final TerminalNode context = ctx.TEXT_BLOCK_TEMPLATE_END();
+        final Token token = context.getSymbol();
+        final String tokenText = context.getText();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl embeddedExpressionEnd = createImaginary(
+                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '}' and '"'
+        final String stringFragment = tokenText.substring(
+                EMBEDDED_EXPRESSION_END.length(),
+                tokenTextLength - TRIPLE_QUOTE.length()
+        );
+
+        final DetailAstImpl endContent = createImaginary(
+                TokenTypes.TEXT_BLOCK_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber,
+                tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
+        );
+        embeddedExpressionEnd.addNextSibling(endContent);
+
+        final DetailAstImpl stringTemplateEnd = createImaginary(
+                TokenTypes.STRING_TEMPLATE_END, TRIPLE_QUOTE,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - TRIPLE_QUOTE.length()
+        );
+        endContent.addNextSibling(stringTemplateEnd);
+        return embeddedExpressionEnd;
+    }
+
+    private DetailAstImpl buildTextBlockTemplateMiddle(
+            JavaLanguageParser.TextBlockTemplateMiddleContext middleContext) {
+
+        // token looks like '}' TextBlockFragment '\{'
+        final TerminalNode context = middleContext.TEXT_BLOCK_TEMPLATE_MID();
+        final Token token = context.getSymbol();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final String tokenText = context.getText();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl embeddedExpressionEnd = createImaginary(
+                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '}' and '\\' '{'
+        final String stringFragment = tokenText.substring(
+                EMBEDDED_EXPRESSION_END.length(),
+                tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+
+        final DetailAstImpl content = createImaginary(
+                TokenTypes.TEXT_BLOCK_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber, tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
+        );
+        embeddedExpressionEnd.addNextSibling(content);
+
+        final DetailAstImpl embeddedBegin = createImaginary(
+                TokenTypes.EMBEDDED_EXPRESSION_BEGIN,
+                EMBEDDED_EXPRESSION_BEGIN,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+        content.addNextSibling(embeddedBegin);
+
+        final Optional<DetailAstImpl> embeddedExpression = Optional.ofNullable(middleContext.expr())
+                .map(this::visit);
+
+        if (embeddedExpression.isPresent()) {
+            final DetailAstImpl imaginaryExpr =
+                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
+            imaginaryExpr.addChild(embeddedExpression.orElseThrow());
+            embeddedExpressionEnd.addNextSibling(imaginaryExpr);
+        }
+
+        return embeddedExpressionEnd;
+    }
+
+    private static DetailAstImpl buildTextBlockTemplateBeginning(
+            JavaLanguageParser.TextBlockTemplateContext ctx) {
+
+        // token looks like '"' StringFragment '\{'
+        final TerminalNode context = ctx.TEXT_BLOCK_TEMPLATE_BEGIN();
+        final Token token = context.getSymbol();
+        final String tokenText = context.getText();
+        final int tokenStartIndex = token.getCharPositionInLine();
+        final int tokenLineNumber = token.getLine();
+        final int tokenTextLength = tokenText.length();
+
+        final DetailAstImpl textBlockTemplateBegin = createImaginary(
+                TokenTypes.TEXT_BLOCK_TEMPLATE_BEGIN, TRIPLE_QUOTE,
+                tokenLineNumber, tokenStartIndex
+        );
+
+        // remove delimiters '"' and '\{'
+        final String stringFragment = tokenText.substring(
+                TRIPLE_QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());
+
+        final DetailAstImpl stringTemplateContent = createImaginary(
+                TokenTypes.TEXT_BLOCK_TEMPLATE_CONTENT, stringFragment,
+                tokenLineNumber, tokenStartIndex + TRIPLE_QUOTE.length()
+        );
+        textBlockTemplateBegin.addChild(stringTemplateContent);
+
+        final DetailAstImpl embeddedBegin = createImaginary(
+                TokenTypes.EMBEDDED_EXPRESSION_BEGIN,
+                EMBEDDED_EXPRESSION_BEGIN,
+                tokenLineNumber,
+                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
+        );
+        textBlockTemplateBegin.addChild(embeddedBegin);
+        return textBlockTemplateBegin;
+    }
+
     /**
      * Builds the beginning of a string template AST.
      *
@@ -2239,14 +2389,19 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitTypePattern(
-            JavaLanguageParser.TypePatternContext ctx) {
+    public DetailAstImpl visitTypePatternDef(
+            JavaLanguageParser.TypePatternDefContext ctx) {
         final DetailAstImpl type = visit(ctx.type);
         final DetailAstImpl patternVariableDef = createImaginary(TokenTypes.PATTERN_VARIABLE_DEF);
         patternVariableDef.addChild(createModifiers(ctx.mods));
         patternVariableDef.addChild(type);
         patternVariableDef.addChild(visit(ctx.id()));
         return patternVariableDef;
+    }
+
+    @Override
+    public DetailAstImpl visitUnnamedPatternDef(JavaLanguageParser.UnnamedPatternDefContext ctx) {
+        return create(TokenTypes.UNNAMED_PATTERN_DEF, ctx.start);
     }
 
     @Override
