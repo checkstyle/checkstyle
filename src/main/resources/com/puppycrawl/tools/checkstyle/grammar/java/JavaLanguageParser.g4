@@ -760,19 +760,22 @@ primary
 
 templateArgument
     : template
+    | textBlockLiteral
     | STRING_LITERAL
     ;
 
 template
-    : stringTemplate
-    ;
-
-stringTemplate
-    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END #stringTemplate
+    | TEXT_BLOCK_TEMPLATE_BEGIN expr? textBlockTemplateMiddle* TEXT_BLOCK_TEMPLATE_END #textBlockTemplate
     ;
 
 stringTemplateMiddle
     : STRING_TEMPLATE_MID expr?
+    ;
+
+textBlockTemplateMiddle
+    : emptyMiddle = stringTemplateMiddle
+    | TEXT_BLOCK_TEMPLATE_MID expr?
     ;
 
 classType
@@ -913,7 +916,8 @@ primaryPattern
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
     ;
 
 recordPattern
@@ -929,7 +933,8 @@ permittedSubclassesAndInterfaces
     ;
 
 // Handle the 'keyword as identifier' problem
-id  : LITERAL_RECORD
+id:  LITERAL_UNDERSCORE
+    | LITERAL_RECORD
     | LITERAL_YIELD
     | LITERAL_NON_SEALED
     | LITERAL_SEALED
