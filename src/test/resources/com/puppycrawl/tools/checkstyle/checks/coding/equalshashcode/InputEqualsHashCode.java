@@ -7,15 +7,15 @@ EqualsHashCode
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
 public class InputEqualsHashCode { 
-    public boolean notEquals() { // ok
+    public boolean notEquals() { 
         return true;
     }
 
-    public boolean equals() { // ok
+    public boolean equals() {
         return false;
     }
 
-    public boolean equals(Object o1) { // ok
+    public boolean equals(Object o1) { 
         return false;
     }
 
@@ -23,23 +23,23 @@ public class InputEqualsHashCode {
         return false;
     }
 
-    private boolean equals(String s) { // ok
+    private boolean equals(String s) { 
         return false;
     }
 
-    protected int notHashCode() { // ok
+    protected int notHashCode() { 
         return 1;
     }
 
-    public int hashCode() { // ok
+    public int hashCode() { 
         return 1;
     }
 
-    public int hashCode(Object o1) { // ok
+    public int hashCode(Object o1) { 
         return 1;
     }
 
-    private int hashCode(Object o1, Object o2) { // ok
+    private int hashCode(Object o1, Object o2) { 
         return 1;
     }
 }
