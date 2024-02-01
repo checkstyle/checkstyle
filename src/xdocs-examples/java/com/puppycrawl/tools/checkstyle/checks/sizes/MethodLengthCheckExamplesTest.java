@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,28 +33,35 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample1() throws Exception {
+
+        final int max = 4;
+
         final String[] expected = {
-
+            "18:3: " + getCheckMessage(MSG_KEY, 5, max, "Example1"),
+            "31:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
+            "44:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
+            "52:5: " + getCheckMessage(MSG_KEY, 5, max, "MyBadRecord"),
         };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
+
+        final int max = 4;
+
         final String[] expected = {
-
+            "32:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
+            "45:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
         };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "33:3: " + getCheckMessage(MSG_KEY, 6, 4, "firstMethod"),
         };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 }
