@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -302,6 +304,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * @param details {@link Details} object containing the details relevant to the rcurly
      * @return if the double brace initialization rcurly should be skipped over by the check
      */
+    @Nullable
     private static boolean skipDoubleBraceInstInit(Details details) {
         boolean skipDoubleBraceInstInit = false;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
@@ -438,6 +441,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param switchNode switch statement or expression to gather details about
          * @return new Details about given switch statement or expression
          */
+        @Nullable
         private static Details getDetailsForSwitch(DetailAST switchNode) {
             final DetailAST lcurly = switchNode.findFirstToken(TokenTypes.LCURLY);
             final DetailAST rcurly;
@@ -478,6 +482,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
+        @Nullable
         private static Details getDetailsForTryCatch(DetailAST ast) {
             final DetailAST lcurly;
             DetailAST nextToken;
@@ -515,6 +520,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
+        @Nullable
         private static Details getDetailsForIf(DetailAST ast) {
             final boolean shouldCheckLastRcurly;
             final DetailAST lcurly;
@@ -544,6 +550,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */
+        @Nullable
         private static Details getDetailsForOthers(DetailAST ast) {
             DetailAST rcurly = null;
             final DetailAST lcurly;
@@ -580,6 +587,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */
+        @Nullable
         private static Details getDetailsForDoLoops(DetailAST ast) {
             final DetailAST lcurly = ast.findFirstToken(TokenTypes.SLIST);
             final DetailAST nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
@@ -596,6 +604,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast the given node.
          * @return the token which represents next lexical item.
          */
+        @Nullable
         private static DetailAST getNextToken(DetailAST ast) {
             DetailAST next = null;
             DetailAST parent = ast;
