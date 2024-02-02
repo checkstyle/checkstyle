@@ -115,14 +115,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>.thenComparing(AbstractCheck::hashCode));</lineContent>
+    <lineContent>.thenComparingInt(AbstractCheck::hashCode));</lineContent>
     <details>
       found   : @GuardSatisfied Object
       required: @GuardedBy AbstractCheck
       Consequence: method in @GuardedBy AbstractCheck
       @GuardedBy int hashCode(@GuardSatisfied Object this)
-      is not a valid method reference for method in @GuardedBy Function&lt;@GuardedBy AbstractCheck, @GuardedBy Integer&gt;
-      @GuardedBy Integer apply(@GuardedBy Function&lt;@GuardedBy AbstractCheck, @GuardedBy Integer&gt; this, @GuardedBy AbstractCheck p0)
+      is not a valid method reference for method in @GuardedBy ToIntFunction&lt;@GuardedBy AbstractCheck&gt;
+      @GuardedBy int applyAsInt(@GuardedBy ToIntFunction&lt;@GuardedBy AbstractCheck&gt; this, @GuardedBy AbstractCheck p0)
     </details>
   </checkerFrameworkError>
 
