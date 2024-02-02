@@ -182,7 +182,7 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = true;
                 break;
             case TokenTypes.LITERAL_BREAK:
-                terminated = useBreak;
+                terminated = useBreak || isLabeledBreakTerminatingSwitch(ast);
                 break;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated = useContinue;
@@ -211,6 +211,34 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = false;
         }
         return terminated;
+    }
+
+    private boolean isLabeledBreakTerminatingSwitch(final DetailAST breakAst) {
+        // Directly get the label of the break statement, if any.
+        final DetailAST literalBreakLabel = breakAst.findFirstToken(TokenTypes.IDENT);
+
+        // No need to proceed if the break statement is not labeled.
+        if (literalBreakLabel == null) {
+            return false;
+        }
+
+        // Start traversing up the AST from the break statement's parent.
+        for (DetailAST ancestor = breakAst.getParent(); ancestor != null; ancestor = ancestor.getParent()) {
+            // Check if the current ancestor is a switch statement.
+            if (ancestor.getType() == TokenTypes.LITERAL_SWITCH) {
+                // Attempt to find a matching label for this switch statement, if it's labeled.
+                // This can be a label statement or an identifier before the switch.
+                DetailAST switchLabelOrStatement = ancestor.getPreviousSibling();
+
+                // If a matching label is found that matches the break's label, the break terminates the switch.
+                if (switchLabelOrStatement != null && switchLabelOrStatement.getText().equals(literalBreakLabel.getText())) {
+                    return true;
+                }
+            }
+        }
+
+        // If no matching switch is found, or the break statement's label does not match any switch label, return false.
+        return false;
     }
 
     /**
