@@ -45,12 +45,16 @@
           Content of the files:
         </p>
         <source>
-// single-line comment // violation
+// public class Example1 {
+// // Whole code is commented out , violation on first line of file
+// }
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-/* // violation
- block comment
+/*
+public class Example2 {
+// Whole code is commented out , violation on first line of file
+}
 */
         </source>
       </subsection>
