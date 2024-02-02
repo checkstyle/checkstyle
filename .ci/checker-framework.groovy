@@ -127,7 +127,10 @@ private static List<List<String>> getCheckerFrameworkErrors(final String profile
             checkerFrameworkLines.add(lineFromReader)
             lineFromReader = reader.readLine()
         }
-        process.waitFor()
+        int exitCode = process.waitFor()
+        if (exitCode != 0) {
+            throw new RuntimeException("Maven process exited with error code: " + exitCode)
+        }
     } finally {
         reader.close()
     }
