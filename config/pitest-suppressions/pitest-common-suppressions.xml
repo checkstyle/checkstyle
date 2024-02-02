@@ -12,6 +12,42 @@
   <mutation unstable="false">
     <sourceFile>Checker.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
+    <mutatedMethod>processFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Exception::printStackTrace</description>
+    <lineContent>ex.printStackTrace(pw);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Checker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
+    <mutatedMethod>processFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/SortedSet::add</description>
+    <lineContent>fileMessages.add(new Violation(1,</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Checker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
+    <mutatedMethod>processFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/io/IOException::getMessage</description>
+    <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Checker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
+    <mutatedMethod>processFile</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/StringBuffer::toString</description>
+    <lineContent>new String[] {sw.getBuffer().toString()},</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>Checker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
     <mutatedMethod>setSeverity</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/api/SeverityLevel::getInstance</description>
