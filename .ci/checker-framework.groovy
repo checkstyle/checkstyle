@@ -112,19 +112,27 @@ private static int checkCheckerFrameworkReport(final String profile) {
  */
 private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
     final List<String> checkerFrameworkLines = new ArrayList<>()
+    final List<List<String>> checkerFrameworkErrors = new ArrayList<>()
     final String command = "mvn -e --no-transfer-progress clean compile" +
         " -P${profile},no-validations"
     final ProcessBuilder processBuilder = new ProcessBuilder(getOsSpecificCmd(command).split(' '))
     processBuilder.redirectErrorStream(true)
     final Process process = processBuilder.start()
-
     BufferedReader reader = null
     try {
+        Pattern detailedOomErrorPattern = Pattern.
+                compile(".*OutOfMemoryError.*max memory = \\d+.*total memory = \\d+.*free memory = \\d+.*",
+                        Pattern.CASE_INSENSITIVE);
         reader = new BufferedReader(new InputStreamReader(process.inputStream))
         String lineFromReader = reader.readLine()
         while (lineFromReader != null) {
             println(lineFromReader)
             checkerFrameworkLines.add(lineFromReader)
+            if (detailedOomErrorPattern.matcher(lineFromReader).matches()) {
+                List<String> oomError = new ArrayList<>();
+                oomError.add("ERROR: " + lineFromReader);
+                checkerFrameworkErrors.add(oomError);
+            }
             lineFromReader = reader.readLine()
         }
         process.waitFor()
@@ -132,7 +140,6 @@ private static List<List<String>> getCheckerFrameworkErrors(final String profile
         reader.close()
     }
 
-    final List<List<String>> checkerFrameworkErrors = new ArrayList<>()
     for (int index = 0; index < checkerFrameworkLines.size(); index++) {
         final String line = checkerFrameworkLines.get(index)
         if (line.startsWith('[WARNING]')) {
