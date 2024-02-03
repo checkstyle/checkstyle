@@ -801,7 +801,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filesToProcess.add(mock);
 
         PrintWriter printWriter = null;
-        try (PrintWriter writer = mock(PrintWriter.class)) {
+        try (PrintWriter writer = mock()) {
             printWriter = writer;
             checker.process(filesToProcess);
             assertWithMessage("IOError is expected!").fail();
