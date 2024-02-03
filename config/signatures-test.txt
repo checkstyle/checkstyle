@@ -1,1 +1,2 @@
 com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport#verify(com.puppycrawl.tools.checkstyle.api.Configuration, java.lang.String, java.lang.String[]) @ Use inline config parser instead.
+java.nio.file.Files#createTempFile(java.lang.String,java.lang.String,java.nio.file.attribute.FileAttribute[]) @ Use of this method is forbidden, please use @TempDir for better temporary directory control
