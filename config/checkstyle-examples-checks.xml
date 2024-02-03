@@ -103,6 +103,11 @@
     <property name="eachLine" value="false"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="format" value="Files\.createTempDirectory"/>
+    <property name="message" value="Use @TempDir for better temporary directory control"/>
+  </module>
+
   <module name="TreeWalker">
 
     <module name="PackageDeclaration"/>
@@ -130,4 +135,5 @@
     </module>
 
   </module>
+
 </module>
