@@ -5,7 +5,12 @@
   </module>
 </module>
 */
+//non-compiled: no code for testing
+
+// violation 9 lines above
 
 // xdoc section -- start
-// single-line comment // violation
+// public class Example1 {
+// // Whole code is commented out , violation on first line of file
+// }
 // xdoc section -- end
