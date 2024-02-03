@@ -688,12 +688,11 @@ public class JavadocMethodCheck extends AbstractCheck {
     private static boolean isInIgnoreBlock(DetailAST methodBodyAst, DetailAST throwAst) {
         DetailAST ancestor = throwAst;
         while (ancestor != methodBodyAst) {
-            if (ancestor.getType() == TokenTypes.LITERAL_TRY
-                    && ancestor.findFirstToken(TokenTypes.LITERAL_CATCH) != null
-                    || ancestor.getType() == TokenTypes.LAMBDA
-                    || ancestor.getType() == TokenTypes.OBJBLOCK) {
-                // throw is inside a try block, and there is a catch block,
-                // or throw is inside a lambda expression/anonymous class/local class
+            if (ancestor.getType() == TokenTypes.LAMBDA
+                    || ancestor.getType() == TokenTypes.OBJBLOCK
+                    || ancestor.findFirstToken(TokenTypes.LITERAL_CATCH) != null) {
+                // throw is inside a lambda expression/anonymous class/local class,
+                // or throw is inside a try block, and there is a catch block
                 break;
             }
             if (ancestor.getType() == TokenTypes.LITERAL_CATCH
