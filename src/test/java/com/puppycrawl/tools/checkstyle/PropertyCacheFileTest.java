@@ -61,6 +61,12 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @TempDir
     public File temporaryFolder;
 
+    @TempDir
+    public Path temporaryDir;
+
+    @TempDir
+    public Path symbolicLinkDir;
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/propertycachefile";
@@ -286,9 +292,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
-                .resolve("symbolicLink");
+        final Path tempDirectory = temporaryDir;
+        final Path symbolicLinkDirectory = symbolicLinkDir.resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
         final Configuration config = new DefaultConfiguration("myName");
@@ -306,9 +311,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkResolution() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
-                .resolve("symbolicLink");
+        final Path tempDirectory = temporaryDir;
+        final Path symbolicLinkDirectory = symbolicLinkDir.resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
         final Configuration config = new DefaultConfiguration("myName");
@@ -328,7 +332,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final Path tempFile = Files.createTempFile("tempFile", null);
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir");
+        final Path symbolicLinkDirectory = symbolicLinkDir;
         final Path symbolicLink = symbolicLinkDirectory.resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLink, tempFile);
 
@@ -350,13 +354,11 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testMultipleSymbolicLinkResolution() throws IOException {
-        final Path actualDirectory = Files.createTempDirectory("actualDir");
-        final Path firstSymbolicLink = Files.createTempDirectory("firstLinkDir")
-                .resolve("firstLink");
+        final Path actualDirectory = temporaryDir;
+        final Path firstSymbolicLink = symbolicLinkDir.resolve("firstLink");
         Files.createSymbolicLink(firstSymbolicLink, actualDirectory);
 
-        final Path secondSymbolicLink = Files.createTempDirectory("secondLinkDir")
-                .resolve("secondLink");
+        final Path secondSymbolicLink = temporaryDir.resolve("secondLink");
         Files.createSymbolicLink(secondSymbolicLink, firstSymbolicLink);
 
         final Configuration config = new DefaultConfiguration("myName");
