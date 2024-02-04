@@ -619,7 +619,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             final String message = "unsupported charset: '" + charset + "'";
             throw new UnsupportedEncodingException(message);
         }
-        this.charset = charset;
+        this.charset = charset.toUpperCase(Locale.ROOT);
     }
 
     /**
