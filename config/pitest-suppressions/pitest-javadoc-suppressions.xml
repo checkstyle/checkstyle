@@ -111,15 +111,6 @@
   <mutation unstable="false">
     <sourceFile>JavadocMethodCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>isInIgnoreBlock</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>if (ancestor.getType() == TokenTypes.LITERAL_TRY</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
     <mutatedMethod>processThrows</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck$Token::getText</description>
