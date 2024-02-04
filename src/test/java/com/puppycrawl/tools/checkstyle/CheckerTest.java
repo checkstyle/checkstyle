@@ -961,9 +961,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checker, pathToEmptyFile, expected);
+        execute(checker, pathToEmptyFile);
         final Properties cacheAfterFirstRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterFirstRun.load(reader);
@@ -983,7 +982,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addFileSetCheck(check);
         checker.configure(checkerConfig);
 
-        verify(checker, pathToEmptyFile, expected);
+        execute(checker, pathToEmptyFile);
         final Properties cacheAfterSecondRun = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterSecondRun.load(reader);
@@ -1543,9 +1542,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checker, tmpFile.getPath(), expected);
+            execute(checker, tmpFile.getPath());
 
             assertWithMessage("Output stream close count")
                     .that(testInfoOutputStream.getCloseCount())
@@ -1572,9 +1570,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checker, tmpFile.getPath(), tmpFile.getPath(), expected);
+            execute(checker, tmpFile.getPath(), tmpFile.getPath());
 
             assertWithMessage("Output stream close count")
                     .that(testInfoOutputStream.getCloseCount())
