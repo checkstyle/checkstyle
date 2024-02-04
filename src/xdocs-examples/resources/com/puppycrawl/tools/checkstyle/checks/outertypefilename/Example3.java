@@ -5,9 +5,9 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section -- start
-record Foo { // violation
-
-}
+interface Foo3 {} // violation
+class Example3ButNotSameName {}
 // xdoc section -- end
