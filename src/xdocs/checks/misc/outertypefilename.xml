@@ -27,35 +27,35 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example of class Test in a file named Test.java</p>
+        <p id="Example1-code">
+          Example file content with name of file Example1.java
+        </p>
         <source>
-public class Test { // OK
-
-}
+public class Example1 {}
         </source>
-        <p id="Example2-code">Example of class Foo in a file named Test.java</p>
+        <p id="Example2-code">
+          Example file content with name of file Example2.java
+        </p>
         <source>
-class Foo { // violation
-
-}
+class Example2ButNotSameName {} // violation
         </source>
-        <p id="Example3-code">Example of interface Foo in a file named Test.java</p>
+        <p id="Example3-code">
+          Example file content with name of file Example3.java
+        </p>
         <source>
-interface Foo { // violation
-
-}
+interface Example3ButNotSameName {} // violation
         </source>
-        <p id="Example4-code">Example of enum Foo in a file named Test.java</p>
+        <p id="Example4-code">
+          Example file content with name of file Example4.java
+        </p>
         <source>
-enum Foo { // violation
-
-}
+enum Example4ButNotSameName {} // violation
         </source>
-        <p id="Example5-code">Example of record Foo in a file named Test.java</p>
+        <p id="Example5-code">
+          Example file content with name of file Example5.java
+        </p>
         <source>
-record Foo { // violation
-
-}
+class Example5ButNotSameName {} // violation
         </source>
       </subsection>
 
