@@ -5,9 +5,10 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section -- start
-enum Foo { // violation
+interface Foo3 { // violation, 'The name of the outer type and the file do not match.'
 
 }
 // xdoc section -- end
