@@ -1,9 +1,5 @@
-/*
-com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck
-
-*/
 package com.puppycrawl.tools.checkstyle.treewalker;
 
-/** <p>Javadoc comment. */ // violation, 'Redundant <p> tag'
+/** <p>Javadoc comment. */ // violation
 public class InputTreeWalkerJavadoc {
 }
