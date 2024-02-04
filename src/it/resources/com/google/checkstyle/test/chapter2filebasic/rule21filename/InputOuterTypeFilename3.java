@@ -6,12 +6,12 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 }
 
 @MyAnnotation2(name = "ABC", version = 1)
-class InputOuterTypeFilename3 //ok
+class InputOuterTypeFilename3
 {
 
 }
 
-enum Enum2 //ok
+enum Enum2
 {
     A, B, C;
     Enum2() {}
@@ -20,7 +20,7 @@ enum Enum2 //ok
     }
 }
 
-interface TestRequireThisEnum2 //ok
+interface TestRequireThisEnum2
 {
     enum DAY_OF_WEEK
     {

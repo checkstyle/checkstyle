@@ -31,7 +31,7 @@ public class InputAvoidEscapedUnicodeCharacters {
     public void multiplyString()
     {
         /*warn*/String unitAbbrev2 = "asd\u03bcsasd";
-        String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s"*/ //ok
+        String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s"*/
         /*warn*/String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
         /*warn*/String allCharactersEscaped = "\u03bc\u03bc";
     }

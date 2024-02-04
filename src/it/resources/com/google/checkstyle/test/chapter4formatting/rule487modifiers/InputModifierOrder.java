@@ -41,7 +41,7 @@ strictfp abstract class InputModifierOrder //warn
     {
     }
 
-    @MyAnnotation2 public static final synchronized strictfp void fooMethod() {}; //ok
+    @MyAnnotation2 public static final synchronized strictfp void fooMethod() {};
 
     strictfp protected final @MyAnnotation2 static synchronized void fooMethod1() {}; //warn
 

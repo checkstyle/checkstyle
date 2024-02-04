@@ -39,27 +39,27 @@ final class InputLineLength
     public void fooMethodLongFtp() {}
 
     public void fooLongStringUrl() {
-        String url = "https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"; //ok
-        processUrl("https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"); //ok
+        String url = "https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"; 
+        processUrl("https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"); 
         processUrl("some line"
-                + "https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java" //ok
+                + "https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java" 
                 + "+ long fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000o line"); //warn
         processUrl("Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line"); //warn
         String[] soooooooooooooooooooooooooooooooooooolongfooooooooooooooooooooooooooooooooooooooooooo = { //warn
-            "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", //ok
+            "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", 
             "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line", //warn
         };
 
         String fakehttps = "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line"; //warn
 
         processUrl(new String[] {
-            "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", //ok
+            "http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java", 
             "Some long foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo line", //warn
         });
 
         String s = "text"
                 + "text"
-                + "text something more.. <a href=\"https://groups.google.com/forum/#!topic/checkstyle-devel/E0z89fzvxGs%5B226-250-false%5D\">long url name, long url name, long url name</a>" //ok
+                + "text something more.. <a href=\"https://groups.google.com/forum/#!topic/checkstyle-devel/E0z89fzvxGs%5B226-250-false%5D\">long url name, long url name, long url name</a>" 
                 + "other text";
     }
 
