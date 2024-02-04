@@ -5,9 +5,14 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section -- start
-record Foo { // violation
+// public class Example1 {
+// // This class is commented out
+// }
+
+interface Foo3 { // violation
 
 }
 // xdoc section -- end
