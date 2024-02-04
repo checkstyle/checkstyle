@@ -6,8 +6,11 @@
 </module>
 */
 
+//non-compiled with javac: Compilable with Java14
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
+
 // xdoc section -- start
-enum Foo { // violation
+interface Foo3 { // violation
 
 }
 // xdoc section -- end
