@@ -5,9 +5,10 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section -- start
-public class Test { // OK
+public class Example5 {
 
 }
 // xdoc section -- end
