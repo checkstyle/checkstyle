@@ -196,9 +196,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptableTokens()
             throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(HiddenFieldCheck.class);
+        checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
+                + "IMPORT");
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(getPath("InputTreeWalker3.java"), expected);
+            execute(checkConfig, getPath("InputTreeWalker.java"));
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
