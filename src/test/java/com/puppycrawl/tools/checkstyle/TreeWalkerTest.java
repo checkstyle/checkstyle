@@ -190,8 +190,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             final String content = "public class Main { public static final int k = 5 + 4; }";
             writer.write(content);
         }
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getPath(), expected);
+        execute(checkConfig, file.getPath());
     }
 
     @Test
@@ -202,8 +201,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+            execute(checkConfig, getPath("InputTreeWalker.java"));
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -227,8 +225,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final String pathToEmptyFile =
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, pathToEmptyFile, expected);
+        execute(checkConfig, pathToEmptyFile);
     }
 
     @Test
@@ -293,8 +290,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
 
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, pathToEmptyFile, expected);
+            execute(checkConfig, pathToEmptyFile);
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
