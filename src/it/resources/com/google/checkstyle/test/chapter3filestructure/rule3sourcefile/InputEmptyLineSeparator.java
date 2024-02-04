@@ -90,15 +90,15 @@ class InputEmptyLineSeparator //warn
 
     }
 
-    class InnerClass2 { //ok
-        private InnerClass2() //ok
+    class InnerClass2 { 
+        private InnerClass2()
         {
             //empty
         }
     }
 
-    class InnerClass3 { //ok
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+    class InnerClass3 {
+        public int compareTo(InputEmptyLineSeparator aObject)
         {
             int number = 0;
             return 0;
@@ -107,17 +107,17 @@ class InputEmptyLineSeparator //warn
     }
 }
 
-class Class1 { //ok
-    private Class1() {} //ok
+class Class1 {
+    private Class1() {}
 }
 class Class2{ //warn
-    public int compareTo(InputEmptyLineSeparator aObject) //ok
+    public int compareTo(InputEmptyLineSeparator aObject) 
     {
         int number = 0;
         return 0;
     }
     Class2 anon = new Class2(){ //warn
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+        public int compareTo(InputEmptyLineSeparator aObject)
         {
             int number = 0;
             return 0;

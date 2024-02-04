@@ -1,10 +1,11 @@
-package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap; //ok
+package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 
-import static java.math.BigInteger.ZERO; //ok
+import static java.math.BigInteger.ZERO;
 
-import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck; //ok
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater; //ok
-import javax.accessibility.AccessibleAttributeSequence; //ok
+import com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import javax.accessibility.AccessibleAttributeSequence;
+
 
 public class InputNoLineWrapGood {
 

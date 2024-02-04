@@ -1,5 +1,5 @@
-package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap; //ok
-import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; //ok
+package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
+import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*;
 final class InputLineLength
 {
     // Long line ---------------------------------------------------------------------------------------- //warn
