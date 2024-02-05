@@ -236,9 +236,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
 
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(createChecker(createTreeWalkerConfig(checkConfig)),
-                    File.createTempFile("junit", null, temporaryFolder).getPath(), expected);
+            execute(createTreeWalkerConfig(checkConfig),
+                    File.createTempFile("junit", null, temporaryFolder).getPath());
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException exception) {
@@ -414,13 +413,16 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RequiredTokenIsEmptyIntArray.class);
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
-
+        final File file = new File(temporaryFolder, "file.java");
+        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+            final String configComment = "/*\n"
+                    + "com.puppycrawl.tools.checkstyle.TreeWalkerTest"
+                    + "$RequiredTokenIsEmptyIntArray\n\n"
+                    + "*/";
+            writer.write(configComment);
+        }
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, pathToEmptyFile, expected);
+        verifyWithInlineConfigParser(file.getPath(), expected);
     }
 
     @Test
@@ -554,8 +556,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyInitCheck.class);
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getPath(), expected);
+        execute(checkConfig, file.getPath());
         assertWithMessage("Init was not called")
                 .that(VerifyInitCheck.isInitWasCalled())
                 .isTrue();
@@ -567,8 +568,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCheck.class);
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getPath(), expected);
+        execute(checkConfig, file.getPath());
         assertWithMessage("Destroy was not called")
                 .that(VerifyDestroyCheck.isDestroyWasCalled())
                 .isTrue();
@@ -580,8 +580,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCommentCheck.class);
         final File file = File.createTempFile("file", ".pdf", temporaryFolder);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getPath(), expected);
+        execute(checkConfig, file.getPath());
         assertWithMessage("Destroy was not called")
                 .that(VerifyDestroyCheck.isDestroyWasCalled())
                 .isTrue();
@@ -600,10 +599,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
         // One more time to use cache.
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
 
         assertWithMessage("External resource is not present in cache")
                 .that(Files.readString(cacheFile.toPath()))
