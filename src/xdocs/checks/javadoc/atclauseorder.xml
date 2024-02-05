@@ -88,39 +88,163 @@
         </p>
         <source>
 /**
-* Some javadoc. // OK
+* Some javadoc.
 *
-* @author Some javadoc. // OK
-* @version Some javadoc. // OK
-* @param Some javadoc. // OK
-* @return Some javadoc. // OK
-* @throws Some javadoc. // OK
-* @exception Some javadoc. // OK
-* @see Some javadoc. // OK
-* @since Some javadoc. // OK
-* @serial Some javadoc. // OK
-* @serialField // OK
-* @serialData // OK
-* @deprecated Some javadoc. // OK
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField
+* @serialData
 */
+public class Example1 {}
 
-class Valid implements Serializable
-{
-}
+class Valid1 implements Serializable {}
 
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc. // violation
+ * @deprecated
+ * @see Some javadoc. // violation
+ */
+class Invalid1 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc. // violation
+ * @deprecated
+ * @see Some javadoc. // violation
+ * @author max // violation
+ */
+enum Test1 {}
+        </source>
+        <p id="Example2-config">
+            To configure the check such that it checks in the custom order:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AtclauseOrder&quot;&gt;
+      &lt;property name=&quot;tagOrder&quot;
+                value=&quot;@author, @since, @version, @param, @return,
+                       @throws, @exception, @deprecated,
+                       @see, @serial, @serialField, @serialData&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
 /**
 * Some javadoc.
 *
-* @since Some javadoc. // OK
-* @version Some javadoc. // Violation - wrong order
-* @deprecated
-* @see Some javadoc. // Violation - wrong order
-* @author Some javadoc. // Violation - wrong order
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc. // violation
+* @serial Some javadoc.
+* @serialField
+* @serialData
 */
+public class Example2 {}
 
-class Invalid implements Serializable
-{
-}
+class Valid2 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ */
+class Invalid2 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated Some javadoc.
+ * @see Some javadoc.
+ * @author max // violation
+ */
+enum Test2 {}
+        </source>
+        <p id="Example3-config">
+            To configure the check such that it targets only enums:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AtclauseOrder&quot;&gt;
+      &lt;property name=&quot;target&quot; value=&quot;ENUM_DEF&quot;/&gt;
+      &lt;property name=&quot;tagOrder&quot;
+                value=&quot;@author, @since, @version, @param, @return,
+                       @throws, @exception, @deprecated,
+                       @see, @serial, @serialField, @serialData&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+/**
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField
+* @serialData
+*/
+public class Example3 {}
+
+class Valid3 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ */
+class Invalid3 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ * @author Some javadoc. // violation
+ */
+enum Test3 {}
         </source>
       </subsection>
 
