@@ -99,16 +99,17 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-public class Test
+public class Example1
 {
   public static void main(String ... args)
   {
     boolean a = true;
     boolean b = false;
 
-    boolean c = (a &amp; b) | (b ^ a);       // OK, 1(&amp;) + 1(|) + 1(^) = 3 (max allowed 3)
+    boolean c = (a &amp; b) | (b ^ a); // OK, 1(&amp;) + 1(|) + 1(^) = 3 (max allowed 3)
 
-    boolean d = (a &amp; b) ^ (a || b) | a;  // violation, 1(&amp;) + 1(^) + 1(||) + 1(|) = 4
+    boolean d = (a &amp; b) ^ (a || b) | a;  // violation
+    // violation above, 1(&amp;) + 1(^) + 1(||) + 1(|) = 4
   }
 }
         </source>
@@ -127,17 +128,18 @@ public class Test
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-public class Test
+public class Example2
 {
   public static void main(String ... args)
   {
     boolean a = true;
     boolean b = false;
 
-    boolean c = (a &amp; b) | (b ^ a) | (a ^ b);   // OK, 1(&amp;) + 1(|) + 1(^) + 1(|) + 1(^) = 5
+    boolean c = (a &amp; b) | (b ^ a) | (a ^ b);
+    // OK above, 1(&amp;) + 1(|) + 1(^) + 1(|) + 1(^) = 5
 
-    boolean d = (a | b) ^ (a | b) ^ (a || b) &amp; b; // violation,
-                                                 // 1(|) + 1(^) + 1(|) + 1(^) + 1(||) + 1(&amp;) = 6
+    boolean d = (a | b) ^ (a | b) ^ (a || b) &amp; b; // violation
+    // violation above, 1(|) + 1(^) + 1(|) + 1(^) + 1(||) + 1(&amp;) = 6
   }
 }
         </source>
@@ -156,18 +158,19 @@ public class Test
         </source>
         <p id="Example3-code">Code Example:</p>
         <source>
-public class Test
+public class Example3
 {
   public static void main(String ... args)
   {
     boolean a = true;
     boolean b = false;
 
-    boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    // OK, 1(&amp;&amp;) + 1(||) + 1(^) = 3
-                                              // | is ignored here
+    boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    
+    // OK above, 1(&amp;&amp;) + 1(||) + 1(^) = 3, | is ignored here
 
-    boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation, 1(^) + 1(||) + 1(^) + 1(||) = 4
-                                             // &amp; is ignored here
+    boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation
+    // violation above, 1(^) + 1(||) + 1(^) + 1(||) = 4
+    // &amp; is ignored here
   }
 }
         </source>
