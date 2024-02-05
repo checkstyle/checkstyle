@@ -5,18 +5,20 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 // xdoc section -- start
-public class Test
+public class Example1
 {
   public static void main(String ... args)
   {
     boolean a = true;
     boolean b = false;
 
-    boolean c = (a & b) | (b ^ a);       // OK, 1(&) + 1(|) + 1(^) = 3 (max allowed 3)
+    boolean c = (a & b) | (b ^ a);       // OK, 1(&)+1(|)+1(^)=3 (max allowed 3)
 
-    boolean d = (a & b) ^ (a || b) | a;  // violation, 1(&) + 1(^) + 1(||) + 1(|) = 4
+    boolean d = (a & b) ^ (a || b) | a;  // violation,
+                                        // 1(&)+1(^)+1(||)+1(|)=4
   }
 }
 // xdoc section -- end
