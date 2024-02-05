@@ -6,8 +6,8 @@ EqualsHashCode
 
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
-public class InputEqualsHashCode { 
-    public boolean notEquals() { 
+public class InputEqualsHashCode {
+    public boolean notEquals() {
         return true;
     }
 
@@ -15,7 +15,7 @@ public class InputEqualsHashCode {
         return false;
     }
 
-    public boolean equals(Object o1) { 
+    public boolean equals(Object o1) {
         return false;
     }
 
@@ -23,23 +23,23 @@ public class InputEqualsHashCode {
         return false;
     }
 
-    private boolean equals(String s) { 
+    private boolean equals(String s) {
         return false;
     }
 
-    protected int notHashCode() { 
+    protected int notHashCode() {
         return 1;
     }
 
-    public int hashCode() { 
+    public int hashCode() {
         return 1;
     }
 
-    public int hashCode(Object o1) { 
+    public int hashCode(Object o1) {
         return 1;
     }
 
-    private int hashCode(Object o1, Object o2) { 
+    private int hashCode(Object o1, Object o2) {
         return 1;
     }
 }
