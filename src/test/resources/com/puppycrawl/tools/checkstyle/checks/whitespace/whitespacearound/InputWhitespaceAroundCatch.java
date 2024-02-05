@@ -20,7 +20,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-public class InputWhitespaceAroundCatch { // ok
+public class InputWhitespaceAroundCatch {
     public int case1(int i) {
         int k = 1;
         try {
