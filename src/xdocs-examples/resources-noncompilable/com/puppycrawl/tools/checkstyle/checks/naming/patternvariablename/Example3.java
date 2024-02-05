@@ -8,14 +8,16 @@
 </module>
 */
 
+//non-compiled with javac: Compilable with Java17
+package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
+
 // xdoc section -- start
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String s) { // violation, name 's' must
-        // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
+class Example3 {
+  Example3(Object o1){
+    if (o1 instanceof String s) { // violation
     }
+    if (o1 instanceof Integer num) {
+    }
+  }
 }
 // xdoc section -- end
