@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -596,6 +598,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast the given node.
          * @return the token which represents next lexical item.
          */
+        @Nullable
         private static DetailAST getNextToken(DetailAST ast) {
             DetailAST next = null;
             DetailAST parent = ast;
@@ -603,7 +606,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 next = parent.getNextSibling();
                 parent = parent.getParent();
             }
-            return next;
+            return (DetailAST) next;
         }
     }
 }
