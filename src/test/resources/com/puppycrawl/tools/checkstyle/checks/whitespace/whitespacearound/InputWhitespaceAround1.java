@@ -21,7 +21,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 @SuppressWarnings({"this", "that"})
-public class InputWhitespaceAround1 // ok
+public class InputWhitespaceAround1
 {
     protected InputWhitespaceAround1 ( int i )
     {
