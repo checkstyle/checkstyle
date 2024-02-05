@@ -1014,6 +1014,8 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git fetch --all
+  git checkout 9347005
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
