@@ -88,21 +88,23 @@
         </p>
         <source>
 /**
-* Some javadoc. // OK
+* Some javadoc.
 *
-* @author Some javadoc. // OK
-* @version Some javadoc. // OK
-* @param Some javadoc. // OK
-* @return Some javadoc. // OK
-* @throws Some javadoc. // OK
-* @exception Some javadoc. // OK
-* @see Some javadoc. // OK
-* @since Some javadoc. // OK
-* @serial Some javadoc. // OK
-* @serialField // OK
-* @serialData // OK
-* @deprecated Some javadoc. // OK
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField
+* @serialData
+* @deprecated Some javadoc.
 */
+
+public class Example1 {}
 
 class Valid implements Serializable
 {
@@ -111,12 +113,14 @@ class Valid implements Serializable
 /**
 * Some javadoc.
 *
-* @since Some javadoc. // OK
-* @version Some javadoc. // Violation - wrong order
+* @since Some javadoc.
+* @version Some javadoc. // violation
 * @deprecated
-* @see Some javadoc. // Violation - wrong order
-* @author Some javadoc. // Violation - wrong order
+* @see Some javadoc. // violation
+* @author Some javadoc. // violation
 */
+
+// violations on lines 40, 42 and 43, order of tags does not match default order
 
 class Invalid implements Serializable
 {
