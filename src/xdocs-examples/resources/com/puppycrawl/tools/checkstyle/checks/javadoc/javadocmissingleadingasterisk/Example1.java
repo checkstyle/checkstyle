@@ -5,6 +5,7 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingasterisk;
 
 // xdoc section -- start
 /**
@@ -14,34 +15,35 @@
  *   int value = 0;
  * </pre>
  */
-class JavaStyle {} // ok
+class JavaStyle {}
 
 /** Valid Scala-style comment.
   * Some description here.
   **/
-class ScalaStyle {} // ok
+class ScalaStyle {}
 
 /** **
   * Asterisks on first and last lines are optional.
   * */
-class Asterisks {} // ok
+class Asterisks {}
 
 /** No asterisks are required for single-line comments. */
-class SingleLine {} // ok
+class SingleLine {}
 
-/** // violation on next blank line, javadoc has lines without leading asterisk.
+/**
 
- */
+ */ // violation above, 'Javadoc line should start with leading asterisk'
 class BlankLine {}
 
 /** Wrapped
-    single-line comment */ // violation, javadoc has lines without leading asterisk.
+    single-line comment */
+// violation above, 'Javadoc line should start with leading asterisk'
 class Wrapped {}
 
 /**
   * <pre>
-    int value; // violation, javadoc has lines without leading asterisk.
+    int value; // violation, 'Javadoc line should start with leading asterisk'
   * </pre>
   */
-class Code {}
+class Example1 {}
 // xdoc section -- end
