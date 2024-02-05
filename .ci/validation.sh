@@ -1013,6 +1013,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
+  git checkout "76875a6779686a2629e7174533bf57201889ff90"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
