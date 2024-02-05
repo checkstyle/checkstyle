@@ -429,13 +429,21 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setFileExtensions(".java", "xml");
 
         try {
-            checker.setCharset("UNKNOWN-CHARSET");
+            checker.setCharset("invalid_charset_name");
             assertWithMessage("Exception is expected").fail();
         }
         catch (UnsupportedEncodingException ex) {
             assertWithMessage("Error message is not expected")
                 .that(ex.getMessage())
-                .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
+                .isEqualTo("unsupported charset: 'invalid_charset_name'");
+        }
+
+        try {
+            final String validCharset = "UTF-8";
+            checker.setCharset(validCharset);
+        }
+        catch (UnsupportedEncodingException ex) {
+            assertWithMessage("Unexpected exception: " + ex.getClass().getName()).fail();
         }
     }
 
@@ -1668,16 +1676,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 238),
+            "9: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 100),
         };
 
-        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "75");
-
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("charset", "IBM1098");
-
-        verify(checkerConfig, getPath("InputCheckerTestCharset.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputCheckerTestCharset.java"), expected);
     }
 
     @Test
