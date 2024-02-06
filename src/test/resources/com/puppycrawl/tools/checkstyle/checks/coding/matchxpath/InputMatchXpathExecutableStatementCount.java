@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathExecutableStatementCount {
     public void test() {
-        while (true) { // ok
+        while (true) {
             Runnable runnable = new Runnable() {
                 public void run() {
                     while (true) {
