@@ -112,8 +112,11 @@ private static int checkCheckerFrameworkReport(final String profile) {
  */
 private static List<List<String>> getCheckerFrameworkErrors(final String profile) {
     final List<String> checkerFrameworkLines = new ArrayList<>()
-    final String command = "mvn -e --no-transfer-progress clean compile" +
-        " -P${profile},no-validations"
+
+    // Include -Xmx512m to limit the maximum heap size to 512MB
+    final String command = "mvn -e --no-transfer-progress clean compile -Xmx512m" +
+            " -P${profile},no-validations"
+
     final ProcessBuilder processBuilder = new ProcessBuilder(getOsSpecificCmd(command).split(' '))
     processBuilder.redirectErrorStream(true)
     final Process process = processBuilder.start()
@@ -127,7 +130,10 @@ private static List<List<String>> getCheckerFrameworkErrors(final String profile
             checkerFrameworkLines.add(lineFromReader)
             lineFromReader = reader.readLine()
         }
-        process.waitFor()
+        int exitCode = process.waitFor()
+        if (exitCode != 0) {
+            throw new RuntimeException("Maven process exited with error code: " + exitCode)
+        }
     } finally {
         reader.close()
     }
