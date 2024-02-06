@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class InputIllegalInstantiation // ok
+public class InputIllegalInstantiation
 {
 
     public static void main(String[] args)
