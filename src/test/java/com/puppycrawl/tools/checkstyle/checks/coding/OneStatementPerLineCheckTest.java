@@ -66,7 +66,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testMultiCaseDeclarations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputOneDeclarationStatementPerLineSingleLine.java"),
+                getPath("InputOneStatementPerLineSingleLineForDeclarations.java"),
                 expected);
     }
 

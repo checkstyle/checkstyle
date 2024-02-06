@@ -7,7 +7,7 @@ treatTryResourcesAsStatement = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
-public class InputOneDeclarationStatementPerLineSingleLine {
+public class InputOneStatementPerLineSingleLineForDeclarations {
     /**
      * Dummy variable to work on.
      */
