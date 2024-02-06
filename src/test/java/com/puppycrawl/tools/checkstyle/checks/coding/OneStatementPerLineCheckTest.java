@@ -69,21 +69,29 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithMultilineStatements() throws Exception {
+    public void testDeclarationsWithMultilineStatements() throws Exception {
         final String[] expected = {
             "49:21: " + getCheckMessage(MSG_KEY),
             "66:17: " + getCheckMessage(MSG_KEY),
             "74:17: " + getCheckMessage(MSG_KEY),
             "86:10: " + getCheckMessage(MSG_KEY),
             "95:28: " + getCheckMessage(MSG_KEY),
-            "140:39: " + getCheckMessage(MSG_KEY),
-            "173:46: " + getCheckMessage(MSG_KEY),
-            "184:47: " + getCheckMessage(MSG_KEY),
         };
-
         verifyWithInlineConfigParser(
-                getPath("InputOneStatementPerLineMultiline.java"),
+                getPath("InputOneDeclarationStatementPerLineMultiline.java"),
             expected);
+    }
+
+    @Test
+    public void testLoopsAndTryWithResourceWithMultilineStatements() throws Exception {
+        final String[] expected = {
+            "53:39: " + getCheckMessage(MSG_KEY),
+            "86:44: " + getCheckMessage(MSG_KEY),
+            "97:45: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineMultilineInLoopsAndTryWithResources.java"),
+                expected);
     }
 
     @Test
