@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,10 +33,16 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String tagOrder = "[@author, @version, @param, @return, @throws"
+            + ", @exception, @see,"
+            + " @since, @serial, @serialField, @serialData, @deprecated]";
 
+        final String[] expected = {
+            "40: " + getCheckMessage(MSG_KEY, tagOrder),
+            "42: " + getCheckMessage(MSG_KEY, tagOrder),
+            "43: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
