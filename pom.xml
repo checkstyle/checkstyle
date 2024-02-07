@@ -2526,7 +2526,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2585,7 +2585,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2644,7 +2644,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2702,7 +2702,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2759,7 +2759,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2817,7 +2817,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2877,7 +2877,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2936,7 +2936,7 @@
               <fork>true</fork>
               <failOnError>false</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <maxmem>512m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
