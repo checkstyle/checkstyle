@@ -277,6 +277,8 @@ no-error-xwiki)
   echo "Checkout target sources ..."
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
+  SHA_BEFORE="02b8c776439f37757ccc8ea8b84ea68fba8c7ca0"
+  git checkout $SHA_BEFORE
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
