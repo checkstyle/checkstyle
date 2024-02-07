@@ -438,6 +438,17 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void execute(Configuration config, String... filenames) throws Exception {
         final Checker checker = createChecker(config);
+        execute(checker, filenames);
+    }
+
+    /**
+     * Executes given config on a list of files only. Does not verify violations.
+     *
+     * @param  checker {@link Checker} instance.
+     * @param filenames names of files to process
+     * @throws Exception if there is a problem during checker configuration
+     */
+    protected final void execute(Checker checker, String... filenames) throws Exception {
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
                 .collect(Collectors.toUnmodifiableList());

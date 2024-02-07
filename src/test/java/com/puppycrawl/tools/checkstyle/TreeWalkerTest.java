@@ -56,8 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
@@ -69,7 +67,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
-import com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -349,15 +346,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testWithCacheWithNoViolation() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-        final Checker checker = createChecker(checkConfig);
-        final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
-        checker.setModuleFactory(factory);
-        final File file = File.createTempFile("file", ".java", temporaryFolder);
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checker, file.getPath(), expected);
+        final String filePath = getPath("InputTreeWalkerWithCacheWithNoViolation.java");
+        verifyWithInlineConfigParser(filePath, expected);
     }
 
     @Test
@@ -607,40 +598,20 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTreeWalkerFilterAbsolutePath() throws Exception {
-        final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
-        filterConfig.addProperty("file",
-                getPath("InputTreeWalkerSuppressionXpathFilterAbsolute.xml"));
-        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(filterConfig);
-        treeWalkerConfig.addChild(checkConfig);
-
         // test is only valid when relative paths are given
         final String filePath = "src/test/resources/" + getPackageLocation()
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(treeWalkerConfig, filePath, expected);
+        verifyWithInlineConfigParser(filePath, expected);
     }
 
     @Test
     public void testExternalResourceFiltersWithNoExternalResource() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyStatementCheck.class);
-        final DefaultConfiguration filterConfig =
-                createModuleConfig(SuppressWithNearbyCommentFilter.class);
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-        treeWalkerConfig.addChild(filterConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
-
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
-
+        final String filePath =
+                getPath("InputTreeWalkerExternalResourceFiltersWithNoExternalResource.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkerConfig, filePath, expected);
+        verifyWithInlineConfigParser(filePath, expected);
     }
 
     /**
