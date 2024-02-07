@@ -73,40 +73,63 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          To configure the check:
+          To configure the check so that it accepts at most 4
+          lines:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;MethodLength&quot;/&gt;
+    &lt;module name=&quot;MethodLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;4&quot;/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyClass {
-  public MyClass() {  // constructor (line 1)
-      /* line 2
-          ...
-         line 150 */
-  } // line 151, violation, as it is over 150
+public class Example1 {
 
-  public void firstExample() { // line 1
+  // violation below, 'Method Example1 length is 5 lines (max allowed is 4)'
+  public Example1() {
+    int var1 = 2;
+    int var2 = 4;
+    int sum = var1 + var2;
+  }
 
-      // line 3
-      System.out.println(&quot;line 4&quot;);
-      /* line 5
-         line 6 */
-  } // line 7, OK, as it is less than 150
+  // ok, as it is less than 4 lines
+  public Example1(int a)  {
+    int var1 = 2;
+    int sum = var1 + a;
+  }
 
-  public void secondExample() { // line 1
-      // line 2
-      System.out.println(&quot;line 3&quot;);
+  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  public void firstMethod() {
+    int index = 0;
+    if (index &lt; 5) {
+      index++;
+    }
+  }
 
-      /* line 5
-          ...
-         line 150 */
-  } // line 151, violation, as it is over 150
+  public void secondMethod() {
+    // comments are counted by default
+    System.out.println(&quot;line 3&quot;);
+  }
+
+  // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
+  public void thirdMethod() {
+
+    // empty line above is counted by default,just like this comment
+    System.out.println(&quot;line 4&quot;);
+  }
+
+  record MyBadRecord() {
+    // violation below, 'Method MyBadRecord length is 5 lines (max allowed is 4)'
+    public MyBadRecord {
+
+      System.out.println(&quot;line3&quot;);
+      System.out.println(&quot;line4&quot;);
+    }
+  }
 }
         </source>
         <p id="Example2-config">
@@ -125,30 +148,49 @@ public class MyClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
-      int var1 = 2;           // line 2
-      int var2 = 4;           // line 3
-      int sum = var1 + var2;  // line 4
-  } // line 5, OK, constructor is not mentioned in the tokens
+public class Example2 {
 
-  public void firstMethod() { // line 1
-      // comment (line 2)
-      System.out.println(&quot;line 3&quot;);
-  } // line 4, OK, as it allows at most 4 lines
+  // ok, CTOR_DEF is not in configured tokens
+  public Example2()  {
+    int var1 = 2;
+    int var2 = 4;
+    int sum = var1 + var2;
+  }
 
-  public void secondMethod() { // line 1
-      int index = 0;   // line 2
-      if (index &lt; 5) { // line 3
-          index++;     // line 4
-      }                // line 5
-  } // line 6, violation, as it is over 4 lines
+  // ok, CTOR_DEF is not in configured tokens
+  public Example2(int a)  {
+    int var1 = 2;
+    int sum = var1 + a;
+  }
 
-  public void thirdMethod() { // line 1
+  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  public void firstMethod() {
+    int index = 0;
+    if (index &lt; 5) {
+      index++;
+    }
+  }
 
-      // comment (line 3)
-      System.out.println(&quot;line 4&quot;);
-  } // line 5, violation, as it is over 4 lines
+  public void secondMethod() {
+    // comments are counted by default
+    System.out.println(&quot;line 3&quot;);
+  }
+
+  // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
+  public void thirdMethod() {
+
+    // empty line above is counted by default,just like this comment
+    System.out.println(&quot;line 4&quot;);
+  }
+
+  record MyBadRecord() {
+    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    public MyBadRecord {
+
+      System.out.println(&quot;line3&quot;);
+      System.out.println(&quot;line4&quot;);
+    }
+  }
 }
         </source>
         <p id="Example3-config">
@@ -168,30 +210,48 @@ public class MyTest {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyTest {
-  public MyTest()  {          // constructor (line 1)
-      int var1 = 2;           // line 2
-      int var2 = 4;           // line 3
-      int sum = var1 + var2;  // line 4
-  } // line 5, OK, constructor is not mentioned in the tokens
+public class Example3 {
 
-  public void firstMethod() { // line 1
-      // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
-  } // line 3, OK, as it allows at most 4 lines
+  // ok, CTOR_DEF is not in configured tokens
+  public Example3()  {
+    int var1 = 2;
+    int var2 = 4;
+    int sum = var1 + var2;
+  }
 
-  public void secondMethod() { // line 1
-      int index = 0;   // line 2
-      if (index &lt; 5) { // line 3
-          index++;     // line 4
-      }                // line 5
-  } // line 6, violation, as it is over 4 lines
+  // ok, CTOR_DEF is not in configured tokens
+  public Example3(int a)  {
+    int var1 = 2;
+    int sum = var1 + a;
+  }
 
-  public void thirdMethod() { // line 1
+  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  public void firstMethod() {
+    int index = 0;
+    if (index &lt; 5) {
+      index++;
+    }
+  }
 
-      // comment - not counted as line
-      System.out.println(&quot;line 2&quot;);
-  } // line 3, OK, as it allows at most 4 lines
+  public void secondMethod() {
+    // countEmpty property is false,so this line doesn't count
+    System.out.println(&quot;line 3&quot;);
+  }
+
+  public void thirdMethod() {
+
+    // countEmpty property is false,so this line and the line above don't count
+    System.out.println(&quot;line 4&quot;);
+  }
+
+  record MyBadRecord() {
+    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    public MyBadRecord {
+
+      System.out.println(&quot;line3&quot;);
+      System.out.println(&quot;line4&quot;);
+    }
+  }
 }
         </source>
       </subsection>

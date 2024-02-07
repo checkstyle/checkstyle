@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -183,15 +184,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImproperFileExtension() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(ConstantNameCheck.class);
-        final File file = new File(temporaryFolder, "file.pdf");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            final String content = "public class Main { public static final int k = 5 + 4; }";
-            writer.write(content);
-        }
+        final String regularFilePath = getPath("InputTreeWalkerImproperFileExtension.java");
+        final File originalFile = new File(regularFilePath);
+        final File tempFile = new File(temporaryFolder, "file.pdf");
+        Files.copy(originalFile.toPath(), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getPath(), expected);
+        verifyWithInlineConfigParser(tempFile.getPath(), expected);
     }
 
     @Test
@@ -202,8 +200,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputTreeWalker.java"), expected);
+            execute(checkConfig, getPath("InputTreeWalker.java"));
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -224,11 +221,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
-
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, pathToEmptyFile, expected);
+        final File emptyFile = File.createTempFile("file", ".java", temporaryFolder);
+        execute(checkConfig, emptyFile.getPath());
+        final long fileSize = Files.size(emptyFile.toPath());
+        assertWithMessage("File should be empty")
+                .that(fileSize)
+                .isEqualTo(0);
     }
 
     @Test
@@ -292,8 +290,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 File.createTempFile("file", ".java", temporaryFolder).getPath();
 
         try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, pathToEmptyFile, expected);
+            execute(checkConfig, pathToEmptyFile);
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
