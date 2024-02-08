@@ -8,7 +8,7 @@ validateOnlyOverlapping = false
 */
 
 // someexamples of 1.5 extensions
-package com.puppycrawl.tools.checkstyle.checks.coding.requirethis; // ok
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 @interface MyAnnotation1 {
     String name();
