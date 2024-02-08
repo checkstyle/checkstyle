@@ -56,7 +56,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode2
     {
-        public boolean equals(String a) // ok
+        public boolean equals(String a)
         {
             return true;
         }
@@ -64,7 +64,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode3
     {
-        public boolean equals(Object a) // ok
+        public boolean equals(Object a)
         {
             return true;
         }
@@ -80,7 +80,7 @@ class InputEqualsHashCodeSemantic
         // in anon inner class
         ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
         {
-            public boolean equals(Object a) // ok
+            public boolean equals(Object a)
             {
                 return true;
             }
@@ -121,7 +121,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode6
     {
-        public <A> boolean equals(Comparable<A> a) // ok
+        public <A> boolean equals(Comparable<A> a)
         {
             return true;
         }
