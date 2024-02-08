@@ -1589,17 +1589,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter rcurly of Details constructor.</message>
-    <lineContent>return new Details(lcurly, rcurly, getNextToken(ast), true);</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, false);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1626,17 +1615,6 @@
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return next;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
     </details>
   </checkerFrameworkError>
 
