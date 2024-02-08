@@ -10,6 +10,92 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.13.0">
+      <div class="releaseDate">28.01.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            IllegalTokenText support for STRING_TEMPLATE_CONTENT.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14289">#14289</a>
+          </li>
+          <li>
+            Support Java 21 string template syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13830">#13830</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            &quot;Unable to persist cache file&quot; if target directory is a symlink.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12238">#12238</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: sktpy, mahfouz72, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Gahlot Kapil, Coding-Aliens, sktpy, Mauryan Kansara, Rohanraj123,
+            Charisma Kausar
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Coding-Aliens, mahfouz72, sktpy, Charisma Kausar, MANISH-K-07,
+            ChristianCecili, Tahanima Chowdhury
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Coding-Aliens, sktpy, Tanay, Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti, Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            CustomImportOrder property &#39;customImportOrderRules&#39; should be String[].
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14216">#14216</a>
+          </li>
+          <li>
+            PropertyCacheFileTest Failing: 3 Test Methods Failing Along With
+            testSymbolicLinkResolution() Causing Issue.
+            Author: dependabot[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/14219">#14219</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: Tanay Morakhia, Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            Make Checkstyle an (automatic) module.
+            Author: Frank Ulbricht
+            <a href="https://github.com/checkstyle/checkstyle/issues/14120">#14120</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.12.7">
       <div class="releaseDate">31.12.2023</div>
       <p>Bug fixes:</p>

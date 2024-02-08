@@ -73,7 +73,7 @@ final class InputParameterNameOne
     }
 
     /** method that is 20 lines long **/
-    private void longMethod() // ok
+    private void longMethod()
     {
         // a line
         // a line
@@ -96,7 +96,7 @@ final class InputParameterNameOne
     }
 
     /** constructor that is 10 lines long **/
-    private InputParameterNameOne() // ok
+    private InputParameterNameOne()
     {
         // a line
         // a line
@@ -109,7 +109,7 @@ final class InputParameterNameOne
     }
 
     /** test local variables */
-    private void localVariables() // ok
+    private void localVariables()
     {
         // normal decl
         int abc = 0;
@@ -164,7 +164,7 @@ final class InputParameterNameOne
     /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
-    void veryLong() // ok
+    void veryLong()
     {
         /*
           blah blah blah blah
@@ -188,8 +188,8 @@ final class InputParameterNameOne
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,   // ok
-                    int aArg6, int aArg7, int aArg8, int aArg9)              // ok
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
+                    int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
 }
@@ -198,7 +198,7 @@ final class InputParameterNameOne
 class InputParameterNameOne2
 {
     /** Some more Javadoc. */
-    public void doSomething() // ok
+    public void doSomething()
     {
         //"O" should be named "o"
         for (Object O : new java.util.ArrayList())
