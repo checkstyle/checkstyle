@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -304,13 +307,14 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean skipDoubleBraceInstInit(Details details) {
         boolean skipDoubleBraceInstInit = false;
-        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
+        @Nullable final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
+        @Nullable final DetailAST tokenAfterNextToken2 = Details.getNextToken(tokenAfterNextToken);
         if (tokenAfterNextToken != null) {
             final DetailAST rcurly = details.rcurly;
             skipDoubleBraceInstInit = rcurly.getParent().getParent()
                     .getType() == TokenTypes.INSTANCE_INIT
                     && details.nextToken.getType() == TokenTypes.RCURLY
-                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+                    && !TokenUtil.areOnSameLine(rcurly, tokenAfterNextToken2);
         }
         return skipDoubleBraceInstInit;
     }
@@ -480,7 +484,7 @@ public class RightCurlyCheck extends AbstractCheck {
          */
         private static Details getDetailsForTryCatch(DetailAST ast) {
             final DetailAST lcurly;
-            DetailAST nextToken;
+            @Nullable DetailAST nextToken;
             final int tokenType = ast.getType();
             if (tokenType == TokenTypes.LITERAL_TRY) {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
@@ -518,7 +522,7 @@ public class RightCurlyCheck extends AbstractCheck {
         private static Details getDetailsForIf(DetailAST ast) {
             final boolean shouldCheckLastRcurly;
             final DetailAST lcurly;
-            DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+            @Nullable DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
 
             if (nextToken == null) {
                 shouldCheckLastRcurly = true;
@@ -560,7 +564,8 @@ public class RightCurlyCheck extends AbstractCheck {
                     rcurly = lcurly.getLastChild();
                 }
             }
-            return new Details(lcurly, rcurly, getNextToken(ast), true);
+            @Nullable final DetailAST nextToken = getNextToken(ast);
+            return new Details(lcurly, rcurly, nextToken, true);
         }
 
         /**
@@ -597,7 +602,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return the token which represents next lexical item.
          */
         private static DetailAST getNextToken(DetailAST ast) {
-            DetailAST next = null;
+            @Nullable DetailAST next = null;
             DetailAST parent = ast;
             while (next == null && parent != null) {
                 next = parent.getNextSibling();
