@@ -590,11 +590,9 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         DetailAST child = params.getFirstChild();
         while (child != null) {
-            if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-                if (ident != null) {
-                    returnValue.add(ident);
-                }
+            final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+            if (ident != null) {
+                returnValue.add(ident);
             }
             child = child.getNextSibling();
         }
