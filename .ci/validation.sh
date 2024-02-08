@@ -277,6 +277,7 @@ no-error-xwiki)
   echo "Checkout target sources ..."
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
+  git checkout "986d1310845a3fe897cb6e60e0c77a75c72fe078"
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
