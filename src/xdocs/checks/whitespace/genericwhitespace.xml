@@ -46,37 +46,49 @@
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-          Examples with correct spacing:
+          Example:
         </p>
         <source>
-// Generic methods definitions
-public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
-// Generic type definition
-class name&lt;T1, T2, ..., Tn&gt; {}
-// Generic type reference
-OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
-// Generic preceded method name
-boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
-// Diamond operator
-Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);
-// Method reference
-List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
-// Method reference
-sort(list, Comparable::&lt;String&gt;compareTo);
-// Constructor call
-MyClass obj = new &lt;String&gt;MyClass();
-        </source>
-        <p id="Example2-code">
-          Examples with incorrect spacing:
-        </p>
-        <source>
-List&lt; String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
-Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, &quot;&lt;&quot; preceded with whitespace
-public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
+public class Example1 {
 
-List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
-Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
-Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
+  @FunctionalInterface
+  interface ImmutableListBuilder&lt;T&gt; {
+      ImmutableList.Builder&lt;T&gt; createBuilder();
+  }
+
+  // Generic methods definitions
+  public static &lt;K, V&gt; boolean isFoo(K key, V value) { return false; }
+  public&lt;T&gt; void foo() {} // violation, ''&lt;' is not preceded with whitespace.'
+
+  // Generic type definition
+  class MyClass&lt;T1, T2&gt; {
+    public MyClass() {}
+    public MyClass(T1 t1, T2 t2) {}
+  }
+
+  public void examples() {
+    // Generic type declaration
+    Map&lt;String, List&lt;Integer&gt;&gt; p;
+    Map&lt;Integer, String&gt;m; // violation, ''&gt;' is followed by an illegal character.'
+    List&lt; String&gt; l; // violation, ''&lt;' is followed by whitespace.'
+
+    // Generic method call
+    boolean same = Example1.&lt;Object, Object&gt;isFoo(null, null);
+    Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, ''&lt;' is preceded with whitespace.'
+
+    // Diamond operator
+    MyClass&lt;Integer, String&gt; p1 = new MyClass&lt;Integer, String&gt;(1, &quot;apple&quot;);
+    MyClass&lt;Integer, Integer &gt; p2; // violation, ''&gt;' is preceded with whitespace.'
+
+    // Method reference
+    ImmutableListBuilder&lt;String&gt; builderFactory = ImmutableList.Builder&lt;String&gt;::new;
+    Collections.sort(new ArrayList&lt;String&gt;(), Comparable::&lt;String&gt;compareTo);
+
+    // Generic constructor call
+    MyClass&lt;String, String&gt; obj = new MyClass&lt;String, String&gt;();
+    List a = new ArrayList&lt;&gt;  (); // ok, until #14344
+  }
+}
         </source>
       </subsection>
 
