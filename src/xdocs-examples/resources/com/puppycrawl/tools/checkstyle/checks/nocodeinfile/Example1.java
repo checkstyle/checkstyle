@@ -6,6 +6,10 @@
 </module>
 */
 
+// violation 8 lines above
+
 // xdoc section -- start
-// single-line comment // violation
+// public class Example1 {
+// single-line comment is not code
+// }
 // xdoc section -- end
