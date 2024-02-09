@@ -30,11 +30,11 @@ public class InputClassDataAbstractionCouplingExcludedPackagesDirectPackages { /
     public BasicHttpContext ab = new BasicHttpContext();
 
     class Inner { // total: ok
-        public BasicClientTlsStrategy b = new BasicClientTlsStrategy(); // ok
-        public CommandSupport c = new CommandSupport(); // ok
+        public BasicClientTlsStrategy b = new BasicClientTlsStrategy();
+        public CommandSupport c = new CommandSupport();
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesDirectPackagesHidden { // total: ok
-    public CommandSupport c = new CommandSupport(); // ok
+    public CommandSupport c = new CommandSupport();
 }

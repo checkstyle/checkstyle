@@ -26,17 +26,17 @@ import org.apache.hc.core5.http.protocol.BasicHttpContext;
 import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
 import org.apache.hc.core5.http.nio.command.CommandSupport;
 
-public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored { // ok
-    public TlsCiphers aa = new TlsCiphers(); // ok
-    public BasicHttpContext ab = new BasicHttpContext(); // ok
+public class InputClassDataAbstractionCouplingExcludedPackagesAllIgnored {
+    public TlsCiphers aa = new TlsCiphers();
+    public BasicHttpContext ab = new BasicHttpContext();
 
     class Inner { // total: ok
-        public BasicClientTlsStrategy b = new BasicClientTlsStrategy(); // ok
-        public CommandSupport c = new CommandSupport(); // ok
+        public BasicClientTlsStrategy b = new BasicClientTlsStrategy();
+        public CommandSupport c = new CommandSupport();
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesAllIgnoredHidden { // total: ok
-    public CommandSupport c = new CommandSupport(); // ok
+    public CommandSupport c = new CommandSupport();
 }
 

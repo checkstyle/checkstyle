@@ -16,7 +16,7 @@ abstract public class InputAbstractClassNameFormerFalsePositive {
 abstract class AbstractClassFP {
 }
 
-abstract class AbstractClassOtherFP { // ok
+abstract class AbstractClassOtherFP {
     // violation below 'Name 'NonAbstractInnerClassFP' must match pattern '\^Abstract\.\+\$'.'
     abstract class NonAbstractInnerClassFP {
     }
@@ -29,7 +29,7 @@ class NonAbstractClassFP {
 class AbstractClassNameFP {
 }
 
-abstract class AbstractClassName2FP { // ok
+abstract class AbstractClassName2FP {
     // violation below 'Class 'AbstractInnerClassFP' must be declared as 'abstract'.'
     class AbstractInnerClassFP {
     }

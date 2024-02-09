@@ -36,7 +36,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -44,18 +44,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example2-code">
-          Check only looks for double brace initialization and it ignores cases
-          where the anonymous class has fields or methods.
-          Though these might create the same memory issues as double brace,
-          the extra class members can produce side effects if changed incorrectly.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoiddoublebraceinitialization/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
