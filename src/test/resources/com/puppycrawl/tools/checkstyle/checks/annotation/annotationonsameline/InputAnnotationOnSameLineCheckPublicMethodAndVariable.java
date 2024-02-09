@@ -8,7 +8,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
-public class InputAnnotationOnSameLineCheck {
+public class InputAnnotationOnSameLineCheckPublicMethodAndVariable {
 
     @Annotation int x;
 
