@@ -73,7 +73,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheck() throws Exception {
+    public void testAnnotationOnSameLineCheckPublicMethodAndVariable() throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
@@ -81,11 +81,11 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "24:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLineCheck.java"), expected);
+                getPath("InputAnnotationOnSameLineCheckPublicMethodAndVariable.java"), expected);
     }
 
     @Test
-    public void testCheckAcceptableTokens() throws Exception {
+    public void testAnnotationOnSameLineCheckTokensOnMethodAndVar() throws Exception {
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
@@ -93,11 +93,11 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "25:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLineCheck3.java"), expected);
+                getPath("InputAnnotationOnSameLineCheckTokensOnMethodAndVar.java"), expected);
     }
 
     @Test
-    public void testCheck2() throws Exception {
+    public void testAnnotationOnSameLineCheckPrivateAndDeprecatedVar() throws Exception {
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
@@ -105,16 +105,16 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "28:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLineCheck2.java"), expected);
+                getPath("InputAnnotationOnSameLineCheckPrivateAndDeprecatedVar.java"), expected);
     }
 
     @Test
-    public void testCheckOnDifferentTokens() throws Exception {
+    public void testAnnotationOnSameLineCheckInterfaceAndEnum() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "21:8: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
-            "22:72: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
+            "22:71: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "25:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "26:35: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "29:18: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
@@ -129,7 +129,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "62:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnnotationOnSameLineCheckOnDifferentTokens.java"), expected);
+                getPath("InputAnnotationOnSameLineCheckInterfaceAndEnum.java"), expected);
     }
 
     @Test
