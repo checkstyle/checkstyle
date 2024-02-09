@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks whether file contains code. Files which are considered to have no code:
+ * Checks whether file contains code. Checks whether file contains code. Java compiler is not raising errors on java files that has no code or all is commentend out. Files which are considered to have no code:
  * </p>
  * <ul>
  * <li>
