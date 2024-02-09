@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegalTypeSuper {
-    private AbstractClass a = null; // ok
+    private AbstractClass a = null;
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
