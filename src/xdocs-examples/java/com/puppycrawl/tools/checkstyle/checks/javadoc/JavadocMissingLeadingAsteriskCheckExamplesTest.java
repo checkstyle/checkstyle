@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck.MSG_MISSING_ASTERISK;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocMissingLeadingAsteriskCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,9 +35,11 @@ public class JavadocMissingLeadingAsteriskCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "35: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "40: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "46: " + getCheckMessage(MSG_MISSING_ASTERISK),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
