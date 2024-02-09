@@ -19,7 +19,7 @@ import java.util.List;
 }
 
 public @Ann     // violation
-@Ann2 class InputAnnotationOnSameLineCheckOnDifferentTokens implements @Ann     // violation
+@Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann     // violation
         @Ann2 TestInterface {
 
     @Ann        // violation
@@ -35,7 +35,7 @@ public @Ann     // violation
     }
 
     @Ann        // violation
-    @Ann2 public InputAnnotationOnSameLineCheckOnDifferentTokens() {}
+    @Ann2 public InputAnnotationOnSameLineCheckInterfaceAndEnum() {}
 
     @Ann        // violation
     @Ann2 public void setX(@Ann             // violation
