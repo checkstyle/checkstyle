@@ -13,7 +13,7 @@ public class InputLocalFinalVariableNameTryResourcesJava9 {
 
     public void foo() {
         LOCK.lock();
-        try (LOCK) { // ok
+        try (LOCK) {
         }
     }
 }

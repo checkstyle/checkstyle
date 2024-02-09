@@ -10,10 +10,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 public class InputCatchParameterName3 {
     {
         try {
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
         }
         try {
-        } catch (Exception ex) { // ok
+        } catch (Exception ex) {
         }
         try {
         } catch (Error | Exception err) {
@@ -32,10 +32,10 @@ public class InputCatchParameterName3 {
         }
         try {
             throw new InterruptedException("interruptedException");
-        } catch (InterruptedException ie) { // ok
+        } catch (InterruptedException ie) {
         }
         try {
-        } catch (Exception iException) { // ok
+        } catch (Exception iException) {
         }
         try {
         } catch (Exception ok) {

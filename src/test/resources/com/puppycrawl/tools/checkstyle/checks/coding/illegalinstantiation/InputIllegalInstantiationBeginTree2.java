@@ -7,7 +7,7 @@ tokens = (default)CLASS_DEF
 
 */
 
-// ok
+
 public class InputIllegalInstantiationBeginTree2 {
 
     void otherInstantiations()

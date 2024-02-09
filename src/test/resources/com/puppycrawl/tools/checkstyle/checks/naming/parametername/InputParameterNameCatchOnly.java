@@ -26,14 +26,14 @@ public class InputParameterNameCatchOnly {
         }
     }
 
-    public InputParameterNameCatchOnly() // ok
+    public InputParameterNameCatchOnly()
     {
         return;
     }
 
     class InnerFoo
     {
-        public void fooInnerMethod () // ok
+        public void fooInnerMethod ()
         {
         }
     }

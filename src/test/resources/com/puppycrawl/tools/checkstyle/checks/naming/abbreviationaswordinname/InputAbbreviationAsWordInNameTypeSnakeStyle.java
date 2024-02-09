@@ -41,32 +41,32 @@ public class InputAbbreviationAsWordInNameTypeSnakeStyle {
     public int VIOLATION23456 = 50;
 
     void getTEST() {
-    } // ok
+    }
 
-    void getORDER_OBSERVATION() {} // ok
+    void getORDER_OBSERVATION() {}
 
     void getNONE_Test() {}
 
-    void getCLR_Test() {} // ok
+    void getCLR_Test() {}
 
-    void getUNDERSCORE() {} // ok
+    void getUNDERSCORE() {}
 
-    void getTEST_OBSERVATION() {} // ok
+    void getTEST_OBSERVATION() {}
 
-    void getTEST_UNDERSCORE() {} // ok
+    void getTEST_UNDERSCORE() {}
 
-    void getORDER() {} // ok
+    void getORDER() {}
 
-    void getOBSERVATION() {} // ok
+    void getOBSERVATION() {}
 
-    void getORDER_UNDERSCORE() {} // ok
+    void getORDER_UNDERSCORE() {}
 
-    int getCLRTest() { // ok
+    int getCLRTest() {
         int LINE_SEP = 1;
         return LINE_SEP;
     }
 
-    void getNON_ETest() {} // OK
+    void getNON_ETest() {}
 
     // violation below 'name 'getIsFIRST_Run' must contain no more than '4' .* cap.*.'
     private boolean getIsFIRST_Run() {

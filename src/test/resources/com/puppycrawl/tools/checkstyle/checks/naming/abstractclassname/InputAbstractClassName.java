@@ -17,20 +17,20 @@ abstract public class InputAbstractClassName {
 abstract class NonAbstractClassName {
 }
 
-abstract class AbstractClassOther { // ok
+abstract class AbstractClassOther {
     // violation below 'Name 'NonAbstractInnerClass' must match pattern '\^Abstract\.\+\$'.'
     abstract class NonAbstractInnerClass {
     }
 }
 
-class NonAbstractClass { // ok
+class NonAbstractClass {
 }
 
 
-class AbstractClass { // ok
+class AbstractClass {
 }
 
-abstract class AbstractClassName2 { // ok
-    class AbstractInnerClass { // ok
+abstract class AbstractClassName2 {
+    class AbstractInnerClass {
     }
 }

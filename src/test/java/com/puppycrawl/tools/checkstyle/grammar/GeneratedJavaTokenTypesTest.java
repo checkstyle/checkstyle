@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.VocabularyImpl;
@@ -42,6 +43,23 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
  *      requires this structure
  */
 public class GeneratedJavaTokenTypesTest {
+
+    /**
+     * The following tokens are not declared in the lexer's 'tokens' block,
+     * they will always appear last in the list of symbolic names provided
+     * by the vocabulary. They are not part of the public API and are only
+     * used as components of parser rules.
+     */
+    private static final List<String> INTERNAL_TOKENS = List.of(
+            "DECIMAL_LITERAL_LONG",
+            "DECIMAL_LITERAL",
+            "HEX_LITERAL_LONG",
+            "HEX_LITERAL",
+            "OCT_LITERAL_LONG",
+            "OCT_LITERAL",
+            "BINARY_LITERAL_LONG",
+            "BINARY_LITERAL"
+    );
 
     /**
      * <p>
@@ -73,6 +91,9 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
             .that(JavaLanguageLexer.COMPILATION_UNIT)
             .isEqualTo(1);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.PLACEHOLDER1)
+            .isEqualTo(2);
         assertWithMessage(message)
             .that(JavaLanguageLexer.NULL_TREE_LOOKAHEAD)
             .isEqualTo(3);
@@ -736,17 +757,30 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
             .that(JavaLanguageLexer.EMBEDDED_EXPRESSION_END)
             .isEqualTo(223);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.LITERAL_UNDERSCORE)
+            .isEqualTo(224);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.UNNAMED_PATTERN_DEF)
+            .isEqualTo(225);
+
+        final Set<String> modeNames = Set.of(JavaLanguageLexer.modeNames);
+        final Set<String> channelNames = Set.of(JavaLanguageLexer.channelNames);
 
         final int tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
                 .filter(GeneratedJavaTokenTypesTest::isPublicStaticFinalInt)
+                .filter(field -> !modeNames.contains(field.getName()))
+                .filter(field -> !channelNames.contains(field.getName()))
+                .filter(field -> !INTERNAL_TOKENS.contains(field.getName()))
                 .count();
 
-        // Read JavaDoc before changing count below
+        // Read JavaDoc before changing count below, the count should be equal to
+        // the number of the last token asserted above.
         assertWithMessage("all tokens must be added to list in"
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(235);
+            .isEqualTo(225);
     }
 
     /**
@@ -763,25 +797,11 @@ public class GeneratedJavaTokenTypesTest {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toUnmodifiableList());
 
-        // Since the following tokens are not declared in the 'tokens' block,
-        // they will always appear last in the list of symbolic names provided
-        // by the vocabulary.
-        final List<String> unusedTokenNames = List.of(
-                // reserved keywords that are not part of the language
-                "LITERAL_CONST", "LITERAL_GOTO",
-
-                // Lexer tokens that are not part of our API (they are used as components of
-                // parser rules, but the token name is changed).
-                "DECIMAL_LITERAL_LONG", "DECIMAL_LITERAL", "HEX_LITERAL_LONG",
-                "HEX_LITERAL", "OCT_LITERAL_LONG", "OCT_LITERAL", "BINARY_LITERAL_LONG",
-                "BINARY_LITERAL"
-        );
-
         // Get the starting index of the sublist of tokens, or -1 if sublist
         // is not present.
         final int lastIndexOfSublist =
-                Collections.lastIndexOfSubList(allTokenNames, unusedTokenNames);
-        final int expectedNumberOfUsedTokens = allTokenNames.size() - unusedTokenNames.size();
+                Collections.lastIndexOfSubList(allTokenNames, INTERNAL_TOKENS);
+        final int expectedNumberOfUsedTokens = allTokenNames.size() - INTERNAL_TOKENS.size();
         final String message = "New tokens must be added to the 'tokens' block in the"
                 + " lexer grammar.";
 
