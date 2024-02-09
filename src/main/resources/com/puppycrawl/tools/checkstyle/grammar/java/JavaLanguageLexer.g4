@@ -114,7 +114,9 @@ tokens {
 
     STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END,
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
-    EMBEDDED_EXPRESSION_END
+    EMBEDDED_EXPRESSION_END,
+
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
 }
 
 @header {
@@ -166,7 +168,6 @@ LITERAL_CASE:            'case';
 LITERAL_CATCH:           'catch';
 LITERAL_CHAR:            'char';
 LITERAL_CLASS:           'class';
-LITERAL_CONST:           'const';
 LITERAL_CONTINUE:        'continue';
 LITERAL_DEFAULT:         'default';
 LITERAL_DO:              'do';
@@ -179,7 +180,6 @@ LITERAL_FINALLY:         'finally';
 LITERAL_FLOAT:           'float';
 LITERAL_FOR:             'for';
 LITERAL_IF:              'if';
-LITERAL_GOTO:            'goto';
 LITERAL_IMPLEMENTS:      'implements';
 IMPORT:                  'import';
 LITERAL_INSTANCEOF:      'instanceof';
@@ -213,6 +213,7 @@ LITERAL_NON_SEALED:      'non-sealed';
 LITERAL_SEALED:          'sealed';
 LITERAL_PERMITS:         'permits';
 LITERAL_WHEN:            'when';
+LITERAL_UNDERSCORE:      '_';
 
 // Literals
 DECIMAL_LITERAL_LONG:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL];

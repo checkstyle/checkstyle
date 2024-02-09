@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 public class InputMatchXpathSingleLineComments {
     void foo() {
-        int num; // Trailing comment // ok
+        int num; // Trailing comment
 
         boolean isTrue; //Some Comment // violation
         double pi = 3.14; //Constant PI value // violation

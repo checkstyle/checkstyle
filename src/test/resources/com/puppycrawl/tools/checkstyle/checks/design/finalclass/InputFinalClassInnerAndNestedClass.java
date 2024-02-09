@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassInnerAndNestedClass {
 
-    private class SuperClass { // ok
+    private class SuperClass {
         private SuperClass() {
         }
     }
@@ -22,7 +22,7 @@ public class InputFinalClassInnerAndNestedClass {
     }
 
     static class Test {
-        static class SameName { // ok
+        static class SameName {
             private SameName() {
             }
             class Test3 {
@@ -31,7 +31,7 @@ public class InputFinalClassInnerAndNestedClass {
     }
 
     class TestInnerClass {
-        class SameName { // ok
+        class SameName {
             class Test3 {
                 class Test4 extends SameName {
                 }
@@ -57,7 +57,7 @@ enum foo {
     VALUE_1, VALUE_2;
 
     class A {
-        class B { // ok
+        class B {
             private B() {
             }
         }
@@ -75,7 +75,7 @@ enum foo {
 }
 
 class foo2 {
-    class c { // ok
+    class c {
         private c() {
         }
     }
