@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 import java.util.List;
 import java.util.ArrayList;
 
-public class InputAnnotationOnSameLineCheck2 {
+public class InputAnnotationOnSameLineCheckPrivateAndDeprecatedVar {
 
     @Ann        // violation
     private List<String> names = new ArrayList<>();
