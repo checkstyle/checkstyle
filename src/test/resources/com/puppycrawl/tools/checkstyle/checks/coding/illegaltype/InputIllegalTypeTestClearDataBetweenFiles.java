@@ -7,7 +7,7 @@ import java.util.TreeSet;
  * illegalClassNames = { java.util.TreeSet }
  */
 public class InputIllegalTypeTestClearDataBetweenFiles implements InputIllegalTypeSuper {
-    private AbstractClass a = null; // ok
+    private AbstractClass a = null;
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
@@ -27,7 +27,7 @@ public class InputIllegalTypeTestClearDataBetweenFiles implements InputIllegalTy
     InputIllegalTypeTestClearDataBetweenFiles(Integer i) {}
     private void table2(Integer i) {}
 
-    private void getInitialContext(java.util.TreeSet v) {} // ok
+    private void getInitialContext(java.util.TreeSet v) {}
 
     @Override
     public void foo(HashMap<?, ?> buffer) {} // ignore
@@ -44,9 +44,9 @@ public class InputIllegalTypeTestClearDataBetweenFiles implements InputIllegalTy
 }
 
 interface InputIllegalTypeSuperTestClearDataBetweenFiles {
-    void foo(HashMap<?, ?> buffer); // ok
+    void foo(HashMap<?, ?> buffer);
 
-    HashMap<?, ?> foo(); // ok
+    HashMap<?, ?> foo();
 
     Object bar();
 }
