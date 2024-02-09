@@ -452,7 +452,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param filenames names of files to process
      * @throws Exception if there is a problem during checker configuration
      */
-    protected final void execute(Checker checker, String... filenames) throws Exception {
+    protected static void execute(Checker checker, String... filenames) throws Exception {
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
                 .collect(Collectors.toUnmodifiableList());
