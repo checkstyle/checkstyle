@@ -24,12 +24,19 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 
-public class ScopeUtilTest {
+public class ScopeUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -373,6 +380,14 @@ public class ScopeUtilTest {
                 .that(ScopeUtil.isInInterfaceOrAnnotationBlock(
                         getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK)))
                 .isFalse();
+    }
+
+    @Test
+    public void testgetSurroundingScope() {
+        final JavadocTypeCheck javadocTypeCheck = new JavadocTypeCheck();
+        assertWithMessage("JavadocTypeCheck#getRequiredTokens should return empty array by default")
+                .that(javadocTypeCheck.getRequiredTokens())
+                .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
 
     private static DetailAstImpl getNode(int... nodeTypes) {
