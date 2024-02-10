@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * Tests having inner types
  * @author Oliver Burn
  **/
-class InputJavadocTypeInner // ok
+class InputJavadocTypeInner
 {
     // ok , two violations
     class InnerInner2

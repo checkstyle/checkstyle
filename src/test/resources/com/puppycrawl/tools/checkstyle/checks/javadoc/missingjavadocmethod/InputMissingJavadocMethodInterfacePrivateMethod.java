@@ -15,7 +15,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public interface InputMissingJavadocMethodInterfacePrivateMethod { // ok
+public interface InputMissingJavadocMethodInterfacePrivateMethod {
 
     private static void myPrivateMethod() {
 

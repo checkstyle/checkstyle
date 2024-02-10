@@ -25,8 +25,8 @@ public class InputMissingJavadocMethodNoJavadoc2 //comment test
 
     public void foo1() {} // violation
     protected void foo2() {} // violation
-    void foo3() {} // ok
-    private void foo4() {} // ok
+    void foo3() {}
+    private void foo4() {}
 
     protected class ProtectedInner {
         public int i1;
@@ -36,8 +36,8 @@ public class InputMissingJavadocMethodNoJavadoc2 //comment test
 
         public void foo1() {} // violation
         protected void foo2() {} // violation
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        void foo3() {}
+        private void foo4() {}
     }
 
     class PackageInner {
@@ -46,10 +46,10 @@ public class InputMissingJavadocMethodNoJavadoc2 //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     private class PrivateInner {
@@ -58,10 +58,10 @@ public class InputMissingJavadocMethodNoJavadoc2 //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 }
 
@@ -71,10 +71,10 @@ class PackageClass2 {
     int i3;
     private int i4;
 
-    public void foo1() {} // ok
-    protected void foo2() {} // ok
-    void foo3() {} // ok
-    private void foo4() {} // ok
+    public void foo1() {}
+    protected void foo2() {}
+    void foo3() {}
+    private void foo4() {}
 
     public class PublicInner {
         public int i1;
@@ -82,10 +82,10 @@ class PackageClass2 {
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     protected class ProtectedInner {
@@ -94,10 +94,10 @@ class PackageClass2 {
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     class PackageInner {
@@ -106,10 +106,10 @@ class PackageClass2 {
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     private class PrivateInner {
@@ -118,10 +118,10 @@ class PackageClass2 {
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
     class IgnoredName {
@@ -132,5 +132,5 @@ class PackageClass2 {
     }
 
     /**/
-    void methodWithTwoStarComment() {} // ok
+    void methodWithTwoStarComment() {}
 }

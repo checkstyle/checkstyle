@@ -9,7 +9,7 @@ period =
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
-public class InputSummaryJavadocNoPeriod // ok
+public class InputSummaryJavadocNoPeriod
 {
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}

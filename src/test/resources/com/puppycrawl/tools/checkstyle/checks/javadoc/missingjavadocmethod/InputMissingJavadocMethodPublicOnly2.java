@@ -21,20 +21,20 @@ public class InputMissingJavadocMethodPublicOnly2
     private interface InnerInterface
     {
         String CONST = "InnerInterface";
-        void method(); // ok
+        void method();
 
         class InnerInnerClass
         {
             private int mData;
 
-            private InnerInnerClass() // ok
+            private InnerInnerClass()
             {
                 final Runnable r = new Runnable() {
                     public void run() {};
                 };
             }
 
-            void method2() // ok
+            void method2()
             {
                 final Runnable r = new Runnable() {
                     public void run() {};
@@ -47,7 +47,7 @@ public class InputMissingJavadocMethodPublicOnly2
     {
         private int mDiff;
 
-        void method() // ok
+        void method()
         {
         }
     }
@@ -57,35 +57,35 @@ public class InputMissingJavadocMethodPublicOnly2
     protected int mDeer;
     public int aFreddo;
 
-    private InputMissingJavadocMethodPublicOnly2(int aA) // ok
+    private InputMissingJavadocMethodPublicOnly2(int aA)
     {
     }
 
-    InputMissingJavadocMethodPublicOnly2(String aA) // ok
+    InputMissingJavadocMethodPublicOnly2(String aA)
     {
     }
 
-    protected InputMissingJavadocMethodPublicOnly2(Object aA) // ok
+    protected InputMissingJavadocMethodPublicOnly2(Object aA)
     {
     }
 
-    public InputMissingJavadocMethodPublicOnly2(Class<Object> aA) // ok
+    public InputMissingJavadocMethodPublicOnly2(Class<Object> aA)
     {
     }
 
-    private void method(int aA) // ok
+    private void method(int aA)
     {
     }
 
-    void method(Long aA) // ok
+    void method(Long aA)
     {
     }
 
-    protected void method(Class<Object> aA) // ok
+    protected void method(Class<Object> aA)
     {
     }
 
-    public void method(StringBuffer aA) // ok
+    public void method(StringBuffer aA)
     {
     }
 

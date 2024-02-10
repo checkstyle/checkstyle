@@ -21,12 +21,12 @@ public class InputJavadocMethodScopeAnonInner
     /**
        button.
     */
-    private JButton mButton = new JButton(); // ok
+    private JButton mButton = new JButton();
 
     /**
        anon inner in member variable initialization.
     */
-    private Runnable mRunnable = new Runnable() { // ok
+    private Runnable mRunnable = new Runnable() {
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");
@@ -36,7 +36,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in constructor.
     */
-    InputJavadocMethodScopeAnonInner() // ok
+    InputJavadocMethodScopeAnonInner()
     {
         mButton.addMouseListener( new MouseAdapter()
             {
@@ -50,7 +50,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in method
     */
-    public void addInputAnonInner() // ok
+    public void addInputAnonInner()
     {
         mButton.addMouseListener( new MouseAdapter()
             {

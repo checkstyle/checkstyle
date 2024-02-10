@@ -25,10 +25,10 @@ class InputJavadocTypeAllowedAnnotationByDefault1 {
 /**
  * Annotation for unit tests.
  */
-@interface ThisIsOk1 {} // ok
+@interface ThisIsOk1 {}
 /**
  * Annotation for unit tests.
  */
-@interface Generated1 { // ok
+@interface Generated1 {
     String[] value();
 }

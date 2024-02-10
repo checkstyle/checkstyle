@@ -19,7 +19,7 @@ public enum InputMissingJavadocMethodEnumCtorScopeIsPrivate {
 
     private final int value;
 
-    InputMissingJavadocMethodEnumCtorScopeIsPrivate(int value) { // ok
+    InputMissingJavadocMethodEnumCtorScopeIsPrivate(int value) {
         this.value = value;
     }
 

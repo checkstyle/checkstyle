@@ -17,13 +17,13 @@ public class InputMissingJavadocTypeQualifiedAnnotationWithParameters {
         boolean isOk() default false;
     }
 
-    @SomeAnnotation("value") // ok
+    @SomeAnnotation("value")
     public interface A { }
 
-    @SomeAnnotation(value = "value", quantity = 5, isOk = true) // ok
+    @SomeAnnotation(value = "value", quantity = 5, isOk = true)
     public interface B { }
 
-    @SomeAnnotation( // ok
+    @SomeAnnotation(
         value = "value",
         isOk = true
     )

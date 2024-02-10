@@ -18,5 +18,5 @@ public class InputJavadocMethodLoadErrors
      * aasdf
      * @throws InvalidExceptionName exception that cannot be loaded
      */
-    void method() {} // ok
+    void method() {}
 }

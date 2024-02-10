@@ -12,67 +12,67 @@ public class InputJavadocMissingLeadingAsteriskCorrect {
   /**
    * Java style.
    **/
-  public int javaStyle; // ok
+  public int javaStyle;
 
   /** Single-line. **/
-  public int singleLine; // ok
+  public int singleLine;
 
   /** Scala style.
     */
-  public int scalaStyle; // ok
+  public int scalaStyle;
 
   /**
    ** More than one asterisk.
    **/
-  public int manyAsterisks; // ok
+  public int manyAsterisks;
 
   /**
    *
    * Some blank lines.
    **
    **/
-  public int blankLines; // ok
+  public int blankLines;
 
   /** * Asterisk on first line.
    */
-  public int firstLineAsterisk; // ok
+  public int firstLineAsterisk;
 
   /** * Asterisk on single-line. */
-  public int singleLineAsterisk; // ok
+  public int singleLineAsterisk;
 
   /** ** Multiple asterisks on first line.
    */
-  public int firstLineAsterisks; // ok
+  public int firstLineAsterisks;
 
   /** ** Multiple asterisks on single-line. */
-  public int singleLineAsterisks; // ok
+  public int singleLineAsterisks;
 
   /**
    * Asterisk on last line.
    **/
-  public int lastLineAsterisk; // ok
+  public int lastLineAsterisk;
 
   /**
    * Multiple asterisks on last line.
    ** */
-  public int lastLineAsterisks; // ok
+  public int lastLineAsterisks;
 
   /***/
-  public int emptyComment; // ok
+  public int emptyComment;
 
   /** */
-  public int blankComment; // ok
+  public int blankComment;
 
   /**
    *
    **
    */
-  public int multiLineBlankComment; // ok
+  public int multiLineBlankComment;
 
   /**
    * @see #blockTag
    **/
-  public int blockTag; // ok
+  public int blockTag;
 
 }
 
@@ -80,7 +80,7 @@ public class InputJavadocMissingLeadingAsteriskCorrect {
 *EOF immediately after NEWLINE
 *@deprecated block tag
 */
-class NoTextAfterNewLineCorrect { // ok
+class NoTextAfterNewLineCorrect {
 
 }
 
@@ -88,10 +88,10 @@ class TokenTypes {
   /**
    * @see #RBRACK
    */
-  public int METHOD_REF; // ok
+  public int METHOD_REF;
   /**
    * {@link TokenTypes#METHOD_REF
    * METHOD_REF},
    */
-  public int RBRACK; // ok
+  public int RBRACK;
 }

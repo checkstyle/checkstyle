@@ -14,11 +14,11 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-public class InputJavadocTypeScopeInnerInterfaces // ok
+public class InputJavadocTypeScopeInnerInterfaces
 {
 
 
-    private interface PrivateInterface // ok
+    private interface PrivateInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -27,7 +27,7 @@ public class InputJavadocTypeScopeInnerInterfaces // ok
         void mb();
     }
 
-    interface PackageInnerInterface // ok
+    interface PackageInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -36,7 +36,7 @@ public class InputJavadocTypeScopeInnerInterfaces // ok
         void mb();
     }
 
-    protected interface ProtectedInnerInterface // ok
+    protected interface ProtectedInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -45,7 +45,7 @@ public class InputJavadocTypeScopeInnerInterfaces // ok
         void mb();
     }
 
-    public interface PublicInnerInterface // ok
+    public interface PublicInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";

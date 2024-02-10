@@ -13,7 +13,7 @@ import java.util.function.Function;
 class InputJavadocTagContinuationIndentationGuavaFalsePositive {
 
     /**
-     * This class implements the GWT serialization of {@link HashMultimap}. // ok
+     * This class implements the GWT serialization of {@link HashMultimap}.
      *
      * @author Jord Sonneveld
      * 

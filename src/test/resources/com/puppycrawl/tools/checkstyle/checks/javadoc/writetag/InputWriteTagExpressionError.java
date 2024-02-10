@@ -22,18 +22,18 @@ public class InputWriteTagExpressionError {
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagExpressionError () // ok
+    public InputWriteTagExpressionError ()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }

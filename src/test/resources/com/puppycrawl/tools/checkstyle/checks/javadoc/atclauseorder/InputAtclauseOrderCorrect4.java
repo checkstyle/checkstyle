@@ -30,7 +30,7 @@ public class InputAtclauseOrderCorrect4 implements Serializable {
           * @serialData Some javadoc.
           * @deprecated Some text.
           */
-         String method5(String aString) { // ok
+         String method5(String aString) {
              return "null";
          }
 

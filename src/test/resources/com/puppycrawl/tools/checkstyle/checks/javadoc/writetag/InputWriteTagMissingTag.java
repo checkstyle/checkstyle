@@ -22,18 +22,18 @@ class InputWriteTagMissingTag // violation 'Type Javadoc comment is missing @mis
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTagMissingTag() // ok
+    public InputWriteTagMissingTag()
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod() // ok
+    public void anotherMethod()
     {
     }
 }

@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.requireemptylinebeforeblo
 /**
  * Some Javadoc.
  *
- * @since 8.36 // ok
+ * @since 8.36
  */
 class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
 
@@ -22,7 +22,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     /**
      * This Javadoc has one tag, with an empty line. There should be no violations.
      *
-     * @since 8.36 // ok
+     * @since 8.36
      */
     public static final byte ONE_TAG = 0;
 
@@ -31,7 +31,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
      * Another independent check will verify if there is too much whitespace.
      *
      *
-     * @since 8.36 // ok
+     * @since 8.36
      */
     public static final byte TWO_BLANK_LINES = 0;
 
@@ -39,7 +39,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
      * This Javadoc has multiple tags, with an empty line before them. There should be no
      * violations.
      *
-     * @param input this is the first tag. // ok
+     * @param input this is the first tag.
      * @return this is the second tag.
      */
     public static boolean test(boolean input) {
@@ -50,7 +50,7 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
      * This javadoc has an empty line with no asterisks. There should be no violation because
      * a separate check ensures the asterisks are well-formed.
 
-     * @param input this is the first tag. // ok
+     * @param input this is the first tag.
      * @return this is the second tag.
      */
     public static boolean noAsterisks(boolean input) {
@@ -58,14 +58,14 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     }
 
     /**
-     * @return this only has a tag. // ok
+     * @return this only has a tag.
      */
     public static boolean test() {
         return false;
     }
 
     /**
-     *@return this tag has no whitespace before it. // ok
+     *@return this tag has no whitespace before it.
      */
     public static boolean noWhiteSpace() {
         return false;

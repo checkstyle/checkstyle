@@ -104,7 +104,7 @@ public class InputMissingJavadocTypePublicOnly1 // violation
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor // ok
+    public class InnerWithoutAuthor
     {
 
     }
