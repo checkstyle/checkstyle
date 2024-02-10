@@ -27,7 +27,7 @@ class InputWriteTagMethod
     {
     }
 
-    public void method() // ok
+    public void method()
     {
     }
 

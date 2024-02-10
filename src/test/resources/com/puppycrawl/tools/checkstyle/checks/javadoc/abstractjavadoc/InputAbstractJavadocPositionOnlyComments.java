@@ -4,5 +4,5 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$JavadocC
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-/** Javadoc for import */ // ok
+/** Javadoc for import */
 import java.io.Serializable;

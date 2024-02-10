@@ -17,26 +17,26 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  all inner elements should not be reported as violation,
  even if they belong to the checkscope if isolated.
  */
-public class InputMissingJavadocTypeScopeInnerClasses2 // ok
+public class InputMissingJavadocTypeScopeInnerClasses2
 {
     public class InnerPublic // violation
     {
-        protected class InnerProtected // ok
+        protected class InnerProtected
         {
-            class InnerPackage // ok
+            class InnerPackage
             {
                 private class InnerPrivate
                 {
                     // no javadoc required for package scope
-                    class PrivateHiddenPackage // ok
+                    class PrivateHiddenPackage
                     {
                     }
 
-                    protected class PrivateHiddenProtected // ok
+                    protected class PrivateHiddenProtected
                     {
                     }
 
-                    public class PrivateHiddenPublic // ok
+                    public class PrivateHiddenPublic
                     {
                     }
                 }

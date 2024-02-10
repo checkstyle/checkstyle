@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 public class InputMissingJavadocTypePublicOnly2 // violation
 {
-    private interface InnerInterface // ok
+    private interface InnerInterface
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
 
-        class InnerInnerClass // OK
+        class InnerInnerClass
         {
             private int mData; // ignore - when not relaxed about Javadoc
 
@@ -37,7 +37,7 @@ public class InputMissingJavadocTypePublicOnly2 // violation
         }
     }
 
-    private class InnerClass // OK
+    private class InnerClass
     {
         private int mDiff; // ignore - when not relaxed about Javadoc
 
@@ -104,7 +104,7 @@ public class InputMissingJavadocTypePublicOnly2 // violation
     /**
      This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor // ok
+    public class InnerWithoutAuthor
     {
 
     }

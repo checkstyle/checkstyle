@@ -13,7 +13,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-public class InputMissingJavadocMethodsNotSkipWritten { // ok
+public class InputMissingJavadocMethodsNotSkipWritten {
     /**
      * Description.
      *

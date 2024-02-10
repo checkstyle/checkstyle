@@ -17,5 +17,5 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  * @param <BAD> This doesn't exist.
  * @param
  */
-public class InputMissingJavadocTypeUnusedParamInJavadocForClass { // ok
+public class InputMissingJavadocTypeUnusedParamInJavadocForClass {
 }

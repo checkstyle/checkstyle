@@ -14,7 +14,7 @@ public class InputMissingJavadocTypeScopeInnerInterfaces1 // violation
 {
     // inner interfaces with different scopes
 
-    private interface PrivateInterface // ok
+    private interface PrivateInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -23,7 +23,7 @@ public class InputMissingJavadocTypeScopeInnerInterfaces1 // violation
         void mb();
     }
 
-    interface PackageInnerInterface // ok
+    interface PackageInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -32,7 +32,7 @@ public class InputMissingJavadocTypeScopeInnerInterfaces1 // violation
         void mb();
     }
 
-    protected interface ProtectedInnerInterface // ok
+    protected interface ProtectedInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -52,29 +52,29 @@ public class InputMissingJavadocTypeScopeInnerInterfaces1 // violation
 
     private
     class
-    MyClass1 { // ok
+    MyClass1 {
     }
 
     class
-    MyClass2 { // ok
+    MyClass2 {
     }
 
     private
     interface
-    MyInterface1 { // ok
+    MyInterface1 {
     }
 
     interface
-    MyInterface2 { // ok
+    MyInterface2 {
     }
 
     protected
     enum
-    MyEnum { // ok
+    MyEnum {
     }
 
     private
     @interface
-    MyAnnotation { // ok
+    MyAnnotation {
     }
 }

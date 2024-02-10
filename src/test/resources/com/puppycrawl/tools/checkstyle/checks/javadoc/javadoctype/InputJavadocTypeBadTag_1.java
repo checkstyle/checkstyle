@@ -16,8 +16,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /**
  * The following is a bad tag.
- * @mytag Hello // ok
+ * @mytag Hello
  */
-public class InputJavadocTypeBadTag_1 // ok
+public class InputJavadocTypeBadTag_1
 {
 }

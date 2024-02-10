@@ -16,7 +16,7 @@ public class InputMissingJavadocTypeQualifiedAnnotation3 {
     @SomeAnnotation // violation 'Missing a Javadoc comment.'
     public interface A { }
 
-    @InputMissingJavadocTypeQualifiedAnnotation3.SomeAnnotation // ok
+    @InputMissingJavadocTypeQualifiedAnnotation3.SomeAnnotation
     public interface B { }
 
     @com.puppycrawl.tools.checkstyle.checks.javadoc // violation 'Missing a Javadoc comment.'

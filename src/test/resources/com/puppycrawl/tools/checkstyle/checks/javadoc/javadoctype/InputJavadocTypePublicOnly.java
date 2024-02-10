@@ -14,16 +14,16 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-public class InputJavadocTypePublicOnly // ok
+public class InputJavadocTypePublicOnly
 {
-    private interface InnerInterface // ok
+    private interface InnerInterface
     {
-        String CONST = "InnerInterface"; // ok
-        void method(); // ok
+        String CONST = "InnerInterface";
+        void method();
 
-        class InnerInnerClass // ok
+        class InnerInnerClass
         {
-            private int mData; // ok
+            private int mData;
 
             private InnerInnerClass()
             {
@@ -32,7 +32,7 @@ public class InputJavadocTypePublicOnly // ok
                     };
             }
 
-            void method2() // ok
+            void method2()
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
@@ -41,21 +41,20 @@ public class InputJavadocTypePublicOnly // ok
         }
     }
 
-    private class InnerClass // ok
+    private class InnerClass
     {
-        private int mDiff; // ok
+        private int mDiff;
 
-        void method() // ok
+        void method()
         {
         }
     }
 
-    private int mSize; // ok
-    int mLen; // ok
-    protected int mDeer; // ok
-    public int aFreddo; // ok
+    private int mSize;
+    int mLen;
+    protected int mDeer;
+    public int aFreddo;
 
-    // ok
     private InputJavadocTypePublicOnly(int aA)
     {
     }

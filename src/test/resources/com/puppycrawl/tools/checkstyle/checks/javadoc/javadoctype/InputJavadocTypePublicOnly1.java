@@ -14,14 +14,14 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-public class InputJavadocTypePublicOnly1 // ok
+public class InputJavadocTypePublicOnly1
 {
-    private interface InnerInterface // ok
+    private interface InnerInterface
     {
         String CONST = "InnerInterface";
         void method();
 
-        class InnerInnerClass // ok
+        class InnerInnerClass
         {
             private int mData;
 
@@ -32,7 +32,7 @@ public class InputJavadocTypePublicOnly1 // ok
                     };
             }
 
-            void method2() // ok
+            void method2()
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
@@ -41,11 +41,11 @@ public class InputJavadocTypePublicOnly1 // ok
         }
     }
 
-    private class InnerClass // ok
+    private class InnerClass
     {
-        private int mDiff; // ok
+        private int mDiff;
 
-        void method() // ok
+        void method()
         {
         }
     }
@@ -56,12 +56,12 @@ public class InputJavadocTypePublicOnly1 // ok
     public int aFreddo;
 
 
-    private InputJavadocTypePublicOnly1(int aA) // ok
+    private InputJavadocTypePublicOnly1(int aA)
     {
     }
 
 
-    InputJavadocTypePublicOnly1(String aA) // ok
+    InputJavadocTypePublicOnly1(String aA)
     {
     }
 
@@ -76,22 +76,22 @@ public class InputJavadocTypePublicOnly1 // ok
     }
 
 
-    private void method(int aA) // ok
+    private void method(int aA)
     {
     }
 
 
-    void method(Long aA) // ok
+    void method(Long aA)
     {
     }
 
 
-    protected void method(Class<Object> aA) // ok
+    protected void method(Class<Object> aA)
     {
     }
 
 
-    public void method(StringBuffer aA) // ok
+    public void method(StringBuffer aA)
     {
     }
 
@@ -101,14 +101,14 @@ public class InputJavadocTypePublicOnly1 // ok
        Writing a little documentation should not be worse than not
        writing any documentation at all.
      */
-    private void method(String aA) // ok
+    private void method(String aA)
     {
     }
 
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor // ok
+    public class InnerWithoutAuthor
     {
 
     }
@@ -117,11 +117,11 @@ public class InputJavadocTypePublicOnly1 // ok
     public String toString()
     {
         return super.toString();
-    } // ok
+    }
 
     @Deprecated @Override
     public int hashCode()
     {
         return super.hashCode();
-    } // ok
+    }
 }

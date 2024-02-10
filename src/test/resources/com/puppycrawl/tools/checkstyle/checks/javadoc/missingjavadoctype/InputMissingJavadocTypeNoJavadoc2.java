@@ -34,7 +34,7 @@ public class InputMissingJavadocTypeNoJavadoc2 // violation
         private void foo4() {}
     }
 
-    class PackageInner { // ok
+    class PackageInner {
         public int i1;
         protected int i2;
         int i3;
@@ -46,7 +46,7 @@ public class InputMissingJavadocTypeNoJavadoc2 // violation
         private void foo4() {}
     }
 
-    private class PrivateInner { // ok
+    private class PrivateInner {
         public int i1;
         protected int i2;
         int i3;
@@ -59,7 +59,7 @@ public class InputMissingJavadocTypeNoJavadoc2 // violation
     }
 }
 
-class PackageClass2 { // ok
+class PackageClass2 {
     public int i1;
     protected int i2;
     int i3;
@@ -70,7 +70,7 @@ class PackageClass2 { // ok
     void foo3() {}
     private void foo4() {}
 
-    public class PublicInner { // ok
+    public class PublicInner {
         public int i1;
         protected int i2;
         int i3;
@@ -82,7 +82,7 @@ class PackageClass2 { // ok
         private void foo4() {}
     }
 
-    protected class ProtectedInner { // ok
+    protected class ProtectedInner {
         public int i1;
         protected int i2;
         int i3;
@@ -94,7 +94,7 @@ class PackageClass2 { // ok
         private void foo4() {}
     }
 
-    class PackageInner { // ok
+    class PackageInner {
         public int i1;
         protected int i2;
         int i3;
@@ -106,7 +106,7 @@ class PackageClass2 { // ok
         private void foo4() {}
     }
 
-    private class PrivateInner { // ok
+    private class PrivateInner {
         public int i1;
         protected int i2;
         int i3;
@@ -118,7 +118,7 @@ class PackageClass2 { // ok
         private void foo4() {}
     }
 
-    class IgnoredName { // ok
+    class IgnoredName {
         // ignore by name
         private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc
