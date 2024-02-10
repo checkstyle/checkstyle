@@ -104,7 +104,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MethodLength",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
-            "MultipleStringLiterals",
             "MutableException",
             "ParameterAssignment",
             "ParameterNumber",
