@@ -6,6 +6,12 @@
 
 <suppressions>
 
+  <!-- The files have no exampleClassName by design. -->
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example3.java"/>
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example4.java"/>
+
   <!-- The file is used so examples can show how overridden methods are treated. -->
   <suppress id="exampleClassName"
     files="abbreviationaswordinname[\\/]SuperClass.java"/>
