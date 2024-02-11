@@ -247,7 +247,7 @@ public final class InlineConfigParser {
                 throw new CheckstyleException(
                         "First module should be Checker, but was " + configName);
             }
-            handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig.getChildren());
+            handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig);
         }
         else {
             handleKeyValueConfig(testInputConfigBuilder, inputFilePath, inlineConfig);
@@ -277,6 +277,10 @@ public final class InlineConfigParser {
                 setModuleName(moduleInputConfigBuilder, inputFilePath, moduleName);
                 setProperties(inputFilePath, module, moduleInputConfigBuilder);
                 testInputConfigBuilder.addChildModule(moduleInputConfigBuilder.build());
+
+                if ("Checker".equals(moduleName)) {
+                    handleXmlConfig(testInputConfigBuilder, inputFilePath, module.getChildren());
+                }
             }
         }
     }
@@ -320,6 +324,9 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
         moduleMappings.put("LineLength",
                 "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
+        moduleMappings.put("Checker",
+                "com.puppycrawl.tools.checkstyle.CheckerCheck");
+
         if (moduleMappings.containsKey(moduleName)) {
             fullyQualifiedClassName = moduleMappings.get(moduleName);
         }
