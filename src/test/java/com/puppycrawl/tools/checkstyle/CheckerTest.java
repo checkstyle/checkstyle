@@ -439,6 +439,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
+    @SuppressForbidden
+    @Test
+    public void testSetSeverity() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+
+        checkConfig.addProperty("max", "75");
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addProperty("severity", "ignore");
+        verify(checkerConfig, getPath("InputCheckerTestSeverity.java"), expected);
+    }
+
     @Test
     public void testNoClassLoaderNoModuleFactory() {
         final Checker checker = new Checker();
