@@ -3,3 +3,5 @@ com.puppycrawl.tools.checkstyle.DefaultConfiguration#getAttribute(java.lang.Stri
 com.puppycrawl.tools.checkstyle.DefaultConfiguration#addAttribute(java.lang.String,java.lang.String) @ Usage of deprecated API is forbidden. Please use DefaultConfiguration.addProperty(String name, String value) instead.
 com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int,int,java.lang.String,java.lang.Object[]) @ Use of this log method is forbidden, please use AbstractCheck#log(DetailAST ast, String key, Object... args)
 com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int,java.lang.String,java.lang.Object[]) @ Use of this log method is forbidden, please use AbstractCheck#log(DetailAST ast, String key, Object... args)
+com.puppycrawl.tools.checkstyle.PropertyCacheFile#createTempFile(java.lang.String,FileAttribute<?>...) @ Use of this method is forbidden, please use @TempDir for better temporary directory control
+com.puppycrawl.tools.checkstyle.PropertyCacheFile#createTempFile(Path,java.lang.String,java.lang.String,FileAttribute<?>...) @ Use of this method is forbidden, please use @TempDir for better temporary directory control

@@ -286,8 +286,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
+        final Path tempDirectory = temporaryFolder.toPath();
+        final Path symbolicLinkDirectory = temporaryFolder.toPath()
                 .resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
@@ -306,8 +306,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkResolution() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
+        final Path tempDirectory = temporaryFolder.toPath();
+        final Path symbolicLinkDirectory = temporaryFolder.toPath()
                 .resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
@@ -328,7 +328,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final Path tempFile = Files.createTempFile("tempFile", null);
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir");
+        final Path symbolicLinkDirectory = temporaryFolder.toPath();
         final Path symbolicLink = symbolicLinkDirectory.resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLink, tempFile);
 
@@ -350,12 +350,12 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testMultipleSymbolicLinkResolution() throws IOException {
-        final Path actualDirectory = Files.createTempDirectory("actualDir");
-        final Path firstSymbolicLink = Files.createTempDirectory("firstLinkDir")
+        final Path actualDirectory = temporaryFolder.toPath();
+        final Path firstSymbolicLink = temporaryFolder.toPath()
                 .resolve("firstLink");
         Files.createSymbolicLink(firstSymbolicLink, actualDirectory);
 
-        final Path secondSymbolicLink = Files.createTempDirectory("secondLinkDir")
+        final Path secondSymbolicLink = temporaryFolder.toPath()
                 .resolve("secondLink");
         Files.createSymbolicLink(secondSymbolicLink, firstSymbolicLink);
 
