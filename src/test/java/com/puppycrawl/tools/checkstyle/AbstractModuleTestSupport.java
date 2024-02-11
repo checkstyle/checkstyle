@@ -234,7 +234,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(filePath);
         final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
+                testInputConfiguration.createConfiguration(filePath);
         verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
         verify(parsedConfig, filePath, expected);
     }
