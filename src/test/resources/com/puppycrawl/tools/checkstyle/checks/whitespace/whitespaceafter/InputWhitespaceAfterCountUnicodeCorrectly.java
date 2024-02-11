@@ -12,5 +12,5 @@ public class InputWhitespaceAfterCountUnicodeCorrectly {
     String a = "  ";
     String b = "💩💩";
     String c = "💩💩";// message // violation '';' is not followed by whitespace'
-    String d = "💩💩"; // ok
+    String d = "💩💩";
 }
