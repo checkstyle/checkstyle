@@ -12,9 +12,9 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc // ok
+public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc
 {
-    private interface InnerInterface // ignore - when not relaxed about Javadoc // ok
+    private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
@@ -33,7 +33,7 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
             void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
-                    public void run() {}; // ok
+                    public void run() {};
                 };
             }
         }
@@ -54,32 +54,32 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputJavadocMethodProtectedScopeJavadoc(int aA) // ok
+    private InputJavadocMethodProtectedScopeJavadoc(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodProtectedScopeJavadoc(String aA) // ok
+    InputJavadocMethodProtectedScopeJavadoc(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodProtectedScopeJavadoc(Object aA) // ok
+    protected InputJavadocMethodProtectedScopeJavadoc(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodProtectedScopeJavadoc(Class<Object> aA) // ok
+    public InputJavadocMethodProtectedScopeJavadoc(Class<Object> aA)
     {
     }
 
     /** Here should not be an error, Out of scope */
-    private void method(int aA) // ok
+    private void method(int aA)
     {
     }
 
     /** Here should not be an error, Out of scope */
-    void method(Long aA) // ok
+    void method(Long aA)
     {
     }
 
@@ -99,26 +99,26 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
      Writing a little documentation should not be worse than not
      writing any documentation at all.
      */
-    private void method(String aA) // ok
+    private void method(String aA)
     {
     }
 
     /**
      This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor // ok
+    public class InnerWithoutAuthor
     {
 
     }
 
     /** {@inheritDoc} */
-    public String toString() // ok
+    public String toString()
     {
         return super.toString();
     }
 
     @Deprecated @Override
-    public int hashCode() // ok
+    public int hashCode()
     {
         return super.hashCode();
     }

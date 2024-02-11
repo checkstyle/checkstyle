@@ -25,17 +25,17 @@ public class InputJavadocMethodInheritDoc
     }
 
     /** {@inheritDoc} */
-    void packageMethod() // ok
+    void packageMethod()
     {
     }
 
     /** {@inheritDoc} */
-    protected void protectedMethod() // ok
+    protected void protectedMethod()
     {
     }
 
     /** {@inheritDoc} */
-    public void publicMethod() // ok
+    public void publicMethod()
     {
     }
 

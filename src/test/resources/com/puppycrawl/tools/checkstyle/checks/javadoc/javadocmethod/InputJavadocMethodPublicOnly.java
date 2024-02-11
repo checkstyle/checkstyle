@@ -33,7 +33,7 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
             void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
-                        public void run() {}; // ok
+                        public void run() {};
                     };
             }
         }
@@ -54,22 +54,22 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputJavadocMethodPublicOnly(int aA) // ok
+    private InputJavadocMethodPublicOnly(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodPublicOnly(String aA) // ok
+    InputJavadocMethodPublicOnly(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodPublicOnly(Object aA) // ok
+    protected InputJavadocMethodPublicOnly(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodPublicOnly(Class<Object> aA) // ok
+    public InputJavadocMethodPublicOnly(Class<Object> aA)
     {
     }
 
@@ -106,19 +106,19 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor // ok
+    public class InnerWithoutAuthor
     {
 
     }
 
     /** {@inheritDoc} */
-    public String toString() // ok
+    public String toString()
     {
         return super.toString();
     }
 
     @Deprecated @Override
-    public int hashCode() // ok
+    public int hashCode()
     {
         return super.hashCode();
     }
