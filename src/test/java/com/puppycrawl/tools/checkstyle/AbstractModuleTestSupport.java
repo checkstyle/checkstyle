@@ -299,6 +299,25 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Same as {@link #verifyWithInlineConfigParser(String, String...)} but additionally,
+     * This method also sets the global properties of the config.
+     *
+     * @param filePath file path to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithInlineConfigParserGlobalProperties(String filePath,
+                                                                      String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration(filePath);
+        verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
+        verify(parsedConfig, filePath, expected);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded

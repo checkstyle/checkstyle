@@ -19,17 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public final class TestInputConfiguration {
 
@@ -66,6 +74,8 @@ public final class TestInputConfiguration {
 
     private final List<TestInputViolation> filteredViolations;
 
+    private final DefaultConfiguration rooot = new DefaultConfiguration(ROOT_MODULE_NAME);
+
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
                                    List<TestInputViolation> violations,
                                    List<TestInputViolation> filteredViolations) {
@@ -87,22 +97,73 @@ public final class TestInputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        root.addProperty("charset", StandardCharsets.UTF_8.name());
         final DefaultConfiguration treeWalker = createTreeWalker();
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
                 .forEach(moduleConfig -> {
                     if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
-                        root.addChild(moduleConfig);
+                        rooot.addChild(moduleConfig);
                     }
                     else if (!treeWalker.getName().equals(moduleConfig.getName())) {
                         treeWalker.addChild(moduleConfig);
                     }
                 });
-        root.addChild(treeWalker);
-        return root;
+        rooot.addChild(treeWalker);
+        return rooot;
+    }
+
+    public DefaultConfiguration createConfiguration(String inputFilePath) throws Exception {
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+        final List<String> inlineConfig = getInlineConfig(lines);
+
+        for (String line: inlineConfig) {
+            if (line.contains("<module")
+                    && !"<module name=\"Checker\">".equals(line.trim())) {
+                break;
+            }
+            else if (line.contains("<property")) {
+                final List<String> property = getProperty(line);
+
+                if (property != null) {
+                    rooot.addProperty(property.get(0), property.get(1));
+                }
+            }
+        }
+        return createConfiguration();
+    }
+
+    private static List<String> getProperty(String line) {
+        List<String> property = null;
+        final Pattern pattern = Pattern.compile("name=\"(.*?)\"\\s+value=\"(.*?)\"");
+
+        final Matcher matcher = pattern.matcher(line);
+
+        if (matcher.find()) {
+            property = new ArrayList<>();
+            final String name = matcher.group(1);
+            final String value = matcher.group(2);
+            property.add(name);
+            property.add(value);
+        }
+        return property;
+    }
+
+    private static List<String> getInlineConfig(List<String> lines) {
+        return lines.stream()
+                .skip(1)
+                .takeWhile(line -> !line.startsWith("*/"))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static List<String> readFile(Path filePath) throws CheckstyleException {
+        try {
+            return Files.readAllLines(filePath);
+        }
+        catch (IOException ex) {
+            throw new CheckstyleException("Failed to read " + filePath, ex);
+        }
     }
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
