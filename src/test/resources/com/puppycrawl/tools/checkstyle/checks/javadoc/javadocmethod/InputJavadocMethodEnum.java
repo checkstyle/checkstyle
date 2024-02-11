@@ -18,7 +18,7 @@ public class InputJavadocMethodEnum {
 
         SOME_CONSTANT(1) {
             /** Test Method */
-            int someMethod() { // ok
+            int someMethod() {
                 return 0;
             }
         };
