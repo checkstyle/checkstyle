@@ -599,7 +599,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @see SeverityLevel
      */
     public final void setSeverity(String severity) {
-        this.severity = SeverityLevel.getInstance(severity);
     }
 
     @Override
