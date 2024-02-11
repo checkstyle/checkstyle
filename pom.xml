@@ -1863,6 +1863,17 @@
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
                 <exclude>**/CheckerTest.class</exclude>
+
+                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/14465 -->
+                <!-- Excludes for createTempFile forbidden method -->
+                <exclude>**/SuppressionFilterTest.class</exclude>
+                <exclude>**/XpathUtilTest.class</exclude>
+                <exclude>**/TreeWalkerTest.class</exclude>
+                <exclude>**/PropertyCacheFileTest.class</exclude>
+                <exclude>**/FilterUtilTest.class</exclude>
+                <exclude>**/AbstractXpathTestSupport.class</exclude>
+                <exclude>**/AbstractJavadocCheckTest.class</exclude>
+                <exclude>**/ImportControlCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
