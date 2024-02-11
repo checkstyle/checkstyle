@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
  * @author Nobody
  * @version 1.0
  */
-public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // ok
+public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
 {
     /**
      * Some explanation.
@@ -46,7 +46,7 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
      * @param aAnEl A parameter
      * @param <L> A type parameter
      */
-    public <L> void doSomethingElse2(L aAnEl) // ok
+    public <L> void doSomethingElse2(L aAnEl)
     {
     }
 
@@ -56,7 +56,7 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
      * @param <C> extra parameter
      */
 
-    public static class InnerClass<A,B> // ok
+    public static class InnerClass<A,B>
     {
     }
 
@@ -71,4 +71,4 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // o
 }
 
 /** @param x */
-class Test {} // ok
+class Test {}

@@ -28,9 +28,9 @@ public class InputJavadocMethodNoJavadocProtectedScope //comment test
     public void foo5() {}
     /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     protected void foo6() {}
-    /** @return correct, out of scope */ // ok
+    /** @return correct, out of scope */
     void foo7() {}
-    /** @return correct, out of scope */ // ok
+    /** @return correct, out of scope */
     private void foo8() {}
 
     protected class ProtectedInner { // ignored

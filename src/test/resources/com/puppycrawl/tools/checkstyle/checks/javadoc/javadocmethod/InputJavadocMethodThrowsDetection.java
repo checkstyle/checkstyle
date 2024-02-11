@@ -16,7 +16,7 @@ public class InputJavadocMethodThrowsDetection {
 
     void noJavadoc() {
         // no javadoc, no violations
-        throw new UnsupportedOperationException(""); // ok
+        throw new UnsupportedOperationException("");
     }
 
     /** Simple, trivial case. */

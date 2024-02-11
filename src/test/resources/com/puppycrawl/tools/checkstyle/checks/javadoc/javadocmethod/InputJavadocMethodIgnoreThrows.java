@@ -32,7 +32,7 @@ public class InputJavadocMethodIgnoreThrows {
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
-                throw new NumberFormatException(value + " is negative/zero"); // ok
+                throw new NumberFormatException(value + " is negative/zero");
             }
             return value;
         } catch (NumberFormatException ex) {
@@ -91,7 +91,7 @@ public class InputJavadocMethodIgnoreThrows {
             if (o == null) {
                 ex = new NullPointerException("");
             }
-            throw ex; // ok
+            throw ex;
         }
     }
 

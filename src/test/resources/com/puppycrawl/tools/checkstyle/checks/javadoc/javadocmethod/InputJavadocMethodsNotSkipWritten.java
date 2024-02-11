@@ -37,12 +37,12 @@ public class InputJavadocMethodsNotSkipWritten {
 
     /** Description. */
     @MyAnnotation
-    public void test2() { // ok
+    public void test2() {
     }
 
     /** Description. */
     @MyAnnotation
-    public String test3(int a) throws Exception { // ok
+    public String test3(int a) throws Exception {
         return "";
     }
 }

@@ -34,7 +34,7 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @throws E in some cases
      * @throws RE in other cases
      */
-    public void method3() throws E, RE // ok
+    public void method3() throws E, RE
     {
     }
 
@@ -64,19 +64,19 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @param <T> some parameter
      * @param <E2> some exception parameter
      */
-    public interface InnerInterface<T, E2 extends Throwable> { // ok
+    public interface InnerInterface<T, E2 extends Throwable> {
         /**
          * Some javadoc.
          * @param t a parameter
          * @throws E2 in some case.
          * @return some string
          */
-        public abstract String doStuff(T t) throws E2; // ok
+        public abstract String doStuff(T t) throws E2;
     }
 
     /**
      * @param <P> some parameter
      */
-    public interface InvalidParameterInJavadoc<T> {} // ok
+    public interface InvalidParameterInJavadoc<T> {}
 }
 

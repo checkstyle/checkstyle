@@ -24,10 +24,10 @@ public class InputJavadocMethodParamsTags {
    * missingParam, ideally would be nice to have a flag to report
    * also undocumentedParam
    *
-   * @param param1 some text // ok
-   * @param param2 // ok
+   * @param param1 some text
+   * @param param2
    *                some text for param2 (without space at the end of line)
-   * @param param3                // ok
+   * @param param3
    *                some text for param3 (with space at the end of line)
    *
    * @param unexpectedParam
@@ -46,19 +46,19 @@ public class InputJavadocMethodParamsTags {
    * @param r
    *            a reference to an
                existing path */
-  public void setPathRef(Object r) { // ok
+  public void setPathRef(Object r) {
 
   }
 
   /** @param s
    a reference to an existing path */
-  public void setPathRef2(Object s) { // ok
+  public void setPathRef2(Object s) {
 
   }
 
   /** @param k
     */
-  public void setPathRef3(Object k) { // ok
+  public void setPathRef3(Object k) {
 
   }
 
@@ -70,7 +70,7 @@ public class InputJavadocMethodParamsTags {
   }
 
   /** @param z*/
-  public void setPathRef5(Object z) { // ok
+  public void setPathRef5(Object z) {
 
   }
 

@@ -31,25 +31,25 @@ import java.util.List;
  * @author Chris Povirk
  */
 @SuppressWarnings(value = "unchecked")
-public abstract class InputJavadocMethodExtendAnnotation<E> // ok
+public abstract class InputJavadocMethodExtendAnnotation<E>
   {
 
   private static final String SUPPORTS_ADD = "";
   private static final String SUPPORTS_REMOVE = null;
 
 @CollectionFeature.Require
-  public void testSetCount_zeroToZero_unsupported() { // ok
+  public void testSetCount_zeroToZero_unsupported() {
     try {
       assertZeroToZero();
     } catch (UnsupportedOperationException tolerated) {
     }
   }
 
-  private void assertZeroToZero() { // ok
+  private void assertZeroToZero() {
 
   }
 
-  @interface CollectionFeature { // ok
+  @interface CollectionFeature {
       @interface Require {
       }
   }

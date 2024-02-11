@@ -41,7 +41,7 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @param number to return
      * @return number
      */
-    int missingThrows(int number) throws ThreadDeath { // ok
+    int missingThrows(int number) throws ThreadDeath {
         return number;
     }
 
@@ -50,7 +50,7 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      *
      * @param number to return
      * @throws java.util.NoSuchElementException sometimes
-     */ // ok
+     */
     int missingReturnButInheritDocPresent(int number) throws java.util.NoSuchElementException {
         return number;
     }
