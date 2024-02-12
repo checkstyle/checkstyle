@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 /**
  * Test for illegal tokens
  */ // violation
-public class InputIllegalTokens6
+public class InputIllegalTokensCheckBlockCommentEnd
 {
     public void methodWithPreviouslyIllegalTokens()
     {
