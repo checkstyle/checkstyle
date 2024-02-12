@@ -40,6 +40,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
@@ -92,8 +93,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testInCache() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
         cache.put("myFile", 1);
         assertWithMessage("Should return true when file is in cache")
                 .that(cache.isInCache("myFile", 1))
@@ -149,8 +151,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testConfigHashOnReset() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
 
         cache.load();
 
@@ -169,8 +172,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testConfigHashRemainsOnResetExternalResources() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
 
         // create cache with one file
         cache.load();
@@ -197,17 +201,20 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testCacheRemainsWhenExternalResourceTheSame() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String externalResourcePath =
-                File.createTempFile("junit", null, temporaryFolder).getPath();
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String externalFile = "junit_" + UUID.randomUUID() + ".java";
+        final File externalResourcePath = new File(temporaryFolder, externalFile);
+        externalResourcePath.createNewFile();
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        filePath.createNewFile();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
 
         // pre-populate with cache with resources
 
         cache.load();
 
         final Set<String> resources = new HashSet<>();
-        resources.add(externalResourcePath);
+        resources.add(externalResourcePath.toString());
         cache.putExternalResources(resources);
 
         cache.persist();
@@ -226,8 +233,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testExternalResourceIsSavedInCache() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
 
         cache.load();
 
@@ -327,10 +335,12 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkToNonDirectory() throws IOException {
-        final Path tempFile = Files.createTempFile("tempFile", null);
+        final String uniqueFileName = "tempFile_" + UUID.randomUUID() + ".java";
+        final File tempFile = new File(temporaryFolder, uniqueFileName);
+        tempFile.createNewFile();
         final Path symbolicLinkDirectory = temporaryFolder.toPath();
         final Path symbolicLink = symbolicLinkDirectory.resolve("symbolicLink");
-        Files.createSymbolicLink(symbolicLink, tempFile);
+        Files.createSymbolicLink(symbolicLink, tempFile.toPath());
 
         final Configuration config = new DefaultConfiguration("myName");
         final String cacheFilePath = symbolicLink.resolve("cache.temp").toString();
@@ -375,8 +385,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testChangeInConfig() throws Exception {
         final DefaultConfiguration config = new DefaultConfiguration("myConfig");
         config.addProperty("attr", "value");
-
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName);
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
         cache.load();
 
@@ -424,8 +434,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
 
         // create cache with one file
         cache.load();
@@ -455,8 +466,9 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testExceptionNoSuchAlgorithmException() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
-        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, filePath.toString());
         cache.put("myFile", 1);
 
         try (MockedStatic<MessageDigest> messageDigest = mockStatic(MessageDigest.class)) {
@@ -491,7 +503,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @ParameterizedTest
     @ValueSource(strings = {"Same;Same", "First;Second"})
     public void testPutNonExistentExternalResource(String rawMessages) throws Exception {
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName);
         final String[] messages = rawMessages.split(";");
         // We mock getUriByFilename method of CommonUtil to guarantee that it will
         // throw CheckstyleException with the specific content.
