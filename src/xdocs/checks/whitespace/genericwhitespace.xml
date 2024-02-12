@@ -77,7 +77,7 @@ public class Example1 {
     Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, ''&lt;' is preceded with whitespace.'
 
     // Diamond operator
-    MyClass&lt;Integer, String&gt; p1 = new MyClass&lt;Integer, String&gt;(1, &quot;apple&quot;);
+    MyClass&lt;Integer, String&gt; p1 = new MyClass&lt;&gt;(1, &quot;apple&quot;);
     MyClass&lt;Integer, Integer &gt; p2; // violation, ''&gt;' is preceded with whitespace.'
 
     // Method reference
