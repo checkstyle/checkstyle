@@ -32,7 +32,7 @@ public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSu
     private class NotAnAbstractClass {}
 
     private java.util.TreeSet table1() { return null; } // violation
-    private TreeSet table2() { return null; } // ok
+    private TreeSet table2() { return null; }
     static class SomeStaticClass {
 
     }

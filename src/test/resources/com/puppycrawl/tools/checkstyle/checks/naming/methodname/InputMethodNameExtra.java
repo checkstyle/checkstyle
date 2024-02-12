@@ -12,7 +12,7 @@ applyToPrivate = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-public class InputMethodNameExtra // ok
+public class InputMethodNameExtra
 {
     public void doit()
     {

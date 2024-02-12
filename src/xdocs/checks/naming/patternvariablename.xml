@@ -49,14 +49,13 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String STRING) { // violation, name 'STRING' must
-        // match pattern '^[a-z][a-zA-Z0-9]*$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-    }
+class Example1 {
+  void foo(Object o1){
+    if (o1 instanceof String STRING) {} // violation
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {} // violation
+    if (o1 instanceof Integer n) {}
+  }
 }
         </source>
         <p id="Example2-config">
@@ -74,16 +73,13 @@ class MyClass {
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String STR) { // violation, name 'STR' must
-        // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-        if (o1 instanceof Integer num_1) { // OK
-        }
-    }
+class Example2 {
+  void foo(Object o1){
+    if (o1 instanceof String STRING) {} // violation
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+    if (o1 instanceof Integer n) {}
+  }
 }
         </source>
         <p id="Example3-config">
@@ -101,14 +97,13 @@ class MyClass {
         </source>
         <p id="Example3-code">Code Example:</p>
         <source>
-class MyClass {
-    MyClass(Object o1){
-        if (o1 instanceof String s) { // violation, name 's' must
-        // match pattern '^[a-z][_a-zA-Z0-9]{2,}$'
-        }
-        if (o1 instanceof Integer num) { // OK
-        }
-    }
+class Example3 {
+  void foo(Object o1){
+    if (o1 instanceof String STRING) {} // violation
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+    if (o1 instanceof Integer n) {} // violation
+  }
 }
         </source>
       </subsection>

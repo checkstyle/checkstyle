@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 /**
  * Not a util class because it's not directly derived from java.lang.Object.
  */
-public class InputHideUtilityClassConstructorNonUtilityClass extends JPanel // ok
+public class InputHideUtilityClassConstructorNonUtilityClass extends JPanel
 {
     /** HideUtilityClassConstructorCheck should not report this */
     public InputHideUtilityClassConstructorNonUtilityClass()

@@ -82,7 +82,7 @@ import junit.framework.AssertionFailedError;
  */
 @MyAnnotation
 @GwtIncompatible
-public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken { // ok
+public final class InputClassFanOutComplexityRemoveIncorrectAnnotationToken {
     private static final Ordering<Invokable<?, ?>> BY_METHOD_NAME =
             new Ordering<Invokable<?, ?>>() {
                 @Override
