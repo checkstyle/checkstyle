@@ -29,6 +29,8 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.util.UUID;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
@@ -361,8 +363,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
+        final String uniqueFileName = "empty_" + UUID.randomUUID() + ".java";
         final String pathToEmptyFile =
-                File.createTempFile("empty", ".java", temporaryFolder).getPath();
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName)).toString();
 
         try {
             execute(checkConfig, pathToEmptyFile);

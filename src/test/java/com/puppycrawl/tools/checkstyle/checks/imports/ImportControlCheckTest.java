@@ -341,10 +341,12 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final File cacheFile =
+                Files.createFile(temporaryFolder.toPath().resolve("junit.java")).toFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
+        final String filePath =
+                Files.createFile(temporaryFolder.toPath().resolve("empty.java")).toString();
 
         execute(checkerConfig, filePath);
         // One more time to use cache.
