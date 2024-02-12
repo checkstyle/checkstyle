@@ -1,16 +1,16 @@
-/* // violation
+/*
 IllegalToken
-tokens = COMMENT_CONTENT
+tokens = SINGLE_LINE_COMMENT
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-/** // violation
+/**
  * Test for illegal tokens
  */
-public class InputIllegalTokens4
+public class InputIllegalTokensCheckSingleLineComment
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -35,11 +35,11 @@ public class InputIllegalTokens4
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // some comment href // violation
+            anotherLabel: // violation
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href // violation
+            break label; // violation
         }
     }
 }
