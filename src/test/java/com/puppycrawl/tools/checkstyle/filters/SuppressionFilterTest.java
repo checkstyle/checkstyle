@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -168,10 +169,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = temporaryFolder.toPath().resolve("junit.cache");
+        checkerConfig.addProperty("cacheFile", cacheFile.toString());
 
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String filePath = temporaryFolder.toPath().resolve("file.java").toString();
 
         execute(checkerConfig, filePath);
         // One more time to use cache.
@@ -200,11 +201,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         firstFilterConfig.addProperty("file", urlForTest);
 
         final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
+        final Path cacheFile = temporaryFolder.toPath().resolve("junit.cache");
+        firstCheckerConfig.addProperty("cacheFile", cacheFile.toString());
 
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String pathToEmptyFile = temporaryFolder.toPath().resolve("file.java").toString();
 
         execute(firstCheckerConfig, pathToEmptyFile);
 
@@ -215,7 +215,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         secondFilterConfig.addProperty("file", urlForTest);
 
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
-        secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
+        secondCheckerConfig.addProperty("cacheFile", cacheFile.toString());
 
         execute(secondCheckerConfig, pathToEmptyFile);
     }

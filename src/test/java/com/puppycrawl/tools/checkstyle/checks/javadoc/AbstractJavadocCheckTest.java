@@ -362,7 +362,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
         final String pathToEmptyFile =
-                File.createTempFile("empty", ".java", temporaryFolder).getPath();
+                temporaryFolder.toPath().resolve("empty.java").toString();
 
         try {
             execute(checkConfig, pathToEmptyFile);

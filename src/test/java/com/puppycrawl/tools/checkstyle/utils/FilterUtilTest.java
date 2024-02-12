@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -41,7 +42,9 @@ public class FilterUtilTest {
 
     @Test
     public void testExistingFile() throws Exception {
-        final File file = File.createTempFile("junit", null, temporaryFolder);
+        final File file =
+                temporaryFolder.toPath().resolve("junit.java").toFile();
+        Files.createFile(file.toPath());
         assertWithMessage("Suppression file exists")
                 .that(FilterUtil.isFileExists(file.getPath()))
                 .isTrue();
