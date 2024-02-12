@@ -38,18 +38,18 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void testCheckWithDefaultSettings()
+    public void testIllegalTokensCheckDefaultTokenLabel()
             throws Exception {
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY, "label:"),
             "38:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens.java"), expected);
+                getPath("InputIllegalTokensCheckDefaultTokenLabel.java"), expected);
     }
 
     @Test
-    public void testPreviouslyIllegalTokens()
+    public void testIllegalTokensCheckSwitchAndPostIncDec()
             throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "switch"),
@@ -57,23 +57,23 @@ public class IllegalTokenCheckTest
             "22:18: " + getCheckMessage(MSG_KEY, "++"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens2.java"), expected);
+                getPath("InputIllegalTokensCheckSwitchAndPostIncDec.java"), expected);
     }
 
     @Test
-    public void testNative() throws Exception {
+    public void testIllegalTokensCheckTokenNative() throws Exception {
         final String[] expected = {
             "27:12: " + getCheckMessage(MSG_KEY, "native"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens3.java"), expected);
+                getPath("InputIllegalTokensCheckTokenNative.java"), expected);
     }
 
     @Test
-    public void testCommentContentToken()
+    public void testIllegalTokensCheckCommentsContent()
             throws Exception {
 
-        final String path = getPath("InputIllegalTokens4.java");
+        final String path = getPath("InputIllegalTokensCheckCommentsContent.java");
         final String lineSeparator =
                 CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
         final String[] expected = {
@@ -100,7 +100,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void testBlockCommentBeginToken()
+    public void testIllegalTokensCheckBlockCommentBegin()
             throws Exception {
 
         final String[] expected = {
@@ -108,11 +108,11 @@ public class IllegalTokenCheckTest
             "10:1: " + getCheckMessage(MSG_KEY, "/*"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens5.java"), expected);
+                getPath("InputIllegalTokensCheckBlockCommentBegin.java"), expected);
     }
 
     @Test
-    public void testBlockCommentEndToken()
+    public void testIllegalTokensCheckBlockCommentEnd()
             throws Exception {
 
         final String[] expected = {
@@ -120,11 +120,11 @@ public class IllegalTokenCheckTest
             "12:2: " + getCheckMessage(MSG_KEY, "*/"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens6.java"), expected);
+                getPath("InputIllegalTokensCheckBlockCommentEnd.java"), expected);
     }
 
     @Test
-    public void testSingleLineCommentToken()
+    public void testIllegalTokensCheckSingleLineComment()
             throws Exception {
 
         final String[] expected = {
@@ -132,7 +132,7 @@ public class IllegalTokenCheckTest
             "42:26: " + getCheckMessage(MSG_KEY, "//"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokens7.java"), expected);
+                getPath("InputIllegalTokensCheckSingleLineComment.java"), expected);
     }
 
 }
