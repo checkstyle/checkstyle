@@ -38,7 +38,7 @@ public class Example1 {
     Box b = Box. <String>of("foo"); // violation, ''<' is preceded with whitespace.'
 
     // Diamond operator
-    MyClass<Integer, String> p1 = new MyClass<Integer, String>(1, "apple");
+    MyClass<Integer, String> p1 = new MyClass<>(1, "apple");
     MyClass<Integer, Integer > p2; // violation, ''>' is preceded with whitespace.'
 
     // Method reference
