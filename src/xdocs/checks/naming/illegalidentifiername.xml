@@ -119,21 +119,32 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class TestClass {
-    public static void main(String... args) {
-        var var = 4; // violation, &quot;var&quot; should not be used as an identifier.
-        int record = 15; // violation, &quot;record&quot; should not be used as an identifier.
-        String yield = &quot;yield&quot;; // violation, &quot;yield&quot; should not be used as an identifier.
+public class Example1 {
+  Integer var = 4; // violation, 'Name 'var' must match pattern'
+  int record = 15; // violation, 'Name 'record' must match pattern'
+  String yield = &quot;yield&quot;;
+  // violation above, 'Name 'yield' must match pattern'
 
-        record Record // violation, &quot;Record&quot; should not be used as an identifier.
-        (Record record) { // violation, &quot;record&quot; should not be used as an identifier.
-        }
+  record Record(Record r){} // violation, 'Name 'Record' must match pattern'
 
-        String yieldString = &quot;yieldString&quot;; // ok, part of another word
-        record MyRecord(){} // ok, part of another word
-        var variable = 2; // ok, part of another word
-        String _; // violation, underscore should not be used as an identifier.
-    }
+  record R(Record record){} // violation, 'Name 'record' must match pattern'
+
+  String yieldString = &quot;yieldString&quot;;
+  // ok above, 'yield' is part of broader term, it is not alone
+  record MyRecord(){}
+  // ok above, 'Record' is part of broader term, it is not alone
+  Integer variable = 2;
+  // ok above, 'var' is part of broader term, it is not alone
+
+  int open = 4;
+  // ok above, because match the pattern
+  Object transitive = &quot;transitive&quot;;
+  // ok above, because match the pattern
+
+  int openInt = 4;
+  // ok above, because match the pattern
+  Object transitiveObject = &quot;transitiveObject&quot;;
+  // ok above, because match the pattern
 }
         </source>
         <p>
@@ -145,24 +156,39 @@ public class TestClass {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalIdentifierName&quot;&gt;
-        &lt;property name=&quot;format&quot; value=&quot;(?i)^(?!(record|yield|var
-                        |permits|sealed|open|transitive|_)$).+$&quot;/&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class TestClass {
-    public static void main(String... args) {
+public class Example2 {
+  Integer var = 4; // violation, 'Name 'var' must match pattern'
+  int record = 15; // violation, 'Name 'record' must match pattern'
+  String yield = &quot;yield&quot;;
+  // violation above, 'Name 'yield' must match pattern'
 
-    int open = 4; // violation, &quot;open&quot; should not be used as an identifier
-    Object transitive = &quot;transitive&quot;; // violation, &quot;transitive&quot; should not
-                                      // be used as an identifier
+  record Record(Record r){} // violation, 'Name 'Record' must match pattern'
 
-    int openInt = 4; // ok, &quot;open&quot; is part of another word
-    Object transitiveObject = &quot;transitiveObject&quot;; // ok, &quot;transitive&quot; is part of another word
-    }
+  record R(Record record){} // violation, 'Name 'record' must match pattern'
+
+  String yieldString = &quot;yieldString&quot;;
+  // ok above, 'yield' is part of broader term, it is not alone
+  record MyRecord(){}
+  // ok above, 'Record' is part of broader term, it is not alone
+  Integer variable = 2;
+  // ok above, 'var' is part of broader term, it is not alone
+
+  int open = 4; // violation, 'Name 'open' must match pattern'
+  Object transitive = &quot;transitive&quot;;
+  // violation above, 'Name 'transitive' must match pattern'
+
+  int openInt = 4;
+  // ok above, 'open' is part of broader term, it is not alone
+  Object transitiveObject = &quot;transitiveObject&quot;;
+  // ok above, 'transitive' is part of broader term, it is not alone
 }
         </source>
       </subsection>
