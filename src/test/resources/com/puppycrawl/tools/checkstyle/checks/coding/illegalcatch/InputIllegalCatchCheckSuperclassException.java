@@ -8,7 +8,7 @@ illegalClassNames = java.lang.Error, java.lang.Exception, NullPointerException,\
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
-public class InputIllegalCatch4 {
+public class InputIllegalCatchCheckSuperclassException {
     public void foo() {
         try { //class names
         } catch (RuntimeException e) {
