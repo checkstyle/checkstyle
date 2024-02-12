@@ -100,7 +100,8 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathNotComment() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final File file =
+                tempFolder.toPath().resolve("junit.java").toFile();
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -120,7 +121,7 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathComment() throws Exception {
         final String fileContent = "class Test { /* comment */ }";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final File file = tempFolder.toPath().resolve("junit.java").toFile();
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -137,7 +138,7 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathTwo() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final File file = tempFolder.toPath().resolve("junit.java").toFile();
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -165,7 +166,7 @@ public class XpathUtilTest {
     @Test
     public void testInvalidXpath() throws IOException {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final File file = tempFolder.toPath().resolve("junit.java").toFile();
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String invalidXpath = "\\//CLASS_DEF"
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";

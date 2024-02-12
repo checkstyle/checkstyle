@@ -41,7 +41,8 @@ public class FilterUtilTest {
 
     @Test
     public void testExistingFile() throws Exception {
-        final File file = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "empty_" + UUID.randomUUID() + ".java";
+        tempFilePath = Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName)).toFile();
         assertWithMessage("Suppression file exists")
                 .that(FilterUtil.isFileExists(file.getPath()))
                 .isTrue();

@@ -121,7 +121,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
                                                      List<String> xpathQueries)
             throws Exception {
         final Path suppressionsXpathConfigPath =
-                Files.createTempFile(temporaryFolder, "", "");
+                Files.createFile(temporaryFolder.resolve("suppressions_xpath_config.xml"));
+
         try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath,
                 StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");
