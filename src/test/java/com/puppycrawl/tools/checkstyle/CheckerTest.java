@@ -53,6 +53,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -84,7 +85,6 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 /**
  * CheckerTest.
@@ -437,6 +437,18 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .that(ex.getMessage())
                 .isEqualTo("unsupported charset: 'UNKNOWN-CHARSET'");
         }
+    }
+
+    @SuppressForbidden
+    @Test
+    public void testSetSeverity() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
+        checkConfig.addProperty("max", "75");
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addProperty("severity", "ignore");
+        verify(checkerConfig, getPath("InputCheckerTestSeverity.java"), expected);
     }
 
     @Test
@@ -1661,7 +1673,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
     }
 
-    @SuppressForbidden
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
