@@ -1,6 +1,6 @@
 /*
 IllegalToken
-tokens = SINGLE_LINE_COMMENT
+tokens = LITERAL_SWITCH,POST_INC,POST_DEC
 
 
 */
@@ -10,16 +10,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokens7
+public class InputIllegalTokensCheckSwitchAndPostIncDec
 {
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i)
+        switch (i) // violation
         {
             default:
-                i--;
-                i++;
+                i--; // violation
+                i++; // violation
                 break;
         }
     }
@@ -35,11 +35,11 @@ public class InputIllegalTokens7
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // violation
+            anotherLabel: // some comment href
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // violation
+            break label; // some a href
         }
     }
 }

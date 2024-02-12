@@ -1,25 +1,25 @@
 /*
 IllegalToken
-tokens = LITERAL_SWITCH,POST_INC,POST_DEC
+tokens = BLOCK_COMMENT_END
 
 
-*/
+*/ // violation
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 /**
  * Test for illegal tokens
- */
-public class InputIllegalTokens2
+ */ // violation
+public class InputIllegalTokensCheckBlockCommentEnd
 {
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i) // violation
+        switch (i)
         {
             default:
-                i--; // violation
-                i++; // violation
+                i--;
+                i++;
                 break;
         }
     }
