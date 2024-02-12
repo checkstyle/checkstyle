@@ -10,24 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>setSeverity</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/SeverityLevel::getInstance</description>
-    <lineContent>this.severity = SeverityLevel.getInstance(severity);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>setSeverity</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable severity</description>
-    <lineContent>this.severity = SeverityLevel.getInstance(severity);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>LocalizedMessage.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
