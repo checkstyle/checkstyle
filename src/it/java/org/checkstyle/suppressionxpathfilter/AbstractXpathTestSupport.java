@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,8 +121,10 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
             throws Exception {
+        final String uniqueFileName =
+                "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
         final Path suppressionsXpathConfigPath =
-                Files.createTempFile(temporaryFolder, "", "");
+                Files.createFile(temporaryFolder.resolve(uniqueFileName));
         try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath,
                 StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");
