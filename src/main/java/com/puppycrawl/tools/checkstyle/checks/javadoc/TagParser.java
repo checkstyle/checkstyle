@@ -177,7 +177,8 @@ class TagParser {
                 column++;
             }
 
-            text = text.substring(column).trim();
+            text = text.substring(column);
+            text = text.replaceAll("^\\s+|\\s+$", "");
             int position = 0;
 
             // Character.isJavaIdentifier... may not be a valid HTML
