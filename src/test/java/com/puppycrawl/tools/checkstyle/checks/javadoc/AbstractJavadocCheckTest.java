@@ -29,6 +29,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
@@ -361,11 +362,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
-        final String pathToEmptyFile =
-                File.createTempFile("empty", ".java", temporaryFolder).getPath();
+        final String uniqueFileName = "empty_" + UUID.randomUUID() + ".java";
+        final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName);
 
         try {
-            execute(checkConfig, pathToEmptyFile);
+            execute(checkConfig, pathToEmptyFile.toString());
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
