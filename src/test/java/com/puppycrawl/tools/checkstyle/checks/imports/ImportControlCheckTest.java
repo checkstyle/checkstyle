@@ -30,6 +30,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -341,14 +342,16 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "empty_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName2);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
         // One more time to use cache.
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
 
         final String contents = Files.readString(cacheFile.toPath());
         assertWithMessage("External resource is not present in cache")
