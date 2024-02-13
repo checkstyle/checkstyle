@@ -217,18 +217,16 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @throws IllegalStateException when validation of default javadoc tokens fails
      */
     private void validateDefaultJavadocTokens() {
-        if (getRequiredJavadocTokens().length != 0) {
-            final int[] defaultJavadocTokens = getDefaultJavadocTokens();
-            Arrays.sort(defaultJavadocTokens);
-            for (final int javadocToken : getRequiredJavadocTokens()) {
-                if (Arrays.binarySearch(defaultJavadocTokens, javadocToken) < 0) {
-                    final String message = String.format(Locale.ROOT,
-                            "Javadoc Token \"%s\" from required javadoc "
-                                + "tokens was not found in default "
-                                + "javadoc tokens list in check %s",
-                            javadocToken, getClass().getName());
-                    throw new IllegalStateException(message);
-                }
+        final int[] defaultJavadocTokens = getDefaultJavadocTokens();
+        Arrays.sort(defaultJavadocTokens);
+        for (final int javadocToken : getRequiredJavadocTokens()) {
+            if (Arrays.binarySearch(defaultJavadocTokens, javadocToken) < 0) {
+                final String message = String.format(Locale.ROOT,
+                        "Javadoc Token \"%s\" from required javadoc "
+                            + "tokens was not found in default "
+                            + "javadoc tokens list in check %s",
+                        javadocToken, getClass().getName());
+                throw new IllegalStateException(message);
             }
         }
     }
