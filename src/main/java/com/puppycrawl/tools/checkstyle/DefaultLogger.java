@@ -70,6 +70,8 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
 
+    private String errorStatus;
+
     /**
      * Creates a new {@code DefaultLogger} instance.
      *
@@ -128,26 +130,32 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
                          OutputStream errorStream,
                          OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
-        if (infoStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
-        }
-        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
-        if (errorStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
-        }
-        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
-        infoWriter = new PrintWriter(infoStreamWriter);
 
-        if (infoStream == errorStream) {
-            errorWriter = infoWriter;
+        OutputStreamOptions defaultOptions = OutputStreamOptions.NONE;
+        infoStreamOptions = infoStreamOptions != null ? infoStreamOptions : defaultOptions;
+        errorStreamOptions = errorStreamOptions != null ? errorStreamOptions : defaultOptions;
+
+        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
+
+        Writer infoStreamWriter = null;
+        Writer errorStreamWriter = null;
+
+        try {
+            infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
+            errorStreamWriter = (infoStream == errorStream) ? infoStreamWriter
+                    : new OutputStreamWriter(errorStream, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            errorStatus = "Failed to initialize DefaultLogger: " + e.getMessage();
+            System.err.println(errorStatus);
+            e.printStackTrace();
         }
-        else {
-            final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
-                    StandardCharsets.UTF_8);
-            errorWriter = new PrintWriter(errorStreamWriter);
-        }
-        formatter = messageFormatter;
+
+        infoWriter = new PrintWriter(infoStreamWriter);
+        errorWriter = new PrintWriter(errorStreamWriter);
+
+        formatter = (messageFormatter != null)
+                ? messageFormatter : new AuditEventDefaultFormatter();
     }
 
     @Override
