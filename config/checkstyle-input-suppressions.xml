@@ -135,8 +135,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestIllegalClassNames.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextDefaultFormat.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]innerassignment[\\/]InputInnerAssignmentLambdaExpressions.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable.java"/>
