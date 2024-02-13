@@ -55,7 +55,7 @@ OutputStream s9=new PipedOutputStream();s2;OutputStream s10 = new PipedOutputStr
     void testNestedInLambda() {
         Runnable r = () -> {
             try (OutputStream s1 = new PipedOutputStream();
-                 OutputStream s2 = new PipedOutputStream();) { // ok
+                 OutputStream s2 = new PipedOutputStream();) {
             }
             catch (IOException e) {
             }
