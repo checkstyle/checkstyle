@@ -70,6 +70,12 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
 
+    /** Options for the info stream. */
+    private OutputStreamOptions infoStreamOptions;
+
+    /** Options for the error stream. */
+    private OutputStreamOptions errorStreamOptions;
+
     /**
      * Creates a new {@code DefaultLogger} instance.
      *
@@ -128,13 +134,9 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
                          OutputStream errorStream,
                          OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
-        if (infoStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
-        }
+        this.infoStreamOptions = infoStreamOptions;
+        this.errorStreamOptions = errorStreamOptions;
         closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
-        if (errorStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
-        }
         closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
         infoWriter = new PrintWriter(infoStreamWriter);
@@ -152,7 +154,12 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
 
     @Override
     protected void finishLocalSetup() {
-        // No code by default
+        if (infoStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter infoStreamOptions cannot be null");
+        }
+        if (errorStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter errorStreamOptions cannot be null");
+        }
     }
 
     /**
