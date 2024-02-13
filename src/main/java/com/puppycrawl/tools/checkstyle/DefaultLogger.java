@@ -58,17 +58,29 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
     public static final String AUDIT_FINISHED_MESSAGE = "DefaultLogger.auditFinished";
 
     /** Where to write info messages. **/
-    private final PrintWriter infoWriter;
+    private PrintWriter infoWriter;
     /** Close info stream after use. */
     private final boolean closeInfo;
 
     /** Where to write error messages. **/
-    private final PrintWriter errorWriter;
+    private PrintWriter errorWriter;
     /** Close error stream after use. */
     private final boolean closeError;
 
     /** Formatter for the log message. */
     private final AuditEventFormatter formatter;
+
+    /** Options for the info stream. */
+    private OutputStreamOptions infoStreamOptions;
+
+    /** Options for the error stream. */
+    private OutputStreamOptions errorStreamOptions;
+
+    /** The OutputStream for info messages. */
+    private OutputStream infoStream;
+
+    /** The OutputStream for error messages. */
+    private OutputStream errorStream;
 
     /**
      * Creates a new {@code DefaultLogger} instance.
@@ -128,31 +140,27 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
                          OutputStream errorStream,
                          OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
-        if (infoStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
-        }
-        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
-        if (errorStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
-        }
-        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
-        final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
-        infoWriter = new PrintWriter(infoStreamWriter);
 
-        if (infoStream == errorStream) {
-            errorWriter = infoWriter;
-        }
-        else {
-            final Writer errorStreamWriter = new OutputStreamWriter(errorStream,
-                    StandardCharsets.UTF_8);
-            errorWriter = new PrintWriter(errorStreamWriter);
-        }
-        formatter = messageFormatter;
+        this.infoStream = infoStream;
+        this.infoStreamOptions = infoStreamOptions;
+        this.errorStream = errorStream;
+        this.errorStreamOptions = errorStreamOptions;
+        this.formatter = messageFormatter;
+
+        closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
+        closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
+
+        finishLocalSetup();
     }
 
     @Override
     protected void finishLocalSetup() {
-        // No code by default
+        if (infoStream == null || errorStream == null) {
+            throw new IllegalArgumentException("Error and info streams cannot be null.");
+        }
+        infoWriter = new PrintWriter(new OutputStreamWriter(infoStream, StandardCharsets.UTF_8));
+        errorWriter = (infoStream == errorStream) ? infoWriter :
+                new PrintWriter(new OutputStreamWriter(errorStream, StandardCharsets.UTF_8));
     }
 
     /**
