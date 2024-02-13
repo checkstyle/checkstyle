@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 import java.util.List;
 
-public class InputIllegalTokenTextStringTemplate {
+public class InputIllegalTokenTextCheckStringTemplate {
     int x = 10;
     int y = 20;
 

@@ -11,7 +11,7 @@ tokens = STRING_LITERAL
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
-public class InputIllegalTokenTextDefaultFormat { // ok
+public class InputIllegalTokenTextCheckDefaultFormat {
     public void myTest() {
         String test = "a href";
         String test2 = "A href";
