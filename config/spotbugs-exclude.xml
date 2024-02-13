@@ -303,7 +303,6 @@
   <Match>
     <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
     <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
