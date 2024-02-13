@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,19 +33,29 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "16:9: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "17:12: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "19:12: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "19:27: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "24:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$";
 
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
+            "19:12: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 }
