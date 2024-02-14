@@ -35,6 +35,8 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -333,7 +335,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      haltOnException field
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
-        final SortedSet<Violation> fileMessages = new TreeSet<>();
+        @Nonnull final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
@@ -344,7 +346,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             log.debug("IOException occurred.", ioe);
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    new Object[] {ioe.getMessage()}, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
