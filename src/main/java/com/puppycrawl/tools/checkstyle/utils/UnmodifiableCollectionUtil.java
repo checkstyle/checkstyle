@@ -44,28 +44,6 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
-     * Creates an unmodifiable set based on the provided collection.
-     *
-     * @param collection the collection to create an unmodifiable set from
-     * @param <T> the type of elements in the set
-     * @return an unmodifiable set containing the elements from the provided collection
-     */
-    public static <T> Set<T> unmodifiableSet(Set<T> collection) {
-        return Collections.unmodifiableSet(collection);
-    }
-
-    /**
-     * Creates an unmodifiable list based on the provided collection.
-     *
-     * @param collection the collection to create an unmodifiable list from
-     * @param <T> the type of elements in the set
-     * @return an unmodifiable list containing the elements from the provided collection
-     */
-    public static <T> List<T> unmodifiableList(List<T> collection) {
-        return Collections.unmodifiableList(collection);
-    }
-
-    /**
      * Returns an unmodifiable view of a List containing elements of a specific type.
      *
      * @param items The List of items to make unmodifiable.
