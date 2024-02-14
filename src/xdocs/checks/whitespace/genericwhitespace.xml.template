@@ -40,23 +40,15 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
-          Examples with correct spacing:
+          Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example2-code">
-          Examples with incorrect spacing:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/genericwhitespace/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
