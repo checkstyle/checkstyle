@@ -20,13 +20,13 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to
@@ -499,7 +499,7 @@ public final class DetailAstImpl implements DetailAST {
     public List<Token> getHiddenBefore() {
         List<Token> returnList = null;
         if (hiddenBefore != null) {
-            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
+            returnList = Collections.unmodifiableList(hiddenBefore);
         }
         return returnList;
     }
@@ -513,7 +513,7 @@ public final class DetailAstImpl implements DetailAST {
     public List<Token> getHiddenAfter() {
         List<Token> returnList = null;
         if (hiddenAfter != null) {
-            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
+            returnList = Collections.unmodifiableList(hiddenAfter);
         }
         return returnList;
     }
@@ -524,7 +524,7 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenBefore comment token preceding this DetailAstImpl
      */
     public void setHiddenBefore(List<Token> hiddenBefore) {
-        this.hiddenBefore = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
+        this.hiddenBefore = Collections.unmodifiableList(hiddenBefore);
     }
 
     /**
@@ -533,6 +533,6 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenAfter comment token following this DetailAstImpl
      */
     public void setHiddenAfter(List<Token> hiddenAfter) {
-        this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
+        this.hiddenAfter = Collections.unmodifiableList(hiddenAfter);
     }
 }
