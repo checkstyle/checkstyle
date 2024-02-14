@@ -119,21 +119,26 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class TestClass {
-    public static void main(String... args) {
-        var var = 4; // violation, &quot;var&quot; should not be used as an identifier.
-        int record = 15; // violation, &quot;record&quot; should not be used as an identifier.
-        String yield = &quot;yield&quot;; // violation, &quot;yield&quot; should not be used as an identifier.
+public class Example1 {
+  public static void main(String... args) {
+    var var = 4; // violation
+    int record = 15; // violation
+    String yield = &quot;yield&quot;; // violation
 
-        record Record // violation, &quot;Record&quot; should not be used as an identifier.
-        (Record record) { // violation, &quot;record&quot; should not be used as an identifier.
-        }
+    record Record (Record record){} // 2 violations
 
-        String yieldString = &quot;yieldString&quot;; // ok, part of another word
-        record MyRecord(){} // ok, part of another word
-        var variable = 2; // ok, part of another word
-        String _; // violation, underscore should not be used as an identifier.
-    }
+    String yieldString = &quot;yieldString&quot;; // ok, part of another word
+    record MyRecord(){} // ok, part of another word
+    var variable = 2; // ok, part of another word
+    String __; // ok, because underscore is part of another word
+
+    int open = 4; // ok, because match the pattern
+    Object transitive = &quot;transitive&quot;; // ok, because match the pattern
+
+    int openInt = 4; // ok, because match the pattern
+    Object transitiveObject = &quot;transitiveObject&quot;;
+    // ok above, because match the pattern
+  }
 }
         </source>
         <p>
@@ -145,24 +150,34 @@ public class TestClass {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalIdentifierName&quot;&gt;
-        &lt;property name=&quot;format&quot; value=&quot;(?i)^(?!(record|yield|var
-                        |permits|sealed|open|transitive|_)$).+$&quot;/&gt;
+      &lt;property name=&quot;format&quot;
+        value=&quot;(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class TestClass {
-    public static void main(String... args) {
+public class Example2 {
+  public static void main(String... args) {
+    var var = 4; // violation
+    int record = 15; // violation
+    String yield = &quot;yield&quot;; // violation
 
-    int open = 4; // violation, &quot;open&quot; should not be used as an identifier
-    Object transitive = &quot;transitive&quot;; // violation, &quot;transitive&quot; should not
-                                      // be used as an identifier
+    record Record (Record record){} // 2 violations
+
+    String yieldString = &quot;yieldString&quot;; // ok, part of another word
+    record MyRecord(){} // ok, part of another word
+    var variable = 2; // ok, part of another word
+    String __; // ok, because underscore is part of another word
+
+    int open = 4; // violation
+    Object transitive = &quot;transitive&quot;; // violation
 
     int openInt = 4; // ok, &quot;open&quot; is part of another word
-    Object transitiveObject = &quot;transitiveObject&quot;; // ok, &quot;transitive&quot; is part of another word
-    }
+    Object transitiveObject = &quot;transitiveObject&quot;;
+    // ok above, &quot;transitive&quot; is part of another word
+  }
 }
         </source>
       </subsection>
