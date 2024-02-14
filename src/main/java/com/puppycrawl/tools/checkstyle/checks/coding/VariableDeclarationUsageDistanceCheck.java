@@ -204,7 +204,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 final DetailAST variableUsageAst = entry.getKey();
                 final int dist = entry.getValue();
                 if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
+                        && !isVariableUsedInInitializationSequence(variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
                         log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
                     }
@@ -231,6 +231,11 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         if (lastDotIndex != -1) {
             instanceName = methodCallName.substring(0, lastDotIndex);
         }
+        if (instanceName.equals("(") && methodCallAst.findFirstToken(TokenTypes.DOT) != null
+                && methodCallAst.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.TYPECAST) != null
+                && methodCallAst.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.TYPECAST).getLastChild()!= null) {
+            instanceName = methodCallAst.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.TYPECAST).getLastChild().getText();
+        }
         return instanceName;
     }
 
@@ -245,12 +250,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if statements between declaration and usage of variable are
      *         initialization methods.
      */
-    private static boolean isInitializationSequence(
+    private static boolean isVariableUsedInInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
+        boolean isVariableNotUsed = true;
 
         while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
             if (currentSiblingAst.getType() == TokenTypes.EXPR
@@ -269,6 +275,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     }
                 }
 
+               isVariableNotUsed = isVariableNotUsed && isVariableNotUsed(variableName, methodCallAst);
             }
             else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
                 final String currentVariableName =
@@ -280,7 +287,39 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
-        return result;
+        boolean ans;
+        if (variableUsageAst == null) {
+            ans = result;
+        }
+        else {
+             ans = result && !isVariableNotUsed;
+        }
+        return ans;
+    }
+
+    private static boolean isVariableNotUsed(String variableName, DetailAST ast) {
+        DetailAST curNode = ast;
+        boolean bool = ast.getType() != TokenTypes.IDENT || !ast.getText().equals(variableName);
+        while (curNode != null) {
+            if (curNode.getType() == TokenTypes.SEMI) {
+                break;
+            }
+            if (curNode.getType() == TokenTypes.IDENT && curNode.getText().equals(variableName)) {
+                    bool = false;
+                    break;
+            }
+            DetailAST child = curNode.getFirstChild();
+            while (curNode != null && child == null) {
+                if (curNode.getType() == TokenTypes.IDENT && curNode.getText().equals(variableName)) {
+                    bool = false;
+                    break;
+                }
+                child = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = child;
+        }
+        return bool;
     }
 
     /**
