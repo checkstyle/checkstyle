@@ -204,7 +204,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 final DetailAST variableUsageAst = entry.getKey();
                 final int dist = entry.getValue();
                 if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
+                        && !isVariableUsedInInitializationSequence(
+                                variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
                         log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
                     }
@@ -231,6 +232,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         if (lastDotIndex != -1) {
             instanceName = methodCallName.substring(0, lastDotIndex);
         }
+        if ("(".equals(instanceName)
+                && methodCallAst.findFirstToken(TokenTypes.DOT)
+                .findFirstToken(TokenTypes.TYPECAST) != null) {
+            instanceName = methodCallAst.findFirstToken(TokenTypes.DOT)
+                    .findFirstToken(TokenTypes.TYPECAST).getLastChild().getText();
+        }
         return instanceName;
     }
 
@@ -245,42 +252,89 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if statements between declaration and usage of variable are
      *         initialization methods.
      */
-    private static boolean isInitializationSequence(
+    private static boolean isVariableUsedInInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
+        boolean isVariableNotUsed = true;
 
         while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
-            if (currentSiblingAst.getType() == TokenTypes.EXPR
-                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
-                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
-                final String instanceName = getInstanceName(methodCallAst);
-                if (instanceName.isEmpty()) {
-                    result = false;
-                }
-                else if (!instanceName.equals(initInstanceName)) {
-                    if (initInstanceName.isEmpty()) {
-                        initInstanceName = instanceName;
+            switch (currentSiblingAst.getType()) {
+                case TokenTypes.EXPR: {
+                    if (currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                        final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+                        final String instanceName = getInstanceName(methodCallAst);
+                        if (instanceName.isEmpty()) {
+                            result = false;
+                        }
+                        else if (!instanceName.equals(initInstanceName)) {
+                            if (initInstanceName.isEmpty()) {
+                                initInstanceName = instanceName;
+                            }
+                            else {
+                                result = false;
+                            }
+                        }
+                        isVariableNotUsed = isVariableNotUsed
+                                && isVariableNotUsed(variableName, methodCallAst);
                     }
                     else {
-                        result = false;
+                        result = handleDefault(currentSiblingAst, !isVariableNotUsed);
                     }
+                    break;
                 }
-
-            }
-            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
-                final String currentVariableName =
-                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
-                isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
-            }
-            else {
-                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+                case TokenTypes.VARIABLE_DEF: {
+                    final String currentVariableName =
+                            currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                    isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+                    break;
+                }
+                default: {
+                    result = handleDefault(currentSiblingAst, !isVariableNotUsed);
+                    break;
+                }
             }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
         return result;
+    }
+
+    /**
+     * Return boolean value if ast is of type semi and variable is not used.
+     *
+     * @param ast ast to check
+     * @param isVariableNotUsed boolean value for isVariableNotUsed
+     * @return boolean value if ast is of type semi and variable is not used.
+     */
+    private static boolean handleDefault(DetailAST ast, boolean isVariableNotUsed) {
+        return isVariableNotUsed && ast.getType() == TokenTypes.SEMI;
+    }
+
+    /**
+     * Return true if variable is not used in method call.
+     *
+     * @param variableName name of considered variable.
+     * @param ast ast to check
+     * @return true if variable is not used
+     */
+    private static boolean isVariableNotUsed(String variableName, DetailAST ast) {
+        DetailAST curNode = ast;
+        boolean bool = true;
+        while (curNode.getType() != TokenTypes.SEMI) {
+            if (curNode.getType() == TokenTypes.IDENT && curNode.getText().equals(variableName)) {
+                bool = false;
+                break;
+            }
+            DetailAST child = curNode.getFirstChild();
+            while (child == null) {
+                child = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = child;
+        }
+        return bool;
     }
 
     /**
