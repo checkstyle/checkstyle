@@ -73,7 +73,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method6() {
-        String b = "";
+        String b = ""; // violation 'Distance .* is 3, but allowed 1.'
         List<Integer> numbers = new ArrayList<>();
         numbers.add(5);
         numbers.add(9);
