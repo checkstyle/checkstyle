@@ -302,6 +302,7 @@ public class ScopeUtilTest {
         assertWithMessage("Invalid surrounding scope")
             .that(staticScope)
             .isEqualTo(Scope.PACKAGE);
+
     }
 
     @Test

@@ -131,7 +131,7 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = node.getParent();
+        for (DetailAST token = node;
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
