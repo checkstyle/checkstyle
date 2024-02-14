@@ -222,6 +222,10 @@ workflows:
           name: "linkcheck-plugin"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
+      - validate-with-maven-script:
+          name: "no-exception-samples-gradle"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
 
   idea:
     jobs:
