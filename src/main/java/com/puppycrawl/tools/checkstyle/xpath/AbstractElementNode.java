@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator;
 import com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator;
@@ -321,8 +321,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      */
     private List<AbstractNode> getPrecedingSiblings() {
         final List<AbstractNode> siblings = parent.getChildren();
-        return UnmodifiableCollectionUtil
-                .unmodifiableList(siblings.subList(0, indexAmongSiblings));
+        return Collections.unmodifiableList(siblings.subList(0, indexAmongSiblings));
     }
 
     /**

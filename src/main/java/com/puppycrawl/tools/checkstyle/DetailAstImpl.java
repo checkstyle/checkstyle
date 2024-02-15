@@ -20,13 +20,14 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.antlr.v4.runtime.Token;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to
@@ -497,11 +498,9 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenBefore() {
-        List<Token> returnList = null;
-        if (hiddenBefore != null) {
-            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
-        }
-        return returnList;
+        return Optional.ofNullable(hiddenBefore)
+            .map(Collections::unmodifiableList)
+            .orElse(null);
     }
 
     /**
@@ -511,11 +510,9 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenAfter() {
-        List<Token> returnList = null;
-        if (hiddenAfter != null) {
-            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
-        }
-        return returnList;
+        return Optional.ofNullable(hiddenAfter)
+            .map(Collections::unmodifiableList)
+            .orElse(null);
     }
 
     /**
@@ -524,7 +521,7 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenBefore comment token preceding this DetailAstImpl
      */
     public void setHiddenBefore(List<Token> hiddenBefore) {
-        this.hiddenBefore = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
+        this.hiddenBefore = Collections.unmodifiableList(hiddenBefore);
     }
 
     /**
@@ -533,6 +530,6 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenAfter comment token following this DetailAstImpl
      */
     public void setHiddenAfter(List<Token> hiddenAfter) {
-        this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
+        this.hiddenAfter = Collections.unmodifiableList(hiddenAfter);
     }
 }
