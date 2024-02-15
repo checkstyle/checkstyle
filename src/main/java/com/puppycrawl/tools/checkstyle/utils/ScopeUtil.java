@@ -147,7 +147,6 @@ public final class ScopeUtil {
                 break;
             }
         }
-
         return returnValue;
     }
 
