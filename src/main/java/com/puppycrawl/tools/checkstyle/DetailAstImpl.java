@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.antlr.v4.runtime.Token;
 
@@ -497,11 +498,9 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenBefore() {
-        List<Token> returnList = null;
-        if (hiddenBefore != null) {
-            returnList = Collections.unmodifiableList(hiddenBefore);
-        }
-        return returnList;
+        return Optional.ofNullable(hiddenBefore)
+            .map(Collections::unmodifiableList)
+            .orElse(null);
     }
 
     /**
@@ -511,11 +510,9 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenAfter() {
-        List<Token> returnList = null;
-        if (hiddenAfter != null) {
-            returnList = Collections.unmodifiableList(hiddenAfter);
-        }
-        return returnList;
+        return Optional.ofNullable(hiddenAfter)
+            .map(Collections::unmodifiableList)
+            .orElse(null);
     }
 
     /**
