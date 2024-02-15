@@ -302,6 +302,11 @@ public class ScopeUtilTest {
         assertWithMessage("Invalid surrounding scope")
             .that(staticScope)
             .isEqualTo(Scope.PACKAGE);
+        final Scope scope = ScopeUtil.getSurroundingScope(getNode(TokenTypes.CLASS_DEF));
+        assertWithMessage("scope has to be null")
+            .that(scope)
+            .isNull();
+
     }
 
     @Test
