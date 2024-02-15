@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,19 +33,33 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
+        final String[] expected = {
+            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive|_)$).+$";
 
+        final String[] expected = {
+            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "19:10: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "22:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "24:19: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "33:7: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
+            "34:10: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 }
