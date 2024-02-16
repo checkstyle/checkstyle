@@ -258,6 +258,23 @@ no-exception-samples-gradle)
   removeFolderWithProtectedFiles checkstyle-samples
   ;;
 
+no-exception-slugify)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -B install -Pno-validations
+  checkout_from https://github.com/slugify/slugify.git
+  cd .ci-temp/slugify
+
+  sed -i "/checkstyle {/,/}/ s/toolVersion = .*/toolVersion = '${CS_POM_VERSION}'/" \
+    build.gradle
+
+   echo "Checking gradle properties..."
+  ./gradlew properties
+  ./gradlew build
+
+  cd ../..
+  removeFolderWithProtectedFiles slugify
+  ;;
 
   *)
   echo "Unexpected argument: $1"
