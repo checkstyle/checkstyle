@@ -23,7 +23,7 @@ class InputNonEmptyAtclauseDescriptionOne
 
         /**
          * Some javadoc.
-         * @param a Some javadoc. // ok
+         * @param a Some javadoc.
          * @deprecated Some javadoc.
          */
         public InputNonEmptyAtclauseDescriptionOne(String a)
