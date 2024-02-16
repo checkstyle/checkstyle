@@ -434,6 +434,7 @@
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-core</artifactId>
       <version>${doxia.version}</version>
+      <scope>test</scope>
       <exclusions>
         <!-- Excluded due to security vulnerability in version 1.11
              https://github.com/checkstyle/checkstyle/pull/13357#issuecomment-1639480844 -->
@@ -451,6 +452,13 @@
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-module-xdoc</artifactId>
       <version>${doxia.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
