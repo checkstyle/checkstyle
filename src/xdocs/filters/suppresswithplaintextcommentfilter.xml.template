@@ -186,6 +186,22 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example9-config">
+            This check is not limited to comments. It can match any regular expression patterns as
+            delimiters (via offCommentFormat and onCommentFormat) for the suppression. The following
+            example shows how to suppress violations within a text block for LineLengthCheck.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
