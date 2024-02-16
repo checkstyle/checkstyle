@@ -186,6 +186,12 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
