@@ -226,6 +226,10 @@ workflows:
           name: "no-exception-samples-gradle"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
+      - validate-with-maven-script:
+          name: "no-exception-slugify"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-slugify"
 
   idea:
     jobs:
