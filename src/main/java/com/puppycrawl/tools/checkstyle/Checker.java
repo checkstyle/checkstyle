@@ -37,6 +37,8 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.checkerframework.checker.initialization.qual.Initialized;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -333,7 +335,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *      haltOnException field
      */
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
-        final SortedSet<Violation> fileMessages = new TreeSet<>();
+        @NonNull final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
