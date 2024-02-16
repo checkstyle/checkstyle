@@ -176,8 +176,7 @@ class TagParser {
             if (text.charAt(column) == '/') {
                 column++;
             }
-
-            text = text.substring(column).trim();
+            text = text.substring(column);
             int position = 0;
 
             // Character.isJavaIdentifier... may not be a valid HTML

@@ -1842,7 +1842,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>text = text.substring(column).trim();</lineContent>
+    <lineContent>text = text.substring(column);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
