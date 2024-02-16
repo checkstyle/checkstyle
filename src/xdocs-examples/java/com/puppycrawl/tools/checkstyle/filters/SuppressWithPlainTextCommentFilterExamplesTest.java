@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 @Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressWithPlainTextCommentFilterExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter";
@@ -102,5 +103,14 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         };
 
         verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+    }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example9.java"), expected);
     }
 }
