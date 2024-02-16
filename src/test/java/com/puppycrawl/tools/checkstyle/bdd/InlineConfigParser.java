@@ -325,7 +325,7 @@ public final class InlineConfigParser {
             fullyQualifiedClassName = moduleName;
         }
         else {
-            final String path = SLASH_PATTERN.matcher(filePath).replaceAll("\\.");
+            final String path = SLASH_PATTERN.matcher(filePath).replaceAll(".");
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
