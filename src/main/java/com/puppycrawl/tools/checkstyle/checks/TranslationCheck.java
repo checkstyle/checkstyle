@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -50,7 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <p>
@@ -649,7 +649,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
          * @return the set of files
          */
         public Set<File> getFiles() {
-            return UnmodifiableCollectionUtil.unmodifiableSet(files);
+            return Collections.unmodifiableSet(files);
         }
 
         /**
