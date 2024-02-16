@@ -344,7 +344,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             log.debug("IOException occurred.", ioe);
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    new Object[] {ioe.getMessage()}, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
@@ -361,7 +361,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
+                    new Object[] {sw.getBuffer().toString()},
                     null, getClass(), null));
         }
         return fileMessages;
