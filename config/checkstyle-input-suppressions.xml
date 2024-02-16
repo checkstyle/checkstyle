@@ -1547,8 +1547,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]missingjavadoctype[\\/]InputMissingJavadocTypeUnusedParamInJavadocForClass.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionOne.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect.java"/>
