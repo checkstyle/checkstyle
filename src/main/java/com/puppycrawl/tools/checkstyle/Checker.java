@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -332,6 +333,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @noinspectionreason ProhibitedExceptionThrown - there is no other way to obey
      *      haltOnException field
      */
+    @NonNull
     private SortedSet<Violation> processFile(File file) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
@@ -344,7 +346,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             log.debug("IOException occurred.", ioe);
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    new Object[] {ioe.getMessage()}, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
