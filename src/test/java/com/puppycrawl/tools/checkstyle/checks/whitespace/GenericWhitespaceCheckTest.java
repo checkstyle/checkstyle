@@ -71,6 +71,7 @@ public class GenericWhitespaceCheckTest
             "22:44: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
             "22:44: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
             "22:54: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "22:54: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "23:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
             "23:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
             "23:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
@@ -85,6 +86,7 @@ public class GenericWhitespaceCheckTest
             "23:70: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
             "23:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "23:72: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "23:72: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "36:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
             "36:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
             "48:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
@@ -171,6 +173,50 @@ public class GenericWhitespaceCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceWithEmoji.java"), expected);
+    }
+
+    @Test
+    public void testBeforeCtorInvocation() throws Exception {
+        final String[] expected = {
+            "17:31: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "19:56: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "19:56: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "21:25: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "24:36: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "28:35: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "28:35: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "28:47: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "28:47: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "30:34: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespaceBeforeCtorInvocation.java"), expected);
+    }
+
+    @Test
+    public void testAfterNew() throws Exception {
+        final String[] expected = {
+            "17:30: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "21:12: " + getCheckMessage(MSG_WS_NOT_PRECEDED, '<'),
+            "21:12: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "21:23: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "21:23: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "22:22: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "27:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, '<'),
+            "27:31: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "27:40: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "27:40: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespaceAfterNew.java"), expected);
+    }
+
+    @Test
+    public void testBeforeRecordHeader() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputGenericWhitespaceBeforeRecordHeader.java"),
+                expected);
     }
 
     /**
