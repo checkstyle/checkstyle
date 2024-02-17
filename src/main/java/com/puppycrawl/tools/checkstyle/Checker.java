@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -342,9 +343,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
+            @NonNull Object[] args = {ioe.getMessage()};
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    args, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
@@ -358,10 +360,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             final PrintWriter pw = new PrintWriter(sw, true);
 
             ex.printStackTrace(pw);
-
+            @NonNull Object[] args = {sw.getBuffer().toString()};
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
+                    args,
                     null, getClass(), null));
         }
         return fileMessages;
