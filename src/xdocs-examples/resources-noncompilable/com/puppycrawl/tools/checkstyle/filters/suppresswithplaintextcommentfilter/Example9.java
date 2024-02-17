@@ -24,7 +24,7 @@ public class Example9 {
           ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
           """;
 
-  // violation below, ''
+  // violation below, 'Line is longer than 80 characters'
   static final String SINGLE_LINE_SAMPLE = "locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude";
 }
 // xdoc section -- end

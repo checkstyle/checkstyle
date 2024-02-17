@@ -80,6 +80,15 @@ public class ExampleMacro extends AbstractMacro {
 
         if ("config".equals(type)) {
             final String config = getConfigSnippet(lines);
+
+            if (config.isBlank()) {
+                final String message = String.format(Locale.ROOT,
+                        "Empty config snippet from %s, check"
+                                + " for xml config snippet delimiters in input file.", path
+                );
+                throw new MacroExecutionException(message);
+            }
+
             writeSnippet(sink, config);
         }
         else if ("code".equals(type)) {
@@ -88,6 +97,15 @@ public class ExampleMacro extends AbstractMacro {
             if (path.contains("filetabcharacter")) {
                 code = code.replace("\t", "  ");
             }
+
+            if (code.isBlank()) {
+                final String message = String.format(Locale.ROOT,
+                        "Empty code snippet from %s, check"
+                                + " for code snippet delimiters in input file.", path
+                );
+                throw new MacroExecutionException(message);
+            }
+
             writeSnippet(sink, code);
         }
         else {
