@@ -170,6 +170,11 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
         }
     }
 
+    /**
+     *AuditListener Notify that an exception happened while performing audit.
+     * @param event the event details
+     * @param throwable details of the exception
+     */
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
@@ -190,6 +195,11 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
         infoWriter.flush();
     }
 
+    /**
+     *AuditListener Notify that the audit is finished
+     * Callback method invoked when the audit process finishes.
+     * @param event the event details
+     */
     @Override
     public void auditFinished(AuditEvent event) {
         final LocalizedMessage auditFinishMessage = new LocalizedMessage(

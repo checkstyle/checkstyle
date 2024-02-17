@@ -70,6 +70,11 @@ public class XpathFileGeneratorAstFilter extends AbstractAutomaticBean implement
         MESSAGE_QUERY_MAP.clear();
     }
 
+    /**
+     *TreeWalkerFilter Determines whether or not a filtered TreeWalkerAuditEvent is accepted.
+     * @param event the TreeWalkerAuditEvent to filter.
+     * @return true if the event is accepted.
+     */
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
         if (event.getTokenType() != 0) {

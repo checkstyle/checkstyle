@@ -39,6 +39,14 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
     /** Suffix of module names like XXXXCheck. */
     private static final String SUFFIX = "Check";
 
+    /**
+     * Formats an AuditEvent into a readable log message.
+     * The log message includes information such as severity level, file name, line number, column number,
+     * message content, and module ID or check short name.
+     *
+     * @param event audit event.
+     * @return
+     */
     @Override
     public String format(AuditEvent event) {
         final String fileName = event.getFileName();
@@ -56,7 +64,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
         }
 
         final StringBuilder sb = initStringBuilderWithOptimalBuffer(event, severityLevelName);
-
+        // Append severity level, file name, line number, column number, and message to the StringBuilder
         sb.append('[').append(severityLevelName).append("] ")
             .append(fileName).append(':').append(event.getLine());
         if (event.getColumn() > 0) {

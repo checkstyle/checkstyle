@@ -87,6 +87,10 @@ public class MetadataGeneratorLogger extends AbstractAutomaticBean implements Au
         errorWriter.flush();
     }
 
+    /**
+     *AuditListener Notify that an audit error was discovered on a specific file.
+     * @param event the event details
+     */
     @Override
     public void addError(AuditEvent event) {
         final SeverityLevel severityLevel = event.getSeverityLevel();
@@ -96,6 +100,11 @@ public class MetadataGeneratorLogger extends AbstractAutomaticBean implements Au
         }
     }
 
+    /**
+     * AuditListener Notify that an exception happened while performing audit.
+     * @param event the event details
+     * @param throwable details of the exception
+     */
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {

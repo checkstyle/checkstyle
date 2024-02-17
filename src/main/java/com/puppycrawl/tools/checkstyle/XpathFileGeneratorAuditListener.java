@@ -98,6 +98,7 @@ public class XpathFileGeneratorAuditListener
 
             final File file = new File(event.getFileName());
 
+            //Prints a String and then terminates the line. This method behaves as though it invokes print(String) and then println().
             writer.println("<suppress-xpath");
             writer.print("       files=\"");
             writer.print(file.getName());
@@ -122,6 +123,11 @@ public class XpathFileGeneratorAuditListener
         }
     }
 
+    /**
+     *AuditListener Notify that an exception happened while performing audit.
+     * @param event the event details
+     * @param throwable details of the exception
+     */
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         throw new UnsupportedOperationException("Operation is not supported");
