@@ -174,6 +174,24 @@
   <mutation unstable="false">
     <sourceFile>JavadocStyleCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>check = customScope.isIn(scope)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocStyleCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| !customScope.isIn(excludeScope)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocStyleCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck</mutatedClass>
     <mutatedMethod>trimTail</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/StringBuilder::deleteCharAt</description>
