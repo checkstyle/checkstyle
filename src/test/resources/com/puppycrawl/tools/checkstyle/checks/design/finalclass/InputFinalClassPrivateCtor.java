@@ -60,7 +60,7 @@ class Nothing2 {
     private class Some1 {
         public Some1() {}
     }
-    private class Some3 { // ok
+    private class Some3 {
         protected Some3() {}
     }
 }
@@ -74,7 +74,7 @@ class Exam2 {
 
     }
 
-    private final class Paper { // ok
+    private final class Paper {
         void method() {
         }
 
@@ -84,7 +84,7 @@ class Exam2 {
 }
 
 class Tree2 {
-    private final class Node { // ok
+    private final class Node {
         int data;
         Node next;
 

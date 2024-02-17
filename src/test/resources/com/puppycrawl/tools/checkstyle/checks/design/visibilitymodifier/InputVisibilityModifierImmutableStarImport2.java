@@ -18,5 +18,5 @@ import com.google.common.collect.*;
 //config.immutableClassName=com.google.google.common.ImmutableSet
 public final class InputVisibilityModifierImmutableStarImport2
 {
-    public final ImmutableSet<String> set = null; // ok
+    public final ImmutableSet<String> set = null;
 }

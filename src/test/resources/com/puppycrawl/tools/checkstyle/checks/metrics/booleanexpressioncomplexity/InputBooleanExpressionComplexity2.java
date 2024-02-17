@@ -8,7 +8,7 @@ tokens = BXOR,LAND,LOR
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-public class InputBooleanExpressionComplexity2 { // ok
+public class InputBooleanExpressionComplexity2 {
     private boolean _a = false; //boolean field
     private boolean _b = false;
     private boolean _c = false;

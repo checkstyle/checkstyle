@@ -75,7 +75,6 @@ jobs:
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
-
   sonarqube:
     docker:
       - image: checkstyle/jdk-11-groovy-git-mvn:11.0.20.1__2.4.21__2.42.0__3.9.5
@@ -106,11 +105,12 @@ jobs:
           command: yamllint -f parsable -c config/yamllint.yaml .
 
 workflows:
-  sonarqube:
-    jobs:
-      - sonarqube:
-          context:
-            - sonarqube
+  #  until https://github.com/checkstyle/checkstyle/issues/13209
+  #  sonarqube:
+  #    jobs:
+  #      - sonarqube:
+  #          context:
+  #            - sonarqube
 
   test:
     jobs:
@@ -222,6 +222,10 @@ workflows:
           name: "linkcheck-plugin"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
+      - validate-with-maven-script:
+          name: "no-exception-samples-gradle"
+          image-name: "cimg/openjdk:11.0.19"
+          command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
 
   idea:
     jobs:

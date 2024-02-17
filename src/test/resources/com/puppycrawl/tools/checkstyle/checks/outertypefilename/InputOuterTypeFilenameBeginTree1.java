@@ -11,7 +11,7 @@ public class InputOuterTypeFilenameBeginTree1
 
 }
 
-enum Enum2 //ok
+enum Enum2
 {
     A, B, C;
     Enum2() {}
@@ -19,7 +19,7 @@ enum Enum2 //ok
         return ""; //some custom implementation
     }
 }
-// ok
+
 interface TestRequireThisEnum2
 {
     enum DAY_OF_WEEK

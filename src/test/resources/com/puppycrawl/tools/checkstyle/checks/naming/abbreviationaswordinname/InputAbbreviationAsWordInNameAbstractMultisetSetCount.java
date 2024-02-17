@@ -15,7 +15,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-public abstract class InputAbbreviationAsWordInNameAbstractMultisetSetCount<E> { // ok
+public abstract class InputAbbreviationAsWordInNameAbstractMultisetSetCount<E> {
 
   private static final String SUPPORTS_REMOVE = "";
 

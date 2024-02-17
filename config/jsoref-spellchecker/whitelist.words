@@ -103,7 +103,6 @@ basetag
 baz
 bbb
 bc
-BClass
 bdc
 bdd
 bdo
@@ -154,7 +153,6 @@ catchparametername
 cba
 cbeaff
 ccc
-CClass
 CComments
 cdata
 cde
@@ -685,6 +683,7 @@ jhu
 jide
 jidesoft
 jira
+JIs
 jitpack
 jkl
 JLabel

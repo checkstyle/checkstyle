@@ -673,7 +673,7 @@ public class SuppressionCommentFilterTest
             }
         }
 
-        final FileContents mockedContents = mock(FileContents.class);
+        final FileContents mockedContents = mock();
         final Map<Integer, TextBlock> returnValue = fileContents.getSingleLineComments();
         when(mockedContents.getSingleLineComments())
                 .thenReturn(returnValue)

@@ -89,8 +89,8 @@ class outer {
 class Class {
     Person c = new Person(3) {
 
-        int a = 0; // ok
-        int b = 9; // ok
+        int a = 0;
+        int b = 9;
         double e = 0;
         double c = 5.5;
         float d = 12.2f;

@@ -42,23 +42,39 @@ public class InnerAssignmentCheckTest
             "22:19: " + getCheckMessage(MSG_KEY),
             "24:39: " + getCheckMessage(MSG_KEY),
             "26:35: " + getCheckMessage(MSG_KEY),
-            "44:16: " + getCheckMessage(MSG_KEY),
-            "45:24: " + getCheckMessage(MSG_KEY),
-            "46:19: " + getCheckMessage(MSG_KEY),
-            "47:17: " + getCheckMessage(MSG_KEY),
-            "48:29: " + getCheckMessage(MSG_KEY),
-            "49:20: " + getCheckMessage(MSG_KEY),
-            "50:17: " + getCheckMessage(MSG_KEY),
-            "50:31: " + getCheckMessage(MSG_KEY),
-            "50:41: " + getCheckMessage(MSG_KEY),
-            "51:16: " + getCheckMessage(MSG_KEY),
-            "51:27: " + getCheckMessage(MSG_KEY),
-            "52:32: " + getCheckMessage(MSG_KEY),
-            "92:19: " + getCheckMessage(MSG_KEY),
-            "181:22: " + getCheckMessage(MSG_KEY),
+            "73:19: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignment.java"), expected);
+    }
+
+    @Test
+    public void testMethod() throws Exception {
+        final String[] expected = {
+            "73:22: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerAssignmentMethod.java"), expected);
+    }
+
+    @Test
+    public void testDemoBug1195047Comment3() throws Exception {
+        final String[] expected = {
+            "18:16: " + getCheckMessage(MSG_KEY),
+            "19:24: " + getCheckMessage(MSG_KEY),
+            "20:19: " + getCheckMessage(MSG_KEY),
+            "21:17: " + getCheckMessage(MSG_KEY),
+            "22:29: " + getCheckMessage(MSG_KEY),
+            "23:20: " + getCheckMessage(MSG_KEY),
+            "24:17: " + getCheckMessage(MSG_KEY),
+            "24:31: " + getCheckMessage(MSG_KEY),
+            "24:41: " + getCheckMessage(MSG_KEY),
+            "25:16: " + getCheckMessage(MSG_KEY),
+            "25:27: " + getCheckMessage(MSG_KEY),
+            "26:32: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputInnerAssignmentDemoBug1195047Comment3.java"), expected);
     }
 
     @Test

@@ -17,37 +17,37 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleHtml1 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
+   private String first;
 
    /** This Javadoc is missing an ending period */
-   private String second; // ok
+   private String second;
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleHtml1() {} // ok
+   public InputJavadocStyleHtml1() {}
 
    /**
     * This is ok!
     */
-   private void method1() {} // ok
+   private void method1() {}
 
    /**
     * This is ok?
     */
-   private void method2() {} // ok
+   private void method2() {}
 
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
+   private void method3() {}
 
    /**
     * This should fail even.though.there are embedded periods
     */
-   private void method4() {} // ok
+   private void method4() {}
 
    // violation 7 lines below 'Unclosed HTML tag found: <b>'
    // violation 9 lines below 'Extra HTML tag found: </td>'
@@ -86,7 +86,7 @@ public class InputJavadocStyleHtml1 {
    public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
+   public void method9() {}
 
 
    // Testcases to exercise the Tag parser (bug 843887)
@@ -115,5 +115,5 @@ public class InputJavadocStyleHtml1 {
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
+    private void method11() {}
 }

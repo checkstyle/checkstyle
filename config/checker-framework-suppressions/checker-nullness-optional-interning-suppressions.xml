@@ -9,17 +9,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable URI
-      method return type: @Initialized @NonNull Object
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
     <specifier>toarray.nullable.elements.not.newarray</specifier>
     <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
     <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
@@ -775,7 +764,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
     <specifier>methodref.return</specifier>
     <message>Incompatible return type</message>
-    <lineContent>.collect(Collectors.toMap(Function.identity(), properties::getProperty));</lineContent>
+    <lineContent>Collectors.toUnmodifiableMap(Function.identity(), properties::getProperty));</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String

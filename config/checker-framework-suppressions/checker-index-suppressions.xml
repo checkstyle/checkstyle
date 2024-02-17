@@ -34,6 +34,94 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <lineContent>EMBEDDED_EXPRESSION_END.length(),</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.JavaAstVisitor.EMBEDDED_EXPRESSION_END&quot;) int
+      required: @LTEqLengthOf(&quot;tokenText&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <lineContent>EMBEDDED_EXPRESSION_END.length(),</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.JavaAstVisitor.EMBEDDED_EXPRESSION_END&quot;) int
+      required: @LTEqLengthOf(&quot;tokenText&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <lineContent>.substring(quoteLength, tokenTextLength - quoteLength);</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.JavaAstVisitor.QUOTE&quot;) int
+      required: @LTEqLengthOf(&quot;ctx.getText()&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter beginIndex of String.substring.</message>
+    <lineContent>QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.JavaAstVisitor.QUOTE&quot;) int
+      required: @LTEqLengthOf(&quot;tokenText&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>.substring(quoteLength, tokenTextLength - quoteLength);</lineContent>
+    <details>
+      found   : @GTENegativeOne int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>tokenTextLength - QUOTE.length()</lineContent>
+    <details>
+      found   : @GTENegativeOne int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of String.substring.</message>
@@ -1005,6 +1093,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>final String import1Token = import1Tokens[i];</lineContent>
+    <details>
+      found   : int
+      required: @IndexFor(&quot;import1Tokens&quot;) or @LTLengthOf(&quot;import1Tokens&quot;) -- an integer less than import1Tokens&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>final String import2Token = import2Tokens[i];</lineContent>
     <details>
       found   : int
@@ -1743,7 +1842,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>text = text.substring(column).trim();</lineContent>
+    <lineContent>text = text.substring(column);</lineContent>
     <details>
       found   : int
       required: @NonNegative int

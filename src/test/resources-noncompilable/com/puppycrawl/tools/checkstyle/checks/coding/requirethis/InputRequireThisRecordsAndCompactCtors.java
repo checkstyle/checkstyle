@@ -29,7 +29,7 @@ public class InputRequireThisRecordsAndCompactCtors {
             this.i = i;
             method1(); // violation 'Method call to 'method1' needs "this.".'
             try {
-                this.method1(); // ok
+                this.method1();
             }
             catch (RuntimeException e) {
                 e.toString();
@@ -45,7 +45,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         }
 
         void method4() {
-            this.<String>method3(); // ok
+            this.<String>method3();
         }
     }
 
@@ -67,7 +67,7 @@ public class InputRequireThisRecordsAndCompactCtors {
             this.i = i;
             method1(); // violation 'Method call to 'method1' needs "this.".'
             try {
-                this.method1(); // ok
+                this.method1();
             }
             catch (RuntimeException e) {
                 e.toString();
@@ -83,7 +83,7 @@ public class InputRequireThisRecordsAndCompactCtors {
         }
 
         void method4() {
-            this.<String>method3(); // ok
+            this.<String>method3();
         }
     }
 }

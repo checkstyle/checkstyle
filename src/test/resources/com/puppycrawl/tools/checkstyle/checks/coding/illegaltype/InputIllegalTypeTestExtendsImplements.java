@@ -23,14 +23,14 @@ public abstract class InputIllegalTypeTestExtendsImplements {
     public abstract class Bar
         extends Hashtable // violation
             <Boolean, // violation
-                Bar> { // OK
+                Bar> {
     }
 
     public abstract class Foo<
             T extends Boolean> // violation
-        implements Cloneable, // OK
+        implements Cloneable,
             Serializable, // violation
-            Comparator, // OK
+            Comparator,
             Comparable<Foo< // violation
                 ? extends Boolean>> { // violation
     }
@@ -41,23 +41,23 @@ public abstract class InputIllegalTypeTestExtendsImplements {
     }
 
     abstract class NonPublicBar
-            extends Hashtable // OK
-            <Boolean, // OK
-                Bar> { // OK
+            extends Hashtable
+            <Boolean,
+                Bar> {
     }
 
     abstract class NonPublicFoo<
-            T extends Boolean> // OK
-        implements Cloneable, // OK
-            Serializable, // OK
-            Comparator, // OK
-            Comparable<Foo< // OK
-                ? extends Boolean>> { // OK
+            T extends Boolean>
+        implements Cloneable,
+            Serializable,
+            Comparator,
+            Comparable<Foo<
+                ? extends Boolean>> {
     }
 
     interface NonPublicInterface<Foo>
-        extends Comparable<Boolean>, // OK
-            Serializable { // OK
+        extends Comparable<Boolean>,
+            Serializable {
     }
 
 }

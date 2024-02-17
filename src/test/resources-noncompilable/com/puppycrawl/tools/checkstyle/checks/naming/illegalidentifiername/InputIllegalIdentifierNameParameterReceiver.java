@@ -11,13 +11,13 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
-public record InputIllegalIdentifierNameParameterReceiver() { // ok
-    public void foo4(InputIllegalIdentifierNameParameterReceiver this) { // ok
+public record InputIllegalIdentifierNameParameterReceiver() {
+    public void foo4(InputIllegalIdentifierNameParameterReceiver this) {
     }
 
     private class Inner {
-        Inner(InputIllegalIdentifierNameParameterReceiver // ok
-                  InputIllegalIdentifierNameParameterReceiver.this) { // ok
+        Inner(InputIllegalIdentifierNameParameterReceiver
+                  InputIllegalIdentifierNameParameterReceiver.this) {
         }
     }
 }

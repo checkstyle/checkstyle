@@ -440,7 +440,22 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
+        checker.process(files);
+        checker.destroy();
+    }
+
+    /**
+     * Executes given config on a list of files only. Does not verify violations.
+     *
+     * @param checker check configuration
+     * @param filenames names of files to process
+     * @throws Exception if there is a problem during checker configuration
+     */
+    protected static void execute(Checker checker, String... filenames) throws Exception {
+        final List<File> files = Arrays.stream(filenames)
+                .map(File::new)
+                .collect(Collectors.toUnmodifiableList());
         checker.process(files);
         checker.destroy();
     }
@@ -461,10 +476,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);

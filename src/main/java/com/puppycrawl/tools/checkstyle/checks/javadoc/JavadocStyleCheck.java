@@ -300,11 +300,9 @@ public class JavadocStyleCheck
             final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
             check = customScope.isIn(scope)
-                    && (surroundingScope == null || surroundingScope.isIn(scope))
-                    && (excludeScope == null
-                        || !customScope.isIn(excludeScope)
-                        || surroundingScope != null
-                            && !surroundingScope.isIn(excludeScope));
+                    && surroundingScope.isIn(scope)
+                    && (excludeScope == null || !customScope.isIn(excludeScope)
+                            || !surroundingScope.isIn(excludeScope));
         }
         return check;
     }
@@ -407,10 +405,8 @@ public class JavadocStyleCheck
         int index = 0;
         while (index < line.length()) {
             if (!Character.isWhitespace(line.charAt(index))) {
-                if (line.regionMatches(index, "/**", 0, "/**".length())) {
-                    index += 2;
-                }
-                else if (line.regionMatches(index, "*/", 0, 2)) {
+                if (line.regionMatches(index, "/**", 0, "/**".length())
+                    || line.regionMatches(index, "*/", 0, 2)) {
                     index++;
                 }
                 else if (line.charAt(index) != '*') {

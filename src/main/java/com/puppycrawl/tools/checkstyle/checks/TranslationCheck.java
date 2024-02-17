@@ -93,6 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * of default translation files in project.
  * </p>
  * <p>
+ * Note: If your project uses preprocessed translation files and the original files do not have the
+ * {@code properties} extension, you can specify additional file extensions
+ * via the {@code fileExtensions} property.
+ * </p>
+ * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
  * TranslationCheck will rise violation that the language code is incorrect.
@@ -113,10 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code "^messages.*$"}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension to identify
- * translation files. Setting this property is typically only required if your
- * translation files are preprocessed and the original files do not have
- * the extension {@code .properties}
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li>
@@ -254,7 +256,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @since 6.11
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
+        requiredTranslations = Arrays.stream(translationCodes)
+            .collect(Collectors.toUnmodifiableSet());
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -520,7 +523,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
-                .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
+                .filter(key -> !currentFileKeys.contains(key))
+                .collect(Collectors.toUnmodifiableSet());
             if (!missingKeys.isEmpty()) {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();

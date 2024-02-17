@@ -42,6 +42,8 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -282,9 +284,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
+        final Path tempDirectory = temporaryFolder.toPath();
+        final Path symbolicLinkDirectory = temporaryFolder.toPath()
                 .resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
@@ -301,9 +304,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkResolution() throws IOException {
-        final Path tempDirectory = Files.createTempDirectory("tempDir");
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir")
+        final Path tempDirectory = temporaryFolder.toPath();
+        final Path symbolicLinkDirectory = temporaryFolder.toPath()
                 .resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLinkDirectory, tempDirectory);
 
@@ -321,9 +325,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final Path tempFile = Files.createTempFile("tempFile", null);
-        final Path symbolicLinkDirectory = Files.createTempDirectory("symbolicLinkDir");
+        final Path symbolicLinkDirectory = temporaryFolder.toPath();
         final Path symbolicLink = symbolicLinkDirectory.resolve("symbolicLink");
         Files.createSymbolicLink(symbolicLink, tempFile);
 
@@ -343,13 +348,14 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     }
 
     @Test
+    @DisabledOnOs(OS.WINDOWS)
     public void testMultipleSymbolicLinkResolution() throws IOException {
-        final Path actualDirectory = Files.createTempDirectory("actualDir");
-        final Path firstSymbolicLink = Files.createTempDirectory("firstLinkDir")
+        final Path actualDirectory = temporaryFolder.toPath();
+        final Path firstSymbolicLink = temporaryFolder.toPath()
                 .resolve("firstLink");
         Files.createSymbolicLink(firstSymbolicLink, actualDirectory);
 
-        final Path secondSymbolicLink = Files.createTempDirectory("secondLinkDir")
+        final Path secondSymbolicLink = temporaryFolder.toPath()
                 .resolve("secondLink");
         Files.createSymbolicLink(secondSymbolicLink, firstSymbolicLink);
 
@@ -415,13 +421,6 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             .hasSize(1);
     }
 
-    /**
-     * Test functionality when toByteArray throws an exception.
-     *
-     * @noinspection ResultOfMethodCallIgnored
-     * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito to only
-     *                     mock toByteArray to throw exception.
-     */
     @Test
     public void testNonExistentResource() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
@@ -438,24 +437,19 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .that(hash)
                 .isNotNull();
 
-        try (MockedStatic<ByteStreams> byteStream = mockStatic(ByteStreams.class)) {
-            byteStream.when(() -> ByteStreams.toByteArray(any(BufferedInputStream.class)))
-                .thenThrow(IOException.class);
+        // apply new external resource to clear cache
+        final Set<String> resources = new HashSet<>();
+        final String resource = getPath("InputPropertyCacheFile.header");
+        resources.add(resource);
+        cache.putExternalResources(resources);
 
-            // apply new external resource to clear cache
-            final Set<String> resources = new HashSet<>();
-            final String resource = getPath("InputPropertyCacheFile.header");
-            resources.add(resource);
-            cache.putExternalResources(resources);
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache(myFile, 1))
+                .isFalse();
 
-            assertWithMessage("Should return false in file is not in cache")
-                    .that(cache.isInCache(myFile, 1))
-                    .isFalse();
-
-            assertWithMessage("Should return false in file is not in cache")
-                    .that(cache.isInCache(resource, 1))
-                    .isFalse();
-        }
+        assertWithMessage("Should return false in file is not in cache")
+                .that(cache.isInCache(resource, 1))
+                .isFalse();
     }
 
     @Test

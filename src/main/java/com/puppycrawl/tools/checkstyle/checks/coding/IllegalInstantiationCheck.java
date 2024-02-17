@@ -346,7 +346,7 @@ public class IllegalInstantiationCheck
      * @since 3.0
      */
     public void setClasses(String... names) {
-        classes = Arrays.stream(names).collect(Collectors.toSet());
+        classes = Arrays.stream(names).collect(Collectors.toUnmodifiableSet());
     }
 
 }

@@ -38,20 +38,36 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiCaseClass() throws Exception {
+    public void testMultiCaseSmallTalkStyle() throws Exception {
         final String[] expected = {
             "13:59: " + getCheckMessage(MSG_KEY),
-            "93:21: " + getCheckMessage(MSG_KEY),
-            "120:14: " + getCheckMessage(MSG_KEY),
-            "146:15: " + getCheckMessage(MSG_KEY),
-            "158:23: " + getCheckMessage(MSG_KEY),
-            "178:19: " + getCheckMessage(MSG_KEY),
-            "181:59: " + getCheckMessage(MSG_KEY),
+            "87:21: " + getCheckMessage(MSG_KEY),
         };
-
         verifyWithInlineConfigParser(
-                getPath("InputOneStatementPerLineSingleLine.java"),
-            expected);
+                getPath("InputOneStatementPerLineSingleLineSmallTalkStyle.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiCaseLoops() throws Exception {
+        final String[] expected = {
+            "27:18: " + getCheckMessage(MSG_KEY),
+            "53:17: " + getCheckMessage(MSG_KEY),
+            "65:25: " + getCheckMessage(MSG_KEY),
+            "85:23: " + getCheckMessage(MSG_KEY),
+            "88:63: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLineInLoops.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiCaseDeclarations() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineSingleLineForDeclarations.java"),
+                expected);
     }
 
     @Test
@@ -69,21 +85,29 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithMultilineStatements() throws Exception {
+    public void testDeclarationsWithMultilineStatements() throws Exception {
         final String[] expected = {
             "49:21: " + getCheckMessage(MSG_KEY),
             "66:17: " + getCheckMessage(MSG_KEY),
             "74:17: " + getCheckMessage(MSG_KEY),
             "86:10: " + getCheckMessage(MSG_KEY),
             "95:28: " + getCheckMessage(MSG_KEY),
-            "140:39: " + getCheckMessage(MSG_KEY),
-            "173:46: " + getCheckMessage(MSG_KEY),
-            "184:47: " + getCheckMessage(MSG_KEY),
         };
-
         verifyWithInlineConfigParser(
-                getPath("InputOneStatementPerLineMultiline.java"),
+                getPath("InputOneStatementPerLineMultilineForDeclarations.java"),
             expected);
+    }
+
+    @Test
+    public void testLoopsAndTryWithResourceWithMultilineStatements() throws Exception {
+        final String[] expected = {
+            "53:39: " + getCheckMessage(MSG_KEY),
+            "86:44: " + getCheckMessage(MSG_KEY),
+            "97:45: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineMultilineInLoopsAndTryWithResources.java"),
+                expected);
     }
 
     @Test

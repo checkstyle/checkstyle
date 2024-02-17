@@ -25,15 +25,15 @@ public interface InputJavadocStyleInterfaceMemberScopeIsPublic {
         /** */
         CONSTANT(0);
 
-        /** */ // ok
+        /** */
         final int value;
 
-        /** */ // ok
+        /** */
         Enum(int value) {
             this.value = value;
         }
 
-        /** */ // ok
+        /** */
         void method() {
         }
 

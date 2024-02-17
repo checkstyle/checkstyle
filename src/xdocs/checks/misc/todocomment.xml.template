@@ -20,22 +20,10 @@
 
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-            <tr>
-              <td>format</td>
-              <td>Specify pattern to match comments against.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>"TODO:"</code></td>
-              <td>3.0</td>
-            </tr>
-          </table>
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TodoCommentCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
@@ -54,7 +42,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -62,7 +50,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -70,7 +58,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -78,7 +66,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

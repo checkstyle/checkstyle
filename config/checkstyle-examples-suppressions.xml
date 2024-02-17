@@ -6,6 +6,12 @@
 
 <suppressions>
 
+  <!-- The files have no exampleClassName by design. -->
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example3.java"/>
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example4.java"/>
+
   <!-- The file is used so examples can show how overridden methods are treated. -->
   <suppress id="exampleClassName"
     files="abbreviationaswordinname[\\/]SuperClass.java"/>
@@ -52,5 +58,9 @@
   <!-- Examples need spacing to be more readable -->
   <suppress checks="FileLength"
     files="visibilitymodifier[\\/]Example\d+.java"/>
+
+  <!-- No new line by design to show violation -->
+  <suppress checks="NewlineAtEndOfFile"
+    files="newlineatendoffile[\\/]Example\d+.*"/>
 
 </suppressions>

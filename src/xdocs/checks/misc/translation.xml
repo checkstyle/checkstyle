@@ -55,6 +55,12 @@ messages.properties: Key 'ok' missing.
           existence of default translation files in project.
         </p>
         <p>
+          Note: If your project uses preprocessed translation files and the original files
+          do not have the <code>properties</code> extension,
+          you can specify additional file extensions
+          via the <code>fileExtensions</code> property.
+        </p>
+        <p>
           Attention: the check will perform the validation of ISO codes if the option
           is used. So, if you specify, for example, &quot;mm&quot; for language code, TranslationCheck
           will rise violation that the language code is incorrect.
@@ -79,32 +85,22 @@ messages.properties: Key 'ok' missing.
             </tr>
             <tr>
               <td>baseName</td>
-              <td>Specify
-                <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
-                Base name</a> of resource bundles which contain message resources. It helps
-                the check to distinguish config and localization resources.
-              </td>
+              <td>Specify <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+ Base name</a> of resource bundles which contain message resources. It helps the check to distinguish config and localization resources.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^messages.*$&quot;</code></td>
               <td>6.17</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
-              <td>
-                Specify file type extension to identify translation files. Setting
-                this property is typically only required if your
-                translation files are preprocessed and the original files
-                do not have the extension <code>.properties</code>
-              </td>
+              <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>requiredTranslations</td>
-              <td>
-                Specify language codes of required translations which must exist in project.
-              </td>
+              <td>Specify language codes of required translations which must exist in project.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.11</td>

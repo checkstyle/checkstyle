@@ -250,6 +250,9 @@ public final class SiteUtil {
         Map.entry("FileTabCharacterCheck.fileExtensions", VERSION_5_0),
         Map.entry("NewlineAtEndOfFileCheck.fileExtensions", "3.1"),
         Map.entry("JavadocPackageCheck.fileExtensions", VERSION_5_0),
+        Map.entry("OrderedPropertiesCheck.fileExtensions", "8.22"),
+        Map.entry("UniquePropertiesCheck.fileExtensions", VERSION_5_7),
+        Map.entry("TranslationCheck.fileExtensions", VERSION_3_0),
         Map.entry("LineLengthCheck.fileExtensions", V824),
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", V824),
@@ -505,7 +508,7 @@ public final class SiteUtil {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {
-            return stream.collect(Collectors.toSet());
+            return stream.collect(Collectors.toUnmodifiableSet());
         }
         catch (IOException ioException) {
             throw new MacroExecutionException("Failed to find xdocs templates", ioException);
@@ -566,7 +569,7 @@ public final class SiteUtil {
                     .filter(prop -> {
                         return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
                     })
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(HashSet::new));
         properties.addAll(getNonExplicitProperties(instance, clss));
         return new TreeSet<>(properties);
     }
@@ -1214,11 +1217,11 @@ public final class SiteUtil {
     public static List<Integer> getDifference(int[] tokens, int... subtractions) {
         final Set<Integer> subtractionsSet = Arrays.stream(subtractions)
                 .boxed()
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
         return Arrays.stream(tokens)
                 .boxed()
                 .filter(token -> !subtractionsSet.contains(token))
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**

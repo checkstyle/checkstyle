@@ -36,7 +36,7 @@ jobs:
           ref: master
 
       - name: Setup local maven cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
