@@ -318,6 +318,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck");
         moduleMappings.put("SummaryJavadoc",
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
+        moduleMappings.put("LineLength",
+                "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
         if (moduleMappings.containsKey(moduleName)) {
             fullyQualifiedClassName = moduleMappings.get(moduleName);
         }
