@@ -219,7 +219,10 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processSingleGeneric(DetailAST ast, int[] line, int after) {
         final char charAfter = Character.toChars(line[after])[0];
-        if (isGenericBeforeMethod(ast) || isGenericBeforeCtor(ast)) {
+        if (isGenericBeforeMethod(ast)
+                // isGenericBeforeNew() needn't be checked as the ast which satisfies it,
+                // will also satisfy isGenericBeforeCtorInvocation().
+                || isGenericBeforeCtorInvocation(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
@@ -230,16 +233,38 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if generic is before constructor invocation.
+     * Checks if generic is before constructor invocation. Identifies two cases:
+     * <ol>
+     *     <li>{@code new ArrayList<>();}</li>
+     *     <li>{@code new Outer.Inner<>();}</li>
+     * </ol>
      *
      * @param ast ast
-     * @return true if generic before a constructor invocation
+     * @return true if generic is before constructor invocation
      */
-    private static boolean isGenericBeforeCtor(DetailAST ast) {
+    private static boolean isGenericBeforeCtorInvocation(DetailAST ast) {
+        final DetailAST grandParent = ast.getParent().getParent();
+        return grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getParent().getType() == TokenTypes.LITERAL_NEW;
+    }
+
+    /**
+     * Checks if generic is after {@code LITERAL_NEW}. Identifies three cases:
+     * <ol>
+     *     <li>{@code new <String>Object();}</li>
+     *     <li>{@code new <String>Outer.Inner();}</li>
+     *     <li>{@code new <@A Outer>@B Inner();}</li>
+     * </ol>
+     *
+     * @param ast ast
+     * @return true if generic after {@code LITERAL_NEW}
+     */
+    private static boolean isGenericAfterNew(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent.getParent().getType() == TokenTypes.LITERAL_NEW
                 && (parent.getNextSibling().getType() == TokenTypes.IDENT
-                    || parent.getNextSibling().getType() == TokenTypes.DOT);
+                    || parent.getNextSibling().getType() == TokenTypes.DOT
+                    || parent.getNextSibling().getType() == TokenTypes.ANNOTATIONS);
     }
 
     /**
@@ -274,25 +299,29 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
-        // Need to handle two cases as in:
+        // Checks if generic needs to be preceded by a whitespace or not.
+        // Handles 3 cases as in:
         //
         //   public static <T> Callable<T> callable(Runnable task, T result)
         //                 ^           ^
-        //      ws reqd ---+           +--- whitespace NOT required
+        //   1. ws reqd ---+        2. +--- whitespace NOT required
         //
+        //   new <String>Object()
+        //       ^
+        //    3. +--- ws required
         if (before >= 0) {
-            // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
+            // cases (1, 3) where whitespace is required:
             if (grandparent.getType() == TokenTypes.CTOR_DEF
                     || grandparent.getType() == TokenTypes.METHOD_DEF
-                    || isGenericBeforeCtor(ast)) {
-                // Require whitespace
+                    || isGenericAfterNew(ast)) {
+
                 if (!CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
-            // Whitespace not required
+            // case 2 where whitespace is not required:
             else if (CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
