@@ -24,17 +24,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter args of Violation constructor.</message>
-    <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String @Initialized @NonNull []
-      required: @Initialized @NonNull Object @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter customMessage of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
