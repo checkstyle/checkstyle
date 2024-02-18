@@ -31,6 +31,9 @@
 
 <!-- non-compilable -->
 <module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]TextBlockIllegalEscape.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID1.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
