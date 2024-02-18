@@ -20,10 +20,14 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.BASE_PACKAGE;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -73,6 +77,17 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return true when checkstyle module is passed")
                 .that(ModuleReflectionUtil.isCheckstyleModule(RootModuleClass.class))
                 .isTrue();
+    }
+
+    @Test
+    public void testGetCheckstyleModules() throws IOException {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        final Set<String> packages =
+                Collections.singleton(BASE_PACKAGE + ".checks" + ".javadoc" + ".utils");
+
+        assertWithMessage("specified package has no checkstyle modules")
+                .that(ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))
+                .isEmpty();
     }
 
     @Test
