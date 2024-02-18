@@ -780,18 +780,10 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_blue.png"
+                        src="images/ok_green.png"
                         alt="" />
                   </span>
                   <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
-                  <br />
-                  We can detect URL with protocol type as http://, https:// etc.
-                  <br />
-                  <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
-                    JSNI</a>
-                  could not be detected right now, but might be possible after
-                  comments and javadoc support appear in Checkstyle.
-                  <br />
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -2310,10 +2302,12 @@
           <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
             SuppressWithNearbyCommentFilter</a>,
           <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">
-            SuppressionCommentFilter</a>
-          and
+            SuppressionCommentFilter</a>,
           <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">
-            SuppressWarningsFilter</a>.
+            SuppressWarningsFilter</a>
+          and
+          <a href="filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+            SuppressWithPlainTextCommentFilter</a>.
         </p>
         <p>
           Location of config file for
@@ -2352,6 +2346,16 @@
           format.
         </p>
         <p>
+          To suppress a check using
+          <a href="filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+            SuppressWithPlainTextCommentFilter
+          </a>
+          add the offComment format you specified in the <code>offCommentFormat</code>
+          property before the beginning of the code block and the onComment
+          format you specified in the <code>onCommentFormat</code>
+          property after the end of the code block.
+        </p>
+        <p>
           For more details please review exact configuration of Filters in google_checks.xml:
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
                     SuppressionFilter</a>,
@@ -2363,6 +2367,8 @@
                     SuppressionCommentFilter</a>,
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
                     SuppressWarningsFilter</a>,
+          <a href="filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+            SuppressWithPlainTextCommentFilter</a>.
         </p>
       </subsection>
     </section>
