@@ -1,6 +1,6 @@
 /*xml
 <module name="Checker">
-  <module name="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck">
+  <module name="LineLength">
       <property name="max" value="100"/>
   </module>
   <module name="SuppressWithPlainTextCommentFilter">
@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilt
 // xdoc section -- start
 public class Example9 {
 
-  // ok, opening and closing triple quotes are our delimiters
+  // ok, opening and closing triple quotes are 'offCommentFormat' and 'onCommentFormat'
   static final String LOCATION_CSV_SAMPLE = """
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
           ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984

@@ -187,9 +187,10 @@
           <param name="type" value="code"/>
         </macro>
         <p id="Example9-config">
-            This check is not limited to comments. It can match any regular expression patterns as
-            delimiters (via offCommentFormat and onCommentFormat) for the suppression. The following
-            example shows how to suppress violations within a text block for LineLengthCheck.
+            This check is not limited to comments. It can match any text in the given file
+            as <code>offCommentFormat</code> and <code>onCommentFormat</code> for the suppression.
+            The following example shows how to suppress violations within a text block for
+            LineLength.
         </p>
         <macro name="example">
           <param name="path"
