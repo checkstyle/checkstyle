@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>ModuleReflectionUtil.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil</mutatedClass>
-    <mutatedMethod>getCheckstyleModules</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
-    <lineContent>.filter(ModuleReflectionUtil::isCheckstyleModule)</lineContent>
-  </mutation>
 
   <mutation unstable="false">
     <sourceFile>ScopeUtil.java</sourceFile>
