@@ -2933,9 +2933,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
-              <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
+              <failOnError>true</failOnError>
+              <meminitial>256m</meminitial>
+              <maxmem>256m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
