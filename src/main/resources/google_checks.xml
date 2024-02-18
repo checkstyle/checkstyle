@@ -42,6 +42,14 @@
     <property name="eachLine" value="true"/>
   </module>
 
+  <!-- To ignore JSNI Methods for LineLength check -->
+  <!-- See https://google.github.io/styleguide/javaguide.html#s4.4-column-limit  -->
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="offCommentFormat" value="\/\*-\{"/>
+    <property name="onCommentFormat" value="\}-\*\/"/>
+    <property name="messageFormat" value="Line is longer than 100 characters. *"/>
+  </module>
+
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
