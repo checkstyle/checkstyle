@@ -60,7 +60,6 @@ public final class ModuleReflectionUtil {
         return packages.stream()
                 .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())
                 .map(ClassPath.ClassInfo::load)
-                .filter(ModuleReflectionUtil::isCheckstyleModule)
                 .collect(Collectors.toUnmodifiableSet());
     }
 
