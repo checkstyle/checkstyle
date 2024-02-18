@@ -37,7 +37,10 @@ public final class DefaultConfiguration implements Configuration {
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 1157875385356127169L;
 
-    /** Constant for optimization. */
+    /** Constant for optimization.
+     * A Configuration is used to configure a Configurable component.
+     * The general idea of Configuration/Configurable was taken from Jakarta's Avalon framework.
+     */
     private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
 
     /** The name of this configuration. */

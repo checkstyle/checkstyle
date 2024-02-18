@@ -383,15 +383,27 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         super.destroy();
     }
 
+    /**
+     * Retrieves external resource locations from various sources.
+     * Concatenates and filters resources from different types of checks and filters.
+     * Utilizes Streams for processing and collecting the external resource locations.
+     *Specified by:
+     *getExternalResourceLocations. This allows Checkstyle to invalidate (clear)
+     * cache when the content of at least one external configuration
+     * resource of the module is changed.
+     * @return a Set of String representing external resource locations
+     */
     @Override
     public Set<String> getExternalResourceLocations() {
         return Stream.concat(filters.stream(),
                 Stream.concat(ordinaryChecks.stream(), commentChecks.stream()))
+            // Filter resources that are instances of ExternalResourceHolder
             .filter(ExternalResourceHolder.class::isInstance)
             .flatMap(resource -> {
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })
+            // Collect the extracted resource locations into an unmodifiable Set
             .collect(Collectors.toUnmodifiableSet());
     }
 
