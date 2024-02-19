@@ -19,29 +19,22 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.api.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
-import com.puppycrawl.tools.checkstyle.DefaultLogger;
-import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
-import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
-import com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.RootModule;
+public class ModuleReflectionUtilTest extends AbstractModuleTestSupport {
 
-public class ModuleReflectionUtilTest {
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/modulereflectionutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -177,6 +170,14 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("should use field")
             .that(test.getField())
             .isEqualTo(1);
+    }
+
+    @Test
+    public void testGetCheckstyleModules() throws Exception {
+        final String filePath = getPath("InputUtil.java");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(filePath,expected);
     }
 
     private static final class ValidCheckstyleClass extends AbstractAutomaticBean {
