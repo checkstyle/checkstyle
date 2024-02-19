@@ -56,6 +56,9 @@
 
 <!-- non-compilable -->
 <module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]TextBlockIllegalEscape.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClassNoMain.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
