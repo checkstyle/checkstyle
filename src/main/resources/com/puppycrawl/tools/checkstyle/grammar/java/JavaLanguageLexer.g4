@@ -321,7 +321,7 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
                          {stringTemplateDepth++;}
                          ;
 
@@ -333,6 +333,38 @@ STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
                          '}' StringFragment '"'
                          {stringTemplateDepth--;}
                          ;
+
+// Text block fragments
+
+fragment TextBlockContent
+    : ( TwoDoubleQuotes
+      | OneDoubleQuote
+      | Newline
+      | TextBlockCharacter
+      )+
+    ;
+
+fragment TextBlockCharacter
+    :   ~["\\]
+    | TextBlockStandardEscape
+    | EscapeSequence
+    ;
+
+fragment TextBlockStandardEscape
+    :   '\\' ( [btnfrs"'\\] | Newline | OneDoubleQuote )
+    ;
+
+fragment Newline
+    :  '\n' | '\r' ('\n')?
+    ;
+
+fragment TwoDoubleQuotes
+    :   {_input.LA(3) != '"'}? '"''"'
+    ;
+
+fragment OneDoubleQuote
+    :   {_input.LA(2) != '"'}?  '"'
+    ;
 
 // Whitespace and comments
 
@@ -425,32 +457,9 @@ fragment Letter
 
 // Text block lexical mode
 mode TextBlock;
-    TEXT_BLOCK_CONTENT
-        : ( TwoDoubleQuotes
-          | OneDoubleQuote
-          | Newline
-          | ~'"'
-          | TextBlockStandardEscape
-          )+
-        ;
+
+    TEXT_BLOCK_CONTENT: TextBlockContent;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
-        ;
-
-    // Text block fragment rules
-    fragment TextBlockStandardEscape
-        :   '\\' [btnfrs"'\\]
-        ;
-
-    fragment Newline
-        :  '\n' | '\r' ('\n')?
-        ;
-
-    fragment TwoDoubleQuotes
-        :   '"''"' ( Newline | ~'"' )
-        ;
-
-    fragment OneDoubleQuote
-        :   '"' ( Newline | ~'"' )
         ;
