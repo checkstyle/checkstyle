@@ -43,4 +43,10 @@
     <property name="fileExtensions" value="java" />
   </module>
 
+  <!-- Non-compilable file that we should fail to parse -->
+<!--  <module name="BeforeExecutionExclusionFileFilter">-->
+<!--    <property name="fileNamePattern"-->
+<!--              value="[\\/]grammar[\\/]java21[\\/]InputTextBlockParsingFail.java$"/>-->
+<!--  </module>-->
+
 </module>
