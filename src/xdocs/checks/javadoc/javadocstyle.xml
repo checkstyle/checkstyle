@@ -199,6 +199,11 @@ public class Test {
     private void methodWithValidCommentStyle() {}
 
     /**
+     * {@return something} // OK, @return tag automatically inserts a period after the text
+     */
+    private void methodWithValidCommentStyle2() {}
+
+    /**
      * Some description here // violation, the sentence must end with a proper punctuation
      */
     private void methodWithInvalidCommentStyle() {}
@@ -280,7 +285,7 @@ public class Test {
 public class Test {
     /**
      * Some description here // OK
-     * Second line of description // violation, the sentence must end with a proper punctuation
+     * Second line of description // OK
      */
     private void test1() {}
 }
