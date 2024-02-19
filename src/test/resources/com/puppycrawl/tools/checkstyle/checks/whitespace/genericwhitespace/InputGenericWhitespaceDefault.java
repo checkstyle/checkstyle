@@ -19,8 +19,8 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     {
         List<Integer> x = new ArrayList<Integer>();
         List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > (); // 6 violations
-        List < List < Integer > > b = new ArrayList < List < Integer > > (); // 14 violations
+        List < Integer > a = new ArrayList < Integer > (); // 7 violations
+        List < List < Integer > > b = new ArrayList < List < Integer > > (); // 15 violations
     }
     //always 0
     public int compareTo(Object aObject)
@@ -92,6 +92,7 @@ Integer> x = new ArrayList<Integer
     Object notOkSt2 = new<String>Outer.Inner(); // violation ''<' is not preceded with whitespace.'
     Object notOkEnd2 = new <String> Outer.Inner(); // violation '>' is followed by whitespace.'
     Object notOkStartAndEnd2 = new<String> Outer.Inner(); // 2 violations
+
 }
 interface SupplierFunction<T> extends Map<List<T>, T> {}
 
