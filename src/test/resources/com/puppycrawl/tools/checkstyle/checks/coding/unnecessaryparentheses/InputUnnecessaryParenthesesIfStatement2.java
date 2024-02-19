@@ -13,27 +13,27 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-public class InputUnnecessaryParenthesesIfStatement2 {
+public class gi {
 
     void testShortCircuitOrIfStatement() {
         boolean a = false;
         boolean x = false, y = true, z = false;
         boolean v = true, w = true, u = true;
-        boolean vy = x && y || (x || y || z) && v; // ok
-        if (a && !(v && w || (x || y) && z || u && x)) { // ok
+        boolean vy = x && y || (x || y || z) && v;
+        if (a && !(v && w || (x || y) && z || u && x)) {
         }
-        if (a && !(v && w || x || y && z || u && x)) { // ok
+        if (a && !(v && w || x || y && z || u && x)) {
         }
         if (v ||
                 (u || x || y)) { // violation 'Unnecessary parentheses around expression'
         }
-        if ((v || x) == // ok
+        if ((v || x) ==
                 (w || y)) {
         }
         if ((v || x) & // ok
                 (w || y)) {
         }
-        if (a && v || (w || z) && u || y) { // ok
+        if (a && v || (w || z) && u || y) {
         }
         if (a && x ||
                 (y || z) // violation 'Unnecessary parentheses around expression'
@@ -65,8 +65,8 @@ public class InputUnnecessaryParenthesesIfStatement2 {
             return;
         }
 
-        if (a==(b>=c && a==(c==d && d!=b)) // ok
-                && a==(c<=d)) { // ok
+        if (a==(b>=c && a==(c==d && d!=b))
+                && a==(c<=d)) {
             return;
         }
 
@@ -75,13 +75,13 @@ public class InputUnnecessaryParenthesesIfStatement2 {
             return;
         }
 
-        if (a==(b==c) // ok
-                || a!=(b<=c)) { // ok
+        if (a==(b==c)
+                || a!=(b<=c)) {
             return;
         }
 
-        if ((b==0) == (c==d) // ok
-                && (Integer.valueOf(d) instanceof Integer) == true) { // ok
+        if ((b==0) == (c==d)
+                && (Integer.valueOf(d) instanceof Integer) == true) {
             return;
         }
     }
