@@ -45,7 +45,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void testAcceptableTokens() {
         final AnnotationOnSameLineCheck constantNameCheckObj = new AnnotationOnSameLineCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {

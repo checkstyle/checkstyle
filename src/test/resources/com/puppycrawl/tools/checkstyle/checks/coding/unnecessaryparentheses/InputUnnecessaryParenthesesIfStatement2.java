@@ -13,7 +13,7 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-public class gi {
+public class InputUnnecessaryParenthesesIfStatement2 {
 
     void testShortCircuitOrIfStatement() {
         boolean a = false;
