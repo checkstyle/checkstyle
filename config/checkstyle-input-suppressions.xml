@@ -68,27 +68,6 @@
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
-
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsIgnoreMethodNames.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsIgnoreMethodNames.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsIgnoreOverriddenMethods.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsIgnoreOverriddenMethods.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestClassNames.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestClassNames.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestDefault.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestDefault.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestIllegalClassNames.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegalthrows[\\/]InputIllegalThrowsTestIllegalClassNames.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextDefaultFormat.java"/>
   <suppress id="UnnecessaryOkComment"
