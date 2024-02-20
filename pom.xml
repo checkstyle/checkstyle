@@ -2529,7 +2529,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2588,7 +2588,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2647,7 +2647,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2705,7 +2705,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2762,7 +2762,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2820,7 +2820,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2880,7 +2880,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2939,7 +2939,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
