@@ -236,7 +236,7 @@
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.42.0</checkerframework.version>
     <error-prone.version>2.25.0</error-prone.version>
-    <error-prone-support.version>0.14.0</error-prone-support.version>
+    <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -261,8 +261,6 @@
       -Xep:JUnitValueSource:OFF
       <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
       -Xep:LexicographicalAnnotationListing:OFF
-      <!-- This check is not finalized. -->
-      -Xep:MethodReferenceUsage:OFF
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
     </error-prone.configuration-args>
