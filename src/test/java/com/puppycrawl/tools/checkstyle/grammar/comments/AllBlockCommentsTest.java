@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.comments;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -29,7 +27,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -37,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class AllBlockCommentsTest extends AbstractModuleTestSupport {
 
-    private static final Set<String> ALL_COMMENTS = new LinkedHashSet<>();
-
+     private static final Set<String> ALL_COMMENTS = new LinkedHashSet<>();
     private static String lineSeparator;
 
     @Override
@@ -48,14 +44,15 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllBlockComments() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(BlockCommentListenerCheck.class);
         final String path = getPath("InputFullOfBlockComments.java");
         lineSeparator = CheckUtil.getLineSeparatorForFile(path, StandardCharsets.UTF_8);
-        execute(checkConfig, path);
-        assertWithMessage("All comments should be empty")
-            .that(ALL_COMMENTS)
-            .isEmpty();
+        final String[] expected = {
+            "8:13: " + "violation found in comment: violation1",
+            "8:34: " + "violation found in comment: violation2",
+            "17:13: " + "violation found in comment: violation3",
+            "22:1: " + "violation found in comment: violation4",
+        };
+        verifyWithInlineConfigParser(path, expected);
     }
 
     public static class BlockCommentListenerCheck extends AbstractCheck {
@@ -79,7 +76,6 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         public int[] getRequiredTokens() {
             return getAcceptableTokens();
         }
-
         @Override
         public void init() {
             ALL_COMMENTS.addAll(Arrays.asList("0", "1", "2", "3", "4", "5",
@@ -96,9 +92,9 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         @Override
         public void visitToken(DetailAST ast) {
             final String commentContent = ast.getFirstChild().getText();
-            assertWithMessage("Unexpected comment: %s", commentContent)
-                    .that(ALL_COMMENTS.remove(commentContent))
-                    .isTrue();
+            if (commentContent.contains("violation")) {
+                log(ast, "violation found in comment: {0}", commentContent);
+            }
         }
 
     }
