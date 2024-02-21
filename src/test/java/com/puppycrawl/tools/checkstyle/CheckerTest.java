@@ -440,6 +440,16 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSetSeverity() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParserGlobalProperties(
+                getPath("InputCheckerTestSeverity.java"),
+                expected
+        );
+    }
+
+    @Test
     public void testNoClassLoaderNoModuleFactory() {
         final Checker checker = new Checker();
 
