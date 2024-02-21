@@ -1,7 +1,10 @@
-# ![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+# Checkstyle - Java Code Quality Tool
 
-Checkstyle is a tool for checking Java source code for adherence to a Code Standard
-or set of validation rules (best practices).
+![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+
+--------------------------
+
+*Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
 
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
@@ -14,17 +17,12 @@ or set of validation rules (best practices).
 [![][error prone img]][error prone]
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
-
 [![][dependabot img]][dependabot]
-
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
-
 [![][release notes/version img]][release notes/version]
-
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
-
 [![][milestone img]][milestone]
 
 The latest release version can be found at
@@ -36,71 +34,109 @@ Each-commit builds of maven artifacts can be found at
 
 Documentation is available in HTML format, see https://checkstyle.org/checks.html .
 
-## Build instructions and Contribution
+## Table of Contents
 
-[Build instructions](https://checkstyle.org/contributing.html#Build)
+- [Quick Start](#quick-start)
+- [Contributing](#contributing)
+- [Feedback and Support](#feedback-and-support)
+- [Javadoc](#javadoc)
+- [Sponsor Checkstyle](#sponsor-checkstyle)
+- [Licensing](#licensing)
 
-[Setup IDE for development](https://checkstyle.org/beginning_development.html)
+## Quick Start
 
-[Explanation on how to create your own module](https://checkstyle.org/extending.html)
+- Download our [Latest Release](https://github.com/checkstyle/checkstyle/releases/) from GitHub
+  or Add Checkstyle to your build from [Maven Central](https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle).
+- Read our Documentation for [usage](https://checkstyle.org/cmdline.html)
+  and [configuration](https://checkstyle.org/config.html).
 
-[Verification of code quality](https://checkstyle.org/contributing.html#Quality_matters)
+```bash
+$ cat config.xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="FallThrough"/>
+  </module>
+</module>
 
-[Sending Pull Request](https://checkstyle.org/contributing.html#Submitting_your_contribution)
+$ cat Test.java
+class Test {
+  public void foo() {
+    int i = 0;
+    while (i >= 0) {
+      switch (i) {
+        case 1:
+        case 2:
+          i++;
+        case 3: // violation 'fall from previous branch of the switch'
+          i++;
+      }
+    }
+  }
+}
 
-[Report Issue](https://checkstyle.org/contributing.html#Report_an_issue)
+$ java -jar checkstyle-10.18.1-all.jar -c config.xml Test.java
+Starting audit...
+[ERROR] Test.java:9:9: Fall through from previous branch of the switch statement. [FallThrough]
+Audit done.
+Checkstyle ends with 1 errors.
+```
 
-## Continuous integration and Quality reports
+## Contributing
 
-See our CIs statuses.
+Thanks for your interest in contributing to CheckStyle! Please see the
+[Contribution Guidelines](https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md)
+for information on how to contribute to the project. This includes creating issues, submitting pull
+requests, and setting up your development environment.
 
-Quality reports: https://checkstyle.org/project-reports.html
+## Build Instructions
 
-JavaScript, CSS and Java source file analysis on Codacy: [![][codacy img]][codacy]
+Please see the [CheckStyle Documentation](https://checkstyle.org/contributing.html#Build) for
+information on how to build the project.
 
-## Feedback/Support
+## Feedback and Support
 
-Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
+- Visit our [Discussions Page](https://github.com/checkstyle/checkstyle/discussions), where you
+  can ask questions and discuss the project with other users and contributors. This is our
+  preferred method of communication for topics
+  like usage and configuration questions, debugging, and other feedback.
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/checkstyle) is another place to
+  ask questions about Checkstyle usage.
+- If you are interested in contributing to the project, you can join our
+  [Discord Contributors Chat](https://discord.com/channels/845645228467159061/1216455699488313554).
+- Our [Google Groups Forum](https://groups.google.com/forum/?hl=en#!forum/checkstyle) is a
+  mailing list for discussion and support; however, we may be slow to respond there.
 
-Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
+## Javadoc
 
-Bugs and Feature requests (not the questions): https://github.com/checkstyle/checkstyle/issues
+Take a look at our [javadoc](https://checkstyle.org/apidocs/index.html) to see
+our API documentation.
 
-## Support/Sponsor checkstyle
+## Sponsor Checkstyle
 
-If you want to speed up fixing of issue and want to encourage somebody in
-internet to resolve any issue:
-[![][flattr img]][flattr]
-[![][liberapay img]][liberapay]
+Checkstyle is an open-source project that is developed and maintained by volunteers. If you
+find Checkstyle useful, please consider sponsoring the project. Your support helps us to
+maintain and improve Checkstyle.
+
+- [Liberapay](https://liberapay.com/checkstyle/)
+- [OpenCollective](https://opencollective.com/checkstyle/)
+
 [![][backers.opencollective img]][backers.opencollective]
+
 [![][sponsors.opencollective img]][sponsors.opencollective]
 
 ## Licensing
 
-[![][license img]][license]
+Checkstyle is licensed under the [GNU LGPL v2.1 License](LICENSE).
+Checkstyle uses libraries:
 
-This software is licensed under the terms in the file named "LICENSE" in this
-directory.
-
-The software uses the ANTLR package (https://www.antlr.org/). Its license terms
-are in the file named "RIGHTS.antlr" in this directory.
-
-This product includes software developed by
-The Apache Software Foundation (https://www.apache.org/).
-
-The software uses the Logging and Beanutils packages from the
-Apache Commons project (https://commons.apache.org/). The license terms
-of these packages are in the file named "LICENSE.apache20" in this
-directory.
-
-The software uses the Google Guava Libraries
-(https://github.com/google/guava/). The license terms of
-these packages are in the file named "LICENSE.apache20" in this
-directory.
-
-The software uses the Picocli Library
-(https://github.com/remkop/picocli/). Its license terms
-are in the file named "LICENSE.apache20" in this directory.
+- [ANTLR](https://www.antlr.org/)
+- [Apache Commons](https://commons.apache.org/)
+- [Google Guava](https://github.com/google/guava/)
+- [Picocli](https://github.com/remkop/picocli/)
 
 [travis]:https://travis-ci.com/github/checkstyle/checkstyle/builds
 [travis img]:https://api.travis-ci.com/checkstyle/checkstyle.svg
@@ -111,20 +147,11 @@ are in the file named "LICENSE.apache20" in this directory.
 [sonar]:https://sonarcloud.io/dashboard?id=org.checkstyle%3Acheckstyle
 [sonar img]:https://sonarcloud.io/api/project_badges/measure?project=org.checkstyle%3Acheckstyle&metric=sqale_index
 
-[codacy]:https://www.codacy.com/app/checkstyle/checkstyle
-[codacy img]:https://api.codacy.com/project/badge/3adf12d434314ba8b38277ea46d3c44b
-
 [coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
 [coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 
-[license]:LICENSE
-[license img]:https://img.shields.io/badge/license-GNU%20LGPL%20v2.1-blue.svg
-
 [mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
 [mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
-
-[matrix_con]:https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im
-[matrix_con img]:https://matrix.to/img/matrix-badge.svg
 
 [stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
@@ -144,14 +171,8 @@ are in the file named "LICENSE.apache20" in this directory.
 [semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
 [semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
 
-[flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org
-[flattr img]:https://button.flattr.com/flattr-badge-large.png
-
 [azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
 [azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
-
-[liberapay]:https://liberapay.com/checkstyle/
-[liberapay img]:https://liberapay.com/assets/widgets/donate.svg
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
