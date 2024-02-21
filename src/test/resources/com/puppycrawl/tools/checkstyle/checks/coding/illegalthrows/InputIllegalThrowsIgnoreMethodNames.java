@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
 public class InputIllegalThrowsIgnoreMethodNames {
 
-    public void method() throws NullPointerException // ok
+    public void method() throws NullPointerException
     { // no code
     }
 
@@ -21,7 +21,7 @@ public class InputIllegalThrowsIgnoreMethodNames {
         return null;
     }
 
-    public void methodTwo() throws java.lang.RuntimeException, java.lang.Error // ok
+    public void methodTwo() throws java.lang.RuntimeException, java.lang.Error
     {
     }
 
