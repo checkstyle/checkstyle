@@ -1,16 +1,19 @@
 /*
-IllegalToken
-tokens = BLOCK_COMMENT_END
+IllegalTokenText
+format = a href
+ignoreCase = (default)false
+message = (default)
+tokens = STRING_LITERAL
 
 
-*/ // violation
+*/
 
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 /**
  * Test for illegal tokens
- */ // violation
-public class InputIllegalTokens6
+ */
+public class InputIllegalTokenTextCheckStringLiteral
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -28,7 +31,7 @@ public class InputIllegalTokens6
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\"";
+        final String ref = "<a href=\""; // violation
         final String refCase = "<A hReF=\"";
     }
 

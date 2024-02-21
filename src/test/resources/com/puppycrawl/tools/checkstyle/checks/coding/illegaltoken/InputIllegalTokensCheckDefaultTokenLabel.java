@@ -1,19 +1,16 @@
-/* // violation
-IllegalTokenText
-format = a href
-ignoreCase = (default)false
-message = (null)
-tokens = COMMENT_CONTENT
+/*
+IllegalToken
+tokens = (default)LABELED_STAT
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokens5
+public class InputIllegalTokensCheckDefaultTokenLabel
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -36,13 +33,13 @@ public class InputIllegalTokenTextTokens5
     }
 
     public void methodWithLabels() {
-        label:
+        label: // violation
         {
-            anotherLabel: // some comment href
+            anotherLabel: // violation
             do {
                 continue anotherLabel;
-            } while (false); // violation below
-            break label; // a href
+            } while (false);
+            break label; // some a href
         }
     }
 }

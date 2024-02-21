@@ -1408,13 +1408,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTabViolationDefault() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VerifyPositionAfterTabFileSet.class);
         final String[] expected = {
-            "2:9: violation",
-            "3:17: violation",
+            "10:17: violation",
+            "13:33: violation",
         };
-        verify(checkConfig, getPath("InputCheckerTabCharacter.txt"),
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
             expected);
     }
 
@@ -1425,8 +1423,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
         checkerConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "2:5: violation",
-            "3:9: violation",
+            "10:13: violation",
+            "13:33: violation",
         };
         verify(checkerConfig, getPath("InputCheckerTabCharacter.txt"),
             expected);

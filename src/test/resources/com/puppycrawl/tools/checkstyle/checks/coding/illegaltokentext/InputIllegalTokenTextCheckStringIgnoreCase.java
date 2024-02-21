@@ -1,16 +1,19 @@
 /*
-IllegalToken
-tokens = LITERAL_NATIVE
+IllegalTokenText
+format = a href
+ignoreCase = true
+message = (default)
+tokens = STRING_LITERAL
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokens3
+public class InputIllegalTokenTextCheckStringIgnoreCase
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -24,12 +27,12 @@ public class InputIllegalTokens3
         }
     }
 
-    public native void nativeMethod(); // violation
+    public native void nativeMethod();
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\"";
-        final String refCase = "<A hReF=\"";
+        final String ref = "<a href=\""; // violation
+        final String refCase = "<A hReF=\""; // violation
     }
 
     public void methodWithLabels() {

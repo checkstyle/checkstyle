@@ -1,8 +1,8 @@
 /*
 IllegalTokenText
 format = a href
-ignoreCase = true
-message = (default)
+ignoreCase = (default)false
+message = My custom message
 tokens = STRING_LITERAL
 
 
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokens2
+public class InputIllegalTokenTextCheckCustomMessage
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -32,7 +32,7 @@ public class InputIllegalTokenTextTokens2
     public void methodWithLiterals()
     {
         final String ref = "<a href=\""; // violation
-        final String refCase = "<A hReF=\""; // violation
+        final String refCase = "<A hReF=\"";
     }
 
     public void methodWithLabels() {

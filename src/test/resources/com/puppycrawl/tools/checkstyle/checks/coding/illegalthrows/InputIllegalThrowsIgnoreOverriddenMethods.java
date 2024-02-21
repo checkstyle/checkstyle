@@ -14,12 +14,12 @@ public class InputIllegalThrowsIgnoreOverriddenMethods
              extends InputIllegalThrowsTestDefault
 {
     @Override
-    public void methodTwo() throws RuntimeException { // ok
+    public void methodTwo() throws RuntimeException {
 
     }
 
     @java.lang.Override
-    public java.lang.Throwable methodOne() throws RuntimeException { // ok
+    public java.lang.Throwable methodOne() throws RuntimeException {
         return null;
     }
 }

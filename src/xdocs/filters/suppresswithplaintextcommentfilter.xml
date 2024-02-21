@@ -312,6 +312,38 @@ CREATE TABLE STATION (
   LAT_N REAL,
   LONG_W REAL);
         </source>
+        <p id="Example9-config">
+            This check is not limited to comments. It can match any text in the given file
+            as <code>offCommentFormat</code> and <code>onCommentFormat</code> for the suppression.
+            The following example shows how to suppress violations within a text block for
+            LineLength.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;100&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
+    &lt;property name=&quot;offCommentFormat&quot; value='=\s+&quot;&quot;&quot;'/&gt;
+    &lt;property name=&quot;onCommentFormat&quot; value='^\s+&quot;&quot;&quot;;'/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example9-code">Example:</p>
+        <source>
+public class Example9 {
+
+  // ok, opening and closing triple quotes are 'offCommentFormat' and 'onCommentFormat'
+  static final String LOCATION_CSV_SAMPLE = &quot;&quot;&quot;
+          locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
+          ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984
+          ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
+          &quot;&quot;&quot;;
+
+  // violation below, 'Line is longer than 80 characters'
+  static final String SINGLE_LINE_SAMPLE = &quot;locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude&quot;;
+}
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

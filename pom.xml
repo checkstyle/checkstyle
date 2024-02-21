@@ -208,7 +208,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.8.3.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.8.3.1</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.21.2</maven.pmd.plugin.version>
     <pmd.version>6.55.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.11</maven.jacoco.plugin.version>
@@ -222,7 +222,8 @@
     <maven.versions.plugin.version>2.16.2</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.15.7</pitest.plugin.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <pitest.plugin.version>1.15.8</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -234,8 +235,8 @@
     <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.42.0</checkerframework.version>
-    <error-prone.version>2.24.1</error-prone.version>
-    <error-prone-support.version>0.14.0</error-prone-support.version>
+    <error-prone.version>2.25.0</error-prone.version>
+    <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -260,8 +261,6 @@
       -Xep:JUnitValueSource:OFF
       <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
       -Xep:LexicographicalAnnotationListing:OFF
-      <!-- This check is not finalized. -->
-      -Xep:MethodReferenceUsage:OFF
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
     </error-prone.configuration-args>
@@ -360,7 +359,7 @@
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <version>1.4.0</version>
+      <version>1.4.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -502,7 +501,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.5.1</version>
+          <version>3.5.2</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -795,8 +794,6 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven.compiler.plugin.version}</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
@@ -2415,8 +2412,6 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
-                  <source>${java.version}</source>
-                  <target>${java.version}</target>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
@@ -2472,8 +2467,6 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
-                  <source>${java.version}</source>
-                  <target>${java.version}</target>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>

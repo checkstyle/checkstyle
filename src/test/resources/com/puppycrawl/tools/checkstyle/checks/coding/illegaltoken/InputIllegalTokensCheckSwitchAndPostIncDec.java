@@ -1,28 +1,25 @@
 /*
-IllegalTokenText
-format = a href
-ignoreCase = (default)false
-message = (null)
-tokens = STRING_LITERAL
+IllegalToken
+tokens = LITERAL_SWITCH,POST_INC,POST_DEC
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokens4
+public class InputIllegalTokensCheckSwitchAndPostIncDec
 {
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i)
+        switch (i) // violation
         {
             default:
-                i--;
-                i++;
+                i--; // violation
+                i++; // violation
                 break;
         }
     }
@@ -31,7 +28,7 @@ public class InputIllegalTokenTextTokens4
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\""; // violation
+        final String ref = "<a href=\"";
         final String refCase = "<A hReF=\"";
     }
 

@@ -6605,7 +6605,7 @@ public final class TokenTypes {
      * The opening delimiter of an embedded expression within a string template.
      * <p>For example:</p>
      * <pre>
-     *     String s = STR."Hello, \{getName(firstName, lastName)}!";
+     *     String s = STR."Hello, \{getName("Mr. ", firstName, lastName)}!";
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -6625,6 +6625,9 @@ public final class TokenTypes {
      *                  |   `--METHOD_CALL -&gt; (
      *                  |       |--IDENT -&gt; getName
      *                  |       |--ELIST -&gt; ELIST
+     *                  |       |   |--EXPR -&gt; EXPR
+     *                  |       |   |   `--STRING_LITERAL -&gt; "Mr. "
+     *                  |       |   |--COMMA -&gt; ,
      *                  |       |   |--EXPR -&gt; EXPR
      *                  |       |   |   `--IDENT -&gt; firstName
      *                  |       |   |--COMMA -&gt; ,
@@ -6652,7 +6655,7 @@ public final class TokenTypes {
      * An expression embedded within a string template.
      * <p>For example:</p>
      * <pre>
-     *     String s = STR."Hello, \{getName(firstName, lastName)}!";
+     *     String s = STR."Hello, \{getName("Mr. ", firstName, lastName)}!";
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -6672,6 +6675,9 @@ public final class TokenTypes {
      *                  |   `--METHOD_CALL -&gt; (
      *                  |       |--IDENT -&gt; getName
      *                  |       |--ELIST -&gt; ELIST
+     *                  |       |   |--EXPR -&gt; EXPR
+     *                  |       |   |   `--STRING_LITERAL -&gt; "Mr. "
+     *                  |       |   |--COMMA -&gt; ,
      *                  |       |   |--EXPR -&gt; EXPR
      *                  |       |   |   `--IDENT -&gt; firstName
      *                  |       |   |--COMMA -&gt; ,
@@ -6700,7 +6706,7 @@ public final class TokenTypes {
      * template.
      * <p>For example:</p>
      * <pre>
-     *     String s = STR."Hello, \{getName(firstName, lastName)}!";
+     *     String s = STR."Hello, \{getName("Mr. ", firstName, lastName)}!";
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -6720,6 +6726,9 @@ public final class TokenTypes {
      *                  |   `--METHOD_CALL -&gt; (
      *                  |       |--IDENT -&gt; getName
      *                  |       |--ELIST -&gt; ELIST
+     *                  |       |   |--EXPR -&gt; EXPR
+     *                  |       |   |   `--STRING_LITERAL -&gt; "Mr. "
+     *                  |       |   |--COMMA -&gt; ,
      *                  |       |   |--EXPR -&gt; EXPR
      *                  |       |   |   `--IDENT -&gt; firstName
      *                  |       |   |--COMMA -&gt; ,
