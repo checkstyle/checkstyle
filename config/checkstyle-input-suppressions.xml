@@ -69,8 +69,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextDefaultFormat.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiteralsNoWarnings.java"/>
