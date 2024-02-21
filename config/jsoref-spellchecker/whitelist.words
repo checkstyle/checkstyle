@@ -90,7 +90,7 @@ awt
 azurewebsites
 backport
 Backquote
-Backticks
+backticks
 BADN
 badpackage
 baeldung
@@ -589,6 +589,7 @@ importcontroltest
 importorder
 importrule
 imprt
+inbox
 Incompatabilities
 indentcontinuationlines
 Inet
@@ -682,6 +683,7 @@ jdt
 jedit
 jenkins
 jep
+jessesquires
 jetbrains
 JFile
 JFrame
@@ -834,6 +836,7 @@ mixin
 mkdir
 mkordas
 MLINKCHECK
+moby
 mockit
 mockito
 modifiedcontrolvariable
@@ -960,6 +963,7 @@ OAuth
 objblock
 oburn
 OCP
+octocat
 ogg
 OI
 olddomain
