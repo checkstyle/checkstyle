@@ -228,7 +228,45 @@ public class GenericWhitespaceCheckTest
 
     @Test
     public void testBeforeRecordHeader() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "17:20: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "18:20: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "18:20: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "18:24: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "18:24: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "30:27: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "30:38: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "30:80: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "36:38: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "43:44: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "43:69: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "49:21: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "49:64: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "49:66: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "56:63: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "56:80: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "62:36: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "62:61: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "67:49: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "73:26: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "73:51: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "73:64: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "80:26: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "80:34: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "80:55: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "91:25: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "91:44: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "91:47: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "91:61: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "91:71: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "91:73: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
+            "101:25: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "101:58: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "108:25: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "108:32: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+            "108:46: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
+            "108:63: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
+        };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputGenericWhitespaceBeforeRecordHeader.java"),
                 expected);

@@ -23,4 +23,6 @@ List<T> list = ImmutableList.Builder<T>::new;
 sort(list, Comparable::<String>compareTo);
 // Constructor call
 MyClass obj = new <String>MyClass();
+// Record header
+record License<T>() {}
 // xdoc section -- end
