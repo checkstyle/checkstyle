@@ -247,6 +247,7 @@
       -Xep:CollectorMutability:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
+      -Xep:FormatStringConcatenation:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
