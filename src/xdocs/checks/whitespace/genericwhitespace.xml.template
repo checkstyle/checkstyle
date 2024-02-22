@@ -30,7 +30,7 @@
         <ul>
           <li> should not be preceded with whitespace in all cases.</li>
           <li> should be followed with whitespace in almost all cases, except diamond operators
-               and when preceding method name or constructor.</li>
+            and when preceding a method name, constructor, or record header.</li>
         </ul>
       </subsection>
 

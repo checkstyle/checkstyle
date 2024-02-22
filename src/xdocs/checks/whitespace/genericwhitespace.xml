@@ -30,7 +30,7 @@
         <ul>
           <li> should not be preceded with whitespace in all cases.</li>
           <li> should be followed with whitespace in almost all cases, except diamond operators
-               and when preceding method name or constructor.</li>
+            and when preceding a method name, constructor, or record header.</li>
         </ul>
       </subsection>
 
@@ -65,6 +65,8 @@ List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
 sort(list, Comparable::&lt;String&gt;compareTo);
 // Constructor call
 MyClass obj = new &lt;String&gt;MyClass();
+// Record header
+record License&lt;T&gt;() {}
         </source>
         <p id="Example2-code">
           Examples with incorrect spacing:
@@ -77,6 +79,8 @@ public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with w
 List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
 Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
 Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
+
+record License&lt;T&gt; () {} // violation, &quot;&gt;&quot; followed by whitespace
         </source>
       </subsection>
 
