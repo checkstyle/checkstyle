@@ -68,50 +68,8 @@
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiteralsNoWarnings.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedfordepth[\\/]InputNestedForDepth1.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedfordepth[\\/]InputNestedForDepth1.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nestedifdepth[\\/]InputNestedIfDepthMax.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
+
+
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTree2.java"/>
   <suppress id="UnnecessaryOkComment"
