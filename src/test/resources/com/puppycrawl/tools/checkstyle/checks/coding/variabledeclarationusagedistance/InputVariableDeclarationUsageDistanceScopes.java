@@ -269,8 +269,9 @@ public class InputVariableDeclarationUsageDistanceScopes {
     }
 
     public int[] getSelectedIndices() {
+        // violation below, 'Distance between .* declaration and its first usage is 2.'
         int[] sel = new int[5];
-        String model = "";
+        String model = ""; // violation 'Distance between .* declaration and its first usage is 2.'
         int a = 0;
         a++;
         for (int index = 0; index < 5; ++index) {
@@ -513,7 +514,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0;
+        int count = 0; // violation 'Distance .* is 4.'
         String[] files = {}; // violation 'Distance .* is 2.'
 
         System.identityHashCode("Data archival started");
@@ -852,7 +853,7 @@ public class InputVariableDeclarationUsageDistanceScopes {
 
 class New4 {
     void a() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -864,7 +865,7 @@ class New4 {
     }
 
     void b() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -876,7 +877,7 @@ class New4 {
     }
 
     void c() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -888,7 +889,7 @@ class New4 {
     }
 
     void d() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -900,7 +901,7 @@ class New4 {
     }
 
     void f() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -910,7 +911,7 @@ class New4 {
     }
 
     void h() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -921,7 +922,7 @@ class New4 {
     }
 
     void i() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 2.'
         switch (Math.max(1, 2)) {
         case 1:
             System.lineSeparator();
@@ -942,7 +943,7 @@ class New4 {
     }
 
     void k() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 5.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -998,7 +999,7 @@ class New4 {
     }
 
     void test() {
-        int a = 0;
+        int a = 0; // violation 'Distance between .* declaration and its first usage is 4.'
 
         System.lineSeparator();
         System.lineSeparator();
