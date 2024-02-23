@@ -35,6 +35,8 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -342,9 +344,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
+            @Nullable final Object[] args = {ioe.getMessage()};
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    args, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
@@ -359,10 +362,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
             ex.printStackTrace(pw);
 
+            @Nullable final Object[] args = {sw.getBuffer().toString()};
             fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
-                    null, getClass(), null));
+                    args, null, getClass(), null));
         }
         return fileMessages;
     }
