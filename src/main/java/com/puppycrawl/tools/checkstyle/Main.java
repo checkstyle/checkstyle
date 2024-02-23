@@ -108,7 +108,7 @@ public final class Main {
      *      show all details in case of failure
      * @noinspectionreason CallToSystemExit - driver class must call exit
      **/
-    public static void main(String... args) throws IOException {
+    public static void main(final String... args) throws IOException {
 
         final CliOptions cliOptions = new CliOptions();
         final CommandLine commandLine = new CommandLine(cliOptions);
@@ -178,7 +178,7 @@ public final class Main {
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
      */
-    private static int execute(ParseResult parseResult, CliOptions options)
+    private static int execute(final ParseResult parseResult, final CliOptions options)
             throws IOException, CheckstyleException {
 
         final int exitStatus;
@@ -203,7 +203,7 @@ public final class Main {
      * @param options the user-specified options
      * @return list of files to process
      */
-    private static List<File> getFilesToProcess(CliOptions options) {
+    private static List<File> getFilesToProcess(final CliOptions options) {
         final List<Pattern> patternsToExclude = options.getExclusions();
 
         final List<File> result = new LinkedList<>();
@@ -223,7 +223,7 @@ public final class Main {
      *        files.
      * @return found files
      */
-    private static List<File> listFiles(File node, List<Pattern> patternsToExclude) {
+    private static List<File> listFiles(final File node, final List<Pattern> patternsToExclude) {
         // could be replaced with org.apache.commons.io.FileUtils.list() method
         // if only we add commons-io library
         final List<File> result = new LinkedList<>();
@@ -254,7 +254,7 @@ public final class Main {
      *        or being added as files.
      * @return True if the directory/file matches one of the patterns.
      */
-    private static boolean isPathExcluded(String path, Iterable<Pattern> patternsToExclude) {
+    private static boolean isPathExcluded(final String path, final Iterable<Pattern> patternsToExclude) {
         boolean result = false;
 
         for (Pattern pattern : patternsToExclude) {
@@ -279,7 +279,7 @@ public final class Main {
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
      */
-    private static int runCli(CliOptions options, List<File> filesToProcess)
+    private static int runCli(final CliOptions options, final List<File> filesToProcess)
             throws IOException, CheckstyleException {
         int result = 0;
         final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;
@@ -352,7 +352,7 @@ public final class Main {
      * @throws CheckstyleException
      *         when properties file could not be loaded
      */
-    private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
+    private static int runCheckstyle(final CliOptions options, final List<File> filesToProcess)
             throws CheckstyleException, IOException {
         // setup the properties
         final Properties props;
@@ -457,7 +457,7 @@ public final class Main {
      * @return The new instance of the root module.
      * @throws CheckstyleException if no module can be instantiated from name
      */
-    private static RootModule getRootModule(String name, ClassLoader moduleClassLoader)
+    private static RootModule getRootModule(final String name, final ClassLoader moduleClassLoader)
             throws CheckstyleException {
         final ModuleFactory factory = new PackageObjectFactory(
                 Checker.class.getPackage().getName(), moduleClassLoader);
@@ -471,7 +471,7 @@ public final class Main {
      * @param config The configuration object.
      * @return The {@code TreeWalker} module configuration.
      */
-    private static Configuration getTreeWalkerConfig(Configuration config) {
+    private static Configuration getTreeWalkerConfig(final Configuration config) {
         Configuration result = null;
 
         final Configuration[] children = config.getChildren();
@@ -494,7 +494,7 @@ public final class Main {
      * @return a fresh new {@code AuditListener}
      * @exception IOException when provided output location is not found
      */
-    private static AuditListener createListener(OutputFormat format, Path outputLocation)
+    private static AuditListener createListener(final OutputFormat format, final Path outputLocation)
             throws IOException {
         final OutputStream out = getOutputStream(outputLocation);
         final OutputStreamOptions closeOutputStreamOption =
@@ -513,7 +513,7 @@ public final class Main {
      *      usage of System.out and System.err
      */
     @SuppressWarnings("resource")
-    private static OutputStream getOutputStream(Path outputPath) throws IOException {
+    private static OutputStream getOutputStream(final Path outputPath) throws IOException {
         final OutputStream result;
         if (outputPath == null) {
             result = System.out;
@@ -564,8 +564,8 @@ public final class Main {
          * @throws IOException if there is any IO exception during logger initialization
          */
         public AuditListener createListener(
-            OutputStream out,
-            OutputStreamOptions options) throws IOException {
+            final OutputStream out,
+            final OutputStreamOptions options) throws IOException {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);
@@ -602,7 +602,7 @@ public final class Main {
          * @return true if the logger name is in the package of this class or a subpackage
          */
         @Override
-        public boolean isLoggable(LogRecord logRecord) {
+        public boolean isLoggable(final LogRecord logRecord) {
             return logRecord.getLoggerName().startsWith(packageName);
         }
     }
@@ -817,7 +817,7 @@ public final class Main {
          * @return list of violations
          */
         // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
-        private List<String> validateCli(ParseResult parseResult, List<File> filesToProcess) {
+        private List<String> validateCli(final ParseResult parseResult, final List<File> filesToProcess) {
             final List<String> result = new ArrayList<>();
             final boolean hasConfigurationFile = configurationFile != null;
             final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;
