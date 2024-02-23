@@ -350,8 +350,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 }
                 else {
                     // variable usage is in inner scope
-                    // reset counters, because we can't determine distance
-                    resultDist = 0;
+                    // new scope is treated as 1 block, then add 1 to the current distance
+                    resultDist++;
                 }
                 break;
             default:

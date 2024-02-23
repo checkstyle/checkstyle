@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 
 public class InputVariableDeclarationUsageDistanceLabels {
     public void method() {
-        boolean eol = false;
+        boolean eol = false; // violation 'Distance .* is 5.'
 
         nothing();
         nothing();
