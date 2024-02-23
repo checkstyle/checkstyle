@@ -228,7 +228,7 @@ public final class JavadocPropertiesGenerator {
      *      malformed (does not end with any of the end-of-sentence markers)
      * @throws CheckstyleException if an unsupported inline tag found
      */
-    private static String getFirstJavadocSentence(DetailNode tree) throws CheckstyleException {
+    private static String getFirstJavadocSentence(final DetailNode tree) throws CheckstyleException {
         String firstSentence = null;
         final StringBuilder builder = new StringBuilder(128);
         for (DetailNode node : tree.getChildren()) {
@@ -260,7 +260,7 @@ public final class JavadocPropertiesGenerator {
      * @param inlineTag to format
      * @throws CheckstyleException if the inline javadoc tag is not a literal nor a code tag
      */
-    private static void formatInlineCodeTag(StringBuilder builder, DetailNode inlineTag)
+    private static void formatInlineCodeTag(final StringBuilder builder, final DetailNode inlineTag)
             throws CheckstyleException {
         boolean wrapWithCodeTag = false;
         for (DetailNode node : inlineTag.getChildren()) {
@@ -296,7 +296,7 @@ public final class JavadocPropertiesGenerator {
      * @param builder to append
      * @param node to format
      */
-    private static void formatHtmlElement(StringBuilder builder, DetailNode node) {
+    private static void formatHtmlElement(final StringBuilder builder, final DetailNode node) {
         switch (node.getType()) {
             case JavadocTokenTypes.START:
             case JavadocTokenTypes.HTML_TAG_NAME:

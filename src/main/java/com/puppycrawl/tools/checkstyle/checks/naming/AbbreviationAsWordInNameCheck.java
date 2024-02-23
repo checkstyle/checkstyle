@@ -185,7 +185,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *        Defines if ignore variables with 'final' modifier or not.
      * @since 5.8
      */
-    public void setIgnoreFinal(boolean ignoreFinal) {
+    public void setIgnoreFinal(final boolean ignoreFinal) {
         this.ignoreFinal = ignoreFinal;
     }
 
@@ -207,7 +207,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *        Defines if ignore variables with both 'static' and 'final' modifiers or not.
      * @since 8.32
      */
-    public void setIgnoreStaticFinal(boolean ignoreStaticFinal) {
+    public void setIgnoreStaticFinal(final boolean ignoreStaticFinal) {
         this.ignoreStaticFinal = ignoreStaticFinal;
     }
 
@@ -243,7 +243,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *        skipped from checking.
      * @since 5.8
      */
-    public void setAllowedAbbreviations(String... allowedAbbreviations) {
+    public void setAllowedAbbreviations(final String... allowedAbbreviations) {
         if (allowedAbbreviations != null) {
             this.allowedAbbreviations =
                 Arrays.stream(allowedAbbreviations).collect(Collectors.toUnmodifiableSet());
@@ -291,7 +291,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     }
 
     @Override
-    public void visitToken(DetailAST ast) {
+    public void visitToken(final DetailAST ast) {
         if (!isIgnoreSituation(ast)) {
             final DetailAST nameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String typeName = nameAst.getText();
@@ -310,7 +310,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return true if it is an ignore situation found for given input DetailAST
      *         node.
      */
-    private boolean isIgnoreSituation(DetailAST ast) {
+    private boolean isIgnoreSituation(final DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
 
         final boolean result;
@@ -338,7 +338,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @param modifiers modifiers of the variable to be checked
      * @return true if there is a modifier to be ignored
      */
-    private boolean hasIgnoredModifiers(DetailAST modifiers) {
+    private boolean hasIgnoredModifiers(final DetailAST modifiers) {
         final boolean isStatic = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
         final boolean result;
@@ -358,7 +358,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return true if variable definition(variableDefAst) is in interface
      *     or @interface definition.
      */
-    private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
+    private static boolean isInterfaceDeclaration(final DetailAST variableDefAst) {
         boolean result = false;
         final DetailAST astBlock = variableDefAst.getParent();
         final DetailAST astParent2 = astBlock.getParent();
@@ -378,7 +378,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *        (MODIFIERS type).
      * @return true if method has "@Override" annotation.
      */
-    private static boolean hasOverrideAnnotation(DetailAST methodModifiersAST) {
+    private static boolean hasOverrideAnnotation(final DetailAST methodModifiersAST) {
         boolean result = false;
         for (DetailAST child : getChildren(methodModifiersAST)) {
             final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
@@ -399,7 +399,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return the disallowed abbreviation contained in given String as a
      *         separate String.
      */
-    private String getDisallowedAbbreviation(String str) {
+    private String getDisallowedAbbreviation(final String str) {
         int beginIndex = 0;
         boolean abbrStarted = false;
         String result = null;
@@ -452,8 +452,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return the abbreviation if it is bigger than required and not in the
      *         ignore list, otherwise {@code null}
      */
-    private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex,
-                                            int allowedLength) {
+    private String getAbbreviationIfIllegal(final String str, final int beginIndex, final int endIndex,
+                                            final int allowedLength) {
         String result = null;
         final int abbrLength = endIndex - beginIndex;
         if (abbrLength > allowedLength) {
@@ -483,7 +483,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @param endIndex end index
      * @return the specified abbreviation
      */
-    private static String getAbbreviation(String str, int beginIndex, int endIndex) {
+    private static String getAbbreviation(final String str, final int beginIndex, final int endIndex) {
         final String result;
         if (endIndex == str.length() - 1) {
             result = str.substring(beginIndex);
