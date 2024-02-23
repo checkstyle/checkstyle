@@ -958,7 +958,6 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         if (foundException != null) {
             foundException.setFound();
-            foundThrows.add(documentedClassInfo.getName().getText());
         }
     }
 

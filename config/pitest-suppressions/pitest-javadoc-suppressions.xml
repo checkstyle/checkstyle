@@ -104,15 +104,6 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
     <mutatedMethod>processThrows</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck$Token::getText</description>
-    <lineContent>foundThrows.add(documentedClassInfo.getName().getText());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocMethodCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
-    <mutatedMethod>processThrows</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/util/Set::add</description>
     <lineContent>foundThrows.add(documentedClassInfo.getName().getText());</lineContent>
   </mutation>
