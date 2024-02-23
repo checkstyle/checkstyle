@@ -247,11 +247,13 @@
       -Xep:CollectorMutability:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
+      -Xep:FormatStringConcatenation:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
       -Xep:PrimitiveComparison:ERROR
+      -Xep:RedundantStringConversion:ERROR
       -Xep:TimeZoneUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
@@ -491,7 +493,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
