@@ -921,7 +921,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
                     .getColumnNo());
             final ClassInfo documentedClassInfo = new ClassInfo(token);
-            processThrows(throwsList, documentedClassInfo, foundThrows);
+            processThrows(throwsList, documentedClassInfo);
         }
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
@@ -941,10 +941,9 @@ public class JavadocMethodCheck extends AbstractCheck {
      *
      * @param throwsIterable collection of throws
      * @param documentedClassInfo documented exception class info
-     * @param foundThrows previously found throws
      */
     private static void processThrows(Iterable<ExceptionInfo> throwsIterable,
-                                      ClassInfo documentedClassInfo, Set<String> foundThrows) {
+                                      ClassInfo documentedClassInfo) {
         ExceptionInfo foundException = null;
 
         // First look for matches on the exception name
