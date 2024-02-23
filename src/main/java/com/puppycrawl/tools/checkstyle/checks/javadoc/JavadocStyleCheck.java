@@ -215,6 +215,9 @@ public class JavadocStyleCheck
         "tr", "tt", "u", "ul", "var"
     );
 
+    /** Specify the format for inline return Javadoc. */
+    private final Pattern inlineReturnTagPattern = Pattern.compile("\\{@return.*?\\}\\s*");
+
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
@@ -344,9 +347,16 @@ public class JavadocStyleCheck
      */
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
+        final String[] sentences = commentText.split("\\.(?=\\s|$)");
+        String firstSentence = "";
+
+        if (sentences.length > 0) {
+            firstSentence = sentences[0];
+        }
 
         if (!commentText.isEmpty()
             && !endOfSentenceFormat.matcher(commentText).find()
+            && !inlineReturnTagPattern.matcher(firstSentence).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
             log(comment.getStartLineNo(), MSG_NO_PERIOD);
