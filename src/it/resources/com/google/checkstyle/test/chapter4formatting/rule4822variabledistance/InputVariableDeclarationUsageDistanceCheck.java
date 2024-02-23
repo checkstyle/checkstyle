@@ -505,7 +505,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0;
+        int count = 0;  // warn
         String[] files = {};
 
         System.identityHashCode("Data archival started");
