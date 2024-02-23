@@ -306,7 +306,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         while (!firstUsageFound && currentAst != null) {
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
-                    dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
+                    dist = getDistToVariableUsageInChildNode(currentAst, dist);
                     variableUsageAst = currentAst;
                     firstUsageFound = true;
                 }
@@ -324,19 +324,15 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Returns the distance to variable usage for in the child node.
      *
      * @param childNode child node.
-     * @param varIdent variable variable identifier.
      * @param currentDistToVarUsage current distance to the variable usage.
      * @return the distance to variable usage for in the child node.
      */
-    private static int getDistToVariableUsageInChildNode(DetailAST childNode, DetailAST varIdent,
+    private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
-        DetailAST examineNode = childNode;
-        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
-            examineNode = examineNode.getFirstChild().getNextSibling();
-        }
 
         int resultDist = currentDistToVarUsage;
-        switch (examineNode.getType()) {
+
+        switch (childNode.getType()) {
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -344,18 +340,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
-            case TokenTypes.LITERAL_SWITCH:
-                if (isVariableInOperatorExpr(examineNode, varIdent)) {
-                    resultDist++;
-                }
-                else {
-                    // variable usage is in inner scope
-                    // reset counters, because we can't determine distance
-                    resultDist = 0;
-                }
+                // variable usage is in inner scope, treated as 1 block
+                // or in operator expression, then distance + 1
+                resultDist++;
                 break;
             default:
-                if (examineNode.findFirstToken(TokenTypes.SLIST) == null) {
+                if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
                     resultDist++;
                 }
                 else {
@@ -706,22 +696,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 break;
             }
             ast = ast.getNextSibling();
-        }
-
-        // Variable may be met in ELSE declaration
-        // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclaration) {
-            final DetailAST elseBlock = operator.getLastChild();
-
-            if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
-                // Get IF followed by ELSE
-                final DetailAST firstNodeInsideElseBlock = elseBlock.getFirstChild();
-
-                if (firstNodeInsideElseBlock.getType() == TokenTypes.LITERAL_IF) {
-                    isVarInOperatorDeclaration =
-                        isVariableInOperatorExpr(firstNodeInsideElseBlock, variable);
-                }
-            }
         }
 
         return isVarInOperatorDeclaration;
