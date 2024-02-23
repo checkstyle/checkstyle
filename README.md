@@ -54,8 +54,7 @@ Documentation is available in HTML format, see https://checkstyle.org/checks.htm
 Thanks for your interest in contributing to CheckStyle! Please see the
 [Contribution Guidelines](https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md)
 for information on how to contribute to the project. This includes creating issues, submitting pull
-requests, and setting up your development environment. **If you are a potential Google Summer
-of Code (GSoC) participant, this is a great place to start.**
+requests, and setting up your development environment.
 
 ## Build Instructions
 
@@ -75,10 +74,10 @@ information on how to build the project.
 - Our [Google Groups Forum](https://groups.google.com/forum/?hl=en#!forum/checkstyle) is a
   mailing list for discussion and support; however, we may be slow to respond there.
 
-## Project Reports
+## Javadoc
 
-Take a look at our [project reports](https://checkstyle.org/project-reports.html) to see
-our API documentation and test reports.
+Take a look at our [javadoc](https://checkstyle.org/apidocs/index.html) to see
+our API documentation.
 
 ## Sponsor Checkstyle
 
