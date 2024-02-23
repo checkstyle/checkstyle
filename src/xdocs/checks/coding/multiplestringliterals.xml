@@ -78,7 +78,7 @@ public class MyClass {
   public void myTest() {
     String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
     String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a4 = &quot;SingleString&quot;; 
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
@@ -105,7 +105,7 @@ public class MyClass {
   public void myTest() {
     String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
     String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
-    String a4 = &quot;SingleString&quot;; // OK
+    String a4 = &quot;SingleString&quot;; 
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
   }
 }
@@ -132,7 +132,7 @@ public class MyClass {
   public void myTest() {
     String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
     String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a4 = &quot;SingleString&quot;; 
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
   }
 }
@@ -160,7 +160,7 @@ public class MyClass {
   public void myTest() {
     String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
     String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a4 = &quot;SingleString&quot;; 
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
