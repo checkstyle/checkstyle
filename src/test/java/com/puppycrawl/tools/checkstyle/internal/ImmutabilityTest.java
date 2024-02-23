@@ -378,7 +378,7 @@ public class ImmutabilityTest {
                 final String message = String
                     .format(Locale.ROOT, "Field <%s> should %s in %s",
                             item.getFullName(), getDescription(),
-                            item.getSourceCodeLocation().toString());
+                            item.getSourceCodeLocation());
                 events.add(SimpleConditionEvent.violated(item, message));
             }
         }
