@@ -38,7 +38,7 @@ Documentation is available in HTML format, see https://checkstyle.org/checks.htm
 1. [Quick Start](#quick-start)
 2. [Contributing](#contributing)
 3. [Feedback and Support](#feedback-and-support)
-4. [Project Reports](#project-reports)
+4. [Javadoc](#javadoc)
 5. [Sponsor Checkstyle](#sponsor-checkstyle)
 6. [Licensing](#licensing)
 
@@ -54,8 +54,7 @@ Documentation is available in HTML format, see https://checkstyle.org/checks.htm
 Thanks for your interest in contributing to CheckStyle! Please see the
 [Contribution Guidelines](https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md)
 for information on how to contribute to the project. This includes creating issues, submitting pull
-requests, and setting up your development environment. **If you are a potential Google Summer
-of Code (GSoC) participant, this is a great place to start.**
+requests, and setting up your development environment.
 
 ## Build Instructions
 
@@ -71,14 +70,14 @@ information on how to build the project.
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/checkstyle) is another place to
   ask questions about Checkstyle usage.
 - If you are interested in contributing to the project, you can join our
-  [Contributors Chat](https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im).
+  [Discord Contributors Chat](https://discord.com/channels/845645228467159061/1216455699488313554).
 - Our [Google Groups Forum](https://groups.google.com/forum/?hl=en#!forum/checkstyle) is a
   mailing list for discussion and support; however, we may be slow to respond there.
 
-## Project Reports
+## Javadoc
 
-Take a look at our [project reports](https://checkstyle.org/project-reports.html) to see
-our API documentation and test reports.
+Take a look at our [javadoc](https://checkstyle.org/apidocs/index.html) to see
+our API documentation.
 
 ## Sponsor Checkstyle
 
@@ -97,7 +96,7 @@ maintain and improve Checkstyle.
 
 Checkstyle is licensed under the [GNU LGPL v2.1 License](LICENSE).
 
-Checkstyle uses libraries from:
+Checkstyle uses libraries:
  - [ANTLR](https://www.antlr.org/)
  - [Apache Commons](https://commons.apache.org/)
  - [Google Guava](https://github.com/google/guava/)
