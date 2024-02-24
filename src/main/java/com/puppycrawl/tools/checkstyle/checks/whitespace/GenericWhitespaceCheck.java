@@ -51,7 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li> should not be preceded with whitespace in all cases.</li>
  * <li> should be followed with whitespace in almost all cases,
- *   except diamond operators and when preceding method name or constructor.</li></ul>
+ *   except diamond operators and when preceding a method name, constructor, or record header.</li>
+ * </ul>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -219,7 +220,9 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processSingleGeneric(DetailAST ast, int[] line, int after) {
         final char charAfter = Character.toChars(line[after])[0];
-        if (isGenericBeforeMethod(ast) || isGenericBeforeCtorInvocation(ast)) {
+        if (isGenericBeforeMethod(ast)
+                || isGenericBeforeCtorInvocation(ast)
+                || isGenericBeforeRecordHeader(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
@@ -227,6 +230,22 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         else if (!isCharacterValidAfterGenericEnd(charAfter)) {
             log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
+    }
+
+    /**
+     * Checks if generic is before record header. Identifies two cases:
+     * <ol>
+     *     <li>In record def, eg: {@code record Session<T>()}</li>
+     *     <li>In record pattern def, eg: {@code o instanceof Session<String>(var s)}</li>
+     * </ol>
+     *
+     * @param ast ast
+     * @return true if generic is before record header
+     */
+    private static boolean isGenericBeforeRecordHeader(DetailAST ast) {
+        final DetailAST grandParent = ast.getParent().getParent();
+        return grandParent.getType() == TokenTypes.RECORD_DEF
+                || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
     }
 
     /**
@@ -370,10 +389,9 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return checks if given character is valid
      */
     private static boolean isCharacterValidAfterGenericEnd(char charAfter) {
-        return charAfter == '(' || charAfter == ')'
-            || charAfter == ',' || charAfter == '['
-            || charAfter == '.' || charAfter == ':'
-            || charAfter == ';'
+        return charAfter == ')' || charAfter == ','
+            || charAfter == '[' || charAfter == '.'
+            || charAfter == ':' || charAfter == ';'
             || Character.isWhitespace(charAfter);
     }
 
