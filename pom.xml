@@ -254,6 +254,7 @@
       -Xep:NestedOptionals:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
+      -Xep:StringJoin:ERROR
       -Xep:TimeZoneUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
@@ -367,7 +368,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.15.6</version>
+      <version>3.15.7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
