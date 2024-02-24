@@ -3076,6 +3076,9 @@
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
@@ -3313,6 +3316,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4408,6 +4414,9 @@
                 <!-- performance optimization -->
                 <param>initStringBuilderWithOptimalBuffer</param>
               </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -4481,6 +4490,9 @@
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <avoidCallsTo>
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <avoidCallsTo>
@@ -4808,6 +4820,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -5102,6 +5117,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
