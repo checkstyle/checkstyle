@@ -66,7 +66,7 @@ public class InputUnnecessaryParenthesesIfStatement2 {
         }
 
         if (a==(b>=c && a==(c==d && d!=b))
-                && a==(c<=d)) 
+                && a==(c<=d)) {
             return;
         }
 
