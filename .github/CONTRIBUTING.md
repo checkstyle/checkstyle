@@ -12,15 +12,20 @@ maintainers alike.**
 :octocat: *Thanks for your interest in contributing to CheckStyle!* :octocat:
 
 ### Contents
-- [Getting Started](#rocket-getting-started)
 - [Code of Conduct](#book-code-of-conduct)
-- [Asking Questions](#bulb-asking-questions)
+- [Getting Started](#rocket-getting-started)
 - [Opening an Issue](#inbox_tray-opening-an-issue)
 - [Reporting Security Issues](#lock-reporting-security-issues)
 - [Submitting Pull Requests](#technologist-submitting-pull-requests)
 - [Code Review](#white_check_mark-code-review)
-- [Google Summer of Code (GSoC)]()
+- [Google Summer of Code (GSoC)](#google-summer-of-code-gsoc)
+- [Asking Questions](#bulb-asking-questions)
 - [Credits](#coin-credits)
+
+## :book: Code of Conduct
+
+This project and everyone participating in it is governed by the
+    [CheckStyle Code of Conduct](/.github/CODE_OF_CONDUCT.md).
 
 ## :rocket: Getting Started
 
@@ -39,55 +44,51 @@ maintainers alike.**
     and finally https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
     before taking up some bug fixes or features.
 
-## :book: Code of Conduct
-
-This project and everyone participating in it is governed by the
-    [CheckStyle Code of Conduct](/.github/CODE_OF_CONDUCT.md).
-
-## :bulb: Asking Questions
-
-See our [Discussions Page](https://github.com/checkstyle/checkstyle/discussions). In short, GitHub
-issues are not the appropriate place to debug your specific project, but should be reserved
-for filing bugs and feature requests.
-
 ## :inbox_tray: Opening an Issue
-
-Before [Opening an Issue](https://github.com/checkstyle/checkstyle/issues),
-check if you are using the latest version of the project,
-[found here](https://github.com/checkstyle/checkstyle/releases). If you are not up-to-date,
-see if updating to the latest release fixes your issue.
 
 A great way to contribute to the project is to create a detailed issue when you encounter
 a problem or would like to suggest a feature. We always appreciate a well-written,
 thorough issue description. :brain:
 
 Some points to consider when opening an issue:
+- **Make sure you are using the latest Checkstyle version.**
+    Before [Opening an Issue](https://github.com/checkstyle/checkstyle/issues),
+    check if you are using the latest version of the project,
+    [found here](https://github.com/checkstyle/checkstyle/releases). If you are not up-to-date,
+    check to see if updating to the latest release fixes your issue.
+- **Do not open a duplicate feature request.** Search for existing feature requests first. If you
+    find your feature (or one very similar) previously requested, comment on that issue.
 - **Fully complete the provided issue template.** The bug report and feature request templates
     specify all the information we need to quickly and efficiently address your issue. Be clear,
     concise, and descriptive.
     Provide as much information as you can, including steps to reproduce, stack traces, etc.
 - **Use [GitHub-flavored Markdown](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).**
     Especially put code blocks and console outputs in backticks (```). This improves readability.
-- **Do not open a duplicate feature request.** Search for existing feature requests first. If you
-    find your feature (or one very similar) previously requested, comment on that issue.
 
 ## :lock: Reporting Security Issues
 
 **Do not file a public issue for security vulnerabilities.** Please contact the 
 maintainers directly.
-see the [Security Policy](https://github.com/checkstyle/SECURITY.md) for more information.
+see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md)
+for more information.
 
 ## :technologist: Submitting Pull Requests
 
  - **Read our pull request rules.** See [PR Rules](https://github.com/checkstyle/checkstyle/wiki/PR-rules).
- - **Comment on the issue.** If you are working on an existing issue, please comment on the issue
-    to let others know that you are working on it ("I am on it.").
+ - **Comment on the issue.** When you decide which issue you would like to take up,
+    please comment on the issue to let others know that you are working on it ("I am on it.").
+    Existing "I am on it" comments are a good indication that someone is already working on the
+    issue, but these comments can be old or outdated; if a comment is a few weeks old with no
+    activity, feel free to ask if the issue is still being worked on.
  - **Read the Github docs.** Visit GitHub's [Pull Request Guide](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
     for information on how to submit a pull request.
  - **Follow the template.** Please follow the [CheckStyle Pull Request Template](https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
     that is provided in the pull request description when submitting a pull request.
  - **Run maven build locally.** `mvn clean verify` should pass on your local before
    submitting a pull request.
+ - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
+    smaller PRs that can be reviewed and merged independently. This makes it easier for
+    reviewers to understand the changes and for maintainers to merge the PR.
 
 ## :white_check_mark: Code Review
 
@@ -96,13 +97,10 @@ requests for this purpose. Consult the [GitHub Help](https://help.github.com/en/
 for more information on pull request reviews.
 
 Here are some general guidelines to follow when submitting a pull request:
- - **Reply to comments.** If a reviewer asks for changes, make the changes and reply to each
-    (and every)
-    comment to let the reviewer know that you have addressed their concerns.
- - **Keep the PR small.** If you are working on a large feature, consider breaking it up into
-    smaller PRs that can be reviewed and merged independently. This makes it easier for
-    reviewers to understand the changes and for maintainers to merge the PR.
- - **Be patient.** Reviewing PRs takes time. If a reviewer hasn't responded in a few days,
+ - **Reply to comments.** If a reviewer asks for changes, reply to each
+    (and every) comment with discussion or follow up questions, or let the reviewer know
+    that you have addressed their concerns ("done").
+ - **Be patient.** Reviewing PRs takes time. If a reviewer hasn't responded in a week or so,
     feel free to ping them. If you are a reviewer and you need more time to review a PR, please
     let the submitter know.
  - **Be kind.** Remember that everyone involved in the project is a human being. Be kind and
@@ -113,6 +111,13 @@ Here are some general guidelines to follow when submitting a pull request:
 ## Google Summer of Code (GSoC)
 
 Please see the [GSoC Participant Guide](https://github.com/checkstyle/checkstyle/blob/master/.github/GSOC.md).
+
+## :bulb: Asking Questions
+
+See our [Discussions Page](https://github.com/checkstyle/checkstyle/discussions). In short, GitHub
+issues are not the appropriate place to debug your specific project, but should be reserved
+for filing bugs and feature requests. You can also visit our
+[Google Groups Forum](https://groups.google.com/g/checkstyle-devel)
 
 ## :coin: Credits
 *This document was inspired by work from the following communities:*
