@@ -330,4 +330,51 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testStaticMethodRefImports() throws Exception {
+        final String[] expected = {
+            "26:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
+            "27:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
+            "28:15: " + getCheckMessage(MSG_KEY, "java.util.List.of"),
+            "29:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyMap"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRef.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsExtended() throws Exception {
+        final String[] expected = {
+            "15:8: " + getCheckMessage(MSG_KEY, "java.util.Objects"),
+            "16:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.asList"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefExtended.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsWithJavadocDisabled() throws Exception {
+        final String[] expected = {
+            "24:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "25:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+            "26:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
+            "27:15: " + getCheckMessage(MSG_KEY, "java.util.List.of"),
+            "28:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyMap"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefJavadocDisabled.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsInDocsOnly() throws Exception {
+        final String[] expected = {
+            "11:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+            "12:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyEnumeration"),
+            "13:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
+    }
+
 }
