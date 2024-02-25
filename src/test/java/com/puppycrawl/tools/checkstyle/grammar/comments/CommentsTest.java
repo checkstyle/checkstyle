@@ -47,6 +47,20 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputFullOfBlockComments() throws Exception {
+        verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
+                    getPath("InputFullOfBlockComments.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testInputFullOfSinglelineComments() throws Exception {
+        verifyAst(getPath("InputFullOfSinglelineCommentsAst.txt"),
+                    getPath("InputFullOfSinglelineComments.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
     public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
         assertWithMessage("Invalid toString result")
