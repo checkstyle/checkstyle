@@ -31,6 +31,10 @@
             The class imported is from the same package.
           </li>
           <li>
+            A static method is imported when used as method reference. In that case,
+            only the type needs to be imported and that's enough to resolve the method.
+          </li>
+          <li>
             <b>Optionally:</b> it is referenced in Javadoc comments. This check
             is on by default, but it is considered bad practice to introduce
             a compile-time dependency for documentation purposes only.
