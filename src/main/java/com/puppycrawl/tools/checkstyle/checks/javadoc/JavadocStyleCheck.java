@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
@@ -49,6 +51,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Ensures the first sentence ends with proper punctuation
  * (That is a period, question mark, or exclamation mark, by default).
+ * Note that this check is not applied to inline {@code @return} tags,
+ * because the Javadoc tools automatically appends a period to the end of the tag
+ * content.
  * Javadoc automatically places the first sentence in the method summary
  * table and index. Without proper punctuation the Javadoc may be malformed.
  * All items eligible for the {@code {@inheritDoc}} tag are exempt from this
@@ -215,6 +220,13 @@ public class JavadocStyleCheck
         "tr", "tt", "u", "ul", "var"
     );
 
+    /** Specify the format for inline return Javadoc. */
+    private static final Pattern INLINE_RETURN_TAG_PATTERN =
+            Pattern.compile("\\{@return.*?\\}\\s*");
+
+    /** Specify the format for first word in javadoc. */
+    private static final Pattern SENTENCE_SEPARATOR = Pattern.compile("\\.(?=\\s|$)");
+
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
@@ -344,8 +356,14 @@ public class JavadocStyleCheck
      */
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
+        final boolean hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
+                .findFirst()
+                .map(INLINE_RETURN_TAG_PATTERN::matcher)
+                .filter(Matcher::find)
+                .isPresent();
 
-        if (!commentText.isEmpty()
+        if (!hasInLineReturnTag
+            && !commentText.isEmpty()
             && !endOfSentenceFormat.matcher(commentText).find()
             && !(commentText.startsWith("{@inheritDoc}")
             && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
