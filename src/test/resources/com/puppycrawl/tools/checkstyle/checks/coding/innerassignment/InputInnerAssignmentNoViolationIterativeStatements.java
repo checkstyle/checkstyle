@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class InputInnerAssignmentMethod {
+public class InputInnerAssignmentNoViolationIterativeStatements {
     void method() throws IOException {
         Integer line;
         FileInputStream file = null;
