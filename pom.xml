@@ -254,6 +254,7 @@
       -Xep:NestedOptionals:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
+      -Xep:Slf4jLogStatement:ERROR
       -Xep:StringJoin:ERROR
       -Xep:TimeZoneUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
