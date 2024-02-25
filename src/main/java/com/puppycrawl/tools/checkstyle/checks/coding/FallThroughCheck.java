@@ -182,7 +182,7 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = true;
                 break;
             case TokenTypes.LITERAL_BREAK:
-                terminated = useBreak;
+                terminated = useBreak || isLabeledBreakTerminatingSwitch(ast);
                 break;
             case TokenTypes.LITERAL_CONTINUE:
                 terminated = useContinue;
@@ -211,6 +211,17 @@ public class FallThroughCheck extends AbstractCheck {
                 terminated = false;
         }
         return terminated;
+    }
+
+    /**
+     * Checks if a given break statement is terminating a switch statement that is labeled.
+     *
+     * @param breakAst the break statement to check.
+     * @return true if the break statement is terminating a labeled switch statement.
+     */
+    private boolean isLabeledBreakTerminatingSwitch(final DetailAST breakAst) {
+        final DetailAST literalBreakLabel = breakAst.findFirstToken(TokenTypes.IDENT);
+        return literalBreakLabel != null;
     }
 
     /**
