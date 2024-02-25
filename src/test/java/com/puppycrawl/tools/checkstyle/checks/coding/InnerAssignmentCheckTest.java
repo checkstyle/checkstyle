@@ -58,7 +58,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testInputInnerAssignmentDemoBug1195047Comment3() throws Exception {
+    public void testInputInnerAssignmentCheckLoopsAndConditionals() throws Exception {
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_KEY),
             "19:24: " + getCheckMessage(MSG_KEY),
@@ -74,7 +74,7 @@ public class InnerAssignmentCheckTest
             "26:32: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignmentDemoBug1195047Comment3.java"), expected);
+                getPath("InputInnerAssignmentCheckLoopsAndConditionals.java"), expected);
     }
 
     @Test
