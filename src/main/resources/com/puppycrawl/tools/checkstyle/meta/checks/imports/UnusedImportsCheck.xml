@@ -29,6 +29,10 @@
  comment {@code {@link List}}. The alternative to avoid introducing a compile-time
  dependency would be to write the Javadoc comment as {@code {&amp;#64;link java.util.List}}.
  &lt;/li&gt;
+ &lt;li&gt;
+ A static method is imported when used as method reference. In that case,
+ only the type needs to be imported and that's enough to resolve the method.
+ &lt;/li&gt;
  &lt;/ul&gt;
  &lt;p&gt;
  The main limitation of this check is handling the cases where:

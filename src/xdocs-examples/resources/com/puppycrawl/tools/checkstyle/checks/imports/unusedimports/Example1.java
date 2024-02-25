@@ -22,14 +22,18 @@ import java.util.Stack;
 import java.util.Map;   // violation
 
 import java.util.List;
+import java.util.function.Function;
+
+import static java.lang.Integer.parseInt; // violation
 
 /**
-* @link List
+* {@link List}
 */
 class Example1{
   Stack stack = new Stack();
   private Object Component;
   int[] arr = {0,0};
   int[] array = copyOf(arr , 1);
+  Function <String, Integer> stringToInteger = Integer::parseInt;
 }
 // xdoc section -- end
