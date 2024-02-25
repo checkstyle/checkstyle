@@ -1,24 +1,20 @@
-/*
-JavadocParagraph
-violateExecutionOnNonTightHtml = (default)false
-allowNewlineParagraph = (default)true
-
-
-*/
-
+/**
+ * JavadocParagraph
+ * violateExecutionOnNonTightHtml = (default)false
+ * allowNewlineParagraph = (default)true
+ */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * Some Javadoc. // ok
+ * Some Javadoc.
  *
  * <p>Some Javadoc.
- *
  */
 class InputJavadocParagraphCorrect {
 
     /**
-     * Some Javadoc. // ok
-     *   
+     * Some Javadoc.
+     *
      * <p>{@code function} will never be invoked with a null value.
      *
      * @since 8.0
@@ -45,7 +41,7 @@ class InputJavadocParagraphCorrect {
     /**
      * Some Javadoc.
      *
-     *<pre>
+     * <pre>
      * Test
      * </pre>
      *
@@ -59,9 +55,8 @@ class InputJavadocParagraphCorrect {
      * Some Javadoc.
      *
      * <p>Some Javadoc.
-     *
      */
-     class InnerInputJavadocParagraphCorrect {
+    class InnerInputJavadocParagraphCorrect {
 
         /**
          * Some Javadoc.
@@ -87,7 +82,7 @@ class InputJavadocParagraphCorrect {
 
      InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
 
-            /**
+        /**
          * Some Javadoc.
          *
          * <p>Some Javadoc.
@@ -98,7 +93,7 @@ class InputJavadocParagraphCorrect {
          */
         public static final byte NUL = 0;
 
-        /** 
+        /**
          * Some Javadoc with space at the end of first line.
          *
          * <p>Some Javadoc.
