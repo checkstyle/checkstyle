@@ -25,6 +25,10 @@ import java.util.Map;   // violation
 
 import java.util.List; // violation
 
+import java.util.function.Function;
+
+import static java.lang.Integer.parseInt; // violation
+
 /**
 * @link List
 */
@@ -33,5 +37,6 @@ class Example2{
   private Object Component;
   int[] arr = {0,0};
   int[] array = copyOf(arr , 1);
+ Function <String, Integer> stringToInteger = Integer::parseInt;
 }
 // xdoc section -- end
