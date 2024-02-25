@@ -69,6 +69,8 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
   <suppress id="UnnecessaryOkComment"
+            files="checks[\\/]coding[\\/]multiplestringliterals[\\/]InputMultipleStringLiteralsNoWarnings.java"/>
+  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]nestedfordepth[\\/]InputNestedForDepth1.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]nestedfordepth[\\/]InputNestedForDepth1.java"/>
@@ -942,10 +944,6 @@
             files="checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocpackage[\\/]pkghtml[\\/]InputJavadocPackageHtmlIgnored2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
   <suppress id="UnnecessaryOkComment"

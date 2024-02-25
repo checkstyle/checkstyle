@@ -9,7 +9,7 @@ allowNewlineParagraph = (default)true
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * Some Javadoc. // ok
+ * Some Javadoc. 
  *
  * <p>Some Javadoc.
  *
@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 class InputJavadocParagraphCorrect {
 
     /**
-     * Some Javadoc. // ok
+     * Some Javadoc. 
      *   
      * <p>{@code function} will never be invoked with a null value.
      *
