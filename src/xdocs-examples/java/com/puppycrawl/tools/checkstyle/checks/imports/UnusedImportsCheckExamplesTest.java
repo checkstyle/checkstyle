@@ -36,6 +36,7 @@ public class UnusedImportsCheckExamplesTest extends AbstractExamplesModuleTestSu
         final String[] expected = {
             "19:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "22:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "28:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,6 +48,7 @@ public class UnusedImportsCheckExamplesTest extends AbstractExamplesModuleTestSu
             "21:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "24:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
             "26:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "30:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
