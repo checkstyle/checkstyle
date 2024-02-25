@@ -80,7 +80,7 @@ class InputJavadocParagraphCorrect {
         boolean emulated() {return false;}
     }
 
-     InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
+    InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
 
         /**
          * Some Javadoc.
