@@ -330,4 +330,54 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testStaticMethodRefImports() throws Exception {
+        final String[] expected = {
+            "26:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
+            "27:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
+            "28:15: " + getCheckMessage(MSG_KEY, "java.util.List.of"),
+            "29:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyMap"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRef.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsExtended() throws Exception {
+        final String[] expected = {
+            "17:8: " + getCheckMessage(MSG_KEY, "java.util.Objects"),
+            "18:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.toString"),
+            "19:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.asList"),
+            "20:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+            "21:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyList"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefExtended.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsWithJavadocDisabled() throws Exception {
+        final String[] expected = {
+            "24:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "25:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+            "26:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
+            "27:15: " + getCheckMessage(MSG_KEY, "java.util.List.of"),
+            "28:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyMap"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefJavadocDisabled.java"), expected);
+    }
+
+    @Test
+    public void testStaticMethodRefImportsInDocsOnly() throws Exception {
+        final String[] expected = {
+            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
+            "12:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyEnumeration"),
+            "13:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
+    }
+
 }
