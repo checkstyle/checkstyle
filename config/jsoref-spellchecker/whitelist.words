@@ -91,7 +91,7 @@ awt
 azurewebsites
 backport
 Backquote
-Backticks
+backticks
 BADN
 badpackage
 baeldung
@@ -513,6 +513,8 @@ groovyism
 groupcdg
 groupon
 grp
+GSo
+gsoc
 Gsp
 GString
 Gtk
@@ -582,6 +584,7 @@ importcontroltest
 importorder
 importrule
 imprt
+inbox
 Incompatabilities
 indentcontinuationlines
 Inet
@@ -673,6 +676,7 @@ jdt
 jedit
 jenkins
 jep
+jessesquires
 jetbrains
 JFile
 JFrame
@@ -823,6 +827,7 @@ mixin
 mkdir
 mkordas
 MLINKCHECK
+moby
 mockit
 mockito
 modifiedcontrolvariable
@@ -950,6 +955,7 @@ OAuth
 objblock
 oburn
 OCP
+octocat
 ogg
 OI
 olddomain
@@ -1255,6 +1261,7 @@ sudo
 suitebuilder
 sukhodolsky
 summaryjavadoc
+summerofcode
 superclasses
 superclone
 superfinalize
@@ -1307,6 +1314,7 @@ throwable
 throwscount
 Thymeleaf
 tidelift
+timeline
 TKN
 Tls
 tmp
@@ -1430,6 +1438,7 @@ wiki
 wikipedia
 wiktionary
 windowsservercore
+withgoogle
 wnd
 WOC
 woff
