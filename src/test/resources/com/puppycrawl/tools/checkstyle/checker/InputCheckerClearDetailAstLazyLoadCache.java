@@ -1,3 +1,9 @@
+/*
+com.puppycrawl.tools.checkstyle.CheckerTest$CheckWhichDoesNotRequireCommentNodes
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checker;
 
 public class InputCheckerClearDetailAstLazyLoadCache {
