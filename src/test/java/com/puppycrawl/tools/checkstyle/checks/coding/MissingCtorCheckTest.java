@@ -69,7 +69,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputMissingCtor2.java"),
+                getPath("InputMissingCtorNestedClasses.java"),
                 expected);
     }
 
