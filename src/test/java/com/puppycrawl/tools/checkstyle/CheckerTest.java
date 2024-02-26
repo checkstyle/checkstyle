@@ -1014,21 +1014,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClearLazyLoadCacheInDetailAST() throws Exception {
-        final DefaultConfiguration checkConfig1 =
-            createModuleConfig(CheckWhichDoesNotRequireCommentNodes.class);
-        final DefaultConfiguration checkConfig2 =
-            createModuleConfig(CheckWhichRequiresCommentNodes.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig1);
-        treeWalkerConfig.addChild(checkConfig2);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(filePath, expected);
     }
 
     @Test
