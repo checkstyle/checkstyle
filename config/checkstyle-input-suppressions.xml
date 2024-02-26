@@ -872,10 +872,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocpackage[\\/]pkghtml[\\/]InputJavadocPackageHtmlIgnored2.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationBlockTag.java"/>
