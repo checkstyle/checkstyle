@@ -1,0 +1,62 @@
+/*
+ParameterNumber
+max = 2
+ignoreAnnotatedBy = java.lang.Deprecated, InnerClass.InnerAnno, Session
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
+
+public class InputParameterNumberIgnoreAnnotatedByFqcn {
+    @java.lang.Deprecated
+    void method3(int a, int b, int c) {}
+
+    @Deprecated
+    void method4(int a, int b, int c) {} // violation, 'More than 2 parameters (found 3).'
+
+    void method5(int a, int b, int c) {} // violation, 'More than 2 parameters (found 3).'
+
+    @Session
+    void method6(int a, int b, int c) {}
+
+    @InputParameterNumberIgnoreAnnotatedByFqcn.Session
+    void method7(int a, int b, int c) {} // violation, 'More than 2 parameters (found 3).'
+
+    @com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber
+            .InputParameterNumberIgnoreAnnotatedByFqcn.Session
+    void method8(int a, int b, int c) {} // violation, 'More than 2 parameters (found 3).'
+
+    @com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber
+            .InputParameterNumberIgnoreAnnotatedByFqcn.Session
+    void method8(int a, int b) {}
+
+    private static class InnerClass {
+        private @interface InnerAnno {}
+
+        @InnerClass.InnerAnno
+        void method1(int a, int b, int c) {
+        }
+
+        @InnerAnno
+        void method2(int a, int b, int c) { // violation, 'More than 2 parameters (found 3).'
+        }
+
+        @Bit
+        void method3(int a, int b, int c) { // violation, 'More than 2 parameters (found 3).'
+        }
+
+        @InnerAnno
+        void method2(int a, int b) {
+        }
+
+        @Bit
+        void method3(int a, int b) {
+        }
+
+        void method4(int a, int b) {
+        }
+    }
+
+    @interface Session {}
+    @interface Bit{}
+}
