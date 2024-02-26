@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParameterNumber">
+      <property name="ignoreAnnotatedBy" value="java.lang.Deprecated"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Example {
+    @java.lang.Deprecated
+    void unchecked(int a, int b, int c, int d,
+                  int e, int f, int g, int h) {}
+
+    @Deprecated
+    void checked(int a, int b, int c, int d, // violation, 'More than 7 parameters (found 8)'
+                 int e, int f, int g, int h) {}
+}
+// xdoc section -- end

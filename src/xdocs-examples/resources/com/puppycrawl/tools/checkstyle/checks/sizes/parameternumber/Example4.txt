@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParameterNumber">
+      <property name="ignoreAnnotatedBy" value="JsonCreator"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Example {
+    @JsonCreator
+    Example(int a, int b, int c, int d,
+            int e, int f, int g, int h) {}
+
+    @interface JsonCreator {}
+}
+// xdoc section -- end
