@@ -722,7 +722,7 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.7.0</version>
+        <version>2.8.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
