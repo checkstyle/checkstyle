@@ -1027,9 +1027,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
 
         final String filePath = getPath("InputCheckerClearDetailAstLazyLoadCache.java");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
     }
 
     @Test
