@@ -405,8 +405,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                 .getSurroundingAccessModifier(ast);
         final AccessModifierOption accessModifier = CheckUtil
                 .getAccessModifierFromModifiersToken(ast);
-        return surroundingAccessModifier != null
-                && Arrays.stream(accessModifiers)
+        return Arrays.stream(accessModifiers)
                         .anyMatch(modifier -> modifier == surroundingAccessModifier)
                 && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
     }
