@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 
-public class InputInnerAssignment
+public class InputInnerAssignmentCheckLocalVariables
 {
     void innerAssignments()
     {
