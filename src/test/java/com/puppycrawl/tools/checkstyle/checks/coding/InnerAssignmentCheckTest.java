@@ -36,7 +36,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void testInputInnerAssignmentCheckLocalVariables() throws Exception {
         final String[] expected = {
             "22:15: " + getCheckMessage(MSG_KEY),
             "22:19: " + getCheckMessage(MSG_KEY),
@@ -45,20 +45,20 @@ public class InnerAssignmentCheckTest
             "73:19: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignment.java"), expected);
+                getPath("InputInnerAssignmentCheckLocalVariables.java"), expected);
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void testInputInnerAssignmentNoViolationIterativeStatements() throws Exception {
         final String[] expected = {
             "73:22: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignmentMethod.java"), expected);
+                getPath("InputInnerAssignmentNoViolationIterativeStatements.java"), expected);
     }
 
     @Test
-    public void testDemoBug1195047Comment3() throws Exception {
+    public void testInputInnerAssignmentCheckLoopsAndConditionals() throws Exception {
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_KEY),
             "19:24: " + getCheckMessage(MSG_KEY),
@@ -74,11 +74,11 @@ public class InnerAssignmentCheckTest
             "26:32: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignmentDemoBug1195047Comment3.java"), expected);
+                getPath("InputInnerAssignmentCheckLoopsAndConditionals.java"), expected);
     }
 
     @Test
-    public void testLambdaExpression() throws Exception {
+    public void testInputInnerAssignmentLambdaExpressions() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignmentLambdaExpressions.java"),
@@ -86,7 +86,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testInnerAssignmentNotInLoopContext() throws Exception {
+    public void testInputInnerAssignmentNotInLoopContext() throws Exception {
         final String[] expected = {
             "12:28: " + getCheckMessage(MSG_KEY),
         };
