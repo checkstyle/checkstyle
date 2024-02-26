@@ -6,8 +6,8 @@ InnerAssignment
 
 package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
-public class InputInnerAssignmentDemoBug1195047Comment3 {
-    public void demoBug1195047Comment3()
+public class InputInnerAssignmentCheckLoopsAndConditionals {
+    public void checkLoopsAndConditionals()
     {
         // inner assignment should flag all assignments to b or bb but none of those to i or j
         int y = 1;
