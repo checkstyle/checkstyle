@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -31,6 +33,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks the number of parameters of a method or constructor.
  * </p>
  * <ul>
+ * <li>
+ * Property {@code ignoreAnnotatedBy} - Ignore number of parameters for
+ * methods and constructors annotated with the specified annotation(s).
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
  * <li>
  * Property {@code ignoreOverriddenMethods} - Ignore number of parameters for
  * methods with {@code @Override} annotation.
@@ -87,6 +95,12 @@ public class ParameterNumberCheck
     private boolean ignoreOverriddenMethods;
 
     /**
+     * Ignore number of parameters for
+     * methods and constructors annotated with the specified annotation(s).
+     */
+    private Set<String> ignoreAnnotatedBy = Set.of();
+
+    /**
      * Setter to specify the maximum number of parameters allowed.
      *
      * @param max the max allowed parameters
@@ -104,6 +118,17 @@ public class ParameterNumberCheck
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;
+    }
+
+    /**
+     * Setter to ignore number of parameters for
+     * methods and constructors annotated with the specified annotation(s).
+     *
+     * @param userAnnotations user's value.
+     * @since 10.13
+     */
+    public void setIgnoreAnnotatedBy(String... userAnnotations) {
+        ignoreAnnotatedBy = Set.of(userAnnotations);
     }
 
     @Override
@@ -132,16 +157,33 @@ public class ParameterNumberCheck
     }
 
     /**
-     * Determine whether to ignore number of parameters for the method.
+     * Determine whether to ignore number of parameters.
      *
-     * @param ast the token to process
-     * @return true if this is overridden method and number of parameters should be ignored
-     *         false otherwise
+     * @param ast ast
+     * @return true if number of parameters should be ignored.
      */
     private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
-        // if you override a method, you have no power over the number of parameters
-        return ignoreOverriddenMethods
-                && AnnotationUtil.hasOverrideAnnotation(ast);
+        return isIgnoredOverriddenMethod(ast) || isAnnotatedByIgnoredAnnotations(ast);
+    }
+
+    /**
+     * Checks if ignoreOverriddenMethods property is true and the method is overridden.
+     *
+     * @param ast ast
+     * @return true if ignoreOverriddenMethods property is true and the method is overridden.
+     */
+    private boolean isIgnoredOverriddenMethod(DetailAST ast) {
+        return ignoreOverriddenMethods && AnnotationUtil.hasOverrideAnnotation(ast);
+    }
+
+    /**
+     * Checks if the constructor or method is annotated by ignored annotation(s).
+     *
+     * @param ast ast
+     * @return true if annotated by annotation(s) specified in ignoreAnnotatedBy property.
+     */
+    private boolean isAnnotatedByIgnoredAnnotations(DetailAST ast) {
+        return AnnotationUtil.containsAnnotation(ast, ignoreAnnotatedBy);
     }
 
 }

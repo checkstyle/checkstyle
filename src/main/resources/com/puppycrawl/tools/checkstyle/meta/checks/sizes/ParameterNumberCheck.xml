@@ -8,6 +8,10 @@
  Checks the number of parameters of a method or constructor.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
+               <description>Ignore number of parameters for
+ methods and constructors annotated with the specified annotation(s).</description>
+            </property>
             <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
                <description>Ignore number of parameters for
  methods with {@code @Override} annotation.</description>
