@@ -36,7 +36,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void testInputInnerAssignment() throws Exception {
+    public void testInputInnerAssignmentCheckLocalVariables() throws Exception {
         final String[] expected = {
             "22:15: " + getCheckMessage(MSG_KEY),
             "22:19: " + getCheckMessage(MSG_KEY),
@@ -45,16 +45,16 @@ public class InnerAssignmentCheckTest
             "73:19: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignment.java"), expected);
+                getPath("InputInnerAssignmentCheckLocalVariables.java"), expected);
     }
 
     @Test
-    public void testInputInnerAssignmentMethod() throws Exception {
+    public void testInputInnerAssignmentNoViolationIterativeStatements() throws Exception {
         final String[] expected = {
             "73:22: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputInnerAssignmentMethod.java"), expected);
+                getPath("InputInnerAssignmentNoViolationIterativeStatements.java"), expected);
     }
 
     @Test
