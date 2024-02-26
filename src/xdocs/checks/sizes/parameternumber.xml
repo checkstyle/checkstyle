@@ -25,6 +25,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td>ignoreAnnotatedBy</td>
+              <td>Ignore number of parameters for methods and constructors annotated with the specified annotation(s).</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>10.14.0</td>
+            </tr>
+            <tr>
               <td>ignoreOverriddenMethods</td>
               <td>Ignore number of parameters for methods with <code>@Override</code> annotation.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -112,6 +119,33 @@
 public void needsLotsOfParameters(int a,
     int b, int c, int d, int e, int f, int g, int h) {
     ...
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check to ignore number of parameters for methods and constructors with
+          <code>@Session</code> annotation.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterNumber&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotatedBy&quot; value=&quot;Session&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code"> Example:</p>
+        <source>
+@Session
+public void ignoredAnnotatedMethod(int a, int b, int c, int d,
+    int e, int f, int g, int h) {
+
+}
+
+@Bit
+public void checkedAnnotatedMethod(int a, int b, int c, int d,
+    int e, int f, int g, int h) { // violation, 'More than 7 parameters (found 8)'
+
 }
         </source>
       </subsection>
