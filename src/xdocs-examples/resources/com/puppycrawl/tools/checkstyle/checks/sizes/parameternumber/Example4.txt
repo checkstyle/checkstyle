@@ -1,0 +1,31 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParameterNumber">
+      <property name="ignoreAnnotatedBy" value="JsonCreator"/>
+    </module>
+  </module>
+</module>
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
+
+// xdoc section -- start
+class Example {
+    @JsonCreator
+    Example(int a, int b, int c, int d,
+            int e, int f, int g, int h) {}
+
+    // violation below, 'More than 7 parameters (found 8)'
+    Example(String a, String b, String c, String d,
+            String e, String f, String g, String h) {}
+
+    // annotation name must be an exact match
+    // violation below, 'More than 7 parameters (found 8)'
+    @com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber.Example.JsonCreator
+    Example(float a, float b, float c, float d,
+            float e, float f, float g, float h) {}
+
+    @interface JsonCreator {}
+}
+// xdoc section -- end
