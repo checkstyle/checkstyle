@@ -493,19 +493,20 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * Check whether given node a preceeding access modifer or not.
-     * 
+     *
      * @param node the node whose predecessors are to be checked.
      * @return true if node is preceeded by an access modifier else false.
      */
     private boolean isPreceededByAnyModifier(DetailAST node) {
         boolean result = false;
-        while (node.getPreviousSibling() != null
-            && !TokenUtil.isOfType(node.getPreviousSibling(),
+        DetailAST tempNode = node;
+        while (tempNode.getPreviousSibling() != null
+            && !TokenUtil.isOfType(tempNode.getPreviousSibling(),
             TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_PRIVATE, TokenTypes.LITERAL_PROTECTED,
             TokenTypes.FINAL, TokenTypes.ABSTRACT)) {
-                node = node.getPreviousSibling();
-            }
-        if (node.getPreviousSibling() != null) {
+            tempNode = tempNode.getPreviousSibling();
+        }
+        if (tempNode.getPreviousSibling() != null) {
             result = true;
         }
         return result;
