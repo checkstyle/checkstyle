@@ -8,7 +8,7 @@ illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
-public class InputIllegalCatch {
+public class InputIllegalCatchCheckDefaultTokens {
     public void foo() {
         try { //class names
         } catch (RuntimeException e) { // violation

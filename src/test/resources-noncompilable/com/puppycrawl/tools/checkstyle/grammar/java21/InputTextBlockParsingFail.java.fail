@@ -1,0 +1,15 @@
+//non-compiled with javac, we should fail to parse this file
+package com.puppycrawl.tools.checkstyle.grammar.java21;
+
+public class InputTextBlockParsingFail {
+
+    // This should fail to parse since it is not
+    // compilable with javac; String templates must be on the
+    // RHS of a template processor expression. Our grammar
+    // previously parsed this code as a text block,
+    // but this is not a legal escape to be used
+    // in a text block.
+    String s = """
+            \{}
+            """;
+}

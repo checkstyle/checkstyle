@@ -235,8 +235,8 @@
     <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.42.0</checkerframework.version>
-    <error-prone.version>2.24.1</error-prone.version>
-    <error-prone-support.version>0.14.0</error-prone-support.version>
+    <error-prone.version>2.25.0</error-prone.version>
+    <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -247,11 +247,15 @@
       -Xep:CollectorMutability:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
+      -Xep:FormatStringConcatenation:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
       -Xep:PrimitiveComparison:ERROR
+      -Xep:RedundantStringConversion:ERROR
+      -Xep:Slf4jLogStatement:ERROR
+      -Xep:StringJoin:ERROR
       -Xep:TimeZoneUsage:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
@@ -261,8 +265,6 @@
       -Xep:JUnitValueSource:OFF
       <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
       -Xep:LexicographicalAnnotationListing:OFF
-      <!-- This check is not finalized. -->
-      -Xep:MethodReferenceUsage:OFF
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
     </error-prone.configuration-args>
@@ -367,7 +369,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.15.6</version>
+      <version>3.15.7</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -493,7 +495,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -503,7 +505,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.5.1</version>
+          <version>3.5.2</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -2529,7 +2531,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2588,7 +2590,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2647,7 +2649,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2705,7 +2707,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2762,7 +2764,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2820,7 +2822,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2880,7 +2882,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -2939,7 +2941,7 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
               <maxmem>8192m</maxmem>
               <compilerArguments>
@@ -3075,6 +3077,9 @@
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
@@ -3312,6 +3317,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4407,6 +4415,9 @@
                 <!-- performance optimization -->
                 <param>initStringBuilderWithOptimalBuffer</param>
               </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -4480,6 +4491,9 @@
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <avoidCallsTo>
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <avoidCallsTo>
@@ -4807,6 +4821,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -5101,6 +5118,9 @@
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>

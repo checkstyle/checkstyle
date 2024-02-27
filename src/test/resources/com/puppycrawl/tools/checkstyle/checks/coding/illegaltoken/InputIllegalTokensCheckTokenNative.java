@@ -1,6 +1,6 @@
 /*
 IllegalToken
-tokens = (default)LABELED_STAT
+tokens = LITERAL_NATIVE
 
 
 */
@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokens
+public class InputIllegalTokensCheckTokenNative
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -24,7 +24,7 @@ public class InputIllegalTokens
         }
     }
 
-    public native void nativeMethod();
+    public native void nativeMethod(); // violation
 
     public void methodWithLiterals()
     {
@@ -33,9 +33,9 @@ public class InputIllegalTokens
     }
 
     public void methodWithLabels() {
-        label: // violation
+        label:
         {
-            anotherLabel: // violation
+            anotherLabel: // some comment href
             do {
                 continue anotherLabel;
             } while (false);
