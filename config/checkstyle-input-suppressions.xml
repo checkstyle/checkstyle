@@ -2489,6 +2489,4 @@
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtil7.java"/>
 </suppressions>
