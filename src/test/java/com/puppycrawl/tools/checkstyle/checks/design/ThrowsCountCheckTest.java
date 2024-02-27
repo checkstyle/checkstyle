@@ -37,7 +37,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testThrowsCountDefault() throws Exception {
 
         final String[] expected = {
             "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
@@ -47,18 +47,18 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputThrowsCount.java"), expected);
+                getPath("InputThrowsCountDefault.java"), expected);
     }
 
     @Test
-    public void testMax() throws Exception {
+    public void testThrowsCountCustomMaxCount() throws Exception {
 
         final String[] expected = {
             "35:20: " + getCheckMessage(MSG_KEY, 6, 5),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputThrowsCount2.java"), expected);
+                getPath("InputThrowsCountCustomMaxCount.java"), expected);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotIgnorePrivateMethod() throws Exception {
+    public void testThrowsCountNotIgnorePrivateMethods() throws Exception {
         final String[] expected = {
             "25:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "30:20: " + getCheckMessage(MSG_KEY, 5, 4),
@@ -105,11 +105,11 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             "63:43: " + getCheckMessage(MSG_KEY, 5, 4),
         };
         verifyWithInlineConfigParser(
-                getPath("InputThrowsCount3.java"), expected);
+                getPath("InputThrowsCountNotIgnorePrivateMethods.java"), expected);
     }
 
     @Test
-    public void testMethodWithAnnotation() throws Exception {
+    public void testThrowsCountMethodWithAnnotation() throws Exception {
         final String[] expected = {
             "26:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
@@ -118,7 +118,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOverriding() throws Exception {
+    public void testThrowsCountMaxAllowZero() throws Exception {
         final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 1, 0),
             "21:20: " + getCheckMessage(MSG_KEY, 1, 0),
@@ -129,7 +129,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             "67:43: " + getCheckMessage(MSG_KEY, 5, 0),
         };
         verifyWithInlineConfigParser(
-                getPath("InputThrowsCount4.java"), expected);
+                getPath("InputThrowsCountMaxAllowZero.java"), expected);
     }
 
 }
