@@ -5,7 +5,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.14.1-SNAPSHOT</version>
+  <version>10.14.0</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
