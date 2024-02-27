@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Simple XML logger.
@@ -363,7 +362,7 @@ public class XMLLogger
          * @return the file error events.
          */
         public List<AuditEvent> getErrors() {
-            return UnmodifiableCollectionUtil.unmodifiableList(errors);
+            return Collections.unmodifiableList(errors);
         }
 
         /**
@@ -381,7 +380,7 @@ public class XMLLogger
          * @return the file exceptions.
          */
         public List<Throwable> getExceptions() {
-            return UnmodifiableCollectionUtil.unmodifiableList(exceptions);
+            return Collections.unmodifiableList(exceptions);
         }
 
         /**
