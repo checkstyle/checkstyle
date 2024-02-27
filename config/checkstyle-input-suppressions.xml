@@ -2487,6 +2487,5 @@
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocType3.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
+
 </suppressions>
