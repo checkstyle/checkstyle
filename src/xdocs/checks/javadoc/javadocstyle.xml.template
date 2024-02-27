@@ -19,6 +19,9 @@
           <li>
             Ensures the first sentence ends with proper punctuation
             (That is a period, question mark, or exclamation mark, by default).
+            Note that this check is not applied to inline <code>@return</code> tags,
+            because the Javadoc tools automatically appends a period to the end of the tag
+            content.
             Javadoc automatically places the first sentence in the
             method summary table and index. Without proper punctuation
             the Javadoc may be malformed. All items eligible for the
