@@ -33,7 +33,8 @@
         <ul>
           <li>
             Remove &#39;//ok&#39; comments from Input files .
-            Author: Aye Nyein San, biplavoraon, mahfouz72, Abhishek Maity, SteLeo1602, akanksha, MANISH-K-07, Tahanima Chowdhury, CubeTures
+            Author: Aye Nyein San, biplavoraon, mahfouz72, Abhishek Maity, SteLeo1602, akanksha,
+            MANISH-K-07, Tahanima Chowdhury, CubeTures
             <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
           </li>
           <li>
