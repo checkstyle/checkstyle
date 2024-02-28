@@ -5503,9 +5503,8 @@ public final class TokenTypes {
      * Beginning of single-line comment: '//'.
      *
      * <pre>
-     * +--SINGLE_LINE_COMMENT
-     *         |
-     *         +--COMMENT_CONTENT
+     * SINGLE_LINE_COMMENT -&gt; //
+     *  `--COMMENT_CONTENT -&gt; \r\n
      * </pre>
      *
      * <p>For example:</p>
