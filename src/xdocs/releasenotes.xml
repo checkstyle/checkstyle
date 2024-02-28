@@ -10,6 +10,133 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.14.0">
+      <div class="releaseDate">28.02.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Checkstyle fails to parse unnamed variable.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13988">#13988</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            GenericWhitespace Check ignores exception to the &quot;&gt;&quot; rule for succeeding
+            whitespaces.
+            Author: sktpy
+            <a href="https://github.com/checkstyle/checkstyle/issues/14344">#14344</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Aye Nyein San, biplavoraon, mahfouz72, Abhishek Maity, SteLeo1602, akanksha, MANISH-K-07, Tahanima Chowdhury, CubeTures
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Update Codenarc to highest compatible release - v2.2.0.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14556">#14556</a>
+          </li>
+          <li>
+            Remove UnmodifiableCollectionUtil and use pitest funmodifiablecollection feature.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/14482">#14482</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            improve text block grammar.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14503">#14503</a>
+          </li>
+          <li>
+            checker-framework.yml should be able to fail execution if report generation is failed.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14396">#14396</a>
+          </li>
+          <li>
+            upadat example in javadoc for EMBEDDED_EXPRESSION* tokens.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14317">#14317</a>
+          </li>
+          <li>
+            doc: mention text block suppression.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Rename Java Input files and test methods to specify Test functionality.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14436">#14436</a>
+          </li>
+          <li>
+            infra: should use release 11 for compilation.
+            Author: Michael Keppler
+            <a href="https://github.com/checkstyle/checkstyle/issues/14485">#14485</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Coding-Aliens, sktpy, mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: mahfouz72, MANISH-K-07, ChristianCecili
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Execute all checkstyle samples in each PR execution.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12558">#12558</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: mahfouz72, piyush bakde, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: mahfouz72, Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Forbid Files.createTempDirectory in Checkstyle and replace with @TempDir.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14220">#14220</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: mahfouz72, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Expanding maxmem to resolve OOM Exception (Checker checks).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14346">#14346</a>
+          </li>
+          <li>
+            doc: fix releasenotes.xml line length violation.
+            Author: Nick Mancuso
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.13.0">
       <div class="releaseDate">28.01.2024</div>
       <p>New:</p>
