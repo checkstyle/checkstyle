@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NavigableMap;
-import java.util.Optional;
 import java.util.TreeMap;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -306,15 +305,13 @@ public class LineWrappingHandler {
         while (TokenUtil.isOfType(tempNode.getPreviousSibling(), TokenTypes.ANNOTATION)) {
             tempNode = tempNode.getPreviousSibling();
         }
+        tempNode = tempNode.getPreviousSibling();
         final boolean isPreviousToPreviousSiblingAccessModifier =
-            Optional.ofNullable(tempNode).map(DetailAST::getPreviousSibling)
-                .filter(sibling -> {
-                    return TokenUtil.isOfType(sibling, TokenTypes.LITERAL_PUBLIC,
-                    TokenTypes.FINAL, TokenTypes.ABSTRACT);
-                }).isPresent();
+            TokenUtil.isOfType(tempNode, TokenTypes.LITERAL_PUBLIC, TokenTypes.FINAL,
+            TokenTypes.ABSTRACT);
         final boolean isCurrentNodeAtNode = TokenUtil.isOfType(node, TokenTypes.AT);
         final boolean isPreviousSiblingAnnotation =
-                TokenUtil.isOfType(parentNode.getPreviousSibling(), TokenTypes.ANNOTATION);
+            TokenUtil.isOfType(parentNode.getPreviousSibling(), TokenTypes.ANNOTATION);
         return isCurrentNodeAtNode
             && isPreviousSiblingAnnotation
             && isPreviousToPreviousSiblingAccessModifier;
@@ -349,7 +346,6 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
@@ -358,7 +354,7 @@ public class LineWrappingHandler {
             final DetailAST parentNode = node.getParent();
             final boolean isArrayInitPresentInAncestors =
                 isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
-                final boolean isCurrentNodeCloseAnnotationAloneInLine =
+            final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 isCurrentNodeCloseAnnotationAloneInLine(node, lastAnnotationNode);
 
             final boolean condition = !isArrayInitPresentInAncestors
@@ -369,7 +365,7 @@ public class LineWrappingHandler {
                     || TokenUtil.areOnSameLine(node, atNode));
 
             if (condition && isCurrentNodeAnnotationLineWrappedInClassDef(node, parentNode)) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, indentLevel);
             }
             else if (condition) {
                 logWarningMessage(node, firstNodeIndent);

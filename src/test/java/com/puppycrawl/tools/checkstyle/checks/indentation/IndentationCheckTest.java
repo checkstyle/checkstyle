@@ -3014,7 +3014,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "40:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
         };
 
-        verifyWarns(checkConfig, getPath("InputIndentationAnnotationMultiLineIncorrect.java"), expected);
+        verifyWarns(
+            checkConfig, getPath("InputIndentationAnnotationMultiLineIncorrect.java"), expected);
     }
 
     @Test
@@ -3030,7 +3031,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWarns(checkConfig, getPath("InputIndentationAnnotationMultiLineCorrect.java"), expected);
+        verifyWarns(
+            checkConfig, getPath("InputIndentationAnnotationMultiLineCorrect.java"), expected);
     }
 
     @Test
