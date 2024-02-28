@@ -349,7 +349,6 @@ public class LineWrappingHandler {
         final int currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
@@ -358,7 +357,7 @@ public class LineWrappingHandler {
             final DetailAST parentNode = node.getParent();
             final boolean isArrayInitPresentInAncestors =
                 isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
-                final boolean isCurrentNodeCloseAnnotationAloneInLine =
+            final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 isCurrentNodeCloseAnnotationAloneInLine(node, lastAnnotationNode);
 
             final boolean condition = !isArrayInitPresentInAncestors
@@ -369,7 +368,7 @@ public class LineWrappingHandler {
                     || TokenUtil.areOnSameLine(node, atNode));
 
             if (condition && isCurrentNodeAnnotationLineWrappedInClassDef(node, parentNode)) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, indentLevel);
             }
             else if (condition) {
                 logWarningMessage(node, firstNodeIndent);

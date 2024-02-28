@@ -24,6 +24,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Abstract base class for all handlers.
@@ -491,6 +492,27 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+     * Check whether given node a preceeding access modifer or not.
+     *
+     * @param node the node whose predecessors are to be checked.
+     * @return true if node is preceeded by an access modifier else false.
+     */
+    private boolean isPreceededByAnyModifier(DetailAST node) {
+        boolean result = false;
+        DetailAST tempNode = node;
+        while (tempNode.getPreviousSibling() != null
+            && !TokenUtil.isOfType(tempNode.getPreviousSibling(),
+            TokenTypes.LITERAL_PUBLIC, TokenTypes.LITERAL_PRIVATE, TokenTypes.LITERAL_PROTECTED,
+            TokenTypes.FINAL, TokenTypes.ABSTRACT)) {
+            tempNode = tempNode.getPreviousSibling();
+        }
+        if (tempNode.getPreviousSibling() != null) {
+            result = true;
+        }
+        return result;
+    }
+
+    /**
      * Check the indentation level of modifiers.
      */
     protected void checkModifiers() {
@@ -500,6 +522,8 @@ public abstract class AbstractExpressionHandler {
              modifier != null;
              modifier = modifier.getNextSibling()) {
             if (isOnStartOfLine(modifier)
+                && (!TokenUtil.isOfType(modifier, TokenTypes.ANNOTATION)
+                    || modifier.getPreviousSibling() == null || !isPreceededByAnyModifier(modifier))
                 && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
