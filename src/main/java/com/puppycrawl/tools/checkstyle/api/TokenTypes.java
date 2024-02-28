@@ -681,23 +681,18 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--PARAMETERS
-     *     |
-     *     +--PARAMETER_DEF
-     *         |
-     *         +--MODIFIERS
-     *         +--TYPE
-     *             |
-     *             +--LITERAL_INT (int)
-     *         +--IDENT (start)
-     *     +--COMMA (,)
-     *     +--PARAMETER_DEF
-     *         |
-     *         +--MODIFIERS
-     *         +--TYPE
-     *             |
-     *             +--LITERAL_INT (int)
-     *         +--IDENT (end)
+     * --PARAMETERS -&gt; PARAMETERS
+     *    |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *    |   |--MODIFIERS -&gt; MODIFIERS
+     *    |   |--TYPE -&gt; TYPE
+     *    |   |   `--LITERAL_INT -&gt; int
+     *    |   `--IDENT -&gt; start
+     *    |--COMMA -&gt; ,
+     *    `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *        |--MODIFIERS -&gt; MODIFIERS
+     *        |--TYPE -&gt; TYPE
+     *        |   `--LITERAL_INT -&gt; int
+     *        `--IDENT -&gt; end
      * </pre>
      *
      * @see #PARAMETER_DEF
