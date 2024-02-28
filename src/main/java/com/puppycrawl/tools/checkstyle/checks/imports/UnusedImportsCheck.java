@@ -65,6 +65,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * comment {@code {@link List}}. The alternative to avoid introducing a compile-time
  * dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
  * </li>
+ * <li>
+ * A static method is imported when used as method reference. In that case,
+ * only the type needs to be imported and that's enough to resolve the method.
+ * <pre>
+ * import static java.lang.String.format; // This is not needed
+ * class FooBar {
+ *   public static void main(String[] args) {
+ *     Optional&lt;String&gt; test = Optional.empty();
+ *     test.map(String::format);
+ *   }
+ * }
+ * </pre>
+ * </li>
  * </ul>
  * <p>
  * The main limitation of this check is handling the cases where:
@@ -256,19 +269,33 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
 
-        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
-                || parentType == TokenTypes.METHOD_DEF;
-
-        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
-                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
-                && ast.getNextSibling() != null;
+        final boolean isClassOrMethod = parentType == TokenTypes.DOT
+                || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (!isPossibleDotClassOrInMethod || isQualifiedIdent) {
+        else if (!isClassOrMethod || isQualifiedIdentifier(ast)) {
             currentFrame.addReferencedType(ast.getText());
         }
+    }
+
+    /**
+     * Checks whether ast is a fully qualified identifier.
+     *
+     * @param ast to check
+     * @return true if given ast is a fully qualified identifier
+     */
+    private static boolean isQualifiedIdentifier(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+
+        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
+                && ast.getNextSibling() != null;
+        final boolean isQualifiedIdentFromMethodRef = parentType == TokenTypes.METHOD_REF
+                && ast.getNextSibling() != null;
+        return isQualifiedIdent || isQualifiedIdentFromMethodRef;
     }
 
     /**
