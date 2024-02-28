@@ -123,4 +123,34 @@ public class ParameterNumberCheckTest
                 getPath("InputParameterNumber2.java"), expected);
     }
 
+    @Test
+    public void testIgnoreAnnotatedBy() throws Exception {
+        final String[] expected = {
+            "23:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "30:10: " + getCheckMessage(MSG_KEY, 2, 4),
+            "35:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "43:9: " + getCheckMessage(MSG_KEY, 2, 4),
+            "58:30: " + getCheckMessage(MSG_KEY, 2, 3),
+            "62:29: " + getCheckMessage(MSG_KEY, 2, 3),
+            "77:34: " + getCheckMessage(MSG_KEY, 2, 4),
+            "97:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "106:14: " + getCheckMessage(MSG_KEY, 2, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberIgnoreAnnotatedBy.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreAnnotatedByFqcn() throws Exception {
+        final String[] expected = {
+            "15:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "17:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "23:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "27:10: " + getCheckMessage(MSG_KEY, 2, 3),
+            "41:14: " + getCheckMessage(MSG_KEY, 2, 3),
+            "45:14: " + getCheckMessage(MSG_KEY, 2, 3),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNumberIgnoreAnnotatedByFqcn.java"), expected);
+    }
 }
