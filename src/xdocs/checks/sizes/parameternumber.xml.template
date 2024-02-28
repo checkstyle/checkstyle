@@ -63,6 +63,42 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.txt"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example4-config">
+          To configure the check to ignore methods and constructors annotated with
+          <code>JsonCreator</code> annotation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          Fully qualified class name(s) can also specified in ignoreAnnotatedBy property.
+          Note that when specifying annotation(s), only methods and constructors annotated with
+          the exact specified annotation(s) will be ignored, any variation, even if it refers to
+          the same annotation, will result in it being checked, and produce violation if any.
+        </p>
+        <p id="Example5-config">
+          To configure the check to ignore methods and constructors annotated with
+          <code>java.lang.Deprecated</code> annotation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
