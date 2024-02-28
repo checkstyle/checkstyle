@@ -395,4 +395,32 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testIsPrecededByAnyModifier() {
+        final DetailAstImpl node1 = new DetailAstImpl();
+        final DetailAstImpl node2 = new DetailAstImpl();
+        final DetailAstImpl node3 = new DetailAstImpl();
+
+        node1.setType(TokenTypes.AT);
+        node2.setType(TokenTypes.ANNOTATION);
+        node3.setType(TokenTypes.LITERAL_PUBLIC);
+
+        final DetailAstImpl node4 = new DetailAstImpl();
+        final DetailAstImpl node5 = new DetailAstImpl();
+
+        node4.setType(TokenTypes.ANNOTATIONS);
+        node5.setType(TokenTypes.AT);
+
+        node2.addPreviousSibling(node3);
+        node1.addPreviousSibling(node2);
+        node4.addPreviousSibling(node5);
+
+        assertWithMessage("Result is not expected")
+            .that(TokenUtil.isPrecededByAnyModifier(node1))
+            .isTrue();
+        assertWithMessage("Result is not expected")
+            .that(TokenUtil.isPrecededByAnyModifier(node4))
+            .isFalse();
+    }
+
 }
