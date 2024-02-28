@@ -43,6 +43,7 @@ public class VariableDeclarationUsageDistanceTest extends AbstractGoogleModuleTe
             "219:9: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
             "483:9: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
             "495:9: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
+            "508:9: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
         };
 
         final Configuration checkConfig =
