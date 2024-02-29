@@ -24,6 +24,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Abstract base class for all handlers.
@@ -500,6 +501,9 @@ public abstract class AbstractExpressionHandler {
              modifier != null;
              modifier = modifier.getNextSibling()) {
             if (isOnStartOfLine(modifier)
+                && (!TokenUtil.isOfType(modifier, TokenTypes.ANNOTATION)
+                    || modifier.getPreviousSibling() == null
+                    || !TokenUtil.isPreceededByAnyModifier(modifier))
                 && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
