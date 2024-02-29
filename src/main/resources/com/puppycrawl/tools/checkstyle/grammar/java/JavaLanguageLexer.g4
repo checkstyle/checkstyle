@@ -110,7 +110,12 @@ tokens {
 
     LITERAL_NON_SEALED, LITERAL_SEALED, LITERAL_PERMITS,
     PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN,
-    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS
+    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
+    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
+    STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END,
+    STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
+    EMBEDDED_EXPRESSION_END
+
 }
 
 @header {
@@ -148,6 +153,9 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     /** Tracks the starting column of a block comment. */
     int startCol = -1;
+
+     private int stringTemplateDepth = 0;
+
 }
 
 // Keywords and restricted identifiers
@@ -242,7 +250,8 @@ LITERAL_FALSE:           'false';
 
 CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
-STRING_LITERAL:          '"' (EscapeSequence | ~["\\\r\n])* '"';
+fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
+STRING_LITERAL:          '"' StringFragment '"';
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -311,6 +320,10 @@ DOUBLE_COLON:            '::';
 
 AT:                      '@';
 ELLIPSIS:                '...';
+
+STRING_TEMPLATE_BEGIN:   '"'  StringFragment '\\' '{'
+                         {stringTemplateDepth++;}
+                         ;
 
 // Whitespace and comments
 
