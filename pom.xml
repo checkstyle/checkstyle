@@ -4362,6 +4362,7 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.XdocsPropertyType*</param>
