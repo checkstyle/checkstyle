@@ -120,6 +120,9 @@ tokens {
 }
 
 @header {
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
@@ -157,6 +160,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     private int stringTemplateDepth = 0;
     private int bracketCounter = 0;
+    private final Deque<Integer> bracketCounterStack = new ArrayDeque<>();
 }
 
 // Keywords and restricted identifiers
@@ -282,9 +286,9 @@ RCURLY:                '}'
     if (stringTemplateDepth > 0 && bracketCounter > 0) {
         bracketCounter--;
     } else if (stringTemplateDepth > 0 && bracketCounter == 0) {
-        _input.seek(_tokenStartCharIndex);
-        setCharPositionInLine(_tokenStartCharPositionInLine);
-        setLine(_tokenStartLine);
+//        _input.seek(_tokenStartCharIndex);
+//        setCharPositionInLine(_tokenStartCharPositionInLine);
+//        setLine(_tokenStartLine);
         more();
         pushMode(StringTemplate);
     }
