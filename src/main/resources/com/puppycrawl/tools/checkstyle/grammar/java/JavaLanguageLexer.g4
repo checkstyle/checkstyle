@@ -156,6 +156,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
+    private int bracketCounter = 0;
 }
 
 // Keywords and restricted identifiers
@@ -251,15 +252,16 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
-STRING_LITERAL:         '"' StringFragment
-                        ( '"'
-                        | '\\' '{'
-                          {
-                            setType(STRING_TEMPLATE_BEGIN);
-                            stringTemplateDepth++;
-                          }
-                        )
-                        ;
+STRING_LITERAL:         '"' StringFragment '"';
+
+STRING_TEMPLATE_BEGIN: '"' StringFragment '\\' '{' {
+    stringTemplateDepth++;
+    // need a stack for bracket counter?
+    bracketCounter = 0;
+
+    };
+
+
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -269,8 +271,26 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{';
-RCURLY:                  '}';
+LCURLY:                  '{' {
+   if (stringTemplateDepth > 0) {
+       bracketCounter++;
+   }
+};
+
+RCURLY:                '}'
+{
+    if (stringTemplateDepth > 0 && bracketCounter > 0) {
+        bracketCounter--;
+    } else if (stringTemplateDepth > 0 && bracketCounter == 0) {
+        _input.seek(_tokenStartCharIndex);
+        setCharPositionInLine(_tokenStartCharPositionInLine);
+        setLine(_tokenStartLine);
+        more();
+        pushMode(StringTemplate);
+    }
+}
+;
+
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -329,14 +349,7 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '\\' '{'
-                         ;
 
-STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '"'
-                         {stringTemplateDepth--;}
-                         ;
 
 // Text block fragments
 
@@ -468,3 +481,14 @@ mode TextBlock;
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
         ;
+
+mode StringTemplate;
+
+   STRING_TEMPLATE_MID:  {stringTemplateDepth > 0}?
+                         StringFragment '\\' '{' -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+
+
+    STRING_TEMPLATE_END:  {stringTemplateDepth > 0}?
+                         StringFragment '"'
+                         {stringTemplateDepth--;}
+                         -> popMode, type(STRING_TEMPLATE_END);
