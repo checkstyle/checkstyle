@@ -1,0 +1,129 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2024 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.grammar;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Optional;
+
+import org.antlr.v4.runtime.Lexer;
+
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+
+/**
+ * This class is used to keep track of the lexer context to help us determine
+ * when to switch lexer modes.
+ */
+public final class CompositeLexerContextCache {
+
+    /** Stack for counting curly brackets across nested string templates. */
+    private final Deque<Integer> curlyBraceCounterStack;
+
+    /** The lexer to use. */
+    private final Lexer lexer;
+
+    /** Depth of the string template context. */
+    private int stringTemplateDepth;
+
+    /**
+     * Creates a new CompositeLexerContextCache instance.
+     *
+     * @param lexer the lexer to use
+     */
+    public CompositeLexerContextCache(Lexer lexer) {
+        curlyBraceCounterStack = new ArrayDeque<>();
+        this.lexer = lexer;
+    }
+
+    /**
+     * Update the left curly brace context if we are in a string template.
+     */
+    public void updateLeftCurlyBraceContext() {
+        if (isInStringTemplateContext()) {
+            final int bracketCounter = curlyBraceCounterStack.pop();
+            curlyBraceCounterStack.push(bracketCounter + 1);
+        }
+    }
+
+    /**
+     * Update the right curly brace context if we are in a string template.
+     */
+    public void updateRightCurlyBraceContext() {
+        if (isInStringTemplateContext()) {
+
+            final int currentContextCounter = Optional.ofNullable(curlyBraceCounterStack.peek())
+                    .orElseThrow(
+                            () -> new IllegalStateException("No curly brace counter on the stack")
+                    );
+
+            if (currentContextCounter == 0) {
+                // This right curly brace is the start delimiter
+                // of a String template middle or end. We consume
+                // the right curly brace to be used as the first token
+                // in the appropriate StringTemplate lexer mode rule, enter
+                // the StringTemplate lexer mode, and keep consuming
+                // the rest of the StringTemplate middle or end.
+                pushToModeStackWithMore(JavaLanguageLexer.StringTemplate);
+            }
+            else {
+                // We've consumed a right curly brace within an embedded expression.
+                final Integer bracketCounter = curlyBraceCounterStack.pop();
+                curlyBraceCounterStack.push(bracketCounter - 1);
+            }
+        }
+    }
+
+    /**
+     * Enter a string template context.
+     */
+    public void enterStringTemplateContext() {
+        stringTemplateDepth++;
+        curlyBraceCounterStack.push(0);
+    }
+
+    /**
+     * Exit a string template context.
+     */
+    public void exitStringTemplateContext() {
+        stringTemplateDepth--;
+        curlyBraceCounterStack.pop();
+    }
+
+    /**
+     * Push a mode to the mode stack and consume more input
+     * to complete the current token.
+     *
+     * @param mode the mode to push to the mode stack
+     */
+    private void pushToModeStackWithMore(int mode) {
+        lexer.more();
+        lexer.pushMode(mode);
+    }
+
+    /**
+     * Check if we are in a string template context.
+     *
+     * @return true if we are in a string template context
+     */
+    private boolean isInStringTemplateContext() {
+        return stringTemplateDepth > 0;
+    }
+
+}
