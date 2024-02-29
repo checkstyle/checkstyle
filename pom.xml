@@ -4362,6 +4362,7 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.XdocsPropertyType*</param>
@@ -4393,6 +4394,8 @@
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulatorTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParseTreeTest</param>
+                <!-- this test is required for CompositeLexerContextCache -->
+                <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
                 <!-- this test is required for Checker -->
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
