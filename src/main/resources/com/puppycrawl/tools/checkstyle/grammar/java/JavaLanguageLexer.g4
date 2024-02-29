@@ -251,7 +251,15 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
-STRING_LITERAL:          '"' StringFragment '"';
+STRING_LITERAL:         '"' StringFragment
+                        ( '"'
+                        | '\\' '{'
+                          {
+                            setType(STRING_TEMPLATE_BEGIN);
+                            stringTemplateDepth++;
+                          }
+                        )
+                        ;
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -321,10 +329,6 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
-                         {stringTemplateDepth++;}
-                         ;
-
 STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
                          '}' StringFragment '\\' '{'
                          ;
