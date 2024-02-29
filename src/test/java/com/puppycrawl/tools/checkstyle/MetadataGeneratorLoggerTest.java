@@ -35,6 +35,19 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArray
 
 public class MetadataGeneratorLoggerTest {
 
+    private final LocalizedMessage emptyOutputStreamMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "MetadataGeneratorLogger.emptyOutputStream");
+    private final LocalizedMessage violationRequiresExceptionMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "MetadataGeneratorLogger.violationRequiresException");
+    private final LocalizedMessage unexpectedCloseMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "MetadataGeneratorLogger.unexpectedClose");
+    private final LocalizedMessage unexpectedFlushMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "MetadataGeneratorLogger.unexpectedFlush");
+
     @Test
     public void testIgnoreSeverityLevel() {
         final OutputStream outputStream = new ByteArrayOutputStream();
@@ -43,10 +56,11 @@ public class MetadataGeneratorLoggerTest {
         final AuditEvent event = new AuditEvent(this, "fileName",
                 new Violation(1, 2, "bundle", "key",
                         null, SeverityLevel.IGNORE, null, getClass(), "customViolation"));
+        final String emptyOutputStream = emptyOutputStreamMessage.getMessage();
         logger.finishLocalSetup();
         logger.addError(event);
         logger.auditFinished(event);
-        assertWithMessage("Output stream should be empty")
+        assertWithMessage(emptyOutputStream)
                 .that(outputStream.toString())
                 .isEmpty();
     }
@@ -57,9 +71,10 @@ public class MetadataGeneratorLoggerTest {
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 OutputStreamOptions.CLOSE);
         final AuditEvent event = new AuditEvent(1);
+        final String violationRequiresException = violationRequiresExceptionMessage.getMessage();
         logger.addException(event, new IllegalStateException("Test Exception"));
         logger.auditFinished(event);
-        assertWithMessage("Violation should contain exception message")
+        assertWithMessage(violationRequiresException)
                 .that(outputStream.toString())
                 .contains("java.lang.IllegalStateException: Test Exception");
     }
@@ -71,7 +86,8 @@ public class MetadataGeneratorLoggerTest {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                     OutputStreamOptions.CLOSE);
             logger.auditFinished(new AuditEvent(1));
-            assertWithMessage("Unexpected close count")
+            final String unexpectedClose = unexpectedCloseMessage.getMessage();
+            assertWithMessage(unexpectedClose)
                     .that(outputStream.getCloseCount())
                     .isEqualTo(1);
         }
@@ -85,7 +101,8 @@ public class MetadataGeneratorLoggerTest {
                     OutputStreamOptions.NONE);
             final AuditEvent event = new AuditEvent(1);
             logger.auditFinished(event);
-            assertWithMessage("Unexpected close count")
+            final String unexpectedClose = unexpectedCloseMessage.getMessage();
+            assertWithMessage(unexpectedClose)
                     .that(outputStream.getCloseCount())
                     .isEqualTo(0);
         }
@@ -100,11 +117,12 @@ public class MetadataGeneratorLoggerTest {
             final AuditEvent event = new AuditEvent(1);
             logger.auditStarted(event);
             logger.fileFinished(event);
-            assertWithMessage("Unexpected flush count")
+            final String unexpectedFlush = unexpectedFlushMessage.getMessage();
+            assertWithMessage(unexpectedFlush)
                     .that(outputStream.getFlushCount())
                     .isEqualTo(2);
             logger.auditFinished(event);
-            assertWithMessage("Unexpected flush count")
+            assertWithMessage(unexpectedFlush)
                     .that(outputStream.getFlushCount())
                     .isEqualTo(3);
         }
