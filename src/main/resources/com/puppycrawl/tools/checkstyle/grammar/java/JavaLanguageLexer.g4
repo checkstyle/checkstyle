@@ -248,6 +248,7 @@ TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
 LITERAL_NULL:            'null';
 
+
 // Separators
 
 LPAREN:                  '(';

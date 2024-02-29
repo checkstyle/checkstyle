@@ -32,7 +32,6 @@ jobs:
       - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk19:
-    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 11
