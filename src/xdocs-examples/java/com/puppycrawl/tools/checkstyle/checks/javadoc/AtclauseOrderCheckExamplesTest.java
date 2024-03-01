@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,10 +33,45 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String tagOrder = "[@author, @version, @param, @return, @throws"
+            + ", @exception, @see,"
+            + " @since, @serial, @serialField, @serialData, @deprecated]";
 
+        final String[] expected = {
+            "42: " + getCheckMessage(MSG_KEY, tagOrder),
+            "44: " + getCheckMessage(MSG_KEY, tagOrder),
+            "52: " + getCheckMessage(MSG_KEY, tagOrder),
+            "54: " + getCheckMessage(MSG_KEY, tagOrder),
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String tagOrder = "[@author, @since, @version, @param, @return"
+            + ", @throws, @exception,"
+            + " @deprecated, @see, @serial, @serialField, @serialData]";
+
+        final String[] expected = {
+            "29: " + getCheckMessage(MSG_KEY, tagOrder),
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String tagOrder = "[@author, @since, @version, @param, @return"
+            + ", @throws, @exception,"
+            + " @deprecated, @see, @serial, @serialField, @serialData]";
+
+        final String[] expected = {
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
