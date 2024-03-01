@@ -124,8 +124,9 @@
                     LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY,
                     LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED,
                     LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN,
-                    NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR,
-                    SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND"/>
+                    NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SINGLE_LINE_COMMENT, SL,
+                    SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR,
+                    STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND"/>
       <message key="ws.notFollowed"
               value="WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks
                may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>

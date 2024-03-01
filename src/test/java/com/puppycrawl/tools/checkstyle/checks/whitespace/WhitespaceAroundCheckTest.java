@@ -85,6 +85,7 @@ public class WhitespaceAroundCheckTest
             "169:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "assert"),
             "172:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
             "172:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
+            "252:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
             "278:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
             "307:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
             "307:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
@@ -105,6 +106,7 @@ public class WhitespaceAroundCheckTest
             "171:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "172:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "173:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "221:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundSimple.java"), expected);
@@ -128,6 +130,8 @@ public class WhitespaceAroundCheckTest
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
             // + ":74:23: ';' is not followed by whitespace.",
             // + ":74:29: ';' is not followed by whitespace.",
+            "118:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+            "121:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
             "127:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "127:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
             "130:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
@@ -147,6 +151,8 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "118:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+            "121:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
             "134:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
             "134:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "134:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
@@ -179,6 +185,7 @@ public class WhitespaceAroundCheckTest
         final String[] expected = {
             "27:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
             "27:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "&"),
+            "31:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundGenerics.java"), expected);
@@ -186,7 +193,9 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void test1322879And1649038() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAround1.java"),
                expected);
@@ -210,6 +219,7 @@ public class WhitespaceAroundCheckTest
     @Test
     public void testIgnoreEnhancedForColon() throws Exception {
         final String[] expected = {
+            "28:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
             "39:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
         };
         verifyWithInlineConfigParser(
@@ -271,7 +281,9 @@ public class WhitespaceAroundCheckTest
 
     @Test
     public void allowEmptyMethods() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAround3.java"), expected);
     }
@@ -324,6 +336,7 @@ public class WhitespaceAroundCheckTest
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.QUESTION,
             TokenTypes.RCURLY,
+            TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.SL,
             TokenTypes.SLIST,
             TokenTypes.SL_ASSIGN,
