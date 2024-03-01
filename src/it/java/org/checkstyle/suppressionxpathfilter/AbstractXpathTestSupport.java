@@ -191,16 +191,24 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      *
      * @param moduleConfig module configuration.
      * @param fileToProcess input class file.
-     * @param expectedViolations expected violation messages.
+     * @param expectedViolation expected violation message.
      * @param expectedXpathQueries expected generated xpath queries.
      * @throws Exception if an error occurs
+     * @throws IllegalArgumentException if length of expectedViolation is more than 1
      */
     protected void runVerifications(DefaultConfiguration moduleConfig,
                                   File fileToProcess,
-                                  String[] expectedViolations,
+                                  String[] expectedViolation,
                                   List<String> expectedXpathQueries) throws Exception {
+        if (expectedViolation.length != 1) {
+            throw new IllegalArgumentException(
+                    "Expected violations should contain exactly one element."
+                            + " Multiple violations are not supported."
+            );
+        }
+
         final ViolationPosition position =
-                extractLineAndColumnNumber(expectedViolations);
+                extractLineAndColumnNumber(expectedViolation);
         final List<String> generatedXpathQueries =
                 generateXpathQueries(fileToProcess, position);
 
@@ -211,7 +219,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
                 generatedXpathQueries));
 
         final Integer[] warnList = getLinesWithWarn(fileToProcess.getPath());
-        verify(moduleConfig, fileToProcess.getPath(), expectedViolations, warnList);
+        verify(moduleConfig, fileToProcess.getPath(), expectedViolation, warnList);
         verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
         verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
     }
