@@ -908,10 +908,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeInterfaceMemberScopeIsPublic.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadocOnInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadocOnInterface.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypePublicOnly.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypePublicOnly.java"/>
@@ -1047,12 +1043,6 @@
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTags.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeTags.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodAllowedAnnotations.java"/>
   <suppress id="UnnecessaryOkComment"
