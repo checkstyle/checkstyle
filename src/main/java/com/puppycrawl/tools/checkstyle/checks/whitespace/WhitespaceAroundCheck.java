@@ -198,6 +198,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * QUESTION</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RCURLY">
  * RCURLY</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+ * SINGLE_LINE_COMMENT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL">
  * SL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SLIST">
@@ -314,6 +316,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.QUESTION,
             TokenTypes.RCURLY,
+            TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.SL,
             TokenTypes.SLIST,
             TokenTypes.SL_ASSIGN,
@@ -372,6 +375,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.QUESTION,
             TokenTypes.RCURLY,
+            TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.SL,
             TokenTypes.SLIST,
             TokenTypes.SL_ASSIGN,
@@ -391,6 +395,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     /**
