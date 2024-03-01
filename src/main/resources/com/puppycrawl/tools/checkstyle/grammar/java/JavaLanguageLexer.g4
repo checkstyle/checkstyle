@@ -159,8 +159,33 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
-   // private int bracketCounter = 0;
     private final Deque<Integer> bracketCounterStack = new ArrayDeque<>();
+
+    private void handleLeftCurlyBrace() {
+        if (stringTemplateDepth > 0) {
+            final Integer bracketCounter = bracketCounterStack.pop();
+            bracketCounterStack.push(bracketCounter + 1);
+        }
+    }
+
+    private void handleRightCurlyBrace() {
+        if (stringTemplateDepth > 0) {
+            if (bracketCounterStack.isEmpty()) {
+                // last bracket in outermost string template
+                more();
+                pushMode(StringTemplate);
+            } else {
+                final Integer bracketCounter = bracketCounterStack.pop();
+                if (bracketCounter > 0) {
+                    bracketCounterStack.push(bracketCounter - 1);
+                } else if (bracketCounter == 0) {
+                    // last bracket in nested string template
+                    more();
+                    pushMode(StringTemplate);
+                }
+            }
+        }
+    }
 }
 
 // Keywords and restricted identifiers
@@ -258,12 +283,12 @@ fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
 STRING_LITERAL:         '"' StringFragment '"';
 
-STRING_TEMPLATE_BEGIN: '"' StringFragment '\\' '{' {
-    stringTemplateDepth++;
-    // need a stack for bracket counter?
-    bracketCounterStack.push(0);
-
-    };
+STRING_TEMPLATE_BEGIN:  '"' StringFragment '\\' '{'
+                        {
+                            stringTemplateDepth++;
+                            bracketCounterStack.push(0);
+                        }
+                        ;
 
 
 
@@ -275,33 +300,8 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{' {
-   if (stringTemplateDepth > 0) {
-       final Integer bracketCounter = bracketCounterStack.pop();
-       bracketCounterStack.push(bracketCounter + 1);
-   }
-};
-
-RCURLY:                '}'
-{
-    if (stringTemplateDepth > 0) {
-        if (bracketCounterStack.isEmpty()) {
-            // last bracket
-            more();
-            pushMode(StringTemplate);
-        } else {
-            final Integer bracketCounter = bracketCounterStack.pop();
-            if (bracketCounter > 0) {
-                bracketCounterStack.push(bracketCounter - 1);
-            } else if (bracketCounter == 0) {
-                more();
-                pushMode(StringTemplate);
-            }
-        }
-    }
-}
-;
-
+LCURLY:                  '{' {handleLeftCurlyBrace();};
+RCURLY:                  '}' {handleRightCurlyBrace();};
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -495,11 +495,12 @@ mode TextBlock;
 
 mode StringTemplate;
 
-   STRING_TEMPLATE_MID:  {stringTemplateDepth > 0}?
-                         StringFragment '\\' '{' -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+    STRING_TEMPLATE_MID: {stringTemplateDepth > 0}?
+                         StringFragment '\\' '{'
+                         -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
 
 
-    STRING_TEMPLATE_END:  {stringTemplateDepth > 0}?
+    STRING_TEMPLATE_END: {stringTemplateDepth > 0}?
                          StringFragment '"'
                          {stringTemplateDepth--;}
                          -> popMode, type(STRING_TEMPLATE_END);
