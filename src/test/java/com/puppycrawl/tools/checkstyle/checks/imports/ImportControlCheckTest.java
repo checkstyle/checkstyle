@@ -30,6 +30,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -341,10 +342,14 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile =
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName1)).toFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "empty_" + UUID.randomUUID() + ".java";
+        final String filePath =
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName2)).toString();
 
         execute(checkerConfig, filePath);
         // One more time to use cache.

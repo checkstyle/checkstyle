@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -168,10 +170,13 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile =
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName)).toFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String filePath =
+                Files.createFile(temporaryFolder.toPath().resolve("file.java")).toString();
 
         execute(checkerConfig, filePath);
         // One more time to use cache.
@@ -200,11 +205,14 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         firstFilterConfig.addProperty("file", urlForTest);
 
         final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile =
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName1)).toFile();
         firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
+        final String uniqueFileName2 = "file_" + UUID.randomUUID() + ".java";
         final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName2)).toString();
 
         execute(firstCheckerConfig, pathToEmptyFile);
 
