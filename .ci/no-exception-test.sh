@@ -127,11 +127,24 @@ openjdk21-with-checks-nonjavadoc-error)
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk21-excluded.files' \
       checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
+
+  # Set the maximum allowed execution time in seconds (19 minutes = 1140 seconds)
+  TIMEOUT_DURATION=1140
+
+
+  timeout \
+  $TIMEOUT_DURATION \
   groovy ./diff.groovy --listOfProjects openjdk-21-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
-      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false" \
+
+  # Check the exit status of the timeout command
+  if [ $? -ne 0 ]; then
+      echo "Error: Command execution took longer than 19 minutes."
+      exit 1
+  fi
 
   cd ../../
   removeFolderWithProtectedFiles contribution
