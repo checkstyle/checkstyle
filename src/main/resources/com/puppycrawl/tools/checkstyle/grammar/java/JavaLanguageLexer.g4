@@ -120,6 +120,9 @@ tokens {
 }
 
 @header {
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
@@ -156,6 +159,8 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
+   // private int bracketCounter = 0;
+    private final Deque<Integer> bracketCounterStack = new ArrayDeque<>();
 }
 
 // Keywords and restricted identifiers
@@ -251,7 +256,16 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
-STRING_LITERAL:          '"' StringFragment '"';
+STRING_LITERAL:         '"' StringFragment '"';
+
+STRING_TEMPLATE_BEGIN: '"' StringFragment '\\' '{' {
+    stringTemplateDepth++;
+    // need a stack for bracket counter?
+    bracketCounterStack.push(0);
+
+    };
+
+
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -261,8 +275,33 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{';
-RCURLY:                  '}';
+LCURLY:                  '{' {
+   if (stringTemplateDepth > 0) {
+       final Integer bracketCounter = bracketCounterStack.pop();
+       bracketCounterStack.push(bracketCounter + 1);
+   }
+};
+
+RCURLY:                '}'
+{
+    if (stringTemplateDepth > 0) {
+        if (bracketCounterStack.isEmpty()) {
+            // last bracket
+            more();
+            pushMode(StringTemplate);
+        } else {
+            final Integer bracketCounter = bracketCounterStack.pop();
+            if (bracketCounter > 0) {
+                bracketCounterStack.push(bracketCounter - 1);
+            } else if (bracketCounter == 0) {
+                more();
+                pushMode(StringTemplate);
+            }
+        }
+    }
+}
+;
+
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -321,18 +360,7 @@ AT:                      '@';
 ELLIPSIS:                '...';
 
 // String templates
-STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
-                         {stringTemplateDepth++;}
-                         ;
 
-STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '\\' '{'
-                         ;
-
-STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '"'
-                         {stringTemplateDepth--;}
-                         ;
 
 // Text block fragments
 
@@ -464,3 +492,14 @@ mode TextBlock;
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
         ;
+
+mode StringTemplate;
+
+   STRING_TEMPLATE_MID:  {stringTemplateDepth > 0}?
+                         StringFragment '\\' '{' -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+
+
+    STRING_TEMPLATE_END:  {stringTemplateDepth > 0}?
+                         StringFragment '"'
+                         {stringTemplateDepth--;}
+                         -> popMode, type(STRING_TEMPLATE_END);
