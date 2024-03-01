@@ -159,7 +159,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     int startCol = -1;
 
     private int stringTemplateDepth = 0;
-    private int bracketCounter = 0;
+   // private int bracketCounter = 0;
     private final Deque<Integer> bracketCounterStack = new ArrayDeque<>();
 }
 
@@ -261,7 +261,7 @@ STRING_LITERAL:         '"' StringFragment '"';
 STRING_TEMPLATE_BEGIN: '"' StringFragment '\\' '{' {
     stringTemplateDepth++;
     // need a stack for bracket counter?
-    bracketCounter = 0;
+    bracketCounterStack.push(0);
 
     };
 
@@ -277,20 +277,27 @@ LPAREN:                  '(';
 RPAREN:                  ')';
 LCURLY:                  '{' {
    if (stringTemplateDepth > 0) {
-       bracketCounter++;
+       final Integer bracketCounter = bracketCounterStack.pop();
+       bracketCounterStack.push(bracketCounter + 1);
    }
 };
 
 RCURLY:                '}'
 {
-    if (stringTemplateDepth > 0 && bracketCounter > 0) {
-        bracketCounter--;
-    } else if (stringTemplateDepth > 0 && bracketCounter == 0) {
-//        _input.seek(_tokenStartCharIndex);
-//        setCharPositionInLine(_tokenStartCharPositionInLine);
-//        setLine(_tokenStartLine);
-        more();
-        pushMode(StringTemplate);
+    if (stringTemplateDepth > 0) {
+        if (bracketCounterStack.isEmpty()) {
+            // last bracket
+            more();
+            pushMode(StringTemplate);
+        } else {
+            final Integer bracketCounter = bracketCounterStack.pop();
+            if (bracketCounter > 0) {
+                bracketCounterStack.push(bracketCounter - 1);
+            } else if (bracketCounter == 0) {
+                more();
+                pushMode(StringTemplate);
+            }
+        }
     }
 }
 ;
