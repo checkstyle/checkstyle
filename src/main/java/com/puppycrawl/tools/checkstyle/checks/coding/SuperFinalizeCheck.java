@@ -50,6 +50,8 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 @StatelessCheck
 public class SuperFinalizeCheck extends AbstractSuperCheck {
 
+    public static final String MSG_KEY = "missing.super.call";
+
     @Override
     protected String getMethodName() {
         return "finalize";
