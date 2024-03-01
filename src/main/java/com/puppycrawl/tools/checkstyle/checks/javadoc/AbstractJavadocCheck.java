@@ -370,7 +370,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private void walk(DetailNode root) {
         DetailNode curNode = root;
         while (curNode != null) {
-            boolean waitsForProcessing = shouldBeProcessed(curNode);
+            final boolean waitsForProcessing = shouldBeProcessed(curNode);
 
             if (waitsForProcessing) {
                 visitJavadocToken(curNode);
@@ -384,9 +384,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 toVisit = JavadocUtil.getNextSibling(curNode);
                 if (toVisit == null) {
                     curNode = curNode.getParent();
-                    if (curNode != null) {
-                        waitsForProcessing = shouldBeProcessed(curNode);
-                    }
                 }
             }
             curNode = toVisit;
