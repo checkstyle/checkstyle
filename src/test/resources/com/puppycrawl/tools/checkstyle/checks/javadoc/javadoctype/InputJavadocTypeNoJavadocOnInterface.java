@@ -14,6 +14,6 @@ tokens = INTERFACE_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-class InputJavadocTypeNoJavadocOnInterface { // ok
-    interface NoJavadoc {} // ok
+class InputJavadocTypeNoJavadocOnInterface {
+    interface NoJavadoc {}
 }
