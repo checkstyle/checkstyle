@@ -46,9 +46,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "11:43: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
-                UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
-            "12:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
