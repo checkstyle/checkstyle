@@ -188,6 +188,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
+
     @Override
     protected void verify(Checker checker,
                           File[] processedFiles,
