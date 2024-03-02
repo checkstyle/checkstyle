@@ -57,3 +57,17 @@ function checkout_from {
   fi
   cd ../
 }
+
+function run_with_timeout {
+    local TIMEOUT_DURATION=$1
+    shift
+    local COMMAND="$*"
+
+    # Run the command with a timeout
+    if timeout "$TIMEOUT_DURATION" "$COMMAND" ; then
+        echo "COMMAND executed successfully within the time limit."
+    else
+        echo "Error: COMMAND execution took longer than $TIMEOUT_DURATION seconds."
+        exit 1
+    fi
+}
