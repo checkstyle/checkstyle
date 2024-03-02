@@ -127,6 +127,9 @@ openjdk21-with-checks-nonjavadoc-error)
   sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk21-excluded.files' \
       checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
+
+  run_with_timeout \
+  1140 \
   groovy ./diff.groovy --listOfProjects openjdk-21-projects-to-test-on.config \
       --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
