@@ -235,8 +235,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parse(filePath);
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
-        verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
-        verify(parsedConfig, filePath, expected);
+        final List<String> actualViolations = getActualViolationsForFile(parsedConfig, filePath);
+        verifyViolations(filePath, testInputConfiguration.getViolations(), actualViolations);
+        
+        assertWithMessage("Violations for %s differ.", filePath)
+            .that(actualViolations)
+            .containsExactlyElementsIn(expected);
     }
 
     /**
@@ -473,6 +477,32 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                   List<TestInputViolation> testInputViolations)
             throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
+        final List<Integer> actualViolationLines = actualViolations.stream()
+                .map(violation -> violation.substring(0, violation.indexOf(':')))
+                .map(Integer::valueOf)
+                .collect(Collectors.toUnmodifiableList());
+        final List<Integer> expectedViolationLines = testInputViolations.stream()
+                .map(TestInputViolation::getLineNo)
+                .collect(Collectors.toUnmodifiableList());
+        assertWithMessage("Violation lines for %s differ.", file)
+                .that(actualViolationLines)
+                .isEqualTo(expectedViolationLines);
+        for (int index = 0; index < actualViolations.size(); index++) {
+            assertWithMessage("Actual and expected violations differ.")
+                    .that(actualViolations.get(index))
+                    .matches(testInputViolations.get(index).toRegex());
+        }
+    }
+    /**
+     * Performs verification of violation lines.
+     *
+     * @param file file path.
+     * @param testInputViolations List of TestInputViolation objects.
+     * @param actualViolations for a file
+     */
+    private void verifyViolations(String file,
+                                  List<TestInputViolation> testInputViolations,
+                                  List<String> actualViolations) {
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
