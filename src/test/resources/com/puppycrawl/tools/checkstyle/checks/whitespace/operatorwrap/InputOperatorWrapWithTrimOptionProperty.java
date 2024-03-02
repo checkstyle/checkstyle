@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
 public class InputOperatorWrapWithTrimOptionProperty {
 
-        int x = (1 < 2) ? // ok
+        int x = (1 < 2) ?
                 false ? "".substring(0,
                         0).length()
                     : false // violation '':' should be on the previous line.'
