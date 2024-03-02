@@ -21,7 +21,7 @@ public class InputOperatorWrapTryWithResources implements AutoCloseable
         }
 
         try ((args.length > 0 ? v
-                : new InputOperatorWrapTryWithResources()).finalWrapper.finalField) { // ok
+                : new InputOperatorWrapTryWithResources()).finalWrapper.finalField) {
         }
 
         //More than one resource
@@ -30,7 +30,7 @@ public class InputOperatorWrapTryWithResources implements AutoCloseable
         }
 
         InputOperatorWrapTryWithResources m1 = new InputOperatorWrapTryWithResources();
-        try (m1; InputOperatorWrapTryWithResources m2 = m1; // ok
+        try (m1; InputOperatorWrapTryWithResources m2 = m1;
              InputOperatorWrapTryWithResources m3 = m2;) {
         }
     }
