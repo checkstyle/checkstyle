@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
@@ -84,7 +85,9 @@ public final class JavaParser {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        final CompositeLexerContextCache contextCache = new CompositeLexerContextCache(lexer);
         lexer.setCommentListener(contents);
+        lexer.setContextCache(contextCache);
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
