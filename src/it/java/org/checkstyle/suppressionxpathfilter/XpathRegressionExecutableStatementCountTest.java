@@ -122,10 +122,10 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
             "7:22: " + getCheckMessage(ExecutableStatementCountCheck.class, MSG_KEY, 2, 1),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-            + "[@text='SuppressionXpathRegressionExecutableStatementCountLambdas']]"
-            + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
+        final List<String> expectedXpathQueries = List.of(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionExecutableStatementCountLambdas']]"
+                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
