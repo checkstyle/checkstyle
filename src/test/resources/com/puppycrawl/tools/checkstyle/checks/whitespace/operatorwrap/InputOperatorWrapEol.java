@@ -13,8 +13,8 @@ import java.io.*; // Star import here as the check handles all TokenTypes.STAR
 class InputOperatorWrapEol
 {
     {
-        int x1 = // ok
-                1 * // ok
+        int x1 =
+                1 *
                 2;
 
         int x2
@@ -26,34 +26,34 @@ class InputOperatorWrapEol
     }
 
     public InputOperatorWrapEol() throws IOException {
-        label: try (Reader r = // ok
+        label: try (Reader r =
                  null) {
         }
         try (Reader r
                  = null) { // violation ''=' should be on the previous line.'
         }
-        int x = (1 < 2) ? // ok
+        int x = (1 < 2) ?
                 false ? "".substring(0,
                         0).length()
                     : false // violation '':' should be on the previous line.'
                     ? 2 : 3 : 4; // violation ''?' should be on the previous line.'
 
-        for (int value : // ok
+        for (int value :
                 new int[0]) {}
         for (int value
                 : new int[0]) {} // violation '':' should be on the previous line.'
 
-        int[] a1 = // ok
+        int[] a1 =
                 {};
         int[] a2
                 = {}; // violation ''=' should be on the previous line.'
-        int[] a3 = { // ok
+        int[] a3 = {
         };
     }
 
     void comment(int magic) {
-        if (magic != 0x31 && // '1' // ok
-                magic != 0x41 && // ')' // ok
+        if (magic != 0x31 && // '1'
+                magic != 0x41 && // ')'
                 magic != 0x59 // 'Y'
             ) {
         }
@@ -66,8 +66,8 @@ class InputOperatorWrapEol
 
     int a;
     void shortName(int oa) {
-        a=oa; // ok
-        a+=2; // ok
+        a=oa;
+        a+=2;
     }
 
 }
