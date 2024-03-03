@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.executablestatementcount;
 
-public class SuppressionXpathRegressionExecutableStatementCountDefault {
+public class InputXpathExecutableStatementCountDefault {
     public void ElseIfLadder() { // warn
         if (System.currentTimeMillis() == 0) {
         } else {
