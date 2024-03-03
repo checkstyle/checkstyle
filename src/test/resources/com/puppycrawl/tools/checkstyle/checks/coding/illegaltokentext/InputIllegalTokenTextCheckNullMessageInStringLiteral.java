@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokensCheckNullCustomMessage
+public class InputIllegalTokenTextCheckNullMessageInStringLiteral
 {
     public void methodWithPreviouslyIllegalTokens()
     {
