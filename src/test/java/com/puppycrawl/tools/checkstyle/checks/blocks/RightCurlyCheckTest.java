@@ -30,6 +30,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import java.io.IOException;
+
 public class RightCurlyCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -307,6 +309,13 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAloneOrSingleLineTryCatchBlock() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestAloneOrSinglelineTryCatchBlock.java"), expected);
+    }
+
+    @Test
     public void testCatchWithoutFinally() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
@@ -387,7 +396,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testTryWithResourceAloneSingle() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
-            "36:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
             "44:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
