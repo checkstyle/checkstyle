@@ -46,6 +46,15 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputStringTemplateBasic.java"));
     }
 
+    @Test
+    public void testStringTemplateNested() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedStringTemplateNested.txt"),
+                getNonCompilablePath(
+                        "InputStringTemplateNested.java"));
+    }
+
     /**
      * Test for tabs instead of spaces in the input file.
      * All node columns are -3 when compared to the above test. This is
