@@ -42,46 +42,46 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextTokensCheckTestCaseSensitive()
+    public void testIllegalTokenTextCheckDefaultCaseSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokensCheckTestCaseSensitive.java"), expected);
+                getPath("InputIllegalTokenTextCheckDefaultCaseSensitive.java"), expected);
     }
 
     @Test
-    public void testIllegalTokenTextTokensCheckTestCaseInSensitive()
+    public void testIllegalTokenTextCheckCaseInSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokensCheckTestCaseInSensitive.java"), expected);
+                getPath("InputIllegalTokenTextCheckCaseInSensitive.java"), expected);
     }
 
     @Test
-    public void testIllegalTokenTextTokensCheckCustomMessage()
+    public void testIllegalTokenTextCheckCustomMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + "My custom message",
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokensCheckCustomMessage.java"), expected);
+                getPath("InputIllegalTokenTextCheckCustomMessageInStringLiteral.java"), expected);
     }
 
     @Test
-    public void testIllegalTokenTextTokensCheckNullCustomMessage()
+    public void testIllegalTokenTextCheckNullMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokensCheckNullCustomMessage.java"), expected);
+                getPath("InputIllegalTokenTextCheckNullMessageInStringLiteral.java"), expected);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextTokensCheckCommentToken()
+    public void testIllegalTokenTextCheckCommentToken()
             throws Exception {
 
         final String[] expected = {
@@ -140,7 +140,7 @@ public class IllegalTokenTextCheckTest
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokensCheckCommentToken.java"), expected);
+                getPath("InputIllegalTokenTextCheckCommentToken.java"), expected);
     }
 
     @Test

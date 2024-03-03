@@ -1,7 +1,7 @@
 /*
 IllegalTokenText
 format = a href
-ignoreCase = true
+ignoreCase = (default)false
 message = (default)
 tokens = STRING_LITERAL
 
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokensCheckTestCaseInSensitive
+public class InputIllegalTokenTextCheckDefaultCaseSensitive
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -32,7 +32,7 @@ public class InputIllegalTokenTextTokensCheckTestCaseInSensitive
     public void methodWithLiterals()
     {
         final String ref = "<a href=\""; // violation
-        final String refCase = "<A hReF=\""; // violation
+        final String refCase = "<A hReF=\"";
     }
 
     public void methodWithLabels() {
