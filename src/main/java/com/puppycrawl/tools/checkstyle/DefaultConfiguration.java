@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -44,6 +46,7 @@ public final class DefaultConfiguration implements Configuration {
     private final String name;
 
     /** The list of child Configurations. */
+    @Nullable
     private final List<Configuration> children = new ArrayList<>();
 
     /** The map from property names to property values. */
