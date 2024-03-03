@@ -22,6 +22,7 @@ package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
@@ -44,6 +45,24 @@ public class LineLengthTest extends AbstractGoogleModuleTestSupport {
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testLineLengthJsniMethods() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 165),
+        };
+
+        final Configuration lineLengthConfig = getModuleConfig("LineLength");
+        final DefaultConfiguration rootConfig = createRootConfig(lineLengthConfig);
+
+        final Configuration filterConfig = getModuleConfig("SuppressWithPlainTextCommentFilter");
+        rootConfig.addChild(filterConfig);
+
+        final String filePath = getPath("InputLineLengthJsniMethods.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(rootConfig, filePath, expected, warnList);
     }
 
 }
