@@ -102,7 +102,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MethodTypeParameterName",
             "ModifiedControlVariable",
             "MutableException",
-            "ParameterAssignment",
             "RedundantModifier",
             "SeparatorWrap",
             "SuperFinalize",
