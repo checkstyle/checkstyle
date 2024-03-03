@@ -267,24 +267,43 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     private static void validateInputDirectory(Path checkDir) throws IOException {
-        final Pattern pattern = Pattern.compile("^SuppressionXpathRegression(.+)\\.java$");
+        final Pattern patternTemp = Pattern.compile("^SuppressionXpathRegression(.+)\\.java$");
+        final Pattern pattern = Pattern.compile("^InputXpath(.+)\\.java$");
+
         final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
 
         try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
             for (Path inputPath : inputPaths) {
                 final String filename = inputPath.toFile().getName();
-                if (filename.endsWith("java")) {
-                    final Matcher matcher = pattern.matcher(filename);
+                if (filename.contains("SuppressionXpathRegression") && filename.endsWith("java")) {
+                    final Matcher matcherTemp = patternTemp.matcher(filename);
                     assertWithMessage(
-                              "Invalid input file '" + inputPath + "', expected pattern:" + pattern)
-                            .that(matcher.matches())
+                              "Invalid input file '" + inputPath
+                                      + "', expected pattern:" + patternTemp)
+                            .that(matcherTemp.matches())
                             .isTrue();
 
-                    final String remaining = matcher.group(1);
+                    final String remainingTemp = matcherTemp.group(1);
                     assertWithMessage("Check name '" + check
                                 + "' should be included in input file: " + inputPath)
-                            .that(remaining)
+                            .that(remainingTemp)
                             .startsWith(check);
+                }
+                else {
+                    if (filename.endsWith("java")) {
+                        final Matcher matcher = pattern.matcher(filename);
+                        assertWithMessage(
+                                  "Invalid input file '" + inputPath
+                                          + "', expected pattern:" + pattern)
+                                .that(matcher.matches())
+                                .isTrue();
+
+                        final String remaining = matcher.group(1);
+                        assertWithMessage("Check name '" + check
+                                    + "' should be included in input file: " + inputPath)
+                                .that(remaining)
+                                .startsWith(check);
+                    }
                 }
             }
         }
