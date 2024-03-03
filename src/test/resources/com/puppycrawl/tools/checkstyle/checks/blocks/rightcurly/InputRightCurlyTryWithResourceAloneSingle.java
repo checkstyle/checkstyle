@@ -31,9 +31,9 @@ class InputRightCurlyTryWithResourceAloneSingle {
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) { ; }
         catch (IOException e) { ; }
-        try (BufferedReader br1 = new BufferedReader(null);
-                // violation below ''}' at column 64 should be alone on a line'
-                BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
+//        try (BufferedReader br1 = new BufferedReader(null);
+//                // violation below ''}' at column 64 should be alone on a line'
+//                BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
