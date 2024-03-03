@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck;
-import static com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
 
 public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
