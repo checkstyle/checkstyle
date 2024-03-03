@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.executablestatementcount;
 
-public class SuppressionXpathRegressionExecutableStatementCountCustomMax {
-    public SuppressionXpathRegressionExecutableStatementCountCustomMax() // warn
+public class InputXpathExecutableStatementCountCustomMax {
+    public InputXpathExecutableStatementCountCustomMax() // warn
     {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
@@ -10,5 +10,5 @@ public class SuppressionXpathRegressionExecutableStatementCountCustomMax {
         }
     }
     /** Empty constructor */
-    public SuppressionXpathRegressionExecutableStatementCountCustomMax(int i) {}
+    public InputXpathExecutableStatementCountCustomMax(int i) {}
 }
