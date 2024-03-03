@@ -96,8 +96,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisAllowLocalVars.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisAnnotationInterface.java"/>
