@@ -42,46 +42,46 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testCaseSensitive()
+    public void testIllegalTokenTextTokensCheckTestCaseSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens.java"), expected);
+                getPath("InputIllegalTokenTextTokensCheckTestCaseSensitive.java"), expected);
     }
 
     @Test
-    public void testCaseInSensitive()
+    public void testIllegalTokenTextTokensCheckTestCaseInSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens2.java"), expected);
+                getPath("InputIllegalTokenTextTokensCheckTestCaseInSensitive.java"), expected);
     }
 
     @Test
-    public void testCustomMessage()
+    public void testIllegalTokenTextTokensCheckCustomMessage()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + "My custom message",
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens3.java"), expected);
+                getPath("InputIllegalTokenTextTokensCheckCustomMessage.java"), expected);
     }
 
     @Test
-    public void testNullCustomMessage()
+    public void testIllegalTokenTextTokensCheckNullCustomMessage()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens4.java"), expected);
+                getPath("InputIllegalTokenTextTokensCheckNullCustomMessage.java"), expected);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testCommentToken()
+    public void testIllegalTokenTextTokensCheckCommentToken()
             throws Exception {
 
         final String[] expected = {
@@ -140,7 +140,7 @@ public class IllegalTokenTextCheckTest
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens5.java"), expected);
+                getPath("InputIllegalTokenTextTokensCheckCommentToken.java"), expected);
     }
 
     @Test

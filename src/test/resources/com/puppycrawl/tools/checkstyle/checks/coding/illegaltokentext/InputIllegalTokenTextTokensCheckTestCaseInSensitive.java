@@ -1,9 +1,9 @@
-/* // violation
+/*
 IllegalTokenText
 format = a href
-ignoreCase = (default)false
-message = (null)
-tokens = COMMENT_CONTENT
+ignoreCase = true
+message = (default)
+tokens = STRING_LITERAL
 
 
 */
@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 /**
  * Test for illegal tokens
  */
-public class InputIllegalTokenTextTokens5
+public class InputIllegalTokenTextTokensCheckTestCaseInSensitive
 {
     public void methodWithPreviouslyIllegalTokens()
     {
@@ -31,8 +31,8 @@ public class InputIllegalTokenTextTokens5
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\"";
-        final String refCase = "<A hReF=\"";
+        final String ref = "<a href=\""; // violation
+        final String refCase = "<A hReF=\""; // violation
     }
 
     public void methodWithLabels() {
@@ -41,8 +41,8 @@ public class InputIllegalTokenTextTokens5
             anotherLabel: // some comment href
             do {
                 continue anotherLabel;
-            } while (false); // violation below
-            break label; // a href
+            } while (false);
+            break label; // some a href
         }
     }
 }
