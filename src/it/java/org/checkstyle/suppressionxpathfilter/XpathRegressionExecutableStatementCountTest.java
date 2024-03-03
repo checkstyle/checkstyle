@@ -40,7 +40,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testDefaultConfig() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionExecutableStatementCountDefault.java");
+                getPath("InputXpathExecutableStatementCountDefault.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -54,14 +54,14 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountDefault']]"
+            + "@text='InputXpathExecutableStatementCountDefault']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountDefault']]"
+            + "@text='InputXpathExecutableStatementCountDefault']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
             + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountDefault']]"
+            + "@text='InputXpathExecutableStatementCountDefault']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='ElseIfLadder']]"
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -73,7 +73,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testCustomMax() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionExecutableStatementCountCustomMax.java");
+                getPath("InputXpathExecutableStatementCountCustomMax.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -88,18 +88,18 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]"
+            + "@text='InputXpathExecutableStatementCountCustomMax']]"
             + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]",
+            + "@text='InputXpathExecutableStatementCountCustomMax']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]"
+            + "@text='InputXpathExecutableStatementCountCustomMax']]"
             + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]"
+            + "@text='InputXpathExecutableStatementCountCustomMax']]"
             + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]"
+            + "@text='InputXpathExecutableStatementCountCustomMax']]"
             + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionExecutableStatementCountCustomMax']]"
+            + "@text='InputXpathExecutableStatementCountCustomMax']]"
             + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -109,7 +109,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     @Test
     public void testLambdas() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionExecutableStatementCountLambdas.java");
+                getPath("InputXpathExecutableStatementCountLambdas.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -124,7 +124,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionExecutableStatementCountLambdas']]"
+                        + "[@text='InputXpathExecutableStatementCountLambdas']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='c']]/ASSIGN/LAMBDA"
         );
 
