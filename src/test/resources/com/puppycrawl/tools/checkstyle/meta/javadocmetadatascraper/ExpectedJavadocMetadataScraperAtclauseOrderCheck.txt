@@ -25,8 +25,8 @@ RD_DEF,COMPACT_CTOR_DEF
 Property ValidationType: tokenSet
 Property Description: Specify block tags targeted.
 Property Type: java.lang.String[]
-Property DefaultValue: @author, @deprecated, @exception, @param, @return, @see, @serial, @ser<split>
-ialData, @serialField, @since, @throws, @version
+Property DefaultValue: @author, @version, @param, @return, @throws, @except<split>
+ion, @see, @since, @serial, @serialField, @serialData, @deprecated
 Property ValidationType: null
 Property Description: Specify the order by tags.
 ViolationMessageKey: at.clause.order
