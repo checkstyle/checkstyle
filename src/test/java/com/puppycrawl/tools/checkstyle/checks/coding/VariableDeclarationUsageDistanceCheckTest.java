@@ -344,6 +344,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testGeneralClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "76:9: " + getCheckMessage(MSG_KEY, "b", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -365,6 +366,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
+            "107:9: " + getCheckMessage(MSG_KEY, "values", 2, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -407,5 +409,36 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceCloseToBlock.java"), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceInitializationStatements() throws Exception {
+
+        final int maxDistance = 3;
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_EXT, "var", 4, maxDistance),
+            "28:13: " + getCheckMessage(MSG_KEY_EXT, "ar2", 5, maxDistance),
+            "48:13: " + getCheckMessage(MSG_KEY_EXT, "abc", 6, maxDistance),
+            "66:13: " + getCheckMessage(MSG_KEY_EXT, "c", 5, maxDistance),
+            "89:13: " + getCheckMessage(MSG_KEY_EXT, "c", 4, maxDistance),
+        };
+        final String filename =
+            "InputVariableDeclarationUsageDistanceInitializationStatements.java";
+        verifyWithInlineConfigParser(getPath(filename), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceInitializationStatements2() throws Exception {
+
+        final int maxDistance = 1;
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY_EXT, "d", 6, maxDistance),
+            "31:9: " + getCheckMessage(MSG_KEY_EXT, "s", 6, maxDistance),
+            "41:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, maxDistance),
+        };
+
+        final String filename =
+            "InputVariableDeclarationUsageDistanceInitializationStatements2.java";
+        verifyWithInlineConfigParser(getPath(filename), expected);
     }
 }
