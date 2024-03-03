@@ -63,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * Property {@code tagOrder} - Specify the order by tags.
  * Type is {@code java.lang.String[]}.
  * Default value is
- * {@code @author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version}.
+ * {@code @author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated}.
  * </li>
  * </ul>
  * <p>
