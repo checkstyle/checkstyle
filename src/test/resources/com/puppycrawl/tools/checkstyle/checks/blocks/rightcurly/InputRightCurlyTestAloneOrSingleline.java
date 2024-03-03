@@ -10,6 +10,9 @@ tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, 
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class InputRightCurlyTestAloneOrSingleline {
 
     public boolean equals(Object other) { boolean flag = true; return flag; }
@@ -248,5 +251,12 @@ public class InputRightCurlyTestAloneOrSingleline {
     private void foo28() {
         if (true) { return; } else { } if (false) { // 2 violations
         }
+    }
+
+    private void testSingleLineTryBlock() {
+         try { } catch (Exception e) { }
+         try {int x = 5;} catch (RuntimeException e) { } catch (Exception e) { }
+         try { } catch (RuntimeException e) { } catch (Exception e) { } finally { foo();}
+         try (BufferedReader br1 = new BufferedReader(null)) {} catch (IOException e) { ; }
     }
 }
