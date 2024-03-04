@@ -90,8 +90,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResourcesIgnore.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResourcesIgnore.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
@@ -269,8 +267,6 @@
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCustomTag.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCustomTag.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocJavadocTagsWithoutArgs.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocJavadocTagsWithoutArgs.java"/>
   <suppress id="UnnecessaryOkComment"
