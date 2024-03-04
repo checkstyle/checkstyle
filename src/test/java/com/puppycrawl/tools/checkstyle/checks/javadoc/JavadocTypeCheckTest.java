@@ -358,6 +358,35 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTypeParamDescriptionWithAngularTags() throws Exception {
+        final String[] expected = {
+            "44:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "46:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
+            "50:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeParamDescriptionWithAngularTags.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecordParamDescriptionWithAngularTags() throws Exception {
+        final String[] expected = {
+            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
+            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
+            "75:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
+            "78:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputJavadocTypeRecordParamDescriptionWithAngularTags.java"),
+                expected);
+    }
+
+    @Test
     public void testJavadocTypeRecordComponents2() throws Exception {
 
         final String[] expected = {
