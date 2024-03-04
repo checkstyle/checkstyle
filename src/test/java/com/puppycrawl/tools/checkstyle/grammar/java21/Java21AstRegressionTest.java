@@ -46,6 +46,15 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputStringTemplateBasic.java"));
     }
 
+    @Test
+    public void testStringTemplateNested() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedStringTemplateNested.txt"),
+                getNonCompilablePath(
+                        "InputStringTemplateNested.java"));
+    }
+
     /**
      * Test for tabs instead of spaces in the input file.
      * All node columns are -3 when compared to the above test. This is
@@ -119,8 +128,26 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
         assertWithMessage(incorrectParsingFailureMessage)
                 .that(throwable.getCause().getMessage())
-                .contains("13:14: mismatched input '}\\n"
-                        + "            ' expecting TEXT_BLOCK_LITERAL_END");
+                .contains("12:15: no viable alternative at input"
+                        + " '\"\"\"\\n            \\{'");
 
+    }
+
+    @Test
+    public void testTextBlockTemplateBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateBasic.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateBasic.java"));
+    }
+
+    @Test
+    public void testTextBlockTemplateInlineCodeTricky() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateInlineCodeTricky.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateInlineCodeTricky.java"));
     }
 }
