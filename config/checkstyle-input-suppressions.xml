@@ -90,10 +90,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResourcesIgnore.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResourcesIgnore.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationPlain.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
@@ -105,16 +101,6 @@
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisBraceAlone.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisCaseGroup.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisEnumConstant.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisExtendedMethod.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisFinalInstanceVariable.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisLocalClassesInsideLambdas.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisMethodReferences.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]requirethis[\\/]InputRequireThisReceiver.java"/>
   <suppress id="UnnecessaryOkComment"
@@ -281,8 +267,6 @@
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCustomTag.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocCustomTag.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocJavadocTagsWithoutArgs.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocJavadocTagsWithoutArgs.java"/>
   <suppress id="UnnecessaryOkComment"
