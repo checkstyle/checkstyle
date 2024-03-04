@@ -116,11 +116,13 @@ tokens {
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
     EMBEDDED_EXPRESSION_END,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF, TEXT_BLOCK_TEMPLATE_BEGIN,
+    TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_TEMPLATE_CONTENT
 }
 
 @header {
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
+import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
@@ -139,14 +141,19 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     }
 
     private CommentListener commentListener = null;
+    private CompositeLexerContextCache contextCache = null;
 
     /**
      * Sets the CommentListener for the lexer.
      *
      * @param commentListener the commentListener to use in this lexer
      */
-    public void setCommentListener(CommentListener commentListener){
+    public void setCommentListener(CommentListener commentListener) {
             this.commentListener = commentListener;
+    }
+
+    public void setContextCache(CompositeLexerContextCache contextCache) {
+        this.contextCache = contextCache;
     }
 
     /** Tracks the starting line of a block comment. */
@@ -155,7 +162,6 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     /** Tracks the starting column of a block comment. */
     int startCol = -1;
 
-    private int stringTemplateDepth = 0;
 }
 
 // Keywords and restricted identifiers
@@ -251,9 +257,17 @@ CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
 fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
 
-STRING_LITERAL:          '"' StringFragment '"';
+STRING_LITERAL:         '"' StringFragment '"';
+
+STRING_TEMPLATE_BEGIN:  '"' StringFragment '\\' '{'
+                        { contextCache.enterTemplateContext(StringTemplate); }
+                        ;
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
+
+TEXT_BLOCK_TEMPLATE_BEGIN: '"' '"' '"' TextBlockContent  '\\' '{'
+                           { contextCache.enterTemplateContext(TextBlockTemplate); }
+                           ;
 
 LITERAL_NULL:            'null';
 
@@ -261,8 +275,12 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{';
-RCURLY:                  '}';
+LCURLY:                  '{'
+                         { contextCache.updateLeftCurlyBraceContext(); }
+                         ;
+RCURLY:                  '}'
+                         { contextCache.updateRightCurlyBraceContext(); }
+                         ;
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -319,20 +337,6 @@ DOUBLE_COLON:            '::';
 
 AT:                      '@';
 ELLIPSIS:                '...';
-
-// String templates
-STRING_TEMPLATE_BEGIN:   '"' StringFragment '\\' '{'
-                         {stringTemplateDepth++;}
-                         ;
-
-STRING_TEMPLATE_MID:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '\\' '{'
-                         ;
-
-STRING_TEMPLATE_END:     {stringTemplateDepth > 0}?
-                         '}' StringFragment '"'
-                         {stringTemplateDepth--;}
-                         ;
 
 // Text block fragments
 
@@ -464,3 +468,22 @@ mode TextBlock;
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
         ;
+
+mode StringTemplate;
+
+    STRING_TEMPLATE_MID: StringFragment '\\' '{'
+                         -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+
+
+    STRING_TEMPLATE_END: StringFragment '"'
+                         { contextCache.exitTemplateContext(); }
+                         -> popMode, type(STRING_TEMPLATE_END);
+
+mode TextBlockTemplate;
+
+    TEXT_BLOCK_TEMPLATE_MID: TextBlockContent? '\\' '{'
+                             -> pushMode(DEFAULT_MODE), type(TEXT_BLOCK_TEMPLATE_MID);
+
+    TEXT_BLOCK_TEMPLATE_END: TextBlockContent? '"' '"' '"'
+                             { contextCache.exitTemplateContext(); }
+                             -> popMode, type(TEXT_BLOCK_TEMPLATE_END);
