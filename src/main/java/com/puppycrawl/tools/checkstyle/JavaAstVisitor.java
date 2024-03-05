@@ -107,12 +107,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     /** String representation of the double quote character. */
     private static final String QUOTE = "\"";
 
-    /** String representation of the string template embedded expression starting delimiter. */
-    private static final String EMBEDDED_EXPRESSION_BEGIN = "\\{";
-
-    /** String representation of the string template embedded expression ending delimiter. */
-    private static final String EMBEDDED_EXPRESSION_END = "}";
-
     /**
      * The tokens here are technically expressions, but should
      * not return an EXPR token as their root.
@@ -1808,164 +1802,86 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitStringTemplate(JavaLanguageParser.StringTemplateContext ctx) {
-        final DetailAstImpl begin = buildStringTemplateBeginning(ctx);
+        final DetailAstImpl stringTemplateBegin = visit(ctx.stringTemplateBegin());
 
-        final Optional<DetailAstImpl> startExpression = Optional.ofNullable(ctx.expr())
+        final Optional<DetailAstImpl> expression = Optional.ofNullable(ctx.expr())
                 .map(this::visit);
 
-        if (startExpression.isPresent()) {
-            final DetailAstImpl imaginaryExpr =
+        if (expression.isPresent()) {
+            final DetailAstImpl imaginaryExpression =
                     createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-            imaginaryExpr.addChild(startExpression.orElseThrow());
-            begin.addChild(imaginaryExpr);
+            imaginaryExpression.addChild(expression.orElseThrow());
+            stringTemplateBegin.addChild(imaginaryExpression);
         }
 
         ctx.stringTemplateMiddle().stream()
                 .map(this::buildStringTemplateMiddle)
-                .collect(Collectors.toUnmodifiableList())
-                .forEach(begin::addChild);
+                .forEach(stringTemplateBegin::addChild);
 
-        final DetailAstImpl end = buildStringTemplateEnd(ctx);
-        begin.addChild(end);
-        return begin;
-    }
-
-    /**
-     * Builds the beginning of a string template AST.
-     *
-     * @param ctx the StringTemplateContext to build AST from
-     * @return string template AST
-     */
-    private static DetailAstImpl buildStringTemplateBeginning(
-            JavaLanguageParser.StringTemplateContext ctx) {
-
-        // token looks like '"' StringFragment '\{'
-        final TerminalNode context = ctx.STRING_TEMPLATE_BEGIN();
-        final Token token = context.getSymbol();
-        final String tokenText = context.getText();
-        final int tokenStartIndex = token.getCharPositionInLine();
-        final int tokenLineNumber = token.getLine();
-        final int tokenTextLength = tokenText.length();
-
-        final DetailAstImpl stringTemplateBegin = createImaginary(
-                TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
-                tokenLineNumber, tokenStartIndex
-        );
-
-        // remove delimiters '"' and '\{'
-        final String stringFragment = tokenText.substring(
-                QUOTE.length(), tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length());
-
-        final DetailAstImpl stringTemplateContent = createImaginary(
-                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
-                tokenLineNumber, tokenStartIndex + QUOTE.length()
-        );
-        stringTemplateBegin.addChild(stringTemplateContent);
-
-        final DetailAstImpl embeddedBegin = createImaginary(
-                TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
-                tokenLineNumber,
-                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
-        );
-        stringTemplateBegin.addChild(embeddedBegin);
+        final DetailAstImpl stringTemplateEnd = visit(ctx.stringTemplateEnd());
+        stringTemplateBegin.addChild(stringTemplateEnd);
         return stringTemplateBegin;
     }
 
     /**
-     * Builds the middle of a string template AST.
+     * Builds a string template middle AST.
      *
-     * @param middleContext the StringTemplateMiddleContext to build AST from
+     * @param ctx the StringTemplateMiddleContext to build AST from
      * @return DetailAstImpl of string template middle
      */
     private DetailAstImpl buildStringTemplateMiddle(
-            JavaLanguageParser.StringTemplateMiddleContext middleContext) {
+            JavaLanguageParser.StringTemplateMiddleContext ctx) {
+        final DetailAstImpl stringTemplateMiddle =
+                visit(ctx.stringTemplateMid());
 
-        // token looks like '}' StringFragment '\{'
-        final TerminalNode context = middleContext.STRING_TEMPLATE_MID();
-        final Token token = context.getSymbol();
-        final int tokenStartIndex = token.getCharPositionInLine();
-        final int tokenLineNumber = token.getLine();
-        final String tokenText = context.getText();
-        final int tokenTextLength = tokenText.length();
-
-        final DetailAstImpl embeddedExpressionEnd = createImaginary(
-                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
-                tokenLineNumber, tokenStartIndex
-        );
-
-        // remove delimiters '}' and '\\' '{'
-        final String stringFragment = tokenText.substring(
-                EMBEDDED_EXPRESSION_END.length(),
-                tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
-        );
-
-        final DetailAstImpl content = createImaginary(
-                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
-                tokenLineNumber, tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
-        );
-        embeddedExpressionEnd.addNextSibling(content);
-
-        final DetailAstImpl embeddedBegin = createImaginary(
-                TokenTypes.EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION_BEGIN,
-                tokenLineNumber,
-                tokenStartIndex + tokenTextLength - EMBEDDED_EXPRESSION_BEGIN.length()
-        );
-        content.addNextSibling(embeddedBegin);
-
-        final Optional<DetailAstImpl> embeddedExpression = Optional.ofNullable(middleContext.expr())
+        final Optional<DetailAstImpl> expression = Optional.ofNullable(ctx.expr())
                 .map(this::visit);
 
-        if (embeddedExpression.isPresent()) {
-            final DetailAstImpl imaginaryExpr =
+        if (expression.isPresent()) {
+            final DetailAstImpl imaginaryExpression =
                     createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-            imaginaryExpr.addChild(embeddedExpression.orElseThrow());
-            embeddedExpressionEnd.addNextSibling(imaginaryExpr);
+            imaginaryExpression.addChild(expression.orElseThrow());
+            addLastSibling(stringTemplateMiddle, imaginaryExpression);
         }
 
+        return stringTemplateMiddle;
+    }
+
+    @Override
+    public DetailAstImpl visitStringTemplateBegin(
+            JavaLanguageParser.StringTemplateBeginContext ctx) {
+        final DetailAstImpl stringTemplateBegin =
+                create(ctx.STRING_TEMPLATE_BEGIN());
+        final Optional<DetailAstImpl> stringTemplateContent =
+                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
+                        .map(this::create);
+        stringTemplateContent.ifPresent(stringTemplateBegin::addChild);
+        final DetailAstImpl embeddedExpressionBegin = create(ctx.EMBEDDED_EXPRESSION_BEGIN());
+        stringTemplateBegin.addChild(embeddedExpressionBegin);
+        return stringTemplateBegin;
+    }
+
+    @Override
+    public DetailAstImpl visitStringTemplateMid(JavaLanguageParser.StringTemplateMidContext ctx) {
+        final DetailAstImpl embeddedExpressionEnd = create(ctx.EMBEDDED_EXPRESSION_END());
+        final Optional<DetailAstImpl> stringTemplateContent =
+                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
+                        .map(this::create);
+        stringTemplateContent.ifPresent(self -> addLastSibling(embeddedExpressionEnd, self));
+        final DetailAstImpl embeddedExpressionBegin = create(ctx.EMBEDDED_EXPRESSION_BEGIN());
+        addLastSibling(embeddedExpressionEnd, embeddedExpressionBegin);
         return embeddedExpressionEnd;
     }
 
-    /**
-     * Builds the end of a string template AST.
-     *
-     * @param ctx the StringTemplateContext to build AST from
-     * @return DetailAstImpl of string template end
-     */
-    private static DetailAstImpl buildStringTemplateEnd(
-            JavaLanguageParser.StringTemplateContext ctx) {
-
-        // token looks like '}' StringFragment '"'
-        final TerminalNode context = ctx.STRING_TEMPLATE_END();
-        final Token token = context.getSymbol();
-        final String tokenText = context.getText();
-        final int tokenStartIndex = token.getCharPositionInLine();
-        final int tokenLineNumber = token.getLine();
-        final int tokenTextLength = tokenText.length();
-
-        final DetailAstImpl embeddedExpressionEnd = createImaginary(
-                TokenTypes.EMBEDDED_EXPRESSION_END, EMBEDDED_EXPRESSION_END,
-                tokenLineNumber, tokenStartIndex
-        );
-
-        // remove delimiters '}' and '"'
-        final String stringFragment = tokenText.substring(
-                EMBEDDED_EXPRESSION_END.length(),
-                tokenTextLength - QUOTE.length()
-        );
-
-        final DetailAstImpl endContent = createImaginary(
-                TokenTypes.STRING_TEMPLATE_CONTENT, stringFragment,
-                tokenLineNumber,
-                tokenStartIndex + EMBEDDED_EXPRESSION_END.length()
-        );
-        embeddedExpressionEnd.addNextSibling(endContent);
-
-        final DetailAstImpl stringTemplateEnd = createImaginary(
-                TokenTypes.STRING_TEMPLATE_END, QUOTE,
-                tokenLineNumber,
-                tokenStartIndex + tokenTextLength - QUOTE.length()
-        );
-        endContent.addNextSibling(stringTemplateEnd);
+    @Override
+    public DetailAstImpl visitStringTemplateEnd(JavaLanguageParser.StringTemplateEndContext ctx) {
+        final DetailAstImpl embeddedExpressionEnd = create(ctx.EMBEDDED_EXPRESSION_END());
+        final Optional<DetailAstImpl> stringTemplateContent =
+                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
+                        .map(this::create);
+        stringTemplateContent.ifPresent(self -> addLastSibling(embeddedExpressionEnd, self));
+        final DetailAstImpl stringTemplateEnd = create(ctx.STRING_TEMPLATE_END());
+        addLastSibling(embeddedExpressionEnd, stringTemplateEnd);
         return embeddedExpressionEnd;
     }
 
