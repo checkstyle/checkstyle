@@ -6554,7 +6554,7 @@ public final class TokenTypes {
      * template may have more than one node of this type.
      * <p>For example:</p>
      * <pre>
-     *     String s = STR."Hello, \{firstName + " " + lastName}!";
+     *     String s = STR."Hello, \{firstName + " " + lastName}";
      * </pre>
      * <p>parses as:</p>
      * <pre>
@@ -6577,7 +6577,6 @@ public final class TokenTypes {
      *                  |       |   `--STRING_LITERAL -&gt; " "
      *                  |       `--IDENT -&gt; lastName
      *                  |--EMBEDDED_EXPRESSION_END -&gt; }
-     *                  |--STRING_TEMPLATE_CONTENT -&gt; !
      *                  `--STRING_TEMPLATE_END -&gt; "
      * </pre>
      *
