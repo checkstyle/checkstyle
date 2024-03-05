@@ -37,6 +37,9 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -186,6 +189,17 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+    }
+
+    @Override
+    protected void verifyWithInlineConfigParser(String filePath, String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
+        verify(parsedConfig, filePath, expected);
     }
 
     @Override
