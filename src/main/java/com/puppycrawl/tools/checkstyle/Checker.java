@@ -88,6 +88,11 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
 
+    /** Message used by finishLocalSetup method. */
+    private final LocalizedMessage finishLocalSetupMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.finishLocalSetup");
+
     /** The basedir to strip off in file names. */
     private String basedir;
 
@@ -440,9 +445,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         if (moduleFactory == null) {
             if (moduleClassLoader == null) {
-                throw new CheckstyleException(
-                        "if no custom moduleFactory is set, "
-                                + "moduleClassLoader must be specified");
+                final String finishLocalSetupMessage = finishLocalSetupMsg.getMessage();
+                throw new CheckstyleException(finishLocalSetupMessage);
             }
 
             final Set<String> packageNames = PackageNamesLoader
