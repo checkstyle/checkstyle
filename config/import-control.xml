@@ -307,6 +307,9 @@
     <file name="CrAwareLexerSimulator">
       <allow pkg="org.antlr.v4.runtime"/>
     </file>
+    <file name="CompositeLexerContextCache">
+      <allow pkg="org.antlr.v4.runtime"/>
+    </file>
   </subpackage>
 
   <file name="Main">
