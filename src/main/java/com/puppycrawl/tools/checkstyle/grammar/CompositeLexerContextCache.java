@@ -24,6 +24,8 @@ import java.util.Deque;
 
 import org.antlr.v4.runtime.Lexer;
 
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
+
 /**
  * This class is used to keep track of the lexer context to help us determine
  * when to switch lexer modes.
@@ -44,6 +46,25 @@ public final class CompositeLexerContextCache {
     public CompositeLexerContextCache(Lexer lexer) {
         stringTemplateContextStack = new ArrayDeque<>();
         this.lexer = lexer;
+    }
+
+    /**
+     * Enter a string template context.
+     *
+     * @param mode the lexer mode to enter
+     */
+    public void enterTemplateContext(int mode) {
+        final TemplateContext newContext = new TemplateContext(mode, 0);
+        templateContextStack.push(newContext);
+        lexer.pushMode(mode);
+    }
+
+    /**
+     * Exit a string template context.
+     */
+    public void exitTemplateContext() {
+        templateContextStack.pop();
+        lexer.popMode();
     }
 
     /**
@@ -91,7 +112,8 @@ public final class CompositeLexerContextCache {
                 // in the appropriate lexer mode rule, enter
                 // the corresponding lexer mode, and keep consuming
                 // the rest of the template middle or end.
-                pushToModeStackWithMore(currentContext.getMode());
+                lexer.setType(JavaLanguageLexer.EMBEDDED_EXPRESSION_END);
+                lexer.pushMode(currentContext.getMode());
             }
             else {
                 // We've consumed a right curly brace within an embedded expression.
@@ -102,17 +124,6 @@ public final class CompositeLexerContextCache {
                 stringTemplateContextStack.push(newContext);
             }
         }
-    }
-
-    /**
-     * Push a mode to the mode stack and consume more input
-     * to complete the current token.
-     *
-     * @param mode the mode to push to the mode stack
-     */
-    private void pushToModeStackWithMore(int mode) {
-        lexer.more();
-        lexer.pushMode(mode);
     }
 
     /**
