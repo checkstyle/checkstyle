@@ -368,6 +368,7 @@ public abstract class AbstractAutomaticBean
 
         @SuppressWarnings("unchecked")
         @Override
+        @Nullable
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
                 value.toString().trim(), COMMA_SEPARATOR);
