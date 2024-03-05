@@ -310,6 +310,9 @@
     <file name="CompositeLexerContextCache">
       <allow pkg="org.antlr.v4.runtime"/>
     </file>
+    <file name="CompositeLexerContextCache">
+      <allow class="com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer"/>
+    </file>
   </subpackage>
 
   <file name="Main">

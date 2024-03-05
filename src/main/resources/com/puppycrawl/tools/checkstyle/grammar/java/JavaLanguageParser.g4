@@ -767,13 +767,33 @@ template
     : stringTemplate
     ;
 
+
 stringTemplate
-    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    : stringTemplateBegin expr? stringTemplateMiddle* stringTemplateEnd
     ;
 
 stringTemplateMiddle
-    : STRING_TEMPLATE_MID expr?
+    : stringTemplateMid expr?
     ;
+
+stringTemplateBegin
+    : STRING_TEMPLATE_BEGIN
+      STRING_TEMPLATE_CONTENT?
+      EMBEDDED_EXPRESSION_BEGIN
+    ;
+
+stringTemplateMid
+    : EMBEDDED_EXPRESSION_END
+      STRING_TEMPLATE_CONTENT?
+      EMBEDDED_EXPRESSION_BEGIN
+    ;
+
+stringTemplateEnd
+    : EMBEDDED_EXPRESSION_END
+      STRING_TEMPLATE_CONTENT?
+      STRING_TEMPLATE_END
+    ;
+
 
 classType
     : (classOrInterfaceType[false] DOT)? annotations[false] id typeArguments?
