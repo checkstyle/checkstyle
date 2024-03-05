@@ -760,6 +760,7 @@ primary
 
 templateArgument
     : template
+    | textBlockLiteral
     | STRING_LITERAL
     ;
 
