@@ -9,7 +9,7 @@ validateOnlyOverlapping = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public class InputRequireThisReceiver { // ok
+public class InputRequireThisReceiver {
     public void foo4(InputRequireThisReceiver this) {}
 
     private class Inner {
