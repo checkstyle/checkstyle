@@ -254,11 +254,12 @@ LITERAL_FALSE:           'false';
 
 CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
-fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
+fragment StringFragment: (EscapeSequence | ~["\\\r\n]);
 
-STRING_LITERAL:         '"' StringFragment '"';
+STRING_LITERAL:         '"' StringFragment* '"';
 
-STRING_TEMPLATE_BEGIN:  '"' StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:  '"'
+                        { _input.LA(1) != '"' }?
                         { contextCache.enterTemplateContext(StringTemplate); }
                         ;
 
@@ -469,10 +470,8 @@ mode TextBlock;
 
 mode StringTemplate;
 
-    STRING_TEMPLATE_MID: StringFragment '\\' '{'
-                         -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+    STRING_TEMPLATE_CONTENT: StringFragment+;
 
+    EMBEDDED_EXPRESSION_BEGIN: '\\' '{' -> pushMode(DEFAULT_MODE);
 
-    STRING_TEMPLATE_END: StringFragment '"'
-                         { contextCache.exitTemplateContext(); }
-                         -> popMode, type(STRING_TEMPLATE_END);
+    STRING_TEMPLATE_END:  '"' { contextCache.exitTemplateContext(); };
