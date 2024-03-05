@@ -29,6 +29,8 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -365,6 +367,7 @@ public abstract class AbstractAutomaticBean
 
         @SuppressWarnings("unchecked")
         @Override
+        @Nullable
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
                 value.toString().trim(), COMMA_SEPARATOR);
@@ -375,7 +378,7 @@ public abstract class AbstractAutomaticBean
                 result.add(token.trim());
             }
 
-            return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+            return (Object) result.toArray();
         }
 
     }
