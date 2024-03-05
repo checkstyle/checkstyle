@@ -598,16 +598,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodReceiverParameter.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodReceiverParameter.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeAnonInner.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeAnonInner.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeAnonInner.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeAnonInner.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeInnerInterfaces.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodScopeInnerInterfaces.java"/>
