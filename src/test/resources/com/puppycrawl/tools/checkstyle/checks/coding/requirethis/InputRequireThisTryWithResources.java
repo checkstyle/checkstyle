@@ -20,40 +20,40 @@ public class InputRequireThisTryWithResources implements AutoCloseable {
 
     void oneResource() {
         try (BufferedReader fldBufferedReader
-                     = new BufferedReader(new InputStreamReader(null, "utf-8"))) { } // ok
+                     = new BufferedReader(new InputStreamReader(null, "utf-8"))) { }
         catch (IOException e) { }
     }
 
     void twoResourcesReferencingEachOther() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8"); // ok
-             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { } // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8");
+             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { }
         catch (IOException e) { }
     }
 
     void threeResourcesReferencingEachOther() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8"); // ok
-             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader); // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8");
+             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader);
              Scanner fldScanner = new Scanner(
-                     fldStreamReader.toString() + fldBufferedReader.toString())) { } // ok
+                     fldStreamReader.toString() + fldBufferedReader.toString())) { }
         catch (IOException e) { }
     }
 
     void failToHandleParameter() {
         try (BufferedReader fldBufferedReader = new BufferedReader(
-                new InputStreamReader(null, fldCharset))) { } // ok
+                new InputStreamReader(null, fldCharset))) { }
         catch (IOException e) { }
     }
 
     void handleParameter() {
         try (BufferedReader fldBufferedReader = new BufferedReader(
-                new InputStreamReader(null, this.fldCharset))) { } // ok
+                new InputStreamReader(null, this.fldCharset))) { }
         catch (IOException e) { }
     }
 
     void noResources() {
         try {
             int a = 5;
-            fldCharset += a; // ok
+            fldCharset += a;
         }
         catch (Exception ex) { }
     }
@@ -64,14 +64,14 @@ public class InputRequireThisTryWithResources implements AutoCloseable {
 
     void methodInvoke() {
         try (BufferedReader fldBufferedReader = new BufferedReader(
-                new InputStreamReader(null, methodToInvoke()))) { } // ok
+                new InputStreamReader(null, methodToInvoke()))) { }
         catch (Exception ex) { }
     }
 
     void methodIdentCopy() {
         try (BufferedReader methodToInvoke = new BufferedReader(
-                new InputStreamReader(null, this.methodToInvoke()))) { // ok
-            String a = methodToInvoke() + methodToInvoke.toString(); // ok
+                new InputStreamReader(null, this.methodToInvoke()))) {
+            String a = methodToInvoke() + methodToInvoke.toString();
         }
         catch (Exception ex) { }
     }
@@ -82,30 +82,30 @@ public class InputRequireThisTryWithResources implements AutoCloseable {
     InputRequireThisTryWithResources r4 = new InputRequireThisTryWithResources();
 
     void staticVariables() {
-        try (r1) { } // ok
+        try (r1) { }
         catch (Exception e) { }
 
-        try (r1.r2) { } // ok
+        try (r1.r2) { }
         catch (Exception e) { }
 
-        try (r1.r2.r4.r2.r4.r2) { } // ok
+        try (r1.r2.r4.r2.r4.r2) { }
         catch (Exception e) { }
     }
 
     void nestedTryWithResources() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8")) { // ok
-            try (BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8")) {
+            try (BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) {
                 try (Scanner fldScanner = new Scanner(
-                        fldBufferedReader.toString() + fldStreamReader.toString())) { } // ok
+                        fldBufferedReader.toString() + fldStreamReader.toString())) { }
             }
             try (Scanner fldScanner = new Scanner(
-                    fldBufferedReader.toString() + fldStreamReader.toString())) { } // ok
-            String a = fldStreamReader.toString() // ok
-                    + fldBufferedReader.toString() + fldScanner.toString(); // ok
+                    fldBufferedReader.toString() + fldStreamReader.toString())) { }
+            String a = fldStreamReader.toString()
+                    + fldBufferedReader.toString() + fldScanner.toString();
         }
         catch (IOException e) {
-            String a = fldStreamReader.toString() // ok
-                    + fldBufferedReader.toString() + fldScanner.toString(); // ok
+            String a = fldStreamReader.toString()
+                    + fldBufferedReader.toString() + fldScanner.toString();
         }
     }
 
