@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.superfinalize;
 
 public class SuppressionXpathRegressionSuperFinalizeNoSuperFinalize
 {
-    public void finalize() // violation
+    public void finalize() // warn
     {
     }
 }

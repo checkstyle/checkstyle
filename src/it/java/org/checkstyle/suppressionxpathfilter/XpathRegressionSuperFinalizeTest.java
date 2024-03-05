@@ -46,7 +46,8 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolations = {
                 "6:17: " +
-                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY),
+                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY,
+                                "finalize", "super.finalize"),
         };
 
         final List<String> expectedXpathQuery = List.of(
@@ -69,7 +70,8 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolations = {
                 "4:17: " +
-                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY),
+                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY,
+                                "finalize", "super.finalize"),
         };
 
         final List<String> expectedXpathQuery = List.of(
@@ -92,7 +94,8 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolations = {
                 "5:20: " +
-                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY),
+                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY,
+                                "finalize", "super.finalize"),
         };
 
         final List<String> expectedXpathQuery = List.of(
@@ -115,7 +118,8 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolations = {
                 "17:20:" +
-                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY),
+                        getCheckMessage(SuperFinalizeCheck.class, MSG_KEY,
+                                "finalize", "super.finalize"),
         };
 
         final List<String> expectedXpathQuery = Arrays.asList(

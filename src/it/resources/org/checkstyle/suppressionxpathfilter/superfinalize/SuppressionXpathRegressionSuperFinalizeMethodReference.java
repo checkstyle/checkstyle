@@ -14,6 +14,6 @@ public class SuppressionXpathRegressionSuperFinalizeMethodReference extends Clas
 }
 
 class ClassWithFinalizer {
-    protected void finalize() throws Throwable { // violation
+    protected void finalize() throws Throwable { // warn
     }
 }

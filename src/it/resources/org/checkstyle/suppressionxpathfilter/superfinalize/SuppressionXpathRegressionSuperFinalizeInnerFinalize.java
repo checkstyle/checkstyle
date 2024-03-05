@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.superfinalize;
 
 public class SuppressionXpathRegressionSuperFinalizeInnerFinalize {
-    public void finalize() // violation
+    public void finalize() // warn
     {
         class Inner
         {
