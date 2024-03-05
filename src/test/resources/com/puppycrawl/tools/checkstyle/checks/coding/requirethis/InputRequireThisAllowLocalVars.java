@@ -9,7 +9,7 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-class InputRequireThisAllowLocalVars { // ok
+class InputRequireThisAllowLocalVars {
 
     private String s1 = "foo1";
     String s2 = "foo2";
