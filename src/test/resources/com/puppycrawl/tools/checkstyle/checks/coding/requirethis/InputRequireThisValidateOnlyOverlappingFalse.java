@@ -493,9 +493,9 @@ class Issue7306 {
 
     void someMethod() {
         List<String> test = new ArrayList<>();
-        test.forEach(this.add::add); // OK
-        test.forEach(test::add); // OK
-        test.forEach(Collections::singletonList); // OK
+        test.forEach(this.add::add);
+        test.forEach(test::add);
+        test.forEach(Collections::singletonList);
         test.forEach(add::add); // violation 'Reference to instance variable 'add' needs "this.".'
     }
 }
