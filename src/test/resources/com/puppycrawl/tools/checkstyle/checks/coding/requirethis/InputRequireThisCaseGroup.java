@@ -9,7 +9,7 @@ validateOnlyOverlapping = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public class InputRequireThisCaseGroup { // ok
+public class InputRequireThisCaseGroup {
     private String aVariable;
 
     public String method1(int val) {
