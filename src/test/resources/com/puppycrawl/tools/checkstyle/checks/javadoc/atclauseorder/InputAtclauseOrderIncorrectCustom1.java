@@ -49,7 +49,7 @@ class InputAtclauseOrderIncorrectCustom1 implements Serializable
      * @deprecated Some text.
      * @throws Exception Some text.
      */
-    String method(String aString) throws Exception { // ok
+    String method(String aString) throws Exception {
         return "null";
     }
 
