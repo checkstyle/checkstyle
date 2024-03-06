@@ -4311,20 +4311,17 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--LITERAL_FLOAT (float)
-     *     +--ARRAY_DECLARATOR ([)
-     *     +--ARRAY_INIT ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_FLOAT (3.0f)
-     *         +--COMMA (,)
-     *         +--EXPR
-     *             |
-     *             +--NUM_FLOAT (4.0f)
-     *         +--RCURLY (})
+     * LITERAL_NEW -&gt; new
+     *  |--LITERAL_FLOAT -&gt; float
+     *  |--ARRAY_DECLARATOR -&gt; [
+     *  |   `--RBRACK -&gt; ]
+     *  `--ARRAY_INIT -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--NUM_FLOAT -&gt; 3.0f
+     *      |--COMMA -&gt; ,
+     *      |--EXPR -&gt; EXPR
+     *      |   `--NUM_FLOAT -&gt; 4.0f
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * <p>For example:</p>
@@ -4340,62 +4337,47 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--IDENT (FilenameFilter)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *     +--RPAREN ())
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--METHOD_DEF
-     *             |
-     *             +--MODIFIERS
-     *                 |
-     *                 +--LITERAL_PUBLIC (public)
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_BOOLEAN (boolean)
-     *             +--IDENT (accept)
-     *             +--PARAMETERS
-     *                 |
-     *                 +--PARAMETER_DEF
-     *                     |
-     *                     +--MODIFIERS
-     *                     +--TYPE
-     *                         |
-     *                         +--IDENT (File)
-     *                     +--IDENT (dir)
-     *                 +--COMMA (,)
-     *                 +--PARAMETER_DEF
-     *                     |
-     *                     +--MODIFIERS
-     *                     +--TYPE
-     *                         |
-     *                         +--IDENT (String)
-     *                     +--IDENT (name)
-     *             +--SLIST ({)
-     *                 |
-     *                 +--LITERAL_RETURN (return)
-     *                     |
-     *                     +--EXPR
-     *                         |
-     *                         +--METHOD_CALL (()
-     *                             |
-     *                             +--DOT (.)
-     *                                 |
-     *                                 +--IDENT (name)
-     *                                 +--IDENT (endsWith)
-     *                             +--ELIST
-     *                                 |
-     *                                 +--EXPR
-     *                                     |
-     *                                     +--STRING_LITERAL (".java")
-     *                             +--RPAREN ())
-     *                     +--SEMI (;)
-     *                 +--RCURLY (})
-     *         +--RCURLY (})
+     * LITERAL_NEW -&gt; new
+     *  |--IDENT -&gt; FilenameFilter
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |--RPAREN -&gt; )
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      |--METHOD_DEF -&gt; METHOD_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |   `--LITERAL_PUBLIC -&gt; public
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     *      |   |--IDENT -&gt; accept
+     *      |   |--LPAREN -&gt; (
+     *      |   |--PARAMETERS -&gt; PARAMETERS
+     *      |   |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *      |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |   |   |--TYPE -&gt; TYPE
+     *      |   |   |   |   `--IDENT -&gt; File
+     *      |   |   |   `--IDENT -&gt; dir
+     *      |   |   |--COMMA -&gt; ,
+     *      |   |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *      |   |       |--MODIFIERS -&gt; MODIFIERS
+     *      |   |       |--TYPE -&gt; TYPE
+     *      |   |       |   `--IDENT -&gt; String
+     *      |   |       `--IDENT -&gt; name
+     *      |   |--RPAREN -&gt; )
+     *      |   `--SLIST -&gt; {
+     *      |       |--LITERAL_RETURN -&gt; return
+     *      |       |   |--EXPR -&gt; EXPR
+     *      |       |   |   `--METHOD_CALL -&gt; (
+     *      |       |   |       |--DOT -&gt; .
+     *      |       |   |       |   |--IDENT -&gt; name
+     *      |       |   |       |   `--IDENT -&gt; endsWith
+     *      |       |   |       |--ELIST -&gt; ELIST
+     *      |       |   |       |   `--EXPR -&gt; EXPR
+     *      |       |   |       |       `--STRING_LITERAL -&gt; ".java"
+     *      |       |   |       `--RPAREN -&gt; )
+     *      |       |   `--SEMI -&gt; ;
+     *      |       `--RCURLY -&gt; }
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #IDENT
