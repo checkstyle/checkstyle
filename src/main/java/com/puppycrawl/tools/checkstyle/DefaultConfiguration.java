@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -103,8 +105,10 @@ public final class DefaultConfiguration implements Configuration {
 
     @Override
     public Configuration[] getChildren() {
-        return children.toArray(
-                EMPTY_CONFIGURATION_ARRAY);
+        Predicate<Configuration> isNonNull = Objects::nonNull;
+        return children.stream()
+                .filter(isNonNull)
+                .toArray(Configuration[]::new);
     }
 
     @Override
