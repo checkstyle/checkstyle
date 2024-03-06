@@ -38,6 +38,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -220,7 +221,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testOnEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-        final File emptyFile = File.createTempFile("file", ".java", temporaryFolder);
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".java";
+        final File emptyFile =
+                Files.createFile(temporaryFolder.toPath().resolve(uniqueFileName)).toFile();
         execute(checkConfig, emptyFile.getPath());
         final long fileSize = Files.size(emptyFile.toPath());
         assertWithMessage("File should be empty")
@@ -233,8 +236,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
 
         try {
-            execute(createTreeWalkerConfig(checkConfig),
-                    File.createTempFile("junit", null, temporaryFolder).getPath());
+            final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+            final File filePath = new File(temporaryFolder, uniqueFileName);
+            execute(createTreeWalkerConfig(checkConfig),filePath.toString());
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (CheckstyleException exception) {
@@ -285,11 +289,11 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testForInvalidCheckImplementation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(BadJavaDocCheck.class);
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".java";
+        final File pathToEmptyFile =new File(temporaryFolder, uniqueFileName);
 
         try {
-            execute(checkConfig, pathToEmptyFile);
+            execute(checkConfig, pathToEmptyFile.toString());
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException ex) {
@@ -545,7 +549,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testCheckInitIsCalledInTreeWalker() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyInitCheck.class);
-        final File file = File.createTempFile("file", ".pdf", temporaryFolder);
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
+        final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
         assertWithMessage("Init was not called")
                 .that(VerifyInitCheck.isInitWasCalled())
@@ -557,7 +562,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         VerifyDestroyCheck.resetDestroyWasCalled();
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCheck.class);
-        final File file = File.createTempFile("file", ".pdf", temporaryFolder);
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
+        final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
         assertWithMessage("Destroy was not called")
                 .that(VerifyDestroyCheck.isDestroyWasCalled())
@@ -569,7 +575,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         VerifyDestroyCheck.resetDestroyWasCalled();
         final DefaultConfiguration checkConfig =
                 createModuleConfig(VerifyDestroyCommentCheck.class);
-        final File file = File.createTempFile("file", ".pdf", temporaryFolder);
+        final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
+        final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
         assertWithMessage("Destroy was not called")
                 .that(VerifyDestroyCheck.isDestroyWasCalled())
@@ -584,14 +591,16 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(filterConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "file_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName2);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
         // One more time to use cache.
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
 
         assertWithMessage("External resource is not present in cache")
                 .that(Files.readString(cacheFile.toPath()))
@@ -618,11 +627,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(filterConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName2);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
 
         final long cacheSize = Files.size(cacheFile.toPath());
         assertWithMessage("cacheFile should not be empty")
