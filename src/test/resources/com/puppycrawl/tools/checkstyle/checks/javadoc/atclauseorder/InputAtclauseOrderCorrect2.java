@@ -30,7 +30,7 @@ public class InputAtclauseOrderCorrect2 implements Serializable {
          * @throws Exception Some text.
          * @deprecated Some text.
          */
-        String method(String aString) throws Exception { // ok
+        String method(String aString) throws Exception {
             return "null";
         }
 

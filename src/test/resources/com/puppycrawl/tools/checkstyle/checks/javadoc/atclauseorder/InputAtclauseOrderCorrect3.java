@@ -26,7 +26,7 @@ public class InputAtclauseOrderCorrect3 implements Serializable {
          * @throws Exception Some text.
          * @deprecated Some text.
          */
-        void method3() throws Exception { // ok
+        void method3() throws Exception {
         }
 
         /**

@@ -11,7 +11,6 @@ tagOrder = \t@author                , @deprecated, @exception, @param, @return, 
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
-// ok
 /**
  * Some javadoc.
  *
