@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -217,19 +218,25 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @throws IllegalStateException when validation of default javadoc tokens fails
      */
     private void validateDefaultJavadocTokens() {
-        if (getRequiredJavadocTokens().length != 0) {
-            final int[] defaultJavadocTokens = getDefaultJavadocTokens();
-            Arrays.sort(defaultJavadocTokens);
-            for (final int javadocToken : getRequiredJavadocTokens()) {
-                if (Arrays.binarySearch(defaultJavadocTokens, javadocToken) < 0) {
-                    final String message = String.format(Locale.ROOT,
-                            "Javadoc Token \"%s\" from required javadoc "
-                                + "tokens was not found in default "
-                                + "javadoc tokens list in check %s",
-                            javadocToken, getClass().getName());
-                    throw new IllegalStateException(message);
-                }
-            }
+        final Set<Integer> defaultTokens = Arrays.stream(getDefaultJavadocTokens())
+                .boxed()
+                .collect(Collectors.toUnmodifiableSet());
+
+        final List<Integer> missingRequiredTokenNames = Arrays.stream(getRequiredJavadocTokens())
+                .boxed()
+                .filter(token -> !defaultTokens.contains(token))
+                .collect(Collectors.toList());
+
+        if (!missingRequiredTokenNames.isEmpty()) {
+            final String message = String.format(Locale.ROOT,
+                        "Javadoc Token \"%s\" from required javadoc "
+                            + "tokens was not found in default "
+                            + "javadoc tokens list in check %s",
+                        missingRequiredTokenNames.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", ")),
+                        getClass().getName());
+            throw new IllegalStateException(message);
         }
     }
 
