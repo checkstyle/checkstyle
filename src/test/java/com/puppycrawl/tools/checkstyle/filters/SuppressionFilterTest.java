@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -168,14 +170,15 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final File filePath = new File(temporaryFolder, uniqueFileName);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
         // One more time to use cache.
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
     }
 
     @Test
@@ -200,13 +203,14 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         firstFilterConfig.addProperty("file", urlForTest);
 
         final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "file_" + UUID.randomUUID() + ".java";
+        final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName2);
 
-        execute(firstCheckerConfig, pathToEmptyFile);
+        execute(firstCheckerConfig, pathToEmptyFile.toString());
 
         // One more time to use cache.
         final DefaultConfiguration secondFilterConfig =
@@ -217,7 +221,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        execute(secondCheckerConfig, pathToEmptyFile);
+        execute(secondCheckerConfig, pathToEmptyFile.toString());
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
