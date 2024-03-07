@@ -5785,7 +5785,10 @@ public final class TokenTypes {
             JavaLanguageLexer.COMPACT_CTOR_DEF;
 
     /**
-     * Beginning of a Java 14 Text Block literal,
+     * Text blocks are a new feature added to to Java SE 15 and later
+     * that will make writing multi-line strings much easier and cleaner.
+     *
+     * Beginning of a Java 15 Text Block literal,
      * delimited by three double quotes.
      *
      * <p>For example:</p>
@@ -5804,7 +5807,7 @@ public final class TokenTypes {
      * |   `--ASSIGN -&gt; =
      * |       `--EXPR -&gt; EXPR
      * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \r\n                 Hello, world!\r\n
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
      * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
      * |--SEMI -&gt; ;
      * </pre>
@@ -5815,7 +5818,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
 
     /**
-     * Content of a Java 14 text block. This is a
+     * Content of a Java 15 text block. This is a
      * sequence of characters, possibly escaped with '\'. Actual line terminators
      * are represented by '\n'.
      *
@@ -5846,7 +5849,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
-     * End of a Java 14 text block literal, delimited by three
+     * End of a Java 15 text block literal, delimited by three
      * double quotes.
      *
      * <p>For example:</p>
@@ -5857,17 +5860,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--IDENT (String)
-     * |   |--IDENT (hello)
-     * |   |--ASSIGN (=)
-     * |   |   `--EXPR
-     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
-     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
-     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
-     * |   `--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--IDENT -&gt; String
+     * |   |--IDENT -&gt; hello
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36
