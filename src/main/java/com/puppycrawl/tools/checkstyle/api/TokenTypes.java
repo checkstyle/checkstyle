@@ -5789,7 +5789,10 @@ public final class TokenTypes {
             JavaLanguageLexer.COMPACT_CTOR_DEF;
 
     /**
-     * Beginning of a Java 14 Text Block literal,
+     * Text blocks are a new feature added to to Java SE 15 and later
+     * that will make writing multi-line strings much easier and cleaner.
+     *
+     * Beginning of a Java 15 Text Block literal,
      * delimited by three double quotes.
      *
      * <p>For example:</p>
@@ -5819,7 +5822,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
 
     /**
-     * Content of a Java 14 text block. This is a
+     * Content of a Java 15 text block. This is a
      * sequence of characters, possibly escaped with '\'. Actual line terminators
      * are represented by '\n'.
      *
@@ -5850,7 +5853,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
-     * End of a Java 14 text block literal, delimited by three
+     * End of a Java 15 text block literal, delimited by three
      * double quotes.
      *
      * <p>For example:</p>
