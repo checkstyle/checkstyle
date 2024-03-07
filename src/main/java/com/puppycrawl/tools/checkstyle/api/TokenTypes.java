@@ -5804,7 +5804,7 @@ public final class TokenTypes {
      * |   `--ASSIGN -&gt; =
      * |       `--EXPR -&gt; EXPR
      * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \r\n                 Hello, world!\r\n
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
      * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
      * |--SEMI -&gt; ;
      * </pre>
@@ -5857,17 +5857,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--IDENT (String)
-     * |   |--IDENT (hello)
-     * |   |--ASSIGN (=)
-     * |   |   `--EXPR
-     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
-     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
-     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
-     * |   `--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--IDENT -&gt; String
+     * |   |--IDENT -&gt; hello
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36
