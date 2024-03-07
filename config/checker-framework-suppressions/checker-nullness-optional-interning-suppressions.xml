@@ -1577,8 +1577,30 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter lcurly of Details constructor.</message>
+    <lineContent>return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter nextToken of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter nextToken of Details constructor.</message>
+    <lineContent>return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
@@ -1623,6 +1645,17 @@
     <specifier>argument</specifier>
     <message>incompatible argument for parameter rcurly of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
+    <lineContent>return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
