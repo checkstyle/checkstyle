@@ -4106,9 +4106,48 @@
                    enabled_by_default="false"/>
   <inspection_tool class="SpringBootApplicationYaml" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- until #14448 -->
-  <inspection_tool class="YAMLSchemaValidation" enabled="false" level="ERROR"
+  <!-- until idea inspections v2023.3.4 problems -->
+  <inspection_tool class="ClassEscapesItsScope" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
+  <inspection_tool class="ClassWithTooManyDependencies" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="EmptyDirectory" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="EqualsWithItself" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="ExtractMethodRecommender" enabled="false" level="WEAK WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="FieldMayBeStatic" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="JavadocReference" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="MismatchedJavadocCode" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="OnDemandImport" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="OptionalGetWithoutIsPresent" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="ProblematicWhitespace" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="RedundantMethodOverride" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="SuppressionAnnotation" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="SystemGetProperty" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="TailRecursion" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="TestMethodWithoutAssertion" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="UNUSED_IMPORT" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="UseOfPropertiesAsHashtable" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="VulnerableLibrariesGlobal" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="VulnerableLibrariesLocal" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <!-- idea inspections problems v2023.3.4 end here -->
   <inspection_tool class="SpringBootBootstrapConfigurationInspection" enabled="false"
                    level="WEAK WARNING" enabled_by_default="false"/>
   <inspection_tool class="SpringCacheAnnotationsOnInterfaceInspection" enabled="false"
