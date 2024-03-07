@@ -821,4 +821,63 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRightCurlyTestSwitchExpression7.java"), expected);
     }
+
+    @Test
+    public void testCaseBlocksInSwitchStatement1() throws Exception {
+         final String[] expected = {
+            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "78:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
+            "90:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "97:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
+            "106:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
+            "118:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "127:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "139:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "142:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "150:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "150:34: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 34),
+            "170:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "170:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestCaseBlocksInSwitchStatement.java"), expected);
+    }
+
+    @Test
+    public void testCaseBlocksInSwitchStatement2() throws Exception {
+         final String[] expected = {
+            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "78:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
+            "118:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "127:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "139:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "142:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "150:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "170:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestCaseBlocksInSwitchStatement2.java"), expected);
+    }
+
+    @Test
+    public void testCaseBlocksInSwitchStatement3() throws Exception {
+         final String[] expected = {
+            "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "73:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "78:44: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 44),
+            "118:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "127:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "139:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "142:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "150:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "170:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestCaseBlocksInSwitchStatement3.java"), expected);
+    }
 }
