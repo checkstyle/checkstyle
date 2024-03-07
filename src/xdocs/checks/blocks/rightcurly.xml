@@ -11,7 +11,7 @@
       <subsection name="Description" id="Description">
         <p>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
-          This check supports if-else, try-catch-finally blocks, switch statements,
+          This check supports if-else, try-catch-finally blocks, switch statements, switch cases,
           while-loops, for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -81,6 +81,8 @@
                     COMPACT_CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
                     LITERAL_SWITCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                    LITERAL_CASE</a>
                   .
               </td>
               <td>

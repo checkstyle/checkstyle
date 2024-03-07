@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for code blocks. This check
- supports if-else, try-catch-finally blocks, switch statements, while-loops, for-loops,
+ supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops, for-loops,
  method definitions, class definitions, constructor definitions,
  instance, static initialization blocks, annotation definitions and enum definitions.
  For right curly brace of expression blocks of arrays, lambdas and class instances

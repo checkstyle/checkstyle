@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
- * supports if-else, try-catch-finally blocks, switch statements, while-loops, for-loops,
+ * supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -155,6 +155,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_CASE,
         };
     }
 
@@ -425,6 +426,9 @@ public class RightCurlyCheck extends AbstractCheck {
                 case TokenTypes.LITERAL_SWITCH:
                     details = getDetailsForSwitch(ast);
                     break;
+                case TokenTypes.LITERAL_CASE:
+                    details = getDetailsForCase(ast);
+                    break;
                 default:
                     details = getDetailsForOthers(ast);
                     break;
@@ -451,6 +455,28 @@ public class RightCurlyCheck extends AbstractCheck {
                 nextToken = getNextToken(switchNode);
             }
             return new Details(lcurly, rcurly, nextToken, true);
+        }
+
+        /**
+         * Collects details about case statements.
+         *
+         * @param caseNode case statement to gather details about
+         * @return new Details about given case statement
+         */
+        private static Details getDetailsForCase(DetailAST caseNode) {
+             final DetailAST caseParent = caseNode.getParent();
+             final int parentType = caseParent.getType();
+             final DetailAST ast = caseParent.findFirstToken(TokenTypes.SLIST);
+             DetailAST lcurly = (parentType == TokenTypes.CASE_GROUP) ? ast.getFirstChild() : ast;
+             DetailAST rcurly = null;
+             // case statement may have no braces but has SLIST token
+             if(lcurly != null && !lcurly.getText().equals("{")) {
+                 lcurly = null;
+             }
+             if (lcurly != null) {
+                rcurly = lcurly.getLastChild();
+             }
+            return new Details(lcurly, rcurly, getNextToken(caseParent), true);
         }
 
         /**
