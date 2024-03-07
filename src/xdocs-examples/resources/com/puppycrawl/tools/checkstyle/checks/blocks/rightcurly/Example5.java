@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="RightCurly">
       <property name="option" value="alone_or_singleline"/>
-      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/>
     </module>
   </module>
 </module>
@@ -16,10 +16,9 @@ class Example5 {
 
   public void method0() {
     int mode = 0;
+    int x;
     switch (mode) {
-      case 1:
-        int x = 1;
-        break;
+      case 1: {x = 1;}   // ok, RightCurly is in single line
       default:
         x = 0;
     }
@@ -41,5 +40,6 @@ class Example5 {
         x = 1; }
     // violation above, 'should be alone on a line.'
   }
+
 }
 // xdoc section -- end
