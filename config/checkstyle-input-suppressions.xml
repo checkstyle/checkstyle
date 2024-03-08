@@ -70,8 +70,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/13213 -->
 
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd1.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd2.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]onestatementperline[\\/]InputOneStatementPerLineBeginTreeTest.java"/>
