@@ -44,7 +44,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedTooDeep() throws Exception {
+    public void testNestedForDepthLevelTwo() throws Exception {
 
         final String[] expected = {
             "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -53,7 +53,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputNestedForDepth.java"),
+                getPath("InputNestedForDepthLevelTwo.java"),
                expected);
     }
 
@@ -68,17 +68,17 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedOk() throws Exception {
+    public void testNestedForDepthLevelFour() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputNestedForDepth1.java"),
+                getPath("InputNestedForDepthLevelFour.java"),
                expected);
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void testNestedForDepthTokensNotNull() {
         final NestedForDepthCheck check = new NestedForDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -92,7 +92,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNestedDefault() throws Exception {
+    public void testNestedForDepthDefault() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
         };
