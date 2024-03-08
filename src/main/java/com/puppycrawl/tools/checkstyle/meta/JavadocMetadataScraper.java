@@ -90,7 +90,12 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     /** Regular expression for removal of @code{-} present at the beginning of texts. */
     private static final Pattern DESC_CLEAN = Pattern.compile("-\\s");
 
-    /** Regular expression for file separator corresponding to the host OS. */
+    /**
+     * Regular expression for file separator corresponding to the host OS.
+     * 
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - until issue #14625
+     */
     private static final Pattern FILE_SEPARATOR_PATTERN =
             Pattern.compile(Pattern.quote(System.getProperty("file.separator")));
 

@@ -469,6 +469,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isNotNull();
     }
 
+    /**
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testFinishLocalSetupFullyInitialized() throws Exception {
         final Checker checker = new Checker();
@@ -768,6 +772,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testCatchErrorInProcessFilesMethod() throws Exception {
@@ -822,6 +828,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testCatchErrorWithNoFileName() throws Exception {
@@ -1126,6 +1134,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testCatchErrorWithCache() throws Exception {
@@ -1204,6 +1214,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testCatchErrorWithCacheWithNoFileName() throws Exception {
@@ -1275,6 +1287,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testExceptionWithNoFileName() {
@@ -1323,6 +1337,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testExceptionWithCacheAndNoFileName() throws Exception {

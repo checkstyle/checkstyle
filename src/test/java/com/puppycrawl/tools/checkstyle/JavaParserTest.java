@@ -57,6 +57,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isNull();
     }
 
+    /**
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testAppendHiddenBlockCommentNodes() throws Exception {
         final DetailAST root =
@@ -99,6 +103,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
     }
 
+    /**
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testAppendHiddenSingleLineCommentNodes() throws Exception {
         final DetailAST root =
@@ -139,6 +147,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .startsWith(" inline comment");
     }
 
+    /**
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testAppendHiddenSingleLineCommentNodes2() throws Exception {
         final DetailAST root =
@@ -230,6 +242,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(Arrays.asList("5,4", "8,0"));
     }
 
+    /**
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testJava14TextBlocks() throws Exception {
         final DetailAST root =

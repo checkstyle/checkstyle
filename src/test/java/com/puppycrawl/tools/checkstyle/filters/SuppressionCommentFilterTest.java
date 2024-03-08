@@ -658,6 +658,10 @@ public class SuppressionCommentFilterTest
         return TestUtil.getInternalState(filter, "tags");
     }
 
+    /**
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testCachingByFileContentsInstance() throws Exception {
 

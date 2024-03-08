@@ -400,6 +400,10 @@ public class CommitValidationTest {
 
     }
 
+    /**
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason RedundantMethodOverride - until issue #14625
+     */
     private static final class OmitMergeCommitsIterator implements Iterator<RevCommit> {
 
         private final Iterator<RevCommit> revCommitIterator;

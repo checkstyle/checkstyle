@@ -384,6 +384,10 @@ public class ModuleReflectionUtilTest {
             method(data);
         }
 
+        /**
+         * @noinspection TailRecursion
+         * @noinspectionreason TailRecursion - until issue #14625
+         */
         public final void method(int data) {
             field++;
             if (data > 0) {

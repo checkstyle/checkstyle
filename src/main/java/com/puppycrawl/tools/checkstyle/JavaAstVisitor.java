@@ -92,6 +92,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The order of {@code visit...} methods in {@code JavaAstVisitor.java} and production rules in
  * {@code JavaLanguageParser.g4} should be consistent to ease maintenance.
  * </p>
+ * @noinspection ClassWithTooManyDependencies
+ * @noinspectionreason ClassWithTooManyDependencies - until issue #14625
  */
 public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAstImpl> {
 
