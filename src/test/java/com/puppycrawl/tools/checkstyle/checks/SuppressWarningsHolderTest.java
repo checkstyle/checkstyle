@@ -406,6 +406,12 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder7.java"), expected);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
