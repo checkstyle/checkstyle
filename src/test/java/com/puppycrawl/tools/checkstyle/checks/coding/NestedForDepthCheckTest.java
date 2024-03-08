@@ -44,7 +44,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthLevelTwo() throws Exception {
+    public void testNestedForDepthCheckCustomMaxLevelTwo() throws Exception {
 
         final String[] expected = {
             "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -68,7 +68,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthLevelFour() throws Exception {
+    public void testNestedForDepthCheckCustomMaxLevelFour() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -92,7 +92,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNestedForDepthDefault() throws Exception {
+    public void testNestedForDepthCheckDefaultMaxLevel() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
         };
