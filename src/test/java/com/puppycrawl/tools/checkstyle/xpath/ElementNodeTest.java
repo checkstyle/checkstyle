@@ -76,6 +76,12 @@ public class ElementNodeTest extends AbstractPathTestSupport {
             .isEqualTo(1);
     }
 
+    /**
+     * Temporary java doc
+     *
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testSiblingsOrdering() {
         final DetailAstImpl detailAst1 = new DetailAstImpl();
