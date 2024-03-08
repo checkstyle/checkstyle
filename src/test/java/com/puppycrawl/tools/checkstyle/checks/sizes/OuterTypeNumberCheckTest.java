@@ -116,6 +116,8 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
      * check as they are file specific values.
      *
      * @throws Exception if there is an error.
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {

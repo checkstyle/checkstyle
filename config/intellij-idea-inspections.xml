@@ -4109,6 +4109,28 @@
   <!-- until #14448 -->
   <inspection_tool class="YAMLSchemaValidation" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
+  <!-- until Issue #14625 -->
+  <inspection_tool class="ClassEscapesItsScope" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="ClassWithTooManyDependencies" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="EmptyDirectory" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="JavadocReference" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="OnDemandImport" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="ProblematicWhitespace" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="SuppressionAnnotation" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="UNUSED_IMPORT" enabled="false" level="ERROR"
+                   enabled_by_default="false"/>
+  <inspection_tool class="VulnerableLibrariesGlobal" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <inspection_tool class="VulnerableLibrariesLocal" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
+  <!-- until Issue #14625 ends here -->
   <inspection_tool class="SpringBootBootstrapConfigurationInspection" enabled="false"
                    level="WEAK WARNING" enabled_by_default="false"/>
   <inspection_tool class="SpringCacheAnnotationsOnInterfaceInspection" enabled="false"

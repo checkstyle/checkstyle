@@ -303,9 +303,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddFilter() {
         final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
-
         checker.addFilter(filter);
-
         filter.resetFilter();
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
@@ -348,7 +346,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
@@ -389,7 +386,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
-
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
@@ -420,7 +416,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setBasedir("some");
         checker.setSeverity("ignore");
-
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
@@ -469,6 +464,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .isNotNull();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testFinishLocalSetupFullyInitialized() throws Exception {
         final Checker checker = new Checker();
@@ -597,7 +598,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
-
         final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
 
         execute(checkerConfig, tmpFile.getPath());
@@ -637,7 +637,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // invoke destroy to persist cache
         checker.destroy();
-
         final Properties cache = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cache.load(reader);
@@ -674,7 +673,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.clearCache();
         // invoke destroy to persist cache
         checker.destroy();
-
         final Properties cacheAfterClear = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
             cacheAfterClear.load(reader);
@@ -765,7 +763,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
@@ -819,7 +818,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
@@ -1123,7 +1123,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
@@ -1201,7 +1202,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
@@ -1272,7 +1274,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */
@@ -1320,7 +1323,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     /**
      * Test doesn't need to be serialized.
      *
-     * @noinspection SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspection ExtractMethodRecommender, SerializableInnerClassWithNonSerializableOuterClass
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason SerializableInnerClassWithNonSerializableOuterClass - mocked file
      *      for test does not require serialization
      */

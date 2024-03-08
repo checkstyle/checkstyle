@@ -250,6 +250,8 @@ public final class ImportControlLoader extends XmlLoader {
      * @param uri the uri of the file to load.
      * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
+     * @noinspection ClassEscapesItsScope
+     * @noinspectionreason ClassEscapesItsScope - until issue #14625
      */
     public static PkgImportControl load(URI uri) throws CheckstyleException {
         return loadUri(uri);

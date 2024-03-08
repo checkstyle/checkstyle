@@ -69,6 +69,12 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
                 getPath("InputEmptyCatchBlockDefault2.java"), expected);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - until issue #14625
+     */
     @Test
     public void testLinesAreProperlySplitSystemIndependently() throws Exception {
         final String[] expected = {
