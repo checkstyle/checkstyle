@@ -28,6 +28,12 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 
 public class LineColumnTest {
 
+    /**
+     * Temporary java doc
+     *
+     * @noinspection EqualsWithItself
+     * @noinspectionreason EqualsWithItself - until issue #14625
+     */
     @Test
     public void testCompareToBothEqual() {
         final int actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));

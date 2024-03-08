@@ -589,6 +589,8 @@ public class XdocsPagesTest {
      * @noinspection JUnitTestMethodWithNoAssertions
      * @noinspectionreason JUnitTestMethodWithNoAssertions -asserts in callstack,
      *      but not in this method
+     * @noinspection TestMethodWithoutAssertion
+     * @noinspectionreason TestMethodWithoutAssertion - until issue #14625
      */
     @Test
     public void testAllCheckSectionsEx() throws Exception {
@@ -1414,6 +1416,12 @@ public class XdocsPagesTest {
         return result;
     }
 
+    /**
+     * Temporary java doc
+     *
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     private static void validateViolationSection(String fileName, String sectionName,
                                                  Node subSection,
                                                  Object instance) throws Exception {

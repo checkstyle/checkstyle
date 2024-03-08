@@ -174,6 +174,12 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         }
     }
 
+    /**
+     * Temporary java doc
+     *
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testPackagesWithIoException() throws Exception {
         final URLConnection urlConnection = new URLConnection(null) {
