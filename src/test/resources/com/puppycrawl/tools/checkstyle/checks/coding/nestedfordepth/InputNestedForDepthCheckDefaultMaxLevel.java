@@ -7,7 +7,7 @@ max = (default)1
 
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedfordepth;
 
-public class InputNestedForDepthDefault {
+public class InputNestedForDepthCheckDefaultMaxLevel {
 
   public void method() {
     for (int i = 1; i < 5; i++) {
