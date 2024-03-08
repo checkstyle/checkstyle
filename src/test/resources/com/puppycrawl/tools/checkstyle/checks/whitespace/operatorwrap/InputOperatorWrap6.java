@@ -16,7 +16,7 @@ import java.util.Arrays;
  * Test case for detecting operator wrapping.
  * @author Lars K�hne
  **/
-class InputOperatorWrap6 // ok
+class InputOperatorWrap6
 {
     void test()
     {

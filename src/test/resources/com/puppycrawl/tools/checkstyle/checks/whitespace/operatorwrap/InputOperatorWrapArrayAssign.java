@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 import java.lang.annotation.Repeatable;
 import java.util.Arrays;
 
-@Annotation1(example = { // ok
+@Annotation1(example = {
     "foo",
     "bar"
 })
@@ -21,15 +21,15 @@ import java.util.Arrays;
     "bar"
 })
 @Nested(
-    nestedAnn = { // ok
-        @Annotation1(example = { // ok
+    nestedAnn = {
+        @Annotation1(example = {
             "foo",
             "bar"
         })
     }
 )
 public class InputOperatorWrapArrayAssign {
-    public String[] array = { // ok
+    public String[] array = {
         "foo",
         "bar"
     };
@@ -42,7 +42,7 @@ public class InputOperatorWrapArrayAssign {
 
 @Annotation1(
     value = "1",
-    example = { // ok
+    example = {
         "foo",
         "bar"
     },
@@ -51,11 +51,11 @@ public class InputOperatorWrapArrayAssign {
 class Second {}
 
 @Annotation1(
-    example = { // ok
+    example = {
         "foo",
         "bar"
     },
-    arr = { // ok
+    arr = {
         "1"
     }
 )

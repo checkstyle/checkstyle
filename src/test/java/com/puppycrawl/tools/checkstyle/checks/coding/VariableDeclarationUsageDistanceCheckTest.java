@@ -168,6 +168,8 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 1),
             "234:9: " + getCheckMessage(MSG_KEY, "c", 3, 1),
             "235:9: " + getCheckMessage(MSG_KEY, "d2", 3, 1),
+            "272:9: " + getCheckMessage(MSG_KEY, "sel", 2, 1),
+            "273:9: " + getCheckMessage(MSG_KEY, "model", 2, 1),
             "312:9: " + getCheckMessage(MSG_KEY, "wh", 2, 1),
             "355:9: " + getCheckMessage(MSG_KEY, "green", 2, 1),
             "356:9: " + getCheckMessage(MSG_KEY, "blue", 3, 1),
@@ -178,10 +180,20 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "483:9: " + getCheckMessage(MSG_KEY, "l2", 2, 1),
             "491:9: " + getCheckMessage(MSG_KEY, "myOption", 7, 1),
             "503:9: " + getCheckMessage(MSG_KEY, "myOption", 6, 1),
+            "516:9: " + getCheckMessage(MSG_KEY, "count", 4, 1),
             "517:9: " + getCheckMessage(MSG_KEY, "files", 2, 1),
             "552:13: " + getCheckMessage(MSG_KEY, "id", 2, 1),
             "554:13: " + getCheckMessage(MSG_KEY, "parentId", 4, 1),
+            "855:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "867:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "879:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "891:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "903:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "913:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "924:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "945:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
             "990:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "1001:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "1036:9: " + getCheckMessage(MSG_KEY, "c", 4, 1),
             "1066:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
         };
@@ -253,11 +265,19 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "231:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
             "491:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 7, 3),
             "503:9: " + getCheckMessage(MSG_KEY_EXT, "myOption", 6, 3),
+            "516:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
             "554:13: " + getCheckMessage(MSG_KEY_EXT, "parentId", 4, 3),
+            "855:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "867:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "879:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "891:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "903:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "913:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
+            "945:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
             "1036:9: " + getCheckMessage(MSG_KEY_EXT, "c", 4, 3),
+            "1001:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
             "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
         };
-
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceDefault.java"), expected);
     }
@@ -283,8 +303,9 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testLabels() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY_EXT, "eol", 5, 3),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
@@ -376,5 +397,15 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistance1.java"), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceCloseToBlock() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "a", 13, 1),
+            "16:9: " + getCheckMessage(MSG_KEY, "b", 13, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceCloseToBlock.java"), expected);
     }
 }

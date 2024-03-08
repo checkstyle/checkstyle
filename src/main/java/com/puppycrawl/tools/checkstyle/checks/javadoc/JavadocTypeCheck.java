@@ -190,7 +190,7 @@ public class JavadocTypeCheck
 
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
-            Pattern.compile("\\s*<([^>]+)>.*");
+            Pattern.compile("^<([^>]+)");
 
     /** Pattern to split type name field in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =

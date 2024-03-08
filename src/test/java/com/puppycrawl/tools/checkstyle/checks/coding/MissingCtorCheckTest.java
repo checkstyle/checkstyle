@@ -34,14 +34,14 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingSwitchDefault() throws Exception {
+    public void testMissingCtorEmptyClass() throws Exception {
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputMissingCtor.java"),
+                getPath("InputMissingCtorEmptyClass.java"),
                expected);
     }
 
@@ -60,7 +60,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingCtorClassOnOneLine() throws Exception {
+    public void testMissingCtorNestedClasses() throws Exception {
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
@@ -69,7 +69,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputMissingCtor2.java"),
+                getPath("InputMissingCtorNestedClasses.java"),
                 expected);
     }
 

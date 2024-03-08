@@ -13,7 +13,7 @@ import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-public class InputThrowsCount2 {
+public class InputThrowsCountCustomMaxCount {
     void method1() throws Exception
     {
     }
@@ -45,7 +45,7 @@ public class InputThrowsCount2 {
     }
 }
 
-class SubClass2 extends InputThrowsCount2 {
+class SubClass2 extends InputThrowsCountCustomMaxCount {
     @Override
     void method1() {
     }

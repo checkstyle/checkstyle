@@ -305,7 +305,6 @@ public final class InlineConfigParser {
 
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
             throws CheckstyleException {
-        String fullyQualifiedClassName;
         // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
         final Map<String, String> moduleMappings = new HashMap<>();
         moduleMappings.put("ParameterNumber",
@@ -327,6 +326,7 @@ public final class InlineConfigParser {
         moduleMappings.put("Checker",
                 "com.puppycrawl.tools.checkstyle.CheckerCheck");
 
+        String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
             fullyQualifiedClassName = moduleMappings.get(moduleName);
         }
