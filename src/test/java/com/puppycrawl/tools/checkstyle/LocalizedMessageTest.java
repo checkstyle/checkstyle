@@ -86,6 +86,8 @@ public class LocalizedMessageTest {
      * @noinspectionreason resource - we have no need to use try with resources in testing
      * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
      *      testing
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testBundleReloadUrlNotNull() throws IOException {
@@ -143,6 +145,8 @@ public class LocalizedMessageTest {
      * @noinspectionreason resource - we have no need to use try with resources in testing
      * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
      *      testing
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      */
     @Test
     public void testBundleReloadUrlNotNullFalseReload() throws IOException {
