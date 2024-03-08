@@ -25,6 +25,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -89,7 +91,28 @@ public final class TestInputConfiguration {
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+
+        final String checkerModuleName = "com.puppycrawl.tools.checkstyle.CheckerCheck";
+        final Optional<ModuleInputConfiguration> checkerModule = childrenModules.stream()
+                .filter(module -> module.getModuleName().equals(checkerModuleName))
+                .findFirst();
+
+        if (checkerModule.isPresent()) {
+            final ModuleInputConfiguration checkerConfig = checkerModule.get();
+            final Map<String, String> propertiesMap = checkerConfig.getNonDefaultProperties();
+
+            final Set<Map.Entry<String, String>> entrySet = propertiesMap.entrySet();
+            for (Map.Entry<String, String> entry : entrySet) {
+                final String property = entry.getKey();
+                final String value = entry.getValue();
+                root.addProperty(property, value);
+            }
+
+            childrenModules.remove(checkerConfig);
+        }
+
         final DefaultConfiguration treeWalker = createTreeWalker();
+
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
