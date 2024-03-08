@@ -121,14 +121,14 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithMultipleChecksOne() throws Exception {
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocCorrectParagraphOne.java"),
+                getPath("InputAbstractJavadocCheckParagraphOnInnerClass.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
     public void testWithMultipleChecksTwo() throws Exception {
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocCorrectParagraphTwo.java"),
+                getPath("InputAbstractJavadocCheckParagraphOnPlainComment.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
