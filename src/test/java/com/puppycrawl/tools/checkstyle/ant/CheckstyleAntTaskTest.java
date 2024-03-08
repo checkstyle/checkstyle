@@ -858,6 +858,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertLoggedTime(loggedMessages, testingTime, "To process the files");
     }
 
+    /**
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
                                          long testingTime, String expectedMsg) {
 

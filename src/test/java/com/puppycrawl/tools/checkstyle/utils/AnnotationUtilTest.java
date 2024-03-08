@@ -256,6 +256,10 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
             .isFalse();
     }
 
+    /**
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testContainsAnnotation() {
         final DetailAstImpl astForTest = new DetailAstImpl();
@@ -281,6 +285,10 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testContainsAnnotationWithStringFalse() {
         final DetailAstImpl astForTest = new DetailAstImpl();

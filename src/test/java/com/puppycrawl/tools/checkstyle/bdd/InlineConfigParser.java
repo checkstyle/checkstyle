@@ -299,6 +299,10 @@ public final class InlineConfigParser {
         }
     }
 
+    /**
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
             throws CheckstyleException {
         // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845

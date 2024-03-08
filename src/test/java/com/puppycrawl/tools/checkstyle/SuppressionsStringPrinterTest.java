@@ -30,6 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
+    /**
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - until issue #14625
+     */
     private static final String EOL = System.getProperty("line.separator");
 
     @Override

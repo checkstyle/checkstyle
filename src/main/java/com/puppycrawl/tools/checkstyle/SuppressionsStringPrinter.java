@@ -43,7 +43,12 @@ public final class SuppressionsStringPrinter {
     private static final Pattern VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX =
             Pattern.compile("^(\\d+):(\\d+)$");
 
-    /** OS specific line separator. */
+    /**
+     * OS specific line separator.
+     * 
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - until issue #14625
+     */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     /** Prevent instances. */

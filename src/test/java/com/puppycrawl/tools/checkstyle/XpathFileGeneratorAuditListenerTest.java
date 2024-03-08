@@ -45,7 +45,12 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class XpathFileGeneratorAuditListenerTest {
 
-    /** OS specific line separator. */
+    /**
+     * OS specific line separator.
+     * 
+     * @noinspection SystemGetProperty
+     * @noinspectionreason SystemGetProperty - until issue #14625
+     */
     private static final String EOL = System.getProperty("line.separator");
 
     private static final Violation FIRST_MESSAGE = createViolation(3, 51,
