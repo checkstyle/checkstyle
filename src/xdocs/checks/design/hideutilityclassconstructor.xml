@@ -55,34 +55,15 @@ public class StringUtils // not final to allow subclassing
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class Test { // violation, class only has a static method and a constructor
+// violation below, 'Utility classes should not have a public or default constructor'
+class Example1 {
 
-  public Test() {
+  public Example1() {
   }
 
   public static void fun() {
   }
-}
 
-class Foo { // OK
-
-  private Foo() {
-  }
-
-  static int n;
-}
-
-class Bar { // OK
-
-  protected Bar() {
-    // prevents calls from subclass
-    throw new UnsupportedOperationException();
-  }
-}
-
-class UtilityClass { // violation, class only has a static field
-
-  static float f;
 }
         </source>
       </subsection>

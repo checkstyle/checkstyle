@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class HideUtilityClassConstructorCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,9 +35,32 @@ public class HideUtilityClassConstructorCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13:1: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
