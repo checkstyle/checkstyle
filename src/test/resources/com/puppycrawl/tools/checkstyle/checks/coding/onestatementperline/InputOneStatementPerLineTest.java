@@ -14,7 +14,7 @@ import java.io.PipedOutputStream;
 public class InputOneStatementPerLineTest {
     void testNestedInLambda() {
         Runnable r = () -> {
-            try (OutputStream s1 = new PipedOutputStream()) { // ok
+            try (OutputStream s1 = new PipedOutputStream()) {
             }
             catch (IOException e) {
             }
