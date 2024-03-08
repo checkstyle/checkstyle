@@ -33,18 +33,18 @@
           Example of violations
         </p>
         <source>
-class MyClass extends SomeOtherClass {
-    MyClass() {
-        super(); // violation
-    }
+class Example1 extends SomeOtherClass {
+  Example1() {
+    super(); // violation
+  }
 
-    MyClass(int arg) {
-        super(arg); // OK, call with argument have to be explicit
-    }
+  Example1(int arg) {
+    super(arg); // OK, call with argument have to be explicit
+  }
 
-    MyClass(long arg) {
-        // OK, call is implicit
-    }
+  Example1(long arg) {
+    // OK, call is implicit
+  }
 }
         </source>
       </subsection>
