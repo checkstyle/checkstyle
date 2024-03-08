@@ -175,6 +175,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
 
         /**
          * Puts the value into properties by the key specified.
+         *
+         * @noinspection UseOfPropertiesAsHashtable
+         * @noinspectionreason UseOfPropertiesAsHashtable - until issue #14625
          */
         @Override
         public synchronized Object put(Object key, Object value) {
