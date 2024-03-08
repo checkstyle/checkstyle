@@ -44,7 +44,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthLevelTwo() throws Exception {
+    public void testNestedTooDeep() throws Exception {
 
         final String[] expected = {
             "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -53,7 +53,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputNestedForDepthCheckCustomMaxLevelTwo.java"),
+                getPath("InputNestedForDepth.java"),
                expected);
     }
 
@@ -68,12 +68,12 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthLevelFour() throws Exception {
+    public void testNestedOk() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputNestedForDepthCheckCustomMaxLevelFour.java"),
+                getPath("InputNestedForDepth1.java"),
                expected);
     }
 
@@ -92,13 +92,13 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNestedForDepthDefault() throws Exception {
+    public void testNestedDefault() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputNestedForDepthCheckDefaultMaxLevel.java"),
+                getPath("InputNestedForDepthDefault.java"),
                expected);
     }
 }

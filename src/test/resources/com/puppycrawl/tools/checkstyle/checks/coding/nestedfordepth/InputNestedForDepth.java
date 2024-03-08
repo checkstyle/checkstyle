@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.nestedfordepth;
  * @author Alexander Jesse
  * @see com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck
  */
-public class InputNestedForDepthCheckCustomMaxLevelTwo {
+public class InputNestedForDepth {
 
   /**
    * Dummy method containing 5 layers of for-statements.
