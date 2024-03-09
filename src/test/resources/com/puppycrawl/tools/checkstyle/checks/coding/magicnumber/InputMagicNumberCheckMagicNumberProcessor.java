@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputMagicNumberMagicNumber {
+public class InputMagicNumberCheckMagicNumberProcessor {
     private static Set<Person> p1 = new HashSet<Person>(5);
     public Object[] values = new Object[3];
     private String[] fStrings = new String[3];

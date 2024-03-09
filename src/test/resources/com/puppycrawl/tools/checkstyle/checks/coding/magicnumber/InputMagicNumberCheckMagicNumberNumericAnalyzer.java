@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class InputMagicNumberMagicNumber2 {
+public class InputMagicNumberCheckMagicNumberNumericAnalyzer {
     {
         int a = 0;
         int b = 9; // violation ''9' is a magic number'
