@@ -53,7 +53,7 @@ public class InputRightCurlyTestCaseBlocksWithSwitchExpression2 {
         };
     }
 
-    void test4() {
+    void test4() throws Exception {
            int a = 0;
            int b = switch (a) {
                 case 0 -> {
@@ -66,7 +66,7 @@ public class InputRightCurlyTestCaseBlocksWithSwitchExpression2 {
             };
     }
 
-    void test5() {
+    void test5() throws Exception {
         int a = 0;
         int b = switch (a) {
             case 0 -> {throw new Exception();}
