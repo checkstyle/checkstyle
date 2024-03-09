@@ -1,21 +1,20 @@
 /*
 MagicNumber
-ignoreNumbers = 0, 1, 3.0, 8, 16, 3000
+ignoreNumbers = -9223372036854775808, -2147483648, -1, 0, 1, 2, -2
 ignoreHashCodeMethod = (default)false
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
 constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
                             UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
-tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
+tokens = NUM_INT, NUM_LONG
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-
-class InputMagicNumberIgnoreSome3 {
+class InputMagicNumberCheckIgnoreNegativeOctalHex3 {
 
     public int hashCode() {
         return 31; // violation
@@ -39,7 +38,7 @@ class InputMagicNumberIgnoreSome3 {
         int y=37; // violation
     }
 
-    public InputMagicNumberIgnoreSome3() {
+    public InputMagicNumberCheckIgnoreNegativeOctalHex3() {
         int z=101; // violation
     }
 
@@ -60,28 +59,29 @@ class InputMagicNumberIgnoreSome3 {
     }
 }
 
-class TestMethodCallIgnoreSome3 {
+class TestMethodCallIgnoreNegativeOctalHex3 {
 
-        public TestMethodCallIgnoreSome3(int x){
+        public TestMethodCallIgnoreNegativeOctalHex3(int x){
 
     }
 
         public void method2() {
-        final TestMethodCallIgnoreSome3 dummyObject = new TestMethodCallIgnoreSome3(62);
+        final TestMethodCallIgnoreNegativeOctalHex3 dummyObject =
+                new TestMethodCallIgnoreNegativeOctalHex3(62);
         }
 }
 
-class BinarySome3 {
+class BinaryIgnoreNegativeOctalHex3 {
     int intValue = 0b101; // violation
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
-@interface AnnotationWithDefaultValueIgnoreSome3 {
+@interface AnnotationWithDefaultValueIgnoreNegativeOctalHex3 {
     int value() default 101;
     int[] ar() default {102};
 }
-class ASome3 {
+class AIgnoreNegativeOctalHex3 {
     {
-        switch (Blah2IgnoreSome1.LOW) {
+        switch (Blah2IgnoreNegativeOctalHex1.LOW) {
         default:
             int b = 122; // violation
         }

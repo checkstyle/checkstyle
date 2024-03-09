@@ -1,13 +1,13 @@
 /*
 MagicNumber
-ignoreNumbers = -9223372036854775808, -2147483648, -1, 0, 1, 2, -2
-ignoreHashCodeMethod = (default)false
+ignoreNumbers = (default)-1, 0, 1, 2
+ignoreHashCodeMethod = true
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
 constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
                             UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
-tokens = NUM_INT, NUM_LONG
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 
 */
@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
  * @author Rick Giles
  * @version 6-May-2003
  */
-public class InputMagicNumberIgnoreNegativeOctalHex1 {
+public class InputMagicNumberCheckIgnoreHashCodeMethod1 {
     public void magicMethod() {
 
         final int INT_CONST = 101_000;
@@ -53,13 +53,13 @@ public class InputMagicNumberIgnoreNegativeOctalHex1 {
 
 
         int int_magic1 = 3_000; // violation
-        double double_magic1 = 1.5_0;
+        double double_magic1 = 1.5_0; // violation
         int int_magic2 = (3 + 4); // 2 violations
 
         int_array = new int[3]; // violation
 
         int_magic1 += 3; // violation
-        double_magic1 *= 1.5;
+        double_magic1 *= 1.5; // violation
 
         for (int j = 3; j < 5; j += 3) { // 3 violations
             int_magic1++;
@@ -87,13 +87,13 @@ public class InputMagicNumberIgnoreNegativeOctalHex1 {
     }
 }
 
-interface Blah2IgnoreNegativeOctalHex1
+interface Blah2IgnoreHashCodeMethod1
 {
   int LOW = 5;
   int HIGH = 78;
 }
 
-class ArrayMagicTestIgnoreNegativeOctalHex1
+class ArrayMagicTestIgnoreHashCodeMethod1
 {
     private static final int[] NONMAGIC = {3};
     private int[] magic = {3}; // violation
