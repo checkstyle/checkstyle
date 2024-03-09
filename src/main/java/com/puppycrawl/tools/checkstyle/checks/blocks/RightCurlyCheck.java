@@ -328,9 +328,12 @@ public class RightCurlyCheck extends AbstractCheck {
             nextToken = Details.getNextToken(nextToken);
         }
 
-        if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
-            final DetailAST doWhileSemi = nextToken.getParent();
-            nextToken = Details.getNextToken(doWhileSemi);
+        final int[] tokensToCheck = {
+            TokenTypes.DO_WHILE, TokenTypes.LITERAL_FINALLY, TokenTypes.LITERAL_CATCH,
+        };
+        if (TokenUtil.isOfType(nextToken, tokensToCheck)) {
+            final DetailAST parent = nextToken.getParent();
+            nextToken = Details.getNextToken(parent);
         }
 
         return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)
