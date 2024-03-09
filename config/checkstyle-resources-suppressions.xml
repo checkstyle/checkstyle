@@ -85,7 +85,7 @@
   <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="src[\\/]it[\\/]resources[\\/].*[\\/]SuppressionXpathRegressionOuterTypeFilename.*\.java"/>
+    files="src[\\/]it[\\/]resources[\\/].*[\\/]InputXpathOuterTypeFilename.*\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"

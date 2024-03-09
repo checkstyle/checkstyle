@@ -40,7 +40,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     @Test
     public void testFile1() throws Exception {
         final File fileToProcess = new
-                File(getPath("SuppressionXpathRegressionInnerAssignment1.java"));
+                File(getPath("InputXpathInnerAssignment1.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
@@ -50,7 +50,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInnerAssignment1']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignment1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
                         + "/SLIST/EXPR/ASSIGN[./IDENT[@text='a']]/ASSIGN[./IDENT[@text='b']]"
         );
@@ -61,7 +61,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     @Test
     public void testFile2() throws Exception {
         final File fileToProcess = new
-                File(getPath("SuppressionXpathRegressionInnerAssignment2.java"));
+                File(getPath("InputXpathInnerAssignment2.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerAssignmentCheck.class);
 
@@ -71,12 +71,12 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInnerAssignment2']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignment2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='doubleArray']]"
                 + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/EXPR[./ASSIGN/IDENT[@text='myDouble']]",
                 "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInnerAssignment2']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathInnerAssignment2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]/"
                 + "SLIST/VARIABLE_DEF[./IDENT[@text='doubleArray']]"
                 + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/EXPR/ASSIGN[./IDENT[@text='myDouble']]"

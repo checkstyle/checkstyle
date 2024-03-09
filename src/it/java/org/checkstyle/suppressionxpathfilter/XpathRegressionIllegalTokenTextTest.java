@@ -41,7 +41,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalTokenText1.java"));
+                new File(getPath("InputXpathIllegalTokenText1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "12345");
@@ -52,11 +52,11 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         };
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText1']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenText1']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
                     + "/ASSIGN/EXPR[./NUM_INT[@text='12345']]",
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText1']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenText1']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='illegalNumber']]"
                     + "/ASSIGN/EXPR/NUM_INT[@text='12345']"
         );
@@ -68,7 +68,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalTokenText2.java"));
+                new File(getPath("InputXpathIllegalTokenText2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "forbiddenText");
@@ -79,12 +79,12 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         };
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText2']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenText2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
                     + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
                     + "/ASSIGN/EXPR[./STRING_LITERAL[@text='forbiddenText']]",
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText2']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenText2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
                     + "/SLIST/VARIABLE_DEF[./IDENT[@text='illegalString']]"
                     + "/ASSIGN/EXPR/STRING_LITERAL[@text='forbiddenText']"
@@ -97,7 +97,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalTokenText3.java"));
+                new File(getPath("InputXpathIllegalTokenText3.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
         moduleConfig.addProperty("format", "invalidIdentifier");
@@ -108,7 +108,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalTokenText3']]"
+                    + "/INTERFACE_DEF[./IDENT[@text='InputXpathIllegalTokenText3']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
         );
 

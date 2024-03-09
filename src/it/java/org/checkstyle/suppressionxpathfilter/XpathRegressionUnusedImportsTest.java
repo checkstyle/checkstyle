@@ -40,7 +40,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUnusedImportsOne.java"));
+                new File(getPath("InputXpathUnusedImportsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedImportsCheck.class);
@@ -60,7 +60,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUnusedImportsTwo.java"));
+                new File(getPath("InputXpathUnusedImportsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedImportsCheck.class);

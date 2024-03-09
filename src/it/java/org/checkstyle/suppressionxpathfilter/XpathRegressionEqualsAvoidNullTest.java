@@ -40,7 +40,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     @Test
     public void testEquals() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEqualsAvoidNull.java"));
+            getPath("InputXpathEqualsAvoidNull.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -51,10 +51,10 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsAvoidNull']]"
+                        + "[@text='InputXpathEqualsAvoidNull']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsAvoidNull']]"
+                        + "[@text='InputXpathEqualsAvoidNull']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -63,7 +63,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     @Test
     public void testEqualsIgnoreCase() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEqualsAvoidNullIgnoreCase.java"));
+            getPath("InputXpathEqualsAvoidNullIgnoreCase.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -74,10 +74,10 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsAvoidNullIgnoreCase']]"
+                        + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsAvoidNullIgnoreCase']]"
+                        + "[@text='InputXpathEqualsAvoidNullIgnoreCase']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/EXPR/METHOD_CALL");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
