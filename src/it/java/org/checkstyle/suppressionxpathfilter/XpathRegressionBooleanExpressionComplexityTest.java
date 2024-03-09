@@ -39,7 +39,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testMethodOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionBooleanExpressionComplexityOne.java"));
+                new File(getPath("InputXpathBooleanExpressionComplexityOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
@@ -51,7 +51,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionBooleanExpressionComplexityOne']]"
+                        + "[@text='InputXpathBooleanExpressionComplexityOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/SLIST"
                         + "/LITERAL_TRY/LITERAL_CATCH/SLIST/VARIABLE_DEF"
                         + "[./IDENT[@text='d']]/ASSIGN"
@@ -64,7 +64,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testMethodTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionBooleanExpressionComplexityTwo.java"));
+                new File(getPath("InputXpathBooleanExpressionComplexityTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionBooleanExpressionComplexityTwo']]"
+                        + "@text='InputXpathBooleanExpressionComplexityTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST/VARIABLE_DEF"
                         + "[./IDENT[@text='d']]/ASSIGN"
         );
@@ -88,8 +88,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     @Test
     public void testMethodThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionBoolean"
-                        + "ExpressionComplexityThree.java"));
+                new File(getPath("InputXpathBooleanExpressionComplexityThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(BooleanExpressionComplexityCheck.class);
@@ -101,7 +100,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionBooleanExpressionComplexityThree']]"
+                        + "@text='InputXpathBooleanExpressionComplexityThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodThree']]/SLIST/LITERAL_IF"
         );
 
