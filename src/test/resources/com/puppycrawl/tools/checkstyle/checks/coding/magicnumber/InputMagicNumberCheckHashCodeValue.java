@@ -14,7 +14,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumberDefault3 {
+public class InputMagicNumberCheckHashCodeValue {
 
     public int hashCode() {
         return 31; // violation
@@ -38,7 +38,7 @@ public class InputMagicNumberDefault3 {
         int y=37; // violation
     }
 
-    public InputMagicNumberDefault3() {
+    public InputMagicNumberCheckHashCodeValue() {
         int z=101; // violation
     }
 
@@ -59,28 +59,28 @@ public class InputMagicNumberDefault3 {
     }
 }
 
-class TestMethodCallDefault3 {
+class TestMethodCallHashCodeValue {
 
-        public TestMethodCallDefault3(int x){
+        public TestMethodCallHashCodeValue(int x){
 
     }
 
         public void method2() {
-        final TestMethodCallDefault3 dummyObject = new TestMethodCallDefault3(62);
+        final TestMethodCallHashCodeValue dummyObject = new TestMethodCallHashCodeValue(62);
         }
 }
 
-class BinaryDefault3 {
+class BinaryCheckHashCodeValue {
     int intValue = 0b101; // violation
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
-@interface AnnotationWithDefaultValueDefault3 {
+@interface AnnotationWithDefaultValueCheckHashCodeValue {
     int value() default 101;
     int[] ar() default {102};
 }
 class ADefault3 {
     {
-        switch (Blah2Default1.LOW) {
+        switch (Blah2CheckDefault.LOW) {
         default:
             int b = 122; // violation
         }
