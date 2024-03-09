@@ -39,7 +39,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionUnusedLocalVariableOne.java"));
+                "InputXpathUnusedLocalVariableOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedLocalVariableCheck.class);
@@ -51,18 +51,18 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableOne']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='a']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableOne']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='a']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableOne']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='a']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableOne']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableOne']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='a']]/TYPE/LITERAL_INT"
         );
@@ -74,7 +74,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionUnusedLocalVariableTwo.java"));
+                "InputXpathUnusedLocalVariableTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedLocalVariableCheck.class);
@@ -86,17 +86,17 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableTwo']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF[./IDENT[@text='b']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableTwo']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='b']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionUnusedLocalVariableTwo']]/OBJBLOCK/"
+                        + "@text='InputXpathUnusedLocalVariableTwo']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='b']]/TYPE", "/COMPILATION_UNIT/CLASS_DEF["
-                        + "./IDENT[@text='SuppressionXpathRegressionUnusedLocalVariableTwo']]/"
+                        + "./IDENT[@text='InputXpathUnusedLocalVariableTwo']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF["
                         + "./IDENT[@text='b']]/TYPE/LITERAL_INT"
         );

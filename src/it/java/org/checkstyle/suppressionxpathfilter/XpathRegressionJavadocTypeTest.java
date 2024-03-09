@@ -44,7 +44,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeOne.java"));
+                new File(getPath("InputXpathJavadocTypeOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -58,12 +58,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]",
+                        + "[./IDENT[@text='InputXpathJavadocTypeOne']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeOne']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeOne']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -73,7 +73,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeTwo.java"));
+                new File(getPath("InputXpathJavadocTypeTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -87,11 +87,11 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]",
+                        + "[@text='InputXpathJavadocTypeTwo']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]/MODIFIERS",
+                        + "[@text='InputXpathJavadocTypeTwo']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]"
+                        + "[@text='InputXpathJavadocTypeTwo']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -101,7 +101,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeThree.java"));
+                new File(getPath("InputXpathJavadocTypeThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -113,12 +113,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]",
+                        + "[./IDENT[@text='InputXpathJavadocTypeThree']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeThree']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeThree']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

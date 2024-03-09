@@ -40,7 +40,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNumberDefault.java"));
+                new File(getPath("InputXpathParameterNumberDefault.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
 
@@ -50,7 +50,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionParameterNumberDefault']]"
+                + "[./IDENT[@text='InputXpathParameterNumberDefault']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
 
@@ -61,7 +61,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testMethods() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNumberMethods.java"));
+                new File(getPath("InputXpathParameterNumberMethods.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
         moduleConfig.addProperty("max", "10");
@@ -73,7 +73,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                "/COMPILATION_UNIT/CLASS_DEF"
-               + "[./IDENT[@text='SuppressionXpathRegressionParameterNumberMethods']]"
+               + "[./IDENT[@text='InputXpathParameterNumberMethods']]"
                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
         );
 
@@ -83,7 +83,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     @Test
     public void testIgnoreOverriddenMethods() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionParameterNumberIgnoreOverriddenMethods.java");
+                getPath("InputXpathParameterNumberIgnoreOverriddenMethods.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
@@ -95,9 +95,9 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionParameterNumberIgnoreOverriddenMethods']]"
+                + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']]"
                 + "/OBJBLOCK/CTOR_DEF/IDENT"
-                + "[@text='SuppressionXpathRegressionParameterNumberIgnoreOverriddenMethods']"
+                + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
