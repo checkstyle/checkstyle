@@ -141,33 +141,41 @@ public class DefaultLoggerTest {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
+        final DefaultLogger logger =
+                new DefaultLogger(outputStream, (AbstractAutomaticBean.OutputStreamOptions) null);
+
+        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            logger.finishLocalSetup();
+        }, "IllegalArgumentException expected");
+
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("Parameter infoStreamOptions can not be null");
+                .isEqualTo("Parameter infoStreamOptions cannot be null");
     }
 
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
+        final DefaultLogger defaultLogger = new DefaultLogger(
+                outputStream,
+                OutputStreamOptions.CLOSE,
+                outputStream,
+                (AbstractAutomaticBean.OutputStreamOptions) null
+        );
 
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
+        final IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> {
+                    defaultLogger.finishLocalSetup();
                 },
-                "IllegalArgumentException expected");
+                "IllegalArgumentException expected"
+        );
+
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+                .isEqualTo("Parameter errorStreamOptions cannot be null");
     }
 
     @Test
