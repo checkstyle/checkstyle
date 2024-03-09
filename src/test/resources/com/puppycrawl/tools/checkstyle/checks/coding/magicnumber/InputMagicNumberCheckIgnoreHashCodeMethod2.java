@@ -1,7 +1,7 @@
 /*
 MagicNumber
-ignoreNumbers =
-ignoreHashCodeMethod = (default)false
+ignoreNumbers = (default)-1, 0, 1, 2
+ignoreHashCodeMethod = true
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
@@ -13,9 +13,10 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
-
-public class InputMagicNumberIgnoreNone2 {
-    /** test long hex */
+public class InputMagicNumberCheckIgnoreHashCodeMethod2 {
+    /**
+     * test long hex
+     */
     long l = 0xffffffffL; // violation
 
     /**
@@ -31,14 +32,15 @@ public class InputMagicNumberIgnoreNone2 {
     /**
      * test octal and hex negative values
      */
-    private int hexIntMinusOne = 0xffffffff; // violation
-    private long hexLongMinusOne = 0xffffffffffffffffL; // violation
+    private int hexIntMinusOne = 0xffffffff;
+    private long hexLongMinusOne = 0xffffffffffffffffL;
     private long hexIntMinValue = 0x80000000; // violation
     private long hexLongMinValue = 0x8000000000000000L; // violation
-    private int octalIntMinusOne = 037777777777;  // violation
-    private long octalLongMinusOne = 01777777777777777777777L;  // violation
+    private int octalIntMinusOne = 037777777777;
+    private long octalLongMinusOne = 01777777777777777777777L;
     private long octalIntMinValue = 020000000000;  // violation
     private long octalLongMinValue = 01000000000000000000000L; // violation
+
     public static final int TESTINTVAL = (byte) 0x80;
 
     public static final java.util.List MYLIST = new java.util.ArrayList() {
@@ -54,11 +56,11 @@ public class InputMagicNumberIgnoreNone2 {
     public final javax.swing.border.Border StdBorder =
             javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 
-    enum MyEnum2IgnoreNone2 {
-        A_3(3),
-        B_3(54);
+    enum MyEnum2IgnoreHashCodeMethod2 {
+        A_2(3),
+        B_2(54);
 
-        private MyEnum2IgnoreNone2(int value) {
+        private MyEnum2IgnoreHashCodeMethod2(int value) {
 
         }
     }
