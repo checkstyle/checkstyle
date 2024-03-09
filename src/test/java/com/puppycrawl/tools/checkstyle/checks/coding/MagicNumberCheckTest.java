@@ -35,25 +35,25 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testLocalVariables()
+    public void testMagicNumberCheckLocalVariablesPrimary()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberLocalVariables.java"), expected);
+                getPath("InputMagicNumberCheckLocalVariablesPrimary.java"), expected);
     }
 
     @Test
-    public void testLocalVariables2()
+    public void testMagicNumberCheckLocalVariablesSecondary()
             throws Exception {
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY, "8"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberLocalVariables2.java"), expected);
+                getPath("InputMagicNumberCheckLocalVariablesSecondary.java"), expected);
     }
 
     @Test
-    public void testDefault1()
+    public void testMagicNumberCheckDefault()
             throws Exception {
         final String[] expected = {
             "54:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -79,11 +79,11 @@ public class MagicNumberCheckTest
             "96:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberDefault1.java"), expected);
+                getPath("InputMagicNumberCheckDefault.java"), expected);
     }
 
     @Test
-    public void testDefault2()
+    public void testMagicNumberCheckSignedAndHexValue()
             throws Exception {
         final String[] expected = {
             "21:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -98,11 +98,11 @@ public class MagicNumberCheckTest
             "50:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberDefault2.java"), expected);
+                getPath("InputMagicNumberCheckSignedAndHexValue.java"), expected);
     }
 
     @Test
-    public void testDefault3()
+    public void testMagicNumberCheckHashCodeValue()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -122,11 +122,11 @@ public class MagicNumberCheckTest
 
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberDefault3.java"), expected);
+                getPath("InputMagicNumberCheckHashCodeValue.java"), expected);
     }
 
     @Test
-    public void testIgnoreSome1()
+    public void testIgnoreMagicNumberIgnoreCheckNumericViolation()
             throws Exception {
         final String[] expected = {
             "36:25: " + getCheckMessage(MSG_KEY, "2"),
@@ -146,11 +146,11 @@ public class MagicNumberCheckTest
             "86:29: " + getCheckMessage(MSG_KEY, "0X11l"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreSome1.java"), expected);
+                getPath("InputMagicNumberIgnoreCheckNumericViolation.java"), expected);
     }
 
     @Test
-    public void testIgnoreSome2()
+    public void testMagicNumberIgnoreCheckHexSignedAndOctalValue()
             throws Exception {
         final String[] expected = {
             "21:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -168,11 +168,11 @@ public class MagicNumberCheckTest
             "49:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreSome2.java"), expected);
+                getPath("InputMagicNumberIgnoreCheckHexSignedAndOctalValue.java"), expected);
     }
 
     @Test
-    public void testIgnoreSome3()
+    public void testIgnoreMagicNumberIgnoreCheckBinaryAndAnnotationHandler()
             throws Exception {
         final String[] expected = {
             "21:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -187,11 +187,11 @@ public class MagicNumberCheckTest
             "86:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreSome3.java"), expected);
+                getPath("InputMagicNumberIgnoreCheckBinaryAndAnnotationHandler.java"), expected);
     }
 
     @Test
-    public void testIgnoreNone1()
+    public void testIgnoreMagicNumberIgnoreCheckNoneViolationHandler()
             throws Exception {
         final String[] expected = {
             "41:24: " + getCheckMessage(MSG_KEY, "1"),
@@ -238,11 +238,11 @@ public class MagicNumberCheckTest
             "105:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNone1.java"), expected);
+                getPath("InputMagicNumberIgnoreCheckNoneViolationHandler.java"), expected);
     }
 
     @Test
-    public void testIgnoreNone2()
+    public void testIgnoreMagicNumberIgnoreCheckNoneHexSignedAndOctalValue()
             throws Exception {
         final String[] expected = {
             "19:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -261,11 +261,11 @@ public class MagicNumberCheckTest
             "47:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNone2.java"), expected);
+                getPath("InputMagicNumberIgnoreCheckNoneHexSignedAndOctalValue.java"), expected);
     }
 
     @Test
-    public void testIgnoreNone3()
+    public void testIgnoreMagicNumberIgnoreCheckNoneBinaryAndAnnotationHandler()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -280,11 +280,11 @@ public class MagicNumberCheckTest
             "85:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNone3.java"), expected);
+            getPath("InputMagicNumberIgnoreCheckNoneBinaryAndAnnotationHandler.java"), expected);
     }
 
     @Test
-    public void testIntegersOnly1()
+    public void testMagicNumberCheckIntegersOnlyViolationHandler()
             throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -308,11 +308,11 @@ public class MagicNumberCheckTest
             "99:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIntegersOnly1.java"), expected);
+                getPath("InputMagicNumberCheckIntegersOnlyViolationHandler.java"), expected);
     }
 
     @Test
-    public void testIntegersOnly2()
+    public void testInputMagicNumberCheckIntegersOnlyHexSignedAndOctal()
             throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -325,11 +325,11 @@ public class MagicNumberCheckTest
             "49:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIntegersOnly2.java"), expected);
+                getPath("InputMagicNumberCheckIntegersOnlyHexSignedAndOctal.java"), expected);
     }
 
     @Test
-    public void testIntegersOnly3()
+    public void testInputMagicNumberCheckIntegersOnlyBinaryAndAnnotation()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -344,11 +344,11 @@ public class MagicNumberCheckTest
             "85:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIntegersOnly3.java"), expected);
+                getPath("InputMagicNumberCheckIntegersOnlyBinaryAndAnnotation.java"), expected);
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex1() throws Exception {
+    public void testMagicNumberCheckIgnoreNegativeOctalHex1() throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "57:27: " + getCheckMessage(MSG_KEY, "3"),
@@ -371,22 +371,22 @@ public class MagicNumberCheckTest
             "99:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNegativeOctalHex1.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreNegativeOctalHex1.java"), expected);
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex2() throws Exception {
+    public void testMagicNumberCheckIgnoreNegativeOctalHex2() throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
             "28:30: " + getCheckMessage(MSG_KEY, "+3"),
             "50:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNegativeOctalHex2.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreNegativeOctalHex2.java"), expected);
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex3() throws Exception {
+    public void testMagicNumberCheckIgnoreNegativeOctalHex3() throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
             "25:16: " + getCheckMessage(MSG_KEY, "42"),
@@ -400,11 +400,11 @@ public class MagicNumberCheckTest
             "86:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreNegativeOctalHex3.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreNegativeOctalHex3.java"), expected);
     }
 
     @Test
-    public void testIgnoreHashCodeMethod() throws Exception {
+    public void testMagicNumberCheckIgnoreHashCodeMethod1() throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "56:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -429,11 +429,11 @@ public class MagicNumberCheckTest
             "99:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreHashCodeMethod1.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreHashCodeMethod1.java"), expected);
     }
 
     @Test
-    public void testIgnoreHashCodeMethod2() throws Exception {
+    public void testMagicNumberCheckIgnoreHashCodeMethod2() throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
             "27:30: " + getCheckMessage(MSG_KEY, "+3"),
@@ -447,11 +447,11 @@ public class MagicNumberCheckTest
             "49:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreHashCodeMethod2.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreHashCodeMethod2.java"), expected);
     }
 
     @Test
-    public void testIgnoreHashCodeMethod3() throws Exception {
+    public void testMagicNumberCheckIgnoreHashCodeMethod3() throws Exception {
         final String[] expected = {
             "25:16: " + getCheckMessage(MSG_KEY, "42"),
             "30:16: " + getCheckMessage(MSG_KEY, "13"),
@@ -464,11 +464,11 @@ public class MagicNumberCheckTest
             "86:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreHashCodeMethod3.java"), expected);
+                getPath("InputMagicNumberCheckIgnoreHashCodeMethod3.java"), expected);
     }
 
     @Test
-    public void testIgnoreFieldDeclaration1()
+    public void testMagicNumberCheckIgnoreFieldDeclarationViolationHandler()
             throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -493,21 +493,21 @@ public class MagicNumberCheckTest
             "86:29: " + getCheckMessage(MSG_KEY, "0X11l"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreFieldDeclaration1.java"), expected);
+            getPath("InputMagicNumberCheckIgnoreFieldDeclarationViolationHandler.java"), expected);
     }
 
     @Test
-    public void testIgnoreFieldDeclaration2()
+    public void testMagicNumberCheckIgnoreFieldDeclarationHexSignedAndOctal()
             throws Exception {
         final String[] expected = {
             "49:20: " + getCheckMessage(MSG_KEY, "378"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreFieldDeclaration2.java"), expected);
+            getPath("InputMagicNumberCheckIgnoreFieldDeclarationHexSignedAndOctal.java"), expected);
     }
 
     @Test
-    public void testIgnoreFieldDeclaration3()
+    public void testMagicNumberCheckIgnoreFieldDeclarationBinaryAnnotation()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -523,11 +523,11 @@ public class MagicNumberCheckTest
             "86:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberIgnoreFieldDeclaration3.java"), expected);
+            getPath("InputMagicNumberCheckIgnoreFieldDeclarationBinaryAnnotation.java"), expected);
     }
 
     @Test
-    public void testWaiverParentToken()
+    public void testMagicNumberCheckWaiverParentTokenViolationHandler()
             throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -553,11 +553,11 @@ public class MagicNumberCheckTest
             "99:28: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberWaiverParentToken1.java"), expected);
+                getPath("InputMagicNumberCheckWaiverParentTokenViolationHandler.java"), expected);
     }
 
     @Test
-    public void testWaiverParentToken2()
+    public void testMagicNumberCheckWaiverParentTokenHexSignedAndOctal()
             throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -577,11 +577,11 @@ public class MagicNumberCheckTest
             "57:66: " + getCheckMessage(MSG_KEY, "3"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberWaiverParentToken2.java"), expected);
+                getPath("InputMagicNumberCheckWaiverParentTokenHexSignedAndOctal.java"), expected);
     }
 
     @Test
-    public void testWaiverParentToken3()
+    public void testMagicNumberCheckWaiverParentTokenBinaryAnnotation()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -601,11 +601,11 @@ public class MagicNumberCheckTest
             "86:21: " + getCheckMessage(MSG_KEY, "122"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberWaiverParentToken3.java"), expected);
+                getPath("InputMagicNumberCheckWaiverParentTokenBinaryAnnotation.java"), expected);
     }
 
     @Test
-    public void testMagicNumberRecordsDefault()
+    public void testMagicNumberCheckRecordsDefault()
             throws Exception {
         final String[] expected = {
             "19:11: " + getCheckMessage(MSG_KEY, "6"),
@@ -615,7 +615,7 @@ public class MagicNumberCheckTest
             "33:20: " + getCheckMessage(MSG_KEY, "10"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMagicNumberRecordsDefault.java"), expected);
+                getNonCompilablePath("InputMagicNumberCheckRecordsDefault.java"), expected);
     }
 
     @Test
@@ -643,7 +643,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumber()
+    public void testMagicNumberCheckMagicNumberProcessor()
             throws Exception {
         final String[] expected = {
             "38:29: " + getCheckMessage(MSG_KEY, "3.0"),
@@ -680,11 +680,11 @@ public class MagicNumberCheckTest
             "115:30: " + getCheckMessage(MSG_KEY, "1.5"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumber.java"), expected);
+                getPath("InputMagicNumberCheckMagicNumberProcessor.java"), expected);
     }
 
     @Test
-    public void testMagicNumber2() throws Exception {
+    public void testMagicNumberCheckMagicNumberNumericAnalyzer() throws Exception {
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY, "9"),
             "27:20: " + getCheckMessage(MSG_KEY, "5.5"),
@@ -705,13 +705,13 @@ public class MagicNumberCheckTest
             "70:53: " + getCheckMessage(MSG_KEY, "5"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumber2.java"), expected);
+                getPath("InputMagicNumberCheckMagicNumberNumericAnalyzer.java"), expected);
     }
 
     @Test
-    public void testMagicNumber3() throws Exception {
+    public void testMagicNumberCheckMagicNumberNumericalDataHandler() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumber3.java"), expected);
+                getPath("InputMagicNumberCheckMagicNumberNumericalDataHandler.java"), expected);
     }
 }
