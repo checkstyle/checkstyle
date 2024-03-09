@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
  * @author Rick Giles
  * @version 6-May-2003
  */
-public class InputMagicNumberDefault1 {
+public class InputMagicNumberCheckDefault {
     public void magicMethod() {
 
         final int INT_CONST = 101_000;
@@ -84,13 +84,13 @@ public class InputMagicNumberDefault1 {
     }
 }
 
-interface Blah2Default1
+interface Blah2CheckDefault
 {
   int LOW = 5;
   int HIGH = 78;
 }
 
-class ArrayMagicTestDefault1
+class ArrayMagicTestCheckDefault
 {
     private static final int[] NONMAGIC = {3};
     private int[] magic = {3}; // violation

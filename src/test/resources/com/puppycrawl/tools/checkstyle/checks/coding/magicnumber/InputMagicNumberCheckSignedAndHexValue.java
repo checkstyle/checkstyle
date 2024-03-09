@@ -14,7 +14,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumberDefault2 {
+public class InputMagicNumberCheckSignedAndHexValue {
 /**
  * test long hex
  */
@@ -58,11 +58,11 @@ public class InputMagicNumberDefault2 {
     public final javax.swing.border.Border StdBorder =
             javax.swing.BorderFactory.createEmptyBorder(3, 3, 3, 3);
 
-    enum MyEnum2Default2 {
+    enum MyEnum2CheckSignedAndHexValue {
         A(3),
         B(54);
 
-        private MyEnum2Default2(int value) {
+        private MyEnum2CheckSignedAndHexValue(int value) {
 
         }
     }
