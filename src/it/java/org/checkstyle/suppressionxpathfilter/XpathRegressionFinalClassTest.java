@@ -39,23 +39,23 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionFinalClass1.java"));
+                "InputXpathFinalClass1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FinalClassCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(FinalClassCheck.class,
-                    FinalClassCheck.MSG_KEY, "SuppressionXpathRegressionFinalClass1"),
+                    FinalClassCheck.MSG_KEY, "InputXpathFinalClass1"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]",
+                        + "@text='InputXpathFinalClass1']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS",
+                        + "@text='InputXpathFinalClass1']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS/LITERAL_PUBLIC"
+                        + "@text='InputXpathFinalClass1']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -65,7 +65,7 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionFinalClass2.java"));
+                "InputXpathFinalClass2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FinalClassCheck.class);
@@ -77,13 +77,13 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClass2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 

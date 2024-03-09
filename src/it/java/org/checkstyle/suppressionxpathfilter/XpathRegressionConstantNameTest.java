@@ -44,7 +44,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
     @Test
     public void testLowercase() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionConstantNameLowercase.java"));
+            getPath("InputXpathConstantNameLowercase.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
@@ -54,7 +54,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionConstantNameLowercase']]"
+                + "[@text='InputXpathConstantNameLowercase']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='number']"
         );
 
@@ -65,7 +65,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
     @Test
     public void testCamelCase() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionConstantNameCamelCase.java"));
+            new File(getPath("InputXpathConstantNameCamelCase.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
@@ -76,7 +76,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionConstantNameCamelCase']]"
+                + "[./IDENT[@text='InputXpathConstantNameCamelCase']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='badConstant']"
         );
 
@@ -87,7 +87,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
     @Test
     public void testWithBeginningUnderscore() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionConstantNameWithBeginningUnderscore.java"));
+            getPath("InputXpathConstantNameWithBeginningUnderscore.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
@@ -97,7 +97,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionConstantNameWithBeginningUnderscore']]"
+                + "[@text='InputXpathConstantNameWithBeginningUnderscore']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='_CONSTANT']"
         );
 
@@ -108,7 +108,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
     @Test
     public void testWithTwoUnderscores() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionConstantNameWithTwoUnderscores.java"));
+            getPath("InputXpathConstantNameWithTwoUnderscores.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
 
@@ -118,7 +118,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionConstantNameWithTwoUnderscores']]"
+                + "[@text='InputXpathConstantNameWithTwoUnderscores']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='BAD__NAME']"
         );
 

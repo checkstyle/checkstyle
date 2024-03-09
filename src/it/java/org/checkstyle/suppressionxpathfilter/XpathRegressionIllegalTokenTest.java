@@ -40,7 +40,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalToken1.java"));
+                new File(getPath("InputXpathIllegalToken1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
         final String[] expectedViolation = {
@@ -49,7 +49,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalToken1']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalToken1']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
                     + "/SLIST/LABELED_STAT[./IDENT[@text='outer']]"
         );
@@ -61,7 +61,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalToken2.java"));
+                new File(getPath("InputXpathIllegalToken2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
 
@@ -73,7 +73,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIllegalToken2']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalToken2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
                         + "/MODIFIERS/LITERAL_NATIVE"
         );

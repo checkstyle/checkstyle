@@ -41,19 +41,19 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentName1.java"));
+                "InputXpathRecordComponentName1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
 
         final String[] expectedViolation = {
-            "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
+            "6:50: " + getCheckMessage(RecordComponentNameCheck.class,
                 AbstractNameCheck.MSG_INVALID_PATTERN,
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentName1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentName1']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
 
@@ -64,7 +64,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentName2.java"));
+                "InputXpathRecordComponentName2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
@@ -78,7 +78,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRecordComponentName2']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathRecordComponentName2']]/OBJBLOCK"
                 + "/RECORD_DEF[./IDENT[@text='MyRecord']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='otherValue']"
         );

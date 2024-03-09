@@ -40,7 +40,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testCorrect() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNestedForDepth.java"));
+                new File(getPath("InputXpathNestedForDepth.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NestedForDepthCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNestedForDepth']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNestedForDepth']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_FOR"
                 + "/SLIST/LITERAL_FOR/SLIST/LITERAL_FOR"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
     @Test
     public void testMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNestedForDepthMax.java"));
+                new File(getPath("InputXpathNestedForDepthMax.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NestedForDepthCheck.class);
@@ -77,7 +77,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNestedForDepthMax']]"
+                + "[./IDENT[@text='InputXpathNestedForDepthMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_FOR/"
                 + "SLIST/LITERAL_FOR/"

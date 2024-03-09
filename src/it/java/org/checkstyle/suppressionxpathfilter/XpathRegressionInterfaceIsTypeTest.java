@@ -40,7 +40,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionInterfaceIsType1.java"));
+                "InputXpathInterfaceIsType1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InterfaceIsTypeCheck.class);
@@ -52,11 +52,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]",
+                    + "@text='InputXpathInterfaceIsType1']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]/MODIFIERS",
+                    + "@text='InputXpathInterfaceIsType1']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]"
+                    + "@text='InputXpathInterfaceIsType1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -67,7 +67,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionInterfaceIsType2.java"));
+                "InputXpathInterfaceIsType2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InterfaceIsTypeCheck.class);
@@ -81,11 +81,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]",
+                    + "@text='InputXpathInterfaceIsType2']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]/MODIFIERS",
+                    + "@text='InputXpathInterfaceIsType2']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]"
+                    + "@text='InputXpathInterfaceIsType2']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 

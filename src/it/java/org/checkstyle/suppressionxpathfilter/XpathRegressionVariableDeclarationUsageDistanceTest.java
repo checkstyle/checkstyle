@@ -39,7 +39,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionVariableDeclarationUsageDistance1.java"));
+                "InputXpathVariableDeclarationUsageDistance1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
@@ -55,19 +55,19 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
+                        + "'InputXpathVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
+                        + "'InputXpathVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
+                        + "'InputXpathVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance1']]/"
+                        + "'InputXpathVariableDeclarationUsageDistance1']]/"
                         + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE/LITERAL_INT"
         );
@@ -79,7 +79,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionVariableDeclarationUsageDistance2.java"));
+                "InputXpathVariableDeclarationUsageDistance2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
@@ -96,19 +96,19 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
+                        + "'InputXpathVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
+                        + "'InputXpathVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
+                        + "'InputXpathVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionVariableDeclarationUsageDistance2']]"
+                        + "'InputXpathVariableDeclarationUsageDistance2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE/LITERAL_INT"
         );

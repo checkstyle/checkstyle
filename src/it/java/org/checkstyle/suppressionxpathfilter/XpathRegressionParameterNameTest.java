@@ -41,7 +41,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     @Test
     public void testDefaultPattern() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNameDefaultPattern.java"));
+                new File(getPath("InputXpathParameterNameDefaultPattern.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -55,7 +55,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionParameterNameDefaultPattern']]"
+                        + "='InputXpathParameterNameDefaultPattern']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method1']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='v_1']"
         );
@@ -66,7 +66,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     @Test
     public void testDifferentPattern() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNameDifferentPattern.java"));
+                new File(getPath("InputXpathParameterNameDifferentPattern.java"));
 
         final String pattern = "^[a-z][_a-zA-Z0-9]+$";
         final DefaultConfiguration moduleConfig =
@@ -81,7 +81,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionParameterNameDifferentPattern']]"
+                        + "='InputXpathParameterNameDifferentPattern']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='V2']"
         );
@@ -92,7 +92,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     @Test
     public void testIgnoreOverridden() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNameIgnoreOverridden.java"));
+                new File(getPath("InputXpathParameterNameIgnoreOverridden.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -107,7 +107,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionParameterNameIgnoreOverridden']]"
+                        + "='InputXpathParameterNameIgnoreOverridden']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='V2']"
         );
@@ -118,7 +118,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     @Test
     public void testAccessModifiers() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionParameterNameAccessModifier.java"));
+                new File(getPath("InputXpathParameterNameAccessModifier.java"));
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -134,7 +134,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionParameterNameAccessModifier']]"
+                        + "='InputXpathParameterNameAccessModifier']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method2']]"
                         + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='b']"
         );

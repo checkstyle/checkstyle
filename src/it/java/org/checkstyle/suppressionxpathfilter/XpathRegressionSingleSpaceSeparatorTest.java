@@ -40,7 +40,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
     @Test
     public void testSingleSpaceSeparator() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionSingleSpaceSeparator.java"));
+                new File(getPath("InputXpathSingleSpaceSeparator.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionSingleSpaceSeparator']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathSingleSpaceSeparator']]/OBJBLOCK"
                 + "/VARIABLE_DEF/IDENT[@text='bad']"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
     @Test
     public void testValidateComments() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionSingleSpaceSeparatorValidateComments.java"
+            "InputXpathSingleSpaceSeparatorValidateComments.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -77,7 +77,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[."
-                + "/IDENT[@text='SuppressionXpathRegressionSingleSpaceSeparatorValidateComments']]"
+                + "/IDENT[@text='InputXpathSingleSpaceSeparatorValidateComments']]"
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT"
                 + "[@text=' an invalid comment // warn\\n']]"
         );
