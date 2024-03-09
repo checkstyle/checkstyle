@@ -40,7 +40,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDeclarationOrderOne.java"));
+                new File(getPath("InputXpathDeclarationOrderOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DeclarationOrderCheck.class);
@@ -52,13 +52,13 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderOne']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderOne']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='name']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderOne']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderOne']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='name']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderOne']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderOne']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='name']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -69,7 +69,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDeclarationOrderTwo.java"));
+                new File(getPath("InputXpathDeclarationOrderTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DeclarationOrderCheck.class);
@@ -81,13 +81,13 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderTwo']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='MAX']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderTwo']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='MAX']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionDeclarationOrderTwo']]"
+                        + "[./IDENT[@text='InputXpathDeclarationOrderTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='MAX']]/MODIFIERS/LITERAL_PUBLIC"
         );
 

@@ -41,7 +41,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
     @Test
     public void testNoWhitespaceAfter() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoWhitespaceAfter.java"));
+                new File(getPath("InputXpathNoWhitespaceAfter.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceAfterCheck.class);
@@ -53,10 +53,10 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfter']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfter']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfter']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfter']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/UNARY_MINUS["
                 + "./NUM_INT[@text='1']]"
         );
@@ -68,7 +68,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
     @Test
     public void testTokens() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoWhitespaceAfterTokens.java"));
+                new File(getPath("InputXpathNoWhitespaceAfterTokens.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceAfterCheck.class);
@@ -81,7 +81,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterTokens']]"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfterTokens']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/TYPE/DOT[./IDENT[@text='String']]"
                 + "/DOT[./IDENT[@text='java']]"
@@ -94,7 +94,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
     @Test
     public void testAllowLineBreaks() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionNoWhitespaceAfterLineBreaks.java"));
+            new File(getPath("InputXpathNoWhitespaceAfterLineBreaks.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(NoWhitespaceAfterCheck.class);
@@ -107,20 +107,20 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfterLineBreaks']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfterLineBreaks']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]"
                 + "/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfterLineBreaks']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]/TYPE",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
+                + "[./IDENT[@text='InputXpathNoWhitespaceAfterLineBreaks']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]"
                 + "/TYPE/DOT[./IDENT[@text='String']]"

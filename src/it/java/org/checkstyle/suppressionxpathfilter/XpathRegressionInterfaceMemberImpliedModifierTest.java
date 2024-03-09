@@ -38,7 +38,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier1.java")
+            getPath("InputXpathInterfaceMemberImpliedModifier1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -51,16 +51,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/MODIFIERS",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier1']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -71,7 +71,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier2.java")
+            getPath("InputXpathInterfaceMemberImpliedModifier2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -84,16 +84,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]"
                 + "/MODIFIERS",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier2']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setData']]"
                 + "/MODIFIERS/ABSTRACT"
         );
@@ -104,7 +104,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionInterfaceMemberImpliedModifier3.java")
+            getPath("InputXpathInterfaceMemberImpliedModifier3.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -117,16 +117,16 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]"
                 + "/MODIFIERS",
 
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier3']]"
+                + "[@text='InputXpathInterfaceMemberImpliedModifier3']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Data']]"
                 + "/MODIFIERS/LITERAL_PUBLIC"
         );

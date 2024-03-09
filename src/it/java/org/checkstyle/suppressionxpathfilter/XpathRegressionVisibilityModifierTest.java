@@ -42,7 +42,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     @Test
     public void testDefaultModifier() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionVisibilityModifierDefault.java"));
+                new File(getPath("InputXpathVisibilityModifierDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VisibilityModifierCheck.class);
@@ -53,7 +53,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionVisibilityModifierDefault']]"
+                        + "@text='InputXpathVisibilityModifierDefault']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='field']"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     @Test
     public void testAnnotation() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionVisibilityModifierAnnotation.java"));
+                new File(getPath("InputXpathVisibilityModifierAnnotation.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VisibilityModifierCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionVisibilityModifierAnnotation']]"
+                        + "@text='InputXpathVisibilityModifierAnnotation']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='annotatedString']"
         );
 
@@ -86,7 +86,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     @Test
     public void testAnonymousClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionVisibilityModifierAnonymous.java"));
+                new File(getPath("InputXpathVisibilityModifierAnonymous.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VisibilityModifierCheck.class);
@@ -97,7 +97,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionVisibilityModifierAnonymous']]"
+                        + "@text='InputXpathVisibilityModifierAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]"
                         + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='field1']"
@@ -109,7 +109,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionVisibilityModifierInner.java"));
+                new File(getPath("InputXpathVisibilityModifierInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(VisibilityModifierCheck.class);
@@ -120,7 +120,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionVisibilityModifierInner']]"
+                        + "@text='InputXpathVisibilityModifierInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                         + "VARIABLE_DEF/IDENT[@text='field2']"
         );
