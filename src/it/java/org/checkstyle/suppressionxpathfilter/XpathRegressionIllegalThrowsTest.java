@@ -40,7 +40,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalThrowsOne.java"));
+                new File(getPath("InputXpathIllegalThrowsOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalThrowsCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalThrowsOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathIllegalThrowsOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LITERAL_THROWS"
                 + "/IDENT[@text='RuntimeException']"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalThrowsTwo.java"));
+                new File(getPath("InputXpathIllegalThrowsTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalThrowsCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalThrowsTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathIllegalThrowsTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='methodTwo']]/LITERAL_THROWS"
                 + "/DOT[./IDENT[@text='Error']]"
         );

@@ -40,7 +40,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionFallThroughOne.java"));
+                new File(getPath("InputXpathFallThroughOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FallThroughCheck.class);
@@ -51,11 +51,11 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFallThroughOne']]"
                 + "/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP["
                 + "./LITERAL_CASE/EXPR/NUM_INT[@text='2']]",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFallThroughOne']]"
                 + "/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionFallThroughTwo.java"));
+                new File(getPath("InputXpathFallThroughTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FallThroughCheck.class);
@@ -79,11 +79,11 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFallThroughTwo']]"
                 + "/OBJBLOCK/METHOD_DEF["
                 + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
                 + "/LITERAL_SWITCH/CASE_GROUP[./SLIST/EXPR/POST_INC/IDENT[@text='i']]",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionFallThroughTwo']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathFallThroughTwo']]"
                 + "/OBJBLOCK/METHOD_DEF["
                 + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
                 + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"

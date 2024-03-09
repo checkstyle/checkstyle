@@ -40,7 +40,7 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingCtor1.java"));
+                "InputXpathMissingCtor1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingCtorCheck.class);
@@ -52,11 +52,11 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]",
+                    + "[./IDENT[@text='InputXpathMissingCtor1']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS",
+                    + "[./IDENT[@text='InputXpathMissingCtor1']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS/LITERAL_PUBLIC"
+                    + "@text='InputXpathMissingCtor1']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -66,7 +66,7 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingCtor2.java"));
+                "InputXpathMissingCtor2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingCtorCheck.class);
@@ -78,13 +78,13 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtor2']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
         );
 

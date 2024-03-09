@@ -42,29 +42,29 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodLengthSimple.java"));
+                new File(getPath("InputXpathMethodLengthSimple.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
         moduleConfig.addProperty("max", "10");
 
         final String[] expectedViolations = {
             "4:5: " + getCheckMessage(MethodLengthCheck.class, MSG_KEY,
-                    11, 10, "SuppressionXpathRegressionMethodLengthSimple"),
+                    11, 10, "InputXpathMethodLengthSimple"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]"
+                        + "[@text='InputXpathMethodLengthSimple']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]",
+                        + "[@text='InputXpathMethodLengthSimple']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]"
+                        + "[@text='InputXpathMethodLengthSimple']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]/MODIFIERS",
+                        + "[@text='InputXpathMethodLengthSimple']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]"
+                        + "[@text='InputXpathMethodLengthSimple']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSimple']]"
+                        + "[@text='InputXpathMethodLengthSimple']]"
                         + "/MODIFIERS/LITERAL_PROTECTED"
         );
 
@@ -74,7 +74,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     @Test
     public void testNoEmptyLines() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodLengthNoEmptyLines.java"));
+                new File(getPath("InputXpathMethodLengthNoEmptyLines.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
         moduleConfig.addProperty("max", "5");
@@ -87,13 +87,13 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthNoEmptyLines']]"
+                        + "[@text='InputXpathMethodLengthNoEmptyLines']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthNoEmptyLines']]"
+                        + "[@text='InputXpathMethodLengthNoEmptyLines']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthNoEmptyLines']]"
+                        + "[@text='InputXpathMethodLengthNoEmptyLines']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]"
                         + "/MODIFIERS/LITERAL_PROTECTED"
         );
@@ -104,7 +104,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     @Test
     public void testSingleToken() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMethodLengthSingleToken.java"));
+                getPath("InputXpathMethodLengthSingleToken.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(MethodLengthCheck.class);
         moduleConfig.addProperty("max", "1");
@@ -116,19 +116,19 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[./IDENT[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[./IDENT[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/EXPR/LITERAL_NEW"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodLengthSingleToken']]"
+                        + "[./IDENT[@text='InputXpathMethodLengthSingleToken']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );

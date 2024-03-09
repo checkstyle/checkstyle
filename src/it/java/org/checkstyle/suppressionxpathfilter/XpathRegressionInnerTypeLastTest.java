@@ -42,7 +42,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInnerTypeLastOne.java"));
+                new File(getPath("InputXpathInnerTypeLastOne.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
 
@@ -52,18 +52,18 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastOne']]"
+                        + "[@text='InputXpathInnerTypeLastOne']]"
                         + "/OBJBLOCK/CTOR_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionInnerTypeLastOne']]",
+                        + "[./IDENT[@text='InputXpathInnerTypeLastOne']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastOne']]"
+                        + "[@text='InputXpathInnerTypeLastOne']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastOne']]"
+                        + "[@text='InputXpathInnerTypeLastOne']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastOne']]"
+                        + "[@text='InputXpathInnerTypeLastOne']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastOne']]"
+                        + "[@text='InputXpathInnerTypeLastOne']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -75,7 +75,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     public void testTwo() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInnerTypeLastTwo.java"));
+                new File(getPath("InputXpathInnerTypeLastTwo.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
 
@@ -85,16 +85,16 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastTwo']]"
+                        + "[@text='InputXpathInnerTypeLastTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='innerMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastTwo']]"
+                        + "[@text='InputXpathInnerTypeLastTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT"
                         + "[@text='innerMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastTwo']]"
+                        + "[@text='InputXpathInnerTypeLastTwo']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT"
                         + "[@text='innerMethod']]/MODIFIERS/LITERAL_PUBLIC"
@@ -109,7 +109,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     public void testThree() throws Exception {
 
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionInnerTypeLastThree.java"));
+                getPath("InputXpathInnerTypeLastThree.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(InnerTypeLastCheck.class);
 
@@ -119,18 +119,18 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]"
+                        + "[@text='InputXpathInnerTypeLastThree']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]",
+                        + "[@text='InputXpathInnerTypeLastThree']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]"
+                        + "[@text='InputXpathInnerTypeLastThree']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]"
+                        + "[@text='InputXpathInnerTypeLastThree']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]"
+                        + "[@text='InputXpathInnerTypeLastThree']]"
                         + "/OBJBLOCK/CTOR_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionInnerTypeLastThree']]"
+                        + "[@text='InputXpathInnerTypeLastThree']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 

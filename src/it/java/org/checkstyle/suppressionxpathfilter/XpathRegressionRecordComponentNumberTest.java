@@ -40,7 +40,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentNumber1.java"));
+                "InputXpathRecordComponentNumber1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
@@ -52,10 +52,10 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumber1']]",
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumber1']]"
                     + "/MODIFIERS",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumber1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -66,7 +66,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentNumber2.java"));
+                "InputXpathRecordComponentNumber2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
@@ -79,11 +79,11 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumber2']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
                     + "/LITERAL_PUBLIC"
         );
