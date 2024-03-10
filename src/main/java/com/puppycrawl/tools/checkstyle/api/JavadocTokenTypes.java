@@ -63,14 +63,14 @@ public final class JavadocTokenTypes {
      * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @deprecated it is deprecated method}</pre>
+     * <pre>{@code @deprecated It is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@deprecated it is deprecated method]
-     *   |--DEPRECATED_LITERAL[3x0] : [@deprecated]
-     *   |--WS[3x11] : [ ]
-     *   |--DESCRIPTION[3x12] : [it is deprecated method]
-     *       |--TEXT[3x12] : [it is deprecated method]
+     * JAVADOC_TAG -&gt; JAVADOC_TAG
+     *  |--DEPRECATED_LITERAL -&gt; @deprecated
+     *  |--WS -&gt;
+     *  `--DESCRIPTION -&gt; DESCRIPTION
+     *      |--TEXT -&gt; It is deprecated method
      * }</pre>
      *
      * @see

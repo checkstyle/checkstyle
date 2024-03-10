@@ -18,7 +18,7 @@ public class InputOneStatementPerLineBeginTreeTest {
     void testNestedInLambda() {
         Runnable r = () -> {
             try (OutputStream s1 = new PipedOutputStream();
-                 OutputStream s2 = new PipedOutputStream();) { // ok
+                 OutputStream s2 = new PipedOutputStream();) {
             }
             catch (IOException e) {
             }
@@ -26,7 +26,7 @@ public class InputOneStatementPerLineBeginTreeTest {
     }
 
     public void doLegalForLoop() {
-        for (int i = 0; i < 20; i++) { // ok
+        for (int i = 0; i < 20; i++) {
         }
      }
 
