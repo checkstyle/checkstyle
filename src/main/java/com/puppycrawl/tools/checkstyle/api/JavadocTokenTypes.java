@@ -172,13 +172,15 @@ public final class JavadocTokenTypes {
      * <pre>{@code @param T The bar.}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.]
-     *           |--TEXT[4x12] : [The bar.]
+     * JAVADOC_TAG -&gt; JAVADOC_TAG
+     *  |--PARAM_LITERAL -&gt; @param
+     *  |--WS -&gt;
+     *  |--PARAMETER_NAME -&gt; T
+     *  |--WS -&gt;
+     *  `--DESCRIPTION -&gt; DESCRIPTION
+     *      |--TEXT -&gt; The bar.
+     *      |--NEWLINE -&gt; \r\n
+     *      `--TEXT -&gt;
      * }</pre>
      *
      * @see
