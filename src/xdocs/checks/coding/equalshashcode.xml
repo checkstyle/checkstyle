@@ -40,56 +40,47 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public static class Example1 {
-    public int hashCode() {
-        // code
-    }
-    public boolean equals(String o) { // violation, overloaded implementation of 'equals'
-        // code
-    }
+class Example1 {
+  public int hashCode() { // violation, no valid 'equals'
+    return 0;
+  }
+  public boolean equals(String o) { return false; }
 }
-public static class Example2 {
-    public boolean equals(Object o) { // violation, no 'hashCode'
-        // code
-    }
-    public boolean equals(String o) {
-        // code
-    }
+
+class ExampleNoHashCode {
+  public boolean equals(Object o) { // violation, no 'hashCode'
+    return false;
+  }
+  public boolean equals(String o) { return false; }
 }
-public static class Example3 {
-    public int hashCode() {
-        // code
-    }
-    public boolean equals(Object o) { // OK
-        // code
-    }
-    public boolean equals(String o) {
-        // code
-    }
+
+class ExampleBothMethods1 {
+  public int hashCode() { return 0; }
+  public boolean equals(Object o) { // ok, both methods exist
+    return false;
+  }
+  public boolean equals(String o) { return false; }
 }
-public static class Example4 {
-    public int hashCode() {
-        // code
-    }
-    public boolean equals(java.lang.Object o) { // OK
-        // code
-   }
+
+class ExampleBothMethods2 {
+  public int hashCode() { return 0; }
+  public boolean equals(java.lang.Object o) { // ok, both methods exist
+    return false;
+  }
 }
-public static class Example5 {
-    public static int hashCode(int i) {
-        // code
-    }
-    public boolean equals(Object o) { // violation, overloaded implementation of 'hashCode'
-        // code
-    }
+
+class ExampleNoValidHashCode {
+  public static int hashCode(int i) { return 0; }
+  public boolean equals(Object o) { // violation, no valid 'hashCode'
+    return false;
+  }
 }
-public static class Example6 {
-    public int hashCode() { // violation, overloaded implementation of 'equals'
-        // code
-    }
-    public static boolean equals(Object o, Object o2) {
-        // code
-    }
+
+class ExampleNoValidEquals {
+  public int hashCode() { // violation, no valid 'equals'
+    return 0;
+  }
+  public static boolean equals(Object o, Object o2) { return false; }
 }
         </source>
       </subsection>
