@@ -5,8 +5,8 @@ ignoreHashCodeMethod = (default)false
 ignoreAnnotation = (default)false
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
-constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
-                            UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
+constantWaiverParentToken = ASSIGN, ARRAY_INIT, EXPR, UNARY_PLUS, UNARY_MINUS, TYPECAST, \
+                            ELIST, STAR, DIV, PLUS, MINUS
 tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 
@@ -14,7 +14,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumberDefault3 {
+class InputMagicNumberCheckWaiverParentTokenBinaryAnnotation {
 
     public int hashCode() {
         return 31; // violation
@@ -38,7 +38,7 @@ public class InputMagicNumberDefault3 {
         int y=37; // violation
     }
 
-    public InputMagicNumberDefault3() {
+    public InputMagicNumberCheckWaiverParentTokenBinaryAnnotation() {
         int z=101; // violation
     }
 
@@ -54,35 +54,39 @@ public class InputMagicNumberDefault3 {
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45) // violation
+    @InputMagicNumberIntMethodAnnotation(value=-45)  // violation
     public void anotherNegative2() {
     }
 }
 
-class TestMethodCallDefault3 {
+class TestMethodCallWaiverParentToken3 {
 
-        public TestMethodCallDefault3(int x){
+        public TestMethodCallWaiverParentToken3(int x){
 
     }
 
         public void method2() {
-        final TestMethodCallDefault3 dummyObject = new TestMethodCallDefault3(62);
+        final TestMethodCallWaiverParentToken3 dummyObject =
+                new TestMethodCallWaiverParentToken3(62); // violation
         }
 }
 
-class BinaryDefault3 {
+class BinaryWaiverParentTokenBinaryAnnotation {
     int intValue = 0b101; // violation
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
-@interface AnnotationWithDefaultValueDefault3 {
+@interface AnnotationWithDefaultValueWaiverParentTokenBinaryAnnotation {
     int value() default 101;
     int[] ar() default {102};
 }
-class ADefault3 {
+class AWaiverParentTokenBinaryAnnotation {
     {
-        switch (Blah2Default1.LOW) {
+        switch (Blah2WaiverParentTokenViolationHandler.LOW) {
         default:
             int b = 122; // violation
         }
     }
+}
+@interface InputMagicNumberIntMethodAnnotation {
+        int value();
 }

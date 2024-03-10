@@ -3,7 +3,7 @@ MagicNumber
 ignoreNumbers = (default)-1, 0, 1, 2
 ignoreHashCodeMethod = (default)false
 ignoreAnnotation = (default)false
-ignoreFieldDeclaration = (default)false
+ignoreFieldDeclaration = true
 ignoreAnnotationElementDefaults = (default)true
 constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
                             UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
@@ -15,10 +15,10 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumberRecordsDefault {
+public class InputMagicNumberCheckIgnoreFieldDeclarationRecords {
     @anno(6) // violation
     public record MyRecord() {
-        private static int myInt = 7; // violation
+        private static int myInt = 7;
 
         public MyRecord{
             int i = myInt + 1; // no violation, 1 is defined as non-magic
@@ -40,3 +40,10 @@ public class InputMagicNumberRecordsDefault {
 
 }
 
+class TestClass {
+    static int X = 42;
+}
+
+record TestRecord() {
+    static int X = 42;
+}
