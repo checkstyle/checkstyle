@@ -88,10 +88,40 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** The audit event filters. */
     private final FilterSet filters = new FilterSet();
 
+    /** Message used by destroy method. */
+    private final LocalizedMessage destroyMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.destroy");
+
     /** Message used by finishLocalSetup method. */
     private final LocalizedMessage finishLocalSetupMsg = new LocalizedMessage(
             Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     "Checker.finishLocalSetup");
+
+    /** Message used by processFiles method to show Error. */
+    private final LocalizedMessage processFilesErrorMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.processFilesError");
+
+    /** Message used by processFiles method to show Exception. */
+    private final LocalizedMessage processFilesExceptionMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.processFilesException");
+
+    /** Message used by setCharset method. */
+    private final LocalizedMessage setCharsetMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.setCharset");
+
+    /** Message used by setupChild method to show cannot initialize module Exception. */
+    private final LocalizedMessage setupChildModuleMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.setupChildModule");
+
+    /** Message used by setupChild method to show child not allowed Exception. */
+    private final LocalizedMessage setupChildNotAllowedMsg = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    "Checker.setupChildNotAllowed");
 
     /** The basedir to strip off in file names. */
     private String basedir;
@@ -190,7 +220,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 cacheFile.persist();
             }
             catch (IOException ex) {
-                throw new IllegalStateException("Unable to persist cache file.", ex);
+                final String destroyMessage = destroyMsg.getMessage();
+                throw new IllegalStateException(destroyMessage, ex);
             }
         }
     }
@@ -313,7 +344,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 }
 
                 // We need to catch all exceptions to put a reason failure (file name) in exception
-                throw new CheckstyleException("Exception was thrown while processing "
+                final String processFilesExceptionMessage = processFilesExceptionMsg.getMessage();
+                throw new CheckstyleException(processFilesExceptionMessage + " "
                         + filePath, ex);
             }
             catch (Error error) {
@@ -322,7 +354,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 }
 
                 // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + filePath, error);
+                final String processFilesErrorMessage = processFilesErrorMsg.getMessage();
+                throw new Error(processFilesErrorMessage + " " + filePath, error);
             }
         }
     }
@@ -486,7 +519,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
         }
         catch (final CheckstyleException ex) {
-            throw new CheckstyleException("cannot initialize module " + name
+            final String setupChildModuleMessage = setupChildModuleMsg.getMessage();
+            throw new CheckstyleException(setupChildModuleMessage + " " + name
                     + " - " + ex.getMessage(), ex);
         }
         if (child instanceof FileSetCheck) {
@@ -507,8 +541,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             addListener(listener);
         }
         else {
+            final String setupChildNotAllowedMessage = setupChildNotAllowedMsg.getMessage();
             throw new CheckstyleException(name
-                    + " is not allowed as a child in Checker");
+                    + " " + setupChildNotAllowedMessage);
         }
     }
 
@@ -620,8 +655,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public void setCharset(String charset)
             throws UnsupportedEncodingException {
         if (!Charset.isSupported(charset)) {
-            final String message = "unsupported charset: '" + charset + "'";
-            throw new UnsupportedEncodingException(message);
+            final String setCharsetMessage = setCharsetMsg.getMessage();
+            throw new UnsupportedEncodingException(setCharsetMessage + ": '" + charset + "'");
         }
         this.charset = charset;
     }
