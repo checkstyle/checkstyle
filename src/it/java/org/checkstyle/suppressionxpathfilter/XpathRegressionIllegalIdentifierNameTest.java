@@ -41,7 +41,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-            "SuppressionXpathRegressionIllegalIdentifierNameTestOne.java"));
+            "InputXpathIllegalIdentifierNameTestOne.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
@@ -55,7 +55,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestOne'"
+                + "[./IDENT[@text='InputXpathIllegalIdentifierNameTestOne'"
                 + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='yield']"
         );
 
@@ -66,7 +66,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-            "SuppressionXpathRegressionIllegalIdentifierNameTestTwo.java"));
+            "InputXpathIllegalIdentifierNameTestTwo.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
@@ -80,7 +80,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalIdentifierNameTestTwo']"
+                + "[./IDENT[@text='InputXpathIllegalIdentifierNameTestTwo']"
                 + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/PARAMETERS/PARAMETER_DEF"
                 + "/IDENT[@text='yield']"
         );
