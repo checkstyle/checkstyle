@@ -55,7 +55,8 @@
           </li>
           <li>
             Remove &#39;//ok&#39; comments from Input files .
-            Author: Minghao Li, DevangJagdale, pinti0001, Omar Shawky, 555vedant, Raja Raghu Ram Pydi
+            Author: Minghao Li, DevangJagdale, pinti0001, Omar Shawky, 555vedant,
+            Raja Raghu Ram Pydi
             <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
           </li>
           <li>
