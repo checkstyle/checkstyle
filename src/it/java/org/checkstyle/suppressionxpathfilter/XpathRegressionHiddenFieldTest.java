@@ -40,7 +40,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionHiddenFieldOne.java"));
+                new File(getPath("InputXpathHiddenFieldOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(HiddenFieldCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionHiddenFieldOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathHiddenFieldOne']]/OBJBLOCK"
                 + "/INSTANCE_INIT/SLIST/EXPR/METHOD_CALL/ELIST/LAMBDA/PARAMETERS"
                 + "/PARAMETER_DEF/IDENT[@text='value']"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionHiddenFieldTwo.java"));
+                new File(getPath("InputXpathHiddenFieldTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(HiddenFieldCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionHiddenFieldTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathHiddenFieldTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/PARAMETERS/PARAMETER_DEF"
                 + "/IDENT[@text='other']"
         );

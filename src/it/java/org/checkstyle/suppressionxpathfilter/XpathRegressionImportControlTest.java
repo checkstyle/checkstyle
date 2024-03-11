@@ -41,12 +41,12 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportControlOne.java"));
+                new File(getPath("InputXpathImportControlOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file", getPath(
-                "SuppressionXpathRegressionImportControlOne.xml"));
+                "InputXpathImportControlOne.xml"));
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(ImportControlCheck.class,
@@ -64,12 +64,12 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportControlTwo.java"));
+                new File(getPath("InputXpathImportControlTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file", getPath(
-                "SuppressionXpathRegressionImportControlTwo.xml"));
+                "InputXpathImportControlTwo.xml"));
 
         final String[] expectedViolation = {
             "1:1: " + getCheckMessage(ImportControlCheck.class,
@@ -87,7 +87,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportControlThree.java"));
+                new File(getPath("InputXpathImportControlThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
@@ -108,12 +108,12 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportControlFour.java"));
+                new File(getPath("InputXpathImportControlFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
         moduleConfig.addProperty("file",
-                getPath("SuppressionXpathRegressionImportControlFour.xml"));
+                getPath("InputXpathImportControlFour.xml"));
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(ImportControlCheck.class,

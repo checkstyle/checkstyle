@@ -39,7 +39,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyForLoopEmptyBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
+                new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         moduleConfig.addProperty("option", "TEXT");
@@ -49,7 +49,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyBlockEmpty']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
                     + "/SLIST/LITERAL_FOR/SLIST"
         );
@@ -60,7 +60,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyBlockEmpty.java"));
+                new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyBlockCheck.class);
         final String[] expectedViolation = {
@@ -69,7 +69,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyBlockEmpty']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyBlockEmpty']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='emptyLoop']]"
                         + "/SLIST/LITERAL_FOR/SLIST"
         );
