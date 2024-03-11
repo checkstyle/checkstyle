@@ -41,7 +41,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault.java"));
+            "InputXpathAvoidEscapedUnicodeCharactersDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
@@ -52,11 +52,11 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault']]"
+                + "[@text='InputXpathAvoidEscapedUnicodeCharactersDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev2']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault']]"
+                + "[@text='InputXpathAvoidEscapedUnicodeCharactersDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev2']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
@@ -68,7 +68,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     @Test
     public void testControlCharacters() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters.java")
+            "InputXpathAvoidEscapedUnicodeCharactersControlCharacters.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -82,12 +82,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersControlCharacters']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersControlCharacters']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
@@ -99,7 +99,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     @Test
     public void testTailComment() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment.java"));
+            "InputXpathAvoidEscapedUnicodeCharactersTailComment.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
@@ -112,12 +112,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersTailComment']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersTailComment']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
@@ -129,7 +129,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     @Test
     public void testAllCharactersEscaped() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped.java"));
+            "InputXpathAvoidEscapedUnicodeCharactersAllEscaped.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
@@ -142,12 +142,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[."
                     + "/IDENT[@text="
-                        + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped']]"
+                        + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                     + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
                 "/COMPILATION_UNIT/CLASS_DEF[."
                     + "/IDENT[@text="
-                        + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersAllEscaped']]"
+                        + "'InputXpathAvoidEscapedUnicodeCharactersAllEscaped']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                     + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );
@@ -159,7 +159,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     @Test
     public void testNonPrintableCharacters() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable.java"));
+            "InputXpathAvoidEscapedUnicodeCharactersNonPrintable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
@@ -172,12 +172,12 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR[./STRING_LITERAL[@text='\\u03bcs']]",
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidEscapedUnicodeCharactersNonPrintable']]"
+                    + "'InputXpathAvoidEscapedUnicodeCharactersNonPrintable']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='unitAbbrev9']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='\\u03bcs']"
         );

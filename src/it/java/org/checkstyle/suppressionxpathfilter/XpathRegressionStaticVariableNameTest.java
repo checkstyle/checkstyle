@@ -41,7 +41,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     @Test
     public void test1() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStaticVariableName1.java"));
+                new File(getPath("InputXpathStaticVariableName1.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -55,7 +55,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionStaticVariableName1']]"
+                        + "='InputXpathStaticVariableName1']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
 
         );
@@ -67,7 +67,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     public void test2() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionStaticVariableName2.java"));
+                        "InputXpathStaticVariableName2.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -81,7 +81,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionStaticVariableName2']]"
+                        + "='InputXpathStaticVariableName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='outerMethod']]"
                         + "/SLIST/CLASS_DEF[./IDENT[@text='MyLocalClass']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
@@ -94,7 +94,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     public void test3() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionStaticVariableName3.java"));
+                        "InputXpathStaticVariableName3.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -108,7 +108,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionStaticVariableName2']]"
+                        + "='InputXpathStaticVariableName2']]"
                         + "/OBJBLOCK/INSTANCE_INIT/SLIST/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

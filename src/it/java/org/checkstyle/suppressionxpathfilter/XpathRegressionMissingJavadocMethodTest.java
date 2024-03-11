@@ -38,7 +38,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMissingJavadocMethod1.java")
+            getPath("InputXpathMissingJavadocMethod1.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -52,20 +52,20 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                    + "[@text='InputXpathMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]",
+                    + "/IDENT[@text='InputXpathMissingJavadocMethod1']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                    + "[./IDENT[@text='InputXpathMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                    + "/IDENT[@text='InputXpathMissingJavadocMethod1']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                    + "[./IDENT[@text='InputXpathMissingJavadocMethod1']]"
                     + "/OBJBLOCK/CTOR_DEF[."
-                    + "/IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod1']]"
+                    + "/IDENT[@text='InputXpathMissingJavadocMethod1']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -75,7 +75,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMissingJavadocMethod2.java")
+            getPath("InputXpathMissingJavadocMethod2.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -89,16 +89,16 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                    + "[./IDENT[@text='InputXpathMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                    + "[./IDENT[@text='InputXpathMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocMethod2']]"
+                    + "[./IDENT[@text='InputXpathMissingJavadocMethod2']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );

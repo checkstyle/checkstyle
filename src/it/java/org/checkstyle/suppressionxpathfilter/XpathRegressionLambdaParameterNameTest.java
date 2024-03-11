@@ -42,7 +42,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLambdaParameterName1.java"));
+                new File(getPath("InputXpathLambdaParameterName1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LambdaParameterNameCheck.class);
@@ -55,7 +55,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                "/COMPILATION_UNIT/CLASS_DEF"
-                       + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName1']]"
+                       + "[./IDENT[@text='InputXpathLambdaParameterName1']]"
                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
                        + "./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLambdaParameterName2.java"));
+                new File(getPath("InputXpathLambdaParameterName2.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
@@ -82,30 +82,30 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
+                        + "[./IDENT[@text='InputXpathLambdaParameterName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
+                        + "[./IDENT[@text='InputXpathLambdaParameterName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
+                        + "[./IDENT[@text='InputXpathLambdaParameterName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
+                        + "[./IDENT[@text='InputXpathLambdaParameterName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]/TYPE",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
+                        + "[./IDENT[@text='InputXpathLambdaParameterName2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF/IDENT[@text='s']"

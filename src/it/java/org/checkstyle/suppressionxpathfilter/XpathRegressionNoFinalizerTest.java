@@ -38,7 +38,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer1.java"));
+                getPath("InputXpathNoFinalizer1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);
@@ -50,13 +50,13 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
@@ -67,7 +67,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer2.java"));
+                getPath("InputXpathNoFinalizer2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);
@@ -79,20 +79,20 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizer2']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]/AT"

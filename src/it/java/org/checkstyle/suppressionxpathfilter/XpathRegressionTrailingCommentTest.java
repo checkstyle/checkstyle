@@ -39,7 +39,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionTrailingComment1.java"));
+                "InputXpathTrailingComment1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TrailingCommentCheck.class);
@@ -51,7 +51,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionTrailingComment1']]/"
+                        + "[./IDENT[@text='InputXpathTrailingComment1']]/"
                         + "OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' don&apos;"
                         + "&apos;t use trailing comments :) // warn\\n']]"
         );
@@ -63,7 +63,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionTrailingComment2.java"));
+                "InputXpathTrailingComment2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TrailingCommentCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionTrailingComment2']]"
+                        + "[./IDENT[@text='InputXpathTrailingComment2']]"
                         + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
         );
 
