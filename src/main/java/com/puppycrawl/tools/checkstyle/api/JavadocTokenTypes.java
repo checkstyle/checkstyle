@@ -43,11 +43,12 @@ public final class JavadocTokenTypes {
      * <pre>{@code @return true if file exists}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@return true if file exists]
-     *       |--RETURN_LITERAL[4x3] : [@return]
-     *       |--WS[4x10] : [ ]
-     *       |--DESCRIPTION[4x11] : [true if file exists]
-     *           |--TEXT[4x11] : [true if file exists]
+     * JAVADOC_TAG ->; JAVADOC_TAG
+     *  |--RETURN_LITERAL ->; @return
+     *  |--WS ->;
+     *  `--DESCRIPTION ->; DESCRIPTION
+     *      |--TEXT ->; true if file exists
+     *      `--NEWLINE ->; \r\n
      * }</pre>
      *
      * @see
