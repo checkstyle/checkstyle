@@ -66,11 +66,11 @@ public final class JavadocTokenTypes {
      * <pre>{@code @deprecated It is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_TAG -&gt; JAVADOC_TAG
-     *  |--DEPRECATED_LITERAL -&gt; @deprecated
-     *  |--WS -&gt;
-     *  `--DESCRIPTION -&gt; DESCRIPTION
-     *      |--TEXT -&gt; It is deprecated method
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--DEPRECATED_LITERAL -> @deprecated
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> It is deprecated method
      * }</pre>
      *
      * @see
