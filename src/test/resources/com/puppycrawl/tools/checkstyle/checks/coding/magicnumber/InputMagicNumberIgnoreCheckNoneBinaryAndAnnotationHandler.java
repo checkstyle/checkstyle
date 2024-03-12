@@ -1,7 +1,7 @@
 /*
 MagicNumber
-ignoreNumbers = (default)-1, 0, 1, 2
-ignoreHashCodeMethod = true
+ignoreNumbers =
+ignoreHashCodeMethod = (default)false
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
@@ -14,10 +14,10 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-class InputMagicNumberIgnoreHashCodeMethod3 {
+class InputMagicNumberIgnoreCheckNoneBinaryAndAnnotationHandler {
 
     public int hashCode() {
-        return 31;
+        return 31; // violation
     }
 
 
@@ -38,7 +38,7 @@ class InputMagicNumberIgnoreHashCodeMethod3 {
         int y=37; // violation
     }
 
-    public InputMagicNumberIgnoreHashCodeMethod3() {
+    public InputMagicNumberIgnoreCheckNoneBinaryAndAnnotationHandler() {
         int z=101; // violation
     }
 
@@ -59,29 +59,28 @@ class InputMagicNumberIgnoreHashCodeMethod3 {
     }
 }
 
-class TestMethodCallIgnoreHashCodeMethod3 {
+class TestMethodCallNoneHandler {
 
-        public TestMethodCallIgnoreHashCodeMethod3(int x){
+        public TestMethodCallNoneHandler(int x){
 
     }
 
         public void method2() {
-        final TestMethodCallIgnoreHashCodeMethod3 dummyObject =
-                new TestMethodCallIgnoreHashCodeMethod3(62);
+        final TestMethodCallNoneHandler dummyObject = new TestMethodCallNoneHandler(62);
         }
 }
 
-class BinaryIgnoreHashCodeMethod3 {
+class BinaryIgnoreNoneHandler {
     int intValue = 0b101; // violation
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
-@interface AnnotationWithDefaultValueIgnoreHashCodeMethod3{
+@interface AnnotationWithDefaultValueIgnoreNoneHandler {
     int value() default 101;
     int[] ar() default {102};
 }
-class AIgnoreHashCodeMethod3 {
+class AIgnoreNoneHandler {
     {
-        switch (Blah2IgnoreHashCodeMethod1.LOW) {
+        switch (Blah2IgnoreNoneViolationHandler.LOW) {
         default:
             int b = 122; // violation
         }
