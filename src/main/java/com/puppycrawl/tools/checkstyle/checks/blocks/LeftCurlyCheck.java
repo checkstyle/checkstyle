@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -34,15 +36,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code option} - Specify the policy on placement of a left curly brace
  * (<code>'{'</code>).
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption}.
  * Default value is {@code eol}.
- * </li>
- * <li>
- * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
- * Type is {@code boolean}.
- * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -99,109 +101,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="LeftCurly"/&gt;
- * </pre>
- * <pre>
- * class Test
- * { // Violation - '{' should be on the previous line
- *   private interface TestInterface
- *   { // Violation - '{' should be on the previous line
- *   }
- *
- *   private
- *   class
- *   MyClass { // OK
- *   }
- *
- *   enum Colors {RED, // OK
- *     BLUE,
- *     GREEN;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to apply the {@code nl} policy to type blocks:
- * </p>
- * <pre>
- * &lt;module name=&quot;LeftCurly&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test
- * { // OK
- *   private interface TestInterface
- *   { // OK
- *   }
- *
- *   private
- *   class
- *   MyClass { // Violation - '{' should be on a new line
- *   }
- *
- *   enum Colors {RED, // OK
- *     BLUE,
- *     GREEN;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to apply the {@code nlow} policy to type blocks:
- * </p>
- * <pre>
- * &lt;module name=&quot;LeftCurly&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;nlow&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test
- * { // Violation - '{' should be on the previous line
- *   private interface TestInterface { // OK
- *   }
- *
- *   private
- *   class
- *   MyClass { // Violation - '{' should be on a new line
- *   }
- *
- *   enum Colors {RED, // OK
- *     BLUE,
- *     GREEN;
- *   }
- * }
- * </pre>
- * <p>
- * An example of how to configure the check to validate enum definitions:
- * </p>
- * <pre>
- * &lt;module name=&quot;LeftCurly&quot;&gt;
- *   &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test
- * { // Violation - '{' should be on the previous line
- *   private interface TestInterface
- *   { // Violation - '{' should be on the previous line
- *   }
- *
- *   private
- *   class
- *   MyClass { // OK
- *   }
- *
- *   enum Colors {RED, // Violation - '{' should have line break after
- *   BLUE,
- *   GREEN;
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -260,6 +159,7 @@ public class LeftCurlyCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = LeftCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
@@ -269,6 +169,7 @@ public class LeftCurlyCheck
      * Setter to allow to ignore enums when left curly brace policy is EOL.
      *
      * @param ignoreEnums check's option for ignoring enums.
+     * @since 6.9
      */
     public void setIgnoreEnums(boolean ignoreEnums) {
         this.ignoreEnums = ignoreEnums;
@@ -389,6 +290,7 @@ public class LeftCurlyCheck
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
+    @Nullable
     private static DetailAST getBraceFromSwitchMember(DetailAST ast) {
         final DetailAST brace;
         final DetailAST parent = ast.getParent();
@@ -408,6 +310,7 @@ public class LeftCurlyCheck
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
      */
+    @Nullable
     private static DetailAST getBraceAsFirstChild(DetailAST ast) {
         DetailAST brace = null;
         if (ast != null) {

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,66 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * {@code equals()} you must override {@code hashCode()} to ensure that your class can
  * be used in hash-based collections.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;EqualsHashCode&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public static class Example1 {
- *     public int hashCode() {
- *         // code
- *     }
- *     public boolean equals(String o) { // violation, overloaded implementation of 'equals'
- *         // code
- *     }
- * }
- * public static class Example2 {
- *     public boolean equals(Object o) { // violation, no 'hashCode'
- *         // code
- *     }
- *     public boolean equals(String o) {
- *         // code
- *     }
- * }
- * public static class Example3 {
- *     public int hashCode() {
- *         // code
- *     }
- *     public boolean equals(Object o) { // OK
- *         // code
- *     }
- *     public boolean equals(String o) {
- *         // code
- *     }
- * }
- * public static class Example4 {
- *     public int hashCode() {
- *         // code
- *     }
- *     public boolean equals(java.lang.Object o) { // OK
- *         // code
- *    }
- * }
- * public static class Example5 {
- *     public static int hashCode(int i) {
- *         // code
- *     }
- *     public boolean equals(Object o) { // violation, overloaded implementation of 'hashCode'
- *         // code
- *     }
- * }
- * public static class Example6 {
- *     public int hashCode() { // violation, overloaded implementation of 'equals'
- *         // code
- *     }
- *     public static boolean equals(Object o, Object o2) {
- *         // code
- *     }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class InputGenericWhitespaceWithEmoji {
 
-    /* 👇🏻dsad */public static class SomeClass { /* 😂 */ // ok
+    /* 👇🏻dsad */public static class SomeClass { /* 😂 */
 
         public static class Nested<V> {
 

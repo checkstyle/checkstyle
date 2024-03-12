@@ -32,7 +32,7 @@ public class InputRegexpTrailingComment9 {
 
     void method2(long ms /* we should ignore this */) {
         /* comment before text */int z;
-        /* int y */int y/**/; // violation
+        /* int y */int y/**/; // violation 'Line matches the illegal pattern'
     }
 
     /**

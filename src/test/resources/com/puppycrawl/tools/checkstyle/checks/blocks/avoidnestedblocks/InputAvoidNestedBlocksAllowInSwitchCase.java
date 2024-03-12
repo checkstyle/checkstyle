@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 class InputAvoidNestedBlocksAllowInSwitchCase
 {
     static
-    { // ok
+    {
     }
 
     public void method()
@@ -24,7 +24,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
         }
 
         if (x == 1)
-        { // ok
+        {
             x = 2;
         }
 
@@ -35,7 +35,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
         switch (x)
         {
             case 0:
-                // ok
+
                 x = 3;
                 break;
             case 1:

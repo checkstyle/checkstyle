@@ -20,7 +20,7 @@ excludedPackages = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-public interface InputClassFanOutComplexityPackageName { // ok
+public interface InputClassFanOutComplexityPackageName {
     public com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity.
         InputClassFanOutComplexityPackageName method1();
 

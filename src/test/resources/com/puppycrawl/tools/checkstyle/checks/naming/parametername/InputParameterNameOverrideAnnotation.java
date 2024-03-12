@@ -23,7 +23,7 @@ public class InputParameterNameOverrideAnnotation {
 
     public void foo2(Integer aaaa) {} // violation
 
-    void foo3() {} // No NPE here! // ok
+    void foo3() {} // No NPE here!
 
     void foo4(int abc, int bd) {} // 2 violations
 
@@ -32,7 +32,7 @@ public class InputParameterNameOverrideAnnotation {
     private int field;
     private java.util.Set<String> packageNames;
 
-    InputParameterNameOverrideAnnotation() {} // No NPE here! // ok
+    InputParameterNameOverrideAnnotation() {} // No NPE here!
 
     InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // 2 violations
 

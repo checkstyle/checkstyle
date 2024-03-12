@@ -14,29 +14,29 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 class InputLeftCurlyTestNewLine3
-{ // ok
+{
     /** @see test method **/
     int foo() throws InterruptedException
-    { // ok
+    {
         int x = 1;
         int a = 2;
         while (true)
-        { // ok
+        {
             try
-            { // ok
+            {
                 if (x > 0)
-                { // ok
+                {
                     break;
                 }
                 else if (x < 0) { // violation ''{' at column 33 should be on a new line'
                     ;
                 }
                 else
-                { // ok
+                {
                     break;
                 }
                 switch (a)
-                { // ok
+                {
                 case 0:
                     break;
                 default:
@@ -44,19 +44,19 @@ class InputLeftCurlyTestNewLine3
                 }
             }
             catch (Exception e)
-            { // ok
+            {
                 break;
             }
             finally
-            { // ok
+            {
                 break;
             }
         }
 
         synchronized (this)
-        { // ok
+        {
             do
-            { // ok
+            {
                 x = 2;
             } while (x == 2);
         }
@@ -65,7 +65,7 @@ class InputLeftCurlyTestNewLine3
                  ); // Bizarre, but legal
 
         for (int k = 0; k < 1; k++)
-        { // ok
+        {
             String innerBlockVariable = "";
         }
 
@@ -78,20 +78,20 @@ class InputLeftCurlyTestNewLine3
 
     // Test static initialiser
     static
-    { // ok
+    {
         int x = 1; // should not require any javadoc
     }
 
 
 
     public enum GreetingsEnum
-    { // ok
+    {
         HELLO,
         GOODBYE
     };
 
     void method2()
-    { // ok
+    {
         boolean flag = true;
         if (flag) { // violation ''{' at column 19 should be on a new line'
             System.identityHashCode("heh");
@@ -108,10 +108,10 @@ class InputLeftCurlyTestNewLine3
  * a statement or the body of a constructor.
  */
 class FooCtorTestNewLine3
-{ // ok
+{
         int i;
         public void FooCtor()
-    { // ok
+    {
                 i = 1;
     }}
 
@@ -120,9 +120,9 @@ class FooCtorTestNewLine3
 * a statement or the body of a method.
 */
 class FooMethodTestNewLine3
-{ // ok
+{
         public void fooMethod()
-    { // ok
+    {
                 int i = 1;
     }}
 
@@ -131,11 +131,11 @@ class FooMethodTestNewLine3
 * a statement or the body of a named class.
 */
 class FooInnerTestNewLine3
-{ // ok
+{
         class InnerFoo
-    { // ok
+    {
                 public void fooInnerMethod ()
-        { // ok
+        {
 
                 }
     }}
@@ -150,7 +150,7 @@ class Absent_CustomFieldSerializer3TestNewLine3 {
 }
 
 class Absent_CustomFieldSerializer4TestNewLine3
-{ // ok
+{
     public void Absent_CustomFieldSerializer4() {}
 }
 
@@ -159,14 +159,14 @@ class EmptyClass2TestNewLine3 {}
 interface EmptyInterface3TestNewLine3 {}
 
 class ClassWithStaticInitializersTestNewLine3
-{ // ok
+{
     static { // violation ''{' at column 12 should be on a new line'
     }
     static
     {}
 
     static class Inner
-    { // ok
+    {
         static { // violation ''{' at column 16 should be on a new line'
             int i = 1;
         }

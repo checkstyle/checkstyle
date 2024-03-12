@@ -15,12 +15,12 @@ public class InputIllegalThrowsTestClassNames {
     { // no code
     }
 
-    public java.lang.Throwable methodOne() throws RuntimeException // ok
+    public java.lang.Throwable methodOne() throws RuntimeException
     {
         return null;
     }
 
-    public void methodTwo() throws java.lang.RuntimeException, java.lang.Error // ok
+    public void methodTwo() throws java.lang.RuntimeException, java.lang.Error
     {
     }
 

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>VisibilityModifier</title>
+  </head>
+  <body>
+    <section name="VisibilityModifier">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks visibility of class members. Only static final, immutable or annotated
+          by specified annotation members may be public; other class members must be private
+          unless the property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
+        </p>
+
+        <p>
+          Public members are not flagged if the name matches the public
+          member regular expression (contains <code>"^serialVersionUID$"</code> by default).
+        </p>
+        <p>Note that
+          Checkstyle 2 used to include <code>"^f[A-Z][a-zA-Z0-9]*$"</code> in the default
+          pattern to allow names used in container-managed persistence for Enterprise JavaBeans
+          (EJB) 1.1 with the default settings. With EJB 2.0 it is no longer necessary to have
+          public access for persistent fields, so the default has been changed.
+        </p>
+
+        <p>
+          Rationale: Enforce encapsulation.
+        </p>
+        <p>
+          Check also has options making it less strict:
+        </p>
+        <p>
+          <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
+          in consideration. If user want to provide short annotation name that type
+          will match to any named the same type without consideration of package.
+        </p>
+        <p>
+          <b>allowPublicFinalFields</b> - which allows public final fields.
+        </p>
+        <p>
+          <b>allowPublicImmutableFields</b> - which allows immutable fields to be declared as
+          public if defined in final class.
+        </p>
+        <p>
+          Field is known to be immutable if:
+        </p>
+        <ul>
+          <li>It's declared as final</li>
+          <li>
+            Has either a primitive type or instance of class user defined to be immutable
+            (such as String, ImmutableCollection from Guava, etc.)
+          </li>
+        </ul>
+        <p>
+          Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b> by their
+          canonical names.
+        </p>
+        <p>
+          Property Rationale: Forcing all fields of class to have private modifier by default is
+          good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
+          One of such cases are immutable classes.
+        </p>
+        <p>
+          Restriction: Check doesn't check if class is immutable, there's no
+          checking if accessory methods are missing and all fields are immutable, we only check
+          if current field is immutable or final. Under the flag
+          <b>allowPublicImmutableFields</b>, the enclosing class must also be final, to encourage
+          immutability. Under the flag <b>allowPublicFinalFields</b>, the final modifier on
+          the enclosing class is optional.
+        </p>
+        <p>
+          Star imports are out of scope of this Check. So if one of type imported via
+          star import collides with user specified one by its short name -
+          there won't be Check's violation.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example with default values:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check so that it allows package visible members:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example of allowed package visible members:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check so that it allows protected visible members:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example of allowed protected visible members:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure the check so that it allows no public members:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example of not allowed public members:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure the Check so that it allows public immutable fields
+          (mostly for immutable classes):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          Example of allowed public immutable fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+          To configure the Check in order to allow user specified immutable class names:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          Example of allowed public immutable fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
+          Note, if allowPublicImmutableFields is set to true, the check will also check whether
+          generic type parameters are immutable. If at least one generic type parameter is mutable,
+          there will be a violation.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example of how the check works:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example of allowed field:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example9-config">
+          To configure the Check passing fields annotated with @org.junit.Rule,
+          @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
+          Example of allowed fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example10-config">
+          To configure the Check passing fields annotated with short annotation name:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">
+          Example of allowed fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          To understand the difference between allowPublicImmutableFields and
+          allowPublicFinalFields options, please, study the following examples.
+        </p>
+        <p id="Example11-config">
+           1) To configure the check to use only 'allowPublicImmutableFields' option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">
+          Code example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example12-config">
+          2) To configure the check to use only 'allowPublicFinalFields' option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">
+          Code example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="VisibilityModifier"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="VisibilityModifier"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
  * Test case for hidden fields
  * @author Rick Giles
  **/
-class InputHiddenField8 // ok
+class InputHiddenField8
 {
     private int hidden = 0;
 

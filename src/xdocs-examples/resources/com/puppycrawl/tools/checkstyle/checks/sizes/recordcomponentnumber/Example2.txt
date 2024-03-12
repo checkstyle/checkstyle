@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RecordComponentNumber">
+      <property name="max" value="5"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public record MyRecord1(int x, int y, String str) { // ok, 3 components
+   ...
+}
+
+public record MyRecord2(int x, int y, String str,
+                         Node node, Order order, Data data) { // violation, 6 components
+   ...
+}
+// xdoc section -- end

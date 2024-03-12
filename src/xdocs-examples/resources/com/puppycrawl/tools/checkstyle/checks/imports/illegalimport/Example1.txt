@@ -1,0 +1,10 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalImport"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

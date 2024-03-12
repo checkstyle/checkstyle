@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressWarningsHolder" />
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="systemout"/>
+      <property name="format" value="^.*System\.(out|err).*$"/>
+      <property name="message"
+        value="Don't use System.out/err, use SLF4J instead."/>
+    </module>
+  </module>
+  <module name="SuppressWarningsFilter" />
+</module>
+*/
+
+// xdoc section -- start
+@SuppressWarnings("checkstyle:systemout")
+public static void foo() {
+  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+}
+// xdoc section -- end

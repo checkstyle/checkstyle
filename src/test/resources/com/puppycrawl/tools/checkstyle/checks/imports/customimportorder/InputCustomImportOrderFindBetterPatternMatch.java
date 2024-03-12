@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.lang.*;
 import java.awt.color.ColorSpace;
 
-import com.google.common.annotations.Beta; // violation
+import com.google.common.annotations.Beta; // violation 'wrong order..* expecting group .* on this line'
 
 import com.google.common.collect.HashMultimap;
 

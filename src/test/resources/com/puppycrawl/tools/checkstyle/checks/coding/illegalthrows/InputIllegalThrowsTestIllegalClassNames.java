@@ -16,7 +16,7 @@ public class InputIllegalThrowsTestIllegalClassNames {
     { // no code
     }
 
-    public java.lang.Throwable methodOne() throws RuntimeException // ok
+    public java.lang.Throwable methodOne() throws RuntimeException
     {
         return null;
     }
@@ -25,7 +25,7 @@ public class InputIllegalThrowsTestIllegalClassNames {
     {
     }
 
-    public void finalize() throws Throwable { // ok
+    public void finalize() throws Throwable {
 
     }
 }

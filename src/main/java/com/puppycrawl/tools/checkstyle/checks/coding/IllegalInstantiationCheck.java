@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -61,78 +61,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalInstantiation&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class MyTest {
- *   public class Boolean {
- *     boolean a;
- *
- *     public Boolean (boolean a) { this.a = a; }
- *   }
- *
- *   public void myTest (boolean a, int b) {
- *     Boolean c = new Boolean(a); // OK
- *     java.lang.Boolean d = new java.lang.Boolean(a); // OK
- *
- *     Integer e = new Integer(b); // OK
- *     Integer f = Integer.valueOf(b); // OK
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to find instantiations of {@code java.lang.Boolean}
- * and {@code java.lang.Integer}:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
- *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
- *     java.lang.Integer&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class MyTest {
- *   public class Boolean {
- *     boolean a;
- *
- *     public Boolean (boolean a) { this.a = a; }
- *   }
- *
- *   public void myTest (boolean a, int b) {
- *     Boolean c = new Boolean(a); // OK
- *     java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
- *                                                     // java.lang.Boolean should be avoided
- *
- *     Integer e = new Integer(b); // violation, instantiation of
- *                                 // java.lang.Integer should be avoided
- *     Integer f = Integer.valueOf(b); // OK
- *   }
- * }
- * </pre>
- * <p>
- * Finally, there is a limitation that it is currently not possible to specify array classes:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
- *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean[],
- *      Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class MyTest {
- *   public void myTest () {
- *     Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
- *     Integer[] newIntArray = new Integer[]{1,2,3}; // OK
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -415,9 +343,10 @@ public class IllegalInstantiationCheck
      * Setter to specify fully qualified class names that should not be instantiated.
      *
      * @param names class names
+     * @since 3.0
      */
     public void setClasses(String... names) {
-        classes = Arrays.stream(names).collect(Collectors.toSet());
+        classes = Arrays.stream(names).collect(Collectors.toUnmodifiableSet());
     }
 
 }

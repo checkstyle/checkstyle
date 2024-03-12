@@ -14,5 +14,5 @@ public class InputMatchXpathForbidParameterizedConstructor {
 
     public InputMatchXpathForbidParameterizedConstructor(int a, String b) { } // violation
 
-    public InputMatchXpathForbidParameterizedConstructor() { } // ok
+    public InputMatchXpathForbidParameterizedConstructor() { }
 }

@@ -8,9 +8,9 @@ javaStyle = (default)true
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
 public class InputArrayTypeStyleNestedGenerics {
-    protected Pair<Integer, Object>[] values1; // ok
-    protected Pair<Integer, Pair<String, Object>[]>[] values2; // ok
-    protected Pair<Integer, Pair<String, Pair<String, Object>>[]>[] values3a; // ok
+    protected Pair<Integer, Object>[] values1;
+    protected Pair<Integer, Pair<String, Object>[]>[] values2;
+    protected Pair<Integer, Pair<String, Pair<String, Object>>[]>[] values3a;
     protected Pair<
         Integer,
         Pair<

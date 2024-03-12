@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalImport</title>
+  </head>
+  <body>
+    <section name="IllegalImport">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for imports from a set of illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          Note: By default, the check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are
+          <a href="https://www.oracle.com/java/technologies/faq-sun-packages.html">
+          &quot;not guaranteed to work on all Java-compatible platforms&quot;</a>.
+          To reject other packages, set property <code>illegalPkgs</code> to
+          a list of the illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>illegalClasses</td>
+              <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if import equals class name. If <b>regexp</b> property is set, then list of class names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>7.8</td>
+            </tr>
+            <tr>
+              <td>illegalPkgs</td>
+              <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import is the part of package. If <b>regexp</b> property is set, then list of packages will be interpreted as regular expressions. Note, all properties for match will be used.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>sun</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>regexp</td>
+              <td>Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code> should be interpreted as regular expressions.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalImport&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-config">
+          To configure the check so that it rejects packages <code>java.io.*</code>
+          and <code>java.sql.*</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalImport&quot;&gt;
+      &lt;property name=&quot;illegalPkgs&quot; value=&quot;java.io, java.sql&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+            The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p id="Example3-code">
+          The following example shows class with two illegal imports
+        </p>
+        <ul>
+          <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
+          <li><b>java.sql.Connection</b> is inside java.sql package</li>
+        </ul>
+        <source>
+import java.io.*;           // violation
+import java.lang.ArithmeticException;
+import java.sql.Connection; // violation
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p id="Example4-config">
+          To configure the check so that it rejects classes <code>java.util.Date</code> and
+          <code>java.sql.Connection</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalImport&quot;&gt;
+      &lt;property name=&quot;illegalClasses&quot;
+        value=&quot;java.util.Date, java.sql.Connection&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p id="Example5-code">
+          The following example shows class with two illegal imports
+        </p>
+        <ul>
+          <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
+          <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
+        </ul>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection; // violation
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import java.util.Date;      // violation
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p id="Example6-config">
+          To configure the check so that it rejects packages not satisfying to regular
+          expression <code>java\.util</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalImport&quot;&gt;
+      &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;illegalPkgs&quot; value=&quot;java\.util&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p>
+          The following example shows class with four illegal imports
+        </p>
+        <ul>
+          <li><b>java.util.List</b></li>
+          <li><b>java.util.Enumeration</b></li>
+          <li><b>java.util.Arrays</b></li>
+          <li><b>java.util.Date</b></li>
+        </ul>
+        <p id="Example7-code">
+          All four imports match &quot;java\.util&quot; regular expression
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;
+import java.util.List;          // violation
+import java.util.Enumeration;   // violation
+import java.util.Arrays;        // violation
+import java.util.Date;          // violation
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+
+        <p id="Example8-config">
+          To configure the check so that it rejects class names not satisfying to regular
+          expression <code>^java\.util\.(List|Arrays)</code> and
+          <code>^java\.sql\.Connection</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalImport&quot;&gt;
+      &lt;property name=&quot;regexp&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;illegalClasses&quot;
+        value=&quot;^java\.util\.(List|Arrays), ^java\.sql\.Connection&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example8-code">
+          The following example shows class with no illegal imports
+        </p>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.util.Enumeration;
+import java.util.Date;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+        <p id="Example9-code">
+          The following example shows class with three illegal imports
+        </p>
+        <ul>
+          <li><b>java.sql.Connection</b> matches &quot;^java\.sql\.Connection&quot; regular expression</li>
+          <li><b>java.util.List</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
+          <li><b>java.util.Arrays</b> matches &quot;^java\.util\.(List|Arrays)&quot; regular expression</li>
+        </ul>
+        <source>
+import java.io.*;
+import java.lang.ArithmeticException;
+import java.sql.Connection;     // violation
+import java.util.List;          // violation
+import java.util.Enumeration;
+import java.util.Arrays;        // violation
+import java.util.Date;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.illegal%22">
+              import.illegal
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

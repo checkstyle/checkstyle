@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -42,14 +42,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 150}.
- * </li>
- * <li>
  * Property {@code countEmpty} - Control whether to count empty lines and comments.
  * Type is {@code boolean}.
  * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
+ * Default value is {@code 150}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -64,121 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="MethodLength"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   public MyClass() {  // constructor (line 1)
- *        /&#42; line 2
- *            ...
- *           line 150 &#42;/
- *   } // line 151, violation, as it is over 150
- *
- *   public void firstExample() { // line 1
- *
- *       // line 3
- *       System.out.println("line 4");
- *       /&#42; line 5
- *          line 6 &#42;/
- *   } // line 7, OK, as it is less than 150
- *
- *   public void secondExample() { // line 1
- *       // line 2
- *       System.out.println("line 3");
- *
- *       /&#42; line 5
- *           ...
- *          line 150 &#42;/
- *   } // line 151, violation, as it is over 150
- * }
- * </pre>
- * <p>
- * To configure the check so that it accepts methods with at most 4 lines:
- * </p>
- * <pre>
- * &lt;module name="MethodLength"&gt;
- *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *   &lt;property name="max" value="4"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyTest {
- *   public MyTest()  {            // constructor (line 1)
- *       int var1 = 2;             // line 2
- *       int var2 = 4;             // line 3
- *       int sum = var1 + var2;  // line 4
- *   } // line 5, OK, constructor is not mentioned in the tokens
- *
- *   public void firstMethod() { // line 1
- *       // comment (line 2)
- *       System.out.println("line 3");
- *   } // line 4, OK, as it allows at most 4 lines
- *
- *   public void secondMethod() { // line 1
- *       int index = 0;   // line 2
- *       if (index &#60; 5) { // line 3
- *           index++;     // line 4
- *       }                // line 5
- *   } // line 6, violation, as it is over 4 lines
- *
- *   public void thirdMethod() { // line 1
- *
- *       // comment (line 3)
- *       System.out.println("line 4");
- *   } // line 5, violation, as it is over 4 lines
- * }
- * </pre>
- * <p>
- * To configure the check so that it accepts methods with at most 4 lines,
- * not counting empty lines and comments:
- * </p>
- * <pre>
- * &lt;module name="MethodLength"&gt;
- *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *   &lt;property name="max" value="4"/&gt;
- *   &lt;property name="countEmpty" value="false"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyTest {
- *   public MyTest()  {          // constructor (line 1)
- *       int var1 = 2;           // line 2
- *       int var2 = 4;           // line 3
- *       int sum = var1 + var2;  // line 4
- *   } // line 5, OK, constructor is not mentioned in the tokens
- *
- *   public void firstMethod() { // line 1
- *       // comment - not counted as line
- *       System.out.println("line 2");
- *   } // line 3, OK, as it allows at most 4 lines
- *
- *   public void secondMethod() { // line 1
- *       int index = 0;   // line 2
- *       if (index &#60; 5) { // line 3
- *           index++;     // line 4
- *       }                // line 5
- *   } // line 6, violation, as it is over 4 lines
- *
- *   public void thirdMethod() { // line 1
- *
- *       // comment - not counted as line
- *       System.out.println("line 2");
- *   } // line 3, OK, as it allows at most 4 lines
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -295,6 +180,7 @@ public class MethodLengthCheck extends AbstractCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of a method.
+     * @since 3.0
      */
     public void setMax(int length) {
         max = length;
@@ -304,6 +190,7 @@ public class MethodLengthCheck extends AbstractCheck {
      * Setter to control whether to count empty lines and comments.
      *
      * @param countEmpty whether to count empty and comments.
+     * @since 3.2
      */
     public void setCountEmpty(boolean countEmpty) {
         this.countEmpty = countEmpty;

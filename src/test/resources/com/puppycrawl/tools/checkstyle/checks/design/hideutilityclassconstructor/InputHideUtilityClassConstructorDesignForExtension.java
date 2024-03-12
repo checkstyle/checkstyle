@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructo
  * Test case for the "design for inheritance" check.
  * @author Lars Kühne
  **/
-public abstract class InputHideUtilityClassConstructorDesignForExtension // ok
+public abstract class InputHideUtilityClassConstructorDesignForExtension
 {
     // some methods that are OK
 

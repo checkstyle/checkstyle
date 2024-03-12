@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -117,7 +117,7 @@ public final class FullIdent {
      * @return true if ast is an array type declaration
      */
     private static boolean isArrayTypeDeclaration(DetailAST arrayDeclarator) {
-        DetailAST expression = arrayDeclarator.getFirstChild();
+        DetailAST expression = arrayDeclarator;
         while (expression != null) {
             if (expression.getType() == TokenTypes.EXPR) {
                 break;

@@ -13,7 +13,7 @@ public class InputEqualsAvoidNullEnhancedInstanceof {
         if (str instanceof String myString) {
             System.out.println("Mystring!!");
             boolean myBool = myString.equals("MyString!!"); // violation 'left .* of .* equals'
-            boolean myOtherBool = myString.equals(str); // ok
+            boolean myOtherBool = myString.equals(str);
         } else if (str instanceof String oneMoreString) {
             if(oneMoreString.equals("test")) { // violation 'left .* of .* equals'
                 System.out.println("Test!!");

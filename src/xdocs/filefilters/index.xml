@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>File Filters</title>
+  </head>
+  <body>
+    <section name="File Filters Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="beforeexecutionexclusionfilefilter.html#BeforeExecutionExclusionFileFilter">
+                BeforeExecutionExclusionFileFilter
+              </a>
+            </td>
+            <td>
+              File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files
+              should be excluded from being processed by the utility.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

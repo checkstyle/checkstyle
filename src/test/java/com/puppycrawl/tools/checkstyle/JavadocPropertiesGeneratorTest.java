@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -355,4 +355,23 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testGetFirstJavadocSentence(@SysErr Capturable systemErr,
+                                            @SysOut Capturable systemOut) throws Exception {
+        final String expectedContent = "EOF1=First Javadoc Sentence.";
+
+        JavadocPropertiesGenerator.main(
+                getPath("InputJavadocPropertiesGeneratorGetFirstJavadocSentence.java"),
+            "--destfile", DESTFILE_ABSOLUTE_PATH);
+        assertWithMessage("Unexpected error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
+        final String fileContent = FileUtils.readFileToString(DESTFILE, StandardCharsets.UTF_8);
+        assertWithMessage("File content is not expected")
+            .that(fileContent.trim())
+            .isEqualTo(expectedContent.trim());
+    }
 }

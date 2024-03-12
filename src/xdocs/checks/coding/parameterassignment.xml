@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ParameterAssignment</title>
+  </head>
+  <body>
+    <section name="ParameterAssignment">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p> Disallows assignment of parameters.</p>
+        <p>
+          Rationale: Parameter assignment is often considered poor programming
+          practice. Forcing developers to declare parameters as final is often
+          onerous. Having a check ensure that parameters are never assigned
+          would give the best of both worlds.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterAssignment&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Example1 {
+  int methodOne(int parameter) {
+    if (parameter &lt;= 0 ) {
+      throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
+    }
+    parameter -= 2;  // violation
+    return parameter;
+  }
+
+  int methodTwo(int parameter) {
+    if (parameter &lt;= 0 ) {
+      throw new IllegalArgumentException(&quot;A positive value is expected&quot;);
+    }
+    int local = parameter;
+    local -= 2;  // OK
+    return local;
+  }
+
+  IntPredicate obj = a -&gt; ++a == 12; // violation
+  IntBinaryOperator obj2 = (int a, int b) -&gt; {
+    a++;     // violation
+    b += 12; // violation
+    return a + b;
+  };
+  IntPredicate obj3 = a -&gt; {
+    int b = a; // ok
+    return ++b == 12;
+  };
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.assignment%22">
+              parameter.assignment
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

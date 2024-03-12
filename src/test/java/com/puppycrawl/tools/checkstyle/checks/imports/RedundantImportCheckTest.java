@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -121,4 +121,18 @@ public class RedundantImportCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testBeginTreePackage() throws Exception {
+        final String file1 = getPath("InputRedundantImportCheckClearState.java");
+        final String file2 = getPath("InputRedundantImportWithoutPackage.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.Arrays.asList"),
+            "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(
+            "9:1: " + getCheckMessage(MSG_LANG, "java.lang.*"),
+            "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
+        );
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
 }

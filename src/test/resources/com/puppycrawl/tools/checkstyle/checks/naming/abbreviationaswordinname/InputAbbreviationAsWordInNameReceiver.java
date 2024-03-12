@@ -15,7 +15,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-public class InputAbbreviationAsWordInNameReceiver { // ok
+public class InputAbbreviationAsWordInNameReceiver {
   public void foo4(InputAbbreviationAsWordInNameReceiver this) {}
 
   private class Inner {

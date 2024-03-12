@@ -20,22 +20,22 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
 
     void oneResource() {
         try (BufferedReader fldBufferedReader
-                     = new BufferedReader(new InputStreamReader(null, "utf-8"))) { } // ok
+                     = new BufferedReader(new InputStreamReader(null, "utf-8"))) { }
         catch (IOException e) { }
     }
 
     void twoResourcesReferencingEachOther() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8"); // ok
-             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { } // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8");
+             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { }
         catch (IOException e) { }
     }
 
     void threeResourcesReferencingEachOther() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8"); // ok
-             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader); // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8");
+             BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader);
              Scanner fldScanner
                      = new Scanner(fldStreamReader.toString()
-                     + fldBufferedReader.toString())) { } // ok
+                     + fldBufferedReader.toString())) { }
         catch (IOException e) { }
     }
 
@@ -47,7 +47,7 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
 
     void handleParameter() {
         try (BufferedReader fldBufferedReader = new BufferedReader(
-                new InputStreamReader(null, this.fldCharset))) { } // ok
+                new InputStreamReader(null, this.fldCharset))) { }
         catch (IOException e) { }
     }
 
@@ -72,7 +72,7 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
 
     void methodIdentCopy() {
         try (BufferedReader methodToInvoke = new BufferedReader(
-                new InputStreamReader(null, this.methodToInvoke()))) { // ok
+                new InputStreamReader(null, this.methodToInvoke()))) {
             // violation below 'Method .* 'methodToInvoke' needs "this."'
             String a = methodToInvoke() + methodToInvoke.toString();
         }
@@ -85,19 +85,19 @@ public class InputRequireThisTryWithResourcesOnlyOverlappingFalse implements Aut
     InputRequireThisTryWithResources r4 = new InputRequireThisTryWithResources();
 
     void staticVariables() {
-        try (r1) { } // ok
+        try (r1) { }
         catch (Exception e) { }
-        try (r1.r2) { } // ok
+        try (r1.r2) { }
         catch (Exception e) { }
-        try (r1.r2.r4.r2.r4.r2) { } // ok
+        try (r1.r2.r4.r2.r4.r2) { }
         catch (Exception e) { }
     }
 
     void nestedTryWithResources() {
-        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8")) { // ok
-            try (BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) { // ok
+        try (InputStreamReader fldStreamReader = new InputStreamReader(null, "utf-8")) {
+            try (BufferedReader fldBufferedReader = new BufferedReader(fldStreamReader)) {
                 try (Scanner fldScanner = new Scanner(
-                        fldBufferedReader.toString() + fldStreamReader.toString())) { } // ok
+                        fldBufferedReader.toString() + fldStreamReader.toString())) { }
             }
             // violation below '.*variable 'fldBufferedReader' needs "this."'
             try (Scanner fldScanner = new Scanner(fldBufferedReader.toString()

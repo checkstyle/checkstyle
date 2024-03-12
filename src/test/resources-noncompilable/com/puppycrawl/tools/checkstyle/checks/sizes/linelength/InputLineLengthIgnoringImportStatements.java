@@ -11,7 +11,7 @@ max = 75
 // violation below 'longer than 75 characters (found 79)'
 package com.       puppycrawl.tools.    checkstyle.checks.    sizes.linelength;
 
-import java.   security.    interfaces.          RSAMultiPrimePrivateCrtKey; // ok
+import java.   security.    interfaces.          RSAMultiPrimePrivateCrtKey;
 
 public class InputLineLengthIgnoringImportStatements {
     @Override

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NewlineAtEndOfFile</title>
+  </head>
+  <body>
+    <section name="NewlineAtEndOfFile">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks whether files end with a line separator.
+        </p>
+
+        <p>
+          Rationale: Any source files and text files in general should
+          end with a line separator to let other easily add new content
+          at the end of file and "diff" command does not show previous lines as changed.
+        </p>
+        <p>
+          Example (the line with 'No newline at end of file' should not be in the diff):
+        </p>
+        <source>
+@@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
+
+StaticMethodCandidateCheck.name = Static Method Candidate
+-StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
+\ No newline at end of file
++StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
++StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
+        </source>
+        <p>
+          It can also trick the VCS to report the wrong owner for such lines.
+          An engineer who has added nothing but a newline character becomes
+          the last known author for the entire line. As a result, a mate can ask
+          him a question to which he will not give the correct answer.
+        </p>
+        <p>
+          Old Rationale: CVS source control management
+          systems will even print a warning when it
+          encounters a file that doesn't end with a line separator.
+        </p>
+        <p>
+          Attention: property fileExtensions works with files that are passed by similar property
+          for at <a href="../../config.html#Checker">Checker</a>.
+          Please make sure required file extensions are mentioned at Checker's fileExtensions
+          property.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          This will check against the platform-specific default line separator.
+        </p>
+        <p>
+          It is also possible to enforce the use of a specific line-separator
+          across platforms, with the <code>lineSeparator</code> property.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Correct Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-code">Violation Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check to always use Unix-style line separators:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check to work only on Java, XML and Python files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Python file <code>Example4.py</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NewlineAtEndOfFile">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="NewlineAtEndOfFile"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="NewlineAtEndOfFile"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+      value="-@cs\[(\w+)\] (\w+)"/>
+    <property name="checkPattern" value="$1"/>
+  </module>
+  <module name="TreeWalker">
+    <module name="MagicNumber"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
+int b = 43; // violation
+// xdoc section -- end

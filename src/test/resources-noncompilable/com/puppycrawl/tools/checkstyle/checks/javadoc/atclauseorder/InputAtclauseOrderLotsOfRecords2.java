@@ -29,7 +29,7 @@ public class InputAtclauseOrderLotsOfRecords2 {
     public @interface NonNull1 {
     }
     // Basic Record declaration
-    public record Car(String color, String model) { // ok
+    public record Car(String color, String model) {
     }
 
     /**

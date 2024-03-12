@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -217,5 +217,61 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterEscapeChar.java"),
                                            expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testXpathSuppression() throws Exception {
+        for (int test = 1; test <= 4; test++) {
+
+            final String[] expected = {
+                "20:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                        "different_name_than_suppression", PATTERN),
+            };
+            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+            final String path = "InputSuppressionXpathFilter" + test + ".java";
+            verifyFilterWithInlineConfigParser(getPath(path),
+                    expected, removeSuppressed(expected, suppressed));
+        }
+    }
+
+    @Test
+    public void testXpathSuppression2() throws Exception {
+        final String pattern = "[^a-zA-z0-9]*";
+        final String[] expected = {
+            "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
+        };
+
+        final String[] suppressed = {
+            "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilter5.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testXpathSuppression3() throws Exception {
+        final String pattern = "[^a-zA-z0-9]*";
+        final String[] expected = {
+            "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
+        };
+
+        final String[] suppressed = {
+            "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilter6.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testXpathSuppression4() throws Exception {
+        final String[] suppressed = {
+            "20:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", PATTERN),
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilter7.java"),
+                                           ALL_MESSAGES,
+                                           removeSuppressed(ALL_MESSAGES, suppressed));
     }
 }

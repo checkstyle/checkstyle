@@ -11,7 +11,7 @@ applyToPrivate = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.naming.staticvariablename;
 
-public class InputStaticVariableName { // ok
+public class InputStaticVariableName {
 
         /** Interface fields should be skipped */
         interface A {

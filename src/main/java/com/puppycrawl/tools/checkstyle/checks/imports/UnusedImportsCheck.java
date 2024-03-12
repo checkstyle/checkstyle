@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for unused import statements. Checkstyle uses a simple but very
- * reliable algorithm to report on unused import statements. An import statement
+ * Checks for unused import statements. An import statement
  * is considered unused if:
  * </p>
  * <ul>
@@ -50,10 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * It is not referenced in the file. The algorithm does not support wild-card
  * imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
  * checks for imports that handle wild-card imports.
- * </li>
- * <li>
- * It is a duplicate of another import. This is when a class is imported more
- * than once.
  * </li>
  * <li>
  * The class imported is from the {@code java.lang} package. For example
@@ -79,23 +74,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * An imported type has the same name as a declaration, such as a member variable.
  * </li>
  * <li>
- * There are two or more imports with the same name.
+ * There are two or more static imports with the same method name
+ * (javac can distinguish imports with same name but different parameters, but checkstyle can not
+ * due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
  * </li>
  * </ul>
- * <p>
- * For example, in the following case all imports will not be flagged as unused:
- * </p>
- * <pre>
- * import java.awt.Component;
- * import static AstTreeStringPrinter.printFileAst;
- * import static DetailNodeTreeStringPrinter.printFileAst;
- * class FooBar {
- *   private Object Component; // a bad practice in my opinion
- *   void method() {
- *       printFileAst(file); // two imports with the same name
- *   }
- * }
- * </pre>
  * <ul>
  * <li>
  * Property {@code processJavadoc} - Control whether to process Javadoc comments.
@@ -103,12 +86,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="UnusedImports"/&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -167,6 +144,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      * Setter to control whether to process Javadoc comments.
      *
      * @param value Flag for processing Javadoc comments.
+     * @since 5.4
      */
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;
@@ -378,7 +356,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static Set<String> processJavadocTag(JavadocTag tag) {
         final Set<String> references = new HashSet<>();
-        final String identifier = tag.getFirstArg().trim();
+        final String identifier = tag.getFirstArg();
         for (Pattern pattern : new Pattern[]
         {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
             references.addAll(matchPattern(identifier, pattern));

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressionXpathSingleFilter</title>
+  </head>
+  <body>
+    <section name="SuppressionXpathSingleFilter">
+      <p>Since Checkstyle 8.18</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for
+          Checks violations in the specified file, class, checks, message, module id,
+          and xpath.
+        </p>
+        <p>
+          Rationale: To allow users use suppressions configured in the same config with
+          other modules. SuppressionFilter and SuppressionXpathFilter are require separate
+          file.
+        </p>
+        <p>
+          Advice: If checkstyle configuration is used for several projects, single suppressions
+          on common files/folders is better to put in checkstyle configuration as common rule.
+          All suppression that are for specific file names is better to keep in project specific
+          config file.
+        </p>
+        <p>
+          Attention: This filter only supports single suppression, and will need
+          multiple instances if users wants to suppress multiple violations.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure to suppress the MethodName check
+          for all methods with name MyMethod
+          inside FileOne and FileTwo files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To suppress checks being specified by id property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To suppress checks for all package definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To suppress RedundantModifier check for interface definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+          To suppress checks in the FileOne file by non-query:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
+          Suppress checks for elements which are either class definitions,
+          either method definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
+          Suppress checks for MyMethod1 or MyMethod2 methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
+          Suppress checks for variable testVariable inside
+          testMethod method inside TestClass class:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example9.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example10-config">
+          In the following sample, violations for LeftCurly check
+          will be suppressed for classes with name Main or for methods
+          with name calculate.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example10.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example10.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example11-config">
+          The following example demonstrates how to suppress
+          RequireThis violations for variable age inside changeAge method.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example11.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example11.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example12-config">
+          Suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
+          Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
+          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example12.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example12.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example13-config">
+          The following sample demonstrates how to suppress all violations for method itself and
+          all descendants. <code>descendant-or-self</code> axis iterates through current node and
+          all children nodes at any level. Keyword <code>node()</code> selects node elements.
+          Please read more about xpath syntax at
+          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example13.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example13-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example13.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example14-config">
+          The following example is an example of what checks would be suppressed
+          while building Spring projects with checkstyle plugin.
+          Please find more information at:
+          <a href="https://github.com/spring-io/spring-javaformat">spring-javaformat</a>
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example14.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressionXpathSingleFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

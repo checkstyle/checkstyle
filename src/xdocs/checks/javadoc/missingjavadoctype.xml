@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingJavadocType</title>
+  </head>
+  <body>
+    <section name="MissingJavadocType">
+      <p>Since Checkstyle 8.20</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for missing Javadoc comments for class, enum, interface, and annotation
+          interface definitions. The scope to verify is specified using the <code>Scope</code>
+          class and defaults to <code>Scope.PUBLIC</code>. To verify
+          another scope, set property scope to one of the
+          <code>Scope</code> constants.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>public</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>skipAnnotations</td>
+              <td>Specify annotations that allow missed documentation. If annotation is present in target sources in multiple forms of qualified name, all forms should be listed in this property.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>Generated</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>8.20</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check to make sure all public class, enum, interface, and
+          annotation interface, definitions have javadocs:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocType&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example1-code">Example:</p>
+        <source>
+public class PublicClass {} // violation
+private class PublicClass {}
+protected class PublicClass {}
+class PackagePrivateClass {}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check for <code>private</code> scope:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocType&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-code">Example:</p>
+        <source>
+public class PublicClass {} // violation
+private class PublicClass {} // violation
+protected class PublicClass {} // violation
+class PackagePrivateClass {} // violation
+        </source>
+
+        <p id="Example3-config">
+          To configure the check for <code>private</code> classes only:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocType&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+      &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example3-code">Example:</p>
+        <source>
+public class PublicClass {}
+private class PublicClass {} // violation
+protected class PublicClass {}
+class PackagePrivateClass {}
+        </source>
+
+        <p id="Example4-config">
+          To configure a check that allows missing comments for classes annotated with
+          <code>@SpringBootApplication</code> and <code>@Configuration</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocType&quot;&gt;
+      &lt;property name=&quot;skipAnnotations&quot; value=&quot;SpringBootApplication,Configuration&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+@SpringBootApplication // no violations about missing comment on class
+public class Application {}
+
+@Configuration // no violations about missing comment on class
+class DatabaseConfiguration {}
+        </source>
+
+        <p id="Example5-config">
+          To configure a check that allows missing comments for classes annotated with
+          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingJavadocType&quot;&gt;
+      &lt;property name=&quot;skipAnnotations&quot; value=&quot;Annotation,MyClass.Annotation&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <source>
+@Annotation // ok
+class Class1 {}
+
+@MyClass.Annotation // ok
+class Class2 {}
+
+@com.mycompany.MyClass.Annotation // violation, as this form is missed in config
+class Class3 {}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+              javadoc.missing
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

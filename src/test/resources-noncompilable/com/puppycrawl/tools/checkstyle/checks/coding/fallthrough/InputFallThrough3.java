@@ -16,12 +16,13 @@ public class InputFallThrough3
         return switch (hashCode()) {
         case 1:
             i++;
-        case 2: // violation 'Fall through from previous branch of the switch statement.'
+        case 2: // violation 'Fall\ through from previous branch of the switch statement.'
             yield 2;
-        case 3: // ok
+        case 3:
             // fall through
-        case 4: // ok
-        default: // ok
+        case 4:
+            yield 5;
+        default:
             yield -1;
         };
     }

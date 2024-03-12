@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "com/puppycrawl/tools/checkstyle/suppressions_1_2.dtd">
+
+<suppressions>
+  <suppress checks="ConstantNameCheck"
+    files="InputSuppressionFilter7.java"
+    lines="19"/>
+</suppressions>

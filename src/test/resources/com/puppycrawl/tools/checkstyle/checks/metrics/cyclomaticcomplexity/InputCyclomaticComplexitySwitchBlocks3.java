@@ -10,7 +10,7 @@ tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SW
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-public class InputCyclomaticComplexitySwitchBlocks3 { // ok
+public class InputCyclomaticComplexitySwitchBlocks3 {
     public void foo2() {
         String programmingLanguage = "Java";
         switch (programmingLanguage) {

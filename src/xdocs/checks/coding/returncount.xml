@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ReturnCount</title>
+  </head>
+  <body>
+    <section name="ReturnCount">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Restricts the number of return statements in methods, constructors and lambda expressions.
+          Ignores specified methods (<code>equals</code> by default).
+        </p>
+
+        <p>
+          <b>max</b> property will only check returns in methods and lambdas that return a specific
+          value (Ex: 'return 1;').
+        </p>
+
+        <p>
+          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas
+          that have no return type (IE 'return;').
+          It will only count visible return statements. Return statements not normally written, but
+          implied, at the end of the method/constructor definition will not be taken into account.
+          To disallow &quot;return;&quot; in void return type methods, use a value of 0.
+        </p>
+
+        <p>
+          Rationale: Too many return points can mean that code is
+          attempting to do too much or may be difficult to understand.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify method names to ignore.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^equals$&quot;</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify maximum allowed number of return statements in non-void methods/lambdas.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>2</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>maxForVoid</td>
+              <td>Specify maximum allowed number of return statements in void methods/constructors/lambdas.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>6.19</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
+                  .
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check so that it doesn't allow more than three
+          return statements per method (ignoring the <code>equals()</code>
+          method):
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+            Example:
+        </p>
+        <source>
+public class MyClass {
+  public int sign(int x) {
+    if (x &lt; 0)
+      return -1;
+    if (x == 0)
+      return 1;
+    return 0;
+  } // OK
+
+  public int badSign(int x) {
+    if (x &lt; -2)
+      return -2;
+    if (x == 0)
+      return 0;
+    if (x &gt; 2)
+      return 2;
+    return 1;
+  } // violation, more than three return statements
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check so that it doesn't allow any
+          return statements per void method:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <source>
+public class MyClass {
+  public void firstMethod(int x) {
+  } // OK
+
+  public void badMethod(int x) {
+    return;
+  } // violation, return statements per void method
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check so that it doesn't allow more than 2
+          return statements per method (ignoring the <code>equals()</code>
+          method) and more than 1 return statements per void method:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+            Example:
+        </p>
+        <source>
+public class MyClass {
+  public void firstMethod() {
+  } // OK
+
+  public void secondMethod() {
+    return;
+  } // OK
+
+  public void badMethod(int x) {
+    if (x == 0)
+      return;
+    return;
+  } // violation, more than one return statements
+
+  public int sign(int x) {
+    if (x &lt; 0)
+      return -1;
+    return 0;
+  } // OK
+
+  public int badSign(int x) {
+    if (x &lt; 0)
+      return -1;
+    if (x == 0)
+      return 1;
+    return 0;
+  } // violation, more than two return statements in methods
+}
+        </source>
+
+        <p id="Example4-config">
+          To configure the check so that it doesn't allow more than three
+          return statements per method for all methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+            Example:
+        </p>
+        <source>
+public class MyClass {
+  public int sign(int x) {
+    if (x &lt; 0)
+      return -1;
+    if (x == 0)
+      return 1;
+    return 0;
+  } // OK
+
+  public int badSign(int x) {
+    if (x &lt; -2)
+      return -2;
+    if (x == 0)
+      return 0;
+    if (x &gt; 2)
+      return 2;
+    return 1;
+  } // violation, more than three return statements per method
+}
+        </source>
+
+        <p id="Example5-config">
+          To configure the check so that it doesn't allow any return statements
+          in constructors, more than one return statement in all lambda
+          expressions and more than two return statements in methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;ReturnCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">
+            Example:
+        </p>
+        <source>
+import java.util.function.Predicate;
+
+public class Test {
+  public Test() {
+  } // OK
+
+  public Test(int i) {
+    return; // violation, max allowed for constructors is 0
+  }
+
+  final Predicate&lt;Integer&gt; p = i -&gt; {
+    if (i &gt; 5) {
+      return true;
+    }
+    return false;
+  }; // violation, max allowed for lambdas is 1
+
+  final Predicate&lt;Integer&gt; q = i -&gt; {
+    return i &gt; 5;
+  }; // OK
+
+  public int sign(int x) {
+    if (x &gt; 0)
+      return -1;
+    return 0;
+  } // OK
+
+  public int badSign(int x) {
+    if (x &lt; 0)
+      return -1;
+    if (x == 0)
+      return 1;
+    return 0;
+  } // violation, more than two return statements in methods
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ReturnCount">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.count%22">
+              return.count
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22return.countVoid%22">
+              return.countVoid
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -24,12 +24,12 @@
 
   <module name="TreeWalker">
     <module name="Regexp">
-      <property name="id" value="StyleValidationCommentInInputs"/>
+      <property name="id" value="UnnecessaryOkComment"/>
       <property name="format"
-               value="(\/\/ (ok|violation|\d violations|filtered violation))"/>
-      <message key="required.regexp"
-             value="All check input files in the ''src/(it|test)/resources*/'' folder must
-                   have trailing comments &quot;// ok&quot; and/or &quot;// violation&quot;."/>
+               value="(?i)\/\/\s*ok$"/>
+      <property name="illegalPattern" value="true"/>
+      <message key="illegal.regexp"
+               value="'// ok' comments should have an explanation, or they are unnecessary."/>
     </module>
   </module>
 </module>

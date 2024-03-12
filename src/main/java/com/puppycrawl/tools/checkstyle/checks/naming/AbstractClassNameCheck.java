@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,67 +55,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AbstractClassName"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
- * class AbstractThirdClass {} // violation, must be declared 'abstract'
- * class FourthClass {} // OK
- * </pre>
- * <p>
- * To configure the check so that it check name
- * but ignore {@code abstract} modifier:
- * </p>
- * <pre>
- * &lt;module name="AbstractClassName"&gt;
- *   &lt;property name="ignoreModifier" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
- * class AbstractThirdClass {} // OK, no "abstract" modifier
- * class FourthClass {} // OK
- * </pre>
- * <p>
- * To configure the check to ignore name
- * validation when class declared as 'abstract'
- * </p>
- * <pre>
- * &lt;module name="AbstractClassName"&gt;
- *   &lt;property name="ignoreName" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // OK, name validation is ignored
- * class AbstractThirdClass {} // violation, must be declared as 'abstract'
- * class FourthClass {} // OK, no "abstract" modifier
- * </pre>
- * <p>
- * To configure the check
- * with {@code format}:
- * </p>
- * <pre>
- * &lt;module name="AbstractClassName"&gt;
- *   &lt;property name="format" value="^Generator.+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * abstract class GeneratorFirstClass {} // OK
- * abstract class SecondClass {} // violation, must match pattern '^Generator.+$'
- * class GeneratorThirdClass {} // violation, must be declared 'abstract'
- * class FourthClass {} // OK, no "abstract" modifier
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -168,6 +107,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * classes that match the name.
      *
      * @param value new value
+     * @since 5.3
      */
     public void setIgnoreModifier(boolean value) {
         ignoreModifier = value;
@@ -178,6 +118,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * using the check to identify that match name and do not have the {@code abstract} modifier.
      *
      * @param value new value.
+     * @since 5.3
      */
     public void setIgnoreName(boolean value) {
         ignoreName = value;
@@ -187,6 +128,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
      * Setter to specify valid identifiers.
      *
      * @param pattern the new pattern
+     * @since 3.2
      */
     public void setFormat(Pattern pattern) {
         format = pattern;

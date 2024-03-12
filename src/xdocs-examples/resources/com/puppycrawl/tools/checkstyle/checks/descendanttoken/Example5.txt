@@ -1,0 +1,29 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="FOR_INIT"/>
+      <property name="limitedTokens" value="EXPR"/>
+      <property name="minimumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() {
+    int[] array = new int[] {1, 2, 3, 4, 5};
+
+    for (int i = 0; i != array.length; i++) { // ok
+      System.out.println(i);
+    }
+
+    int j = 0;
+    for (; j != array.length;) { // violation
+      System.out.println(j);
+      j++;
+    }
+  }
+}
+// xdoc section -- end

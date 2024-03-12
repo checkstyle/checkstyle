@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,90 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension of files to process.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * </ul>
- * <p>
- * To configure the check to report only the first instance in each file:
- * </p>
- * <pre>
- * &lt;module name=&quot;FileTabCharacter&quot;/&gt;
- * </pre>
- * <p>
- * Example - Test.java:
- * </p>
- * <pre>
- * public class Test {
- *   int a;     // violation, indented using tab
- *
- *   public void foo (int arg) { // OK, indented using tab, only first occurrence in file reported
- *     a = arg;                  // OK, indented using spaces
- *   }                           // OK, indented using spaces
- * }
- * </pre>
- * <p>
- * To configure the check to report each instance in each file:
- * </p>
- * <pre>
- * &lt;module name=&quot;FileTabCharacter&quot;&gt;
- *   &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example - Test.java:
- * </p>
- * <pre>
- * public class Test {
- *   int a;     // violation, indented using tab
- *
- *   public void foo (int arg) { // violation, indented using tab
- *     a = arg;                  // OK, indented using spaces
- *   }                           // OK, indented using spaces
- * }
- * </pre>
- * <p>
- * To configure the check to report instances on only certain file types:
- * </p>
- * <pre>
- * &lt;module name=&quot;FileTabCharacter&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example - Test.java:
- * </p>
- * <pre>
- * public class Test {
- *   int a;     // violation, indented using tab
- *
- *   public void foo (int arg) { // OK, indented using tab, only first occurrence in file reported
- *     a = arg;                  // OK, indented using spaces
- *   }                           // OK, indented using spaces
- * }
- * </pre>
- * <p>
- * Example - Test.xml:
- * </p>
- * <pre>
- * &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
- * &lt;UserAccount&gt;
- *   &lt;FirstName&gt;John&lt;/FirstName&gt; &lt;!-- violation, indented using tab --&gt;
- *   &lt;LastName&gt;Doe&lt;/LastName&gt;    &lt;!-- only first occurrence in file reported --&gt;
- * &lt;/UserAccount&gt;
- * </pre>
- * <p>
- * Example - Test.html:
- * </p>
- * <pre>
- * &lt;head&gt;
- *   &lt;title&gt;Page Title&lt;/title&gt; &lt;!-- no check performed, html file extension --&gt;
- * &lt;/head&gt;                     &lt;!-- not specified in check config --&gt;
- * &lt;body&gt;
- *   &lt;p&gt;This is a simple html document.&lt;/p&gt;
- * &lt;/body&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -194,6 +115,7 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
      * instance.
      *
      * @param eachLine Whether report on each line containing a tab.
+     * @since 5.0
      */
     public void setEachLine(boolean eachLine) {
         this.eachLine = eachLine;

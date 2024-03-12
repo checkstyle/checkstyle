@@ -15,12 +15,13 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleExcludeScope1 // ok
+public class InputJavadocStyleExcludeScope1
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
+   private String first;
 
-   /** This Javadoc is missing an ending period */ // violation
+   // violation below 'First sentence should end with a period.'
+   /** This Javadoc is missing an ending period */
    private String second;
 
    /**
@@ -28,47 +29,54 @@ public class InputJavadocStyleExcludeScope1 // ok
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleExcludeScope1() {} // ok
+   public InputJavadocStyleExcludeScope1() {}
 
    /**
     * This is ok!
     */
-   private void method1() {} // ok
+   private void method1() {}
 
    /**
     * This is ok?
     */
-   private void method2() {} // ok
+   private void method2() {}
 
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
+   private void method3() {}
 
-   /** // violation
+   // violation below 'First sentence should end with a period.'
+   /**
     * This should fail even.though.there are embedded periods
     */
    private void method4() {}
 
+   // violation 7 lines below 'Unclosed HTML tag found: <b>'
+   // violation 9 lines below 'Extra HTML tag found: </td>'
+   // violation 9 lines below 'Extra HTML tag found: </style>'
+   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
    /**
     * Test HTML in Javadoc comment
     * <dl>
-    * <dt><b>This guy is missing end of bold tag // violation
+    * <dt><b>
     * <dd>The dt and dd don't require end tags.
     * </dl>
-    * </td>Extra tag shouldn't be here // violation
-    * <style>this tag isn't supported in Javadoc</style> // violation
-    * @param arg1 <code>dummy. // violation
+    * </td>
+    * <style>this tag isn't supported in Javadoc</style>
+    * @param arg1 <code>dummy
     */
    private void method5(int arg1) {}
 
    /**
     * Protected check <b>should fail
     */
-   protected void method6() {} // ok
+   protected void method6() {}
 
-   /** // violation
-    * Package protected check <b>should fail // violation
+   // violation 2 lines below 'First sentence should end with a period.'
+   // violation 2 lines below 'Unclosed HTML tag found:'
+   /**
+    * Package protected check <b>
     */
    void method7() {}
 
@@ -76,20 +84,20 @@ public class InputJavadocStyleExcludeScope1 // ok
     * Public check should fail</code>
     * should fail <
     */
-   public void method8() {} // ok
+   public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
+   public void method9() {}
 
 
-    // Testcases to exercise the Tag parser (bug 843887)
-
+   // Testcases to exercise the Tag parser (bug 843887)
+   // violation 6 lines below  'Extra HTML tag found: </img>'
     /**
      * Real men don't use XHTML.
      * <br />
      * <hr/>
      * < br/>
-     * <img src="schattenparker.jpg"/></img> // violation
+     * <img src="schattenparker.jpg"/></img>
      */
     private void method10() {}
 
@@ -108,5 +116,5 @@ public class InputJavadocStyleExcludeScope1 // ok
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
+    private void method11() {}
 }

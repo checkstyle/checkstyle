@@ -1,0 +1,35 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // OK
+
+/** */
+public class ClassD<T> {} // violation, as param tag for <T> is missing
+
+/** */
+private class ClassE<T> {} // violation, as param tag for <T> is missing
+
+/** */
+@Generated
+public class ClassF<T> {} // OK
+// xdoc section -- end

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -70,88 +70,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MissingOverride&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class Test extends SuperClass {
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     &#64;Override
- *     public void test1() { // OK
- *
- *     }
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     public void test2() { // violation, should be annotated with &#64;Override
- *
- *     }
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     private void test3() { // violation, using the &#64;inheritDoc tag on private method
- *
- *     }
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     public static void test4() { // violation, using the &#64;inheritDoc tag on static method
- *
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check for the {@code javaFiveCompatibility} mode:
- * </p>
- * <pre>
- * &lt;module name="MissingOverride"&gt;
- *   &lt;property name="javaFiveCompatibility"
- *       value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class Test1 {
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     public void equals() { // violation, should be annotated with &#64;Override
- *
- *     }
- * }
- *
- * interface Test2 {
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     void test(); // violation, should be annotated with &#64;Override
- * }
- *
- * class Test3 extends SuperClass {
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     public void test() { // OK, is ignored because class extends other class
- *
- *     }
- * }
- *
- * class Test4 implements SuperInterface {
- *
- *     &#47;** {&#64;inheritDoc} *&#47;
- *     public void test() { // OK, is ignored because class implements interface
- *
- *     }
- * }
- *
- * class Test5 {
- *     Runnable r = new Runnable() {
- *          &#47;** {&#64;inheritDoc} *&#47;
- *          public void run() { // OK, is ignored because class is anonymous class
- *
- *          }
- *     };
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -197,6 +115,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
      * Setter to enable java 5 compatibility mode.
      *
      * @param compatibility compatibility or not
+     * @since 5.0
      */
     public void setJavaFiveCompatibility(final boolean compatibility) {
         javaFiveCompatibility = compatibility;
@@ -277,7 +196,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
             .filter(JavadocUtil::isJavadocComment)
             .findFirst();
         return javadoc.isPresent()
-                && MATCH_INHERIT_DOC.matcher(javadoc.get()).find();
+                && MATCH_INHERIT_DOC.matcher(javadoc.orElseThrow()).find();
     }
 
 }

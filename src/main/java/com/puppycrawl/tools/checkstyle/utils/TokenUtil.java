@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -97,7 +97,7 @@ public final class TokenUtil {
         return Arrays.stream(cls.getDeclaredFields())
             .filter(fld -> Modifier.isPublic(fld.getModifiers()) && fld.getType() == Integer.TYPE)
             .collect(Collectors.toUnmodifiableMap(
-                Field::getName, fld -> getIntFromField(fld, fld.getName()))
+                Field::getName, fld -> getIntFromField(fld, null))
             );
     }
 
@@ -109,7 +109,7 @@ public final class TokenUtil {
      */
     public static Map<Integer, String> invertMap(Map<String, Integer> map) {
         return map.entrySet().stream()
-            .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+            .collect(Collectors.toUnmodifiableMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     /**

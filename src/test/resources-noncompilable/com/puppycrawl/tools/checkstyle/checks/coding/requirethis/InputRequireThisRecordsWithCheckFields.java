@@ -43,6 +43,6 @@ class InputRequireThisRecordsWithCheckFieldsClass {
     }
 
     public String a() {
-        return a; // ok
+        return a;
     }
 }

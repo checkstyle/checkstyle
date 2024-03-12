@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="SuppressWithNearbyTextFilter"/>
+  <module name="TreeWalker">
+    <module name="MagicNumber"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
+int daysInWeek = 7; // violation
+// xdoc section -- end

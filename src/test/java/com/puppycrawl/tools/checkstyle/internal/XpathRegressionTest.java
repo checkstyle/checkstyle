@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -90,44 +90,22 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207
     private static final Set<String> MISSING_CHECK_NAMES = Set.of(
-            "BooleanExpressionComplexity",
-            "CatchParameterName",
             "ClassDataAbstractionCoupling",
             "ClassFanOutComplexity",
             "ClassTypeParameterName",
             "DescendantToken",
             "DesignForExtension",
-            "EqualsHashCode",
-            "ExecutableStatementCount",
-            "FinalLocalVariable",
-            "FinalParameters",
             "HideUtilityClassConstructor",
-            "IllegalInstantiation",
-            "IllegalTokenText",
-            "InnerAssignment",
-            "InnerTypeLast",
             "InterfaceTypeParameterName",
-            "JavaNCSS",
             "LocalFinalVariableName",
             "LocalVariableName",
-            "MagicNumber",
-            "MethodLength",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
-            "MultipleStringLiterals",
             "MutableException",
-            "PackageName",
-            "ParameterAssignment",
-            "ParameterNumber",
             "RedundantModifier",
             "SeparatorWrap",
-            "SimplifyBooleanExpression",
-            "StaticVariableName",
-            "SuperClone",
             "SuperFinalize",
-            "SuppressWarnings",
-            "VisibilityModifier"
-    );
+            "SuppressWarnings");
 
     // Modules that will never have xpath support ever because they not report violations
     private static final Set<String> NO_VIOLATION_MODULES = Set.of(
@@ -155,7 +133,8 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private static Map<String, String> getAllowedDirectoryAndChecks() {
         return SIMPLE_CHECK_NAMES
             .stream()
-            .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
+            .collect(Collectors.toUnmodifiableMap(
+                id -> id.toLowerCase(Locale.ENGLISH), Function.identity()));
     }
 
     private static Set<String> getInternalModules() {
@@ -164,7 +143,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String[] packageTokens = moduleName.split("\\.");
                 return packageTokens[packageTokens.length - 1];
             })
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     @BeforeEach

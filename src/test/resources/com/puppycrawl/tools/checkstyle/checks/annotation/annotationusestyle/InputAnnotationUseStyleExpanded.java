@@ -10,14 +10,14 @@ trailingArrayComma = ignore
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO})
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
 @SuppressWarnings({""}) // violation 'Annotation style must be 'EXPANDED''
 public class InputAnnotationUseStyleExpanded
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
 @Deprecated()
 class Dep4 {
@@ -25,12 +25,12 @@ class Dep4 {
 }
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO})
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
 @SuppressWarnings({""}) // violation 'Annotation style must be 'EXPANDED''
 enum SON4 {
 
     @Deprecated
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
     ETHAN
@@ -68,7 +68,7 @@ enum E4 {
     String value1() default "";
 }
 
-@SomeArrays(pooches = {})
+@SomeArraysDiffStyle(pooches = {})
 @Another({}) // violation 'Annotation style must be 'EXPANDED''
 class Closing4 {
     static final String UN_U = "UN_U";

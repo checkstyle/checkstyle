@@ -17,7 +17,7 @@ public class InputMissingOverrideGoodOverrideJava5
                 /**
                  * {@inheritDoc}
                  */
-                @Override       // ok
+                @Override
                 public String toString() {
                     return "junk";
                 }
@@ -34,7 +34,7 @@ public class InputMissingOverrideGoodOverrideJava5
                     /**
                      * {@inheritDoc}
                      */
-                    @Override       // ok
+                    @Override
                     public String toString() {
                         return "junk";
                     }
@@ -52,7 +52,7 @@ public class InputMissingOverrideGoodOverrideJava5
                     /**
                      * {@inheritDoc}
                      */
-                    @java.lang.Override     // ok
+                    @java.lang.Override
                     public String toString() {
                         return "junk";
                     }

@@ -17,78 +17,86 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleHtml1 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first; // ok
+   private String first;
 
    /** This Javadoc is missing an ending period */
-   private String second; // ok
+   private String second;
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyleHtml1() {} // ok
+   public InputJavadocStyleHtml1() {}
 
    /**
     * This is ok!
     */
-   private void method1() {} // ok
+   private void method1() {}
 
    /**
     * This is ok?
     */
-   private void method2() {} // ok
+   private void method2() {}
 
    /**
     * And This is ok.<br>
     */
-   private void method3() {} // ok
+   private void method3() {}
 
    /**
     * This should fail even.though.there are embedded periods
     */
-   private void method4() {} // ok
+   private void method4() {}
 
+   // violation 7 lines below 'Unclosed HTML tag found: <b>'
+   // violation 9 lines below 'Extra HTML tag found: </td>'
+   // violation 9 lines below 'Extra HTML tag found: </style>'
+   // violation 9 lines below 'Unclosed HTML tag found: <code>dummy'
    /**
     * Test HTML in Javadoc comment
     * <dl>
-    * <dt><b>This guy is missing end of bold tag // violation
+    * <dt><b>
     * <dd>The dt and dd don't require end tags.
     * </dl>
-    * </td>Extra tag shouldn't be here // violation
-    * <style>this tag isn't supported in Javadoc</style> // violation
-    * @param arg1 <code>dummy. // violation
+    * </td>
+    * <style>this tag isn't supported in Javadoc</style>
+    * @param arg1 <code>dummy
     */
    private void method5(int arg1) {}
 
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
    /**
-    * Protected check <b>should fail // violation
+    * Protected check <b>
     */
    protected void method6() {}
 
+   // violation 2 lines below 'Unclosed HTML tag found: <b>'
    /**
-    * Package protected check <b>should fail // violation
+    * Package protected check <b>
     */
    void method7() {}
 
+   // violation 3 lines below 'Extra HTML tag found: </code>'
+   // violation 3 lines below 'should fail <'
    /**
-    * Public check should fail</code> // violation
+    * Public check should fail</code>
     * should fail <
-    */ // violation above
+    */
    public void method8() {}
 
    /** {@inheritDoc} **/
-   public void method9() {} // ok
+   public void method9() {}
 
 
-    // Testcases to exercise the Tag parser (bug 843887)
-
+   // Testcases to exercise the Tag parser (bug 843887)
+   // violation 6 lines below  'Extra HTML tag found: </img>'
     /**
      * Real men don't use XHTML.
      * <br />
      * <hr/>
      * < br/>
-     * <img src="schattenparker.jpg"/></img> // violation
+     * <img src="schattenparker.jpg"/></img>
      */
     private void method10() {}
 
@@ -107,5 +115,5 @@ public class InputJavadocStyleHtml1 {
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11() {} // ok
+    private void method11() {}
 }

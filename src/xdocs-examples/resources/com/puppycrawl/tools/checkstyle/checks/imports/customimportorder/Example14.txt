@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CustomImportOrder">
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+import java.awt.Dialog;
+import java.awt.Window;
+import java.awt.color.ColorSpace;
+import java.awt.Frame; // violation here - in ASCII order 'F' should go before 'c',
+                       // as all uppercase come before lowercase letters
+// xdoc section -- end

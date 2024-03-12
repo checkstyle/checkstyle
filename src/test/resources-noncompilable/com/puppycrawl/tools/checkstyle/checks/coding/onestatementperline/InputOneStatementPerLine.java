@@ -70,7 +70,7 @@ public class InputOneStatementPerLine {
   InputOneStatementPerLine method(foo a) {
     foo obj = () -> {
       method(() ->
-             {method(null);}).method(null); // ok
+             {method(null);}).method(null);
     };
     return this;
   }

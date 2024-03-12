@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.1//EN"
+        "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+
+  <!-- The files have no exampleClassName by design. -->
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example3.java"/>
+  <suppress id="exampleClassName"
+    files="outertypefilename[\\/]Example4.java"/>
+
+  <!-- The file is used so examples can show how overridden methods are treated. -->
+  <suppress id="exampleClassName"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="exampleFileName"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="xdocStartComment"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="xdocEndComment"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+  <suppress id="exampleFileXmlConfigPresence"
+    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+
+  <!-- non class example files -->
+  <suppress id="exampleFileName" files="package-info.java"/>
+  <suppress id="exampleClassName" files="package-info.java"/>
+
+  <!-- Check deals with tab characters. -->
+  <suppress checks="FileTabCharacter|Indentation"
+    files="filetabcharacter[\\/]Example\d+.java"/>
+
+  <!-- Example deals with line wrapping and check does not take that into account.  -->
+  <suppress id="exampleClassName"
+    files="nolinewrap[\\/]Example5.java"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/2629 -->
+  <suppress checks="Indent"
+    files="nolinewrap[\\/]Example5.java"/>
+
+  <!-- Check applies to resources-noncompilable files.  -->
+  <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
+
+  <!-- Without showing symbol, user can get confused which one we are referring to -->
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap[\\/]Example1.java"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap[\\/]Example2.java"/>
+
+  <suppress checks="CommentsIndentation"
+    files="singlespaceseparator[\\/]Example2.java"/>
+
+  <!-- Example contains important violations that need to be shown -->
+  <suppress checks="FileLength"
+    files="whitespaceafter[\\/]Example1.java"/>
+
+  <!-- Examples need spacing to be more readable -->
+  <suppress checks="FileLength"
+    files="visibilitymodifier[\\/]Example\d+.java"/>
+
+  <!-- No new line by design to show violation -->
+  <suppress checks="NewlineAtEndOfFile"
+    files="newlineatendoffile[\\/]Example\d+.*"/>
+
+  <!-- Example must show line length violations and suppressed violations -->
+  <suppress checks="LineLength"
+    files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
+
+</suppressions>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -59,7 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Attention: This filter may only be specified within the TreeWalker module
  * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
  * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
- * <a href="https://checkstyle.org/config_filters.html#SuppressWithPlainTextCommentFilter">
+ * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
  * <p>
@@ -72,6 +72,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code checkC} - Control whether to check C style comments ({@code &#47;* ... *&#47;}).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code checkCPP} - Control whether to check C++ style comments ({@code //}).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code ".*"}.
+ * </li>
+ * <li>
+ * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code messageFormat} - Specify message pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to
  * trigger filter to begin suppression.
  * Type is {@code java.util.regex.Pattern}.
@@ -82,405 +107,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "CHECKSTYLE:ON"}.
  * </li>
- * <li>
- * Property {@code checkFormat} - Specify check pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code messageFormat} - Specify message pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code idFormat} - Specify check ID pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code checkCPP} - Control whether to check C++ style comments ({@code //}).
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code checkC} - Control whether to check C style comments ({@code &#47;* ... *&#47;}).
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
  * </ul>
- * <p>
- * To configure a filter to suppress audit events (MemberNameCheck,
- * ConstantNameCheck and IllegalCatchCheck have been taken here for reference)
- * between a comment containing {@code CHECKSTYLE:OFF} and a comment
- * containing {@code CHECKSTYLE:ON}:
- * </p>
- * <pre>
- *   &lt;module name="SuppressionCommentFilter"/&gt;
- *   &lt;module name="MemberName"/&gt;
- *   &lt;module name="ConstantName"/&gt;
- *   &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //CHECKSTYLE:OFF
- *  int VAR2; // suppressed violation
- *  //CHECKSTYLE:ON
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //CHECKSTYLE:OFF
- *  public static final int var4; // suppressed violation
- *  //CHECKSTYLE:ON
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //CHECKSTYLE:OFF
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // suppressed violation
- *
- *    //CHECKSTYLE:ON
- *  }
- * }
- * </pre>
- * <p>
- * To configure a filter so that {@code // stop constant check} and
- * {@code // resume constant check} marks legitimate constant names:
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="stop constant check"/&gt;
- *   &lt;property name="onCommentFormat" value="resume constant check"/&gt;
- *   &lt;property name="checkFormat" value="ConstantNameCheck"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"/&gt;
- * &lt;module name="ConstantName"/&gt;
- * &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //stop constant check
- *  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *  //resume constant check
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //stop constant check
- *  public static final int var4; // suppressed violation
- *  //resume constant check
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //stop constant check
- *
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *    catch(Error err) {} // violation , Catching 'Error' is not allowed
- *
- *    //resume constant check
- *  }
- * }
- * </pre>
- * <p>
- * To configure a filter so that {@code UNUSED OFF: <i>var</i>} and
- * {@code UNUSED ON: <i>var</i>} marks a variable or parameter known not to be
- * used by the code by matching the variable name in the message through a
- * specified message in messageFormat:
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="ILLEGAL OFF\: (\w+)"/&gt;
- *   &lt;property name="onCommentFormat" value="ILLEGAL ON\: (\w+)"/&gt;
- *   &lt;property name="checkFormat" value="IllegalCatch"/&gt;
- *   &lt;property name="messageFormat" value="^Catching '$1' is not allowed.$"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"/&gt;
- * &lt;module name="ConstantName"/&gt;
- * &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //ILLEGAL OFF: Exception
- *  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *  //ILLEGAL ON: Exception
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //ILLEGAL OFF: Exception
- *  public static final int var4;
- *  // violation above ,  Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *  //ILLEGAL ON: Exception
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //ILLEGAL OFF: Exception
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // violation , Catching 'Error' is not allowed
- *
- *    //ILLEGAL ON: Exception
- *  }
- * }
- * </pre>
- * <p>
- * To configure a filter so that name of suppressed check mentioned in comment
- * {@code CSOFF: <i>regexp</i>} and {@code CSON: <i>regexp</i>} mark a matching check:
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
- *   &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
- *   &lt;property name="checkFormat" value="$1"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"/&gt;
- * &lt;module name="ConstantName"/&gt;
- * &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //CSOFF: MemberName
- *  int VAR2; // suppressed violation
- *  //CSON: MemberName
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //CSOFF: ConstantName
- *  public static final int var4; // suppressed violation
- *  //CSON: ConstantName
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //CSOFF: IllegalCatch
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // suppressed violation
- *
- *    //CSON: IllegalCatch
- *  }
- * }
- * </pre>
- * <p>
- * To configure a filter to suppress all audit events between a comment containing
- * {@code CHECKSTYLE_OFF: ALMOST_ALL} and a comment containing
- * {@code CHECKSTYLE_OFF: ALMOST_ALL} except for the <em>ConstantName</em> check:
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
- *   &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
- *   &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"/&gt;
- * &lt;module name="ConstantName"/&gt;
- * &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //CHECKSTYLE_OFF: ALMOST_ALL
- *  int VAR2; // suppressed violation
- *  //CHECKSTYLE_ON: ALMOST_ALL
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //CHECKSTYLE_OFF: ALMOST_ALL
- *  public static final int var4;
- *  // violation above , Name 'var4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *  //CHECKSTYLE_ON: ALMOST_ALL
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //CHECKSTYLE_OFF: ALMOST_ALL
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // suppressed violation
- *
- *    //CHECKSTYLE_ON: ALMOST_ALL
- *  }
- * }
- * </pre>
- * <p>
- * It is possible to specify an ID of checks, so that it can be leveraged by the
- * SuppressionCommentFilter to skip validations. The following examples show how
- * to skip validations near code that is surrounded with {@code // CSOFF &lt;ID&gt;}
- * and {@code // CSON &lt;ID&gt;}, where ID is the ID of checks you want to suppress.
- * In the config of SuppressionCommentFilter, checkFormat is set to '$1' which points
- * to the ID written in the offCommentFormat and onCommentFormat. Config for such a
- * case is written below:
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="CSOFF (\w+)"/&gt;
- *   &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
- *   &lt;property name="idFormat" value="$1"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"&gt;
- *   &lt;property name="id" value="MemberID"/&gt;
- * &lt;/module&gt;
- * &lt;module name="ConstantName"&gt;
- *   &lt;property name="id" value="ConstantID"/&gt;
- * &lt;/module&gt;
- * &lt;module name="IllegalCatch"&gt;
- *   &lt;property name="id" value="IllegalID"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //CSOFF MemberID
- *  int VAR2; // suppressed violation
- *  //CSON: MemberID
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //CSOFF ConstantID
- *  public static final int var4; // suppressed violation
- *  //CSON ConstantID
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //CSOFF IllegalID
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // suppressed violation
- *
- *    //CSON IllegalID
- *  }
- * }
- * </pre>
- * <p>
- * Example of how to configure the check to suppress checks by name defined in comment.
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="offCommentFormat" value="csoff (\w+)"/&gt;
- *   &lt;property name="onCommentFormat" value="cson (\w+)"/&gt;
- *   &lt;property name="checkFormat" value="$1"/&gt;
- * &lt;/module&gt;
- *   &lt;module name="MemberName"/&gt;
- *   &lt;module name="ConstantName"/&gt;
- *   &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //csoff MemberName
- *  int VAR2; // suppressed violation
- *  //cson MemberName
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  //csoff ConstantName
- *  //csoff IllegalCatch
- *
- *  public static final int var4; // suppressed violation
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *
- *    try {}
- *    catch(Exception ex) {} // suppressed violation
- *    catch(Error err) {} // suppressed violation
- *  }
- *
- *    //cson ConstantName
- *    //cson IllegalCatch
- *
- * }
- * </pre>
- * <p>
- * Example depicting use of checkC and checkCPP style comments
- * </p>
- * <pre>
- * &lt;module name="SuppressionCommentFilter"&gt;
- *   &lt;property name="checkC" value="true"/&gt;
- *   &lt;property name="checkCPP" value="false"/&gt;
- * &lt;/module&gt;
- * &lt;module name="MemberName"/&gt;
- * &lt;module name="ConstantName"/&gt;
- * &lt;module name="IllegalCatch"/&gt;
- * </pre>
- * <pre>
- * class InputSuppressionCommentFilter
- * {
- *  int VAR1; // violation , Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *
- *  //CHECKSTYLE:OFF
- *  int VAR2; // violation , Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
- *  //CHECKSTYLE:ON
- *
- *  public static final int var3;
- *  // violation above , Name 'var3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
- *
- *  /&#42;CHECKSTYLE:OFF&#42;/
- *  public static final int var4; // suppressed violation
- *  /&#42;CHECKSTYLE:ON&#42;/
- *
- *  public void method1()
- *  {
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *
- *    //CHECKSTYLE:OFF
- *
- *    try {}
- *    catch(Exception ex) {} // violation , Catching 'Exception' is not allowed
- *    catch(Error err) {} // violation , Catching 'Error' is not allowed
- *
- *    //CHECKSTYLE:ON
- *  }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -558,6 +185,7 @@ public class SuppressionCommentFilter
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
+     * @since 3.5
      */
     public final void setOffCommentFormat(Pattern pattern) {
         offCommentFormat = pattern;
@@ -567,6 +195,7 @@ public class SuppressionCommentFilter
      * Setter to specify comment pattern to trigger filter to end suppression.
      *
      * @param pattern a pattern.
+     * @since 3.5
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
@@ -585,10 +214,8 @@ public class SuppressionCommentFilter
      * Set the FileContents for this filter.
      *
      * @param fileContents the FileContents for this filter.
-     * @noinspection WeakerAccess
-     * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
-    public void setFileContents(FileContents fileContents) {
+    private void setFileContents(FileContents fileContents) {
         fileContentsReference = new WeakReference<>(fileContents);
     }
 
@@ -596,6 +223,7 @@ public class SuppressionCommentFilter
      * Setter to specify check pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 3.5
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -605,6 +233,7 @@ public class SuppressionCommentFilter
      * Setter to specify message pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 3.5
      */
     public void setMessageFormat(String format) {
         messageFormat = format;
@@ -614,6 +243,7 @@ public class SuppressionCommentFilter
      * Setter to specify check ID pattern to suppress.
      *
      * @param format a {@code String} value
+     * @since 8.24
      */
     public void setIdFormat(String format) {
         idFormat = format;
@@ -623,6 +253,7 @@ public class SuppressionCommentFilter
      * Setter to control whether to check C++ style comments ({@code //}).
      *
      * @param checkCpp {@code true} if C++ comments are checked.
+     * @since 3.5
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
@@ -634,6 +265,7 @@ public class SuppressionCommentFilter
      * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
      *
      * @param checkC {@code true} if C comments are checked.
+     * @since 3.5
      */
     public void setCheckC(boolean checkC) {
         this.checkC = checkC;

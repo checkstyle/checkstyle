@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>VariableDeclarationUsageDistance</title>
+  </head>
+  <body>
+    <section name="VariableDeclarationUsageDistance">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the distance between declaration of variable and its first usage.
+          Note : Variable declaration/initialization statements are not counted
+          while calculating length.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowedDistance</td>
+              <td>Specify distance between declaration of variable and its first usage. Values should be greater than 0.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>3</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreFinal</td>
+              <td>Allow to ignore variables with a 'final' modifier.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreVariablePattern</td>
+              <td>Define RegExp to ignore distance calculation for variables listed in this pattern.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;&quot;</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>validateBetweenScopes</td>
+              <td>Allow to calculate the distance between declaration of variable and its first usage in the different scopes.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the check with default config:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+
+  public void foo1() {
+    int num;        // violation, distance = 4
+    final double PI;   // OK, final variables not checked
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
+    num = 1;
+    PI = 3.14;
+  }
+
+  public void foo2() {
+    int a;          // OK, used in different scope
+    int b;          // OK, used in different scope
+    int count = 0;  // OK, used in different scope
+
+    {
+      System.out.println(&quot;Inside inner scope&quot;);
+      a = 1;
+      b = 2;
+      count++;
+    }
+  }
+}
+        </source>
+        <p>
+          Check can detect a block of initialization methods. If a variable is used in
+          such a block and there are no other statements after variable declaration,
+          then distance = 1.
+        </p>
+        <p>
+          Case #1:
+        </p>
+        <source>
+int minutes = 5;
+Calendar cal = Calendar.getInstance();
+cal.setTimeInMillis(timeNow);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MILLISECOND, 0);
+cal.set(Calendar.HOUR_OF_DAY, hh);
+cal.set(Calendar.MINUTE, minutes);
+        </source>
+        <p>
+          The distance for the variable &quot;minutes&quot; is 1 even
+          though this variable is used in the fifth method's call.
+        </p>
+        <p>
+          Case #2:
+        </p>
+        <source>
+int minutes = 5;
+Calendar cal = Calendar.getInstance();
+cal.setTimeInMillis(timeNow);
+cal.set(Calendar.SECOND, 0);
+cal.set(Calendar.MILLISECOND, 0);
+System.out.println(cal);
+cal.set(Calendar.HOUR_OF_DAY, hh);
+cal.set(Calendar.MINUTE, minutes);
+        </source>
+        <p>
+          The distance for the variable &quot;minutes&quot; is 6 because there is one more expression
+          (except the initialization block) between the declaration of this variable and its usage.
+        </p>
+        <p id="Example2-config">
+            To configure the check to set allowed distance:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+      &lt;property name=&quot;allowedDistance&quot; value=&quot;4&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+
+  public void foo1() {
+    int num;        // OK, distance = 4
+    final double PI;   // OK, final variables not checked
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
+    num = 1;
+    PI = 3.14;
+  }
+
+  public void foo2() {
+    int a;          // OK, used in different scope
+    int b;          // OK, used in different scope
+    int count = 0;  // OK, used in different scope
+
+    {
+      System.out.println(&quot;Inside inner scope&quot;);
+      a = 1;
+      b = 2;
+      count++;
+    }
+  }
+}
+        </source>
+        <p id="Example3-config">
+            To configure the check to ignore certain variables:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+      &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^num$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+            This configuration ignores variables named &quot;num&quot;.
+        </p>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+
+  public void foo1() {
+    int num;        // OK, variable ignored
+    final double PI;   // OK, final variables not checked
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
+    num = 1;
+    PI = 3.14;
+  }
+
+  public void foo2() {
+    int a;          // OK, used in different scope
+    int b;          // OK, used in different scope
+    int count = 0;  // OK, used in different scope
+
+    {
+      System.out.println(&quot;Inside inner scope&quot;);
+      a = 1;
+      b = 2;
+      count++;
+    }
+  }
+}
+        </source>
+        <p id="Example4-config">
+            To configure the check to force validation between scopes:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+      &lt;property name=&quot;validateBetweenScopes&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class Test {
+
+  public void foo1() {
+    int num;        // violation, distance = 4
+    final double PI;   // OK, final variables not checked
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
+    num = 1;
+    PI = 3.14;
+  }
+
+  public void foo2() {
+    int a;          // OK, distance = 2
+    int b;          // OK, distance = 3
+    int count = 0;  // violation, distance = 4
+
+    {
+      System.out.println(&quot;Inside inner scope&quot;);
+      a = 1;
+      b = 2;
+      count++;
+    }
+  }
+}
+        </source>
+        <p id="Example5-config">
+            To configure the check to check final variables:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+public class Test {
+
+  public void foo1() {
+    int num;        // violation, distance = 4
+    final double PI;   // violation, distance = 5
+    System.out.println(&quot;Statement 1&quot;);
+    System.out.println(&quot;Statement 2&quot;);
+    System.out.println(&quot;Statement 3&quot;);
+    num = 1;
+    PI = 3.14;
+  }
+
+  public void foo2() {
+    int a;          // OK, used in different scope
+    int b;          // OK, used in different scope
+    int count = 0;  // OK, used in different scope
+
+    {
+      System.out.println(&quot;Inside inner scope&quot;);
+      a = 1;
+      b = 2;
+      count++;
+    }
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance%22">
+              variable.declaration.usage.distance
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.declaration.usage.distance.extend%22">
+              variable.declaration.usage.distance.extend
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -97,134 +97,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="CyclomaticComplexity"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class CyclomaticComplexity {
- *   // Cyclomatic Complexity = 11
- *   int a, b, c, d, n;
- *   public void foo() { // 1, function declaration
- *     if (a == 1) { // 2, if
- *       fun1();
- *     } else if (a == b // 3, if
- *       &amp;&amp; a == c) { // 4, &amp;&amp; operator
- *       if (c == 2) { // 5, if
- *         fun2();
- *       }
- *     } else if (a == d) { // 6, if
- *       try {
- *         fun4();
- *       } catch (Exception e) { // 7, catch
- *       }
- *     } else {
- *       switch(n) {
- *         case 1: // 8, case
- *           fun1();
- *           break;
- *         case 2: // 9, case
- *           fun2();
- *           break;
- *         case 3: // 10, case
- *           fun3();
- *           break;
- *         default:
- *           break;
- *       }
- *     }
- *     d = a &lt; 0 ? -1 : 1; // 11, ternary operator
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check with a threshold of 4 and check only for while and do-while loops:
- * </p>
- * <pre>
- * &lt;module name="CyclomaticComplexity"&gt;
- *   &lt;property name="max" value="4"/&gt;
- *   &lt;property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class CyclomaticComplexity {
- *   // Cyclomatic Complexity = 5
- *   int a, b, c, d;
- *   public void foo() { // 1, function declaration
- *     while (a &lt; b // 2, while
- *       &amp;&amp; a &gt; c) {
- *       fun();
- *     }
- *     if (a == b) {
- *       do { // 3, do
- *         fun();
- *       } while (d);
- *     } else if (c == d) {
- *       while (c &gt; 0) { // 4, while
- *         fun();
- *       }
- *       do { // 5, do-while
- *         fun();
- *       } while (a);
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to consider switch-case block as one decision point.
- * </p>
- * <pre>
- * &lt;module name="CyclomaticComplexity"&gt;
- *   &lt;property name="switchBlockAsSingleDecisionPoint" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class CyclomaticComplexity {
- *   // Cyclomatic Complexity = 11
- *   int a, b, c, d, e, n;
- *   public void foo() { // 1, function declaration
- *     if (a == b) { // 2, if
- *       fun1();
- *     } else if (a == 0 // 3, if
- *       &amp;&amp; b == c) { // 4, &amp;&amp; operator
- *       if (c == -1) { // 5, if
- *         fun2();
- *       }
- *     } else if (a == c // 6, if
- *       || a == d) { // 7, || operator
- *       fun3();
- *     } else if (d == e) { // 8, if
- *       try {
- *         fun4();
- *       } catch (Exception e) { // 9, catch
- *       }
- *     } else {
- *       switch(n) { // 10, switch
- *         case 1:
- *           fun1();
- *           break;
- *         case 2:
- *           fun2();
- *           break;
- *         default:
- *           break;
- *       }
- *     }
- *     a = a &gt; 0 ? b : c; // 11, ternary operator
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -271,6 +143,7 @@ public class CyclomaticComplexityCheck
      *
      * @param switchBlockAsSingleDecisionPoint whether to treat the whole switch
      *                                          block as a single decision point.
+     * @since 6.11
      */
     public void setSwitchBlockAsSingleDecisionPoint(boolean switchBlockAsSingleDecisionPoint) {
         this.switchBlockAsSingleDecisionPoint = switchBlockAsSingleDecisionPoint;
@@ -280,6 +153,7 @@ public class CyclomaticComplexityCheck
      * Setter to specify the maximum threshold allowed.
      *
      * @param max the maximum threshold
+     * @since 3.2
      */
     public final void setMax(int max) {
         this.max = max;

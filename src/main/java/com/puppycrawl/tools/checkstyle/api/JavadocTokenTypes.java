@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -63,14 +63,14 @@ public final class JavadocTokenTypes {
      * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @deprecated it is deprecated method}</pre>
+     * <pre>{@code @deprecated It is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@deprecated it is deprecated method]
-     *   |--DEPRECATED_LITERAL[3x0] : [@deprecated]
-     *   |--WS[3x11] : [ ]
-     *   |--DESCRIPTION[3x12] : [it is deprecated method]
-     *       |--TEXT[3x12] : [it is deprecated method]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--DEPRECATED_LITERAL -> @deprecated
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> It is deprecated method
      * }</pre>
      *
      * @see

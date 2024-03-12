@@ -132,7 +132,7 @@ interface TestInterface {
     }
 }
 
-class TestAnonymousInnerClasses { // ok
+class TestAnonymousInnerClasses {
     public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
         @Override
         public int value() {
@@ -168,17 +168,17 @@ class TestNewKeyword { // violation
     }
 }
 
-interface TestNewKeywordInsideInterface { // ok
+interface TestNewKeywordInsideInterface {
     ArrayList<String> foo = new ArrayList<>();
 }
 
 // abstract classes cannot be final
-abstract class TestPrivateCtorInAbstractClasses { // ok
+abstract class TestPrivateCtorInAbstractClasses {
     private TestPrivateCtorInAbstractClasses() {
     }
 }
 
-class TestAnonymousInnerClassInsideNestedClass { // ok
+class TestAnonymousInnerClassInsideNestedClass {
     private TestAnonymousInnerClassInsideNestedClass() { }
 
     static class NestedClass { // violation
@@ -189,7 +189,7 @@ class TestAnonymousInnerClassInsideNestedClass { // ok
 
         private NestedClass() {}
     }
-    static class NestedClass2 { // ok
+    static class NestedClass2 {
 
         private NestedClass2() {}
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -63,7 +63,7 @@ public abstract class AbstractNameCheck
     protected abstract boolean mustCheckName(DetailAST ast);
 
     /**
-     * Set the format for the specified regular expression.
+     * Sets the pattern to match valid identifiers.
      *
      * @param pattern the new pattern
      */

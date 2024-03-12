@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * This check is not applicable to empty statements (unnecessary semicolons inside methods or
  * init blocks),
- * <a href="https://checkstyle.org/config_coding.html#EmptyStatement">EmptyStatement</a>
+ * <a href="https://checkstyle.org/checks/coding/emptystatement.html">EmptyStatement</a>
  * is responsible for it.
  * </p>
  * <ul>
@@ -70,38 +70,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessarySemicolonAfterTypeMemberDeclaration&quot;/&gt;
- * </pre>
- * <p>
- * Results in following:
- * </p>
- * <pre>
- * class A {
- *     ; // violation, standalone semicolon
- *     {}; // violation, extra semicolon after init block
- *     static {}; // violation, extra semicolon after static init block
- *     A(){}; // violation, extra semicolon after constructor definition
- *     void method() {}; // violation, extra semicolon after method definition
- *     int field = 10;; // violation, extra semicolon after field declaration
- *
- *     {
- *         ; // no violation, it is empty statement inside init block
- *     }
- *
- *     static {
- *         ; // no violation, it is empty statement inside static init block
- *     }
- *
- *     void anotherMethod() {
- *         ; // no violation, it is empty statement
- *         if(true); // no violation, it is empty statement
- *     }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -233,6 +201,6 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
      * @return true if ast is semicolon, false otherwise
      */
     private static boolean isSemicolon(DetailAST ast) {
-        return ast.getType() == TokenTypes.SEMI;
+        return ast != null && ast.getType() == TokenTypes.SEMI;
     }
 }

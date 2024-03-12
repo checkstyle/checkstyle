@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+  <property name="charset" value="UTF-8"/>
+  <property name="haltOnException" value="false"/>
+
+  <property name="cacheFile" value="target/cache_xdocs_examples"/>
+
+  <module name="SuppressionFilter">
+    <property name="file" value="${checkstyle.examples-suppressions.file}"/>
+  </module>
+
+  <!-- Regexp -->
+  <module name="RegexpOnFilename">
+    <property name="id" value="exampleFileName"/>
+    <property name="fileNamePattern" value="^Example\d+$"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch"
+             value="All example files should only match ''{1}'' exactly"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="exampleFileXmlConfigPresence"/>
+    <property name="format" value="\/\*xml"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Example files must start with /*xml and have an XML config"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="noTrailingWhitespace"/>
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Trailing whitespace is not allowed"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="noDefaultProperties"/>
+    <property name="format" value="^\w+\s*=\s*\(default\).*"/>
+    <property name="message" value="(default) properties are not allowed"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="xdocStartComment"/>
+    <property name="format" value="^\s*// xdoc section \-\- start$"/>
+    <property name="message"
+              value="Missing comment '// xdoc section -- start'. Should be alone on a line"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="xdocEndComment"/>
+    <property name="format" value="^\s*// xdoc section \-\- end$"/>
+    <property name="message"
+              value="Missing comment '// xdoc section -- end'. Should be alone on a line"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="forbiddenRegexpInViolationMessage"/>
+    <property name="format" value="^.*//.* violation.*(\.\*|\.\+).*$"/>
+    <property name="message"
+              value="Forbidden usage of regex: .* and .+ are not allowed"/>
+    <property name="maximum" value="0"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="discouragedRegexpInViolationMessage"/>
+    <property name="format" value="^.*//.* violation.*\\[\.\+\*\?\|\{\}\(\)\[\]\^\-\$].*$"/>
+    <property name="message"
+              value="Discouraged usage of escaped special regex symbols. Please ensure violation
+                     message really needs this symbol"/>
+    <property name="maximum" value="0"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="presenceOfCompilationComment"/>
+    <property name="format" value="^//non-compiled with javac: Compilable with Java(\d+)"/>
+    <property name="message"
+              value="Missing compilation comment"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="ensureSpaceAfterSpecificSingleLineComment"/>
+    <property name="format" value="^//(ok|violation)"/>
+    <property name="message" value="There should be a space between '//' and 'ok' or 'violation'."/>
+    <property name="maximum" value="0"/>
+  </module>
+
+  <!-- Miscellaneous -->
+  <module name="NewlineAtEndOfFile"/>
+
+  <!-- Size -->
+  <module name="FileLength">
+    <property name="max" value="60"/>
+  </module>
+  <module name="LineLength">
+    <property name="max" value="85"/>
+  </module>
+
+  <!-- Whitespace -->
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="false"/>
+  </module>
+
+  <module name="TreeWalker">
+
+    <module name="PackageDeclaration"/>
+
+    <!-- Miscellaneous -->
+    <module name="CommentsIndentation"/>
+    <module name="Indentation">
+      <property name="basicOffset" value="2"/>
+      <property name="caseIndent" value="2"/>
+      <property name="throwsIndent" value="2"/>
+      <property name="arrayInitIndent" value="2"/>
+      <property name="lineWrappingIndentation" value="2"/>
+    </module>
+
+    <!-- Regexp -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="exampleClassName"/>
+      <property name="format" value="class Example\d+"/>
+      <property name="minimum" value="1"/>
+      <property name="maximum" value="1"/>
+      <message key="regexp.minimum"
+               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+      <message key="regexp.maximum"
+               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+    </module>
+
+  </module>
+</module>

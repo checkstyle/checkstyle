@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public interface InputFinalClassInterface {
 
-    final class FinalClass { // ok
+    final class FinalClass {
         private FinalClass() {}
     }
 
@@ -16,7 +16,7 @@ public interface InputFinalClassInterface {
         private DerivedClass() {}
     }
 
-    class SuperClass { // ok
+    class SuperClass {
         private SuperClass() {}
     }
 

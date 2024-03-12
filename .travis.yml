@@ -17,9 +17,7 @@ before_install:
   - sudo apt update
 
 install:
-  - sudo apt install -y groovy xsltproc xmlstarlet ant
-  - ./.ci/travis.sh install-adoptium-jdk
-  - ./.ci/travis.sh install-custom-mvn
+  - sudo apt install -y xmlstarlet
 
 jobs:
   fast_finish: true
@@ -36,21 +34,11 @@ jobs:
         - USE_MAVEN_REPO="true"
 
 before_script:
-  - |
-    if [[ $TRAVIS_CPU_ARCH == 'ppc64le' ]]; then
-        export JAVA_HOME=/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el
-        export PATH=$JAVA_HOME/bin:$PATH
-    fi
-  - groovy --version
+  - java --version
 
 script:
-  # manually set JAVA_HOME to overcome issue with travis ci noted at
-  # https://github.com/checkstyle/checkstyle/pull/11699#issue-1261272652
-  # - JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-ppc64el'
   - ./.ci/travis.sh init-m2-repo
   - ./.ci/travis.sh run-command "$CMD"
-  # - ./.ci/travis.sh remove-custom-mvn
-  # - ./.ci/travis.sh remove-adoptium-jdk
   - ./.ci/validation.sh git-diff
   - ./.ci/validation.sh ci-temp-check
   - ./.ci/travis.sh quarterly-cache-cleanup

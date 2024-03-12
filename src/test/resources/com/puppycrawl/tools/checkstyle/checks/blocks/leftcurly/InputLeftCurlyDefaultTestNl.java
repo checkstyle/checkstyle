@@ -14,21 +14,21 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyDefaultTestNl
-{ // ok
+{
     private interface PrivateInterface
-    { // ok
+    {
     }
 
     interface PackageInnerInterface
-    { // ok
+    {
     }
 
     protected interface ProtectedInnerInterface
-    { // ok
+    {
     }
 
     public interface PublicInnerInterface
-    { // ok
+    {
     }
 
     private

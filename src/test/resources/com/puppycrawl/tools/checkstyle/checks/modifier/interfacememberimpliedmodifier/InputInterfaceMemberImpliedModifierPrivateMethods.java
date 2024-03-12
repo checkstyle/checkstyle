@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmo
 /**
  * Input for Java 9 private methods in interfaces.
  */
-public interface InputInterfaceMemberImpliedModifierPrivateMethods { // ok
+public interface InputInterfaceMemberImpliedModifierPrivateMethods {
 
     private static void methodPrivateStatic() {
     }

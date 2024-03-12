@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="folderPattern"
+      value="[\\/]src[\\/]\w+[\\/]resources[\\/]"/>
+    <property name="match" value="false"/>
+    <property name="fileExtensions" value="properties, xml"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+src/main/resources/sun_checks.xml  //OK
+src/main/resources/check_properties.properties  //OK
+src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
+// xdoc section -- end

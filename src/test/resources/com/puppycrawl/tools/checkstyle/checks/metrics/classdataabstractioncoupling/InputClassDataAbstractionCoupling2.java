@@ -29,7 +29,7 @@ import java.util.Set;
 
 import javax.naming.NamingException;
 
-public class InputClassDataAbstractionCoupling2 { // ok
+public class InputClassDataAbstractionCoupling2 {
     private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }

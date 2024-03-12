@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MethodName</title>
+  </head>
+  <body>
+    <section name="MethodName">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that method names conform to a specified pattern.
+        </p>
+        <p>
+          Also, checks if a method name has the same name as the residing class.
+          The default is false (it is not allowed). It is legal in Java to have
+          method with the same name as a class. As long as a return type is specified
+          it is a method and not a constructor which it could be easily confused as.
+          Does not check-style the name of an overridden methods because the developer
+          does not have a choice in renaming such methods.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowClassName</td>
+              <td>Control whether to allow a method name to have the same name as the enclosing class name. Setting this property <code>false</code> helps to avoid confusion between constructors and methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToPackage</td>
+              <td>Control if check should apply to package-private members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>applyToPrivate</td>
+              <td>Control if check should apply to private members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>applyToProtected</td>
+              <td>Control if check should apply to protected members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>applyToPublic</td>
+              <td>Control if check should apply to public members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Code Example:</p>
+        <source>
+class Example1 {
+  public void method1() {}
+  protected void method2() {}
+  private void Method3() {} // violation
+  public void Method4() {} // violation
+}
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Code Example:</p>
+        <source>
+class Example2 {
+  public void method1() {}
+  public void Method2() {} // violation
+}
+        </source>
+        <p id="Example3-config">
+          An example of how to configure the check to allow method names to be equal to the
+          residing class name is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;allowClassName&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Code Example:</p>
+        <source>
+class Example3 {
+  public Example3() {}
+  public void Example3() {}
+}
+        </source>
+        <p id="Example4-config">
+          An example of how to configure the check to disallow method names to be equal to the
+          residing class name is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-zA-Z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;allowClassName&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Code Example:</p>
+        <source>
+class Example4 {
+  public Example4() {}
+  public void Example4() {} // violation
+}
+        </source>
+        <p id="Example5-config">
+          An example of how to suppress the check to public and protected methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodName&quot;&gt;
+       &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+       &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+       &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Code Example:</p>
+        <source>
+class Example5 {
+  public void Method1() {}
+  protected void Method2() {}
+  private void Method3() {} // violation
+  void Method4() {} // violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.name.equals.class.name%22">
+              method.name.equals.class.name
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

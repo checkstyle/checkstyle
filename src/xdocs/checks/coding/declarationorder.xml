@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>DeclarationOrder</title>
+  </head>
+  <body>
+    <section name="DeclarationOrder">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that the parts of a class, record, or interface declaration appear in the order
+          suggested by the
+          <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+            Code Conventions for the Java Programming Language</a>.
+        </p>
+        <p>
+          According to
+          <a href="../../styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+          Code Conventions for the Java Programming Language</a> , the parts
+          of a class or interface declaration should appear in the following
+          order:
+        </p>
+
+        <ol>
+          <li>
+            Class (static) variables. First the public class variables, then
+             protected, then package level (no access modifier), and then
+             private.
+          </li>
+          <li>
+            Instance variables. First the public class variables, then
+            protected, then package level (no access modifier), and then
+            private.
+          </li>
+          <li> Constructors </li>
+          <li> Methods </li>
+        </ol>
+
+        <p>
+          Purpose of <b>ignore*</b> option is to ignore related violations,
+          however it still impacts on other class members.
+        </p>
+
+        <p>
+          ATTENTION: the check skips class fields which have
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
+              forward references</a>
+           from validation due to the fact that we have Checkstyle's limitations to clearly
+          detect user intention of fields location and grouping. For example:
+        </p>
+        <source>
+public class A {
+  private double x = 1.0;
+  private double y = 2.0;
+  public double slope = x / y; // will be skipped from validation due to forward reference
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreConstructors</td>
+              <td>Control whether to ignore constructors.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.2</td>
+            </tr>
+            <tr>
+              <td>ignoreModifiers</td>
+              <td>Control whether to ignore modifiers (fields, ...).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DeclarationOrder&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+
+  public int a;
+  protected int b;
+  public int c;            // violation, variable access definition in wrong order
+
+  Test() {
+    this.a = 0;
+  }
+
+  public void foo() {
+    // This method does nothing
+  }
+
+  Test(int a) {            // violation, constructor definition in wrong order
+    this.a = a;
+  }
+
+  private String name;     // violation, instance variable declaration in wrong order
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to ignore validation of constructors:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DeclarationOrder&quot;&gt;
+      &lt;property name=&quot;ignoreConstructors&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+
+  public int a;
+  protected int b;
+  public int c;            // violation, variable access definition in wrong order
+
+  Test() {
+    this.a = 0;
+  }
+
+  public void foo() {
+    // This method does nothing
+  }
+
+  Test(int a) {            // OK, validation of constructors ignored
+    this.a = a;
+  }
+
+  private String name;     // violation, instance variable declaration in wrong order
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check to ignore modifiers:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;DeclarationOrder&quot;&gt;
+      &lt;property name=&quot;ignoreModifiers&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+
+  public int a;
+  protected int b;
+  public int c;            // OK, access modifiers not considered while validating
+
+  Test() {
+    this.a = 0;
+  }
+
+  public void foo() {
+    // This method does nothing
+  }
+
+  Test(int a) {            // violation, constructor definition in wrong order
+    this.a = a;
+  }
+
+  private String name;     // violation, instance variable declaration in wrong order
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.access%22">
+              declaration.order.access
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.constructor%22">
+              declaration.order.constructor
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.instance%22">
+              declaration.order.instance
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22declaration.order.static%22">
+              declaration.order.static
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

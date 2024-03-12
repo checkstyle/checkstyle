@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -73,7 +73,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code allowEmptyCatches} - Allow empty catch bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code allowEmptyConstructors} - Allow empty constructor bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptyLambdas} - Allow empty lambda bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptyLoops} - Allow empty loop bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -84,21 +99,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code allowEmptyTypes} - Allow empty class, interface and enum bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyLoops} - Allow empty loop bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyLambdas} - Allow empty lambda bodies.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEmptyCatches} - Allow empty catch bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -218,231 +218,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * TYPE_EXTENSION_AND</a>.
  * </li>
  * </ul>
- * <p>To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;/&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public Test(){} // 2 violations, '{' is not followed and preceded by whitespace.
- *     public static void main(String[] args) {
- *         if (foo) { // ok
- *             // body
- *         }
- *         else{ // violation
- *             // body
- *         }
- *
- *         for (int i = 1; i &gt; 1; i++) {} // violation, '{' is not followed by whitespace.
- *
- *         Runnable noop = () -&gt;{}; // 2 violations,
- *                                     // '{' is not followed and preceded by whitespace.
- *         try {
- *             // body
- *         } catch (Exception e){} // 2 violations,
- *                                 // '{' is not followed and preceded by whitespace.
- *
- *         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
- *         for (char item: vowels) { // ok, because ignoreEnhancedForColon is true by default
- *             // body
- *         }
- *     }
- * }
- * </pre>
- * <p>To configure the check for whitespace only around
- * assignment operators:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;tokens&quot;
- *     value=&quot;ASSIGN,DIV_ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,
- *            MOD_ASSIGN,SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,
- *            BOR_ASSIGN,BAND_ASSIGN&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public static void main(String[] args) {
- *         int b=10; // violation
- *         int c = 10; // ok
- *         b+=10; // violation
- *         b += 10; // ok
- *         c*=10; // violation
- *         c *= 10; // ok
- *         c-=5; // violation
- *         c -= 5; // ok
- *         c/=2; // violation
- *         c /= 2; // ok
- *         c%=1; // violation
- *         c %= 1; // ok
- *         c&gt;&gt;=1; // violation
- *         c &gt;&gt;= 1; // ok
- *         c&gt;&gt;&gt;=1; // violation
- *         c &gt;&gt;&gt;= 1; // ok
- *     }
- *     public void myFunction() {
- *         c^=1; // violation
- *         c ^= 1; // ok
- *         c|=1; // violation
- *         c |= 1; // ok
- *         c&amp;=1; // violation
- *         c &amp;= 1; // ok
- *         c&lt;&lt;=1; // violation
- *         c &lt;&lt;= 1; // ok
- *     }
- * }
- * </pre>
- * <p>To configure the check for whitespace only around curly braces:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LCURLY,RCURLY&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public void myFunction() {} // violation
- *     public void myFunction() { } // ok
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty method bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public void muFunction() {} // ok
- *     int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty constructor bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public Test() {} // ok
- *     public void muFunction() {} // violation, '{' is not followed by whitespace.
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty type bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {} // ok
- * interface testInterface{} // ok
- * class anotherTest {
- *     int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty loop bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public static void main(String[] args) {
- *         for (int i = 100;i &gt; 10; i--){} // ok
- *         do {} while (i = 1); // ok
- *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty lambda bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyLambdas&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public static void main(String[] args) {
- *         Runnable noop = () -&gt; {}; // ok
- *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
- *     }
- * }
- * </pre>
- * <p>
- * To configure the check to allow empty catch bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;allowEmptyCatches&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public static void main(String[] args) {
- *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
- *         try {
- *             // body
- *         } catch (Exception e){} // ok
- *     }
- * }
- * </pre>
- * <p>
- * Also, this check can be configured to ignore the colon in an enhanced for
- * loop. The colon in an enhanced for loop is ignored by default.
- * </p>
- * <p>
- * To configure the check to ignore the colon:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;ignoreEnhancedForColon&quot; value=&quot;false&quot; /&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:
- * </p>
- * <pre>
- * class Test {
- *     public static void main(String[] args) {
- *         int a=4; // 2 violations , '=' is not followed and preceded by whitespace.
- *         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
- *         for (char item: vowels) { // violation, ':' is not preceded by whitespace.
- *             // body
- *         }
- *     }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -622,6 +397,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty method bodies.
      *
      * @param allow {@code true} to allow empty method bodies.
+     * @since 4.0
      */
     public void setAllowEmptyMethods(boolean allow) {
         allowEmptyMethods = allow;
@@ -631,6 +407,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty constructor bodies.
      *
      * @param allow {@code true} to allow empty constructor bodies.
+     * @since 4.0
      */
     public void setAllowEmptyConstructors(boolean allow) {
         allowEmptyConstructors = allow;
@@ -642,6 +419,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * enhanced for</a> loop.
      *
      * @param ignore {@code true} to ignore enhanced for colon.
+     * @since 5.5
      */
     public void setIgnoreEnhancedForColon(boolean ignore) {
         ignoreEnhancedForColon = ignore;
@@ -651,6 +429,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty class, interface and enum bodies.
      *
      * @param allow {@code true} to allow empty type bodies.
+     * @since 5.8
      */
     public void setAllowEmptyTypes(boolean allow) {
         allowEmptyTypes = allow;
@@ -660,6 +439,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty loop bodies.
      *
      * @param allow {@code true} to allow empty loops bodies.
+     * @since 5.8
      */
     public void setAllowEmptyLoops(boolean allow) {
         allowEmptyLoops = allow;
@@ -669,6 +449,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty lambda bodies.
      *
      * @param allow {@code true} to allow empty lambda expressions.
+     * @since 6.14
      */
     public void setAllowEmptyLambdas(boolean allow) {
         allowEmptyLambdas = allow;
@@ -678,6 +459,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty catch bodies.
      *
      * @param allow {@code true} to allow empty catch blocks.
+     * @since 7.6
      */
     public void setAllowEmptyCatches(boolean allow) {
         allowEmptyCatches = allow;

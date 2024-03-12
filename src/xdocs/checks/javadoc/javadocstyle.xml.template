@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocStyle</title>
+  </head>
+  <body>
+    <section name="JavadocStyle">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Validates Javadoc comments to help ensure they are well formed.
+        </p>
+        <p>
+          The following checks are performed:
+        </p>
+        <ul>
+          <li>
+            Ensures the first sentence ends with proper punctuation
+            (That is a period, question mark, or exclamation mark, by default).
+            Note that this check is not applied to inline <code>@return</code> tags,
+            because the Javadoc tools automatically appends a period to the end of the tag
+            content.
+            Javadoc automatically places the first sentence in the
+            method summary table and index. Without proper punctuation
+            the Javadoc may be malformed. All items eligible for the
+            <code>{@inheritDoc}</code> tag are exempt from this
+            requirement.
+          </li>
+
+          <li>
+            Check text for Javadoc statements that do not have any
+            description. This includes both completely empty Javadoc,
+            and Javadoc with only tags such as <code>@param</code> and <code>@return</code>.
+          </li>
+
+          <li>
+            Check text for incomplete HTML tags. Verifies that HTML
+            tags have corresponding end tags and issues an "Unclosed
+            HTML tag found:" error if not. An "Extra HTML tag found:"
+            error is issued if an end tag is found without a previous
+            open tag.
+          </li>
+          <li>
+           Check that a package Javadoc comment is well-formed (as
+           described above).
+          </li>
+          <li>
+            Check for allowed HTML tags. The list of allowed HTML tags
+            is "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
+            "blockquote", "br", "caption", "cite", "code", "colgroup", "dd",
+            "del", "dfn", "div", "dl", "dt", "em", "fieldset", "font", "h1",
+            "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd", "li",
+            "ol", "p", "pre", "q", "samp", "small", "span", "strong", "sub",
+            "sup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "tt",
+            "u", "ul", "var".
+          </li>
+        </ul>
+
+        <p>
+          These checks were patterned after the checks made by the
+          <a href="https://maven-doccheck.sourceforge.net">DocCheck</a>
+          doclet available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check for <code>public</code> scope:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check for javadoc which is in <code>private</code>, but not in
+          <code>package</code> scope:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check to turn off first sentence checking:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example5-config">
+          To configure the check to turn off validation of incomplete html tags:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-config">
+          To configure the check for only class definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocStyle"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocStyle"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

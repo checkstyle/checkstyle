@@ -7,7 +7,7 @@ max = (default)200
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-public class InputNPathComplexityDefault2 { // ok
+public class InputNPathComplexityDefault2 {
     // NP = 2
     public void foo() {
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2

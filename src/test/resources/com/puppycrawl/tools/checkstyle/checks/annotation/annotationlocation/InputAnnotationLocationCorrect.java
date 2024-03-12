@@ -14,78 +14,78 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 /* Config: default */
 
 
-@MyAnnotation6 // ok
-@MyAnnotation5 // ok
+@MyAnnotation6
+@MyAnnotation5
 class InputAnnotationLocationCorrect
 {
 
-    @MyAnnotation6 // ok
-    @MyAnnotation5 // ok
+    @MyAnnotation6
+    @MyAnnotation5
     public int a;
 
-    @MyAnnotation5 // ok
+    @MyAnnotation5
     public int b;
 
-    @MyAnnotation6 // ok
-    @MyAnnotation5 // ok
+    @MyAnnotation6
+    @MyAnnotation5
     public int c;
 
-    @MyAnnotation5 // ok
+    @MyAnnotation5
     public int d;
 
-    @MyAnnotation6 // ok
-    @MyAnnotation5 // ok
+    @MyAnnotation6
+    @MyAnnotation5
     public InputAnnotationLocationCorrect()
     {
         //comment
     }
-    @MyAnnotation5 // ok
-    @MyAnnotation6 // ok
+    @MyAnnotation5
+    @MyAnnotation6
     void foo1() {}
 
-    @MyAnnotation5 // ok
-    @MyAnnotation6 // ok
+    @MyAnnotation5
+    @MyAnnotation6
     void foo2() {}
 
-    @MyAnnotation5 // ok
-    @MyAnnotation6 // ok
-    @MyAnnotation3 // ok
-    @MyAnnotation4 // ok
+    @MyAnnotation5
+    @MyAnnotation6
+    @MyAnnotation3
+    @MyAnnotation4
     class InnerClass
     {
-        @MyAnnotation6 // ok
-        @MyAnnotation5 // ok
+        @MyAnnotation6
+        @MyAnnotation5
         public int a;
 
-        @MyAnnotation5 // ok
+        @MyAnnotation5
         public int b;
 
-        @MyAnnotation6 // ok
-        @MyAnnotation5 // ok
+        @MyAnnotation6
+        @MyAnnotation5
         public int c;
 
-        @MyAnnotation5 // ok
+        @MyAnnotation5
         public int d;
 
-        @MyAnnotation6 // ok
+        @MyAnnotation6
         public InnerClass()
         {
             // comment
         }
-        @MyAnnotation5 // ok
-        @MyAnnotation6 void foo1(int a) {} // ok
+        @MyAnnotation5
+        @MyAnnotation6 void foo1(int a) {}
 
-        @MyAnnotation5 // ok
-        @MyAnnotation6 // ok
+        @MyAnnotation5
+        @MyAnnotation6
         void foo2() {}
     }
 
-    @MyAnnotation5 // ok
-    @MyAnnotation6 // ok
+    @MyAnnotation5
+    @MyAnnotation6
     InnerClass anon = new InnerClass()
     {
-        @MyAnnotation6 // ok
-        @MyAnnotation5 // ok
+        @MyAnnotation6
+        @MyAnnotation5
         public int a;
 
         @MyAnnotation5 public int b;

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -221,35 +221,6 @@ public final class JavadocUtil {
             resultNode = node.getChildren()[0];
         }
         return resultNode;
-    }
-
-    /**
-     * Checks whether node contains any node of specified type among children on any deep level.
-     *
-     * @param node DetailNode
-     * @param type token type
-     * @return true if node contains any node of type among children on any deep level.
-     */
-    public static boolean containsInBranch(DetailNode node, int type) {
-        boolean result = true;
-        DetailNode curNode = node;
-        while (type != curNode.getType()) {
-            DetailNode toVisit = getFirstChild(curNode);
-            while (curNode != null && toVisit == null) {
-                toVisit = getNextSibling(curNode);
-                if (toVisit == null) {
-                    curNode = curNode.getParent();
-                }
-            }
-
-            if (curNode == toVisit) {
-                result = false;
-                break;
-            }
-
-            curNode = toVisit;
-        }
-        return result;
     }
 
     /**

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ImportControl</title>
+  </head>
+  <body>
+    <section name="ImportControl">
+      <p>Since Checkstyle 4.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Controls what can be imported in each package and file. Useful for
+          ensuring that application layering rules are not violated,
+          especially on large projects.
+        </p>
+        <p>
+          You can control imports based on the package name or based on the file
+          name. When controlling packages, all files and sub-packages in the declared
+          package will be controlled by this check. To specify differences between a main package
+          and a sub-package, you must define the sub-package inside the main package. When
+          controlling file, only the file name is considered and only files processed by
+          <a href="../../config.html#TreeWalker">TreeWalker</a>. The file's extension is ignored.
+        </p>
+
+        <p>
+          Short description of the behaviour:
+        </p>
+        <ul>
+          <li>Check starts checking from the longest matching subpackage (later 'current
+            subpackage') or the first file name match described inside import
+            control file to package defined in class file.
+            <ul>
+              <li>
+                The longest matching subpackage is found by starting with the root package
+                and examining if any of the sub-packages or file definitions match the
+                current class' package or file name.
+              </li>
+              <li>
+                If a file name is matched first, that is considered the longest
+                match and becomes the current file/subpackage.
+              </li>
+              <li>
+                If another subpackage is matched, then it's subpackages and file
+                names are examined for the next longest match and the process repeats
+                recursively.
+              </li>
+              <li>
+                If no subpackages or file names are matched, the current subpackage
+                is then used.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Order of rules in the same subpackage/root are defined by the order of
+            declaration in the XML file, which is from top (first) to bottom (last).
+          </li>
+          <li>
+            If there is matching allow/disallow rule inside the current file/subpackage
+            then the Check returns the first &quot;allowed&quot; or &quot;disallowed&quot; message.
+          </li>
+          <li>
+            If there is no matching allow/disallow rule inside the current file/subpackage
+            then it continues checking in the parent subpackage.
+          </li>
+          <li>
+            If there is no matching allow/disallow rule in any of the files/subpackages,
+            including the root level (import-control), then the import is disallowed by default.
+          </li>
+        </ul>
+
+        <p>
+          The DTD for an import control XML document is at <a href="/dtds/import_control_1_4.dtd">
+          https://checkstyle.org/dtds/import_control_1_4.dtd</a>. It
+          contains documentation on each of the elements and attributes.
+        </p>
+
+        <p>
+          The check validates a XML document when it loads the document.
+          To validate against the above DTD, include the following
+          document type declaration in your XML document:
+        </p>
+
+        <div class="wrapper">
+          <pre>
+&lt;!DOCTYPE import-control PUBLIC
+    &quot;-//Checkstyle//DTD ImportControl Configuration 1.4//EN&quot;
+    &quot;https://checkstyle.org/dtds/import_control_1_4.dtd&quot;&gt;
+          </pre>
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>file</td>
+              <td>Specify the location of the file containing the import control configuration. It can be a regular file, URL or resource path. It will try loading the path as a URL first, then as a file, and finally as a resource.</td>
+              <td><a href="../../property_types.html#URI">URI</a></td>
+              <td><code>null</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>path</td>
+              <td>Specify the regular expression of file paths to which this check should apply. Files that don't match the pattern will not be checked. The pattern will be matched against the full absolute file path.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;.*&quot;</code></td>
+              <td>7.5</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p>
+          To configure the check using an import control file called
+          &quot;config/import-control.xml&quot;, then have the following:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportControl&quot;&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check to only check the &quot;src/main&quot; directory
+          using an import control file called &quot;config/import-control.xml&quot;,
+          then have the following:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportControl&quot;&gt;
+  &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+  &lt;property name=&quot;path&quot; value=&quot;^.*[\\/]src[\\/]main[\\/].*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          In the example below access to package
+          <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
+          allowed from anywhere in <code>com.puppycrawl.tools.checkstyle</code> except
+          from the <code>filters</code> subpackage where access to all
+          <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
+          classes are allowed by virtue of one regular expression instead of listing
+          them in two separate allow rules (as it is done with the <code>Files</code>
+          and <code>ClassPath</code> classes).
+        </p>
+
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+  &lt;disallow pkg=&quot;sun&quot;/&gt;
+  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.api&quot;/&gt;
+  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;/&gt;
+  &lt;allow class=&quot;com.google.common.io.Files&quot;/&gt;
+  &lt;allow class=&quot;com.google.common.reflect.ClassPath&quot;/&gt;
+  &lt;subpackage name=&quot;filters&quot;&gt;
+    &lt;allow class=&quot;java\.lang\.ref\.(Weak|Soft)Reference&quot;
+      regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+&quot;
+      regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
+    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage name=&quot;dao&quot;&gt;
+    &lt;disallow pkg=&quot;javax.swing&quot; exact-match=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          In the next example regular expressions are used to enforce a layering rule: In all
+          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
+          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to directly
+          access <code>dao</code> and <code>service</code> layer from <code>ui</code> packages. The
+          root package is also a regular expression that is used to handle old and new domain name
+          with the same rules.
+        </p>
+
+        <source>
+&lt;import-control pkg=&quot;(de.olddomain|de.newdomain)\..*&quot; regex=&quot;true&quot;&gt;
+  &lt;subpackage pkg=&quot;[^.]+\.dao&quot; regex=&quot;true&quot;&gt;
+    &lt;disallow pkg=&quot;.*\.ui&quot; regex=&quot;true&quot;/&gt;
+    &lt;disallow pkg=&quot;.*\.(awt|swing).\.*&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage pkg=&quot;[^.]+\.ui&quot; regex=&quot;true&quot;&gt;
+    &lt;disallow pkg=&quot;.*\.(dao|service)&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          In the next examples usage of <code>strategyOnMismatch</code> property is shown.
+          This property defines strategy in a case when no matching allow/disallow rule was found.
+          Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and
+          <code>subpackage</code> tags.
+          Property can have the following values for <code>import-control</code> tag:
+        </p>
+        <ul>
+          <li>disallowed (default value) - if there is no matching allow/disallow rule in any of
+              the subpackages, including the root level (import-control), then the import is
+              disallowed.</li>
+          <li>allowed - if there is no matching allow/disallow rule in any of the subpackages,
+              including the root level, then the import is allowed.</li>
+        </ul>
+        <p>
+          And following values for <code>subpackage</code> tags:
+        </p>
+        <ul>
+          <li>delegateToParent (default value) - if there is no matching allow/disallow rule
+              inside the current subpackage, then it continues checking in the parent
+              subpackage.</li>
+          <li>allowed - if there is no matching allow/disallow rule inside the current
+              subpackage, then the import is allowed.</li>
+          <li>disallowed - if there is no matching allow/disallow rule inside the current
+              subpackage, then the import is disallowed.</li>
+        </ul>
+
+        <p>
+          The following example demonstrates usage of <code>strategyOnMismatch</code> property for
+          <code>import-control</code> tag. Here all imports are allowed except
+          <code>java.awt.Image</code> and <code>java.io.File</code> classes.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
+  strategyOnMismatch=&quot;allowed&quot;&gt;
+  &lt;disallow class=&quot;java.awt.Image&quot;/&gt;
+  &lt;disallow class=&quot;java.io.File&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
+          package <code>javax.swing</code> and class <code>java.io.File</code>.
+          However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
+  strategyOnMismatch=&quot;allowed&quot;&gt;
+  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
+    &lt;allow pkg=&quot;javax.swing&quot;/&gt;
+    &lt;allow class=&quot;java.io.File&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
+          value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
+          parent rules.
+          In the next example, if no matching rule was found inside
+          <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking
+          in the parent subpackage, while for
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
+          default.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+  &lt;allow class=&quot;java\.awt\.Image&quot; regex=&quot;true&quot;/&gt;
+  &lt;allow class=&quot;java\..*\.File&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+    &lt;allow pkg=&quot;javax\.swing&quot; regex=&quot;true&quot;/&gt;
+    &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot;
+      local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+  &lt;/subpackage&gt;
+  &lt;subpackage name=&quot;filters&quot;&gt;
+    &lt;allow class=&quot;javax.util.Date&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the example below, only file names that end with &quot;Panel&quot;, &quot;View&quot;, or &quot;Dialog&quot;
+          in the package <code>gui</code> are disallowed to have imports from
+          <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
+          the file name named &quot;PresentationModel&quot; in the package <code>gui</code> are
+          disallowed to have imports that match <code>javax.swing.J*</code>.
+          All other imports in the package are allowed.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.mycompany.billing&quot;&gt;
+  &lt;subpackage name=&quot;gui&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
+    &lt;file name=&quot;.*(Panel|View|Dialog)&quot; regex=&quot;true&quot;&gt;
+      &lt;disallow pkg=&quot;com.mycompany.dao&quot;/&gt;
+      &lt;disallow pkg=&quot;.*\.jdbc&quot; regex=&quot;true&quot;/&gt;
+    &lt;/file&gt;
+    &lt;file name=&quot;PresentationModel&quot;&gt;
+      &lt;disallow pkg=&quot;javax\.swing\.J.*&quot; regex=&quot;true&quot;/&gt;
+    &lt;/file&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <p>
+          For a real-life import control file look at the file called <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
+          import-control.xml</a>
+          which is part of the Checkstyle distribution.
+        </p>
+
+        <h4 id="blacklist-example">Example of blacklist mode</h4>
+        <p>
+          To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage
+          and to have allow rule inside parent of the current subpackage to catch classes and
+          packages those are not in the blacklist.
+        </p>
+        <p>
+          In the example below any import from <code>java.util</code>
+          (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except
+          <code>java.util.Map</code> inside subpackage
+          <code>com.puppycrawl.tools.checkstyle.filters</code>.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+  &lt;allow pkg=&quot;java.util&quot;/&gt;
+  &lt;subpackage name=&quot;filters&quot; &gt;
+    &lt;disallow class=&quot;java.util.Map&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the next example imports <code>java.util.stream.Stream</code> and
+          <code>java.util.stream.Collectors</code> are disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
+          but because of <code>&lt;allow pkg=&quot;java.util.stream&quot;/&gt;</code> every import
+          from <code>java.util.stream</code> is allowed except described ones.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+  &lt;allow pkg=&quot;java.util.stream&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot;&gt;
+    &lt;disallow class=&quot;java.util.stream.Stream&quot;/&gt;
+    &lt;disallow class=&quot;java.util.stream.Collectors&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.imports;
+
+import java.util.stream.Stream;     // violation here
+import java.util.stream.Collectors; // violation here
+import java.util.stream.IntStream;
+        </source>
+        <p>
+          In the following example, all imports are allowed except the classes
+          <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+  &lt;allow pkg=&quot;.*&quot; regex=&quot;true&quot;/&gt;
+  &lt;subpackage name=&quot;imports&quot;&gt;
+    &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+    &lt;disallow class=&quot;java.util.List&quot;/&gt;
+    &lt;disallow pkg=&quot;sun&quot;/&gt;
+  &lt;/subpackage&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>
+          In the following example, all imports of the <code>java.util</code> package are allowed
+          except the <code>java.util.Date</code> class.
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
+  &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+
+  &lt;allow pkg=&quot;java.util&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
+
+        <h4 id="regex-notes">Notes on regular expressions</h4>
+        <p>
+          Regular expressions in import rules have to match either Java packages or
+          classes. The language rules for packages and class names can be described by the
+          following complicated regular expression that takes into account that Java names may
+          contain any unicode letter, numbers, underscores, and dollar signs (see section 3.8
+          in the <a href="https://docs.oracle.com/javase/specs/">Java specs</a>):
+        </p>
+        <ul>
+          <li>
+            <code>[\p{Letter}_$][\p{Letter}\p{Number}_$]*</code> or short
+            <code>[\p{L}_$][\p{L}\p{N}_$]*</code> for a class name or package component.
+          </li>
+          <li>
+            <code>([\p{L}_$][\p{L}\p{N}_$]*\.)*[\p{L}_$][\p{L}\p{N}_$]*</code>
+            for a fully qualified name.
+          </li>
+        </ul>
+        <p>
+          But it is not necessary to use these complicated expressions since no validation is
+          required. Differentiating between package separator '.' and others is
+          sufficient. Unfortunately '.' has a special meaning in regular expressions so one has
+          to write <code>\.</code> to match an actual dot.
+        </p>
+        <ul>
+          <li>
+            Use <code>[^.]+</code> (one or more &quot;not a dot&quot; characters) for a class name or
+            package component.
+          </li>
+          <li>
+            Use <code>com\.google\.common\.[^.]+</code> to match any subpackage of
+            <code>com.google.common</code>.
+          </li>
+          <li>
+            When matching concrete packages like <code>com.google.common</code> omitting the
+            backslash before the dots may improve readability and may be just exact enough:
+            <code>com.google.common\.[^.]+</code> matches not only subpackages of
+            <code>com.google.common</code> but e.g. also of <code>com.googleecommon</code> but
+            you may not care for that.
+          </li>
+          <li>
+            Do not use <code>.*</code> unless you really do not care for what is matched. Often
+            you want to match only a certain package level instead.
+          </li>
+        </ul>
+        <h4 id="static-import-notes">Notes on static imports</h4>
+        <p>
+          Static members (including methods, constants and static inner classes) have to be
+          explicitly allowed when they are imported, they
+          are not automatically allowed along with their enclosing class.
+        </p>
+        <p>
+          For example, to allow importing both <code>java.util.Map</code> and
+          <code>java.util.Map.Entry</code> use the following configuration:
+        </p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+  &lt;allow class=&quot;java.util.Map&quot;/&gt;
+  &lt;allow class=&quot;java.util.Map.Entry&quot;/&gt;
+&lt;/import-control&gt;
+        </source>
+        <p>It is also possible to use a regex with a wildcard:</p>
+        <source>
+&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
+  &lt;allow class=&quot;java.util.Map&quot;/&gt;
+  &lt;allow class=&quot;java.util.Map.*&quot; regex=&quot;true&quot; /&gt;
+&lt;/import-control&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.disallowed%22">
+              import.control.disallowed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.missing.file%22">
+              import.control.missing.file
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.control.unknown.pkg%22">
+              import.control.unknown.pkg
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

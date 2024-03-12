@@ -12,7 +12,7 @@ public class InputMissingOverrideGoodOverrideFromObjectJava5
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public boolean equals(Object obj) {
         return false;
     }
@@ -24,7 +24,7 @@ public class InputMissingOverrideGoodOverrideFromObjectJava5
      *
      * {@inheritDoc
      */
-    @Override       // ok
+    @Override
     public int hashCode() {
         return 1;
     }
@@ -34,7 +34,7 @@ public class InputMissingOverrideGoodOverrideFromObjectJava5
         /**
          * {@inheritDoc}
          */
-        @Override       // ok
+        @Override
         protected void finalize() throws Throwable {}
     }
 }
@@ -44,7 +44,7 @@ interface HashEqJava5 {
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public int hashCode();
 }
 
@@ -54,7 +54,7 @@ enum enum1Java5 {
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public String toString() {
         return "B";
     }
@@ -66,7 +66,7 @@ enum enum2Java5 {
     /**
      * {@inheritDoc}
      */
-    @java.lang.Override     // ok
+    @java.lang.Override
     public String toString() {
         return "B";
     }

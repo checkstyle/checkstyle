@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -46,42 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyForInitializerPad&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * for ( ; i &lt; 1; i++ );  // violation semicolon is preceded with whitespace
- * for (; i &lt; 2; i++ );   // ok
- * for (;i&lt;2;i++);        // ok
- * for ( ;i&lt;2;i++);       // violation semicolon is preceded with whitespace
- * for (
- *       ; i &lt; 2; i++ );  // ok
- * </pre>
- * <p>
- * To configure the check to require white space at an empty for iterator:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyForInitializerPad&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * for ( ; i &lt; 2; i++ );   // ok
- * for (; i &lt; 2; i++ );    // violation semicolon is not preceded with whitespace
- * for (;i&lt;2;i++);         // violation semicolon is not preceded with whitespace
- * for ( ;i&lt;2;i++);        // ok
- * for (
- *       ; i &lt; 2; i++ );   // ok
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -125,6 +89,7 @@ public class EmptyForInitializerPadCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.4
      */
     public void setOption(String optionStr) {
         option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));

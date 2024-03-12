@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Simple XML logger.
@@ -313,7 +312,7 @@ public class XMLLogger
     public static boolean isReference(String ent) {
         boolean reference = false;
 
-        if (ent.charAt(0) == '&' && CommonUtil.endsWithChar(ent, ';')) {
+        if (ent.charAt(0) == '&' && ent.endsWith(";")) {
             if (ent.charAt(1) == '#') {
                 // prefix is "&#"
                 int prefixLength = 2;

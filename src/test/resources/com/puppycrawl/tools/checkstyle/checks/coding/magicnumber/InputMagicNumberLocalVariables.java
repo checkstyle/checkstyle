@@ -19,15 +19,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberLocalVariables {
     @SuppressWarnings("MagicNumber")
-    private int A = 8; // ok
+    private int A = 8;
 
     @SuppressWarnings("MagicNumber")
     void method() {
-        int b = 8; // ok
+        int b = 8;
     }
 
     void method2() {
         @SuppressWarnings("MagicNumber")
-        int c = 8; // ok
+        int c = 8;
     }
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,11 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * </p>
  * <ul>
  * <li>
- * Property {@code severity} - Specify the severity level of this filter.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
- * Default value is {@code error}.
- * </li>
- * <li>
  * Property {@code acceptOnMatch} - Control whether the filter accepts an audit
  * event if and only if there is a match between the event's severity level and
  * property severity. If acceptOnMatch is {@code false}, then the filter accepts
@@ -47,17 +42,12 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
+ * <li>
+ * Property {@code severity} - Specify the severity level of this filter.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
+ * Default value is {@code error}.
+ * </li>
  * </ul>
- * <p>
- * For example, the following configuration fragment directs the Checker to not
- * report audit events with severity level {@code info}:
- * </p>
- * <pre>
- * &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
- *   &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
- *   &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -85,6 +75,7 @@ public class SeverityMatchFilter
      *
      * @param severity  The new severity level
      * @see SeverityLevel
+     * @since 3.2
      */
     public final void setSeverity(SeverityLevel severity) {
         this.severity = severity;
@@ -98,6 +89,7 @@ public class SeverityMatchFilter
      *
      * @param acceptOnMatch if true, accept on matches; if
      *     false, reject on matches.
+     * @since 3.2
      */
     public final void setAcceptOnMatch(boolean acceptOnMatch) {
         this.acceptOnMatch = acceptOnMatch;

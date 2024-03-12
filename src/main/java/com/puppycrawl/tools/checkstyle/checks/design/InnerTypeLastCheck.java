@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,32 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * primary (top-level) class after all init and static init blocks,
  * method, constructor and field declarations.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;InnerTypeLast&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class Test {
- *     private String s; // OK
- *     class InnerTest1 {}
- *     public void test() {} // violation, method should be declared before inner types.
- * }
- *
- * class Test2 {
- *     static {}; // OK
- *     class InnerTest1 {}
- *     public Test2() {} // violation, constructor should be declared before inner types.
- * }
- *
- * class Test3 {
- *     private String s; // OK
- *     public void test() {} // OK
- *     class InnerTest1 {}
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

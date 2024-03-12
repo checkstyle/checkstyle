@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SummaryJavadocCheck">
+      <property name="forbiddenSummaryFragments"
+        value="^This method returns.*"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

@@ -23,7 +23,6 @@ public class InputMatchXpathForbidPrintStackTrace {
       try {
          throw new IOException();
       } catch (IOException e) {
-         // ok
       }
    }
 }

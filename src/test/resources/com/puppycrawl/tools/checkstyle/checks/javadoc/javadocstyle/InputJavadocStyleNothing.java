@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 */
 
-/** Desc but no period */ // ok
+/** Desc but no period */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
 public class InputJavadocStyleNothing {

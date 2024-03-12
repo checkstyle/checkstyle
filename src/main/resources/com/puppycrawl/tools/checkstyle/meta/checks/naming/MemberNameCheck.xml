@@ -2,28 +2,28 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"
-              name="MemberName"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             name="MemberName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that instance variable names conform to a specified pattern.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^[a-z][a-zA-Z0-9]*$"
-                       name="format"
-                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
-            </property>
-            <property default-value="true" name="applyToPublic" type="boolean">
-               <description>Controls whether to apply the check to public member.</description>
-            </property>
-            <property default-value="true" name="applyToProtected" type="boolean">
-               <description>Controls whether to apply the check to protected member.</description>
-            </property>
             <property default-value="true" name="applyToPackage" type="boolean">
-               <description>Controls whether to apply the check to package-private member.</description>
+               <description>Control if check should apply to package-private members.</description>
             </property>
             <property default-value="true" name="applyToPrivate" type="boolean">
-               <description>Controls whether to apply the check to private member.</description>
+               <description>Control if check should apply to private members.</description>
+            </property>
+            <property default-value="true" name="applyToProtected" type="boolean">
+               <description>Control if check should apply to protected members.</description>
+            </property>
+            <property default-value="true" name="applyToPublic" type="boolean">
+               <description>Control if check should apply to public members.</description>
+            </property>
+            <property default-value="^[a-z][a-zA-Z0-9]*$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

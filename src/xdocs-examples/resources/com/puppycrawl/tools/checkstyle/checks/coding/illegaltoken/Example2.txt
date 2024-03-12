@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalToken">
+      <property name="tokens" value="LITERAL_NATIVE"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public native void myTest(); // violation
+// xdoc section -- end

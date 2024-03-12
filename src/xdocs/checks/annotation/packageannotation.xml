@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>PackageAnnotation</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PackageAnnotation">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that all package annotations are in the package-info.java file.
+        </p>
+        <p>
+          For Java SE8 and above, placement of package annotations in the package-info.java
+          file is enforced by the compiler and this check is not necessary.
+        </p>
+        <p>
+          For Java SE7 and below, the Java Language Specification highly recommends
+          but doesn't require that annotations are placed in the package-info.java file,
+          and this check can help to enforce that placement.
+        </p>
+        <p>
+          See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1">
+          Java Language Specification, &#xa7;7.4.1</a> for more info.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config"> To configure the check:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example of class with violation:</p>
+        <source>
+@Deprecated // violation below
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example1 {}
+        </source>
+        <p id="Example2-code">Example of class without violation:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+
+class Example2 {}
+        </source>
+        <p id="package-info-code">Example of validating package-info.java:</p>
+        <source>
+@Deprecated
+package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.example3;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
+              annotation.package.location
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

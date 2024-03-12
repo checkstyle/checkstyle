@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class DefaultLoggerTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @AfterEach
     public void tearDown() {
@@ -280,11 +280,12 @@ public class DefaultLoggerTest {
     @Test
     public void testNewCtor() throws Exception {
         final ResourceBundle bundle = ResourceBundle.getBundle(
-                Definitions.CHECKSTYLE_BUNDLE, Locale.ROOT);
+                Definitions.CHECKSTYLE_BUNDLE, Locale.ENGLISH);
         final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
         final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
         final String addExceptionMessage = new MessageFormat(bundle.getString(
-                DefaultLogger.ADD_EXCEPTION_MESSAGE), Locale.ROOT).format(new String[] {"myfile"});
+                DefaultLogger.ADD_EXCEPTION_MESSAGE), Locale.ENGLISH).format(new String[] {"myfile"}
+        );
         final String infoOutput;
         final String errorOutput;
         try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream()) {

@@ -18,7 +18,7 @@ class InputLocalVariableNameInnerClass
     class InnerInner2
     {
         // Ignore
-        public int fData; // ok
+        public int fData;
     }
 
     // Ignore - 2 violations

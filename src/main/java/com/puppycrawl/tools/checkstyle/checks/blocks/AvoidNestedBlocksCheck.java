@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -70,67 +70,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AvoidNestedBlocks"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() {
- *   int myInteger = 0;
- *   {                      // violation
- *     myInteger = 2;
- *   }
- *   System.out.println("myInteger = " + myInteger);
- *
- *   switch (a) {
- *     case 1:
- *       {                    // violation
- *         System.out.println("Case 1");
- *         break;
- *       }
- *     case 2:
- *       System.out.println("Case 2");     // OK
- *       break;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow nested blocks in switch case:
- * </p>
- * <pre>
- * &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
- *   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() {
- *   int myInteger = 0;
- *   {                      // violation
- *     myInteger = 2;
- *   }
- *   System.out.println("myInteger = " + myInteger);
- *
- *   switch (a)
- *   {
- *     case 1:
- *       {                    // OK
- *         System.out.println("Case 1");
- *         break;
- *       }
- *     case 2:
- *       System.out.println("Case 2");     // OK
- *       break;
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -197,6 +136,7 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
      *
      * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
+     * @since 3.2
      */
     public void setAllowInSwitchCase(boolean allowInSwitchCase) {
         this.allowInSwitchCase = allowInSwitchCase;

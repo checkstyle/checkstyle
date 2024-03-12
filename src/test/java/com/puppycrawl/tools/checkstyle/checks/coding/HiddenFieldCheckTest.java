@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -468,6 +468,30 @@ public class HiddenFieldCheckTest
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputHiddenFieldClassNestedInRecord.java"),
             expected);
+    }
+
+    @Test
+    public void testHiddenFieldInnerRecordsImplicitlyStatic() throws Exception {
+
+        final String[] expected = {
+            "35:30: " + getCheckMessage(MSG_KEY, "pointer"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldInnerRecordsImplicitlyStatic.java"),
+                expected);
+    }
+
+    @Test
+    public void testHiddenFieldRecordsImplicitlyStaticClassComparison() throws Exception {
+
+        final String[] expected = {
+            "49:27: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecordsImplicitlyStaticClassComparison.java"),
+                expected);
     }
 
     /**

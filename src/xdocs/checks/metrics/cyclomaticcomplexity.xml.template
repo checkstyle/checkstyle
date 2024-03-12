@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CyclomaticComplexity</title>
+  </head>
+  <body>
+    <section name="CyclomaticComplexity">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks cyclomatic complexity against a specified limit.
+          It is a measure of the minimum number of
+          possible paths through the source and therefore the number of
+          required tests, it is not about quality of code!
+          It is only applied to methods, c-tors,
+          <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
+          static initializers and instance initializers</a>.
+        </p>
+        <p>
+          The complexity is equal to the number of decision points <code> + 1</code>.
+          Decision points: <code>if</code>, <code>while</code>
+          , <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>
+          , <code>switch</code>, <code>case</code>
+          statements and operators <code>&amp;&amp;</code> and <code>||</code>
+          in the body of target.
+        </p>
+        <p>
+          By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10
+          consider re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
+        </p>
+        <p>
+          When it comes to code quality measurement by this metric
+          level 10 is very good level as a ultimate target (that is hard to archive).
+          Do not be ashamed to have complexity level 15 or even higher,
+          but keep it below 20 to catch really bad-designed code automatically.
+        </p>
+        <p>
+          Please use Suppression to avoid violations on cases that could not be split in few
+          methods without damaging readability of code or encapsulation.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/CyclomaticComplexityCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check with a threshold of 4 and check only for while and do-while loops:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check to consider switch-case block as one decision point.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CyclomaticComplexity">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="CyclomaticComplexity"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="CyclomaticComplexity"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

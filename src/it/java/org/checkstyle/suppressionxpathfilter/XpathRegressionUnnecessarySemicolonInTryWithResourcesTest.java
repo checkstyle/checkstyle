@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -46,9 +46,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
-            "11:43: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
-                UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
-            "12:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+            "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(

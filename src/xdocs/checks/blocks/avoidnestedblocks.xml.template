@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidNestedBlocks</title>
+  </head>
+  <body>
+    <section name="AvoidNestedBlocks">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Finds nested blocks (blocks that are used freely in the code).
+        </p>
+
+        <p>
+          Rationale: Nested blocks are often leftovers from the
+          debugging process, they confuse the reader.
+        </p>
+
+        <p>
+          For example, this check finds the obsolete braces in
+        </p>
+        <source>
+public void guessTheOutput()
+{
+  int whichIsWhich = 0;
+  {
+    whichIsWhich = 2;
+  }
+  System.out.println("value = " + whichIsWhich);
+}
+        </source>
+
+        <p> and debugging / refactoring leftovers such as </p>
+        <source>
+// if (conditionThatIsNotUsedAnyLonger)
+{
+  System.out.println("unconditional");
+}
+        </source>
+
+        <p>
+          A case in a switch statement does not implicitly form a block.
+          Thus, to be able to introduce local variables that have case
+          scope it is necessary to open a nested block. This is
+          supported, set the allowInSwitchCase property to true and
+          include all statements of the case in the block.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/AvoidNestedBlocksCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.java"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">To configure the check to allow nested blocks in switch case:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/avoidnestedblocks/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNestedBlocks">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="AvoidNestedBlocks"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="AvoidNestedBlocks"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -74,76 +74,16 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <ul>
  * <li>
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
  * Property {@code lineSeparator} - Specify the type of line separator.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption}.
  * Default value is {@code lf_cr_crlf}.
  * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file type extension of the files to check.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // File ending with a new line
- * public class Test {⤶
- * ⤶
- * }⤶ // ok
- * Note: The comment // ok is a virtual, not actually present in the file
- *
- * // File ending without a new line
- * public class Test1 {⤶
- * ⤶
- * } // violation, the file does not end with a new line
- * </pre>
- * <p>
- * To configure the check to always use Unix-style line separators:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
- *   &lt;property name=&quot;lineSeparator&quot; value=&quot;lf&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // File ending with a new line
- * public class Test {⤶
- * ⤶
- * }⤶ // ok
- * Note: The comment // ok is a virtual, not actually present in the file
- *
- * // File ending without a new line
- * public class Test1 {⤶
- * ⤶
- * }␍⤶ // violation, expected line ending for file is LF(\n), but CRLF(\r\n) is detected
- * </pre>
- * <p>
- * To configure the check to work only on Java, XML and Python files:
- * </p>
- * <pre>
- * &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * // Any java file
- * public class Test {⤶
- * } // violation, file should end with a new line.
- *
- * // Any py file
- * print("Hello World") // violation, file should end with a new line.
- *
- * // Any txt file
- * This is a sample text file. // ok, this file is not specified in the config.
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -205,6 +145,7 @@ public class NewlineAtEndOfFileCheck
      * @param lineSeparatorParam The line separator to set
      * @throws IllegalArgumentException If the specified line separator is not
      *         one of 'crlf', 'lf', 'cr', 'lf_cr_crlf' or 'system'
+     * @since 3.1
      */
     public void setLineSeparator(String lineSeparatorParam) {
         lineSeparator =
@@ -224,10 +165,10 @@ public class NewlineAtEndOfFileCheck
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
             if (lineSeparator == LineSeparatorOption.LF
                     && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
-                log(1, MSG_KEY_WRONG_ENDING, file.getPath());
+                log(1, MSG_KEY_WRONG_ENDING);
             }
             else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
-                log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
+                log(1, MSG_KEY_NO_NEWLINE_EOF);
             }
         }
     }

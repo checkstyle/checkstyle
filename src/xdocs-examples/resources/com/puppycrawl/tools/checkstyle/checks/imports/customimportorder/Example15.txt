@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CustomImportOrder">
+      <property name="customImportOrderRules"
+        value="SAME_PACKAGE(3), THIRD_PARTY_PACKAGE, STATIC, SPECIAL_IMPORTS"/>
+      <property name="specialImportsRegExp" value="^android\."/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package com.puppycrawl.tools.checkstyle.imports;
+
+import com.google.common.annotations.GwtCompatible;
+import com.google.common.annotations.Beta;
+import com.google.common.annotations.VisibleForTesting;
+
+import org.abego.treelayout.Configuration;
+
+import static sun.tools.util.ModifierFilter.ALL_ACCESS;
+
+import com.google.common.annotations.GwtCompatible; // violation here - should be in the
+                                                    // THIRD_PARTY_PACKAGE group
+import android.*;
+// xdoc section -- end

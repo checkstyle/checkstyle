@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -495,5 +495,31 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
             getPath("InputJavadocMethodCustomMessage.java"), expected);
+    }
+
+    @Test
+    public void test1() throws Exception {
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod1.java"), expected);
+    }
+
+    @Test
+    public void test2() throws Exception {
+        final String[] expected = {
+            "15:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<"),
+            "19:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<X>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod2.java"), expected);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethod3.java"), expected);
     }
 }

@@ -28,7 +28,7 @@ class InputNeedBracesTestItWithAllowsOn
         while (condition());
 
         // Invalid
-        do testDoWhile(); while (condition()); // ok
+        do testDoWhile(); while (condition());
     }
 
     /** Test while loops **/
@@ -40,10 +40,10 @@ class InputNeedBracesTestItWithAllowsOn
         }
 
         // Invalid
-        while(condition()); // ok
+        while(condition());
         while (condition()) // violation
             testWhile();
-        while (condition()) // ok
+        while (condition())
             if (condition()) // violation
                 testWhile();
     }
@@ -57,7 +57,7 @@ class InputNeedBracesTestItWithAllowsOn
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // ok
+        for(int i = 1;i < 5;i++);
         for (int i = 1; i < 5; i++) // violation
             testFor();
         for (int i = 1; i < 5; // violation
@@ -81,7 +81,7 @@ class InputNeedBracesTestItWithAllowsOn
         }
 
         // Invalid
-        if (condition()); // ok
+        if (condition());
         if (condition()) // violation
             testIf();
         if (condition()) // violation

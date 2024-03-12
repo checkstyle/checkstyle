@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
@@ -505,6 +507,40 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSuppressWarningsHolderAlias2.java"),
+                expected);
+    }
+
+    @Test
+    public void testIdent() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSuppressWarningsHolder1.java"),
+                expected);
+    }
+
+    @Test
+    public void testIdent2() throws Exception {
+        final String[] expected = {
+            "37:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+                    MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "42:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+                    MSG_UNUSED_LOCAL_VARIABLE, "a"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSuppressWarningsHolder2.java"),
+                expected);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "18:16: " + getCheckMessage(MemberNameCheck.class,
+                    AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSuppressWarningsHolder8.java"),
                 expected);
     }
 }

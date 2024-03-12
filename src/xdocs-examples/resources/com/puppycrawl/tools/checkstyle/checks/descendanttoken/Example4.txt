@@ -1,0 +1,25 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="FOR_CONDITION"/>
+      <property name="limitedTokens" value="EXPR"/>
+      <property name="minimumNumber" value="1"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public static void main(String[] args) {
+    for (int i = 0; i != 10; i++) { // ok
+      System.out.println(i);
+    }
+    int k = 0;
+    for (; ; ) { // violation
+      System.out.println(k);
+    }
+  }
+}
+// xdoc section -- end

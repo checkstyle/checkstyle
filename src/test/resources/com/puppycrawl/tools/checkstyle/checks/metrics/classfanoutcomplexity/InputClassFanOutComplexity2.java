@@ -41,7 +41,7 @@ import java.util.stream.Stream;
 
 import javax.naming.NamingException;
 
-public class InputClassFanOutComplexity2 { // ok
+public class InputClassFanOutComplexity2 {
     private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }
@@ -87,22 +87,22 @@ class InputMultiDimensionalArray2 {
 }
 
 class InputCollectionsExt2 {
-    private Collection col; // ok
-    private EnumSet enumSet; // ok
-    private LinkedHashMap map; // ok
-    private LinkedHashSet set; // ok
+    private Collection col;
+    private EnumSet enumSet;
+    private LinkedHashMap map;
+    private LinkedHashSet set;
 }
 
 class InputOptionals2 {
-    private Optional<Long> op1; // ok
-    private OptionalInt op2; // ok
-    private OptionalLong op3; // ok
-    private OptionalDouble op4; // ok
+    private Optional<Long> op1;
+    private OptionalInt op2;
+    private OptionalLong op3;
+    private OptionalDouble op4;
 }
 
 class InputStreams2 {
-    private Stream s1; // ok
-    private IntStream s2; // ok
-    private LongStream s3; // ok
-    private DoubleStream s4; // ok
+    private Stream s1;
+    private IntStream s2;
+    private LongStream s3;
+    private DoubleStream s4;
 }

@@ -21,18 +21,18 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-public class InputWhitespaceAroundRecordsAllowEmptyTypes { // ok
+public class InputWhitespaceAroundRecordsAllowEmptyTypes {
     // simple record def
-    record MyRecord() {} // ok
+    record MyRecord() {}
 
     // simple record def
     record MyRecord1() {
-    } // ok
+    }
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // ok
-        interface Foo {} // ok
-        record MyRecord () {} // ok
+        class MyClass {}
+        interface Foo {}
+        record MyRecord () {}
     }
 }

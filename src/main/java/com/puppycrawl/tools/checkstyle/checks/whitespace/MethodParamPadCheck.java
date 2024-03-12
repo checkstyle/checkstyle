@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -73,58 +73,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="MethodParamPad"/&gt;
- * </pre>
- * <pre>
- * public class Test {
- *  public Test() { // OK
- *     super(); // OK
- *   }
- *
- *   public Test (int aParam) { // Violation - '(' is preceded with whitespace
- *     super (); // Violation - '(' is preceded with whitespace
- *   }
- *
- *   public void method() {} // OK
- *
- *   public void methodWithVeryLongName
- *     () {} // Violation - '(' is preceded with whitespace
- *
- * }
- * </pre>
- * <p>
- * To configure the check to require a space
- * after the identifier of a method definition, except if the left
- * parenthesis occurs on a new line:
- * </p>
- * <pre>
- * &lt;module name="MethodParamPad"&gt;
- *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
- *   &lt;property name="option" value="space"/&gt;
- *   &lt;property name="allowLineBreaks" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * public class Test {
- *   public Test() { // OK
- *     super(); // OK
- *   }
- *
- *   public Test (int aParam) { // OK
- *     super (); // OK
- *   }
- *
- *   public void method() {} // Violation - '(' is NOT preceded with whitespace
- *
- *   public void methodWithVeryLongName
- *     () {} // OK, because allowLineBreaks is true
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -236,6 +184,7 @@ public class MethodParamPadCheck
      *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
+     * @since 3.4
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
@@ -246,6 +195,7 @@ public class MethodParamPadCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.4
      */
     public void setOption(String optionStr) {
         option = PadOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));

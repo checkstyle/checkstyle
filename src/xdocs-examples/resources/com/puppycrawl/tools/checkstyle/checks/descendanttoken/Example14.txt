@@ -1,0 +1,34 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="EQUAL,NOT_EQUAL"/>
+      <property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/>
+      <property name="maximumNumber" value="1"/>
+      <property name="maximumDepth" value="1"/>
+      <property name="sumTokenCounts" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() {
+    if (this == null) { // violation
+      System.out.println("xyz");
+    }
+    if (this != null) { // violation
+      System.out.println("xyz");
+    }
+
+    Object obj = new Object();
+    if (obj == null) { // ok
+      System.out.println("xyz");
+    }
+    if (obj != null) { // ok
+      System.out.println("xyz");
+    }
+  }
+}
+// xdoc section -- end

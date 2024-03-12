@@ -23,13 +23,13 @@ import com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTyp
 
 public class InputIllegalTypeSameFileNameFalsePositive
 {
-    InputIllegalTypeGregCal cal = AnObject.getInstance(); // ok
+    InputIllegalTypeGregCal cal = AnObject.getInstance();
     Date date = null;
     SubCal subCalendar = null; // violation
 
-    private static class AnObject extends InputIllegalTypeGregCal { // ok
+    private static class AnObject extends InputIllegalTypeGregCal {
 
-        public static InputIllegalTypeGregCal getInstance() // ok
+        public static InputIllegalTypeGregCal getInstance()
         {
             return null;
         }
@@ -37,12 +37,12 @@ public class InputIllegalTypeSameFileNameFalsePositive
     }
 
     private void foo() {
-        List l; // ok
-        java.io.File file = null; // ok
+        List l;
+        java.io.File file = null;
     }
     java.util.List<Integer> list = new ArrayList<>(); // violation
-    private ArrayList<String> values; // ok
-    private Boolean d; // ok
+    private ArrayList<String> values;
+    private Boolean d;
     private Boolean[] d1;
     private Boolean[][] d2;
 }

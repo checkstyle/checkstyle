@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocType">
+      <property name="skipAnnotations" value="Annotation,MyClass.Annotation"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@Annotation // ok
+class Class1 {}
+
+@MyClass.Annotation // ok
+class Class2 {}
+
+@com.mycompany.MyClass.Annotation // violation, as this form is missed in config
+class Class3 {}
+// xdoc section -- end

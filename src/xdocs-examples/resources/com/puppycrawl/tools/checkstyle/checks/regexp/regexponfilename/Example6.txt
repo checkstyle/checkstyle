@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]"/>
+    <property name="fileNamePattern" value="\.(java|xml)$"/>
+    <property name="match" value="false"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+src/SourceClass.java  //OK
+src/source_xml.xml  //OK
+src/image.png  //violation, only java and xml files are allowed in src folder
+src/main/main_properties.properties  //OK, this check only applies to src folder
+// xdoc section -- end

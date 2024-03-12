@@ -13,6 +13,6 @@ package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
  * NewlineAtEndOfFileCheck.
  * @author Martin Steiger
  **/
-public interface InputNewlineAtEndOfFileTestTrimProperty // ok
+public interface InputNewlineAtEndOfFileTestTrimProperty
 {
 }

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Translation</title>
+  </head>
+  <body>
+    <section name="Translation">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Ensures the correct translation of code by checking property files for
+          consistency regarding their keys. Two property files
+          describing one and the same context are consistent if they
+          contain the same keys. TranslationCheck also can check an existence of required
+          translations which must exist in project, if <code>requiredTranslations</code>
+          option is used.
+        </p>
+
+        <p>
+          Consider the following properties file in the same directory:
+        </p>
+        <source>
+#messages.properties
+hello=Hello
+cancel=Cancel
+
+#messages_de.properties
+hell=Hallo
+ok=OK
+        </source>
+
+        <p>
+          The Translation check will find the typo in the German <code>hello</code>
+          key, the missing <code>ok</code> key in the default resource file and the
+          missing <code>cancel</code> key in the German resource file:
+        </p>
+        <source>
+messages_de.properties: Key 'hello' missing.
+messages_de.properties: Key 'cancel' missing.
+messages.properties: Key 'hell' missing.
+messages.properties: Key 'ok' missing.
+        </source>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          Language code for the property <code>requiredTranslations</code> is composed of
+          the lowercase, two-letter codes as defined by
+          <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
+          Default value is empty String Set which means that only the existence
+          of default translation is checked. Note, if you specify language codes (or just
+          one language code) of required translations the check will also check for
+          existence of default translation files in project.
+        </p>
+        <p>
+          Note: If your project uses preprocessed translation files and the original files
+          do not have the <code>properties</code> extension,
+          you can specify additional file extensions
+          via the <code>fileExtensions</code> property.
+        </p>
+        <p>
+          Attention: the check will perform the validation of ISO codes if the option
+          is used. So, if you specify, for example, "mm" for language code, TranslationCheck
+          will rise violation that the language code is incorrect.
+        </p>
+        <p>
+          Attention: this Check could produce false-positives if it
+          is used with <a href="../../config.html#Checker">Checker</a> that use cache (property
+          "cacheFile") This is known design problem, will be addressed at
+          <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p>
+          Note, that files with the same path and base name but which have different
+          extensions will be considered as files that belong to different resource bundles.
+        </p>
+        <p id="Example1-config">
+          To configure the check to check only files which have '.properties' and '.translations'
+          extensions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <source>
+messages.properties: Properties file 'messages_fr.properties' is missing.
+messages.translations: Properties file 'messages_fr.translations' is missing.
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check to validate only bundles which base names
+          start with &quot;ButtonLabels&quot;:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <source>
+ButtonLabels.properties: Key 'name' is missing.
+ButtonLabels_fr.properties: Key 'cancel' is missing.
+        </source>
+        <p id="Example3-config">
+          To configure the check to check existence of Japanese and French translations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <source>
+messages.properties: Key 'age' missing.
+messages.properties: Key 'name' missing.
+messages_fr.properties: Key 'age' missing.
+messages_fr.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'cancel' missing.
+messages_ja.properties: Key 'name' missing.
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="Translation"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="Translation"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

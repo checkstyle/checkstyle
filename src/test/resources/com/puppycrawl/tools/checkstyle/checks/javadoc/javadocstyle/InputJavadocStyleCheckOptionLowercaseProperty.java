@@ -23,13 +23,13 @@ public class InputJavadocStyleCheckOptionLowercaseProperty {
      * and ends afterwards
      * </PRE>
      */
-    private void toLowerCaseForSingleHTMLTag() { // ok
+    private void toLowerCaseForSingleHTMLTag() {
     }
 
     /**
      * And This is ok.<BR>
      * <CODE>lowercase</CODE>
      */
-    public void allowedTAGToLowerCase() { // ok
+    public void allowedTAGToLowerCase() {
     }
 }

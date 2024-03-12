@@ -19,19 +19,19 @@ import static java.io.File.createTempFile;
 import static javax.swing.WindowConstants.*;
 import static org.junit.Assert.assertEquals;
 
-import java.awt.Button; // violation
-import java.awt.Dialog; // violation
-import java.io.InputStream; // violation
+import java.awt.Button; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
+import java.awt.Dialog; // violation '.*wrong order. Should be in the .* group, expecting not assigned imports.*'
+import java.io.InputStream; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
 
-import javax.swing.JComponent; // violation
-import javax.swing.JTable; // violation
+import javax.swing.JComponent; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
+import javax.swing.JTable; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
 
-import org.junit.Test; // violation
-import org.mockito.Mock; // violation
+import org.junit.Test; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
+import org.mockito.Mock; // violation '.* wrong order. Should be in the .* group, expecting not assigned imports.*'
 
 import com.some.api.DetailClass;
 
-import sun.tools.java.ArrayType; // violation
+import sun.tools.java.ArrayType; // violation 'Extra separation in import group before .*ArrayType'
 
 public class InputCustomImportOrderEclipseDefaultPositive {
 }

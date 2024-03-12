@@ -20,3 +20,4 @@
 src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator/InputXpathQueryGeneratorTextBlockCrlf.java eol=crlf
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
+src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java eol=crlf

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SeverityMatchFilter</title>
+  </head>
+  <body>
+    <section name="SeverityMatchFilter">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SeverityMatchFilter</code> decides
+          audit events according to the <a href="../config.html#Severity">severity
+          level</a> of the event.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>acceptOnMatch</td>
+              <td>Control whether the filter accepts an audit event if and only if there is a match between the event's severity level and property severity. If acceptOnMatch is <code>false</code>, then the filter accepts an audit event if and only if there is not a match between the event's severity level and property severity.</td>
+              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>severity</td>
+              <td>Specify the severity level of this filter.</td>
+              <td><a href="../property_types.html#SeverityLevel">SeverityLevel</a></td>
+              <td><code>error</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          For example, the following configuration fragment directs the
+          Checker to not report audit events with severity
+          level <code>info</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
+    &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+    &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeverityMatchFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

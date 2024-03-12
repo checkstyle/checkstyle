@@ -19,7 +19,7 @@ public class InputRightCurlyTestSwitchCase3 {
             case(1): x = 0; break; } // violation ''}' at column 36 should be alone on a line'
         switch (x)
         {
-        } // ok
+        }
         switch (x)
         {case(1): x=1;break;
         } int b; // violation ''}' at column 9 should be alone on a line'

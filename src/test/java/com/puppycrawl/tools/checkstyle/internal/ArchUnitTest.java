@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,6 +45,12 @@ public class ArchUnitTest {
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
             + ".String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
             + ".EMPTY_STRING_ARRAY>",
+        "Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,"
+            + " java.lang.String, java.lang.String, [Ljava.lang.Object;,"
+            + " com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,"
+            + " java.lang.Class, java.lang.String)> calls method"
+            + " <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray"
+            + "([Ljava.lang.Object;, int)>",
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
             + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
             + ".EMPTY_STRING_ARRAY>",

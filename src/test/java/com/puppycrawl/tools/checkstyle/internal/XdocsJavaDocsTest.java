@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,15 +25,12 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -62,13 +59,14 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.site.PropertiesMacro;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -103,15 +101,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("WrapOption", WrapOption.class)
             .put("PARAM_LITERAL", int[].class).build();
 
-    private static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
-        Arrays.stream(new String[] {
-            "AtclauseOrder - target",
-            "DescendantToken - limitedTokens",
-            "IllegalType - memberModifiers",
-            "MagicNumber - constantWaiverParentToken",
-            "MultipleStringLiterals - ignoreOccurrenceContext",
-        }).collect(Collectors.toSet()));
-
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
@@ -119,6 +108,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static Checker checker;
 
     private static String checkName;
+
+    private static Path currentXdocPath;
 
     @Override
     protected String getPackageLocation() {
@@ -144,10 +135,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
+            currentXdocPath = path;
             final File file = path.toFile();
             final String fileName = file.getName();
 
-            if ("config_system_properties.xml".equals(fileName)) {
+            if ("config_system_properties.xml".equals(fileName)
+                    || "index.xml".equals(fileName)) {
                 continue;
             }
 
@@ -365,7 +358,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
     private static String getValidationType(boolean isPropertyTokenType, String propertyName) {
         String result = null;
-        if (NON_BASE_TOKEN_PROPERTIES.contains(checkName + " - " + propertyName)) {
+        if (PropertiesMacro.NON_BASE_TOKEN_PROPERTIES.contains(checkName + " - " + propertyName)) {
             result = " Validation type is {@code tokenTypesSet}.";
         }
         else if (isPropertyTokenType) {
@@ -518,22 +511,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final String attrValue;
 
             if ("a".equals(nodeName) && "href".equals(attrName)) {
-                String value = attribute.getNodeValue();
+                final String value = attribute.getNodeValue();
 
                 assertWithMessage("links starting with '#' aren't supported: " + value)
                     .that(value.charAt(0))
                     .isNotEqualTo('#');
 
-                if (value.contains("://")) {
-                    attrValue = value;
-                }
-                else {
-                    if (value.charAt(0) == '/') {
-                        value = value.substring(1);
-                    }
-
-                    attrValue = "https://checkstyle.org/" + value;
-                }
+                attrValue = getLinkValue(value);
             }
             else {
                 attrValue = attribute.getNodeValue();
@@ -546,6 +530,33 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         return result.toString();
+    }
+
+    private static String getLinkValue(String initialValue) {
+        String value = initialValue;
+        final String attrValue;
+        if (value.contains("://")) {
+            attrValue = value;
+        }
+        else {
+            if (value.charAt(0) == '/') {
+                value = value.substring(1);
+            }
+
+            // Relative links to DTDs are prohibited, so we don't try to resolve them
+            if (!initialValue.startsWith("/dtds")) {
+                value = currentXdocPath
+                        .getParent()
+                        .resolve(Paths.get(value))
+                        .normalize()
+                        .toString()
+                        .replaceAll("src[\\\\/]xdocs[\\\\/]", "")
+                        .replaceAll("\\\\", "/");
+            }
+
+            attrValue = "https://checkstyle.org/" + value;
+        }
+        return attrValue;
     }
 
     public static class JavaDocCapture extends AbstractCheck {
@@ -622,16 +633,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
 
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
-                assertWithMessage(checkName + "'s class-level JavaDoc")
-                    .that(getJavaDocText(node))
-                    .isEqualTo(CHECK_TEXT.get("Description")
+                final String expected = CHECK_TEXT.get("Description")
                         + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
-                        + CHECK_TEXT.get("Examples")
                         + CHECK_TEXT.get("Parent Module")
                         + violationMessagesText + " @since "
-                        + CHECK_TEXT.get("since"));
+                        + CHECK_TEXT.get("since");
+
+                assertWithMessage(checkName + "'s class-level JavaDoc")
+                    .that(getJavaDocText(node))
+                    .isEqualTo(expected);
             }
         }
 
@@ -669,7 +681,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         /**
          * Returns whether an AST represents a setter method. This is similar to
-         * {@link CheckUtil#isSetterMethod(DetailAST)} except this doesn't care
+         * {@link MissingJavadocMethodCheck#isSetterMethod(DetailAST)} except this doesn't care
          * about the number of children in the method.
          *
          * @param ast the AST to check with.

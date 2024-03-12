@@ -8,7 +8,7 @@ tokens = VARIABLE_DEF, PARAMETER_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-public class InputFinalLocalVariableFalsePositive // ok
+public class InputFinalLocalVariableFalsePositive
 {
     public void method()
     {

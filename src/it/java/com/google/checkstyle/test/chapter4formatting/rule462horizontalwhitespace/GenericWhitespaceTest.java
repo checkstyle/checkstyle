@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -54,6 +54,7 @@ public class GenericWhitespaceTest extends AbstractGoogleModuleTestSupport {
             "14:46: " + getCheckMessage(messages, msgPreceded, ">"),
             "15:33: " + getCheckMessage(messages, msgFollowed, "<"),
             "15:33: " + getCheckMessage(messages, msgPreceded, "<"),
+            "15:46: " + getCheckMessage(messages, msgFollowed, ">"),
             "15:46: " + getCheckMessage(messages, msgPreceded, ">"),
             "20:39: " + getCheckMessage(messages, msgFollowed, "<"),
             "20:39: " + getCheckMessage(messages, msgPreceded, "<"),
@@ -81,6 +82,7 @@ public class GenericWhitespaceTest extends AbstractGoogleModuleTestSupport {
             "16:24: " + getCheckMessage(messages, msgPreceded, ">"),
             "16:44: " + getCheckMessage(messages, msgFollowed, "<"),
             "16:44: " + getCheckMessage(messages, msgPreceded, "<"),
+            "16:54: " + getCheckMessage(messages, msgFollowed, ">"),
             "16:54: " + getCheckMessage(messages, msgPreceded, ">"),
             "17:14: " + getCheckMessage(messages, msgFollowed, "<"),
             "17:14: " + getCheckMessage(messages, msgPreceded, "<"),
@@ -95,6 +97,7 @@ public class GenericWhitespaceTest extends AbstractGoogleModuleTestSupport {
             "17:60: " + getCheckMessage(messages, msgPreceded, "<"),
             "17:70: " + getCheckMessage(messages, msgFollowed, ">"),
             "17:70: " + getCheckMessage(messages, msgPreceded, ">"),
+            "17:72: " + getCheckMessage(messages, msgFollowed, ">"),
             "17:72: " + getCheckMessage(messages, msgPreceded, ">"),
             "30:18: " + getCheckMessage(messages, msgNotPreceded, "<"),
             "30:20: " + getCheckMessage(messages, msgIllegalFollow, ">"),

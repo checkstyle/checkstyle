@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -37,6 +39,8 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
@@ -165,14 +169,15 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final File filePath = new File(temporaryFolder, uniqueFileName);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
         // One more time to use cache.
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
     }
 
     @Test
@@ -197,13 +202,14 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         firstFilterConfig.addProperty("file", urlForTest);
 
         final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String pathToEmptyFile =
-                File.createTempFile("file", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "file_" + UUID.randomUUID() + ".java";
+        final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName2);
 
-        execute(firstCheckerConfig, pathToEmptyFile);
+        execute(firstCheckerConfig, pathToEmptyFile.toString());
 
         // One more time to use cache.
         final DefaultConfiguration secondFilterConfig =
@@ -214,7 +220,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
         secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        execute(secondCheckerConfig, pathToEmptyFile);
+        execute(secondCheckerConfig, pathToEmptyFile.toString());
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
@@ -269,4 +275,46 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         return suppressionFilter;
     }
 
+    @Test
+    public void testXpathSuppression() throws Exception {
+        for (int test = 1; test <= 6; test++) {
+            final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+            final String[] expected = {
+                "19:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                        "different_name_than_suppression", pattern),
+            };
+            final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+            final String path = "InputSuppressionFilter" + test + ".java";
+            verifyFilterWithInlineConfigParser(getPath(path),
+                    expected, suppressed);
+        }
+    }
+
+    @Test
+    public void testSuppression2() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+        };
+        final String[] suppressed = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+
+        };
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionFilter7.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testSuppression3() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String[] expected = {
+            "19:29: " + getCheckMessage(ConstantNameCheck.class,
+                                        MSG_INVALID_PATTERN, "bad_name", pattern),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(getPath("InputSuppressionFilter8.java"),
+                                           expected, removeSuppressed(expected, suppressed));
+    }
 }

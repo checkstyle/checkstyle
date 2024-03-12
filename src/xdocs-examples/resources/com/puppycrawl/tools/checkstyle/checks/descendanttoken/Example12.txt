@@ -1,0 +1,25 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="DescendantToken">
+      <property name="tokens" value="EMPTY_STAT"/>
+      <property name="limitedTokens" value="EMPTY_STAT"/>
+      <property name="maximumNumber" value="0"/>
+      <property name="maximumDepth" value="0"/>
+      <property name="maximumMessage"
+        value="Empty statement is not allowed."/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+  public void foo() { // ok
+      System.out.println("Hello");
+  }
+  public void boo() {
+      ; // violation
+  }
+}
+// xdoc section -- end

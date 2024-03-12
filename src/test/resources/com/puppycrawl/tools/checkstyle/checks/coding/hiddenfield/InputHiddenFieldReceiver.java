@@ -12,7 +12,7 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, REC
 
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-public class InputHiddenFieldReceiver { // ok
+public class InputHiddenFieldReceiver {
     public void foo4(InputHiddenFieldReceiver this) {}
 
     private class Inner {

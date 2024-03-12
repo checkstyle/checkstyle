@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SummaryJavadocCheck">
+      <property name="period" value="。"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+ /**
+  * {@summary First sentence is normally the summary.
+  * Use of html tags:
+  * <ul>
+  * <li>Item one.</li>
+  * <li>Item two.</li>
+  * </ul>}
+  */
+  public void validInlineJavadoc() { // ok
+  }
+}
+// xdoc section -- end

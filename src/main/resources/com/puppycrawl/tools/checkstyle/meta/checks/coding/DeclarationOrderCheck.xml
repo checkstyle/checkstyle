@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
-              name="DeclarationOrder"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             name="DeclarationOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the parts of a class, record, or interface declaration appear in the order
  suggested by the
@@ -45,10 +45,10 @@
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false" name="ignoreConstructors" type="boolean">
-               <description>control whether to ignore constructors.</description>
+               <description>Control whether to ignore constructors.</description>
             </property>
             <property default-value="false" name="ignoreModifiers" type="boolean">
-               <description>control whether to ignore modifiers (fields, ...).</description>
+               <description>Control whether to ignore modifiers (fields, ...).</description>
             </property>
          </properties>
          <message-keys>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,9 +25,9 @@ import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,7 +56,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * The temporary folder to hold intermediate files.
      */
     @TempDir
-    public Path temporaryFolder;
+    public File temporaryFolder;
 
     /**
      * Returns name of the check.
@@ -120,9 +120,10 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
             throws Exception {
-        final Path suppressionsXpathConfigPath =
-                Files.createTempFile(temporaryFolder, "", "");
-        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath,
+        final String uniqueFileName =
+                "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
+        final File suppressionsXpathConfigPath = new File(temporaryFolder, uniqueFileName);
+        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath(),
                 StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
@@ -191,16 +192,24 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      *
      * @param moduleConfig module configuration.
      * @param fileToProcess input class file.
-     * @param expectedViolations expected violation messages.
+     * @param expectedViolation expected violation message.
      * @param expectedXpathQueries expected generated xpath queries.
      * @throws Exception if an error occurs
+     * @throws IllegalArgumentException if length of expectedViolation is more than 1
      */
     protected void runVerifications(DefaultConfiguration moduleConfig,
                                   File fileToProcess,
-                                  String[] expectedViolations,
+                                  String[] expectedViolation,
                                   List<String> expectedXpathQueries) throws Exception {
+        if (expectedViolation.length != 1) {
+            throw new IllegalArgumentException(
+                    "Expected violations should contain exactly one element."
+                            + " Multiple violations are not supported."
+            );
+        }
+
         final ViolationPosition position =
-                extractLineAndColumnNumber(expectedViolations);
+                extractLineAndColumnNumber(expectedViolation);
         final List<String> generatedXpathQueries =
                 generateXpathQueries(fileToProcess, position);
 
@@ -211,7 +220,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
                 generatedXpathQueries));
 
         final Integer[] warnList = getLinesWithWarn(fileToProcess.getPath());
-        verify(moduleConfig, fileToProcess.getPath(), expectedViolations, warnList);
+        verify(moduleConfig, fileToProcess.getPath(), expectedViolation, warnList);
         verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
         verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
     }

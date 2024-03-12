@@ -19,7 +19,7 @@ public class InputRightCurlyTestSwitchExpression6 {
          case B:
          default:
              yield false;
-         }) && x == 1; // ok
+         }) && x == 1;
 
          {
              final T y = T.A;
@@ -32,7 +32,7 @@ public class InputRightCurlyTestSwitchExpression6 {
                  yield (x = 1) == 1 || true;
              default:
                  yield false;
-             }) && x == 1; // ok
+             }) && x == 1;
          }
 
          {
@@ -65,7 +65,7 @@ public class InputRightCurlyTestSwitchExpression6 {
                  x = 1;
                  yield true;
              }
-             }) && x == 1; // ok
+             }) && x == 1;
          }
      }
 
@@ -74,7 +74,7 @@ public class InputRightCurlyTestSwitchExpression6 {
               case ONE -> 1;
               case TWO -> 2;
               case THREE -> 3;
-          }; // ok
+          };
       }
 
       int usedOnBothSidesOfArithmeticExpression(Day day) {
@@ -82,7 +82,7 @@ public class InputRightCurlyTestSwitchExpression6 {
               case MON, TUE -> 0;
               case WED -> 1;
               default -> 2;
-          } * switch (day) {  // ok
+          } * switch (day) {
               case WED, THU -> 3;
               case FRI -> 4;
               default -> 5;
@@ -102,7 +102,7 @@ public class InputRightCurlyTestSwitchExpression6 {
                   yield (x = 1) == 1 || true;
               default
                       :yield false;
-          }) && x == 1; // ok
+          }) && x == 1;
      }
 }
 

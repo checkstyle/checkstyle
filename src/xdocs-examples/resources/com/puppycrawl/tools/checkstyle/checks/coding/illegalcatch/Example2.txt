@@ -1,0 +1,44 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalCatch">
+      <property name="illegalClassNames" value="ArithmeticException,
+                  OutOfMemoryError"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+try {
+    // some code here
+} catch (OutOfMemoryError e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (NullPointerException e) { // OK
+
+} catch (OutOfMemoryError e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException | Exception e) {  // violation
+
+}
+
+try {
+    // some code here
+} catch (Exception e) { // OK
+
+}
+// xdoc section -- end

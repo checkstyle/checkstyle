@@ -9,7 +9,8 @@ ignoreComments = (default)false
 
 
 */
-
+// violation 11 lines above 'Required pattern .* missing in file.'
+// location of violation is first line of file
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ import java.io.File;
  * Test case for detecting simple semantic violations.
  * @author Lars Kühne
  **/
-class InputRegexpSemantic2 // violation
+class InputRegexpSemantic2
 {
     /* Boolean instantiation in a static initializer */
     static {

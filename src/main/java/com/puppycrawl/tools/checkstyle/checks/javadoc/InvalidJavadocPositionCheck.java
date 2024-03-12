@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,25 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * body of a method, will be ignored by the javadoc tool and is considered
  * invalid by this check.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="InvalidJavadocPosition"/&gt;
- * </pre>
- * <p>
- * The following code produces a violation because Javadocs should be before all annotations of
- * the Javadoc's target:
- * </p>
- * <pre>
- * &#064;SuppressWarnings("serial")
- * /**
- *  * This comment looks like javadoc but it at an invalid location.
- *  * Therefore, the text will not get into TestClass.html and the check will produce a violation.
- *  *&#47;
- * public class TestClass {
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

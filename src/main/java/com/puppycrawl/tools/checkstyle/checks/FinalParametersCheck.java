@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -59,69 +59,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check to enforce final parameters for methods and constructors:
- * </p>
- * <pre>
- * &lt;module name=&quot;FinalParameters&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Point {
- *   public Point() { } // ok
- *   public Point(final int m) { } // ok
- *   public Point(final int m,int n) { } // violation, n should be final
- *   public void methodOne(final int x) { } // ok
- *   public void methodTwo(int x) { } // violation, x should be final
- *   public static void main(String[] args) { } // violation, args should be final
- * }
- * </pre>
- * <p>
- * To configure the check to enforce final parameters only for constructors:
- * </p>
- * <pre>
- * &lt;module name=&quot;FinalParameters&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Point {
- *   public Point() { } // ok
- *   public Point(final int m) { } // ok
- *   public Point(final int m,int n) { } // violation, n should be final
- *   public void methodOne(final int x) { } // ok
- *   public void methodTwo(int x) { } // ok
- *   public static void main(String[] args) { } // ok
- * }
- * </pre>
- * <p>
- * To configure the check to allow ignoring
- * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
- * primitive datatypes</a> as parameters:
- * </p>
- * <pre>
- * &lt;module name=&quot;FinalParameters&quot;&gt;
- *   &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Point {
- *   public Point() { } // ok
- *   public Point(final int m) { } // ok
- *   public Point(final int m,int n) { } // ok
- *   public void methodOne(final int x) { } // ok
- *   public void methodTwo(int x) { } // ok
- *   public static void main(String[] args) { } // violation, args should be final
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -169,6 +106,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * Setter to ignore primitive types as parameters.
      *
      * @param ignorePrimitiveTypes true or false.
+     * @since 6.2
      */
     public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes) {
         this.ignorePrimitiveTypes = ignorePrimitiveTypes;

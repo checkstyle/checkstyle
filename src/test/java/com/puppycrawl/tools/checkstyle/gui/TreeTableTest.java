@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -210,5 +210,23 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         assertWithMessage("Unexpected XPath text area text")
                 .that(xpathTextArea.getText())
                 .isEqualTo(expected);
+    }
+
+    @Test
+    public void testTreeModelAdapterMethods() throws IOException {
+        final MainFrame mainFrame = new MainFrame();
+        mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
+
+        assertWithMessage("Value at Column (0, 3) expected to equal 0")
+                .that(treeTable.getValueAt(0, 3).equals(0))
+                .isEqualTo(true);
+
+        assertWithMessage("getColumn class expected to return string class")
+                .that(treeTable.getColumnClass(4).equals(String.class))
+                .isEqualTo(true);
+
+        assertWithMessage("Selected cell expected not be editable")
+                .that(treeTable.isCellEditable(1, 0))
+                .isEqualTo(false);
     }
 }

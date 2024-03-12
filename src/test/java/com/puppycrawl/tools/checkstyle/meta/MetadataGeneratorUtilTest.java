@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,8 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
-            "JavadocMetadataScraper"
+            "JavadocMetadataScraper",
+            "ClassAndPropertiesSettersJavadocScraper"
     );
 
     @Override
@@ -78,7 +79,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
         final String[] expectedErrorMessages = {
             "31: " + getCheckMessage(MSG_DESC_MISSING, "AbstractSuperCheck"),
-            "45: " + getCheckMessage(MSG_DESC_MISSING, "AbstractHeaderCheck"),
+            "44: " + getCheckMessage(MSG_DESC_MISSING, "AbstractHeaderCheck"),
             "42: " + getCheckMessage(MSG_DESC_MISSING, "AbstractJavadocCheck"),
             "45: " + getCheckMessage(MSG_DESC_MISSING, "AbstractClassCouplingCheck"),
             "26: " + getCheckMessage(MSG_DESC_MISSING, "AbstractAccessControlNameCheck"),

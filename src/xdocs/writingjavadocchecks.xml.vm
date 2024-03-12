@@ -529,39 +529,41 @@ JAVADOC -> JAVADOC [0:0]
 
       <p>More examples:</p>
 
-      <table style="table-layout: fixed;">
-        <tr>
-          <td>
-            1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag is
-            not nested to this tag.
-            That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle requires
-            <a href="#Tight-HTML_rules">Tight-HTML</a> code to predictably parse Javadoc comments.
-          </td>
-          <td>
-            2) Here is correct version with open and closed HTML tags.
-          </td>
-        </tr>
+      <div class="wrapper">
+        <table style="table-layout: fixed;">
+          <tr>
+            <td>
+              1) Unclosed paragraph HTML tag. As you see in the tree, content of the paragraph tag
+              is not nested to this tag.
+              That is because HTML tags are not closed by pair tag &lt;/p&gt;, and Checkstyle
+              requires <a href="#Tight-HTML_rules">Tight-HTML</a> code to predictably parse
+              Javadoc comments.
+            </td>
+            <td>
+              2) Here is correct version with open and closed HTML tags.
+            </td>
+          </tr>
 
-        <tr>
-          <td>
-            <source><![CDATA[
+          <tr>
+            <td>
+              <source><![CDATA[
 <p> First
 <p> Second
 ]]>
-            </source>
-          </td>
-          <td>
-            <source><![CDATA[
+              </source>
+            </td>
+            <td>
+              <source><![CDATA[
 <p> First </p>
 <p> Second </p>
 ]]>
-            </source>
-          </td>
-        </tr>
+              </source>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
-            <source><![CDATA[
+          <tr>
+            <td>
+              <source><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--P_TAG_START -> P_TAG_START [0:0]
@@ -578,10 +580,10 @@ JAVADOC -> JAVADOC [0:0]
 |--TEXT ->  Second [1:3]
 `--EOF -> <EOF> [1:10]
 ]]>
-            </source>
-          </td>
-          <td>
-            <source><![CDATA[
+              </source>
+            </td>
+            <td>
+              <source><![CDATA[
 JAVADOC -> JAVADOC [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:0]
 |   `--PARAGRAPH -> PARAGRAPH [0:0]
@@ -610,10 +612,11 @@ JAVADOC -> JAVADOC [0:0]
 |           `--END -> > [1:14]
 `--EOF -> <EOF> [1:15]
 ]]>
-            </source>
-          </td>
-        </tr>
-      </table>
+              </source>
+            </td>
+          </tr>
+        </table>
+      </div>
 
       <p>
         Checks can also be configured to log violation on encountering non-tight HTML tags.

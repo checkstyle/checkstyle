@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryParentheses</title>
+  </head>
+  <body>
+    <section name="UnnecessaryParentheses">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks if unnecessary parentheses are used in a statement or expression.
+          The check will flag the following with warnings:
+        </p>
+        <source>
+return (x);          // parens around identifier
+return (x + 1);      // parens around return value
+int x = (y / 2 + 1); // parens around assignment rhs
+for (int i = (0); i &lt; 10; i++) {  // parens around literal
+t -= (z + 1);                     // parens around assignment rhs
+boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
+            || z &lt; 9;
+boolean b = (~a) &gt; -27            // parens around ~a
+            &amp;&amp; (a-- &lt; 30);        // parens around expression
+        </source>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          The check is not "type aware", that is to say, it can't tell if parentheses
+          are unnecessary based on the types in an expression. The check is partially aware about
+          operator precedence but unaware about operator associativity.
+          It won't catch cases such as:
+        </p>
+        <source>
+int x = (a + b) + c; // 1st Case
+boolean p = true; // 2nd Case
+int q = 4;
+int r = 3;
+if (p == (q &lt;= r)) {}
+        </source>
+        <p>
+          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
+          <code>int</code> variables, the parentheses around <code>a + b</code>
+          are not needed.
+          In the second case, parentheses are required as <em>q</em>, <em>r</em> are
+          of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
+          and removing parentheses will give a compile-time error. Even if <em>q</em>
+          and <em>r</em> were <code>boolean</code> still there will be no violation
+          raised as check is not "type aware".
+        </p>
+        <p>
+          The partial support for operator precedence includes cases of the following type:
+        </p>
+        <source>
+boolean a = true, b = true;
+boolean c = false, d = false;
+if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
+}
+if (a &amp;&amp; (b || c)) { // ok
+}
+if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
+}
+String e = &quot;e&quot;;
+if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
+}
+int f = 0;
+int g = 0;
+if (!(f &gt;= g) // ok
+        &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
+}
+if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Which results in the following violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check to detect unnecessary parentheses around bitwise inclusive OR
+          <code> '|' </code>, bitwise AND <code> '&amp;' </code>, bitwise exclusive OR
+          <code> '^' </code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessaryparentheses/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="UnnecessaryParentheses"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="UnnecessaryParentheses"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

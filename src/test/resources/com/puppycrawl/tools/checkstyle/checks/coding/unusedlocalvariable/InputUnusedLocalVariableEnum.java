@@ -36,7 +36,7 @@ public enum InputUnusedLocalVariableEnum {
 
     public void testTryWithResources(int a) {
         try (BufferedReader br =
-                     new BufferedReader(new FileReader("someFile.txt"))) { // ok
+                     new BufferedReader(new FileReader("someFile.txt"))) {
             br.readLine();
         }
         catch (IOException e) {
@@ -68,10 +68,10 @@ public enum InputUnusedLocalVariableEnum {
     }
 
     public void testBooleanExpressions() {
-        boolean b = false; // ok
+        boolean b = false;
         if (!b) {
         }
-        boolean b1 = true; // ok
+        boolean b1 = true;
         if (b1) {
         }
         boolean a; // violation

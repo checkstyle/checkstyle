@@ -16,8 +16,8 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import static java.lang.Math.abs; // ok
-import static org.antlr.v4.runtime.Recognizer.EOF; // ok
+import static java.lang.Math.abs;
+import static org.antlr.v4.runtime.Recognizer.EOF;
 
 import org.antlr.v4.runtime.*; // violation 'Extra separation in import group before 'org.antlr.v4.runtime.*''
 

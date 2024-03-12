@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -52,45 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li> should not be preceded with whitespace in all cases.</li>
  * <li> should be followed with whitespace in almost all cases,
  *   except diamond operators and when preceding method name or constructor.</li></ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;GenericWhitespace&quot;/&gt;
- * </pre>
- * <p>
- * Examples with correct spacing:
- * </p>
- * <pre>
- * // Generic methods definitions
- * public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
- * // Generic type definition
- * class name&lt;T1, T2, ..., Tn&gt; {}
- * // Generic type reference
- * OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
- * // Generic preceded method name
- * boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
- * // Diamond operator
- * Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");
- * // Method reference
- * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
- * // Method reference
- * sort(list, Comparable::&lt;String&gt;compareTo);
- * // Constructor call
- * MyClass obj = new &lt;String&gt;MyClass();
- * </pre>
- * <p>
- * Examples with incorrect spacing:
- * </p>
- * <pre>
- * List&lt; String&gt; l; // violation, "&lt;" followed by whitespace
- * Box b = Box. &lt;String&gt;of("foo"); // violation, "&lt;" preceded with whitespace
- * public&lt;T&gt; void foo() {} // violation, "&lt;" not preceded with whitespace
- *
- * List a = new ArrayList&lt;&gt; (); // violation, "&gt;" followed by whitespace
- * Map&lt;Integer, String&gt;m; // violation, "&gt;" not followed by whitespace
- * Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -258,7 +219,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processSingleGeneric(DetailAST ast, int[] line, int after) {
         final char charAfter = Character.toChars(line[after])[0];
-        if (isGenericBeforeMethod(ast) || isGenericBeforeCtor(ast)) {
+        if (isGenericBeforeMethod(ast) || isGenericBeforeCtorInvocation(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
@@ -269,16 +230,38 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if generic is before constructor invocation.
+     * Checks if generic is before constructor invocation. Identifies two cases:
+     * <ol>
+     *     <li>{@code new ArrayList<>();}</li>
+     *     <li>{@code new Outer.Inner<>();}</li>
+     * </ol>
      *
      * @param ast ast
-     * @return true if generic before a constructor invocation
+     * @return true if generic is before constructor invocation
      */
-    private static boolean isGenericBeforeCtor(DetailAST ast) {
+    private static boolean isGenericBeforeCtorInvocation(DetailAST ast) {
+        final DetailAST grandParent = ast.getParent().getParent();
+        return grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getParent().getType() == TokenTypes.LITERAL_NEW;
+    }
+
+    /**
+     * Checks if generic is after {@code LITERAL_NEW}. Identifies three cases:
+     * <ol>
+     *     <li>{@code new <String>Object();}</li>
+     *     <li>{@code new <String>Outer.Inner();}</li>
+     *     <li>{@code new <@A Outer>@B Inner();}</li>
+     * </ol>
+     *
+     * @param ast ast
+     * @return true if generic after {@code LITERAL_NEW}
+     */
+    private static boolean isGenericAfterNew(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent.getParent().getType() == TokenTypes.LITERAL_NEW
                 && (parent.getNextSibling().getType() == TokenTypes.IDENT
-                    || parent.getNextSibling().getType() == TokenTypes.DOT);
+                    || parent.getNextSibling().getType() == TokenTypes.DOT
+                    || parent.getNextSibling().getType() == TokenTypes.ANNOTATIONS);
     }
 
     /**
@@ -313,25 +296,29 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         final int before = ast.getColumnNo() - 1;
         final int after = ast.getColumnNo() + 1;
 
-        // Need to handle two cases as in:
+        // Checks if generic needs to be preceded by a whitespace or not.
+        // Handles 3 cases as in:
         //
         //   public static <T> Callable<T> callable(Runnable task, T result)
         //                 ^           ^
-        //      ws reqd ---+           +--- whitespace NOT required
+        //   1. ws reqd ---+        2. +--- whitespace NOT required
         //
+        //   new <String>Object()
+        //       ^
+        //    3. +--- ws required
         if (before >= 0) {
-            // Detect if the first case
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
+            // cases (1, 3) where whitespace is required:
             if (grandparent.getType() == TokenTypes.CTOR_DEF
                     || grandparent.getType() == TokenTypes.METHOD_DEF
-                    || isGenericBeforeCtor(ast)) {
-                // Require whitespace
+                    || isGenericAfterNew(ast)) {
+
                 if (!CommonUtil.isCodePointWhitespace(line, before)) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);
                 }
             }
-            // Whitespace not required
+            // case 2 where whitespace is not required:
             else if (CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);

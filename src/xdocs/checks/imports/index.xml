@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Imports</title>
+  </head>
+  <body>
+    <section name="Imports Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="avoidstarimport.html#AvoidStarImport">
+                AvoidStarImport
+              </a>
+            </td>
+            <td>
+              Checks that there are no import statements that use the * notation.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="avoidstaticimport.html#AvoidStaticImport">
+                AvoidStaticImport
+              </a>
+            </td>
+            <td>
+              Checks that there are no static import statements.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="customimportorder.html#CustomImportOrder">
+                CustomImportOrder
+              </a>
+            </td>
+            <td>
+              Checks that the groups of import declarations appear in the order specified
+            by the user.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="illegalimport.html#IllegalImport">
+                IllegalImport
+              </a>
+            </td>
+            <td>
+              Checks for imports from a set of illegal packages.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="importcontrol.html#ImportControl">
+                ImportControl
+              </a>
+            </td>
+            <td>
+              Controls what can be imported in each package and file.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="importorder.html#ImportOrder">
+                ImportOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering/grouping of imports.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="redundantimport.html#RedundantImport">
+                RedundantImport
+              </a>
+            </td>
+            <td>
+              Checks for redundant import statements.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unusedimports.html#UnusedImports">
+                UnusedImports
+              </a>
+            </td>
+            <td>
+              Checks for unused import statements.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

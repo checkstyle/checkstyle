@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -74,60 +74,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * in a container, the behavior might be mysterious. For these reasons, this type
  * of bug can elude testing and code inspections.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;CovariantEquals&quot;/&gt;
- * </pre>
- * <p>
- * For example:
- * </p>
- * <pre>
- * class Test {
- *   public boolean equals(Test i) {  // violation
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * The same class without violations:
- * </p>
- * <pre>
- * class Test {
- *   public boolean equals(Test i) {  // no violation
- *     return false;
- *   }
- *
- *   public boolean equals(Object i) {
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * Another example:
- * </p>
- * <pre>
- * record Test(String str) {
- *   public boolean equals(Test r) {  // violation
- *     return false;
- *   }
- * }
- * </pre>
- * <p>
- * The same record without violations:
- * </p>
- * <pre>
- * record Test(String str) {
- *   public boolean equals(Test r) {  // no violation
- *     return false;
- *   }
- *
- *   public boolean equals(Object r) {
- *     return false;
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

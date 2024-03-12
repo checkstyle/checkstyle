@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -388,9 +388,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         return Stream.concat(filters.stream(),
                 Stream.concat(ordinaryChecks.stream(), commentChecks.stream()))
             .filter(ExternalResourceHolder.class::isInstance)
-            .map(ExternalResourceHolder.class::cast)
-            .flatMap(resource -> resource.getExternalResourceLocations().stream())
-            .collect(Collectors.toSet());
+            .flatMap(resource -> {
+                return ((ExternalResourceHolder) resource)
+                        .getExternalResourceLocations().stream();
+            })
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -425,7 +427,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 Comparator.<AbstractCheck, String>comparing(check -> check.getClass().getName())
                         .thenComparing(AbstractCheck::getId,
                                 Comparator.nullsLast(Comparator.naturalOrder()))
-                        .thenComparing(AbstractCheck::hashCode));
+                        .thenComparingInt(AbstractCheck::hashCode));
     }
 
     /**

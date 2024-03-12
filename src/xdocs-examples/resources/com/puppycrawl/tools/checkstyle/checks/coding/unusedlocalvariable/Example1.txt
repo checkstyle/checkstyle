@@ -1,0 +1,64 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnusedLocalVariable"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test {
+
+    int a;
+
+    {
+        int k = 12; // violation, assigned and updated but never used
+        k++;
+    }
+
+    Test(int a) {   // ok as 'a' is a constructor parameter not a local variable
+        this.a = 12;
+    }
+
+    void method(int b) {
+        int a = 10;             // violation
+        int[] arr = {1, 2, 3};  // violation
+        int[] anotherArr = {1}; // ok
+        anotherArr[0] = 4;
+    }
+
+    String convertValue(String newValue) {
+        String s = newValue.toLowerCase(); // violation
+        return newValue.toLowerCase();
+    }
+
+    void read() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String s; // violation
+        while ((s = reader.readLine()) != null) {
+        }
+        try (BufferedReader reader1 // ok as 'reader1' is a resource and resources are closed
+                                    // at the end of the statement
+            = new BufferedReader(new FileReader("abc.txt"))) {
+        }
+        try {
+        } catch (Exception e) {     // ok as e is an exception parameter
+        }
+    }
+
+    void loops() {
+        int j = 12;
+        for (int i = 0; j < 11; i++) { // violation, unused local variable 'i'.
+        }
+        for (int p = 0; j < 11; p++)   // ok
+            p /= 2;
+    }
+
+    void lambdas() {
+        Predicate<String> obj = (String str) -> { // ok as 'str' is a lambda parameter
+            return true;
+        };
+        obj.test("test");
+    }
+}
+// xdoc section -- end

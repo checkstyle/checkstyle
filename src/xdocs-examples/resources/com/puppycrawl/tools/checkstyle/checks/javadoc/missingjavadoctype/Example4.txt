@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocType">
+      <property name="skipAnnotations" value="SpringBootApplication,Configuration"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+@SpringBootApplication // no violations about missing comment on class
+public class Application {}
+
+@Configuration // no violations about missing comment on class
+class DatabaseConfiguration {}
+// xdoc section -- end

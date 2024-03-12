@@ -22,10 +22,10 @@ class InputRightCurlyLeftTestShouldStartLine2
                 if (x > 0)
                 {
                     break;
-                } // ok
+                }
                 else if (x < 0) {
                     ;
-                } // ok
+                }
                 else
                 {
                     break;
@@ -37,11 +37,11 @@ class InputRightCurlyLeftTestShouldStartLine2
                 default:
                     break;
                 }
-            } // ok
+            }
             catch (Exception e)
             {
                 break;
-            } // ok
+            }
             finally
             {
                 break;
@@ -53,7 +53,7 @@ class InputRightCurlyLeftTestShouldStartLine2
             do
             {
                 x = 2;
-            } while (x == 2); // ok
+            } while (x == 2);
         }
 
         this.wait(666
@@ -90,11 +90,11 @@ class InputRightCurlyLeftTestShouldStartLine2
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // ok
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
@@ -141,17 +141,17 @@ class FooInnerTestShouldStartLine2
  */
 class Absent_CustomFieldSerializer3TestShouldStartLine2 {
 
-    public static void serialize() {} // ok
+    public static void serialize() {}
 }
 
 class Absent_CustomFieldSerializer4TestShouldStartLine2
 {
-    public void Absent_CustomFieldSerializer4() {} // ok
+    public void Absent_CustomFieldSerializer4() {}
 }
 
-class EmptyClass2TestShouldStartLine2 {} // ok
+class EmptyClass2TestShouldStartLine2 {}
 
-interface EmptyInterface3TestShouldStartLine2 {} // ok
+interface EmptyInterface3TestShouldStartLine2 {}
 
 class ClassWithStaticInitializersTestShouldStartLine2
 {
@@ -170,23 +170,23 @@ class ClassWithStaticInitializersTestShouldStartLine2
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // ok
+        } catch (RuntimeException e) {
             new Object();
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
             // comment
-        } catch (Throwable e) { // ok
-        } finally { // ok
+        } catch (Throwable e) {
+        } finally {
             // comment
         }
 
         do {
-        } while (true); // ok
+        } while (true);
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // ok
-        for (int i = 0; i < 1; i++) { new Object(); }; // ok
+        };
+        for (int i = 0; i < 1; i++) { new Object(); };
     }
 
     static final java.util.concurrent.ThreadFactory threadFactory
@@ -202,7 +202,7 @@ class ClassWithStaticInitializersTestShouldStartLine2
         public void meth1(); } // violation ''}' at column 30 should be alone on a line'
 
     interface Interface2
-    { int i = 1; public void meth1(); } // ok
+    { int i = 1; public void meth1(); }
 
     interface Interface3 {
         void display();

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocBlockTagLocation</title>
+  </head>
+  <body>
+    <section name="JavadocBlockTagLocation">
+      <p>Since Checkstyle 8.24</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
+          javadoc block tag</a> appears only at the beginning of a line, ignoring
+          leading asterisks and white space. A block tag is a token that starts
+          with <code>@</code> symbol and is preceded by a whitespace. This check
+          ignores block tags in comments and inside inline tags {@code } and
+          {@literal }.
+        </p>
+        <p>
+          Rationale: according to
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
+          the specification</a> all javadoc block tags should be placed at the
+          beginning of a line. Tags that are not placed at the beginning are treated
+          as plain text. To recognize intentional tag placement to text area
+          it is better to escape the <code>@</code> symbol, and all non-escaped
+          tags should be located at the beginning of the line. See NOTE section
+          for details on how to escape.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          To place a tag explicitly as text, escape the <code>@</code> symbol
+          with HTML entity &amp;#64; or place it inside <code>{@code }</code>,
+          for example:
+        </p>
+        <source>
+/**
+ * &amp;#64;serial literal in {@code @serial} Javadoc tag.
+ */
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check to verify tags from
+          <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check to verify all default tags and some custom tags in addition:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocBlockTagLocation">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocBlockTagLocation"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocBlockTagLocation"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

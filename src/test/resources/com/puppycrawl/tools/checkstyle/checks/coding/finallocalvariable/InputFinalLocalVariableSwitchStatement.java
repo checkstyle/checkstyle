@@ -15,7 +15,7 @@ public class InputFinalLocalVariableSwitchStatement {
     }
 
     public void foo() {
-        int x; // ok
+        int x;
 
         {
             final T y = T.A;

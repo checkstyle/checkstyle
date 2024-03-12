@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,13 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -337,14 +342,16 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final String uniqueFileName1 = "junit_" + UUID.randomUUID() + ".java";
+        final File cacheFile = new File(temporaryFolder, uniqueFileName1);
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
-        final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
+        final String uniqueFileName2 = "empty_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName2);
 
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
         // One more time to use cache.
-        execute(checkerConfig, filePath);
+        execute(checkerConfig, filePath.toString());
 
         final String contents = Files.readString(cacheFile.toPath());
         assertWithMessage("External resource is not present in cache")
@@ -423,6 +430,49 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputImportControlFileNameNoExtension"), expected);
+    }
+
+    @Test
+    public void testBeginTreeCurrentImportControl() throws Exception {
+        final String file1 = getPath("InputImportControlBeginTree1.java");
+        final String file2 = getPath("InputImportControlBeginTree2.java");
+        final List<String> expectedFirstInput = Arrays.asList(
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Stream"),
+            "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.util.stream.Collectors")
+        );
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testImportControlFileName() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlTestRegexpInFile.java"), expected);
+    }
+
+    @Test
+    public void testImportControlFileName2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputImportControlTestRegexpInFile2.java"), expected);
+    }
+
+    @Test
+    public void testImportControlTestException() {
+        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            verifyWithInlineConfigParser(getPath("InputImportControlTestException.java"));
+        });
+
+        assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
+                .startsWith("unable to parse file:");
+        assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
+                .endsWith("- Document root element \"import-control\", must match DOCTYPE"
+                 + " root \"null\".");
     }
 
     /**

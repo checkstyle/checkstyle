@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,34 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[A-Z]$"}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RecordTypeParameterName"/&gt;
- * </pre>
- * <p>
- * An example of how to configure the check for names that are only a single
- * letter is:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="RecordTypeParameterName"&gt;
- *   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1&lt;T&gt; {} // OK
- * record MyRecord2&lt;t&gt; {} // OK
- * record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
- *                              // name should match the regular expression "^[a-zA-Z]$"
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

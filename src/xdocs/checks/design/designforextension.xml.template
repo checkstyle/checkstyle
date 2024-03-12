@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>DesignForExtension</title>
+  </head>
+  <body>
+    <section name="DesignForExtension">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that classes are designed for extension (subclass creation).
+        </p>
+        <p>
+          Nothing wrong could be with founded classes.
+          This check makes sense only for library projects (not application projects)
+          which care of ideal OOP-design to make sure that class works in all cases even misusage.
+          Even in library projects this check most likely will find classes that are designed
+          for extension by somebody. User needs to use suppressions extensively to got a benefit
+          from this check, and keep in suppressions all confirmed/known classes that are deigned
+          for inheritance intentionally to let the check catch only new classes, and bring this to
+          team/user attention.
+        </p>
+        <p>
+         ATTENTION: Only user can decide whether a class is designed for extension or not.
+         The check just shows all classes which are possibly designed for extension.
+         If smth inappropriate is found please use suppression.
+        </p>
+        <p>
+         ATTENTION: If the method which can be overridden in a subclass has a javadoc comment
+         (a good practice is to explain its self-use of overridable methods) the check will not
+         rise a violation. The violation can also be skipped if the method which can be overridden
+         in a subclass has one or more annotations that are specified in ignoredAnnotations
+         option. Note, that by default @Override annotation is not included in the
+         ignoredAnnotations set as in a subclass the method which has the annotation can also be
+         overridden in its subclass.
+        </p>
+        <p>
+          Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
+          "Item 17: Design and document for inheritance or else prohibit it".
+        </p>
+        <p>
+          Some quotes from book:
+        </p>
+        <blockquote>The class must document its self-use of overridable methods.
+By convention, a method that invokes overridable methods contains a description
+of these invocations at the end of its documentation comment. The description
+begins with the phrase “This implementation.”
+        </blockquote>
+        <blockquote>The best solution to this problem is to prohibit subclassing in classes that
+are not designed and documented to be safely subclassed.
+        </blockquote>
+        <blockquote>If a concrete class does not implement a standard interface, then you may
+inconvenience some programmers by prohibiting inheritance. If you feel that you
+must allow inheritance from such a class, one reasonable approach is to ensure
+that the class never invokes any of its overridable methods and to document this
+fact. In other words, eliminate the class’s self-use of overridable methods entirely.
+In doing so, you’ll create a class that is reasonably safe to subclass. Overriding a
+method will never affect the behavior of any other method.
+        </blockquote>
+        <p>
+          The check finds classes that have overridable methods (public or protected methods
+          that are non-static, not-final, non-abstract) and have non-empty implementation.
+        </p>
+
+        <p>
+          Rationale: This library design style protects superclasses against
+          being broken by subclasses. The downside is that subclasses are
+          limited in their flexibility, in particular they cannot prevent
+          execution of code in the superclass, but that also means that
+          subclasses cannot corrupt the state of the superclass by forgetting
+          to call the superclass's method.
+        </p>
+        <p>
+          More specifically,
+          it enforces a programming style where superclasses provide empty
+          "hooks" that can be implemented by subclasses.
+        </p>
+        <p>
+          Example of code that cause violation as it is designed for extension:
+        </p>
+        <source>
+public abstract class Plant {
+  private String roots;
+  private String trunk;
+
+  protected void validate() {
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
+  }
+
+  public abstract void grow();
+}
+
+public class Tree extends Plant {
+  private List leaves;
+
+  @Overrides
+  protected void validate() {
+    super.validate();
+    if (leaves == null) throw new IllegalArgumentException("No leaves!");
+  }
+
+  public void grow() {
+    validate();
+  }
+}
+        </source>
+        <p>
+          Example of code without violation:
+        </p>
+        <source>
+public abstract class Plant {
+  private String roots;
+  private String trunk;
+
+  private void validate() {
+    if (roots == null) throw new IllegalArgumentException("No roots!");
+    if (trunk == null) throw new IllegalArgumentException("No trunk!");
+    validateEx();
+  }
+
+  protected void validateEx() { }
+
+  public abstract void grow();
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to allow methods which have @Override annotations to be
+          designed for extension.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc to be designed for extension.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check to allow methods which contain a specified comment text pattern in
+          their javadoc which can span multiple lines to be designed for extension.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DesignForExtension">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="DesignForExtension"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="DesignForExtension"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

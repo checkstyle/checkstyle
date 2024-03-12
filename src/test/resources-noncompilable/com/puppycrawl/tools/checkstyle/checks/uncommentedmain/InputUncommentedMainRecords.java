@@ -13,7 +13,7 @@ public record InputUncommentedMainRecords(Integer x) {
         System.out.println("no comments here!");
     }
 
-    // public static void main(String... args) { } // ok
+    // public static void main(String... args) { }
 
     // unlike inner classes, inner records CAN have static methods
     record InnerRecord(String... args) {

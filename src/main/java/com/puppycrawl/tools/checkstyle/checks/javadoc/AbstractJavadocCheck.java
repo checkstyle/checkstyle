@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -70,6 +70,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      */
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR =
             JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
+
+    /**
+     * Message key of error message.
+     */
+    public static final String MSG_KEY_UNCLOSED_HTML_TAG =
+            JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
 
     /**
      * Key is "line:column". Value is {@link DetailNode} tree. Map is stored in {@link ThreadLocal}
@@ -166,6 +172,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to
+     * @since 8.3
      */
     public final void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
         violateExecutionOnNonTightHtml = shouldReportViolation;
@@ -187,7 +194,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         validateDefaultJavadocTokens();
         if (javadocTokens.isEmpty()) {
             javadocTokens.addAll(
-                    Arrays.stream(getDefaultJavadocTokens()).boxed().collect(Collectors.toList()));
+                    Arrays.stream(getDefaultJavadocTokens()).boxed()
+                        .collect(Collectors.toUnmodifiableList()));
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
@@ -319,7 +327,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
                     log(result.getFirstNonTightHtmlTag().getLine(),
-                            JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG,
+                            MSG_KEY_UNCLOSED_HTML_TAG,
                             result.getFirstNonTightHtmlTag().getText());
                 }
             }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@ public final class DetectorOptions {
      */
     private String format;
     /** The message to report on detection. If blank, then use the format. */
-    private String message = "";
+    private String message;
     /** Minimum number of times regular expression should occur in a file. */
     private int minimum;
     /** Maximum number of times regular expression should occur in a file. */

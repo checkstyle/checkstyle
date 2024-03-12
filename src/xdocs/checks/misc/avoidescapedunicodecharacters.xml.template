@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidEscapedUnicodeCharacters</title>
+  </head>
+  <body>
+    <section name="AvoidEscapedUnicodeCharacters">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Restricts using
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+          Unicode escapes</a> (such as \u221e).
+          It is possible to allow using escapes for
+          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
+              non-printable, control characters</a>.
+          Also, this check can be configured to allow using escapes
+          if trail comment is present. By the option it is possible to
+          allow using escapes if literal contains only them.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Examples of using Unicode:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          An example of how to configure the check to allow using escapes
+          for non-printable, control characters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example of using escapes for non-printable, control characters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          An example of how to configure the check to allow using escapes
+          if trail comment is present:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example of using escapes if trail comment is present:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          An example of how to configure the check to allow if
+          all characters in literal are escaped.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          An example of how to configure the check to allow using escapes
+          for non-printable whitespace characters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="AvoidEscapedUnicodeCharacters"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="AvoidEscapedUnicodeCharacters"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -25,7 +25,7 @@ public class InputUnusedLocalVariableNestedClasses2 {
 
 class d {
     void testLocalClasses() {
-        int a = 12; // ok
+        int a = 12;
         int q = 13; // violation
         InputUnusedLocalVariableNestedClasses2.A.B.C obj = // violation
                 new InputUnusedLocalVariableNestedClasses2.A.B().new C() {
@@ -44,7 +44,7 @@ class InputUnusedLocalVariableSameNameLen1 {
 
                 void method() {
                     int b = 12; // violation
-                    int a = 12; // ok
+                    int a = 12;
                     C obj = new C() {
                         void method() {
                             b += a;

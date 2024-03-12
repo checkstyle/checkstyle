@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpHeader</title>
+  </head>
+  <body>
+    <section name="RegexpHeader">
+      <p>Since Checkstyle 6.9</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the header of a source file against a header that contains a
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+            pattern</a> for each line of the source header.
+        </p>
+
+        <p>
+          Rationale: In some projects <a href="header.html#Header">checking against a
+          fixed header</a> is not sufficient, e.g. the header might require a
+          copyright line where the year information is not static.
+        </p>
+
+        <p>
+          For example, consider the following header:
+        </p>
+        <source>
+line  1: ^/{71}$
+line  2: ^// checkstyle:$
+line  3: ^// Checks Java source code for adherence to a set of rules\.$
+line  4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
+line  5: ^// Last modification by \$Author.*\$$
+line  6: ^/{71}$
+line  7:
+line  8: ^package
+line  9:
+line 10: ^import
+line 11:
+line 12: ^/\*\*
+line 13: ^ \*([^/]|$)
+line 14: ^ \*/
+        </source>
+
+        <p>
+          Lines 1 and 6 demonstrate a more compact notation for 71 '/'
+          characters. Line 4 enforces that the copyright notice includes a
+          four digit year. Line 5 is an example how to enforce revision
+          control keywords in a file header. Lines 12-14 is a template for
+          javadoc (line 13 is so complicated to remove conflict with and of
+          javadoc comment). Lines 7, 9 and 11 will be treated as '^$' and
+          will forcefully expect the line to be empty.
+        </p>
+
+        <p>
+          Different programming languages have different comment syntax
+          rules, but all of them start a comment with a non-word
+          character. Hence, you can often use the non-word character
+          class to abstract away the concrete comment syntax and allow
+          checking the header for different languages with a single
+          header definition. For example, consider the following header
+          specification (note that this is not the full Apache license
+          header):
+        </p>
+        <source>
+line 1: ^#!
+line 2: ^&lt;\?xml.*&gt;$
+line 3: ^\W*$
+line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
+line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
+line 6: ^\W*$
+        </source>
+
+        <p>
+          Lines 1 and 2 leave room for technical header lines, e.g. the
+          "#!/bin/sh" line in Unix shell scripts, or the XML file header
+          of XML files. Set the multiline property to "1, 2" so these
+          lines can be ignored for file types where they do no apply.
+          Lines 3 through 6 define the actual header content. Note how
+          lines 2, 4 and 5 use escapes for characters that have special
+          regexp semantics.
+        </p>
+
+        <p>
+          In default configuration, if header is not specified, the default value
+          of header is set to null and the check does not rise any violations.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the check such that no violations arise.
+            Default values of properties are used.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to use header file <code>"config/java.header"</code> and
+          <code>10</code> and <code>13</code> multi-lines:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example3-code">
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          without the need for an external header file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example4-config">
+          For regex containing <code>"\n\n"</code>
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          <code>"\n\n"</code> will be treated as '^$' and will forcefully
+          expect the line to be empty. For example -
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-code">
+          would fail for the regex above. Expected -
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/regexpheader/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p>
+          <u>Note</u>: <code>ignoreLines</code> property has been
+          removed from this check to simplify it. To make some line optional
+          use "^.*$" regexp for this line.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="RegexpHeader"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.header
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="RegexpHeader"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

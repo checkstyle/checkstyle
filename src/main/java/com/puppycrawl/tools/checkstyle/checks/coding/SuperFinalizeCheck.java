@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,26 +33,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
  * 10 points on finalize method in Java</a>.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SuperFinalize&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class A {
- *      protected void finalize() throws Throwable {
- *         System.out.println("In finalize block");
- *          super.finalize(); // OK, calls super.finalize()
- *      }
- * }
- * public class B {
- *      protected void finalize() throws Throwable { // violation
- *          System.out.println("In finalize block");
- *      }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

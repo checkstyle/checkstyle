@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CustomImportOrder</title>
+  </head>
+  <body>
+    <section name="CustomImportOrder">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that the groups of import declarations appear in the order specified
+          by the user. If there is an import but its group is not specified in the
+          configuration such an import should be placed at the end of the import list.
+        </p>
+      </subsection>
+
+      <subsection name="Rule Description" id="Rule_Description">
+        <p>
+          The rule consists of:
+        </p>
+        <ol>
+          <li>
+            STATIC group. This group sets the ordering of static imports.
+          </li>
+          <li>
+            SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
+            Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
+            name and import name are identical:
+            <source>
+package java.util.concurrent.locks;
+
+import java.io.File;
+import java.util.*; //#1
+import java.util.List; //#2
+import java.util.StringTokenizer; //#3
+import java.util.concurrent.*; //#4
+import java.util.concurrent.AbstractExecutorService; //#5
+import java.util.concurrent.locks.LockSupport; //#6
+import java.util.regex.Pattern; //#7
+import java.util.regex.Matcher; //#8
+            </source>
+            If we have SAME_PACKAGE(3) on configuration file,
+            imports #4-6 will be considered as a SAME_PACKAGE group (java.util.concurrent.*,
+            java.util.concurrent.AbstractExecutorService, java.util.concurrent.locks.LockSupport).
+            SAME_PACKAGE(2) will include #1-8. SAME_PACKAGE(4) will include only #6.
+            SAME_PACKAGE(5) will result in no imports assigned to SAME_PACKAGE group because
+            actual package java.util.concurrent.locks has only 4 domains.
+          </li>
+          <li>
+            THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
+            Third party imports are all imports except STATIC, SAME_PACKAGE(n),
+            STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS.
+          </li>
+          <li>
+            STANDARD_JAVA_PACKAGE group. By default, this group sets ordering of standard
+            java/javax imports.
+          </li>
+          <li>
+            SPECIAL_IMPORTS group. This group may contain some imports that have particular
+            meaning for the user.
+          </li>
+        </ol>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          Rules are configured as a comma-separated ordered list.
+        </p>
+        <p>
+          Note: '###' group separator is deprecated (in favor of a comma-separated list),
+          but is currently supported for backward compatibility.
+        </p>
+        <p>
+          To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+          thirdPartyPackageRegExp and standardPackageRegExp options.
+        </p>
+        <p>
+          Pretty often one import can match more than one group. For example, static import
+          from standard package or regular expressions are configured to allow one import match
+          multiple groups. In this case, group will be assigned according to priorities:
+        </p>
+        <ol>
+          <li>STATIC has top priority</li>
+          <li>SAME_PACKAGE has second priority</li>
+          <li>STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS will compete using "best match" rule: longer
+          matching substring wins; in case of the same length, lower position of matching substring
+          wins; if position is the same, order of rules in configuration solves the puzzle.</li>
+          <li>THIRD_PARTY has the least priority</li>
+        </ol>
+        <p>
+          Few examples to illustrate "best match":
+        </p>
+        <p>
+          1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck"
+          and input file:
+        </p>
+        <source>
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+        </source>
+        <p>
+          Result: imports will be assigned to SPECIAL_IMPORTS, because matching
+          substring length is 16. Matching substring for STANDARD_JAVA_PACKAGE is 5.
+        </p>
+        <p>
+          2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
+        </p>
+        <source>
+import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+        </source>
+        <p>
+          Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for
+          both patterns. However, "Avoid" position is lower than "Check" position.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>customImportOrderRules</td>
+              <td>Specify ordered list of import groups.</td>
+              <td><a href="../../property_types.html#String[]">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>separateLineBetweenGroups</td>
+              <td>Force empty line separator between import groups.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>sortImportsInGroupAlphabetically</td>
+              <td>Force grouping alphabetically, in
+                <a href="https://en.wikipedia.org/wiki/ASCII#Order">
+                  ASCII sort order</a>.
+              </td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>specialImportsRegExp</td>
+              <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^$"</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>standardPackageRegExp</td>
+              <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>"^(java|javax)\."</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>thirdPartyPackageRegExp</td>
+              <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>".*"</code></td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check :
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check so that it checks in the order
+          (static imports,standard java packages,third party package):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check such that only java packages are included in standard java packages
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure the check to include only &quot;com&quot; packages
+          as third party group imports:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure the check to force some packages in special import group:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+          To configure the check such that empty line separator between two groups is enabled:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
+          To configure the check such that import groups are forced to be sorted alphabetically:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Kepler and Luna releases):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: "java" and "javax" packages first,
+              then "org" and then all other imports</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by single blank line</li>
+        </ul>
+        <p id="Example8-config">Notes:</p>
+        <ul>
+          <li>"com" package is not mentioned on configuration, because it is
+              ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
+          <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
+              prior to Mars release, but covers most scenarios</li>
+        </ul>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
+          To configure the check so that it matches default Eclipse formatter configuration
+           (tested on Mars release):</p>
+        <ul>
+          <li>group of static imports is on the top</li>
+          <li>groups of non-static imports: "java" and "javax" packages first,
+              then "org" and "com", then all other imports as one group</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by one blank line</li>
+        </ul>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example9.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>To configure the check so that it matches default IntelliJ IDEA formatter configuration
+           (tested on v14):</p>
+        <ul>
+          <li>group of static imports is on the bottom</li>
+          <li>groups of non-static imports: all imports except of "javax" and
+              "java", then "javax" and "java"</li>
+          <li>imports will be sorted in the groups</li>
+          <li>groups are separated by one blank line</li>
+        </ul>
+
+        <p id="Example10-config">
+        Note: "separated" option is disabled because IDEA default has blank line
+        between "java" and static imports, and no blank line between
+        "javax" and "java"
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example10.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example11-config">
+          To configure the check so that it matches default NetBeans formatter configuration
+           (tested on v8):</p>
+        <ul>
+          <li>groups of non-static imports are not defined, all imports will be sorted as a one
+              group</li>
+          <li>static imports are not separated, they will be sorted along with other imports</li>
+        </ul>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example11-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example11.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example12-config">
+          To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+          thirdPartyPackageRegExp and standardPackageRegExp options.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example12-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example12.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example13-config">
+          Also, this check can be configured to force empty line separator between
+          import groups. For example.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example13-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example13.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example14-config">
+          It is possible to enforce <a href="https://en.wikipedia.org/wiki/ASCII#Order">
+          ASCII sort order</a>
+          of imports in groups using the following configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example14-code">
+          Example of ASCII order:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example14.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example15-code">
+          To force checking imports sequence such as:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example15-config">
+          configure as follows:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/customimportorder/Example15.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="CustomImportOrder"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="CustomImportOrder"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

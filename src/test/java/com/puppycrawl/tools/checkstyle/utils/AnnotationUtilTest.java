@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,17 +20,25 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck;
 
-public class AnnotationUtilTest {
+public class AnnotationUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/annotationutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() {
@@ -324,6 +332,35 @@ public class AnnotationUtilTest {
         assertWithMessage("Annotation should contain " + astForTest)
                 .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
                 .isTrue();
+    }
+
+    @Test
+    public void testCompactNoUnchecked() throws Exception {
+
+        final String[] expected = {
+            "16:20: " + getCheckMessage(SuppressWarningsCheck.class,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "22:28: " + getCheckMessage(SuppressWarningsCheck.class,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "40:36: " + getCheckMessage(SuppressWarningsCheck.class,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "69:28: " + getCheckMessage(SuppressWarningsCheck.class,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "72:49: " + getCheckMessage(SuppressWarningsCheck.class,
+                    MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationUtil1.java"), expected);
+    }
+
+    @Test
+    public void testValuePairAnnotation() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputAnnotationUtil2.java"), expected);
     }
 
     private static DetailAstImpl create(int tokenType) {

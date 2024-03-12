@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -46,31 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if ("something".equals(x))
  * </pre>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
- * </pre>
- * <p>
- * Examples of violations:
- * </p>
- * <pre>
- * String status = "pending";
- *
- * if (status == "done") {} // violation
- *
- * while (status != "done") {} // violation
- *
- * boolean flag = (status == "done"); // violation
- *
- * boolean flag = (status.equals("done")); // OK
- *
- * String name = "X";
- *
- * if (name == getName()) {}
- * // OK, limitation that check cannot tell runtime type returned from method call
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -113,10 +88,7 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final boolean hasStringLiteralChild =
-                ast.findFirstToken(TokenTypes.STRING_LITERAL) != null
-                    || ast.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) != null
-                    || areStringsConcatenated(ast);
+        final boolean hasStringLiteralChild = hasStringLiteralChild(ast);
 
         if (hasStringLiteralChild) {
             log(ast, MSG_KEY, ast.getText());
@@ -129,13 +101,13 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
      * @param ast ast
      * @return {@code true} if string literal or text block literals are concatenated
      */
-    private static boolean areStringsConcatenated(DetailAST ast) {
-        DetailAST plusAst = ast.findFirstToken(TokenTypes.PLUS);
+    private static boolean hasStringLiteralChild(DetailAST ast) {
+        DetailAST currentAst = ast;
         boolean result = false;
-        while (plusAst != null) {
-            if (plusAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
-                    && plusAst.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) == null) {
-                plusAst = plusAst.findFirstToken(TokenTypes.PLUS);
+        while (currentAst != null) {
+            if (currentAst.findFirstToken(TokenTypes.STRING_LITERAL) == null
+                    && currentAst.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) == null) {
+                currentAst = currentAst.findFirstToken(TokenTypes.PLUS);
             }
             else {
                 result = true;

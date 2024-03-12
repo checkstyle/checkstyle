@@ -1,0 +1,42 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocMethod">
+        <property name="tokens" value="CTOR_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, method not checked
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, method not checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, method not checked
+  }
+}
+// xdoc section -- end

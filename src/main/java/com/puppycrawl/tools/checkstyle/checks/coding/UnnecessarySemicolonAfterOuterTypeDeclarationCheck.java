@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * This check is not applicable to nested type declarations,
  * <a
- * href="https://checkstyle.org/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+ * href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
  * UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
  * </p>
  * <ul>
@@ -54,60 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class A {
- *
- *     class Nested {
- *
- *     }; // OK, nested type declarations are ignored
- *
- * }; // violation
- *
- * interface B {
- *
- * }; // violation
- *
- * enum C {
- *
- * }; // violation
- *
- * {@literal @}interface D {
- *
- * }; // violation
- * </pre>
- * <p>
- * To configure the check to detect unnecessary semicolon only after top level class definitions:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class A {
- *
- * }; // violation
- *
- * interface B {
- *
- * }; // OK
- *
- * enum C {
- *
- * }; // OK
- *
- * {@literal @}interface D {
- *
- * }; // OK
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

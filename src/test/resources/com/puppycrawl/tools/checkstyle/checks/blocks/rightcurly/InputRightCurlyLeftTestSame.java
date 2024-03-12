@@ -54,7 +54,7 @@ class InputRightCurlyLeftTestSame
             do
             {
                 x = 2;
-            } while (x == 2); // ok
+            } while (x == 2);
         }
 
         this.wait(666
@@ -95,7 +95,7 @@ class InputRightCurlyLeftTestSame
                 CASE_INSENSITIVE_ORDER.equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
@@ -109,7 +109,7 @@ class FooCtorTestSame
         public void FooCtor()
     {
                 i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -120,7 +120,7 @@ class FooMethodTestSame
         public void fooMethod()
     {
                 int i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -134,7 +134,7 @@ class FooInnerTestSame
         {
 
                 }
-    }} // ok
+    }}
 
 /**
  * False positive
@@ -142,17 +142,17 @@ class FooInnerTestSame
  */
 class Absent_CustomFieldSerializer3TestSame {
 
-    public static void serialize() {} // ok
+    public static void serialize() {}
 }
 
 class Absent_CustomFieldSerializer4TestSame
 {
-    public void Absent_CustomFieldSerializer4() {} // ok
+    public void Absent_CustomFieldSerializer4() {}
 }
 
-class EmptyClass2TestSame {} // ok
+class EmptyClass2TestSame {}
 
-interface EmptyInterface3TestSame {} // ok
+interface EmptyInterface3TestSame {}
 
 class ClassWithStaticInitializersTestSame
 {
@@ -171,17 +171,17 @@ class ClassWithStaticInitializersTestSame
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // ok
+        } catch (RuntimeException e) {
             new Object();
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
             // comment
-        } catch (Throwable e) { // ok
-        } finally { // ok
+        } catch (Throwable e) {
+        } finally {
             // comment
         }
 
         do {
-        } while (true); // ok
+        } while (true);
     }
 
     public void codeAfterLastRightCurly() {
@@ -195,19 +195,19 @@ class ClassWithStaticInitializersTestSame
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // ok
+        }};
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // ok
+        public void meth1(); }
 
     interface Interface2
-    { int i = 1; public void meth1(); } // ok
+    { int i = 1; public void meth1(); }
 
     interface Interface3 {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // ok
+        }}
 }

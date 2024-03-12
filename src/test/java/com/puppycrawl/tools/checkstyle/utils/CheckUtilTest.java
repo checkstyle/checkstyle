@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,10 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.findTokenInAstByPredicate;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -32,14 +36,18 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
-public class CheckUtilTest extends AbstractPathTestSupport {
+public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -59,47 +67,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid parse result")
             .that(parsedDouble)
             .isEqualTo(Double.NaN);
-    }
-
-    @Test
-    public void testElseWithCurly() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        ast.setType(TokenTypes.ASSIGN);
-        ast.setText("ASSIGN");
-        assertWithMessage("Invalid elseIf check result 'ASSIGN' is not 'else if'")
-                .that(CheckUtil.isElseIf(ast))
-                .isFalse();
-
-        final DetailAstImpl parentAst = new DetailAstImpl();
-        parentAst.setType(TokenTypes.LCURLY);
-        parentAst.setText("LCURLY");
-
-        final DetailAstImpl ifAst = new DetailAstImpl();
-        ifAst.setType(TokenTypes.LITERAL_IF);
-        ifAst.setText("IF");
-        parentAst.addChild(ifAst);
-
-        assertWithMessage("Invalid elseIf check result: 'IF' is not 'else if'")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isFalse();
-
-        final DetailAstImpl parentAst2 = new DetailAstImpl();
-        parentAst2.setType(TokenTypes.SLIST);
-        parentAst2.setText("SLIST");
-
-        parentAst2.addChild(ifAst);
-
-        assertWithMessage("Invalid elseIf check result: 'SLIST' is not 'else if'")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isFalse();
-
-        final DetailAstImpl elseAst = new DetailAstImpl();
-        elseAst.setType(TokenTypes.LITERAL_ELSE);
-
-        elseAst.setFirstChild(ifAst);
-        assertWithMessage("Invalid elseIf check result")
-                .that(CheckUtil.isElseIf(ifAst))
-                .isTrue();
     }
 
     @Test
@@ -204,27 +171,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsElseIf() throws Exception {
-        final DetailAST targetMethodNode = getNodeFromFile(TokenTypes.METHOD_DEF).getNextSibling();
-        final DetailAST firstElseNode = getNode(targetMethodNode, TokenTypes.LITERAL_ELSE);
-        final DetailAST ifElseWithCurlyBraces = firstElseNode.getFirstChild().getFirstChild();
-        final DetailAST ifElse = getNode(firstElseNode.getParent().getNextSibling(),
-                TokenTypes.LITERAL_ELSE).getFirstChild();
-        final DetailAST ifWithoutElse =
-                firstElseNode.getParent().getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is not else if with curly")
-                .that(CheckUtil.isElseIf(ifElseWithCurlyBraces))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not else if with curly")
-                .that(CheckUtil.isElseIf(ifElse))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is else if with curly")
-                .that(CheckUtil.isElseIf(ifWithoutElse))
-                .isFalse();
-    }
-
-    @Test
     public void testIsNonVoidMethod() throws Exception {
         final DetailAST nonVoidMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST voidMethod = nonVoidMethod.getNextSibling();
@@ -234,34 +180,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
                 .isTrue();
         assertWithMessage("Invalid result: AST provided is non void method")
                 .that(CheckUtil.isNonVoidMethod(voidMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsGetterMethod() throws Exception {
-        final DetailAST notGetterMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST getterMethod = notGetterMethod.getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is getter method")
-                .that(CheckUtil.isGetterMethod(getterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not getter method")
-                .that(CheckUtil.isGetterMethod(notGetterMethod))
-                .isFalse();
-    }
-
-    @Test
-    public void testIsSetterMethod() throws Exception {
-        final DetailAST firstClassMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
-        final DetailAST setterMethod =
-                firstClassMethod.getNextSibling().getNextSibling().getNextSibling();
-        final DetailAST notSetterMethod = setterMethod.getNextSibling();
-
-        assertWithMessage("Invalid result: AST provided is setter method")
-                .that(CheckUtil.isSetterMethod(setterMethod))
-                .isTrue();
-        assertWithMessage("Invalid result: AST provided is not setter method")
-                .that(CheckUtil.isSetterMethod(notSetterMethod))
                 .isFalse();
     }
 
@@ -353,24 +271,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsReceiverParameter() throws Exception {
-        final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
-        final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling()
-                .getPreviousSibling();
-        final DetailAST receiverParameter =
-                getNode(methodWithReceiverParameter, TokenTypes.PARAMETER_DEF);
-        final DetailAST simpleParameter =
-                receiverParameter.getNextSibling().getNextSibling();
-
-        assertWithMessage("Invalid result: parameter provided is receiver parameter")
-                .that(CheckUtil.isReceiverParameter(receiverParameter))
-                .isTrue();
-        assertWithMessage("Invalid result: parameter provided is not receiver parameter")
-                .that(CheckUtil.isReceiverParameter(simpleParameter))
-                .isFalse();
-    }
-
-    @Test
     public void testParseDoubleFloatingPointValues() {
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT))
@@ -443,9 +343,81 @@ public class CheckUtilTest extends AbstractPathTestSupport {
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testEqualsAvoidNullCheck() throws Exception {
+
+        final String[] expected = {
+            "14:28: " + getCheckMessage(EqualsAvoidNullCheck.class, MSG_EQUALS_AVOID_NULL),
+            "21:17: " + getCheckMessage(EqualsAvoidNullCheck.class, MSG_EQUALS_AVOID_NULL),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil1.java"), expected);
+    }
+
+    @Test
+    public void testMultipleVariableDeclarationsCheck() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
+            "14:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil2.java"),
+               expected);
+    }
+
+    @Test
+    public void testNestedIfDepth() throws Exception {
+        final String[] expected = {
+            "26:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+            "52:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil3.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocMethod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil4.java"), expected);
+    }
+
+    @Test
+    public void testJavaDocMethod2() throws Exception {
+        final String[] expected = {
+            "14:25: " + getCheckMessage(JavadocMethodCheck.class,
+                  MSG_EXPECTED_TAG, "@param", "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil5.java"), expected);
+    }
+
+    @Test
+    public void testJavadoc() throws Exception {
+        final String[] expected = {
+            "25:39: " + getCheckMessage(JavadocMethodCheck.class,
+                  MSG_EXPECTED_TAG, "@param", "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtil7.java"), expected);
+    }
+
     private DetailAST getNodeFromFile(int type) throws Exception {
         return getNode(JavaParser.parseFile(new File(getPath("InputCheckUtilTest.java")),
             JavaParser.Options.WITH_COMMENTS), type);
+    }
+
+    /**
+     * Retrieves the AST node from a specific file based on the specified token type.
+     *
+     * @param type The token type to search for in the file.
+     *             This parameter determines the type of AST node to retrieve.
+     * @param file The file from which the AST node should be retrieved.
+     * @return The AST node associated with the specified token type from the given file.
+     * @throws Exception If there's an issue reading or parsing the file.
+     */
+    public static DetailAST getNode(File file, int type) throws Exception {
+        return getNode(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS), type);
     }
 
     private static DetailAST getNode(DetailAST root, int type) {
@@ -458,5 +430,4 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
         return node.get();
     }
-
 }

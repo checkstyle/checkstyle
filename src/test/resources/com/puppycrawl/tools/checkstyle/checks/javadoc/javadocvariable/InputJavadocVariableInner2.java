@@ -20,20 +20,20 @@ class InputJavadocVariableInner2
     class InnerInner2
     {
         // Ignore
-        public int fData; // ok
+        public int fData;
     }
 
     // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc"; // ok
+        String data = "zxzc";
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // ok
+            public int rData;
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;

@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ClassFanOutComplexity">
+      <property name="max" value="2"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class InputClassComplexity {
+  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
+  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+  Date date = new Date(); // Counted, 1
+  Time time = new Time(); // Counted, 2
+}
+// xdoc section -- end

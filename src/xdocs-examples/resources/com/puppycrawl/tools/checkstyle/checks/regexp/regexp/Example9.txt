@@ -1,0 +1,14 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="Regexp">
+      <property name="format" value="(?i)debug"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="errorLimit" value="1000"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

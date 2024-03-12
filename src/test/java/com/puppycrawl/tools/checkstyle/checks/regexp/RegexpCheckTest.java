@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,10 +24,11 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPL
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpCheckTest extends AbstractModuleTestSupport {
@@ -62,13 +63,17 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRequiredFail() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "This\\stext is not in the file");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, "This\\stext is not in the file"),
+            "1: " + getCheckMessage(MSG_REQUIRED_REGEXP, "This\\stext is not in the file"),
         };
-        verify(checkConfig, getPath("InputRegexpSemantic2.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpSemantic2.java"), expected);
+    }
+
+    @Test
+    public void testDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpCheckDefault.java"), expected);
     }
 
     @Test
@@ -136,7 +141,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyGood()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic9.java"), expected);
@@ -146,7 +151,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic10.java"), expected);
@@ -156,7 +161,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad2()
             throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic11.java"), expected);
@@ -165,7 +170,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
@@ -175,7 +180,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseFalse() throws Exception {
         final String[] expectedTrue = {
-            "77: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
@@ -271,23 +276,46 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testOnFileStartingWithEmptyLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputRegexpStartingWithEmptyLine.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpStartingWithEmptyLine.java"), expected);
     }
 
     @Test
     public void testIgnoreCommentsCppStyleWithIllegalPatternFalse() throws Exception {
         // See if the comment is removed properly
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpCheck.class);
-        checkConfig.addProperty("format", "don't use trailing comments");
-        checkConfig.addProperty("illegalPattern", "false");
-        checkConfig.addProperty("ignoreComments", "true");
         final String[] expected = {
-            "0: " + getCheckMessage(MSG_REQUIRED_REGEXP, "don't use trailing comments"),
+            "1: " + getCheckMessage(MSG_REQUIRED_REGEXP, "don't use trailing comments"),
         };
-        verify(checkConfig, getPath("InputRegexpTrailingComment11.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputRegexpTrailingComment11.java"), expected);
     }
 
+    @Test
+    public void testStateIsClearedOnBeginTreeErrorCount() throws Exception {
+        final String file1 = getPath("InputRegexpCheckB2.java");
+        final String file2 = getPath("InputRegexpCheckB1.java");
+        final List<String> expectedFromFile1 = List.of(
+            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        final List<String> expectedFromFile2 = List.of(
+            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+        );
+        verifyWithInlineConfigParser(file1, file2, expectedFromFile1, expectedFromFile2);
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeMatchCount() throws Exception {
+        final String file1 = getPath("InputRegexpCheckB3.java");
+        final String file2 = getPath("InputRegexpCheckB4.java");
+        final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(file1, file2,
+                expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testOnFileStartingWithEmptyLine2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("InputRegexpCheckEmptyLine2.java"),
+                expected);
+    }
 }

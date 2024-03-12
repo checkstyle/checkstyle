@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,10 +38,8 @@ public class FileSetCheckTest
 
     @Test
     public void testTranslation() throws Exception {
-        final Configuration checkConfig =
-            createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertWithMessage("destroy() not called by Checker")
                 .that(TestFileSetCheck.isDestroyed())
@@ -50,11 +48,8 @@ public class FileSetCheckTest
 
     @Test
     public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
-        final Configuration checkConfig =
-            createModuleConfig(TestFileSetCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 
         assertWithMessage("FileContent should be available during finishProcessing() call")
                 .that(TestFileSetCheck.isFileContentAvailable())

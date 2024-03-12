@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -37,30 +37,19 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <ul>
  * <li>
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
  * Property {@code format} - Specify the format of the regular expression to match.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "$."}.
  * </li>
  * <li>
- * Property {@code message} - Specify the message which is used to notify about
- * violations, if empty then default (hard-coded) message is used.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code ignoreCase} - Control whether to ignore case when searching.
  * Type is {@code boolean}.
  * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code minimum} - Specify the minimum number of matches required in each file.
- * Type is {@code int}.
- * Default value is {@code 0}.
- * </li>
- * <li>
- * Property {@code maximum} - Specify the maximum number of matches required in each file.
- * Type is {@code int}.
- * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code matchAcrossLines} - Control whether to match expressions
@@ -69,162 +58,22 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
+ * Property {@code maximum} - Specify the maximum number of matches required in each file.
+ * Type is {@code int}.
+ * Default value is {@code 0}.
+ * </li>
+ * <li>
+ * Property {@code message} - Specify the message which is used to notify about
+ * violations, if empty then default (hard-coded) message is used.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code minimum} - Specify the minimum number of matches required in each file.
+ * Type is {@code int}.
+ * Default value is {@code 0}.
  * </li>
  * </ul>
- * <p>
- * To run the check with its default configuration (no matches will be):
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;/&gt;
- * </pre>
- * <p>Example: </p>
- * <pre>
- * void method() {
- *   int i = 5; // OK
- *   System.out.println(i); // OK
- * }
- * </pre>
- * <p>
- * To configure the check to find calls to print to the console:
- * </p>
- * <pre>
- * &lt;module name="RegexpMultiline"&gt;
- *   &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * void method() {
- *   System.out.print("Example");   // violation
- *   System.err.println("Example"); // violation
- *   System.out.print
- *     ("Example");                 // violation
- *   System.err.println
- *     ("Example");          // OK
- *   System
- *   .out.print("Example");  // OK
- *   System
- *   .err.println("Example");       // violation
- *   System.
- *   out.print("Example");   // OK
- *   System.
- *   err.println("Example");        // violation
- * }
- * </pre>
- * <p>
- * To configure the check to match text that spans multiple lines,
- * like normal code in a Java file:
- * </p>
- * <pre>
- * &lt;module name="RegexpMultiline"&gt;
- *   &lt;property name="matchAcrossLines" value="true"/&gt;
- *   &lt;property name="format" value="System\.out.*?print\("/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * void method() {
- *   System.out.print("Example");  // violation
- *   System.err.println("Example");
- *   System.out.print              // violation
- *     ("Example");
- *   System.err.println
- *     ("Example");
- *   System
- *   .out.print("Example");
- *   System
- *   .err.println("Example");
- *   System.
- *   out.print("Example");
- *   System.
- *   err.println("Example");
- * }
- * </pre>
- * <p>
- * Note: Beware of the greedy regular expression used in the above example.
- * {@code .*} will match as much as possible and not produce multiple violations
- * in the file if multiple groups of lines could match the expression. To prevent
- * an expression being too greedy, avoid overusing matching all text or allow it
- * to be optional, like {@code .*?}. Changing the example expression to not be
- * greedy will allow multiple violations in the example to be found in the same file.
- * </p>
- * <p>
- * To configure the check to match a maximum of three test strings:
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
- *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * void method() {
- *   System.out.println("Test #1: this is a test string"); // OK
- *   System.out.println("TeSt #2: This is a test string"); // OK
- *   System.out.println("TEST #3: This is a test string"); // OK
- *   int i = 5;
- *   System.out.println("Value of i: " + i);
- *   System.out.println("Test #4: This is a test string"); // violation
- *   System.out.println("TEst #5: This is a test string"); // violation
- * }
- * </pre>
- * <p>
- * To configure the check to match a minimum of two test strings:
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot;/&gt;
- *   &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * void method() {
- *   System.out.println("Test #1: this is a test string"); // violation
- *   System.out.println("TEST #2: This is a test string"); // OK, "ignoreCase" is false by default
- *   int i = 5;
- *   System.out.println("Value of i: " + i);
- *   System.out.println("Test #3: This is a test string"); // violation
- *   System.out.println("Test #4: This is a test string"); // violation
- * }
- * </pre>
- * <p>
- * To configure the check to restrict an empty file:
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- *     &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
- *     &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
- *     &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example of violation from the above config:
- * </p>
- * <pre>
- * /var/tmp$ cat -n Test.java
- * 1
- * 2
- * 3
- * 4
- * </pre>
- * <p>Result:</p>
- * <pre>
- * /var/tmp/Test.java // violation, a file must not be empty.
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -313,6 +162,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * Setter to specify the format of the regular expression to match.
      *
      * @param format the format of the regular expression to match.
+     * @since 5.0
      */
     public void setFormat(String format) {
         this.format = format;
@@ -323,6 +173,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * if empty then default (hard-coded) message is used.
      *
      * @param message the message to report for a match.
+     * @since 5.0
      */
     public void setMessage(String message) {
         this.message = message;
@@ -332,6 +183,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * Setter to specify the minimum number of matches required in each file.
      *
      * @param minimum the minimum number of matches required in each file.
+     * @since 5.0
      */
     public void setMinimum(int minimum) {
         this.minimum = minimum;
@@ -341,6 +193,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * Setter to specify the maximum number of matches required in each file.
      *
      * @param maximum the maximum number of matches required in each file.
+     * @since 5.0
      */
     public void setMaximum(int maximum) {
         this.maximum = maximum;
@@ -350,6 +203,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * Setter to control whether to ignore case when searching.
      *
      * @param ignoreCase whether to ignore case when searching.
+     * @since 5.0
      */
     public void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
@@ -359,6 +213,7 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
      * Setter to control whether to match expressions across multiple lines.
      *
      * @param matchAcrossLines whether to match expressions across multiple lines.
+     * @since 8.25
      */
     public void setMatchAcrossLines(boolean matchAcrossLines) {
         this.matchAcrossLines = matchAcrossLines;

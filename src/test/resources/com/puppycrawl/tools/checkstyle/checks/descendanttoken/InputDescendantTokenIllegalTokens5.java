@@ -15,7 +15,7 @@ tokens = LITERAL_SWITCH
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenIllegalTokens5 // ok
+public class InputDescendantTokenIllegalTokens5
 {
     public void methodWithPreviouslyIllegalTokens()
     {

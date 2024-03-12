@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -285,6 +284,24 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("unexpected result")
             .that(parent.getFirstChild())
             .isEqualTo(previousSibling);
+
+        final DetailAstImpl secondNewPreviousSibling = new DetailAstImpl();
+        instance.addPreviousSibling(secondNewPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getPreviousSibling())
+                .isEqualTo(newPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getNextSibling())
+                .isEqualTo(instance);
+        assertWithMessage("unexpected result")
+                .that(newPreviousSibling.getNextSibling())
+                .isEqualTo(secondNewPreviousSibling);
+        assertWithMessage("unexpected result")
+                .that(secondNewPreviousSibling.getPreviousSibling().getPreviousSibling())
+                .isEqualTo(previousSibling);
+        assertWithMessage("unexpected result")
+                .that(instance.getPreviousSibling().getPreviousSibling().getPreviousSibling())
+                .isEqualTo(previousSibling);
     }
 
     @Test
@@ -459,20 +476,91 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl sibling = new DetailAstImpl();
-        final DetailAST newSibling = new DetailAstImpl();
+        final DetailAstImpl newSibling = new DetailAstImpl();
+        final DetailAST newNextSibling = new DetailAstImpl();
+
         parent.setFirstChild(child);
         child.setNextSibling(sibling);
         child.addNextSibling(newSibling);
+        newSibling.addNextSibling(newNextSibling);
 
+        assertWithMessage("Invalid previous sibling")
+            .that(newNextSibling.getPreviousSibling())
+            .isEqualTo(newSibling);
+        assertWithMessage("Invalid next sibling")
+            .that(newNextSibling.getNextSibling())
+            .isEqualTo(sibling);
+        assertWithMessage("Invalid next sibling")
+            .that(sibling.getNextSibling())
+            .isNull();
+        assertWithMessage("Invalid node")
+            .that(sibling.getPreviousSibling().getPreviousSibling())
+            .isEqualTo(newSibling);
+        assertWithMessage("Invalid node")
+            .that(newNextSibling.getPreviousSibling().getPreviousSibling())
+            .isEqualTo(child);
         assertWithMessage("Invalid parent")
             .that(newSibling.getParent())
             .isEqualTo(parent);
         assertWithMessage("Invalid next sibling")
             .that(newSibling.getNextSibling())
-            .isEqualTo(sibling);
+            .isEqualTo(newNextSibling);
         assertWithMessage("Invalid child")
             .that(child.getNextSibling())
             .isEqualTo(newSibling);
+    }
+
+    @Test
+    public void testAddNextSibling2() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        parent.setFirstChild(child);
+        final DetailAstImpl siblingOfChild = new DetailAstImpl();
+        child.addNextSibling(siblingOfChild);
+
+        assertWithMessage("Previous Sibling should be child")
+            .that(siblingOfChild.getPreviousSibling())
+            .isEqualTo(child);
+
+        final DetailAST nullChild = null;
+        siblingOfChild.addNextSibling(nullChild);
+        assertWithMessage("Expected to be null")
+            .that(siblingOfChild.getNextSibling())
+            .isNull();
+        assertWithMessage("Child count should be 2")
+            .that(parent.getChildCount())
+            .isEqualTo(2);
+    }
+
+    @Test
+    public void testAddNextSibling3() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl child = new DetailAstImpl();
+        final DetailAstImpl sibling = new DetailAstImpl();
+
+        parent.setFirstChild(child);
+        child.setNextSibling(sibling);
+        child.addNextSibling(null);
+
+        assertWithMessage("Invalid next sibling")
+                .that(child.getNextSibling())
+                .isEqualTo(sibling);
+    }
+
+    @Test
+    public void testAddNextSibling4() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setText("Parent");
+        final DetailAstImpl child = new DetailAstImpl();
+        child.setText("Child");
+        final DetailAstImpl sibling = new DetailAstImpl();
+        sibling.setText("Sibling");
+        parent.setFirstChild(child);
+        child.addNextSibling(sibling);
+
+        assertWithMessage("Invalid next sibling")
+                .that(child.getNextSibling())
+                .isEqualTo(sibling);
     }
 
     @Test
@@ -597,6 +685,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final File file = new File(temporaryFolder, "InputDetailASTManyComments.java");
 
         try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks.TodoCommentCheck\n\n\n\n*/\n");
             bw.write("class C {\n");
             for (int i = 0; i <= 30000; i++) {
                 bw.write("// " + i + "\n");
@@ -604,10 +693,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             bw.write("}\n");
         }
 
-        final DefaultConfiguration checkConfig = createModuleConfig(TodoCommentCheck.class);
-
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, file.getAbsolutePath(), expected);
+        verifyWithInlineConfigParser(file.getAbsolutePath(), expected);
     }
 
     @Test
@@ -634,11 +721,47 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     public void testToString() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setText("text");
-        ast.setColumnNo(0);
-        ast.setLineNo(0);
+        ast.setColumnNo(1);
+        ast.setLineNo(1);
         assertWithMessage("Invalid text")
             .that(ast.toString())
-            .isEqualTo("text[0x0]");
+            .isEqualTo("text[1x1]");
+    }
+
+    @Test
+    public void testRemoveChildren() {
+        final DetailAstImpl parent = new DetailAstImpl();
+        final DetailAstImpl child1 = new DetailAstImpl();
+        parent.setFirstChild(child1);
+        final DetailAstImpl child2 = new DetailAstImpl();
+        child1.setNextSibling(child2);
+
+        parent.removeChildren();
+
+        assertWithMessage("")
+                .that(parent.getChildCount())
+                .isEqualTo(0);
+    }
+
+    @Test
+    public void testAddChild() {
+        final DetailAstImpl grandParent = new DetailAstImpl();
+        grandParent.setText("grandparent");
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setText("parent");
+        grandParent.setFirstChild(parent);
+
+        final DetailAstImpl child = new DetailAstImpl();
+        child.setText("child");
+        parent.setFirstChild(child);
+
+        final DetailAstImpl secondChild = new DetailAstImpl();
+        secondChild.setText("SecondChild");
+        parent.addChild(secondChild);
+
+        assertWithMessage("Invalid previous sibling")
+                .that(secondChild.getPreviousSibling())
+                .isEqualTo(child);
     }
 
     private static List<File> getAllFiles(File dir) {

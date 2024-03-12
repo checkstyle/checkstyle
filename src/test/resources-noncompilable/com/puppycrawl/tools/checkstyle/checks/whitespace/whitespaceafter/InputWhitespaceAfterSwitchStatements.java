@@ -40,7 +40,7 @@ public class InputWhitespaceAfterSwitchStatements {
         switch(o) { // violation ''switch' is not followed by whitespace'
             case String s ->s.trim(); // violation ''->' is not followed by whitespace'
             case Integer a ->a.intValue(); // violation ''->' is not followed by whitespace'
-            default -> throw new IllegalArgumentException(); // ok
+            default -> throw new IllegalArgumentException();
         }
     }
 

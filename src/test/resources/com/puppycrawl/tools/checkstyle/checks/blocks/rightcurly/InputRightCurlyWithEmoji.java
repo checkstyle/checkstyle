@@ -13,11 +13,11 @@ public class InputRightCurlyWithEmoji {
 
     static Runnable r = () -> {
         String.valueOf("Hello world 🥳 🎄 !!");
-    }; // ok
+    };
 
     private void method2() {
         String x = "🎄🤣";
-        { String y = "🎄🤣🎄🤣";} // ok
+        { String y = "🎄🤣🎄🤣";}
         try {
             if (x.equals("🎄🤣")) {
 
@@ -29,7 +29,7 @@ public class InputRightCurlyWithEmoji {
 
             else {
                 x = "🎄🤣";
-            } // ok
+            }
             switch (x) {
                 case "\uD83C\uDF84\uD83E\uDD23":
                     break;
@@ -41,7 +41,7 @@ public class InputRightCurlyWithEmoji {
             switch ("🤣") {
                 case "qw": {
                     return;
-                } // ok
+                }
                 default: {
                     return;
                 }
@@ -62,14 +62,14 @@ public class InputRightCurlyWithEmoji {
         do {
             i++;
             String.CASE_INSENSITIVE_ORDER.equals(i + " ");
-        } while (a.equals("🧐")); // ok
+        } while (a.equals("🧐"));
     }
 
     String method4(String a) {
         if (a.equals("🎄")) a = "😆"; return "😆🤩"; }
     // violation above ''}' at column 50 should have line break before.'
 
-    public void foo4() {String a = "😆🤩";} // ok
+    public void foo4() {String a = "😆🤩";}
     interface Interface3 {
         void display();
 

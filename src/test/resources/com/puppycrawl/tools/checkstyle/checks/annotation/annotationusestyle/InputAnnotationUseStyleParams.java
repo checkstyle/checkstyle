@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 
 public class InputAnnotationUseStyleParams
 {
-    @Target({}) // ok
+    @Target({})
     public @interface myAnn {
 
     }

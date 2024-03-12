@@ -13,16 +13,16 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 abstract public class InputAbstractClassNameCustom {
 }
 
-abstract class NonAbstractClassNameCustom { // ok
+abstract class NonAbstractClassNameCustom {
 }
 
 // violation below 'Name 'AbstractClassOtherCustom' must match pattern '\^NonAbstract\.\+\$'.'
 abstract class AbstractClassOtherCustom {
-    abstract class NonAbstractInnerClass { // ok
+    abstract class NonAbstractInnerClass {
     }
 }
 
-class NonAbstractClassCustom { // ok
+class NonAbstractClassCustom {
 }
 
 class AbstractClassCustom {

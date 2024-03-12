@@ -70,7 +70,7 @@
         <li>
           New: EmptyLineSeparator check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/186">#186</a>
         </li>
-        <li> Enable array initialisation indentation settings. Author: Vaclav Chalupa. </li>
+        <li> Enable array initialization indentation settings. Author: Vaclav Chalupa. </li>
         <li> Enhance WhitespaceAroundCheck to ignore Annotation Array Initialization curlies as it
         does for Array Initialization outside of annotations. Author: Jacob Tomaw </li>
         <li>
@@ -236,7 +236,7 @@
       <ul>
         <li>
           Support
-          <a href="config_filters.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
           to use <code>@SuppressWarnings</code> annotations to suppress
           violations. Thanks to Trevor Robinson for patch #156.
         </li>
@@ -306,7 +306,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          <a href="config_filters.html#SuppressionFilter">SuppressionFilter</a>
+          <a href="filters/suppressionfilter.html#SuppressionFilter">SuppressionFilter</a>
           now supports loading a configuration from a URL
           reference. Thanks to Stephen for patch #3485185.
         </li>
@@ -318,12 +318,12 @@
           #1667137). Thanks to Lukas Platinsky for patch #3393810.
         </li>
         <li>
-          <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
+          <a href="checks/coding/declarationorder.html#DeclarationOrder">DeclarationOrder</a>
           handles ignoreModifiers correctly (all fields should be before
           ctors and methods)(bug #3429775)
         </li>
         <li>
-          <a href="config_coding.html#InnerAssignment">Inner assignment</a>
+          <a href="checks/coding/innerassignment.html#InnerAssignment">Inner assignment</a>
           is now allowed in try-with-resources (bug #3441097)
         </li>
         <li>
@@ -363,16 +363,16 @@
           Thanks to Evgeny Mandrikov for patch #3367782.
         </li>
         <li>
-          Fixed <a href="config_imports.html#UnusedImports">UnusedImports</a>
+          Fixed <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
           to consider @linkplain, @throws and @exception tags when the option
           <code>processJavadoc</code> is turned on.
         </li>
         <li>
-          <a href="config_coding.html#RequireThis">RequireThis</a> now
+          <a href="checks/coding/requirethis.html#RequireThis">RequireThis</a> now
           ignores static members (bug #1155921).
         </li>
         <li>
-          <a href="config_coding.html#HiddenField">HiddenField</a> now
+          <a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a> now
           treats setxYz() as a setter for xYz, and setXYz() as a setter for
           XYz property to comply JavaBeans specification (bug #3370946).
         </li>
@@ -382,7 +382,7 @@
         </li>
         <li>
           ignoreEnhancedForColon property added to
-          <a href="config_whitespace.html#WhitespaceAround">WhitespaceAround</a>.
+          <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">WhitespaceAround</a>.
           Thanks to Travis Schneeberger for patch #1921815 (bug #1649038).
         </li>
       </ul>
@@ -392,37 +392,37 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_imports.html#UnusedImports">UnusedImports</a>
+          Enhanced <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
           to have the option <code>processJavadoc</code> to detect whether
           imports are used. Thanks to Lyle Hanson for patch #3267984.
         </li>
         <li>
-          Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
+          Enhanced <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>
           to support ignoring numbers in annotation declarations. Thanks to
           Julio Cesar Cabral for patch #3132984.
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
+          <a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a>
           to process <code>String.equalsIgnoreCase()</code>
           invocations (which can be suppressed).
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#IllegalThrows">IllegalThrows</a>
+          <a href="checks/coding/illegalthrows.html#IllegalThrows">IllegalThrows</a>
           to support ignoring methods with specified names. Thanks to
           Amit Shah for patch #3115439.
         </li>
         <li>
           Enhanced
-          <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>
+          <a href="checks/modifier/redundantmodifier.html#RedundantModifier">RedundantModifier</a>
           to support detecting inner <code>interface</code> declarations that
           are declared as <code>static</code>. Raised in bug #3222810.
         </li>
         <li>
           Enhanced the <a href="anttask.html#Parameters">ANT task</a>,
           <a href="cmdline.html#Command_line_usage">Command Line</a> and
-          <a href="config_filters.html#SuppressionFilter">Suppression Filter</a> to be
+          <a href="filters/suppressionfilter.html#SuppressionFilter">Suppression Filter</a> to be
           able to load their configuration file from either the filesystem or
           the classpath as a resource. Thanks to Tracy Snell for patch #3307526.
         </li>
@@ -431,7 +431,7 @@
       <ul>
         <li>
           Fix
-          <a href="config_coding.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
+          <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">MultipleVariableDeclarations</a>
           to properly handle when multiple variable declarations are inside a
           for loop initializer. Thanks to Amit Shah for patch #3121071.
         </li>
@@ -446,25 +446,25 @@
       <p>New features:</p>
       <ul>
         <li>
-          Added <a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a>
+          Added <a href="checks/misc/outertypefilename.html#OuterTypeFilename">OuterTypeFilename</a>
           that checks that the outer type name and the file name match.
           For example, the class <code>Foo</code> must be in a file named
           <code>Foo.java</code>.
         </li>
         <li>
           Enhanced
-          <a href="config_coding.html#PackageDeclaration">PackageDeclaration</a>
+          <a href="checks/coding/packagedeclaration.html#PackageDeclaration">PackageDeclaration</a>
           to optionally check that the package name matches the name of the
           directory containing the file.
         </li>
         <li>
-          Added <a href="config_coding.html#NestedForDepth">NestedForDepth</a>
+          Added <a href="checks/coding/nestedfordepth.html#NestedForDepth">NestedForDepth</a>
           that restricts nested <code>for</code> blocks to a specified
           depth (default = 1). Thanks to Alexander Jesse for patch
           #1151673.
         </li>
         <li>
-          Added <a href="config_sizes.html#MethodCount">MethodCount</a>
+          Added <a href="checks/sizes/methodcount.html#MethodCount">MethodCount</a>
           that checks the number of methods declared in each type. This
           includes the number of each scope (<code>private</code>,
           <code>package</code>, <code>protected</code> and
@@ -472,19 +472,19 @@
           Alexander Jesse for patch #1151669, which was the inspiration.
         </li>
         <li>
-          Added <a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a>
+          Added <a href="checks/coding/onestatementperline.html#OneStatementPerLine">OneStatementPerLine</a>
           that checks there is only one statement per line. Thanks to
           Alexander Jesse for patch #1144994, which was the inspiration.
         </li>
         <li>
-          Enhanced <a href="config_coding.html#MagicNumber">MagicNumber</a>
+          Enhanced <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>
           to support the parameter <code>ignoreHashCodeMethod</code> to ignore
           magic numbers in <code>hashCode()</code> methods. Thanks to
           Daniel Solano Gómez for patch #3050788.
         </li>
         <li>
           Enhanced
-          <a href="config_naming.html#AbstractClassName">AbstractClassName</a>
+          <a href="checks/naming/abstractclassname.html#AbstractClassName">AbstractClassName</a>
           to support checking that matching classes have the
           <code>abstract</code> modifier. Thanks to Danil Lopatin for
           patch #3043752.
@@ -498,7 +498,7 @@
         </li>
         <li>
           Enhanced
-          <a href="config_imports.html#AvoidStarImport">AvoidStarImport</a>
+          <a href="checks/imports/avoidstarimport.html#AvoidStarImport">AvoidStarImport</a>
           to support the properties <code>allowClassImports</code> and
           <code>allowStaticMemberImports</code> for finer control over
           what is allowed. Thanks to Travis Schneeberger for patch
@@ -508,13 +508,13 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Fix <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+          Fix <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
           checking of <code>@throws</code> tags for methods that throw multiple
           non-runtime exceptions. Thanks to Daan Kets for patch #3039869.
         </li>
         <li>
           Fix
-          <a href="config_design.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
+          <a href="checks/design/hideutilityclassconstructor.html#HideUtilityClassConstructor">HideUtilityClassConstructor</a>
           to handle empty and inner classes. Thanks to Roman Ivanov for
           patch #3045720.
         </li>
@@ -525,7 +525,7 @@
           Changed the default value of the property <code>logLoadErrors</code>
           to be <code>true</code> for the checks
           RedundantThrows and
-          <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a> to
+          <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a> to
           ensure consistent behaviour.
         </li>
       </ul>
@@ -534,24 +534,24 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_coding.html#DeclarationOrder">DeclarationOrder</a>
+          Enhanced <a href="checks/coding/declarationorder.html#DeclarationOrder">DeclarationOrder</a>
           to support properties to ignore constructors, methods and modifiers.
           Thanks to Steve McKay for patch #2953941.
         </li>
         <li>
-          Enhanced <a href="config_javadoc.html#WriteTag">WriteTag</a>
+          Enhanced <a href="checks/javadoc/writetag.html#WriteTag">WriteTag</a>
           to support empty tags, and constructor declarations.
           Thanks to Rolf Wojtech for patch #2724894.
         </li>
         <li>
           Added <a
-          href="config_design.html#InnerTypeLast">InnerTypeLast</a> to
+          href="checks/design/innertypelast.html#InnerTypeLast">InnerTypeLast</a> to
           check nested (internal) classes/interfaces are declared at the
           bottom of the class after all method and field declarations.
           Thanks to Ruslan Dyachenko for patch #3027391.
         </li>
         <li>
-          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Enhanced <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           to support using regular expressions for defining groups.
           Thanks to Martin von Gagern for patch #2782118.
         </li>
@@ -559,12 +559,12 @@
       <p>Bug fixes:</p>
       <ul>
         <li>
-          Fixed <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Fixed <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           to have the sort behaviour as in release 5.0. (bug #2952881).
           Thanks to Steve McKay for patch #2953936.
         </li>
         <li>
-          Fixed <a href="config_javadoc.html#JavadocStyle">JavadocStyle</a>
+          Fixed <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
           not handling package declarations that have annotations.
           (bug #2911363)
         </li>
@@ -609,16 +609,16 @@
       <p>New features:</p>
       <ul>
         <li>
-          Enhanced <a href="config_imports.html#ImportOrder">ImportOrder</a>
+          Enhanced <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
           check to support wildcard ('*') groups.
           Thanks to Steve McKay for patch #2891032.
         </li>
         <li>
           Enhanced the naming checks
-          <a href="config_naming.html">ConstantName</a>,
-          <a href="config_naming.html">MemberName</a>,
-          <a href="config_naming.html">MethodName</a>
-          and <a href="config_naming.html">StaticVariableName</a>
+          <a href="checks/naming/index.html">ConstantName</a>,
+          <a href="checks/naming/index.html">MemberName</a>,
+          <a href="checks/naming/index.html">MethodName</a>
+          and <a href="checks/naming/index.html">StaticVariableName</a>
           to utilise the access control tuning features
           of AbstractAccessControlNameCheck. Thanks to Steve McKay for patch
           #2893581.
@@ -629,7 +629,7 @@
         </li>
         <li>
           Enhanced the
-          <a href="config_imports.html#ImportControl">ImportControl</a> check
+          <a href="checks/imports/importcontrol.html#ImportControl">ImportControl</a> check
           to support regular expressions. Thanks to lbaeumer for patch
           #2937442.
         </li>
@@ -663,7 +663,7 @@
           Thanks to Ashlesha Patil for patch #2781021.
         </li>
         <li>
-          Enhanced <a href="config_javadoc.html#JavadocType">JavadocType</a>
+          Enhanced <a href="checks/javadoc/javadoctype.html#JavadocType">JavadocType</a>
           check to handle and report on unknown Javadoc tags.
           The property allowUnknownTags can be set to ignore errors.
           (bug #2882261)
@@ -688,33 +688,33 @@
       </p>
       <p>The following checks were added since release 4.4:</p>
       <ul>
-        <li><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
-        <li><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></li>
-        <li><a href="config_annotation.html#MissingOverride">MissingOverride</a></li>
-        <li><a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a></li>
-        <li><a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a></li>
-        <li><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
-        <li><a href="config_coding.html#NoClone">NoClone</a></li>
-        <li><a href="config_coding.html#NoFinalizer">NoFinalizer</a></li>
-        <li><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></li>
-        <li><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></li>
-        <li><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
-        <li><a href="config_naming.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
-        <li><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></li>
-        <li><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></li>
-        <li><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
-        <li><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></li>
-        <li><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></li>
-        <li><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></li>
+        <li><a href="checks/annotation/annotationusestyle.html#AnnotationUseStyle">AnnotationUseStyle</a></li>
+        <li><a href="checks/annotation/missingdeprecated.html#MissingDeprecated">MissingDeprecated</a></li>
+        <li><a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a></li>
+        <li><a href="checks/annotation/packageannotation.html#PackageAnnotation">PackageAnnotation</a></li>
+        <li><a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a></li>
+        <li><a href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a></li>
+        <li><a href="checks/coding/noclone.html#NoClone">NoClone</a></li>
+        <li><a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a></li>
+        <li><a href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a></li>
+        <li><a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a></li>
+        <li><a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">ClassTypeParameterName</a></li>
+        <li><a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">MethodTypeParameterName</a></li>
+        <li><a href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a></li>
+        <li><a href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a></li>
+        <li><a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a></li>
+        <li><a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a></li>
+        <li><a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">FileTabCharacter</a></li>
+        <li><a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a></li>
       </ul>
       <p>
         Since release 4.4 the following checks were changed from a Check
         to a FileSetCheck:
       </p>
       <ul>
-        <li><a href="config_header.html#Header">Header</a></li>
-        <li><a href="config_header.html#RegexpHeader">RegexpHeader</a></li>
-        <li><a href="config_sizes.html#FileLength">FileLength</a></li>
+        <li><a href="checks/header/header.html#Header">Header</a></li>
+        <li><a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a></li>
+        <li><a href="checks/sizes/filelength.html#FileLength">FileLength</a></li>
       </ul>
       <p>
         This means that the checks above must not be declared under the
@@ -744,27 +744,27 @@
       <ul>
         <li>
           GenericIllegalRegexpCheck - replaced with <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           and <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           and <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
         <li>
           RequiredRegexpCheck - replaced with <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           and <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           and <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
         <li>
           CrossLanguageRegexpHeaderCheck - replaced with
-          <a href="config_header.html#RegexpHeader">RegexpHeader</a>.
+          <a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>.
         </li>
         <li>
           PackageHtmlCheck - replaced with
-          <a href="config_javadoc.html#JavadocPackage">JavadocPackage</a>.
+          <a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>.
         </li>
         <li>All the J2EE checks.</li>
       </ul>
@@ -772,11 +772,11 @@
       <ul>
         <li>
           New Annotation checks
-          <a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a>
-          <a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a>
-          <a href="config_annotation.html#MissingOverride">MissingOverride</a>
-          <a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a>
-          <a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a>
+          <a href="checks/annotation/annotationusestyle.html#AnnotationUseStyle">AnnotationUseStyle</a>
+          <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">MissingDeprecated</a>
+          <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
+          <a href="checks/annotation/packageannotation.html#PackageAnnotation">PackageAnnotation</a>
+          <a href="checks/annotation/suppresswarnings.html#SuppressWarnings">SuppressWarnings</a>
           . Big thanks to Travis Schneeberger who is now a committer on the
           project.
         </li>
@@ -784,7 +784,7 @@
       <p>Fixed Bugs since release 5.0 Beta 2:</p>
       <ul>
         <li>
-          <a href="config_coding.html#RequireThis">RequireThis</a>
+          <a href="checks/coding/requirethis.html#RequireThis">RequireThis</a>
           reported a violation when using an annotation
           with a member name that is the same as a member name in the enclosing
           class the annotation was used in (bug #2123003).
@@ -822,56 +822,56 @@
       <ul>
         <li>
           Added the option <i>charset</i> to the
-          <a href="config_header.html">header checks</a> to allow
+          <a href="checks/header/index.html">header checks</a> to allow
           controlling the encoding of the header file (rfe 1952641).
         </li>
         <li>
           New check
-          <a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a>
+          <a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a>
           for enforcing the maximum number of outer types per file. Inspired
           by patch #1145023 from Alexander Jesse.
         </li>
         <li>
           Added the option <i>sumTokenCounts</i> to the <a
-          href="config_misc.html#DescendantToken">DescendantToken</a> to
+          href="checks/misc/descendanttoken.html#DescendantToken">DescendantToken</a> to
           allow for even more powerful checks. For example, detect
           statements like <code>this == null</code>.
         </li>
         <li>
           Add new options to the <a
-          href="config_imports.html#ImportOrder">ImportOrderCheck</a>
+          href="checks/imports/importorder.html#ImportOrder">ImportOrderCheck</a>
           to make it more flexible. Thanks to David Didier for providing
           patch #1854213.
         </li>
         <li>
           New check <a
-          href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a>
+          href="checks/whitespace/filetabcharacter.html#FileTabCharacter">FileTabCharacter</a>
           for ensuring that any files does not contain a tab
           character. It replaces <i>TabCharacterCheck</i> which was
           restricted to Java files.
         </li>
         <li>
-          Changed <a href="config_sizes.html#FileLength">FileLength</a>
+          Changed <a href="checks/sizes/filelength.html#FileLength">FileLength</a>
           check to be a FileSetCheck.
         </li>
         <li>
           Changed <a
-          href="config_header.html#RegexpHeader">RegexpHeader</a> and <a
-          href="config_header.html#Header">Header</a> to be a
+          href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a> and <a
+          href="checks/header/header.html#Header">Header</a> to be a
           FileSetCheck. Removed CrossLanguageRegexpHeader as a result.
         </li>
         <li>
           Enhanced <a
-          href="config_javadoc.html#JavadocStyle">JavadocStyle</a> to
+          href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a> to
           check for allowed HTML tags. Thanks to Nicolas Dordet for
           providing patch #2214251.
         </li>
         <li>
           Enhanced <a
-          href="config_javadoc.html#JavadocMethod">JavadocMethod</a> to
+          href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a> to
           be more restrictive on where <code>{@inheritDoc}</code> can be
           used. Also enhanced <a
-          href="config_javadoc.html#JavadocPackage">JavadocPackage</a>
+          href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>
           to ensure a <code>package-info.java</code> file contains a
           comment. Thanks to Travis Schneeberger for providing patch
           #2294029.
@@ -883,11 +883,11 @@
         </li>
         <li>
           Added the new checks <a
-          href="config_regexp.html#RegexpMultiline">RegexpMultiline</a>
+          href="checks/regexp/regexpmultiline.html#RegexpMultiline">RegexpMultiline</a>
           <a
-          href="config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+          href="checks/regexp/regexpsingleline.html#RegexpSingleline">RegexpSingleline</a>
           <a
-          href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
+          href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>.
         </li>
       </ul>
 
@@ -904,7 +904,7 @@
           not contain any files. Thanks to Florian for patch #2151706.
         </li>
         <li>
-          Fixed the <a href="config_blocks.html#LeftCurly">LeftCurly</a> check
+          Fixed the <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a> check
           to ignore leading annotations. Thanks to Tim Carpenter for patch
           #2506439.
         </li>
@@ -923,32 +923,32 @@
       <ul>
         <li>
           New check <a
-          href="config_coding.html#NoFinalizer">NoFinalizer</a>
+          href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a>
           for ensuring that a class does not define a finalize() method.
           Thanks to Feng Qian and Steve McKay for providing patch #1892273.
         </li>
         <li>
           New check <a
-          href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a>
+          href="checks/whitespace/genericwhitespace.html#GenericWhitespace">GenericWhitespace</a>
           for ensuring the whitespace around the Generic tokens &lt; and
           &gt; are correct to the <i>typical</i> convention.
         </li>
         <li>
           New check <a
-          href="config_javadoc.html#JavadocPackage">JavadocPackage</a>
+          href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>
           for ensuring that each Java package has a Javadoc
           comment. Replaces the check PackageHtml which has been
           removed. (Bug 1228207)
         </li>
         <li>
           Enhanced the <a
-          href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+          href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
           check to not require Javadoc if the method is tagged with the
           <code>@Override</code> annotation.
         </li>
         <li>
           New check <a
-          href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a>
+          href="checks/coding/equalsavoidnull.html#EqualsAvoidNull">EqualsAvoidNull</a>
           for ensuring that String literals is on the left side of an
           <code>equals()</code> comparison.  Thanks to
           Travis Schneeberger for providing patch #1895152.
@@ -963,26 +963,26 @@
         </li>
         <li>
           New check <a
-          href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a>
+          href="checks/imports/avoidstaticimport.html#AvoidStaticImport">AvoidStaticImport</a>
           for ensuring there are no static import statements. Thanks to
           Travis Schneeberger for providing patch #1940611.
         </li>
         <li>
-          Enhanced the <a href="config_naming.html">MethodName</a> check
+          Enhanced the <a href="checks/naming/index.html">MethodName</a> check
           to detect when a method name is the same as the residing class
           name. Thanks to Travis Schneeberger for providing patch
           #1892364.
         </li>
         <li>
-          New check <a href="config_coding.html#NoClone">NoClone</a> for
+          New check <a href="checks/coding/noclone.html#NoClone">NoClone</a> for
           ensuring a class does not override the <code>clone</code> method from
           the <code>Object</code> class. Thanks to Travis
           Schneeberger for providing patch #1947417.
         </li>
         <li>
-          New checks <a href="config_naming.html#ClassTypeParameterName">
+          New checks <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
           ClassTypeParameterName</a> and
-          <a href="config_naming.html#MethodTypeParameterName">
+          <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
           MethodTypeParameterName</a>
           for type name formats. Thanks to Travis Schneeberger for providing
           patch #1956561.
@@ -1037,7 +1037,7 @@
         <li>
           Applied patch #1993103 to make the format of end of sentence
           configurable in the
-          <a href="config_javadoc.html#JavadocStyle">JavadocStyle</a>
+          <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
           check.
         </li>
         <li>
@@ -1283,10 +1283,10 @@
       <ul>
         <li>
           Applied patch 1344344 by sjq to provide the new
-          <a href="config_regexp.html#Regexp">Regexp</a> check that can
+          <a href="checks/regexp/regexp.html#Regexp">Regexp</a> check that can
           provide the functionality of the following
           checks: <a
-          href="config_header.html#RegexpHeader">RegexpHeader</a>
+          href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>
         </li>
         <li>
           Added support for property <i>ignoreStringsRegexp</i> to
@@ -1621,7 +1621,7 @@
 
         <li>Added support for the property
         <code>allowMissingPropertyJavadoc </code> on the <a
-        href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
+        href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
         check.</li>
 
       </ul>

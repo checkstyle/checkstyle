@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,27 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   "FOO",
  *   "BAR", //violation
  * }
- * </pre>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoArrayTrailingComma&quot;/&gt;
- * </pre>
- * <p>
- * Which results in the following violations:
- * </p>
- * <pre>
- * String[] foo1 = {
- *   "FOO", // OK
- *   "BAR", // violation
- * };
- * String[] foo2 = { "FOO", "BAR", }; // violation
- * String[] foo3 = {
- *   "FOO", // OK
- *   "BAR" // OK
- * };
- * String[] foo4 = { "FOO", "BAR" }; // OK
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

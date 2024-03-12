@@ -83,10 +83,10 @@ public class InputJavaNCSSResolveMutation {
                 case 1:
                     counter++;
                     break;
-                case 2: // ok
+                case 2:
                     counter += 2;
                     break;
-                case 3: // ok
+                case 3:
                     counter += 3;
                     break;
                 case 6:

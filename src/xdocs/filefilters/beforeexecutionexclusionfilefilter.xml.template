@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>BeforeExecutionExclusionFileFilter</title>
+  </head>
+  <body>
+    <section name="BeforeExecutionExclusionFileFilter">
+      <p>Since Checkstyle 7.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
+          excluded from being processed by the utility.
+        </p>
+        <p>
+          By default, Checkstyle includes all files and subdirectories in a directory to be
+          processed and checked for violations. Users could have files that are in these
+          subdirectories that shouldn't be processed with their checkstyle configuration for
+          various reasons, one of which is a valid Java file that won't pass Checkstyle's parser.
+          When Checkstyle tries to parse a Java file and fails, it will throw an
+          <code>Exception</code> and halt parsing any more files for violations. An example of a
+          valid Java file Checkstyle can't parse is JDK 9's <code>module-info.java</code>.
+          This file filter will exclude these problem files from being parsed,
+          allowing the rest of the files to run normal and be validated.
+        </p>
+        <p>
+          <b>Note:</b> When a file is excluded from the utility, it is excluded from all Checks and
+          no testing for violations will be performed on them.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filefilters/BeforeExecutionExclusionFileFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the filter to exclude all 'module-info.java' files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the filter to run only on required files for example that ends with "Remote"
+          or end with "Client" in names or named as "Remote.java" or "Client.java"
+          use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the filter to exclude all Test folder files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+              Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+              Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BeforeExecutionExclusionFileFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filefilters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="BeforeExecutionExclusionFileFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

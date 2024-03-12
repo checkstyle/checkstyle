@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -101,8 +101,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private Set<String> excludedClasses = DEFAULT_EXCLUDED_CLASSES;
 
     /**
-     * Specify user-configured packages to ignore. All excluded packages
-     * should end with a period, so it also appends a dot to a package name.
+     * Specify user-configured packages to ignore.
      */
     private Set<String> excludedPackages = DEFAULT_EXCLUDED_PACKAGES;
 
@@ -164,8 +163,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify user-configured packages to ignore. All excluded packages
-     * should end with a period, so it also appends a dot to a package name.
+     * Setter to specify user-configured packages to ignore.
      *
      * @param excludedPackages packages to ignore.
      * @throws IllegalArgumentException if there are invalid identifiers among the packages.
@@ -173,7 +171,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
             .filter(Predicate.not(CommonUtil::isName))
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
         if (!invalidIdentifiers.isEmpty()) {
             throw new IllegalArgumentException(
                 "the following values are not valid identifiers: " + invalidIdentifiers);

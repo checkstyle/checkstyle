@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,13 +20,13 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.util.BitSet;
-import java.util.Collections;
 import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to
@@ -47,7 +47,7 @@ public final class DetailAstImpl implements DetailAST {
     private int columnNo = NOT_INITIALIZED;
 
     /** Number of children. */
-    private int childCount = NOT_INITIALIZED;
+    private int childCount;
     /** The parent token. */
     private DetailAstImpl parent;
     /** Previous sibling. */
@@ -122,7 +122,6 @@ public final class DetailAstImpl implements DetailAST {
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
 
             if (previousSiblingNode != null) {
-                astImpl.previousSibling = previousSiblingNode;
                 previousSiblingNode.setNextSibling(astImpl);
             }
             else if (parent != null) {
@@ -130,7 +129,6 @@ public final class DetailAstImpl implements DetailAST {
             }
 
             astImpl.setNextSibling(this);
-            previousSibling = astImpl;
         }
     }
 
@@ -146,13 +144,8 @@ public final class DetailAstImpl implements DetailAST {
             // parent is set in setNextSibling
             final DetailAstImpl sibling = nextSibling;
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
+            astImpl.setNextSibling(sibling);
 
-            if (sibling != null) {
-                astImpl.setNextSibling(sibling);
-                sibling.previousSibling = astImpl;
-            }
-
-            astImpl.previousSibling = this;
             setNextSibling(astImpl);
         }
     }
@@ -168,7 +161,6 @@ public final class DetailAstImpl implements DetailAST {
         if (child != null) {
             final DetailAstImpl astImpl = (DetailAstImpl) child;
             astImpl.setParent(this);
-            astImpl.previousSibling = (DetailAstImpl) getLastChild();
         }
         DetailAST temp = firstChild;
         if (temp == null) {
@@ -507,7 +499,7 @@ public final class DetailAstImpl implements DetailAST {
     public List<Token> getHiddenBefore() {
         List<Token> returnList = null;
         if (hiddenBefore != null) {
-            returnList = Collections.unmodifiableList(hiddenBefore);
+            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
         }
         return returnList;
     }
@@ -521,7 +513,7 @@ public final class DetailAstImpl implements DetailAST {
     public List<Token> getHiddenAfter() {
         List<Token> returnList = null;
         if (hiddenAfter != null) {
-            returnList = Collections.unmodifiableList(hiddenAfter);
+            returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
         }
         return returnList;
     }
@@ -532,7 +524,7 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenBefore comment token preceding this DetailAstImpl
      */
     public void setHiddenBefore(List<Token> hiddenBefore) {
-        this.hiddenBefore = Collections.unmodifiableList(hiddenBefore);
+        this.hiddenBefore = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
     }
 
     /**
@@ -541,6 +533,6 @@ public final class DetailAstImpl implements DetailAST {
      * @param hiddenAfter comment token following this DetailAstImpl
      */
     public void setHiddenAfter(List<Token> hiddenAfter) {
-        this.hiddenAfter = Collections.unmodifiableList(hiddenAfter);
+        this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
     }
 }

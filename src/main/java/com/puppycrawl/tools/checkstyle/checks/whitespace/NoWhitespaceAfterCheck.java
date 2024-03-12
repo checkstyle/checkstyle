@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -97,72 +97,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class Test {
- *
- *   public void lineBreak(String x) {
- *     Integer.
- *         parseInt(x); // Ok
- *     Integer.parseInt(x); // Ok
- *   }
- *
- *   public void dotOperator(String s) {
- *     Integer.parseInt(s); // Ok
- *     Integer. parseInt(s); // violation, '.' is followed by whitespace
- *   }
- *
- *   public void arrayDec() {
- *     int[] arr = arr; // Ok
- *     int [] arr = arr; // violation, int is followed by whitespace
- *   }
- *
- *   public void bitwiseNot(int a) {
- *     a = ~ a; // violation '~' is followed by whitespace
- *     a = ~a; // Ok
- *   }
- * }
- * </pre>
- * <p>To configure the check to forbid linebreaks after a DOT token:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoWhitespaceAfter&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
- *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class Test {
- *
- *   public void lineBreak(String x) {
- *     Integer.
- *         parseInt(x); // violation, '.' is followed by whitespace
- *     Integer.parseInt(x); // Ok
- *   }
- *
- *   public void dotOperator(String s) {
- *     Integer.parseInt(s); // Ok
- *     Integer. parseInt(s); // violation, '.' is followed by whitespace
- *   }
- *
- *   public void arrayDec() {
- *     int[] arr = arr; // Ok
- *     int [] arr = arr; // Ok
- *   }
- *
- *   public void bitwiseNot(int a) {
- *     a = ~ a; // Ok
- *     a = ~a; // Ok
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -235,6 +169,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at linebreaks.
+     * @since 3.0
      */
     public void setAllowLineBreaks(boolean allowLineBreaks) {
         this.allowLineBreaks = allowLineBreaks;
@@ -487,7 +422,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                     .findFirstToken(TokenTypes.GENERIC_END);
         }
         else if (objectArrayType.isPresent()) {
-            typeLastNode = objectArrayType.get();
+            typeLastNode = objectArrayType.orElseThrow();
         }
         else {
             typeLastNode = parent.getFirstChild();
@@ -560,7 +495,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         // qualified name case
         else {
-            result = dot.get().getFirstChild().getNextSibling();
+            result = dot.orElseThrow().getFirstChild().getNextSibling();
         }
         return result;
     }

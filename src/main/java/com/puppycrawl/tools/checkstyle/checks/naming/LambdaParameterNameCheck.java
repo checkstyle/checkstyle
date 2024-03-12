@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,50 +31,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="LambdaParameterName"/&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase(); // OK
- * Function&lt;String, String&gt; function2 = S -&gt; S.toLowerCase(); // violation, name 'S'
- *                                                // must match pattern '^[a-z][a-zA-Z0-9]*$'
- * </pre>
- * <p>
- * An example of how to configure the check for names that begin
- * with a lower case letter, followed by letters is:
- * </p>
- * <pre>
- * &lt;module name="LambdaParameterName"&gt;
- *   &lt;property name="format" value="^[a-z]([a-zA-Z]+)*$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Code Example:
- * </p>
- * <pre>
- * class MyClass {
- *   Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim(); // OK
- *   Function&lt;String, String&gt; function2 = _s -&gt; _s.trim(); // violation, name '_s'
- *                                              // must match pattern '^[a-z]([a-zA-Z]+)*$'
- *
- *   public boolean myMethod(String sentence) {
- *     return Stream.of(sentence.split(" "))
- *             .map(word -&gt; word.trim()) // OK
- *             .anyMatch(Word -&gt; "in".equals(Word)); // violation, name 'Word'
- *                                                      // must match pattern '^[a-z]([a-zA-Z]+)*$'
- *   }
- * }
- *
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

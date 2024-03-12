@@ -7,7 +7,7 @@ No config
 // someexamples of 1.5 extensions
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-@interface MyAnnotation1 { // ok
+@interface MyAnnotation1 {
     String name();
     int version();
 }

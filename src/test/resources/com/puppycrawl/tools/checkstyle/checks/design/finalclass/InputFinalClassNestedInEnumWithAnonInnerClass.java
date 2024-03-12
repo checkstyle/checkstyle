@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public enum InputFinalClassNestedInEnumWithAnonInnerClass {
     A;
-    class n { // ok
+    class n {
         private n() {
         }
         class j { // violation
@@ -20,7 +20,7 @@ public enum InputFinalClassNestedInEnumWithAnonInnerClass {
         B;
         j obj = new j() {
         };
-        class j { // ok
+        class j {
             private j() {
             }
         }

@@ -10,5 +10,5 @@ accessModifiers = public\t,\t
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameWhitespaceInConfig {
-    int method(){return 1;} // ok
+    int method(){return 1;}
 }

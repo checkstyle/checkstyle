@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalCatch</title>
+  </head>
+  <body>
+    <section name="IllegalCatch">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+        Checks that certain exception types do not appear in a <code>catch</code> statement.
+        </p>
+
+        <p>
+          Rationale:
+          catching <code>java.lang.Exception</code>, <code>java.lang.Error</code> or
+          <code>java.lang.RuntimeException</code> is almost never acceptable.
+          Novice developers often simply catch Exception in an
+          attempt to handle multiple exception classes. This unfortunately
+          leads to code that inadvertently catches <code>NullPointerException</code>,
+          <code>OutOfMemoryError</code>, etc.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>illegalClassNames</td>
+              <td>Specify exception class names to reject.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalCatch&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+try {
+    // some code here
+} catch (Exception e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException e) { // OK
+
+} catch (Exception e) { // violation, catching Exception is illegal
+                          and order of catch blocks doesn't matter
+}
+
+try {
+    // some code here
+} catch (ArithmeticException | Exception e) { // violation, catching Exception is illegal
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException e) { // OK
+
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to override the default list with
+          ArithmeticException and OutOfMemoryError:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalCatch&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
+                  OutOfMemoryError&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <source>
+try {
+    // some code here
+} catch (OutOfMemoryError e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (NullPointerException e) { // OK
+
+} catch (OutOfMemoryError e) { // violation
+
+}
+
+try {
+    // some code here
+} catch (ArithmeticException | Exception e) {  // violation
+
+}
+
+try {
+    // some code here
+} catch (Exception e) { // OK
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalCatch">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.catch%22">
+              illegal.catch
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

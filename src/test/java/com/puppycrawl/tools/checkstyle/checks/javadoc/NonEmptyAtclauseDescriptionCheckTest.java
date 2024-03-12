@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,10 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck.MSG_KEY;
 
+import java.nio.charset.CodingErrorAction;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends AbstractModuleTestSupport {
@@ -90,7 +96,35 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "20: " + getCheckMessage(MSG_KEY),
             "51: " + getCheckMessage(MSG_KEY),
             "60: " + getCheckMessage(MSG_KEY),
+            "75: " + getCheckMessage(MSG_KEY),
+            "77: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
+    }
+
+    /**
+     * This tests that the check does not fail when the input file contains malformed characters
+     * for a particular charset. The test file contains the character {@code ü} which is not
+     * mappable to US-ASCII. It makes sure that malformed characters than cannot be mapped are
+     * replaced with the default replacement character using {@link CodingErrorAction#REPLACE}.
+     *
+     * @throws Exception exception
+     */
+    @SuppressForbidden
+    @Test
+    public void testDecoderOnMalformedInput() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(checkConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addProperty("charset", "US-ASCII");
+
+        verify(checkerConfig,
+                getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"), expected);
     }
 }

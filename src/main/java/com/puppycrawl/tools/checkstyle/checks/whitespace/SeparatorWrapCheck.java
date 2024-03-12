@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -50,98 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * COMMA</a>.
  * </li>
  * </ul>
- *  <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SeparatorWrap&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import java.io.
- *          IOException; // OK
- *
- * class Test {
- *
- *   String s;
- *
- *   public void foo(int a,
- *                     int b) { // OK
- *   }
- *
- *   public void bar(int p
- *                     , int q) { // violation, separator comma on new line
- *     if (s
- *           .isEmpty()) { // violation, separator dot on new line
- *     }
- *   }
- *
- * }
- * </pre>
- * <p>
- * To configure the check for
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
- * METHOD_REF</a> at new line:
- * </p>
- * <pre>
- * &lt;module name=&quot;SeparatorWrap&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import java.util.Arrays;
- *
- * class Test2 {
- *
- *   String[] stringArray = {&quot;foo&quot;, &quot;bar&quot;};
- *
- *   void fun() {
- *     Arrays.sort(stringArray, String::
- *       compareToIgnoreCase);  // violation, separator method reference on same line
- *     Arrays.sort(stringArray, String
- *       ::compareTo);  // OK
- *   }
- *
- * }
- * </pre>
- * <p>
- * To configure the check for comma at the new line:
- * </p>
- * <pre>
- * &lt;module name=&quot;SeparatorWrap&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test3 {
- *
- *   String s;
- *
- *   int a,
- *     b;  // violation, separator comma on same line
- *
- *   public void foo(int a,
- *                      int b) {  // violation, separator comma on the same line
- *     int r
- *       , t; // OK
- *   }
- *
- *   public void bar(int p
- *                     , int q) {  // OK
- *   }
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -183,6 +91,7 @@ public class SeparatorWrapCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 5.8
      */
     public void setOption(String optionStr) {
         option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
@@ -223,20 +132,20 @@ public class SeparatorWrapCheck
         final int colNo = ast.getColumnNo();
         final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
-        final int[] substringAfterToken = CodePointUtil.trim(
+        final boolean isLineEmptyAfterToken = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
         );
-        final int[] substringBeforeToken = CodePointUtil.trim(
+        final boolean isLineEmptyBeforeToken = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, 0, colNo)
         );
 
-        if (option == WrapOption.EOL
-                && substringBeforeToken.length == 0) {
-            log(ast, MSG_LINE_PREVIOUS, text);
-        }
-        else if (option == WrapOption.NL
-                 && substringAfterToken.length == 0) {
+        if (option == WrapOption.NL
+                 && isLineEmptyAfterToken) {
             log(ast, MSG_LINE_NEW, text);
+        }
+        else if (option == WrapOption.EOL
+                && isLineEmptyBeforeToken) {
+            log(ast, MSG_LINE_PREVIOUS, text);
         }
     }
 

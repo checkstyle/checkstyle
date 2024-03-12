@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -58,78 +58,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check to forbid String literals containing {@code "a href"}:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalTokenText&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void myTest() {
- *     String test = "a href"; // violation
- *     String test2 = "A href"; // OK, case is sensitive
- * }
- * </pre>
- * <p>
- * To configure the check to forbid String literals containing {@code "a href"}
- * for the ignoreCase mode:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalTokenText&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
- *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void myTest() {
- *     String test = "a href"; // violation
- *     String test2 = "A href"; // violation, case is ignored
- * }
- * </pre>
- * <p>
- * To configure the check to forbid string literal text blocks containing {@code """}:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalTokenText&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;TEXT_BLOCK_CONTENT&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value='&quot;'/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void myTest() {
- *     final String quote = """
- *                \""""; // violation
- * }
- * </pre>
- * <p>
- * To configure the check to forbid leading zeros in an integer literal,
- * other than zero and a hex literal:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalTokenText&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;NUM_INT,NUM_LONG&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^0[^lx]&quot;/&gt;
- *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void myTest() {
- *     int test1 = 0; // OK
- *     int test2 = 0x111; // OK
- *     int test3 = 0X111; // OK, case is ignored
- *     int test4 = 010; // violation
- *     long test5 = 0L; // OK
- *     long test6 = 010L; // violation
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -185,6 +113,7 @@ public class IllegalTokenTextCheck
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.STRING_TEMPLATE_CONTENT,
         };
     }
 
@@ -219,6 +148,7 @@ public class IllegalTokenTextCheck
      *
      * @param message custom message which should be used
      *                 to report about violations.
+     * @since 3.2
      */
     public void setMessage(String message) {
         this.message = Objects.requireNonNullElse(message, "");
@@ -228,6 +158,7 @@ public class IllegalTokenTextCheck
      * Setter to define the RegExp for illegal pattern.
      *
      * @param format a {@code String} value
+     * @since 3.2
      */
     public void setFormat(String format) {
         formatString = format;
@@ -238,6 +169,7 @@ public class IllegalTokenTextCheck
      * Setter to control whether to ignore case when matching.
      *
      * @param caseInsensitive true if the match is case-insensitive.
+     * @since 3.2
      */
     public void setIgnoreCase(boolean caseInsensitive) {
         ignoreCase = caseInsensitive;

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,106 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     and expressions.
  * </p>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
- * </pre>
- * <p>Example of violation:</p>
- * <pre>
- * switch (i) {    // violation
- *  case 1:
- *    break;
- *  case 2:
- *    break;
- * }
- * </pre>
- * <p>Example of correct code:</p>
- * <pre>
- * switch (i) {
- *  case 1:
- *    break;
- *  case 2:
- *    break;
- *  default: // OK
- *    break;
- * }
- * switch (o) {
- *     case String s: // type pattern
- *         System.out.println(s);
- *         break;
- *     case Integer i: // type pattern
- *         System.out.println("Integer");
- *         break;
- *     default:    // will not compile without default label, thanks to type pattern label usage
- *         break;
- * }
- * </pre>
- * <p>Example of correct code which does not require default labels:</p>
- * <pre>
- *    sealed interface S permits A, B, C {}
- *    final class A implements S {}
- *    final class B implements S {}
- *    record C(int i) implements S {}  // Implicitly final
- *
- *    /**
- *     * The completeness of a switch statement can be
- *     * determined by the contents of the permits clause
- *     * of interface S. No default label or default case
- *     * label is allowed by the compiler in this situation, so
- *     * this check does not enforce a default label in such
- *     * statements.
- *     *&#47;
- *    static void showSealedCompleteness(S s) {
- *        switch (s) {
- *            case A a: System.out.println("A"); break;
- *            case B b: System.out.println("B"); break;
- *            case C c: System.out.println("C"); break;
- *        }
- *    }
- *
- *    /**
- *     * A total type pattern matches all possible inputs,
- *     * including null. A default label or
- *     * default case is not allowed by the compiler in this
- *     * situation. Accordingly, check does not enforce a
- *     * default label in this case.
- *     *&#47;
- *    static void showTotality(String s) {
- *        switch (s) {
- *            case Object o: // total type pattern
- *                System.out.println("o!");
- *        }
- *    }
- *
- *    enum Color { RED, GREEN, BLUE }
- *
- *    static int showSwitchExpressionExhaustiveness(Color color) {
- *        switch (color) {
- *            case RED: System.out.println("RED"); break;
- *            case BLUE: System.out.println("BLUE"); break;
- *            case GREEN: System.out.println("GREEN"); break;
- *            // Check will require default label below, compiler
- *            // does not enforce a switch statement with constants
- *            // to be complete.
- *            default: System.out.println("Something else");
- *        }
- *
- *        // Check will not require default label in switch
- *        // expression below, because code will not compile
- *        // if all possible values are not handled. If the
- *        // 'Color' enum is extended, code will fail to compile.
- *        return switch (color) {
- *            case RED:
- *                yield 1;
- *            case GREEN:
- *                yield 2;
- *            case BLUE:
- *                yield 3;
- *        };
- *    }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -197,6 +97,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         if (!containsDefaultLabel(ast)
                 && !containsPatternCaseLabelElement(ast)
                 && !containsDefaultCaseLabelElement(ast)
+                && !containsNullCaseLabelElement(ast)
                 && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
@@ -243,6 +144,19 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if a switch block contains a null case label.
+     *
+     * @param detailAst first case group to check.
+     * @return true if switch block contains null case label
+     */
+    private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
+        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
+            return ast.getFirstChild() != null
+                     && hasNullCaseLabel(ast.getFirstChild());
+        }).isPresent();
+    }
+
+    /**
      * Checks if this LITERAL_SWITCH token is part of a switch expression.
      *
      * @param ast the switch statement we are checking
@@ -251,5 +165,18 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean isSwitchExpression(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.EXPR
                 || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+    }
+
+    /**
+     * Checks if the case contains null label.
+     *
+     * @param ast the switch statement we are checking
+     * @return returnValue the ast of null label
+     */
+    private static boolean hasNullCaseLabel(DetailAST ast) {
+        final DetailAST firstChild = ast.getFirstChild();
+        return firstChild != null
+                && TokenUtil.isOfType(firstChild.getFirstChild(), TokenTypes.LITERAL_NULL);
+
     }
 }

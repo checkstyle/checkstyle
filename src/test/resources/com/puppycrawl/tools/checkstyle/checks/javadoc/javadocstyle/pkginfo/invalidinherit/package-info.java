@@ -12,7 +12,7 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 
 */
-// violation below
+// violation below 'First sentence should end with a period.'
 /**
  * {@inheritDoc} Where are we inheriting from
  */

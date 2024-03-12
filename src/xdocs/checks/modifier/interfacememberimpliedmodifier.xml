@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>InterfaceMemberImpliedModifier</title>
+  </head>
+  <body>
+    <section name="InterfaceMemberImpliedModifier">
+      <p>Since Checkstyle 8.12</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for implicit modifiers on interface members and nested types.
+        </p>
+        <p>
+          This check is effectively the opposite of
+          <a href="redundantmodifier.html#RedundantModifier">RedundantModifier</a>.
+          It checks the modifiers on interface members, ensuring that certain
+          modifiers are explicitly specified even though they are actually redundant.
+        </p>
+        <p>
+          Methods in interfaces are <code>public</code> by default, however from Java 9
+          they can also be <code>private</code>. This check provides the ability to enforce
+          that <code>public</code> is explicitly coded and not implicitly added by the compiler.
+        </p>
+        <p>
+          From Java 8, there are three types of methods in interfaces - static methods
+          marked with <code>static</code>, default methods marked with <code>default</code> and
+          abstract methods which do not have to be marked with anything.
+          From Java 9, there are also private methods marked with <code>private</code>.
+          This check provides the ability to enforce that <code>abstract</code> is explicitly
+          coded and not implicitly added by the compiler.
+        </p>
+        <p>
+          Fields in interfaces are always <code>public static final</code> and as such the
+          compiler does not require these modifiers. This check provides the ability to
+          enforce that these modifiers are explicitly coded and not implicitly added by
+          the compiler.
+        </p>
+        <p>
+          Nested types within an interface are always <code>public static</code> and as such the
+          compiler does not require the <code>public static</code> modifiers. This check provides
+          the ability to enforce that the <code>public</code> and <code>static</code> modifiers
+          are explicitly coded and not implicitly added by the compiler.
+        </p>
+        <source>
+public interface AddressFactory {
+  // check enforces code contains &quot;public static final&quot;
+  public static final String UNKNOWN = &quot;Unknown&quot;;
+
+  String OTHER = &quot;Other&quot;;  // violation
+
+  // check enforces code contains &quot;public&quot; or &quot;private&quot;
+  public static AddressFactory instance();
+
+  // check enforces code contains &quot;public abstract&quot;
+  public abstract Address createAddress(String addressLine, String city);
+
+  List&lt;Address&gt; findAddresses(String city);  // violation
+
+  // check enforces default methods are explicitly declared &quot;public&quot;
+  public default Address createAddress(String city) {
+    return createAddress(UNKNOWN, city);
+  }
+
+  default Address createOtherAddress() {  // violation
+    return createAddress(OTHER, OTHER);
+  }
+}
+        </source>
+        <p>
+          Rationale for this check:
+          Methods, fields and nested types are treated differently depending on whether
+          they are part of an interface or part of a class. For example, by default methods
+          are package-scoped on classes, but public in interfaces. However, from Java 8 onwards,
+          interfaces have changed to be much more like abstract classes.
+          Interfaces now have static and instance methods with code. Developers should not have
+          to remember which modifiers are required and which are implied.
+          This check allows the simpler alternative approach to be adopted where the
+          implied modifiers must always be coded explicitly.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateImpliedAbstractMethod</td>
+              <td>Control whether to enforce that <code>abstract</code> is explicitly coded on interface methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedFinalField</td>
+              <td>Control whether to enforce that <code>final</code> is explicitly coded on interface fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicField</td>
+              <td>Control whether to enforce that <code>public</code> is explicitly coded on interface fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicMethod</td>
+              <td>Control whether to enforce that <code>public</code> is explicitly coded on interface methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicNested</td>
+              <td>Control whether to enforce that <code>public</code> is explicitly coded on interface nested types.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticField</td>
+              <td>Control whether to enforce that <code>static</code> is explicitly coded on interface fields.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticNested</td>
+              <td>Control whether to enforce that <code>static</code> is explicitly coded on interface nested types.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p>
+          To configure the check so that it checks that all implicit modifiers on methods,
+          fields and nested types are explicitly specified in interfaces.
+        </p>
+        <p id="Example1-config">
+          Configuration:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Code:
+        </p>
+        <source>
+public interface AddressFactory {
+
+  public static final String UNKNOWN = &quot;Unknown&quot;;  // valid
+
+  String OTHER = &quot;Other&quot;;  // violation
+
+  public static AddressFactory instance();  // valid
+
+  public abstract Address createAddress(String addressLine, String city);  // valid
+
+  List&lt;Address&gt; findAddresses(String city);  // violation
+
+  interface Address {  // violation
+
+    String getCity();  // violation
+  }
+}
+        </source>
+        <p>
+          This example checks that all implicit modifiers on methods and fields are
+          explicitly specified, but nested types do not need to be.
+        </p>
+        <p id="Example2-config">
+          Configuration:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
+      &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Code:
+        </p>
+        <source>
+public interface RoadFeature {
+
+  String STOP = &quot;Stop&quot;;  // violation
+
+  enum Lights {  // valid because of configured properties
+
+    RED, YELLOW, GREEN;
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
+              interface.implied.modifier
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -19,24 +19,6 @@
 
       <p>
         <span class="wrapper">
-          <a href="https://www.bountysource.com/teams/checkstyle/issues">
-            <span class="wrapper inline">
-              <img src="https://api.bountysource.com/badge/team?team_id=3568&amp;style=bounties_posted"
-                   alt="bountysource" title="bountysource" border="0"/>
-            </span>
-          </a>
-        </span>
-        <br/>
-        <span class="wrapper">
-          <a href="https://salt.bountysource.com/teams/checkstyle">
-            <span class="wrapper inline">
-              <img src="https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource"
-                   alt="salt.bountysource" title="salt.bountysource" border="0"/>
-            </span>
-          </a>
-        </span>
-        <br/>
-        <span class="wrapper">
           <a href="https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org"
              target="_blank">
             <span class="wrapper inline">

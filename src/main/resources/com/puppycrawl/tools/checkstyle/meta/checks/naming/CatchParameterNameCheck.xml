@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck"
-              name="CatchParameterName"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             name="CatchParameterName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that {@code catch} parameter names conform to a specified pattern.
  &lt;/p&gt;
@@ -23,9 +23,9 @@
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"
-                       name="format"
-                       type="java.util.regex.Pattern">
-               <description>Specifies valid identifiers.</description>
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Sets the pattern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

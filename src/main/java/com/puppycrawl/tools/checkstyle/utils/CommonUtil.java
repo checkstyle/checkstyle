@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -67,6 +67,9 @@ public final class CommonUtil {
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
 
+    /** The extension separator. */
+    private static final String EXTENSION_SEPARATOR = ".";
+
     /** Stop instances being created. **/
     private CommonUtil() {
     }
@@ -124,11 +127,11 @@ public final class CommonUtil {
             final String[] withDotExtensions = new String[fileExtensions.length];
             for (int i = 0; i < fileExtensions.length; i++) {
                 final String extension = fileExtensions[i];
-                if (startsWithChar(extension, '.')) {
+                if (extension.startsWith(EXTENSION_SEPARATOR)) {
                     withDotExtensions[i] = extension;
                 }
                 else {
-                    withDotExtensions[i] = "." + extension;
+                    withDotExtensions[i] = EXTENSION_SEPARATOR + extension;
                 }
             }
 
@@ -238,19 +241,12 @@ public final class CommonUtil {
      * @return the base class name from a fully qualified name
      */
     public static String baseClassName(String type) {
-        final String className;
         final int index = type.lastIndexOf('.');
-        if (index == -1) {
-            className = type;
-        }
-        else {
-            className = type.substring(index + 1);
-        }
-        return className;
+        return type.substring(index + 1);
     }
 
     /**
-     * Constructs a normalized relative path between base directory and a given path.
+     * Constructs a relative path between base directory and a given path.
      *
      * @param baseDirectory
      *            the base path to which given path is relativized
@@ -259,59 +255,17 @@ public final class CommonUtil {
      * @return the relative normalized path between base directory and
      *     path or path if base directory is null.
      */
-    public static String relativizeAndNormalizePath(final String baseDirectory, final String path) {
+    public static String relativizePath(final String baseDirectory, final String path) {
         final String resultPath;
         if (baseDirectory == null) {
             resultPath = path;
         }
         else {
-            final Path pathAbsolute = Paths.get(path).normalize();
-            final Path pathBase = Paths.get(baseDirectory).normalize();
+            final Path pathAbsolute = Paths.get(path);
+            final Path pathBase = Paths.get(baseDirectory);
             resultPath = pathBase.relativize(pathAbsolute).toString();
         }
         return resultPath;
-    }
-
-    /**
-     * Tests if this string starts with the specified prefix.
-     * <p>
-     * It is faster version of {@link String#startsWith(String)} optimized for
-     *  one-character prefixes at the expense of
-     * some readability. Suggested by
-     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
-     * SimplifyStartsWith</a> PMD rule:
-     * </p>
-     *
-     * @param value
-     *            the {@code String} to check
-     * @param prefix
-     *            the prefix to find
-     * @return {@code true} if the {@code char} is a prefix of the given {@code String};
-     *     {@code false} otherwise.
-     */
-    public static boolean startsWithChar(String value, char prefix) {
-        return !value.isEmpty() && value.charAt(0) == prefix;
-    }
-
-    /**
-     * Tests if this string ends with the specified suffix.
-     * <p>
-     * It is faster version of {@link String#endsWith(String)} optimized for
-     *  one-character suffixes at the expense of
-     * some readability. Suggested by
-     * <a href="https://docs.pmd-code.org/latest/pmd_rules_java_performance.html#simplifystartswith">
-     * SimplifyStartsWith</a> PMD rule:
-     * </p>
-     *
-     * @param value
-     *            the {@code String} to check
-     * @param suffix
-     *            the suffix to find
-     * @return {@code true} if the {@code char} is a suffix of the given {@code String};
-     *     {@code false} otherwise.
-     */
-    public static boolean endsWithChar(String value, char suffix) {
-        return !value.isEmpty() && value.charAt(value.length() - 1) == suffix;
     }
 
     /**
@@ -579,11 +533,14 @@ public final class CommonUtil {
      * @return true when the given string contains valid name.
      */
     public static boolean isName(String str) {
-        boolean isName = !str.isEmpty();
+        boolean isName = false;
 
         final String[] identifiers = str.split("\\.", -1);
-        for (int i = 0; isName && i < identifiers.length; i++) {
-            isName = isIdentifier(identifiers[i]);
+        for (String identifier : identifiers) {
+            isName = isIdentifier(identifier);
+            if (!isName) {
+                break;
+            }
         }
 
         return isName;
@@ -618,29 +575,6 @@ public final class CommonUtil {
             left += Character.charCount(codePointAt);
         }
         return left;
-    }
-
-    /**
-     * Checks whether the string contains an integer value.
-     *
-     * @param str a string to check
-     * @return true if the given string is an integer, false otherwise.
-     */
-    public static boolean isInt(String str) {
-        boolean isInt;
-        if (str == null) {
-            isInt = false;
-        }
-        else {
-            try {
-                Integer.parseInt(str);
-                isInt = true;
-            }
-            catch (NumberFormatException ignored) {
-                isInt = false;
-            }
-        }
-        return isInt;
     }
 
     /**

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,80 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Foo {
- *
- *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
- *   public Foo() {
- *   }
- *
- *   &#64;SuppressWarnings("unchecked") public void fun2() {  // OK
- *   }
- *
- * }
- *
- * &#64;SuppressWarnings("unchecked") class Bar extends Foo {  // OK
- *
- *   &#64;Deprecated public Bar() {  // OK
- *   }
- *
- *   &#64;Override  // violation, annotation should be on the same line
- *   public void fun1() {
- *   }
- *
- *   &#64;Before &#64;Override public void fun2() {  // OK
- *   }
- *
- *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
- *   &#64;Before public void fun3() {
- *   }
- *
- * }
- * </pre>
- * <p>
- * To configure the check to check for annotations applied on
- * interfaces, variables and constructors:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
- *   &lt;property name=&quot;tokens&quot;
- *       value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;Deprecated interface Foo {  // OK
- *
- *   void doSomething();
- *
- * }
- *
- * class Bar implements Foo {
- *
- *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
- *   public Bar() {
- *   }
- *
- *   &#64;Override  // OK
- *   public void doSomething() {
- *   }
- *
- *   &#64;Nullable  // violation, annotation should be on the same line
- *   String s;
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

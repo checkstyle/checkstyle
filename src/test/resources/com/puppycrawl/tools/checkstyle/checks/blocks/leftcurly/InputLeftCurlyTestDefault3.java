@@ -28,7 +28,7 @@ class InputLeftCurlyTestDefault3
                 { // violation ''{' at column 17 should be on the previous line'
                     break;
                 }
-                else if (x < 0) { // ok
+                else if (x < 0) {
                     ;
                 }
                 else
@@ -93,7 +93,7 @@ class InputLeftCurlyTestDefault3
     void method2()
     { // violation ''{' at column 5 should be on the previous line'
         boolean flag = true;
-        if (flag) { // ok
+        if (flag) {
             System.identityHashCode("heh");
             flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
@@ -144,7 +144,7 @@ class FooInner
  * False positive
  *
  */
-class Absent_CustomFieldSerializer3 { // ok
+class Absent_CustomFieldSerializer3 {
 
     public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
 }
@@ -160,14 +160,14 @@ interface EmptyInterface3 {}
 
 class ClassWithStaticInitializers
 { // violation ''{' at column 1 should be on the previous line'
-    static { // ok
+    static {
     }
     static
     {}
 
     static class Inner
     { // violation ''{' at column 5 should be on the previous line'
-        static { // ok
+        static {
             int i = 1;
         }
     }

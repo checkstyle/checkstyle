@@ -25,7 +25,7 @@ import java.util.SortedSet;
 
 import javax.annotation.Nullable;
 
-public class InputClassFanOutComplexityRemoveIncorrectTypeParameter<E> { // ok
+public class InputClassFanOutComplexityRemoveIncorrectTypeParameter<E> {
   private static <E> Collection<E> typePreservingCollection(
       Collection<E> collection, @Nullable Object mutex) {
     if (collection instanceof SortedSet) {

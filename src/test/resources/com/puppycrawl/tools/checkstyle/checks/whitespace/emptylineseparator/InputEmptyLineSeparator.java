@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
 import java.util.Collections;
 /* no violation: block comment after token*/
 
-import com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.InputEmptyLineSeparator;
+import java.io.PrintWriter;
 //no violation: single-line comment after token
 
 import javax.swing.AbstractAction; /* no violation: no trailing comment

@@ -7,7 +7,7 @@ EqualsHashCode
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
 public class InputEqualsHashCodeEqualsParameter {
-    public static class TestClass1 { // ok
+    public static class TestClass1 {
         public boolean equals(String o) {
             return true;
         }
@@ -28,7 +28,7 @@ public class InputEqualsHashCodeEqualsParameter {
             return false;
         }
     }
-    public static class TestClass4 { // ok
+    public static class TestClass4 {
         public int hashCode() {
             return 1;
         }
@@ -39,7 +39,7 @@ public class InputEqualsHashCodeEqualsParameter {
             return false;
         }
     }
-    public static class TestClass5 { // ok
+    public static class TestClass5 {
         public int hashCode() {
             return 1;
         }
@@ -63,7 +63,7 @@ public class InputEqualsHashCodeEqualsParameter {
             return true;
         }
     }
-    public static class TestClass8 { // ok
+    public static class TestClass8 {
         public native int hashCode();
         public native boolean equals(Object o);
     }
@@ -73,7 +73,7 @@ public class InputEqualsHashCodeEqualsParameter {
     public static class TestClass10 { // violation, no `hashCode` implementation
         public native boolean equals(Object o); // violation 'without .* of 'hashCode()'.'
     }
-    public static abstract class TestClass11 { // ok
+    public static abstract class TestClass11 {
         public abstract int hashCode();
         public abstract boolean equals(Object o);
     }
@@ -89,14 +89,14 @@ public class InputEqualsHashCodeEqualsParameter {
             return true;
         }
     }
-    public interface TestClass14 { // ok
+    public interface TestClass14 {
         public int hashCode();
         public boolean equals(Object o);
     }
-    public interface TestClass15 { // ok
+    public interface TestClass15 {
         public boolean equals(Object o);
     }
-    public interface TestClass16 { // ok
+    public interface TestClass16 {
         public int hashCode();
     }
     public class TestClass17 {

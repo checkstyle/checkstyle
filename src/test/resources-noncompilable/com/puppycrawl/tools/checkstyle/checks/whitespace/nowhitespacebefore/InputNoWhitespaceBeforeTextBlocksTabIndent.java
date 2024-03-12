@@ -34,18 +34,18 @@ public class InputNoWhitespaceBeforeTextBlocksTabIndent {
     private void brokenCheck_space_before_tabs() {
         String x = """
             Some Text
- 		"""; // ok
+ 		""";
     }
 
     private void brokenCheck_space_after_tabs() {
         String x = """
             Some Text
-		 """; // ok
+		 """;
     }
 
     private void brokenCheck_just_tabs() {
         String x = """
             Some Text
-		"""; // ok
+		""";
     }
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -18,8 +18,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
-
-import java.util.Objects;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -42,81 +40,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;DefaultComesLast&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     break;
- *   case 2:
- *     break;
- *   default: // OK
- *     break;
- * }
- *
- * switch (i) {
- *   case 1:
- *     break;
- *   case 2:
- *     break; // OK, no default
- * }
- *
- * switch (i) {
- *   case 1:
- *     break;
- *   default: // violation, 'default' before 'case'
- *     break;
- *   case 2:
- *     break;
- * }
- *
- * switch (i) {
- *   case 1:
- *   default: // violation, 'default' before 'case'
- *     break;
- *   case 2:
- *     break;
- * }
- * </pre>
- * <p>To configure the check to allow default label to be not last if it is shared with case:
- * </p>
- * <pre>
- * &lt;module name=&quot;DefaultComesLast&quot;&gt;
- *   &lt;property name=&quot;skipIfLastAndSharedWithCase&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     break;
- *   case 2:
- *   default: // OK
- *     break;
- *   case 3:
- *     break;
- * }
- *
- * switch (i) {
- *   case 1:
- *     break;
- *   default: // violation
- *   case 2:
- *     break;
- * }
- *
- * // Switch rules are not subject to fall through, so this is still a violation:
- * switch (i) {
- *   case 1 -&gt; x = 9;
- *   default -&gt; x = 10; // violation
- *   case 2 -&gt; x = 32;
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -175,6 +98,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
      * {@code case} if they are not last.
      *
      * @param newValue whether to ignore checking.
+     * @since 7.7
      */
     public void setSkipIfLastAndSharedWithCase(boolean newValue) {
         skipIfLastAndSharedWithCase = newValue;
@@ -188,41 +112,32 @@ public class DefaultComesLastCheck extends AbstractCheck {
         final boolean isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
 
         if (skipIfLastAndSharedWithCase && !isSwitchRule) {
-            if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
+            if (isNextSiblingOf(ast, TokenTypes.LITERAL_CASE)) {
                 log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
             else if (ast.getPreviousSibling() == null
-                && Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                   TokenTypes.CASE_GROUP))) {
+                && isNextSiblingOf(defaultGroupAST,
+                                                   TokenTypes.CASE_GROUP)) {
                 log(ast, MSG_KEY);
             }
         }
-        else if (Objects.nonNull(findNextSibling(defaultGroupAST,
-                                            TokenTypes.CASE_GROUP))
-                    || Objects.nonNull(findNextSibling(defaultGroupAST,
-                                            TokenTypes.SWITCH_RULE))) {
+        else if (isNextSiblingOf(defaultGroupAST,
+                                            TokenTypes.CASE_GROUP)
+                    || isNextSiblingOf(defaultGroupAST,
+                                            TokenTypes.SWITCH_RULE)) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Return token type only if passed tokenType in argument is found or returns -1.
+     * Return true only if passed tokenType in argument is found or returns false.
      *
      * @param ast root node.
      * @param tokenType tokentype to be processed.
-     * @return token if desired token is found or else null.
+     * @return true if desired token is found or else false.
      */
-    private static DetailAST findNextSibling(DetailAST ast, int tokenType) {
-        DetailAST token = null;
-        DetailAST node = ast.getNextSibling();
-        while (node != null) {
-            if (node.getType() == tokenType) {
-                token = node;
-                break;
-            }
-            node = node.getNextSibling();
-        }
-        return token;
+    private static boolean isNextSiblingOf(DetailAST ast, int tokenType) {
+        return ast.getNextSibling() != null && ast.getNextSibling().getType() == tokenType;
     }
 
 }

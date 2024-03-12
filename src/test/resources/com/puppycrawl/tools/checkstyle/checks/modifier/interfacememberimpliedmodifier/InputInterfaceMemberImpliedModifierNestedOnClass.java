@@ -13,7 +13,7 @@ violateImpliedStaticNested = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
 
-public class InputInterfaceMemberImpliedModifierNestedOnClass { // ok
+public class InputInterfaceMemberImpliedModifierNestedOnClass {
 
     interface NestedInterface {
     }

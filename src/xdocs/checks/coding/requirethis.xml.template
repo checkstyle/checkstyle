@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RequireThis</title>
+  </head>
+  <body>
+    <section name="RequireThis">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that references to instance variables and methods of the present
+          object are explicitly of the form "this.varName" or
+          "this.methodName(args)" and that those references don't
+          rely on the default behavior when "this." is absent.
+        </p>
+
+        <p>
+           Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to
+           'false' and not that actual nowadays.
+        </p>
+
+        <p>
+          Rationale:
+        </p>
+        <ol>
+          <li>
+            The same notation/habit for C++ and Java (C++ have global methods, so having
+            "this." do make sense in it to distinguish call of method of class
+            instead of global).
+          </li>
+          <li>
+            Non-IDE development (ease of refactoring, some clearness to distinguish
+            static and non-static methods).
+          </li>
+        </ol>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          Limitations: Nothing is currently done about static variables
+          or catch-blocks.  Static methods invoked on a class name seem to be OK;
+          both the class name and the method name have a DOT parent.
+          Non-static methods invoked on either this or a variable name seem to be
+          OK, likewise.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check for fields only:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+            To configure the check for methods only:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          Note that method call foo(5) does not raise a violation
+          because methods cannot be overlapped in java.
+        </p>
+        <p id="Example4-config">
+            To configure the check to validate for non-overlapping fields and methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          Please, be aware of the following logic, which is implemented in the check:
+        </p>
+        <p id="Example5-code">
+          1) If you arrange 'this' in your code on your own, the check will not raise violation for
+          variables which use 'this' to reference a class field, for example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-code">
+          2) If method parameter is returned from the method, the check will not raise violation for
+             returned variable/parameter, for example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireThis">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="RequireThis"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="RequireThis"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -98,16 +98,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code elementStyle} - Define the annotation element styles.
- * Type is {@code
- * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption}.
- * Default value is {@code compact_no_array}.
- * </li>
- * <li>
  * Property {@code closingParens} - Define the policy for ending parenthesis.
  * Type is {@code
  * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption}.
  * Default value is {@code never}.
+ * </li>
+ * <li>
+ * Property {@code elementStyle} - Define the annotation element styles.
+ * Type is {@code
+ * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption}.
+ * Default value is {@code compact_no_array}.
  * </li>
  * <li>
  * Property {@code trailingArrayComma} - Define the policy for trailing comma in arrays.
@@ -116,121 +116,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code never}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AnnotationUseStyle"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("unchecked") // OK
- * &#64;Deprecated // OK
- * &#64;SomeArrays({"unchecked","unused"}) // OK
- * public class TestOne
- * {
- *
- * }
- *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
- * &#64;Deprecated() // Violation - cannot have a closing parenthesis
- * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
- * class TestTwo {
- *
- * }
- * </pre>
- * <p>
- * To configure the check to enforce an {@code expanded} style,
- *             with a closing parenthesis and a trailing array comma set to {@code never}.
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
- *  &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
- *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("unchecked") // Violation - parameters should be referenced
- * &#64;Deprecated // OK
- * &#64;SomeArrays({"unchecked","unused"}) // Violation - parameters should be referenced
- * public class TestOne
- * {
- *
- * }
- *
- * &#64;SuppressWarnings(value={"unchecked"}) // OK
- * &#64;Deprecated() // Violation - cannot have a closing parenthesis
- * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - cannot have a trailing array comma
- * class TestTwo {
- *
- * }
- * </pre>
- * <p>
- * To configure the check to enforce a {@code compact} style,
- *             with always including a closing parenthesis and ignoring a trailing array comma.
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *  &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
- *  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
- *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("unchecked") // OK
- * &#64;Deprecated // Violation - must have a closing parenthesis
- * &#64;SomeArrays({"unchecked","unused"}) // OK
- * public class TestOne
- * {
- *
- * }
- *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - parameter 'value' shouldn't be used
- * &#64;Deprecated() // OK
- * &#64;SomeArrays(value={"unchecked","unused",}) // Violation - parameter 'value' shouldn't be used
- * class TestTwo {
- *
- * }
- * </pre>
- * <p>
- * To configure the check to enforce a trailing array comma,
- *             with ignoring the elementStyle and a closing parenthesis.
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
- *  &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
- *  &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
- *  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;SuppressWarnings("unchecked") // OK
- * &#64;Deprecated // OK
- * &#64;SomeArrays({"unchecked","unused"}) // Violation - must have a trailing array comma
- * public class TestOne
- * {
- *
- * }
- *
- * &#64;SuppressWarnings(value={"unchecked"}) // Violation - must have a trailing array comma
- * &#64;Deprecated() // OK
- * &#64;SomeArrays(value={"unchecked","unused",})  // OK
- * class TestTwo {
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -414,6 +299,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the annotation element styles.
      *
      * @param style string representation
+     * @since 5.0
      */
     public void setElementStyle(final String style) {
         elementStyle = getOption(ElementStyleOption.class, style);
@@ -423,6 +309,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for trailing comma in arrays.
      *
      * @param comma string representation
+     * @since 5.0
      */
     public void setTrailingArrayComma(final String comma) {
         trailingArrayComma = getOption(TrailingArrayCommaOption.class, comma);
@@ -432,6 +319,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Setter to define the policy for ending parenthesis.
      *
      * @param parens string representation
+     * @since 5.0
      */
     public void setClosingParens(final String parens) {
         closingParens = getOption(ClosingParensOption.class, parens);

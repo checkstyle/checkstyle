@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
     void issue11973() {
         int i = -1; // violation 'Distance between.*'i'.*and.*first usage is 2, but allowed 1.'
-        int x = -1; // ok
+        int x = -1;
         switch (i) {
             case 1 -> {
                 x++;
@@ -22,7 +22,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
             }
         };
 
-        int a = -1; // ok
+        int a = -1;
         int a123 = switch (a) {
             case 1 -> {
                 yield 2;
@@ -32,7 +32,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
             }
         };
 
-        int b = -1; // ok
+        int b = -1;
         int b123 = switch (b) {
             case 1 -> {
                 yield b;
@@ -42,7 +42,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
             }
         };
 
-        int day = 1; // ok
+        int day = 1;
         int c = -1;
         int c123 = switch (c) {
             case 1:
@@ -53,7 +53,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
                 yield day++;
         };
 
-        int day1 = 1; // ok
+        int day1 = 1;
         int cc = -1;
         int d123 = switch (cc) {
             case 1 -> {
@@ -66,7 +66,7 @@ public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions2 {
             }
         };
 
-        int day2 = 1; // ok
+        int day2 = 1;
         int ccc = -1;
         int e123 = switch (ccc) {
             case 1 -> {

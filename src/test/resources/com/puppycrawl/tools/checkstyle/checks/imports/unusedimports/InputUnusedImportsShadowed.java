@@ -7,18 +7,18 @@ processJavadoc = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import java.util.AbstractMap; // ok
-import java.util.List; // ok
+import java.util.AbstractMap;
+import java.util.List;
 import java.util.Map; // violation
 import java.util.Set; // violation
-import java.util.concurrent.Callable; // ok
+import java.util.concurrent.Callable;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Deprecated; // ok
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Foo; // ok
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Inner; // ok
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested; // ok
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested.List.Map.Entry; // ok
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Deprecated;
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Foo;
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Inner;
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested;
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Nested.List.Map.Entry;
 
 @Deprecated(foo = Foo.class, classes = {Inner.class})
 public class InputUnusedImportsShadowed

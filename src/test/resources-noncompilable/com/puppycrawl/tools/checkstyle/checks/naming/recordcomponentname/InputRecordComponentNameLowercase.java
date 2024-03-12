@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 
 import org.w3c.dom.Node;
 
-public record InputRecordComponentNameLowercase(Integer x, String str, Double val123) { // ok
+public record InputRecordComponentNameLowercase(Integer x, String str, Double val123) {
 }
 
 record LowercaseFirstRecord(String value_123, // violation

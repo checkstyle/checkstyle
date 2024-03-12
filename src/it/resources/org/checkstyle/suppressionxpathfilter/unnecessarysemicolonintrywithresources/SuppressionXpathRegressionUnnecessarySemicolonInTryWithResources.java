@@ -8,7 +8,6 @@ public class SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources {
         try(Reader good = new PipedReader()){}
         try(Reader good = new PipedReader();Reader better = new PipedReader()){}
 
-        try(Reader bad = new PipedReader();){} //warn
         try(Reader bad = new PipedReader();Reader worse = new PipedReader();){} //warn
 
     }

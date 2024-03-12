@@ -26,14 +26,14 @@ public class InputEmptyBlockWithEmoji {
         char[] s = {'1', '2'};
         int index = 2;
         if (doSideEffect() == 1) { } // violation 'Empty if block'
-        while ((a = "12") != "🧐") {return;} // ok
+        while ((a = "12") != "🧐") {return;}
         for (; index < s.length && s[index] != 'x'; index++) {} // violation 'Empty for block'
         if (a == "12🤣") {} else {System.identityHashCode("a");} // violation 'Empty if block'
         // violation below 'Empty switch block'
         switch("😆😆😆😆😆") {
 
         }
-        switch (a) {    // ok
+        switch (a) {
             case "🎄": {
                 a = "🤣🤣";
             }

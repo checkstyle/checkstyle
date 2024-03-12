@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -44,8 +44,8 @@ public final class ScopeUtil {
      */
     public static Scope getDeclaredScopeFromMods(DetailAST aMods) {
         Scope result = null;
-        for (DetailAST token = aMods.getFirstChild(); token != null && result == null;
-                token = token.getNextSibling()) {
+        for (DetailAST token = aMods.getFirstChild(); token != null;
+             token = token.getNextSibling()) {
             switch (token.getType()) {
                 case TokenTypes.LITERAL_PUBLIC:
                     result = Scope.PUBLIC;
@@ -85,7 +85,7 @@ public final class ScopeUtil {
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
         return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
-                .orElseGet(() -> getDefaultScope(aMods.getParent()));
+                .orElseGet(() -> getDefaultScope(aMods));
     }
 
     /**
@@ -131,7 +131,7 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = node.getParent();
+        for (DetailAST token = node;
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
@@ -240,14 +240,11 @@ public final class ScopeUtil {
 
         // Loop up looking for a containing interface block
         for (DetailAST token = node.getParent();
-             token != null && !returnValue;
-             token = token.getParent()) {
-            if (token.getType() == TokenTypes.ENUM_DEF) {
-                returnValue = true;
-            }
-            else if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
+             token != null; token = token.getParent()) {
+            if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
                 TokenTypes.ANNOTATION_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.LITERAL_NEW)) {
+                TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF)) {
+                returnValue = token.getType() == TokenTypes.ENUM_DEF;
                 break;
             }
         }
@@ -315,22 +312,28 @@ public final class ScopeUtil {
      * @return whether aAST is a local variable definition.
      */
     public static boolean isLocalVariableDef(DetailAST node) {
-        boolean localVariableDef = false;
+        final boolean localVariableDef;
         // variable declaration?
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
             localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
                                 TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
         }
+
+        else if (node.getType() == TokenTypes.RESOURCE) {
+            localVariableDef = node.getChildCount() > 1;
+        }
+
         // catch parameter?
-        if (node.getType() == TokenTypes.PARAMETER_DEF) {
+        else if (node.getType() == TokenTypes.PARAMETER_DEF) {
             final DetailAST parent = node.getParent();
             localVariableDef = parent.getType() == TokenTypes.LITERAL_CATCH;
         }
 
-        if (node.getType() == TokenTypes.RESOURCE) {
-            localVariableDef = node.getChildCount() > 1;
+        else {
+            localVariableDef = false;
         }
+
         return localVariableDef;
     }
 

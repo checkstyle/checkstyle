@@ -1,0 +1,26 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SummaryJavadocCheck"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test extends Exception {
+//Valid
+  /**
+   * {@inheritDoc}
+   */
+  public String ValidFunction(){
+    return "";
+  }
+  //Violation
+  /**
+   *
+   */
+  public String InvalidFunction(){
+    return "";
+  }
+}
+// xdoc section -- end

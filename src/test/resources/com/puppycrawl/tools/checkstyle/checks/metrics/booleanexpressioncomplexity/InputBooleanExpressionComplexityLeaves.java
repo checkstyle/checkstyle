@@ -11,7 +11,7 @@ public class InputBooleanExpressionComplexityLeaves {
     public InputBooleanExpressionComplexityLeaves() {
     }
 
-    public static final ConstructingObjectParser PARSER = new ConstructingObjectParser( // ok
+    public static final ConstructingObjectParser PARSER = new ConstructingObjectParser(
         "restore_snapshot",
         true,
         () -> {

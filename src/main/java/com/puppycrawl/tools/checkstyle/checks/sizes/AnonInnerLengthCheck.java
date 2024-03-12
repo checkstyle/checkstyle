@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -42,20 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 20}.
  * </li>
  * </ul>
- * <p>
- * To configure the check to accept anonymous classes with up to 20 lines:
- * </p>
- * <pre>
- * &lt;module name="AnonInnerLength"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept anonymous classes with up to 60 lines:
- * </p>
- * <pre>
- * &lt;module name="AnonInnerLength"&gt;
- *   &lt;property name="max" value="60"/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -118,6 +104,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
      * Setter to specify the maximum number of lines allowed.
      *
      * @param length the maximum length of an anonymous inner class.
+     * @since 3.2
      */
     public void setMax(int length) {
         max = length;

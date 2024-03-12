@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -81,156 +81,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
- * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name=&quot;RequireThis&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private int a;
- *   private int b;
- *   private int c;
- *
- *   public Test(int a) {
- *     // overlapping by constructor argument
- *     this.a = a;       // OK, this keyword used
- *     b = 0;            // OK, no overlap
- *     foo(5);           // OK
- *   }
- *
- *   public void foo(int c) {
- *     // overlapping by method argument
- *     c = c;            // violation, reference to instance variable "c" requires "this"
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check for fields only:
- * </p>
- * <pre>
- * &lt;module name=&quot;RequireThis&quot;&gt;
- *   &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private int a;
- *   private int b;
- *   private int c;
- *
- *   public Test(int a) {
- *     // overlapping by constructor argument
- *     this.a = a;       // OK, this keyword used
- *     b = 0;            // OK, no overlap
- *     foo(5);           // OK, no validation for methods
- *   }
- *
- *   public void foo(int c) {
- *     // overlapping by method argument
- *     c = c;            // violation, reference to instance variable "c" requires "this"
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check for methods only:
- * </p>
- * <pre>
- * &lt;module name=&quot;RequireThis&quot;&gt;
- *   &lt;property name=&quot;checkFields&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private int a;
- *   private int b;
- *   private int c;
- *
- *   public Test(int a) {
- *     // overlapping by constructor argument
- *     this.a = a;       // OK, no validation for fields
- *     b = 0;            // OK, no validation for fields
- *     foo(5);           // OK, no overlap
- *   }
- *
- *   public void foo(int c) {
- *     // overlapping by method argument
- *     c = c;            // OK, no validation for fields
- *   }
- * }
- * </pre>
- * <p>
- * Note that method call foo(5) does not raise a violation
- * because methods cannot be overlapped in java.
- * </p>
- * <p>
- * To configure the check to validate for non-overlapping fields and methods:
- * </p>
- * <pre>
- * &lt;module name=&quot;RequireThis&quot;&gt;
- *   &lt;property name=&quot;validateOnlyOverlapping&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private int a;
- *   private int b;
- *   private int c;
- *
- *   public Test(int a) {
- *     // overlapping by constructor argument
- *     this.a = a;       // OK, no validation for fields
- *     b = 0;            // violation, reference to instance variable "b" requires "this"
- *     foo(5);           // violation, method call "foo(5)" requires "this"
- *   }
- *
- *   public void foo(int c) {
- *     // overlapping by method argument
- *     c = c;            // violation, reference to instance variable "c" requires "this"
- *   }
- * }
- * </pre>
- * <p>
- * Please, be aware of the following logic, which is implemented in the check:
- * </p>
- * <p>
- * 1) If you arrange 'this' in your code on your own, the check will not raise violation for
- * variables which use 'this' to reference a class field, for example:
- * </p>
- * <pre>
- * public class C {
- *   private int scale;
- *   private int x;
- *
- *   public void foo(int scale) {
- *     scale = this.scale;      // no violation
- *
- *     if (scale &gt; 0) {
- *       scale = -scale;        // no violation
- *     }
- *     x *= scale;
- *   }
- * }
- * </pre>
- * <p>
- * 2) If method parameter is returned from the method, the check will not raise violation for
- * returned variable/parameter, for example:
- * </p>
- * <pre>
- * public class D {
- *   private String prefix;
- *
- *   public String modifyPrefix(String prefix) {
- *     prefix = "^" + prefix + "$";  // no violation, because method parameter is returned
- *     return prefix;
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -321,6 +171,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check references to fields.
      *
      * @param checkFields should we check fields usage or not
+     * @since 3.4
      */
     public void setCheckFields(boolean checkFields) {
         this.checkFields = checkFields;
@@ -330,6 +181,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check references to methods.
      *
      * @param checkMethods should we check methods usage or not
+     * @since 3.4
      */
     public void setCheckMethods(boolean checkMethods) {
         this.checkMethods = checkMethods;
@@ -339,6 +191,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Setter to control whether to check only overlapping by variables or arguments.
      *
      * @param validateOnlyOverlapping should we check only overlapping by variables or arguments
+     * @since 6.17
      */
     public void setValidateOnlyOverlapping(boolean validateOnlyOverlapping) {
         this.validateOnlyOverlapping = validateOnlyOverlapping;

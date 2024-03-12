@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
@@ -84,8 +85,9 @@ public final class JavaParser {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        final CompositeLexerContextCache contextCache = new CompositeLexerContextCache(lexer);
         lexer.setCommentListener(contents);
-        lexer.removeErrorListeners();
+        lexer.setContextCache(contextCache);
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser =
@@ -137,7 +139,7 @@ public final class JavaParser {
      */
     public static DetailAST parseFile(File file, Options options)
             throws IOException, CheckstyleException {
-        final FileText text = new FileText(file.getAbsoluteFile(),
+        final FileText text = new FileText(file,
             StandardCharsets.UTF_8.name());
         return parseFileText(text, options);
     }

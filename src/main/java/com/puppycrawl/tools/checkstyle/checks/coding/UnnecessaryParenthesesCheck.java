@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -179,83 +179,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * POST_DEC</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessaryParentheses&quot;/&gt;
- * </pre>
- * <p>
- * Which results in the following violations:
- * </p>
- * <pre>
- * public int square(int a, int b){
- *   int square = (a * b); // violation
- *   return (square);      // violation
- * }
- * int sumOfSquares = 0;
- * for(int i=(0); i&lt;10; i++){          // violation
- *   int x = (i + 1);                  // violation
- *   sumOfSquares += (square(x * x));  // violation
- * }
- * double num = (10.0); //violation
- * List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
- * myList.stream()
- *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) // violation
- *   .forEach(System.out::println);
- * int a = 10, b = 12, c = 15;
- * boolean x = true, y = false, z= true;
- * if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
- *          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
- *          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
- *     return;
- * }
- * if ((-a) != -27 // violation, unnecessary parenthesis
- *          &amp;&amp; b &gt; 5) {
- *     return;
- * }
- * if (x==(a &lt;= 15)) { // ok
- *     return;
- * }
- * if (x==(y == z)) { // ok
- *     return;
- * }
- * </pre>
- * <p>
- * To configure the check to detect unnecessary parentheses around bitwise inclusive OR
- * {@code '|'}, bitwise AND {@code '&amp;'}, bitwise exclusive OR {@code '^'}:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;BOR, BAND, BXOR&quot; /&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test {
- *
- *     void method() {
- *         int x = 9, y = 8;
- *         if(x&gt;= 0 ^ (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
- *             ^ y&gt;=8) {
- *             return;
- *         }
- *         if(x&gt;= 0 ^ x&lt;=8 &amp; y&lt;=11 ^ y&gt;=8) { // ok
- *             return;
- *        }
- *        if(x&gt;= 0 || (x&lt;=8 &amp; y&lt;=11) // violation, unnecessary parenthesis
- *            &amp;&amp; y&gt;=8) {
- *            return;
- *        }
- *        if(x&gt;= 0 || x&lt;=8 &amp; y&lt;=11 &amp;&amp; y&gt;=8) { // ok
- *            return;
- *        }
- *        if(x&gt;= 0 &amp; (x&lt;=8 ^ y&lt;=11) &amp; y&gt;=8) { // ok
- *            return;
- *        }
- *     }
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -528,7 +451,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
 
         if (isLambdaSingleParameterSurrounded(ast)) {
-            log(ast, MSG_LAMBDA, ast.getText());
+            log(ast, MSG_LAMBDA);
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
@@ -642,8 +565,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 log(ast, MSG_EXPR);
             }
         }
-
-        parentToSkip = null;
     }
 
     /**

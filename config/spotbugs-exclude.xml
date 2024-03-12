@@ -164,7 +164,7 @@
   </Match>
   <Match>
     <!-- Check is broken and does not clearly report where the fault is.
-         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/408 -->
+         Suppressed until https://github.com/mebigfatguy/fb-contrib/issues/453 -->
     <Bug pattern="WOC_WRITE_ONLY_COLLECTION_FIELD"/>
   </Match>
   <Match>
@@ -245,5 +245,74 @@
       <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
     </Or>
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/405 -->
+    <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader$InternalLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.CheckUtil"/>
+      <Class name="com.puppycrawl.tools.checkstyle.utils.ScopeUtil"/>
+    </Or>
+    <Bug pattern="ENMI_NULL_ENUM_VALUE"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo"/>
+    </Or>
+    <Bug pattern="ENMI_ONE_ENUM_VALUE"/>
+  </Match>
+  <Match>
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/13351 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel"/>
+    </Or>
+    <Bug pattern="SPP_PASSING_THIS_AS_PARM"/>
+  </Match>
+  <Match>
+    <!-- Won't fix, design requires operating over a string field of the class
+         see https://github.com/checkstyle/checkstyle/pull/13357#discussion_r1264552536 -->
+    <Class
+    name="com.puppycrawl.tools.checkstyle.site.XdocsTemplateParser"/>
+    <Bug pattern="STT_TOSTRING_STORED_IN_FIELD"/>
+  </Match>
+  <Match>
+    <!-- This is not possible to fix because if we initialize this in constructor or in
+          field itself pitest will be failed
+          https://github.com/checkstyle/checkstyle/pull/13269 -->
+    <Class
+    name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/14121 -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+    <Method name="indentationLog"/>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- there is strict order of method executions, call in misorder will result in failure -->
+    <Class name="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
+    <Method name="setupChild"/>
+    <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+  </Match>
+  <Match>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
+      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
+      <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
+    </Or>
+    <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
 </FindBugsFilter>

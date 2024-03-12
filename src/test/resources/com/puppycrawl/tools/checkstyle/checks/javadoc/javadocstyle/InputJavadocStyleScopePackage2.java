@@ -18,6 +18,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleScopePackage2
 {
     /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * >Link Text</a>
+     */
+    private void method12() {}
+
+    /**
      * First sentence.
      * <pre>
      * +--LITERAL_DO (do)
@@ -54,34 +61,34 @@ public class InputJavadocStyleScopePackage2
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
+    private void method13() {}
 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14() {} // ok
+    private void method14() {}
 
     /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15() {} // ok
+    private void method15() {}
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
-    // violation below
+    public static final int dummy = 4911;
+    // violation below 'Javadoc has empty description section'
     /**
      */
     public void method16() {}
-    // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @param a A parameter
      */
     protected void method17(String a) {}
-    // violation below
+    // violation below 'Javadoc has empty description section'
     /**
      * @exception RuntimeException should be thrown
      */
@@ -89,14 +96,16 @@ public class InputJavadocStyleScopePackage2
 
     /**
      */
-    private static int ASDF = 0; // ok
+    private static int ASDF = 0;
 
-    /** @see Object */ // violation
+    // violation below 'Javadoc has empty description section'
+    /** @see Object */
     public void method19() {}
 
     public enum Test
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,
@@ -104,6 +113,6 @@ public class InputJavadocStyleScopePackage2
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2,
     }
 }

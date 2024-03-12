@@ -1,44 +1,50 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$ParseJavadocOnlyCheck
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
 
-/*
- * Config: TempCheck
- */
-
-/**@author*/ // violation
+/**@author*/ // ok
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
+
     /**@serial*/ // ok
     private static final long serialVersionUID = 7556448691029650757L;
 
-    /**@see*/ // violation
+    /**@see*/ // violation 'Javadoc comment at column 4 has parse error.'
+    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
     private static int field2;
 
-    /**@since*/ // violation
+    /**@since*/ // ok
     private static String field3;
 
-    /**@version*/ // violation
+    /**@version*/ // ok
     private static Object field4;
 
     /**serialField*/ // ok
     private static Object field5;
 
-    /**@exception*/ // violation
+    /**@exception*/ // violation 'Javadoc comment at column 10 has parse error.'
+    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
     public static void method1() {
 
     }
 
-    /**@throws*/ // violation
+    /**@throws*/ // violation 'Javadoc comment at column 7 has parse error.'
+    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
     public static void method2() {
 
     }
 
-    /**@return*/ // violation
+    /**@return*/ // ok
     public static int method3() {
         return -1;
     }
 
-    /**@param*/ // violation
+    /**@param*/ // violation 'Javadoc comment at column 6 has parse error.'
+    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
     public static void method4(int a) {
 
     }
@@ -59,15 +65,20 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     }
 
     /**
-     * {@link} // ok
+     * {@link}
      */
+    // violation 2 lines above 'Javadoc comment at column 13 has parse error.'
+    // Details: mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}
+    // while parsing JAVADOC_INLINE_TAG
     public void method7() {
 
     }
 
     /**
-     * {@linkplain } // ok
+     * {@linkplain }
      */
+    // violation 2 lines above 'Javadoc comment at column 19 has parse error.'
+    // Details: no viable alternative at input '}' while parsing REFERENCE
     public void method8() {
 
     }

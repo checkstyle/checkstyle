@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWithPlainTextCommentFilter</title>
+  </head>
+  <body>
+    <section name="SuppressWithPlainTextCommentFilter">
+      <p>Since Checkstyle 8.6</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
+          audit events. The filter can be used only to suppress audit events received from
+          the checks which implement FileSetCheck interface. In other words, the checks
+          which have Checker as a parent module. The filter knows nothing about AST,
+          it treats only plain text comments and extracts the information required
+          for suppression from the plain text comments. Currently, the filter supports
+          only single-line comments.
+        </p>
+        <p>
+          Please, be aware of the fact that, it is not recommended to use the filter
+          for Java code anymore, however you still are able to use it to suppress audit
+          events received from the checks which implement FileSetCheck interface.
+        </p>
+        <p>
+          Rationale: Sometimes there are legitimate reasons for violating
+          a check. When this is a matter of the code in question and not
+          personal preference, the best place to override the policy is in
+          the code itself. Semi-structured comments can be associated
+          with the check. This is sometimes superior to a separate
+          suppressions file, which must be kept up-to-date as the source
+          file is edited.
+        </p>
+        <p>
+          Note that the suppression comment should be put before the violation.
+          You can use more than one suppression comment each on separate line.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          Properties <code>offCommentFormat</code> and <code>onCommentFormat</code>
+          must have equal
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
+          paren counts</a>.
+        </p>
+        <p>
+          SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure a filter to suppress audit events between a comment
+          containing <code>CHECKSTYLE:OFF</code> and a comment containing
+          <code>CHECKSTYLE:ON</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
+            To configure a filter to suppress audit events between a comment
+            containing line <code>BEGIN GENERATED CONTENT</code> and a comment
+            containing line <code>END GENERATED CONTENT</code>
+            (Checker is configured to check only properties files):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure a filter so that <code>-- stop tab
+          check</code> and <code>-- resume tab check</code> marks allowed tab positions
+          (Checker is configured to check only sql files):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure a filter so that name of suppressed check mentioned
+          in comment <code>CSOFF: <i>regexp</i></code>
+          and <code>CSON: <i>regexp</i></code> mark a matching check
+          (Checker is configured to check only xml files):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure a filter to suppress all audit events between a comment
+          containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
+          <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>EqualsHashCode</em>
+          check (Checker is configured to check only java files):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+          To configure a filter to suppress Check's violation message <b>which matches
+          specified message in messageFormat</b> (so suppression will not be only by
+          Check's name, but also by message text, as the same Check can report
+          violations with different message format) between a comment
+          containing <code>stop</code> and comment containing <code>resume</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p>
+          It is possible to specify an ID of checks, so that it can be leveraged by the
+          SuppressWithPlainTextCommentFilter to skip validations.
+          The following examples show how to skip validations near code that is surrounded
+          with <code>-- CSOFF &lt;ID&gt; (reason)</code> and <code>-- CSON &lt;ID&gt;</code>,
+          where ID is the ID of checks you want to suppress.
+        </p>
+        <p id="Example7-config">
+            Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration
+            (checkFormat which is set to '$1' points that ID of the checks
+            is in the first group of offCommentFormat and onCommentFormat
+            regular expressions):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
+            Example of how to configure the check to suppress more than one check
+            (Checker is configured to check only sql files).
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
+            This check is not limited to comments. It can match any text in the given file
+            as <code>offCommentFormat</code> and <code>onCommentFormat</code> for the suppression.
+            The following example shows how to suppress violations within a text block for
+            LineLength.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithPlainTextCommentFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWithPlainTextCommentFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

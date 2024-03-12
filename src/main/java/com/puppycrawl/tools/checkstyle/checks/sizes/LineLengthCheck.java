@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * The calculation of the length of a line takes into account the number of
  * expanded spaces for a tab character ({@code '\t'}). The default number of spaces is {@code 8}.
  * To specify a different number of spaces, the user can set
- * <a href="https://checkstyle.org/config.html#TreeWalker">{@code TreeWalker}</a>
+ * <a href="https://checkstyle.org/config.html#Checker">{@code Checker}</a>
  * property {@code tabWidth} which applies to all Checks, including {@code LineLength};
  * or can set property {@code tabWidth} for {@code LineLength} alone.
  * </li>
@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </ul>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify file extensions that are accepted.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
@@ -75,63 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code 80}.
  * </li>
  * </ul>
- * <p>
- * To configure the check to accept lines up to 80 characters long:
- * </p>
- * <pre>
- * &lt;module name="LineLength"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept lines up to 120 characters long:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="max" value="120"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to ignore lines that begin with {@code " * "} code,
- * followed by just one word, such as within a Javadoc comment:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="ignorePattern" value="^ *\* *[^ ]+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure the check to only validate java files and ignore other extensions:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="fileExtensions" value="java"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure the check to only validate xml and property files and ignore other extensions:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="fileExtensions" value="xml, properties"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>To configure check to validate {@code import} and {@code package} statements:
- * </p>
- * <pre>
- * &lt;module name="LineLength"&gt;
- *   &lt;property name="ignorePattern" value="^$"/&gt;
- *   &lt;property name="max" value="50"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * // violation below 'Line is longer than 50 characters (found 54)'
- * package com.puppycrawl.tools.checkstyle.checks.design;
- *
- * // violation below 'Line is longer than 50 characters (found 86)'
- * import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
- *
- * import java.util.Arrays; // ok
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -181,6 +124,7 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      * Setter to specify the maximum line length allowed.
      *
      * @param length the maximum length of a line
+     * @since 3.0
      */
     public void setMax(int length) {
         max = length;
@@ -190,6 +134,7 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      * Setter to specify pattern for lines to ignore.
      *
      * @param pattern a pattern.
+     * @since 3.0
      */
     public final void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;

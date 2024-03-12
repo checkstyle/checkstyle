@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocContentLocation</title>
+  </head>
+  <body>
+    <section name="JavadocContentLocation">
+      <p>Since Checkstyle 8.27</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that the Javadoc content begins from the same position
+          for all Javadoc comments in the project. Any leading asterisks and spaces
+          are not counted as the beginning of the content and are therefore ignored.
+        </p>
+        <p>
+          It is possible to enforce two different styles:
+        </p>
+        <ul>
+          <li>
+            {@code first_line} - Javadoc content starts from the first line:
+            <source>
+/** Summary text.
+  * More details.
+  */
+public void method();
+            </source>
+          </li>
+          <li>
+            {@code second_line} - Javadoc content starts from the second line:
+            <source>
+/**
+  * Summary text.
+  * More details.
+  */
+public void method();
+            </source>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          This check does not validate the Javadoc summary itself nor its presence.
+          The check will not report any violations for missing or malformed javadoc summary.
+          To validate the Javadoc summary use <a href="summaryjavadoc.html#SummaryJavadoc">
+          SummaryJavadoc</a> check.
+        </p>
+        <p>
+          The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+          Documentation Comment Specification</a> permits leading asterisks on the first line.
+          For these Javadoc comments:
+        </p>
+        <source>
+/***
+  * Some text.
+  */
+/************
+  * Some text.
+  */
+/**           **
+  * Some text.
+  */
+        </source>
+        <p>
+          The documentation generated will be just "Some text." without any asterisks.
+          Since these asterisks will not appear in the generated documentation,
+          they should not be considered as the beginning of the Javadoc content.
+          In such cases, the check assumes that the Javadoc content begins on the second line.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check to validate that the Javadoc content starts from the
+          second line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          This setting produces a violation for each multi-line comment
+          starting on the same line as the initial asterisks:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To ensure that Javadoc content starts from the first line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          This setting produces a violation for each comment not
+          starting on the same line as the initial asterisks:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoccontentlocation/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocContentLocation"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocContentLocation"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

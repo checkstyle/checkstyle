@@ -13,7 +13,7 @@ public class InputUnusedLocalVariableAnonInnerClasses {
     public void testAnonymousInnerClass() {
         int a = 12; // violation
         int b = 12; // violation
-        int k = 14; // ok
+        int k = 14;
         Test obj = new Test() { // violation
             int a = 2;
 
@@ -33,7 +33,7 @@ public class InputUnusedLocalVariableAnonInnerClasses {
         obj2 = new Test() {
             int a = 1;
             int b = 1;
-            int c = 0; // ok
+            int c = 0;
 
             private void testSameName(int s) {
                 s = a + b + this.a + this.b + InputUnusedLocalVariableAnonInnerClasses.a

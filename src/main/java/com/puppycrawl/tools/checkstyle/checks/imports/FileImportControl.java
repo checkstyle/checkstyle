@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,26 +43,9 @@ class FileImportControl extends AbstractImportControl {
      */
     /* package */ FileImportControl(PkgImportControl parent, String name, boolean regex) {
         super(parent, MismatchStrategy.DELEGATE_TO_PARENT);
-
         this.regex = regex;
-        if (regex) {
-            this.name = encloseInGroup(name);
-            patternForExactMatch = createPatternForExactMatch(this.name);
-        }
-        else {
-            this.name = name;
-            patternForExactMatch = null;
-        }
-    }
-
-    /**
-     * Enclose {@code expression} in a (non-capturing) group.
-     *
-     * @param expression the input regular expression
-     * @return a grouped pattern.
-     */
-    private static String encloseInGroup(String expression) {
-        return "(?:" + expression + ")";
+        this.name = name;
+        patternForExactMatch = createPatternForExactMatch(name);
     }
 
     /**

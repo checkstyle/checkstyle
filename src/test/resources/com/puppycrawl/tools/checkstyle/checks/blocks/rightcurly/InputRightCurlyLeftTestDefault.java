@@ -53,7 +53,7 @@ class InputRightCurlyLeftTestDefault
             do
             {
                 x = 2;
-            } while (x == 2); // ok
+            } while (x == 2);
         }
 
         this.wait(666
@@ -83,7 +83,7 @@ class InputRightCurlyLeftTestDefault
     {
         HELLO,
         GOODBYE
-    }; // ok
+    };
 
     void method2()
     {
@@ -94,7 +94,7 @@ class InputRightCurlyLeftTestDefault
                 CASE_INSENSITIVE_ORDER.equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
@@ -108,7 +108,7 @@ class FooCtor
         public FooCtor()
     {
                 i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -119,7 +119,7 @@ class FooMethod
         public void fooMethod()
     {
                 int i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -133,7 +133,7 @@ class FooInner
         {
 
                 }
-    }} // ok
+    }}
 
 /**
  * False positive
@@ -141,17 +141,17 @@ class FooInner
  */
 class Absent_CustomFieldSerializer3 {
 
-    public static void serialize() {} // ok
+    public static void serialize() {}
 }
 
 class Absent_CustomFieldSerializer4
 {
-    public Absent_CustomFieldSerializer4() {} // ok
+    public Absent_CustomFieldSerializer4() {}
 }
 
-class EmptyClass2 {} // ok
+class EmptyClass2 {}
 
-interface EmptyInterface3 {} // ok
+interface EmptyInterface3 {}
 
 class ClassWithStaticInitializers
 {
@@ -170,23 +170,23 @@ class ClassWithStaticInitializers
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // ok
+        } catch (RuntimeException e) {
             new Object();
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
             // comment
-        } catch (Throwable e) { // ok
-        } finally { // ok
+        } catch (Throwable e) {
+        } finally {
             // comment
         }
 
         do {
-        } while (true); // ok
+        } while (true);
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // ok
-        for (int i = 0; i < 1; i++) { new Object(); }; // ok
+        };
+        for (int i = 0; i < 1; i++) { new Object(); };
     }
 
     static final java.util.concurrent.ThreadFactory threadFactory
@@ -194,19 +194,19 @@ class ClassWithStaticInitializers
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // ok
+        }};
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // ok
+        public void meth1(); }
 
     interface Interface2
-    { int i = 1; public void meth1(); } // ok
+    { int i = 1; public void meth1(); }
 
     interface Interface3 {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // ok
+        }}
 }

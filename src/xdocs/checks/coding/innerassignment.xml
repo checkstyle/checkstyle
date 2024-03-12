@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>InnerAssignment</title>
+  </head>
+  <body>
+    <section name="InnerAssignment">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for assignments in subexpressions, such as in
+          <code>String s = Integer.toString(i = 2);</code>.
+        </p>
+
+        <p>
+          Rationale: Except for the loop idioms,
+          all assignments should occur in their own top-level statement
+          to increase readability. With inner assignments like the one given above, it is difficult
+          to see all places where a variable is set.
+        </p>
+
+        <p>
+          Note: Check allows usage of the popular assignments in loops:
+        </p>
+        <source>
+String line;
+while ((line = bufferedReader.readLine()) != null) { // OK
+  // process the line
+}
+
+for (;(line = bufferedReader.readLine()) != null;) { // OK
+  // process the line
+}
+
+do {
+  // process the line
+}
+while ((line = bufferedReader.readLine()) != null); // OK
+        </source>
+        <p>
+          Assignment inside a condition is not a problem here, as the assignment is surrounded by
+          an extra pair of parentheses. The comparison is <code>!= null</code> and there is no
+          chance that intention was to write <code>line == reader.readLine()</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;InnerAssignment&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Example1 {
+  void foo() throws IOException {
+    int a, b;
+    a = b = 5; // violation
+    a = b += 5; // violation
+
+    a = 5;
+    b = 5;
+    a = 5; b = 5;
+
+    double myDouble;
+    double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
+
+    String nameOne;
+    List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
+    myList.add(nameOne = &quot;tom&quot;); // violation
+
+    for (int k = 0; k &lt; 10; k = k + 2) {
+        // some code
+    }
+
+    boolean someVal;
+    if (someVal = true) { // violation
+        // some code
+    }
+
+    while (someVal = false) {} // violation
+
+    InputStream is = new FileInputStream(&quot;textFile.txt&quot;);
+    while ((b = is.read()) != -1) { // OK, this is a common idiom
+        // some code
+    }
+  }
+
+  boolean testMethod() {
+    boolean val;
+    return val = true; // violation
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerAssignment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22assignment.inner.avoid%22">
+              assignment.inner.avoid
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

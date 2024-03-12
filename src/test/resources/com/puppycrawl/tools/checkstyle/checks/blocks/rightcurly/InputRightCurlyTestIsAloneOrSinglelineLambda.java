@@ -22,7 +22,7 @@ public class InputRightCurlyTestIsAloneOrSinglelineLambda {
     static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};
 
     static Runnable r4 = () -> {
-        String.valueOf("Test rightCurly four!");}; // ok
+        String.valueOf("Test rightCurly four!");};
 
     static Runnable r5 = () ->
     {
@@ -40,7 +40,7 @@ public class InputRightCurlyTestIsAloneOrSinglelineLambda {
 
     static Runnable r9 = () -> {
         String.valueOf("Test rightCurly nine!");
-    }; int i; // ok
+    }; int i;
 
     void foo1() {
         Stream.of("Hello").filter(s -> {
@@ -50,8 +50,8 @@ public class InputRightCurlyTestIsAloneOrSinglelineLambda {
 
         Stream.of("Hello").filter(s -> {
                 return s != null;
-        }).collect(Collectors.toList()); // ok
+        }).collect(Collectors.toList());
 
-        Stream.of("H").filter(s -> {return s != null;}).collect(Collectors.toList()); // ok
+        Stream.of("H").filter(s -> {return s != null;}).collect(Collectors.toList());
     }
 }

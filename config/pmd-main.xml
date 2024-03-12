@@ -9,6 +9,7 @@
   </description>
   <exclude-pattern>.*/src/it/.*</exclude-pattern>
   <exclude-pattern>.*/src/test/.*</exclude-pattern>
+  <exclude-pattern>.*/src/xdocs-examples/.*</exclude-pattern>
   <rule ref="config/pmd.xml"/>
 
   <rule ref="category/java/design.xml/ImmutableField">
@@ -48,6 +49,20 @@
       <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
       <property name="violationSuppressXPath"
          value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+    <properties>
+      <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
+      <property name="violationSuppressXPath"
+         value="//ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+                        //MethodDeclaration[@Name='writeTablePropertiesRows']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='processFiles']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='processFile']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                        //MethodDeclaration[@Name='getTranslationKeys']"/>
     </properties>
   </rule>
 </ruleset>

@@ -2,11 +2,12 @@
 <checkstyle-metadata>
    <module>
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
-               name="SuppressionXpathFilter"
-               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+              name="SuppressionXpathFilter"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Filter {@code SuppressionXpathFilter} works as
- &lt;a href="https://checkstyle.org/config_filters.html#SuppressionFilter"&gt;SuppressionFilter&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter"&gt;
+ SuppressionFilter&lt;/a&gt;.
  Additionally, filter processes {@code suppress-xpath} elements,
  which contains xpath-expressions. Xpath-expressions are queries for
  suppressed nodes inside the AST tree.
@@ -14,7 +15,7 @@
  &lt;p&gt;
  Currently, filter does not support the following checks:
  &lt;/p&gt;
- &lt;ul id="SuppressionXpathFilter_IncompatibleChecks"&gt;
+ &lt;ul id="IncompatibleChecks"&gt;
  &lt;li&gt;
  NoCodeInFile (reason is that AST is not generated for a file not containing code)
  &lt;/li&gt;
@@ -30,7 +31,7 @@
  &lt;p&gt;
  Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
  &lt;/p&gt;
- &lt;ul id="SuppressionXpathFilter_JavadocChecks"&gt;
+ &lt;ul id="JavadocChecks"&gt;
  &lt;li&gt;
  AtclauseOrder
  &lt;/li&gt;

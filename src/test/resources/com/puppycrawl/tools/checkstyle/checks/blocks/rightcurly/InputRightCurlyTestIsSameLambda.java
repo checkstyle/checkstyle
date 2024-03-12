@@ -22,7 +22,7 @@ public class InputRightCurlyTestIsSameLambda {
     static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};
 
     static Runnable r4 = () -> {
-        String.valueOf("Test rightCurly four!");}; // ok
+        String.valueOf("Test rightCurly four!");};
 
     static Runnable r5 = () ->
     {
@@ -40,12 +40,12 @@ public class InputRightCurlyTestIsSameLambda {
 
     static Runnable r9 = () -> {
         String.valueOf("Test rightCurly nine!");
-    }; int i; // ok
+    }; int i;
 
     void foo1() {
         Stream.of("Hello").filter(s -> {
                 return s != null;
-            } // ok
+            }
         ).collect(Collectors.toList());
 
         Stream.of("Hello").filter(s -> {
@@ -58,7 +58,7 @@ public class InputRightCurlyTestIsSameLambda {
         Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());
 
         Stream.of("Hello").filter(s -> {
-            return s != null;}).collect(Collectors.toList()); // ok
+            return s != null;}).collect(Collectors.toList());
 
         bar(() -> {return;}, () -> {return;});
 
@@ -73,12 +73,12 @@ public class InputRightCurlyTestIsSameLambda {
         });
 
         bar(() -> {
-            return;}, () -> {return;}); // ok
+            return;}, () -> {return;});
 
         bar(() -> {
             return;
         }, () -> {
-            return;}); // ok
+            return;});
 
     }
 

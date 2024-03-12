@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Indentation</title>
+  </head>
+  <body>
+    <section name="Indentation">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks correct indentation of Java code.
+        </p>
+
+        <p>
+          The idea behind this is that while pretty printers are
+          sometimes convenient for bulk reformats of legacy code, they often
+          either aren't configurable enough or just can't anticipate how
+          format should be done. Sometimes this is personal preference, other
+          times it is practical experience. In any case, this check should
+          just ensure that a minimal set of indentation rules is followed.
+        </p>
+        <p>
+          Basic offset indentation is used for indentation inside code blocks.
+          For any lines that span more than 1, line wrapping indentation is used for those
+          lines after the first.
+          Brace adjustment, case, and throws indentations are all used only if those specific
+          identifiers start the line. If, for example, a brace is used in the middle of the line,
+          its indentation will not take effect.
+          All indentations have an accumulative/recursive effect when they are triggered. If
+          during a line wrapping, another code block is found and it doesn't end on that same
+          line, then the subsequent lines afterwards, in that new code block, are increased on
+          top of the line wrap and any indentations above it.
+        </p>
+        <p>Example:</p>
+        <source>
+if ((condition1 &amp;&amp; condition2)
+        || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
+        ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
+  field.doSomething()                    // basic offset
+      .doSomething()                     // line wrap
+      .doSomething( c -&gt; {               // line wrap
+        return c.doSome();               // basic offset
+      });
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>arrayInitIndent</td>
+              <td>Specify how far an array initialization should be indented when on next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>basicOffset</td>
+              <td>Specify how far new indentation level should be indented when on the next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>braceAdjustment</td>
+              <td>Specify how far a braces should be indented when on the next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>caseIndent</td>
+              <td>Specify how far a case label should be indented when on next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>forceStrictCondition</td>
+              <td>Force strict indent level in line wrapping case. If value is true, line wrap indent have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.3</td>
+            </tr>
+            <tr>
+              <td>lineWrappingIndentation</td>
+              <td>Specify how far continuation line should be indented when line-wrapping is present.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.9</td>
+            </tr>
+            <tr>
+              <td>throwsIndent</td>
+              <td>Specify how far a throws clause should be indented when on next line.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>5.7</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Indentation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example of Compliant code for default configuration
+          (in comment name of property that controls indentations):
+        </p>
+        <source>
+class Test {
+    String field;               // basicOffset
+    int[] arr = {               // basicOffset
+        5,                      // arrayInitIndent
+        6 };                    // arrayInitIndent
+    void bar() throws Exception // basicOffset
+    {                           // braceAdjustment
+        foo();                  // basicOffset
+    }                           // braceAdjustment
+    void foo() {                // basicOffset
+        if ((cond1 &amp;&amp; cond2)    // basicOffset
+                  || (cond3 &amp;&amp; cond4)    // lineWrappingIndentation, forceStrictCondition
+                  ||!(cond5 &amp;&amp; cond6)) { // lineWrappingIndentation, forceStrictCondition
+            field.doSomething()          // basicOffset
+                .doSomething()           // lineWrappingIndentation and forceStrictCondition
+                .doSomething( c -&gt; {     // lineWrappingIndentation and forceStrictCondition
+                    return c.doSome();   // basicOffset
+                });
+        }
+    }
+    void fooCase()                // basicOffset
+        throws Exception {        // throwsIndent
+        switch (field) {          // basicOffset
+            case &quot;value&quot; : bar(); // caseIndent
+        }
+    }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to enforce the indentation style recommended by
+          Oracle:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Indentation&quot;&gt;
+      &lt;property name=&quot;caseIndent&quot; value=&quot;0&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example of Compliant code for default configuration
+          (in comment name of property that controls indentation):
+        </p>
+        <source>
+void fooCase() {          // basicOffset
+    switch (field) {      // basicOffset
+    case &quot;value&quot; : bar(); // caseIndent
+    }
+}
+        </source>
+        <p id="Example3-config">
+          To configure the Check to enforce strict condition in line-wrapping validation.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;Indentation&quot;&gt;
+      &lt;property name=&quot;forceStrictCondition&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Such config doesn't allow next cases
+          even code is aligned further to the right for better reading:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) { // indent:8 ; expected: 4; violation, because 8 != 4
+    if (cond1
+        || cond2) {
+        field.doSomething()
+            .doSomething();
+    }
+    if ((cond1 &amp;&amp; cond2)
+              || (cond3 &amp;&amp; cond4)    // violation
+              ||!(cond5 &amp;&amp; cond6)) { // violation
+        field.doSomething()
+             .doSomething()          // violation
+             .doSomething( c -&gt; {    // violation
+                 return c.doSome();
+            });
+    }
+}
+        </source>
+        <p id="Example4-code">
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <source>
+void foo(String aFooString,
+        int aFooInt) { // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+    if (cond1
+        || cond2) {
+        field.doSomething()
+            .doSomething();
+    }
+    if ((cond1 &amp;&amp; cond2)
+              || (cond3 &amp;&amp; cond4)
+              ||!(cond5 &amp;&amp; cond6)) {
+        field.doSomething()
+             .doSomething()
+             .doSomething( c -&gt; {
+                 return c.doSome();
+            });
+    }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error%22">
+              indentation.child.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.child.error.multi%22">
+              indentation.child.error.multi
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error%22">
+              indentation.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error.multi%22">
+              indentation.error.multi
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

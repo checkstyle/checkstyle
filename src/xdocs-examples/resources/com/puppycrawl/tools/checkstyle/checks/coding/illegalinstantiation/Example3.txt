@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalInstantiation">
+      <property name="classes" value="java.lang.Boolean[],
+         Boolean[], java.lang.Integer[], Integer[]"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class MyTest {
+  public void myTest () {
+    Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
+    Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+  }
+}
+// xdoc section -- end

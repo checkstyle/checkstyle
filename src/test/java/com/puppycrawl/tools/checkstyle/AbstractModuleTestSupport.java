@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -172,7 +173,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws IOException if I/O exception occurs while forming the path.
      */
     protected final String getNonCompilablePath(String filename) throws IOException {
-        return new File("src/test/resources-noncompilable/" + getPackageLocation() + "/"
+        return new File("src/" + getResourceLocation()
+                + "/resources-noncompilable/" + getPackageLocation() + "/"
                 + filename).getCanonicalPath();
     }
 
@@ -252,16 +254,48 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                       String filePath2,
                                                       String... expected)
             throws Exception {
-        final TestInputConfiguration testInputConfiguration =
+        final TestInputConfiguration testInputConfiguration1 =
                 InlineConfigParser.parse(filePath1);
         final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
-        verifyViolations(parsedConfig, filePath2, testInputConfiguration.getViolations());
+                testInputConfiguration1.createConfiguration();
+        final TestInputConfiguration testInputConfiguration2 =
+                InlineConfigParser.parse(filePath2);
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration1.getViolations());
+        verifyViolations(parsedConfig, filePath2, testInputConfiguration2.getViolations());
         verify(createChecker(parsedConfig),
                 new File[] {new File(filePath1), new File(filePath2)},
                 filePath1,
                 expected);
+    }
+
+    /**
+     * Performs verification of two files with their given file paths.
+     * using specified configuration of one file only. Also performs
+     * verification of the config specified in the input file. This method
+     * needs to be implemented when two given files need to be
+     * checked through a single check only.
+     *
+     * @param filePath1 file path of first file to verify
+     * @param filePath2 file path of first file to verify
+     * @param expectedFromFile1 list of expected message
+     * @param expectedFromFile2 list of expected message
+     * @throws Exception if exception occurs during verification process
+     */
+    protected final void verifyWithInlineConfigParser(String filePath1,
+                                                      String filePath2,
+                                                      List<String> expectedFromFile1,
+                                                      List<String> expectedFromFile2)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration = InlineConfigParser.parse(filePath1);
+        final DefaultConfiguration parsedConfig = testInputConfiguration.createConfiguration();
+        final TestInputConfiguration testInputConfiguration2 = InlineConfigParser.parse(filePath2);
+        final DefaultConfiguration parsedConfig2 = testInputConfiguration.createConfiguration();
+        final File[] inputs = {new File(filePath1), new File(filePath2)};
+        verifyViolations(parsedConfig, filePath1, testInputConfiguration.getViolations());
+        verifyViolations(parsedConfig2, filePath2, testInputConfiguration2.getViolations());
+        verify(createChecker(parsedConfig), inputs, ImmutableMap.of(
+            filePath1, expectedFromFile1,
+            filePath2, expectedFromFile2));
     }
 
     /**
@@ -406,7 +440,22 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
+        checker.process(files);
+        checker.destroy();
+    }
+
+    /**
+     * Executes given config on a list of files only. Does not verify violations.
+     *
+     * @param checker check configuration
+     * @param filenames names of files to process
+     * @throws Exception if there is a problem during checker configuration
+     */
+    protected static void execute(Checker checker, String... filenames) throws Exception {
+        final List<File> files = Arrays.stream(filenames)
+                .map(File::new)
+                .collect(Collectors.toUnmodifiableList());
         checker.process(files);
         checker.destroy();
     }
@@ -427,10 +476,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
@@ -533,7 +582,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             String messageBundle, String messageKey, Object... arguments) {
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
-                Locale.getDefault(),
+                Locale.ROOT,
                 Thread.currentThread().getContextClassLoader(),
                 new Utf8Control());
         final String pattern = resourceBundle.getString(messageKey);

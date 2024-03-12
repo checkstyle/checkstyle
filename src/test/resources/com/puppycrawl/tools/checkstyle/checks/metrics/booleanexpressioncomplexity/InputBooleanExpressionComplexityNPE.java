@@ -8,7 +8,7 @@ tokens = (default)LAND, BAND, LOR, BOR, BXOR
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-public class InputBooleanExpressionComplexityNPE // ok
+public class InputBooleanExpressionComplexityNPE
 {
     static {
         try {

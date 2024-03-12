@@ -14,5 +14,5 @@ sortImportsInGroupAlphabetically = (default)false
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 
-public class InputCustomImportOrder_NoImports { // ok
+public class InputCustomImportOrder_NoImports {
 }

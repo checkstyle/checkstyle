@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="fileNamePattern" value="README"/>
+    <property name="fileExtensions" value="md"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch"
+      value="No '*.md' files other then 'README.md'"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+src/site/resources/README.md  //OK
+src/site/resources/Logo.png  //OK
+src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
+// xdoc section -- end

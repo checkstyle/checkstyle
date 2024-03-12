@@ -27,11 +27,11 @@ class InputEmptyBlockSemantic2Text
         char[] s = {'1', '2'};
         int index = 2;
         if (doSideEffect() == 1) {} // violation 'Empty if block'
-        while ((a = index - 1) != 0) {} // ok
-        for (; index < s.length && s[index] != 'x'; index++) {} // ok
+        while ((a = index - 1) != 0) {}
+        for (; index < s.length && s[index] != 'x'; index++) {}
         if (a == 1) {} else {System.identityHashCode("a");} // violation 'Empty if block'
         switch (a) {}   // violation 'Empty switch block'
-        switch (a) {    // ok
+        switch (a) {
             case 1:
                 a = 2;
             case 2:

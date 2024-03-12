@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,21 +55,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code headerFile} - Specify the name of the file containing the required header.
- * Type is {@code java.net.URI}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
  * Type is {@code java.lang.String}.
  * Default value is {@code the charset property of the parent
  * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module}.
  * </li>
  * <li>
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * <li>
  * Property {@code header} - Specify the required header specified inline.
  * Individual header lines must be separated by the string {@code "\n"}
- * (even on platforms with a different line separator), see examples below.
+ * (even on platforms with a different line separator).
  * Type is {@code java.lang.String}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code headerFile} - Specify the name of the file containing the required header.
+ * Type is {@code java.net.URI}.
  * Default value is {@code null}.
  * </li>
  * <li>
@@ -77,46 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Type is {@code int[]}.
  * Default value is {@code ""}.
  * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
  * </ul>
- * <p>
- * To configure the check such that no violations arise.
- * Default values of properties are used.
- * </p>
- * <pre>
- * &lt;module name="Header"/&gt;
- * </pre>
- * <p>
- * To configure the check to use header file {@code "config/java.header"}
- * and ignore lines {@code 2}, {@code 3}, and {@code 4} and only process Java files:
- * </p>
- * <pre>
- * &lt;module name="Header"&gt;
- *   &lt;property name="headerFile" value="config/java.header"/&gt;
- *   &lt;property name="ignoreLines" value="2, 3, 4"/&gt;
- *   &lt;property name="fileExtensions" value="java"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure the check to verify that each file starts with the header
- * </p>
- * <pre>
- * // Copyright (C) 2004 MyCompany
- * // All rights reserved
- * </pre>
- * <p>
- * without the need for an external header file:
- * </p>
- * <pre>
- * &lt;module name="Header"&gt;
- *   &lt;property name="header"
- *     value="// Copyright (C) 2004 MyCompany\n// All rights reserved"/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -179,6 +145,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * Setter to specify the line numbers to ignore.
      *
      * @param lines line numbers to ignore in header.
+     * @since 3.2
      */
     public void setIgnoreLines(int... lines) {
         ignoreLines = TokenUtil.asBitSet(lines);

@@ -13,7 +13,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         int x = 7;
         switch (i) {
             case 1:
-            default: // ok
+            default:
                 x = 9;
                 break;
             case 2:
@@ -54,7 +54,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         return switch (i) {
             case 1 -> 8;
             case 2 -> 7;
-            default -> 9; // ok
+            default -> 9; //
         };
     }
 }

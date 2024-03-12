@@ -21,13 +21,13 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
-import com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier.inputs.InetSocketAddress;
+import java.net.InetSocketAddress;
 
 public final class InputVisibilityModifierImmutableSameTypeName2
 {
     public final java.util.GregorianCalendar calendar = null; // violation
     public final InputVisibilityModifierGregorianCalendar calendar2 = null; // violation
     public final InputVisibilityModifierGregorianCalendar calendar3 = null; // violation
-    public final InetSocketAddress address = null; // violation
-    public final java.net.InetSocketAddress adr = null;
+    public final InetSocketAddress address = null;
+    public final InetSocketAddress adr = null;
 }

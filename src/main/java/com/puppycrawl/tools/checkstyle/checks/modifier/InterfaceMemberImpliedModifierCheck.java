@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,7 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * This check is effectively the opposite of
- * <a href="https://checkstyle.org/config_modifier.html#RedundantModifier">RedundantModifier</a>.
+ * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
+ * RedundantModifier</a>.
  * It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
  * specified even though they are actually redundant.
  * </p>
@@ -94,19 +95,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code violateImpliedPublicField} - Control whether to enforce that {@code public}
- * is explicitly coded on interface fields.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code violateImpliedStaticField} - Control whether to enforce that {@code static}
- * is explicitly coded on interface fields.
+ * Property {@code violateImpliedAbstractMethod} - Control whether to enforce that {@code abstract}
+ * is explicitly coded on interface methods.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code violateImpliedFinalField} - Control whether to enforce that {@code final}
+ * is explicitly coded on interface fields.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code violateImpliedPublicField} - Control whether to enforce that {@code public}
  * is explicitly coded on interface fields.
  * Type is {@code boolean}.
  * Default value is {@code true}.
@@ -118,14 +119,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code violateImpliedAbstractMethod} - Control whether to enforce that {@code abstract}
- * is explicitly coded on interface methods.
+ * Property {@code violateImpliedPublicNested} - Control whether to enforce that {@code public}
+ * is explicitly coded on interface nested types.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code violateImpliedPublicNested} - Control whether to enforce that {@code public}
- * is explicitly coded on interface nested types.
+ * Property {@code violateImpliedStaticField} - Control whether to enforce that {@code static}
+ * is explicitly coded on interface fields.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -136,65 +137,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
- * <p>
- * To configure the check so that it checks that all implicit modifiers on methods, fields
- * and nested types are explicitly specified in interfaces.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;/&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public interface AddressFactory {
- *
- *   public static final String UNKNOWN = "Unknown";  // valid
- *
- *   String OTHER = "Other";  // violation
- *
- *   public static AddressFactory instance();  // valid
- *
- *   public abstract Address createAddress(String addressLine, String city);  // valid
- *
- *   List&lt;Address&gt; findAddresses(String city);  // violation
- *
- *   interface Address {  // violation
- *
- *     String getCity();  // violation
- *   }
- * }
- * </pre>
- * <p>
- * This example checks that all implicit modifiers on methods and fields are
- * explicitly specified, but nested types do not need to be.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;InterfaceMemberImpliedModifier&quot;&gt;
- *   &lt;property name=&quot;violateImpliedPublicNested&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;violateImpliedStaticNested&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public interface RoadFeature {
- *
- *   String STOP = "Stop";  // violation
- *
- *   enum Lights {  // valid because of configured properties
- *
- *     RED, YELLOW, GREEN;
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -278,6 +220,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicField(boolean violateImpliedPublicField) {
         this.violateImpliedPublicField = violateImpliedPublicField;
@@ -289,6 +232,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedStaticField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedStaticField(boolean violateImpliedStaticField) {
         this.violateImpliedStaticField = violateImpliedStaticField;
@@ -300,6 +244,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedFinalField
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedFinalField(boolean violateImpliedFinalField) {
         this.violateImpliedFinalField = violateImpliedFinalField;
@@ -311,6 +256,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicMethod
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicMethod(boolean violateImpliedPublicMethod) {
         this.violateImpliedPublicMethod = violateImpliedPublicMethod;
@@ -322,6 +268,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedAbstractMethod
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedAbstractMethod(boolean violateImpliedAbstractMethod) {
         this.violateImpliedAbstractMethod = violateImpliedAbstractMethod;
@@ -333,6 +280,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedPublicNested
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedPublicNested(boolean violateImpliedPublicNested) {
         this.violateImpliedPublicNested = violateImpliedPublicNested;
@@ -344,6 +292,7 @@ public class InterfaceMemberImpliedModifierCheck
      *
      * @param violateImpliedStaticNested
      *        True to perform the check, false to turn the check off.
+     * @since 8.12
      */
     public void setViolateImpliedStaticNested(boolean violateImpliedStaticNested) {
         this.violateImpliedStaticNested = violateImpliedStaticNested;

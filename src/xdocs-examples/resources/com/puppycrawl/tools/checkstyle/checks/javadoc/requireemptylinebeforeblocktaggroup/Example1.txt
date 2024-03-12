@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * testMethod's javadoc.
+ * @return something (violation)
+ */
+public boolean testMethod() {
+    return false;
+}
+// xdoc section -- end

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -93,6 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * of default translation files in project.
  * </p>
  * <p>
+ * Note: If your project uses preprocessed translation files and the original files do not have the
+ * {@code properties} extension, you can specify additional file extensions
+ * via the {@code fileExtensions} property.
+ * </p>
+ * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
  * TranslationCheck will rise violation that the language code is incorrect.
@@ -105,14 +110,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code fileExtensions} - Specify file type extension to identify
- * translation files. Setting this property is typically only required if your
- * translation files are preprocessed and the original files do not have
- * the extension {@code .properties}
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .properties}.
- * </li>
- * <li>
  * Property {@code baseName} - Specify
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
  * Base name</a> of resource bundles which contain message resources.
@@ -121,100 +118,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code "^messages.*$"}.
  * </li>
  * <li>
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code .properties}.
+ * </li>
+ * <li>
  * Property {@code requiredTranslations} - Specify language codes of required
  * translations which must exist in project.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * </ul>
- * <p>
- * Note, that files with the same path and base name but which have different
- * extensions will be considered as files that belong to different resource bundles.
- * </p>
- * <p>
- * To configure the check to check only files which have '.properties' and
- * '.translations' extensions:
- * </p>
- * <pre>
- * &lt;module name="Translation"&gt;
- *   &lt;property name="fileExtensions" value="properties, translations"/&gt;
- *   &lt;property name="requiredTranslations" value="fr"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * #messages.properties
- * hello=Hello
- * cancel=Cancel
- *
- * #messages.translations
- * hello=Hallo
- * ok=OK
- * </pre>
- * <pre>
- * messages.properties: Properties file 'messages_fr.properties' is missing.
- * messages.translations: Properties file 'messages_fr.translations' is missing.
- * </pre>
- * <p>
- * An example of how to configure the check to validate only bundles which base
- * names start with "ButtonLabels":
- * </p>
- * <pre>
- * &lt;module name="Translation"&gt;
- *   &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
- *   &lt;property name="requiredTranslations" value="fr"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * #ButtonLabels.properties
- * hello=Hello
- * cancel=Cancel
- *
- * #ButtonLabels_fr.properties
- * hello=Bonjour
- * name=Nom
- * </pre>
- * <pre>
- * ButtonLabels.properties: Key 'name' is missing.
- * ButtonLabels_fr.properties: Key 'cancel' is missing.
- * </pre>
- * <p>
- * To configure the check to check existence of Japanese and French translations:
- * </p>
- * <pre>
- * &lt;module name="Translation"&gt;
- *   &lt;property name="requiredTranslations" value="ja, fr"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * #messages.properties
- * hello=Hello
- * cancel=Cancel
- *
- * #messages_ja.properties
- * greeting=こんにちは
- * age=年齢
- *
- * #messages_fr.properties
- * greeting=Bonjour
- * name=Nom
- * </pre>
- * <pre>
- * messages.properties: Key 'age' missing.
- * messages.properties: Key 'name' missing.
- * messages_fr.properties: Key 'age' missing.
- * messages_fr.properties: Key 'cancel' missing.
- * messages_ja.properties: Key 'cancel' missing.
- * messages_ja.properties: Key 'name' missing.
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -329,6 +243,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * It helps the check to distinguish config and localization resources.
      *
      * @param baseName base name regexp.
+     * @since 6.17
      */
     public void setBaseName(Pattern baseName) {
         this.baseName = baseName;
@@ -338,9 +253,11 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * Setter to specify language codes of required translations which must exist in project.
      *
      * @param translationCodes language codes.
+     * @since 6.11
      */
     public void setRequiredTranslations(String... translationCodes) {
-        requiredTranslations = Arrays.stream(translationCodes).collect(Collectors.toSet());
+        requiredTranslations = Arrays.stream(translationCodes)
+            .collect(Collectors.toUnmodifiableSet());
         validateUserSpecifiedLanguageCodes(requiredTranslations);
     }
 
@@ -497,7 +414,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
                 final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);
                 if (bundle.isPresent()) {
-                    bundle.get().addFile(currentFile);
+                    bundle.orElseThrow().addFile(currentFile);
                 }
                 else {
                     newBundle.addFile(currentFile);
@@ -606,7 +523,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (Entry<File, Set<String>> fileKey : fileKeys.entrySet()) {
             final Set<String> currentFileKeys = fileKey.getValue();
             final Set<String> missingKeys = keysThatMustExist.stream()
-                .filter(key -> !currentFileKeys.contains(key)).collect(Collectors.toSet());
+                .filter(key -> !currentFileKeys.contains(key))
+                .collect(Collectors.toUnmodifiableSet());
             if (!missingKeys.isEmpty()) {
                 final MessageDispatcher dispatcher = getMessageDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();

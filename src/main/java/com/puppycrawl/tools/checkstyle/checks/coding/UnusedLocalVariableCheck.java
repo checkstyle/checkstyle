@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,71 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * components are classified as different kind of variables by
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html">JLS</a>.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;UnusedLocalVariable&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test {
- *
- *     int a;
- *
- *     {
- *         int k = 12; // violation, assigned and updated but never used
- *         k++;
- *     }
- *
- *     Test(int a) {   // ok as 'a' is a constructor parameter not a local variable
- *         this.a = 12;
- *     }
- *
- *     void method(int b) {
- *         int a = 10;             // violation
- *         int[] arr = {1, 2, 3};  // violation
- *         int[] anotherArr = {1}; // ok
- *         anotherArr[0] = 4;
- *     }
- *
- *     String convertValue(String newValue) {
- *         String s = newValue.toLowerCase(); // violation
- *         return newValue.toLowerCase();
- *     }
- *
- *     void read() throws IOException {
- *         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
- *         String s; // violation
- *         while ((s = reader.readLine()) != null) {
- *         }
- *         try (BufferedReader reader1 // ok as 'reader1' is a resource and resources are closed
- *                                     // at the end of the statement
- *             = new BufferedReader(new FileReader("abc.txt"))) {
- *         }
- *         try {
- *         } catch (Exception e) {     // ok as e is an exception parameter
- *         }
- *     }
- *
- *     void loops() {
- *         int j = 12;
- *         for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'.
- *         }
- *         for (int p = 0; j &lt; 11; p++)   // ok
- *             p /= 2;
- *     }
- *
- *     void lambdas() {
- *         Predicate&lt;String&gt; obj = (String str) -&gt; { // ok as 'str' is a lambda parameter
- *             return true;
- *         };
- *         obj.test("test");
- *     }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -199,31 +134,31 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     /**
      * Keeps tracks of the variables declared in file.
      */
-    private final Deque<VariableDesc> variables;
+    private final Deque<VariableDesc> variables = new ArrayDeque<>();
 
     /**
      * Keeps track of all the type declarations present in the file.
      * Pops the type out of the stack while leaving the type
      * in visitor pattern.
      */
-    private final Deque<TypeDeclDesc> typeDeclarations;
+    private final Deque<TypeDeclDesc> typeDeclarations = new ArrayDeque<>();
 
     /**
      * Maps type declaration ast to their respective TypeDeclDesc objects.
      */
-    private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclDesc> typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
 
     /**
      * Maps local anonymous inner class to the TypeDeclDesc object
      * containing it.
      */
-    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc;
+    private final Map<DetailAST, TypeDeclDesc> anonInnerAstToTypeDeclDesc = new HashMap<>();
 
     /**
      * Set of tokens of type {@link UnusedLocalVariableCheck#CONTAINERS_FOR_ANON_INNERS}
      * and {@link TokenTypes#LAMBDA} in some cases.
      */
-    private final Set<DetailAST> anonInnerClassHolders;
+    private final Set<DetailAST> anonInnerClassHolders = new HashSet<>();
 
     /**
      * Name of the package.
@@ -234,19 +169,6 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Depth at which a type declaration is nested, 0 for top level type declarations.
      */
     private int depth;
-
-    /**
-     * Creates a new {@code UnusedLocalVariableCheck} instance.
-     */
-    public UnusedLocalVariableCheck() {
-        variables = new ArrayDeque<>();
-        typeDeclarations = new ArrayDeque<>();
-        typeDeclAstToTypeDeclDesc = new LinkedHashMap<>();
-        anonInnerAstToTypeDeclDesc = new HashMap<>();
-        anonInnerClassHolders = new HashSet<>();
-        packageName = null;
-        depth = 0;
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -307,8 +229,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
         }
-        else if (type == TokenTypes.LITERAL_NEW
-                && isInsideLocalAnonInnerClass(ast)) {
+        else if (isInsideLocalAnonInnerClass(ast)) {
             visitLocalAnonInnerClass(ast);
         }
         else if (TokenUtil.isTypeDeclaration(type)) {
@@ -415,14 +336,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         boolean result = false;
         final DetailAST lastChild = literalNewAst.getLastChild();
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
-            DetailAST parentAst = literalNewAst.getParent();
-            while (parentAst.getType() != TokenTypes.SLIST) {
-                if (TokenUtil.isTypeDeclaration(parentAst.getParent().getType())) {
+            DetailAST currentAst = literalNewAst;
+            while (!TokenUtil.isTypeDeclaration(currentAst.getType())) {
+                if (currentAst.getType() == TokenTypes.SLIST) {
+                    result = true;
                     break;
                 }
-                parentAst = parentAst.getParent();
+                currentAst = currentAst.getParent();
             }
-            result = parentAst.getType() == TokenTypes.SLIST;
         }
         return result;
     }
@@ -474,17 +395,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return the block containing local anon inner class
      */
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
-        DetailAST parentAst = literalNewAst.getParent();
+        DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        while (!TokenUtil.isOfType(parentAst, CONTAINERS_FOR_ANON_INNERS)) {
-            if (parentAst.getType() == TokenTypes.LAMBDA
-                    && parentAst.getParent()
+        while (!TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
+            if (currentAst.getType() == TokenTypes.LAMBDA
+                    && currentAst.getParent()
                     .getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
-                result = parentAst;
+                result = currentAst;
                 break;
             }
-            parentAst = parentAst.getParent();
-            result = parentAst;
+            currentAst = currentAst.getParent();
+            result = currentAst;
         }
         return result;
     }
@@ -524,8 +445,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         if (isNonLocalTypeDeclaration(parentAst.getParent())
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+            final VariableDesc desc = new VariableDesc(ident.getText());
             typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
         }
     }
@@ -560,7 +480,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                     })
                     .findFirst();
             if (classWithCompletePackageName.isPresent()) {
-                obtainedClass = classWithCompletePackageName.get();
+                obtainedClass = classWithCompletePackageName.orElseThrow();
             }
         }
         else {
@@ -604,7 +524,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
                 .filter(typeDeclDesc -> {
                     return hasSameNameAsSuperClass(superClassName, typeDeclDesc);
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     /**
@@ -881,6 +801,27 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         */
+        private VariableDesc(String name) {
+            this(name, null, null);
+        }
+
+        /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         * @param scope ast of type {@link TokenTypes#SLIST} or
+         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
+         *              which is enclosing the variable
+         */
+        private VariableDesc(String name, DetailAST scope) {
+            this(name, null, scope);
+        }
+
+        /**
          * Get the name of variable.
          *
          * @return name of variable
@@ -1021,11 +962,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
         public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
-            final DetailAST updatedScope = literalNewAst.getLastChild();
+            final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
                 final VariableDesc variableDesc = new VariableDesc(instVar.getName(),
-                        instVar.getTypeAst(), updatedScope);
+                        updatedScope);
                 variableDesc.registerAsInstOrClassVar();
                 instAndClassVarDeque.push(variableDesc);
             });

@@ -45,10 +45,10 @@ class InputEmptyBlockSemanticInvalid
         finally {
             // something
         }
-        try {   // ok
+        try {
             ; // something
         }
-        finally {   // ok
+        finally {
             ; // statement
         }
     }
@@ -74,7 +74,7 @@ class InputEmptyBlockSemanticInvalid
 
     synchronized void foo() {
         synchronized (this) {}
-        synchronized (Class.class) { // ok
+        synchronized (Class.class) {
             synchronized (new Object()) {
                 // text
             }

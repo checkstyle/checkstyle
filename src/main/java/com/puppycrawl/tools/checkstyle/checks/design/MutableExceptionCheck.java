@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -50,148 +50,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specify pattern for exception class names.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
- * </li>
- * <li>
  * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>
+ * <li>
+ * Property {@code format} - Specify pattern for exception class names.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
+ * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MutableException&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class FirstClass extends Exception {
- *   private int code; // OK, class name doesn't match with default pattern
- *
- *   public FirstClass() {
- *     code = 1;
- *   }
- * }
- *
- * class MyException extends Exception {
- *   private int code; // violation, The field 'code' must be declared final
- *
- *   public MyException() {
- *     code = 2;
- *   }
- * }
- *
- * class MyThrowable extends Throwable {
- *    final int code; // OK
- *    String message; // violation, The field 'message' must be declared final
- *
- *    public MyThrowable(int code, String message) {
- *      this.code = code;
- *      this.message = message;
- *    }
- * }
- *
- * class BadException extends java.lang.Exception {
- *   int code; // violation, The field 'code' must be declared final
- *
- *   public BadException(int code) {
- *     this.code = code;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check so that it checks for class name that ends
- * with 'Exception':
- * </p>
- * <pre>
- * &lt;module name=&quot;MutableException&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^.*Exception$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class FirstClass extends Exception {
- *   private int code; // OK, class name doesn't match with given pattern
- *
- *   public FirstClass() {
- *     code = 1;
- *   }
- * }
- *
- * class MyException extends Exception {
- *   private int code; // violation, The field 'code' must be declared final
- *
- *   public MyException() {
- *     code = 2;
- *   }
- * }
- *
- * class MyThrowable extends Throwable {
- *   final int code; // OK, class name doesn't match with given pattern
- *   String message; // OK, class name doesn't match with given pattern
- *
- *   public MyThrowable(int code, String message) {
- *     this.code = code;
- *     this.message = message;
- *   }
- * }
- *
- * class BadException extends java.lang.Exception {
- *   int code; // violation, The field 'code' must be declared final
- *
- *   public BadException(int code) {
- *     this.code = code;
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check so that it checks for type name that is used in
- * 'extends' and ends with 'Throwable':
- * </p>
- * <pre>
- * &lt;module name=&quot;MutableException&quot;&gt;
- *   &lt;property name=&quot;extendedClassNameFormat&quot; value=&quot;^.*Throwable$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class FirstClass extends Exception {
- *   private int code; // OK, extended class name doesn't match with given pattern
- *
- *   public FirstClass() {
- *     code = 1;
- *   }
- * }
- *
- * class MyException extends Exception {
- *   private int code; // OK, extended class name doesn't match with given pattern
- *
- *   public MyException() {
- *     code = 2;
- *   }
- * }
- *
- * class MyThrowable extends Throwable {
- *   final int code; // OK
- *   String message; // violation, The field 'message' must be declared final
- *
- *   public MyThrowable(int code, String message) {
- *     this.code = code;
- *     this.message = message;
- *   }
- * }
- *
- * class BadException extends java.lang.Exception {
- *   int code; // OK, extended class name doesn't match with given pattern
- *
- *   public BadException(int code) {
- *     this.code = code;
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -230,6 +98,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * Setter to specify pattern for extended class names.
      *
      * @param extendedClassNameFormat a {@code String} value
+     * @since 6.2
      */
     public void setExtendedClassNameFormat(Pattern extendedClassNameFormat) {
         this.extendedClassNameFormat = extendedClassNameFormat;
@@ -239,6 +108,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * Setter to specify pattern for exception class names.
      *
      * @param pattern the new pattern
+     * @since 3.2
      */
     public void setFormat(Pattern pattern) {
         format = pattern;

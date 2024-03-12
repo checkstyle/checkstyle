@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AtclauseOrder</title>
+  </head>
+  <body>
+    <section name="AtclauseOrder">
+      <p>Since Checkstyle 6.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the order of
+          <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+            javadoc block-tags or javadoc tags</a>.
+        </p>
+        <p>
+          Note: Google used the term &quot;at-clauses&quot; for block tags in their guide till 2017-02-28.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tagOrder</td>
+              <td>Specify the order by tags.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>@author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>target</td>
+              <td>Specify block tags targeted.</td>
+              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+              </td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AtclauseOrder&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+/**
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField
+* @serialData
+*/
+public class Example1 {}
+
+class Valid1 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc. // violation
+ * @deprecated
+ * @see Some javadoc. // violation
+ */
+class Invalid1 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc. // violation
+ * @deprecated
+ * @see Some javadoc. // violation
+ * @author max // violation
+ */
+enum Test1 {}
+        </source>
+        <p id="Example2-config">
+            To configure the check such that it checks in the custom order:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AtclauseOrder&quot;&gt;
+      &lt;property name=&quot;tagOrder&quot;
+                value=&quot;@author, @since, @version, @param, @return,
+                       @throws, @exception, @deprecated,
+                       @see, @serial, @serialField, @serialData&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+/**
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc. // violation
+* @serial Some javadoc.
+* @serialField
+* @serialData
+*/
+public class Example2 {}
+
+class Valid2 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ */
+class Invalid2 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated Some javadoc.
+ * @see Some javadoc.
+ * @author max // violation
+ */
+enum Test2 {}
+        </source>
+        <p id="Example3-config">
+            To configure the check such that it targets only enums:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AtclauseOrder&quot;&gt;
+      &lt;property name=&quot;target&quot; value=&quot;ENUM_DEF&quot;/&gt;
+      &lt;property name=&quot;tagOrder&quot;
+                value=&quot;@author, @since, @version, @param, @return,
+                       @throws, @exception, @deprecated,
+                       @see, @serial, @serialField, @serialData&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+/**
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField
+* @serialData
+*/
+public class Example3 {}
+
+class Valid3 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ */
+class Invalid3 implements Serializable {}
+
+/**
+ * Some javadoc.
+ *
+ * @since Some javadoc.
+ * @version Some javadoc.
+ * @deprecated
+ * @see Some javadoc.
+ * @author Some javadoc. // violation
+ */
+enum Test3 {}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22at.clause.order%22">
+              at.clause.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+              javadoc.missed.html.close
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+              javadoc.wrong.singleton.html.tag
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

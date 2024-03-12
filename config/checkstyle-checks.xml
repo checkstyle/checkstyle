@@ -39,11 +39,12 @@
   <!-- Tone down the checking for test code -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocPackage"/>
-    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+    <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocMethod"/>
-    <property name="files" value=".*[\\/]src[\\/](test|it)[\\/].*(?&lt;!Support)\.java"/>
+    <property name="files"
+              value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
@@ -154,7 +155,7 @@
     <property name="id" value="lineLengthXml"/>
     <property name="format"
               value="^(?!(\s*,?\s*&lt;a href=&quot;[^&quot;]+&quot;&gt;|.*http)).{101,}$"/>
-    <property name="fileExtensions" value="xml, vm"/>
+    <property name="fileExtensions" value="xml, vm, template"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <!--
@@ -484,6 +485,28 @@
                value="'@noinspection' Javadoc tags should be accompanied by a
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="settersHaveSinceTag"/>
+      <property name="query"
+                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
+                and not (./MODIFIERS/ABSTRACT)]
+                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
+                and ./MODIFIERS/LITERAL_PUBLIC
+                and ./TYPE/LITERAL_VOID
+                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
+                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
+      <message key="matchxpath.match"
+               value="All property setters of a module should contain a '@since' tag."/>
+    </module>
+    <module name="MatchXpath">
+      <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
+      <property name="query"
+                value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
+                and ./MODIFIERS/LITERAL_PUBLIC
+                and ./EXTENDS_CLAUSE/IDENT[not(@text='AbstractExamplesModuleTestSupport')]]"/>
+      <message key="matchxpath.match"
+               value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
@@ -567,32 +590,32 @@
       <property name="checks" value="EmptyBlock"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="JavadocVariable"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="JavadocType"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MagicNumber"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="AvoidStaticImport"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="WriteTag"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MethodCount"/>
     </module>
     <!-- Fixing these cases will decrease code readability -->
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value=".*[\\/]src[\\/](test|it)[\\/]"/>
+      <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MultipleStringLiterals"/>
     </module>
     <module name="SuppressWithNearbyCommentFilter">

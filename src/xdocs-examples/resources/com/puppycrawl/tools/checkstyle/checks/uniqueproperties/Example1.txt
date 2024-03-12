@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="UniqueProperties"/>
+</module>
+*/
+
+// xdoc section -- start
+key.one=44
+key.two=32 // OK
+key.one=54 // violation
+// xdoc section -- end

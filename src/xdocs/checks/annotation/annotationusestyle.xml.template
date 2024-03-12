@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AnnotationUseStyle</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationUseStyle">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the style of elements in annotations.
+        </p>
+        <p>
+          Annotations have three element styles starting with the least verbose.
+        </p>
+        <ul>
+          <li><code>ElementStyleOption.COMPACT_NO_ARRAY</code></li>
+          <li><code>ElementStyleOption.COMPACT</code></li>
+          <li><code>ElementStyleOption.EXPANDED</code></li>
+        </ul>
+        <p>
+          To not enforce an element style a <code>ElementStyleOption.IGNORE</code> type is provided.
+          The desired style can be set through the <code>elementStyle</code> property.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
+          The expanded version is sometimes referred to as "named parameters" in other languages.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.COMPACT</code> style is less verbose.
+          This style can only be used when there is an element called 'value' which is either
+          the sole element or all other elements have default values.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.COMPACT_NO_ARRAY</code> style is less verbose.
+          It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays
+          are flagged.
+          With annotations a single value array does not need to be placed in an array initializer.
+        </p>
+        <p>
+          The ending parenthesis are optional when using annotations with no elements.
+          To always require ending parenthesis use the <code>ClosingParensOption.ALWAYS</code> type.
+          To never have ending parenthesis use the <code>ClosingParensOption.NEVER</code> type.
+          To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code>
+          type is provided. Set this through the <code>closingParens</code> property.
+        </p>
+        <p>
+          Annotations also allow you to specify arrays of elements in a standard format.
+          As with normal arrays, a trailing comma is optional.
+          To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code>
+          type.
+          To never have a trailing comma use the <code>TrailingArrayCommaOption.NEVER</code> type.
+          To not enforce a trailing array comma preference a
+          <code>TrailingArrayCommaOption.IGNORE</code> type is provided.
+          Set this through the <code>trailingArrayComma</code> property.
+        </p>
+        <p>
+          By default, the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
+          the <code>TrailingArrayCommaOption</code> is set to <code>NEVER</code>,
+          and the <code>ClosingParensOption</code> is set to <code>NEVER</code>.
+        </p>
+        <p>
+          According to the JLS, it is legal to include a trailing comma
+          in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
+          compile with this syntax. This may in be a bug in Sun's compilers
+          since eclipse 3.4's built-in compiler does allow this syntax as
+          defined in the JLS. Note: this was tested with compilers included with
+          JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse 3.4.1.
+        </p>
+        <p>
+          See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
+          Java Language specification, §9.7</a>.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example3.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check to enforce a trailing array comma,
+          with ignoring the elementStyle and a closing parenthesis.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/Example4.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="AnnotationUseStyle"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="AnnotationUseStyle"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

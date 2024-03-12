@@ -87,22 +87,22 @@ class InputMultiDimensionalArray4 {
 }
 
 class InputCollectionsExt4 {
-    private Collection col; // ok
-    private EnumSet enumSet; // ok
-    private LinkedHashMap map; // ok
-    private LinkedHashSet set; // ok
+    private Collection col;
+    private EnumSet enumSet;
+    private LinkedHashMap map;
+    private LinkedHashSet set;
 }
 
 class InputOptionals4 {
-    private Optional<Long> op1; // ok
-    private OptionalInt op2; // ok
-    private OptionalLong op3; // ok
-    private OptionalDouble op4; // ok
+    private Optional<Long> op1;
+    private OptionalInt op2;
+    private OptionalLong op3;
+    private OptionalDouble op4;
 }
 
 class InputStreams4 {
-    private Stream s1; // ok
-    private IntStream s2; // ok
-    private LongStream s3; // ok
-    private DoubleStream s4; // ok
+    private Stream s1;
+    private IntStream s2;
+    private LongStream s3;
+    private DoubleStream s4;
 }

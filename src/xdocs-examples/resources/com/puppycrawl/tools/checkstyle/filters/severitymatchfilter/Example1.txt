@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="SeverityMatchFilter">
+    <property name="severity" value="info"/>
+    <property name="acceptOnMatch" value="false"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

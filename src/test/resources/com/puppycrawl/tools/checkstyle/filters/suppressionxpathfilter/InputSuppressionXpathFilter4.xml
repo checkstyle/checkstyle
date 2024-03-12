@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions Xpath Experimental 1.2//EN"
+    "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath_experimental.dtd">
+
+<suppressions>
+  <suppress-xpath id="uniqueId"
+                  query="/COMPILATION_UNIT/CLASS_DEF[./IDENT
+                  [@text='InputSuppressionXpathFilterReject']]/
+                  OBJBLOCK/VARIABLE_DEF/IDENT[@text='bad_name']"
+                  files="InputSuppressionXpathFilter.*\.java"/>
+</suppressions>

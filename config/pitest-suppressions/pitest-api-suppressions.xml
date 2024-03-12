@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>FileContents.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
-    <mutatedMethod>getBlockComments</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableMap with argument</description>
-    <lineContent>return Collections.unmodifiableMap(clangComments);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileContents.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileContents</mutatedClass>
-    <mutatedMethod>getSingleLineComments</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::unmodifiableMap with argument</description>
-    <lineContent>return Collections.unmodifiableMap(cppComments);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable charset</description>
-    <lineContent>charset = fileText.charset;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>FileText.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
@@ -37,101 +10,11 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/nio/charset/CharsetDecoder::onMalformedInput</description>
-    <lineContent>decoder.onMalformedInput(CodingErrorAction.REPLACE);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/nio/charset/CharsetDecoder::onMalformedInput with receiver</description>
-    <lineContent>decoder.onMalformedInput(CodingErrorAction.REPLACE);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/nio/charset/CharsetDecoder::onUnmappableCharacter</description>
-    <lineContent>decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to java/nio/charset/CharsetDecoder::onUnmappableCharacter with receiver</description>
-    <lineContent>decoder.onUnmappableCharacter(CodingErrorAction.REPLACE);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable lineBreaks</description>
-    <lineContent>lineBreaks = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FullIdent.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
-    <mutatedMethod>createFullIdentBelow</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
-    <lineContent>return createFullIdent(ast.getFirstChild());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FullIdent.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
-    <mutatedMethod>isArrayTypeDeclaration</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild with receiver</description>
-    <lineContent>DetailAST expression = arrayDeclarator.getFirstChild();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>FullIdent.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FullIdent</mutatedClass>
-    <mutatedMethod>isArrayTypeDeclaration</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getFirstChild</description>
-    <lineContent>expression = expression.getFirstChild();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Violation.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Arrays::copyOf with argument</description>
-    <lineContent>this.args = Arrays.copyOf(args, args.length);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>Violation.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable args</description>
     <lineContent>this.args = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>Violation.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
-    <mutatedMethod>compareTo</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::compareTo</description>
-    <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
   </mutation>
 </suppressedMutations>

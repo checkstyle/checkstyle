@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MethodCount</title>
+  </head>
+  <body>
+    <section name="MethodCount">
+      <p>Since Checkstyle 5.3</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the number of methods declared in each type declaration by access modifier or
+          total count.
+        </p>
+        <p>
+          This check can be configured to flag classes that define too many methods to prevent the
+          class from getting too complex.
+          Counting can be customized to prevent too many total methods in a type definition
+          (<code>maxTotal</code>), or to prevent too many methods of a specific access modifier
+          (<code>private</code>, <code>package</code>, <code>protected</code> or
+          <code>public</code>).
+          Each count is completely separated to customize how many methods of each you want to
+          allow. For example, specifying a <code>maxTotal</code> of 10, still means you can
+          prevent more than 0 <code>maxPackage</code> methods. A violation won't appear for 8
+          public methods, but one will appear if there is also 3 private methods or any
+          package-private methods.
+        </p>
+        <p>
+          Methods defined in anonymous classes are not counted towards any totals.
+          Counts only go towards the main type declaration parent, and are kept separate from it's
+          children's inner types.
+        </p>
+        <source>
+public class ExampleClass {
+  public enum Colors {
+    RED, GREEN, YELLOW;
+
+    public String getRGB() { ... } // NOT counted towards ExampleClass
+  }
+
+  public void example() { // counted towards ExampleClass
+    Runnable r = (new Runnable() {
+      public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+    });
+  }
+
+  public static class InnerExampleClass {
+    protected void example2() { ... } // NOT counted towards ExampleClass,
+                                   // but counted towards InnerExampleClass
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to allow no more than 30 methods per type declaration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check to allow no more than 10 public methods per
+          type declaration, and 40 methods in total:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MethodCount"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MethodCount"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

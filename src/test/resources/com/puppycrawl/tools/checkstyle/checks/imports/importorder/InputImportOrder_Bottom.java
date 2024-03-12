@@ -16,23 +16,23 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import java.awt.Button; // ok
-import java.awt.Dialog; // ok
-import java.awt.Frame; // ok
-import java.awt.event.ActionEvent; // ok
+import java.awt.Button;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
 
 import java.io.IOException; // violation 'Extra separation in import group before 'java.io.IOException''
-import java.io.InputStream; // ok
+import java.io.InputStream;
 
 import javax.swing.JComponent; // violation 'Extra separation in import group before 'javax.swing.JComponent''
-import javax.swing.JTable; // ok
+import javax.swing.JTable;
 
 import static java.io.File.*; // violation 'Extra separation in import group before 'java.io.File.*''
 import java.io.File; // violation 'Wrong order for 'java.io.File' import.'
 
 import static java.io.File.createTempFile; // violation 'Extra separation in import group before 'java.io.File.createTempFile''
-import static java.awt.Button.ABORT; // ok
-import static javax.swing.WindowConstants.*; // ok
+import static java.awt.Button.ABORT;
+import static javax.swing.WindowConstants.*;
 
 import java.io.Reader; // 2 violations
 

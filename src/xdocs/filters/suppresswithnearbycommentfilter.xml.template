@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWithNearbyCommentFilter</title>
+  </head>
+  <body>
+    <section name="SuppressWithNearbyCommentFilter">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressWithNearbyCommentFilter</code> uses
+          nearby comments to suppress audit events.
+        </p>
+        <p>
+          Rationale: Same as <code>SuppressionCommentFilter</code>.
+          Whereas the SuppressionCommentFilter uses matched pairs of
+          filters to turn on/off comment matching,
+          <code>SuppressWithNearbyCommentFilter</code> uses
+          single comments. This requires fewer lines to mark a region, and
+          may be aesthetically preferable in some contexts.
+        </p>
+        <p>
+          Attention: This filter may only be specified within the TreeWalker module
+          (<code>&lt;module name="TreeWalker"/&gt;</code>) and only
+          applies to checks which are also defined within this module.
+          To filter non-TreeWalker checks like <code>RegexpSingleline</code>,
+          a <a href="suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
+          SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          SuppressWithNearbyCommentFilter can suppress Checks that have
+          Treewalker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure a filter to suppress audit events for <i>check</i>
+          on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure a filter to suppress all audit events on any line
+          containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure a filter so that
+          <code>// OK to catch (Throwable|Exception|RuntimeException) here</code>
+          permits the current and previous line to avoid generating an IllegalCatch
+          audit event:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure a filter so that
+          <code>CHECKSTYLE IGNORE <i>check</i> FOR NEXT<i>var</i> LINES</code>
+          avoids triggering any audits for the given check for
+          the current line and the next <i>var</i> lines (for a total of <i>var</i>+1 lines):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure a filter to avoid any audits on code like:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-config">
+          To configure a filter to allow suppress one or more Checks
+          (separated by "|") and demand comment no less than 14 symbols:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          It is possible to specify an ID of checks, so that it can be leveraged by the
+          SuppressWithNearbyCommentFilter to skip validations. The following examples
+          show how to skip validations near code that has comment like
+          <code>// @cs-: &lt;ID/&gt; (reason)</code>, where ID is the ID of checks you want to
+          suppress.
+        </p>
+        <p id="Example7-config">
+          Example of Checkstyle checks and
+          SuppressWithNearbyCommentFilter configuration (idFormat which
+          is set to '$1' points that ID of the checks is in the first group of
+          commentFormat regular expressions):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
+          Example of how to configure the check to suppress more than one checks.
+          The influence format is specified in the second regexp group.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbycommentfilter/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWithNearbyCommentFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

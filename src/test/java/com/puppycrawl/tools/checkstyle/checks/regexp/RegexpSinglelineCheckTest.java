@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -130,4 +130,19 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
                 .isEqualTo(0);
     }
 
+    @Test
+    public void testDefault() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineSemantic9.java"), EMPTY);
+    }
+
+    @Test
+    public void testMessage() throws Exception {
+
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineSemantic10.java"), expected);
+    }
 }

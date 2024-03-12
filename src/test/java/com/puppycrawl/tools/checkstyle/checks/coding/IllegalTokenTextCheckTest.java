@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -31,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class IllegalTokenTextCheckTest
@@ -42,46 +42,46 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testCaseSensitive()
+    public void testIllegalTokenTextCheckDefaultCaseSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens.java"), expected);
+                getPath("InputIllegalTokenTextCheckDefaultCaseSensitive.java"), expected);
     }
 
     @Test
-    public void testCaseInSensitive()
+    public void testIllegalTokenTextCheckCaseInSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
             "35:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens2.java"), expected);
+                getPath("InputIllegalTokenTextCheckCaseInSensitive.java"), expected);
     }
 
     @Test
-    public void testCustomMessage()
+    public void testIllegalTokenTextCheckCustomMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + "My custom message",
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens3.java"), expected);
+                getPath("InputIllegalTokenTextCheckCustomMessageInStringLiteral.java"), expected);
     }
 
     @Test
-    public void testNullCustomMessage()
+    public void testIllegalTokenTextCheckNullMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens4.java"), expected);
+                getPath("InputIllegalTokenTextCheckNullMessageInStringLiteral.java"), expected);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testCommentToken()
+    public void testIllegalTokenTextCheckCommentToken()
             throws Exception {
 
         final String[] expected = {
@@ -140,7 +140,25 @@ public class IllegalTokenTextCheckTest
             "45:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTokenTextTokens5.java"), expected);
+                getPath("InputIllegalTokenTextCheckCommentToken.java"), expected);
+    }
+
+    @Test
+    public void testStringTemplate()
+            throws Exception {
+
+        final String[] expected = {
+            "29:28: " + getCheckMessage(MSG_KEY, "x"),
+            "29:35: " + getCheckMessage(MSG_KEY, "x"),
+            "59:20: " + getCheckMessage(MSG_KEY, "x"),
+            "59:27: " + getCheckMessage(MSG_KEY, "x"),
+            "73:23: " + getCheckMessage(MSG_KEY, "x"),
+            "73:30: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputIllegalTokenTextStringTemplate.java"), expected);
     }
 
     @Test
@@ -161,7 +179,7 @@ public class IllegalTokenTextCheckTest
 
     @Test
     public void testAcceptableTokensMakeSense() {
-        final int expectedTokenTypesTotalNumber = 186;
+        final int expectedTokenTypesTotalNumber = 195;
         assertWithMessage("Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.")
             .that(TokenUtil.getTokenTypesTotalNumber())
@@ -169,7 +187,7 @@ public class IllegalTokenTextCheckTest
 
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         final int[] allowedTokens = check.getAcceptableTokens();
-        final List<Integer> tokenTypesWithMutableText = Arrays.asList(
+        final List<Integer> tokenTypesWithMutableText = List.of(
             TokenTypes.NUM_DOUBLE,
             TokenTypes.NUM_FLOAT,
             TokenTypes.NUM_INT,
@@ -178,7 +196,8 @@ public class IllegalTokenTextCheckTest
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
-            TokenTypes.TEXT_BLOCK_CONTENT
+            TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.STRING_TEMPLATE_CONTENT
         );
         for (int tokenType : allowedTokens) {
             assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
@@ -189,4 +208,11 @@ public class IllegalTokenTextCheckTest
         }
     }
 
+    @Test
+    public void testDefaultFormat() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalTokenTextDefaultFormat.java"), expected);
+    }
 }

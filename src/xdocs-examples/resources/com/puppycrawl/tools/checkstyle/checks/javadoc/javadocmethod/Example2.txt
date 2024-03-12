@@ -1,0 +1,43 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocMethod">
+      <property name="accessModifiers" value="public"/>
+      <property name="allowMissingParamTags" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // ok, missing param tags allowed
+      return p1;            // violation, return tag missing
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, only public methods checked
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // ok, missing param tags allowed
+  }                         // ok, no return tag for void method
+}
+// xdoc section -- end

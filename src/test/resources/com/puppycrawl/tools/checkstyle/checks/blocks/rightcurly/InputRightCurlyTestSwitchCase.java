@@ -35,7 +35,7 @@ public class InputRightCurlyTestSwitchCase {
                 break;
             default:
                 x = 0;
-        } // ok
+        }
     }
 
     public static void method3() {
@@ -43,7 +43,7 @@ public class InputRightCurlyTestSwitchCase {
         switch (mode) {
         default :
                int x = 0;
-        } // ok
+        }
     }
 
     public static void method4() {
@@ -55,13 +55,13 @@ public class InputRightCurlyTestSwitchCase {
     public static void method5() {
         int mode = 0;
         switch (mode) { default : int x = 0;
-        } // ok
+        }
     }
 
     public static void method6() {
         int mode = 0;
         switch (mode) { case 0: int x = 1; break; default : x = 5;
-        } // ok
+        }
     }
 
     public static void method7() {
@@ -79,13 +79,13 @@ public class InputRightCurlyTestSwitchCase {
     public static void method9() {
         int mode = 0;
         switch (mode) { case 0: int x = 1; break; default : x = 5;
-        } // ok
+        }
     }
 
     public static void method10() {
         int mode = 0;
         switch (mode) { case 0: int x = 1; break; case 80: x = 1; break;
-        } // ok
+        }
     }
 
     public static void method11() {
@@ -115,6 +115,6 @@ public class InputRightCurlyTestSwitchCase {
         }
         switch (x) {}; // violation ''}' at column 21 should be alone on a line'
         switch (x) {
-        } // ok
+        }
     }
 }

@@ -22,11 +22,11 @@ class InputEmptyBlockSemantic2Statement
         char[] s = {'1', '2'};
         int index = 2;
         if (doSideEffect() == 1) {} // violation 'Must have at least one statement'
-        while ((a = index - 1) != 0) {} // ok
-        for (; index < s.length && s[index] != 'x'; index++) {} // ok
+        while ((a = index - 1) != 0) {}
+        for (; index < s.length && s[index] != 'x'; index++) {}
         if (a == 1) {} else {a++;}// violation 'Must have at least one statement'
         switch (a) {}   // violation 'Must have at least one statement'
-        switch (a) {    // ok
+        switch (a) {
             case 1:
                 a = 2;
             case 2:

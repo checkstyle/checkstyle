@@ -1,3 +1,8 @@
+/*
+com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck
+
+*/
+
 package com.puppycrawl.tools.checkstyle.api.fileset;
 
 public class InputFileSetIllegalTokens

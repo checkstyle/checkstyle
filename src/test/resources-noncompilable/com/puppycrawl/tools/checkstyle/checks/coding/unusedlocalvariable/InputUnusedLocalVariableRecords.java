@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 //non-compiled with javac: Compilable with Java14
 public record InputUnusedLocalVariableRecords(int a, int b) {
     public InputUnusedLocalVariableRecords {
-        int ab = 12; // ok
+        int ab = 12;
         ab += a;
         int var1 = 1; // violation
         new nested() {

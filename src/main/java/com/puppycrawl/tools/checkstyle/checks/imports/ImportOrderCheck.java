@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,7 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
@@ -62,13 +61,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </ul>
  * <ul>
  * <li>
- * Property {@code option} - specify policy on the relative order between type imports and static
- * imports.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
- * Default value is {@code under}.
+ * Property {@code caseSensitive} - Control whether string comparison should be
+ * case-sensitive or not. Case-sensitive sorting is in
+ * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+ * It affects both type imports and static imports.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code groups} - specify list of <b>type import</b> groups. Every group identified
+ * Property {@code groups} - Specify list of <b>type import</b> groups. Every group identified
  * either by a common prefix string, or by a regular expression enclosed in forward slashes
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
@@ -77,21 +78,27 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ordered} - control whether type imports within each group should be
+ * Property {@code option} - Specify policy on the relative order between type imports and static
+ * imports.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
+ * Default value is {@code under}.
+ * </li>
+ * <li>
+ * Property {@code ordered} - Control whether type imports within each group should be
  * sorted.
  * It doesn't affect sorting for static imports.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code separated} - control whether type import groups should be separated
+ * Property {@code separated} - Control whether type import groups should be separated
  * by, at least, one blank line or comment and aren't separated internally.
  * It doesn't affect separations for static imports.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code separatedStaticGroups} - control whether static import groups should
+ * Property {@code separatedStaticGroups} - Control whether static import groups should
  * be separated by, at least, one blank line or comment and aren't separated internally.
  * This property has effect only when the property {@code option} is set to {@code top}
  * or {@code bottom} and when property {@code staticGroups} is enabled.
@@ -99,15 +106,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code caseSensitive} - control whether string comparison should be
- * case-sensitive or not. Case-sensitive sorting is in
- * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
- * It affects both type imports and static imports.
+ * Property {@code sortStaticImportsAlphabetically} - Control whether
+ * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
  * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code staticGroups} - specify list of <b>static</b> import groups. Every group
+ * Property {@code staticGroups} - Specify list of <b>static</b> import groups. Every group
  * identified either by a common prefix string, or by a regular expression enclosed in forward
  * slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
  * an additional group, located at the end. Thus, the empty list of static groups (the default
@@ -117,417 +122,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code sortStaticImportsAlphabetically} - control whether
- * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code useContainerOrderingForStatic} - control whether to use container
+ * Property {@code useContainerOrderingForStatic} - Control whether to use container
  * ordering (Eclipse IDE term) for static imports or not.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="ImportOrder"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import java.io.IOException;
- * import java.net.URL;
- *
- * import java.io.IOException; // violation, extra separation before import
- *                             // and wrong order, comes before 'java.net.URL'.
- * import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
- * import javax.swing.JComponent;
- * import org.apache.http.conn.ClientConnectionManager; // OK
- * import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
- * import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
- * import com.neurologic.http.impl.ApacheHttpClient; // OK
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the check so that it matches default Eclipse formatter configuration
- * (tested on Kepler and Luna releases):
- * </p>
- * <ul>
- * <li>
- * group of static imports is on the top
- * </li>
- * <li>
- * groups of type imports: "java" and "javax" packages first, then "org" and then all other imports
- * </li>
- * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by, at least, one blank line and aren't separated internally
- * </li>
- * </ul>
- * <p>
- * Notes:
- * </p>
- * <ul>
- * <li>
- * "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna
- * (looks like Eclipse defect)
- * </li>
- * <li>
- * configuration below doesn't work in all 100% cases due to inconsistent behavior prior to
- * Mars release, but covers most scenarios
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
- *   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import static java.lang.System.out;
- * import static java.lang.Math; // violation, alphabetical case-sensitive ASCII order, 'M' &lt; 'S'
- * import java.io.IOException;
- *
- * import java.net.URL; // violation, extra separation before import
- * import java.security.KeyManagementException;
- *
- * import javax.net.ssl.TrustManager;
- *
- * import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
- *
- * import org.apache.http.conn.ClientConnectionManager;
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the check so that it matches default Eclipse formatter configuration
- * (tested on Mars release):
- * </p>
- * <ul>
- * <li>
- * group of static imports is on the top
- * </li>
- * <li>
- * groups of type imports: "java" and "javax" packages first, then "org" and "com",
- * then all other imports as one group
- * </li>
- * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by, at least, one blank line and aren't separated internally
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org,com&quot;/&gt;
- *   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;separated&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import static java.io.File.createTempFile;
- * import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
- * import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
- * import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' &lt; 'l'
- *
- * import java.io.IOException; // violation, extra separation in 'java' import group
- *
- * import org.albedo.*;
- *
- * import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
- * import javax.swing.JComponent;
- * import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
- * import org.linux.apache.server.SoapServer; // OK
- *
- * import com.neurologic.http.HttpClient; // OK
- * import com.neurologic.http.impl.ApacheHttpClient; // OK
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the check so that it matches default IntelliJ IDEA formatter
- * configuration (tested on v2018.2):
- * </p>
- * <ul>
- * <li>
- * group of static imports is on the bottom
- * </li>
- * <li>
- * groups of type imports: all imports except of "javax" and "java", then "javax" and "java"
- * </li>
- * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by, at least, one blank line and aren't separated internally
- * </li>
- * </ul>
- * <p>
- * Note: a <a href="https://checkstyle.org/config_filters.html#SuppressionXpathSingleFilter">
- * suppression xpath single filter</a> is needed because
- * IDEA has no blank line between "javax" and "java".
- * ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").
- * There is no flexibility to enforce empty lines between some groups and no empty lines between
- * other groups.
- * </p>
- * <p>
- * Note: "separated" option is disabled because IDEA default has blank line between "java" and
- * static imports, and no blank line between "javax" and "java".
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;groups&quot; value=&quot;*,javax,java&quot;/&gt;
- *   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;separated&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;bottom&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * &lt;module name="SuppressionXpathSingleFilter"&gt;
- *   &lt;property name="checks" value="ImportOrder"/&gt;
- *   &lt;property name="message" value="^'java\..*'.*"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import com.neurologic.http.impl.ApacheHttpClient; // OK
- * import static java.awt.Button.A;
- * import javax.swing.JComponent; // violation, wrong order, caused by above static import
- *                                // all static imports comes at bottom
- * import java.net.URL; // violation, extra separation in import group
- * import java.security.KeyManagementException;
- * import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
- * import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
- *
- * public class TestClass { }
- * </pre>
- * <p>
- * To configure the check so that it matches default NetBeans formatter configuration
- * (tested on v8):
- * </p>
- * <ul>
- * <li>
- * groups of type imports are not defined, all imports will be sorted as a one group
- * </li>
- * <li>
- * static imports are not separated, they will be sorted along with other imports
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import static java.io.File.createTempFile;
- * import java.lang.Math.sqrt;
- *
- * import javax.swing.JComponent; // violation, extra separation in import group
- * import static javax.windowConstants.*; // OK
- *                                     // all static imports are processed like non static imports.
- * public class SomeClass { }
- * </pre>
- * <p>
- * Group descriptions enclosed in slashes are interpreted as regular expressions.
- * If multiple groups match, the one matching a longer substring of the imported name
- * will take precedence, with ties broken first in favor of earlier matches and finally
- * in favor of the first matching group.
- * </p>
- * <p>
- * There is always a wildcard group to which everything not in a named group belongs.
- * If an import does not match a named group, the group belongs to this wildcard group.
- * The wildcard group position can be specified using the {@code *} character.
- * </p>
- * <p>
- * Check also has on option making it more flexible: <b>sortStaticImportsAlphabetically</b>
- * - sets whether static imports grouped by <b>top</b> or <b>bottom</b> option should be sorted
- * alphabetically or not, default value is <b>false</b>. It is applied to static imports grouped
- * with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling of this
- * Check and other tools like Eclipse's Organize Imports feature.
- * </p>
- * <p>
- * To configure the Check allows static imports grouped to the <b>top</b> being sorted
- * alphabetically:
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static java.lang.Math.PI;
- * import static java.lang.Math.abs; // OK, alphabetical case-sensitive ASCII order, 'P' &lt; 'a'
- * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
- *
- * import java.util.Set; // violation, extra separation in import group
- * import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
- * import org.abego.*;
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the Check with groups of static imports:
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;staticGroups&quot; value=&quot;org,java&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
- * import static java.lang.Math.abs; // Group 2
- * import static java.lang.String.format; // Group 2
- * import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * The following example shows the idea of 'useContainerOrderingForStatic' option that is
- * useful for Eclipse IDE users to match ordering validation.
- * This is how the import comparison works for static imports: we first compare
- * the container of the static import, container is the type enclosing the static element
- * being imported. When the result of the comparison is 0 (containers are equal),
- * we compare the fully qualified import names.
- * </p>
- * <p>
- * For e.g. this is what is considered to be container names for the given example:
- * </p>
- * <pre>
- * import static HttpConstants.COLON     =&gt; HttpConstants
- * import static HttpHeaders.addHeader   =&gt; HttpHeaders
- * import static HttpHeaders.setHeader   =&gt; HttpHeaders
- * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
- * </pre>
- * <p>
- * According to this logic, HttpHeaders.Names should come after HttpHeaders.
- * </p>
- * <p>
- * Example for {@code useContainerOrderingForStatic=true}
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- *   &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static io.netty.handler.codec.http.HttpConstants.COLON;
- * import static io.netty.handler.codec.http.HttpHeaders.addHeader;
- * import static io.netty.handler.codec.http.HttpHeaders.setHeader;
- * import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
- *
- * public class InputEclipseStaticImportsOrder { }
- * </pre>
- * <p>
- * Example for {@code useContainerOrderingForStatic=false}
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;useContainerOrderingForStatic&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;ordered&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- *   &lt;property name=&quot;caseSensitive&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static io.netty.handler.codec.http.HttpConstants.COLON;
- * import static io.netty.handler.codec.http.HttpHeaders.addHeader;
- * import static io.netty.handler.codec.http.HttpHeaders.setHeader;
- * import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
- *
- * public class InputEclipseStaticImportsOrder { }
- * </pre>
- * <p>
- * To configure the check to enforce static import group separation
- * </p>
- * <p>
- * Example for {@code separatedStaticGroups=true}
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;staticGroups&quot; value=&quot;*,java,javax,org&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- *   &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static java.lang.Math.PI;
- * import static java.io.File.createTempFile;
- * import static javax.swing.JComponent; // violation, should be separated from previous imports
- * import static javax.WindowConstants.*; // OK
- *
- * import java.net.URL;
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the Check with groups of static imports when staticGroups=&quot;&quot;
- * represents all imports as {@code everything else} group:
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;staticGroups&quot; value=&quot;&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static java.io.File.listRoots;   // OK
- * import static javax.swing.WindowConstants.*; // OK
- * import static java.io.File.createTempFile; // OK
- * import static com.puppycrawl.tools.checkstyle;  // OK
- *
- * public class SomeClass { }
- * </pre>
- * <p>
- * To configure the Check with groups of static imports when
- * staticGroups=&quot;java, javax&quot; represents three groups i.e java*, javax*
- * and * (everything else). In below example the static imports {@code com...}
- * should be in last group:
- * </p>
- * <pre>
- * &lt;module name=&quot;ImportOrder&quot;&gt;
- *   &lt;property name=&quot;staticGroups&quot; value=&quot;java, javax&quot;/&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * import static java.io.File.listRoots;   // OK
- * import static javax.swing.WindowConstants.*; // OK
- * import static java.io.File.createTempFile; // violation should be before javax
- * import static com.puppycrawl.tools.checkstyle;  // OK
- *
- * public class SomeClass { }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -572,6 +172,9 @@ public class ImportOrderCheck
 
     /** The special wildcard that catches all remaining groups. */
     private static final String WILDCARD_GROUP_NAME = "*";
+
+    /** The Forward slash. */
+    private static final String FORWARD_SLASH = "/";
 
     /** Empty array of pattern type needed to initialize check. */
     private static final Pattern[] EMPTY_PATTERN_ARRAY = new Pattern[0];
@@ -664,6 +267,7 @@ public class ImportOrderCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 5.0
      */
     public void setOption(String optionStr) {
         option = ImportOrderOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
@@ -677,6 +281,7 @@ public class ImportOrderCheck
      * means one group for all type imports.
      *
      * @param packageGroups a comma-separated list of package names/prefixes.
+     * @since 3.2
      */
     public void setGroups(String... packageGroups) {
         groups = compilePatterns(packageGroups);
@@ -691,6 +296,7 @@ public class ImportOrderCheck
      * the property {@code option} is set to {@code top} or {@code bottom}.
      *
      * @param packageGroups a comma-separated list of package names/prefixes.
+     * @since 8.12
      */
     public void setStaticGroups(String... packageGroups) {
         staticGroups = compilePatterns(packageGroups);
@@ -703,6 +309,7 @@ public class ImportOrderCheck
      * @param ordered
      *            whether lexicographic ordering of imports within a group
      *            required or not.
+     * @since 3.2
      */
     public void setOrdered(boolean ordered) {
         this.ordered = ordered;
@@ -715,6 +322,7 @@ public class ImportOrderCheck
      *
      * @param separated
      *            whether groups should be separated by one blank line or comment.
+     * @since 3.2
      */
     public void setSeparated(boolean separated) {
         this.separated = separated;
@@ -729,6 +337,7 @@ public class ImportOrderCheck
      *
      * @param separatedStaticGroups
      *            whether groups should be separated by one blank line or comment.
+     * @since 8.12
      */
     public void setSeparatedStaticGroups(boolean separatedStaticGroups) {
         this.separatedStaticGroups = separatedStaticGroups;
@@ -742,6 +351,7 @@ public class ImportOrderCheck
      *
      * @param caseSensitive
      *            whether string comparison should be case-sensitive.
+     * @since 3.3
      */
     public void setCaseSensitive(boolean caseSensitive) {
         this.caseSensitive = caseSensitive;
@@ -752,6 +362,7 @@ public class ImportOrderCheck
      * <b>bottom</b> are sorted within the group.
      *
      * @param sortAlphabetically true or false.
+     * @since 6.5
      */
     public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
         sortStaticImportsAlphabetically = sortAlphabetically;
@@ -762,6 +373,7 @@ public class ImportOrderCheck
      * imports or not.
      *
      * @param useContainerOrdering whether to use container ordering for static imports or not.
+     * @since 7.1
      */
     public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
         useContainerOrderingForStatic = useContainerOrdering;
@@ -786,7 +398,6 @@ public class ImportOrderCheck
     public void beginTree(DetailAST rootAST) {
         lastGroup = Integer.MIN_VALUE;
         lastImportLine = Integer.MIN_VALUE;
-        lastImport = "";
         lastImportStatic = false;
         beforeFirstImport = true;
         staticImportsApart =
@@ -1135,7 +746,6 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-
         for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
             final Pattern grp;
@@ -1146,8 +756,8 @@ public class ImportOrderCheck
                 // matches any package
                 grp = Pattern.compile("");
             }
-            else if (CommonUtil.startsWithChar(pkg, '/')) {
-                if (!CommonUtil.endsWithChar(pkg, '/')) {
+            else if (pkg.startsWith(FORWARD_SLASH)) {
+                if (!pkg.endsWith(FORWARD_SLASH)) {
                     throw new IllegalArgumentException("Invalid group: " + pkg);
                 }
                 pkg = pkg.substring(1, pkg.length() - 1);
@@ -1155,7 +765,7 @@ public class ImportOrderCheck
             }
             else {
                 final StringBuilder pkgBuilder = new StringBuilder(pkg);
-                if (!CommonUtil.endsWithChar(pkg, '.')) {
+                if (!pkg.endsWith(".")) {
                     pkgBuilder.append('.');
                 }
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));

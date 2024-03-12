@@ -6,7 +6,7 @@ InnerTypeLast
 
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-public class InputInnerTypeLastClassRootClass2 // ok
+public class InputInnerTypeLastClassRootClass2
 {
     private int mFoo = 0;
 }

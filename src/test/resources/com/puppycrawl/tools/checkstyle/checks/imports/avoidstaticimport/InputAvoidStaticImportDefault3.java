@@ -7,8 +7,6 @@ excludes = java.io.File.listRoots, java.lang.Math.E
 
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-
 import java.io.*;
 import java.lang.*;
 import java.sql.Connection;

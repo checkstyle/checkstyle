@@ -12,7 +12,7 @@
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
   <suppress checks="FileLength"
-             files="TokenTypes.java|IndentationCheckTest.java"
+             files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
 
   <!-- illegal words are part of Javadoc -->
@@ -26,7 +26,7 @@
              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
                     |AbstractJavadocCheckTest.java|
                     |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
-                    |AbstractAutomaticBeanTest.java"/>
+                    |AbstractAutomaticBeanTest.java|AbstractClassNameCheckExamplesTest.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS"
@@ -60,6 +60,8 @@
   <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
   <!-- Apart from complex logic, there is a nested class which contains many methods.  -->
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
+  <!-- Utility class is combination of a lot of different methods .  -->
+  <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
@@ -75,7 +77,7 @@
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
                     |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
-                    |AbstractCheckTest)\.java"/>
+                    |AbstractCheckTest|InlineConfigParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
@@ -101,6 +103,9 @@
   <suppress id="noIndentationConfigExamples" files="[\\/]src[\\/]xdocs[\\/]writingchecks.xml"/>
   <suppress id="noIndentationConfigExamples"
     files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
+
+  <!-- Examples are not intended to be formatted -->
+  <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
@@ -176,4 +181,17 @@
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
             files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+  <!-- the filter is not part of the documentation -->
+  <suppress id="settersHaveSinceTag"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]XpathFileGeneratorAstFilter.java"/>
+
+  <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
+       make the lines long. We still validate index.xml and template files.
+       until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <suppress id="lineLengthXml"
+            files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+
+  <!-- The file is generated -->
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
 </suppressions>

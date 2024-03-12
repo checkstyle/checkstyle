@@ -19,7 +19,7 @@ public class InputFinalClassAnonymousInnerClass {
         };
 
         class a {
-            class b { // ok
+            class b {
                 private b() {
                 }
             }
@@ -27,14 +27,14 @@ public class InputFinalClassAnonymousInnerClass {
         class m { // violation
             private m() {
             }
-            class q { // ok
+            class q {
                 private q() {
                 }
             }
         }
     }
 
-    class m { // ok
+    class m {
         private m() {
         }
         class q { // violation
@@ -45,7 +45,7 @@ public class InputFinalClassAnonymousInnerClass {
         };
     }
 
-    class jasper { // ok
+    class jasper {
         private jasper() {
         }
         class a {
@@ -58,7 +58,7 @@ public class InputFinalClassAnonymousInnerClass {
         }
     }
 
-    class g { // ok
+    class g {
         private g() {
         }
     }

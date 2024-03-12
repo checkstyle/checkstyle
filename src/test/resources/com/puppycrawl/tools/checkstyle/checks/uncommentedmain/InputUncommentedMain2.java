@@ -13,7 +13,7 @@ public class InputUncommentedMain2
     private class PC {
 
         // uncommented main with depth 2
-        public void main(String[] args) // ok
+        public void main(String[] args)
         {
             System.identityHashCode("InputUncommentedMain.main()");
         }

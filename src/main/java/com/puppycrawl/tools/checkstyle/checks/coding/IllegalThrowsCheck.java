@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,10 +41,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code illegalClassNames} - Specify throw class names to reject.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
- * java.lang.RuntimeException, java.lang.Throwable}.
+ * Property {@code ignoreOverriddenMethods} - Allow to ignore checking overridden methods
+ * (marked with {@code Override} or {@code java.lang.Override} annotation).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify names of methods to ignore.
@@ -52,90 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Default value is {@code finalize}.
  * </li>
  * <li>
- * Property {@code ignoreOverriddenMethods} - allow to ignore checking overridden methods
- * (marked with {@code Override} or {@code java.lang.Override} annotation).
- * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Property {@code illegalClassNames} - Specify throw class names to reject.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
+ * java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="IllegalThrows"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void func1() throws RuntimeException {} // violation
- *   public void func2() throws Exception {}  // ok
- *   public void func3() throws Error {}  // violation
- *   public void func4() throws Throwable {} // violation
- *   public void func5() throws NullPointerException {} // ok
- *   &#064;Override
- *   public void toString() throws Error {} // ok
- * }
- * </pre>
- * <p>
- * To configure the check rejecting throws NullPointerException from methods:
- * </p>
- * <pre>
- * &lt;module name="IllegalThrows"&gt;
- *   &lt;property name="illegalClassNames" value="NullPointerException"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void func1() throws RuntimeException {} // ok
- *   public void func2() throws Exception {}  // ok
- *   public void func3() throws Error {}  // ok
- *   public void func4() throws Throwable {} // ok
- *   public void func5() throws NullPointerException {} // violation
- *   &#064;Override
- *   public void toString() throws Error {} // ok
- * }
- * </pre>
- * <p>
- * To configure the check ignoring method named "func1()":
- * </p>
- * <pre>
- * &lt;module name="IllegalThrows"&gt;
- *   &lt;property name="ignoredMethodNames" value="func1"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void func1() throws RuntimeException {} // ok
- *   public void func2() throws Exception {}  // ok
- *   public void func3() throws Error {}  // violation
- *   public void func4() throws Throwable {} // violation
- *   public void func5() throws NullPointerException {} // ok
- *   &#064;Override
- *   public void toString() throws Error {} // ok
- * }
- * </pre>
- * <p>
- * To configure the check to warn on overridden methods:
- * </p>
- * <pre>
- * &lt;module name=&quot;IllegalThrows&quot;&gt;
- *   &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void func1() throws RuntimeException {} // violation
- *   public void func2() throws Exception {}  // ok
- *   public void func3() throws Error {}  // violation
- *   public void func4() throws Throwable {} // violation
- *   public void func5() throws NullPointerException {} // ok
- *   &#064;Override
- *   public void toString() throws Error {} // violation
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -180,6 +102,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      *
      * @param classNames
      *            array of illegal exception classes
+     * @since 4.0
      */
     public void setIllegalClassNames(final String... classNames) {
         illegalClassNames.clear();
@@ -245,6 +168,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * Setter to specify names of methods to ignore.
      *
      * @param methodNames array of ignored method names
+     * @since 5.4
      */
     public void setIgnoredMethodNames(String... methodNames) {
         ignoredMethodNames.clear();
@@ -256,6 +180,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
      * (marked with {@code Override} or {@code java.lang.Override} annotation).
      *
      * @param ignoreOverriddenMethods Check's property.
+     * @since 6.4
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {
         this.ignoreOverriddenMethods = ignoreOverriddenMethods;

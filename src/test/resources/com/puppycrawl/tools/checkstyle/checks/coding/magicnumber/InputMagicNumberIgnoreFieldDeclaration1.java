@@ -33,23 +33,23 @@ public class InputMagicNumberIgnoreFieldDeclaration1 {
 
 
         int int_var1 = 1;
-        int int_var2 = (2); // ok
+        int int_var2 = (2);
         long long_var1 = 0L;
         long long_var2 = 0l;
         double double_var1 = 0D;
         double double_var2 = 0d;
 
-        int[] int_array = new int[2]; // ok
+        int[] int_array = new int[2];
 
-        int_var1 = 1 + 2; // ok
+        int_var1 = 1 + 2;
         int_var1 += 1;
-        double_var1 = 1.0 + 2.0; // ok
+        double_var1 = 1.0 + 2.0;
 
-        for (int i = 0; i < 2; i++); // ok
+        for (int i = 0; i < 2; i++);
 
-        if (1 < 2); // ok
+        if (1 < 2);
 
-        if (1.0 < 2.0); // ok
+        if (1.0 < 2.0);
 
 
         int int_magic1 = 3_000; // violation

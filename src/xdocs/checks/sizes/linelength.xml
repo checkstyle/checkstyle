@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LineLength</title>
+  </head>
+  <body>
+    <section name="LineLength">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for long lines.
+        </p>
+
+        <p>
+          Rationale: Long lines are hard to read in printouts or if developers
+          have limited screen space for the source code, e.g. if the IDE
+          displays additional information like project tree, class hierarchy,
+          etc.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>8.24</td>
+            </tr>
+            <tr>
+              <td>ignorePattern</td>
+              <td>Specify pattern for lines to ignore.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^(package|import) .*&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum line length allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>80</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check to accept lines up to 80 characters long:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-config">
+          To configure the check to accept lines up to 120 characters long:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;120&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example3-config">
+          To configure the check to ignore lines that begin with <code>&quot; * &quot;</code>code,
+          followed by just one word, such as within a Javadoc comment:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;ignorePattern&quot; value=&quot;^ *\* *[^ ]+$&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example4-config">
+          To configure the check to only validate java files and ignore other extensions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example5-config">
+          To configure the check to only validate xml and property files and ignore other
+          extensions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;xml, properties&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-config">
+          To configure check to validate <code>import</code> and <code>package</code>
+          statements:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;ignorePattern&quot; value=&quot;^$&quot;/&gt;
+    &lt;property name=&quot;max&quot; value=&quot;50&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">
+          Example:
+        </p>
+        <source>
+// violation below 'Line is longer than 50 characters (found 54)'
+package com.puppycrawl.tools.checkstyle.checks.design;
+
+// violation below 'Line is longer than 50 characters (found 86)'
+import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
+
+import java.util.Arrays; // ok
+        </source>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <ul>
+          <li>
+            The calculation of the length of a line takes into account the
+            number of expanded spaces for a tab character (<code>'\t'</code>). The default number
+            of spaces is <code>8</code>. To specify a different number of spaces, the user can set
+            <a href="../../config.html#Checker"><code>Checker</code></a> property
+            <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
+            or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
+          </li>
+          <li>
+            By default, package and import statements (lines matching pattern
+            <code>^(package|import) .*</code>) are not verified by
+            this check.
+          </li>
+          <li>
+            Trailing comments are taken into consideration while calculating the line
+            length.
+            <source>
+import java.util.regex.Pattern; // The length of this comment will be taken into consideration
+            </source>
+            In the example above the length of the import statement is just 31 characters
+            but total length will be 94 characters.
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLineLen%22">
+              maxLineLen
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

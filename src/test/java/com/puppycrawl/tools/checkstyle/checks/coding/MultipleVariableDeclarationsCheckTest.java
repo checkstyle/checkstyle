@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -66,6 +66,19 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
         assertWithMessage("Required tokens should not be null")
             .that(check.getRequiredTokens())
             .isNotNull();
+    }
+
+    @Test
+    public void test() throws Exception {
+
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_MULTIPLE),
+            "14:5: " + getCheckMessage(MSG_MULTIPLE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleVariableDeclarations2.java"),
+               expected);
     }
 
 }

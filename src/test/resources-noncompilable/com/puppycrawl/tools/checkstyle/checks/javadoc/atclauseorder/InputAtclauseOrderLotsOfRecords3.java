@@ -55,7 +55,7 @@ public class InputAtclauseOrderLotsOfRecords3 {
         }
     }
 
-    public boolean isLoggable(LogRecord record) { // ok
+    public boolean isLoggable(LogRecord record) {
         String packageName = null;
         return record.getLoggerName().startsWith(packageName);
     }

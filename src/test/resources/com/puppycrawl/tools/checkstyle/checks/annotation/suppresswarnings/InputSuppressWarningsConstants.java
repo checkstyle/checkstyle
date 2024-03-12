@@ -18,9 +18,9 @@ public class InputSuppressWarningsConstants
     public static final String UNCHECKED = "unchecked";
 
     public static void test() {
-        @SuppressWarnings(UNCHECKED) // ok
+        @SuppressWarnings(UNCHECKED)
         final List<String> dummyOne = (List<String>) new ArrayList();
-        @SuppressWarnings(InputSuppressWarningsConstants.UNCHECKED) // ok
+        @SuppressWarnings(InputSuppressWarningsConstants.UNCHECKED)
         final List<String> dummyTwo = (List<String>) new ArrayList();
     }
 }

@@ -1,0 +1,37 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType">
+      <property name="versionFormat" value="\$Revision.*\$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as version tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as version format is invalid
+
+/** */
+public class ClassD {} // violation, as version tag is missing
+
+/** */
+private class ClassE {} // violation, as version tag is missing
+
+/** */
+@Generated
+public class ClassF<T> {} // OK
+// xdoc section -- end

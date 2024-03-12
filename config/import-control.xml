@@ -19,6 +19,7 @@
   <allow pkg="java.io"/>
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>
+  <allow class="javax.annotation.Nullable"/>
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
@@ -67,6 +68,38 @@
   <file name="AbstractAutomaticBean">
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
   </file>
+
+  <subpackage name="site">
+    <allow pkg="org.apache.maven" local-only="true"/>
+    <allow pkg="java.nio" local-only="true"/>
+    <allow pkg="org.codehaus.plexus" local-only="true"/>
+    <allow class="java.lang.reflect.Field" local-only="true"/>
+    <allow class="java.lang.reflect.Array" local-only="true"/>
+    <allow class="java.lang.reflect.ParameterizedType" local-only="true"/>
+    <allow class="java.lang.reflect.InvocationTargetException" local-only="true"/>
+    <allow class="java.beans.Introspector" local-only="true"/>
+    <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+    <allow class="javax.swing.text.MutableAttributeSet" local-only="true"/>
+    <allow class="javax.swing.text.html.HTML.Attribute" local-only="true"/>
+    <allow class="com.google.common.collect.Lists" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalker" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DefaultConfiguration" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PropertyCacheFile" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.XdocsPropertyType" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerFilter" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.CommonUtil" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.CheckUtil" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.PropertyType"/>
+  </subpackage>
 
   <subpackage name="utils">
 
@@ -260,6 +293,7 @@
     <file name="Abstract.*Node" regex="true">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
       <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators"/>
+      <allow pkg="com.puppycrawl.tools.checkstyle.utils"/>
       <disallow pkg="com\.puppycrawl.*" regex="true"/>
     </file>
 
@@ -271,6 +305,9 @@
 
   <subpackage name="grammar">
     <file name="CrAwareLexerSimulator">
+      <allow pkg="org.antlr.v4.runtime"/>
+    </file>
+    <file name="CompositeLexerContextCache">
       <allow pkg="org.antlr.v4.runtime"/>
     </file>
   </subpackage>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,61 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check that will check {@code @param}, {@code @deprecated},
- * {@code @throws}, {@code @return}:
- * </p>
- * <pre>
- * &lt;module name="NonEmptyAtclauseDescription"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test
- * {
- *  // Violation for param "b" and at tags "deprecated", "throws" and "return".
- *  &#47;**
- *  * Some summary.
- *  * &#64;param a Some description
- *  * &#64;param b
- *  * &#64;deprecated
- *  * &#64;throws Exception
- *  * &#64;return
- *  *&#47;
- * public int method(String a, int b) throws Exception {
- *   return 1;
- *  }
- * }
- * </pre>
- * <p>
- * To configure the check to validate {@code @param}, {@code @throws} tags:
- * </p>
- * <pre>
- * &lt;module name="NonEmptyAtclauseDescription"&gt;
- *   &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
- *  &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * class Test
- * {
- *  // Violation for param "b" and at tag "throws".
- *  &#47;**
- *  * Some summary.
- *  * &#64;param a Some description
- *  * &#64;param b
- *  * &#64;deprecated
- *  * &#64;throws Exception
- *  * &#64;return
- *  *&#47;
- * public int method(String a, int b) throws Exception {
- *   return 1;
- *  }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -121,6 +66,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * <li>
  * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
  * </li>
  * <li>
  * {@code javadoc.wrong.singleton.html.tag}
@@ -155,7 +103,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (isEmptyTag(ast.getParent())) {
-            log(ast.getLineNumber(), MSG_KEY, ast.getText());
+            log(ast.getLineNumber(), MSG_KEY);
         }
     }
 
@@ -181,8 +129,8 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     private static boolean hasOnlyEmptyText(DetailNode description) {
         boolean result = true;
         for (DetailNode child : description.getChildren()) {
-            if (child.getType() != JavadocTokenTypes.TEXT
-                    || !CommonUtil.isBlank(child.getText())) {
+            if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                    && !CommonUtil.isBlank(child.getText())) {
                 result = false;
                 break;
             }

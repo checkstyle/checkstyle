@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="JavadocPackage"/>
+</module>
+*/
+
+// xdoc section -- start
+<module name="JavadocPackage">
+  <property name="allowLegacy" value="true"/>
+</module>
+// xdoc section -- end

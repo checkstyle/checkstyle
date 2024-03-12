@@ -84,7 +84,7 @@ class InputRightCurlyLeftTestAlone
     {
         HELLO,
         GOODBYE
-    }; // ok
+    };
 
     void method2()
     {
@@ -109,7 +109,7 @@ class FooCtorTestAlone
         public void FooCtor()
     {
                 i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -120,7 +120,7 @@ class FooMethodTestAlone
         public void fooMethod()
     {
                 int i = 1;
-    }} // ok
+    }}
 
 /**
 * Test input for closing brace if that brace terminates
@@ -134,7 +134,7 @@ class FooInnerTestAlone
         {
 
                 }
-    }} // ok
+    }}
 
 /**
  * False positive
@@ -142,17 +142,17 @@ class FooInnerTestAlone
  */
 class Absent_CustomFieldSerializer3TestAlone {
 
-    public static void serialize() {} // ok
+    public static void serialize() {}
 }
 
 class Absent_CustomFieldSerializer4TestAlone
 {
-    public void Absent_CustomFieldSerializer4() {} // ok
+    public void Absent_CustomFieldSerializer4() {}
 }
 
-class EmptyClass2TestAlone {} // ok
+class EmptyClass2TestAlone {}
 
-interface EmptyInterface3TestAlone {} // ok
+interface EmptyInterface3TestAlone {}
 
 class ClassWithStaticInitializersTestAlone
 {
@@ -196,19 +196,19 @@ class ClassWithStaticInitializersTestAlone
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // ok
+        }};
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // ok
+        public void meth1(); }
 
     interface Interface2
-    { int i = 1; public void meth1(); } // ok
+    { int i = 1; public void meth1(); }
 
     interface Interface3 {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // ok
+        }}
 }

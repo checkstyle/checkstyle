@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -23,8 +23,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class AbstractPathTestSupport {
 
@@ -41,6 +44,15 @@ public abstract class AbstractPathTestSupport {
      * @return path for the package name for the file.
      */
     protected abstract String getPackageLocation();
+
+    /**
+     * Sets the English locale for all tests.
+     * Otherwise, some tests failed in other locales.
+     */
+    @BeforeEach
+    public void setEnglishLocale() {
+        Locale.setDefault(Locale.ENGLISH);
+    }
 
     /**
      * Retrieves the name of the folder location for resources.

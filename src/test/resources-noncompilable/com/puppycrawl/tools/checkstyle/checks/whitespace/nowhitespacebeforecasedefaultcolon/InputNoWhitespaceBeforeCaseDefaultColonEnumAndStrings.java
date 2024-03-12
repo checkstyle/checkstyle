@@ -31,7 +31,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
         int numLetters = -1;
         switch (day) {
             case MON,
-                    FRI: numLetters = 6; // ok
+                    FRI: numLetters = 6;
                             break;
             case TUE : numLetters = 7; // violation
                        break;
@@ -49,11 +49,11 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
         int someInt = -1;
         return switch (day) {
             case MON,
-                    TUE: { // ok
+                    TUE: {
                 int l = day.toString().length();
                 yield l + someInt;
             }
-            case WED: { // ok
+            case WED: {
                 int l = day.toString().length();
                 yield l + someInt * 2;
             }
@@ -72,7 +72,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
                         break;
             case "JAN", "MAR"
                        , "MAY" : days = 31; break; // violation
-            case "APR", "JUN": days = 30; // ok
+            case "APR", "JUN": days = 30;
                                 break;
         };
         return days;

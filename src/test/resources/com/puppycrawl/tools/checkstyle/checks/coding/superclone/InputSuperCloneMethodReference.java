@@ -15,7 +15,7 @@ public class InputSuperCloneMethodReference extends ArrayList {
         R get() throws E;
     }
 
-    public Object clone() { // ok
+    public Object clone() {
         CheckedSupplier<Object, CloneNotSupportedException> r = super::clone;
         CheckedSupplier<Object, CloneNotSupportedException> r1 = super::getClass;
         try {

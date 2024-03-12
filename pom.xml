@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.10.1-SNAPSHOT</version>
+  <version>10.14.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -24,8 +24,8 @@
   <inceptionYear>2001</inceptionYear>
   <licenses>
     <license>
-      <name>LGPL-2.1+</name>
-      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+      <name>LGPL-2.1-or-later</name>
+      <url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
     </license>
   </licenses>
 
@@ -59,7 +59,7 @@
       </roles>
     </developer>
     <developer>
-      <id>nick-mancuso</id>
+      <id>nrmancuso</id>
       <name>Nick Mancuso</name>
       <roles>
         <role>developer</role>
@@ -206,42 +206,75 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
-    <antlr4.version>4.11.1</antlr4.version>
+    <antlr4.version>4.13.1</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.7.3.0</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.20.0</maven.pmd.plugin.version>
-    <pmd.version>6.54.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.8</maven.jacoco.plugin.version>
+    <maven.spotbugs.plugin.version>4.8.3.1</maven.spotbugs.plugin.version>
+    <maven.pmd.plugin.version>3.21.2</maven.pmd.plugin.version>
+    <pmd.version>6.55.0</pmd.version>
+    <maven.jacoco.plugin.version>0.8.11</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <saxon.version>12.2</saxon.version>
+    <saxon.version>12.4</saxon.version>
     <maven.checkstyle.plugin.version>3.2.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
-    <maven.versions.plugin.version>2.14.2</maven.versions.plugin.version>
-    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+    <maven.versions.plugin.version>2.16.2</maven.versions.plugin.version>
+    <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
     <java.version>11</java.version>
-    <pitest.plugin.version>1.11.6</pitest.plugin.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <pitest.plugin.version>1.15.8</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.1.2</pitest.junit5.plugin.version>
-    <pitest.accelerator.junit5.plugin.version>1.0.5</pitest.accelerator.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.2.1</pitest.junit5.plugin.version>
+    <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.9.2</junit.version>
-    <forbiddenapis.version>3.4</forbiddenapis.version>
+    <junit.version>5.10.2</junit.version>
+    <forbiddenapis.version>3.6</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <error-prone.version>2.18.0</error-prone.version>
-    <checkerframework.version>3.27.0</checkerframework.version>
+    <checkerframework.version>3.42.0</checkerframework.version>
+    <error-prone.version>2.26.0</error-prone.version>
+    <error-prone-support.version>0.15.0</error-prone-support.version>
+    <doxia.version>1.12.0</doxia.version>
+    <error-prone.configuration-args>
+      -Xep:AmbiguousJsonCreator:ERROR
+      -Xep:AssertJIsNull:ERROR
+      -Xep:AutowiredConstructor:ERROR
+      -Xep:CanonicalAnnotationSyntax:ERROR
+      -Xep:DirectReturn:ERROR
+      -Xep:CollectorMutability:ERROR
+      -Xep:EmptyMethod:ERROR
+      -Xep:ExplicitEnumOrdering:ERROR
+      -Xep:FormatStringConcatenation:ERROR
+      -Xep:IsInstanceLambdaUsage:ERROR
+      -Xep:MockitoMockClassReference:ERROR
+      -Xep:MockitoStubbing:ERROR
+      -Xep:NestedOptionals:ERROR
+      -Xep:PrimitiveComparison:ERROR
+      -Xep:RedundantStringConversion:ERROR
+      -Xep:Slf4jLogStatement:ERROR
+      -Xep:StringJoin:ERROR
+      -Xep:TimeZoneUsage:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
+      -Xep:JUnitClassModifiers:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
+      -Xep:JUnitMethodDeclaration:OFF
+      <!-- We prefer different style of writing tests. -->
+      -Xep:JUnitValueSource:OFF
+      <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
+      -Xep:LexicographicalAnnotationListing:OFF
+      <!-- We prefer to qualify all static method calls with class name. -->
+      -Xep:StaticImport:OFF
+    </error-prone.configuration-args>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
-      <version>4.7.3</version>
+      <version>4.7.5</version>
     </dependency>
     <dependency>
       <groupId>org.antlr</groupId>
@@ -256,7 +289,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>31.1-jre</version>
+      <version>33.0.0-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
@@ -267,7 +300,7 @@
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.10.13</version>
+      <version>1.10.14</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -298,13 +331,13 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>2.0.0</version>
+      <version>2.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit-junit5</artifactId>
-      <version>1.0.1</version>
+      <version>1.2.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -330,13 +363,13 @@
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <version>1.1.3</version>
+      <version>1.4.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.14.1</version>
+      <version>3.15.8</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -348,19 +381,19 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.11.0</version>
+      <version>2.15.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.5.0.202303070854-r</version>
+      <version>6.9.0.202403050737-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.12</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -400,6 +433,28 @@
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-core</artifactId>
+      <version>${doxia.version}</version>
+      <exclusions>
+        <!-- Excluded due to security vulnerability in version 1.11
+             https://github.com/checkstyle/checkstyle/pull/13357#issuecomment-1639480844 -->
+        <exclusion>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-xdoc</artifactId>
+      <version>${doxia.version}</version>
+    </dependency>
   </dependencies>
 
   <!-- that repositories are required for testing plugin's snapshot version -->
@@ -424,11 +479,11 @@
         </plugin>
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.7.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-release-plugin</artifactId>
@@ -440,7 +495,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -450,7 +505,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.2</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -472,7 +527,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.3</version>
           <configuration>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
@@ -515,6 +570,7 @@
             <excludeRoots>
               <excludeRoot>src/it/resources</excludeRoot>
               <excludeRoot>src/test/resources</excludeRoot>
+              <excludeRoot>src/xdocs-examples/resources</excludeRoot>
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
               <excludeRoot>
                 target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc
@@ -557,7 +613,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.4.7</version>
+                <version>7.6.4</version>
               </plugin>
             </plugins>
           </configuration>
@@ -631,13 +687,42 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
+
+        <!-- config should be common as it is reused by build-helper-maven-plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>test-jar</goal>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.plexus</groupId>
+        <artifactId>plexus-component-metadata</artifactId>
+        <version>2.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-metadata</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.5.0</version>
+        <version>2.7.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
@@ -656,7 +741,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.2</version>
       </plugin>
 
       <plugin>
@@ -713,8 +798,6 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven.compiler.plugin.version}</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
@@ -811,6 +894,8 @@
                     <exclude>
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
                     </exclude>
+                    <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
+                    <exclude>com.puppycrawl.tools.checkstyle.site.*</exclude>
                     <!-- Parser related classes -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
@@ -851,6 +936,8 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
+                    <!-- OS specific utility providing class -->
+                    <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -874,12 +961,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.09</minimum>
+                      <minimum>0.76</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.00</minimum>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -932,7 +1019,7 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.79</minimum>
+                      <minimum>0.91</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
@@ -1004,7 +1091,7 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.64</minimum>
+                      <minimum>0.86</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
@@ -1062,12 +1149,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.81</minimum>
+                      <minimum>0.82</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.79</minimum>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1265,7 +1352,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -1278,9 +1365,17 @@
                   <version>${java.version}</version>
                 </requireJavaVersion>
                 <requireMavenVersion>
-                  <version>3.3.9</version>
+                  <version>3.6.3</version>
                 </requireMavenVersion>
-                <dependencyConvergence />
+                <!-- doxia-core has a dependency convergence within itself and doxia-module-xdoc -->
+                <dependencyConvergence>
+                  <excludes>
+                    <exclude>org.apache.maven.doxia:doxia-core</exclude>
+                    <exclude>org.apache.commons*</exclude>
+                    <exclude>org.apache.httpcomponents*</exclude>
+                    <exclude>org.codehaus.plexus*</exclude>
+                  </excludes>
+                </dependencyConvergence>
                 <!-- we can not use this as it require same version for all dependencies -->
                 <!--
                 <enforceBytecodeVersion>
@@ -1331,7 +1426,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.5.0</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -1381,13 +1476,37 @@
               </sources>
             </configuration>
           </execution>
+          <execution>
+            <id>add-xdocs-examples-source</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-examples/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-xdocs-examples-resource</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/xdocs-examples/resources</source>
+              </sources>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.5</version>
         <configuration>
           <includes>
             <include>com/google/**/*.java</include>
@@ -1414,9 +1533,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.5</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8 @{surefire.options}</argLine>
+          <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
@@ -1469,6 +1588,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
+            </manifestEntries>
           </archive>
           <excludes>
             <exclude>**/Input*.*</exclude>
@@ -1488,16 +1610,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>test-jar</goal>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -1538,7 +1650,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xml-maven-plugin</artifactId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
         <executions>
           <execution>
             <goals>
@@ -1568,6 +1680,7 @@
                 <exclude>.ci-temp/**</exclude>
                 <!-- Specially crafted test files -->
                 <exclude>src/test/resources/**</exclude>
+                <exclude>src/xdocs-examples/resources/**</exclude>
                 <!-- Generated files -->
                 <exclude>src/xdocs/releasenotes.xml</exclude>
                 <exclude>src/xdocs/releasenotes_old*.xml</exclude>
@@ -1587,6 +1700,8 @@
                 <exclude>signatures.txt</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
+                <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
+                <exclude>linkcheck-suppressions.txt</exclude>
                 <exclude>archunit-store/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
@@ -1700,6 +1815,7 @@
                 <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
+                <exclude>**/Example*</exclude>
                 <exclude>**/Input*</exclude>
                 <!-- usage of system output by design -->
                 <exclude>**/MainTest.class</exclude>
@@ -1732,22 +1848,11 @@
                 <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
-                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13193 All the code needs to be in single line -->
+                <exclude>**/OneStatementPerLineCheckTest.class</exclude>
 
-                <!-- usage of custom internal module, 'execute' method should be used -->
-                <exclude>**/FileSetCheckTest.class</exclude>
-                <exclude>**/AbstractFileSetCheckTest.class</exclude>
-
-                <exclude>**/DetailAstImplTest.class</exclude>
-
-                <exclude>**/TreeWalkerTest.class</exclude>
-
-                <exclude>**/CheckerTest.class</exclude>
-
-                <exclude>**/AllBlockCommentsTest.class</exclude>
-
-                <!-- test needs to be updated -->
-                <exclude>**/SuppressionCommentFilterTest.class</exclude>
+                <!-- this class contain forbidden verify method -->
+                <exclude>**/AbstractModuleTestSupport.class</exclude>
 
                 <!-- due to https://github.com/checkstyle/checkstyle/issues/11846 -->
                 <exclude>**/EmptyLineSeparatorCheckTest.class</exclude>
@@ -1757,17 +1862,8 @@
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
 
-                <!-- test should be updated -->
-                <exclude>**/AbstractCheckTest.class</exclude>
-
-                <!-- tests need to be updated -->
-                <exclude>**/SuppressWithNearbyCommentFilterTest.class</exclude>
-
-                <!-- this class contain forbidden verify method -->
-                <exclude>**/AbstractModuleTestSupport.class</exclude>
-
-                <!-- tests should be updated -->
-                <exclude>**/AbstractJavadocCheckTest.class</exclude>
+                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
+                <exclude>**/CheckerTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -1776,7 +1872,7 @@
       <plugin>
         <groupId>edu.illinois</groupId>
         <artifactId>nondex-maven-plugin</artifactId>
-        <version>2.1.1</version>
+        <version>2.1.7</version>
       </plugin>
 
       <plugin>
@@ -1810,7 +1906,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.4.3</version>
+        <version>3.5.0</version>
       </plugin>
 
       <plugin>
@@ -1837,13 +1933,20 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.5</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.2</version>
       </plugin>
 
       <plugin>
@@ -1956,6 +2059,7 @@
             <!-- temporal suppress till plugin update link in his source -->
             <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
             <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
+            <excludedLink>http://www.mojohaus.org/xml-maven-plugin</excludedLink>
             <!-- SSL -->
             <excludedLink>https://travis-ci.org/</excludedLink>
             <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
@@ -2022,6 +2126,7 @@
             <excludedLink>https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin</excludedLink>
             <!-- 403 forbidden for linkcheck, works in the browser -->
             <excludedLink>https://gradle.org</excludedLink>
+            <excludedLink>https://www.codacy.com/</excludedLink>
             <!-- 403 forbidden for linkcheck, works in the browser -->
             <excludedLink>
               https://docs.gradle.org/current/userguide/checkstyle_plugin.html
@@ -2030,9 +2135,6 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
-            <!-- very frequent SocketTimeoutException : Read timed out -->
-            <excludedLink>https://www.bountysource.com/*</excludedLink>
-            <excludedLink>https://api.bountysource.com/*</excludedLink>
             <!-- This URL become to require to log in first to see content -->
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
@@ -2059,6 +2161,7 @@
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
             <excludedLink>https://travis-ci.com/</excludedLink>
+            <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
             <excludedLink>https://www.ietf.org/rfc/rfc4627.txt</excludedLink>
@@ -2302,13 +2405,11 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
-                  <source>${java.version}</source>
-                  <target>${java.version}</target>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
-                      -Xplugin:ErrorProne
+                      -Xplugin:ErrorProne ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2316,6 +2417,11 @@
                       <groupId>com.google.errorprone</groupId>
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
+                    </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
                     </path>
                   </annotationProcessorPaths>
                 </configuration>
@@ -2354,14 +2460,13 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
-                  <source>${java.version}</source>
-                  <target>${java.version}</target>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
                       -Xplugin:ErrorProne \
-                      -XepExcludedPaths:.*[\\/]resources[\\/].*
+                      -XepExcludedPaths:.*[\\/]resources[\\/].* \
+                      ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2369,6 +2474,11 @@
                       <groupId>com.google.errorprone</groupId>
                       <artifactId>error_prone_core</artifactId>
                       <version>${error-prone.version}</version>
+                    </path>
+                    <path>
+                      <groupId>tech.picnic.error-prone-support</groupId>
+                      <artifactId>error-prone-contrib</artifactId>
+                      <version>${error-prone-support.version}</version>
                     </path>
                   </annotationProcessorPaths>
                 </configuration>
@@ -2387,7 +2497,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.0.1</version>
+            <version>3.2.0</version>
             <configuration>
               <gpgArguments>
                 <arg>--pinentry-mode</arg>
@@ -2410,9 +2520,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2469,9 +2579,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2528,9 +2638,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2586,9 +2696,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2643,9 +2753,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2701,9 +2811,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2761,9 +2871,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2820,9 +2930,9 @@
             <configuration>
               <!-- Must fork or else JVM arguments are ignored. -->
               <fork>true</fork>
-              <failOnError>false</failOnError>
+              <failOnError>true</failOnError>
               <meminitial>1024m</meminitial>
-              <maxmem>4048m</maxmem>
+              <maxmem>8192m</maxmem>
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
@@ -2952,6 +3062,13 @@
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+              </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
@@ -3186,6 +3303,12 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -3657,6 +3780,9 @@
                 <!-- JavadocMetadataScraper extends AbstractJavadocCheck -->
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4225,6 +4351,7 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.XdocsPropertyType*</param>
@@ -4256,15 +4383,33 @@
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulatorTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParseTreeTest</param>
+                <!-- this test is required for CompositeLexerContextCache -->
+                <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
                 <!-- this test is required for Checker -->
                 <param>com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilterTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.TranslationCheckTest</param>
                 <!-- This test is the primary user of metadataGeneratorLogger -->
                 <param>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest</param>
                 <!-- kills mutation in AbstractAutomaticBean -->
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheckTest</param>
                 <!-- kills mutation in AbstractAutomaticBean -->
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
+                <!-- kills mutation in ConfigurationLoader -->
+                <param>com.sun.checkstyle.test.chapter5comments.rule52documentationcomments.InvalidJavadocPositionTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
+              <excludedMethods>
+                <!-- caching of search results, big performance optimization -->
+                <param>lazyLoad</param>
+                <!-- performance optimization -->
+                <param>initStringBuilderWithOptimalBuffer</param>
+              </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -4338,10 +4483,16 @@
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <avoidCallsTo>
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <avoidCallsTo>
                   com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
+                </avoidCallsTo>
+                <avoidCallsTo>
+                  com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil
                 </avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
@@ -4402,7 +4553,7 @@
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
-              <coverageThreshold>100</coverageThreshold>
+              <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
@@ -4573,6 +4724,8 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <!-- 1% mutation in CheckUtil -->
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheckTest</param>
                 <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
                 <param>org.checkstyle.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
@@ -4580,7 +4733,11 @@
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheckTest</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4653,6 +4810,12 @@
                 <param>com.puppycrawl.tools.checkstyle.filefilters.*</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4715,6 +4878,10 @@
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
                 <param>isFileExists</param>
               </excludedMethods>
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
+              </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
                 <!-- 12% mutation in CommonUtil,
@@ -4736,10 +4903,6 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <!-- 35% coverage, 29% mutation in CodePointUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheckTest
                 </param>
                 <!-- 2% mutation in ScopeUtil -->
                 <param>
@@ -4777,7 +4940,37 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest
+                </param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
@@ -4842,7 +5035,7 @@
         <dependency>
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>org.eclipse.jdt.annotation</artifactId>
-          <version>2.2.700</version>
+          <version>2.3.0</version>
         </dependency>
       </dependencies>
       <build>
@@ -4912,7 +5105,14 @@
                 <param>com.puppycrawl.tools.checkstyle.xpath.*</param>
                 <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListenerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilterTest</param>
+                <param>com.puppycrawl.tools.checkstyle.filters.*</param>
               </targetTests>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+              </avoidCallsTo>
+              <features>
+                <feature>+funmodifiablecollection</feature>
+              </features>
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>

@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalImport">
+      <property name="illegalPkgs" value="java.io, java.sql"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+import sun.applet.*;
+
+public class InputIllegalImport { }
+// xdoc section -- end

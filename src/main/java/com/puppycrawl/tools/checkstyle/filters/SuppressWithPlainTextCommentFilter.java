@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -77,6 +77,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code ".*"}.
+ * </li>
+ * <li>
+ * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code messageFormat} - Specify message pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to trigger filter
  * to begin suppression.
  * Type is {@code java.util.regex.Pattern}.
@@ -88,228 +103,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "// CHECKSTYLE:ON"}.
  * </li>
- * <li>
- * Property {@code checkFormat} - Specify check pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code messageFormat} - Specify message pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code idFormat} - Specify check ID pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
  * </ul>
- * <p>
- * To configure a filter to suppress audit events between a comment containing
- * {@code CHECKSTYLE:OFF} and a comment containing {@code CHECKSTYLE:ON}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   ...
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;/&gt;
- *   ...
- * &lt;/module&gt;
- * </pre>
- * <p>
- * To configure a filter to suppress audit events between a comment containing
- * line {@code BEGIN GENERATED CONTENT} and a comment containing line
- * {@code END GENERATED CONTENT}(Checker is configured to check only properties files):
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
- *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;BEGIN GENERATED CONTENT&quot;/&gt;
- *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;END GENERATED CONTENT&quot;/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * //BEGIN GENERATED CONTENT
- * my.property=value1 // No violation events will be reported
- * my.property=value2 // No violation events will be reported
- * //END GENERATED CONTENT
- * . . .
- * </pre>
- * <p>
- * To configure a filter so that {@code -- stop tab check} and {@code -- resume tab check}
- * marks allowed tab positions (Checker is configured to check only sql files):
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
- *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop tab check&quot;/&gt;
- *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume tab check&quot;/&gt;
- *     &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * -- stop tab check
- *   SELECT * FROM users // won't warn here if there is a tab character on line
- * -- resume tab check
- *   SELECT 1 // will warn here if there is a tab character on line
- * </pre>
- * <p>
- * To configure a filter so that name of suppressed check mentioned in comment
- * {@code CSOFF: <i>regexp</i>} and {@code CSON: <i>regexp</i>} mark a matching
- * check (Checker is configured to check only xml files):
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;xml&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
- *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;CSOFF\: ([\w\|]+)&quot;/&gt;
- *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;CSON\: ([\w\|]+)&quot;/&gt;
- *     &lt;property name=&quot;checkFormat&quot; value=&quot;$1&quot;/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * // CSOFF: RegexpSinglelineCheck
- *  // RegexpSingleline check won't warn any lines below here if the line matches regexp
- * &lt;condition property=&quot;checkstyle.ant.skip&quot;&gt;
- *   &lt;isset property=&quot;checkstyle.ant.skip&quot;/&gt;
- * &lt;/condition&gt;
- * // CSON: RegexpSinglelineCheck
- * // RegexpSingleline check will warn below here if the line matches regexp
- * &lt;property name=&quot;checkstyle.pattern.todo&quot; value=&quot;NOTHingWillMatCH_-&quot;/&gt;
- * </pre>
- * <p>
- * To configure a filter to suppress all audit events between a comment containing
- * {@code CHECKSTYLE_OFF: ALMOST_ALL} and a comment containing {@code CHECKSTYLE_OFF: ALMOST_ALL}
- * except for the <em>EqualsHashCode</em> check (Checker is configured to check only java files):
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
- *     &lt;property name=&quot;offCommentFormat&quot;
- *       value=&quot;CHECKSTYLE_OFF: ALMOST_ALL&quot;/&gt;
- *     &lt;property name=&quot;onCommentFormat&quot;
- *       value=&quot;CHECKSTYLE_ON: ALMOST_ALL&quot;/&gt;
- *     &lt;property name=&quot;checkFormat&quot;
- *       value=&quot;^((?!(FileTabCharacterCheck)).)*$&quot;/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * // CHECKSTYLE_OFF: ALMOST_ALL
- * public static final int array [];
- * private String [] strArray;
- * // CHECKSTYLE_ON: ALMOST_ALL
- * private int array1 [];
- * </pre>
- * <p>
- * To configure a filter to suppress Check's violation message <b>which matches
- * specified message in messageFormat</b>(so suppression will not be only by
- * Check's name, but also by message text, as the same Check can report violations
- * with different message format) between a comment containing {@code stop} and
- * comment containing {@code resume}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithPlainTextCommentFilter&quot;&gt;
- *     &lt;property name=&quot;offCommentFormat&quot; value=&quot;stop&quot;/&gt;
- *     &lt;property name=&quot;onCommentFormat&quot; value=&quot;resume&quot;/&gt;
- *     &lt;property name=&quot;checkFormat&quot; value=&quot;FileTabCharacterCheck&quot;/&gt;
- *     &lt;property name=&quot;messageFormat&quot;
- *         value=&quot;^File contains tab characters (this is the first instance)\.$&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * It is possible to specify an ID of checks, so that it can be leveraged by the
- * SuppressWithPlainTextCommentFilter to skip validations. The following examples
- * show how to skip validations near code that is surrounded with
- * {@code -- CSOFF &lt;ID&gt; (reason)} and {@code -- CSON &lt;ID&gt;},
- * where ID is the ID of checks you want to suppress.
- * </p>
- * <p>
- * Examples of Checkstyle checks configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
- *   &lt;property name=&quot;id&quot; value=&quot;count&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^.*COUNT(*).*$&quot;/&gt;
- *   &lt;property name=&quot;message&quot;
- *     value=&quot;Don't use COUNT(*), use COUNT(1) instead.&quot;/&gt;
- * &lt;/module&gt;
- *
- * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
- *   &lt;property name=&quot;id&quot; value=&quot;join&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^.*JOIN\s.+\s(ON|USING)$&quot;/&gt;
- *   &lt;property name=&quot;message&quot;
- *     value=&quot;Don't use JOIN, use sub-select instead.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example of SuppressWithPlainTextCommentFilter configuration (checkFormat which
- * is set to '$1' points that ID of the checks is in the first group of offCommentFormat
- * and onCommentFormat regular expressions):
- * </p>
- * <pre>
- * &lt;module name="Checker"&gt;
- *   &lt;property name="fileExtensions" value="sql"/&gt;
- *
- *   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
- *     &lt;property name="offCommentFormat" value="CSOFF (\w+) \(\w+\)"/&gt;
- *     &lt;property name="onCommentFormat" value="CSON (\w+)"/&gt;
- *     &lt;property name="idFormat" value="$1"/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * -- CSOFF join (it is ok to use join here for performance reasons)
- * SELECT name, job_name
- * FROM users AS u
- * JOIN jobs AS j ON u.job_id = j.id
- * -- CSON join
- *
- * -- CSOFF count (test query execution plan)
- * EXPLAIN SELECT COUNT(*) FROM restaurants
- * -- CSON count
- * </pre>
- * <p>
- * Example of how to configure the check to suppress more than one check
- * (Checker is configured to check only sql files).
- * </p>
- * <pre>
- * &lt;module name="Checker"&gt;
- *   &lt;property name="fileExtensions" value="sql"/&gt;
- *
- *   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
- *     &lt;property name="offCommentFormat" value="@cs-\: ([\w\|]+)"/&gt;
- *     &lt;property name="checkFormat" value="$1"/&gt;
- *   &lt;/module&gt;
- *
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * -- @cs-: RegexpSinglelineCheck
- * -- @cs-: FileTabCharacterCheck
- * CREATE TABLE STATION (
- *   ID INTEGER PRIMARY KEY,
- *   CITY CHAR(20),
- *   STATE CHAR(2),
- *   LAT_N REAL,
- *   LONG_W REAL);
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -349,6 +143,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern off comment format pattern.
+     * @since 8.6
      */
     public final void setOffCommentFormat(Pattern pattern) {
         offCommentFormat = pattern;
@@ -358,6 +153,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify comment pattern to trigger filter to end suppression.
      *
      * @param pattern  on comment format pattern.
+     * @since 8.6
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
@@ -367,6 +163,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify check pattern to suppress.
      *
      * @param format pattern for check format.
+     * @since 8.6
      */
     public final void setCheckFormat(String format) {
         checkFormat = format;
@@ -376,6 +173,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify message pattern to suppress.
      *
      * @param format pattern for message format.
+     * @since 8.6
      */
     public final void setMessageFormat(String format) {
         messageFormat = format;
@@ -385,6 +183,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Setter to specify check ID pattern to suppress.
      *
      * @param format pattern for check ID format
+     * @since 8.24
      */
     public final void setIdFormat(String format) {
         idFormat = format;
@@ -462,11 +261,11 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         Suppression suppression = null;
         if (onCommentMatcher.find()) {
             suppression = new Suppression(onCommentMatcher.group(0),
-                lineNo + 1, onCommentMatcher.start(), SuppressionType.ON, this);
+                lineNo + 1, SuppressionType.ON, this);
         }
         if (offCommentMatcher.find()) {
             suppression = new Suppression(offCommentMatcher.group(0),
-                lineNo + 1, offCommentMatcher.start(), SuppressionType.OFF, this);
+                lineNo + 1, SuppressionType.OFF, this);
         }
 
         return Optional.ofNullable(suppression);
@@ -511,12 +310,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /** The regexp which is used to match the event ID.*/
         private final Pattern eventIdRegexp;
 
-        /** Suppression text.*/
-        private final String text;
         /** Suppression line.*/
         private final int lineNo;
-        /** Suppression column number.*/
-        private final int columnNo;
+
         /** Suppression type. */
         private final SuppressionType suppressionType;
 
@@ -525,7 +321,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
          *
          * @param text suppression text.
          * @param lineNo suppression line number.
-         * @param columnNo suppression column number.
          * @param suppressionType suppression type.
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
          * @throws IllegalArgumentException if there is an error in the filter regex syntax.
@@ -533,13 +328,10 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         private Suppression(
             String text,
             int lineNo,
-            int columnNo,
             SuppressionType suppressionType,
             SuppressWithPlainTextCommentFilter filter
         ) {
-            this.text = text;
             this.lineNo = lineNo;
-            this.columnNo = columnNo;
             this.suppressionType = suppressionType;
 
             final Pattern commentFormat;
@@ -597,9 +389,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
-                    && Objects.equals(columnNo, suppression.columnNo)
                     && Objects.equals(suppressionType, suppression.suppressionType)
-                    && Objects.equals(text, suppression.text)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
                     && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
@@ -608,7 +398,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         @Override
         public int hashCode() {
             return Objects.hash(
-                text, lineNo, columnNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
+                lineNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
                 eventIdRegexp);
         }
 

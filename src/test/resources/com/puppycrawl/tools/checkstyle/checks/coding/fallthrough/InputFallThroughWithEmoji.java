@@ -15,15 +15,15 @@ public class InputFallThroughWithEmoji {
         while (true) {
             int i = 0;
             switch ("👍") {
-                case "ds😂": // ok
+                case "ds😂":
                 case "": i++; break;
                 case "👇🏻":
                     i++;
                 case "😂sda":
-                    // violation above 'Fall through from previous branch of the switch statement.'
+                    // violation above 'Fall\ through from previous branch of the switch statement.'
                     i++;
                 case "d😂sda": return;
-                    // violation above 'Fall through from previous branch of the switch statement.'
+                    // violation above 'Fall\ through from previous branch of the switch statement.'
 
                 case "5😆": throw new RuntimeException("");
                 case "🧐6":
@@ -47,9 +47,9 @@ public class InputFallThroughWithEmoji {
                     }
                     // fall👉🏻through,
                 case "9": String s = "s🥳d🥳s";
-                // violation above 'Fall through from previous branch of the switch statement.'
+                // violation above 'Fall\ through from previous branch of the switch statement.'
                 // FALLTHRU (case-sensitive)
-                default: // violation 'Fall through from previous branch of the switch statement.'
+                default: // violation 'Fall\ through from previous branch of the switch statement.'
                     "🥳".toString().equals("🥳");
 
                     // this is the last label
@@ -62,7 +62,7 @@ public class InputFallThroughWithEmoji {
         int i = 0;
         switch ("") {
 
-            case "ds😂": // ok
+            case "ds😂":
             case "":
                 i++;
                 break;
@@ -97,7 +97,7 @@ public class InputFallThroughWithEmoji {
                 //🥳d🥳 fallthru
 
             case "10": String s2 = "s🥳d🥳s";
-            /*🥳🥳🥳🥳🥳🥳*/ /* fallthru */ default: i++; // ok
+            /*🥳🥳🥳🥳🥳🥳*/ /* fallthru */ default: i++;
 
     }
     }

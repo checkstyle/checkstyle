@@ -23,7 +23,7 @@ import static sun.tools.util.CommandLine.parse;
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 import static sun.tools.util.ModifierFilter.ALL_ACCESS;
 
-public class InputCustomImportOrderThirdPartyPackage // ok
+public class InputCustomImportOrderThirdPartyPackage
 {
 
 }

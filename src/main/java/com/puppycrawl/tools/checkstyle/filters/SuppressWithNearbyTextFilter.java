@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,22 +51,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code nearbyTextPattern} - Specify nearby text
- * pattern to trigger filter to begin suppression.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
- * </li>
- * <li>
  * Property {@code checkPattern} - Specify check name pattern to suppress.
  * Property can also be a RegExp group index at {@code nearbyTextPattern} in
  * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code messagePattern} - Specify check violation message pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code idPattern} - Specify check ID pattern to suppress.
@@ -81,209 +70,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.lang.String}.
  * Default value is {@code "0"}.
  * </li>
+ * <li>
+ * Property {@code messagePattern} - Specify check violation message pattern to suppress.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code nearbyTextPattern} - Specify nearby text
+ * pattern to trigger filter to begin suppression.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
+ * </li>
  * </ul>
- * <p>
- * To configure the filter to suppress audit events on the same line:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;/&gt;
- *   &lt;module name=&quot;TreeWalker&quot;&gt;
- *     &lt;module name=&quot;MagicNumber&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
- * int daysInWeek = 7; // violation
- * </pre>
- * <p>
- * To configure the filter to suppress audit events on any line that contains
- * {@code DO NOT CHECK THIS LINE}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;DO NOT CHECK THIS LINE&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;TreeWalker&quot;&gt;
- *     &lt;module name=&quot;MagicNumber&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * int a = 42; // DO NOT CHECK THIS LINE
- * int b = 43; // violation
- * </pre>
- * <p>
- * To configure the filter to suppress audit events whose check message contains
- * the word {@code Line}. In this case, {@code LineLengthCheck}'s violation message
- * contains it:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;messagePattern&quot; value=&quot;.*Line.*&quot;/&gt;
- *     &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;.*&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;LineLength&quot;&gt;
- *     &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * export FOO=BAR # ok, because violation message is matching suppress pattern
- * </pre>
- * <p>
- * To configure the filter to suppress audit events only on a check whose id is
- * {@code ignoreMe}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;idPattern&quot; value=&quot;ignoreMe&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;LineLength&quot;&gt;
- *     &lt;property name=&quot;max&quot; value=&quot;55&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;TreeWalker&quot;&gt;
- *     &lt;module name=&quot;MagicNumber&quot;&gt;
- *       &lt;property name=&quot;id&quot; value=&quot;ignoreMe&quot;/&gt;
- *     &lt;/module&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * int a = 42; // SUPPRESS CHECKSTYLE because i want to
- * static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength violation
- * </pre>
- * <p>
- * To configure the filter to suppress audit events for the current and next 2 lines:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;lineRange&quot; value=&quot;2&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;UniqueProperties&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * key.one=41 # SUPPRESS CHECKSTYLE because I want to
- * key.one=42 # ok
- * key.one=43 # ok
- * key.one=44 # violation
- * </pre>
- * <p>
- * To configure the filter to suppress audit events for the current and previous line:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;lineRange&quot; value=&quot;-1&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;UniqueProperties&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * key.one=41 # violation
- * key.one=42 # ok
- * key.one=43 # SUPPRESS CHECKSTYLE because I want to
- * key.one=44 # violation
- * </pre>
- * <p>
- * To configure the filter with a more compact {@code nearbyTextPattern}
- * to accept variable {@code checkPattern}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;nearbyTextPattern&quot;
- *       value=&quot;-@cs\[(\w+)\] (\w+)&quot;/&gt;
- *     &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;TreeWalker&quot;&gt;
- *     &lt;module name=&quot;MagicNumber&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
- * int b = 43; // violation
- * </pre>
- * <p>
- * To configure the filter to accept variable {@code checkPattern} and {@code lineRange}:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;nearbyTextPattern&quot;
- *       value=&quot;@cs-: (\w+) for ([+-]\d+) lines&quot;/&gt;
- *     &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
- *     &lt;property name=&quot;lineRange&quot; value=&quot;$2&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;TreeWalker&quot;&gt;
- *     &lt;module name=&quot;MagicNumber&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * int a = 42; // @cs-: MagicNumber for +3 lines
- * int b = 43;
- * int c = 44;
- * int d = 45;
- * int e = 46; // violation
- * </pre>
- * <p>
- * To configure the filter to suppress {@code LineLength} violations for lines containing a URL:
- * </p>
- * <pre>
- * &lt;module name=&quot;Checker&quot;&gt;
- *   &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
- *     &lt;property name=&quot;checkPattern&quot; value=&quot;LineLength&quot;/&gt;
- *     &lt;property name=&quot;nearbyTextPattern&quot;
- *       value=&quot;&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;LineLength&quot;&gt;
- *     &lt;property name=&quot;max&quot; value=&quot;90&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * /&#42;&#42;
- *  &#42; Flag description.
- *  &#42;
- *  &#42; Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; // ok
- *  &#42;/
- * public static final boolean SOME_FLAG = false;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -339,6 +137,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify nearby text pattern to trigger filter to begin suppression.
      *
      * @param pattern a {@code Pattern} value.
+     * @since 10.10.0
      */
     public final void setNearbyTextPattern(Pattern pattern) {
         nearbyTextPattern = pattern;
@@ -350,6 +149,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public final void setCheckPattern(String pattern) {
         checkPattern = pattern;
@@ -359,6 +159,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check violation message pattern to suppress.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public void setMessagePattern(String pattern) {
         messagePattern = pattern;
@@ -368,6 +169,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check ID pattern to suppress.
      *
      * @param pattern a {@code String} value.
+     * @since 10.10.0
      */
     public void setIdPattern(String pattern) {
         idPattern = pattern;
@@ -380,6 +182,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
      *
      * @param format a {@code String} value.
+     * @since 10.10.0
      */
     public final void setLineRange(String format) {
         lineRange = format;

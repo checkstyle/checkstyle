@@ -45,16 +45,16 @@ class InputLeftCurlyTestNlowWithAnnotations
 }
 
 @TestClassAnnotation
-class InputLeftCurlyAnnotations2TestNlowWithAnnotations { // ok
+class InputLeftCurlyAnnotations2TestNlowWithAnnotations {
     private static final int X = 10;
     @Override
-    public boolean equals(Object other) { // ok
+    public boolean equals(Object other) {
         return false;
     }
 
     @Override
     @SuppressWarnings("unused")
-    public int hashCode() { // ok
+    public int hashCode() {
         int a = 10;
         return 1;
     }
@@ -76,5 +76,5 @@ class InputLeftCurlyAnnotations2TestNlowWithAnnotations { // ok
 }
 
 @Target(ElementType.TYPE)
-@interface TestClassTestNlowWithAnnotation { // ok
+@interface TestClassTestNlowWithAnnotation {
 }

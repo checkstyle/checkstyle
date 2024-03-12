@@ -14,7 +14,7 @@ tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 public class InputLeftCurlyWithEmojiNl
-{ // OK
+{
     static Runnable r1 = () -> {String.valueOf("🥳🎄!");};
     // violation above ''{' at column 32 should be on a new line.'
     private void method() { // violation ''{' at column 27 should be on a new line.'
@@ -35,24 +35,24 @@ public class InputLeftCurlyWithEmojiNl
         String x = "🎄🤣";
 
         try
-        { // OK
+        {
             if (x.equals("🎄🤣"))
-            { // OK
+            {
 
             }
             else if (!x.equals("🎄🤣")) { // violation ''{' at column 39 should be on a new line.'
                 ;
             }
             else
-            { // OK
+            {
 
             }
             switch (x)
-            { // OK
+            {
                 case "🤣🤣🤣":
                     break;
                 default:
-                { // OK
+                {
                     break;
                 }
             }
@@ -66,22 +66,22 @@ public class InputLeftCurlyWithEmojiNl
             }
         }
         catch (Exception e)
-        { // OK
+        {
         }
     }
 }
 enum InputLeftCurlyMethodEnumWithEmojiNl
-{ // OK
+{
     CONSTANT1("🧐🧐dsds🧐") { // violation ''{' at column 26 should be on a new line.'
         String method1() { return "sds🧐"; } // violation ''{' at column 26 should be on a new line.'
         void method2() { // violation ''{' at column 24 should be on a new line.'
         }
         String method3()
-        { // OK
+        {
             return "sds🧐";
         }
         boolean                                                              method4()
-        { // OK
+        {
             return "sds🧐".equals("🧐🧐dsds🧐");
         }
     };

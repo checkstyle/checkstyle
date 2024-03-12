@@ -91,6 +91,7 @@
   <!-- we must use full paths in file pattern property value -->
   <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk17-excluded.files"/>
   <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk19-excluded.files"/>
+  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk20-excluded.files"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
   <suppress id="lineLength" files="config[\\/]pitest-suppressions[\\/].*"/>
@@ -109,6 +110,12 @@
 
   <!-- We will preserve formatting of archived release notes -->
   <suppress id="lineLength" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
+
+  <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
+       make the lines long. We still validate index.xml and template files.
+       until https://github.com/checkstyle/checkstyle/issues/13426 -->
+  <suppress id="lineLength"
+            files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
@@ -159,5 +166,122 @@
 
   <!-- We use negative suppression to check workflow files only. -->
   <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
+
+  <!-- Examples macro suppressions -->
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]importcontrol.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>
+  <suppress id="exampleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
+
+  <!-- there is no messages in module by design -->
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]severitymatchfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressioncommentfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionsinglefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppressionxpathsinglefilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbycommentfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithnearbytextfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
+
+  <!-- no properties in module by design -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidinlineconditionals.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]covariantequals.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]emptystatement.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]equalshashcode.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]missingctor.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]missingswitchdefault.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]multiplevariabledeclarations.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]noarraytrailingcomma.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]noclone.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]noenumtrailingcomma.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]nofinalizer.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]overloadmethodsdeclarationorder.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]parameterassignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]simplifybooleanexpression.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]simplifybooleanreturn.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]stringliteralequality.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]superclone.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]superfinalize.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unusedlocalvariable.xml.template"/>
+  <!-- Properties macro suppressions until https://github.com/checkstyle/checkstyle/issues/13693 -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]customimportorder.xml.template"/>
+
+  <!-- no properties by design -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]hideutilityclassconstructor.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]innertypelast.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]onetoplevelclass.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]imports[\\/]redundantimport.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]nocodeinfile.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]outertypefilename.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]misc[\\/]upperell.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]modifier[\\/]modifierorder.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]genericwhitespace.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
 
 </suppressions>

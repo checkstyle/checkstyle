@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RightCurly</title>
+  </head>
+  <body>
+    <section name="RightCurly">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+          This check supports if-else, try-catch-finally blocks, switch statements,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
+          instance, static initialization blocks, annotation definitions and enum definitions.
+          For right curly brace of expression blocks of arrays, lambdas and class instances
+          please follow issue
+          <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+          For right curly brace of enum constant please follow issue
+          <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config"> To configure the check: </p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example1.java"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check with policy <code>alone</code> for <code> else</code> and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+          METHOD_DEF</a>
+          tokens:
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example2.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check with policy <code>alone</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example3.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example3.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
+          and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+          METHOD_DEF</a>
+          tokens:
+        </p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example4.java"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example4.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure the check with policy <code>alone_or_singleline</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements:
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example5.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example5.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="RightCurly"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="RightCurly"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

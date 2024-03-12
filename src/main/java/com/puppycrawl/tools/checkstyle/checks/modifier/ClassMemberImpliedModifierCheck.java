@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * This check is effectively the opposite of
- * <a href="https://checkstyle.org/config_modifier.html#RedundantModifier">RedundantModifier</a>.
+ * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
+ * RedundantModifier</a>.
  * It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
  * are explicitly specified even though they are actually redundant.
  * </p>
@@ -74,44 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
- * <p>
- * To configure the check so that it checks that all implicit modifiers on nested interfaces, enums,
- * and records are explicitly specified in classes and records.
- * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name="ClassMemberImpliedModifier" /&gt;
- * </pre>
- * <p>
- * Code:
- * </p>
- * <pre>
- * public final class Person {
- *   static interface Address1 {  // valid
- *   }
- *
- *   interface Address2 {  // violation
- *   }
- *
- *   static enum Age1 {  // valid
- *     CHILD, ADULT
- *   }
- *
- *   enum Age2 {  // violation
- *     CHILD, ADULT
- *   }
- *
- *   public static record GoodRecord() {} // valid
- *   public record BadRecord() {} // violation
- *
- *   public static record OuterRecord() {
- *     static record InnerRecord1(){} // valid
- *     record InnerRecord2(){} // violation
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -162,6 +125,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.16
      */
     public void setViolateImpliedStaticOnNestedEnum(boolean violateImplied) {
         violateImpliedStaticOnNestedEnum = violateImplied;
@@ -173,6 +137,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.16
      */
     public void setViolateImpliedStaticOnNestedInterface(boolean violateImplied) {
         violateImpliedStaticOnNestedInterface = violateImplied;
@@ -184,6 +149,7 @@ public class ClassMemberImpliedModifierCheck
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
+     * @since 8.36
      */
     public void setViolateImpliedStaticOnNestedRecord(boolean violateImplied) {
         violateImpliedStaticOnNestedRecord = violateImplied;

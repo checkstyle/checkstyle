@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ClassFanOutComplexity">
+      <property name="excludeClassesRegexps" value=".*Reader$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class InputClassComplexity {
+  Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
+  Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
+  Date date = new Date(); // Counted, 1
+  Time time = new Time(); // Counted, 2
+  // mention of 18 other user defined classes
+  File file; // violation, total is 21
+}
+// xdoc section -- end

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SimplifyBooleanReturn</title>
+  </head>
+  <body>
+    <section name="SimplifyBooleanReturn">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for over-complicated boolean return statements. For example
+          the following code
+        </p>
+        <source>
+if (valid())
+  return false;
+else
+  return true;
+        </source>
+
+        <p>
+          could be written as
+        </p>
+        <source>
+return !valid();
+        </source>
+
+        <p>
+          The idea for this Check has been shamelessly stolen from the
+          equivalent <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
+          PMD</a> rule.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+
+ private boolean cond;
+ private Foo a;
+ private Foo b;
+
+ public boolean check1() {
+  if (cond) { // violation, can be simplified
+    return true;
+  }
+  else {
+    return false;
+  }
+ }
+
+ // Ok, simplified version of check1()
+ public boolean check2() {
+  return cond;
+ }
+
+ // violations, can be simplified
+ public boolean check3() {
+  if (cond == true) { // can be simplified to &quot;if (cond)&quot;
+    return false;
+  }
+  else {
+    return true; // can be simplified to &quot;return !cond&quot;
+  }
+ }
+
+ // Ok, can be simplified but doesn't return a Boolean
+ public Foo choose1() {
+  if (cond) {
+    return a;
+  }
+  else {
+    return b;
+  }
+ }
+
+ // Ok, simplified version of choose1()
+ public Foo choose2() {
+  return cond ? a: b;
+ }
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SimplifyBooleanReturn">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22simplify.boolReturn%22">
+              simplify.boolReturn
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

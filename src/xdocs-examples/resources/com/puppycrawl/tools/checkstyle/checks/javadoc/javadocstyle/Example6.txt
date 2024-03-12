@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocStyle">
+    <property name="tokens" value="CLASS_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * Some description here // violation, the sentence must end with a proper punctuation
+ */
+public class Test {
+    /**
+     * Some description here // OK
+     */
+    private void test1() {}
+}
+// xdoc section -- end

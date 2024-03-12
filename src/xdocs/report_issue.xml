@@ -67,7 +67,7 @@
         -Duser.country=US</code> if your default locale is English):
 
         <source><![CDATA[
-Check documentation: https://checkstyle.org/config_whitespace.html#WhitespaceAround
+Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 /var/tmp $ javac Test.java
 
@@ -104,7 +104,7 @@ Expected: violation on first line.
         Example of report that we expect:
 
         <source><![CDATA[
-Check documentation: https://checkstyle.org/config_misc.html#Indentation
+Check documentation: https://checkstyle.org/checks/misc/indentation.html
 
 D:\>type config.xml
 <?xml version="1.0"?>
@@ -174,7 +174,7 @@ expected level should be 12. [Indentation]
         Example of Feature Request/Enhancement that we expect:
       </p>
       <source>
-Check documentation: https://checkstyle.org/config_whitespace.html#WhitespaceAround
+Check documentation: https://checkstyle.org/checks/whitespace/whitespacearound.html#WhitespaceAround
 
 Describe the problem in detail:
 

@@ -47,7 +47,10 @@ check-missing-pitests)
 
   #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
-  list=("com.puppycrawl.tools.checkstyle.meta.*" "${list[@]}")
+  #  Coverage for site package is skipped
+  #  until https://github.com/checkstyle/checkstyle/issues/13393
+  list=("com.puppycrawl.tools.checkstyle.meta.*"
+    "com.puppycrawl.tools.checkstyle.site.*" "${list[@]}")
 
   CMD="find src/main/java -type f ! -name 'package-info.java'"
 
@@ -85,9 +88,14 @@ eclipse-static-analysis)
   ;;
 
 nondex)
-  # Below we exclude test that fails due to picocli library usage
-  mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
-    -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
+  # Exclude test that fails due to picocli library usage
+  SKIPPED_TESTS='!JavadocPropertiesGeneratorTest#testNonExistentArgument,'
+  # Exclude test that fails due to stackoverflow error
+  SKIPPED_TESTS+='!SingleSpaceSeparatorCheckTest#testNoStackoverflowError'
+  mvn -e --no-transfer-progress \
+    --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
+    -Dtest="$SKIPPED_TESTS"
+
   mkdir -p .ci-temp
   grep -RlE 'td class=.x' .nondex/ | cat > .ci-temp/output.txt
   RESULT=$(cat .ci-temp/output.txt | wc -c)
@@ -127,47 +135,52 @@ test)
 
 test-de)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
   ;;
 
 test-es)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
   ;;
 
 test-fi)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
   ;;
 
 test-fr)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
   ;;
 
 test-zh)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
   ;;
 
 test-ja)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
   ;;
 
 test-pt)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
   ;;
 
 test-tr)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
   ;;
 
 test-ru)
   mvn -e --no-transfer-progress clean integration-test failsafe:verify \
-    -DargLine='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
+    -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1024m -Xmx2048m'
+  ;;
+
+test-al)
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+    -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1024m -Xmx2048m'
   ;;
 
 versions)
@@ -510,7 +523,8 @@ javac11)
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
         '//non-compiled (syntax|with javac)?\:' \
-        src/test/resources-noncompilable))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
@@ -520,7 +534,8 @@ javac11)
 
 javac14)
   files=($(grep -Rl --include='*.java' ': Compilable with Java14' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java14 files to process"
   else
@@ -534,7 +549,8 @@ javac14)
 
 javac15)
   files=($(grep -Rl --include='*.java' ': Compilable with Java15' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java15 files to process"
   else
@@ -548,7 +564,8 @@ javac15)
 
 javac16)
   files=($(grep -Rl --include='*.java' ': Compilable with Java16' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java16 files to process"
   else
@@ -562,7 +579,8 @@ javac16)
 
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java17 files to process"
   else
@@ -576,7 +594,8 @@ javac17)
 
 javac19)
   files=($(grep -Rl --include='*.java' ': Compilable with Java19' \
-        src/test/resources-noncompilable || true))
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java19 files to process"
   else
@@ -588,9 +607,39 @@ javac19)
   fi
   ;;
 
-jdk14-assembly-site)
+javac20)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java20' \
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java20 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 20 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
+javac21)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java21' \
+        src/test/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java21 files to process"
+  else
+    mkdir -p target
+    for file in "${files[@]}"
+    do
+      javac --release 21 --enable-preview -d target "${file}"
+    done
+  fi
+  ;;
+
+package-site)
   mvn -e --no-transfer-progress package -Passembly,no-validations
-  mvn -e --no-transfer-progress site -Pno-validations
+  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 sonarqube)
@@ -632,7 +681,7 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "135be5a4395033a4ba23a1dd70ad76e0bd443a8d"
+  git checkout "4911ed072681e209423fb608b4bf2da""ad01bb94d"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version="${CS_POM_VERSION}"
   cd ../
@@ -1082,11 +1131,6 @@ git-check-pull-number)
       fi
     fi
   done
-  ;;
-
-assembly-site)
-  mvn -e --no-transfer-progress package -Passembly,no-validations
-  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 jacoco)

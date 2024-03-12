@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -109,11 +109,19 @@ tokens {
     LITERAL_YIELD, SWITCH_RULE,
 
     LITERAL_NON_SEALED, LITERAL_SEALED, LITERAL_PERMITS,
-    PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN
+    PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN,
+    RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
+
+    STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END,
+    STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
+    EMBEDDED_EXPRESSION_END,
+
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
 }
 
 @header {
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
+import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
@@ -132,14 +140,19 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     }
 
     private CommentListener commentListener = null;
+    private CompositeLexerContextCache contextCache = null;
 
     /**
      * Sets the CommentListener for the lexer.
      *
      * @param commentListener the commentListener to use in this lexer
      */
-    public void setCommentListener(CommentListener commentListener){
+    public void setCommentListener(CommentListener commentListener) {
             this.commentListener = commentListener;
+    }
+
+    public void setContextCache(CompositeLexerContextCache contextCache) {
+        this.contextCache = contextCache;
     }
 
     /** Tracks the starting line of a block comment. */
@@ -147,6 +160,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     /** Tracks the starting column of a block comment. */
     int startCol = -1;
+
 }
 
 // Keywords and restricted identifiers
@@ -159,7 +173,6 @@ LITERAL_CASE:            'case';
 LITERAL_CATCH:           'catch';
 LITERAL_CHAR:            'char';
 LITERAL_CLASS:           'class';
-LITERAL_CONST:           'const';
 LITERAL_CONTINUE:        'continue';
 LITERAL_DEFAULT:         'default';
 LITERAL_DO:              'do';
@@ -172,7 +185,6 @@ LITERAL_FINALLY:         'finally';
 LITERAL_FLOAT:           'float';
 LITERAL_FOR:             'for';
 LITERAL_IF:              'if';
-LITERAL_GOTO:            'goto';
 LITERAL_IMPLEMENTS:      'implements';
 IMPORT:                  'import';
 LITERAL_INSTANCEOF:      'instanceof';
@@ -206,6 +218,7 @@ LITERAL_NON_SEALED:      'non-sealed';
 LITERAL_SEALED:          'sealed';
 LITERAL_PERMITS:         'permits';
 LITERAL_WHEN:            'when';
+LITERAL_UNDERSCORE:      '_';
 
 // Literals
 DECIMAL_LITERAL_LONG:    ('0' | [1-9] (Digits? | '_'+ Digits)) [lL];
@@ -241,7 +254,13 @@ LITERAL_FALSE:           'false';
 
 CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
-STRING_LITERAL:          '"' (EscapeSequence | ~["\\\r\n])* '"';
+fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
+
+STRING_LITERAL:         '"' StringFragment '"';
+
+STRING_TEMPLATE_BEGIN:  '"' StringFragment '\\' '{'
+                        { contextCache.enterTemplateContext(StringTemplate); }
+                        ;
 
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
@@ -251,8 +270,12 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{';
-RCURLY:                  '}';
+LCURLY:                  '{'
+                         { contextCache.updateLeftCurlyBraceContext(); }
+                         ;
+RCURLY:                  '}'
+                         { contextCache.updateRightCurlyBraceContext(); }
+                         ;
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -309,6 +332,42 @@ DOUBLE_COLON:            '::';
 
 AT:                      '@';
 ELLIPSIS:                '...';
+
+// String templates
+
+
+// Text block fragments
+
+fragment TextBlockContent
+    : ( TwoDoubleQuotes
+      | OneDoubleQuote
+      | Newline
+      | TextBlockCharacter
+      )+
+    ;
+
+fragment TextBlockCharacter
+    : ~["\\]
+    | TextBlockStandardEscape
+    | EscapeSequence
+    ;
+
+fragment TextBlockStandardEscape
+    : '\\' ( [btnfrs'\\] | Newline | OneDoubleQuote )
+    ;
+
+fragment Newline
+    : '\n'
+    | '\r' ( '\n' )?
+    ;
+
+fragment TwoDoubleQuotes
+    : { _input.LA(3) != '"' }? '"' '"'
+    ;
+
+fragment OneDoubleQuote
+    : { _input.LA(2) != '"' }? '"'
+    ;
 
 // Whitespace and comments
 
@@ -401,32 +460,20 @@ fragment Letter
 
 // Text block lexical mode
 mode TextBlock;
-    TEXT_BLOCK_CONTENT
-        : ( TwoDoubleQuotes
-          | OneDoubleQuote
-          | Newline
-          | ~'"'
-          | TextBlockStandardEscape
-          )+
-        ;
+
+    TEXT_BLOCK_CONTENT: TextBlockContent;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
         ;
 
-    // Text block fragment rules
-    fragment TextBlockStandardEscape
-        :   '\\' [btnfrs"'\\]
-        ;
+// String template lexical mode
+mode StringTemplate;
 
-    fragment Newline
-        :  '\n' | '\r' ('\n')?
-        ;
+    STRING_TEMPLATE_MID: StringFragment '\\' '{'
+                         -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
 
-    fragment TwoDoubleQuotes
-        :   '"''"' ( Newline | ~'"' )
-        ;
 
-    fragment OneDoubleQuote
-        :   '"' ( Newline | ~'"' )
-        ;
+    STRING_TEMPLATE_END: StringFragment '"'
+                         { contextCache.exitTemplateContext(); }
+                         -> popMode, type(STRING_TEMPLATE_END);

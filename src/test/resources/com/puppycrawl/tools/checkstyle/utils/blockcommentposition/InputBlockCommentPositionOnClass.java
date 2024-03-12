@@ -5,6 +5,13 @@ package com.puppycrawl.tools.checkstyle.utils.blockcommentposition;
  */
 public class InputBlockCommentPositionOnClass {
 
+    /**
+     * I'm a javadoc
+     */
+    public class InputBlockCommentPositionOnInnerClass {
+
+    }
+
 }
 
 /**

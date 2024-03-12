@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="public"/>
+      <property name="minimum" value="2"/>
+      <property name="message" value="public member found"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Foo{
+  private int a;
+  /* public comment */ // OK, comment is ignored
+  public void bar1() {} // violation
+  public void bar2() {} // violation
+}
+// xdoc section -- end

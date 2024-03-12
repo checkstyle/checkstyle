@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -170,193 +170,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;DesignForExtension&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public abstract class Foo {
- *   private int bar;
- *
- *   public int m1() {return 2;}  // Violation. No javadoc.
- *
- *   public int m2() {return 8;}  // Violation. No javadoc.
- *
- *   private void m3() {m4();}  // OK. Private method.
- *
- *   protected void m4() { }  // OK. No implementation.
- *
- *   public abstract void m5();  // OK. Abstract method.
- *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
- *
- *   &#64;Override
- *   public String toString() {  // Violation. No javadoc for @Override method.
- *     return "";
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow methods which have @Override annotations
- * to be designed for extension.
- * </p>
- * <pre>
- * &lt;module name=&quot;DesignForExtension&quot;&gt;
- *   &lt;property name=&quot;ignoredAnnotations&quot; value=&quot;Override&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public abstract class Foo {
- *   private int bar;
- *
- *   public int m1() {return 2;}  // Violation. No javadoc.
- *
- *   public int m2() {return 8;}  // Violation. No javadoc.
- *
- *   private void m3() {m4();}  // OK. Private method.
- *
- *   protected void m4() { }  // OK. No implementation.
- *
- *   public abstract void m5();  // OK. Abstract method.
- *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // OK. Have javadoc on overridable method.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
- *
- *   &#64;Override
- *   public String toString() {  // OK. Have javadoc on overridable method.
- *     return "";
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow methods which contain a specified comment text
- * pattern in their javadoc to be designed for extension.
- * </p>
- * <pre>
- * &lt;module name=&quot;DesignForExtension&quot;&gt;
- *   &lt;property name=&quot;requiredJavadocPhrase&quot; value=&quot;This implementation&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public abstract class Foo {
- *   private int bar;
- *
- *   public int m1() {return 2;}  // Violation. No javadoc.
- *
- *   public int m2() {return 8;}  // Violation. No javadoc.
- *
- *   private void m3() {m4();}  // OK. Private method.
- *
- *   protected void m4() { }  // OK. No implementation.
- *
- *   public abstract void m5();  // OK. Abstract method.
- *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have required javadoc.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // Violation. No required javadoc.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // Violation. No required javadoc.
- *
- *   &#64;Override
- *   public String toString() {  // Violation. No required javadoc.
- *     return "";
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to allow methods which contain a specified comment text
- * pattern in their javadoc which can span multiple lines
- * to be designed for extension.
- * </p>
- * <pre>
- * &lt;module name=&quot;DesignForExtension&quot;&gt;
- *   &lt;property name=&quot;requiredJavadocPhrase&quot;
- *     value=&quot;This[\s\S]*implementation&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public abstract class Foo {
- *   private int bar;
- *
- *   public int m1() {return 2;}  // Violation. No javadoc.
- *
- *   public int m2() {return 8;}  // Violation. No javadoc.
- *
- *   private void m3() {m4();}
- *
- *   protected void m4() { }  // OK. No implementation.
- *
- *   public abstract void m5();  // OK. Abstract method.
- *
- *   &#47;**
- *    * This implementation ...
- *    &#64;return some int value.
- *    *&#47;
- *   public int m6() {return 1;}  // OK. Have required javadoc.
- *
- *   &#47;**
- *    * Some comments ...
- *    *&#47;
- *   public int m7() {return 1;}  // Violation. No required javadoc.
- *
- *   &#47;**
- *    * This
- *    * implementation ...
- *    *&#47;
- *   public int m8() {return 2;}  // OK. Have required javadoc.
- *
- *   &#64;Override
- *   public String toString() {  // Violation. No required javadoc.
- *     return "";
- *   }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -383,7 +196,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Specify annotations which allow the check to skip the method from validation.
      */
     private Set<String> ignoredAnnotations = Arrays.stream(new String[] {"Test", "Before", "After",
-        "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
+        "BeforeClass", "AfterClass", }).collect(Collectors.toUnmodifiableSet());
 
     /**
      * Specify the comment text pattern which qualifies a method as designed for extension.
@@ -395,9 +208,11 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Setter to specify annotations which allow the check to skip the method from validation.
      *
      * @param ignoredAnnotations method annotations.
+     * @since 7.2
      */
     public void setIgnoredAnnotations(String... ignoredAnnotations) {
-        this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(Collectors.toSet());
+        this.ignoredAnnotations = Arrays.stream(ignoredAnnotations)
+            .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
@@ -405,6 +220,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * method as designed for extension. Supports multi-line regex.
      *
      * @param requiredJavadocPhrase method annotations.
+     * @since 8.40
      */
     public void setRequiredJavadocPhrase(Pattern requiredJavadocPhrase) {
         this.requiredJavadocPhrase = requiredJavadocPhrase;

@@ -11,19 +11,19 @@ public class InputNestedIfDepthMax
 {
     void foo() {
         // nesting == 0
-        if (true) { // ok
+        if (true) {
         }
 
         // nesting == 1
-        if (true) { // ok
-            if (true) { // ok
+        if (true) {
+            if (true) {
             }
         }
 
         // nesting == 2
-        if (true) { // ok
-            if (true) { // ok
-                if (true) { // ok
+        if (true) {
+            if (true) {
+                if (true) {
                 }
             }
         }
@@ -31,39 +31,39 @@ public class InputNestedIfDepthMax
 
     void fooWithElse() {
         // nesting == 0
-        if (true) { // ok
+        if (true) {
         } else {
         }
 
         // nesting == 1
-        if (true) { // ok
-            if (true) { // ok
+        if (true) {
+            if (true) {
             } else {
             }
         } else {
-            if (false) { // ok
+            if (false) {
             } else {
             }
         }
 
         // nesting == 2
-        if (true) { // ok
-            if (true) { // ok
-                if (true) { // ok
+        if (true) {
+            if (true) {
+                if (true) {
                 } else {
                 }
             } else {
-                if (false) { // ok
+                if (false) {
                 } else {
                 }
             }
         } else {
-            if (true) { // ok
-                if (true) { // ok
+            if (true) {
+                if (true) {
                 } else {
                 }
             } else {
-                if (false) { // ok
+                if (false) {
                 } else {
                 }
             }

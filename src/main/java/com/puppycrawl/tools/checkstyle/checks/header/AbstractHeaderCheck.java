@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,7 +27,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.net.URI;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,8 +59,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /** Specify the character encoding to use when reading the headerFile. */
     @XdocsPropertyType(PropertyType.STRING)
-    private Charset charset = createCharset(System.getProperty("file.encoding",
-        StandardCharsets.UTF_8.name()));
+    private Charset charset;
 
     /**
      * Hook method for post-processing header lines.
@@ -79,7 +77,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the charset to use when reading the headerFile.
+     * Setter to specify the character encoding to use when reading the headerFile.
      *
      * @param charset the charset name to use for loading the header from a file
      */
@@ -88,7 +86,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Setter to specify the name of the file containing the required header..
+     * Setter to specify the name of the file containing the required header.
      *
      * @param uri the uri of the header to load.
      * @throws CheckstyleException if fileName is empty.
@@ -149,8 +147,9 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     }
 
     /**
-     * Set the header to check against. Individual lines in the header
-     * must be separated by '\n' characters.
+     * Specify the required header specified inline.
+     * Individual header lines must be separated by the string
+     * {@code "\n"}(even on platforms with a different line separator).
      *
      * @param header header content to check against.
      * @throws IllegalArgumentException if the header cannot be interpreted

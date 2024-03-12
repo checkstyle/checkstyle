@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NoArrayTrailingComma</title>
+  </head>
+  <body>
+    <section name="NoArrayTrailingComma">
+      <p>Since Checkstyle 8.28</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that array initialization do not contain a trailing comma.
+          Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
+          them in other locations. To unify the coding style, the use of trailing commas should
+          be prohibited.
+        </p>
+        <source>
+int[] foo = new int[] {
+  1,
+  2
+};
+        </source>
+        <p>
+          The check demands that there should not be any comma after the last element of an array.
+        </p>
+        <source>
+String[] foo = new String[] {
+  &quot;FOO&quot;,
+  &quot;BAR&quot;, //violation
+}
+        </source>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Which results in the following violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoArrayTrailingComma">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="NoArrayTrailingComma"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="NoArrayTrailingComma"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

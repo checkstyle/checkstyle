@@ -93,6 +93,50 @@ openjdk19-with-checks-nonjavadoc-error)
   removeFolderWithProtectedFiles contribution
   ;;
 
+openjdk20-with-checks-nonjavadoc-error)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  checkout_from https://github.com/checkstyle/contribution
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  cp ../../../config/projects-to-test/openjdk-20-projects-to-test-on.config \
+      openjdk-20-projects-to-test-on.config
+  sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk20-excluded.files' \
+      checks-nonjavadoc-error.xml
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./diff.groovy --listOfProjects openjdk-20-projects-to-test-on.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
+openjdk21-with-checks-nonjavadoc-error)
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  checkout_from https://github.com/checkstyle/contribution
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  cp ../../../config/projects-to-test/openjdk-21-projects-to-test-on.config \
+      openjdk-21-projects-to-test-on.config
+  sed -i '/  <!-- Filters -->/r ../../../config/projects-to-test/openjdk21-excluded.files' \
+      checks-nonjavadoc-error.xml
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./diff.groovy --listOfProjects openjdk-21-projects-to-test-on.config \
+      --mode single --allowExcludes \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
 no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -191,6 +235,24 @@ no-exception-samples-ant)
     `"|name=\"checkstyle\" rev=\"$CS_POM_VERSION\"|g" ivy.xml
 
   ant checkstyle
+
+  cd ../..
+  removeFolderWithProtectedFiles checkstyle-samples
+  ;;
+
+no-exception-samples-gradle)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress -B install -Pno-validations
+  checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
+  cd .ci-temp/checkstyle-samples/gradle-project
+
+  sed -i "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
+    build.gradle
+
+   echo "Checking gradle properties..."
+  ./gradlew properties
+  ./gradlew check
 
   cd ../..
   removeFolderWithProtectedFiles checkstyle-samples

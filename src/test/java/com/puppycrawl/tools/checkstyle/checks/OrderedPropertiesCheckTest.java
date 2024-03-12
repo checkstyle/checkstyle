@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -178,6 +178,15 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("File extension should be set")
                 .that(".properties")
                 .isEqualTo(check.getFileExtensions()[0]);
+    }
+
+    @Test
+    public void test() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
+        final String[] expected = {
+            "3: " + getCheckMessage(MSG_KEY, " A ", " B"),
+        };
+        verify(checkConfig, getPath("InputOrderedProperties2.properties"), expected);
     }
 
     /**

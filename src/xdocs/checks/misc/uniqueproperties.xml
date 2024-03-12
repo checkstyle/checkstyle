@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UniqueProperties</title>
+  </head>
+  <body>
+    <section name="UniqueProperties">
+      <p>Since Checkstyle 5.7</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Detects duplicated keys in properties files.
+        </p>
+        <p>
+          Rationale: Multiple property keys usually appear after merge
+          or rebase of several branches. While there are no problems in
+          runtime, there can be a confusion due to having different values
+          for the duplicated properties.
+        </p>
+
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>.properties</code></td>
+              <td>5.7</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example: in foo.properties file
+        </p>
+        <source>
+key.one=44
+key.two=32 // OK
+key.one=54 // violation
+        </source>
+        <p id="Example2-config">
+          To configure the check to scan custom file extensions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;UniqueProperties&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;customProperties&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example: in foo.customProperties file
+        </p>
+        <source>
+key.one=44
+key.two=32 // OK
+key.one=54 // violation
+        </source>
+        <p id="Example3-code">
+          Example: in foo.properties file
+        </p>
+        <source>
+key.one=44
+key.two=32 // OK
+key.one=54 // OK, file is not checked
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UniqueProperties">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.duplicate.property%22">
+              properties.duplicate.property
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open.cause%22">
+              unable.open.cause
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

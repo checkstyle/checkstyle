@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ThrowsCount</title>
+  </head>
+  <body>
+    <section name="ThrowsCount">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Restricts throws statements to a specified count.
+          Methods with &quot;Override&quot; or &quot;java.lang.Override&quot; annotation are skipped
+          from validation as current class cannot change signature of these methods.
+        </p>
+
+        <p>
+          Rationale: Exceptions form part of a method's interface. Declaring a
+          method to throw too many differently rooted exceptions makes
+          exception handling onerous and leads to poor programming practices
+          such as writing code like <code>catch(Exception ex)</code>.
+          4 is the empirical value which is based on reports that we had for
+          the ThrowsCountCheck over big projects such as OpenJDK.
+          This check also forces developers to put exceptions into a hierarchy
+          such that in the simplest case, only one type of exception need be
+          checked for by a caller but any subclasses can be caught specifically
+          if necessary. For more information on rules for the exceptions and
+          their issues, see Effective Java: Programming Language Guide
+          Second Edition by Joshua Bloch pages 264-273.
+        </p>
+
+        <p>
+          <b>ignorePrivateMethods</b> - allows to skip private methods as they do
+          not cause problems for other classes.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignorePrivateMethods</td>
+              <td>Allow private methods to be ignored.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.7</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify maximum allowed number of throws statements.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>4</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ThrowsCount&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws CloneNotSupportedException,
+                                ArrayIndexOutOfBoundsException,
+                                StringIndexOutOfBoundsException,
+                                IllegalStateException,
+                                NullPointerException { // violation, max allowed is 4
+        // body
+    }
+
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // ok, private methods are ignored
+        // body
+    }
+
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it doesn't allow more than two throws
+          per method:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ThrowsCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws IllegalStateException,
+                                ArrayIndexOutOfBoundsException,
+                                NullPointerException { // violation, max allowed is 2
+        // body
+    }
+
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // ok, private methods are ignored
+        // body
+    }
+
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check so that it doesn't skip private methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ThrowsCount&quot;&gt;
+      &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws CloneNotSupportedException,
+                                ArrayIndexOutOfBoundsException,
+                                StringIndexOutOfBoundsException,
+                                IllegalStateException,
+                                NullPointerException { // violation, max allowed is 4
+        // body
+    }
+
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // violation, max allowed is 4
+        // body
+    }
+
+    private void func() throws IllegalStateException,
+                                NullPointerException { // ok
+        // body
+    }
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ThrowsCount">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22throws.count%22">
+              throws.count
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

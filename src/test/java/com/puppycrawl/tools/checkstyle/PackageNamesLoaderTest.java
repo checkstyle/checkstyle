@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -226,6 +227,42 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 .that(ex.getMessage())
                 .isEqualTo("unable to get package file resources");
         }
+    }
+
+    @Test
+    public void testUnmodifiableCollection() throws Exception {
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
+
+        assertThrows(UnsupportedOperationException.class,
+                () -> actualPackageNames.add("com.puppycrawl.tools.checkstyle.checks.modifier"));
+
+    }
+
+    @Test
+    public void testMapping() throws Exception {
+        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
+                new File(getPath("InputPackageNamesLoader1.xml")).toURI().toURL()));
+
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(enumeration));
+
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames)
+            .hasSize(3);
+    }
+
+    @Test
+    public void testMapping2() throws Exception {
+        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
+                new File(getPath("InputPackageNamesLoader2.xml")).toURI().toURL()));
+
+        final Set<String> actualPackageNames = PackageNamesLoader
+                .getPackageNames(new TestUrlsClassLoader(enumeration));
+
+        assertWithMessage("Invalid package names length.")
+            .that(actualPackageNames)
+            .hasSize(3);
     }
 
     /**

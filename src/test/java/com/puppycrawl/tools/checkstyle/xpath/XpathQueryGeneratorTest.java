@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -666,4 +666,82 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 .isEqualTo(actual);
     }
 
+    @Test
+    public void testXpath() throws Exception {
+        final File testFile =
+                new File(getPath("InputXpathQueryGenerator2.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int tabWidth = 8;
+
+        final int lineNumberOne = 7;
+        final int columnNumberOne = 12;
+        final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst,
+                lineNumberOne, columnNumberOne, testFileText, tabWidth);
+        final List<String> actualTestOne = queryGeneratorOne.generate();
+        final List<String> expectedTestOne = List.of(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathQueryGenerator2']]"
+                        + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Foo3']]/OBJBLOCK/COMMA[2]"
+        );
+        assertWithMessage("Generated queries do not match expected ones")
+            .that(actualTestOne)
+            .isEqualTo(expectedTestOne);
+    }
+
+    @Test
+    public void testXpath2() throws Exception {
+        final File testFile =
+                new File(getPath("InputXpathQueryGenerator3.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int tabWidth = 8;
+
+        final int lineNumber3 = 13;
+        final int columnNumber3 = 21;
+        final XpathQueryGenerator queryGenerator3 = new XpathQueryGenerator(detailAst,
+                lineNumber3, columnNumber3, testFileText, tabWidth);
+        final List<String> actualTest3 = queryGenerator3.generate();
+        final List<String> expectedTest3 = List.of(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator3']]"
+                        + "/OBJBLOCK/SEMI[1]"
+        );
+        assertWithMessage("Generated queries do not match expected ones")
+                .that(actualTest3)
+                .isEqualTo(expectedTest3);
+    }
+
+    @Test
+    public void testXpath3() throws Exception {
+        final File testFile =
+                new File(getPath("InputXpathQueryGenerator4.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int tabWidth = 8;
+
+        final int lineNumber2 = 10;
+        final int columnNumber2 = 17;
+        final XpathQueryGenerator queryGenerator2 = new XpathQueryGenerator(detailAst,
+                lineNumber2, columnNumber2, testFileText, tabWidth);
+        final List<String> actualTest = queryGenerator2.generate();
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator4']]"
+                + "/OBJBLOCK/METHOD_DEF["
+                + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
+                + "/LITERAL_SWITCH/CASE_GROUP[./SLIST/EXPR/POST_INC/IDENT[@text='i']]",
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator4']]"
+                + "/OBJBLOCK/METHOD_DEF["
+                + "./IDENT[@text='methodFallThruCustomWords']]/SLIST/LITERAL_WHILE/SLIST"
+                + "/LITERAL_SWITCH/CASE_GROUP/LITERAL_DEFAULT"
+        );
+        assertWithMessage("Generated queries do not match expected ones")
+            .that(actualTest)
+            .isEqualTo(expectedXpathQueries);
+    }
 }

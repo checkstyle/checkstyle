@@ -32,7 +32,7 @@ public class InputRightCurlyTestSwitchExpression5 {
                     }
                     default -> 2;
                 };
-            }; // ok
+            };
         }
 
         public void foo() throws Exception {
@@ -57,8 +57,8 @@ public class InputRightCurlyTestSwitchExpression5 {
                 case 0 -> switch (b) {
                     case 0 -> 1;
                     case 1 -> 2;
-                    default -> 3; }; // ok
-                default -> 1; }; // ok
+                    default -> 3; };
+                default -> 1; };
         }
     }
 }
@@ -70,9 +70,9 @@ class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     public enum Options { THREE }
 
     public void foo2(Options option) {
-        assert Integer.valueOf(1).equals(switch (option) { // ok
+        assert Integer.valueOf(1).equals(switch (option) {
             case THREE -> 3;
-        }); // ok
+        });
     }
 }
 
@@ -92,7 +92,7 @@ class InputExecutableStatementCountRecords {
             yield temp;
         }
         default -> throw new IllegalStateException();
-    }); // ok
+    });
 
     public static void method0() throws IOException {
         int stValue = 0;
@@ -101,7 +101,7 @@ class InputExecutableStatementCountRecords {
                 switch (stValue) {
                     case 0:
                         break;
-                } // ok
+                }
             } catch (NumberFormatException e) {
                 throw new IOException(" value ");
             }

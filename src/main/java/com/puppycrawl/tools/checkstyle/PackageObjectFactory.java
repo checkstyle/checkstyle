@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -187,11 +188,7 @@ public class PackageObjectFactory implements ModuleFactory {
             instance = createFromStandardCheckSet(name);
             // find the name in third party map
             if (instance == null) {
-                if (thirdPartyNameToFullModuleNames == null) {
-                    thirdPartyNameToFullModuleNames =
-                            generateThirdPartyNameToFullModuleName(moduleClassLoader);
-                }
-                instance = createObjectFromMap(name, thirdPartyNameToFullModuleNames);
+                instance = createObjectFromClassPath(name);
             }
         }
         if (instance == null) {
@@ -241,19 +238,23 @@ public class PackageObjectFactory implements ModuleFactory {
     }
 
     /**
-     * Create object with the help of the supplied map.
+     * Create object with the help of the classpath.
      *
      * @param name name of module.
-     * @param map the supplied map.
      * @return instance of module if it is found in modules map and no ambiguous classes exist.
      * @throws CheckstyleException if the class fails to instantiate or there are ambiguous classes.
      */
-    private Object createObjectFromMap(String name, Map<String, Set<String>> map)
+    private Object createObjectFromClassPath(String name)
             throws CheckstyleException {
-        final Set<String> fullModuleNames = map.get(name);
+        thirdPartyNameToFullModuleNames = lazyLoad(
+                thirdPartyNameToFullModuleNames,
+                () -> generateThirdPartyNameToFullModuleName(moduleClassLoader)
+        );
+        final Set<String> fullModuleNames = thirdPartyNameToFullModuleNames.get(name);
         Object instance = null;
         if (fullModuleNames == null) {
-            final Set<String> fullCheckModuleNames = map.get(name + CHECK_SUFFIX);
+            final Set<String> fullCheckModuleNames =
+                    thirdPartyNameToFullModuleNames.get(name + CHECK_SUFFIX);
             if (fullCheckModuleNames != null) {
                 instance = createObjectFromFullModuleNames(name, fullCheckModuleNames);
             }
@@ -388,7 +389,7 @@ public class PackageObjectFactory implements ModuleFactory {
         final List<String> possibleNames = packages.stream()
             .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
             .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);
@@ -397,6 +398,25 @@ public class PackageObjectFactory implements ModuleFactory {
             }
         }
         return instance;
+    }
+
+    /**
+     * Initialize object by supplier if object is null.
+     *
+     * @param <T> type of object
+     * @param object object to initialize
+     * @param supplier function to initialize if object is null
+     * @return object as it was provided in method or initialized
+     */
+    private static <T> T lazyLoad(T object, Supplier<T> supplier) {
+        final T result;
+        if (object == null) {
+            result = supplier.get();
+        }
+        else {
+            result = object;
+        }
+        return result;
     }
 
     /**

@@ -16,7 +16,7 @@ class InputRightCurlyTestTryWithResourceAlone {
         try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
-        } // ok
+        }
         catch (IOException e) {
             ;
         }

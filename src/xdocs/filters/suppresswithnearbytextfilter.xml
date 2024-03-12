@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWithNearbyTextFilter</title>
+  </head>
+  <body>
+    <section name="SuppressWithNearbyTextFilter">
+      <p>Since Checkstyle 10.10.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
+          nearby audit events. The filter can suppress all checks which have Checker
+          as a parent module.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see
+          <b>any</b> text as a suppression and will likely suppress all audit events in the file.
+          It is best to set this to a key phrase not commonly used in the file to help denote
+          it out of the rest of the file as a suppression. See the default value as an example.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkPattern</td>
+              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;.*&quot;</code></td>
+              <td>10.10.0</td>
+            </tr>
+            <tr>
+              <td>idPattern</td>
+              <td>Specify check ID pattern to suppress.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>10.10.0</td>
+            </tr>
+            <tr>
+              <td>lineRange</td>
+              <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppressing nearby text. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
+              <td><a href="../property_types.html#String">String</a></td>
+              <td><code>&quot;0&quot;</code></td>
+              <td>10.10.0</td>
+            </tr>
+            <tr>
+              <td>messagePattern</td>
+              <td>Specify check violation message pattern to suppress.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>10.10.0</td>
+            </tr>
+            <tr>
+              <td>nearbyTextPattern</td>
+              <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
+              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>
+              <td>10.10.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the filter to suppress audit events on the same line:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;/&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
+int daysInWeek = 7; // violation
+        </source>
+        <p id="Example2-config">
+          To configure the filter to suppress audit events on any line that contains
+          <code>DO NOT CHECK THIS LINE</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;DO NOT CHECK THIS LINE&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+int a = 42; // DO NOT CHECK THIS LINE
+int b = 43; // violation
+        </source>
+        <p id="Example3-config">
+           To configure the filter to suppress audit events whose check message contains
+            the word <code>Line</code>. In this case, <code>LineLengthCheck</code>'s violation
+            message contains it:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;messagePattern&quot; value=&quot;.*Line.*&quot;/&gt;
+    &lt;property name=&quot;nearbyTextPattern&quot; value=&quot;.*&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+export FOO=BAR # ok, because violation message is matching suppress pattern
+        </source>
+        <p id="Example4-config">
+          To configure the filter to suppress audit events only on a check whose id is
+          <code>ignoreMe</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;idPattern&quot; value=&quot;ignoreMe&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;55&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;&gt;
+      &lt;property name=&quot;id&quot; value=&quot;ignoreMe&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <source>
+int a = 42; // SUPPRESS CHECKSTYLE because i want to
+static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22; // LineLength violation
+        </source>
+        <p id="Example5-config">
+          To configure the filter to suppress audit events for the current and next 2 lines:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;lineRange&quot; value=&quot;2&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <source>
+key.one=41 # SUPPRESS CHECKSTYLE because I want to
+key.one=42 # ok
+key.one=43 # ok
+key.one=44 # violation
+        </source>
+        <p id="Example6-config">
+          To configure the filter to suppress audit events for the current and previous line:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;lineRange&quot; value=&quot;-1&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;UniqueProperties&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">
+          Example:
+        </p>
+        <source>
+key.one=41 # violation
+key.one=42 # ok
+key.one=43 # SUPPRESS CHECKSTYLE because I want to
+key.one=44 # violation
+        </source>
+        <p id="Example7-config">
+          To configure the filter with a more compact <code>nearbyTextPattern</code>
+          to accept variable <code>checkPattern</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;nearbyTextPattern&quot;
+      value=&quot;-@cs\[(\w+)\] (\w+)&quot;/&gt;
+    &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <source>
+int a = 42; // -@cs[MagicNumber] We do not consider this number as magic for some reason.
+int b = 43; // violation
+        </source>
+        <p id="Example8-config">
+          To configure the filter to accept variable <code>checkPattern</code>
+          and <code>lineRange</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;nearbyTextPattern&quot;
+      value=&quot;@cs-: (\w+) for ([+-]\d+) lines&quot;/&gt;
+    &lt;property name=&quot;checkPattern&quot; value=&quot;$1&quot;/&gt;
+    &lt;property name=&quot;lineRange&quot; value=&quot;$2&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MagicNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <source>
+int a = 42; // @cs-: MagicNumber for +3 lines
+int b = 43;
+int c = 44;
+int d = 45;
+int e = 46; // violation
+        </source>
+        <p id="Example9-config">
+          To configure the filter to suppress <code>LineLength</code>
+          violations for lines containing a URL:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;SuppressWithNearbyTextFilter&quot;&gt;
+    &lt;property name=&quot;checkPattern&quot; value=&quot;LineLength&quot;/&gt;
+    &lt;property name=&quot;nearbyTextPattern&quot;
+      value=&quot;&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;&quot;/&gt;
+  &lt;/module&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;max&quot; value=&quot;90&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example9-code">
+          Example:
+        </p>
+        <source>
+/**
+* Flag description.
+*
+* Disabled until &lt;a href=&quot;www.github.com/owner/repo/issue/9#comment&quot;&gt; // ok
+*/
+public static final boolean SOME_FLAG = false;
+        </source>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -63,27 +63,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc
- * comments are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code authorFormat} - Specify the pattern for {@code @author} tag.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code versionFormat} - Specify the pattern for {@code @version} tag.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
  * Property {@code allowMissingParamTags} - Control whether to ignore violations
  * when a class has type parameters but does not have matching param tags in the Javadoc.
  * Type is {@code boolean}.
@@ -102,6 +81,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code Generated}.
  * </li>
  * <li>
+ * Property {@code authorFormat} - Specify the pattern for {@code @author} tag.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc
+ * comments are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
+ * Property {@code versionFormat} - Specify the pattern for {@code @version} tag.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -118,292 +118,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // violation
- *  *&#47;
- * public class ClassC {} // OK
- *
- * &#47;** *&#47;
- * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
- *
- * &#47;** *&#47;
- * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check for {@code public} scope:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="scope" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // violation
- *  *&#47;
- * public class ClassC {} // OK
- *
- * &#47;** *&#47;
- * public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
- *
- * &#47;** *&#47;
- * private class ClassE&lt;T&gt; {} // OK
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check for an {@code @author} tag:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="authorFormat" value="\S"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK, as author tag check is ignored for inner class
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // violation
- *  *&#47;
- * public class ClassC {} // violation, as author format with only whitespace or new line is invalid
- *
- * &#47;** *&#47;
- * public class ClassD {} // violation, as author tag is missing
- *
- * &#47;** *&#47;
- * private class ClassE {} // violation, as author tag is missing
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check for a CVS revision version tag:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="versionFormat" value="\$Revision.*\$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK, as version tag check is ignored for inner class
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // violation
- *  *&#47;
- * public class ClassC {} // violation, as version format is invalid
- *
- * &#47;** *&#47;
- * public class ClassD {} // violation, as version tag is missing
- *
- * &#47;** *&#47;
- * private class ClassE {} // violation, as version tag is missing
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check for {@code private} classes only:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="package"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // OK
- *  *&#47;
- * public class ClassC {} // OK
- *
- * &#47;** *&#47;
- * public class ClassD&lt;T&gt; {} // OK
- *
- * &#47;** *&#47;
- * private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check that allows missing {@code @param} tags:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="allowMissingParamTags" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // violation
- *  *&#47;
- * public class ClassC {} // OK
- *
- * &#47;** *&#47;
- * public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
- *
- * &#47;** *&#47;
- * private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure the check that allows unknown tags:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="allowUnknownTags" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &#64;author a
- *  * &#64;version $Revision1$
- *  *&#47;
- * public class ClassA { // OK
- *     &#47;** *&#47;
- *     private class ClassB {} // OK
- * }
- *
- * &#47;**
- *  * &#64;author
- *  * &#64;version abc
- *  * &#64;unknownTag value // OK, as unknown tag is allowed
- *  *&#47;
- * public class ClassC {} // OK
- *
- * &#47;** *&#47;
- * public class ClassD {} // OK
- *
- * &#47;** *&#47;
- * private class ClassE {} // OK
- *
- * &#47;** *&#47;
- * &#64;Generated
- * public class ClassF&lt;T&gt; {} // OK
- * </pre>
- * <p>
- * To configure a check that allows skipping validation at all for classes annotated
- * with {@code @SpringBootApplication} and {@code @Configuration}:
- * </p>
- * <pre>
- * &lt;module name="JavadocType"&gt;
- *   &lt;property name="allowedAnnotations" value="SpringBootApplication,Configuration"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;** *&#47;
- * &#64;SpringBootApplication // no violations about missing param tag on class
- * public class Application&lt;T&gt; {}
- *
- * &#47;** *&#47;
- * &#64;Configuration // no violations about missing param tag on class
- * class DatabaseConfiguration&lt;T&gt; {}
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -476,7 +190,7 @@ public class JavadocTypeCheck
 
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
-            Pattern.compile("\\s*<([^>]+)>.*");
+            Pattern.compile("^<([^>]+)");
 
     /** Pattern to split type name field in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG_SPLITTER =
@@ -508,6 +222,7 @@ public class JavadocTypeCheck
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
+     * @since 3.0
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -517,6 +232,7 @@ public class JavadocTypeCheck
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
+     * @since 3.4
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -526,6 +242,7 @@ public class JavadocTypeCheck
      * Setter to specify the pattern for {@code @author} tag.
      *
      * @param pattern a pattern.
+     * @since 3.0
      */
     public void setAuthorFormat(Pattern pattern) {
         authorFormat = pattern;
@@ -535,6 +252,7 @@ public class JavadocTypeCheck
      * Setter to specify the pattern for {@code @version} tag.
      *
      * @param pattern a pattern.
+     * @since 3.0
      */
     public void setVersionFormat(Pattern pattern) {
         versionFormat = pattern;
@@ -545,6 +263,7 @@ public class JavadocTypeCheck
      * does not have matching param tags in the Javadoc.
      *
      * @param flag a {@code Boolean} value
+     * @since 4.0
      */
     public void setAllowMissingParamTags(boolean flag) {
         allowMissingParamTags = flag;
@@ -554,6 +273,7 @@ public class JavadocTypeCheck
      * Setter to control whether to ignore violations when a Javadoc tag is not recognised.
      *
      * @param flag a {@code Boolean} value
+     * @since 5.1
      */
     public void setAllowUnknownTags(boolean flag) {
         allowUnknownTags = flag;
@@ -564,6 +284,7 @@ public class JavadocTypeCheck
      * Only short names are allowed, e.g. {@code Generated}.
      *
      * @param userAnnotations user's value.
+     * @since 8.15
      */
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
@@ -636,16 +357,11 @@ public class JavadocTypeCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(DetailAST ast) {
-        final Scope customScope = ScopeUtil.getScope(ast);
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-        return customScope.isIn(scope)
-            && (surroundingScope == null || surroundingScope.isIn(scope))
-            && (excludeScope == null
-                || !customScope.isIn(excludeScope)
-                || surroundingScope != null
-                && !surroundingScope.isIn(excludeScope))
-            && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
+        return surroundingScope.isIn(scope)
+                && (excludeScope == null || !surroundingScope.isIn(excludeScope))
+                && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
     }
 
     /**

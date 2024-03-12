@@ -6,4 +6,11 @@
     <description>hashcode method on array does not hash array contents</description>
     <lineContent>+ &quot;, children=&quot; + Objects.hashCode(children)</lineContent>
   </error>
+  <!-- Better suggestion after https://github.com/PicnicSupermarket/error-prone-support/issues/954. -->
+  <error>
+    <sourceFile>PropertiesMacro.java</sourceFile>
+    <bugPattern>CollectorMutability</bugPattern>
+    <description>Avoid `Collectors.to{List,Map,Set}` in favor of collectors that emphasize (im)mutability</description>
+    <lineContent>}).collect(Collectors.toSet()));</lineContent>
+  </error>
 </suppressedErrors>

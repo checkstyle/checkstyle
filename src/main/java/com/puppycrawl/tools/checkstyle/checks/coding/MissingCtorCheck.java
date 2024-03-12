@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,33 +29,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that classes (except abstract ones) define a constructor and don't rely
  * on the default one.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MissingCtor&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class ExampleOk { // OK
- *   private int a;
- *   ExampleOk(int a) {
- *     this.a = a;
- *   }
- * }
- * class ExampleDefaultCtor { // OK
- *   private String s;
- *   ExampleDefaultCtor() {
- *     s = "foobar";
- *   }
- * }
- * class InvalidExample { // violation, class must have a constructor.
- *   public void test() {}
- * }
- * abstract class AbstractExample { // OK
- *   public abstract void test() {}
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

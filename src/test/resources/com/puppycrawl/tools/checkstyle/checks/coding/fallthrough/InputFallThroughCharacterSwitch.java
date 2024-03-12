@@ -16,7 +16,7 @@ public class InputFallThroughCharacterSwitch
             case 'a':
             case 'b':
                 i++;
-            case 'c': // violation 'Fall through from previous branch of the switch statement.'
+            case 'c': // violation 'Fall\ through from previous branch of the switch statement.'
                 String.valueOf(i);
                 break;
             case 'd':
@@ -27,7 +27,7 @@ public class InputFallThroughCharacterSwitch
                 if (true) {
                     return;
                 }
-            case 'g': // violation 'Fall through from previous branch of the switch statement.'
+            case 'g': // violation 'Fall\ through from previous branch of the switch statement.'
                 try {
                     i++;
                     break;
@@ -35,17 +35,17 @@ public class InputFallThroughCharacterSwitch
                 } catch (Error e) {
                     return;
                 }
-            case 'h': // violation 'Fall through from previous branch of the switch statement.'
+            case 'h': // violation 'Fall\ through from previous branch of the switch statement.'
                 switch (i) {
                 case 1:
                     continue;
                 case 2:
                     i++;
-                case 3: // violation 'Fall through from previous branch of the switch statement.'
+                case 3: // violation 'Fall\ through from previous branch of the switch statement.'
                     String.valueOf(i);
                     return;
                 }
-            case 'i': // violation 'Fall through from previous branch of the switch statement.'
+            case 'i': // violation 'Fall\ through from previous branch of the switch statement.'
                 switch (i) {
                 case 1:
                     continue;
@@ -60,7 +60,7 @@ public class InputFallThroughCharacterSwitch
             case 'A':
                 i++;
                 // FALL-THRU (case-sensitive)
-            case 'B': // violation 'Fall through from previous branch of the switch statement.'
+            case 'B': // violation 'Fall\ through from previous branch of the switch statement.'
                 i++;
                 // fall-through
             default:

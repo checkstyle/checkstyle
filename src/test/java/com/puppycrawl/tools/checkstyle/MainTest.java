@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -866,7 +866,7 @@ public class MainTest {
         };
 
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
-                fileMock, new ArrayList<Pattern>());
+                fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
             .isEmpty();
@@ -902,7 +902,7 @@ public class MainTest {
         };
 
         final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
-                fileMock, new ArrayList<Pattern>());
+                fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
             .isEmpty();
@@ -1866,7 +1866,7 @@ public class MainTest {
      *                     mock getRuntime to avoid VM termination.
      */
     private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
-        final Runtime mock = mock(Runtime.class);
+        final Runtime mock = mock();
         try (MockedStatic<Runtime> runtime = mockStatic(Runtime.class)) {
             runtime.when(Runtime::getRuntime)
                     .thenReturn(mock);

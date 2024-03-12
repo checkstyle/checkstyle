@@ -1,3 +1,12 @@
+/*
+com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter
+file = (file)InputTreeWalkerSuppressionXpathFilterAbsolute.xml
+
+com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.treewalker;
 
 public class InputTreeWalkerSuppressionXpathFilterAbsolute {

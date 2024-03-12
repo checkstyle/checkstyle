@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocMethod</title>
+  </head>
+  <body>
+    <section name="JavadocMethod">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the Javadoc of a method or constructor.
+        </p>
+
+        <p>
+          Violates parameters and type parameters
+          for which no param tags are
+          present can be suppressed by defining property
+          <code>allowMissingParamTags</code>.
+        </p>
+
+        <p>
+          Violates methods which return non-void but for which no return tag is
+          present can be suppressed by defining property
+          <code>allowMissingReturnTag</code>.
+        </p>
+
+        <p>
+          Violates exceptions which are declared to be thrown (by <code>throws</code> in the method
+          signature or by <code>throw new</code> in the method body), but for which no throws tag is
+          present by activation of property <code>validateThrows</code>.
+          Note that <code>throw new</code> is not checked in the following places:
+        </p>
+        <ul>
+          <li>
+            Inside a try block (with catch). It is not possible to determine if the thrown
+            exception can be caught by the catch block as there is no knowledge of the
+            inheritance hierarchy, so the try block is ignored entirely. However, catch
+            and finally blocks, as well as try blocks without catch, are still checked.
+          </li>
+          <li>
+            Local classes, anonymous classes and lambda expressions. It is not known when the
+            throw statements inside such classes are going to be evaluated, so they are ignored.
+          </li>
+        </ul>
+
+        <p>
+          ATTENTION: Checkstyle does not have information about hierarchy of exception types
+          so usage of base class is considered as separate exception type.
+          As workaround, you need to specify both types in javadoc (parent and exact type).
+        </p>
+
+        <p>
+          Javadoc is not required on a method that is tagged with the
+          <code>@Override</code> annotation. However, under
+          Java 5 it is not possible to mark a method required for an
+          interface (this was <i>corrected</i> under Java 6). Hence,
+          Checkstyle supports using the convention of using a single
+          <code>{@inheritDoc}</code> tag instead of all the
+          other tags.
+        </p>
+
+        <p>
+          Note that only inheritable items will allow the
+          <code>{@inheritDoc}</code> tag to be used in place
+          of comments. Static methods at all visibilities, private non-static
+          methods and constructors are not inheritable.
+        </p>
+
+        <p>
+          For example, if the following method is
+          implementing a method required by an interface, then the
+          Javadoc could be done as:
+        </p>
+
+        <source>
+/** {@inheritDoc} */
+public int checkReturnTag(final int aTagIndex,
+                          JavadocTag[] aTags,
+                          int aLineNo)
+        </source>
+
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check for only <code>public</code>
+          modifier, ignoring any missing param tags is:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+            To configure the check for methods which are in <code>private</code> and
+          <code>package</code>, but not any other modifier:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+              To configure the check to ignore any missing return tags:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+              To configure the check only for tokens which are Constructor Definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example7-config">
+          To configure the check to validate <code>throws</code> tags, you can use following config.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code"> Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocmethod/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocMethod"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocMethod"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

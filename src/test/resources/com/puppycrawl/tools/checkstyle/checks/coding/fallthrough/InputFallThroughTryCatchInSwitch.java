@@ -34,7 +34,7 @@ public class InputFallThroughTryCatchInSwitch {
                 } finally {
                     // Some code
                 }
-            default: // violation 'Fall through from previous branch of the switch statement.'
+            default: // violation 'Fall\ through from previous branch of the switch statement.'
                 // Some code
         }
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,20 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 1}.
  * </li>
  * </ul>
- * <p>
- * To configure the check to accept 1 outer type per file:
- * </p>
- * <pre>
- * &lt;module name="OuterTypeNumber"/&gt;
- * </pre>
- * <p>
- * To configure the check to accept 2 outer types per file:
- * </p>
- * <pre>
- * &lt;module name="OuterTypeNumber"&gt;
- *   &lt;property name="max" value="2"/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -133,6 +119,7 @@ public class OuterTypeNumberCheck extends AbstractCheck {
      * Setter to specify the maximum number of outer types allowed.
      *
      * @param max the new number.
+     * @since 5.0
      */
     public void setMax(int max) {
         this.max = max;

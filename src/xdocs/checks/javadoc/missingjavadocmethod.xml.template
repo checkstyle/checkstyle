@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingJavadocMethod</title>
+  </head>
+  <body>
+    <section name="MissingJavadocMethod">
+      <p>Since Checkstyle 8.21</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for missing Javadoc comments for a method or constructor.
+          The scope to verify is specified using the <code>Scope</code> class and
+          defaults to <code>Scope.PUBLIC</code>. To verify another
+          scope, set property scope to a different
+          <a href="../../property_types.html#Scope">scope</a>.
+        </p>
+
+        <p>
+          Javadoc is not required on a method that is tagged with the
+          <code>@Override</code> annotation. However, under
+          Java 5 it is not possible to mark a method required for an
+          interface (this was <i>corrected</i> under Java 6). Hence,
+          Checkstyle supports using the convention of using a single
+          <code>{@inheritDoc}</code> tag instead of all the
+          other tags.
+        </p>
+
+        <p>
+          For getters and setters for the property <code>allowMissingPropertyJavadoc</code>,
+          the methods must match exactly the structures below.
+        </p>
+        <source>
+public void setNumber(final int number)
+{
+    mNumber = number;
+}
+
+public int getNumber()
+{
+    return mNumber;
+}
+
+public boolean isSomething()
+{
+    return false;
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check for <code>private</code>
+          scope:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check for methods which are in <code>private</code>,
+          but not in <code>protected</code> scope:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check for ignoring methods named <code>foo(),foo1(),foo2()</code>, etc.:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example5-config">
+          To configure the check for ignoring missing javadoc for accessor methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-config">
+          To configure the check with annotations that allow missed documentation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MissingJavadocMethod"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MissingJavadocMethod"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

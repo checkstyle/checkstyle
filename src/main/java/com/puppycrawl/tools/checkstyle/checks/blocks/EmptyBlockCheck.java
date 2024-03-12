@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code option} - specify the policy on block contents.
+ * Property {@code option} - Specify the policy on block contents.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption}.
  * Default value is {@code statement}.
  * </li>
@@ -83,78 +83,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_SYNCHRONIZED</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="EmptyBlock"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   private void emptyLoop() {
- *     for (int i = 0; i &lt; 10; i++) { // violation
- *     }
- *
- *     try { // violation
- *
- *     } catch (Exception e) {
- *       // ignored
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check for the {@code text} policy and only {@code try} blocks:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyBlock&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p> Example: </p>
- * <pre>
- * public class Test {
- *   private void emptyLoop() {
- *     for (int i = 0; i &lt; 10; i++) {
- *       // ignored
- *     }
- *
- *     // violation on next line
- *     try {
- *
- *     } catch (Exception e) {
- *       // ignored
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check for default in switch block:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyBlock&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p> Example: </p>
- * <pre>
- * public class Test {
- *   private void test(int a) {
- *     switch (a) {
- *       case 1: someMethod();
- *       default: // OK, as there is no block
- *     }
- *     switch (a) {
- *       case 1: someMethod();
- *       default: {} // violation
- *     }
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -196,6 +124,7 @@ public class EmptyBlockCheck
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = BlockOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Design</title>
+  </head>
+  <body>
+    <section name="Design Checks">
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <a href="designforextension.html#DesignForExtension">
+                DesignForExtension
+              </a>
+            </td>
+            <td>
+              Checks that classes are designed for extension (subclass creation).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="finalclass.html#FinalClass">
+                FinalClass
+              </a>
+            </td>
+            <td>
+              Ensures that identifies classes that can be effectively declared as final are
+              explicitly marked as final.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="hideutilityclassconstructor.html#HideUtilityClassConstructor">
+                HideUtilityClassConstructor
+              </a>
+            </td>
+            <td>
+              Makes sure that utility classes (classes that contain only static
+            methods or fields in their API) do not have a public constructor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="innertypelast.html#InnerTypeLast">
+                InnerTypeLast
+              </a>
+            </td>
+            <td>
+              Checks nested (internal) classes/interfaces are declared at the bottom of the
+            primary (top-level) class after all init and static init blocks,
+            method, constructor and field declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="interfaceistype.html#InterfaceIsType">
+                InterfaceIsType
+              </a>
+            </td>
+            <td>
+              Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
+            define types.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="mutableexception.html#MutableException">
+                MutableException
+              </a>
+            </td>
+            <td>
+              Ensures that exception classes (classes with names conforming to
+            some pattern and explicitly extending classes with names
+            conforming to other pattern) are immutable, that is,
+            that they have only final fields.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="onetoplevelclass.html#OneTopLevelClass">
+                OneTopLevelClass
+              </a>
+            </td>
+            <td>
+              Checks that each top-level class, interface, enum or annotation resides in
+            a source file of its own.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="throwscount.html#ThrowsCount">
+                ThrowsCount
+              </a>
+            </td>
+            <td>
+              Restricts throws statements to a specified count.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="visibilitymodifier.html#VisibilityModifier">
+                VisibilityModifier
+              </a>
+            </td>
+            <td>
+              Checks visibility of class members.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MultipleStringLiterals</title>
+  </head>
+  <body>
+    <section name="MultipleStringLiterals">
+      <p>Since Checkstyle 3.5</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for multiple occurrences of the same string literal within a
+          single file.
+        </p>
+
+        <p>
+          Rationale: Code duplication makes maintenance more difficult, so it
+          can be better to replace the multiple occurrences with a constant.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowedDuplicates</td>
+              <td>Specify the maximum number of occurrences to allow without generating a warning.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>ignoreOccurrenceContext</td>
+              <td>Specify token type names where duplicate strings are ignored even if they don't match ignoredStringsRegexp. This allows you to exclude syntactical contexts like annotations or static initializers from the check.</td>
+              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+                    ANNOTATION</a>
+              </td>
+              <td>4.4</td>
+            </tr>
+            <tr>
+              <td>ignoreStringsRegexp</td>
+              <td>Specify RegExp for ignored strings (with quotation marks).</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^&quot;&quot;$&quot;</code></td>
+              <td>4.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class MyClass {
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  public void myTest() {
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+  }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it allows two occurrences of each
+          string:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class MyClass {
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  public void myTest() {
+    String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
+  }
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check so that it ignores &quot;, &quot; and empty strings:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;ignoreStringsRegexp&quot;
+        value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class MyClass {
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+  public void myTest() {
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
+  }
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check so that it flags duplicate strings in all
+          syntactical contexts, even in annotations like
+          <code>@SuppressWarnings(&quot;unchecked&quot;)</code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
+      &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class MyClass {
+  String a = &quot;StringContents&quot;;
+  String a1 = &quot;unchecked&quot;;
+  @SuppressWarnings(&quot;unchecked&quot;) // violation, &quot;unchecked&quot; occurs twice
+  public void myTest() {
+    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;; // OK
+    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleStringLiterals">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multiple.string.literal%22">
+              multiple.string.literal
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

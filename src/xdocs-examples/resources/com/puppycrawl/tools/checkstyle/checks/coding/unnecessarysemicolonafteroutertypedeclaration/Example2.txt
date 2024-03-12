@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnnecessarySemicolonAfterOuterTypeDeclaration">
+      <property name="tokens" value="CLASS_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class A {
+
+}; // violation
+
+interface B {
+
+}; // OK
+
+enum C {
+
+}; // OK
+
+{@literal @}interface D {
+
+}; // OK
+// xdoc section -- end

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The deprecated javadoc tag is currently the only way to say why the package
  * is deprecated and what to use instead.  Until this is resolved, if you don't
  * want to print violations on package-info, you can use a
- * <a href="https://checkstyle.org/config_filters.html">filter</a> to ignore
+ * <a href="https://checkstyle.org/filters/index.html">filter</a> to ignore
  * these files until the javadoc tool faithfully supports it. An example config
  * using SuppressionSingleFilter is:
  * </p>
@@ -78,71 +78,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MissingDeprecated&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;Deprecated
- * public static final int MY_CONST = 13; // ok
- *
- * &#47;** This javadoc is missing deprecated tag. *&#47;
- * &#64;Deprecated
- * public static final int COUNTER = 10; // violation
- *
- * &#47;**
- *  * &#64;deprecated
- *  * &lt;p&gt;&lt;/p&gt;
- *  *&#47;
- * &#64;Deprecated
- * public static final int NUM = 123456; // ok
- *
- * &#47;**
- *  * &#64;deprecated
- *  * &lt;p&gt;
- *  *&#47;
- * &#64;Deprecated
- * public static final int CONST = 12; // ok
- * </pre>
- * <p>
- * To configure the check such that it prints violation
- * messages if tight HTML rules are not obeyed
- * </p>
- * <pre>
- * &lt;module name="MissingDeprecated"&gt;
- *   &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;Deprecated
- * public static final int MY_CONST = 13; // ok
- *
- * &#47;** This javadoc is missing deprecated tag. *&#47;
- * &#64;Deprecated
- * public static final int COUNTER = 10; // violation
- *
- * &#47;**
- *  * &#64;deprecated
- *  * &lt;p&gt;&lt;/p&gt;
- *  *&#47;
- * &#64;Deprecated
- * public static final int NUM = 123456; // ok
- *
- * &#47;**
- *  * &#64;deprecated
- *  * &lt;p&gt;
- *  *&#47;
- * &#64;Deprecated
- * public static final int CONST = 12; // violation, tight HTML rules not obeyed
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -160,6 +95,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
  * </li>
  * <li>
  * {@code javadoc.wrong.singleton.html.tag}

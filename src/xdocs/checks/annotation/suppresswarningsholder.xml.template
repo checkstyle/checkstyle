@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressWarningsHolder</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
+      <p>Since Checkstyle 5.7</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Maintains a set of check suppressions from
+          <code>@SuppressWarnings</code> annotations. It allows to
+          prevent Checkstyle from reporting violations from parts of code
+          that were annotated with <code>@SuppressWarnings</code> and
+          using name of the check to be excluded. It is possible to suppress
+          all the checkstyle warnings with the argument
+          <code>"all"</code>.
+          You can also use a <code>checkstyle:</code> prefix to prevent compiler from
+          processing these annotations. You can also define
+          aliases for check names that need to be suppressed.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">To use default module configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
+          matched against class name of the check in any letter case. Adding <code>check</code>
+          suffix is also accepted.
+        </p>
+        <p id="Example2-config">
+          If <code>aliasList</code> property was provided you can use your own names e.g. below
+          code will work if there was provided a <code>ParameterNumberCheck=paramnum</code> in
+          the <code>aliasList</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsHolder">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressWarningsHolder"/>
+        </macro>
+      </subsection>
+
+    </section>
+  </body>
+</document>

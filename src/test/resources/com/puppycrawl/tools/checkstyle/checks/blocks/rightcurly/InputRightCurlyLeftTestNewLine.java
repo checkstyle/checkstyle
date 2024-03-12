@@ -22,10 +22,10 @@ class InputRightCurlyLeftTestNewLine
                 if (x > 0)
                 {
                     break;
-                } // ok
+                }
                 else if (x < 0) {
                     ;
-                } // ok
+                }
                 else
                 {
                     break;
@@ -37,11 +37,11 @@ class InputRightCurlyLeftTestNewLine
                 default:
                     break;
                 }
-            } // ok
+            }
             catch (Exception e)
             {
                 break;
-            } // ok
+            }
             finally
             {
                 break;
@@ -53,7 +53,7 @@ class InputRightCurlyLeftTestNewLine
             do
             {
                 x = 2;
-            } while (x == 2); // ok
+            } while (x == 2);
         }
 
         this.wait(666
@@ -90,11 +90,11 @@ class InputRightCurlyLeftTestNewLine
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // ok
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
     }
 }
 
@@ -170,23 +170,23 @@ class ClassWithStaticInitializersTestNewLine
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // ok
+        } catch (RuntimeException e) {
             new Object();
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
             // comment
-        } catch (Throwable e) { // ok
-        } finally { // ok
+        } catch (Throwable e) {
+        } finally {
             // comment
         }
 
         do {
-        } while (true); // ok
+        } while (true);
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // ok
-        for (int i = 0; i < 1; i++) { new Object(); }; // ok
+        };
+        for (int i = 0; i < 1; i++) { new Object(); };
     }
 
     static final java.util.concurrent.ThreadFactory threadFactory

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,6 +43,20 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testCompareExpectedTreeWithInput2() throws Exception {
         verifyAst(getPath("InputComments2Ast.txt"), getPath("InputComments2.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testInputFullOfBlockComments() throws Exception {
+        verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
+                    getPath("InputFullOfBlockComments.java"),
+                JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testInputFullOfSinglelineComments() throws Exception {
+        verifyAst(getPath("InputFullOfSinglelineCommentsAst.txt"),
+                    getPath("InputFullOfSinglelineComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 

@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingSwitchDefault"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+switch (i) {    // violation
+  case 1:
+    break;
+  case 2:
+    break;
+}
+// xdoc section -- end

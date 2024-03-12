@@ -6,11 +6,4 @@
     <description>Return value of &apos;findFirst&apos; must be used</description>
     <lineContent>.findFirst();</lineContent>
   </error>
-
-  <error>
-    <sourceFile>PropertyCacheFileTest.java</sourceFile>
-    <bugPattern>CheckReturnValue</bugPattern>
-    <description>The result of `toByteArray(...)` must be used</description>
-    <lineContent>byteStream.when(() -&gt; ByteStreams.toByteArray(any(BufferedInputStream.class)))</lineContent>
-  </error>
 </suppressedErrors>

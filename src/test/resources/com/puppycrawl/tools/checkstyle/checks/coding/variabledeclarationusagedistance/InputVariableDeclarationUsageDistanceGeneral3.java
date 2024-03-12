@@ -21,11 +21,11 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     class Parent {
         void mm() {
         }
+        <T> void xx(List<T> m){}
     }
 
     public void method2() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011
-        Integer a = 5;  // violation 'Distance .* is 4.'
+        Integer a = 5;
         class AClass extends Parent {
             int i;
 
@@ -61,8 +61,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method5() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011
-        Object a = new Object(); // violation 'Distance .* is 4.'
+        Object a = new Object();
         class AClass implements Ani {
             @Override
             public void method4(Object o) {
@@ -102,8 +101,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method8() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011
-        Integer m = 10; // violation 'Distance .* is 4.'
+        Integer m = 10;
         class BClass extends Parent{
             public BClass getNewInstance(){
                 return new BClass(){

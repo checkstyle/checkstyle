@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingSwitchDefault"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break;
+  default: // OK
+    break;
+}
+switch (o) {
+    case String s: // type pattern
+        System.out.println(s);
+        break;
+    case Integer i: // type pattern
+        System.out.println("Integer");
+        break;
+    default:    // will not compile without default label, thanks to type pattern label usage
+        break;
+}
+// xdoc section -- end

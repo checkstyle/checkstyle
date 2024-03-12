@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -44,63 +44,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
- * <a href="https://pmd.github.io/">PMD</a> rule.
+ * <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
+ *     PMD</a> rule.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *  private boolean cond;
- *  private Foo a;
- *  private Foo b;
- *
- *  public boolean check1() {
- *   if (cond) { // violation, can be simplified
- *     return true;
- *   }
- *   else {
- *     return false;
- *   }
- *  }
- *
- *  // Ok, simplified version of check1()
- *  public boolean check2() {
- *   return cond;
- *  }
- *
- *  // violations, can be simplified
- *  public boolean check3() {
- *   if (cond == true) { // can be simplified to "if (cond)"
- *     return false;
- *   }
- *   else {
- *     return true; // can be simplified to "return !cond"
- *   }
- *  }
- *
- *  // Ok, can be simplified but doesn't return a Boolean
- *  public Foo choose1() {
- *   if (cond) {
- *     return a;
- *   }
- *   else {
- *     return b;
- *   }
- *  }
- *
- *  // Ok, simplified version of choose1()
- *  public Foo choose2() {
- *   return cond ? a: b;
- *  }
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

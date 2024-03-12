@@ -57,7 +57,7 @@
     <property name="id" value="lineLength"/>
     <!-- catch lines above 100 symbols -->
     <property name="format"
-             value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
+             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
 
@@ -126,5 +126,41 @@
     <property name="fileExtensions" value="yml, yaml"/>
     <property name="message"
               value="Workflow job steps should have empty lines between each other"/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="id" value="exampleMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;example&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="9999"/>
+    <property name="message" value="Example macro usage is required in template files."/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="id" value="parentModuleMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;parent-module&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="9999"/>
+    <property name="message" value="Parent module macro usage is required in template files."/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="id" value="violationMessagesModuleMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;violation-messages&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="9999"/>
+    <property name="message" value="Violation messages macro usage is required in template files."/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="id" value="propertiesMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;properties&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="9999"/>
+    <property name="message" value="Properties macro usage is required in template files."/>
   </module>
 </module>

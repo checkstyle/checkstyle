@@ -9,20 +9,20 @@ trailingArrayComma = NEVER
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-@SuppressWarnings({}) // ok
+@SuppressWarnings({})
 public class InputAnnotationUseStyleNoTrailingCommaNever
 {
-  @SuppressWarnings({"common"}) // ok
+  @SuppressWarnings({"common"})
   public void foo() {
 
       /** Suppress warnings */
-      @SuppressWarnings({"common","foo"}) // ok
+      @SuppressWarnings({"common","foo"})
       Object o = new Object() {
 
-          @SuppressWarnings(value={"common"}) // ok
+          @SuppressWarnings(value={"common"})
           public String toString() {
 
-              @SuppressWarnings(value={"leo","herbie"}) // ok
+              @SuppressWarnings(value={"leo","herbie"})
               final String pooches = "leo.herbie";
 
               return pooches;
@@ -30,15 +30,15 @@ public class InputAnnotationUseStyleNoTrailingCommaNever
       };
   }
 
-  @Test5(value={"foo"}, more={"bar"}) // ok
+  @Test5(value={"foo"}, more={"bar"})
 
-  @Pooches5(tokens={},other={}) // ok
+  @Pooches5(tokens={},other={})
   enum P {
 
-      @Pooches5(tokens={Pooches5.class},other={1}) // ok
+      @Pooches5(tokens={Pooches5.class},other={1})
       L, // annotation in enum
 
-      @Test5(value={}, more={"unchecked"}) // ok
+      @Test5(value={}, more={"unchecked"})
       Y;
   }
 

@@ -14,12 +14,12 @@ class InputOperatorWrapNl
 {
     {
         int x1
-                = (1 // ok
-                * 2) * (1 // ok
-                    * 2); // ok
+                = (1
+                * 2) * (1
+                    * 2);
         int x2 = // violation ''=' should be on a new line.'
                 1 * // violation ''*' should be on a new line.'
-                2 * "" // ok
+                2 * ""
                     .length();
         int x3 = (2 * 1) * 0 * ( // ok, parens
                 1 * 2) * 0;
@@ -27,7 +27,7 @@ class InputOperatorWrapNl
 
     public InputOperatorWrapNl() throws IOException {
         label: try (Reader r
-                     = null) { // ok
+                     = null) {
         }
         try (Reader r = // violation ''=' should be on a new line.'
                      null) {
@@ -35,26 +35,26 @@ class InputOperatorWrapNl
         int x = (1 < 2) ? // violation ''?' should be on a new line.'
             false ? "".substring(0,
                     0).length() : false
-                ? 1 // ok
-                : 2 : 3; // ok
+                ? 1
+                : 2 : 3;
 
         for (int value
-                : new int[0]) {} // ok
+                : new int[0]) {}
         for (int value : // violation '':' should be on a new line.'
                 new int[0]) {}
 
         int[] a1
-                = {}; // ok
+                = {};
         int[] a2 = // violation ''=' should be on a new line.'
                 {};
-        int[] a3 = { // ok
+        int[] a3 = {
         };
     }
 
     void comment(int magic) {
         if (magic == 0x32 // '2'
-                || magic == 0x41 // ')' // ok
-                || magic == 0x58 // 'X' // ok
+                || magic == 0x41 // ')'
+                || magic == 0x58 // 'X'
         ) {
         }
         if (magic != 0x31 && // violation ''&&' should be on a new line.'
@@ -66,8 +66,8 @@ class InputOperatorWrapNl
 
     int a;
     void shortName(int oa) {
-        a=oa; // ok
-        a+=2; // ok
+        a=oa;
+        a+=2;
     }
 
 }

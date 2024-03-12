@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -23,7 +23,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,6 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code 3}.
  * </li>
  * <li>
+ * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code ignoreVariablePattern} - Define RegExp to ignore distance calculation
  * for variables listed in this pattern.
  * Type is {@code java.util.regex.Pattern}.
@@ -59,226 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
- * <li>
- * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
  * </ul>
- * <p>
- * To configure the check with default config:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void foo1() {
- *     int num;        // violation, distance = 4
- *     final double PI;   // OK, final variables not checked
- *     System.out.println("Statement 1");
- *     System.out.println("Statement 2");
- *     System.out.println("Statement 3");
- *     num = 1;
- *     PI = 3.14;
- *   }
- *
- *   public void foo2() {
- *     int a;          // OK, used in different scope
- *     int b;          // OK, used in different scope
- *     int count = 0;  // OK, used in different scope
- *
- *     {
- *       System.out.println("Inside inner scope");
- *       a = 1;
- *       b = 2;
- *       count++;
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * Check can detect a block of initialization methods. If a variable is used in
- * such a block and there are no other statements after variable declaration, then distance = 1.
- * </p>
- * <p>Case #1:</p>
- * <pre>
- * int minutes = 5;
- * Calendar cal = Calendar.getInstance();
- * cal.setTimeInMillis(timeNow);
- * cal.set(Calendar.SECOND, 0);
- * cal.set(Calendar.MILLISECOND, 0);
- * cal.set(Calendar.HOUR_OF_DAY, hh);
- * cal.set(Calendar.MINUTE, minutes);
- * </pre>
- * <p>
- * The distance for the variable "minutes" is 1 even
- * though this variable is used in the fifth method's call.
- * </p>
- * <p>Case #2:</p>
- * <pre>
- * int minutes = 5;
- * Calendar cal = Calendar.getInstance();
- * cal.setTimeInMillis(timeNow);
- * cal.set(Calendar.SECOND, 0);
- * cal.set(Calendar.MILLISECOND, 0);
- * <i>System.out.println(cal);</i>
- * cal.set(Calendar.HOUR_OF_DAY, hh);
- * cal.set(Calendar.MINUTE, minutes);
- * </pre>
- * <p>
- * The distance for the variable "minutes" is 6 because there is one more expression
- * (except the initialization block) between the declaration of this variable and its usage.
- * </p>
- * <p>
- * To configure the check to set allowed distance:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
- *   &lt;property name=&quot;allowedDistance&quot; value=&quot;4&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void foo1() {
- *     int num;        // OK, distance = 4
- *     final double PI;   // OK, final variables not checked
- *     System.out.println("Statement 1");
- *     System.out.println("Statement 2");
- *     System.out.println("Statement 3");
- *     num = 1;
- *     PI = 3.14;
- *   }
- *
- *   public void foo2() {
- *     int a;          // OK, used in different scope
- *     int b;          // OK, used in different scope
- *     int count = 0;  // OK, used in different scope
- *
- *     {
- *       System.out.println("Inside inner scope");
- *       a = 1;
- *       b = 2;
- *       count++;
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to ignore certain variables:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
- *   &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^num$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * This configuration ignores variables named "num".
- * </p>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void foo1() {
- *     int num;        // OK, variable ignored
- *     final double PI;   // OK, final variables not checked
- *     System.out.println("Statement 1");
- *     System.out.println("Statement 2");
- *     System.out.println("Statement 3");
- *     num = 1;
- *     PI = 3.14;
- *   }
- *
- *   public void foo2() {
- *     int a;          // OK, used in different scope
- *     int b;          // OK, used in different scope
- *     int count = 0;  // OK, used in different scope
- *
- *     {
- *       System.out.println("Inside inner scope");
- *       a = 1;
- *       b = 2;
- *       count++;
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to force validation between scopes:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
- *   &lt;property name=&quot;validateBetweenScopes&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void foo1() {
- *     int num;        // violation, distance = 4
- *     final double PI;   // OK, final variables not checked
- *     System.out.println("Statement 1");
- *     System.out.println("Statement 2");
- *     System.out.println("Statement 3");
- *     num = 1;
- *     PI = 3.14;
- *   }
- *
- *   public void foo2() {
- *     int a;          // OK, distance = 2
- *     int b;          // OK, distance = 3
- *     int count = 0;  // violation, distance = 4
- *
- *     {
- *       System.out.println("Inside inner scope");
- *       a = 1;
- *       b = 2;
- *       count++;
- *     }
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to check final variables:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
- *   &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void foo1() {
- *     int num;        // violation, distance = 4
- *     final double PI;   // violation, distance = 5
- *     System.out.println("Statement 1");
- *     System.out.println("Statement 2");
- *     System.out.println("Statement 3");
- *     num = 1;
- *     PI = 3.14;
- *   }
- *
- *   public void foo2() {
- *     int a;          // OK, used in different scope
- *     int b;          // OK, used in different scope
- *     int count = 0;  // OK, used in different scope
- *
- *     {
- *       System.out.println("Inside inner scope");
- *       a = 1;
- *       b = 2;
- *       count++;
- *     }
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -343,6 +128,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param allowedDistance
      *        Allowed distance between declaration of variable and its first
      *        usage.
+     * @since 5.8
      */
     public void setAllowedDistance(int allowedDistance) {
         this.allowedDistance = allowedDistance;
@@ -352,6 +138,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Setter to define RegExp to ignore distance calculation for variables listed in this pattern.
      *
      * @param pattern a pattern.
+     * @since 5.8
      */
     public void setIgnoreVariablePattern(Pattern pattern) {
         ignoreVariablePattern = pattern;
@@ -364,6 +151,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @param validateBetweenScopes
      *        Defines if allow to calculate distance between declaration of
      *        variable and its first usage in different scopes or not.
+     * @since 5.8
      */
     public void setValidateBetweenScopes(boolean validateBetweenScopes) {
         this.validateBetweenScopes = validateBetweenScopes;
@@ -374,6 +162,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      *
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
+     * @since 5.8
      */
     public void setIgnoreFinal(boolean ignoreFinal) {
         this.ignoreFinal = ignoreFinal;
@@ -463,52 +252,34 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
 
-        while (result
-                && !isUsedVariableDeclarationFound
-                && currentSiblingAst != null) {
-            switch (currentSiblingAst.getType()) {
-                case TokenTypes.EXPR:
-                    final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
-
-                    if (methodCallAst.getType() == TokenTypes.METHOD_CALL) {
-                        final String instanceName =
-                            getInstanceName(methodCallAst);
-                        // method is called without instance
-                        if (instanceName.isEmpty()) {
-                            result = false;
-                        }
-                        // differs from previous instance
-                        else if (!instanceName.equals(initInstanceName)) {
-                            if (initInstanceName.isEmpty()) {
-                                initInstanceName = instanceName;
-                            }
-                            else {
-                                result = false;
-                            }
-                        }
+        while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
+            if (currentSiblingAst.getType() == TokenTypes.EXPR
+                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+                final String instanceName = getInstanceName(methodCallAst);
+                if (instanceName.isEmpty()) {
+                    result = false;
+                }
+                else if (!instanceName.equals(initInstanceName)) {
+                    if (initInstanceName.isEmpty()) {
+                        initInstanceName = instanceName;
                     }
                     else {
-                        // is not method call
                         result = false;
                     }
-                    break;
+                }
 
-                case TokenTypes.VARIABLE_DEF:
-                    final String currentVariableName = currentSiblingAst
-                        .findFirstToken(TokenTypes.IDENT).getText();
-                    isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
-                    break;
-
-                case TokenTypes.SEMI:
-                    break;
-
-                default:
-                    result = false;
             }
-
+            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
+                final String currentVariableName =
+                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+            }
+            else {
+                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+            }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
-
         return result;
     }
 
@@ -535,7 +306,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         while (!firstUsageFound && currentAst != null) {
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
-                    dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
+                    dist = getDistToVariableUsageInChildNode(currentAst, dist);
                     variableUsageAst = currentAst;
                     firstUsageFound = true;
                 }
@@ -553,11 +324,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * Returns the distance to variable usage for in the child node.
      *
      * @param childNode child node.
-     * @param varIdent variable variable identifier.
      * @param currentDistToVarUsage current distance to the variable usage.
      * @return the distance to variable usage for in the child node.
      */
-    private static int getDistToVariableUsageInChildNode(DetailAST childNode, DetailAST varIdent,
+    private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
         DetailAST examineNode = childNode;
         if (examineNode.getType() == TokenTypes.LABELED_STAT) {
@@ -565,10 +335,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         }
 
         int resultDist = currentDistToVarUsage;
+
         switch (examineNode.getType()) {
-            case TokenTypes.VARIABLE_DEF:
-                resultDist++;
-                break;
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -577,17 +345,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
             case TokenTypes.LITERAL_SWITCH:
-                if (isVariableInOperatorExpr(examineNode, varIdent)) {
-                    resultDist++;
-                }
-                else {
-                    // variable usage is in inner scope
-                    // reset counters, because we can't determine distance
-                    resultDist = 0;
-                }
+                // variable usage is in inner scope, treated as 1 block
+                // or in operator expression, then distance + 1
+                resultDist++;
                 break;
             default:
-                if (examineNode.findFirstToken(TokenTypes.SLIST) == null) {
+                if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
                     resultDist++;
                 }
                 else {
@@ -656,8 +419,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
                 }
                 currentScopeAst = exprWithVariableUsage;
-                variableUsageAst =
-                        Objects.requireNonNullElse(exprWithVariableUsage, blockWithVariableUsage);
+                variableUsageAst = blockWithVariableUsage;
             }
 
             // If there's no any variable usage, then distance = 0.
@@ -692,10 +454,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression doesn't contain variable and this variable
-                // hasn't been met yet, then distance + 1.
+                // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
-                        && currentStatementAst.getType() != TokenTypes.VARIABLE_DEF) {
+                        && !isZeroDistanceToken(currentStatementAst.getType())) {
                     distance++;
                 }
             }
@@ -930,35 +691,16 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
         boolean isVarInOperatorDeclaration = false;
-        final DetailAST openingBracket =
-                operator.findFirstToken(TokenTypes.LPAREN);
 
-        // Get EXPR between brackets
-        DetailAST exprBetweenBrackets = openingBracket.getNextSibling();
+        DetailAST ast = operator.findFirstToken(TokenTypes.LPAREN);
 
         // Look if variable is in operator expression
-        while (exprBetweenBrackets.getType() != TokenTypes.RPAREN) {
-            if (isChild(exprBetweenBrackets, variable)) {
+        while (ast.getType() != TokenTypes.RPAREN) {
+            if (isChild(ast, variable)) {
                 isVarInOperatorDeclaration = true;
                 break;
             }
-            exprBetweenBrackets = exprBetweenBrackets.getNextSibling();
-        }
-
-        // Variable may be met in ELSE declaration
-        // So, check variable usage in these declarations.
-        if (!isVarInOperatorDeclaration) {
-            final DetailAST elseBlock = operator.getLastChild();
-
-            if (elseBlock.getType() == TokenTypes.LITERAL_ELSE) {
-                // Get IF followed by ELSE
-                final DetailAST firstNodeInsideElseBlock = elseBlock.getFirstChild();
-
-                if (firstNodeInsideElseBlock.getType() == TokenTypes.LITERAL_IF) {
-                    isVarInOperatorDeclaration =
-                        isVariableInOperatorExpr(firstNodeInsideElseBlock, variable);
-                }
-            }
+            ast = ast.getNextSibling();
         }
 
         return isVarInOperatorDeclaration;
@@ -1009,6 +751,40 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean isVariableMatchesIgnorePattern(String variable) {
         final Matcher matcher = ignoreVariablePattern.matcher(variable);
         return matcher.matches();
+    }
+
+    /**
+     * Check if the token should be ignored for distance counting.
+     * For example,
+     * <pre>
+     *     try (final AutoCloseable t = new java.io.StringReader(a);) {
+     *     }
+     * </pre>
+     * final is a zero-distance token and should be ignored for distance counting.
+     * <pre>
+     *     class Table implements Comparator&lt;Integer&gt;{
+     *     }
+     * </pre>
+     * An inner class may be defined. Both tokens implements and extends
+     * are zero-distance tokens.
+     * <pre>
+     *     public int method(Object b){
+     *     }
+     * </pre>
+     * public is a modifier and zero-distance token. int is a type and
+     * zero-distance token.
+     *
+     * @param type
+     *        Token type of the ast node.
+     * @return true if it should be ignored for distance counting, otherwise false.
+     */
+    private static boolean isZeroDistanceToken(int type) {
+        return type == TokenTypes.VARIABLE_DEF
+                || type == TokenTypes.TYPE
+                || type == TokenTypes.MODIFIERS
+                || type == TokenTypes.RESOURCE
+                || type == TokenTypes.EXTENDS_CLAUSE
+                || type == TokenTypes.IMPLEMENTS_CLAUSE;
     }
 
 }

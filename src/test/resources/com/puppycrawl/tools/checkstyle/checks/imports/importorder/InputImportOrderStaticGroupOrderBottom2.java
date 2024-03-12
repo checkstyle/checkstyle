@@ -16,12 +16,12 @@ tokens = (default)STATIC_IMPORT
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import org.antlr.v4.runtime.*; // ok
+import org.antlr.v4.runtime.*;
 
 import java.util.Set; // violation 'Extra separation in import group before 'java.util.Set''
 
 import static java.lang.Math.PI; // violation 'Extra separation in import group before 'java.lang.Math.PI''
-import static org.antlr.v4.runtime.Recognizer.EOF; // ok
+import static org.antlr.v4.runtime.Recognizer.EOF;
 
 public class InputImportOrderStaticGroupOrderBottom2
 {

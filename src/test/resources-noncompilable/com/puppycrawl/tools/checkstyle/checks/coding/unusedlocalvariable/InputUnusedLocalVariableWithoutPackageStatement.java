@@ -20,7 +20,7 @@ public class InputUnusedLocalVariableWithoutPackageStatement {
     }
 
     void anotherMethod() {
-        int var1 = 12; // ok
+        int var1 = 12;
         int var2 = 13; // violation
         Foo obj = new Foo() {
             void method() {
@@ -43,7 +43,7 @@ class Foo {
 
         void method() {
             int var3 = 13; // violation
-            int var1 = 12; // ok
+            int var1 = 12;
             SharkFoo obj = new SharkFoo() {
                 void method() {
                     var3 += var1;

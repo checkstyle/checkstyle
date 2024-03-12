@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,6 +43,7 @@ public class VariableDeclarationUsageDistanceTest extends AbstractGoogleModuleTe
             "219:9: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
             "483:9: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
             "495:9: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
+            "508:9: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
         };
 
         final Configuration checkConfig =

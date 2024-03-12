@@ -14,7 +14,7 @@ sealed public class InputModifierOrderSealedAndNonSealed
 final class Circle extends InputModifierOrderSealedAndNonSealed implements Squircle {
 }
 
-sealed class Rectangle extends InputModifierOrderSealedAndNonSealed // ok
+sealed class Rectangle extends InputModifierOrderSealedAndNonSealed
     implements Cloneable
     permits TransparentRectangle, FilledRectangle {
 }
@@ -38,7 +38,7 @@ sealed class Square extends InputModifierOrderSealedAndNonSealed implements Squi
 final strictfp class FilledRectangle extends Rectangle {
 }
 
-sealed interface Squircle permits Circle, Square, Ellipse, Square.StaticClass { // ok
+sealed interface Squircle permits Circle, Square, Ellipse, Square.StaticClass {
 }
 // violation below ''sealed' modifier out of order with the JLS suggestions.'
 strictfp sealed interface Rhombus permits Parallelogram, Parallelogram.Diamond,

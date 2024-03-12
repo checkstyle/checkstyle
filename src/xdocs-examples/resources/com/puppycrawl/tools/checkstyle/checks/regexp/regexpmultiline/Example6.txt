@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpMultiline">
+      <property name="format" value="^\s*$" />
+      <property name="matchAcrossLines" value="true" />
+      <property name="message" value="Empty file is not allowed" />
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/var/tmp$ cat -n Test.java
+1
+2
+3
+4
+// xdoc section -- end

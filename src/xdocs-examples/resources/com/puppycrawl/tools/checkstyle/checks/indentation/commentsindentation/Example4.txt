@@ -1,0 +1,25 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   public void foo11() {
+2     CheckUtil
+3       .getFirstNode(new DetailAST())
+4       .getFirstChild()
+5       .getNextSibling();
+6     // it is OK
+7   }
+8
+9   public void foo12() {
+10    CheckUtil
+11      .getFirstNode(new DetailAST())
+12      .getFirstChild()
+13      .getNextSibling();
+14              // violation (should have the same indentation level as line 10)
+15  }
+// xdoc section -- end

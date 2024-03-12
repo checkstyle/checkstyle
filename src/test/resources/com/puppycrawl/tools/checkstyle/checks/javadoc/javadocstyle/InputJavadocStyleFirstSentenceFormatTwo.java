@@ -18,6 +18,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 public class InputJavadocStyleFirstSentenceFormatTwo
 {
     /**
+     * Tags for two lines.
+     * <a href="some_link"
+     * >Link Text</a>
+     */
+    private void method12() {}
+
+    /**
      * First sentence.
      * <pre>
      * +--LITERAL_DO (do)
@@ -54,16 +61,17 @@ public class InputJavadocStyleFirstSentenceFormatTwo
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13() {} // ok
+    private void method13() {}
 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14() {} // ok
+    private void method14() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
@@ -71,32 +79,33 @@ public class InputJavadocStyleFirstSentenceFormatTwo
     private void method15() {}
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911; // ok
+    public static final int dummy = 4911;
 
     /**
      */
-    public void method16() {} // ok
+    public void method16() {}
 
     /**
      * @param a A parameter
      */
-    protected void method17(String a) {} // ok
+    protected void method17(String a) {}
 
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a) {} // ok
+    void method18(String a) {}
 
     /**
      */
-    private static int ASDF = 0; // ok
+    private static int ASDF = 0;
 
     /** @see Object */
-    public void method19() {} // ok
+    public void method19() {}
 
-    public enum Test // ok
+    public enum Test
     {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Value 1 without a period
          */
         value1,
@@ -104,6 +113,6 @@ public class InputJavadocStyleFirstSentenceFormatTwo
         /**
          * Value 2 with a period.
          */
-        value2, // ok
+        value2,
     }
 }

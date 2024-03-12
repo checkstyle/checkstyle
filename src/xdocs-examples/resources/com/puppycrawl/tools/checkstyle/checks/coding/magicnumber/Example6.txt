@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MagicNumber">
+        <property name="ignoreHashCodeMethod" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class TestHashCode {
+  public int hashCode() {
+    return 10;              // OK
+  }
+}
+// xdoc section -- end

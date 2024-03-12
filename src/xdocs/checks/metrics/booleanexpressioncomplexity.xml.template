@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>BooleanExpressionComplexity</title>
+  </head>
+  <body>
+    <section name="BooleanExpressionComplexity">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Restricts the number of boolean operators (<code>&amp;&amp;</code>, <code>||</code>,
+          <code>&amp;</code>, <code>|</code> and <code>^</code>) in an expression.
+        </p>
+
+        <p>
+          Rationale: Too many conditions leads to code that is difficult
+          to read and hence debug and maintain.
+        </p>
+
+        <p>
+          Note that the operators <code>&amp;</code> and
+          <code>|</code> are not only integer bitwise operators, they are also the
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
+          non-shortcut versions</a> of the boolean operators
+          <code>&amp;&amp;</code> and <code>||</code>.
+        </p>
+        <p>
+          Note that <code>&amp;</code>, <code>|</code> and <code>^</code> are not checked
+          if they are part of constructor or method call
+          because they can be applied to non-boolean variables and
+          Checkstyle does not know types of methods from different classes.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/BooleanExpressionComplexityCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check with 5 allowed operation in boolean
+          expression:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check to ignore <code>&amp;</code> and
+          <code>|</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+BooleanExpressionComplexity">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="BooleanExpressionComplexity"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="BooleanExpressionComplexity"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

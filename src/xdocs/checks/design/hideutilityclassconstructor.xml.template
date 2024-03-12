@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>HideUtilityClassConstructor</title>
+  </head>
+  <body>
+    <section name="HideUtilityClassConstructor">
+      <p>Since Checkstyle 3.1</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Makes sure that utility classes (classes that contain only static
+          methods or fields in their API) do not have a public constructor.
+        </p>
+
+        <p>
+          Rationale: Instantiating utility classes does not make sense. Hence,
+          the constructors should either be private or (if you want to allow
+          subclassing) protected. A common mistake is forgetting to hide the
+          default constructor.
+        </p>
+
+        <p>
+          If you make the constructor protected you may want to consider the
+          following constructor implementation technique to disallow
+          instantiating subclasses:
+        </p>
+
+        <source>
+public class StringUtils // not final to allow subclassing
+{
+  protected StringUtils() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+
+  public static int count(char c, String s) {
+    // ...
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HideUtilityClassConstructor">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="HideUtilityClassConstructor"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="HideUtilityClassConstructor"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

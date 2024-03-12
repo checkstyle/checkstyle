@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   /*
+2    * it is Ok
+3    */
+4   boolean bool = true;
+5
+6     /* violation
+7      * (block comment should have the same indentation level as line 9)
+8      */
+9   double d = 3.14;
+// xdoc section -- end

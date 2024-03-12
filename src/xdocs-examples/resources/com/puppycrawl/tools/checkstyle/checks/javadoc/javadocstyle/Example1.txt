@@ -1,0 +1,31 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocStyle"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+    /**
+     * Some description here. // OK
+     */
+    private void methodWithValidCommentStyle() {}
+
+    // ok below, @return tag automatically inserts a period after the text
+    /**
+     * {@return {@code true} if this object
+     * has been initialized, {@code false} otherwise}
+     */
+    private boolean isInitialized()
+    {
+       return true;
+    }
+
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     */
+    private void methodWithInvalidCommentStyle() {}
+}
+// xdoc section -- end

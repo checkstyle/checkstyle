@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ConstantName</title>
+  </head>
+  <body>
+    <section name="ConstantName">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that constant names conform to a specified pattern.
+          A <em>constant</em> is a <strong>static</strong> and <strong>final</strong> field or an
+          interface/annotation field, except <strong>serialVersionUID</strong> and
+          <strong>serialPersistentFields</strong>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>applyToPackage</td>
+              <td>Control if check should apply to package-private members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToPrivate</td>
+              <td>Control if check should apply to private members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToProtected</td>
+              <td>Control if check should apply to protected members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>applyToPublic</td>
+              <td>Control if check should apply to public members.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000; // violation 'must match pattern'
+  private final static int fourth_Const4 = 50; // violation 'must match pattern'
+  public final static int log = 10; // violation 'must match pattern'
+  protected final static int logger = 50; // violation 'must match pattern'
+  final static int loggerMYSELF = 5; // violation 'must match pattern'
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
+        </source>
+        <p id="Example2-config">
+          The following configuration apart from names allowed by default allows <code>log</code>
+          or <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;&gt;
+      &lt;property name=&quot;format&quot;
+                value=&quot;^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Code Example:</p>
+        <source>
+class Example2 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000; // violation 'must match pattern'
+  private final static int fourth_Const4 = 50; // violation 'must match pattern'
+  public final static int log = 10;
+  protected final static int logger = 50;
+  final static int loggerMYSELF = 5; // violation 'must match pattern'
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1; // violation 'must match pattern'
+}
+        </source>
+        <p id="Example3-config">
+          The following configuration skip validation on
+          public constant field and protected constant field.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstantName&quot;&gt;
+      &lt;property name=&quot;applyToPublic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Code Example:</p>
+        <source>
+class Example3 {
+  public final static int FIRST_CONSTANT1 = 10;
+  protected final static int SECOND_CONSTANT2 = 100;
+  final static int third_Constant3 = 1000; // violation 'must match pattern'
+  private final static int fourth_Const4 = 50; // violation 'must match pattern'
+  public final static int log = 10;
+  protected final static int logger = 50;
+  final static int loggerMYSELF = 5; // violation 'must match pattern'
+  final static int MYSELF = 100;
+  protected final static int myselfConstant = 1;
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

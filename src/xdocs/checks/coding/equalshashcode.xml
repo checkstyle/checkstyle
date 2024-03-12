@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>EqualsHashCode</title>
+  </head>
+  <body>
+    <section name="EqualsHashCode">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that classes that either override <code>equals()</code>
+          or <code>hashCode()</code> also overrides the other.
+          This check only verifies that the method declarations match
+          <code>Object.equals(Object)</code> and <code>Object.hashCode()</code> exactly to be
+          considered an override. This check does not verify invalid method names, parameters
+          other than <code>Object</code>, or anything else.
+        </p>
+
+        <p>
+          Rationale: The contract of <code>equals()</code> and
+          <code>hashCode()</code> requires that equal objects
+          have the same hashCode. Therefore, whenever you override
+          <code>equals()</code> you must override <code>hashCode()</code>
+          to ensure that your class can be used in hash-based collections.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;EqualsHashCode&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public static class Example1 {
+    public int hashCode() {
+        // code
+    }
+    public boolean equals(String o) { // violation, overloaded implementation of 'equals'
+        // code
+    }
+}
+public static class Example2 {
+    public boolean equals(Object o) { // violation, no 'hashCode'
+        // code
+    }
+    public boolean equals(String o) {
+        // code
+    }
+}
+public static class Example3 {
+    public int hashCode() {
+        // code
+    }
+    public boolean equals(Object o) { // OK
+        // code
+    }
+    public boolean equals(String o) {
+        // code
+    }
+}
+public static class Example4 {
+    public int hashCode() {
+        // code
+    }
+    public boolean equals(java.lang.Object o) { // OK
+        // code
+   }
+}
+public static class Example5 {
+    public static int hashCode(int i) {
+        // code
+    }
+    public boolean equals(Object o) { // violation, overloaded implementation of 'hashCode'
+        // code
+    }
+}
+public static class Example6 {
+    public int hashCode() { // violation, overloaded implementation of 'equals'
+        // code
+    }
+    public static boolean equals(Object o, Object o2) {
+        // code
+    }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
+              equals.noEquals
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noHashCode%22">
+              equals.noHashCode
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

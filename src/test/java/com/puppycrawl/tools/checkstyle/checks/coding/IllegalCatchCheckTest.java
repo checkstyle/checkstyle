@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,7 +34,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testIllegalCatchCheckDefaultTokens() throws Exception {
 
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -46,11 +46,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalCatch.java"), expected);
+                getPath("InputIllegalCatchCheckDefaultTokens.java"), expected);
     }
 
     @Test
-    public void testIllegalClassNames() throws Exception {
+    public void testIllegalCatchCheckSuperclassThrowable() throws Exception {
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "15:11: " + getCheckMessage(MSG_KEY, "Throwable"),
@@ -59,11 +59,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalCatch3.java"), expected);
+                getPath("InputIllegalCatchCheckSuperclassThrowable.java"), expected);
     }
 
     @Test
-    public void testIllegalClassNamesBad() throws Exception {
+    public void testIllegalCatchCheckSuperclassException() throws Exception {
         // check that incorrect names don't break the Check
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
@@ -71,11 +71,11 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalCatch4.java"), expected);
+                getPath("InputIllegalCatchCheckSuperclassException.java"), expected);
     }
 
     @Test
-    public void testMultipleTypes() throws Exception {
+    public void testIllegalCatchCheckMultipleExceptions() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "15:11: " + getCheckMessage(MSG_KEY, "SQLException"),
@@ -91,7 +91,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalCatch2.java"), expected);
+                getPath("InputIllegalCatchCheckMultipleExceptions.java"), expected);
     }
 
     @Test

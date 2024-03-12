@@ -20,5 +20,5 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  *
  * @param value Sponge Bob rules the world!
  */
-public record InputJavadocTypeRecordComponents(String value) { // ok
+public record InputJavadocTypeRecordComponents(String value) {
 }

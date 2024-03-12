@@ -27,7 +27,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     public void foo1(Options option) {
-        int num = switch (option) { // ok
+        int num = switch (option) {
             case ONE:
                 yield 1;
             case TWO:
@@ -38,7 +38,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     public void foo2(Options option) {
-        assert Integer.valueOf(1).equals(switch (option) { // ok
+        assert Integer.valueOf(1).equals(switch (option) {
             case ONE -> 1;
             case TWO -> 2;
             case THREE -> 3;
@@ -47,7 +47,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
 
     public void bar1(Options option) {
         int num;
-        num = switch (option) { // ok
+        num = switch (option) {
             case ONE -> 1;
             case TWO -> 2;
             case THREE -> 3;
@@ -55,7 +55,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     public void bar2(Options option) {
-        assert 1 < switch (option) { // ok
+        assert 1 < switch (option) {
             case ONE -> 1;
             case TWO -> 2;
             case THREE -> 3;
@@ -64,7 +64,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
 
     public void bar3(Options option) {
         int num = 0;
-        num += switch (option) { // ok
+        num += switch (option) {
             case ONE -> 1;
             case TWO -> 2;
             case THREE -> 3;
@@ -72,11 +72,11 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     int usedOnBothSidesOfArithmeticExpression(Day day) {
-        return switch (day) { // ok
+        return switch (day) {
             case MON, TUE -> 0;
             case WED -> 1;
             default -> 2;
-        } * switch (day) { // ok
+        } * switch (day) {
             case WED, THU -> 3;
             case FRI -> 4;
             default -> 5;
@@ -84,7 +84,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     boolean complexDefault(Day k, String string) {
-        switch (k) { // ok
+        switch (k) {
         case MON -> {
             System.out.println(2);
             System.out.println(3);

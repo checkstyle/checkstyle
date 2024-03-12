@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CommentsIndentation</title>
+  </head>
+  <body>
+    <section name="CommentsIndentation">
+      <p>Since Checkstyle 6.10</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Controls the indentation between comments and surrounding code.
+          Comments are indented at the same level as the surrounding code.
+          Detailed info about such convention can be found
+          <a href="../../styleguides/google-java-style-20180523/javaguide.html#s4.8.6.1-block-comment-style">
+          here</a>
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                    SINGLE_LINE_COMMENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                    SINGLE_LINE_COMMENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>6.10</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p>Please take a look at the following examples to understand how the check works:</p>
+
+        <p id="Example1-code">Example #1: Block comments.</p>
+        <source>
+1   /*
+2    * it is Ok
+3    */
+4   boolean bool = true;
+5
+6     /* violation
+7      * (block comment should have the same indentation level as line 9)
+8      */
+9   double d = 3.14;
+        </source>
+        <p id="Example2-code">
+          Example #2: Comment is placed at the end of the block and has previous statement.
+        </p>
+        <source>
+1   public void foo1() {
+2     foo2();
+3     // it is OK
+4   }
+5
+6   public void foo2() {
+7     foo3();
+8       // violation (comment should have the same indentation level as line 7)
+9   }
+        </source>
+        <p id="Example3-code">
+          Example #3: Comment is used as a single-line border to separate groups of methods.
+        </p>
+        <source>
+1   /////////////////////////////// it is OK
+2
+3   public void foo7() {
+4     int a = 0;
+5   }
+6
+7     ///////////////////////////// violation (should have the same indentation level as line 9)
+8
+9   public void foo8() {}
+        </source>
+        <p id="Example4-code">Example #4: Comment has distributed previous statement.</p>
+        <source>
+1   public void foo11() {
+2     CheckUtil
+3       .getFirstNode(new DetailAST())
+4       .getFirstChild()
+5       .getNextSibling();
+6     // it is OK
+7   }
+8
+9   public void foo12() {
+10    CheckUtil
+11      .getFirstNode(new DetailAST())
+12      .getFirstChild()
+13      .getNextSibling();
+14              // violation (should have the same indentation level as line 10)
+15  }
+        </source>
+        <p id="Example5-code">
+          Example #5: Single line block comment is placed within an empty code block.
+          Note, if comment is placed at the end of the empty code block, we have Checkstyle's
+          limitations to clearly detect user intention of explanation target - above or below. The
+          only case we can assume as a violation is when a single-line comment within the empty
+          code block has indentation level that is lower than the indentation level of the closing
+          right curly brace.
+        </p>
+        <source>
+1   public void foo46() {
+2     // comment
+3     // block
+4     // it is OK (we cannot clearly detect user intention of explanation target)
+5   }
+6
+7   public void foo46() {
+8  // comment
+9  // block
+10 // violation (comment should have the same indentation level as line 11)
+11  }
+        </source>
+        <p id="Example6-code">Example #6: 'fallthrough' comments and similar.</p>
+        <source>
+0   switch(a) {
+1     case &quot;1&quot;:
+2       int k = 7;
+3       // it is OK
+4     case &quot;2&quot;:
+5       int k = 7;
+6     // it is OK
+7     case &quot;3&quot;:
+8       if (true) {}
+9           // violation (should have the same indentation level as line 8 or 10)
+10    case &quot;4&quot;:
+11    case &quot;5&quot;: {
+12      int a;
+13    }
+14    // fall through (it is OK)
+15    case &quot;12&quot;: {
+16      int a;
+17    }
+18    default:
+19      // it is OK
+20  }
+        </source>
+        <p id="Example7-code">Example #7: Comment is placed within a distributed statement.</p>
+        <source>
+1   String breaks = &quot;J&quot;
+2   // violation (comment should have the same indentation level as line 3)
+3       + &quot;A&quot;
+4       // it is OK
+5       + &quot;V&quot;
+6       + &quot;A&quot;
+7   // it is OK
+8   ;
+        </source>
+        <p id="Example8-code">
+          Example #8: Comment is placed within an empty case block.
+          Note, if comment is placed at the end of the empty case block, we have Checkstyle's
+          limitations to clearly detect user intention of explanation target - above or below. The
+          only case we can assume as a violation is when a single-line comment within the empty case
+          block has indentation level that is lower than the indentation level of the next case
+          token.
+        </p>
+        <source>
+1   case 4:
+2     // it is OK
+3   case 5:
+4  // violation (should have the same indentation level as line 3 or 5)
+5   case 6:
+        </source>
+        <p id="Example9-code">
+          Example #9: Single line block comment has previous and next statement.
+        </p>
+        <source>
+1   String s1 = &quot;Clean code!&quot;;
+2      s.toString().toString().toString();
+3   // single-line
+4   // block
+5   // comment (it is OK)
+6   int a = 5;
+7
+8   String s2 = &quot;Code complete!&quot;;
+9    s.toString().toString().toString();
+10            // violation (should have the same indentation level as line 11)
+11       // violation (should have the same indentation level as line 12)
+12     // violation (should have the same indentation level as line 13)
+13  int b = 18;
+        </source>
+        <p id="Example10-code">
+          Example #10: Comment within the block tries to describe the next code block.
+        </p>
+        <source>
+1   public void foo42() {
+2     int a = 5;
+3     if (a == 5) {
+4       int b;
+5       // it is OK
+6      } else if (a ==6) { ... }
+7   }
+8
+9   public void foo43() {
+10    try {
+11      int a;
+12     // Why do we catch exception here? - violation (not the same indentation as line 11)
+13     } catch (Exception e) { ... }
+14  }
+        </source>
+        <p id="Example1-config">
+          To configure the Check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CommentsIndentation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
+              comments.indentation.block
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.single%22">
+              comments.indentation.single
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,10 @@
+/*xml
+<module name="Checker">
+  <module name="LineLength">
+    <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

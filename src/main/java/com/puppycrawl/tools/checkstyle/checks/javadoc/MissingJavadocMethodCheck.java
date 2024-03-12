@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
@@ -70,10 +69,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code minLineCount} - Control the minimal amount of lines in method to allow no
- * documentation.
- * Type is {@code int}.
- * Default value is {@code -1}.
+ * Property {@code allowMissingPropertyJavadoc} - Control whether to allow missing Javadoc on
+ * accessor methods for properties (setters and getters).
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Configure annotations that allow missed
@@ -82,27 +81,27 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code Override}.
  * </li>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code public}.
- * </li>
- * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are
  * not checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code allowMissingPropertyJavadoc} - Control whether to allow missing Javadoc on
- * accessor methods for properties (setters and getters).
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreMethodNamesRegex} - ignore method whose names are matching specified
+ * Property {@code ignoreMethodNamesRegex} - Ignore method whose names are matching specified
  * regex.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code minLineCount} - Control the minimal amount of lines in method to allow no
+ * documentation.
+ * Type is {@code int}.
+ * Default value is {@code -1}.
+ * </li>
+ * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -119,133 +118,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   public Test() {} // violation, missing javadoc for constructor
- *   public void test() {} // violation, missing javadoc for method
- *   &#47;**
- *    * Some description here.
- *    *&#47;
- *   public void test2() {} // OK
- *
- *   &#64;Override
- *   public String toString() { // OK
- *     return "Some string";
- *   }
- *
- *   private void test1() {} // OK
- *   protected void test2() {} // OK
- *   void test3() {} // OK
- * }
- * </pre>
- *
- * <p>
- * To configure the check for {@code private} scope:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private void test1() {} // violation, the private method is missing javadoc
- * }
- * </pre>
- *
- * <p>
- * To configure the check for methods which are in {@code private}, but not in {@code protected}
- * scope:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="protected"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private void test1() {} // violation, the private method is missing javadoc
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private void test1() {} // OK
- *   protected void test2() {} // OK
- * }
- * </pre>
- *
- * <p>
- * To configure the check for ignoring methods named {@code foo(),foo1(),foo2()}, etc.:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"&gt;
- *   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void test1() {} // violation, method is missing javadoc
- *   public void foo() {} // OK
- *   public void foobar() {} // OK
- * }
- * </pre>
- *
- * <p>
- * To configure the check for ignoring missing javadoc for accessor methods:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"&gt;
- *   &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   private String text;
- *
- *   public void test() {} // violation, method is missing javadoc
- *   public String getText() { return text; } // OK
- *   public void setText(String text) { this.text = text; } // OK
- * }
- * </pre>
- *
- * <p>
- * To configure the check with annotations that allow missed documentation:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocMethod"&gt;
- *   &lt;property name="allowedAnnotations" value="Override,Deprecated"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void test() {} // violation, method is missing javadoc
- *   &#64;Override
- *   public void test1() {} // OK
- *   &#64;Deprecated
- *   public void test2() {} // OK
- *   &#64;SuppressWarnings
- *   public void test3() {} // violation, method is missing javadoc
- *   &#47;**
- *    * Some description here.
- *    *&#47;
- *   &#64;SuppressWarnings
- *   public void test4() {} // OK
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -268,6 +140,18 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+
+    /** Maximum children allowed in setter/getter. */
+    private static final int SETTER_GETTER_MAX_CHILDREN = 7;
+
+    /** Pattern matching names of getter methods. */
+    private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
+
+    /** Pattern matching names of setter methods. */
+    private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
+
+    /** Maximum nodes allowed in a body of setter. */
+    private static final int SETTER_BODY_SIZE = 3;
 
     /** Default value of minimal amount of lines in method to allow no documentation.*/
     private static final int DEFAULT_MIN_LINE_COUNT = -1;
@@ -297,6 +181,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
+     * @since 8.21
      */
     public void setAllowedAnnotations(String... userAnnotations) {
         allowedAnnotations = Set.of(userAnnotations);
@@ -306,6 +191,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to ignore method whose names are matching specified regex.
      *
      * @param pattern a pattern.
+     * @since 8.21
      */
     public void setIgnoreMethodNamesRegex(Pattern pattern) {
         ignoreMethodNamesRegex = pattern;
@@ -315,6 +201,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to control the minimal amount of lines in method to allow no documentation.
      *
      * @param value user's value.
+     * @since 8.21
      */
     public void setMinLineCount(int value) {
         minLineCount = value;
@@ -325,6 +212,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * (setters and getters).
      *
      * @param flag a {@code Boolean} value
+     * @since 8.21
      */
     public void setAllowMissingPropertyJavadoc(final boolean flag) {
         allowMissingPropertyJavadoc = flag;
@@ -334,6 +222,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
+     * @since 8.21
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -343,6 +232,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
+     * @since 8.21
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -411,7 +301,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      */
     private boolean isMissingJavadocAllowed(final DetailAST ast) {
         return allowMissingPropertyJavadoc
-                && (CheckUtil.isSetterMethod(ast) || CheckUtil.isGetterMethod(ast))
+                && (isSetterMethod(ast) || isGetterMethod(ast))
             || matchesSkipRegex(ast)
             || isContentsAllowMissingJavadoc(ast);
     }
@@ -424,9 +314,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return True if this method or constructor doesn't need Javadoc.
      */
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
-        return (ast.getType() == TokenTypes.METHOD_DEF
-                || ast.getType() == TokenTypes.CTOR_DEF
-                || ast.getType() == TokenTypes.COMPACT_CTOR_DEF)
+        return ast.getType() != TokenTypes.ANNOTATION_FIELD_DEF
                 && (getMethodsNumberOfLine(ast) <= minLineCount
                     || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
@@ -462,11 +350,82 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-        return (excludeScope == null
-                || nodeScope != excludeScope
-                && surroundingScope != excludeScope)
-            && nodeScope.isIn(scope)
-            && surroundingScope.isIn(scope);
+        return nodeScope != excludeScope
+                && surroundingScope != excludeScope
+                && nodeScope.isIn(scope)
+                && surroundingScope.isIn(scope);
     }
 
+    /**
+     * Returns whether an AST represents a getter method.
+     *
+     * @param ast the AST to check with
+     * @return whether the AST represents a getter method
+     */
+    public static boolean isGetterMethod(final DetailAST ast) {
+        boolean getterMethod = false;
+
+        // Check have a method with exactly 7 children which are all that
+        // is allowed in a proper getter method which does not throw any
+        // exceptions.
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final String name = type.getNextSibling().getText();
+            final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean noParams = params.getChildCount(TokenTypes.PARAMETER_DEF) == 0;
+
+            if (matchesGetterFormat && noParams) {
+                // Now verify that the body consists of:
+                // SLIST -> RETURN
+                // RCURLY
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+
+                if (slist != null) {
+                    final DetailAST expr = slist.getFirstChild();
+                    getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
+                }
+            }
+        }
+        return getterMethod;
+    }
+
+    /**
+     * Returns whether an AST represents a setter method.
+     *
+     * @param ast the AST to check with
+     * @return whether the AST represents a setter method
+     */
+    public static boolean isSetterMethod(final DetailAST ast) {
+        boolean setterMethod = false;
+
+        // Check have a method with exactly 7 children which are all that
+        // is allowed in a proper setter method which does not throw any
+        // exceptions.
+        if (ast.getType() == TokenTypes.METHOD_DEF
+                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final String name = type.getNextSibling().getText();
+            final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+
+            final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+            final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+
+            if (matchesSetterFormat && singleParam) {
+                // Now verify that the body consists of:
+                // SLIST -> EXPR -> ASSIGN
+                // SEMI
+                // RCURLY
+                final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
+
+                if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
+                    final DetailAST expr = slist.getFirstChild();
+                    setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
+                }
+            }
+        }
+        return setterMethod;
+    }
 }

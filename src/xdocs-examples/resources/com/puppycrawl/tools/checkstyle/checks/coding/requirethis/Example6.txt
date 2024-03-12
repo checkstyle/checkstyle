@@ -1,0 +1,20 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RequireThis">
+      <property name="validateOnlyOverlapping" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class D {
+  private String prefix;
+
+  public String modifyPrefix(String prefix) {
+    prefix = "^" + prefix + "$";  // no violation, because method parameter is returned
+    return prefix;
+  }
+}
+// xdoc section -- end

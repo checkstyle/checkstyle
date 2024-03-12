@@ -77,7 +77,7 @@ public class InputNeedBracesTestSwitchExpression {
             case FOUR -> {
                 yield 99;
             }
-            default -> throw new IllegalStateException("Not a Nums"); // ok
+            default -> throw new IllegalStateException("Not a Nums");
 
         };
     }
@@ -96,19 +96,19 @@ public class InputNeedBracesTestSwitchExpression {
 
     void howMany6(Nums k) {
         switch (k) {
-            case ONE: System.out.println("case two"); // ok
-            case TWO, THREE: System.out.println("case two"); // ok
-            case FOUR: System.out.println("case three"); // ok
-            default: throw new IllegalStateException("Not a nums"); // ok
+            case ONE: System.out.println("case two");
+            case TWO, THREE: System.out.println("case two");
+            case FOUR: System.out.println("case three");
+            default: throw new IllegalStateException("Not a nums");
         }
     }
 
     void howMany7(Nums k) {
         switch (k) {
-            case ONE -> System.out.println("case one"); // ok
-            case TWO, THREE -> System.out.println("case two"); // ok
-            case FOUR -> System.out.println("case three"); // ok
-            default -> throw new IllegalStateException("Not a nums"); // ok
+            case ONE -> System.out.println("case one");
+            case TWO, THREE -> System.out.println("case two");
+            case FOUR -> System.out.println("case three");
+            default -> throw new IllegalStateException("Not a nums");
         }
     }
 }

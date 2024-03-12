@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,26 +45,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Property {@code fileExtensions} - Specify the file extensions of the files to process.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .java}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="JavadocPackage"/&gt;
- * </pre>
- * <p>
- * To configure the check to use legacy {@code package.html} file
- * when {@code package-info.java} file is absent:
- * </p>
- * <pre>
- * &lt;module name="JavadocPackage"&gt;
- *   &lt;property name="allowLegacy" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
@@ -144,6 +129,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
      * Setter to allow legacy {@code package.html} file to be used.
      *
      * @param allowLegacy whether to allow support.
+     * @since 5.0
      */
     public void setAllowLegacy(boolean allowLegacy) {
         this.allowLegacy = allowLegacy;

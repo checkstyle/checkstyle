@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="FinalLocalVariable">
+      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="validateEnhancedForLoopVariable" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+for (int number : myNumbers) { // violation
+  System.out.println(number);
+}
+// xdoc section -- end

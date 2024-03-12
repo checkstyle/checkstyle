@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpSinglelineJava</title>
+  </head>
+  <body>
+    <section name="RegexpSinglelineJava">
+      <p>Since Checkstyle 6.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a specified pattern matches a single-line in Java files.
+        </p>
+        <p>
+          This class is variation on
+          <a href="regexpsingleline.html#RegexpSingleline">RegexpSingleline</a> for detecting
+          single-lines that match a supplied regular expression in Java files. It supports
+          suppressing matches in Java comments.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;$.&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreComments</td>
+              <td>Control whether to ignore text in comments when searching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations, if empty then default (hard-coded) message is used.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          This configuration does not match to anything,
+          so we do not provide any code example for it
+          as no violation will ever be reported.
+        </p>
+        <p id="Example2-config">
+          To configure the check for calls to <code>System.out.println</code>, except in comments:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;!-- . matches any character, so we need to
+           escape it and use \. to match dots. --&gt;
+      &lt;property name=&quot;format&quot; value=&quot;System\.out\.println&quot;/&gt;
+      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+System.out.println(&quot;&quot;); // violation, instruction matches illegal pattern
+System.out.
+println(&quot;&quot;); // OK
+/* System.out.println */ // OK, comments are ignored
+        </source>
+        <p id="Example3-config">
+          To configure the check to find case-insensitive occurrences of
+          &quot;debug&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
+      &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+int debug = 0; // violation, variable name matches illegal pattern
+public class Debug { // violation, class name matches illegal pattern
+/* this is for de
+   bug only; */ // OK
+        </source>
+        <p id="Example4-config">
+          To configure the check to find occurrences of
+          &quot;\.read(.*)|\.write(.*)&quot;
+          and display &quot;IO found&quot; for each violation.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;\.read(.*)|\.write(.*)&quot;/&gt;
+      &lt;property name=&quot;message&quot; value=&quot;IO found&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+FileReader in = new FileReader(&quot;path/to/input&quot;);
+int ch = in.read(); // violation
+while(ch != -1) {
+  System.out.print((char)ch);
+  ch = in.read(); // violation
+}
+
+FileWriter out = new FileWriter(&quot;path/to/output&quot;);
+out.write(&quot;something&quot;); // violation
+        </source>
+        <p id="Example5-config">
+          To configure the check to find occurrences of
+          &quot;\.log(.*)&quot;. We want to allow a maximum of 2 occurrences.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;\.log(.*)&quot;/&gt;
+      &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+public class Foo{
+  public void bar(){
+    Logger.log(&quot;first&quot;); // OK, first occurrence is allowed
+    Logger.log(&quot;second&quot;); // OK, second occurrence is allowed
+    Logger.log(&quot;third&quot;); // violation
+    System.out.println(&quot;fourth&quot;);
+    Logger.log(&quot;fifth&quot;); // violation
+  }
+}
+        </source>
+        <p id="Example6-config">
+          To configure the check to find all occurrences of
+          &quot;public&quot;. We want to ignore comments,
+          display &quot;public member found&quot; for each violation
+          and say if less than 2 occurrences.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
+      &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
+      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Example:</p>
+        <source>
+class Foo{ // violation, file contains less than 2 occurrences of &quot;public&quot;
+  private int a;
+  /* public comment */ // OK, comment is ignored
+  private void bar1() {}
+  public  void bar2() {} // violation
+}
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+class Foo{
+  private int a;
+  /* public comment */ // OK, comment is ignored
+  public void bar1() {} // violation
+  public void bar2() {} // violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSinglelineJava">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+              regexp.exceeded
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+              regexp.minimum
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.regexp
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

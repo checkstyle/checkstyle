@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>VisibilityModifier</title>
+  </head>
+  <body>
+    <section name="VisibilityModifier">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks visibility of class members. Only static final, immutable or annotated
+          by specified annotation members may be public; other class members must be private
+          unless the property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
+        </p>
+
+        <p>
+          Public members are not flagged if the name matches the public
+          member regular expression (contains <code>&quot;^serialVersionUID$&quot;</code> by default).
+        </p>
+        <p>Note that
+          Checkstyle 2 used to include <code>&quot;^f[A-Z][a-zA-Z0-9]*$&quot;</code> in the default
+          pattern to allow names used in container-managed persistence for Enterprise JavaBeans
+          (EJB) 1.1 with the default settings. With EJB 2.0 it is no longer necessary to have
+          public access for persistent fields, so the default has been changed.
+        </p>
+
+        <p>
+          Rationale: Enforce encapsulation.
+        </p>
+        <p>
+          Check also has options making it less strict:
+        </p>
+        <p>
+          <b>ignoreAnnotationCanonicalNames</b> - the list of annotations which ignore variables
+          in consideration. If user want to provide short annotation name that type
+          will match to any named the same type without consideration of package.
+        </p>
+        <p>
+          <b>allowPublicFinalFields</b> - which allows public final fields.
+        </p>
+        <p>
+          <b>allowPublicImmutableFields</b> - which allows immutable fields to be declared as
+          public if defined in final class.
+        </p>
+        <p>
+          Field is known to be immutable if:
+        </p>
+        <ul>
+          <li>It's declared as final</li>
+          <li>
+            Has either a primitive type or instance of class user defined to be immutable
+            (such as String, ImmutableCollection from Guava, etc.)
+          </li>
+        </ul>
+        <p>
+          Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b> by their
+          canonical names.
+        </p>
+        <p>
+          Property Rationale: Forcing all fields of class to have private modifier by default is
+          good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
+          One of such cases are immutable classes.
+        </p>
+        <p>
+          Restriction: Check doesn't check if class is immutable, there's no
+          checking if accessory methods are missing and all fields are immutable, we only check
+          if current field is immutable or final. Under the flag
+          <b>allowPublicImmutableFields</b>, the enclosing class must also be final, to encourage
+          immutability. Under the flag <b>allowPublicFinalFields</b>, the final modifier on
+          the enclosing class is optional.
+        </p>
+        <p>
+          Star imports are out of scope of this Check. So if one of type imported via
+          star import collides with user specified one by its short name -
+          there won't be Check's violation.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowPublicFinalFields</td>
+              <td>Allow final fields to be declared as public.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.0</td>
+            </tr>
+            <tr>
+              <td>allowPublicImmutableFields</td>
+              <td>Allow immutable fields to be declared as public if defined in final class.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotationCanonicalNames</td>
+              <td>Specify annotations canonical names which ignore variables in consideration.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule</code></td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>immutableClassCanonicalNames</td>
+              <td>Specify immutable classes canonical names.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID</code></td>
+              <td>6.4.1</td>
+            </tr>
+            <tr>
+              <td>packageAllowed</td>
+              <td>Control whether package visible members are allowed.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>protectedAllowed</td>
+              <td>Control whether protected members are allowed.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>publicMemberPattern</td>
+              <td>Specify pattern for public members that should be ignored.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^serialVersionUID$&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example with default values:</p>
+        <source>
+class Example1 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have a visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  public int field3 = 42; // violation, not final 'must be private'
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it allows package visible members:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;packageAllowed&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example of allowed package visible members:</p>
+        <source>
+class Example2 {
+  private int myPrivateField1;
+
+  int field1;
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString;
+
+  @Deprecated
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check so that it allows protected visible members:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;protectedAllowed&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example of allowed protected visible members:</p>
+        <source>
+class Example3 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2;
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check so that it allows no public members:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;publicMemberPattern&quot; value=&quot;^$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example of not allowed public members:</p>
+        <source>
+class Example4 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  // violation below, doesn't match the pattern 'must be private'
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final int field5 = 42;
+
+  // violation below, public immutable fields are not allowed 'must be private'
+  public final java.lang.String notes = null;
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example5-config">
+          To configure the Check so that it allows public immutable fields
+          (mostly for immutable classes):
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">
+          Example of allowed public immutable fields:
+        </p>
+        <source>
+class Example5 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example6-config">
+          To configure the Check in order to allow user specified immutable class names:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;immutableClassCanonicalNames&quot;
+                value=&quot;com.google.common.collect.ImmutableSet,
+                       java.lang.String&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">
+          Example of allowed public immutable fields:
+        </p>
+        <source>
+class Example6 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example7-config">
+          Note, if allowPublicImmutableFields is set to true, the check will also check whether
+          generic type parameters are immutable. If at least one generic type parameter is mutable,
+          there will be a violation.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;immutableClassCanonicalNames&quot;
+                value=&quot;com.google.common.collect.ImmutableSet,
+                       java.lang.String, com.google.common.collect.ImmutableMap&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example7-code">
+          Example of how the check works:
+        </p>
+        <source>
+class Example7 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example8-config">
+          To configure the Check passing fields annotated with @java.lang.Deprecated:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot;
+                value=&quot;java.lang.Deprecated&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example8-code">
+          Example of allowed field:
+        </p>
+        <source>
+class Example8 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString;
+
+  @Deprecated
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  // violation below, annotation not configured 'must be private'
+  public String testString = &quot;&quot;;
+}
+        </source>
+
+        <p id="Example9-config">
+          To configure the Check passing fields annotated with @org.junit.Rule,
+          @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example9-code">
+          Example of allowed fields:
+        </p>
+        <source>
+class Example9 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  // violation below, annotation not configured 'must be private'
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p id="Example10-config">
+          To configure the Check passing fields annotated with short annotation name:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotationCanonicalNames&quot; value=&quot;Deprecated&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example10-code">
+          Example of allowed fields:
+        </p>
+        <source>
+class Example10 {
+  private int myPrivateField1;
+
+  int field1; // violation, must have visibility modifier 'must be private'
+
+  protected String field2; // violation, protected not allowed 'must be private'
+
+  // violation below, not final nor matching pattern 'must be private'
+  public int field3 = 42;
+
+  public long serialVersionUID = 1L;
+
+  public static final int field4 = 42;
+
+  public final int field5 = 42; // violation 'must be private'
+
+  public final java.lang.String notes = null; // violation 'must be private'
+
+  // violation below, HashSet is mutable 'must be private'
+  public final Set&lt;String&gt; mySet1 = new HashSet&lt;&gt;();
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableSet&lt;String&gt; mySet2 = null;
+
+  // violation below, immutable type not in config 'must be private'
+  public final ImmutableMap&lt;String, Object&gt; objects1 = null;
+
+  @java.lang.Deprecated
+  String annotatedString; // violation, annotation not configured 'must be private'
+
+  @Deprecated
+  String shortCustomAnnotated;
+
+  @com.google.common.annotations.VisibleForTesting
+  // violation below, annotation not configured 'must be private'
+  public String testString = &quot;&quot;;
+}
+        </source>
+        <p>
+          To understand the difference between allowPublicImmutableFields and
+          allowPublicFinalFields options, please, study the following examples.
+        </p>
+        <p id="Example11-config">
+           1) To configure the check to use only 'allowPublicImmutableFields' option:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;allowPublicImmutableFields&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example11-code">
+          Code example:
+        </p>
+        <source>
+class Example11 {
+  public final int someIntValue = 0; // violation 'must be private'
+
+  public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'
+
+  public final java.lang.String notes = &quot;&quot;; // violation 'must be private'
+
+  public final BigDecimal value = null; // violation 'must be private'
+
+  public final List list = null; // violation 'must be private'
+}
+        </source>
+        <p id="Example12-config">
+          2) To configure the check to use only 'allowPublicFinalFields' option:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;VisibilityModifier&quot;&gt;
+      &lt;property name=&quot;allowPublicFinalFields&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example12-code">
+          Code example:
+        </p>
+        <source>
+class Example12 {
+  public final int someIntValue = 0;
+
+  public final ImmutableSet&lt;String&gt; includes = null;
+
+  public final java.lang.String notes = &quot;&quot;;
+
+  public final BigDecimal value = null;
+
+  public final List list = null;
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VisibilityModifier">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22variable.notPrivate%22">
+              variable.notPrivate
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

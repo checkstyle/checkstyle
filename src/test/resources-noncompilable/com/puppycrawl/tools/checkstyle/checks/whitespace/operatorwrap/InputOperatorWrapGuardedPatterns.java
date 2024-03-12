@@ -15,9 +15,9 @@ public class InputOperatorWrapGuardedPatterns {
     String typeGuardAfterParenthesizedTrueSwitchStatement1(Object o) {
         switch (o) {
             case (Integer i)
-                    && i == 0: o = String.valueOf(i); return "true"; // ok
+                    && i == 0: o = String.valueOf(i); return "true";
             case ((Integer i)
-                    && i == 2): o = String.valueOf(i); return "second"; // ok
+                    && i == 2): o = String.valueOf(i); return "second";
             case Object x: return "any";
         }
     }
@@ -25,22 +25,22 @@ public class InputOperatorWrapGuardedPatterns {
     String typeGuardAfterParenthesizedTrueSwitchExpression1(Object o) {
         return switch (o) {
             case (Integer i)
-                    && i == 0: o = String.valueOf(i); yield "true"; // ok
+                    && i == 0: o = String.valueOf(i); yield "true";
             case ((Integer i)
-                    && i == 2): o = String.valueOf(i); yield "second"; // ok
+                    && i == 2): o = String.valueOf(i); yield "second";
             case Object x: yield "any";
         };
     }
 
     String typeGuardAfterParenthesizedTrueIfStatement1(Object o) {
         if (o != null
-                && o instanceof ((Integer i) // ok
-                && i == 0)) { // ok
+                && o instanceof ((Integer i)
+                && i == 0)) {
             return "true";
         } else if (o != null
-                && o instanceof (((Integer i)  // ok
-                && i == 2))  // ok
-                && (o = i) != null) { // ok
+                && o instanceof (((Integer i)
+                && i == 2))
+                && (o = i) != null) {
             return "second";
         } else {
             return "any";

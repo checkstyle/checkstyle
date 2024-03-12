@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MultipleStringLiterals">
+      <property name="allowedDuplicates" value="2"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class MyClass {
+  String a = "StringContents";
+  String a1 = "unchecked";
+  @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
+  public void myTest() {
+    String a2 = "StringContents"; // OK, two occurrences are allowed
+    String a3 = "DoubleString" + "DoubleString"; // OK, two occurrences are allowed
+    String a4 = "SingleString"; // OK
+    String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
+  }
+}
+// xdoc section -- end

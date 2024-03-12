@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -107,5 +107,14 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationTrimOptionProperty.java"), expected);
+    }
+
+    @Test
+    public void testDefault2() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocContentLocation.java"), expected);
     }
 }

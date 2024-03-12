@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -109,5 +109,14 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
         assertWithMessage("Required required tokens are invalid")
             .that(check.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
+    }
+
+    @Test
+    public void testIsSemicolonWithNullAst() throws Exception {
+        final String[] expected = {"24:32: " + getCheckMessage(MSG_SEMI)};
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"),
+                expected);
     }
 }

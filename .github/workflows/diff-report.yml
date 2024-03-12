@@ -27,15 +27,9 @@ permissions:
   contents: read
   pull-requests: write
 
-# Current behavior for concurrency in GitHub Actions:
-# 1) If a Diff-Report workflow is NOT running for this PR, start a new one.
-# 2) If a Diff-Report workflow is running for this PR, queue this workflow.
-# 3) If a Diff-Report workflow is queued for this PR, cancel it and queue this workflow.
-#
-# It would be best to always queue a new workflow, but we are limited by
-# https://github.com/orgs/community/discussions/12835.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  # run_id is guaranteed to be unique and present
+  group: ${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
@@ -53,7 +47,7 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: shanegenschaw/pull-request-comment-trigger@v2.1.0
         name: React with rocket on run
         with:
           trigger: ','
@@ -65,7 +59,7 @@ jobs:
         if: 'true'
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Getting PR description
         env:
@@ -113,7 +107,7 @@ jobs:
     steps:
 
       - name: Download checkstyle
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download files
         env:
@@ -138,13 +132,13 @@ jobs:
           git fetch forked
 
       - name: Setup local maven cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Download contribution
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
@@ -156,7 +150,7 @@ jobs:
           sudo apt install groovy
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -213,7 +207,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get message
         env:

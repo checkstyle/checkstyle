@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpHeader</title>
+  </head>
+  <body>
+    <section name="RegexpHeader">
+      <p>Since Checkstyle 6.9</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the header of a source file against a header that contains a
+          <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
+            pattern</a> for each line of the source header.
+        </p>
+
+        <p>
+          Rationale: In some projects <a href="header.html#Header">checking against a
+          fixed header</a> is not sufficient, e.g. the header might require a
+          copyright line where the year information is not static.
+        </p>
+
+        <p>
+          For example, consider the following header:
+        </p>
+        <source>
+line  1: ^/{71}$
+line  2: ^// checkstyle:$
+line  3: ^// Checks Java source code for adherence to a set of rules\.$
+line  4: ^// Copyright \(C\) \d\d\d\d  Oliver Burn$
+line  5: ^// Last modification by \$Author.*\$$
+line  6: ^/{71}$
+line  7:
+line  8: ^package
+line  9:
+line 10: ^import
+line 11:
+line 12: ^/\*\*
+line 13: ^ \*([^/]|$)
+line 14: ^ \*/
+        </source>
+
+        <p>
+          Lines 1 and 6 demonstrate a more compact notation for 71 '/'
+          characters. Line 4 enforces that the copyright notice includes a
+          four digit year. Line 5 is an example how to enforce revision
+          control keywords in a file header. Lines 12-14 is a template for
+          javadoc (line 13 is so complicated to remove conflict with and of
+          javadoc comment). Lines 7, 9 and 11 will be treated as '^$' and
+          will forcefully expect the line to be empty.
+        </p>
+
+        <p>
+          Different programming languages have different comment syntax
+          rules, but all of them start a comment with a non-word
+          character. Hence, you can often use the non-word character
+          class to abstract away the concrete comment syntax and allow
+          checking the header for different languages with a single
+          header definition. For example, consider the following header
+          specification (note that this is not the full Apache license
+          header):
+        </p>
+        <source>
+line 1: ^#!
+line 2: ^&lt;\?xml.*&gt;$
+line 3: ^\W*$
+line 4: ^\W*Copyright 2006 The Apache Software Foundation or its licensors, as applicable\.$
+line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the &quot;License&quot;\);$
+line 6: ^\W*$
+        </source>
+
+        <p>
+          Lines 1 and 2 leave room for technical header lines, e.g. the
+          &quot;#!/bin/sh&quot; line in Unix shell scripts, or the XML file header
+          of XML files. Set the multiline property to &quot;1, 2&quot; so these
+          lines can be ignored for file types where they do no apply.
+          Lines 3 through 6 define the actual header content. Note how
+          lines 2, 4 and 5 use escapes for characters that have special
+          regexp semantics.
+        </p>
+
+        <p>
+          In default configuration, if header is not specified, the default value
+          of header is set to null and the check does not rise any violations.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>charset</td>
+              <td>Specify the character encoding to use when reading the headerFile.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>6.9</td>
+            </tr>
+            <tr>
+              <td>header</td>
+              <td>Define the required header specified inline. Individual header lines must be separated by the string <code>"\n"</code> (even on platforms with a different line separator). For header lines containing <code>"\n\n"</code> checkstyle will forcefully expect an empty line to exist. See examples below. Regular expressions must not span multiple lines.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>headerFile</td>
+              <td>Specify the name of the file containing the required header.</td>
+              <td><a href="../../property_types.html#URI">URI</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>multiLines</td>
+              <td>Specify the line numbers to repeat (zero or more times).</td>
+              <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
+              <td><code>{}</code></td>
+              <td>3.4</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the check such that no violations arise.
+            Default values of properties are used.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-config">
+          To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
+          <code>10</code> and <code>13</code> multi-lines:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property name=&quot;headerFile&quot; value=&quot;config/java.header&quot;/&gt;
+    &lt;property name=&quot;multiLines&quot; value=&quot;10, 13&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example3-code">
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+        <source>
+^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+^// All rights reserved$
+        </source>
+
+        <p id="Example3-config">
+          without the need for an external header file:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property
+      name=&quot;header&quot;
+      value=&quot;^// Copyright \(C\) (\d\d\d\d -)? 2004 MyCompany$
+        \n^// All rights reserved$&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example4-config">
+          For regex containing <code>&quot;\n\n&quot;</code>
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpHeader&quot;&gt;
+    &lt;property
+      name=&quot;header&quot;
+      value=&quot;^package .*\n\n.*&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          <code>&quot;\n\n&quot;</code> will be treated as '^$' and will forcefully
+          expect the line to be empty. For example -
+        </p>
+        <source>
+package com.some.package;
+public class ThisWillFail { }
+        </source>
+        <p id="Example5-code">
+          would fail for the regex above. Expected -
+        </p>
+        <source>
+package com.some.package;
+
+public class ThisWillPass { }
+        </source>
+
+        <p>
+          <u>Note</u>: <code>ignoreLines</code> property has been
+          removed from this check to simplify it. To make some line optional
+          use &quot;^.*$&quot; regexp for this line.
+        </p>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpHeader">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.mismatch%22">
+              header.mismatch
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22header.missing%22">
+              header.missing
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.header
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

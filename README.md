@@ -27,8 +27,7 @@ or set of validation rules (best practices).
 
 [![][milestone img]][milestone]
 
-Members chat: [![][gitter_mem img]][gitter_mem]
-Contributors chat: [![][gitter_con img]][gitter_con]
+Contributors chat: [![][matrix_con img]][matrix_con]
 
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
@@ -73,8 +72,6 @@ Bugs and Feature requests (not the questions): https://github.com/checkstyle/che
 
 If you want to speed up fixing of issue and want to encourage somebody in
 internet to resolve any issue:
-[![][bountysource img]][bountysource]
-[![][salt.bountysource img]][salt.bountysource]
 [![][flattr img]][flattr]
 [![][liberapay img]][liberapay]
 [![][backers.opencollective img]][backers.opencollective]
@@ -128,11 +125,8 @@ are in the file named "LICENSE.apache20" in this directory.
 [mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
 [mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
-[gitter_mem]:https://gitter.im/checkstyle
-[gitter_mem img]:https://img.shields.io/badge/gitter-JOIN%20CHAT-blue.svg
-
-[gitter_con]:https://gitter.im/checkstyle/checkstyle
-[gitter_con img]:https://badges.gitter.im/Join%20Chat.svg
+[matrix_con]:https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im
+[matrix_con img]:https://matrix.to/img/matrix-badge.svg
 
 [stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
@@ -160,12 +154,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [liberapay]:https://liberapay.com/checkstyle/
 [liberapay img]:https://liberapay.com/assets/widgets/donate.svg
-
-[bountysource]:https://www.bountysource.com/teams/checkstyle/issues
-[bountysource img]:https://api.bountysource.com/badge/team?team_id=3568&style=bounties_posted
-
-[salt.bountysource]:https://salt.bountysource.com/teams/checkstyle
-[salt.bountysource img]:https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg

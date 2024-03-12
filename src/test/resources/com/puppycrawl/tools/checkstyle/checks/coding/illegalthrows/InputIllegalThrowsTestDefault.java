@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
 public class InputIllegalThrowsTestDefault {
 
-    public void method() throws NullPointerException // ok
+    public void method() throws NullPointerException
     { // no code
     }
 
@@ -26,7 +26,7 @@ public class InputIllegalThrowsTestDefault {
     {
     }
 
-    public void finalize() throws Throwable { // ok
+    public void finalize() throws Throwable {
 
     }
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,115 +51,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code 1}.
  * </li>
  * <li>
- * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^""$"}.
- * </li>
- * <li>
  * Property {@code ignoreOccurrenceContext} - Specify token type names where duplicate
  * strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  * exclude syntactical contexts like annotations or static initializers from the check.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
- * Default value is {@code ANNOTATION}.
+ * Default value is
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+ * ANNOTATION</a>.
+ * </li>
+ * <li>
+ * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^""$"}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;MultipleStringLiterals&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   String a = "StringContents";
- *   String a1 = "unchecked";
- *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
- *   public void myTest() {
- *     String a2 = "StringContents"; // violation, "StringContents" occurs twice
- *     String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
- *     String a4 = "SingleString"; // OK
- *     String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check so that it allows two occurrences of each string:
- * </p>
- * <pre>
- * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
- *   &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   String a = "StringContents";
- *   String a1 = "unchecked";
- *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
- *   public void myTest() {
- *     String a2 = "StringContents"; // OK, two occurrences are allowed
- *     String a3 = "DoubleString" + "DoubleString"; // OK, two occurrences are allowed
- *     String a4 = "SingleString"; // OK
- *     String a5 = ", " + ", " + ", "; // violation, three occurrences are NOT allowed
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check so that it ignores ", " and empty strings:
- * </p>
- * <pre>
- * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
- *   &lt;property name=&quot;ignoreStringsRegexp&quot;
- *     value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   String a = "StringContents";
- *   String a1 = "unchecked";
- *   &#64;SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
- *   public void myTest() {
- *     String a2 = "StringContents"; // violation, "StringContents" occurs twice
- *     String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
- *     String a4 = "SingleString"; // OK
- *     String a5 = ", " + ", " + ", "; // OK, multiple occurrences of ", " are allowed
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check so that it flags duplicate strings in all syntactical contexts,
- * even in annotations like {@code @SuppressWarnings("unchecked")}:
- * </p>
- * <pre>
- * &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
- *   &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   String a = "StringContents";
- *   String a1 = "unchecked";
- *   &#64;SuppressWarnings("unchecked") // violation, "unchecked" occurs twice
- *   public void myTest() {
- *     String a2 = "StringContents"; // violation, "StringContents" occurs twice
- *     String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
- *     String a4 = "SingleString"; // OK
- *     String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -228,6 +134,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * Setter to specify the maximum number of occurrences to allow without generating a warning.
      *
      * @param allowedDuplicates The maximum number of duplicates.
+     * @since 3.5
      */
     public void setAllowedDuplicates(int allowedDuplicates) {
         this.allowedDuplicates = allowedDuplicates;
@@ -240,6 +147,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      *        regular expression pattern for ignored strings
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
+     * @since 4.0
      */
     public final void setIgnoreStringsRegexp(Pattern ignoreStringsRegexp) {
         if (ignoreStringsRegexp == null || ignoreStringsRegexp.pattern().isEmpty()) {
@@ -256,6 +164,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * syntactical contexts like annotations or static initializers from the check.
      *
      * @param strRep the string representation of the tokens interested in
+     * @since 4.4
      */
     public final void setIgnoreOccurrenceContext(String... strRep) {
         ignoreOccurrenceContext.clear();
@@ -313,9 +222,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      */
     private boolean isInIgnoreOccurrenceContext(DetailAST ast) {
         boolean isInIgnoreOccurrenceContext = false;
-        for (DetailAST token = ast;
-             token.getParent() != null;
-             token = token.getParent()) {
+        for (DetailAST token = ast; token != null; token = token.getParent()) {
             final int type = token.getType();
             if (ignoreOccurrenceContext.get(type)) {
                 isInIgnoreOccurrenceContext = true;

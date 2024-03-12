@@ -39,7 +39,7 @@ class InputAtclauseOrderIncorrect4 implements Serializable
          * @deprecated Some text.
          * @return Some text. // violation
          */
-        String method5(String aString) { // ok
+        String method5(String aString) {
             return "null";
         }
 

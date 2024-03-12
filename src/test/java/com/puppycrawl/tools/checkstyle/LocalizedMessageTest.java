@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -48,8 +48,9 @@ import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
  */
 public class LocalizedMessageTest {
 
-    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
+    @DefaultLocale("en")
     @Test
     public void testNullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,

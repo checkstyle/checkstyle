@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Checks that a token is followed by whitespace, with the exception that it
  * does not check for whitespace after the semicolon of an empty for iterator.
- * Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ * Use Check
+ * <a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
  * EmptyForIteratorPad</a> to validate empty for iterators.
  * </p>
  * <ul>
@@ -62,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_YIELD</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
  * LITERAL_CATCH</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DO_WHILE">
  * DO_WHILE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
  * ELLIPSIS</a>,
@@ -78,82 +79,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LAMBDA</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- *  public void myTest() {
- *      if (foo) {              // OK
- *              //...
- *      } else if(bar) {        // violation
- *              //...
- *      }
- *
- *      testMethod(foo, bar);   // OK
- *      testMethod(foo,bar);    // violation
- *
- *      for (;;){}               // OK
- *      for(;;){}                // violation, space after 'for' is required
- *
- *      try (InputStream ignored = System.in) {} // OK
- *      try(InputStream ignored = System.in) {} // violation ''try' is not followed by whitespace'
- *
- *      try {} catch (Exception e){} // OK
- *      try{} catch (Exception e){} // violation ''try' is not followed by whitespace'
- *
- *      try {} finally {} // OK
- *      try {} finally{} // violation ''finally' is not followed by whitespace'
- *
- *      try {} catch (Error e){} finally {} // OK
- *      try {} catch (Error e){} finally{} // violation ''finally' is not followed by whitespace'
- *
- *      try {} catch (Exception e){} // OK
- *      try {} catch(Exception e){} // violation ''catch' is not followed by whitespace'
- *
- *      synchronized (this) { } // OK
- *      synchronized(this) { } // violation ''synchronized' is not followed by whitespace'
- *  }
- *  public String testOne() {
- *      return ("a" + "b"); // OK
- *  }
- *  public String testTwo() {
- *      return("a" + "b"); // violation 'return' is not followed by whitespace'
- *  }
- *  public static void main(String[] args) {
- *    int a = switch (args[0]) {
- *      case "got":
- *        yield (1); // OK
- *      case "my":
- *        yield(3); // violation ''yield' is not followed by whitespace'
- *      default:
- *        yield 2;
- *    };
- *  }
- * </pre>
- * <p>
- * To configure the check for whitespace only after COMMA and SEMI tokens:
- * </p>
- * <pre>
- * &lt;module name=&quot;WhitespaceAfter&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- *     public void myTest() {
- *         int a; int b;           // OK
- *         int a;int b;            // violation
- *
- *         testMethod(foo, bar);   // OK
- *         testMethod(foo,bar);    // violation
- *
- *         for(;;) {} // OK
- *     }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

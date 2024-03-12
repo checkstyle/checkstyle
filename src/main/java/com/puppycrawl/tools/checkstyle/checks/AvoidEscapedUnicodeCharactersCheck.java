@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,13 +47,13 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
- * non-printable, control characters.
+ * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
+ * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
+ * non-printable, control characters.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -69,87 +69,6 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
- * </pre>
- * <p>
- * Examples of using Unicode:</p>
- * <pre>
- * String unitAbbrev = "μs";     // OK, perfectly clear even without a comment.
- * String unitAbbrev = "&#92;u03bcs";// violation, the reader has no idea what this is.
- * return '&#92;ufeff' + content;    // OK, an example of non-printable,
- *                               // control characters (byte order mark).
- * </pre>
- * <p>
- * An example of how to configure the check to allow using escapes
- * for non-printable, control characters:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *   &lt;property name="allowEscapesForControlCharacters" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example of using escapes for non-printable, control characters:
- * </p>
- * <pre>
- * String unitAbbrev = "μs";      // OK, a normal String
- * String unitAbbrev = "&#92;u03bcs"; // violation, "&#92;u03bcs" is a printable character.
- * return '&#92;ufeff' + content;     // OK, non-printable control character.
- * </pre>
- * <p>
- * An example of how to configure the check to allow using escapes
- * if trail comment is present:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *   &lt;property name="allowByTailComment" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example of using escapes if trail comment is present:
- * </p>
- * <pre>
- * String unitAbbrev = "μs";      // OK, a normal String
- * String unitAbbrev = "&#92;u03bcs"; // OK, Greek letter mu, "s"
- * return '&#92;ufeff' + content;
- * // -----^--------------------- violation, comment is not used within same line.
- * </pre>
- * <p>
- * An example of how to configure the check to allow if
- * all characters in literal are escaped.
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example of using escapes if all characters in literal are escaped:</p>
- * <pre>
- * String unitAbbrev = "μs";      // OK, a normal String
- * String unitAbbrev = "&#92;u03bcs"; // violation, not all characters are escaped ('s').
- * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc"; // OK
- * String unitAbbrev = "&#92;u03bc&#92;u03bcs";// violation, not all characters are escaped ('s').
- * return '&#92;ufeff' + content;          // OK, all control characters are escaped
- * </pre>
- * <p>An example of how to configure the check to allow using escapes
- * for non-printable whitespace characters:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
- *   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example of using escapes for non-printable whitespace characters:</p>
- * <pre>
- * String unitAbbrev = "μs";       // OK, a normal String
- * String unitAbbrev1 = "&#92;u03bcs"; // violation, printable escape character.
- * String unitAbbrev2 = "&#92;u03bc&#92;u03bc&#92;u03bc"; // violation, printable escape character.
- * String unitAbbrev3 = "&#92;u03bc&#92;u03bcs";// violation, printable escape character.
- * return '&#92;ufeff' + content;           // OK, non-printable escape character.
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -311,6 +230,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes for non-printable, control characters.
      *
      * @param allow user's value.
+     * @since 5.8
      */
     public final void setAllowEscapesForControlCharacters(boolean allow) {
         allowEscapesForControlCharacters = allow;
@@ -320,6 +240,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes if trail comment is present.
      *
      * @param allow user's value.
+     * @since 5.8
      */
     public final void setAllowByTailComment(boolean allow) {
         allowByTailComment = allow;
@@ -329,6 +250,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow if all characters in literal are escaped.
      *
      * @param allow user's value.
+     * @since 5.8
      */
     public final void setAllowIfAllCharactersEscaped(boolean allow) {
         allowIfAllCharactersEscaped = allow;
@@ -338,6 +260,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * Setter to allow use escapes for non-printable, whitespace characters.
      *
      * @param allow user's value.
+     * @since 5.8
      */
     public final void setAllowNonPrintableEscapes(boolean allow) {
         allowNonPrintableEscapes = allow;

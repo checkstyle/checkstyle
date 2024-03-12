@@ -88,14 +88,16 @@
     </section>
 
     <section name="Development Cycle">
-      <p>
-        <b>Releases will happen at the end of each month</b>
-        if functional changes exist in the
-        <a href="https://github.com/checkstyle/checkstyle/commits/master">
-            master branch of our repo</a>.
-        For the exact day, please follow our
-        <a href="https://github.com/checkstyle/checkstyle/milestones">milestones</a>.
-      </p>
+      <b>Release:</b><br/>
+      <ul>
+        <li>happens at the end of each month if functional changes exist in the
+          <a href="https://github.com/checkstyle/checkstyle/commits/master">
+          master branch of our repo</a>
+        </li>
+        <li>can happen by request by any user who is impacted,
+          but it is not always guaranteed.</li>
+      </ul>
+
       <p>
         Checkstyle is following own view of
           Hybrid Romantic and Semantic Versioning: This is in the form of
@@ -405,23 +407,6 @@
             </tr>
             <tr>
               <td>
-                <a href="https://stickler-ci.com/">Stickler CI</a>
-              </td>
-              <td>Mark Story</td>
-              <td>
-                <a href="https://stickler-ci.com/docs#java">
-                  Built in
-                </a>
-              </td>
-              <td>
-                Provides analysis per pull request as GitHub
-                <a href="https://docs.github.com/en/rest/checks">
-                  Check Run</a>
-                annotations. Supports CheckStyle config files.
-              </td>
-            </tr>
-            <tr>
-              <td>
                 <a href="https://github.com/nikitasavinov/checkstyle-action#checkstyle-github-action">
                 Checkstyle GitHub Actions</a>
               </td>
@@ -457,7 +442,7 @@
               <td/>
             </tr>
             <tr>
-              <td><a href="https://netbeans.apache.org/">NetBeans</a></td>
+              <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
               <td>Petr Hejl</td>
               <td>
                 <a href="https://www.sickboy.cz/checkstyle/">Checkstyle Beans</a>
@@ -468,7 +453,7 @@
               </td>
             </tr>
             <tr>
-              <td><a href="https://netbeans.apache.org/">NetBeans</a></td>
+              <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
               <td/>
               <td>
                 <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
@@ -545,11 +530,19 @@
                   in your repository sources, and apply their related linters. Available as GitHub
                   Action, other CI tools and locally</td>
             </tr>
+            <tr>
+              <td>
+                <a href="https://rife2.com/bld">bld</a>
+              </td>
+              <td>Erik C. Thauvin</td>
+              <td><a href="https://github.com/rife2/bld-checkstyle">Checkstyle Extension</a> for bld</td>
+              <td>An extension for checking source code in a bld project</td>
+            </tr>
           </table>
         </div>
       </subsection>
 
-      <subsection name="Inactive / Old Tools" id="Related_Tools_Inactive_Old_Tools">
+      <subsection name="Inactive or Old Tools" id="Related_Tools_Inactive_or_Old_Tools">
         <div class="wrapper">
           <table>
             <tr>

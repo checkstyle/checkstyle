@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
@@ -37,16 +36,17 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableSet;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+// -@cs[ClassDataAbstractionCoupling] No way to split up class usage.
 public class JavaAstVisitorTest extends AbstractModuleTestSupport {
 
     /**
@@ -88,7 +88,12 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitClassType",
             "visitClassOrInterfaceTypeExtended",
             "visitQualifiedNameExtended",
-            "visitGuard"
+            "visitGuard",
+
+            // until https://github.com/checkstyle/checkstyle/issues/14195
+            "visitTemplate",
+            // handled as a list in the parent rule
+            "visitStringTemplateMiddle"
     );
 
     @Override
@@ -107,16 +112,16 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .filter(method -> method.getName().contains("visit"))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toUnmodifiableSet());
 
-        final ImmutableSet<String> filteredVisitMethodNames = Arrays.stream(visitMethods)
+        final Set<String> filteredVisitMethodNames = Arrays.stream(visitMethods)
                 .filter(method -> method.getName().contains("visit"))
                 // remove overridden 'visit' method from ParseTreeVisitor interface in
                 // JavaAstVisitor
                 .filter(method -> !"visit".equals(method.getName()))
                 .filter(method -> method.getModifiers() == Modifier.PUBLIC)
                 .map(Method::getName)
-                .collect(toImmutableSet());
+                .collect(Collectors.toUnmodifiableSet());
 
         final String message = "Visit methods in 'JavaLanguageParserBaseVisitor' generated from "
                 + "production rules and labeled alternatives in 'JavaLanguageParser.g4' should "
@@ -237,7 +242,9 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         final String fullText = contents.getText().getFullText().toString();
         final CharStream codePointCharStream = CharStreams.fromString(fullText);
         final JavaLanguageLexer lexer = new JavaLanguageLexer(codePointCharStream, true);
+        final CompositeLexerContextCache contextCache = new CompositeLexerContextCache(lexer);
         lexer.setCommentListener(contents);
+        lexer.setContextCache(contextCache);
 
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final JavaLanguageParser parser = new JavaLanguageParser(tokenStream);

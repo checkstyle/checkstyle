@@ -18,12 +18,19 @@ checkForVariable "REPOSITORY_OWNER"
 echo "PR_NUMBER=$PR_NUMBER"
 echo "AWS_FOLDER_LINK=$AWS_FOLDER_LINK"
 
-# Extract a list of the changed xdocs in the pull request. For example 'src/xdocs/config_misc.xml'.
-CHANGED_XDOCS_PATHS=$(curl --fail-with-body -Ls \
+GITHUB_API_RESPONSE=$(curl --fail-with-body -Ls \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $GITHUB_TOKEN" \
-  "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100" |
-  jq -r ".[] | .filename" | grep src/xdocs/ || true)
+  "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100")
+echo "GITHUB_API_RESPONSE=$GITHUB_API_RESPONSE"
+
+# Extract a list of the changed xdocs in the pull request. For example 'src/xdocs/config_misc.xml'.
+# We ignore template files and deleted files.
+CHANGED_XDOCS_PATHS=$(echo "$GITHUB_API_RESPONSE" \
+  | jq -r '.[] | select(.status != "removed") | .filename' \
+  | grep src/xdocs/ \
+  | grep -v '.*xml.template$' \
+  || true)
 echo "CHANGED_XDOCS_PATHS=$CHANGED_XDOCS_PATHS"
 
 if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
@@ -59,8 +66,9 @@ do
   # Read the file from the earliest change to the top. It would read first row 90, then 89, 88..1.
   done < <(head -n "$EARLIEST_CHANGE_LINE_NUMBER" "$CURRENT_XDOC_PATH" | tac)
 
-  # Extract file name from path, i.e. 'config_misc'.
-  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/')
+  # Extract file name from path, i.e. 'config_misc' and remove '.vm' if it exists.
+  CURRENT_XDOC_NAME=$(echo "$CURRENT_XDOC_PATH" | sed 's/src\/xdocs\/\(.*\)\.xml/\1/' \
+    | sed 's/.vm//')
   echo "CURRENT_XDOC_NAME=$CURRENT_XDOC_NAME"
 
   echo "" >> .ci-temp/message # Add new line between each xdoc link.

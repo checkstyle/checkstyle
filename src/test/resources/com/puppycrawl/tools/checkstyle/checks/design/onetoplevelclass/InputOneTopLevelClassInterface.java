@@ -6,6 +6,6 @@ OneTopLevelClass
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-public interface InputOneTopLevelClassInterface { // ok
+public interface InputOneTopLevelClassInterface {
     int foo();
 }

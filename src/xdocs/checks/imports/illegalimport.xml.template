@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalImport</title>
+  </head>
+  <body>
+    <section name="IllegalImport">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for imports from a set of illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          Note: By default, the check rejects all <code>sun.*</code> packages since
+          programs that contain direct calls to the <code>sun.*</code> packages are
+          <a href="https://www.oracle.com/java/technologies/faq-sun-packages.html">
+          "not guaranteed to work on all Java-compatible platforms"</a>.
+          To reject other packages, set property <code>illegalPkgs</code> to
+          a list of the illegal packages.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check so that it rejects packages <code>java.io.*</code>
+          and <code>java.sql.*</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+            The following example shows class with no illegal imports
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-code">
+          The following example shows class with two illegal imports
+        </p>
+        <ul>
+          <li><b>java.io.*</b>, illegalPkgs property contains this package</li>
+          <li><b>java.sql.Connection</b> is inside java.sql package</li>
+        </ul>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example4-config">
+          To configure the check so that it rejects classes <code>java.util.Date</code> and
+          <code>java.sql.Connection</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          The following example shows class with no illegal imports
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-code">
+          The following example shows class with two illegal imports
+        </p>
+        <ul>
+          <li><b>java.sql.Connection</b>, illegalClasses property contains this class</li>
+          <li><b>java.util.Date</b>, illegalClasses property contains this class</li>
+        </ul>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example5.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example6-config">
+          To configure the check so that it rejects packages not satisfying to regular
+          expression <code>java\.util</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          The following example shows class with no illegal imports
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          The following example shows class with four illegal imports
+        </p>
+        <ul>
+          <li><b>java.util.List</b></li>
+          <li><b>java.util.Enumeration</b></li>
+          <li><b>java.util.Arrays</b></li>
+          <li><b>java.util.Date</b></li>
+        </ul>
+        <p id="Example7-code">
+          All four imports match "java\.util" regular expression
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example7.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example8-config">
+          To configure the check so that it rejects class names not satisfying to regular
+          expression <code>^java\.util\.(List|Arrays)</code> and
+          <code>^java\.sql\.Connection</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          The following example shows class with no illegal imports
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example8.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-code">
+          The following example shows class with three illegal imports
+        </p>
+        <ul>
+          <li><b>java.sql.Connection</b> matches "^java\.sql\.Connection" regular expression</li>
+          <li><b>java.util.List</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+          <li><b>java.util.Arrays</b> matches "^java\.util\.(List|Arrays)" regular expression</li>
+        </ul>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example9.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalImport">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="IllegalImport"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="IllegalImport"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

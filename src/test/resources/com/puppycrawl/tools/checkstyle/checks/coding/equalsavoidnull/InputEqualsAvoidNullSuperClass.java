@@ -15,7 +15,7 @@ class DerivedClass extends InputEqualsAvoidNullSuperClass {
    protected String classField = "DEF";
 
     void m1() {
-        if (this.stringFromBaseClass.equals("JKHKJ")) { // ok
+        if (this.stringFromBaseClass.equals("JKHKJ")) {
         }
     }
 

@@ -19,6 +19,6 @@ public class InputInnerAssignmentLambdaExpressions {
     }
     private void setAction() {
         MyButton button = new MyButton();
-        button.setOnAction(e -> { boolean pressed = true; });  // ok
+        button.setOnAction(e -> { boolean pressed = true; });
     }
 }

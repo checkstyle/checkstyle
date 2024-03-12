@@ -1,0 +1,37 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocType">
+      <property name="authorFormat" value="\S"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class ClassA { // OK
+    /** */
+    private class ClassB {} // OK, as author tag check is ignored for inner class
+}
+
+/**
+ * @author
+ * @version abc
+ * @unknownTag value // violation
+ */
+public class ClassC {} // violation, as author format with only whitespace or new line is invalid
+
+/** */
+public class ClassD {} // violation, as author tag is missing
+
+/** */
+private class ClassE {} // violation, as author tag is missing
+
+/** */
+@Generated
+public class ClassF<T> {} // OK
+// xdoc section -- end

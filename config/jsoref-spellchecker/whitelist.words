@@ -18,21 +18,19 @@ Aconfig
 actionlint
 addons
 adf
-adoptium
-adoptopenjdk
+admins
 adr
 AFilter
 aggregators
-Agoogle
 allchecks
 allclasses
 alot
 amazonaws
-Amessages
 androidx
 annotationlocation
 annotationonsameline
 annotationusestyle
+annotationutil
 anoninner
 anoninnerlength
 antfile
@@ -56,8 +54,6 @@ Arquillian
 arraycopy
 arraytrailingcomma
 arraytypestyle
-artifactory
-asc
 asda
 ASF
 Aspectj
@@ -65,7 +61,6 @@ Asrc
 assertj
 ASTNo
 asttreestringprinter
-Asun
 atclause
 atclauseorder
 ATest
@@ -108,7 +103,6 @@ basetag
 baz
 bbb
 bc
-BClass
 bdc
 bdd
 bdo
@@ -116,6 +110,7 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
+binded
 bitbucket
 bjrke
 bleh
@@ -132,7 +127,6 @@ Bludov
 BNOT
 booleanexpressioncomplexity
 bothfiles
-bountysource
 Bpmn
 bracesareused
 breadcrumbs
@@ -159,7 +153,6 @@ catchparametername
 cba
 cbeaff
 ccc
-CClass
 CComments
 cdata
 cde
@@ -192,7 +185,6 @@ CHDHGJGD
 CHDHJECF
 CHDJBFDB
 checkchmod
-checkconfig
 checkerframework
 checkstyle
 checkstyleanttask
@@ -202,6 +194,7 @@ chmod
 chr
 ci
 cimg
+Cinit
 circleci
 cirrusci
 classdataabstractioncoupling
@@ -227,7 +220,6 @@ codeclimate
 codeconventions
 codecov
 codehaus
-codename
 codenarc
 codeql
 codeselectorpresentation
@@ -288,6 +280,7 @@ dcm
 Dconnection
 Ddry
 declarationorder
+Deconstruction
 defau
 defaultcasepresent
 defaultcomeslast
@@ -303,7 +296,6 @@ designforextension
 destfile
 Destructuring
 detailast
-detailastimpl
 detailnodetreestringprinter
 devops
 Dexec
@@ -327,13 +319,14 @@ Dnew
 doccheck
 Dockter
 doclet
-DOCTYPE
+doctype
 documentationcomments
 donotignoreexceptions
 Dorekit
 Dorg
 DOTALL
 doubletag
+doxia
 Dpi
 Dpmd
 Dpom
@@ -346,6 +339,7 @@ dsm
 Dsonar
 Dspotbugs
 Dstrict
+Dsurefire
 Dtag
 Dtest
 Dubinin
@@ -380,6 +374,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+ENMI
 ent
 enum
 eol
@@ -425,6 +420,7 @@ ffd
 fff
 FFFD
 FFFF
+Fgoogle
 Fheader
 fht
 fieldset
@@ -447,6 +443,7 @@ finallocalvariable
 finalparameters
 findbugs
 Findentation
+findstr
 firefox
 firstsentence
 FIXME
@@ -455,6 +452,7 @@ Fjavadoc
 Flas
 flattr
 Fmain
+Fmessages
 Fmetrics
 Fmodifier
 FModule
@@ -470,6 +468,7 @@ Fresources
 Frob
 fsc
 Fsizes
+Fsun
 Ftl
 Ftools
 ftp
@@ -477,6 +476,7 @@ ftpclient
 fullident
 fullname
 func
+funmodifiablecollection
 Fwhitespace
 Fx
 gav
@@ -542,7 +542,6 @@ hne
 homepage
 horizontalwhitespace
 Hostname
-hotspot
 href
 htaccess
 htag
@@ -551,6 +550,7 @@ html
 HTMLJS
 htmlunit
 http
+httpcomponents
 hurz
 hyperlinks
 iae
@@ -684,6 +684,7 @@ jhu
 jide
 jidesoft
 jira
+JIs
 jitpack
 jkl
 JLabel
@@ -734,7 +735,6 @@ kclee
 KDoc
 keygen
 keyname
-keyrings
 keyscan
 konstantinos
 Kordas
@@ -774,7 +774,6 @@ lombok
 lookaround
 Loughran
 lparen
-lsb
 lucene
 lui
 luiframework
@@ -784,7 +783,7 @@ magicnumber
 mailhost
 mailto
 mainframemodel
-mancuso
+Mancuso
 mapfile
 marazmatic
 markdownlint
@@ -812,7 +811,6 @@ microsoft
 minimalistic
 Mipmap
 misconfigured
-Misordered
 missingctor
 missingdeprecated
 missingjavadocmethod
@@ -857,12 +855,12 @@ mycompany
 mycompanychecks
 mycustom
 myfile
-MYN
 myname
 myproject
 Mysql
 mytag
 NAMEFILE
+nameofaffectedcheck
 namespace
 Nanos
 navcolumn
@@ -940,6 +938,7 @@ npath
 npathcomplexity
 npe
 npm
+nrmancuso
 nts
 NTU
 NULLCHECK
@@ -1010,6 +1009,7 @@ parameternumber
 paramnum
 Parcelable
 parenpad
+PARM
 parrt
 parsetreetablepresentation
 Passembly
@@ -1054,6 +1054,7 @@ Popup
 Postgresql
 ppc
 prebuilts
+prefs
 PRESIZE
 printf
 println
@@ -1175,7 +1176,9 @@ separatorwrap
 SERIALVERSIONUID
 servlet
 SETPOINT
+severitymatchfilter
 sevntu
+shanegenschaw
 shellcheck
 shengchen
 Shiell
@@ -1183,7 +1186,6 @@ sickboy
 Simplifiable
 simplifybooleanexpression
 simplifybooleanreturn
-simplifystartswith
 singleline
 singlelined
 singlelinejavadoc
@@ -1290,11 +1292,13 @@ td
 teamcity
 technotes
 tected
+temurin
 Testik
 testmodules
 textlevel
 Tfo
 tfoot
+Thauvin
 thead
 thesummaryfragment
 thetaphi
@@ -1305,11 +1309,14 @@ throwscount
 Thymeleaf
 tidelift
 TKN
+Tls
 tmp
+tmpdir
 tngtech
 toc
 todo
 todocomment
+Tokencom
 tokenizer
 tokennizer
 tokentype
@@ -1318,6 +1325,7 @@ Toolbar
 TOSTRING
 Touchscreen
 trailingcomment
+Treecom
 treelayout
 treemap
 treeset

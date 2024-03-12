@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocMethod">
+      <property name="scope" value="private"/>
+      <property name="excludeScope" value="protected"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  private void test1() {} // violation, the private method is missing javadoc
+  /**
+   * Some description here
+   */
+  private void test1() {} // OK
+  protected void test2() {} // OK
+}
+// xdoc section -- end

@@ -9,7 +9,7 @@ tokens = (default)CLASS_DEF
 //non-compiled with javac: compiling on jdk before 9
 package java.lang;
 
-class InputIllegalInstantiationLang2 { // ok
+class InputIllegalInstantiationLang2 {
     Boolean obj = new Boolean();
     Integer obj2 = new Integer();
 }

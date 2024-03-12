@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="Header">
+    <property name="headerFile" value="config/java.header"/>
+    <property name="ignoreLines" value="2, 3, 4"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

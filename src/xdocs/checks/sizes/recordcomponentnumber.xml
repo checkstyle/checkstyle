@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RecordComponentNumber</title>
+  </head>
+  <body>
+    <section name="RecordComponentNumber">
+      <p>Since Checkstyle 8.36</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the number of record components in the
+          <a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1">
+          header
+          </a>
+          of a record definition.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>accessModifiers</td>
+              <td>Access modifiers of record definitions where the number of record components should be checked.</td>
+              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><code>public, protected, package, private</code></td>
+              <td>8.36</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of components allowed in the header of a record definition.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>8</code></td>
+              <td>8.36</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Java code example:
+        </p>
+        <source>
+public record MyRecord1(int x, int y) { // ok, 2 components
+   ...
+}
+
+record MyRecord2(int x, int y, String str,
+                         Node node, Order order, Data data
+                         String location, Date date, Image image) { // violation, 9 components
+   ...
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check to allow 5 record components at all access modifier
+          levels for record definitions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;5&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Java code example:
+        </p>
+        <source>
+public record MyRecord1(int x, int y, String str) { // ok, 3 components
+   ...
+}
+
+public record MyRecord2(int x, int y, String str,
+                         Node node, Order order, Data data) { // violation, 6 components
+   ...
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check to allow 10 record components for a public record definition,
+          but 3 for private record definitions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;private&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;RecordComponentNumber&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Java code example:
+        </p>
+        <source>
+public record MyRecord1(int x, int y, String str) { // ok, public record definition allowed 10
+   ...
+}
+
+private record MyRecord2(int x, int y, String str, Node node) { // violation
+   ...                                // private record definition allowed 3 components
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentNumber">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.components%22">
+              too.many.components
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

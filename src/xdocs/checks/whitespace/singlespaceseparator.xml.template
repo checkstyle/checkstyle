@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SingleSpaceSeparator</title>
+  </head>
+  <body>
+    <section name="SingleSpaceSeparator">
+      <p>Since Checkstyle 6.19</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that non-whitespace characters are separated by no more than one
+          whitespace. Separating characters by tabs or multiple spaces will be
+          reported. Currently, the check doesn't permit horizontal alignment. To inspect
+          whitespaces before and after comments, set the property
+          <code>validateComments</code> to true.
+        </p>
+
+        <p>
+          Setting <code>validateComments</code> to false will ignore cases like:
+        </p>
+
+        <source>
+int i;  // Multiple whitespaces before comment tokens will be ignored.
+private void foo(int  /* whitespaces before and after block-comments will be
+ignored */  i) {
+        </source>
+
+        <p>
+          Sometimes, users like to space similar items on different lines to the same
+          column position for easier reading. This feature isn't supported by this
+          check, so both braces in the following case will be reported as violations.
+        </p>
+
+        <source>
+public long toNanos(long d)  { return d;             } // 2 violations
+public long toMicros(long d) { return d / (C1 / C0); }
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SingleSpaceSeparatorCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check so that it validates comments:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="SingleSpaceSeparator"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SingleSpaceSeparator"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -16,7 +16,7 @@ public class InputLeftCurlyWithTrimOptionProperty {
     {}
 
     static class Inner
-    { // ok
+    {
         static { // violation ''{' at column 16 should be on a new line'
             int i = 1;
         }

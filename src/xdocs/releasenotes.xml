@@ -10,6 +10,1321 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.14.1">
+      <div class="releaseDate">11.03.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Performance regression from 10.12.4 to 10.13.0.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14566">#14566</a>
+          </li>
+          <li>
+            False positive in RightCurly with &#39;alone_or_singleline&#39; RightCurlyOption in
+            try/catch.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12020">#12020</a>
+          </li>
+          <li>
+            some messages are still hardcoded in english.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+          <li>
+            False positive error from JavadocType with record.
+            Author: sktpy
+            <a href="https://github.com/checkstyle/checkstyle/issues/13309">#13309</a>
+          </li>
+          <li>
+            VariableDeclarationUsageDistance: no violation to move variables closer to block.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/3502">#3502</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enable examples tests.
+            Author: Minghao Li, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Minghao Li, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Minghao Li, DevangJagdale, pinti0001, Omar Shawky, 555vedant,
+            Raja Raghu Ram Pydi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Rename Java Input files and test methods to specify Test functionality.
+            Author: pinti0001, Abhishek Maity, MANISH-K-07, CubeTures
+            <a href="https://github.com/checkstyle/checkstyle/issues/14436">#14436</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            doc: Updated description and docs of TextBlock.
+            Author: MANISH-K-07
+          </li>
+          <li>
+            inconsistent documentation for TEXT_BLOCK_abc token types.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/12491">#12491</a>
+          </li>
+          <li>
+            Excludes for createTempFile forbidden method .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14465">#14465</a>
+          </li>
+          <li>
+            doc: Update TokenTypes link to be more specific.
+            Author: MANISH-K-07
+          </li>
+          <li>
+            update TokenTypes.java to new format of AST print.
+            Author: SteLeo1602, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14516">#14516</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            AbstractXpathTestSupport does not support generating multiple xpath suppressions.
+            Author: Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/14435">#14435</a>
+          </li>
+          <li>
+            move AllBlockCommentTest and AllSinglelineCommentsTest to AST Tests.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14518">#14518</a>
+          </li>
+          <li>
+            doc: fix line length violation in releasenotes.xml.
+            Author: mahfouz72
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.14.0">
+      <div class="releaseDate">28.02.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Checkstyle fails to parse unnamed variable.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13988">#13988</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            GenericWhitespace Check ignores exception to the &quot;&gt;&quot; rule for succeeding
+            whitespaces.
+            Author: sktpy
+            <a href="https://github.com/checkstyle/checkstyle/issues/14344">#14344</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Aye Nyein San, biplavoraon, mahfouz72, Abhishek Maity, SteLeo1602,
+            akanksha, MANISH-K-07, Tahanima Chowdhury, CubeTures
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Update Codenarc to highest compatible release - v2.2.0.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14556">#14556</a>
+          </li>
+          <li>
+            Remove UnmodifiableCollectionUtil and use pitest funmodifiablecollection feature.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/14482">#14482</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            improve text block grammar.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14503">#14503</a>
+          </li>
+          <li>
+            checker-framework.yml should be able to fail execution if report generation is failed.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14396">#14396</a>
+          </li>
+          <li>
+            upadat example in javadoc for EMBEDDED_EXPRESSION* tokens.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14317">#14317</a>
+          </li>
+          <li>
+            doc: mention text block suppression.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Rename Java Input files and test methods to specify Test functionality.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14436">#14436</a>
+          </li>
+          <li>
+            infra: should use release 11 for compilation.
+            Author: Michael Keppler
+            <a href="https://github.com/checkstyle/checkstyle/issues/14485">#14485</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Coding-Aliens, sktpy, mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: mahfouz72, MANISH-K-07, ChristianCecili
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Execute all checkstyle samples in each PR execution.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12558">#12558</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: mahfouz72, piyush bakde, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: mahfouz72, Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Forbid Files.createTempDirectory in Checkstyle and replace with @TempDir.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14220">#14220</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: mahfouz72, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Expanding maxmem to resolve OOM Exception (Checker checks).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14346">#14346</a>
+          </li>
+          <li>
+            doc: fix releasenotes.xml line length violation.
+            Author: Nick Mancuso
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.13.0">
+      <div class="releaseDate">28.01.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            IllegalTokenText support for STRING_TEMPLATE_CONTENT.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14289">#14289</a>
+          </li>
+          <li>
+            Support Java 21 string template syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13830">#13830</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            &quot;Unable to persist cache file&quot; if target directory is a symlink.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/12238">#12238</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce file size on Java inputs.
+            Author: sktpy, mahfouz72, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Gahlot Kapil, Coding-Aliens, sktpy, Mauryan Kansara, Rohanraj123,
+            Charisma Kausar
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Coding-Aliens, mahfouz72, sktpy, Charisma Kausar, MANISH-K-07,
+            ChristianCecili, Tahanima Chowdhury
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Coding-Aliens, sktpy, Tanay, Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti, Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            CustomImportOrder property &#39;customImportOrderRules&#39; should be String[].
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14216">#14216</a>
+          </li>
+          <li>
+            PropertyCacheFileTest Failing: 3 Test Methods Failing Along With
+            testSymbolicLinkResolution() Causing Issue.
+            Author: dependabot[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/14219">#14219</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: Tanay Morakhia, Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            Make Checkstyle an (automatic) module.
+            Author: Frank Ulbricht
+            <a href="https://github.com/checkstyle/checkstyle/issues/14120">#14120</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.7">
+      <div class="releaseDate">31.12.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positive in MissingSwitchDefault for switch statement where null label is present.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/14068">#14068</a>
+          </li>
+          <li>
+            HiddenField false positive on inner records.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/14028">#14028</a>
+          </li>
+          <li>
+            Indentation: split line new array not checked.
+            Author: plan3d
+            <a href="https://github.com/checkstyle/checkstyle/issues/3132">#3132</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: Suniti, piyush bakde, Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Add support to our Inputs for lines with multiple violations.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13307">#13307</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Tarun Alapati
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Transitive dependency rejection after Guava upgrade to 32.1.3-jre.
+            Author: Christopher Lambert
+            <a href="https://github.com/checkstyle/checkstyle/issues/14123">#14123</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: mahfouz72, Andrei Yusupau, Tarun Alapati, Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            File name too long error.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14129">#14129</a>
+          </li>
+          <li>
+            Update CI to have Maven Version 3.8.8, update min required maven version in pom to
+            3.6.3 .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13970">#13970</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.6">
+      <div class="releaseDate">07.12.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Regexp: violation pointing to line 0 while other Checks count first line as 1.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/14064">#14064</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: piyush bakde, Pubudu Fernando
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Update CI to have Maven Version 3.8.8, update min required maven version in pom to
+            3.5.4 .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13970">#13970</a>
+          </li>
+          <li>
+            Fix typo in Indentation check for word &#39;initialisation&#39;.
+            Author: Redeem-Grimm-Satoshi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13783">#13783</a>
+          </li>
+          <li>
+            Remove ArchUnit FreezingArchRule as it unstable to skip line numbers and any other
+            extra changes .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14053">#14053</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: rishivardhanm, Yukai Xiao
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            use valid SPDX license identifier.
+            Author: Michael Keppler
+            <a href="https://github.com/checkstyle/checkstyle/issues/13889">#13889</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Re-enable ArchUnit Testing.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13544">#13544</a>
+          </li>
+          <li>
+            Surefire test exclusion can cause NoClassDefFoundError on case-insensitive file system.
+            Author: Stephan Schroevers
+            <a href="https://github.com/checkstyle/checkstyle/issues/14042">#14042</a>
+          </li>
+          <li>
+            migrate SuppressWarningsHolder to use property macro.
+            Author: piyush kumar sadangi, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13839">#13839</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            doc: add direct link to check.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 4.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13672">#13672</a>
+          </li>
+          <li>
+            Migrate magicnumber.xml.template to use properties template.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13930">#13930</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.5">
+      <div class="releaseDate">14.11.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentation: Switch expression doesn&#39;t pass with LeftCurlies on newlines.
+            Author: Markus Jung
+            <a href="https://github.com/checkstyle/checkstyle/issues/14014">#14014</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest survivals in modules - 5.
+            Author: Kevin222004, Nick Mancuso, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13809">#13809</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 2.
+            Author: Kevin222004, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13321">#13321</a>
+          </li>
+          <li>
+            Since version is determined incorrectly by property macros at returncount.xml.template.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/13934">#13934</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: piyush kumar sadangi, Tanay Morakhia, Suniti, Tanay, piyush bakde,
+                    Rohanraj123, Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            doc: Added reference to the Checkstyle extension for bld.
+            Author: Erik C. Thauvin
+          </li>
+          <li>
+            Migrate illegaltype.xml.template to use properties template.
+            Author: Suniti, Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13893">#13893</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: Suniti, sushant1987
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Migrate multiplestringliterals.xml.template to use properties template.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13933">#13933</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk21.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13982">#13982</a>
+          </li>
+          <li>
+            Remove call to Lexer#removeErrorListeners.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12186">#12186</a>
+          </li>
+          <li>
+            Migrate DescendantToken to properties macros.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13885">#13885</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: Tanay Morakhia, Suniti, Guneetsinghtuli, Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Update Javadoc checks to avoid // violation in Javadoc comments.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13969">#13969</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            create validation of git status on Windows environments.
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/11816">#11816</a>
+          </li>
+          <li>
+            Improve XdocGenerator to generate file in temp folder and replace xdoc only on success.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13869">#13869</a>
+          </li>
+          <li>
+            Enforce Linux Style End-of-Line (LF instead of CRLF) in all XML files for windows
+            environment..
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/13770">#13770</a>
+          </li>
+          <li>
+            migrate FinalLocalVariable xdoc to use property macro.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13853">#13853</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            SpotBugs: checks a map with containsKey(), before using get().
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13877">#13877</a>
+          </li>
+          <li>
+            migrate IllegalToken to properties macros.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13860">#13860</a>
+          </li>
+          <li>
+            Fix typo in Indentation check for word &#39;initialization&#39;.
+            Author: Suniti
+            <a href="https://github.com/checkstyle/checkstyle/issues/13783">#13783</a>
+          </li>
+          <li>
+            infra: do not allow in-progress site action to be cancelled by skipped run.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13863">#13863</a>
+          </li>
+          <li>
+            Resolve pitest for FinalLocalVariableCheck.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/12671">#12671</a>
+          </li>
+          <li>
+            MacroExecutionException: TypecastParenPadCheck: Failed to find setter javadoc for
+            property &#39;option&#39;.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13867">#13867</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Suniti, Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            migrate to property macros IllegalTokenText .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13859">#13859</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            False Positive and Negative in SummaryJavaDocCheck.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13347">#13347</a>
+          </li>
+          <li>
+            infra: actionlint bad yaml.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13765">#13765</a>
+          </li>
+          <li>
+            Infra: enable dependabot for github actions.
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/12984">#12984</a>
+          </li>
+          <li>
+            &#39;javadoc.unclosedHtml&#39; message is not present in documentation for most Javadoc
+            Checks.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13775">#13775</a>
+          </li>
+          <li>
+            Use violation messages macro in all templates.
+            Author: piyush kumar sadangi, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13627">#13627</a>
+          </li>
+          <li>
+            .vscode folder must be added to .gitignore to avoid getting tracked by git..
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13834">#13834</a>
+          </li>
+          <li>
+            Convert Parent Modules to Macro.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13829">#13829</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 4.
+            Author: Kevin222004, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13672">#13672</a>
+          </li>
+          <li>
+            Node.js 12 actions are deprecated..
+            Author: Aayush
+            <a href="https://github.com/checkstyle/checkstyle/issues/13045">#13045</a>
+          </li>
+          <li>
+            Document ability to use whitespace in array configuration properties.
+            Author: Redeem-Grimm-Satoshi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13650">#13650</a>
+          </li>
+          <li>
+            Create a Checkstyle module to enforce comment formatting in input files.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13797">#13797</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.4">
+      <div class="releaseDate">02.10.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingDeprecated shows unclear message on not closed html tag.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13745">#13745</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest survivals in modules - 5.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13809">#13809</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 4.
+            Author: Vyom-Yadav, Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13672">#13672</a>
+          </li>
+          <li>
+            Assert that properties are ordered alphabetically in xdoc.
+            Author: Stoyan Kostadinov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13666">#13666</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: piyush kumar sadangi, Guneetsinghtuli, Rohanraj123, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: Guneetsinghtuli
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: piyush kumar sadangi, Rohanraj123, Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Surviving pitest mutations for conditions reducing time complexity at
+            PackageObjectFactory.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/11902">#11902</a>
+          </li>
+          <li>
+            Extend `generate-extra-site-links.sh` to not include deleted pages in comments.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13175">#13175</a>
+          </li>
+          <li>
+            Order properties alphabetically in xdocs and javadocs.
+            Author: Stoyan Kostadinov, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13668">#13668</a>
+          </li>
+          <li>
+            Add Examples Macro Support to All Checks.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13732">#13732</a>
+          </li>
+          <li>
+            Typo.
+            Author: Clint-Mathews
+            <a href="https://github.com/checkstyle/checkstyle/issues/13735">#13735</a>
+          </li>
+          <li>
+            Fix Pitest script to recognize unstable mutations.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/13492">#13492</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 3.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13501">#13501</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            Create checks to place violations on missing macros in templates.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13682">#13682</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+          <li>
+            Update Violation Message in Input files for FallThroughCheck.
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/13552">#13552</a>
+          </li>
+          <li>
+            Simplify requirement for what we consider a setter method in
+            ClassAndPropertiesSettersJavadocScraper.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13680">#13680</a>
+          </li>
+          <li>
+            NonEmptyAtclauseDescription examples are cut in website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13660">#13660</a>
+          </li>
+          <li>
+            Move CheckUtil#isGetterMethod and CheckUtil#isSetterMethod to MissingJavadocMethodCheck.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13596">#13596</a>
+          </li>
+          <li>
+            Implement module properties macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13399">#13399</a>
+          </li>
+          <li>
+            Get rid of module javadoc examples.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13429">#13429</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.3">
+      <div class="releaseDate">28.08.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            UnnecessarySemicolonAfterTypeMemberDeclaration throws Exception on on Local Class.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13411">#13411</a>
+          </li>
+          <li>
+            Record pattern causes checkstyle to fail in JDK 20 (preview).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13279">#13279</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Ensure only forward slashes are in relative link to parent module.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13656">#13656</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 3.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13501">#13501</a>
+          </li>
+          <li>
+            Use violation messages macro in all templates.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13627">#13627</a>
+          </li>
+          <li>
+            Use parent module macro in all templates.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13610">#13610</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov, stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules - 2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13321">#13321</a>
+          </li>
+          <li>
+            setup UnnecessaryOkComment module and suppressions (related to….
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13556">#13556</a>
+          </li>
+          <li>
+            CircleCI periodically failing with yml violations on site.yml.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13567">#13567</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Update doc of FallThroughCheck to use same java snippet example .
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/12974">#12974</a>
+          </li>
+          <li>
+            Create templates from xdocs.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13498">#13498</a>
+          </li>
+          <li>
+            Exclude xdocs from line length validation and validate templates instead.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13499">#13499</a>
+          </li>
+          <li>
+            Remove from EmptyLineSeparator documentation attention note about no xpath suppression
+            support .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/13506">#13506</a>
+          </li>
+          <li>
+            Implement parent module macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13434">#13434</a>
+          </li>
+          <li>
+            Add a test to ensure examples have a paragraph with an id before them.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13428">#13428</a>
+          </li>
+          <li>
+            Restore usage of TreeSet.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13505">#13505</a>
+          </li>
+          <li>
+            Implement module violation messages macro.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13422">#13422</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            Move all example tests to extend `AbstractExamplesModuleTestSupport`.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13496">#13496</a>
+          </li>
+          <li>
+            Add `@since` in javadoc of each property setter.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13421">#13421</a>
+          </li>
+          <li>
+            Add links to examples paragraphs.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13205">#13205</a>
+          </li>
+          <li>
+            Fix package/resource location in example tests.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13484">#13484</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.2">
+      <div class="releaseDate">30.07.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FinalClassCheck should report private classes without constructor.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11338">#11338</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve pitest survivals in modules - 2.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13321">#13321</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: Stoyan Kostadinov, stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Add `@since` in javadoc of each property setter.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13421">#13421</a>
+          </li>
+          <li>
+            Implement examples macro and xdoc template parser.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13134">#13134</a>
+          </li>
+          <li>
+            Update doc of FallThroughCheck to use same java snippet example .
+            Author: Kumar Kalpadiptya Roy
+            <a href="https://github.com/checkstyle/checkstyle/issues/12974">#12974</a>
+          </li>
+          <li>
+            update link check to only check internal links in PRs.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13397">#13397</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk20.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/13402">#13402</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: Kumar Kalpadiptya Roy, sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            Restore xdoc-javadoc validation.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13362">#13362</a>
+          </li>
+          <li>
+            Extend `getXdocsFilePaths` to gather `.xml.vm` files and get rid of
+            `getAllXdocFilePaths`.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13389">#13389</a>
+          </li>
+          <li>
+            Move section comments to include whole examples and shorten xml configs length.
+            Author: Stoyan Kostadinov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13394">#13394</a>
+          </li>
+          <li>
+            Test inputs should be completely standalone..
+            Author: sd9616
+            <a href="https://github.com/checkstyle/checkstyle/issues/4845">#4845</a>
+          </li>
+          <li>
+            Targeted Pitest Mutation in July 2023.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13328">#13328</a>
+          </li>
+          <li>
+            doc: update VisibilityModifier examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolve pitest survivals in modules.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13109">#13109</a>
+          </li>
+          <li>
+            maven site plugin is failing to execute site goal with compiler plugin 3.11.0.
+            Author: dependabot[bot]
+            <a href="https://github.com/checkstyle/checkstyle/issues/12784">#12784</a>
+          </li>
+          <li>
+            Write a test to ensure checks are present in menu.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13301">#13301</a>
+          </li>
+          <li>
+            Resolves Pitest for VariableDeclarationUsageDistanceCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13095">#13095</a>
+          </li>
+          <li>
+            Rendering issues with website.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13304">#13304</a>
+          </li>
+          <li>
+            BDD configuration comments should be in XML.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/12155">#12155</a>
+          </li>
+          <li>
+            Update issue template after split of website to use individual page for module.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13310">#13310</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.1">
+      <div class="releaseDate">25.06.2023</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SimplifyBooleanExpressionCheck throw NullPointerException while checking ternary
+            operator.
+            Author: Sebastien
+            <a href="https://github.com/checkstyle/checkstyle/issues/13140">#13140</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Move Filters and File Filters to be a sibling of Checks in site menu.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13283">#13283</a>
+          </li>
+          <li>
+            Create tests from xdoc examples.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13100">#13100</a>
+          </li>
+          <li>
+            Remove redundant check name in anchor.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13288">#13288</a>
+          </li>
+          <li>
+            Resolve pitest survivals in modules.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13109">#13109</a>
+          </li>
+          <li>
+            Extend checkstyle-examples-checks.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13244">#13244</a>
+          </li>
+          <li>
+            Split modules&#39; xdoc into separate pages.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13097">#13097</a>
+          </li>
+          <li>
+            Create separate ant-phase-verify execution for xdocs-examples.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13116">#13116</a>
+          </li>
+          <li>
+            Mobile page rendering requires extra font difference for properties .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13195">#13195</a>
+          </li>
+          <li>
+            Ensure category index page tables are in sync with checks.xml page table.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13285">#13285</a>
+          </li>
+          <li>
+            Fail linkcheck on internal broken site link.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13176">#13176</a>
+          </li>
+          <li>
+            Fix broken anchors in subdirectories/subpages.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13190">#13190</a>
+          </li>
+          <li>
+            doc: update AbstractClassName examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolve pitest for FinalLocalVariableCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/12671">#12671</a>
+          </li>
+          <li>
+            Resolves Pitest for VariableDeclarationUsageDistanceCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13095">#13095</a>
+          </li>
+          <li>
+            doc: update ConstantName examples to match tests.
+            Author: stoyanK7
+          </li>
+          <li>
+            Resolves Pitest for DeclarationOrderCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13102">#13102</a>
+          </li>
+          <li>
+            Resolves Pitest for AbstractSuperCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/13108">#13108</a>
+          </li>
+          <li>
+            Create initial xdocs-test folder structure.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13105">#13105</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.12.0">
+      <div class="releaseDate">27.05.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Support record patterns (preview-feature in Java 19) as described by JEP 405.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/12507">#12507</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Improve code coverage for GUI classes.
+            Author: Dami Lee, alimhtsai, “MrPatchz”
+            <a href="https://github.com/checkstyle/checkstyle/issues/11514">#11514</a>
+          </li>
+          <li>
+            Broken Link: Github search links are broken in documentation.
+            Author: shamith2
+            <a href="https://github.com/checkstyle/checkstyle/issues/13059">#13059</a>
+          </li>
+          <li>
+            LineLength check documentation incorrectly shows how to work with tabWidth property .
+            Author: shamith2
+            <a href="https://github.com/checkstyle/checkstyle/issues/13005">#13005</a>
+          </li>
+          <li>
+            Update doc for UnusedImports.
+            Author: Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/13007">#13007</a>
+          </li>
+          <li>
+            Specify violation messages in input files.
+            Author: “MrPatchz”
+            <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+          </li>
+          <li>
+            .ci/pitest.sh --list doesn&#39;t show all pitest profiles on Mac.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/13063">#13063</a>
+          </li>
+          <li>
+            doc: new release cycle.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Site Action generate bad link to index page.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13054">#13054</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 10.11.0">
+      <div class="releaseDate">10.05.2023</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            False Negative: UnnecessaryParenthesesCheck.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11109">#11109</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            VariableDeclarationUsageDistance not able to handle try with resources properly.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/11968">#11968</a>
+          </li>
+          <li>
+            Not last return javadoc tag cause parse error.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12864">#12864</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Kill survivng mutation in DefaultComesLastCheck.java.
+            Author: jxr98
+            <a href="https://github.com/checkstyle/checkstyle/issues/12889">#12889</a>
+          </li>
+          <li>
+            make_report has warning on deprecation .
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13031">#13031</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.10.0">
       <div class="releaseDate">26.04.2023</div>
       <p>New:</p>
@@ -3230,7 +4545,7 @@ Azure.
           <li>
             Refactor input files in check tests. 102 Check tests were updated.
             Author: Shashwat Jaiswal
-            <a href="Refactor input files in check tests">#10080</a>
+            <a href="https://github.com/checkstyle/checkstyle/issues/10080">#10080</a>
           </li>
           <li>
             Add Configuration.getPropertyNames and Configuration.getProperty and

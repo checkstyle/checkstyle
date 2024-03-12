@@ -22,7 +22,7 @@ import java.util.List; //#2
 import java.util.StringTokenizer; //#3
 import java.util.concurrent.*; //#4
 import java.util.concurrent.AbstractExecutorService; //#5
-import java.util.concurrent.locks.LockSupport;  // violation
+import java.util.concurrent.locks.LockSupport;  // violation '.* wrong order. Should be in the .*group, expecting not assigned imports.*'
 import java.util.regex.Pattern; //#7
 import java.util.regex.Matcher; //#8
 

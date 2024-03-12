@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,78 +43,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code onlyObjectReferences} - control whether only explicit
+ * Property {@code onlyObjectReferences} - Control whether only explicit
  * initializations made to null for objects should be checked.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   private int intField1 = 0; // violation
- *   private int intField2 = 1;
- *   private int intField3;
- *
- *   private char charField1 = '\0'; // violation
- *   private char charField2 = 'b';
- *   private char charField3;
- *
- *   private boolean boolField1 = false; // violation
- *   private boolean boolField2 = true;
- *   private boolean boolField3;
- *
- *   private Obj objField1 = null; // violation
- *   private Obj objField2 = new Obj();
- *   private Obj objField3;
- *
- *   private int arrField1[] = null; // violation
- *   private int arrField2[] = new int[10];
- *   private int arrField3[];
- * }
- * </pre>
- * <p>
- * To configure the check so that it only checks for objects that explicitly initialize to null:
- * </p>
- * <pre>
- * &lt;module name=&quot;ExplicitInitialization&quot;&gt;
- *   &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   private int intField1 = 0; // ignored
- *   private int intField2 = 1;
- *   private int intField3;
- *
- *   private char charField1 = '\0'; // ignored
- *   private char charField2 = 'b';
- *   private char charField3;
- *
- *   private boolean boolField1 = false; // ignored
- *   private boolean boolField2 = true;
- *   private boolean boolField3;
- *
- *   private Obj objField1 = null; // violation
- *   private Obj objField2 = new Obj();
- *   private Obj objField3;
- *
- *   private int arrField1[] = null; // violation
- *   private int arrField2[] = new int[10];
- *   private int arrField3[];
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -164,6 +98,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      *
      * @param onlyObjectReferences whether only explicit initialization made to null
      *                             should be checked
+     * @since 7.8
      */
     public void setOnlyObjectReferences(boolean onlyObjectReferences) {
         this.onlyObjectReferences = onlyObjectReferences;

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,38 +31,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone%28%29">
  * Object.clone()</a>.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SuperClone&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * class A {
- *
- *  public Object clone() { // OK
- *   return super.clone();
- *  }
- * }
- *
- * class B {
- * private int b;
- *
- *  public B clone() { // violation, does not call super.clone()
- *   B other = new B();
- *   other.b = this.b;
- *   return other;
- *  }
- * }
- *
- * class C {
- *
- *  public C clone() { // OK
- *   return (C) super.clone();
- *  }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

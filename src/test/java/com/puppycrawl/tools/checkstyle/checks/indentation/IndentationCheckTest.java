@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -1121,9 +1121,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "8");
         final String[] expected = {
-            "23:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
-            "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
-            "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "21:12: " + getCheckMessage(MSG_ERROR, "]", 11, 12),
+            "25:5: " + getCheckMessage(MSG_ERROR, "[", 4, 12),
+            "32:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
+            "33:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
+            "34:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "37:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "41:35: " + getCheckMessage(MSG_ERROR, "]", 34, 16),
+            "45:36: " + getCheckMessage(MSG_ERROR, "42", 35, 16),
+            "49:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "50:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "55:21: " + getCheckMessage(MSG_ERROR, "1", 20, 16),
+            "59:13: " + getCheckMessage(MSG_ERROR, "fun2", 12, 16),
+            "78:11: " + getCheckMessage(MSG_ERROR, "Object", 10, 12),
+            "82:16: " + getCheckMessage(MSG_ERROR, "]", 15, 12),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationNewWithForceStrictCondition.java"), expected);
@@ -1277,7 +1288,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "111:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "112:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialisation
+            // following are tests for annotation array initialization
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
             "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
@@ -1389,7 +1400,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "111:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "112:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            // following are tests for annotation array initialisation
+            // following are tests for annotation array initialization
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
             "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
@@ -2257,13 +2268,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
         final String[] expected = {
-            "40:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "42:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "48:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
-            "60:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
-            "66:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "69:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
-            "75:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "38:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "40:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "46:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "58:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
+            "64:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "67:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
+            "73:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"), expected);
@@ -2703,6 +2714,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "12:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
             "15:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
             "17:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
+            "25:1: " + getCheckMessage(MSG_ERROR, "=", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
@@ -2827,6 +2839,22 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationCheckSwitchExpressionDeclaration.java"),
+            expected);
+    }
+
+    @Test
+    public void testIndentationSwitchExpressionDeclarationLeftCurlyNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "42:5: " + getCheckMessage(MSG_ERROR, "switch lcurly", 4, 8),
+            "50:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+            "58:13: " + getCheckMessage(MSG_ERROR, "switch lcurly", 12, 8),
+        };
+        verifyWarns(checkConfig,
+            getNonCompilablePath(
+                    "InputIndentationCheckSwitchExpressionDeclarationLCurlyNewLine.java"),
             expected);
     }
 

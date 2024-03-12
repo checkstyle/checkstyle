@@ -15,14 +15,14 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 public class InputAnnotationLocationDeprecatedAndCustom {
-    @Deprecated // ok
+    @Deprecated
     public class Annotation
     {
         @Deprecated // <--method, separate line
-        public void test(@MyAnnotation String s) { // ok
+        public void test(@MyAnnotation String s) {
             @MyAnnotation // <--variable, separate line
             Integer i;
-            for (@MyAnnotation char c : s.toCharArray()) { // ok
+            for (@MyAnnotation char c : s.toCharArray()) {
             }
         }
     }

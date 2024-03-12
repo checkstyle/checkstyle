@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AbbreviationAsWordInName</title>
+  </head>
+  <body>
+    <section name="AbbreviationAsWordInName">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Validates abbreviations (consecutive capital letters) length in identifier name,
+          it also allows to enforce camel case naming. Please read more at
+          <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
+          Google Style Guide</a>
+          to get to know how to avoid long abbreviations in names.
+        </p>
+
+        <p>'_' is considered as word separator in identifier name.</p>
+
+        <p>
+          <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
+          allowed in the identifier.
+           A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
+          one after the other, before a violation is printed. The identifier 'MyTEST' would be
+          allowed, but 'MyTESTS' would not be.
+          A value of <i>0</i> indicates that only 1 consecutive capital letter is allowed. This
+          is what should be used to enforce strict camel casing. The identifier 'MyTest' would
+          be allowed, but 'MyTEst' would not be.
+        </p>
+
+        <p>
+          <code>ignoreFinal</code>, <code>ignoreStatic</code>, and <code>ignoreStaticFinal</code>
+          control whether variables with the respective modifiers are to be ignored.
+          Note that a variable that is both static and final will always be considered under
+          <code>ignoreStaticFinal</code> only, regardless of the values of <code>ignoreFinal</code>
+          and <code>ignoreStatic</code>. So for example if <code>ignoreStatic</code> is true but
+          <code>ignoreStaticFinal</code> is false, then static final variables will not be ignored.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowedAbbreviationLength</td>
+              <td>Indicate the number of consecutive capital letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>3</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>allowedAbbreviations</td>
+              <td>Specify abbreviations that must be skipped for checking.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreFinal</td>
+              <td>Allow to skip variables with <code>final</code> modifier.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreOverriddenMethods</td>
+              <td>Allow to ignore methods tagged with <code>@Override</code> annotation (that usually mean inherited name).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreStatic</td>
+              <td>Allow to skip variables with <code>static</code> modifier.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>ignoreStaticFinal</td>
+              <td>Allow to skip variables with both <code>static</code> and <code>final</code> modifiers.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.32</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                    RECORD_COMPONENT_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                    RECORD_COMPONENT_DEF</a>
+                  .
+              </td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
+  static int GLOBAL_COUNTER; // OK, static is ignored
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+
+  @Override
+  public void printCOUNTER() { // OK, overridden method is ignored
+    System.out.println(CURRENT_COUNTER);
+  }
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {
+    CURRENT_COUNTER++; // OK, only definitions are checked
+  }
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {
+    GLOBAL_COUNTER++; // OK, only definitions are checked
+  }
+}
+        </source>
+        <p>
+          To configure to include static variables and
+          methods tagged with <code>@Override</code> annotation.
+        </p>
+        <p id="Example2-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
+  // violation below 'no more than '4' consecutive capital letters'
+  static int GLOBAL_COUNTER;
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+
+  @Override // violation below 'no more than '4' consecutive capital letters'
+  public void printCOUNTER() {
+    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+  }
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {
+    CURRENT_COUNTER++; // OK, only definitions are checked
+  }
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {
+    GLOBAL_COUNTER++; // OK, only definitions are checked
+  }
+}
+        </source>
+        <p>
+          To configure to check all variables and identifiers
+          (including ones with the static modifier) and enforce
+          no abbreviations (essentially camel case) except for
+          words like 'XML' and 'URL'.
+        </p>
+        <p id="Example3-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;XML,URL,O&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF,CLASS_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class Example3 {
+  int firstNum;
+  int secondNUM; // violation 'no more than '1' consecutive capital letters'
+  static int thirdNum; // OK, the static modifier would be checked
+  static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
+  String firstXML; // OK, XML abbreviation is allowed
+  String firstURL; // OK, URL abbreviation is allowed
+  final int TOTAL = 5; // OK, final is ignored
+  static final int LIMIT = 10; // OK, static final is ignored
+  void newOAuth2Client() {} // OK, O abbreviation is allowed
+  void OAuth2() {} // OK, O abbreviation is allowed
+  void OAUth2() {}
+}
+        </source>
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="Example4-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;1&quot;/&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;CSV&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+class Example4 { // OK, ignore checking the class name
+  int firstNum; // OK, abbreviation &quot;N&quot; is of allowed length 1
+  int secondNUm;
+  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
+  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
+  static int fourthNUM; // OK, variables with static modifier would be ignored
+  String firstCSV; // OK, CSV abbreviation is allowed
+  String firstXML; // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5; // OK, final is ignored
+  static final int LIMIT = 10; // OK, static final is ignored
+}
+        </source>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
+        <p id="Example5-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+class Example5 {
+  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  final int customerID = 2;
+  static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
+  static final int MAX_ALLOWED = 4; // OK, ignored
+}
+        </source>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          and ignoring static (but non-final) variables only.
+        </p>
+        <p id="Example6-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviationLength&quot; value=&quot;0&quot;/&gt;
+      &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;ignoreStatic&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Example:</p>
+        <source>
+class Example6 {
+  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  final int customerID = 2;
+  static int nextID = 3; // OK, ignored
+  // violation below 'no more than '1' consecutive capital letters'
+  static final int MAX_ALLOWED = 4;
+}
+        </source>
+        <p>
+          To configure to check variables, enforce
+          no abbreviations (essentially camel case) except for
+          words like 'ALLOWED'.
+        </p>
+        <p id="Example7-config">Configuration:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AbbreviationAsWordInName&quot;&gt;
+      &lt;property name=&quot;allowedAbbreviations&quot; value=&quot;ALLOWED&quot;/&gt;
+      &lt;property name=&quot;ignoreStaticFinal&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+class Example7 {
+  int counterXYZ = 1;
+  final int customerID = 2;
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // OK, abbreviation is allowed
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22abbreviation.as.word%22">
+              abbreviation.as.word
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

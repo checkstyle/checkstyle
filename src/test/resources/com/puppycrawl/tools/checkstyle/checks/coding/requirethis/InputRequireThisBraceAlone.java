@@ -9,7 +9,7 @@ validateOnlyOverlapping = false
 
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-public final class InputRequireThisBraceAlone { // ok
+public final class InputRequireThisBraceAlone {
     protected void test() throws Exception {
         {
             boolean var1 = false;

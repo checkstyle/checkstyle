@@ -20,7 +20,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressions {
     }
 
     int howMany2(Nums k) {
-        return switch (k) { // ok
+        return switch (k) {
             case ONE -> {
                 yield 4;
             }
@@ -34,7 +34,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressions {
     }
 
     int howMany3(Nums k) {
-        return switch (k) { // ok
+        return switch (k) {
             case ONE:
                 yield 3;
             case TWO:
@@ -45,7 +45,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressions {
     }
 
     int howMany4(Nums k) {
-        return switch (k) { // ok
+        return switch (k) {
             case ONE -> {
                 yield 4;
             }
@@ -62,7 +62,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressions {
     }
 
     int howMany5(Nums k) {
-        return switch (k) { // ok
+        return switch (k) {
             case ONE:
                 yield 3;
             case TWO:

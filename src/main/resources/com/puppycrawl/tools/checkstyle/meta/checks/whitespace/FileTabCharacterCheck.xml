@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck"
-              name="FileTabCharacter"
-              parent="com.puppycrawl.tools.checkstyle.Checker">
+             name="FileTabCharacter"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;p&gt;
  Checks that there are no tab characters ({@code '\t'}) in the source code.
  &lt;/p&gt;
@@ -27,7 +27,7 @@
  or just the first instance.</description>
             </property>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
-               <description>Specify file type extension of files to process.</description>
+               <description>Specify the file extensions of the files to process.</description>
             </property>
          </properties>
          <message-keys>

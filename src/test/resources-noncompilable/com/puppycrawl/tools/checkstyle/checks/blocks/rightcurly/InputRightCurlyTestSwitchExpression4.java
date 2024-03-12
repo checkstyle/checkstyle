@@ -30,8 +30,8 @@ public class InputRightCurlyTestSwitchExpression4 {
                         throw new Exception();
                     }
                     default -> 2;
-                }; // ok
-            }; // ok
+                };
+            };
         }
 
         public void foo() throws Exception {
@@ -47,21 +47,21 @@ public class InputRightCurlyTestSwitchExpression4 {
                     throw new Exception();
                 }
                 default -> 2;
-            }; // ok
+            };
 
             int c = switch (b) {
                 case 0 -> 1;
                 default -> 2;
-            }; // ok
+            };
 
             c = switch (a) {
                 case 0 -> switch (b) {
                     case 0 -> 1;
                     case 1 -> 2;
                     default -> 3;
-                }; // ok
+                };
                 default -> 1;
-            }; // ok
+            };
         }
     }
 }
@@ -78,11 +78,11 @@ class InputMissingSwitchDefaultCheckSwitchExpressionsThree {
     }
 
     public void foo2(Options option) {
-        assert Integer.valueOf(1).equals(switch (option) { // ok
+        assert Integer.valueOf(1).equals(switch (option) {
             case ONE -> 1;
             case TWO -> 2;
             case THREE -> 3;
-        }); // ok
+        });
     }
 }
 
@@ -102,7 +102,7 @@ class InputExecutableStatementCountRecords {
               yield temp;
           }
           default -> throw new IllegalStateException();
-      }); // ok
+      });
 
     void commentBeforeRightCurly() {
         int i = 20;
@@ -110,7 +110,7 @@ class InputExecutableStatementCountRecords {
             switch (i) {
                 case 0:
                     i++;
-            } // ok
+            }
             switch (i) {
                 case 0:
                     i++;

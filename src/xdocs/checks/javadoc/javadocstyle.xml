@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocStyle</title>
+  </head>
+  <body>
+    <section name="JavadocStyle">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Validates Javadoc comments to help ensure they are well formed.
+        </p>
+        <p>
+          The following checks are performed:
+        </p>
+        <ul>
+          <li>
+            Ensures the first sentence ends with proper punctuation
+            (That is a period, question mark, or exclamation mark, by default).
+            Note that this check is not applied to inline <code>@return</code> tags,
+            because the Javadoc tools automatically appends a period to the end of the tag
+            content.
+            Javadoc automatically places the first sentence in the
+            method summary table and index. Without proper punctuation
+            the Javadoc may be malformed. All items eligible for the
+            <code>{@inheritDoc}</code> tag are exempt from this
+            requirement.
+          </li>
+
+          <li>
+            Check text for Javadoc statements that do not have any
+            description. This includes both completely empty Javadoc,
+            and Javadoc with only tags such as <code>@param</code> and <code>@return</code>.
+          </li>
+
+          <li>
+            Check text for incomplete HTML tags. Verifies that HTML
+            tags have corresponding end tags and issues an &quot;Unclosed
+            HTML tag found:&quot; error if not. An &quot;Extra HTML tag found:&quot;
+            error is issued if an end tag is found without a previous
+            open tag.
+          </li>
+          <li>
+           Check that a package Javadoc comment is well-formed (as
+           described above).
+          </li>
+          <li>
+            Check for allowed HTML tags. The list of allowed HTML tags
+            is &quot;a&quot;, &quot;abbr&quot;, &quot;acronym&quot;, &quot;address&quot;, &quot;area&quot;, &quot;b&quot;, &quot;bdo&quot;, &quot;big&quot;,
+            &quot;blockquote&quot;, &quot;br&quot;, &quot;caption&quot;, &quot;cite&quot;, &quot;code&quot;, &quot;colgroup&quot;, &quot;dd&quot;,
+            &quot;del&quot;, &quot;dfn&quot;, &quot;div&quot;, &quot;dl&quot;, &quot;dt&quot;, &quot;em&quot;, &quot;fieldset&quot;, &quot;font&quot;, &quot;h1&quot;,
+            &quot;h2&quot;, &quot;h3&quot;, &quot;h4&quot;, &quot;h5&quot;, &quot;h6&quot;, &quot;hr&quot;, &quot;i&quot;, &quot;img&quot;, &quot;ins&quot;, &quot;kbd&quot;, &quot;li&quot;,
+            &quot;ol&quot;, &quot;p&quot;, &quot;pre&quot;, &quot;q&quot;, &quot;samp&quot;, &quot;small&quot;, &quot;span&quot;, &quot;strong&quot;, &quot;sub&quot;,
+            &quot;sup&quot;, &quot;table&quot;, &quot;tbody&quot;, &quot;td&quot;, &quot;tfoot&quot;, &quot;th&quot;, &quot;thead&quot;, &quot;tr&quot;, &quot;tt&quot;,
+            &quot;u&quot;, &quot;ul&quot;, &quot;var&quot;.
+          </li>
+        </ul>
+
+        <p>
+          These checks were patterned after the checks made by the
+          <a href="https://maven-doccheck.sourceforge.net">DocCheck</a>
+          doclet available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkEmptyJavadoc</td>
+              <td>Control whether to check if the Javadoc is missing a describing text.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>checkFirstSentence</td>
+              <td>Control whether to check the first sentence for proper end of sentence.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>checkHtml</td>
+              <td>Control whether to check for incomplete HTML tags.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>endOfSentenceFormat</td>
+              <td>Specify the format for matching the end of a sentence.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;([.?!][ \t\n\r\f&lt;])|([.?!]$)&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                    PACKAGE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                    PACKAGE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+    /**
+     * Some description here. // OK
+     */
+    private void methodWithValidCommentStyle() {}
+
+    // ok below, @return tag automatically inserts a period after the text
+    /**
+     * {@return {@code true} if this object
+     * has been initialized, {@code false} otherwise}
+     */
+    private boolean isInitialized()
+    {
+       return true;
+    }
+
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     */
+    private void methodWithInvalidCommentStyle() {}
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check for <code>public</code> scope:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     */
+    public void test1() {}
+
+    /**
+     * Some description here // OK
+     */
+    private void test2() {}
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check for javadoc which is in <code>private</code>, but not in
+          <code>package</code> scope:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+    &lt;property name=&quot;excludeScope&quot; value=&quot;package&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     */
+    private void test1() {}
+
+    /**
+     * Some description here // OK
+     */
+    void test2() {}
+}
+        </source>
+
+        <p id="Example4-config">
+          To configure the check to turn off first sentence checking:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;checkFirstSentence&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class Test {
+    /**
+     * Some description here // OK
+     * Second line of description // violation, the sentence must end with a proper punctuation
+     */
+    private void test1() {}
+}
+        </source>
+
+        <p id="Example5-config">
+          To configure the check to turn off validation of incomplete html tags:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;checkHtml&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example5-code">Example:</p>
+        <source>
+public class Test {
+    /**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     * &lt;p // OK
+     */
+    private void test1() {}
+}
+        </source>
+
+        <p id="Example6-config">
+          To configure the check for only class definitions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocStyle&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example6-code">Example:</p>
+        <source>
+/**
+ * Some description here // violation, the sentence must end with a proper punctuation
+ */
+public class Test {
+    /**
+     * Some description here // OK
+     */
+    private void test1() {}
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocStyle">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.empty%22">
+              javadoc.empty
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.extraHtml%22">
+              javadoc.extraHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incompleteTag%22">
+              javadoc.incompleteTag
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.noPeriod%22">
+              javadoc.noPeriod
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

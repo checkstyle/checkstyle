@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AnnotationUseStyle</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationUseStyle">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the style of elements in annotations.
+        </p>
+        <p>
+          Annotations have three element styles starting with the least verbose.
+        </p>
+        <ul>
+          <li><code>ElementStyleOption.COMPACT_NO_ARRAY</code></li>
+          <li><code>ElementStyleOption.COMPACT</code></li>
+          <li><code>ElementStyleOption.EXPANDED</code></li>
+        </ul>
+        <p>
+          To not enforce an element style a <code>ElementStyleOption.IGNORE</code> type is provided.
+          The desired style can be set through the <code>elementStyle</code> property.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
+          The expanded version is sometimes referred to as &quot;named parameters&quot; in other languages.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.COMPACT</code> style is less verbose.
+          This style can only be used when there is an element called 'value' which is either
+          the sole element or all other elements have default values.
+        </p>
+        <p>
+          Using the <code>ElementStyleOption.COMPACT_NO_ARRAY</code> style is less verbose.
+          It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays
+          are flagged.
+          With annotations a single value array does not need to be placed in an array initializer.
+        </p>
+        <p>
+          The ending parenthesis are optional when using annotations with no elements.
+          To always require ending parenthesis use the <code>ClosingParensOption.ALWAYS</code> type.
+          To never have ending parenthesis use the <code>ClosingParensOption.NEVER</code> type.
+          To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code>
+          type is provided. Set this through the <code>closingParens</code> property.
+        </p>
+        <p>
+          Annotations also allow you to specify arrays of elements in a standard format.
+          As with normal arrays, a trailing comma is optional.
+          To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code>
+          type.
+          To never have a trailing comma use the <code>TrailingArrayCommaOption.NEVER</code> type.
+          To not enforce a trailing array comma preference a
+          <code>TrailingArrayCommaOption.IGNORE</code> type is provided.
+          Set this through the <code>trailingArrayComma</code> property.
+        </p>
+        <p>
+          By default, the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
+          the <code>TrailingArrayCommaOption</code> is set to <code>NEVER</code>,
+          and the <code>ClosingParensOption</code> is set to <code>NEVER</code>.
+        </p>
+        <p>
+          According to the JLS, it is legal to include a trailing comma
+          in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
+          compile with this syntax. This may in be a bug in Sun's compilers
+          since eclipse 3.4's built-in compiler does allow this syntax as
+          defined in the JLS. Note: this was tested with compilers included with
+          JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse 3.4.1.
+        </p>
+        <p>
+          See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
+          Java Language specification, &#xa7;9.7</a>.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>closingParens</td>
+              <td>Define the policy for ending parenthesis.</td>
+              <td><a href="../../property_types.html#ClosingParensOption">ClosingParensOption</a></td>
+              <td><code>never</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>elementStyle</td>
+              <td>Define the annotation element styles.</td>
+              <td><a href="../../property_types.html#ElementStyleOption">ElementStyleOption</a></td>
+              <td><code>compact_no_array</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>trailingArrayComma</td>
+              <td>Define the policy for trailing comma in arrays.</td>
+              <td><a href="../../property_types.html#TrailingArrayCommaOption">TrailingArrayCommaOption</a></td>
+              <td><code>never</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+@SuppressWarnings(&quot;unchecked&quot;) // ok as it's in implied style
+@Deprecated // ok as it matches closingParens default property
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in implied style
+public class Example1
+{
+
+}
+
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SuppressWarnings(value={&quot;unchecked&quot;})
+@Deprecated() // violation 'Annotation cannot have closing parenthesis'
+// violation below 'Annotation array values cannot contain trailing comma'
+@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+class TestStyle1
+{
+
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;never&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+@SuppressWarnings(&quot;unchecked&quot;) // violation 'Annotation style must be 'EXPANDED''
+@Deprecated // ok as closingParens property set to never
+// violation below 'Annotation style must be 'EXPANDED''
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
+public class Example2
+{
+
+}
+
+@SuppressWarnings(value={&quot;unchecked&quot;}) // ok as elementStyle set to expanded
+@Deprecated() // violation 'Annotation cannot have closing parenthesis'
+// violation below 'Annotation array values cannot contain trailing comma'
+@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+class TestStyle2 {
+
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check to enforce an <code>expanded</code> style,
+          with a closing parenthesis and a trailing array comma set to <code>never</code>.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;compact&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;ignore&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to compact
+@Deprecated // violation 'Annotation must have closing parenthesis'
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;}) // ok as it's in compact style
+public class Example3
+{
+
+}
+
+// violation below 'Annotation style must be 'COMPACT''
+@SuppressWarnings(value={&quot;unchecked&quot;})
+@Deprecated() // ok as closingParens set to always
+// violation below 'Annotation style must be 'COMPACT''
+@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+class TestStyle3 {
+
+}
+        </source>
+
+        <p id="Example4-config">
+          To configure the check to enforce a trailing array comma,
+          with ignoring the elementStyle and a closing parenthesis.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
+      &lt;property name=&quot;elementStyle&quot; value=&quot;ignore&quot;/&gt;
+      &lt;property name=&quot;closingParens&quot; value=&quot;ignore&quot;/&gt;
+      &lt;property name=&quot;trailingArrayComma&quot; value=&quot;always&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+@SuppressWarnings(&quot;unchecked&quot;) // ok as element style set to 'ignore'
+@Deprecated // ok as 'closingParens' is set to 'ignore
+// violation below 'Annotation array values must contain trailing comma'
+@SomeArrays({&quot;unchecked&quot;,&quot;unused&quot;})
+public class Example4
+{
+
+}
+
+// violation below 'Annotation array values must contain trailing comma'
+@SuppressWarnings(value={&quot;unchecked&quot;})
+@Deprecated() // ok as 'closingParens' is set to 'ignore
+// ok below as it has a trailing array comma
+@SomeArrays(value={&quot;unchecked&quot;,&quot;unused&quot;,})
+class TestStyle4 {
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.incorrect.style%22">
+              annotation.incorrect.style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.parens.missing%22">
+              annotation.parens.missing
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.parens.present%22">
+              annotation.parens.present
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.trailing.comma.missing%22">
+              annotation.trailing.comma.missing
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.trailing.comma.present%22">
+              annotation.trailing.comma.present
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

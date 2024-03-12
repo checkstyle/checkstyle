@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RecordComponentName">
+        <property name="format" value="^[a-z]+$"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+record MyRecord1(String value, int other) {} // OK
+record MyRecord2(String... strings) {} // OK
+record MyRecord3(double myNumber) {} // violation, the record component name
+                             // should match the regular expression "^[a-z]+$"
+// xdoc section -- end

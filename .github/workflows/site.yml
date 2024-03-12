@@ -11,10 +11,12 @@
 # If you need to change bucket name or region, change AWS_REGION and AWS_BUCKET_NAME variables.
 # For another bucket, you will need to change the secrets.
 #####################################################################################
-name: Site
+name: "Site"
+
 env:
-  AWS_REGION: us-east-2
+  AWS_REGION: "us-east-2"
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+
 on:
   issue_comment:
     types: [ created, edited ]
@@ -25,7 +27,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   parse_pr_info:
@@ -38,7 +40,7 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: shanegenschaw/pull-request-comment-trigger@v2.1.0
         name: React with rocket on run
         with:
           trigger: ','
@@ -75,14 +77,14 @@ jobs:
       message: ${{ steps.out.outputs.message}}
     steps:
       - name: Checkout repository from origin
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle for PR
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         env:
           USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
@@ -92,14 +94,14 @@ jobs:
           fetch-depth: 0
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup local maven cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -136,7 +138,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get message
         env:

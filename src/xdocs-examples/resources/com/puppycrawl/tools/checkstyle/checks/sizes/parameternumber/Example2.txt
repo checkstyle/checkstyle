@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ParameterNumber">
+      <property name="max" value="10"/>
+      <property name="tokens" value="METHOD_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

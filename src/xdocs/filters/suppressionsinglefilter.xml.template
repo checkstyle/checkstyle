@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SuppressionSingleFilter</title>
+  </head>
+  <body>
+    <section name="SuppressionSingleFilter">
+      <p>Since Checkstyle 8.23</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Filter <code>SuppressionSingleFilter</code> suppresses audit events for
+          Checks violations in the specified file, class, checks, message, module id,
+          lines, and columns.
+        </p>
+        <p>
+          Rationale: To allow users use suppressions configured in the same config with
+          other modules. SuppressionFilter and SuppressionXpathFilter are require separate
+          file.
+        </p>
+        <p>
+          Advice: If checkstyle configuration is used for several projects, single suppressions
+          on common files/folders is better to put in checkstyle configuration as common rule.
+          All suppression that are for specific file names is better to keep in project specific
+          config file.
+        </p>
+        <p>
+          Attention: This filter only supports single suppression, and will need
+          multiple instances if users wants to suppress multiple violations.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          SuppressionSingleFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionSingleFilter.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          The following suppressions directs
+          a <code>SuppressionSingleFilter</code> to
+          reject <code>JavadocStyleCheck</code> violations for
+          lines 82 and 108 to 122 of
+          file <code>AbstractComplexityCheck.java</code>,
+          and <code>MagicNumberCheck</code> violations for line
+          221 of file <code>JavadocStyleCheck.java</code>,
+          and <code>'Missing a Javadoc comment'</code> violations
+          for all lines and files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-config">
+          Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
+          when config have two instances on the same check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-config">
+          Suppress all checks for hidden files and folders:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-config">
+          Suppress all checks for Maven-generated code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-config">
+          Suppress all checks for archives, classes and other binary files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-config">
+          Suppress all checks for image files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example6.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-config">
+          Suppress all checks for non-java files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-config">
+          Suppress all checks in generated sources:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example8.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-config">
+          Suppress FileLength check on integration tests in certain folder:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example9.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-config">
+          Suppress naming violations on variable named 'log' in all files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example10.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionSingleFilter">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      </subsection>
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SuppressionSingleFilter"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

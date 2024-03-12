@@ -6,7 +6,7 @@ OuterTypeFilename
 
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
-public class InputOuterTypeFilenameIllegalTokens // ok
+public class InputOuterTypeFilenameIllegalTokens
 {
     public void methodWithPreviouslyIllegalTokens()
     {

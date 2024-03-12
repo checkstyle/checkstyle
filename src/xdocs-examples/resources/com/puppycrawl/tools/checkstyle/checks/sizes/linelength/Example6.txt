@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="LineLength">
+    <property name="ignorePattern" value="^$"/>
+    <property name="max" value="50"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// violation below 'Line is longer than 50 characters (found 54)'
+package com.puppycrawl.tools.checkstyle.checks.design;
+
+// violation below 'Line is longer than 50 characters (found 86)'
+import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
+
+import java.util.Arrays; // ok
+// xdoc section -- end

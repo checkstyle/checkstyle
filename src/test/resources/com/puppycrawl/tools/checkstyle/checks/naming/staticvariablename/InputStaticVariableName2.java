@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.staticvariablename;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputStaticVariableName2 // ok
+final class InputStaticVariableName2
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-

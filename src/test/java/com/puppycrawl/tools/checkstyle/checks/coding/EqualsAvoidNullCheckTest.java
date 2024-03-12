@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -258,4 +258,16 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
                 .isNotNull();
     }
 
+    @Test
+    public void testEqualAvoidNull() throws Exception {
+        final String[] expected = {
+            "12:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "13:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "14:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "17:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputEqualsAvoidNull2.java"),
+                expected);
+    }
 }

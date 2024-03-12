@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -177,7 +177,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             Charset.defaultCharset().name())));
 
         assertWithMessage("Invalid line content")
-                .that(check.getLine(3))
+                .that(check.getLine(9))
                 .isEqualTo(" * I'm a javadoc");
     }
 
@@ -206,7 +206,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
         final int[] expectedCodePoints = "    public int getVariable() {".codePoints().toArray();
         assertWithMessage("Invalid line content")
-                .that(check.getLineCodePoints(12))
+                .that(check.getLineCodePoints(18))
                 .isEqualTo(expectedCodePoints);
     }
 
@@ -382,12 +382,10 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCheck() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(ViolationAstCheck.class);
-
         final String[] expected = {
-            "1:1: Violation.",
+            "6:1: Violation.",
         };
-        verify(checkConfig, getPath("InputAbstractCheckTestFileContents.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractCheckTestFileContents.java"), expected);
     }
 
     /**

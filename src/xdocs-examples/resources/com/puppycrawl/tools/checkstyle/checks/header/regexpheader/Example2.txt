@@ -1,0 +1,11 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpHeader">
+    <property name="headerFile" value="config/java.header"/>
+    <property name="multiLines" value="10, 13"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

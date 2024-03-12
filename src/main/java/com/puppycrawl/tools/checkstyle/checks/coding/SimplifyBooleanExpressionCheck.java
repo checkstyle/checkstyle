@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,39 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Rationale: Complex boolean logic makes code hard to understand and maintain.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *
- *   public void bar() {
- *
- *     boolean a, b;
- *     Foo c, d, e;
- *
- *     if (!false) {};       // violation, can be simplified to true
- *
- *     if (a == true) {};    // violation, can be simplified to a
- *     if (a == b) {};       // OK
- *     if (a == false) {};   // violation, can be simplified to !a
- *     if (!(a != true)) {}; // violation, can be simplified to a
- *
- *     e = (a || b) ? c : d;     // OK
- *     e = (a || false) ? c : d; // violation, can be simplified to a
- *     e = (a &amp;&amp; b) ? c : d;     // OK
- *
- *     int s = 12;
- *     boolean m = s &gt; 1 ? true : false; // violation, can be simplified to s &gt; 1
- *     boolean f = c == null ? false : c.someMethod(); // OK
- *  }
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -121,7 +88,7 @@ public class SimplifyBooleanExpressionCheck
             case TokenTypes.QUESTION:
                 final DetailAST nextSibling = ast.getNextSibling();
                 if (TokenUtil.isBooleanLiteralType(parent.getFirstChild().getType())
-                        || nextSibling != null
+                        || nextSibling != null && nextSibling.getNextSibling() != null
                         && TokenUtil.isBooleanLiteralType(
                         nextSibling.getNextSibling().getType())) {
                     log(parent, MSG_KEY);

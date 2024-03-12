@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavaNCSS</title>
+  </head>
+  <body>
+    <section name="JavaNCSS">
+      <p>Since Checkstyle 3.5</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Determines complexity of methods, classes and files by
+          counting the Non Commenting Source Statements (NCSS). This
+          check adheres to the <a href="http://www.kclee.de/clemens/java/javancss/#specification">
+          specification</a> for the
+          <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
+          written by <b>Chr. Clemens Lee</b>.
+        </p>
+        <p>
+          Roughly said the NCSS metric is calculated by
+          counting the source lines which are not comments, (nearly)
+          equivalent to counting the semicolons and opening curly braces.
+        </p>
+        <p>
+          The NCSS for a class is summarized from the NCSS
+          of all its methods, the NCSS of its nested classes and the
+          number of member variable declarations.
+        </p>
+        <p>
+          The NCSS for a file is summarized from the ncss of all its top level classes,
+          the number of imports and the package declaration.
+        </p>
+
+        <p>
+          Rationale: Too large methods and classes are hard to read and
+          costly to maintain. A large NCSS number often means that a
+          method or class has too many responsibilities and/or
+          functionalities which should be decomposed into smaller units.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>classMaximum</td>
+              <td>Specify the maximum allowed number of non commenting lines in a class.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>1500</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>fileMaximum</td>
+              <td>Specify the maximum allowed number of non commenting lines in a file including all top level and nested classes.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>2000</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>methodMaximum</td>
+              <td>Specify the maximum allowed number of non commenting lines in a method.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>50</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>recordMaximum</td>
+              <td>Specify the maximum allowed number of non commenting lines in a record.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>150</code></td>
+              <td>8.36</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavaNCSS&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+public void test() {
+  System.out.println(&quot;Line 1&quot;);
+  // another 48 lines of code
+  System.out.println(&quot;Line 50&quot;) // OK
+  System.out.println(&quot;Line 51&quot;) // violation, the method crosses 50 non commented lines
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check with 40 allowed non commented lines for a method:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavaNCSS&quot;&gt;
+      &lt;property name=&quot;methodMaximum&quot; value=&quot;40&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+public void test() {
+  System.out.println(&quot;Line 1&quot;);
+  // another 38 lines of code
+  System.out.println(&quot;Line 40&quot;) // OK
+  System.out.println(&quot;Line 41&quot;) // violation, the method crosses 40 non commented lines
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check to set limit of non commented lines in class to 100:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavaNCSS&quot;&gt;
+      &lt;property name=&quot;classMaximum&quot; value=&quot;100&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+  public void test() {
+    System.out.println(&quot;Line 1&quot;);
+    // another 47 lines of code
+    System.out.println(&quot;Line 49&quot;);
+  }
+
+  public void test1() {
+    System.out.println(&quot;Line 50&quot;);  // OK
+    // another 47 lines of code
+    System.out.println(&quot;Line 98&quot;); // violation
+  }
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check to set limit of non commented lines in file to 200:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavaNCSS&quot;&gt;
+      &lt;property name=&quot;fileMaximum&quot; value=&quot;200&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class Test1 {
+  public void test() {
+    System.out.println(&quot;Line 1&quot;);
+    // another 48 lines of code
+    System.out.println(&quot;Line 49&quot;);
+  }
+
+  public void test1() {
+    System.out.println(&quot;Line 50&quot;);
+    // another 47 lines of code
+    System.out.println(&quot;Line 98&quot;); // OK
+  }
+}
+
+class Test2 {
+  public void test() {
+    System.out.println(&quot;Line 150&quot;); // OK
+  }
+
+  public void test1() {
+    System.out.println(&quot;Line 200&quot;); // violation
+  }
+}
+        </source>
+
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavaNCSS">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.class%22">
+              ncss.class
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.file%22">
+              ncss.file
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.method%22">
+              ncss.method
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.record%22">
+              ncss.record
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.metrics
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

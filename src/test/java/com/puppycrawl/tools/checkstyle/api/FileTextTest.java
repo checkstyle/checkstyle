@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -190,4 +190,13 @@ public class FileTextTest extends AbstractPathTestSupport {
                 .isEqualTo(lineBreaks);
     }
 
+    @Test
+    public void testCharsetAfterCopyConstructor() throws IOException {
+        final Charset charset = StandardCharsets.ISO_8859_1;
+        final String filepath = getPath("InputFileTextImportControl.xml");
+        final FileText fileText = new FileText(new File(filepath), charset.name());
+        final FileText copy = new FileText(fileText);
+        assertWithMessage("Should not be null")
+                .that(copy.getCharset()).isNotNull();
+    }
 }

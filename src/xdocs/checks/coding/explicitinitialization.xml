@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ExplicitInitialization</title>
+  </head>
+  <body>
+    <section name="ExplicitInitialization">
+      <p>Since Checkstyle 3.2</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks if any class or object member is explicitly initialized to
+          default for its type value (<code>null</code> for
+          object references, zero for numeric types and <code>char</code> and <code>false</code> for
+          <code>boolean</code>.
+        </p>
+
+        <p>
+          Rationale: Each instance variable gets initialized twice, to the
+          same value. Java initializes each instance variable to its default value
+          (<code>0</code> or <code>null</code>) before performing any initialization specified in
+          the code. So there is a minor inefficiency.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>onlyObjectReferences</td>
+              <td>Control whether only explicit initializations made to null for objects should be checked.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+  private int intField1 = 0; // violation
+  private int intField2 = 1;
+  private int intField3;
+
+  private char charField1 = '\0'; // violation
+  private char charField2 = 'b';
+  private char charField3;
+
+  private boolean boolField1 = false; // violation
+  private boolean boolField2 = true;
+  private boolean boolField3;
+
+  private Obj objField1 = null; // violation
+  private Obj objField2 = new Obj();
+  private Obj objField3;
+
+  private int arrField1[] = null; // violation
+  private int arrField2[] = new int[10];
+  private int arrField3[];
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it only checks
+          for objects that explicitly initialize to null:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ExplicitInitialization&quot;&gt;
+      &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+  private int intField1 = 0; // ignored
+  private int intField2 = 1;
+  private int intField3;
+
+  private char charField1 = '\0'; // ignored
+  private char charField2 = 'b';
+  private char charField3;
+
+  private boolean boolField1 = false; // ignored
+  private boolean boolField2 = true;
+  private boolean boolField3;
+
+  private Obj objField1 = null; // violation
+  private Obj objField2 = new Obj();
+  private Obj objField3;
+
+  private int arrField1[] = null; // violation
+  private int arrField2[] = new int[10];
+  private int arrField3[];
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExplicitInitialization">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22explicit.init%22">
+              explicit.init
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

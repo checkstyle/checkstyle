@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="checkPattern" value="LineLength"/>
+    <property name="nearbyTextPattern"
+      value="&lt;a href=&quot;[^&quot;]+&quot;&gt;"/>
+  </module>
+  <module name="LineLength">
+    <property name="max" value="90"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/**
+* Flag description.
+*
+* Disabled until <a href="www.github.com/owner/repo/issue/9#comment"> // ok
+*/
+public static final boolean SOME_FLAG = false;
+// xdoc section -- end

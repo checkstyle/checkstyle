@@ -29,6 +29,7 @@
                includes="**/*"
                excludes="**/it/resources/**/*,**/it/resources-noncompilable/**/*,
                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
+               ,**/xdocs-examples/resources/**/*,**/xdocs-examples/resources-noncompilable/**/*,
                ,**/gen/**"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_sevntu_errors.xml"/>

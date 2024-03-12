@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.regex.Matcher;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -60,129 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Default value is {@code "falls?[ -]?thr(u|ough)"}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="FallThrough"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public void foo() throws Exception {
- *   int i = 0;
- *   while (i &gt;= 0) {
- *     switch (i) {
- *       case 1:
- *         i++;
- *       case 2: // violation, previous case contains code but lacks
- *               // break, return, yield, throw or continue statement
- *         i++;
- *         break;
- *       case 3: // OK
- *         i++;
- *         return;
- *       case 4: // OK
- *         i++;
- *         throw new Exception();
- *       case 5: // OK
- *         i++;
- *         continue;
- *       case 6: // OK
- *       case 7: // Previous case: OK, case does not contain code
- *               // This case: OK, by default the last case might not have statement
- *               // that transfer control
- *         i++;
- *     }
- *   }
- * }
- * public int bar() {
- *   int i = 0;
- *   return switch (i) {
- *     case 1:
- *       i++;
- *     case 2: // violation, previous case contains code but lacks
- *             // break, return, yield, throw or continue statement
- *     case 3: // OK, case does not contain code
- *       i++;
- *       yield 11;
- *     default: // OK
- *       yield -1;
- *   };
- * }
- * </pre>
- * <p>
- * Example how to suppress violations by comment:
- * </p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     i++; // fall through
- *
- *   case 2: // OK
- *     i++;
- *     // fallthru
- *   case 3: { // OK
- *     i++;
- *   }
- *   &#47;* fall-thru *&#47;
- *   case 4: // OK
- *     i++;
- *     // Fallthru
- *   case 5: // violation, "Fallthru" in case 4 should be "fallthru"
- *     i++;
- *     // fall through
- *     i++;
- *   case 6: // violation, the comment must be on the last non-empty line before 'case'
- *     i++;
- *   &#47;* fall through *&#47;case 7: // OK, comment can appear on the same line but before 'case'
- *     i++;
- * }
- * </pre>
- * <p>
- * To configure the check to enable check for last case group:
- * </p>
- * <pre>
- * &lt;module name=&quot;FallThrough&quot;&gt;
- *    &lt;property name=&quot;checkLastCaseGroup&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     break;
- *   case 2: // Previous case: OK
- *           // This case: violation, last case must have statement that transfer control
- *     i++;
- * }
- * </pre>
- * <p>
- * To configure the check with custom relief pattern:
- * </p>
- * <pre>
- * &lt;module name=&quot;FallThrough&quot;&gt;
- *    &lt;property name=&quot;reliefPattern&quot; value=&quot;FALL?[ -]?THROUGH&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * switch (i) {
- *   case 1:
- *     i++;
- *     // FALL-THROUGH
- *   case 2: // OK, "FALL-THROUGH" matches the regular expression "FALL?[ -]?THROUGH"
- *     i++;
- *     // fall-through
- *   case 3: // violation, "fall-through" doesn't match
- *     break;
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -239,12 +116,18 @@ public class FallThroughCheck extends AbstractCheck {
         return getRequiredTokens();
     }
 
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
     /**
      * Setter to define the RegExp to match the relief comment that suppresses
      * the warning about a fall through.
      *
      * @param pattern
      *            The regular expression pattern.
+     * @since 4.0
      */
     public void setReliefPattern(Pattern pattern) {
         reliefPattern = pattern;
@@ -254,6 +137,7 @@ public class FallThroughCheck extends AbstractCheck {
      * Setter to control whether the last case group must be checked.
      *
      * @param value new value of the property.
+     * @since 4.0
      */
     public void setCheckLastCaseGroup(boolean value) {
         checkLastCaseGroup = value;
@@ -267,7 +151,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
             if (slist != null && !isTerminated(slist, true, true)
-                && !hasFallThroughComment(ast, nextGroup)) {
+                && !hasFallThroughComment(ast)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -346,6 +230,11 @@ public class FallThroughCheck extends AbstractCheck {
             lastStmt = lastStmt.getPreviousSibling();
         }
 
+        while (TokenUtil.isOfType(lastStmt, TokenTypes.SINGLE_LINE_COMMENT,
+                TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            lastStmt = lastStmt.getPreviousSibling();
+        }
+
         return lastStmt != null
             && isTerminated(lastStmt, useBreak, useContinue);
     }
@@ -361,13 +250,28 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private boolean checkIf(final DetailAST ast, boolean useBreak,
                             boolean useContinue) {
-        final DetailAST thenStmt = ast.findFirstToken(TokenTypes.RPAREN)
-                .getNextSibling();
-        final DetailAST elseStmt = thenStmt.getNextSibling();
+        final DetailAST thenStmt = getNextNonCommentAst(ast.findFirstToken(TokenTypes.RPAREN));
+
+        final DetailAST elseStmt = getNextNonCommentAst(thenStmt);
 
         return elseStmt != null
                 && isTerminated(thenStmt, useBreak, useContinue)
-                && isTerminated(elseStmt.getFirstChild(), useBreak, useContinue);
+                && isTerminated(elseStmt.getLastChild(), useBreak, useContinue);
+    }
+
+    /**
+     * This method will skip the comment content while finding the next ast of current ast.
+     *
+     * @param ast current ast
+     * @return next ast after skipping comment
+     */
+    private static DetailAST getNextNonCommentAst(DetailAST ast) {
+        DetailAST nextSibling = ast.getNextSibling();
+        while (TokenUtil.isOfType(nextSibling, TokenTypes.SINGLE_LINE_COMMENT,
+                TokenTypes.BLOCK_COMMENT_BEGIN)) {
+            nextSibling = nextSibling.getNextSibling();
+        }
+        return nextSibling;
     }
 
     /**
@@ -486,46 +390,32 @@ public class FallThroughCheck extends AbstractCheck {
      * </pre>
      *
      * @param currentCase AST of the case that falls through to the next case.
-     * @param nextCase AST of the next case.
      * @return True if a relief comment was found
      */
-    private boolean hasFallThroughComment(DetailAST currentCase, DetailAST nextCase) {
-        boolean allThroughComment = false;
-        final int endLineNo = nextCase.getLineNo();
-
-        if (matchesComment(reliefPattern, endLineNo)) {
-            allThroughComment = true;
+    private boolean hasFallThroughComment(DetailAST currentCase) {
+        final DetailAST nextSibling = currentCase.getNextSibling();
+        final DetailAST ast;
+        if (nextSibling.getType() == TokenTypes.CASE_GROUP) {
+            ast = nextSibling.getFirstChild();
         }
         else {
-            final int startLineNo = currentCase.getLineNo();
-            for (int i = endLineNo - 2; i > startLineNo - 1; i--) {
-                final int[] line = getLineCodePoints(i);
-                if (!CodePointUtil.isBlank(line)) {
-                    allThroughComment = matchesComment(reliefPattern, i + 1);
-                    break;
-                }
-            }
+            ast = currentCase;
         }
-        return allThroughComment;
+        return hasReliefComment(ast);
     }
 
     /**
-     * Does a regular expression match on the given line and checks that a
-     * possible match is within a comment.
+     * Check if there is any fall through comment.
      *
-     * @param pattern The regular expression pattern to use.
-     * @param lineNo The line number in the file.
-     * @return True if a match was found inside a comment.
+     * @param ast ast to check
+     * @return true if relief comment found
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private boolean matchesComment(Pattern pattern, int lineNo) {
-        final String line = getLine(lineNo - 1);
-
-        final Matcher matcher = pattern.matcher(line);
-        return matcher.find()
-                && getFileContents().hasIntersectionWithComment(
-                        lineNo, matcher.start(), lineNo, matcher.end());
+    private boolean hasReliefComment(DetailAST ast) {
+        return Optional.ofNullable(getNextNonCommentAst(ast))
+                .map(DetailAST::getPreviousSibling)
+                .map(previous -> previous.getFirstChild().getText())
+                .map(text -> reliefPattern.matcher(text).find())
+                .orElse(Boolean.FALSE);
     }
 
 }

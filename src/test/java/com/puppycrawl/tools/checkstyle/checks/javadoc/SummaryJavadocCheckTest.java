@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -160,6 +160,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             // Until https://github.com/checkstyle/checkstyle/issues/11425
             "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         verifyWithInlineConfigParser(
@@ -197,6 +198,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInlineReturn.java"), expected);
+    }
+
+    @Test
+    public void testInlineReturn2() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturn2.java"), expected);
     }
 
     @Test
@@ -257,4 +268,67 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testForbidden() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments.java"), expected);
+    }
+
+    @Test
+    public void testEmptyPeriod() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
+    }
+
+    @Test
+    public void testForbidden3() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments3.java"), expected);
+    }
+
+    @Test
+    public void testForbidden2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
+    }
+
+    @Test
+    public void testSummaryJavaDoc() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadoc1.java"), expected);
+    }
+
+    @Test
+    public void testSummaryJavaDoc2() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadoc2.java"), expected);
+    }
+
+    @Test
+    public void testInheritDoc() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInheritDoc.java"), expected);
+    }
 }

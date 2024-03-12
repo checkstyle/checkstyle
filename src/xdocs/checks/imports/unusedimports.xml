@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedImports</title>
+  </head>
+  <body>
+    <section name="UnusedImports">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for unused import statements. An
+          import statement is considered unused if:
+        </p>
+
+        <ul>
+          <li>
+            It is not referenced in the file. The algorithm does not support
+            wild-card imports like <code>import
+            java.io.*;</code>. Most IDE's provide very sophisticated checks
+            for imports that handle wild-card imports.
+          </li>
+
+          <li>
+            The class imported is from the <code>java.lang</code>
+            package. For example importing <code>java.lang.String</code>.
+          </li>
+
+          <li>
+            The class imported is from the same package.
+          </li>
+          <li>
+            <b>Optionally:</b> it is referenced in Javadoc comments. This check
+            is on by default, but it is considered bad practice to introduce
+            a compile-time dependency for documentation purposes only.
+            As an example, the import <code>java.util.List</code> would be
+            considered referenced with the Javadoc comment
+            <code>{@link List}</code>. The alternative to avoid introducing a
+            compile-time dependency would be to write the Javadoc comment as
+            <code>{@link java.util.List}</code>.
+          </li>
+        </ul>
+        <p>
+          The main limitation of this check is handling the cases where:
+        </p>
+        <ul>
+          <li>
+            An imported type has the same name as a declaration, such as a member variable.
+          </li>
+          <li>
+            There are two or more static imports with the same method name
+            (javac can distinguish imports with same name but different parameters, but checkstyle
+            can not due to <a href="https://checkstyle.org/writingchecks.html#Limitations">
+            limitation.</a>)
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>processJavadoc</td>
+              <td>Control whether to process Javadoc comments.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.4</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedImports&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;
+import java.util.Map;   // violation
+
+import java.util.List;
+
+/**
+* @link List
+*/
+class Example1{
+  Stack stack = new Stack();
+  private Object Component;
+  int[] arr = {0,0};
+  int[] array = copyOf(arr , 1);
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that it ignores the imports referenced in Javadoc comments:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedImports&quot;&gt;
+      &lt;property name=&quot;processJavadoc&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+// limitation as it match field name in code
+import java.awt.Component; //OK
+
+// no ability to recognize what import is not used
+import static java.util.Map.copyOf; //OK
+import static java.util.Arrays.copyOf; //OK
+
+import java.lang.String; // violation
+
+import java.util.Stack;
+import java.util.Map;   // violation
+
+import java.util.List; // violation
+
+/**
+* @link List
+*/
+class Example2{
+  Stack stack = new Stack();
+  private Object Component;
+  int[] arr = {0,0};
+  int[] array = copyOf(arr , 1);
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
+              import.unused
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.imports
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <property name="fileExtensions" value="xml"/>
+
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
+    <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
+    <property name="checkFormat" value="$1"/>
+  </module>
+
+</module>
+*/
+
+// xdoc section -- start
+// CSOFF: RegexpSinglelineCheck
+ // RegexpSingleline check won't warn any lines below here if the line matches regexp
+<condition property="checkstyle.ant.skip">
+  <isset property="checkstyle.ant.skip"/>
+</condition>
+// CSON: RegexpSinglelineCheck
+// RegexpSingleline check will warn below here if the line matches regexp
+<property name="checkstyle.pattern.todo" value="NOTHingWillMatCH_-"/>
+// xdoc section -- end

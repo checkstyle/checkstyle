@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -66,223 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RightCurly"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *
- *   public void test() {
- *
- *     if (foo) {
- *       bar();
- *     }           // violation, right curly must be in the same line as the 'else' keyword
- *     else {
- *       bar();
- *     }
- *
- *     if (foo) {
- *       bar();
- *     } else {     // OK
- *       bar();
- *     }
- *
- *     if (foo) { bar(); } int i = 0; // violation
- *                   // ^^^ statement is not allowed on same line after curly right brace
- *
- *     if (foo) { bar(); }            // OK
- *     int i = 0;
- *
- *     try {
- *       bar();
- *     }           // violation, rightCurly must be in the same line as 'catch' keyword
- *     catch (Exception e) {
- *       bar();
- *     }
- *
- *     try {
- *       bar();
- *     } catch (Exception e) { // OK
- *       bar();
- *     }
- *
- *   }                         // OK
- *
- *   public void testSingleLine() { bar(); } // OK, because singleline is allowed
- * }
- * </pre>
- * <p>
- * To configure the check with policy {@code alone} for {@code else} and
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a> tokens:
- * </p>
- * <pre>
- * &lt;module name=&quot;RightCurly&quot;&gt;
- *   &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *
- *   public void test() {
- *
- *     if (foo) {
- *       bar();
- *     } else { bar(); }   // violation, right curly must be alone on line
- *
- *     if (foo) {
- *       bar();
- *     } else {
- *       bar();
- *     }                   // OK
- *
- *     try {
- *       bar();
- *     } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
- *       bar();
- *     }
- *
- *   }                         // OK
- *
- *   public void violate() { bar; } // violation, singleline is not allowed here
- *
- *   public void ok() {
- *     bar();
- *   }                              // OK
- * }
- * </pre>
- * <p>
- * To configure the check with policy {@code alone} for
- * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
- * Switch</a> Statements:
- * </p>
- * <pre>
- * &lt;module name=&quot;RightCurly&quot;&gt;
- *  &lt;property name=&quot;option&quot; value=&quot;alone&quot;/&gt;
- *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test {
- *
- *     public void method0() {
- *         int mode = 0;
- *         switch (mode) {
- *             case 1:
- *                 int x = 1;
- *                 break;
- *             default:
- *                 x = 0;
- *         } // ok, RightCurly is alone
- *     }
- *
- *     public void method0() {
- *         int mode = 0;
- *         switch (mode) {
- *             case 1:
- *                 int x = 1;
- *                 break;
- *             default:
- *                 x = 0; } // violation, RightCurly should be alone on a line
- *     }
- *
- * }
- * </pre>
- * <p>
- * To configure the check with policy {@code alone_or_singleline} for {@code if} and
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>
- * tokens:
- * </p>
- * <pre>
- * &lt;module name=&quot;RightCurly&quot;&gt;
- *  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
- *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *
- *   public void test() {
- *
- *     if (foo) {
- *       bar();
- *     } else {        // violation, right curly must be alone on line
- *       bar();
- *     }
- *
- *     if (foo) {
- *       bar();
- *     }               // OK
- *     else {
- *       bar();
- *     }
- *
- *     try {
- *       bar();
- *     } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
- *       bar();
- *     }
- *
- *   }                                // OK
- *
- *   public void violate() { bar(); } // OK , because singleline
- * }
- * </pre>
- * <p>
- * To configure the check with policy {@code alone_or_singleline} for
- * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
- * Switch</a>
- * Statements:
- * </p>
- * <pre>
- * &lt;module name=&quot;RightCurly&quot;&gt;
- *  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
- *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_SWITCH&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <pre>
- * class Test {
- *
- *     public void method0() {
- *         int mode = 0;
- *         switch (mode) {
- *             case 1:
- *                 int x = 1;
- *                 break;
- *             default:
- *                 x = 0;
- *         } // ok
- *     }
- *
- *     public static void method7() {
- *         int mode = 0;
- *         int x;
- *         switch (mode) { case 1: x = 5; } // ok, RightCurly is on the same line as LeftCurly
- *     }
- *
- *     public void method() {
- *         int mode = 0;
- *         int x;
- *         switch (mode) {
- *             case 1:
- *                 x = 1; } // violation, right curly should be alone on line
- *         }
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -333,6 +116,7 @@ public class RightCurlyCheck extends AbstractCheck {
      *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
+     * @since 3.0
      */
     public void setOption(String optionStr) {
         option = RightCurlyOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
@@ -544,9 +328,16 @@ public class RightCurlyCheck extends AbstractCheck {
             nextToken = Details.getNextToken(nextToken);
         }
 
-        if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
-            final DetailAST doWhileSemi = nextToken.getParent();
-            nextToken = Details.getNextToken(doWhileSemi);
+        // sibling tokens should be allowed on a single line
+        final int[] tokensWithBlockSibling = {
+            TokenTypes.DO_WHILE,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_CATCH,
+        };
+
+        if (TokenUtil.isOfType(nextToken, tokensWithBlockSibling)) {
+            final DetailAST parent = nextToken.getParent();
+            nextToken = Details.getNextToken(parent);
         }
 
         return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)

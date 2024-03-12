@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpSingleline">
+    <property name="format" value="This file is copyrighted"/>
+    <property name="minimum" value="1"/>
+    <!--  Need to specify a maximum, so 10 times is more than enough. -->
+    <property name="maximum" value="10"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+/** // violation, as the file doesn't contain a copyright statement.
+* MyClass as a configuration example.
+*/
+class MyClass {
+
+}
+// xdoc section -- end

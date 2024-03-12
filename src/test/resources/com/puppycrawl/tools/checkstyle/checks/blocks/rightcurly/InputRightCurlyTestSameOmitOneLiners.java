@@ -16,6 +16,6 @@ public class InputRightCurlyTestSameOmitOneLiners {
     public static void main(String[] args) {
         boolean after = false;
         try {
-        } finally { after = true; } // ok
+        } finally { after = true; }
     }
 }

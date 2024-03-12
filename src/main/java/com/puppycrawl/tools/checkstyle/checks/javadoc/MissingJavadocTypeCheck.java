@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,18 +41,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code public}.
- * </li>
- * <li>
- * Property {@code excludeScope} - specify the visibility scope where Javadoc comments are not
+ * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are not
  * checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code skipAnnotations} - specify annotations that allow missed
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code public}.
+ * </li>
+ * <li>
+ * Property {@code skipAnnotations} - Specify annotations that allow missed
  * documentation. If annotation is present in target sources in multiple forms of qualified
  * name, all forms should be listed in this property.
  * Type is {@code java.lang.String[]}.
@@ -75,98 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the default check to make sure all public class, enum, interface, and annotation
- * interface, definitions have javadocs:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocType"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class PublicClass {} // violation
- * private class PublicClass {}
- * protected class PublicClass {}
- * class PackagePrivateClass {}
- * </pre>
- * <p>
- * To configure the check for {@code private} scope:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class PublicClass {} // violation
- * private class PublicClass {} // violation
- * protected class PublicClass {} // violation
- * class PackagePrivateClass {} // violation
- * </pre>
- * <p>
- * To configure the check for {@code private} classes only:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="package"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class PublicClass {}
- * private class PublicClass {} // violation
- * protected class PublicClass {}
- * class PackagePrivateClass {}
- * </pre>
- * <p>
- * To configure a check that allows missing comments for classes annotated
- * with {@code @SpringBootApplication} and {@code @Configuration}:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;SpringBootApplication // no violations about missing comment on class
- * public class Application {}
- *
- * &#64;Configuration // no violations about missing comment on class
- * class DatabaseConfiguration {}
- * </pre>
- * <p>
- * To configure a check that allows missing comments for classes annotated with {@code @Annotation}
- * and {@code @MyClass.Annotation}:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocType"&gt;
- *   &lt;property name="skipAnnotations" value="Annotation,MyClass.Annotation"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#64;Annotation // ok
- * class Class1 {}
- *
- * &#64;MyClass.Annotation // ok
- * class Class2 {}
- *
- * &#64;com.mycompany.MyClass.Annotation // violation, as this form is missed in config
- * class Class3 {}
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -206,6 +114,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
+     * @since 8.20
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -215,6 +124,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
+     * @since 8.20
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -226,6 +136,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * name, all forms should be listed in this property.
      *
      * @param userAnnotations user's value.
+     * @since 8.20
      */
     public void setSkipAnnotations(String... userAnnotations) {
         skipAnnotations = Set.of(userAnnotations);
@@ -273,16 +184,11 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final Scope customScope = ScopeUtil.getScope(ast);
         final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
-        return customScope.isIn(scope)
-            && (surroundingScope == null || surroundingScope.isIn(scope))
-            && (excludeScope == null
-                || !customScope.isIn(excludeScope)
-                || surroundingScope != null
-                && !surroundingScope.isIn(excludeScope))
-            && !AnnotationUtil.containsAnnotation(ast, skipAnnotations);
+        return surroundingScope.isIn(scope)
+                && (excludeScope == null || !surroundingScope.isIn(excludeScope))
+                && !AnnotationUtil.containsAnnotation(ast, skipAnnotations);
     }
 
 }

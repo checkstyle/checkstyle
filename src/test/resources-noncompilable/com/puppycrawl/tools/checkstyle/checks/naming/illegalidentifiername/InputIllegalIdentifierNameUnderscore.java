@@ -12,8 +12,8 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 public class InputIllegalIdentifierNameUnderscore {
-    String _string = "_string"; // ok
-    String string_ = "string_"; // ok
-    String another_string = "string"; // ok
+    String _string = "_string";
+    String string_ = "string_";
+    String another_string = "string";
     String _; // violation
 }

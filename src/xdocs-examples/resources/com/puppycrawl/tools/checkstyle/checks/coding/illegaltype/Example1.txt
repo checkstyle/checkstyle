@@ -1,0 +1,25 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalType"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test extends TreeSet { // violation
+  public <T extends java.util.HashSet> void method() { // violation
+
+    LinkedHashMap<Integer, String> lhmap =
+        new LinkedHashMap<Integer, String>(); // violation
+    TreeMap<Integer, String> treemap = new TreeMap<Integer, String>(); // violation
+    Test t; // OK
+    HashMap<String, String> hmap; // violation
+    Queue<Integer> intqueue; // OK
+
+    java.lang.IllegalArgumentException illegalex; // OK
+    java.util.TreeSet treeset; // violation
+  }
+
+}
+// xdoc section -- end

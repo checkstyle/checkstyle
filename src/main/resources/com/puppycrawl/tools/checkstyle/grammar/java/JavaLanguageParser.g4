@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -649,7 +649,9 @@ caseConstant
     ;
 
 forControl
-    : LPAREN enhancedForControl RPAREN                                     #enhancedFor
+    : LPAREN
+        ( enhancedForControl | enhancedForControlWithRecordPattern )
+      RPAREN                                                               #enhancedFor
     | LPAREN forInit? SEMI forCond=expression?
       SEMI forUpdate=expressionList? RPAREN                                #forFor
     ;
@@ -662,6 +664,10 @@ forInit
 enhancedForControl
     : mods+=variableModifier* type=typeType[true]
       variableDeclaratorId[$ctx.mods, $ctx.type] COLON expression
+    ;
+
+enhancedForControlWithRecordPattern
+    : pattern COLON expression
     ;
 
 // EXPRESSIONS
@@ -682,6 +688,7 @@ expression
 
 expr
     : primary                                                              #primaryExp
+    | expr DOT templateArgument                                            #templateExp
     | expr bop=DOT id                                                      #refOp
     | expr bop=DOT id LPAREN expressionList? RPAREN                        #methodCall
     | expr bop=DOT LITERAL_THIS                                            #thisExp
@@ -749,6 +756,23 @@ primary
       DOT LITERAL_CLASS                                                    #classRefPrimary
     | type=primitiveType arrayDeclarator*
       DOT LITERAL_CLASS                                                    #primitivePrimary
+    ;
+
+templateArgument
+    : template
+    | STRING_LITERAL
+    ;
+
+template
+    : stringTemplate
+    ;
+
+stringTemplate
+    : STRING_TEMPLATE_BEGIN expr? stringTemplateMiddle* STRING_TEMPLATE_END
+    ;
+
+stringTemplateMiddle
+    : STRING_TEMPLATE_MID expr?
     ;
 
 classType
@@ -853,8 +877,18 @@ arguments
     : LPAREN expressionList? RPAREN
     ;
 
+/**
+ * We do for patterns as we do for expressions; namely we have one parent
+ * 'PATTERN_DEF' node, then have all nested pattern definitions inside of
+ * the parent node.
+ */
 pattern
+    : innerPattern
+    ;
+
+innerPattern
     : guardedPattern
+    | recordPattern
     | primaryPattern
     ;
 
@@ -874,16 +908,21 @@ guard: ( LAND | LITERAL_WHEN );
 
 primaryPattern
     : typePattern                                                          #patternVariableDef
-    | LPAREN
-      // Set of production rules below should mirror `pattern` production rule
-      // above. We do not reuse `pattern` production rule here to avoid a bunch
-      // of nested `PATTERN_DEF` nodes, as we also do for expressions.
-      (guardedPattern | primaryPattern)
-      RPAREN                                                               #parenPattern
+    | LPAREN innerPattern RPAREN                                           #parenPattern
+    | recordPattern                                                        #recordPatternDef
     ;
 
 typePattern
-    : mods+=modifier* type=typeType[true] id
+    : mods+=modifier* type=typeType[true] id             #typePatternDef
+    | LITERAL_UNDERSCORE                                 #unnamedPatternDef
+    ;
+
+recordPattern
+    : mods+=modifier* type=typeType[true] LPAREN recordComponentPatternList? RPAREN id?
+    ;
+
+recordComponentPatternList
+    : innerPattern (COMMA innerPattern)*
     ;
 
 permittedSubclassesAndInterfaces
@@ -891,7 +930,8 @@ permittedSubclassesAndInterfaces
     ;
 
 // Handle the 'keyword as identifier' problem
-id  : LITERAL_RECORD
+id:  LITERAL_UNDERSCORE
+    | LITERAL_RECORD
     | LITERAL_YIELD
     | LITERAL_NON_SEALED
     | LITERAL_SEALED

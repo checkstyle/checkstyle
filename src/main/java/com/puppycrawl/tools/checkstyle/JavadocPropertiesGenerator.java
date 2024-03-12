@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -63,9 +63,6 @@ public final class JavadocPropertiesGenerator {
     private static final Pattern END_OF_SENTENCE_PATTERN = Pattern.compile(
         "(([^.?!]|[.?!](?!\\s|$))*+[.?!])(\\s|$)");
 
-    /** Max width of the usage help message for this command. */
-    private static final int USAGE_HELP_WIDTH = 100;
-
     /**
      * Don't create instance of this class, use the {@link #main(String[])} method instead.
      */
@@ -80,7 +77,7 @@ public final class JavadocPropertiesGenerator {
      **/
     public static void main(String... args) throws CheckstyleException {
         final CliOptions cliOptions = new CliOptions();
-        final CommandLine cmd = new CommandLine(cliOptions).setUsageHelpWidth(USAGE_HELP_WIDTH);
+        final CommandLine cmd = new CommandLine(cliOptions);
         try {
             final ParseResult parseResult = cmd.parseArgs(args);
             if (parseResult.isUsageHelpRequested()) {

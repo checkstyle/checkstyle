@@ -17,7 +17,7 @@ abstract public class InputAbstractClassNameVariants {
 abstract class NonAbstractClassNameVa {
 }
 
-abstract class AbstractClassOtherVa { // ok
+abstract class AbstractClassOtherVa {
     // violation below 'Name 'NonAbstractInnerClassVa' must match pattern '\^Abstract\.\+\$'.'
     abstract class NonAbstractInnerClassVa {
     }
@@ -30,7 +30,7 @@ class NonAbstractClassVa {
 class AbstractClassVa { // violation 'Class 'AbstractClassVa' must be declared as 'abstract'.'
 }
 
-abstract class AbstractClassName2Va { // ok
+abstract class AbstractClassName2Va {
     // violation below 'Class 'AbstractInnerClassVa' must be declared as 'abstract'.'
     class AbstractInnerClassVa {
     }

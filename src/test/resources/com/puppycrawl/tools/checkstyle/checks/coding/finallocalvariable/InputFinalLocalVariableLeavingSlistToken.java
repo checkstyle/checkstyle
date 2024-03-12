@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.stream.Stream;
 
-public class InputFinalLocalVariableLeavingSlistToken { // ok
+public class InputFinalLocalVariableLeavingSlistToken {
 
     private int assignedInInstanceInitAndCtor;
     private static int assignedInStaticInitAndFoo1;

@@ -29,7 +29,7 @@ public class InputAtclauseOrderLotsOfRecords4 {
     /**
      * Javadoc here
      */
-    record RX(int[]xs) { // ok
+    record RX(int[]xs) {
     }
 
     private static int record = 2;

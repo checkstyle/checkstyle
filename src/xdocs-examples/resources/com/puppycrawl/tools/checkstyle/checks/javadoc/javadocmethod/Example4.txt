@@ -1,0 +1,42 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="JavadocMethod">
+        <property name="allowMissingReturnTag" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+
+  /**
+   *
+   */
+  Test(int x) {             // violation, param tag missing for x
+  }
+
+  /**
+   *
+   */
+  public int foo(int p1) {  // violation, param tag missing for p1
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int boo(int p1) {
+      return p1;            // ok, missing return tag allowed
+  }
+
+  /**
+   *
+   */
+  void bar(int p1) {        // violation, param tag missing for p1
+  }                         // ok, no return tag for void method
+}
+// xdoc section -- end

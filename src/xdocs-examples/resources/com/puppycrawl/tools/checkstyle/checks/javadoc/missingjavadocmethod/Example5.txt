@@ -1,0 +1,19 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingJavadocMethod">
+      <property name="allowMissingPropertyJavadoc" value="true"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  private String text;
+
+  public void test() {} // violation, method is missing javadoc
+  public String getText() { return text; } // OK
+  public void setText(String text) { this.text = text; } // OK
+}
+// xdoc section -- end

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -48,7 +48,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "187:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "377:11: " + getCheckMessage(MSG_FALL_THROUGH),
             "380:11: " + getCheckMessage(MSG_FALL_THROUGH),
-            "382:40: " + getCheckMessage(MSG_FALL_THROUGH),
+            "382:27: " + getCheckMessage(MSG_FALL_THROUGH),
             "424:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -124,7 +124,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "432:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "444:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "454:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "490:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "491:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "492:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -248,4 +247,122 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testLastCase() throws Exception {
+        final String[] expected = {
+            "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "112:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough4.java"),
+                expected);
+    }
+
+    @Test
+    public void testIfElse() throws Exception {
+        final String[] expected = {
+            "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough5.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThrough() throws Exception {
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "52:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "65:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "80:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "109:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough6.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughNonCompilable4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough4.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughComment2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFallThroughLotsOfComment2.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThrough7() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "36:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "50:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "64:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "111:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough7.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastLine() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            // until https://github.com/checkstyle/checkstyle/issues/13553
+            "33:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            // until https://github.com/checkstyle/checkstyle/issues/13553
+            "107:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughLastLineCommentCheck.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastLine2() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThrough5.java"),
+                expected);
+    }
+
+    @Test
+    public void testReliefCommentBetweenMultipleComment() throws Exception {
+        final String[] expected = {
+            // until https://github.com/checkstyle/checkstyle/issues/13553
+            "25:17: " + getCheckMessage(MSG_FALL_THROUGH),
+            // until https://github.com/checkstyle/checkstyle/issues/13553
+            "34:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThrough8.java"),
+                expected);
+    }
 }

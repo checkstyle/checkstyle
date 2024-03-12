@@ -2,8 +2,8 @@
 <checkstyle-metadata>
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"
-              name="WhitespaceAround"
-              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+             name="WhitespaceAround"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that a token is surrounded by whitespace. Empty constructor,
  method, class, enum, interface, loop bodies (blocks), lambdas of the form
@@ -50,8 +50,17 @@
  of the catch block (right curly bracket).
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="allowEmptyCatches" type="boolean">
+               <description>Allow empty catch bodies.</description>
+            </property>
             <property default-value="false" name="allowEmptyConstructors" type="boolean">
                <description>Allow empty constructor bodies.</description>
+            </property>
+            <property default-value="false" name="allowEmptyLambdas" type="boolean">
+               <description>Allow empty lambda bodies.</description>
+            </property>
+            <property default-value="false" name="allowEmptyLoops" type="boolean">
+               <description>Allow empty loop bodies.</description>
             </property>
             <property default-value="false" name="allowEmptyMethods" type="boolean">
                <description>Allow empty method bodies.</description>
@@ -59,24 +68,15 @@
             <property default-value="false" name="allowEmptyTypes" type="boolean">
                <description>Allow empty class, interface and enum bodies.</description>
             </property>
-            <property default-value="false" name="allowEmptyLoops" type="boolean">
-               <description>Allow empty loop bodies.</description>
-            </property>
-            <property default-value="false" name="allowEmptyLambdas" type="boolean">
-               <description>Allow empty lambda bodies.</description>
-            </property>
-            <property default-value="false" name="allowEmptyCatches" type="boolean">
-               <description>Allow empty catch bodies.</description>
-            </property>
             <property default-value="true" name="ignoreEnhancedForColon" type="boolean">
                <description>Ignore whitespace around colon in
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
  enhanced for&lt;/a&gt; loop.</description>
             </property>
             <property default-value="ASSIGN,BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,DO_WHILE,EQUAL,GE,GT,LAMBDA,LAND,LCURLY,LE,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND"
-                       name="tokens"
-                       type="java.lang.String[]"
-                       validation-type="tokenSet">
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
          </properties>

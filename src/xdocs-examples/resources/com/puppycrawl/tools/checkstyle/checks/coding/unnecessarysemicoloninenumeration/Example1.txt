@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnnecessarySemicolonInEnumeration"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+enum One {
+    A,B; // violation
+}
+enum Two {
+    A,B,; // violation
+}
+enum Three {
+    A,B(); // violation
+}
+enum Four {
+    A,B{}; // violation
+}
+enum Five {
+    A,
+    B
+    ; // violation
+}
+// xdoc section -- end

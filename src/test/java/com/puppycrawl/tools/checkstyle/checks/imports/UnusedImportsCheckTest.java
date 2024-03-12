@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -69,8 +69,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testWithoutProcessJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks."
-                + "imports.unusedimports.InputUnusedImportsBug"),
+                "com.google.errorprone.annotations."
+                + "concurrent.GuardedBy"),
             "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -85,19 +85,22 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "37:8: " + getCheckMessage(MSG_KEY, "java.util.Date"),
             "38:8: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "39:8: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
-            "41:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Checker"),
-            "42:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.CheckerTest"),
-            "43:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.Definitions"),
+            "41:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CheckReturnValue"),
+            "42:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CanIgnoreReturnValue"),
+            "43:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone."
+                    + "annotations.CompatibleWith"),
             "44:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.imports.unusedimports."
-                        + "InputUnusedImports15Extensions"),
+                "com.google.errorprone.annotations.concurrent."
+                        + "LazyInit"),
             "45:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest"),
+                "com.google.errorprone.annotations.DoNotCall"),
             "46:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.PackageNamesLoader"),
+                "com.google.errorprone.annotations.CompileTimeConstant"),
             "47:8: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.DefaultConfiguration"),
-            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+                "com.google.errorprone.annotations.FormatMethod"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone.annotations.FormatString"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports2.java"), expected);
@@ -107,8 +110,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testProcessJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
-                    "com.puppycrawl.tools.checkstyle.checks."
-                    + "imports.unusedimports.InputUnusedImportsBug"),
+                    "com.google.errorprone.annotations."
+                    + "concurrent.GuardedBy"),
             "15:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "18:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -118,7 +121,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "31:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
             // "30:8: Unused import - java.awt.Component.", // Should be detected
             "36:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "48:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
+            "48:8: " + getCheckMessage(MSG_KEY, "com.google.errorprone.annotations.ForOverride"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImports.java"), expected);
@@ -302,4 +305,29 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedImportsShadowed.java"), expected);
     }
 
+    @Test
+    public void testUnusedImports3() throws Exception {
+        final String[] expected = {
+            "11:8: " + getCheckMessage(MSG_KEY, "java.awt.Rectangle"),
+            "13:8: " + getCheckMessage(MSG_KEY, "java.awt.event.KeyEvent"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImports3.java"), expected);
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTreeCollect() throws Exception {
+        final String file1 = getNonCompilablePath(
+                "InputUnusedImportsRecordsAndCompactCtors.java");
+        final String file2 = getNonCompilablePath(
+                "InputUnusedImportsSingleWordPackage.java");
+        final List<String> expectedFirstInput = List.of(
+            "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
+            "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton")
+        );
+        final List<String> expectedSecondInput = List.of(
+            "10:8: " + getCheckMessage(MSG_KEY, "module")
+        );
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
 }

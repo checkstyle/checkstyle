@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpOnFilename</title>
+  </head>
+  <body>
+    <section name="RegexpOnFilename">
+      <p>Since Checkstyle 6.15</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a specified pattern matches based on file and/or folder path.
+          It can also be used to verify files match specific naming
+          patterns not covered by other checks (Ex: properties, xml, etc.).
+        </p>
+        <p>
+          When customizing the check, the properties are applied in a specific order.
+          The fileExtensions property first picks only files that match any of the
+          specific extensions supplied.
+          Once files are matched against the fileExtensions, the match property is then
+          used in conjunction with the patterns to determine if the check is looking
+          for a match or mismatch on those files. If the fileNamePattern is
+          supplied, the matching is only applied to the fileNamePattern and not the
+          folderPattern. If no fileNamePattern is supplied, then matching is applied
+          to the folderPattern only and will result in all files in a folder to be
+          reported on violations. If no folderPattern is supplied, then all folders
+          that checkstyle finds are examined for violations.
+          The ignoreFileNameExtensions property drops the file extension and applies
+          the fileNamePattern only to the rest of file name. For example, if the file is
+          named 'test.java' and this property is turned on, the pattern is only applied
+          to 'test'.
+        </p>
+        <p>
+          If this check is configured with no properties, then the default behavior
+          of this check is to report file names with spaces in them.
+          When at least one pattern property is supplied, the entire check is under
+          the user's control to allow them to fully customize the behavior.
+        </p>
+        <p>
+          It is recommended that if you create your own pattern, to also
+          specify a custom violation message. This allows the violation message printed
+          to be clear what the violation is, especially if multiple RegexpOnFilename
+          checks are used.
+          Argument 0 for the message populates the check's folderPattern.
+          Argument 1 for the message populates the check's fileNamePattern.
+          The file name is not passed as an argument since it is part of CheckStyle's
+          default violation messages.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>fileNamePattern</td>
+              <td>Specify the regular expression to match the file name against.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>folderPattern</td>
+              <td>Specify the regular expression to match the folder path against.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>ignoreFileNameExtensions</td>
+              <td>Control whether to ignore the file extension for the file name match.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>match</td>
+              <td>Control whether to look for a match or mismatch on the file name, if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.15</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check to report file names that contain a space:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+src/xdocs/config_regexp.xml  //OK, contains no whitespace
+src/xdocs/&quot;config regexp&quot;.xml  //violation, contains whitespace
+        </source>
+        <p id="Example2-config">
+          To configure the check to forbid 'gif' files in folders:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.gif$&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+src/site/resources/images/favicon.png  //OK
+src/site/resources/images/logo.jpg  //OK
+src/site/resources/images/groups.gif  //violation, .gif images not allowed
+        </source>
+        <p id="Example3-config">
+          To configure the check to forbid 'md' files except 'README.md file' in folders,
+          with custom message:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;README&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;md&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;message key=&quot;regexp.filename.mismatch&quot;
+      value=&quot;No '*.md' files other then 'README.md'&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+src/site/resources/README.md  //OK
+src/site/resources/Logo.png  //OK
+src/site/resources/Text.md  //violation, .md files other than 'README.md' are not allowed
+        </source>
+        <p id="Example4-config">
+          To configure the check to only allow property and xml files to be located
+          in the resource folder:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;folderPattern&quot;
+      value=&quot;[\\/]src[\\/]\w+[\\/]resources[\\/]&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, xml&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+src/main/resources/sun_checks.xml  //OK
+src/main/resources/check_properties.properties  //OK
+src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
+        </source>
+        <p id="Example5-config">
+          To configure the check to only allow Java and XML files in your folders use the below.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+src/main/java/JavaClass.java  //OK
+src/main/MainClass.java  //OK
+src/main/java/java_xml.xml  //OK
+src/main/main_xml.xml  //OK
+src/main/java/image.png  //violation, folders should only contain java or xml files
+src/main/check_properties.properties  //violation, folders should only contain java or xml files
+        </source>
+        <p id="Example6-config">
+          To configure the check to only allow Java and XML files only in your source folder
+          and ignore any other folders:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;folderPattern&quot; value=&quot;[\\/]src[\\/]&quot;/&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Example:</p>
+        <source>
+src/SourceClass.java  //OK
+src/source_xml.xml  //OK
+src/image.png  //violation, only java and xml files are allowed in src folder
+src/main/main_properties.properties  //OK, this check only applies to src folder
+        </source>
+        <p>
+          <b>Note:</b> 'folderPattern' must be specified if checkstyle is analyzing more than
+          the normal source folder, like the 'bin' folder where class files can be located.
+        </p>
+        <p id="Example7-config">
+          To configure the check to only allow file names to be camel case:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpOnFilename&quot;&gt;
+    &lt;property name=&quot;fileNamePattern&quot; value=&quot;^([A-Z][a-z0-9]+\.?)+$&quot;/&gt;
+    &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
+    &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+src/main/java/JavaClass.java  //OK
+src/main/MainClass.java  //OK
+src/main/java/java_class.java  //violation, file names should be in Camel Case
+src/main/main_class.java  //violation, file names should be in Camel Case
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpOnFilename">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.match%22">
+              regexp.filename.match
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.mismatch%22">
+              regexp.filename.mismatch
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.regexp
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

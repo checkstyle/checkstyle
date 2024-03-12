@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,47 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   FOO,
  *   BAR, //violation
  * }
- * </pre>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;NoEnumTrailingComma&quot;/&gt;
- * </pre>
- * <p>
- * Which results in the following violations:
- * </p>
- * <pre>
- * enum Foo1 {
- *   FOO,
- *   BAR; //OK
- * }
- * enum Foo2 {
- *   FOO,
- *   BAR //OK
- * }
- * enum Foo3 {
- *   FOO,
- *   BAR, //violation
- * }
- * enum Foo4 {
- *   FOO,
- *   BAR, // violation
- *   ;
- * }
- * enum Foo5 {
- *   FOO,
- *   BAR,; // violation
- * }
- * enum Foo6 { FOO, BAR,; } // violation
- * enum Foo7 { FOO, BAR, } // violation
- * enum Foo8 {
- *   FOO,
- *   BAR // OK
- *   ;
- * }
- * enum Foo9 { FOO, BAR; } // OK
- * enum Foo10 { FOO, BAR } // OK
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

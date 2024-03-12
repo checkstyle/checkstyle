@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -41,6 +41,7 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil;
 
 /**
  * This class maintains a persistent(on file-system) store of the files
@@ -144,8 +145,9 @@ public final class PropertyCacheFile {
     public void persist() throws IOException {
         final Path path = Paths.get(fileName);
         final Path directory = path.getParent();
+
         if (directory != null) {
-            Files.createDirectories(directory);
+            OsSpecificUtil.updateDirectory(directory);
         }
         try (OutputStream out = Files.newOutputStream(path)) {
             details.store(out, null);

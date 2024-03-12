@@ -36,7 +36,7 @@ public class InputEqualsAvoidNullTextBlocks {
           System.out.println("this is my other string");
         }
         else if ("""
-            one more string""".equals(s)) { // ok
+            one more string""".equals(s)) {
           System.out.println("This is one more string");
         }
       }

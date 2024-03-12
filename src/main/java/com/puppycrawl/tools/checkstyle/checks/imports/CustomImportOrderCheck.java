@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -82,7 +83,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ol>
  * <p>
- * Use the separator '###' between rules.
+ * Rules are configured as a comma-separated ordered list.
+ * </p>
+ * <p>
+ * Note: '###' group separator is deprecated (in favor of a comma-separated list),
+ * but is currently supported for backward compatibility.
  * </p>
  * <p>
  * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -135,25 +140,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code customImportOrderRules} - Specify format of order declaration
- * customizing by user.
- * Type is {@code java.lang.String}.
+ * Property {@code customImportOrderRules} - Specify ordered list of import groups.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code standardPackageRegExp} - Specify RegExp for STANDARD_JAVA_PACKAGE group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(java|javax)\."}.
- * </li>
- * <li>
- * Property {@code thirdPartyPackageRegExp} - Specify RegExp for THIRD_PARTY_PACKAGE group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code specialImportsRegExp} - Specify RegExp for SPECIAL_IMPORTS group imports.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
  * </li>
  * <li>
  * Property {@code separateLineBetweenGroups} - Force empty line separator between
@@ -167,466 +156,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
- * </ul>
- * <p>
- *     To configure the check :
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- * import org.apache.commons.io.FileUtils; // OK
- * import static java.util.*; // OK
- * import java.time.*; // OK
- * import static java.io.*; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check so that it checks in the order
- * (static imports,standard java packages,third party package):
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import static java.io.*; // violation as static imports should be in top
- *
- * import org.apache.commons.io.FileUtils; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check such that only java packages are included in standard java packages
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^java\.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // violation as it is not included in standard java package group.
- *
- * import org.apache.commons.io.FileUtils; // violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check to include only "com" packages as third party group imports:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- *
- * import org.apache.commons.io.FileUtils; // violation(should be in end)
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check to force some packages in special import group:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // OK
- *
- * import org.json.JSONObject; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- *
- * import org.apache.commons.io.FileUtils; // violation
- * </pre>
- * <p>
- * To configure the check such that empty line separator between two groups is enabled:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import org.apache.commons.io.FileUtils; // violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check such that import groups are forced to be sorted alphabetically:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // Violation since it should come before"java.util"
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import org.apache.commons.io.FileUtils; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check so that it matches default Eclipse formatter configuration
- * (tested on Kepler and Luna releases):
- * </p>
- * <ul>
  * <li>
- * group of static imports is on the top
+ * Property {@code specialImportsRegExp} - Specify RegExp for SPECIAL_IMPORTS group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^$"}.
  * </li>
  * <li>
- * groups of non-static imports: "java" and "javax" packages first, then "org" and then all other
- * imports
+ * Property {@code standardPackageRegExp} - Specify RegExp for STANDARD_JAVA_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^(java|javax)\."}.
  * </li>
  * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by single blank line
+ * Property {@code thirdPartyPackageRegExp} - Specify RegExp for THIRD_PARTY_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code ".*"}.
  * </li>
  * </ul>
- * <p>
- * Notes:
- * </p>
- * <ul>
- * <li>
- * "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna
- * (looks like Eclipse defect)
- * </li>
- * <li>
- * configuration below doesn't work in all 100% cases due to inconsistent behavior prior to Mars
- * release, but covers most scenarios
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- *   &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.util.*; // OK
- * import static java.io.*; // Violation since it should come before"java.util"
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import org.apache.commons.io.FileUtils; // Violation should be separated by space
- *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * </pre>
- * <p>
- * To configure the check so that it matches default Eclipse formatter configuration
- * (tested on Mars release):
- * </p>
- * <ul>
- * <li>
- * group of static imports is on the top
- * </li>
- * <li>
- * groups of non-static imports: "java" and "javax" packages first, then "org" and "com",
- * then all other imports as one group
- * </li>
- * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by one blank line
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
- *   &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.io.*; // OK
- * import static java.util.*; // OK
- *
- * import java.time.*; // OK
- * import javax.net.*; // OK
- *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
- *
- * import org.apache.commons.io.FileUtils;
- * </pre>
- * <p>
- * To configure the check so that it matches default IntelliJ IDEA formatter configuration
- * (tested on v14):
- * </p>
- * <ul>
- * <li>
- * group of static imports is on the bottom
- * </li>
- * <li>
- * groups of non-static imports: all imports except of "javax" and "java", then "javax" and "java"
- * </li>
- * <li>
- * imports will be sorted in the groups
- * </li>
- * <li>
- * groups are separated by one blank line
- * </li>
- * </ul>
- * <p>
- * Note: "separated" option is disabled because IDEA default has blank line between "java" and
- * static imports, and no blank line between "javax" and "java"
- * </p>
- * <pre>
- * &lt;module name="CustomImportOrder"&gt;
- *   &lt;property name="customImportOrderRules"
- *     value="THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC"/&gt;
- *   &lt;property name="specialImportsRegExp" value="^javax\."/&gt;
- *   &lt;property name="standardPackageRegExp" value="^java\."/&gt;
- *   &lt;property name="sortImportsInGroupAlphabetically" value="true"/&gt;
- *   &lt;property name="separateLineBetweenGroups" value="false"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.io.*; // OK
- * import static java.util.*; // OK
- *
- * import java.time.*; // violation should be in standard package group
- *                    // below special import
- *
- * import javax.net.*; // Violation should be in special import group
- *
- * import org.apache.commons.io.FileUtils; // Violation should be in
- *                                        // THIRD PARTY PACKAGE GROUP
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
- * </pre>
- * <p>
- * To configure the check so that it matches default NetBeans formatter configuration
- * (tested on v8):
- * </p>
- * <ul>
- * <li>
- * groups of non-static imports are not defined, all imports will be sorted as a one group
- * </li>
- * <li>
- * static imports are not separated, they will be sorted along with other imports
- * </li>
- * </ul>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.io.*; // OK
- * import static java.util.*; // OK
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- *
- * import org.apache.commons.io.FileUtils; // should not be separated by line
- * </pre>
- * <p>
- * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
- * thirdPartyPackageRegExp and standardPackageRegExp options.
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
- *   &lt;property name=&quot;standardPackageRegExp&quot; value=&quot;^(java|javax)\.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.io.*; // OK
- * import static java.util.*; // OK
- * import java.time.*; // violation
- * import javax.net.*; // violation
- *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * import org.apache.commons.io.FileUtils; // OK
- * </pre>
- * <p>
- * Also, this check can be configured to force empty line separator between
- * import groups. For example.
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * package com.company;
- *
- * import static java.io.*; // OK
- * import static java.util.*; // OK
- * import java.time.*; // OK
- * import javax.net.*; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
- * import org.apache.commons.io.FileUtils; // OK
- * </pre>
- * <p>
- * It is possible to enforce
- * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>
- * of imports in groups using the following configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;sortImportsInGroupAlphabetically&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example of ASCII order:
- * </p>
- * <pre>
- * import java.awt.Dialog;
- * import java.awt.Window;
- * import java.awt.color.ColorSpace;
- * import java.awt.Frame; // violation here - in ASCII order 'F' should go before 'c',
- *                        // as all uppercase come before lowercase letters
- * </pre>
- * <p>
- * To force checking imports sequence such as:
- * </p>
- * <pre>
- * package com.puppycrawl.tools.checkstyle.imports;
- *
- * import com.google.common.annotations.GwtCompatible;
- * import com.google.common.annotations.Beta;
- * import com.google.common.annotations.VisibleForTesting;
- *
- * import org.abego.treelayout.Configuration;
- *
- * import static sun.tools.util.ModifierFilter.ALL_ACCESS;
- *
- * import com.google.common.annotations.GwtCompatible; // violation here - should be in the
- *                                                     // THIRD_PARTY_PACKAGE group
- * import android.*;
- * </pre>
- * <p>
- * configure as follows:
- * </p>
- * <pre>
- * &lt;module name=&quot;CustomImportOrder&quot;&gt;
- *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;SAME_PACKAGE(3)###THIRD_PARTY_PACKAGE###STATIC###SPECIAL_IMPORTS&quot;/&gt;
- *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -716,14 +261,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
 
-    /** Processed list of import order rules. */
-    private final List<String> customOrderRules = new ArrayList<>();
+    /** Specify ordered list of import groups. */
+    private final List<String> customImportOrderRules = new ArrayList<>();
 
     /** Contains objects with import attributes. */
     private final List<ImportDetails> importToGroupList = new ArrayList<>();
-
-    /** Specify format of order declaration customizing by user. */
-    private String customImportOrderRules = "";
 
     /** Specify RegExp for SAME_PACKAGE group imports. */
     private String samePackageDomainsRegExp = "";
@@ -747,13 +289,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private boolean sortImportsInGroupAlphabetically;
 
     /** Number of first domains for SAME_PACKAGE group. */
-    private int samePackageMatchingDepth = 2;
+    private int samePackageMatchingDepth;
 
     /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
      *
      * @param regexp
      *        user value.
+     * @since 5.8
      */
     public final void setStandardPackageRegExp(Pattern regexp) {
         standardPackageRegExp = regexp;
@@ -764,6 +307,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param regexp
      *        user value.
+     * @since 5.8
      */
     public final void setThirdPartyPackageRegExp(Pattern regexp) {
         thirdPartyPackageRegExp = regexp;
@@ -774,6 +318,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param regexp
      *        user value.
+     * @since 5.8
      */
     public final void setSpecialImportsRegExp(Pattern regexp) {
         specialImportsRegExp = regexp;
@@ -784,6 +329,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param value
      *        user value.
+     * @since 5.8
      */
     public final void setSeparateLineBetweenGroups(boolean value) {
         separateLineBetweenGroups = value;
@@ -795,25 +341,26 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *
      * @param value
      *        user value.
+     * @since 5.8
      */
     public final void setSortImportsInGroupAlphabetically(boolean value) {
         sortImportsInGroupAlphabetically = value;
     }
 
     /**
-     * Setter to specify format of order declaration customizing by user.
+     * Setter to specify ordered list of import groups.
      *
-     * @param inputCustomImportOrder
+     * @param rules
      *        user value.
+     * @since 5.8
      */
-    public final void setCustomImportOrderRules(final String inputCustomImportOrder) {
-        if (!customImportOrderRules.equals(inputCustomImportOrder)) {
-            for (String currentState : GROUP_SEPARATOR_PATTERN.split(inputCustomImportOrder)) {
-                addRulesToList(currentState);
-            }
-            customOrderRules.add(NON_GROUP_RULE_GROUP);
-        }
-        customImportOrderRules = inputCustomImportOrder;
+    public final void setCustomImportOrderRules(String... rules) {
+        Arrays.stream(rules)
+                .map(GROUP_SEPARATOR_PATTERN::split)
+                .flatMap(Arrays::stream)
+                .forEach(this::addRulesToList);
+
+        customImportOrderRules.add(NON_GROUP_RULE_GROUP);
     }
 
     @Override
@@ -864,7 +411,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Examine the order of all the imports and log any violations. */
     private void finishImportList() {
         String currentGroup = getFirstGroup();
-        int currentGroupNumber = customOrderRules.lastIndexOf(currentGroup);
+        int currentGroupNumber = customImportOrderRules.lastIndexOf(currentGroup);
         ImportDetails previousImportObjectFromCurrentGroup = null;
         String previousImportFromCurrentGroup = null;
 
@@ -886,13 +433,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
             }
             else {
                 // not the last group, last one is always NON_GROUP
-                if (customOrderRules.size() > currentGroupNumber + 1) {
+                if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         validateMissedEmptyLine(previousImportObjectFromCurrentGroup,
                                 importObject, fullImportIdent);
                         currentGroup = nextGroup;
-                        currentGroupNumber = customOrderRules.lastIndexOf(nextGroup);
+                        currentGroupNumber = customImportOrderRules.lastIndexOf(nextGroup);
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
@@ -1038,13 +585,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private String getNextImportGroup(int currentGroupNumber) {
         int nextGroupNumber = currentGroupNumber;
 
-        while (customOrderRules.size() > nextGroupNumber + 1) {
-            if (hasAnyImportInCurrentGroup(customOrderRules.get(nextGroupNumber))) {
+        while (customImportOrderRules.size() > nextGroupNumber + 1) {
+            if (hasAnyImportInCurrentGroup(customImportOrderRules.get(nextGroupNumber))) {
                 break;
             }
             nextGroupNumber++;
         }
-        return customOrderRules.get(nextGroupNumber);
+        return customImportOrderRules.get(nextGroupNumber);
     }
 
     /**
@@ -1077,11 +624,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private String getImportGroup(boolean isStatic, String importPath) {
         RuleMatchForImport bestMatch = new RuleMatchForImport(NON_GROUP_RULE_GROUP, 0, 0);
-        if (isStatic && customOrderRules.contains(STATIC_RULE_GROUP)) {
+        if (isStatic && customImportOrderRules.contains(STATIC_RULE_GROUP)) {
             bestMatch.group = STATIC_RULE_GROUP;
             bestMatch.matchLength = importPath.length();
         }
-        else if (customOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {
+        else if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {
             final String importPathTrimmedToSamePackageDepth =
                     getFirstDomainsFromIdent(samePackageMatchingDepth, importPath);
             if (samePackageDomainsRegExp.equals(importPathTrimmedToSamePackageDepth)) {
@@ -1089,7 +636,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 bestMatch.matchLength = importPath.length();
             }
         }
-        for (String group : customOrderRules) {
+        for (String group : customImportOrderRules) {
             if (STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(group)) {
                 bestMatch = findBetterPatternMatch(importPath,
                         STANDARD_JAVA_PACKAGE_RULE_GROUP, standardPackageRegExp, bestMatch);
@@ -1101,7 +648,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         }
 
         if (NON_GROUP_RULE_GROUP.equals(bestMatch.group)
-                && customOrderRules.contains(THIRD_PARTY_PACKAGE_RULE_GROUP)
+                && customImportOrderRules.contains(THIRD_PARTY_PACKAGE_RULE_GROUP)
                 && thirdPartyPackageRegExp.matcher(importPath).find()) {
             bestMatch.group = THIRD_PARTY_PACKAGE_RULE_GROUP;
         }
@@ -1220,7 +767,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 || THIRD_PARTY_PACKAGE_RULE_GROUP.equals(ruleStr)
                 || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(ruleStr)
                 || SPECIAL_IMPORTS_RULE_GROUP.equals(ruleStr)) {
-            customOrderRules.add(ruleStr);
+            customImportOrderRules.add(ruleStr);
         }
         else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {
             final String rule = ruleStr.substring(ruleStr.indexOf('(') + 1,
@@ -1230,7 +777,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 throw new IllegalArgumentException(
                         "SAME_PACKAGE rule parameter should be positive integer: " + ruleStr);
             }
-            customOrderRules.add(SAME_PACKAGE_RULE_GROUP);
+            customImportOrderRules.add(SAME_PACKAGE_RULE_GROUP);
         }
         else {
             throw new IllegalStateException("Unexpected rule: " + ruleStr);
@@ -1269,7 +816,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
         int count = firstPackageDomainsCount;
 
         while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken()).append('.');
+            builder.append(tokens.nextToken());
             count--;
         }
         return builder.toString();

@@ -1,0 +1,23 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   String s1 = "Clean code!";
+2      s.toString().toString().toString();
+3   // single-line
+4   // block
+5   // comment (it is OK)
+6   int a = 5;
+7
+8   String s2 = "Code complete!";
+9    s.toString().toString().toString();
+10            // violation (should have the same indentation level as line 11)
+11       // violation (should have the same indentation level as line 12)
+12     // violation (should have the same indentation level as line 13)
+13  int b = 18;
+// xdoc section -- end

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,12 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code allowSingleLineStatement} - allow single-line statements without braces.
+ * Property {@code allowEmptyLoopBody} - Allow loops with empty bodies.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowEmptyLoopBody} - allow loops with empty bodies.
+ * Property {@code allowSingleLineStatement} - Allow single-line statements without braces.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -60,193 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LITERAL_WHILE</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="NeedBraces"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
- * if (true) {                     // OK
- *     return true;
- * } else                          // violation, single-line statements not allowed without braces
- *     return false;
- * for (int i = 0; i &lt; 5; i++) {   // OK
- *      ++count;
- * }
- * do                              // violation, single-line statements not allowed without braces
- *     ++count;
- * while (false);
- * for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
- * for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
- * while (counter &lt; 10)          // violation, single-line statements not allowed without braces
- *     ++count;
- * while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
- * switch (num) {
- *   case 1: counter++; break;         // OK
- * }
- * </pre>
- * <p>
- * To configure the check for {@code if} and {@code else} blocks:
- * </p>
- * <pre>
- * &lt;module name=&quot;NeedBraces&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
- * if (true) {                     // OK
- *     return true;
- * } else                          // violation, single-line statements not allowed without braces
- *     return false;
- * for (int i = 0; i &lt; 5; i++) {   // OK
- *      ++count;
- * }
- * do                              // OK
- *     ++count;
- * while (false);
- * for (int j = 0; j &lt; 10; j++);   // OK
- * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
- * while (counter &lt; 10)                            // OK
- *     ++count;
- * while (value.incrementValue() &lt; 5); // OK
- * switch (num) {
- *   case 1: counter++; break;         // OK
- * }
- * </pre>
- * <p>
- * To configure the check to allow single-line statements
- * ({@code if, while, do-while, for}) without braces:
- * </p>
- * <pre>
- * &lt;module name=&quot;NeedBraces&quot;&gt;
- *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot;
- *          value=&quot;LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * if (obj.isValid()) return true;  // OK
- * if (true) {                      // OK
- *     return true;
- * } else                           // OK
- *     return false;
- * for (int i = 0; i &lt; 5; i++) {    // OK
- *     ++count;
- * }
- * do                               // OK
- *    ++count;
- * while (false);
- * for (int j = 0; j &lt; 10; j++);                   // violation, empty loop body not allowed
- * for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
- * while (counter &lt; 10)                 // OK
- *    ++count;
- * while (value.incrementValue() &lt; 5);  // violation, empty loop body not allowed
- * switch (num) {
- *   case 1: counter++; break;          // OK
- * }
- * while (obj.isValid()) return true;   // OK
- * do this.notify(); while (o != null); // OK
- * for (int i = 0; ; ) this.notify();   // OK
- * </pre>
- * <p>
- * To configure the check to allow {@code case, default} single-line statements without braces:
- * </p>
- * <pre>
- * &lt;module name=&quot;NeedBraces&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
- *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Next statements won't be violated by check:
- * </p>
- * <pre>
- * if (obj.isValid()) return true; // OK
- * if (true) {                     // OK
- *     return true;
- * } else                          // OK
- *     return false;
- * for (int i = 0; i &lt; 5; i++) {   // OK
- *      ++count;
- * }
- * do                              // OK
- *     ++count;
- * while (false);
- * for (int j = 0; j &lt; 10; j++);   // OK
- * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
- * while (counter &lt; 10)                            // OK
- *    ++count;
- * while (value.incrementValue() &lt; 5); // OK
- * switch (num) {
- *   case 1: counter++; break;         // OK
- *   case 6: counter += 10; break;     // OK
- *   default: counter = 100; break;    // OK
- * }
- * </pre>
- * <p>
- * To configure the check to allow loops ({@code while, for}) with empty bodies:
- * </p>
- * <pre>
- * &lt;module name=&quot;NeedBraces&quot;&gt;
- *   &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_FOR&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * if (obj.isValid()) return true; // OK
- * if (true) {                     // OK
- *     return true;
- * } else                          // OK
- *     return false;
- * for (int i = 0; i &lt; 5; i++) {   // OK
- *      ++count;
- * }
- * do                              // OK
- *     ++count;
- * while (false);
- * for (int j = 0; j &lt; 10; j++);   // OK
- * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
- * while (counter &lt; 10)           // violation, single-line statements not allowed without braces
- *    ++count;
- * while (value.incrementValue() &lt; 5); // OK
- * switch (num) {
- * case 1: counter++; break;           // OK
- * }
- * </pre>
- * <p>
- * To configure the check to lambdas:
- * </p>
- * <pre>
- * &lt;module name=&quot;NeedBraces&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
- *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Results in following:
- * </p>
- * <pre>
- * allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",
- *   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
- *   ex -&gt; fail(ex.getMessage())); // OK
- *
- * allowedFuture.addCallback(result -&gt; {
- *   return assertEquals("Invalid response",
- *     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
- *   }, // OK
- *   ex -&gt; fail(ex.getMessage()));
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -284,6 +97,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * Setter to allow single-line statements without braces.
      *
      * @param allowSingleLineStatement Check's option for skipping single-line statements
+     * @since 6.5
      */
     public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
         this.allowSingleLineStatement = allowSingleLineStatement;
@@ -293,6 +107,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * Setter to allow loops with empty bodies.
      *
      * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
+     * @since 6.12.1
      */
     public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
         this.allowEmptyLoopBody = allowEmptyLoopBody;

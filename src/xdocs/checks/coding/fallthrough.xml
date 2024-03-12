@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>FallThrough</title>
+  </head>
+  <body>
+    <section name="FallThrough">
+      <p>Since Checkstyle 3.4</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks for fall-through in <code>switch</code>
+          statements. Finds locations where a <code>case</code>
+          <b>contains</b> Java code but lacks a <code>break</code>, <code>return</code>,
+          <code>yield</code>, <code>throw</code> or <code>continue</code>
+          statement.
+        </p>
+        <p>
+          The check honors special comments to suppress the warning.
+          By default, the texts
+          &quot;fallthru&quot;, &quot;fall thru&quot;, &quot;fall-thru&quot;,
+          &quot;fallthrough&quot;, &quot;fall through&quot;, &quot;fall-through&quot;
+          &quot;fallsthrough&quot;, &quot;falls through&quot;, &quot;falls-through&quot; (case-sensitive).
+          The comment containing these words must be all on one line,
+          and must be on the last non-empty line before the
+          <code>case</code> triggering the warning or on
+          the same line before the <code>case</code>
+          (ugly, but possible).
+        </p>
+        <p>
+          Note: The check assumes that there is no unreachable
+          code in the <code>case</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkLastCaseGroup</td>
+              <td>Control whether the last case group must be checked.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>reliefPattern</td>
+              <td>Define the RegExp to match the relief comment that suppresses the warning about a fall through.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;falls?[ -]?thr(u|ough)&quot;</code></td>
+              <td>4.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;FallThrough&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Example1 {
+  public void foo() throws Exception {
+    int i = 0;
+    while (i &gt;= 0) {
+      switch (i) {
+        case 1:
+          i++;
+        case 2: // violation 'Fall\ through from previous branch of the switch'
+          i++;
+          break;
+        case 3:
+          i++;
+          return;
+        case 4:
+          i++;
+          throw new Exception();
+        case 5:
+          i++; // no break by design
+        case 6: // violation 'Fall\ through from previous branch of the switch'
+        case 7:
+          i++;
+          continue;
+        case 11:
+          i++;
+      }
+    }
+  }
+}
+        </source>
+        <p id="Example2-config">
+            To configure the check to enable check for last case group:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;FallThrough&quot;&gt;
+      &lt;property name=&quot;checkLastCaseGroup&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <source>
+class Example2 {
+  public void foo() throws Exception {
+    int i = 0;
+    while (i &gt;= 0) {
+      switch (i) {
+        case 1:
+          i++;
+        case 2: // violation 'Fall\ through from previous branch of the switch'
+          i++;
+          break;
+        case 3:
+          i++;
+          return;
+        case 4:
+          i++;
+          throw new Exception();
+        case 5:
+          i++; // no break by design
+        case 6: // violation 'Fall\ through from previous branch of the switch'
+        case 7:
+          i++;
+          continue;
+        case 11: // violation 'Fall\ through from the last branch of the switch'
+          i++;
+      }
+    }
+  }
+}
+        </source>
+        <p id="Example3-config">
+            To configure the check with custom relief pattern:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;FallThrough&quot;&gt;
+      &lt;property name=&quot;reliefPattern&quot; value=&quot;no break by design&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class Example3 {
+  public void foo() throws Exception {
+    int i = 0;
+    while (i &gt;= 0) {
+      switch (i) {
+        case 1:
+          i++;
+        case 2: // violation 'Fall\ through from previous branch of the switch'
+          i++;
+          break;
+        case 3:
+          i++;
+          return;
+        case 4:
+          i++;
+          throw new Exception();
+        case 5:
+          i++; // no break by design
+        case 6:
+        case 7:
+          i++;
+          continue;
+        case 11:
+          i++;
+      }
+    }
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through%22">
+              fall.through
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22fall.through.last%22">
+              fall.through.last
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

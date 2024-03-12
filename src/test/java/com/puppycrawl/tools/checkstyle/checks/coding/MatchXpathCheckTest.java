@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -229,5 +232,13 @@ public class MatchXpathCheckTest
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getRequiredTokens())
                 .isEmpty();
+    }
+
+    @Test
+    public void testMatchXpathWithFailedEvaluation() {
+        final CheckstyleException ex = assertThrows(CheckstyleException.class,
+                () -> verifyWithInlineConfigParser(getPath("InputMatchXpath5.java")));
+        assertThat(ex.getCause().getMessage())
+                .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");
     }
 }

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,6 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
+ * Property {@code format} - Specify method names to ignore.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^equals$"}.
+ * </li>
+ * <li>
  * Property {@code max} - Specify maximum allowed number of return statements
  * in non-void methods/lambdas.
  * Type is {@code int}.
@@ -61,11 +66,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * in void methods/constructors/lambdas.
  * Type is {@code int}.
  * Default value is {@code 1}.
- * </li>
- * <li>
- * Property {@code format} - Specify method names to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^equals$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -80,195 +80,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * LAMBDA</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the check so that it doesn't allow more than three return statements per method
- * (ignoring the {@code equals()} method):
- * </p>
- * <pre>
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   public int sign(int x) {
- *     if (x &lt; 0)
- *       return -1;
- *     if (x == 0)
- *       return 1;
- *     return 0;
- *   } // OK
- *   public int badSign(int x) {
- *     if (x &lt; -2)
- *       return -2;
- *     if (x == 0)
- *       return 0;
- *     if (x &gt; 2)
- *       return 2;
- *     return 1;
- *   } // violation, more than three return statements
- * }
- * </pre>
- * <p>
- * To configure the check so that it doesn't allow any return statements per void method:
- * </p>
- * <pre>
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   public void firstMethod(int x) {
- *   } // OK
- *
- *   public void badMethod(int x) {
- *     return;
- *   } // violation, return statements per void method
- * }
- * </pre>
- * <p>
- * To configure the check so that it doesn't allow more than 2 return statements per method
- * (ignoring the {@code equals()} method) and more than 1 return statements per void method:
- * </p>
- * <pre>
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;maxForVoid&quot; value=&quot;1&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   public void firstMethod() {
- *   } // OK
- *
- *   public void secondMethod() {
- *     return;
- *   } // OK
- *
- *   public void badMethod(int x) {
- *     if (x == 0)
- *       return;
- *     return;
- *   } // violation, more than one return statements
- *
- *   public int sign(int x) {
- *     if (x &lt; 0)
- *       return -1;
- *     return 0;
- *   } // OK
- *
- *   public int badSign(int x) {
- *     if (x &lt; 0)
- *       return -1;
- *     if (x == 0)
- *       return 1;
- *     return 0;
- *   } // violation, more than two return statements in methods
- * }
- * </pre>
- * <p>
- * To configure the check so that it doesn't allow more than three
- * return statements per method for all methods:
- * </p>
- * <pre>
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class MyClass {
- *   public int sign(int x) {
- *     if (x &lt; 0)
- *       return -1;
- *     if (x == 0)
- *       return 1;
- *     return 0;
- *   } // OK
- *
- *   public int badSign(int x) {
- *     if (x &lt; -2)
- *       return -2;
- *     if (x == 0)
- *       return 0;
- *     if (x &gt; 2)
- *       return 2;
- *     return 1;
- *   } // violation, more than three return statements per method
- * }
- * </pre>
- * <p>
- * To configure the check so that it doesn't allow any return statements in constructors,
- * more than one return statement in all lambda expressions and more than two return
- * statements in methods:
- * </p>
- * <pre>
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
- * &lt;/module&gt;
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;1&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
- * &lt;/module&gt;
- * &lt;module name=&quot;ReturnCount&quot;&gt;
- *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import java.util.function.Predicate;
- *
- * public class Test {
- *   public Test() {
- *   } // OK
- *
- *   public Test(int i) {
- *     return; // violation, max allowed for constructors is 0
- *   }
- *
- *   final Predicate&lt;Integer&gt; p = i -&gt; {
- *     if (i &gt; 5) {
- *       return true;
- *     }
- *     return false;
- *   }; // violation, max allowed for lambdas is 1
- *
- *   final Predicate&lt;Integer&gt; q = i -&gt; {
- *     return i &gt; 5;
- *   }; // OK
- *
- *   public int sign(int x) {
- *     if (x &gt; 0)
- *       return -1;
- *     return 0;
- *   } // OK
- *
- *   public int badSign(int x) {
- *     if (x &lt; 0)
- *       return -1;
- *     if (x == 0)
- *       return 1;
- *     return 0;
- *   } // violation, more than two return statements in methods
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -342,6 +153,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * Setter to specify method names to ignore.
      *
      * @param pattern a pattern.
+     * @since 3.4
      */
     public void setFormat(Pattern pattern) {
         format = pattern;
@@ -352,6 +164,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * in non-void methods/lambdas.
      *
      * @param max maximum allowed number of return statements.
+     * @since 3.2
      */
     public void setMax(int max) {
         this.max = max;
@@ -362,6 +175,7 @@ public final class ReturnCountCheck extends AbstractCheck {
      * in void methods/constructors/lambdas.
      *
      * @param maxForVoid maximum allowed number of return statements for void methods.
+     * @since 6.19
      */
     public void setMaxForVoid(int maxForVoid) {
         this.maxForVoid = maxForVoid;

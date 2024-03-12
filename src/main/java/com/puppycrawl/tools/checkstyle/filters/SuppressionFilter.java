@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.Collections;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
@@ -29,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <p>
@@ -123,97 +123,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * </ul>
  * <p>
- * For example, the following configuration fragment directs the Checker to use
- * a {@code SuppressionFilter} with suppressions file {@code config/suppressions.xml}:
- * </p>
- * <pre>
- * &lt;module name=&quot;SuppressionFilter&quot;&gt;
- *   &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
- *   &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * The following suppressions XML document directs a {@code SuppressionFilter} to
- * reject {@code JavadocStyleCheck} violations for lines 82 and 108 to 122 of file
- * {@code AbstractComplexityCheck.java}, and {@code MagicNumberCheck} violations for
- * line 221 of file {@code JavadocStyleCheck.java}, and
- * {@code 'Missing a Javadoc comment'} violations for all lines and files:
- * </p>
- * <pre>
- * &lt;?xml version=&quot;1.0&quot;?&gt;
- *
- * &lt;!DOCTYPE suppressions PUBLIC
- *   &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
- *   &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
- *
- * &lt;suppressions&gt;
- *   &lt;suppress checks=&quot;JavadocStyleCheck&quot;
- *     files=&quot;AbstractComplexityCheck.java&quot;
- *     lines=&quot;82,108-122&quot;/&gt;
- *   &lt;suppress checks=&quot;MagicNumberCheck&quot;
- *     files=&quot;JavadocStyleCheck.java&quot;
- *     lines=&quot;221&quot;/&gt;
- *   &lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;
- * &lt;/suppressions&gt;
- * </pre>
- * <p>
- * Suppress check by <a href="https://checkstyle.org/config.html#Id">module id</a>
- * when config have two instances on the same check:
- * </p>
- * <pre>
- * &lt;suppress id=&quot;stringEqual&quot; files=&quot;SomeTestCode.java&quot;/&gt;
- * </pre>
- * <p>
- * Suppress all checks for hidden files and folders:
- * </p>
- * <pre>
- * &lt;suppress files=&quot;[/\\]\..+&quot; checks=&quot;.*&quot;/&gt;
- * </pre>
- * <p>
- * Suppress all checks for Maven-generated code:
- * </p>
- * <pre>
- * &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
- * </pre>
- * <p>
- * Suppress all checks for archives, classes and other binary files:
- * </p>
- * <pre>
- * &lt;suppress files=&quot;.+\.(?:jar|zip|war|class|tar|bin)$&quot; checks=&quot;.*&quot;/&gt;
- * </pre>
- * <p>
- * Suppress all checks for image files:
- * </p>
- * <pre>
- * &lt;suppress files=".+\.(?:png|gif|jpg|jpeg)$" checks=".*"/&gt;
- * </pre>
- * <p>
- * Suppress all checks for non-java files:
- * </p>
- * <pre>
- * &lt;suppress files=&quot;.+\.(?:txt|xml|csv|sh|thrift|html|sql|eot|ttf|woff|css|png)$&quot;
- *     checks=&quot;.*&quot;/&gt;
- * </pre>
- * <p>
- * Suppress all checks in generated sources:
- * </p>
- * <pre>
- * &lt;suppress checks=&quot;.*&quot; files=&quot;com[\\/]mycompany[\\/]app[\\/]gen[\\/]&quot;/&gt;
- * </pre>
- * <p>
- * Suppress FileLength check on integration tests in certain folder:
- * </p>
- * <pre>
- * &lt;suppress checks=&quot;FileLength&quot;
- *   files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
- * </pre>
- * <p>
- * Suppress naming violations on variable named 'log' in all files:
- * </p>
- * <pre>
- * &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *
@@ -239,6 +148,7 @@ public class SuppressionFilter
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.
+     * @since 3.2
      */
     public void setFile(String fileName) {
         file = fileName;
@@ -251,6 +161,7 @@ public class SuppressionFilter
      * and file is not found, the filter accept all audit events.
      *
      * @param optional tells if config file existence is optional.
+     * @since 6.15
      */
     public void setOptional(boolean optional) {
         this.optional = optional;
@@ -268,9 +179,6 @@ public class SuppressionFilter
                 if (FilterUtil.isFileExists(file)) {
                     filters = SuppressionsLoader.loadSuppressions(file);
                 }
-                else {
-                    filters = new FilterSet();
-                }
             }
             else {
                 filters = SuppressionsLoader.loadSuppressions(file);
@@ -280,7 +188,7 @@ public class SuppressionFilter
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file);
+        return UnmodifiableCollectionUtil.singleton(file);
     }
 
 }

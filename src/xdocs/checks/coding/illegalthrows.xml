@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalThrows</title>
+  </head>
+  <body>
+    <section name="IllegalThrows">
+      <p>Since Checkstyle 4.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that specified types are not declared to be thrown.
+          Declaring that a method throws <code>java.lang.Error</code> or
+          <code>java.lang.RuntimeException</code> is almost never acceptable.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreOverriddenMethods</td>
+              <td>Allow to ignore checking overridden methods (marked with <code>Override</code> or <code>java.lang.Override</code> annotation).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td>ignoredMethodNames</td>
+              <td>Specify names of methods to ignore.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>finalize</code></td>
+              <td>5.4</td>
+            </tr>
+            <tr>
+              <td>illegalClassNames</td>
+              <td>Specify throw class names to reject.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable</code></td>
+              <td>4.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // violation
+  public void func2() throws Exception {}  // ok
+  public void func3() throws Error {}  // violation
+  public void func4() throws Throwable {} // violation
+  public void func5() throws NullPointerException {} // ok
+  @Override
+  public void toString() throws Error {} // ok
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check rejecting throws NullPointerException from methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // ok
+  public void func2() throws Exception {}  // ok
+  public void func3() throws Error {}  // ok
+  public void func4() throws Throwable {} // ok
+  public void func5() throws NullPointerException {} // violation
+  @Override
+  public void toString() throws Error {} // ok
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check ignoring method named &quot;func1()&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // ok
+  public void func2() throws Exception {}  // ok
+  public void func3() throws Error {}  // violation
+  public void func4() throws Throwable {} // violation
+  public void func5() throws NullPointerException {} // ok
+  @Override
+  public void toString() throws Error {} // ok
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check to warn on overridden methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;IllegalThrows&quot;&gt;
+      &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // violation
+  public void func2() throws Exception {}  // ok
+  public void func3() throws Error {}  // violation
+  public void func4() throws Throwable {} // violation
+  public void func5() throws NullPointerException {} // ok
+  @Override
+  public void toString() throws Error {} // violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalThrows">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.throw%22">
+              illegal.throw
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

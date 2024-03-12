@@ -23,6 +23,8 @@
               location="config/checkstyle-resources-checks.xml"/>
     <property name="check.config_input"
               location="config/checkstyle-input-checks.xml"/>
+    <property name="check.config_examples"
+              location="config/checkstyle-examples-checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
@@ -37,7 +39,8 @@
       <fileset dir="src"
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
-               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**"/>
+               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
+               xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <formatter type="sarif" toFile="${mvn.project.build.directory}/cs_errors.sarif"/>
@@ -76,6 +79,7 @@
           <exclude name=".teamcity/**/*"/>
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
+          <exclude name="src/xdocs-examples/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
           <!-- styleguides are copied/cached from origin place we should not change them  -->
           <exclude name="src/site/resources/styleguides/**/*"/>
@@ -240,5 +244,32 @@
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
     />
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle-examples-checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_examples}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+    >
+      <property key="checkstyle.examples-suppressions.file"
+          file="config/checkstyle-examples-suppressions.xml"/>
+      <path>
+        <fileset dir="src"
+                 includes="xdocs-examples/resources/**/*.java,
+                 ,xdocs-examples/resources-noncompilable/**/*.java">
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_xdocs_examples_errors.xml"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle-examples-checks.xml): ${FINISHED}</echo>
   </target>
 </project>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidStaticImport</title>
+  </head>
+  <body>
+    <section name="AvoidStaticImport">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that there are no static import statements.
+        </p>
+
+        <p>
+          Rationale: Importing static members can lead to naming
+          conflicts between class' members. It may lead to poor code
+          readability since it may no longer be clear what class a
+          member resides in (without looking at the import statement).
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          If you exclude a starred import on a class this automatically
+          excludes each member individually.
+        </p>
+        <p>
+          For example: Excluding <code>java.lang.Math.*</code>. will allow the
+          import of each static member in the Math class
+          individually like <code>java.lang.Math.PI, java.lang.Math.cos, ...</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>excludes</td>
+              <td>Control whether to allow for certain classes via a star notation to be excluded such as <code>java.lang.Math.*</code> or specific static members to be excluded like <code>java.lang.System.out</code> for a variable or <code>java.lang.Math.random</code> for a method. See notes section for details.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidStaticImport&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+import static java.lang.Math.pow;          // violation
+import static java.lang.System.*;          // violation
+import java.io.File;                       // OK
+import java.util.*;                        // OK
+        </source>
+        <p id="Example2-config">
+          To configure the check so that the <code>java.lang.System.out</code>
+          member and all members from <code>java.lang.Math</code> are allowed:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidStaticImport&quot;&gt;
+      &lt;property name=&quot;excludes&quot; value=&quot;java.lang.System.out,java.lang.Math.*&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+         Example:
+        </p>
+        <source>
+import static java.lang.Math.*;            // OK
+import static java.lang.System.out;        // OK
+import static java.lang.Integer.parseInt;  // violation
+import java.io.*;                          // OK
+import java.util.*;                        // OK
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStatic%22">
+              import.avoidStatic
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

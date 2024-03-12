@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ModifiedControlVariable</title>
+  </head>
+  <body>
+    <section name="ModifiedControlVariable">
+      <p>Since Checkstyle 3.5</p>
+      <subsection name="Description" id="Description">
+        <p>
+            Checks that for loop control variables are not modified inside
+            the for block. An example is:
+        </p>
+        <source>
+for (int i = 0; i &lt; 1; i++) {
+  i++; // violation
+}
+        </source>
+        <p>
+          Rationale: If the control variable is modified inside the loop
+          body, the program flow becomes more difficult to follow. See
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
+          FOR statement</a> specification for more details.
+        </p>
+        <p>
+          Such loop would be suppressed:
+        </p>
+        <source>
+for (int i = 0; i &lt; 10;) {
+  i++;
+}
+        </source>
+        <p>
+          NOTE:The check works with only primitive type variables.
+          The check will not work for arrays used as control variable.An example is
+        </p>
+        <source>
+for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ a[0]++;   // it will skip this violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>skipEnhancedForLoopVariable</td>
+              <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+ enhanced for-loop</a> variable.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+for(int i=0;i &lt; 8;i++) {
+  i++; // violation, control variable modified
+}
+String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+for (String arg: args1) {
+  arg = arg.trim(); // violation, control variable modified
+}
+        </source>
+        <p>
+          By default, This Check validates
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+          Enhanced For-Loop</a>.
+        </p>
+        <p>
+          Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
+          from Enhanced For Loop.
+        </p>
+        <p id="Example2-config">
+          An example of how to configure the check so that it skips enhanced For Loop Variable is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ModifiedControlVariable&quot;&gt;
+      &lt;property name=&quot;skipEnhancedForLoopVariable&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+for(int i=0;i &lt; 8;i++) {
+  i++; // violation, control variable modified
+}
+String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+for (String arg: args1) {
+  arg = arg.trim(); // ok
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22modified.control.variable%22">
+              modified.control.variable
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

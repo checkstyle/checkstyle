@@ -1,0 +1,13 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ExecutableStatementCount">
+      <property name="max" value="20"/>
+      <property name="tokens" value="CTOR_DEF,METHOD_DEF"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

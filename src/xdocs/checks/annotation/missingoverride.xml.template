@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingOverride</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingOverride">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Verifies that the <code>@Override</code> annotation is present
+          when the <code>@inheritDoc</code> javadoc tag is present.
+        </p>
+        <p>
+          Rationale: The @Override annotation helps
+          compiler tools ensure that an override is actually occurring.  It is
+          quite easy to accidentally overload a method or hide a static method
+          and using the @Override annotation points out these problems.
+        </p>
+        <p>
+          This check will log a violation if using the @inheritDoc tag on a method that
+          is not valid (ex: private, or static method).
+        </p>
+        <p>
+          There is a slight difference between the @Override annotation in Java 5 versus
+          Java 6 and above. In Java 5, any method overridden from an interface cannot
+          be annotated with @Override. In Java 6 this behavior is allowed.
+        </p>
+        <p>
+          As a result of the aforementioned difference between Java 5 and Java 6, a
+          property called <code>javaFiveCompatibility</code> is available. This
+          property will only check classes, interfaces, etc. that do not contain the
+          extends or implements keyword or are not anonymous classes. This means it
+          only checks methods overridden from <code>java.lang.Object</code>.
+          <b>Java 5 Compatibility mode severely limits this check. It is recommended to
+          only use it on Java 5 source.</b>
+        </p>
+
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config"> To configure the check:</p>
+        <macro name="example">
+             <param name="path"
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example1.java"/>
+             <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check for the <code>javaFiveCompatibility</code>
+          mode:
+        </p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example2.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+            <param name="path"
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MissingOverride"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MissingOverride"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,20 +47,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;
 
-    /** The pattern for file names. */
-    private final String filePattern;
-
     /** The regexp to match check names against. */
     private final Pattern checkRegexp;
 
-    /** The pattern for check class names. */
-    private final String checkPattern;
-
     /** The regexp to match message names against. */
     private final Pattern messageRegexp;
-
-    /** The pattern for message names. */
-    private final String messagePattern;
 
     /** Module id filter. */
     private final String moduleId;
@@ -105,30 +96,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     public XpathFilterElement(Pattern files, Pattern checks, Pattern message,
                            String moduleId, String query) {
-        if (files == null) {
-            filePattern = null;
-            fileRegexp = null;
-        }
-        else {
-            filePattern = files.pattern();
-            fileRegexp = files;
-        }
-        if (checks == null) {
-            checkPattern = null;
-            checkRegexp = null;
-        }
-        else {
-            checkPattern = checks.pattern();
-            checkRegexp = checks;
-        }
-        if (message == null) {
-            messagePattern = null;
-            messageRegexp = null;
-        }
-        else {
-            messagePattern = message.pattern();
-            messageRegexp = message;
-        }
+        fileRegexp = files;
+        checkRegexp = checks;
+        messageRegexp = message;
         this.moduleId = moduleId;
         xpathQuery = query;
         if (xpathQuery == null) {
@@ -197,7 +167,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
         else {
             isMatching = false;
             final List<AbstractNode> nodes = getItems(event)
-                    .stream().map(AbstractNode.class::cast).collect(Collectors.toList());
+                .stream().map(AbstractNode.class::cast)
+                .collect(Collectors.toUnmodifiableList());
             for (AbstractNode abstractNode : nodes) {
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
                         && abstractNode.getLineNumber() == event.getLine()
@@ -240,8 +211,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     @Override
     public int hashCode() {
-        return Objects.hash(filePattern, checkPattern, messagePattern,
-            moduleId, xpathQuery);
+        return Objects.hash(getPatternSafely(fileRegexp), getPatternSafely(checkRegexp),
+                getPatternSafely(messageRegexp), moduleId, xpathQuery);
     }
 
     @Override
@@ -253,11 +224,28 @@ public class XpathFilterElement implements TreeWalkerFilter {
             return false;
         }
         final XpathFilterElement xpathFilter = (XpathFilterElement) other;
-        return Objects.equals(filePattern, xpathFilter.filePattern)
-                && Objects.equals(checkPattern, xpathFilter.checkPattern)
-                && Objects.equals(messagePattern, xpathFilter.messagePattern)
+        return Objects.equals(getPatternSafely(fileRegexp),
+                    getPatternSafely(xpathFilter.fileRegexp))
+                && Objects.equals(getPatternSafely(checkRegexp),
+                    getPatternSafely(xpathFilter.checkRegexp))
+                && Objects.equals(getPatternSafely(messageRegexp),
+                    getPatternSafely(xpathFilter.messageRegexp))
                 && Objects.equals(moduleId, xpathFilter.moduleId)
                 && Objects.equals(xpathQuery, xpathFilter.xpathQuery);
     }
 
+    /**
+     * Util method to get pattern String value from Pattern object safely, return null if
+     * pattern object is null.
+     *
+     * @param pattern pattern object
+     * @return value of pattern or null
+     */
+    private static String getPatternSafely(Pattern pattern) {
+        String result = null;
+        if (pattern != null) {
+            result = pattern.pattern();
+        }
+        return result;
+    }
 }

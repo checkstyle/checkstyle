@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -56,36 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AvoidStaticImport"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * import static java.lang.Math.pow;          // violation
- * import static java.lang.System.*;          // violation
- * import java.io.File;                       // OK
- * import java.util.*;                        // OK
- * </pre>
- * <p>
- * To configure the check so that the {@code java.lang.System.out} member and all
- * members from {@code java.lang.Math} are allowed:
- * </p>
- * <pre>
- * &lt;module name="AvoidStaticImport"&gt;
- *   &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * import static java.lang.Math.*;            // OK
- * import static java.lang.System.out;        // OK
- * import static java.lang.Integer.parseInt;  // violation
- * import java.io.*;                          // OK
- * import java.util.*;                        // OK
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -140,6 +110,7 @@ public class AvoidStaticImportCheck
      *
      * @param excludes fully-qualified class names/specific
      *     static members where static imports are ok
+     * @since 5.0
      */
     public void setExcludes(String... excludes) {
         this.excludes = excludes.clone();

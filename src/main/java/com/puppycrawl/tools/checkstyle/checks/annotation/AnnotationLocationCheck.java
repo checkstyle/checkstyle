@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -65,16 +65,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
- * annotation to be located on the same line as target element.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
  * Property {@code allowSamelineParameterizedAnnotation} - Allow one and only parameterized
  * annotation to be located on the same line as target element.
  * Type is {@code boolean}.
  * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
+ * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -103,108 +103,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the default check to allow one single parameterless annotation on the same line:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;/&gt;
- * </pre>
- * <p>
- * Example for above configuration:
- * </p>
- * <pre>
- * &#64;NotNull private boolean field1; //ok
- * &#64;Override public int hashCode() { return 1; } //ok
- * &#64;NotNull //ok
- * private boolean field2;
- * &#64;Override //ok
- * public boolean equals(Object obj) { return true; }
- * &#64;Mock DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") DataLoader loader; //violation
- * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
- * &#64;NotNull &#64;Mock DataLoader loader; //violation
- * </pre>
- * <p>
- * Use the following configuration to allow multiple annotations on the same line:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *     value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example to allow any location multiple annotations:
- * </p>
- * <pre>
- * &#64;NotNull private boolean field1; //ok
- * &#64;Override public int hashCode() { return 1; } //ok
- * &#64;NotNull //ok
- * private boolean field2;
- * &#64;Override //ok
- * public boolean equals(Object obj) { return true; }
- * &#64;Mock DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
- * &#64;NotNull &#64;Mock DataLoader loader; //ok
- * </pre>
- * <p>
- * Use the following configuration to allow only one and only parameterized annotation
- * on the same line:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *     value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example to allow only one and only parameterized annotation on the same line:
- * </p>
- * <pre>
- * &#64;NotNull private boolean field1; //violation
- * &#64;Override public int hashCode() { return 1; } //violation
- * &#64;NotNull //ok
- * private boolean field2;
- * &#64;Override //ok
- * public boolean equals(Object obj) { return true; }
- * &#64;Mock DataLoader loader; //violation
- * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
- * &#64;NotNull &#64;Mock DataLoader loader; //violation
- * </pre>
- * <p>
- * Use the following configuration to only validate annotations on methods to allow one
- * single parameterless annotation on the same line:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *     value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
- *  &lt;/module&gt;
- * </pre>
- * <p>
- * Example for above configuration to check only methods:
- * </p>
- * <pre>
- * &#64;NotNull private boolean field1; //ok
- * &#64;Override public int hashCode() { return 1; } //ok
- * &#64;NotNull //ok
- * private boolean field2;
- * &#64;Override //ok
- * public boolean equals(Object obj) { return true; }
- * &#64;Mock DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
- * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
- * &#64;NotNull &#64;Mock DataLoader loader; //ok
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -260,6 +158,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
+     * @since 6.1
      */
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
         allowSamelineSingleParameterlessAnnotation = allow;
@@ -270,6 +169,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineParameterizedAnnotation.
+     * @since 6.4
      */
     public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
         allowSamelineParameterizedAnnotation = allow;
@@ -280,6 +180,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * target element.
      *
      * @param allow User's value of allowSamelineMultipleAnnotations.
+     * @since 6.0
      */
     public final void setAllowSamelineMultipleAnnotations(boolean allow) {
         allowSamelineMultipleAnnotations = allow;

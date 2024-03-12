@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingDeprecated</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
+          <code>@deprecated</code> are both present when either of them is present.
+        </p>
+        <p>
+          Both ways of flagging deprecation serve their own purpose.
+          The @Deprecated annotation is used for compilers and development tools.
+          The @deprecated javadoc tag is used to document why something is deprecated
+          and what, if any, alternatives exist.
+        </p>
+        <p>
+          In order to properly mark something as deprecated both forms of
+          deprecation should be present.
+        </p>
+        <p>
+          Package deprecation is an exception to the rule of always using the
+          javadoc tag and annotation to deprecate.  It is not clear if the
+          javadoc tool will support it or not as newer versions keep flip-flopping
+          on if it is supported or will cause an error.
+          See <a href="https://bugs.openjdk.org/browse/JDK-8160601">
+          JDK-8160601</a>.
+          The deprecated javadoc tag is currently the only way to say why the package
+          is deprecated and what to use instead.  Until this is resolved, if you
+          don't want to print violations on package-info, you can use a
+          <a href="../../filters/index.html">filter</a> to ignore these files until
+          the javadoc tool faithfully supports it. An example config using
+          SuppressionSingleFilter is:
+        </p>
+        <source>
+&lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
+&lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="checks" value="MissingDeprecatedCheck"/&gt;
+    &lt;property name="files" value="package-info\.java"/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check such that it prints violation
+          messages if tight HTML rules are not obeyed
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MissingDeprecated"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MissingDeprecated"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

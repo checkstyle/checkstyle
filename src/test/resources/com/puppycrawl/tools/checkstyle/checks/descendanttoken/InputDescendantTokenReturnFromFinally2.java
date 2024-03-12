@@ -15,7 +15,7 @@ tokens = NOT_EQUAL, EQUAL
 
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-public class InputDescendantTokenReturnFromFinally2 { // ok
+public class InputDescendantTokenReturnFromFinally2 {
     public void foo() {
         try {
             System.currentTimeMillis();

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -54,12 +54,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code methodMaximum} - Specify the maximum allowed number of
- * non commenting lines in a method.
- * Type is {@code int}.
- * Default value is {@code 50}.
- * </li>
- * <li>
  * Property {@code classMaximum} - Specify the maximum allowed number of
  * non commenting lines in a class.
  * Type is {@code int}.
@@ -72,102 +66,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 2000}.
  * </li>
  * <li>
+ * Property {@code methodMaximum} - Specify the maximum allowed number of
+ * non commenting lines in a method.
+ * Type is {@code int}.
+ * Default value is {@code 50}.
+ * </li>
+ * <li>
  * Property {@code recordMaximum} - Specify the maximum allowed number of
  * non commenting lines in a record.
  * Type is {@code int}.
  * Default value is {@code 150}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="JavaNCSS"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void test() {
- *   System.out.println("Line 1");
- *   // another 48 lines of code
- *   System.out.println("Line 50") // OK
- *   System.out.println("Line 51") // violation, the method crosses 50 non commented lines
- * }
- * </pre>
- * <p>
- * To configure the check with 40 allowed non commented lines for a method:
- * </p>
- * <pre>
- * &lt;module name="JavaNCSS"&gt;
- *   &lt;property name="methodMaximum" value="40"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public void test() {
- *   System.out.println("Line 1");
- *   // another 38 lines of code
- *   System.out.println("Line 40") // OK
- *   System.out.println("Line 41") // violation, the method crosses 40 non commented lines
- * }
- * </pre>
- * <p>
- * To configure the check to set limit of non commented lines in class to 100:
- * </p>
- * <pre>
- * &lt;module name="JavaNCSS"&gt;
- *   &lt;property name="classMaximum" value="100"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test {
- *   public void test() {
- *       System.out.println("Line 1");
- *       // another 47 lines of code
- *       System.out.println("Line 49");
- *   }
- *
- *   public void test1() {
- *       System.out.println("Line 50"); // OK
- *       // another 47 lines of code
- *       System.out.println("Line 98"); // violation
- *   }
- * }
- * </pre>
- * <p>
- * To configure the check to set limit of non commented lines in file to 200:
- * </p>
- * <pre>
- * &lt;module name="JavaNCSS"&gt;
- *   &lt;property name="fileMaximum" value="200"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * public class Test1 {
- *   public void test() {
- *       System.out.println("Line 1");
- *       // another 48 lines of code
- *       System.out.println("Line 49");
- *   }
- *
- *   public void test1() {
- *       System.out.println("Line 50");
- *       // another 47 lines of code
- *       System.out.println("Line 98"); // OK
- *   }
- * }
- *
- * class Test2 {
- *   public void test() {
- *       System.out.println("Line 150"); // OK
- *   }
- *
- *   public void test1() {
- *       System.out.println("Line 200"); // violation
- *   }
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -372,6 +282,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param fileMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setFileMaximum(int fileMaximum) {
         this.fileMaximum = fileMaximum;
@@ -382,6 +293,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param classMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setClassMaximum(int classMaximum) {
         this.classMaximum = classMaximum;
@@ -392,6 +304,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param recordMaximum
      *            the maximum ncss
+     * @since 8.36
      */
     public void setRecordMaximum(int recordMaximum) {
         this.recordMaximum = recordMaximum;
@@ -402,6 +315,7 @@ public class JavaNCSSCheck extends AbstractCheck {
      *
      * @param methodMaximum
      *            the maximum ncss
+     * @since 3.5
      */
     public void setMethodMaximum(int methodMaximum) {
         this.methodMaximum = methodMaximum;

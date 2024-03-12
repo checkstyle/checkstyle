@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,77 +38,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code offset} - Specify how many spaces to use for new indentation level.
+ * Type is {@code int}.
+ * Default value is {@code 4}.
+ * </li>
+ * <li>
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
- * <li>
- * Property {@code offset} - Specify how many spaces to use for new indentation level.
- * Type is {@code int}.
- * Default value is {@code 4}.
- * </li>
  * </ul>
- * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * @tag comment
- *  *  Indentation spacing is 1. Line with violation
- *  *   Indentation spacing is 2. Line with violation
- *  *     Indentation spacing is 4. OK
- *  *&#47;
- * public class Test {
- * }
- * </pre>
- * <p>
- * To configure the check with two spaces indentation:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"&gt;
- *   &lt;property name="offset" value="2"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * @tag comment
- *  * Indentation spacing is 0. Line with violation
- *  *   Indentation spacing is 2. OK
- *  *  Indentation spacing is 1. Line with violation
- *  *&#47;
- * public class Test {
- * }
- * </pre>
- * <p>
- * To configure the check to show violations for Tight-HTML Rules:
- * </p>
- * <pre>
- * &lt;module name="JavadocTagContinuationIndentation"&gt;
- *   &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
- *  * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
- *  *&#47;
- * public class Test {
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -121,6 +62,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * <li>
  * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
  * </li>
  * <li>
  * {@code javadoc.wrong.singleton.html.tag}
@@ -154,6 +98,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.
+     * @since 6.0
      */
     public void setOffset(int offset) {
         this.offset = offset;
@@ -245,13 +190,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private static boolean isInlineDescription(DetailNode description) {
         boolean isInline = false;
-        DetailNode inlineTag = description.getParent();
-        while (inlineTag != null) {
-            if (inlineTag.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+        DetailNode currentNode = description;
+        while (currentNode != null) {
+            if (currentNode.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
                 isInline = true;
                 break;
             }
-            inlineTag = inlineTag.getParent();
+            currentNode = currentNode.getParent();
         }
         return isInline;
     }

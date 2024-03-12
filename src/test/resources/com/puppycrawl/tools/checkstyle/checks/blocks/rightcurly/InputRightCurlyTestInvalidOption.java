@@ -16,7 +16,7 @@ class InputRightCurlyTestInvalidOption
             try
             {
 
-            } // ok
+            }
             catch (Exception e)
             {
                 return;
@@ -26,4 +26,4 @@ class InputRightCurlyTestInvalidOption
 
     }
 
-class UniqEmptyClassTestInvalidOption {private int a;} // ok
+class UniqEmptyClassTestInvalidOption {private int a;}

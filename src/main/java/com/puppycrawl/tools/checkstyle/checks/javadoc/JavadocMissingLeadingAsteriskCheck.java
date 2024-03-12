@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -46,54 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="JavadocMissingLeadingAsterisk"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- *  * Valid Java-style comment.
- *  *
- *  * &lt;pre&gt;
- *  *   int value = 0;
- *  * &lt;/pre&gt;
- *  *&#47;
- * class JavaStyle {} // ok
- *
- * &#47;** Valid Scala-style comment.
- *   * Some description here.
- *   **&#47;
- * class ScalaStyle {} // ok
- *
- * &#47;** **
- *  * Asterisks on first and last lines are optional.
- *  * *&#47;
- * class Asterisks {} // ok
- *
- * &#47;** No asterisks are required for single-line comments. *&#47;
- * class SingleLine {} // ok
- *
- * &#47;** // violation on next blank line, javadoc has lines without leading asterisk.
- *
- *  *&#47;
- * class BlankLine {}
- *
- * &#47;** Wrapped
- *     single-line comment *&#47; // violation, javadoc has lines without leading asterisk.
- * class Wrapped {}
- *
- * &#47;**
- *  * &lt;pre&gt;
- *     int value; // violation, javadoc has lines without leading asterisk.
- *  * &lt;/pre&gt;
- *  *&#47;
- * class Code {}
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -108,6 +60,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
  * </li>
  * <li>
  * {@code javadoc.wrong.singleton.html.tag}
@@ -198,8 +153,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      */
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
-        if (detailNode.getType() == JavadocTokenTypes.TEXT
-                && CommonUtil.isBlank(detailNode.getText())) {
+        if (CommonUtil.isBlank(detailNode.getText())) {
             node = getNextNode(detailNode);
         }
         else {

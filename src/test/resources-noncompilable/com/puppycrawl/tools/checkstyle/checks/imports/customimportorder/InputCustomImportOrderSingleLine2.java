@@ -11,4 +11,4 @@ sortImportsInGroupAlphabetically = (default)false
 */
 
 
-package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder; import static java.io.File.createTempFile; import java.util.Map; class InputCustomImportOrderSingleLine2 {} // violation
+package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder; import static java.io.File.createTempFile; import java.util.Map; class InputCustomImportOrderSingleLine2 {} // violation '.* should be separated from previous import group .*'

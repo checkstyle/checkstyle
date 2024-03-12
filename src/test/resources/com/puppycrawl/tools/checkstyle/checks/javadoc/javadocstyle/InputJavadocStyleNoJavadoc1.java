@@ -15,99 +15,99 @@ tokens = (default)ANNOTATION_DEF, ANNOTATION_FIELD_DEF, CLASS_DEF, CTOR_DEF, \
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-public class InputJavadocStyleNoJavadoc1 // ok
+public class InputJavadocStyleNoJavadoc1
 {
-    public int i1; // ok
-    protected int i2; // ok
-    int i3; // ok
-    private int i4; // ok
+    public int i1;
+    protected int i2;
+    int i3;
+    private int i4;
 
-    public void foo1() {} // ok
-    protected void foo2() {} // ok
-    void foo3() {} // ok
-    private void foo4() {} // ok
+    public void foo1() {}
+    protected void foo2() {}
+    void foo3() {}
+    private void foo4() {}
 
-    protected class ProtectedInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    protected class ProtectedInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
-    class PackageInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    class PackageInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
-    private class PrivateInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    private class PrivateInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 }
 
-class PackageClass { // ok
-    public int i1; // ok
-    protected int i2; // ok
-    int i3; // ok
-    private int i4; // ok
+class PackageClass {
+    public int i1;
+    protected int i2;
+    int i3;
+    private int i4;
 
-    public void foo1() {} // ok
-    protected void foo2() {} // ok
-    void foo3() {} // ok
-    private void foo4() {} // ok
+    public void foo1() {}
+    protected void foo2() {}
+    void foo3() {}
+    private void foo4() {}
 
-    public class PublicInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    public class PublicInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
-    protected class ProtectedInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    protected class ProtectedInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 
-    class PackageInner { // ok
-        public int i1; // ok
-        protected int i2; // ok
-        int i3; // ok
-        private int i4; // ok
+    class PackageInner {
+        public int i1;
+        protected int i2;
+        int i3;
+        private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
-        void foo3() {} // ok
-        private void foo4() {} // ok
+        public void foo1() {}
+        protected void foo2() {}
+        void foo3() {}
+        private void foo4() {}
     }
 }

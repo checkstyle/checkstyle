@@ -1,0 +1,26 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ClassDataAbstractionCoupling">
+      <property name="excludedPackages" value="a.b"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+package a.b;
+
+import a.b.Bar;
+import a.b.c.Baz;
+
+class Foo {
+  Bar bar; // Will be ignored, located inside ignored a.b package
+  Baz baz; // Will not be ignored, located inside a.b.c package
+  Data data; // Will not be ignored, same file
+
+  class Data {
+    Foo foo; // Will not be ignored, same file
+  }
+}
+// xdoc section -- end

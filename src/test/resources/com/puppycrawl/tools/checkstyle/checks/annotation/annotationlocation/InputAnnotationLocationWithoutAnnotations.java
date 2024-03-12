@@ -12,7 +12,7 @@ tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF,
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 public class InputAnnotationLocationWithoutAnnotations {
-    public static void main(String[] args) { // ok
+    public static void main(String[] args) {
         final Foo foo = new Foo();
         foo.bar(new Bar<Foo>() {
             public void foo() {
@@ -25,7 +25,7 @@ public class InputAnnotationLocationWithoutAnnotations {
         }
     }
 
-    static abstract class Bar<T> { // ok
+    static abstract class Bar<T> {
         abstract void foo();
     }
 }

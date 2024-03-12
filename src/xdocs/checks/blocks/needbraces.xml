@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>NeedBraces</title>
+  </head>
+  <body>
+    <section name="NeedBraces">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p> Checks for braces around code blocks. </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowEmptyLoopBody</td>
+              <td>Allow loops with empty bodies.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.12.1</td>
+            </tr>
+            <tr>
+              <td>allowSingleLineStatement</td>
+              <td>Allow single-line statements without braces.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                    LITERAL_DO</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                    LITERAL_ELSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                    LITERAL_FOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                    LITERAL_IF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                    LITERAL_WHILE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                    LITERAL_CASE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                    LITERAL_DEFAULT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                    LITERAL_DO</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                    LITERAL_ELSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                    LITERAL_FOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                    LITERAL_IF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                    LITERAL_WHILE</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config"> To configure the check: </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example1() {
+    if (obj.equals(num)) return true;
+    // violation above, ''if' construct must use '{}'s.'
+    if (true) {
+      count = 2;
+    } else
+        // violation above, ''else' construct must use '{}'s.'
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // violation, ''do' construct must use '{}'s.'
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // violation above, ''for' construct must use '{}'s.'
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // violation above, ''for' construct must use '{}'s.'
+    while (counter &lt; 10)
+        // violation above, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // violation above, ''while' construct must use '{}'s.'
+    switch (num) {
+      case 1: counter++; break;
+    }
+    return true;
+  }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check for <code>if</code> and
+          <code> else</code> blocks:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example2() {
+    if (obj.equals(num)) return true;
+    // violation above, ''if' construct must use '{}'s.'
+    if (true) {
+      count = 2;
+    } else
+        // violation above, ''else' construct must use '{}'s.'
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // ok, because DO is not a target of validation
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // ok above, because FOR is not a target of validation
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // ok above, because FOR is not a target of validation
+    while (counter &lt; 10)
+        // ok above, because WHILE is not a target of validation
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // ok above, because WHILE is not a target of validation
+    switch (num) {
+      case 1: counter++; break;
+    }
+    return true;
+  }
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check to allow single-line statements
+          (<code>if, while, do-while, for</code>) without braces:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;&gt;
+      &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot;
+             value=&quot;LITERAL_IF, LITERAL_WHILE, LITERAL_DO, LITERAL_FOR&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class Example3 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example3() {
+    if (obj.equals(num)) return true;
+    // ok above, because single line IF statement is allowed in config.
+    if (true) {
+      count = 2;
+    } else
+        // ok above, because single line ELSE statement is allowed in config.
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // violation, ''do' construct must use '{}'s.'
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // ok above, because single line FOR statement is allowed in config.
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // ok above, because single line FOR statement is allowed in config.
+    while (counter &lt; 10)
+        // violation above, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // ok above, because single line FOR statement is allowed in config.
+    switch (num) {
+      case 1: counter++; break;
+    }
+    return true;
+  }
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check to allow <code>case, default</code> single-line statements
+          without braces:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+      &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+        Next statements won't be violated by check:
+        </p>
+        <source>
+class Example4 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example4() {
+
+    if (obj.equals(num)) return true;
+    // ok above, because IF is not a target of validation
+    if (true) {
+      count = 2;
+    } else
+        // ok above, because ELSE is not a target of validation
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // ok, because DO is not a target of validation
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // ok above, because FOR is not a target of validation
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // ok above, because FOR is not a target of validation
+    while (counter &lt; 10)
+        // ok above, because WHILE is not a target of validation
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // ok above, because WHILE is not a target of validation
+    switch (num) {
+      case 1: counter++; break;
+    }
+    return true;
+  }
+}
+        </source>
+        <p id="Example5-config">
+          To configure the check to allow loops (<code>while, for</code>) with empty bodies:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;&gt;
+      &lt;property name=&quot;allowEmptyLoopBody&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_WHILE, LITERAL_FOR&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+class Example5 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = &quot;O&quot;;
+  public boolean Example5() {
+    if (obj.equals(num)) return true;
+    // ok above, because IF is not a target of validation
+    if (true) {
+      count = 2;
+    } else
+        // ok above, because ELSE is not a target of validation
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // ok, because DO is not a target of validation
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // ok above, because FOR is not a target of validation
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // ok above, because FOR is not a target of validation
+    while (counter &lt; 10)
+        // violation above, ''while' construct must use '{}'s.'
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // ok above, because WHILE is not a target of validation
+    switch (num) {
+      case 1: counter++; break;
+    }
+    return true;
+  }
+}
+        </source>
+        <p id="Example6-config">
+          To configure the check to lambdas:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;NeedBraces&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
+      &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Results in following:</p>
+        <source>
+class Example6 {
+  enum HttpMethod {GET, OPTIONS}
+  Object result = new Object();
+  private CustomCompletableFuture&lt;Object&gt; allowedFuture;
+  Example6() {
+    allowedFuture = new CustomCompletableFuture&lt;&gt;();
+    allowedFuture.addCallback(result -&gt; assertEquals(&quot;Invalid response&quot;, // violation
+                    EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result),
+            ex -&gt; fail(ex.getMessage()));
+    allowedFuture.addCustomCallback(() -&gt; {
+      return assertEquals(&quot;Invalid response&quot;,
+              EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);},
+            ex -&gt; fail(ex.getMessage()));}
+  private Object assertEquals(String invalidResponse, EnumSet&lt;HttpMethod&gt; get,
+                              Object result) {
+    return result;}
+  private String fail(String message) {
+    return message;
+  }}
+class CustomCompletableFuture&lt;T&gt; {
+  private CompletableFuture&lt;T&gt; allowedFuture;
+  public CustomCompletableFuture() {
+    allowedFuture = new CompletableFuture&lt;&gt;();
+  }
+  public void addCallback(java.util.function.Consumer&lt;T&gt; successCallback,
+          java.util.function.Consumer&lt;Throwable&gt; failureCallback) {}
+  public void addCustomCallback(java.util.function.Supplier&lt;Object&gt; successLambda,
+          java.util.function.Consumer&lt;Throwable&gt; failureLambda) {}
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22needBraces%22">
+              needBraces
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

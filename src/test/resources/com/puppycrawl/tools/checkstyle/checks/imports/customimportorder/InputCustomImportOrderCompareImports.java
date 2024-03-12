@@ -13,7 +13,7 @@ sortImportsInGroupAlphabetically = true
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import java.util.Map.Entry;
-import java.util.Map; // violation
+import java.util.Map; // violation 'Wrong lexicographical order for.*. Should be before .*'
 
 import com.google.common.base.*;
 import com.google.common.base.internal.*;

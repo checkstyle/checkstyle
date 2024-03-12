@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Header</title>
+  </head>
+  <body>
+    <section name="Header">
+      <p>Since Checkstyle 6.9</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a source file begins with a specified header. Property
+          <code>headerFile</code> specifies a file that contains
+          the required header. Alternatively, the header specification can be
+          set directly in the <code>header</code> property
+          without the need for an external file.
+        </p>
+
+        <p>
+          Property <code>ignoreLines</code> specifies the line
+          numbers to ignore when matching lines in a header file. This
+          property is very useful for supporting headers that contain
+          copyright dates. For example, consider the following header:
+        </p>
+
+        <source>
+line 1: ////////////////////////////////////////////////////////////////////
+line 2: // checkstyle:
+line 3: // Checks Java source code for adherence to a set of rules.
+line 4: // Copyright (C) 2002  Oliver Burn
+line 5: ////////////////////////////////////////////////////////////////////
+        </source>
+
+        <p>
+          Since the year information will change over time, you can tell
+          Checkstyle to ignore line 4 by setting property <code>ignoreLines</code> to
+          <code>4</code>.
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="Notes">
+        <p>
+          In default configuration, if header is not specified,
+          the default value of header is set to <code>null</code>
+          and the check does not rise any violations.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check such that no violations arise.
+          Default values of properties are used.
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to use header file <code>"config/java.header"</code> and
+          ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java
+          files:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example3-code">
+          To configure the check to verify that each file starts with the
+          header
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          without the need for an external header file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/header/header/Example3.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+Header">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="Header"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.header </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="Header"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

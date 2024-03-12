@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SummaryJavadocCheck">
+      <property name="period" value="。"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class TestClass {
+ /**
+  * This is invalid java doc.
+  */
+  void invalidJavaDocMethod() {
+  }
+ /**
+  * This is valid java doc。
+  */
+  void validJavaDocMethod() {
+  }
+}
+// xdoc section -- end

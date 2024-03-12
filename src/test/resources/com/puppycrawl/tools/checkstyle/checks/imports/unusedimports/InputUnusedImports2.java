@@ -7,9 +7,9 @@ processJavadoc = false
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports. //violation
-        InputUnusedImportsBug;
+import com.google.errorprone.annotations.*;
+import com.google.errorprone.annotations.concurrent.GuardedBy; //violation
+
 import java.io.*;
 import java.lang.*;
 import java.lang.String; // violation
@@ -38,14 +38,14 @@ import java.util.Date; // violation
 import java.util.Calendar; // violation
 import java.util.BitSet; // violation
 
-import com.puppycrawl.tools.checkstyle.Checker; // violation
-import com.puppycrawl.tools.checkstyle.CheckerTest; // violation
-import com.puppycrawl.tools.checkstyle.Definitions; // violation
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImports15Extensions; // violation
-import com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest; // violation
-import com.puppycrawl.tools.checkstyle.PackageNamesLoader; // violation
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration; // violation
-import com.puppycrawl.tools.checkstyle.DefaultLogger; // violation
+import com.google.errorprone.annotations.CheckReturnValue; // violation
+import com.google.errorprone.annotations.CanIgnoreReturnValue; // violation
+import com.google.errorprone.annotations.CompatibleWith; // violation
+import com.google.errorprone.annotations.concurrent.LazyInit; // violation
+import com.google.errorprone.annotations.DoNotCall; // violation
+import com.google.errorprone.annotations.CompileTimeConstant; // violation
+import com.google.errorprone.annotations.FormatMethod; // violation
+import com.google.errorprone.annotations.FormatString; // violation
 
 /**
  * Test case for imports
@@ -102,13 +102,14 @@ class InputUnusedImports2
     public void render() {}
 
     /**
-     * First is a class with a method with arguments {@link Checker#method1(CheckerTest)}.
+     * First is a class with a method with arguments
+     * {@link CheckReturnValue#method1(CanIgnoreReturnValue)}.
      * Next is a class with typed method
-     * {@link BaseFileSetCheckTestSupport#method2(Definitions, InputUnusedImports15Extensions)}.
+     * {@link BaseFileSetCheckTestSupport#method2(CompatibleWith, LazyInit)}.
      *
-     * @param param1 with a link {@link ConfigurationLoaderTest}
-     * @throws PackageNamesLoader when broken
-     * @deprecated in 1 for removal in 2. Use {@link DefaultConfiguration}
+     * @param param1 with a link {@link DoNotCall}
+     * @throws CompileTimeConstant when broken
+     * @deprecated in 1 for removal in 2. Use {@link FormatMethod}
      */
     public void aMethodWithManyLinks() {}
 }

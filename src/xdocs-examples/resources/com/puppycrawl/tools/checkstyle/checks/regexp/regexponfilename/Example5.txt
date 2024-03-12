@@ -1,0 +1,17 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpOnFilename">
+    <property name="fileNamePattern" value="\.(java|xml)$"/>
+    <property name="match" value="false"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+src/main/java/JavaClass.java  //OK
+src/main/MainClass.java  //OK
+src/main/java/java_xml.xml  //OK
+src/main/main_xml.xml  //OK
+src/main/java/image.png  //violation, folders should only contain java or xml files
+src/main/check_properties.properties  //violation, folders should only contain java or xml files
+// xdoc section -- end

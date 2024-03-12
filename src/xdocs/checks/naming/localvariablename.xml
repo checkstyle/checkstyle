@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LocalVariableName</title>
+  </head>
+  <body>
+    <section name="LocalVariableName">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that local, non-<code>final</code> variable names conform to a specified pattern.
+          A catch parameter is considered to be a local variable.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowOneCharVarInForLoop</td>
+              <td>Allow one character variable name in <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+ initialization expressions</a> in FOR loop if one char variable name is prohibited by <code>format</code> regexp.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Sets the pattern to match valid identifiers.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LocalVariableName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Code Example:</p>
+        <source>
+class Example1 {
+  void MyMethod() {
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation
+  }
+}
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check for names that begin with a lower
+          case letter, followed by letters, digits, and underscores is:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LocalVariableName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Code Example:</p>
+        <source>
+class Example2 {
+  void MyMethod() {
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
+  }
+}
+        </source>
+        <p id="Example3-code">
+          An example of one character variable name in initialization expression(like &quot;i&quot;)
+          in FOR loop:
+        </p>
+        <source>
+class Example3 {
+  void myMethod () {
+    for(int i = 1; i &lt; 10; i++) {}
+    for(int K = 1; K &lt; 10; K++) {} // violation
+    List list = new ArrayList();
+    for (Object o : list) {}
+    for (Object O : list) {} // violation
+  }
+}
+        </source>
+
+        <p id="Example4-config">
+          An example of how to configure the check to allow one character variable name in
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
+          initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LocalVariableName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
+      &lt;property name=&quot;allowOneCharVarInForLoop&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Code Example:</p>
+        <source>
+class Example4 {
+  void MyMethod() {
+    int good = 1;
+    int g = 0; // violation
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1; // violation
+    }
+    for (int V = 1; V &lt; 10; V++) {
+      int I = 1; // violation
+    }
+    List list = new ArrayList();
+    for (Object o : list) {
+      String a = &quot;&quot;; // violation
+    }
+    for (Object O : list) {
+      String A = &quot;&quot;; // violation
+    }
+  }
+}
+        </source>
+        <p id="Example5-config">
+        An example of how to configure the check to that all variables have 3 or more chars in name:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LocalVariableName&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]{2,}$&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Code Example:</p>
+        <source>
+class Example5 {
+  void MyMethod() {
+    int goodName = 0;
+    int i = 1; // violation
+    for (int var = 1; var &lt; 10; var++) {
+      int j = 1; // violation
+    }
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22name.invalidPattern%22">
+              name.invalidPattern
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

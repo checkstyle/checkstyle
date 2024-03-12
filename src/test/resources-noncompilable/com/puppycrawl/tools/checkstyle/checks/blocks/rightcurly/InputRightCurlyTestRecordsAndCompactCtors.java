@@ -42,5 +42,5 @@ public class InputRightCurlyTestRecordsAndCompactCtors {
                 // violation above ''}' at column 68 should be alone on a line'
     class MyTestClass {
         private MyTestRecord mtr =
-                new MyTestRecord("my string", new MyTestRecord4());} // ok
+                new MyTestRecord("my string", new MyTestRecord4());}
 }

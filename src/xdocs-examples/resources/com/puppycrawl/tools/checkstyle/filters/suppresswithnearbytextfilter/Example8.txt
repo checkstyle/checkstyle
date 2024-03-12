@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+      value="@cs-: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+  <module name="TreeWalker">
+    <module name="MagicNumber"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+int a = 42; // @cs-: MagicNumber for +3 lines
+int b = 43;
+int c = 44;
+int d = 45;
+int e = 46; // violation
+// xdoc section -- end

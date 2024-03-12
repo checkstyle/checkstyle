@@ -1,0 +1,71 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MissingSwitchDefault"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+sealed interface S permits A, B, C {}
+final class A implements S {}
+final class B implements S {}
+record C(int i) implements S {}  // Implicitly final
+
+/**
+ * The completeness of a switch statement can be
+ * determined by the contents of the permits clause
+ * of interface S. No default label or default case
+ * label is allowed by the compiler in this situation, so
+ * this check does not enforce a default label in such
+ * statements.
+ */
+static void showSealedCompleteness(S s) {
+    switch (s) {
+        case A a: System.out.println("A"); break;
+        case B b: System.out.println("B"); break;
+        case C c: System.out.println("C"); break;
+    }
+}
+
+/**
+ * A total type pattern matches all possible inputs,
+ * including null. A default label or
+ * default case is not allowed by the compiler in this
+ * situation. Accordingly, check does not enforce a
+ * default label in this case.
+ */
+static void showTotality(String s) {
+    switch (s) {
+        case Object o: // total type pattern
+            System.out.println("o!");
+    }
+}
+
+enum Color { RED, GREEN, BLUE }
+
+static int showSwitchExpressionExhaustiveness(Color color) {
+    switch (color) {
+        case RED: System.out.println("RED"); break;
+        case BLUE: System.out.println("BLUE"); break;
+        case GREEN: System.out.println("GREEN"); break;
+        // Check will require default label below, compiler
+        // does not enforce a switch statement with constants
+        // to be complete.
+        default: System.out.println("Something else");
+    }
+
+    // Check will not require default label in switch
+    // expression below, because code will not compile
+    // if all possible values are not handled. If the
+    // 'Color' enum is extended, code will fail to compile.
+    return switch (color) {
+        case RED:
+            yield 1;
+        case GREEN:
+            yield 2;
+        case BLUE:
+            yield 3;
+    };
+}
+// xdoc section -- end

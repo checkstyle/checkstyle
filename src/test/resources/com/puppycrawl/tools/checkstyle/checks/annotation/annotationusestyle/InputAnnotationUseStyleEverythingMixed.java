@@ -9,51 +9,51 @@ trailingArrayComma = ignore
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-@Deprecated // ok
-@SomeArrays(pooches={DOGS.LEO}) // ok
-@SuppressWarnings({""}) // ok
+@Deprecated
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleEverythingMixed
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"}) // ok
-@SuppressWarnings("") //compact_no_array // ok
-@Deprecated() // ok
+@SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"bleh"})
+@SuppressWarnings("") //compact_no_array
+@Deprecated()
 class Dep7 {
 
 }
 
-@Deprecated // ok
-@SomeArrays(pooches={DOGS.LEO}) // ok
-@SuppressWarnings({""}) // ok
+@Deprecated
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 enum SON7 {
 
-    @Deprecated // ok
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"}) // ok
-    @APooch(dog=DOGS.HERBIE) // ok
-    @Another("") //compact_no_array // ok
+    @Deprecated
+    @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
+    @APooch(dog=DOGS.HERBIE)
+    @Another("") //compact_no_array
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation4() // ok
+@InputAnnotationUseStyleCustomAnnotation4()
 enum DOGS7 {
 
-    @Deprecated() // ok
+    @Deprecated()
     LEO,
     HERBIE
 }
 
 @interface SomeArrays7 {
-    @Another("") //compact // ok
+    @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // ok
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // ok
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // ok
+@Another(value={""}) //expanded
 enum E7 {
 
 }
@@ -64,30 +64,30 @@ enum E7 {
 
 @interface Another7 {
     String[] value() default {};
-    @Another({"foo", "bar"}) //compact style // ok
+    @Another({"foo", "bar"}) //compact style
     String value1() default "";
 }
 
-@SomeArrays(pooches = {}) // ok
-@Another({}) // ok
+@SomeArraysDiffStyle(pooches = {})
+@Another({})
 class Closing7 {
     static final String UN_U = "UN_U";
 
-    @SuppressWarnings(value = UN_U) // ok
+    @SuppressWarnings(value = UN_U)
     int d;
 }
 
-@AnnotationWithAnnotationValue(@Another) // ok
+@AnnotationWithAnnotationValue(@Another)
 class Example25 {}
-@AnnotationWithAnnotationValue(value = @Another) // ok
+@AnnotationWithAnnotationValue(value = @Another)
 class Example26 {}
-@AnnotationWithAnnotationValue(@Another()) // ok
+@AnnotationWithAnnotationValue(@Another())
 class Example27 {}
-@AnnotationWithAnnotationValue(value = @Another()) // ok
+@AnnotationWithAnnotationValue(value = @Another())
 class Example28 {}
 
 class Foo7 {
-   Foo7(@Another String par1, @Another int par2) {} // ok
+   Foo7(@Another String par1, @Another int par2) {}
 }
 
 @interface AnnotationWithAnnotationValue7 {

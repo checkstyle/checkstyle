@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OneTopLevelClass</title>
+  </head>
+  <body>
+    <section name="OneTopLevelClass">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that each top-level class, interface, enum
+          or annotation resides in a source file of its own.
+          Official description of a 'top-level' term:<a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
+            7.6. Top Level Type Declarations</a>.
+          If file doesn't contain public class, interface, enum or annotation,
+          top-level type is the first type in file.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;OneTopLevelClass&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          <b>ATTENTION:</b> This Check does not support customization of validated tokens, so do
+          not use the &quot;tokens&quot; property.
+        </p>
+        <p id="Example1-code">
+          An example of code with violations:
+        </p>
+        <source>
+public class Foo { // OK, first top-level class
+  // methods
+}
+
+class Foo2 { // violation, second top-level class
+  // methods
+}
+
+record Foo3 { // violation, third top-level &quot;class&quot;
+  // methods
+}
+        </source>
+        <p id="Example2-code">
+          An example of code without public top-level type:
+        </p>
+        <source>
+class Foo { // OK, first top-level class
+  // methods
+}
+
+class Foo2 { // violation, second top-level class
+  // methods
+}
+        </source>
+        <p id="Example3-code">
+          An example of code without violations:
+        </p>
+        <source>
+public class Foo { // OK, only one top-level class
+  // methods
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
+              one.top.level.class
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

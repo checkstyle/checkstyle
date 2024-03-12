@@ -1,0 +1,18 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="IllegalType">
+      <property name="validateAbstractClassNames" value="true"/>
+      <property name="illegalAbstractClassNameFormat" value="Gitt"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class Test extends Gitter { // violation
+}
+
+class Test1 extends Github { // OK
+}
+// xdoc section -- end

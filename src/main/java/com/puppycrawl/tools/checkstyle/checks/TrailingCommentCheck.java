@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -96,92 +96,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;TrailingComment&quot;/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * // OK
- * if (&#47;&#42; OK &#42;&#47; x &#62; 5) {}
- * int a = 5; // violation
- * doSomething(
- *   param1
- * ); // OK, by default such trailing of method/code-block ending is allowed
- * </pre>
- * <p>
- * To configure the check to enforce only comment on a line:
- * </p>
- * <pre>
- * &lt;module name=&quot;TrailingComment&quot;&gt;
- *   &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * // OK
- * if (&#47;&#42; OK, this comment does not end the line &#42;&#47; x &#62; 5) {}
- * int a = 5; // violation, line content before comment should match pattern "^\s*$"
- * doSomething(
- *   param1
- * ); // violation, line content before comment should match pattern "^\s*$"
- * </pre>
- * <p>
- * To configure check so that trailing comment with exact comments like "SUPPRESS CHECKSTYLE",
- * "NOPMD", "NOSONAR" are suppressed:
- * </p>
- * <pre>
- * &lt;module name="TrailingComment"/&gt;
- * &lt;module name="SuppressionXpathSingleFilter"&gt;
- *   &lt;property name="checks" value="TrailingCommentCheck"/&gt;
- *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
- *       [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
- *       or @text=' SUPPRESS CHECKSTYLE\n']]"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example for trailing comments check to suppress specific trailing comment:
- * </p>
- * <pre>
- * public class Test {
- *   int a; // SUPPRESS CHECKSTYLE
- *   int b; // NOPMD
- *   int c; // NOSONAR
- *   int d; // violation, not suppressed
- * }
- * </pre>
- * <p>
- * To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD",
- * "NOSONAR" are suppressed:
- * </p>
- * <pre>
- * &lt;module name="TrailingComment"/&gt; &lt;module name="SuppressionXpathSingleFilter"&gt;
- * &lt;property name="checks" value="TrailingCommentCheck"/&gt;
- *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
- *       [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/&gt;
- *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
- *       [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/&gt;
- *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
- *       [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * public class Test {
- *   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
- *   int b; // NOPMD - OK, comment starts with " NOPMD"
- *   int c; // NOSONAR - OK, comment starts with " NOSONAR"
- *   int d; // violation, not suppressed
- * }
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -224,6 +138,7 @@ public class TrailingCommentCheck extends AbstractCheck {
      * This pattern will not be applied to multiline comments.
      *
      * @param legalComment pattern to set.
+     * @since 4.2
      */
     public void setLegalComment(final Pattern legalComment) {
         this.legalComment = legalComment;
@@ -233,6 +148,7 @@ public class TrailingCommentCheck extends AbstractCheck {
      * Setter to specify pattern for strings allowed before the comment.
      *
      * @param pattern a pattern
+     * @since 3.4
      */
     public final void setFormat(Pattern pattern) {
         format = pattern;

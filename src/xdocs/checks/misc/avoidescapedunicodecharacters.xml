@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>AvoidEscapedUnicodeCharacters</title>
+  </head>
+  <body>
+    <section name="AvoidEscapedUnicodeCharacters">
+      <p>Since Checkstyle 5.8</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Restricts using
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+          Unicode escapes</a> (such as \u221e).
+          It is possible to allow using escapes for
+          <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
+              non-printable, control characters</a>.
+          Also, this check can be configured to allow using escapes
+          if trail comment is present. By the option it is possible to
+          allow using escapes if literal contains only them.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowByTailComment</td>
+              <td>Allow use escapes if trail comment is present.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>allowEscapesForControlCharacters</td>
+              <td>Allow use escapes for non-printable, control characters.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>allowIfAllCharactersEscaped</td>
+              <td>Allow if all characters in literal are escaped.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>allowNonPrintableEscapes</td>
+              <td>Allow use escapes for non-printable, whitespace characters.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+            To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+    &lt;module name=&quot;TreeWalker&quot;&gt;
+        &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
+    &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Examples of using Unicode:
+        </p>
+        <source>
+public class Example1 {
+  // OK, perfectly clear even without a comment.
+  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  // violation below, the reader has no idea what this is. 'should be avoided.'
+  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  // violation below
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  // violation below
+  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is  &#x3bc;s
+  // violation below
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  public static int content() {
+    char content = 'r';
+    // violation below
+    return '\ufeff' + content;
+  }
+}
+        </source>
+        <p id="Example2-config">
+          An example of how to configure the check to allow using escapes
+          for non-printable, control characters:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
+      &lt;property name=&quot;allowEscapesForControlCharacters&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example of using escapes for non-printable, control characters:
+        </p>
+        <source>
+public class Example2 {
+  // OK, a normal String below
+  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  // violation below, &#x3bc;s is a printable character. 'should be avoided.'
+  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  // violation below
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  // violation below
+  String unitAbbrev3 = &quot;\u03bcs&quot;;
+  // violation below
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  public static int content() {
+    char content = 'r';
+    // OK, non-printable control character.
+    return '\ufeff' + content;
+  }
+}
+        </source>
+        <p id="Example3-config">
+          An example of how to configure the check to allow using escapes
+          if trail comment is present:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
+      &lt;property name=&quot;allowByTailComment&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example of using escapes if trail comment is present:
+        </p>
+        <source>
+public class Example3 {
+  // OK, a normal String below
+  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  // violation below
+  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  // violation below
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  // violation below
+  String unitAbbrev3 = &quot;\u03bcs&quot;;
+  // ok, because there is trailing comment and allowByTailComment=true
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;; // it is  &#x3bc;s
+  public static int content() {
+    char content = 'r';
+    // violation below
+    return '\ufeff' + content;
+  }
+}
+        </source>
+        <p id="Example4-config">
+          An example of how to configure the check to allow if
+          all characters in literal are escaped.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
+      &lt;property name=&quot;allowIfAllCharactersEscaped&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example of using escapes if all characters in literal are escaped:</p>
+        <source>
+public class Example4 {
+  // OK, a normal String below
+  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  // violation below, not all characters are escaped ('s'). 'should be avoided.'
+  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  // ok, because below are escape characters and allowIfAllCharacters = true.
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  // violation below
+  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is  &#x3bc;s
+  // violation below, not all characters are escaped ('s'). 'should be avoided.'
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  public static int content() {
+    char content = 'r';
+    // OK, all control characters are escaped below
+    return '\ufeff' + content;
+  }
+}
+        </source>
+        <p id="Example5-config">
+          An example of how to configure the check to allow using escapes
+          for non-printable whitespace characters:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;&gt;
+      &lt;property name=&quot;allowNonPrintableEscapes&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example of using escapes for non-printable whitespace characters:</p>
+        <source>
+public class Example5 {
+  // OK, a normal String below.
+  String unitAbbrev = &quot;&#x3bc;s&quot;;
+  // violation below, printable escape character. 'should be avoided.'
+  String unitAbbrev1 = &quot;\u03bcs&quot;;
+  // violation below, printable escape character. 'should be avoided.'
+  String unitAbbrev2 = &quot;\u03bc\u03bc\u03bc&quot;;
+  // violation below
+  String unitAbbrev3 = &quot;\u03bcs&quot;; // it is &#x3bc;s
+  // violation below
+  String unitAbbrev4 = &quot;\u03bc\u03bcs&quot;;
+  public static int content() {
+    char content = 'r';
+    // OK, non-printable escape character below
+    return '\ufeff' + content;
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22forbid.escaped.unicode.char%22">
+              forbid.escaped.unicode.char
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

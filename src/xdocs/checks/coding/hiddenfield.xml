@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>HiddenField</title>
+  </head>
+  <body>
+    <section name="HiddenField">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a local variable or a parameter does not shadow a field
+          that is defined in the same class.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          It is possible to configure the check to ignore all property setter methods.
+        </p>
+        <p>
+          A method is recognized as a setter if it is in the following form
+        </p>
+        <source>
+${returnType} set${Name}(${anyType} ${name}) { ... }
+        </source>
+        <p>
+          where ${anyType} is any primitive type, class or interface name;
+          ${name} is name of the variable that is being set and ${Name} its
+          capitalized form that appears in the method name. By default, it is expected
+          that setter returns void, i.e. ${returnType} is 'void'. For example
+        </p>
+        <source>
+void setTime(long time) { ... }
+        </source>
+        <p>
+          Any other return types will not let method match a setter pattern. However,
+          by setting <em>setterCanReturnItsClass</em> property to <em>true</em>
+          definition of a setter is expanded, so that setter return type can also
+          be a class in which setter is declared. For example
+        </p>
+        <source>
+class PageBuilder {
+  PageBuilder setName(String name) { ... }
+}
+        </source>
+        <p>
+          Such methods are known as chain-setters and a common when Builder-pattern
+          is used. Property <em>setterCanReturnItsClass</em> has effect only if
+          <em>ignoreSetter</em> is set to true.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreAbstractMethods</td>
+              <td>Control whether to ignore parameters of abstract methods.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>ignoreConstructorParameter</td>
+              <td>Control whether to ignore constructor parameters.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>ignoreFormat</td>
+              <td>Define the RegExp for names of variables and parameters to ignore.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>ignoreSetter</td>
+              <td>Allow to ignore the parameter of a property setter method.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>setterCanReturnItsClass</td>
+              <td>Allow to expand the definition of a setter method to include methods that return the class' instance.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.3</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                    RECORD_COMPONENT_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                    PARAMETER_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                    RECORD_COMPONENT_DEF</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // violation, 'testField' param
+                                               // hides 'testField' field
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
+      this.field = field;
+  }
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check so that it checks local variables but not
+          parameters:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
+      this.field = field;
+  }
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check so that it ignores the variables and parameters named
+          &quot;test&quot;:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreFormat&quot; value=&quot;^testField&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // OK, because it match ignoreFormat
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // OK, because it match ignoreFormat
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
+      this.field = field;
+  }
+}
+        </source>
+
+        <p id="Example4-config">
+          To configure the check so that it ignores constructor parameters:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // violation, 'testField' variable
+                                               // hides 'testField' field
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
+      this.field = field;
+  }
+}
+        </source>
+
+        <p id="Example5-config">
+          To configure the check so that it ignores the parameter of setter
+          methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
+      this.field = field;
+  }
+}
+        </source>
+
+        <p id="Example6-config">
+          To configure the check so that it ignores the parameter of setter
+          methods recognizing setter as returning either <code>void</code> or
+          a class in which it is declared:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
+      &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Example:</p>
+        <source>
+public class SomeClass {
+
+  private String field;
+  private String testField;
+
+  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  }
+  public void method(String param) { // OK
+      String field = param; // violation, 'field' variable hides 'field' field
+  }
+  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
+      this.field = field;
+  }
+  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
+      this.field = field;
+  }
+}
+        </source>
+        <p id="Example7-config">
+          To configure the check so that it ignores parameters of abstract methods:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HiddenField&quot;&gt;
+      &lt;property name=&quot;ignoreAbstractMethods&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+abstract class SomeClass {
+
+  private String field;
+
+  public SomeClass(int field) { // violation, 'field' param hides a 'field' field
+    float field; // violation, 'field' variable hides a 'field' field
+  }
+  public abstract int method(String field); // OK
+}
+
+public class Demo extends SomeClass {
+
+  public int method(String param){
+    return param;
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22hidden.field%22">
+              hidden.field
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

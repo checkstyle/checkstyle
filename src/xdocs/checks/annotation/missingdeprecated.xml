@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingDeprecated</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
+          <code>@deprecated</code> are both present when either of them is present.
+        </p>
+        <p>
+          Both ways of flagging deprecation serve their own purpose.
+          The @Deprecated annotation is used for compilers and development tools.
+          The @deprecated javadoc tag is used to document why something is deprecated
+          and what, if any, alternatives exist.
+        </p>
+        <p>
+          In order to properly mark something as deprecated both forms of
+          deprecation should be present.
+        </p>
+        <p>
+          Package deprecation is an exception to the rule of always using the
+          javadoc tag and annotation to deprecate.  It is not clear if the
+          javadoc tool will support it or not as newer versions keep flip-flopping
+          on if it is supported or will cause an error.
+          See <a href="https://bugs.openjdk.org/browse/JDK-8160601">
+          JDK-8160601</a>.
+          The deprecated javadoc tag is currently the only way to say why the package
+          is deprecated and what to use instead.  Until this is resolved, if you
+          don't want to print violations on package-info, you can use a
+          <a href="../../filters/index.html">filter</a> to ignore these files until
+          the javadoc tool faithfully supports it. An example config using
+          SuppressionSingleFilter is:
+        </p>
+        <source>
+&lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
+&lt;module name=&quot;SuppressionSingleFilter&quot;&gt;
+    &lt;property name=&quot;checks&quot; value=&quot;MissingDeprecatedCheck&quot;/&gt;
+    &lt;property name=&quot;files&quot; value=&quot;package-info\.java&quot;/&gt;
+&lt;/module&gt;
+        </source>
+      </subsection>
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.24</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingDeprecated&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  @Deprecated
+  public static final int MY_CONST = 13; // ok
+
+  /** This javadoc is missing deprecated tag. */
+  // violation below '@deprecated Javadoc tag with description.'
+  @Deprecated
+  public static final int COUNTER = 10;
+
+  /**
+   * @deprecated
+   * &lt;p&gt;&lt;/p&gt;
+   */
+  @Deprecated
+    public static final int NUM = 123456; // ok
+
+  /**
+   * @deprecated
+   *  &lt;p&gt;
+   */
+  @Deprecated
+  public static final int CONST = 12; // ok
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check such that it prints violation
+          messages if tight HTML rules are not obeyed
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingDeprecated&quot;&gt;
+      &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  @Deprecated
+  public static final int MY_CONST = 13; // ok
+
+  /** This javadoc is missing deprecated tag. */
+  // violation below '@deprecated Javadoc tag with description.'
+  @Deprecated
+  public static final int COUNTER = 10;
+
+  /**
+   * @deprecated
+   * &lt;p&gt;&lt;/p&gt;
+   */
+  @Deprecated
+  public static final int NUM = 123456; // ok
+
+  /**
+   * @deprecated
+   * &lt;p&gt; // violation, 'Unclosed HTML tag found: p'
+  */
+  @Deprecated
+  public static final int CONST = 12;
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
+              annotation.missing.deprecated
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.duplicateTag%22">
+              javadoc.duplicateTag
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+              javadoc.missed.html.close
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+              javadoc.wrong.singleton.html.tag
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

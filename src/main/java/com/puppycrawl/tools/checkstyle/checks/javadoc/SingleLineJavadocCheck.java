@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,11 +35,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Property {@code ignoreInlineTags} - Control whether
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * inline tags</a> must be ignored.
  * Type is {@code boolean}.
- * Default value is {@code false}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoredTags} - Specify
@@ -49,175 +49,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ignoreInlineTags} - Control whether
- * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
- * inline tags</a> must be ignored.
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
+ * if the Javadoc being examined by this check violates the tight html rules defined at
+ * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
  * Type is {@code boolean}.
- * Default value is {@code true}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * &#47;** &#64;see Math *&#47; // violation, javadoc should be multiline
- * public int foo() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &#64;return 42
- *  *&#47;  // ok
- * public int bar() {
- *   return 42;
- * }
- *
- * &#47;** {&#64;link #equals(Object)} *&#47; // ok
- * public int baz() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question
- *  *&#47; // ok
- * public int magic() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- *  *&#47; // ok
- * public int foobar() {
- *   return 42;
- * }
- * </pre>
- * <p>
- * To configure the check with a list of ignored block tags:
- * </p>
- * <pre>
- * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
- *   &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * &#47;** &#64;see Math *&#47; // ok
- * public int foo() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &#64;return 42
- *  *&#47;  // ok
- * public int bar() {
- *   return 42;
- * }
- *
- * &#47;** {&#64;link #equals(Object)} *&#47; // ok
- * public int baz() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question
- *  *&#47; // ok
- * public int magic() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- *  *&#47; // ok
- * public int foobar() {
- *   return 42;
- * }
- * </pre>
- * <p>
- * To configure the check to not ignore inline tags:
- * </p>
- * <pre>
- * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
- *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * &#47;** &#64;see Math *&#47; // violation, javadoc should be multiline
- * public int foo() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &#64;return 42
- *  *&#47;  // ok
- * public int bar() {
- *   return 42;
- * }
- *
- * &#47;** {&#64;link #equals(Object)} *&#47; // violation, javadoc should be multiline
- * public int baz() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question
- *  *&#47; // ok
- * public int magic() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- *  *&#47; // ok
- * public int foobar() {
- *   return 42;
- * }
- * </pre>
- * <p>
- * To configure the check to report violations for Tight-HTML Rules:
- * </p>
- * <pre>
- * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
- *   &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * &#47;** &#64;see Math *&#47; // violation, javadoc should be multiline
- * public int foo() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &#64;return 42
- *  *&#47;  // ok
- * public int bar() {
- *   return 42;
- * }
- *
- * &#47;** {&#64;link #equals(Object)} *&#47; // ok
- * public int baz() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question
- *  *&#47; // violation, unclosed HTML tag found: p
- * public int magic() {
- *   return 42;
- * }
- *
- * &#47;**
- *  * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- *  *&#47; // ok
- * public int foobar() {
- *   return 42;
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -230,6 +68,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
  * </li>
  * <li>
  * {@code javadoc.wrong.singleton.html.tag}
@@ -270,6 +111,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * block tags</a> which are ignored by the check.
      *
      * @param tags to be ignored by check.
+     * @since 6.8
      */
     public void setIgnoredTags(String... tags) {
         ignoredTags = Set.of(tags);
@@ -281,6 +123,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * inline tags</a> must be ignored.
      *
      * @param ignoreInlineTags whether inline tags must be ignored.
+     * @since 6.8
      */
     public void setIgnoreInlineTags(boolean ignoreInlineTags) {
         this.ignoreInlineTags = ignoreInlineTags;

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MethodCount</title>
+  </head>
+  <body>
+    <section name="MethodCount">
+      <p>Since Checkstyle 5.3</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the number of methods declared in each type declaration by access modifier or
+          total count.
+        </p>
+        <p>
+          This check can be configured to flag classes that define too many methods to prevent the
+          class from getting too complex.
+          Counting can be customized to prevent too many total methods in a type definition
+          (<code>maxTotal</code>), or to prevent too many methods of a specific access modifier
+          (<code>private</code>, <code>package</code>, <code>protected</code> or
+          <code>public</code>).
+          Each count is completely separated to customize how many methods of each you want to
+          allow. For example, specifying a <code>maxTotal</code> of 10, still means you can
+          prevent more than 0 <code>maxPackage</code> methods. A violation won't appear for 8
+          public methods, but one will appear if there is also 3 private methods or any
+          package-private methods.
+        </p>
+        <p>
+          Methods defined in anonymous classes are not counted towards any totals.
+          Counts only go towards the main type declaration parent, and are kept separate from it's
+          children's inner types.
+        </p>
+        <source>
+public class ExampleClass {
+  public enum Colors {
+    RED, GREEN, YELLOW;
+
+    public String getRGB() { ... } // NOT counted towards ExampleClass
+  }
+
+  public void example() { // counted towards ExampleClass
+    Runnable r = (new Runnable() {
+      public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+    });
+  }
+
+  public static class InnerExampleClass {
+    protected void example2() { ... } // NOT counted towards ExampleClass,
+                                   // but counted towards InnerExampleClass
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>maxPackage</td>
+              <td>Specify the maximum number of <code>package</code> methods allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxPrivate</td>
+              <td>Specify the maximum number of <code>private</code> methods allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxProtected</td>
+              <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxPublic</td>
+              <td>Specify the maximum number of <code>public</code> methods allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxTotal</td>
+              <td>Specify the maximum number of methods allowed at all scope levels.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>5.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodCount&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-config">
+          To configure the check to allow no more than 30 methods per type declaration:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodCount&quot;&gt;
+      &lt;property name=&quot;maxTotal&quot; value=&quot;30&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example3-config">
+          To configure the check to allow no more than 10 public methods per
+          type declaration, and 40 methods in total:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MethodCount&quot;&gt;
+      &lt;property name=&quot;maxPublic&quot; value=&quot;10&quot;/&gt;
+      &lt;property name=&quot;maxTotal&quot; value=&quot;40&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.methods%22">
+              too.many.methods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.packageMethods%22">
+              too.many.packageMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.privateMethods%22">
+              too.many.privateMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.protectedMethods%22">
+              too.many.protectedMethods
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.publicMethods%22">
+              too.many.publicMethods
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

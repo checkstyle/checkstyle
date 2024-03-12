@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>RegexpSingleline</title>
+  </head>
+  <body>
+    <section name="RegexpSingleline">
+      <p>Since Checkstyle 5.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a specified pattern matches a single-line in any file type.
+        </p>
+
+        <p>
+          Rationale: This check can be used to prototype checks and to
+          find common bad practice such as calling <code>ex.printStacktrace()</code>, <code>
+          System.out.println()</code>, <code>System.exit()</code>, etc.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>&quot;$.&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations, if empty then default (hard-coded) message is used.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+        To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        This configuration does not match to anything,
+        so we do not provide any code example for it
+        as no violation will ever be reported.
+        </p>
+        <p id="Example2-config">
+        To configure the check to find occurrences of 'System.exit('
+        with some <i>slack</i> of allowing only one occurrence per file:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;System.exit\(&quot;/&gt;
+    &lt;!-- next line not required as 0 is the default --&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;1&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-code">Example:</p>
+        <source>
+class MyClass {
+    void myFunction() {
+        try {
+            doSomething();
+        } catch (Exception e) {
+            System.exit(1); // OK, as only there is only one occurrence.
+        }
+    }
+    void doSomething(){};
+}
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class MyClass {
+    void myFunction() {
+        try {
+            doSomething();
+            System.exit(0);
+        } catch (Exception e) {
+            System.exit(1); // Violation, as there are more than one occurrence.
+        }
+    }
+    void doSomething(){};
+}
+        </source>
+        <p id="Example4-config">
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;This file is copyrighted&quot;/&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+    &lt;!--  Need to specify a maximum, so 10 times is more than enough. --&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Example:</p>
+        <source>
+/**
+* This file is copyrighted under CC. // Ok, as the file contains a copyright statement.
+*/
+class MyClass {
+
+}
+        </source>
+        <p id="Example5-code">Example:</p>
+        <source>
+/** // violation, as the file doesn't contain a copyright statement.
+* MyClass as a configuration example.
+*/
+class MyClass {
+
+}
+        </source>
+        <p id="Example6-config">
+          An example of how to configure the check to make sure sql files contains the term
+          'license'.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;RegexpSingleline&quot;&gt;
+      &lt;property name=&quot;format&quot; value=&quot;license&quot;/&gt;
+      &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+      &lt;property name=&quot;maximum&quot; value=&quot;9999&quot;/&gt;
+      &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+      &lt;!--  Configure a message to be shown on violation of the Check. --&gt;
+      &lt;property name=&quot;message&quot;
+                value=&quot;File must contain at least one occurrence of 'license' term&quot;/&gt;
+      &lt;!--  Perform the Check only on files with java extension. --&gt;
+      &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example6-code">Example:</p>
+        <source>
+/*
+ AP 2.0 License. // Ok, Check ignores the case of the term.
+*/
+CREATE DATABASE MyDB;
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+/* // violation, file doesn't contain the term.
+ Example sql file.
+*/
+CREATE DATABASE MyDB;
+        </source>
+      </subsection>
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+            Sun Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
+              regexp.exceeded
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
+              regexp.minimum
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.regexp
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

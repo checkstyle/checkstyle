@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocVariable</title>
+  </head>
+  <body>
+    <section name="JavadocVariable">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code>
+          fields.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>ignoreNamePattern</td>
+              <td>Specify the regexp to define variable names to ignore.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          By default, this setting will report a violation if
+          there is no javadoc for any scope member.
+        </p>
+        <source>
+public class Test {
+private int a; // violation, missing javadoc for private member
+
+/**
+ * Some description here
+ */
+private int b; // OK
+protected int c; // violation, missing javadoc for protected member
+public int d; // violation, missing javadoc for public member
+/*package*/ int e; // violation, missing javadoc for package member
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check for <code>public</code>
+          scope:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          This setting will report a violation if there
+          is no javadoc for <code>public</code> member.
+        </p>
+        <source>
+public class Test {
+private int a; // OK
+
+/**
+ * Some description here
+ */
+private int b; // OK
+protected int c; // OK
+public int d; // violation, missing javadoc for public member
+/*package*/ int e; // OK
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check for members which are in <code>private</code>, but not in
+          <code>protected</code> scope:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
+      &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          This setting will report a violation if there is no
+          javadoc for <code>private</code> member and
+          ignores <code>protected</code> member.
+        </p>
+        <source>
+public class Test {
+private int a; // violation, missing javadoc for private member
+
+/**
+ * Some description here
+ */
+private int b; // OK
+protected int c; // OK
+public int d; // OK
+/*package*/ int e; // violation, missing javadoc for package member
+}
+        </source>
+        <p id="Example4-config">
+          To ignore absence of Javadoc comments for variables with names <code>log</code> or
+          <code>logger</code>:
+        </p>
+
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocVariable&quot;&gt;
+      &lt;property name=&quot;ignoreNamePattern&quot; value=&quot;log|logger&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          This setting will report a violation if there is no
+          javadoc for any scope member and ignores members with
+          name <code>log</code> or <code>logger</code>.
+        </p>
+        <source>
+public class Test {
+private int a; // violation, missing javadoc for private member
+
+/**
+ * Some description here
+ */
+private int b; // OK
+protected int c; // violation, missing javadoc for protected member
+public int d; // violation, missing javadoc for public member
+/*package*/ int e; // violation, missing javadoc for package member
+private int log; // OK
+private int logger; // OK
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
+              javadoc.missing
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

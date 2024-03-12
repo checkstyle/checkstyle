@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,11 +24,14 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiation
 
 import java.io.File;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -235,5 +238,26 @@ public class IllegalInstantiationCheckTest
                         "instantiations",
                         instantiations -> ((Collection<DetailAST>) instantiations).isEmpty()))
                 .isTrue();
+    }
+
+    @Test
+    public void testStateIsClearedOnBeginTreePackageName() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(IllegalInstantiationCheck.class);
+        checkConfig.addProperty("classes",
+                "java.lang.Boolean,com.puppycrawl.tools.checkstyle.checks.coding."
+                        + "illegalinstantiation.InputIllegalInstantiationBeginTree2."
+                        + "InputModifier");
+        final String file1 = getPath(
+                "InputIllegalInstantiationBeginTree1.java");
+        final String file2 = getPath(
+                "InputIllegalInstantiationBeginTree2.java");
+        final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
+        final File[] inputs = {new File(file1), new File(file2)};
+
+        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
+            file1, expectedFirstInput,
+            file2, expectedSecondInput));
     }
 }

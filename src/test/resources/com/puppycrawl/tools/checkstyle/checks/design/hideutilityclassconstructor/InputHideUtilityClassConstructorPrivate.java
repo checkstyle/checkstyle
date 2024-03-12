@@ -6,7 +6,7 @@ HideUtilityClassConstructor
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-public class InputHideUtilityClassConstructorPrivate { // ok
+public class InputHideUtilityClassConstructorPrivate {
     private InputHideUtilityClassConstructorPrivate() {}
 
     private static int value = 0;

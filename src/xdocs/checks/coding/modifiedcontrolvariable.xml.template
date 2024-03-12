@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ModifiedControlVariable</title>
+  </head>
+  <body>
+    <section name="ModifiedControlVariable">
+      <p>Since Checkstyle 3.5</p>
+      <subsection name="Description" id="Description">
+        <p>
+            Checks that for loop control variables are not modified inside
+            the for block. An example is:
+        </p>
+        <source>
+for (int i = 0; i &lt; 1; i++) {
+  i++; // violation
+}
+        </source>
+        <p>
+          Rationale: If the control variable is modified inside the loop
+          body, the program flow becomes more difficult to follow. See
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
+          FOR statement</a> specification for more details.
+        </p>
+        <p>
+          Such loop would be suppressed:
+        </p>
+        <source>
+for (int i = 0; i &lt; 10;) {
+  i++;
+}
+        </source>
+        <p>
+          NOTE:The check works with only primitive type variables.
+          The check will not work for arrays used as control variable.An example is
+        </p>
+        <source>
+for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ a[0]++;   // it will skip this violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example1.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example1.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          By default, This Check validates
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+          Enhanced For-Loop</a>.
+        </p>
+        <p>
+          Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
+          from Enhanced For Loop.
+        </p>
+        <p id="Example2-config">
+          An example of how to configure the check so that it skips enhanced For Loop Variable is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example2.txt"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example2.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifiedControlVariable">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="ModifiedControlVariable"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="ModifiedControlVariable"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,41 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers.
+ * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RecordComponentName"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1(String value, int otherComponentName) {} // OK
- * record MyRecord2(String... Values) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
- * record MyRecord3(double my_number) {} // violation, the record component name
- *                                     // should match the regular expression "^[a-z][a-zA-Z0-9]*$"
- * </pre>
- * <p>
- * An example of how to configure the check for names that are only letters in lowercase:
- * </p>
- * <p>Configuration:</p>
- * <pre>
- * &lt;module name="RecordComponentName"&gt;
- *   &lt;property name="format" value="^[a-z]+$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * record MyRecord1(String value, int other) {} // OK
- * record MyRecord2(String... strings) {} // OK
- * record MyRecord3(double myNumber) {} // violation, the record component name
- *                              // should match the regular expression "^[a-z]+$"
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

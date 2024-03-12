@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>WhitespaceAround</title>
+  </head>
+  <body>
+    <section name="WhitespaceAround">
+      <p>Since Checkstyle 3.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+        Checks that a token is surrounded by whitespace. Empty constructor,
+        method, class, enum, interface, loop bodies (blocks), lambdas of the form
+        </p>
+
+        <source>public MyClass() {}      // empty constructor
+public void func() {}    // empty method
+public interface Foo {} // empty interface
+public class Foo {} // empty class
+public enum Foo {} // empty enum
+MyClass c = new MyClass() {}; // empty anonymous class
+while (i = 1) {} // empty while loop
+for (int i = 1; i &gt; 1; i++) {} // empty for loop
+do {} while (i = 1); // empty do-while loop
+Runnable noop = () -&gt; {}; // empty lambda
+public @interface Beta {} // empty annotation type
+        </source>
+
+        <p>
+          may optionally be exempted from the policy using the <code>
+          allowEmptyMethods</code>, <code>allowEmptyConstructors</code>,
+          <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>,
+          <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
+          properties.
+        </p>
+        <p>This check does not flag as violation double brace initialization like:</p>
+        <div class="wrapper">
+          <pre><code>
+new Properties() {{
+    setProperty(&quot;key&quot;, &quot;value&quot;);
+}};
+          </code></pre>
+        </div>
+        <p>Parameter allowEmptyCatches allows to suppress violations when token
+        list contains SLIST to check if beginning of block is surrounded by
+        whitespace and catch block is empty, for example:</p>
+        <div class="wrapper">
+          <pre><code>
+try {
+    k = 5 / i;
+} catch (ArithmeticException ex) {}
+          </code></pre>
+        </div>
+        <p>
+          With this property turned off, this raises violation because the beginning of the
+          catch block (left curly bracket) is not separated from the end of the catch
+          block (right curly bracket).
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+          To configure the check for whitespace only around assignment operators:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check for whitespace only around curly braces:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          To configure the check to allow empty method bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example5-config">
+          To configure the check to allow empty constructor bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example6-config">
+          To configure the check to allow empty type bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-config">
+          To configure the check to allow empty loop bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example8-config">
+          To configure the check to allow empty lambda bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example9-config">
+          To configure the check to allow empty catch bodies:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>
+          Also, this check can be configured to ignore the colon in an enhanced for loop.
+          The colon in an enhanced for loop is ignored by default.
+        </p>
+        <p id="Example10-config">
+          To configure the check to ignore the colon:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+            Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="WhitespaceAround"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="WhitespaceAround"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>

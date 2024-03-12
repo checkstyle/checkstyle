@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,86 +38,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code max} - Specify the maximum number of components allowed in the header of a
- * record definition.
- * Type is {@code int}.
- * Default value is {@code 8}.
- * </li>
- * <li>
  * Property {@code accessModifiers} - Access modifiers of record definitions where
  * the number of record components should be checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
  * Default value is {@code public, protected, package, private}.
  * </li>
+ * <li>
+ * Property {@code max} - Specify the maximum number of components allowed in the header of a
+ * record definition.
+ * Type is {@code int}.
+ * Default value is {@code 8}.
+ * </li>
  * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="RecordComponentNumber"/&gt;
- * </pre>
- * <p>
- * Java code example:
- * </p>
- * <pre>
- * public record MyRecord1(int x, int y) { // ok, 2 components
- *     ...
- * }
- *
- * record MyRecord2(int x, int y, String str,
- *                           Node node, Order order, Data data
- *                           String location, Date date, Image image) { // violation, 9 components
- *     ...
- * }
- * </pre>
- * <p>
- * To configure the check to allow 5 record components at all access modifier levels
- * for record definitions:
- * </p>
- * <pre>
- * &lt;module name="RecordComponentNumber"&gt;
- *   &lt;property name="max" value="5"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Java code example:
- * </p>
- * <pre>
- * public record MyRecord1(int x, int y, String str) { // ok, 3 components
- *     ...
- * }
- *
- * public record MyRecord2(int x, int y, String str,
- *                           Node node, Order order, Data data) { // violation, 6 components
- *     ...
- * }
- * </pre>
- * <p>
- * To configure the check to allow 10 record components for a public record definition,
- * but 3 for private record definitions:
- * </p>
- * <pre>
- * &lt;module name="RecordComponentNumber"&gt;
- *   &lt;property name="max" value="3"/&gt;
- *   &lt;property name="accessModifiers" value="private"/&gt;
- * &lt;/module&gt;
- * &lt;module name="RecordComponentNumber"&gt;
- *   &lt;property name="max" value="10"/&gt;
- *   &lt;property name="accessModifiers" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Java code example:
- * </p>
- * <pre>
- * public record MyRecord1(int x, int y, String str) { // ok, public record definition allowed 10
- *     ...
- * }
- *
- * private record MyRecord2(int x, int y, String str, Node node) { // violation
- *     ...                                // private record definition allowed 3 components
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -163,6 +95,7 @@ public class RecordComponentNumberCheck extends AbstractCheck {
      * of a record definition.
      *
      * @param value the maximum allowed.
+     * @since 8.36
      */
     public void setMax(int value) {
         max = value;
@@ -173,6 +106,7 @@ public class RecordComponentNumberCheck extends AbstractCheck {
      * components should be checked.
      *
      * @param accessModifiers access modifiers of record definitions which should be checked.
+     * @since 8.36
      */
     public void setAccessModifiers(AccessModifierOption... accessModifiers) {
         this.accessModifiers =

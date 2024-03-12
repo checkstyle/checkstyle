@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,36 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="TodoComment"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * i++; // TODO: do differently in future   // violation
- * i++; // todo: do differently in future   // OK
- * </pre>
- * <p>
- * To configure the check for comments that contain {@code TODO} and {@code FIXME}:
- * </p>
- * <pre>
- * &lt;module name="TodoComment"&gt;
- *   &lt;property name="format" value="(TODO)|(FIXME)"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * i++;   // TODO: do differently in future   // violation
- * i++;   // todo: do differently in future   // OK
- * i=i/x; // FIXME: handle x = 0 case         // violation
- * i=i/x; // FIX :  handle x = 0 case         // OK
- * </pre>
- * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -113,6 +83,7 @@ public class TodoCommentCheck
      *
      * @param pattern
      *        pattern of 'todo' comment.
+     * @since 3.0
      */
     public void setFormat(Pattern pattern) {
         format = pattern;

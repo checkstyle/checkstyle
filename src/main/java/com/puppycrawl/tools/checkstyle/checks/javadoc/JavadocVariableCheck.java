@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -36,11 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc
  * comments are not checked.
  * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
@@ -52,6 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code null}.
  * </li>
  * <li>
+ * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code private}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -60,105 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * ENUM_CONSTANT_DEF</a>.
  * </li>
  * </ul>
- * <p>
- * To configure the default check:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"/&gt;
- * </pre>
- * <p>
- * By default, this setting will report a violation if
- * there is no javadoc for any scope member.
- * </p>
- * <pre>
- * public class Test {
- *   private int a; // violation, missing javadoc for private member
- *
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private int b; // OK
- *   protected int c; // violation, missing javadoc for protected member
- *   public int d; // violation, missing javadoc for public member
- *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
- * }
- * </pre>
- * <p>
- * To configure the check for {@code public} scope:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"&gt;
- *   &lt;property name="scope" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>This setting will report a violation if there is no javadoc for {@code public} member.</p>
- * <pre>
- * public class Test {
- *   private int a; // OK
- *
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private int b; // OK
- *   protected int c; // OK
- *   public int d; // violation, missing javadoc for public member
- *   &#47;*package*&#47; int e; // OK
- * }
- * </pre>
- * <p>
- * To configure the check for members which are in {@code private},
- * but not in {@code protected} scope:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="protected"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * This setting will report a violation if there is no javadoc for {@code private}
- * member and ignores {@code protected} member.
- * </p>
- * <pre>
- * public class Test {
- *   private int a; // violation, missing javadoc for private member
- *
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private int b; // OK
- *   protected int c; // OK
- *   public int d; // OK
- *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
- * }
- * </pre>
- * <p>
- * To ignore absence of Javadoc comments for variables with names {@code log} or {@code logger}:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"&gt;
- *   &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * This setting will report a violation if there is no javadoc for any scope
- * member and ignores members with name {@code log} or {@code logger}.
- * </p>
- * <pre>
- * public class Test {
- *   private int a; // violation, missing javadoc for private member
- *
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private int b; // OK
- *   protected int c; // violation, missing javadoc for protected member
- *   public int d; // violation, missing javadoc for public member
- *   &#47;*package*&#47; int e; // violation, missing javadoc for package member
- *   private int log; // OK
- *   private int logger; // OK
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -196,6 +97,7 @@ public class JavadocVariableCheck
      * Setter to specify the visibility scope where Javadoc comments are checked.
      *
      * @param scope a scope.
+     * @since 3.0
      */
     public void setScope(Scope scope) {
         this.scope = scope;
@@ -205,6 +107,7 @@ public class JavadocVariableCheck
      * Setter to specify the visibility scope where Javadoc comments are not checked.
      *
      * @param excludeScope a scope.
+     * @since 3.4
      */
     public void setExcludeScope(Scope excludeScope) {
         this.excludeScope = excludeScope;
@@ -214,6 +117,7 @@ public class JavadocVariableCheck
      * Setter to specify the regexp to define variable names to ignore.
      *
      * @param pattern a pattern.
+     * @since 5.8
      */
     public void setIgnoreNamePattern(Pattern pattern) {
         ignoreNamePattern = pattern;

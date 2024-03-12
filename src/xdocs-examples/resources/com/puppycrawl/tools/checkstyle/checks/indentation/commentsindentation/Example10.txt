@@ -1,0 +1,24 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="CommentsIndentation"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+1   public void foo42() {
+2     int a = 5;
+3     if (a == 5) {
+4       int b;
+5       // it is OK
+6      } else if (a ==6) { ... }
+7   }
+8
+9   public void foo43() {
+10    try {
+11      int a;
+12     // Why do we catch exception here? - violation (not the same indentation as line 11)
+13     } catch (Exception e) { ... }
+14  }
+// xdoc section -- end

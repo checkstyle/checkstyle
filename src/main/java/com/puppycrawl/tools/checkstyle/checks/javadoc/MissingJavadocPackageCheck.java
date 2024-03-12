@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -43,23 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * This check specifically only validates package definitions. It will not validate any methods or
  * interfaces declared in the package-info.java file.
  * </p>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="MissingJavadocPackage"/&gt;
- * </pre>
- * <p>Example:</p>
- * <pre>
- * /**
- * * Provides API classes
- * *&#47;
- * package com.checkstyle.api; // no violation
- * /*
- * * Block comment is not a javadoc
- * *&#47;
- * package com.checkstyle.api; // violation
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -138,7 +121,7 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
             .map(DetailAST::getFirstChild);
         boolean result = false;
         if (firstAnnotationChild.isPresent()) {
-            for (DetailAST child = firstAnnotationChild.get(); child != null;
+            for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
                  child = child.getNextSibling()) {
                 if (isJavadoc(child)) {
                     result = true;

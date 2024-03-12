@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,91 +47,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code aliasList} - Specify aliases for check names that can be used in code
- * within {@code SuppressWarnings}.
+ * within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+ * The attribute is the fully qualified name of the Check and value is its alias.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code null}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
- * <p>
- * To use default module configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;TreeWalker&quot;&gt;
- *   &lt;module name=&quot;MemberName&quot;/&gt;
- *   &lt;module name=&quot;ConstantName&quot;/&gt;
- *   &lt;module name=&quot;ParameterNumber&quot;&gt;
- *     &lt;property name=&quot;id&quot; value=&quot;ParamNumberId&quot;/&gt;
- *   &lt;/module&gt;
- *   &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWarningsHolder&quot;/&gt;
- * &lt;/module&gt;
- * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
- * </pre>
- * <pre>
- * class Test {
- *
- *     private int K; // violation
- *     &#64;SuppressWarnings({"membername"})
- *     private int J; // violation suppressed
- *
- *     private static final int i = 0; // violation
- *     &#64;SuppressWarnings("checkstyle:constantname")
- *     private static final int m = 0; // violation suppressed
- *
- *     public void needsLotsOfParameters (int a, // violation
- *       int b, int c, int d, int e, int f, int g, int h) {
- *       // ...
- *     }
- *
- *     &#64;SuppressWarnings("ParamNumberId")
- *     public void needsLotsOfParameters1 (int a, // violation suppressed
- *       int b, int c, int d, int e, int f, int g, int h) {
- *       //  ...
- *     }
- *
- *    private int [] ARR; // 2 violations
- *    &#64;SuppressWarnings("all")
- *    private int [] ARRAY; // violations suppressed
- * }
- * </pre>
- * <p>
- * The general rule is that the argument of the {@code @SuppressWarnings} will be
- * matched against class name of the check in any letter case. Adding {@code check}
- * suffix is also accepted.
- * </p>
- * <p>
- * If {@code aliasList} property was provided you can use your own names e.g. below
- * code will work if there was provided a {@code ParameterNumberCheck=paramnum} in
- * the {@code aliasList}:
- * </p>
- * <pre>
- * &lt;module name=&quot;TreeWalker&quot;&gt;
- *   &lt;module name=&quot;ParameterNumber&quot;/&gt;
- *
- *   &lt;module name=&quot;SuppressWarningsHolder&quot;&gt;
- *     &lt;property name=&quot;aliasList&quot; value=
- *       &quot;com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum&quot;/&gt;
- *   &lt;/module&gt;
- * &lt;/module&gt;
- * &lt;module name=&quot;SuppressWarningsFilter&quot;/&gt;
- * </pre>
- * <pre>
- * class Test {
- *
- *     public void needsLotsOfParameters (int a, // violation
- *       int b, int c, int d, int e, int f, int g, int h) {
- *       // ...
- *     }
- *
- *     &#64;SuppressWarnings("paramnum")
- *     public void needsLotsOfParameters1 (int a, // violation suppressed
- *       int b, int c, int d, int e, int f, int g, int h) {
- *       //  ...
- *     }
- *
- * }
- * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -229,10 +150,12 @@ public class SuppressWarningsHolder
 
     /**
      * Setter to specify aliases for check names that can be used in code
-     * within {@code SuppressWarnings}.
+     * within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
+     * The attribute is the fully qualified name of the Check and value is its alias.
      *
      * @param aliasList comma-separated alias assignments
      * @throws IllegalArgumentException when alias item does not have '='
+     * @since 5.7
      */
     public void setAliasList(String... aliasList) {
         for (String sourceAlias : aliasList) {

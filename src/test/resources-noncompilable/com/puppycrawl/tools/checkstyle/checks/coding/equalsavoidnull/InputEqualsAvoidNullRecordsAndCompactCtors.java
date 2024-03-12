@@ -13,7 +13,7 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
     record TestRecord1(String str) {
         public TestRecord1 {
             str.equals("my string"); // violation 'left .* of .* equals'
-            "my string".equals(str); // ok
+            "my string".equals(str);
         }
     }
 
@@ -23,7 +23,7 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
         }
 
         public boolean stringCheck2 (String toCheck){
-            return "my string".equals(toCheck); // ok
+            return "my string".equals(toCheck);
         }
     }
 
@@ -32,14 +32,14 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
         TestRecord3 (String str){
             this();
             str.equalsIgnoreCase("my string"); // violation 'left .* of .* equalsIgnoreCase'
-            "my string".equals(str); // ok
+            "my string".equals(str);
         }
     }
 
     record TestRecord4(String str) {
         public TestRecord4 {
             str.equalsIgnoreCase("my string"); // violation 'left .* of .* equalsIgnoreCase'
-            "my string".equals(str); // ok
+            "my string".equals(str);
         }
     }
 
@@ -47,7 +47,7 @@ public class InputEqualsAvoidNullRecordsAndCompactCtors {
         TestRecord5 (int num) {
             this();
             str.equalsIgnoreCase("my string"); // violation 'left .* of .* equalsIgnoreCase'
-            "my string".equals(str); // ok
+            "my string".equals(str);
         }
         private static String str;
     }

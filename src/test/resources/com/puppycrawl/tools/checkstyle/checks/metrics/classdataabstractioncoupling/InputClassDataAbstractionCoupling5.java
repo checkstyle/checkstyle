@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class InputClassDataAbstractionCoupling5 {
     public void method(String... filenames) {
         final List<File> files = Arrays.stream(filenames)
-                .map(File::new) // ok
+                .map(File::new)
                 .collect(Collectors.toList());
     }
 }

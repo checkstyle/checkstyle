@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,8 @@ public final class Definitions {
 
     /** Name of modules which are not checks, but are internal modules. */
     public static final Set<String> INTERNAL_MODULES = Set.of(
-                    "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper");
+                    "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper",
+                    "com.puppycrawl.tools.checkstyle.site.ClassAndPropertiesSettersJavadocScraper");
 
     /**
      * Do no allow {@code Definitions} instances to be created.

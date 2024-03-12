@@ -9,7 +9,7 @@ tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF,
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 
-public interface InputRedundantModifierStaticMethodInInterface // ok
+public interface InputRedundantModifierStaticMethodInInterface
 {
     static int f()
     {

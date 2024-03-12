@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -78,22 +78,35 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThrees() throws Exception {
+    public void testThreesOne() throws Exception {
 
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
-            "15:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 5, 3),
-            "15:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 5, 3),
-            "15:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 20, 3),
-            "21:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "21:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
-            "57:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 5, 3),
-            "57:3: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
+            "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
+            "15:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 4, 3),
+            "15:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 4, 3),
+            "15:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 4, 3),
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 16, 3),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputMethodCount1.java"), expected);
+                getPath("InputMethodCount1One.java"), expected);
+    }
+
+    @Test
+    public void testThreesTwo() throws Exception {
+
+        final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
+            "14:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 4, 3),
+            "14:1: " + getCheckMessage(MSG_MANY_METHODS, 8, 3),
+            "20:3: " + getCheckMessage(MSG_PROTECTED_METHODS, 4, 3),
+            "20:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
+            "50:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 4, 3),
+            "50:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodCount1Two.java"), expected);
     }
 
     @Test

@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MatchXpath">
+      <property name="query" value="//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
+              and not(./TYPE/IDENT[@text='var'])]"/>
+      <message key="matchxpath.match"
+              value="New instances should be created via 'var' keyword to avoid duplication of
+              type reference in statement"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+public class Test {
+  public void foo() {
+    SomeObject a = new SomeObject(); // violation
+    var b = new SomeObject(); // OK
+  }
+}
+// xdoc section -- end

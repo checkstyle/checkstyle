@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class InputUnusedImportsWithBlockMethodParameters { // ok
+public class InputUnusedImportsWithBlockMethodParameters {
 
 /**
  * @see ExecutorService#invokeAll(Collection, long, TimeUnit)

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2023 the original author or authors.
+// Copyright (C) 2001-2024 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,6 +29,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -108,6 +109,24 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid column number")
             .that(rootNode.getColumnNumber())
             .isEqualTo(0);
+    }
+
+    /*
+     * This test exists to cover pitest mutation.
+     * It is impossible to create RootNode that does not have column as 0.
+     * Test exists until https://github.com/checkstyle/checkstyle/issues/4997
+     */
+    @Test
+    public void testNonRealGetColumnNumber() {
+        final DetailAstImpl nonRealNode = new DetailAstImpl();
+        nonRealNode.setType(TokenTypes.PACKAGE_DEF);
+        nonRealNode.setLineNo(555);
+        nonRealNode.setColumnNo(888);
+
+        final RootNode nonRealRootNode = new RootNode(nonRealNode);
+        assertWithMessage("Invalid column number")
+            .that(nonRealRootNode.getColumnNumber())
+            .isEqualTo(888);
     }
 
     @Test

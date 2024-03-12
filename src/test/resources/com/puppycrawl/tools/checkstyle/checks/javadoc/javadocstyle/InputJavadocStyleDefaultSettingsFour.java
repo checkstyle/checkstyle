@@ -22,11 +22,12 @@ public class InputJavadocStyleDefaultSettingsFour
      * <a
      * href="someLink"/>
      */
-    void tagInTwoLines() {} // ok
+    void tagInTwoLines() {}
 
+    // violation 3 lines below 'Unclosed HTML tag found: <code>'
     /**
      * This Javadoc contains unclosed tag.
-     * <code>unclosed 'code' tag<code> // violation
+     * <code>unclosed 'code' tag<code>
      */
     private void unclosedTag() {}
 
@@ -34,31 +35,36 @@ public class InputJavadocStyleDefaultSettingsFour
         /**
          * It pretends to be Javadoc without dot, but it's just comment in method
          */
-        final int i = 0; // ok
+        final int i = 0;
     }
-    // violation below
+
+    // violation below 'First sentence should end with a period.'
     /**
      * {@inheritDoc}
      */
     private void inheritDoc() {}
 
+    // violation 2 lines below 'Unclosed HTML tag found: <b>Note:<b> it's unterminated tag.</p>'
     /**
-     * <p><b>Note:<b> it's unterminated tag.</p> // violation
+     * <p><b>Note:<b> it's unterminated tag.</p>
      */
     private void unterminatedTag() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * Javadoc without dot
      */
     public interface TestInterface {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         void method();
     }
 
     static class TestStaticClass {
-        /** // violation
+        // violation below 'First sentence should end with a period.'
+        /**
          * Javadoc without dot
          */
         public int field;
@@ -68,9 +74,10 @@ public class InputJavadocStyleDefaultSettingsFour
      * .
      * @throws Exception if an error occurs
      */
-    void foo() throws Exception {} // ok
+    void foo() throws Exception {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * text /
      * @throws Exception if an error occurs
      */
@@ -81,9 +88,10 @@ public class InputJavadocStyleDefaultSettingsFour
      * <p>
      * @throws IllegalArgumentException with errMsg as its message
      */
-    void inheritDocWithThrows() {} // ok
+    void inheritDocWithThrows() {}
 
-    /** // violation
+    // violation below 'First sentence should end with a period.'
+    /**
      * /
      *
      **
@@ -92,9 +100,6 @@ public class InputJavadocStyleDefaultSettingsFour
      */
     public int test(String s) { return 0; }
 
-    /** Set of all class field names.*/
-    public String field; // ok
-
     /**
      * <p>Test.</p>
      * <pre class="body">
@@ -102,7 +107,7 @@ public class InputJavadocStyleDefaultSettingsFour
      ; i &lt; j; i++, j--) {}
      </pre>
      */
-    public void test2() {} // ok
+    public void test2() {}
 
     /**
      * <p>Test.</p>
@@ -110,5 +115,5 @@ public class InputJavadocStyleDefaultSettingsFour
      public class SampleTest {
      }</code></pre>
      */
-    public void test3() {} // ok
+    public void test3() {}
 }
