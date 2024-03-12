@@ -41,7 +41,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality.java"));
+                new File(getPath("InputXpathStringLiteralEquality.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -50,11 +50,11 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEquality']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_IF/EXPR",
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEquality']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_IF/EXPR/EQUAL[./IDENT[@text='foo']]"
 
@@ -67,7 +67,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality1.java"));
+                new File(getPath("InputXpathStringLiteralEquality1.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -76,11 +76,11 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality1']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEquality1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_WHILE/EXPR",
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality1']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEquality1']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_WHILE/EXPR/NOT_EQUAL[./IDENT[@text='foo']]"
 
@@ -93,7 +93,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality2.java"));
+                new File(getPath("InputXpathStringLiteralEquality2.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -102,7 +102,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality2']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEquality2']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='flag']]"
                 + "/ASSIGN/EXPR/EQUAL[./IDENT[@text='foo']]"

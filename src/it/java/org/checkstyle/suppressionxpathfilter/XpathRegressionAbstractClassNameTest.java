@@ -40,7 +40,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     @Test
     public void testClassNameTop() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionAbstractClassNameTop.java"));
+                new File(getPath("InputXpathAbstractClassNameTop.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbstractClassNameCheck.class);
@@ -48,17 +48,17 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AbstractClassNameCheck.class,
                 AbstractClassNameCheck.MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
-                    "SuppressionXpathRegressionAbstractClassNameTop", "^Abstract.+$"),
+                    "InputXpathAbstractClassNameTop", "^Abstract.+$"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]",
+                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
+                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameTop']]"
+                        + "[./IDENT[@text='InputXpathAbstractClassNameTop']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -69,7 +69,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     @Test
     public void testClassNameInner() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionAbstractClassNameInner.java"));
+                new File(getPath("InputXpathAbstractClassNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbstractClassNameCheck.class);
@@ -82,13 +82,13 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAbstractClassNameInner']]"
+                        + "[./IDENT[@text='InputXpathAbstractClassNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='MyClass']]/MODIFIERS/ABSTRACT"
         );
 
@@ -99,7 +99,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     @Test
     public void testClassNameNoModifier() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionAbstractClassNameNoModifier.java"));
+                new File(getPath("InputXpathAbstractClassNameNoModifier.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbstractClassNameCheck.class);
@@ -112,13 +112,13 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
+                        + "InputXpathAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
+                        + "InputXpathAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAbstractClassNameNoModifier']]"
+                        + "InputXpathAbstractClassNameNoModifier']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='AbstractMyClass']]/LITERAL_CLASS"
         );
 

@@ -40,7 +40,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     @Test
     public void testUpperEllOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUpperEllFirst.java"));
+                new File(getPath("InputXpathUpperEllFirst.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UpperEllCheck.class);
@@ -52,10 +52,10 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUpperEllFirst']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathUpperEllFirst']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR[./NUM_LONG[@text='0l']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUpperEllFirst']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathUpperEllFirst']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR"
                 + "/NUM_LONG[@text='0l']"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     @Test
     public void testUpperEllTwo() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionUpperEllSecond.java"));
+            new File(getPath("InputXpathUpperEllSecond.java"));
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(UpperEllCheck.class);
@@ -79,11 +79,11 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/INTERFACE_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUpperEllSecond']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='InputXpathUpperEllSecond']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='var2']]/ASSIGN/EXPR"
                 + "[./NUM_LONG[@text='508987l']]",
             "/COMPILATION_UNIT/INTERFACE_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUpperEllSecond']]/OBJBLOCK/METHOD_DEF"
+                + "[./IDENT[@text='InputXpathUpperEllSecond']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='var2']]/ASSIGN/EXPR"
                 + "/NUM_LONG[@text='508987l']"
         );

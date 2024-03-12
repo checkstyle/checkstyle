@@ -42,7 +42,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMultipleStringLiteralsDefault.java"));
+                getPath("InputXpathMultipleStringLiteralsDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleStringLiteralsCheck.class);
@@ -54,11 +54,11 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMultipleStringLiteralsDefault']]"
+                    + "[./IDENT[@text='InputXpathMultipleStringLiteralsDefault']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                     + "/ASSIGN/EXPR[./STRING_LITERAL[@text='StringContents']]",
                  "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionMultipleStringLiteralsDefault']]"
+                + "[./IDENT[@text='InputXpathMultipleStringLiteralsDefault']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/STRING_LITERAL[@text='StringContents']"
         );
@@ -69,7 +69,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testAllowDuplicates() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMultipleStringLiteralsAllowDuplicates.java"));
+                getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleStringLiteralsCheck.class);
@@ -82,7 +82,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionMultipleStringLiteralsAllowDuplicates']]"
+                + "[@text='InputXpathMultipleStringLiteralsAllowDuplicates']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='a5']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text=', ']]"
                 + "/PLUS/STRING_LITERAL[@text=', ']"
@@ -94,7 +94,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testIgnoreRegexp() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionMultipleStringLiteralsIgnoreRegexp.java"));
+                getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MultipleStringLiteralsCheck.class);
@@ -107,7 +107,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionMultipleStringLiteralsIgnoreRegexp']]"
+                + "[@text='InputXpathMultipleStringLiteralsIgnoreRegexp']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='a3']]/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='DoubleString']"
         );
@@ -118,7 +118,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     @Test
     public void testIgnoreOccurrenceContext() throws Exception {
         final String filePath =
-                "SuppressionXpathRegressionMultipleStringLiteralsIgnoreOccurrenceContext.java";
+                "InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java";
         final File fileToProcess = new File(getPath(filePath));
 
         final DefaultConfiguration moduleConfig =
@@ -132,11 +132,11 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-               + "'SuppressionXpathRegressionMultipleStringLiteralsIgnoreOccurrenceContext']]"
+               + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='unchecked']]",
                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-               + "'SuppressionXpathRegressionMultipleStringLiteralsIgnoreOccurrenceContext']]"
+               + "'InputXpathMultipleStringLiteralsIgnoreOccurrenceContext']]"
                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a1']]"
                + "/ASSIGN/EXPR/STRING_LITERAL[@text='unchecked']"
         );

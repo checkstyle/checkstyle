@@ -264,7 +264,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     private static void validateInputDirectory(Path checkDir) throws IOException {
-        final Pattern pattern = Pattern.compile("^SuppressionXpathRegression(.+)\\.java$");
+        final Pattern pattern = Pattern.compile("^InputXpath(.+)\\.java$");
         final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
 
         try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {

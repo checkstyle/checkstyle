@@ -40,7 +40,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportOrderOne.java"));
+                new File(getPath("InputXpathImportOrderOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
@@ -61,7 +61,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportOrderTwo.java"));
+                new File(getPath("InputXpathImportOrderTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
@@ -82,7 +82,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportOrderThree.java"));
+                new File(getPath("InputXpathImportOrderThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
@@ -105,7 +105,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportOrderFour.java"));
+                new File(getPath("InputXpathImportOrderFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
@@ -127,7 +127,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionImportOrderFive.java"));
+                new File(getPath("InputXpathImportOrderFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);

@@ -40,7 +40,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     @Test
     public void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingJavadocTypeClass.java"
+                "InputXpathMissingJavadocTypeClass.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -54,12 +54,12 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeClass']]",
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeClass']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeClass']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeClass']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeClass']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -69,7 +69,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     @Test
     public void testScope() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingJavadocTypeScope.java"
+                "InputXpathMissingJavadocTypeScope.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -84,13 +84,13 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeScope']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeScope']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeScope']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeScope']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeScope']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeScope']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS/LITERAL_PRIVATE"
         );
 
@@ -100,7 +100,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     @Test
     public void testExcluded() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingJavadocTypeExcluded.java"
+                "InputXpathMissingJavadocTypeExcluded.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -116,13 +116,13 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeExcluded']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeExcluded']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeExcluded']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeExcluded']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingJavadocTypeExcluded']]"
+                        + "[./IDENT[@text='InputXpathMissingJavadocTypeExcluded']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS/LITERAL_PRIVATE"
         );
 
@@ -132,7 +132,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     @Test
     public void testAnnotation() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingJavadocTypeAnnotation.java"
+                "InputXpathMissingJavadocTypeAnnotation.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -147,17 +147,17 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeAnnotation']]"
+                        + "'InputXpathMissingJavadocTypeAnnotation']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeAnnotation']]"
+                        + "'InputXpathMissingJavadocTypeAnnotation']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeAnnotation']]"
+                        + "'InputXpathMissingJavadocTypeAnnotation']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='TestAnnotation2']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeAnnotation']]"
+                        + "'InputXpathMissingJavadocTypeAnnotation']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='TestAnnotation2']]/AT"
         );
@@ -168,7 +168,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     @Test
     public void testToken() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingJavadocTypeToken.java"
+                "InputXpathMissingJavadocTypeToken.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -183,12 +183,12 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeToken']]",
+                        + "'InputXpathMissingJavadocTypeToken']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeToken']]"
+                        + "'InputXpathMissingJavadocTypeToken']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionMissingJavadocTypeToken']]"
+                        + "'InputXpathMissingJavadocTypeToken']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
