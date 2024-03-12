@@ -1,20 +1,21 @@
 /*
 MagicNumber
-ignoreNumbers = -9223372036854775808, -2147483648, -1, 0, 1, 2, -2
+ignoreNumbers = 0, 1, 3.0, 8, 16, 3000
 ignoreHashCodeMethod = (default)false
 ignoreAnnotation = true
 ignoreFieldDeclaration = (default)false
 ignoreAnnotationElementDefaults = (default)true
 constantWaiverParentToken = (default)TYPECAST, METHOD_CALL, EXPR, ARRAY_INIT, UNARY_MINUS, \
                             UNARY_PLUS, ELIST, STAR, ASSIGN, PLUS, MINUS, DIV, LITERAL_NEW
-tokens = NUM_INT, NUM_LONG
+tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-class InputMagicNumberIgnoreNegativeOctalHex3 {
+
+class InputMagicNumberIgnoreCheckBinaryAndAnnotationHandler {
 
     public int hashCode() {
         return 31; // violation
@@ -38,7 +39,7 @@ class InputMagicNumberIgnoreNegativeOctalHex3 {
         int y=37; // violation
     }
 
-    public InputMagicNumberIgnoreNegativeOctalHex3() {
+    public InputMagicNumberIgnoreCheckBinaryAndAnnotationHandler() {
         int z=101; // violation
     }
 
@@ -59,29 +60,28 @@ class InputMagicNumberIgnoreNegativeOctalHex3 {
     }
 }
 
-class TestMethodCallIgnoreNegativeOctalHex3 {
+class TestMethodCallIgnoreHandler {
 
-        public TestMethodCallIgnoreNegativeOctalHex3(int x){
+        public TestMethodCallIgnoreHandler(int x){
 
     }
 
         public void method2() {
-        final TestMethodCallIgnoreNegativeOctalHex3 dummyObject =
-                new TestMethodCallIgnoreNegativeOctalHex3(62);
+        final TestMethodCallIgnoreHandler dummyObject = new TestMethodCallIgnoreHandler(62);
         }
 }
 
-class BinaryIgnoreNegativeOctalHex3 {
+class BinaryCheckBinaryAndAnnotationHandler {
     int intValue = 0b101; // violation
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L; // violation
 }
-@interface AnnotationWithDefaultValueIgnoreNegativeOctalHex3 {
+@interface AnnotationWithDefaultValueIgnoreCheckBinaryAndAnnotationHandler {
     int value() default 101;
     int[] ar() default {102};
 }
-class AIgnoreNegativeOctalHex3 {
+class ACheckBinaryAndAnnotationHandler {
     {
-        switch (Blah2IgnoreNegativeOctalHex1.LOW) {
+        switch (Blah2IgnoreSome1.LOW) {
         default:
             int b = 122; // violation
         }

@@ -25,7 +25,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
  * @author Rick Giles
  * @version 6-May-2003
  */
-public class InputMagicNumberIgnoreNone1 {
+public class InputMagicNumberIgnoreCheckNoneViolationHandler {
     public void magicMethod() {
 
         final int INT_CONST = 101_000;
@@ -93,13 +93,13 @@ public class InputMagicNumberIgnoreNone1 {
     }
 }
 
-interface Blah2IgnoreNone1
+interface Blah2IgnoreNoneViolationHandler
 {
   int LOW = 5;
   int HIGH = 78;
 }
 
-class ArrayMagicTestIgnoreNone1
+class ArrayMagicTestIgnoreNoneViolationHandler
 {
     private static final int[] NONMAGIC = {3};
     private int[] magic = {3}; // violation

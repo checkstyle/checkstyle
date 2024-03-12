@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
  * @author Rick Giles
  * @version 6-May-2003
  */
-public class InputMagicNumberIgnoreFieldDeclaration1 {
+public class InputMagicNumberCheckIgnoreFieldDeclarationViolationHandler {
     public void magicMethod() {
 
         final int INT_CONST = 101_000;
@@ -87,13 +87,13 @@ public class InputMagicNumberIgnoreFieldDeclaration1 {
     }
 }
 
-interface Blah2IgnoreFieldDeclaration1
+interface Blah2IgnoreFieldDeclarationViolationHandler
 {
   int LOW = 5;
   int HIGH = 78;
 }
 
-class ArrayMagicTestIgnoreFieldDeclaration1
+class ArrayMagicTestIgnoreFieldDeclarationViolationHandler
 {
     private static final int[] NONMAGIC = {3};
     private int[] magic = {3};
