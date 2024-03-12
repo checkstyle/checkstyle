@@ -41,7 +41,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     public void testOne() throws Exception {
 
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCyclomaticComplexityOne.java"));
+                new File(getPath("InputXpathCyclomaticComplexityOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
@@ -54,13 +54,13 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityOne']]"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityOne']]"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityOne']]"
+                + "[./IDENT[@text='InputXpathCyclomaticComplexityOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
                 );
 
@@ -71,7 +71,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCyclomaticComplexityTwo.java"));
+                new File(getPath("InputXpathCyclomaticComplexityTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
@@ -84,13 +84,13 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityTwo']]"
+                    + "[./IDENT[@text='InputXpathCyclomaticComplexityTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityTwo']]"
+                    + "[./IDENT[@text='InputXpathCyclomaticComplexityTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionCyclomaticComplexityTwo']]"
+                    + "[./IDENT[@text='InputXpathCyclomaticComplexityTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo2']]/MODIFIERS/LITERAL_PUBLIC"
         );
 

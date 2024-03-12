@@ -40,7 +40,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoCloneOne.java"));
+                new File(getPath("InputXpathNoCloneOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoCloneCheck.class);
@@ -51,13 +51,13 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                    + "[./IDENT[@text='InputXpathNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                    + "[./IDENT[@text='InputXpathNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionNoCloneOne']]/OBJBLOCK"
+                    + "[./IDENT[@text='InputXpathNoCloneOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -68,7 +68,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoCloneTwo.java"));
+                new File(getPath("InputXpathNoCloneTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoCloneCheck.class);
@@ -78,15 +78,15 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneTwo']]"
                         + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='clone']]",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneTwo']]"
                         + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS",
-                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoCloneTwo']]"
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathNoCloneTwo']]"
                         + "/OBJBLOCK"
                         + "/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='clone']]/MODIFIERS/LITERAL_PUBLIC"

@@ -41,7 +41,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder1.java"));
+                getPath("InputXpathOverloadMethodsDeclarationOrder1.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -52,13 +52,13 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrder1']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -69,7 +69,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder2.java"));
+                getPath("InputXpathOverloadMethodsDeclarationOrder2.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -80,19 +80,19 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrder2']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );

@@ -40,7 +40,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationOne.java"));
+                new File(getPath("InputXpathExplicitInitializationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationOne']]"
+                        + "[./IDENT[@text='InputXpathExplicitInitializationOne']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationTwo.java"));
+                new File(getPath("InputXpathExplicitInitializationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationTwo']]"
+                        + "[./IDENT[@text='InputXpathExplicitInitializationTwo']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='bar']"
         );
 
