@@ -15,7 +15,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-public class InputMagicNumberRecordsDefault {
+public class InputMagicNumberCheckRecordsDefault {
     @anno(6) // violation
     public record MyRecord() {
         private static int myInt = 7; // violation
