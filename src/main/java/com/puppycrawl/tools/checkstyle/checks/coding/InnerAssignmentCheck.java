@@ -44,18 +44,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * String line;
- * while ((line = bufferedReader.readLine()) != null) { 
+ * while ((line = bufferedReader.readLine()) != null) {
  *   // process the line
  * }
  *
- * for (;(line = bufferedReader.readLine()) != null;) { 
+ * for (;(line = bufferedReader.readLine()) != null;) {
  *   // process the line
  * }
  *
  * do {
  *   // process the line
  * }
- * while ((line = bufferedReader.readLine()) != null); 
+ * while ((line = bufferedReader.readLine()) != null);
  * </pre>
  * <p>
  * Assignment inside a condition is not a problem here, as the assignment is surrounded
