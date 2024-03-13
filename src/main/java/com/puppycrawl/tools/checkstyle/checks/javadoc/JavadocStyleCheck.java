@@ -222,7 +222,7 @@ public class JavadocStyleCheck
 
     /** Specify the format for inline return Javadoc. */
     private static final Pattern INLINE_RETURN_TAG_PATTERN =
-            Pattern.compile("\\{@return.*?\\}\\s*");
+            Pattern.compile("\\{@return.*?}\\s*");
 
     /** Specify the format for first word in javadoc. */
     private static final Pattern SENTENCE_SEPARATOR = Pattern.compile("\\.(?=\\s|$)");
