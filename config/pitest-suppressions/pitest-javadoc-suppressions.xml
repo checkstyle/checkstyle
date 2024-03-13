@@ -253,6 +253,366 @@
   </mutation>
 
   <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>checkTypeParamTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::filter with receiver</description>
+    <lineContent>.filter(JavadocTag::isParamTag)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>setAllowedAnnotations</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable allowedAnnotations</description>
+    <lineContent>allowedAnnotations = Set.of(userAnnotations);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/utils/AnnotationUtil::containsAnnotation</description>
+    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/Scope::isIn</description>
+    <lineContent>&amp;&amp; !surroundingScope.isIn(excludeScope))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; !surroundingScope.isIn(excludeScope))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| !customScope.isIn(excludeScope)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocTypeCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ScopeUtil.isOuterMostType(ast)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable minLineCount</description>
+    <lineContent>private int minLineCount = DEFAULT_MIN_LINE_COUNT;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
+    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>return (ast.getType() == TokenTypes.METHOD_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
+    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| ast.getType() == TokenTypes.COMPACT_CTOR_DEF)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
+    <mutatedMethod>isContentsAllowMissingJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| ast.getType() == TokenTypes.CTOR_DEF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MissingJavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</mutatedClass>
+    <mutatedMethod>shouldCheck</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return (excludeScope == null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
+    <mutatedMethod>visitJavadocToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getText</description>
+    <lineContent>log(ast.getLineNumber(), MSG_KEY, ast.getText());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RequireEmptyLineBeforeBlockTagGroupCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck</mutatedClass>
+    <mutatedMethod>hasInsufficientConsecutiveNewlines</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>while (count &lt;= 1</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>containsForbiddenFragment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>.matcher(firstSentence).replaceAll(&quot; &quot;).trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>getFirstSentence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::contains</description>
+    <lineContent>if (text.contains(periodSuffix)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>getFirstSentence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (text.contains(periodSuffix)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>getSummarySentence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getType</description>
+    <lineContent>if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>getSummarySentence</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isDefinedFirst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/JavadocUtil::getPreviousSibling with argument</description>
+    <lineContent>DetailNode previousSibling = JavadocUtil.getPreviousSibling(inlineSummaryTag);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isInlineTagPresent</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| ast.getType() == JavadocTokenTypes.HTML_ELEMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isInlineTagWithName</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isPeriodNotAtEnd</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final String summarySentence = sentence.trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isTextPresentInsideHtmlTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::isBlank</description>
+    <lineContent>isTextPresentInsideHtmlTag = !nestedChild.getText().isBlank();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>isTextPresentInsideHtmlTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>isTextPresentInsideHtmlTag = !nestedChild.getText().isBlank();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>startsWithInheritDoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>for (int i = 0; !found; i++) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>validateInlineReturnTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck::getVisibleContent with argument</description>
+    <lineContent>final String returnVisible = getVisibleContent(inlineReturn);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::substring with receiver</description>
+    <lineContent>&amp;&amp; containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::isEmpty</description>
+    <lineContent>else if (!period.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SummaryJavadocCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</mutatedClass>
+    <mutatedMethod>validateUntaggedSummary</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (!period.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Character::isJavaIdentifierStart</description>
+    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::charAt</description>
+    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; (Character.isJavaIdentifierStart(text.charAt(position))</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>text = text.substring(column).trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Character::isJavaIdentifierPart</description>
+    <lineContent>|| Character.isJavaIdentifierPart(text.charAt(position)))) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>getTagId</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| Character.isJavaIdentifierPart(text.charAt(position)))) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>parseTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (incompleteTag) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>parseTags</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
+    <lineContent>Point position = findChar(text, &apos;&lt;&apos;, new Point(0, 0));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>TagParser.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
+    <mutatedMethod>skipHtmlComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>TagParser.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser</mutatedClass>
     <mutatedMethod>skipHtmlComment</mutatedMethod>
