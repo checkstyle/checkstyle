@@ -224,6 +224,56 @@ public final class InlineConfigParser {
         return parse(inputFilePath, true);
     }
 
+    /**
+     * Parse the input file with configuration in xml header.
+     *
+     * @param inputFilePath the input file path.
+     * @throws Exception if unable to parse the xml header
+     */
+    public static TestInputConfiguration parseWithXmlHeader(String inputFilePath)
+            throws Exception {
+
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+        if (!checkIsXmlConfig(lines)) {
+            throw new CheckstyleException("Config cannot be parsed as xml.");
+        }
+
+        final List<String> inlineConfig = getInlineConfig(lines);
+        final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
+        final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
+        final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
+                inputSource, new PropertiesExpander(System.getProperties()),
+                ConfigurationLoader.IgnoredModulesOptions.EXECUTE
+        );
+        final String configName = xmlConfig.getName();
+        if (!"Checker".equals(configName)) {
+            throw new CheckstyleException(
+                    "First module should be Checker, but was " + configName);
+        }
+
+        final TestInputConfiguration.Builder testInputConfigBuilder =
+                new TestInputConfiguration.Builder();
+        testInputConfigBuilder.setXmlConfiguration(xmlConfig);
+        try {
+            setViolations(testInputConfigBuilder, lines, false);
+        }
+        catch (CheckstyleException ex) {
+            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        }
+        return testInputConfigBuilder.buildWithXmlConfiguration();
+    }
+
+    /**
+     * Check whether a file provides xml configuration.
+     *
+     * @param lines lines of the file
+     * @return true if a file provides xml configuration, otherwise false.
+     */
+    private static boolean checkIsXmlConfig(List<String> lines) {
+        return "/*xml".equals(lines.get(0));
+    }
+
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
@@ -233,9 +283,8 @@ public final class InlineConfigParser {
         }
 
         final List<String> inlineConfig = getInlineConfig(lines);
-        final boolean isXmlConfig = "/*xml".equals(lines.get(0));
 
-        if (isXmlConfig) {
+        if (checkIsXmlConfig(lines)) {
             final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
             final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
             final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
