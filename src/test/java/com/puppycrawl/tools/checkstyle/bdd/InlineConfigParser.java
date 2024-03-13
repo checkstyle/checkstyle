@@ -247,7 +247,7 @@ public final class InlineConfigParser {
                 throw new CheckstyleException(
                         "First module should be Checker, but was " + configName);
             }
-            handleXmlConfig(testInputConfigBuilder, inputFilePath, xmlConfig);
+            testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         }
         else {
             handleKeyValueConfig(testInputConfigBuilder, inputFilePath, inlineConfig);

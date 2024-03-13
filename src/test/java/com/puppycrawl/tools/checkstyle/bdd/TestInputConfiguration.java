@@ -26,12 +26,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class TestInputConfiguration {
 
@@ -68,12 +70,16 @@ public final class TestInputConfiguration {
 
     private final List<TestInputViolation> filteredViolations;
 
+    private final Configuration xmlConfiguration;
+
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
                                    List<TestInputViolation> violations,
-                                   List<TestInputViolation> filteredViolations) {
+                                   List<TestInputViolation> filteredViolations,
+                                   Configuration xmlConfiguration) {
         this.childrenModules = childrenModules;
         this.violations = violations;
         this.filteredViolations = filteredViolations;
+        this.xmlConfiguration = xmlConfiguration;
     }
 
     public List<ModuleInputConfiguration> getChildrenModules() {
@@ -128,6 +134,10 @@ public final class TestInputConfiguration {
         return root;
     }
 
+    public Configuration getConfiguration() {
+        return Objects.requireNonNullElseGet(xmlConfiguration, this::createConfiguration);
+    }
+
     public DefaultConfiguration createConfigurationWithoutFilters() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
         root.addProperty("charset", StandardCharsets.UTF_8.name());
@@ -167,6 +177,8 @@ public final class TestInputConfiguration {
 
         private final List<TestInputViolation> filteredViolations = new ArrayList<>();
 
+        private Configuration xmlConfiguration;
+
         public void addChildModule(ModuleInputConfiguration childModule) {
             childrenModules.add(childModule);
         }
@@ -183,11 +195,16 @@ public final class TestInputConfiguration {
             filteredViolations.add(new TestInputViolation(violationLine, violationMessage));
         }
 
+        public void setXmlConfiguration(Configuration xmlConfiguration) {
+            this.xmlConfiguration = xmlConfiguration;
+        }
+
         public TestInputConfiguration build() {
             return new TestInputConfiguration(
                     childrenModules,
                     violations,
-                    filteredViolations
+                    filteredViolations,
+                    xmlConfiguration
             );
         }
 
