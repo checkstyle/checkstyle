@@ -443,7 +443,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testSetSeverity() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(getPath("InputCheckerTestSeverity.java"), expected);
+        verifyWithInlineXmlConfig(getPath("InputCheckerTestSeverity.java"), expected);
     }
 
     @Test
