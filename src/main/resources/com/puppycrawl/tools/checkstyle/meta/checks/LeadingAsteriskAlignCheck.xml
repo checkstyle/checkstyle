@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.LeadingAsteriskAlignCheck"
+             name="LeadingAsteriskAlign"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+        <description><p>
+Checks alignment of leading asterisks in block comments and javadocs.
+If asterisks is not aligned properly or
+if there are consecutive asterisks then it will produce violation.
+If no asterisks is used then that line will be ignored.
+ </p></description>
+         <properties>
+            <property default-value="RIGHT" name="option" type="String">
+               <description>Sets the alignment direction of the asterisk.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="leading.asterisk.indentation"/>
+            <message-key key="leading.asterisk.duplicate"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LeadingAsteriskAlign</title>
+  </head>
+  <body>
+    <section name="LeadingAsteriskAlign">
+      <p>Since Checkstyle 10.15</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks alignment of leading asterisks in block comments and javadocs.
+          If asterisks is not aligned properly or
+          if there are consecutive asterisks then it will produce violation.
+          If no asterisks is used then that line will be ignored.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Sets the alignment direction of the asterisk.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>&quot;RIGHT&quot;</code></td>
+              <td>10.15</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LeadingAsteriskAlign&quot; /&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+/* Title
+* This is a block comment. // violation
+ * Line 2.
+ */
+public class Example1 {
+
+  /* block comment for instance variable. */
+  private int variable1;
+
+    /*
+      * block comment for default constructor. // violation
+       */ // violation
+    public Example1() {
+        // empty constructor
+    }/*
+      * block comment for public method.
+     */ // violation
+    public void method() {
+        System.out.println(variable1);
+    }
+
+    /*
+   * A static inner class. // violation
+    a*/ public static class Inner {
+        private Object myObj;
+    }
+}
+
+/*
+  Package private enum.
+ */
+enum commentEnumRight2 {
+
+    /* ONE */
+    ONE,
+
+    /* TWO */
+    TWO,
+
+    /*
+     THREE
+  */ // violation
+    THREE,
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check for asterisk to be aligned in left side.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;LeadingAsteriskAlign&quot;&gt;
+        &lt;property name=&quot;option&quot; value=&quot;LEFT&quot; /&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+/* Title
+* This is a block comment.
+ * Line 2. // violation
+*/
+public class Example2 {
+
+    /* block comment for instance variable. */
+    private int variable1;
+
+    /*
+   * block comment for default constructor. // violation
+  */ // violation
+    public Example2() {
+        // empty constructor
+    }/*
+      * block comment for public method. // violation
+     */
+    public void method() {
+        System.out.println(variable1);
+    }
+
+    /*
+  * A static inner class. // violation
+    a*/ public static class Inner {
+        private Object myObj;
+    }
+}
+
+/*
+  Package private enum.
+ */ // violation
+enum commentEnumLeft1 {
+
+    /* ONE */
+    ONE,
+
+    /* TWO */
+    TWO,
+
+    /*
+      THREE
+       */ // violation
+    THREE,
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeadingAsteriskAlign">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22leading.asterisk.duplicate%22">
+              leading.asterisk.duplicate
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22leading.asterisk.indentation%22">
+              leading.asterisk.indentation
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
