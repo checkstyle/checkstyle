@@ -37,7 +37,11 @@ public class InputAbstractJavadocNonTightHtmlTags3 {
      *      <tFoot>
      * @param field5 </p> value to which {@link #field5} is to be set to
      */
+<<<<<<< HEAD
     // 4 violations 4 lines above:
+=======
+    // 4 violations 4 lines above
+>>>>>>> e7332ecb8 (Issue #11446: Update AbstractJavadocCheckTest to use execute method)
     //                            'Unclosed HTML tag found: p'
     //                            'tag P_TAG_START'
     //                            'tag LI_TAG_START'

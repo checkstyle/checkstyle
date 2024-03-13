@@ -7,6 +7,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
 
+<<<<<<< HEAD
+/*
+ * Config: TempCheck
+ */
+=======
+>>>>>>> e7332ecb8 (Issue #11446: Update AbstractJavadocCheckTest to use execute method)
 /**@author*/ // ok
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
