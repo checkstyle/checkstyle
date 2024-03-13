@@ -233,8 +233,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(filePath);
-        final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
+        final Configuration parsedConfig =
+                testInputConfiguration.getConfiguration();
         verifyViolations(parsedConfig, filePath, testInputConfiguration.getViolations());
         verify(parsedConfig, filePath, expected);
     }
