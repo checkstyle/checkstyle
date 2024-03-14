@@ -873,6 +873,8 @@ no-exception-struts)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
+  git fetch --all
+  git checkout 90c0a5789cfb968cbf895ead00d612fb97b6878a
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
