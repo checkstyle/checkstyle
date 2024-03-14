@@ -872,7 +872,10 @@ no-exception-struts)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
   checkout_from https://github.com/checkstyle/contribution
-  cd .ci-temp/contribution/checkstyle-tester
+  cd .ci-temp/contribution
+  git fetch origin shallowClone
+  git checkout 90c0a5789cfb968cbf895ead00d612fb97b6878a
+  cd checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
