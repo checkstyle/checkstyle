@@ -17,12 +17,12 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
 
 
 
-import java.lang.Object; // ok
+import java.lang.Object;  
 
 import java.lang.Class; // no violation
 
 
-// ok
+ 
 import java.lang.Integer;
 
 // no violation
@@ -57,7 +57,7 @@ import java.lang.String;
 import java.lang.Object;
 
 
-// ok
+ 
 // .
 import java.lang.Boolean;
 // no violation
@@ -79,7 +79,7 @@ import java.lang.Thread;
 // no violation
 
 
-// ok
+ 
 import java.lang.StringBuilder;
 
 
@@ -130,7 +130,7 @@ public class InputEmptyLineSeparatorWithComments2 {
 
 
     public void testViolationWithoutComment() {
-    } // ok
+    }  
 
     public void testNoViolationWithoutComment() {
     } // no violation
@@ -178,23 +178,23 @@ public class InputEmptyLineSeparatorWithComments2 {
     public static class Class1 { } // no violation
 
 
-    public static class Class2 { } // ok
+    public static class Class2 { }  
 
     // no violation
     public static class Class3 { }
 
 
-    // ok
+     
     public static class Class4 { }
 
 
-    // ok
+     
     public
     // no violation
     static class Class5 { }
 
 
-    // ok
+     
     public
     /* no violation */
     static class Class6 { }
@@ -233,9 +233,9 @@ public class InputEmptyLineSeparatorWithComments2 {
     public interface Interface1 { }
 
 
-    // ok
+     
     public interface Interface2 { }
-    // ok
+     
     public // violation ''INTERFACE_DEF' should be separated from previous line.'
     // .
     interface Interface3 { }
@@ -256,7 +256,7 @@ public class InputEmptyLineSeparatorWithComments2 {
     interface Interface5 { }
 
 
-    // ok
+     
     public enum Enum1 {
         E1, E2
     }
@@ -265,7 +265,7 @@ public class InputEmptyLineSeparatorWithComments2 {
     public enum Enum2 { }
 
 
-    // ok
+     
     // no violation
 
     // no violation
@@ -278,18 +278,18 @@ public class InputEmptyLineSeparatorWithComments2 {
     public enum Enum5 { }
 
 
-    // ok
+     
 
     public
 
 
-    // ok
+     
     static
 
     enum Enum6 { }
 
 
-    // ok
+     
     static {
         abs(2);
     }
@@ -297,7 +297,7 @@ public class InputEmptyLineSeparatorWithComments2 {
     // no violation
 
 
-    // ok
+     
     {
        abs(1);
     }
@@ -306,13 +306,13 @@ public class InputEmptyLineSeparatorWithComments2 {
     { }
 
 
-    // ok
+     
     {
         int i = 1;
     }
 
 
-    // ok
+     
     // .
     /* . */ public InputEmptyLineSeparatorWithComments2() {
         testNoViolationWithJavadoc = 1;
@@ -332,7 +332,7 @@ public class InputEmptyLineSeparatorWithComments2 {
     }
 
 
-    // ok
+     
     // no violation
 
     // no violation
@@ -340,7 +340,7 @@ public class InputEmptyLineSeparatorWithComments2 {
 
 
 
-    // ok
+     
     public InputEmptyLineSeparatorWithComments2(int i, int j, int k) {
         testNoViolationWithJavadoc = 1;
     }

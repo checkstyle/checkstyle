@@ -3,16 +3,16 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 public class InputNoWhitespaceBeforeEmptyForLoop {
 
     public static void f() {
-        for (; ; ) { // ok
+        for (; ; ) {  
             break;
         }
-        for (int x = 0; ; ) { // ok
+        for (int x = 0; ; ) {  
             break;
         }
         for (int x = 0 ; ; ) { // warning
             break;
         }
-        for (int x = 0; x < 10; ) { // ok
+        for (int x = 0; x < 10; ) {  
             break;
         }
         for (int x = 0; x < 10 ; ) { // warning

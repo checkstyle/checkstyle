@@ -10,11 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
 public class InputMethodLengthCountEmptySmallSize {}
 class AA {
-    AA() { // ok, 2 lines
+    AA() {  , 2 lines
 
     }
 
-    AA(int a) { // ok, 2 lines
+    AA(int a) {  , 2 lines
         /*
         my comment
          */
@@ -25,14 +25,14 @@ class AA {
         oneLine();
     }
 
-    void twoLines() { // ok
+    void twoLines() {  
 
     }
 
-    void twoLines2() { // ok
+    void twoLines2() {  
         oneLine();}
 
-    void twoLinesAndComment() { // ok
+    void twoLinesAndComment() {  
         // some comment
     }
 
