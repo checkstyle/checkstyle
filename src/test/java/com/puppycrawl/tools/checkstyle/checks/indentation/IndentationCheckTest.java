@@ -3019,6 +3019,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testInputIndentationStringTemplate() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+
+        final String fileName = getNonCompilablePath("InputIndentationStringTemplate.java");
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 2),
+            "19:5: " + getCheckMessage(MSG_ERROR, "member def modifier", 4, 2),
+            "21:17: " + getCheckMessage(MSG_CHILD_ERROR, "block", 16, 14),
+            "22:21: " + getCheckMessage(MSG_CHILD_ERROR, "block", 20, 18),
+            "25:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 2),
+            "26:9: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 8, 4),
+            "27:5: " + getCheckMessage(MSG_ERROR, "method def rcurly", 4, 2),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
