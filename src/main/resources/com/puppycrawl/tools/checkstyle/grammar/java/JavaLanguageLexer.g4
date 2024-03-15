@@ -264,7 +264,12 @@ STRING_TEMPLATE_BEGIN:  '"'
                         { contextCache.enterTemplateContext(StringTemplate); }
                         ;
 
-TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
+TEXT_BLOCK_LITERAL_BEGIN: { _input.LA(-1) != '.' }? '"' '"' '"' -> pushMode(TextBlock);
+
+// can do predicate here for previous token being '.'
+TEXT_BLOCK_TEMPLATE_BEGIN:  '"' '"' '"'
+                        { contextCache.enterTemplateContext(TextBlockTemplate); }
+                        ;
 
 LITERAL_NULL:            'null';
 
@@ -464,6 +469,19 @@ mode TextBlock;
 
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
+        ;
+
+// Text block template lexical mode
+mode TextBlockTemplate;
+
+    TEXT_BLOCK_TEMPLATE_CONTENT: TextBlockContent;
+
+    TEXT_BLOCK_EMBEDDED_EXPRESSION_BEGIN: '\\' '{'
+        -> pushMode(DEFAULT_MODE), type(EMBEDDED_EXPRESSION_BEGIN)
+        ;
+
+    TEXT_BLOCK_TEMPLATE_END
+        : '"' '"' '"' { contextCache.exitTemplateContext(); }
         ;
 
 // String template lexical mode

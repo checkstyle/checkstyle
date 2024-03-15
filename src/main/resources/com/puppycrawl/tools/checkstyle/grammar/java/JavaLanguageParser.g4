@@ -760,12 +760,12 @@ primary
 
 templateArgument
     : template
-    | textBlockLiteral
     | STRING_LITERAL
     ;
 
 template
     : stringTemplate
+    | textBlockTemplate
     ;
 
 stringTemplate
@@ -792,6 +792,33 @@ stringTemplateEnd
     : EMBEDDED_EXPRESSION_END
       STRING_TEMPLATE_CONTENT?
       STRING_TEMPLATE_END
+    ;
+
+textBlockTemplate
+    : TEXT_BLOCK_TEMPLATE_BEGIN TEXT_BLOCK_TEMPLATE_CONTENT TEXT_BLOCK_TEMPLATE_END
+    | textBlockTemplateBegin expr? textBlockTemplateMiddle* textBlockTemplateEnd
+    ;
+
+textBlockTemplateMiddle
+    : textBlockTemplateMid expr?
+    ;
+
+textBlockTemplateBegin
+    : TEXT_BLOCK_TEMPLATE_BEGIN
+      TEXT_BLOCK_TEMPLATE_CONTENT?
+      EMBEDDED_EXPRESSION_BEGIN
+    ;
+
+textBlockTemplateMid
+    : EMBEDDED_EXPRESSION_END
+      TEXT_BLOCK_TEMPLATE_CONTENT?
+      EMBEDDED_EXPRESSION_BEGIN
+    ;
+
+textBlockTemplateEnd
+    : EMBEDDED_EXPRESSION_END
+      TEXT_BLOCK_TEMPLATE_CONTENT?
+      TEXT_BLOCK_TEMPLATE_END
     ;
 
 classType

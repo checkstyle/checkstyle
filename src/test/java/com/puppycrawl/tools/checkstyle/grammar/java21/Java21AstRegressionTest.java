@@ -148,8 +148,8 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
         assertWithMessage(incorrectParsingFailureMessage)
                 .that(throwable.getCause().getMessage())
-                .contains("12:15: no viable alternative at input"
-                        + " '\"\"\"\\n            \\{'");
+                .contains("13:14: mismatched input '}\\n"
+                        + "            ' expecting TEXT_BLOCK_LITERAL_END");
 
     }
 
