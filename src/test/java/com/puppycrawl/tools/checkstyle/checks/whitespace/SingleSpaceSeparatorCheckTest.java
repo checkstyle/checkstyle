@@ -196,4 +196,14 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputSingleSpaceSeparatorCommentsWithEmoji.java"), expected);
     }
+
+    @Test
+    public void testTextBlockTemplates() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                    "InputSingleSpaceSeparatorTextBlockTemplate.java"),
+                expected);
+    }
 }
