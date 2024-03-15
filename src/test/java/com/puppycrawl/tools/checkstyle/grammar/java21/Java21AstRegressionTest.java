@@ -46,6 +46,15 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputStringTemplateBasic.java"));
     }
 
+    /**
+     * The purpose of this test is to exercise the
+     * {@link com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache}:
+     * getting some curly brace contexts on the stack, making sure that each
+     * element in the stack has some depth. This ensures that we can handle
+     * many nested curly braces within an embedded template expression.
+     *
+     * @throws Exception upon failure
+     */
     @Test
     public void testStringTemplateNested() throws Exception {
         verifyAst(
@@ -95,6 +104,17 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "ExpectedTextBlockConsecutiveEscapes.txt"),
                 getNonCompilablePath(
                         "InputTextBlockConsecutiveEscapes.java"));
+    }
+
+    @Test
+    public void testStringTemplateMultiLineWithComments() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedStringTemplateMultiLineWithComments.txt"),
+                getNonCompilablePath(
+                        "InputStringTemplateMultiLineWithComments.java"),
+                JavaParser.Options.WITH_COMMENTS
+        );
     }
 
     /**
