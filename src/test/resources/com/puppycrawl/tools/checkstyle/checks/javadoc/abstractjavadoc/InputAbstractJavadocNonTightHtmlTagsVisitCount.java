@@ -1,10 +1,7 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$NonTightHtmlTagCheck
 violateExecutionOnNonTightHtml = true
-<<<<<<< HEAD:src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java
 reportVisitJavadocToken = true
-=======
->>>>>>> e7332ecb8 (Issue #11446: Update AbstractJavadocCheckTest to use execute method):src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTags.java
 
 */
 
@@ -19,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 // violation 5 lines above 'Unclosed HTML tag found: p'
-public class InputAbstractJavadocNonTightHtmlTags {
+public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
 
@@ -79,6 +76,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
      *
      * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
      */
+    // violation 4 lines above 'tag LI_TAG_START'
     void setField1(int field1) {this.field1 = field1;}
 
     /**
@@ -142,11 +140,10 @@ public class InputAbstractJavadocNonTightHtmlTags {
     private void setField5(int field5) {this.field5 = field5;}
 
     /**
-     *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD>
-     *      <dt> <Head> <HTML> <option> <tBody> <tHead>
+     *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD> <dt> <Head> <HTML> <option> <tBody> <tHead>
      *      <tFoot>
      * @param field6 </p> value to which {@link #field6} is to be set to
      */
-    // violation 5 lines above 'Unclosed HTML tag found: p'
+    // violation 4 lines above 'Unclosed HTML tag found: p'
     private void setField6(int field6) {this.field6 = field6;}
 }

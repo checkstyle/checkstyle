@@ -132,43 +132,24 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
 
-    /**
-     * <p>
-     * Multiple violations for above line. Messages are X lines below.
-     * {@code
-     *   // X violations above:
-     *   //                    'violation message1'
-     *   //                    'violation messageX'
-     * }
-     *
-     * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
-     * </p>
-     */
-    private static final Pattern VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES = Pattern
-            .compile(".*//\\s*(\\d+) violations above:$");
-
-    /**
-     * <p>
-     * Multiple violations for line. Violations are Y lines above, messages are X lines below.
-     * {@code
-     *   // X violations Y lines above:
-     *   //                            'violation message1'
-     *   //                            'violation messageX'
-     * }
-     *
-     * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
-     * </p>
-     */
-    private static final Pattern VIOLATIONS_SOME_LINES_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*(\\d+) violations (\\d+) lines above:$");
+    /** A pattern to find the string: "// X violations Y lines above". */
+    private static final Pattern MULTIPLE_VIOLATIONS_SOME_LINES_ABOVE_PATTERN = Pattern
+            .compile(".*//\\s*(\\d+) violations (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
-    private static final String LATEST_DTD = String.format(Locale.ROOT,
-            "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
-            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
-            ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3);
+    /**
+     * Checks in which violation message is not specified in input file and have more than
+     * one violation message key.
+     * Until <a href="https://github.com/checkstyle/checkstyle/issues/11214">#11214</a>
+     */
+    private static final Set<String> SUPPRESSED_CHECKS = new HashSet<>(Arrays.asList(
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"));
 
     /**
      *  Inlined configs can not be used in non-java checks, as Inlined config is java style
@@ -321,12 +302,7 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck");
         moduleMappings.put("SummaryJavadoc",
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
-        moduleMappings.put("LineLength",
-                "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
-        moduleMappings.put("Checker",
-                "com.puppycrawl.tools.checkstyle.CheckerCheck");
 
-        String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
             fullyQualifiedClassName = moduleMappings.get(moduleName);
         }
@@ -528,10 +504,8 @@ public final class InlineConfigParser {
                 VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
         final Matcher violationSomeLinesBelowMatcher =
                 VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
-        final Matcher violationsAboveMatcherWithMessages =
-                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
-        final Matcher violationsSomeLinesAboveMatcher =
-                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsSomeLinesAboveMatcher =
+                MULTIPLE_VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             final int violationLineNum = lineNo + 1;
@@ -586,15 +560,17 @@ public final class InlineConfigParser {
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
-        else if (violationsAboveMatcherWithMessages.matches()) {
-            inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLineAbove(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
-        }
-        else if (violationsSomeLinesAboveMatcher.matches()) {
-            inputConfigBuilder.addViolations(
-                getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher));
+        else if (multipleViolationsSomeLinesAboveMatcher.matches()) {
+            final int linesAbove =
+                Integer.parseInt(multipleViolationsSomeLinesAboveMatcher.group(2));
+            final int violationLineNum = lineNo - linesAbove + 1;
+
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsSomeLinesAboveMatcher.group(1)),
+                        violationLineNum)
+                    .forEach(actualLineNumber -> {
+                        inputConfigBuilder.addViolation(actualLineNumber, null);
+                    });
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections

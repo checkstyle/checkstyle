@@ -29,7 +29,10 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.util.UUID;
+=======
+>>>>>>> e7332ecb8 (Issue #11446: Update AbstractJavadocCheckTest to use execute method)
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
@@ -75,17 +78,18 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "26: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "35: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+            "41: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
+                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "29: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "35: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
             "46: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
                     "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "68: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
-                    "mismatched input '}' expecting {LEADING_ASTERISK, WS, NEWLINE}",
-                    "JAVADOC_INLINE_TAG"),
-            "78: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
-                    "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
@@ -163,6 +167,20 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath(
                 "InputAbstractJavadocInvalidAtSeeReference2.java"), expectedMessagesForFile2);
 
+        final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
+        final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
+        expectedMessages.put(getPath("InputAbstractJavadocParsingErrors2.java"), asList(
+            "8: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
+            "13: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
+        ));
+        expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference2.java"),
+            singletonList("8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+                    "mismatched input '(' expecting <EOF>", "JAVADOC")
+        ));
+        verify(createChecker(checkConfig), new File[] {
+            new File(getPath("InputAbstractJavadocParsingErrors2.java")),
+            new File(getPath("InputAbstractJavadocInvalidAtSeeReference2.java")), },
+                expectedMessages);
         assertWithMessage("Error is unexpected")
                 .that(systemErr.getCapturedData())
                 .isEqualTo("");
@@ -190,78 +208,28 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionOne() throws Exception {
+    public void testPosition() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionOne.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPosition.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 21, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(42);
+            // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(130);
     }
 
     @Test
-    public void testPositionTwo() throws Exception {
-        JavadocCatchCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionTwo.java"), expected);
-        assertWithMessage("Invalid number of javadocs")
-            .that(JavadocCatchCheck.javadocsNumber)
-            // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 29, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(58);
-    }
-
-    @Test
-    public void testPositionThree() throws Exception {
-        JavadocCatchCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionThree.java"), expected);
-        assertWithMessage("Invalid number of javadocs")
-            .that(JavadocCatchCheck.javadocsNumber)
-            // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 15, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(30);
-    }
-
-    @Test
-    public void testPositionWithSinglelineCommentsOne() throws Exception {
+    public void testPositionWithSinglelineComments() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocPositionWithSinglelineCommentsOne.java"), expected);
+                getPath("InputAbstractJavadocPositionWithSinglelineComments.java"), expected);
         assertWithMessage("Invalid number of javadocs")
             .that(JavadocCatchCheck.javadocsNumber)
             // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 21, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(42);
-    }
-
-    @Test
-    public void testPositionWithSinglelineCommentsTwo() throws Exception {
-        JavadocCatchCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocPositionWithSinglelineCommentsTwo.java"), expected);
-        assertWithMessage("Invalid number of javadocs")
-            .that(JavadocCatchCheck.javadocsNumber)
-            // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 29, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(58);
-    }
-
-    @Test
-    public void testPositionWithSinglelineCommentsThree() throws Exception {
-        JavadocCatchCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocPositionWithSinglelineCommentsThree.java"), expected);
-        assertWithMessage("Invalid number of javadocs")
-            .that(JavadocCatchCheck.javadocsNumber)
-            // until https://github.com/checkstyle/checkstyle/issues/12586
-            // actual javadoc count is 15, but verifyWithInlineConfigParser verify file twice
-            .isEqualTo(30);
+            // actual javadoc count is 65, but verifyWithInlineConfigParser verify file twice
+            .isEqualTo(130);
     }
 
     @Test
@@ -366,7 +334,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName);
 
         try {
-            execute(checkConfig, pathToEmptyFile.toString());
+            execute(checkConfig, pathToEmptyFile);
             assertWithMessage("CheckstyleException is expected").fail();
         }
         catch (IllegalStateException ex) {
@@ -381,36 +349,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitLeaveTokenOne() throws Exception {
+    public void testVisitLeaveToken() throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenOne.java"), expected);
-        assertWithMessage("Javadoc visit count should be greater than zero")
-                .that(JavadocVisitLeaveCheck.visitCount)
-                .isGreaterThan(0);
-        assertWithMessage("Javadoc visit and leave count should be equal")
-            .that(JavadocVisitLeaveCheck.leaveCount)
-            .isEqualTo(JavadocVisitLeaveCheck.visitCount);
-    }
-
-    @Test
-    public void testVisitLeaveTokenTwo() throws Exception {
-        JavadocVisitLeaveCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenTwo.java"), expected);
-        assertWithMessage("Javadoc visit count should be greater than zero")
-                .that(JavadocVisitLeaveCheck.visitCount)
-                .isGreaterThan(0);
-        assertWithMessage("Javadoc visit and leave count should be equal")
-            .that(JavadocVisitLeaveCheck.leaveCount)
-            .isEqualTo(JavadocVisitLeaveCheck.visitCount);
-    }
-
-    @Test
-    public void testVisitLeaveTokenThree() throws Exception {
-        JavadocVisitLeaveCheck.clearCounter();
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenThree.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveToken.java"), expected);
         assertWithMessage("Javadoc visit count should be greater than zero")
                 .that(JavadocVisitLeaveCheck.visitCount)
                 .isGreaterThan(0);
@@ -458,6 +400,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "24: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
             "31: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
             "38: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
+            "9: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "embed"),
+            "16: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "keygen"),
+            "23: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "SOURCE"),
+            "30: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "TRACK"),
+            "37: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 9, "WBR"),
         };
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocWrongSingletonTagInJavadoc.java"),
                 expected);
@@ -466,13 +413,16 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckOne() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "54: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "11: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "18: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "21: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "27: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "42: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "63: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "81: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "91: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "136: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsOne.java"), expected);
@@ -499,23 +449,103 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+    public void testNonTightHtmlTagIntolerantCheckVisitCount()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
+        checkConfig.addProperty("violateExecutionOnNonTightHtml", "true");
+        checkConfig.addProperty("reportVisitJavadocToken", "true");
+    public void testNonTightHtmlTagIntolerantCheck() throws Exception {
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "43: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "92: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "137: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationTwo.java"), expected);
+                getPath("InputAbstractJavadocNonTightHtmlTags.java"), expected);
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
+    public void testNonTightHtmlTagIntolerantCheckReportingNoViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"), expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckVisitCount() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "29: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "36: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "46:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "44: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "52:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "75:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "85: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "95: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "115:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "122:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "126:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "143: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTagsVisitCount.java"),
+                expected);
+    }
+
+    @Test
+    public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
+        final String[] expected = {
+            "10:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "11:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "13:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14:4: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "14:39: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "24: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "24:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "24:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "28:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "33:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "34:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "34:25: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "41:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "41:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "42: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "49:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "50:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "51: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "51:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "51:23: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "59:34: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "61: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "61:16: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "61:21: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "71:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "73: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "73:22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "80:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "81:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "84: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "106:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "113:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113:13: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "113:33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java"),
@@ -538,6 +568,49 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java"),
                 expected);
+    }
+
+    @Test
+    public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
+        final String[] expected = {
+            "11:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "12:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "14:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "15:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "15:39: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "30: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "30:9: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "30:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "37: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "37:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "44:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "45: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "45:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "45:25: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "55:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "55:22: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "65:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "66:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "67: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "67:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "67:23: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "78:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "78:20: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "78:34: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "80: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "80:16: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "80:21: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "96:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "98: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "98:22: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "107:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "108:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
+            "111: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocNonTightHtmlTags2.java"), expected);
     }
 
     @Test
