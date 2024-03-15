@@ -221,6 +221,25 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the file with given file path using configurations parsed from
+     * xml header of the file and the array expected messages. Also performs verification of
+     * the config specified in input file.
+     *
+     * @param filePath file path to verify
+     * @param expected an array of expected messages
+     * @throws Exception if exception occurs
+     */
+    protected final void verifyWithInlineXmlConfig(String filePath, String... expected)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithXmlHeader(filePath);
+        final Configuration xmlConfig =
+                testInputConfiguration.getXmlConfiguration();
+        verifyViolations(xmlConfig, filePath, testInputConfiguration.getViolations());
+        verify(xmlConfig, filePath, expected);
+    }
+
+    /**
      * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file.

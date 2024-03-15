@@ -42,7 +42,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "31:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "35:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", DEFAULT_EXPECTED_CAPITAL_COUNT),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "23:14: " + getCheckMessage(MSG_KEY, "fourthNUm", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "26:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example4.java"), expected);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "24:14: " + getCheckMessage(MSG_KEY, "nextID", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -106,13 +106,13 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "26:20: " + getCheckMessage(MSG_KEY, "MAX_ALLOWED", expectedCapitalCount),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example7.java"), expected);
     }
 }
