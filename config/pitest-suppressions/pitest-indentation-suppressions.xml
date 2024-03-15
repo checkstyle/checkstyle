@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>findSubtreeAst</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (colNum == null || thisLineColumn &lt; colNum) {</lineContent>
-  </mutation>
 
   <mutation unstable="false">
     <sourceFile>AbstractExpressionHandler.java</sourceFile>

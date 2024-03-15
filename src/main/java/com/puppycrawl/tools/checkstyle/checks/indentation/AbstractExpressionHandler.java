@@ -477,7 +477,7 @@ public abstract class AbstractExpressionHandler {
             final Integer colNum = astSet.getStartColumn(lineNum);
 
             final int thisLineColumn = expandedTabsColumnNo(tree);
-            if (colNum == null || thisLineColumn < colNum) {
+            if (colNum == null || thisLineColumn <= colNum) {
                 astSet.addAst(tree);
             }
 
