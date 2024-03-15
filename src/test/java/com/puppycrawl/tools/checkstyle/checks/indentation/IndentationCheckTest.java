@@ -3019,6 +3019,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testBasicOffset() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "2");
+
+        final String fileName = getPath("InputIndentationBasicOffset.java");
+         final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 2),
+            "18:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 2),
+            "20:9: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 8, 4),
+            "21:5: " + getCheckMessage(MSG_ERROR, "method def rcurly", 4, 2),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
