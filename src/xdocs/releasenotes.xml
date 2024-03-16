@@ -10,6 +10,65 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.14.2">
+      <div class="releaseDate">16.03.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Transitive dependency rejection after Guava upgrade to 32.1.3-jre.
+            Author: lukasgraef
+            <a href="https://github.com/checkstyle/checkstyle/issues/14123">#14123</a>
+          </li>
+          <li>
+            GenericWhitespaceCheck: Handling of whitespace between generic and record header.
+            Author: sktpy
+            <a href="https://github.com/checkstyle/checkstyle/issues/14502">#14502</a>
+          </li>
+          <li>
+            JavadocStyle doesn&#39;t work with inline `@return`.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/12600">#12600</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Refactor AbstractModuleTestSupport and InlineConfigParser to support XML configs in
+            Input files without extra detalization on modules.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14653">#14653</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Tanay
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: SteLeo1602, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            spelling: Some traditional Chinese characters were changed to simplified Chinese.
+            Author: zhen6.gao
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.14.1">
       <div class="releaseDate">11.03.2024</div>
       <p>Bug fixes:</p>
