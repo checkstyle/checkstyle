@@ -8,9 +8,9 @@ violateExecutionOnNonTightHtml = (default)false
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingwhitespaceafterasterisk;
 
 /***
- * Some Javadoc. // ok
+ * Some Javadoc.
  *
- * <p>Some Javadoc. // ok
+ * <p>Some Javadoc.
  ***/
 class InputJavadocMissingWhitespaceAfterAsteriskValid
 {
