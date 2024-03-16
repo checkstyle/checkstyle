@@ -722,14 +722,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmissingleadingasterisk[\\/]InputJavadocMissingLeadingAsteriskCorrect.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValid.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValid.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationBlockTag.java"/>
