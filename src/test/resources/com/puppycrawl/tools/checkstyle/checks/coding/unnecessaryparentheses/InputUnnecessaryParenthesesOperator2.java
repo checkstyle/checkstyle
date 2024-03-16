@@ -19,40 +19,40 @@ public class InputUnnecessaryParenthesesOperator2 {
         boolean a = true;
         boolean b = false;
 
-        if ((b || a) & // ok
+        if ((b || a) &
                 (b || a)) {
         }
-        if ((b && a) & // ok
+        if ((b && a) &
                 (b && a)) {
         }
-        if ((b || a) | // ok
+        if ((b || a) |
                 (b && a)) {
         }
 
         int c = 1;
         int d = 12;
-        if(a || (c ^ d) >> 1 == 1 || b) { // ok
+        if(a || (c ^ d) >> 1 == 1 || b) {
         }
 
-        if ((b || a) & // ok
+        if ((b || a) &
                 (b || a)) {
         }
-        if ((b || a) | // ok
+        if ((b || a) |
                 (b || a)) {
         }
-        if ((b || a) ^ // ok
+        if ((b || a) ^
                 (b || a)) {
         }
-        if ((b && a) & // ok
+        if ((b && a) &
                 (b && a)) {
         }
-        if ((b && a) | // ok
+        if ((b && a) |
                 (b && a)) {
         }
-        if ((b && a) ^ // ok
+        if ((b && a) ^
                 (b && a)) {
         }
-        if ((b || a) & // ok
+        if ((b || a) &
                 (b && a)) {
         }
     }
@@ -83,10 +83,10 @@ public class InputUnnecessaryParenthesesOperator2 {
                 | (!(x<z) & y>z))) { // violation 'Unnecessary parentheses around expression'
                 return;
         }
-        if(x>= 0 & (x<=8 | y<=11) & y>=8) { // ok
+        if(x>= 0 & (x<=8 | y<=11) & y>=8) {
             return;
         }
-        if(x>= 0 ^ (x<=8 | y<=11) ^ y>=8) { // ok
+        if(x>= 0 ^ (x<=8 | y<=11) ^ y>=8) {
             return;
         }
         if(x>= 0 || (x<=8 & y<=11) && y>=8) {
@@ -101,7 +101,7 @@ public class InputUnnecessaryParenthesesOperator2 {
         if(x>= 0 || (x<=8 & y<=11) && y>=8) {
             return; // violation above 'Unnecessary parentheses around expression'
         }
-        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) { // ok
+        if(x>= 0 & (x<=8 ^ y<=11) & y>=8) {
             return;
         }
         if(x>= 0 ^ (x<=8 ^ y<=11) ^ y>=8) {
@@ -111,9 +111,9 @@ public class InputUnnecessaryParenthesesOperator2 {
             return; // violation above 'Unnecessary parentheses around expression'
         }
         if(x>= 0 != (x<=8 ^ y<=11) && y>=8) {
-            return; // ok
+            return;
         }
-        if(true || (4 | 4) >> 1 == 1 || false) { // ok
+        if(true || (4 | 4) >> 1 == 1 || false) {
         }
     }
 }

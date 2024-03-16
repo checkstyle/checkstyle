@@ -17,26 +17,26 @@ public class InputUnnecessaryParenthesesOperator3 {
 
     public void closeBlock() {
         int code = 3;
-        if ((code & 2) > 21) {} // ok
-        if ((code | 2) > 21) {} // ok
-        if ((code ^ 2) > 21) {} // ok
+        if ((code & 2) > 21) {}
+        if ((code | 2) > 21) {}
+        if ((code ^ 2) > 21) {}
 
-        if ((code & 2) < 21) {} // ok
-        if ((code | 1) < 8) {} // ok
-        if ((code ^ 2) < 21) {} // ok
+        if ((code & 2) < 21) {}
+        if ((code | 1) < 8) {}
+        if ((code ^ 2) < 21) {}
 
-        if ((code & 2) <= 21) {} // ok
-        if ((code | 1) <= 8) {} // ok
-        if ((code ^ 2) <= 21) {} // ok
+        if ((code & 2) <= 21) {}
+        if ((code | 1) <= 8) {}
+        if ((code ^ 2) <= 21) {}
 
-        if ((code & 2) >= 21) {} // ok
-        if ((code | 1) >= 8) {} // ok
-        if ((code ^ 2) >= 21) {} // ok
-        if ((code ^ 1) >= 21) {} // ok
+        if ((code & 2) >= 21) {}
+        if ((code | 1) >= 8) {}
+        if ((code ^ 2) >= 21) {}
+        if ((code ^ 1) >= 21) {}
 
         int x = 9, y = 8;
         if(x>= 0 != (x<=8 | y<=11) && y>=8) {
-            return; // ok
+            return;
         }
     }
 }
