@@ -26,7 +26,7 @@ public class InputJavadocMethodNoJavadocOnlyPrivateScope //comment test
 
     /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     public void foo5() {}
-    /** @return correct, out of scope */ // ok
+    /** @return correct, out of scope */
     protected void foo6() {}
     /** @return wrong, in scope */ // violation 'Unused Javadoc tag.'
     void foo7() {}
