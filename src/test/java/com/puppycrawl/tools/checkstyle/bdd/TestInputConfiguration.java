@@ -25,13 +25,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class TestInputConfiguration {
 
@@ -68,12 +67,24 @@ public final class TestInputConfiguration {
 
     private final List<TestInputViolation> filteredViolations;
 
+    private final Configuration xmlConfiguration;
+
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
                                    List<TestInputViolation> violations,
                                    List<TestInputViolation> filteredViolations) {
         this.childrenModules = childrenModules;
         this.violations = violations;
         this.filteredViolations = filteredViolations;
+        xmlConfiguration = null;
+    }
+
+    private TestInputConfiguration(List<TestInputViolation> violations,
+                                   List<TestInputViolation> filteredViolations,
+                                   Configuration xmlConfiguration) {
+        childrenModules = null;
+        this.violations = violations;
+        this.filteredViolations = filteredViolations;
+        this.xmlConfiguration = xmlConfiguration;
     }
 
     public List<ModuleInputConfiguration> getChildrenModules() {
@@ -92,27 +103,7 @@ public final class TestInputConfiguration {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
         root.addProperty("charset", StandardCharsets.UTF_8.name());
 
-        final String checkerModuleName = "com.puppycrawl.tools.checkstyle.CheckerCheck";
-        final Optional<ModuleInputConfiguration> checkerModule = childrenModules.stream()
-                .filter(module -> module.getModuleName().equals(checkerModuleName))
-                .findFirst();
-
-        if (checkerModule.isPresent()) {
-            final ModuleInputConfiguration checkerConfig = checkerModule.get();
-            final Map<String, String> propertiesMap = checkerConfig.getNonDefaultProperties();
-
-            final Set<Map.Entry<String, String>> entrySet = propertiesMap.entrySet();
-            for (Map.Entry<String, String> entry : entrySet) {
-                final String property = entry.getKey();
-                final String value = entry.getValue();
-                root.addProperty(property, value);
-            }
-
-            childrenModules.remove(checkerConfig);
-        }
-
         final DefaultConfiguration treeWalker = createTreeWalker();
-
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
@@ -126,6 +117,10 @@ public final class TestInputConfiguration {
                 });
         root.addChild(treeWalker);
         return root;
+    }
+
+    public Configuration getXmlConfiguration() {
+        return xmlConfiguration;
     }
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
@@ -167,6 +162,8 @@ public final class TestInputConfiguration {
 
         private final List<TestInputViolation> filteredViolations = new ArrayList<>();
 
+        private Configuration xmlConfiguration;
+
         public void addChildModule(ModuleInputConfiguration childModule) {
             childrenModules.add(childModule);
         }
@@ -181,6 +178,18 @@ public final class TestInputConfiguration {
 
         public void addFilteredViolation(int violationLine, String violationMessage) {
             filteredViolations.add(new TestInputViolation(violationLine, violationMessage));
+        }
+
+        public void setXmlConfiguration(Configuration xmlConfiguration) {
+            this.xmlConfiguration = xmlConfiguration;
+        }
+
+        public TestInputConfiguration buildWithXmlConfiguration() {
+            return new TestInputConfiguration(
+                    violations,
+                    filteredViolations,
+                    xmlConfiguration
+            );
         }
 
         public TestInputConfiguration build() {
