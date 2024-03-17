@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import org.checkerframework.checker.index.qual.NonNegative;
+
 /**
  * An interface of Checkstyle's AST nodes for traversing trees generated from the
  * Java code. The main purpose of this interface is to abstract away ANTLR
@@ -105,7 +107,7 @@ public interface DetailAST {
      *      for more details.
      */
     @Deprecated(since = "8.43")
-    boolean branchContains(int type);
+    boolean branchContains(@NonNegative int type);
 
     /**
      * Returns the previous sibling or null if no such sibling exists.

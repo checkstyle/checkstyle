@@ -23,6 +23,7 @@ import java.util.BitSet;
 import java.util.List;
 
 import org.antlr.v4.runtime.Token;
+import org.checkerframework.checker.index.qual.NonNegative;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -383,7 +384,7 @@ public final class DetailAstImpl implements DetailAST {
     }
 
     @Override
-    public boolean branchContains(int tokenType) {
+    public boolean branchContains(@NonNegative int tokenType) {
         return getBranchTokenTypes().get(tokenType);
     }
 
