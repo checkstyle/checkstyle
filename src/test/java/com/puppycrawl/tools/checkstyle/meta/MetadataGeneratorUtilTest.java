@@ -44,6 +44,12 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection FieldMayBeStatic
+     * @noinspectionreason FieldMayBeStatic - until issue #14625
+     */
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
