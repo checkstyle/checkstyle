@@ -867,6 +867,20 @@ no-error-htmlunit)
   removeFolderWithProtectedFiles htmlunit
   ;;
 
+no-error-spotbugs)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from https://github.com/spotbugs/spotbugs
+  cd .ci-temp/spotbugs
+  sed -i'' "s/mavenCentral()/mavenLocal(); mavenCentral()/" build.gradle
+  sed -i'' "s/toolVersion.*$/toolVersion '${CS_POM_VERSION}'/" gradle/checkstyle.gradle
+  ./gradlew :eclipsePlugin-junit:checkstyleTest -Dcheckstyle.version="${CS_POM_VERSION}"
+  cd ../
+  removeFolderWithProtectedFiles spotbugs
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
