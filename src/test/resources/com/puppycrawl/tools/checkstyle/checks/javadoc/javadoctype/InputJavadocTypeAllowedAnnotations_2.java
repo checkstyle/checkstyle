@@ -17,15 +17,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 import java.lang.SuppressWarnings;
 
-@ThisIsOk_2 // ok
+@ThisIsOk_2
 class InputJavadocTypeAllowedAnnotations_2 {
 }
 
-@com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk_2 // ok
+@com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk_2
 class InputJavadocTypeAllowedAnnotationsFQN_2 {
 }
 
-@SuppressWarnings(value = "some code generator") // ok
+@SuppressWarnings(value = "some code generator")
 class InputJavadocTypeAllowedAnnotationByDefault_2 {
 }
 
