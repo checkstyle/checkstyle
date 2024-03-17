@@ -24,6 +24,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter args of Checker.getLocalizedMessage.</message>
+    <lineContent>getLocalizedMessage(&quot;Checker.setupChildModule&quot;, name, ex.getMessage()), ex);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter args of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
