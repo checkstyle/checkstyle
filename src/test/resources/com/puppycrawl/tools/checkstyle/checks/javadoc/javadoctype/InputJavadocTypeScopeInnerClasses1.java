@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
    @author lkuehne
  */
-public class InputJavadocTypeScopeInnerClasses1 // ok
+public class InputJavadocTypeScopeInnerClasses1
 {
     public class InnerPublic
     {
@@ -50,7 +50,7 @@ public class InputJavadocTypeScopeInnerClasses1 // ok
         }
     }
     /** */
-    protected class InnerPublic2<T> // ok
+    protected class InnerPublic2<T>
     {
     }
 }
