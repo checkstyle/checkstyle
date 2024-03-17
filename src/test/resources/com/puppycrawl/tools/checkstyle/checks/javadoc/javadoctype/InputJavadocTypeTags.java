@@ -15,18 +15,18 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 import java.io.IOException;
 
-class InputJavadocTypeTags1 // ok
+class InputJavadocTypeTags1
 {
 
-    private int mMissingJavadoc; // ok
+    private int mMissingJavadoc;
 
 
-    void method1() // ok
+    void method1()
     {
     }
 
     /** @param unused asd **/
-    void method2() // ok
+    void method2()
     {
     }
 
@@ -34,7 +34,7 @@ class InputJavadocTypeTags1 // ok
     int method3()
     {
         return 3;
-    } // ok
+    }
 
     /**
      * <p>missing return
@@ -43,10 +43,10 @@ class InputJavadocTypeTags1 // ok
     int method4(int aOne)
     {
         return aOne;
-    } // ok
+    }
 
     /** missing throws **/
-    void method5()           // ok
+    void method5()
         throws Exception
     {
     }
@@ -55,19 +55,19 @@ class InputJavadocTypeTags1 // ok
      * @see missing throws
      * @see need to see tags to avoid shortcut logic
      **/
-    void method6() // ok
+    void method6()
         throws Exception
     {
     }
 
     /** @throws WrongException problem **/
-    void method7()   // ok
+    void method7()
         throws Exception, NullPointerException
     {
     }
 
     /** missing param **/
-    void method8(int aOne) // ok
+    void method8(int aOne)
     {
     }
 
@@ -75,12 +75,12 @@ class InputJavadocTypeTags1 // ok
      * @see missing param
      * @see need to see tags to avoid shortcut logic
      **/
-    void method9(int aOne)  // ok
+    void method9(int aOne)
     {
     }
 
     /** @param WrongParam problem **/
-    void method10(int aOne, int aTwo)  // ok
+    void method10(int aOne, int aTwo)
     {
     }
 
@@ -88,7 +88,7 @@ class InputJavadocTypeTags1 // ok
      * @param Unneeded parameter
      * @return also unneeded
      **/
-    void method11()   // ok
+    void method11()
     {
     }
 
@@ -99,7 +99,7 @@ class InputJavadocTypeTags1 // ok
     int method12()
     {
         return 0;
-    }  // ok
+    }
 
     /**
      * @param aOne
@@ -116,19 +116,19 @@ class InputJavadocTypeTags1 // ok
      *
      * @param aFive
      **/
-    void method13(int aOne, int aTwo, int aThree, int aFour, int aFive)  // ok
+    void method13(int aOne, int aTwo, int aThree, int aFour, int aFive)
     {
     }
 
     /** @param aOne Perfectly legal **/
-    void method14(int aOne)  // ok
+    void method14(int aOne)
     {
     }
 
     /** @throws java.io.IOException
      *               just to see if this is also legal **/
     void method14()
-       throws java.io.IOException    // ok
+       throws java.io.IOException
     {
     }
 
@@ -179,7 +179,7 @@ class InputJavadocTypeTags1 // ok
      * @param aOne valid parameter content
      */
 
-    void method16(int aOne) // ok
+    void method16(int aOne)
     {
     }
 
@@ -273,12 +273,12 @@ class InputJavadocTypeTags1 // ok
      * The problem should be reported with correct line number.
      */
 
-    void method25()  // ok
+    void method25()
     {
     }
 
     /** {@inheritDoc} */
-    int method26()   // ok
+    int method26()
     { return 0;
     }
 
@@ -286,7 +286,7 @@ class InputJavadocTypeTags1 // ok
      * {@inheritDoc}
      * @return something very important.
      */
-    int method27(int aParam)  // ok
+    int method27(int aParam)
     { return 0;
     }
 
