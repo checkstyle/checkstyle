@@ -219,6 +219,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh no-error-test-sbe"
       - validate-with-maven-script:
+          name: "no-error-spotbugs"
+          image-name: *cs_img
+          command: "./.ci/validation.sh no-error-spotbugs"
+      - validate-with-maven-script:
           name: "linkcheck-plugin"
           image-name: "cimg/openjdk:11.0.19"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
