@@ -32,59 +32,51 @@
           Example:
         </p>
         <source>
-class Test {
+class Example1 {
+  {
+    int k = 12; // violation, assign and update but never use 'k'
+    k++;
+  }
 
-    int a;
+  int a;
+  Example1(int a) { // ok, as 'a' is a constructor parameter not a local variable
+    this.a = 12;
+  }
 
-    {
-        int k = 12; // violation, assigned and updated but never used
-        k++;
+  void method(int b) {
+    int[] arr = {1, 2, 3};  // violation, unused local variable 'arr'
+    int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
+    anotherArr[0] = 4;
+  }
+
+  String convertValue(String newValue) {
+    String s = newValue.toLowerCase(); // violation, unused local variable 's'
+    return newValue.toLowerCase();
+  }
+
+  void read() throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String s; // violation, unused local variable 's'
+    while ((s = reader.readLine()) != null) {}
+    try (BufferedReader reader1 = // ok, 'reader1' is a resource
+                 new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
+    try {
+    } catch (Exception e) { // ok, 'e' is an exception parameter
     }
+  }
 
-    Test(int a) {   // ok as 'a' is a constructor parameter not a local variable
-        this.a = 12;
+  void loops() {
+    int j = 12;
+    for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'
     }
+    for (int p = 0; j &lt; 11; p++)   // ok, 'p' is used
+      p /= 2;
+  }
 
-    void method(int b) {
-        int a = 10;             // violation
-        int[] arr = {1, 2, 3};  // violation
-        int[] anotherArr = {1}; // ok
-        anotherArr[0] = 4;
-    }
-
-    String convertValue(String newValue) {
-        String s = newValue.toLowerCase(); // violation
-        return newValue.toLowerCase();
-    }
-
-    void read() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String s; // violation
-        while ((s = reader.readLine()) != null) {
-        }
-        try (BufferedReader reader1 // ok as 'reader1' is a resource and resources are closed
-                                    // at the end of the statement
-            = new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {
-        }
-        try {
-        } catch (Exception e) {     // ok as e is an exception parameter
-        }
-    }
-
-    void loops() {
-        int j = 12;
-        for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'.
-        }
-        for (int p = 0; j &lt; 11; p++)   // ok
-            p /= 2;
-    }
-
-    void lambdas() {
-        Predicate&lt;String&gt; obj = (String str) -&gt; { // ok as 'str' is a lambda parameter
-            return true;
-        };
-        obj.test(&quot;test&quot;);
-    }
+  void lambdas() {
+    Predicate&lt;String&gt; obj = (String str) -&gt; true; // ok, 'str' is a lambda parameter
+    obj.test(&quot;Test&quot;);
+  }
 }
         </source>
       </subsection>
