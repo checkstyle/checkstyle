@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck.MSG_KEY;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
+//@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class OrderedPropertiesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +35,9 @@ public class OrderedPropertiesCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "11:5: " + MSG_KEY + " \"key1\" should be before \"key2\"",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.properties"), expected);
     }
 }
