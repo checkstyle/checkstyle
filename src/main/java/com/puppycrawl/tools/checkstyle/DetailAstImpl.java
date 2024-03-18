@@ -384,7 +384,7 @@ public final class DetailAstImpl implements DetailAST {
 
     @Override
     public boolean branchContains(int tokenType) {
-        return getBranchTokenTypes().get(tokenType);
+        return tokenType >= 1 && getBranchTokenTypes().get(tokenType);
     }
 
     @Override

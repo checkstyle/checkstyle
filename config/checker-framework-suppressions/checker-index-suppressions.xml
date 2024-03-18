@@ -14,17 +14,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>return getBranchTokenTypes().get(tokenType);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of BitSet.set.</message>
     <lineContent>branchTokenTypes.set(type);</lineContent>
     <details>
