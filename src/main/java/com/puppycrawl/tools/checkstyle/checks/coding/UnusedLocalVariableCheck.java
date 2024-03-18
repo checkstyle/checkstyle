@@ -421,7 +421,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
         final boolean isInstanceVarInAnonymousInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW;
+                grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getType() == TokenTypes.CLASS_DEF;
         if (isInstanceVarInAnonymousInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
@@ -680,11 +681,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private static void checkIdentifierAst(DetailAST identAst, Deque<VariableDesc> variablesStack) {
-        for (VariableDesc variableDesc : variablesStack) {
-            if (identAst.getText().equals(variableDesc.getName())
-                    && !isLeftHandSideValue(identAst)) {
-                variableDesc.registerAsUsed();
-                break;
+        if (identAst != null) {
+            for (VariableDesc variableDesc : variablesStack) {
+                if (identAst.getText().equals(variableDesc.getName())
+                        && !isLeftHandSideValue(identAst)) {
+                    variableDesc.registerAsUsed();
+                    break;
+                }
             }
         }
     }
