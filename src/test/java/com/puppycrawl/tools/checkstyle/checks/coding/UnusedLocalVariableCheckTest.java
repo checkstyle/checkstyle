@@ -242,6 +242,47 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarNestedClasses4() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "19:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses4.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses5() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "19:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "25:11: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "abc"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses5.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses6() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "22:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "30:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "34:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses6.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarTestWarningSeverity() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

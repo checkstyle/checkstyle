@@ -421,7 +421,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
         final boolean isInstanceVarInAnonymousInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW;
+                grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getType() == TokenTypes.CLASS_DEF;
         if (isInstanceVarInAnonymousInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
