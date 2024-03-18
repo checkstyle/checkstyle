@@ -103,4 +103,30 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
     }
 
+    @Test
+    public void testIgnoreAnnotatedBy() throws Exception {
+        final String filePath =
+                getPath("SuppressionXpathRegressionParameterNumberIgnoreAnnotatedBy.java");
+        final File fileToProcess = new File(filePath);
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(ParameterNumberCheck.class);
+        moduleConfig.addProperty("ignoreAnnotatedBy", "MyAnno");
+        moduleConfig.addProperty("max", "2");
+
+        final String[] expectedViolations = {
+            "15:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                + "[./IDENT[@text='SuppressionXpathRegressionParameterNumberIgnoreAnnotatedBy']]"
+                + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
+                + "/OBJBLOCK/STATIC_INIT/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='Object']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
+                + "/SLIST/LITERAL_IF/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='Object']]"
+                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='checkedMethod']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolations, expectedXpathQueries);
+    }
 }
