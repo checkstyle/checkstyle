@@ -365,6 +365,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertWithMessage("invalid result")
                 .that(root.branchContains(TokenTypes.OBJBLOCK))
                 .isFalse();
+        assertWithMessage("negative tokenType")
+                .that(root.branchContains(-1))
+                .isFalse();
     }
 
     private static DetailAstImpl createToken(DetailAstImpl root, int type) {
