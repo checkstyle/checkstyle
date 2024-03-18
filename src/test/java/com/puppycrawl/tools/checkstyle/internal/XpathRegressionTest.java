@@ -97,18 +97,14 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "DesignForExtension",
             "HideUtilityClassConstructor",
             "InterfaceTypeParameterName",
-            "LocalFinalVariableName",
             "LocalVariableName",
             "MethodTypeParameterName",
             "ModifiedControlVariable",
             "MutableException",
-            "ParameterAssignment",
             "RedundantModifier",
             "SeparatorWrap",
             "SuperFinalize",
-            "SuppressWarnings",
-            "VisibilityModifier"
-    );
+            "SuppressWarnings");
 
     // Modules that will never have xpath support ever because they not report violations
     private static final Set<String> NO_VIOLATION_MODULES = Set.of(

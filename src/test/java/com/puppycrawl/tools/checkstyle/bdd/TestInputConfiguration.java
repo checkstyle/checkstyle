@@ -30,6 +30,7 @@ import java.util.Set;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 public final class TestInputConfiguration {
 
@@ -66,12 +67,24 @@ public final class TestInputConfiguration {
 
     private final List<TestInputViolation> filteredViolations;
 
+    private final Configuration xmlConfiguration;
+
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
                                    List<TestInputViolation> violations,
                                    List<TestInputViolation> filteredViolations) {
         this.childrenModules = childrenModules;
         this.violations = violations;
         this.filteredViolations = filteredViolations;
+        xmlConfiguration = null;
+    }
+
+    private TestInputConfiguration(List<TestInputViolation> violations,
+                                   List<TestInputViolation> filteredViolations,
+                                   Configuration xmlConfiguration) {
+        childrenModules = null;
+        this.violations = violations;
+        this.filteredViolations = filteredViolations;
+        this.xmlConfiguration = xmlConfiguration;
     }
 
     public List<ModuleInputConfiguration> getChildrenModules() {
@@ -89,6 +102,7 @@ public final class TestInputConfiguration {
     public DefaultConfiguration createConfiguration() {
         final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
         root.addProperty("charset", StandardCharsets.UTF_8.name());
+
         final DefaultConfiguration treeWalker = createTreeWalker();
         childrenModules
                 .stream()
@@ -103,6 +117,10 @@ public final class TestInputConfiguration {
                 });
         root.addChild(treeWalker);
         return root;
+    }
+
+    public Configuration getXmlConfiguration() {
+        return xmlConfiguration;
     }
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
@@ -144,6 +162,8 @@ public final class TestInputConfiguration {
 
         private final List<TestInputViolation> filteredViolations = new ArrayList<>();
 
+        private Configuration xmlConfiguration;
+
         public void addChildModule(ModuleInputConfiguration childModule) {
             childrenModules.add(childModule);
         }
@@ -158,6 +178,18 @@ public final class TestInputConfiguration {
 
         public void addFilteredViolation(int violationLine, String violationMessage) {
             filteredViolations.add(new TestInputViolation(violationLine, violationMessage));
+        }
+
+        public void setXmlConfiguration(Configuration xmlConfiguration) {
+            this.xmlConfiguration = xmlConfiguration;
+        }
+
+        public TestInputConfiguration buildWithXmlConfiguration() {
+            return new TestInputConfiguration(
+                    violations,
+                    filteredViolations,
+                    xmlConfiguration
+            );
         }
 
         public TestInputConfiguration build() {

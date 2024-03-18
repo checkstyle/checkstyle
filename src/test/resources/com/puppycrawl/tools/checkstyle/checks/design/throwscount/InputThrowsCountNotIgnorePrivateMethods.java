@@ -13,7 +13,7 @@ import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
-public class InputThrowsCount3 {
+public class InputThrowsCountNotIgnorePrivateMethods {
     void method1() throws Exception
     {
     }
@@ -45,7 +45,7 @@ public class InputThrowsCount3 {
     }
 }
 
-class SubClass3 extends InputThrowsCount3 {
+class SubClass3 extends InputThrowsCountNotIgnorePrivateMethods {
     @Override
     void method1() {
     }

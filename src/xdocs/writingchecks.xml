@@ -384,7 +384,7 @@ public class MethodLimitCheck extends AbstractCheck
 
       <p>
         There are four methods in Check class to control the processed
-        <a href="apidocs/index.html">TokenTypes</a> -
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a> -
         one setter
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#setTokens-java.lang.String...-">
         setTokens()</a>, which is used to define a custom set (which is different

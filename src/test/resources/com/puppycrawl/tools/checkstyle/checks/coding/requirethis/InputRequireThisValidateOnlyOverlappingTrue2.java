@@ -15,7 +15,7 @@ public class InputRequireThisValidateOnlyOverlappingTrue2 {
 
     public InputRequireThisValidateOnlyOverlappingTrue2(
             InputRequireThisValidateOnlyOverlappingTrue2 analyzer) {
-        this(analyzer.analyzer(), 0); // ok
+        this(analyzer.analyzer(), 0);
     }
 
     public InputRequireThisValidateOnlyOverlappingTrue2(

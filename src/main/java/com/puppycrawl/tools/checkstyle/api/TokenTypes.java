@@ -4283,119 +4283,115 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     * new ArrayList(50)
+     * List&lt;String&gt; l = new ArrayList&lt;String&gt;();
      * </pre>
      *
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_NEW -&gt; new
-     *  |--IDENT -&gt; ArrayList
-     *  |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
-     *  |   |--GENERIC_START -&gt; &lt;
-     *  |   `--GENERIC_END -&gt; &gt;
-     *  |--LPAREN -&gt; (
-     *  |--ELIST -&gt; ELIST
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; List
+     *  |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |       |--GENERIC_START -&gt; &lt;
+     *  |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |       |   `--IDENT -&gt; String
+     *  |       `--GENERIC_END -&gt; &gt;
+     *  |--IDENT -&gt; l
+     *  |--ASSIGN -&gt; =
      *  |   `--EXPR -&gt; EXPR
-     *  |       `--NUM_INT -&gt; 50
-     *  `--RPAREN -&gt; )
+     *  |       `--LITERAL_NEW -&gt; new
+     *  |           |--IDENT -&gt; ArrayList
+     *  |           |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |           |   |--GENERIC_START -&gt; &lt;
+     *  |           |   |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |           |   |   `--IDENT -&gt; String
+     *  |           |   `--GENERIC_END -&gt; &gt;
+     *  |           |--LPAREN -&gt; (
+     *  |           |--ELIST -&gt; ELIST
+     *  |           `--RPAREN -&gt; )
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * <p>For example:</p>
      * <pre>
-     * new float[]
-     *   {
-     *     3.0f,
-     *     4.0f
-     *   };
+     * String[] strings = new String[3];
      * </pre>
      *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--LITERAL_FLOAT (float)
-     *     +--ARRAY_DECLARATOR ([)
-     *     +--ARRAY_INIT ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_FLOAT (3.0f)
-     *         +--COMMA (,)
-     *         +--EXPR
-     *             |
-     *             +--NUM_FLOAT (4.0f)
-     *         +--RCURLY (})
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; String
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; strings
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LITERAL_NEW -&gt; new
+     *  |           |--IDENT -&gt; String
+     *  |           `--ARRAY_DECLARATOR -&gt; [
+     *  |               |--EXPR -&gt; EXPR
+     *  |               |   `--NUM_INT -&gt; 3
+     *  |               `--RBRACK -&gt; ]
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * <p>For example:</p>
      * <pre>
-     * new FilenameFilter()
-     * {
-     *   public boolean accept(File dir, String name)
-     *   {
-     *     return name.endsWith(".java");
-     *   }
-     * }
+     * Supplier&lt;Integer&gt; s = new Supplier&lt;&gt;() {
+     *     &#064;Override
+     *     public Integer get() {
+     *         return 42;
+     *     }
+     * };
      * </pre>
      *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--IDENT (FilenameFilter)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *     +--RPAREN ())
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--METHOD_DEF
-     *             |
-     *             +--MODIFIERS
-     *                 |
-     *                 +--LITERAL_PUBLIC (public)
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_BOOLEAN (boolean)
-     *             +--IDENT (accept)
-     *             +--PARAMETERS
-     *                 |
-     *                 +--PARAMETER_DEF
-     *                     |
-     *                     +--MODIFIERS
-     *                     +--TYPE
-     *                         |
-     *                         +--IDENT (File)
-     *                     +--IDENT (dir)
-     *                 +--COMMA (,)
-     *                 +--PARAMETER_DEF
-     *                     |
-     *                     +--MODIFIERS
-     *                     +--TYPE
-     *                         |
-     *                         +--IDENT (String)
-     *                     +--IDENT (name)
-     *             +--SLIST ({)
-     *                 |
-     *                 +--LITERAL_RETURN (return)
-     *                     |
-     *                     +--EXPR
-     *                         |
-     *                         +--METHOD_CALL (()
-     *                             |
-     *                             +--DOT (.)
-     *                                 |
-     *                                 +--IDENT (name)
-     *                                 +--IDENT (endsWith)
-     *                             +--ELIST
-     *                                 |
-     *                                 +--EXPR
-     *                                     |
-     *                                     +--STRING_LITERAL (".java")
-     *                             +--RPAREN ())
-     *                     +--SEMI (;)
-     *                 +--RCURLY (})
-     *         +--RCURLY (})
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; Supplier
+     *  |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |       |--GENERIC_START -&gt; &lt;
+     *  |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |       |   `--IDENT -&gt; Integer
+     *  |       `--GENERIC_END -&gt; &gt;
+     *  |--IDENT -&gt; s
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LITERAL_NEW -&gt; new
+     *  |           |--IDENT -&gt; Supplier
+     *  |           |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |           |   |--GENERIC_START -&gt; &lt;
+     *  |           |   `--GENERIC_END -&gt; &gt;
+     *  |           |--LPAREN -&gt; (
+     *  |           |--ELIST -&gt; ELIST
+     *  |           |--RPAREN -&gt; )
+     *  |           `--OBJBLOCK -&gt; OBJBLOCK
+     *  |               |--LCURLY -&gt; {
+     *  |               |--METHOD_DEF -&gt; METHOD_DEF
+     *  |               |   |--MODIFIERS -&gt; MODIFIERS
+     *  |               |   |   |--ANNOTATION -&gt; ANNOTATION
+     *  |               |   |   |   |--AT -&gt; @
+     *  |               |   |   |   `--IDENT -&gt; Override
+     *  |               |   |   `--LITERAL_PUBLIC -&gt; public
+     *  |               |   |--TYPE -&gt; TYPE
+     *  |               |   |   `--IDENT -&gt; Integer
+     *  |               |   |--IDENT -&gt; get
+     *  |               |   |--LPAREN -&gt; (
+     *  |               |   |--PARAMETERS -&gt; PARAMETERS
+     *  |               |   |--RPAREN -&gt; )
+     *  |               |   `--SLIST -&gt; {
+     *  |               |       |--LITERAL_RETURN -&gt; return
+     *  |               |       |   |--EXPR -&gt; EXPR
+     *  |               |       |   |   `--NUM_INT -&gt; 42
+     *  |               |       |   `--SEMI -&gt; ;
+     *  |               |       `--RCURLY -&gt; }
+     *  |               `--RCURLY -&gt; }
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #IDENT
@@ -5789,7 +5785,9 @@ public final class TokenTypes {
             JavaLanguageLexer.COMPACT_CTOR_DEF;
 
     /**
-     * Beginning of a Java 14 Text Block literal,
+     * Text blocks are a new feature added to to Java SE 15 and later
+     * that will make writing multi-line strings much easier and cleaner.
+     * Beginning of a Java 15 Text Block literal,
      * delimited by three double quotes.
      *
      * <p>For example:</p>
@@ -5808,9 +5806,9 @@ public final class TokenTypes {
      * |   `--ASSIGN -&gt; =
      * |       `--EXPR -&gt; EXPR
      * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \r\n                 Hello, world!\r\n
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
      * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
-     * |--SEMI -&gt; ;
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36
@@ -5819,7 +5817,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_LITERAL_BEGIN;
 
     /**
-     * Content of a Java 14 text block. This is a
+     * Content of a Java 15 text block. This is a
      * sequence of characters, possibly escaped with '\'. Actual line terminators
      * are represented by '\n'.
      *
@@ -5841,7 +5839,7 @@ public final class TokenTypes {
      * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
      * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
      * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
-     * |--SEMI -&gt; ;
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36
@@ -5850,7 +5848,7 @@ public final class TokenTypes {
             JavaLanguageLexer.TEXT_BLOCK_CONTENT;
 
     /**
-     * End of a Java 14 text block literal, delimited by three
+     * End of a Java 15 text block literal, delimited by three
      * double quotes.
      *
      * <p>For example:</p>
@@ -5861,17 +5859,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--IDENT (String)
-     * |   |--IDENT (hello)
-     * |   |--ASSIGN (=)
-     * |   |   `--EXPR
-     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
-     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
-     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
-     * |   `--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--IDENT -&gt; String
+     * |   |--IDENT -&gt; hello
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36

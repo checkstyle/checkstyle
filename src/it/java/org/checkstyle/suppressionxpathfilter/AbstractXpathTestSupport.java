@@ -25,9 +25,9 @@ import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,7 +56,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * The temporary folder to hold intermediate files.
      */
     @TempDir
-    public Path temporaryFolder;
+    public File temporaryFolder;
 
     /**
      * Returns name of the check.
@@ -120,9 +120,10 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
             throws Exception {
-        final Path suppressionsXpathConfigPath =
-                Files.createTempFile(temporaryFolder, "", "");
-        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath,
+        final String uniqueFileName =
+                "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
+        final File suppressionsXpathConfigPath = new File(temporaryFolder, uniqueFileName);
+        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath(),
                 StandardCharsets.UTF_8)) {
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");

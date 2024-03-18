@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -100,7 +101,8 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathNotComment() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File file = new File(tempFolder, uniqueFileName);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -120,7 +122,8 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathComment() throws Exception {
         final String fileContent = "class Test { /* comment */ }";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File file = new File(tempFolder, uniqueFileName);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -137,7 +140,8 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathTwo() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File file = new File(tempFolder, uniqueFileName);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
@@ -165,7 +169,8 @@ public class XpathUtilTest {
     @Test
     public void testInvalidXpath() throws IOException {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = File.createTempFile("junit", null, tempFolder);
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File file = new File(tempFolder, uniqueFileName);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String invalidXpath = "\\//CLASS_DEF"
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";

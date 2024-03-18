@@ -43,11 +43,11 @@ public final class JavadocTokenTypes {
      * <pre>{@code @return true if file exists}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@return true if file exists]
-     *       |--RETURN_LITERAL[4x3] : [@return]
-     *       |--WS[4x10] : [ ]
-     *       |--DESCRIPTION[4x11] : [true if file exists]
-     *           |--TEXT[4x11] : [true if file exists]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--RETURN_LITERAL -> @return
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> true if file exists
      * }</pre>
      *
      * @see
@@ -63,14 +63,14 @@ public final class JavadocTokenTypes {
      * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @deprecated it is deprecated method}</pre>
+     * <pre>{@code @deprecated It is deprecated method}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@deprecated it is deprecated method]
-     *   |--DEPRECATED_LITERAL[3x0] : [@deprecated]
-     *   |--WS[3x11] : [ ]
-     *   |--DESCRIPTION[3x12] : [it is deprecated method]
-     *       |--TEXT[3x12] : [it is deprecated method]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--DEPRECATED_LITERAL -> @deprecated
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> It is deprecated method
      * }</pre>
      *
      * @see
@@ -169,16 +169,16 @@ public final class JavadocTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @param T The bar.}</pre>
+     * <pre>{@code @param value The parameter of method.}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
-     *       |--PARAM_LITERAL[4x3] : [@param]
-     *       |--WS[4x9] : [ ]
-     *       |--PARAMETER_NAME[4x10] : [T]
-     *       |--WS[4x11] : [ ]
-     *       |--DESCRIPTION[4x12] : [The bar.]
-     *           |--TEXT[4x12] : [The bar.]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--PARAM_LITERAL -> @param
+     *  |--WS ->
+     *  |--PARAMETER_NAME -> value
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> The parameter of method.
      * }</pre>
      *
      * @see

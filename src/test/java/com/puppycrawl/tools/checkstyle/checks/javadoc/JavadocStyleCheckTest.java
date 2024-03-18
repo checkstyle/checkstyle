@@ -135,6 +135,15 @@ public class JavadocStyleCheckTest
     }
 
     @Test
+    public void testJavadocStyleDefaultSettingsFive()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocStyleDefaultSettingsFive.java"), expected);
+    }
+
+    @Test
     public void testJavadocStyleFirstSentenceOne() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
