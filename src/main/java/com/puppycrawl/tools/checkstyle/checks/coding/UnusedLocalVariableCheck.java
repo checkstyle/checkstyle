@@ -263,7 +263,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
         if (dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
                 && shouldCheckIdentTokenNestedUnderDot(dotAst)) {
-            checkIdentifierAst(dotAst.findFirstToken(TokenTypes.IDENT), variablesStack);
+            final DetailAST identifier = dotAst.findFirstToken(TokenTypes.IDENT);
+            if (identifier != null) {
+                checkIdentifierAst(dotAst.findFirstToken(TokenTypes.IDENT), variablesStack);
+            }
         }
     }
 
@@ -420,14 +423,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInAnonymousInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW;
-        if (isInstanceVarInAnonymousInnerClass
+        final boolean isInstanceVarInInnerClass =
+                grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getType() == TokenTypes.CLASS_DEF;
+        if (isInstanceVarInInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText(),
                     varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInAnonymousInnerClass) {
+            if (isInstanceVarInInnerClass) {
                 desc.registerAsInstOrClassVar();
             }
             variablesStack.push(desc);
