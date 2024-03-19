@@ -48,8 +48,8 @@ import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.api.ViolationDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -386,7 +386,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
      * @param fileName file name.
      */
     private void logMissingTranslation(String filePath, String fileName) {
-        final MessageDispatcher dispatcher = getMessageDispatcher();
+        final ViolationDispatcher dispatcher = getViolationDispatcher();
         dispatcher.fireFileStarted(filePath);
         log(1, MSG_KEY_MISSING_TRANSLATION_FILE, fileName);
         fireErrors(filePath);
@@ -526,7 +526,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 .filter(key -> !currentFileKeys.contains(key))
                 .collect(Collectors.toUnmodifiableSet());
             if (!missingKeys.isEmpty()) {
-                final MessageDispatcher dispatcher = getMessageDispatcher();
+                final ViolationDispatcher dispatcher = getViolationDispatcher();
                 final String path = fileKey.getKey().getAbsolutePath();
                 dispatcher.fireFileStarted(path);
                 for (Object key : missingKeys) {
@@ -586,7 +586,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
                 getClass(), null);
         final SortedSet<Violation> messages = new TreeSet<>();
         messages.add(message);
-        getMessageDispatcher().fireErrors(file.getPath(), messages);
+        getViolationDispatcher().fireErrors(file.getPath(), messages);
         log.debug("Exception occurred.", exception);
     }
 

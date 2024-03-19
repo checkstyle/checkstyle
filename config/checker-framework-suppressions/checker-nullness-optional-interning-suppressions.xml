@@ -1157,8 +1157,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field messageDispatcher</message>
-    <lineContent>private MessageDispatcher messageDispatcher;</lineContent>
+    <message>the default constructor does not initialize field violationDispatcher</message>
+    <lineContent>private ViolationDispatcher violationDispatcher</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
