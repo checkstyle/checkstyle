@@ -219,7 +219,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else if (!period.isEmpty()) {
             final String firstSentence = getFirstSentence(ast, period);
-            if (!summaryDoc.contains(period)) {
+            if (!summaryDoc.contains(period) || firstSentence.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             } else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
@@ -581,8 +581,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
-        appendFirstSentence(ast, period, result);
-        return result.toString();
+        final boolean foundEnd = appendFirstSentence(ast, period, result);
+        if(foundEnd) {
+            return result.toString();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -596,8 +600,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static boolean appendFirstSentence(DetailNode ast, String period, StringBuilder result) {
         if (ast.getChildren().length == 0) {
             final String text = ast.getText();
-            if(text.contains(period)) {
-                result.append(text, 0, text.indexOf(period));
+            final int periodIndex = findEndingPeriod(text, period);
+            if(periodIndex >= 0) {
+                result.append(text, 0, periodIndex);
                 return true;
             } else {
                 result.append(text);
@@ -611,6 +616,26 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
         }
         return false;
+    }
+
+    private static int findEndingPeriod(String text, String period) {
+        int periodIndex = text.indexOf(period);
+        while(periodIndex >= 0) {
+            final int afterPeriodIndex = periodIndex + period.length();
+            if(isEndOrFollowedByWhitespace(text, afterPeriodIndex)) {
+                return periodIndex;
+            } else {
+                periodIndex = text.indexOf(period, afterPeriodIndex);
+            }
+        }
+        return -1;
+    }
+
+    private static boolean isEndOrFollowedByWhitespace(String text, int index) {
+        if(index >= text.length()) {
+            return true;
+        }
+        return Character.isWhitespace(text.charAt(index));
     }
 
 }
