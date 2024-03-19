@@ -218,13 +218,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
-            if (!summaryDoc.contains(period)) {
+            final String firstSentence = getFirstSentence(ast, period);
+            if (!summaryDoc.contains(period) || firstSentence.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
-            if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+            else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -579,28 +577,70 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Finds and returns first sentence.
      *
      * @param ast Javadoc root node.
+     * @param period Period character.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
-            }
-            else {
-                text = getFirstSentence(child);
-            }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
-                break;
-            }
-
-            result.append(text);
+        final boolean foundEnd = appendFirstSentence(ast, period, result);
+        if (!foundEnd) {
+            result.setLength(0);
         }
         return result.toString();
+    }
+
+    /**
+     * Finds and appends first sentence to result.
+     *
+     * @param ast Javadoc node to append.
+     * @param period Period character.
+     * @param result Builder to append to.
+     * @return true if the period character was found, false otherwise
+     */
+    private static boolean appendFirstSentence(
+            DetailNode ast, String period, StringBuilder result) {
+        boolean foundEnd = false;
+        if (ast.getChildren().length == 0) {
+            final String text = ast.getText();
+            final int periodIndex = findEndingPeriod(text, period);
+            if (periodIndex >= 0) {
+                result.append(text, 0, periodIndex);
+                foundEnd = true;
+            }
+            else {
+                result.append(text);
+            }
+        }
+        for (DetailNode child : ast.getChildren()) {
+            if (appendFirstSentence(child, period, result)) {
+                foundEnd = true;
+                break;
+            }
+        }
+        return foundEnd;
+    }
+
+    /**
+     * Find position of an ending period in the text. Ignores any period not followed by
+     * whitespace.
+     *
+     * @param text text to search
+     * @param period period character
+     * @return position of period character, or -1 if there is no ending period
+     */
+    private static int findEndingPeriod(String text, String period) {
+        int periodIndex = text.indexOf(period);
+        while (periodIndex >= 0) {
+            final int afterPeriodIndex = periodIndex + period.length();
+            if (afterPeriodIndex >= text.length()
+                || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+                break;
+            }
+            else {
+                periodIndex = text.indexOf(period, afterPeriodIndex);
+            }
+        }
+        return periodIndex;
     }
 
 }
