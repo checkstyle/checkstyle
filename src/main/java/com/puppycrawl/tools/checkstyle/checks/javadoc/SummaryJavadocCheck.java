@@ -218,7 +218,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final String firstSentence = getFirstSentence(ast);
+            final String firstSentence = getFirstSentence(ast, period);
             final int endOfSentence = firstSentence.indexOf(period);
             if (!summaryDoc.contains(period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
@@ -581,16 +581,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast Javadoc root node.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
+        final String periodSuffix = period + ' ';
         for (DetailNode child : ast.getChildren()) {
             final String text;
             if (child.getChildren().length == 0) {
                 text = child.getText();
             }
             else {
-                text = getFirstSentence(child);
+                text = getFirstSentence(child, period);
             }
 
             if (text.contains(periodSuffix)) {

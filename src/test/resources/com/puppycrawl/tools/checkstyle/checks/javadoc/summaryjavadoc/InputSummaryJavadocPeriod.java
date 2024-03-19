@@ -1,7 +1,7 @@
 /*
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
-forbiddenSummaryFragments = (default)^$
+forbiddenSummaryFragments = ^$|fail-summary-fragment
 period = _
 
 
@@ -37,4 +37,10 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc}
      */ // violation above 'Summary .* missing an ending period.'
     void foo8() {}
+
+    // violation below 'Forbidden summary fragment.'
+    /**
+     * Summary sentence using wrong period. Sentence using correct period but containing disallowed words, fail-summary-fragment_
+     */
+    void foo9() {}
 }
