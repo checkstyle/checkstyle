@@ -219,12 +219,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else if (!period.isEmpty()) {
             final String firstSentence = getFirstSentence(ast, period);
-            final int endOfSentence = firstSentence.indexOf(period);
             if (!summaryDoc.contains(period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
-            }
-            if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+            } else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -579,28 +576,41 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Finds and returns first sentence.
      *
      * @param ast Javadoc root node.
+     * @param period Period character.
      * @return first sentence.
      */
     private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = period + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
-            }
-            else {
-                text = getFirstSentence(child, period);
-            }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
-                break;
-            }
-
-            result.append(text);
-        }
+        appendFirstSentence(ast, period, result);
         return result.toString();
+    }
+
+    /**
+     * Finds and appends first sentence to result.
+     *
+     * @param ast Javadoc node to append.
+     * @param period Period character.
+     * @param result Builder to append to.
+     * @return true if the period character was found, false otherwise
+     */
+    private static boolean appendFirstSentence(DetailNode ast, String period, StringBuilder result) {
+        if (ast.getChildren().length == 0) {
+            final String text = ast.getText();
+            if(text.contains(period)) {
+                result.append(text, 0, text.indexOf(period));
+                return true;
+            } else {
+                result.append(text);
+                return false;
+            }
+        }
+        for (DetailNode child : ast.getChildren()) {
+            final boolean foundEnd = appendFirstSentence(child, period, result);
+            if(foundEnd) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

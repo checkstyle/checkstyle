@@ -40,7 +40,7 @@ public class InputSummaryJavadocPeriod
 
     // violation below 'Forbidden summary fragment.'
     /**
-     * Summary sentence using wrong period. Sentence using correct period but containing disallowed words, fail-summary-fragment_
+     * Summary sentence containing default period mentioning version 1.1, then ending with correct period after disallowed words, fail-summary-fragment_
      */
     void foo9() {}
 }
