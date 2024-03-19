@@ -219,7 +219,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else if (!period.isEmpty()) {
             final String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
+            final int endOfSentence = firstSentence.indexOf(period);
             if (!summaryDoc.contains(period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
