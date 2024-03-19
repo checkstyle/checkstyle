@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.xpath;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,7 +68,7 @@ public class AttributeNodeTest {
     @Test
     public void testGetDepth() {
         final UnsupportedOperationException exception =
-            assertThrows(UnsupportedOperationException.class, attributeNode::getDepth);
+            getExpectedThrowable(UnsupportedOperationException.class, attributeNode::getDepth);
         assertWithMessage("Invalid exception message")
             .that(exception)
             .hasMessageThat()
@@ -98,7 +98,7 @@ public class AttributeNodeTest {
     @Test
     public void testGetChildren() {
         final UnsupportedOperationException exception =
-            assertThrows(UnsupportedOperationException.class, attributeNode::getChildren);
+            getExpectedThrowable(UnsupportedOperationException.class, attributeNode::getChildren);
         assertWithMessage("Invalid exception message")
             .that(exception)
             .hasMessageThat()

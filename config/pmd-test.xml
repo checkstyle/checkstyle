@@ -121,7 +121,19 @@
                    | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
                    | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
-                       //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
+                       //MethodDeclaration[starts-with(@Name, 'testMain')]
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='PackageNamesLoaderTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='AbstractCheckTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='BeforeExecutionFileFilterSetTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='FileContentsTest']
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='FilterSetTest']
+                       //MethodDeclaration"/>
     </properties>
   </rule>
 

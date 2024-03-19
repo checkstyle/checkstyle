@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MISMATCH;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collections;
@@ -244,7 +244,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
         final File file = new File(getPath("") + "\u0000" + File.separatorChar + "Test");
         final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
         check.setFileNamePattern(Pattern.compile("BAD"));
-        final CheckstyleException ex = assertThrows(CheckstyleException.class,
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> check.process(file, new FileText(file, Collections.emptyList())),
                 "CheckstyleException expected");
         assertWithMessage("Invalid exception message")
