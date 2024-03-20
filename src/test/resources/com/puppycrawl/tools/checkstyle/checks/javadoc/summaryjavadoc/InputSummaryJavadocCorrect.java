@@ -2,7 +2,7 @@
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = ^@return the *|^This method returns *|^A \
-                            [{]@code [a-zA-Z0-9]+[}]( is a )
+                            [{]@code [a-zA-Z0-9]+[}]( is a )|fail-summary-fragment
 period = (default).
 
 
@@ -88,6 +88,14 @@ class InputSummaryJavadocCorrect { // ok
      * M m m m. {@inheritDoc}
      */
     void foo15() {}
+
+    /**
+     * Summary sentence on its own line.
+     * <p>
+     * Another sentence that is not part of the summary,
+     * so this should not matter: fail-summary-fragment.
+     */
+    void foo16() {}
 
     /**
      * This is summary java doc.
