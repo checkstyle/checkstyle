@@ -113,6 +113,9 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "42: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "48: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "54: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
 
         verifyWithInlineConfigParser(
@@ -230,6 +233,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "40: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "70: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verifyWithInlineConfigParser(
