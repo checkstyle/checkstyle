@@ -583,7 +583,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
         final boolean foundEnd = appendFirstSentence(ast, period, result);
-        return foundEnd ? result.toString() : "";
+        if(!foundEnd) {
+            result.setLength(0);
+        }
+        return result.toString();
     }
 
     /**
@@ -648,10 +651,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isEndOrWhitespace(String text, int index) {
         final boolean matches;
-        if(index >= text.length()) {
+        if (index >= text.length()) {
             matches = true;
         }
-        else if(Character.isWhitespace(text.charAt(index))) {
+        else if (Character.isWhitespace(text.charAt(index))) {
             matches = true;
         }
         else {
