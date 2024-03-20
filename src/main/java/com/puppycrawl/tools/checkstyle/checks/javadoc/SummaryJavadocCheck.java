@@ -632,7 +632,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         int periodIndex = text.indexOf(period);
         while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
-            if (isEndOrWhitespace(text, afterPeriodIndex)) {
+            if (afterPeriodIndex >= text.length()) {
+                break;
+            }
+            else if(Character.isWhitespace(text.charAt(afterPeriodIndex))) {
                 break;
             }
             else {
@@ -640,24 +643,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
         }
         return periodIndex;
-    }
-
-    /**
-     * Test whether a position in some text is after the end or is whitespace.
-     *
-     * @param text text to test
-     * @param index position to test
-     * @return true if position is at the end or contains a whitespace character
-     */
-    private static boolean isEndOrWhitespace(String text, int index) {
-        final boolean matches;
-        if (index >= text.length()) {
-            matches = true;
-        }
-        else {
-            matches = Character.isWhitespace(text.charAt(index));
-        }
-        return matches;
     }
 
 }
