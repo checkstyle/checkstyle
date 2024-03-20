@@ -221,7 +221,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final String firstSentence = getFirstSentence(ast, period);
             if (!summaryDoc.contains(period) || firstSentence.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
-            } else if (containsForbiddenFragment(firstSentence)) {
+            }
+            else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -582,11 +583,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
         final boolean foundEnd = appendFirstSentence(ast, period, result);
-        if(foundEnd) {
-            return result.toString();
-        } else {
-            return "";
-        }
+        return foundEnd ? result.toString() : "";
     }
 
     /**
@@ -598,24 +595,25 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return true if the period character was found, false otherwise
      */
     private static boolean appendFirstSentence(DetailNode ast, String period, StringBuilder result) {
+        boolean foundEnd = false;
         if (ast.getChildren().length == 0) {
             final String text = ast.getText();
             final int periodIndex = findEndingPeriod(text, period);
             if(periodIndex >= 0) {
                 result.append(text, 0, periodIndex);
-                return true;
-            } else {
+                foundEnd = true;
+            }
+            else {
                 result.append(text);
-                return false;
             }
         }
         for (DetailNode child : ast.getChildren()) {
-            final boolean foundEnd = appendFirstSentence(child, period, result);
-            if(foundEnd) {
-                return true;
+            if(appendFirstSentence(child, period, result)) {
+                foundEnd = true;
+                break;
             }
         }
-        return false;
+        return foundEnd;
     }
 
     private static int findEndingPeriod(String text, String period) {
@@ -623,19 +621,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         while(periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
             if(isEndOrFollowedByWhitespace(text, afterPeriodIndex)) {
-                return periodIndex;
-            } else {
+                break;
+            }
+            else {
                 periodIndex = text.indexOf(period, afterPeriodIndex);
             }
         }
-        return -1;
+        return periodIndex;
     }
 
     private static boolean isEndOrFollowedByWhitespace(String text, int index) {
-        if(index >= text.length()) {
-            return true;
-        }
-        return Character.isWhitespace(text.charAt(index));
+        return index >= text.length() || Character.isWhitespace(text.charAt(index));
     }
 
 }
