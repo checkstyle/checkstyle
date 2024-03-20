@@ -654,11 +654,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (index >= text.length()) {
             matches = true;
         }
-        else if (Character.isWhitespace(text.charAt(index))) {
-            matches = true;
-        }
         else {
-            matches = false;
+            matches = Character.isWhitespace(text.charAt(index));
         }
         return matches;
     }
