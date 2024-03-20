@@ -302,7 +302,12 @@ public class RegexpCheck extends AbstractCheck {
         findMatch();
     }
 
-    /** Recursive method that finds the matches. */
+    /**
+     * Recursive method that finds the matches.
+     *
+     * @noinspection TailRecursion
+     * @noinspectionreason TailRecursion - until issue #14625
+     */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void findMatch() {
