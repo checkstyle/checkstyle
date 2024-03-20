@@ -1,3 +1,4 @@
+skip: $CIRRUS_BRANCH != $CIRRUS_DEFAULT_BRANCH
 task:
   name: Windows build
   windows_container:
