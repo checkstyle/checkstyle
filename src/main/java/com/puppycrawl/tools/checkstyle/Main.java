@@ -503,7 +503,7 @@ public final class Main {
     }
 
     /**
-     * Create output stream or return System.out
+     * Create output stream or return System.out.
      *
      * @param outputPath output location
      * @return output stream

@@ -408,7 +408,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Find all child of given AST of type TokenType.EXPR
+     * Find all child of given AST of type TokenType.EXPR.
      *
      * @param ast parent of expressions to find
      * @return all child of given ast
