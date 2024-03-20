@@ -360,6 +360,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -382,6 +388,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateClasses() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -417,6 +429,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateAnonInnerClass() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -451,6 +469,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStatePackageDef() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();

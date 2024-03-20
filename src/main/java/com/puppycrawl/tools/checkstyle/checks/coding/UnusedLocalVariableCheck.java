@@ -522,6 +522,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      *
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
+     * @noinspection MismatchedJavadocCode
+     * @noinspectionreason MismatchedJavadocCode - until issue #14625
      */
     private List<TypeDeclDesc> typeDeclWithSameName(String superClassName) {
         return typeDeclAstToTypeDeclDesc.values().stream()
