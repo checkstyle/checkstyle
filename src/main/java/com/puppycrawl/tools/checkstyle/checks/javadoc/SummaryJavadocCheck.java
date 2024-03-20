@@ -632,10 +632,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         int periodIndex = text.indexOf(period);
         while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
-            if (afterPeriodIndex >= text.length()) {
-                break;
-            }
-            else if(Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+            if (afterPeriodIndex >= text.length()
+                || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
                 break;
             }
             else {
