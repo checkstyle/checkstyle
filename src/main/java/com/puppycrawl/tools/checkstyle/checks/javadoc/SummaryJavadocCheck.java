@@ -594,12 +594,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param result Builder to append to.
      * @return true if the period character was found, false otherwise
      */
-    private static boolean appendFirstSentence(DetailNode ast, String period, StringBuilder result) {
+    private static boolean appendFirstSentence(
+            DetailNode ast, String period, StringBuilder result) {
         boolean foundEnd = false;
         if (ast.getChildren().length == 0) {
             final String text = ast.getText();
             final int periodIndex = findEndingPeriod(text, period);
-            if(periodIndex >= 0) {
+            if (periodIndex >= 0) {
                 result.append(text, 0, periodIndex);
                 foundEnd = true;
             }
@@ -608,7 +609,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
         }
         for (DetailNode child : ast.getChildren()) {
-            if(appendFirstSentence(child, period, result)) {
+            if (appendFirstSentence(child, period, result)) {
                 foundEnd = true;
                 break;
             }
@@ -616,11 +617,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return foundEnd;
     }
 
+    /**
+     * Find posititon of an ending period in the text. Ignores any period not followed by
+     * whitespace.
+     *
+     * @param text text to search
+     * @param period period character
+     * @return position of period character, or -1 if there is no ending period
+     */
     private static int findEndingPeriod(String text, String period) {
         int periodIndex = text.indexOf(period);
-        while(periodIndex >= 0) {
+        while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
-            if(isEndOrFollowedByWhitespace(text, afterPeriodIndex)) {
+            if (isEndOrWhitespace(text, afterPeriodIndex)) {
                 break;
             }
             else {
@@ -630,8 +639,25 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return periodIndex;
     }
 
-    private static boolean isEndOrFollowedByWhitespace(String text, int index) {
-        return index >= text.length() || Character.isWhitespace(text.charAt(index));
+    /**
+     * Test whether a position in some text is after the end or is whitespace.
+     *
+     * @param text text to test
+     * @param index position to test
+     * @return true if position is at the end or contains a whitespace character
+     */
+    private static boolean isEndOrWhitespace(String text, int index) {
+        final boolean matches;
+        if(index >= text.length()) {
+            matches = true;
+        }
+        else if(Character.isWhitespace(text.charAt(index))) {
+            matches = true;
+        }
+        else {
+            matches = false;
+        }
+        return matches;
     }
 
 }
