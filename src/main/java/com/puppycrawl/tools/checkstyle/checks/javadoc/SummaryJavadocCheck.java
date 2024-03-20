@@ -583,7 +583,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static String getFirstSentence(DetailNode ast, String period) {
         final StringBuilder result = new StringBuilder(256);
         final boolean foundEnd = appendFirstSentence(ast, period, result);
-        if(!foundEnd) {
+        if (!foundEnd) {
             result.setLength(0);
         }
         return result.toString();
