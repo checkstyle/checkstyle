@@ -40,7 +40,8 @@ public class InputSummaryJavadocPeriod
 
     // violation below 'Forbidden summary fragment.'
     /**
-     * Summary sentence containing default period mentioning version 1.1, then ending with correct period after disallowed words, fail-summary-fragment_
+     * Summary sentence containing default period mentioning version 1.1, then ending with correct
+     * period after disallowed words, fail-summary-fragment_
      */
     void foo9() {}
 
@@ -52,7 +53,8 @@ public class InputSummaryJavadocPeriod
 
     // violation below 'Forbidden summary fragment.'
     /**
-     * Summary sentence containing correct period mid_word, then ending with correct period after disallowed words, fail-summary-fragment_
+     * Summary sentence containing correct period mid_word, then ending with correct period after
+     * disallowed words, fail-summary-fragment_
      */
     void foo11() {}
 }
