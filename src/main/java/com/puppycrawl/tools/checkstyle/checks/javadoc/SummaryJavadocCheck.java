@@ -618,7 +618,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Find posititon of an ending period in the text. Ignores any period not followed by
+     * Find position of an ending period in the text. Ignores any period not followed by
      * whitespace.
      *
      * @param text text to search
