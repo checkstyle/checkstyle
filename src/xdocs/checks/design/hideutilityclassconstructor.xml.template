@@ -48,13 +48,13 @@ public class StringUtils // not final to allow subclassing
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
