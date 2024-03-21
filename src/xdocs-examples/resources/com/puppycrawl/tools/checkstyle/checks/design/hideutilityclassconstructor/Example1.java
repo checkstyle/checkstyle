@@ -6,10 +6,12 @@
 </module>
 */
 
-// xdoc section -- start
-class Test { // violation, class only has a static method and a constructor
+package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-  public Test() {
+// xdoc section -- start
+class Example1 { // violation
+
+  public Example1() {
   }
 
   public static void fun() {
@@ -32,7 +34,7 @@ class Bar { // OK
   }
 }
 
-class UtilityClass { // violation, class only has a static field
+class UtilityClass { // violation
 
   static float f;
 }
