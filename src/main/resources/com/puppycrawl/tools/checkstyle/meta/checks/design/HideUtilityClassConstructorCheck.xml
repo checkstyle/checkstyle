@@ -30,6 +30,12 @@
    }
  }
  &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
+               <description>Ignore classes annotated
+ with the specified annotation(s).</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="hide.utility.class"/>
          </message-keys>
