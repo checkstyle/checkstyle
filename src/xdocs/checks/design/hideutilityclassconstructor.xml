@@ -55,9 +55,9 @@ public class StringUtils // not final to allow subclassing
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class Test { // violation, class only has a static method and a constructor
+class Example1 { // violation
 
-  public Test() {
+  public Example1() {
   }
 
   public static void fun() {
@@ -80,7 +80,7 @@ class Bar { // OK
   }
 }
 
-class UtilityClass { // violation, class only has a static field
+class UtilityClass { // violation
 
   static float f;
 }
