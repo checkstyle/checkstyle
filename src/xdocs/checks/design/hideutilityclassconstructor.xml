@@ -42,6 +42,27 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreAnnotatedBy</td>
+              <td>Ignore classes annotated with the specified annotation(s). Name in this property must be an exact match for the annotation name on the class. If target class has annotation in fully qualified name (with package), this property should too. If target class has annotation in simple name, then this property needs to have the same simple name.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>10.15.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -55,7 +76,8 @@ public class StringUtils // not final to allow subclassing
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class Example1 { // violation
+@java.lang.Deprecated // violation
+class Example1 {
 
   public Example1() {
   }
@@ -64,23 +86,72 @@ class Example1 { // violation
   }
 }
 
-class Foo { // OK
+class Foo1 { // OK
 
-  private Foo() {
+  private Foo1() {
   }
 
   static int n;
 }
 
-class Bar { // OK
+class Bar1 { // OK
 
-  protected Bar() {
+  protected Bar1() {
     // prevents calls from subclass
     throw new UnsupportedOperationException();
   }
 }
 
-class UtilityClass { // violation
+@SpringBootApplication // violation
+class ApplicationClass1 {
+
+  static float f;
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HideUtilityClassConstructor&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotatedBy&quot;
+        value=&quot;SpringBootApplication, java.lang.Deprecated&quot; /&gt;
+    &lt;/module&gt;
+   &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+@java.lang.Deprecated
+class Example2 { // OK, skipped by annotation
+
+  public Example2() {
+  }
+
+  public static void fun() {
+  }
+}
+
+class Foo2 { // OK
+
+  private Foo2() {
+  }
+
+  static int n;
+}
+
+class Bar2 { // OK
+
+  protected Bar2() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+}
+
+@SpringBootApplication
+class ApplicationClass2 { // OK, skipped by annotation
 
   static float f;
 }
