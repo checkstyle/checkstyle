@@ -79,7 +79,36 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 extends ExternalService1 {
 
+  @JsonCreator
+  // violation below, 'More than 7 parameters (found 8)'
+  Example1(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
+
+  // violation below, 'More than 7 parameters (found 8)'
+  Example1(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
+
+  @interface JsonCreator {}
+
+  @Override
+  // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService1 {
+
+  // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+        </source>
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
@@ -92,6 +121,36 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 extends ExternalService2 {
+
+  @JsonCreator
+  // ok below, constructor is not in tokens to check
+  Example2(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
+
+  // ok below, constructor is not in tokens to check
+  Example2(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
+
+  @interface JsonCreator {}
+
+  @Override
+  // ok below, less than 10 parameters (found 8)
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService2 {
+
+  // ok below, less than 10 parameters (found 8)
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
         </source>
         <p>
           To configure the check to ignore number of parameters for methods with
@@ -111,14 +170,34 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">
-          Java code example:
-        </p>
+        <p id="Example3-code">Example:</p>
         <source>
-@Override
-public void needsLotsOfParameters(int a,
-    int b, int c, int d, int e, int f, int g, int h) {
-    ...
+class Example3 extends ExternalService3 {
+
+  @JsonCreator
+  // violation below, 'More than 7 parameters (found 8)'
+  Example3(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
+
+  // violation below, 'More than 7 parameters (found 8)'
+  Example3(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
+
+  @interface JsonCreator {}
+
+  @Override
+  // ok below, overridden method is ignored
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService3 {
+
+  // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
 }
         </source>
         <p id="Example4-config">
@@ -136,22 +215,32 @@ public void needsLotsOfParameters(int a,
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-class Example {
-    @JsonCreator
-    Example(int a, int b, int c, int d,
-            int e, int f, int g, int h) {}
+class Example4 extends ExternalService4 {
 
-    // violation below, 'More than 7 parameters (found 8)'
-    Example(String a, String b, String c, String d,
-            String e, String f, String g, String h) {}
+  @JsonCreator
+  // ok below, constructor annotated with JsonCreator annotation is ignored
+  Example4(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
 
-    // annotation name must be an exact match
-    // violation below, 'More than 7 parameters (found 8)'
-    @com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber.Example.JsonCreator
-    Example(float a, float b, float c, float d,
-            float e, float f, float g, float h) {}
+  // violation below, 'More than 7 parameters (found 8)'
+  Example4(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
 
-    @interface JsonCreator {}
+  @interface JsonCreator {}
+
+  @Override
+  // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService4 {
+
+  // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
 }
         </source>
         <p>
