@@ -21,10 +21,10 @@ tokens = ASSIGN, ARRAY_INIT, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAfterEmoji {
-    String a = "🎄❤️😂" + "🎅🔥😊🎁"; // ok
+    String a = "🎄❤️😂" + "🎅🔥😊🎁";
     String b = "🎄❤️😂"+ "🎅🔥😊🎁"; // violation ''\+' is not preceded with whitespace'
     String c = "🎄❤️😂" +"🎅🔥😊🎁"; // violation ''\+' is not followed by whitespace'
     String d = "🎄❤️😂"+"🎅🔥😊🎁"; // 2 violations
-    String e = "🎄" + "❤" + "️😂" + "🎅" + "🔥" + "😊" + "🎁"; // ok
+    String e = "🎄" + "❤" + "️😂" + "🎅" + "🔥" + "😊" + "🎁";
     String f = "🎄"+"❤"+"️😂"+"🎅"+"🔥"+"😊"+"🎁"; // 12 violations
 }
