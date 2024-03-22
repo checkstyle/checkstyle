@@ -8,7 +8,13 @@ public class InputStringTemplateNested {
     final String s =
             STR."x\{ sp(() -> {
                 return STR."x\{ sp(() -> {
-                    return STR."x\{ x }x" + "{" + "}}}";
+                    return STR."x\{
+                            sp(() -> {
+        return sp(() -> {
+            return sp(() -> {
+                return sp(() -> {
+                    return sp(() -> "");});});});})
+                            }x" + "{" + "}}}";
                 }) }x";
             })}x";
 
