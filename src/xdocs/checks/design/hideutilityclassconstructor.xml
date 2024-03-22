@@ -42,6 +42,27 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreAnnotatedBy</td>
+              <td>Ignore classes annotated with the specified annotation(s).</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>10.15.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -85,6 +106,60 @@ class UtilityClass { // violation
   static float f;
 }
         </source>
+
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HideUtilityClassConstructor&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotatedBy&quot; value=&quot;SkipMe, java.lang.Deprecated&quot; /&gt;
+    &lt;/module&gt;
+   &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 { // violation
+
+  public Example2() {
+
+  }
+
+  public static void fun() {
+
+  }
+}
+
+@SkipMe
+class IgnoredClass1 { // ok, ignored by annotation
+  public IgnoredClass1() {
+
+  }
+
+  public static void fun() {
+
+  }
+}
+
+@java.lang.Deprecated
+class IgnoredClass2 { // ok, ignored by annotation
+  public IgnoredClass2() {
+
+  }
+
+  public static void fun() {
+
+  }
+}
+
+@interface SkipMe {}
+        </source>
+        <p>
+          Note: Annotation names specified in the <code>ignoreAnnotatedBy</code> property
+          must be an exact match for the annotation name on the class.
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
