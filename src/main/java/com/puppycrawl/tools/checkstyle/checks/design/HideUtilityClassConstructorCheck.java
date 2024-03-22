@@ -19,10 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import java.util.Collections;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * <p>
@@ -51,6 +55,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  * </pre>
+ * <ul>
+ * <li>
+ * Property {@code ignoreAnnotatedBy} - Ignore classes annotated
+ * with the specified annotation(s).
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code ""}.
+ * </li>
+ * </ul>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -74,6 +86,11 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "hide.utility.class";
 
+    /**
+     * Ignore classes annotated with the specified annotation(s).
+     */
+    private Set<String> ignoreAnnotatedBy = Collections.emptySet();
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -91,8 +108,9 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
+        // classes with specific annotations should be skipped
         // abstract class could not have private constructor
-        if (!isAbstract(ast)) {
+        if (!isAbstract(ast) && !shouldIgnoreClass(ast)) {
             final boolean hasStaticModifier = isStatic(ast);
 
             final Details details = new Details(ast);
@@ -140,6 +158,26 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
     private static boolean isStatic(DetailAST ast) {
         return ast.findFirstToken(TokenTypes.MODIFIERS)
             .findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+    }
+
+    /**
+     * Setter to ignore classes annotated with the specified annotation(s).
+     *
+     * @param annotationNames specified annotation(s)
+     * @since 10.15.0
+     */
+    public void setIgnoreAnnotatedBy(String... annotationNames) {
+        this.ignoreAnnotatedBy = Set.of(annotationNames);
+    }
+
+    /**
+     * Checks if class is annotated by specific annotation(s) to skip.
+     *
+     * @param ast class to check
+     * @return true if annotated by ignored annotations
+     */
+    private boolean shouldIgnoreClass(DetailAST ast) {
+        return AnnotationUtil.containsAnnotation(ast, ignoreAnnotatedBy);
     }
 
     /**
