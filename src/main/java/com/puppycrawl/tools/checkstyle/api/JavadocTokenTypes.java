@@ -109,14 +109,14 @@ public final class JavadocTokenTypes {
      * <p>Such Javadoc tag can have one argument - {@link #DESCRIPTION}</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code @serialData two values of Integer type}</pre>
+     * <pre>{@code @serialData Two values of Integer type}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@serialData two values of Integer type ]
-     *       |--SERIAL_DATA_LITERAL[3x0] : [@serialData]
-     *       |--WS[3x11] : [ ]
-     *       |--DESCRIPTION[3x12] : [two values of Integer type ]
-     *           |--TEXT[3x12] : [two values of Integer type ]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SERIAL_DATA_LITERAL -> @serialData
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> Two values of Integer type
      * }
      * </pre>
      *
