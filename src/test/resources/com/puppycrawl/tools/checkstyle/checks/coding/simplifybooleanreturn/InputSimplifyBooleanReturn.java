@@ -60,11 +60,30 @@ public class InputSimplifyBooleanReturn
         }
     }
 
+    public boolean tryToProvokeNPE2() {
+        if (false) {
+        }
+        else if (true) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean ifNoElse()
     {
+        if (isOddMillis()) { // violation
+            return true;
+        }
+        return false;
+    }
+
+    public boolean ifNoElse2() {
+        // can't be simplified, other code runs before 'return' statement after if
         if (isOddMillis()) {
             return true;
         }
+
+        String test = "test";
         return false;
     }
 
