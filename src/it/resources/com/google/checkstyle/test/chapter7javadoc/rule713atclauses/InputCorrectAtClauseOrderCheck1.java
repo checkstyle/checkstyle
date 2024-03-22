@@ -40,7 +40,7 @@ class InputCorrectAtClauseOrderCheck1 implements Serializable
      * @serialData Some javadoc.
      * @deprecated Some text.
      */
-    String method(String aString) throws Exception { // ok
+    String method(String aString) throws Exception {
         return "null";
     }
 

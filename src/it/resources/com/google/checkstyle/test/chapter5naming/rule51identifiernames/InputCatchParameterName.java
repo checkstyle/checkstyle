@@ -3,44 +3,44 @@ package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 public class InputCatchParameterName {
     {
         try {
-        } catch (Exception e) { // ok
+        } catch (Exception e) {
         }
         try {
-        } catch (Exception ex) { // ok
+        } catch (Exception ex) {
         }
         try {
-        } catch (Error | Exception err) { // ok
+        } catch (Error | Exception err) {
         }
         try {
-        } catch (Exception exception) { // ok
+        } catch (Exception exception) {
         }
         try {
-        } catch (Exception exception1) { // ok
+        } catch (Exception exception1) {
         }
         try {
-        } catch (Exception noWorries) { // ok
+        } catch (Exception noWorries) {
         }
         try {
-        } catch (Throwable t) { // ok
+        } catch (Throwable t) {
         }
         try {
             throw new InterruptedException("interruptedException");
-        } catch (InterruptedException ie) { // ok
+        } catch (InterruptedException ie) {
         }
         try {
-        } catch (Exception ok) { // ok
+        } catch (Exception ok) {
             // appropriate to take no action here
         }
         try {
-        } catch (Exception e1) { // ok
+        } catch (Exception e1) {
             try {
-            } catch (Exception e2) { // ok
+            } catch (Exception e2) {
             }
         }
         try {
-        } catch (Throwable t1) { // ok
+        } catch (Throwable t1) {
             try {
-            } catch (Throwable t2) { // ok
+            } catch (Throwable t2) {
             }
         }
         try {

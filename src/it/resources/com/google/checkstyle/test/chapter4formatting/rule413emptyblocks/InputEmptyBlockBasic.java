@@ -21,12 +21,12 @@ class InputEmptyBlockBasic
         int index = 2;
         if (doSideEffect() == 1) {} // warn
         IO in = new IO();
-        while ((r = in.read()) != null) {} // ok
-        for (; index < s.length && s[index] != 'x'; index++) {} // ok
+        while ((r = in.read()) != null) {}
+        for (; index < s.length && s[index] != 'x'; index++) {}
         if (a == 1) {} else {System.identityHashCode("a");}  // warn
         do {} while(a == 1); //ok
         switch (a) {} //warn
-        int[] z = {}; // ok
+        int[] z = {};
     }
 
     public int doSideEffect()
@@ -70,12 +70,12 @@ class WithInner
             int index = 2;
             if (doSideEffect() == 1) {} //warn
             IO in = new IO();
-            while ((r = in.read()) != null) {} // ok
-            for (; index < s.length && s[index] != 'x'; index++) {} // ok
+            while ((r = in.read()) != null) {}
+            for (; index < s.length && s[index] != 'x'; index++) {}
             if (a == 1) {} else {System.identityHashCode("a");} // warn
             do {} while(a == 1); //ok
             switch (a) {} //warn
-            int[] z = {}; // ok
+            int[] z = {};
         }
     }
 }
@@ -100,12 +100,12 @@ class WithAnon
                 int index = 2;
                 if (doSideEffect() == 1) {} //warn
                 IO in = new IO();
-                while ((r = in.read()) != null) {} // ok
-                for (; index < s.length && s[index] != 'x'; index++) {} // ok
+                while ((r = in.read()) != null) {}
+                for (; index < s.length && s[index] != 'x'; index++) {}
                 if (a == 1) {} else {System.identityHashCode("a");} // warn
                 do {} while(a == 1); //ok
                 switch (a) {} //warn
-                int[] z = {}; // ok
+                int[] z = {};
             }
 
             public int doSideEffect()
@@ -127,13 +127,13 @@ class NewClass {
 
         if (a == 1) {
             System.identityHashCode("a");
-        } else {/*ignore*/} // OK
+        } else {/*ignore*/}
 
         if (a == 1) {
             /*ignore*/
         } else {
             System.identityHashCode("a");
-        } // ok
+        }
 
         if (a == 1) {
             System.identityHashCode("a");
@@ -196,13 +196,13 @@ class NewClass {
 
             if (a == 1) {
                 System.identityHashCode("a");
-            } else {/*ignore*/} // OK
+            } else {/*ignore*/}
 
             if (a == 1) {
                 /*ignore*/
             } else {
                 System.identityHashCode("a");
-            } // ok
+            }
 
             if (a == 1) {
                 System.identityHashCode("a");
@@ -265,13 +265,13 @@ class NewClass {
 
                 if (a == 1) {
                     System.identityHashCode("a");
-                } else {/*ignore*/} // OK
+                } else {/*ignore*/}
 
                 if (a == 1) {
                     /*ignore*/
                 } else {
                     System.identityHashCode("a");
-                } // ok
+                }
 
                 if (a == 1) {
                     System.identityHashCode("a");
@@ -328,9 +328,9 @@ class NewClass {
 
 class Example {
 
-    void doNothing() {} // ok
+    void doNothing() {}
 
-    void doNothingElse() { // ok
+    void doNothingElse() {
 
     }
 }

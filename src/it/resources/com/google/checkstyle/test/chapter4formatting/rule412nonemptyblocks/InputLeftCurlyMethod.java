@@ -23,7 +23,7 @@ class InputLeftCurlyMethod
     {//warn
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 
@@ -76,7 +76,7 @@ enum InputLeftCurlyMethodEnum
     {//warn
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 

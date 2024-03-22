@@ -122,24 +122,24 @@ class FooInner
     }} //ok
 
 class EnumContainer {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }
 }
 
 class WithArrays {
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
+    String[] s = {""};
+    String[] empty = {};
     String[] s1 = {
         "foo", "foo",
-    }; // ok
+    };
     String[] s2 =
         {
             "foo", "foo",
-        }; // ok
+        };
     String[] s3 =
         {
             "foo",
             "foo",
-        }; // ok
+        };
     String[] s4 =
-        {"foo", "foo"}; // ok
+        {"foo", "foo"};
 }

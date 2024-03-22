@@ -12,7 +12,7 @@ class InputLocalVariableNameOneCharVarName
             //some code
         }
 
-        int i = 0; // ok
+        int i = 0;
 
         for(int index = 1; index < 10; index++) { //ok
             //some code

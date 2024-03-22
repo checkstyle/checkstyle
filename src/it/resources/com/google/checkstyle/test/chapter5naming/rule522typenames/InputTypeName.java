@@ -22,7 +22,7 @@ class Valid_Name {} //warn
 
 class ValidName_ {} //warn
 
-interface Foo {} // ok
+interface Foo {}
 
 interface _Foo {} // warn
 

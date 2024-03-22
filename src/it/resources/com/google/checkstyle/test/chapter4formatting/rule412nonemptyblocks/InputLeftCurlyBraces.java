@@ -111,24 +111,24 @@ class InputLeftCurlyBraces
 }
 
 class EnumContainerLeft {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }
 }
 
-class WithArraysLeft { // ok
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
-    String[] s1 = { // ok
+class WithArraysLeft {
+    String[] s = {""};
+    String[] empty = {};
+    String[] s1 = {
         "foo", "foo",
     };
     String[] s2 =
-        { // ok
+        {
             "foo", "foo",
         };
     String[] s3 =
-        { // ok
+        {
             "foo",
             "foo",
         };
     String[] s4 =
-        {"foo", "foo"}; // ok
+        {"foo", "foo"};
 }
