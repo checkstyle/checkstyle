@@ -90,10 +90,9 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitQualifiedNameExtended",
             "visitGuard",
 
-            // until https://github.com/checkstyle/checkstyle/issues/14195
-            "visitTemplate",
             // handled as a list in the parent rule
-            "visitStringTemplateMiddle"
+            "visitStringTemplateMiddle",
+            "visitTextBlockTemplateMiddle"
     );
 
     @Override

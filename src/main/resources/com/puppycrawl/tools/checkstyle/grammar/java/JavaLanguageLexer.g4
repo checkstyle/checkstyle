@@ -116,7 +116,8 @@ tokens {
     STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
     EMBEDDED_EXPRESSION_END,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF, TEXT_BLOCK_TEMPLATE_BEGIN,
+    TEXT_BLOCK_TEMPLATE_MID, TEXT_BLOCK_TEMPLATE_END, TEXT_BLOCK_TEMPLATE_CONTENT
 }
 
 @header {
@@ -254,15 +255,21 @@ LITERAL_FALSE:           'false';
 
 CHAR_LITERAL:            '\'' (EscapeSequence | ~['\\\r\n]) '\'';
 
-fragment StringFragment: (EscapeSequence | ~["\\\r\n])*;
+fragment StringFragment: (EscapeSequence | ~["\\\r\n]);
 
-STRING_LITERAL:         '"' StringFragment '"';
+STRING_LITERAL:         '"' StringFragment* '"';
 
-STRING_TEMPLATE_BEGIN:  '"' StringFragment '\\' '{'
+STRING_TEMPLATE_BEGIN:  '"'
+                        { _input.LA(1) != '"' }?
                         { contextCache.enterTemplateContext(StringTemplate); }
                         ;
 
-TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
+TEXT_BLOCK_LITERAL_BEGIN: { _input.LA(-1) != '.' }? '"' '"' '"' -> pushMode(TextBlock);
+
+// can do predicate here for previous token being '.'
+TEXT_BLOCK_TEMPLATE_BEGIN:  '"' '"' '"'
+                        { contextCache.enterTemplateContext(TextBlockTemplate); }
+                        ;
 
 LITERAL_NULL:            'null';
 
@@ -332,9 +339,6 @@ DOUBLE_COLON:            '::';
 
 AT:                      '@';
 ELLIPSIS:                '...';
-
-// String templates
-
 
 // Text block fragments
 
@@ -467,13 +471,24 @@ mode TextBlock;
         : '"' '"' '"' -> popMode
         ;
 
+// Text block template lexical mode
+mode TextBlockTemplate;
+
+    TEXT_BLOCK_TEMPLATE_CONTENT: TextBlockContent;
+
+    TEXT_BLOCK_EMBEDDED_EXPRESSION_BEGIN: '\\' '{'
+        -> pushMode(DEFAULT_MODE), type(EMBEDDED_EXPRESSION_BEGIN)
+        ;
+
+    TEXT_BLOCK_TEMPLATE_END
+        : '"' '"' '"' { contextCache.exitTemplateContext(); }
+        ;
+
 // String template lexical mode
 mode StringTemplate;
 
-    STRING_TEMPLATE_MID: StringFragment '\\' '{'
-                         -> pushMode(DEFAULT_MODE), type(STRING_TEMPLATE_MID);
+    STRING_TEMPLATE_CONTENT: StringFragment+;
 
+    EMBEDDED_EXPRESSION_BEGIN: '\\' '{' -> pushMode(DEFAULT_MODE);
 
-    STRING_TEMPLATE_END: StringFragment '"'
-                         { contextCache.exitTemplateContext(); }
-                         -> popMode, type(STRING_TEMPLATE_END);
+    STRING_TEMPLATE_END:  '"' { contextCache.exitTemplateContext(); };

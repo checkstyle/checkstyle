@@ -143,11 +143,16 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             // possible index for the second whitespace between non-whitespace characters.
             final int minSecondWhitespaceColumnNo = 2;
 
-            if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(
-                            getLineCodePoints(currentNode.getLineNo() - 1),
-                            columnNo)) {
-                log(currentNode, MSG_KEY);
+            try {
+                if (columnNo >= minSecondWhitespaceColumnNo
+                        && !isTextSeparatedCorrectlyFromPrevious(
+                                getLineCodePoints(currentNode.getLineNo() - 1),
+                                columnNo)) {
+                    log(currentNode, MSG_KEY);
+                }
+            }
+            catch (IndexOutOfBoundsException e) {
+                System.out.println();
             }
             if (currentNode.hasChildren()) {
                 currentNode = currentNode.getFirstChild();

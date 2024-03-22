@@ -46,6 +46,15 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputStringTemplateBasic.java"));
     }
 
+    /**
+     * The purpose of this test is to exercise the
+     * {@link com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache}:
+     * getting some curly brace contexts on the stack, making sure that each
+     * element in the stack has some depth. This ensures that we can handle
+     * many nested curly braces within an embedded template expression.
+     *
+     * @throws Exception upon failure
+     */
     @Test
     public void testStringTemplateNested() throws Exception {
         verifyAst(
@@ -97,6 +106,17 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "InputTextBlockConsecutiveEscapes.java"));
     }
 
+    @Test
+    public void testStringTemplateMultiLineWithComments() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedStringTemplateMultiLineWithComments.txt"),
+                getNonCompilablePath(
+                        "InputStringTemplateMultiLineWithComments.java"),
+                JavaParser.Options.WITH_COMMENTS
+        );
+    }
+
     /**
      * Unusual test case, but important to prevent regressions. We need to
      * make sure that we only consume legal escapes in text blocks, and
@@ -131,5 +151,23 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                 .contains("13:14: mismatched input '}\\n"
                         + "            ' expecting TEXT_BLOCK_LITERAL_END");
 
+    }
+
+    @Test
+    public void testTextBlockTemplateBasic() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateBasic.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateBasic.java"));
+    }
+
+    @Test
+    public void testTextBlockTemplateInlineCodeTricky() throws Exception {
+        verifyAst(
+                getNonCompilablePath(
+                        "ExpectedTextBlockTemplateInlineCodeTricky.txt"),
+                getNonCompilablePath(
+                        "InputTextBlockTemplateInlineCodeTricky.java"));
     }
 }
