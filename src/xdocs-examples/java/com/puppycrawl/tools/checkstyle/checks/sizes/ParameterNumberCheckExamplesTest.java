@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,10 +34,13 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "20:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "25:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "33:15: " + getCheckMessage(MSG_KEY, 7, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,15 +49,28 @@ public class ParameterNumberCheckExamplesTest extends AbstractExamplesModuleTest
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "18:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "22:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "35:15: " + getCheckMessage(MSG_KEY, 7, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:3: " + getCheckMessage(MSG_KEY, 7, 8),
+            "27:15: " + getCheckMessage(MSG_KEY, 7, 8),
+            "35:15: " + getCheckMessage(MSG_KEY, 7, 8),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
