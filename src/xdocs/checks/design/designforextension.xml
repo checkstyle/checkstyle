@@ -169,7 +169,7 @@ public abstract class Plant {
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example1 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
@@ -221,7 +221,7 @@ public abstract class Foo {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example2 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
@@ -273,7 +273,7 @@ public abstract class Foo {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example3 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
@@ -326,7 +326,7 @@ public abstract class Foo {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example4 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
