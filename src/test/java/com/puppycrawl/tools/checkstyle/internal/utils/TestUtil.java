@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -33,6 +35,8 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.function.Executable;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
@@ -376,6 +380,32 @@ public final class TestUtil {
     public static <T> Class<T> getInnerClassType(Class<?> declaringClass, String name)
             throws ClassNotFoundException {
         return (Class<T>) Class.forName(declaringClass.getName() + "$" + name);
+    }
+
+    /**
+     * Executes the provided executable and expects it to throw an exception of the specified type.
+     *
+     * @param expectedType the class of the expected exception type.
+     * @param executable the executable to be executed
+     * @param message the message to be used in case of assertion failure.
+     * @return the expected exception thrown by the executable.
+     */
+    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
+                                                               Executable executable,
+                                                               String message) {
+        return assertThrows(expectedType, executable, message);
+    }
+
+    /**
+     *  Executes the provided executable and expects it to throw an exception of the specified type.
+     *
+     * @param expectedType the class of the expected exception type.
+     * @param executable the executable to be executed
+     * @return the expected exception thrown by the executable.
+     */
+    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
+                                                               Executable executable) {
+        return assertThrows(expectedType, executable);
     }
 
 }
