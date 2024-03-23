@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputFileLength3 // ok
+final class InputFileLength3
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-

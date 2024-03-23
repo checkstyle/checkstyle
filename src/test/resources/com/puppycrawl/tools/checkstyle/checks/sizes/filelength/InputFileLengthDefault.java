@@ -1,5 +1,6 @@
-/* // ok
+/*
 FileLength
+
 
 
 */
@@ -17,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 final class InputFileLengthDefault
 {
     // Long line ----------------------------------------------------------------
-    // Contains a tab ->        <-
+    // Contains a tab ->
     // Contains trailing whitespace ->
 
     // Name format tests
