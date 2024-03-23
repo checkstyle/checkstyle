@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.ant;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.IOException;
@@ -245,7 +245,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -259,7 +259,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath(NOT_EXISTING_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -273,7 +273,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath("InputCheckstyleAntTaskEmptyConfig.xml"));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -284,7 +284,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public final void testNoFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -297,7 +297,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(WARNING_INPUT)));
         antTask.setMaxWarnings(0);
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -331,7 +331,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         antTask.setProject(project);
         antTask.setFailureProperty(failurePropertyName);
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -463,7 +463,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(url.toString());
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 () -> antTask.setConfig("Any string value"),
                 "BuildException is expected");
         final String expected = "Attribute 'config' has already been set";
@@ -492,7 +492,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -572,7 +572,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final File outputFile = new File("target/");
         formatter.setTofile(outputFile);
         antTask.addFormatter(formatter);
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -591,7 +591,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatterType.setValue("xml");
         formatter.setType(formatterType);
         antTask.addFormatter(formatter);
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -610,7 +610,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatterType.setValue("sarif");
         formatter.setType(formatterType);
         antTask.addFormatter(formatter);
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -621,7 +621,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     @Test
     public void testSetInvalidType() {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 () -> formatterType.setValue("foo"),
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
@@ -832,7 +832,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(""));
-        final BuildException ex = assertThrows(BuildException.class,
+        final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")

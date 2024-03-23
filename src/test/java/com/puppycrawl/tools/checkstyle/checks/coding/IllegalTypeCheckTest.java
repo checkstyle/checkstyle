@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 
@@ -439,7 +439,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         final DetailAstImpl enumAst = new DetailAstImpl();
         enumAst.setType(TokenTypes.ENUM_DEF);
-        final IllegalStateException exception = assertThrows(IllegalStateException.class,
+        final IllegalStateException exception = getExpectedThrowable(IllegalStateException.class,
                 () -> check.visitToken(enumAst), "IllegalStateException was expected");
 
         assertWithMessage("Message doesn't contain ast")
