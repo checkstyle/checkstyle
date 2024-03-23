@@ -14,8 +14,8 @@ package com.puppycrawl.tools.checkstyle.utils.checkutil;
 
 public class InputCheckUtil7 {
 
-    static public class TestException3 extends Exception { // ok
-        TestException3(String messg) { // ok
+    static public class TestException3 extends Exception {
+        TestException3(String messg) {
             super(messg);
         }
 
