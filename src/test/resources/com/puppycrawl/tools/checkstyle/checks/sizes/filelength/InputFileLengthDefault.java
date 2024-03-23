@@ -2,7 +2,6 @@
 FileLength
 
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
