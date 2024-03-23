@@ -40,7 +40,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
     @Test
     public void testWhitespaceAroundNotPreceded() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionWhitespaceAroundNotPreceded.java"));
+                new File(getPath("InputXpathWhitespaceAroundNotPreceded.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(WhitespaceAroundCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionWhitespaceAroundNotPreceded']]/OBJBLOCK"
+                + "@text='InputXpathWhitespaceAroundNotPreceded']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
     @Test
     public void testWhitespaceAroundNotFollowed() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionWhitespaceAroundNotFollowed.java"));
+                new File(getPath("InputXpathWhitespaceAroundNotFollowed.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(WhitespaceAroundCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionWhitespaceAroundNotFollowed']]/OBJBLOCK"
+                + "@text='InputXpathWhitespaceAroundNotFollowed']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 

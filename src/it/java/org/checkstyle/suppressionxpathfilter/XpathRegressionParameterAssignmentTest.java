@@ -40,7 +40,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testMethods() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionParameterAssignmentMethods.java");
+                getPath("InputXpathParameterAssignmentMethods.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -52,11 +52,11 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentMethods']]"
+            + "@text='InputXpathParameterAssignmentMethods']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]/SLIST/EXPR"
             + "[./PLUS_ASSIGN/IDENT[@text='field']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentMethods']]"
+            + "@text='InputXpathParameterAssignmentMethods']]"
             + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Test1']]"
             + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
@@ -68,7 +68,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testLambdas() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionParameterAssignmentLambdas.java");
+                getPath("InputXpathParameterAssignmentLambdas.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -80,11 +80,11 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentLambdas']]"
+            + "@text='InputXpathParameterAssignmentLambdas']]"
             + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]"
             + "/ASSIGN/LAMBDA[./IDENT[@text='q']]/EXPR",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentLambdas']]"
+            + "@text='InputXpathParameterAssignmentLambdas']]"
             + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='obj1']]/ASSIGN/LAMBDA[./IDENT["
             + "@text='q']]/EXPR/POST_INC[./IDENT[@text='q']]"
         );
@@ -95,7 +95,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     @Test
     public void testCtor() throws Exception {
         final String filePath =
-                getPath("SuppressionXpathRegressionParameterAssignmentCtor.java");
+                getPath("InputXpathParameterAssignmentCtor.java");
         final File fileToProcess = new File(filePath);
 
         final DefaultConfiguration moduleConfig =
@@ -107,14 +107,14 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentCtor']]"
+            + "@text='InputXpathParameterAssignmentCtor']]"
             + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentCtor']]"
+            + "@text='InputXpathParameterAssignmentCtor']]"
             + "/SLIST/EXPR[./PLUS_ASSIGN/IDENT[@text='field']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentCtor']]"
+            + "@text='InputXpathParameterAssignmentCtor']]"
             + "/OBJBLOCK/CTOR_DEF[./IDENT["
-            + "@text='SuppressionXpathRegressionParameterAssignmentCtor']]"
+            + "@text='InputXpathParameterAssignmentCtor']]"
             + "/SLIST/EXPR/PLUS_ASSIGN[./IDENT[@text='field']]"
         );
 

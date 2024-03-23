@@ -41,7 +41,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRegressionRecordTypeParameterName1.java"));
+                "InputXpathRecordTypeParameterName1.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordTypeParameterNameCheck.class);
@@ -67,7 +67,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRegressionRecordTypeParameterName2.java"));
+                "InputXpathRecordTypeParameterName2.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordTypeParameterNameCheck.class);

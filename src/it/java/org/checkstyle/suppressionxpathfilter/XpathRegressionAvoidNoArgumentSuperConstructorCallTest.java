@@ -42,7 +42,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall.java"));
+            "InputXpathAvoidNoArgumentSuperConstructorCall.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);
@@ -54,9 +54,9 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall']]"
+                    + "[@text='InputXpathAvoidNoArgumentSuperConstructorCall']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall']]"
+                    + "@text='InputXpathAvoidNoArgumentSuperConstructorCall']]"
                     + "/SLIST/SUPER_CTOR_CALL"
         );
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCallInnerClass.java"
+            "InputXpathAvoidNoArgumentSuperConstructorCallInnerClass.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -79,7 +79,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                + "'SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCallInnerClass']]"
+                + "'InputXpathAvoidNoArgumentSuperConstructorCallInnerClass']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/CLASS_DEF[./IDENT[@text='Inner']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='Inner']]"

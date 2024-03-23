@@ -41,7 +41,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTodoCommentOne.java"));
+                new File(getPath("InputXpathTodoCommentOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);
@@ -53,7 +53,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionTodoCommentOne']]/OBJBLOCK/"
+                        + "'InputXpathTodoCommentOne']]/OBJBLOCK/"
                         + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -63,7 +63,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTodoCommentTwo.java"));
+                new File(getPath("InputXpathTodoCommentTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TodoCommentCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionTodoCommentTwo']]/"
+                        + "'InputXpathTodoCommentTwo']]/"
                         + "OBJBLOCK/BLOCK_COMMENT_BEGIN/COMMENT_CONTENT"
                         + "[@text=' // warn\\n     * FIXME:\\n     * TODO\\n     ']"
         );
