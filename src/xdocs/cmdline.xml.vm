@@ -96,26 +96,27 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           <code>-s</code> option. Default value is 8.
         </li>
         <li>
-          <code>-t, --tree</code> - Prints Abstract Syntax Tree(AST) of the checked file. The option
-          cannot be used other options and requires exactly one file to run on to be specified.
+          <code>-t, --tree</code> - This option is used to display the Abstract Syntax Tree (AST)
+          of the specified file. It can only be used on a single file and cannot be combined
+          with other options.
         </li>
         <li>
-          <code>-T, --treeWithComments</code> - Prints Abstract Syntax Tree(AST) with comment nodes
-          of the checked file. The option cannot be used with other options and requires exactly
-          one file to run on to be specified.
+          <code>-T, --treeWithComments</code> - This option is used to display the Abstract Syntax
+          Tree (AST) with comment nodes of the specified file. It can only be used on a single
+          file and cannot be combined with other options.
         </li>
         <li>
-          <code>-J, --treeWithJavadoc</code> - Prints Abstract Syntax Tree(AST) with Javadoc nodes
-          and comment nodes of the checked file. Attention that line number and columns will not be
-          the same as it is a file due to the fact that each javadoc comment is parsed separately
-          from java file. The option cannot be used with other options and requires exactly one
-          file to run on to be specified.
+          <code>-J, --treeWithJavadoc</code> - This option is used to display the Abstract Syntax
+          Tree (AST) with Javadoc nodes of the specified file. It can only be used on a single
+          file and cannot be combined with other options. Attention that line number and columns
+          will not be the same due to the fact that each javadoc comment is
+          parsed separately from java file.
         </li>
         <li>
           <code>-j, --javadocTree</code> - Prints Parse Tree of the Javadoc comment.
           The file have to contain <b>only Javadoc comment content</b> without including '/**' and
-          '*/' at the beginning and at the end respectively. The option
-          cannot be used other options and requires exactly one file to run on to be specified.
+          '*/' at the beginning and at the end respectively. It can only be used on a single
+          file and cannot be combined with other options.
         </li>
         <li>
           <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.
