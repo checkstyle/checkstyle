@@ -1940,16 +1940,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundCatch.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter10.java"/>
   <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilterNullViolation.java"/>
@@ -1973,6 +1963,4 @@
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparator2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="utils[\\/]checkutil[\\/]InputCheckUtil7.java"/>
 </suppressions>
