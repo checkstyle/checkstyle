@@ -101,7 +101,7 @@ public final class XpathUtil {
      * </pre>
      * Only these tokens support text attribute because they make our xpath queries more accurate.
      * These token types are listed below.
-     * */
+     */
     private static final BitSet TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = TokenUtil.asBitSet(
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
             TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
