@@ -1370,14 +1370,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]executablestatementcount[\\/]InputExecutableStatementCountMaxZero.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]filelength[\\/]InputFileLength2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]filelength[\\/]InputFileLength3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]filelength[\\/]InputFileLength4.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]sizes[\\/]filelength[\\/]InputFileLengthDefault.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]lambdabodylength[\\/]InputLambdaBodyLengthMax.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]sizes[\\/]methodlength[\\/]InputMethodLengthCountEmptyIsFalse.java"/>
