@@ -25,18 +25,18 @@ class AA {
         oneLine();
     }
 
-    void twoLines() { // ok
+    void twoLines() {
 
     }
 
-    void twoLines2() { // ok
+    void twoLines2() {
         oneLine();}
 
-    void twoLinesAndComment() { // ok
+    void twoLinesAndComment() {
         // some comment
     }
 
-    void oneLine() { oneLine();/* ok */ }
+    void oneLine() { oneLine();}
 
     void threeLines() { // violation 'Method threeLines length is 3 lines (max allowed is 2).'
         oneLine();
