@@ -724,8 +724,8 @@ public final class Main {
         /** Option that controls whether to print the AST of the file. */
         @Option(names = {"-t", "--tree"},
                 description = "Prints Abstract Syntax Tree(AST) of the checked file. The option "
-                        + "cannot be used other options and requires exactly one file to run on "
-                        + "to be specified.")
+                        + "cannot be used with other options and requires exactly one file to "
+                        + "run on to be specified with the complete path."
         private boolean printAst;
 
         /** Option that controls whether to print the AST of the file including comments. */
