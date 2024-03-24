@@ -2,14 +2,14 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DesignForExtension">
-      <property name="ignoredAnnotations" value="Override"/>
+      <property name="requiredJavadocPhrase" value="This implementation"/>
     </module>
   </module>
 </module>
 */
 
 // xdoc section -- start
-public abstract class Foo {
+public abstract class Example3 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
@@ -26,21 +26,21 @@ public abstract class Foo {
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m6() {return 1;}  // OK. Have required javadoc.
 
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m7() {return 1;}  // Violation. No required javadoc.
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+  public int m8() {return 2;}  // Violation. No required javadoc.
 
   @Override
-  public String toString() {  // OK. Have javadoc on overridable method.
+  public String toString() {  // Violation. No required javadoc.
     return "";
   }
 }
