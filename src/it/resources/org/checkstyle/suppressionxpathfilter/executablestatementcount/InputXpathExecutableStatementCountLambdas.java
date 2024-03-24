@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.executablestatementcount;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class SuppressionXpathRegressionExecutableStatementCountLambdas {
+public class InputXpathExecutableStatementCountLambdas {
     Consumer c = (s) -> { // warn
         String str = s.toString();
         str = str + "!";
