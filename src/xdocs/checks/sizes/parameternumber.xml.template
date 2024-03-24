@@ -29,17 +29,28 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example2-config">
           To configure the check to allow 10 parameters for a method:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p>
           To configure the check to ignore number of parameters for methods with
@@ -52,15 +63,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">
-          Java code example:
-        </p>
+        <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -69,13 +78,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
