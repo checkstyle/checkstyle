@@ -117,6 +117,149 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
 
+    // Checks whose files need to be renamed to new pattern "InputXpath{Checkname}Xxx.java"
+    // till checkstyle issue
+    private static final Set<String> RENAME_INPUT_XPATH = Set.of(
+            "AbbreviationAsWordInName",
+            "AbstractClassName",
+            "AnnotationLocation",
+            "AnnotationOnSameLine",
+            "AnnotationUseStyle",
+            "AnonInnerLength",
+            "ArrayTrailingComma",
+            "ArrayTypeStyle",
+            "AvoidDoubleBraceInitialization",
+            "AvoidEscapedUnicodeCharacters",
+            "AvoidInlineConditionals",
+            "AvoidNestedBlocks",
+            "AvoidNoArgumentSuperConstructorCall",
+            "AvoidStarImport",
+            "AvoidStaticImport",
+            "BooleanExpressionComplexity",
+            "CatchParameterName",
+            "ClassMemberImpliedModifier",
+            "CommentsIndentation",
+            "ConstantName",
+            "CovariantEquals",
+            "CustomImportOrder",
+            "CyclomaticComplexity",
+            "DeclarationOrder",
+            "DefaultComesLast",
+            "EmptyBlock",
+            "EmptyCatchBlock",
+            "EmptyForInitializerPad",
+            "EmptyForIteratorPad",
+            "EmptyLineSeparator",
+            "EmptyStatement",
+            "EqualsAvoidNull",
+            "EqualsHashCode",
+            "ExplicitInitialization",
+            "FallThrough",
+            "FinalClass",
+            "FinalLocalVariable",
+            "FinalParameters",
+            "GenericWhitespace",
+            "HiddenField",
+            "IllegalCatch",
+            "IllegalImport",
+            "IllegalThrows",
+            "IllegalToken",
+            "IllegalTokenText",
+            "IllegalType",
+            "ImportControl",
+            "ImportOrder",
+            "Indentation",
+            "InnerAssignment",
+            "InnerTypeLast",
+            "InterfaceIsType",
+            "InterfaceMemberImpliedModifier",
+            "InvalidJavadocPosition",
+            "JavadocContentLocation",
+            "JavadocMethod",
+            "JavadocType",
+            "JavadocVariable",
+            "JavaNCSS",
+            "LambdaBodyLength",
+            "LambdaParameterName",
+            "LeftCurly",
+            "LocalFinalVariableName",
+            "MagicNumber",
+            "MatchXpath",
+            "MemberName",
+            "MethodCount",
+            "MethodLength",
+            "MethodName",
+            "MethodParamPad",
+            "MissingCtor",
+            "MissingJavadocMethod",
+            "MissingJavadocPackage",
+            "MissingJavadocType",
+            "MissingOverride",
+            "MissingSwitchDefault",
+            "ModifierOrder",
+            "MultipleStringLiterals",
+            "MultipleVariableDeclarations",
+            "NeedBraces",
+            "NestedForDepth",
+            "NestedIfDepth",
+            "NestedTryDepth",
+            "NoArrayTrailingComma",
+            "NoClone",
+            "NoEnumTrailingComma",
+            "NoFinalizer",
+            "NoLineWrap",
+            "NoWhitespaceAfter",
+            "NoWhitespaceBefore",
+            "NoWhitespaceBeforeCaseDefaultColon",
+            "NpathComplexity",
+            "OneStatementPerLine",
+            "OneTopLevelClass",
+            "OperatorWrap",
+            "OuterTypeFilename",
+            "OuterTypeNumber",
+            "OverloadMethodsDeclarationOrder",
+            "PackageName",
+            "ParameterAssignment",
+            "ParameterName",
+            "ParameterNumber",
+            "ParenPad",
+            "RedundantImport",
+            "RequireThis",
+            "ReturnCount",
+            "RightCurly",
+            "SimplifyBooleanExpression",
+            "SimplifyBooleanReturn",
+            "SingleSpaceSeparator",
+            "StaticVariableName",
+            "StringLiteralEquality",
+            "SuperClone",
+            "ThrowsCount",
+            "TodoComment",
+            "TrailingComment",
+            "TypecastParenPad",
+            "TypeName",
+            "UncommentedMain",
+            "UnnecessaryParentheses",
+            "UnnecessarySemicolonAfterOuterTypeDeclaration",
+            "UnnecessarySemicolonAfterTypeMemberDeclaration",
+            "UnnecessarySemicolonInEnumeration",
+            "UnnecessarySemicolonInTryWithResources",
+            "UnusedImports",
+            "UnusedLocalVariable",
+            "UpperEll",
+            "VariableDeclarationUsageDistance",
+            "VisibilityModifier",
+            "WhitespaceAfter",
+            "WhitespaceAround",
+            "IllegalIdentifierName",
+            "IllegalInstantiation",
+            "PackageAnnotation",
+            "PackageDeclaration",
+            "PatternVariablename",
+            "RecordComponentName",
+            "RecordComponentNumber",
+            "RecordTypeParameterName");
+
     private Path javaDir;
     private Path inputDir;
 
@@ -263,7 +406,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     private static void validateInputDirectory(Path checkDir) throws IOException {
-        final Pattern pattern = Pattern.compile("^SuppressionXpathRegression(.+)\\.java$");
+        final Pattern pattern = Pattern.compile("^InputXpath(.+)\\.java$");
         final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(checkDir.toFile().getName());
 
         try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
@@ -271,16 +414,19 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String filename = inputPath.toFile().getName();
                 if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
-                    assertWithMessage(
-                              "Invalid input file '" + inputPath + "', expected pattern:" + pattern)
-                            .that(matcher.matches())
-                            .isTrue();
-
                     final String remaining = matcher.group(1);
-                    assertWithMessage("Check name '" + check
-                                + "' should be included in input file: " + inputPath)
-                            .that(remaining)
-                            .startsWith(check);
+                    if (!RENAME_INPUT_XPATH.contains(remaining)) {
+                        assertWithMessage(
+                                  "Invalid input file '" + inputPath
+                                  + "', expected pattern:" + pattern)
+                                .that(matcher.matches())
+                                .isTrue();
+
+                        assertWithMessage("Check name '" + check
+                                    + "' should be included in input file: " + inputPath)
+                                .that(remaining)
+                                .startsWith(check);
+                    }
                 }
             }
         }
