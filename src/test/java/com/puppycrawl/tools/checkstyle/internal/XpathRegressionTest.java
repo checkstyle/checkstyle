@@ -118,7 +118,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
 
     // Checks whose files need to be renamed to new pattern "InputXpath{Check}Xxx.java"
-    // till checkstyle issue
+    // until https://github.com/checkstyle/checkstyle/issues/14715
     private static final Set<String> RENAME_INPUT_XPATH = Set.of(
             "AbbreviationAsWordInName",
             "AbstractClassName",
@@ -153,7 +153,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "EmptyStatement",
             "EqualsAvoidNull",
             "EqualsHashCode",
-            "ExecutableStatementCount",
             "ExplicitInitialization",
             "FallThrough",
             "FinalClass",
