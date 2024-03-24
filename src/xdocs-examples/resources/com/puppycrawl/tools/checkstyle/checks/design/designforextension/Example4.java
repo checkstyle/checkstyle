@@ -1,20 +1,23 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="DesignForExtension"/>
+    <module name="DesignForExtension">
+      <property name="requiredJavadocPhrase"
+        value="This[\s\S]*implementation"/>
+    </module>
   </module>
 </module>
 */
 
 // xdoc section -- start
-public abstract class Foo {
+public abstract class Example4 {
   private int bar;
 
   public int m1() {return 2;}  // Violation. No javadoc.
 
   public int m2() {return 8;}  // Violation. No javadoc.
 
-  private void m3() {m4();}  // OK. Private method.
+  private void m3() {m4();}
 
   protected void m4() { }  // OK. No implementation.
 
@@ -24,21 +27,21 @@ public abstract class Foo {
    * This implementation ...
    @return some int value.
    */
-  public int m6() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m6() {return 1;}  // OK. Have required javadoc.
 
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // OK. Have javadoc on overridable method.
+  public int m7() {return 1;}  // Violation. No required javadoc.
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have javadoc on overridable method.
+  public int m8() {return 2;}  // OK. Have required javadoc.
 
   @Override
-  public String toString() {  // Violation. No javadoc for @Override method.
+  public String toString() {  // Violation. No required javadoc.
     return "";
   }
 }
