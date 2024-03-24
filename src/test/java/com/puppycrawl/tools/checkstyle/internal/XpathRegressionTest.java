@@ -153,7 +153,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "EmptyStatement",
             "EqualsAvoidNull",
             "EqualsHashCode",
-            "ExecutableStatementCount",
             "ExplicitInitialization",
             "FallThrough",
             "FinalClass",
@@ -256,7 +255,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "IllegalInstantiation",
             "PackageAnnotation",
             "PackageDeclaration",
-            "PatternVariablename",
+            "PatternVariableName",
             "RecordComponentName",
             "RecordComponentNumber",
             "RecordTypeParameterName");
@@ -415,14 +414,14 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String filename = inputPath.toFile().getName();
                 if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
-                    final String remaining = matcher.group(1);
-                    if (!RENAME_INPUT_XPATH.contains(remaining)) {
+                    if (!RENAME_INPUT_XPATH.contains(check)) {
                         assertWithMessage(
                                   "Invalid input file '" + inputPath
                                   + "', expected pattern:" + pattern)
                                 .that(matcher.matches())
                                 .isTrue();
 
+                        final String remaining = matcher.group(1);
                         assertWithMessage("Check name '" + check
                                     + "' should be included in input file: " + inputPath)
                                 .that(remaining)
