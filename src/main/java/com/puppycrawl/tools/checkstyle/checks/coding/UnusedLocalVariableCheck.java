@@ -397,15 +397,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static DetailAST getBlockContainingLocalAnonInnerClass(DetailAST literalNewAst) {
         DetailAST currentAst = literalNewAst;
         DetailAST result = null;
-        while (!TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
-            if (currentAst.getType() == TokenTypes.LAMBDA
-                    && currentAst.getParent()
-                    .getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
-                result = currentAst;
-                break;
+        DetailAST topMostLambdaAst = null;
+        while (currentAst != null && !TokenUtil.isOfType(currentAst, CONTAINERS_FOR_ANON_INNERS)) {
+            if (currentAst.getType() == TokenTypes.LAMBDA) {
+                topMostLambdaAst = currentAst;
             }
             currentAst = currentAst.getParent();
             result = currentAst;
+        }
+
+        if (currentAst == null) {
+            result = topMostLambdaAst;
         }
         return result;
     }
@@ -962,6 +964,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
         public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
+            // TODO: @Vyom-Yadav Modify logic somehow to have updatedScope under SCOPES only
             final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
