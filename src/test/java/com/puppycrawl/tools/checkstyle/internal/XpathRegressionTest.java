@@ -98,7 +98,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "HideUtilityClassConstructor",
             "InterfaceTypeParameterName",
             "LocalVariableName",
-            "MethodTypeParameterName",
             "ModifiedControlVariable",
             "MutableException",
             "RedundantModifier",
