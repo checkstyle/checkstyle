@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
 
@@ -86,9 +86,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testNonExistentHeaderFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addProperty("headerFile", getPath("nonExistent.file"));
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            createChecker(checkConfig);
-        });
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -109,9 +108,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
         checkConfig.addProperty("charset", "XSO-8859-1");
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            createChecker(checkConfig);
-        });
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -131,9 +129,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testEmptyFilename() {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addProperty("headerFile", "");
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            createChecker(checkConfig);
-        });
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -154,9 +151,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testNullFilename() {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addProperty("headerFile", null);
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            createChecker(checkConfig);
-        });
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
+                () -> createChecker(checkConfig));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -191,9 +187,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testSetHeaderTwice() {
         final HeaderCheck check = new HeaderCheck();
         check.setHeader("Header");
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            check.setHeader("Header2");
-        });
+        final IllegalArgumentException ex =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> check.setHeader("Header2"));
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
@@ -206,8 +202,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final HeaderCheck check = new HeaderCheck();
         check.setHeaderFile(new URI("test://bad"));
 
-        final ReflectiveOperationException ex = assertThrows(ReflectiveOperationException.class,
-            () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
+        final ReflectiveOperationException ex =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
             .that(ex)
                 .hasCauseThat()
@@ -262,8 +259,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testLoadHeaderFileTwice() {
         final HeaderCheck check = new HeaderCheck();
         check.setHeader("Header");
-        final ReflectiveOperationException ex = assertThrows(ReflectiveOperationException.class,
-                () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
+        final ReflectiveOperationException ex =
+                getExpectedThrowable(ReflectiveOperationException.class,
+                        () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat()
@@ -307,9 +305,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 LineNumberReader.class, (mock, context) -> {
                     when(mock.readLine()).thenThrow(IOException.class);
                 })) {
-            final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-                check.setHeader("header");
-            });
+            final IllegalArgumentException ex =
+                    getExpectedThrowable(IllegalArgumentException.class,
+                            () -> check.setHeader("header"));
             assertWithMessage("Invalid exception cause")
                     .that(ex)
                     .hasCauseThat()

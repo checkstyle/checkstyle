@@ -20,12 +20,15 @@
   <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
   <disallow class="org.junit.jupiter.api.BeforeAll"/>
   <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
-  <allow class="org.junit.jupiter.api.Assertions.assertThrows"/>
   <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
   <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
+
+  <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
+  <disallow pkg="org.junit.jupiter.api.Assertions.assertThrows"/>
+  <disallow pkg="org.junit.Assert.assertThrows"/>
 
   <allow pkg=".*" regex="true" />
 
@@ -40,6 +43,7 @@
       <file name="TestUtil">
         <!-- All reflection usage should be in this class. -->
         <allow pkg="java.lang.reflect" />
+        <allow class="org.junit.jupiter.api.Assertions.assertThrows" />
       </file>
     </subpackage>
   </subpackage>

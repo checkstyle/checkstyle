@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -166,9 +166,9 @@ public class RedundantModifierCheckTest
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(TokenTypes.LITERAL_NULL, "null");
 
-        final IllegalStateException exception = assertThrows(IllegalStateException.class, () -> {
-            obj.visitToken(ast);
-        }, "IllegalStateException was expected");
+        final IllegalStateException exception =
+                getExpectedThrowable(IllegalStateException.class,
+                        () -> obj.visitToken(ast), "IllegalStateException was expected");
 
         assertWithMessage("Expected and actual violation messages do not match")
                 .that(exception.getMessage())

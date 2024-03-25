@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -236,7 +236,7 @@ public class MatchXpathCheckTest
 
     @Test
     public void testMatchXpathWithFailedEvaluation() {
-        final CheckstyleException ex = assertThrows(CheckstyleException.class,
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> verifyWithInlineConfigParser(getPath("InputMatchXpath5.java")));
         assertThat(ex.getCause().getMessage())
                 .isEqualTo("Evaluation of Xpath query failed: count(*) div 0");

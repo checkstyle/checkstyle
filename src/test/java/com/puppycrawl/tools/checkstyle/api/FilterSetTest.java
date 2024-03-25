@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.Objects;
 import java.util.Set;
@@ -115,8 +115,11 @@ public class FilterSetTest {
         final Filter filter = new FilterSet();
         filterSet.addFilter(filter);
         final Set<Filter> subFilterSet = filterSet.getFilters();
-        assertThrows(UnsupportedOperationException.class,
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
             () -> subFilterSet.add(filter));
+        assertWithMessage("Exception message not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 
     /*
