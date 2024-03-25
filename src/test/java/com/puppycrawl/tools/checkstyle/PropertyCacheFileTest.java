@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mockStatic;
 
@@ -346,7 +346,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String cacheFilePath = symbolicLink.resolve("cache.temp").toString();
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFilePath);
 
-        final IOException thrown = assertThrows(IOException.class, cache::persist);
+        final IOException thrown = getExpectedThrowable(IOException.class, cache::persist);
 
         final String expectedMessage = "Resolved symbolic link " + symbolicLink
                 + " is not a directory.";
@@ -476,7 +476,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                     .thenThrow(NoSuchAlgorithmException.class);
 
             final ReflectiveOperationException ex =
-                assertThrows(ReflectiveOperationException.class, () -> {
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
                     TestUtil.invokeStaticMethod(PropertyCacheFile.class,
                             "getHashCodeBasedOnObjectContent", config);
                 });

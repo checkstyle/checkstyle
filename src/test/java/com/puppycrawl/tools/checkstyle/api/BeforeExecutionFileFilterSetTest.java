@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -114,8 +114,11 @@ public class BeforeExecutionFileFilterSetTest {
         filterSet.addBeforeExecutionFileFilter(filter);
         final Set<BeforeExecutionFileFilter> excFilterSet =
             filterSet.getBeforeExecutionFileFilters();
-        assertThrows(UnsupportedOperationException.class,
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
             () -> excFilterSet.add(filter));
+        assertWithMessage("Exception message is not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 
     /*

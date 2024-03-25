@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.io.IOException;
@@ -234,9 +234,12 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(Collections.emptyEnumeration()));
 
-        assertThrows(UnsupportedOperationException.class,
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
                 () -> actualPackageNames.add("com.puppycrawl.tools.checkstyle.checks.modifier"));
 
+        assertWithMessage("Exception class is not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 
     @Test

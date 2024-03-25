@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -397,7 +397,11 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     public void testTokensAreUnmodifiable() {
         final DummyAbstractCheck check = new DummyAbstractCheck();
         final Set<String> tokenNameSet = check.getTokenNames();
-        assertThrows(UnsupportedOperationException.class, () -> tokenNameSet.add(""));
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
+                () -> tokenNameSet.add(""));
+        assertWithMessage("Exception class is not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 
     public static final class DummyAbstractCheck extends AbstractCheck {
