@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -89,7 +89,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
         final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
-            assertThrows(CheckstyleException.class,
+            getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
         assertWithMessage(message)
@@ -107,7 +107,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
         final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
-            assertThrows(CheckstyleException.class,
+            getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
         assertWithMessage(message)
