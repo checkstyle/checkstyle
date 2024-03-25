@@ -24,7 +24,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -464,7 +464,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImportControlTestException() {
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+        final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () -> {
             verifyWithInlineConfigParser(getPath("InputImportControlTestException.java"));
         });
 

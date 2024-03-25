@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -249,9 +249,9 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
         final ParseMode mock = mock();
         model.setParseMode(mock);
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
-            model.openFile(javaFile);
-        });
+        final IllegalArgumentException ex =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> model.openFile(javaFile));
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()

@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Arrays;
@@ -339,7 +339,11 @@ public class FileContentsTest {
                 Arrays.asList("// comment ", " A + B ", " ")));
         cppComments.reportSingleLineComment(1, 0);
         final Map<Integer, TextBlock> comments = cppComments.getSingleLineComments();
-        assertThrows(UnsupportedOperationException.class, () -> comments.remove(0));
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
+                () -> comments.remove(0));
+        assertWithMessage("Exception message not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 
     @Test
@@ -348,6 +352,10 @@ public class FileContentsTest {
                 Arrays.asList("/* comment ", " ", " comment */")));
         clangComments.reportBlockComment(1, 0, 3, 9);
         final Map<Integer, List<TextBlock>> comments = clangComments.getBlockComments();
-        assertThrows(UnsupportedOperationException.class, () -> comments.remove(0));
+        final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,
+                () -> comments.remove(0));
+        assertWithMessage("Exception message not expected")
+                .that(ex.getClass())
+                .isEqualTo(UnsupportedOperationException.class);
     }
 }
