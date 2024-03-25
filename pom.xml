@@ -1870,6 +1870,7 @@
 
                 <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
                 <exclude>**/CheckerTest.class</exclude>
+                <exclude>**/WriteTagCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
