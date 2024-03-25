@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 import java.util.Collection;
@@ -186,7 +186,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final ReturnCountCheck check = new ReturnCountCheck();
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
-        final IllegalStateException exception = assertThrows(IllegalStateException.class,
+        final IllegalStateException exception = getExpectedThrowable(IllegalStateException.class,
                 () -> check.visitToken(classDefAst), "IllegalStateException was expected");
 
         assertWithMessage("Message doesn't contain ast")
@@ -205,7 +205,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
         final ReturnCountCheck check = new ReturnCountCheck();
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
-        final IllegalStateException exception = assertThrows(IllegalStateException.class,
+        final IllegalStateException exception = getExpectedThrowable(IllegalStateException.class,
                 () -> check.leaveToken(classDefAst), "IllegalStateException was expected");
 
         assertWithMessage("Message doesn't contain ast")
