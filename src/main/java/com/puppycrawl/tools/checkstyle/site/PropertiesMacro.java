@@ -105,7 +105,7 @@ public class PropertiesMacro extends AbstractMacro {
     /**
      * This property is used to change the existing properties for javadoc.
      * Tokens always present at the end of all properties.
-    */
+     */
     private static final String TOKENS_PROPERTY = SiteUtil.TOKENS;
 
     /** The name of the current module being processed. */

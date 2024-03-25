@@ -106,7 +106,7 @@ public class BeforeExecutionFileFilterSetTest {
       Due to low level configuration setup of BeforeExecutionFileFilterSet, conventional
       input validation cannot be done here hence, pure JUnit testing has been
       done for the time being
-    */
+     */
     @Test
     public void testUnmodifiableSet() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
@@ -121,7 +121,7 @@ public class BeforeExecutionFileFilterSetTest {
     /*
       Input based test does not call toString, but this method might be
       useful for third party integrations.
-    */
+     */
     @Test
     public void testEmptyToString() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
