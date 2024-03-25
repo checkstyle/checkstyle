@@ -80,10 +80,10 @@ public class ModuleReflectionUtilTest {
     }
 
     /**
-    * This test case is designed to verify the behavior of getCheckstyleModules method.
-    * It is provided with a package name that does not contain any checkstyle modules.
-    * It ensures that ModuleReflectionUtil.getCheckstyleModules is returning an empty set.
-    */
+     * This test case is designed to verify the behavior of getCheckstyleModules method.
+     * It is provided with a package name that does not contain any checkstyle modules.
+     * It ensures that ModuleReflectionUtil.getCheckstyleModules is returning an empty set.
+     */
     @Test
     public void testGetCheckStyleModules() throws IOException {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
