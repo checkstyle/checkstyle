@@ -15,6 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
  */
 class InputSummaryJavadocIncorrect2 {
 
+    // violation below 'First sentence .* missing an ending period.'
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */

@@ -54,6 +54,7 @@ public class SummaryJavadocTest extends AbstractGoogleModuleTestSupport {
             "summary.javaDoc.missing");
 
         final String[] expected = {
+            "9: " + msgFirstSentence,
             "14: " + msgMissingDoc,
             "32: " + msgMissingDoc,
             "37: " + msgFirstSentence,
