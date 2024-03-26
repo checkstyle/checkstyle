@@ -37,7 +37,7 @@ public final class TokenTypes {
      * This is the root node for the source file.  It's children
      * are an optional package definition, zero or more import statements,
      * and zero or more type declarations.
-      * <p>For example:</p>
+     * <p>For example:</p>
      * <pre>
      * import java.util.List;
      *
