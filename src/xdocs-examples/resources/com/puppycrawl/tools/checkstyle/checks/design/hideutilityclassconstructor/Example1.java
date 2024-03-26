@@ -9,7 +9,8 @@
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 // xdoc section -- start
-class Example1 { // violation
+@java.lang.Deprecated // violation
+class Example1 {
 
   public Example1() {
   }
@@ -34,7 +35,8 @@ class Bar { // OK
   }
 }
 
-class UtilityClass { // violation
+@SpringBootApplication // violation
+class UtilityClass {
 
   static float f;
 }
