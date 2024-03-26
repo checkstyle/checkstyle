@@ -1,20 +1,19 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="DesignForExtension">
-      <property name="ignoredAnnotations" value="Override"/>
-    </module>
+    <module name="DesignForExtension"/>
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 // xdoc section -- start
-public abstract class Foo {
+public abstract class Example2 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
   private void m3() {m4();}  // OK. Private method.
 
@@ -39,8 +38,8 @@ public abstract class Foo {
    */
   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
 
-  @Override
-  public String toString() {  // OK. Have javadoc on overridable method.
+  @Override // violation
+  public String toString() {
     return "";
   }
 }
