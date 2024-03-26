@@ -248,7 +248,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "UnusedLocalVariable",
             "UpperEll",
             "VariableDeclarationUsageDistance",
-            "VisibilityModifier",
             "WhitespaceAfter",
             "WhitespaceAround",
             "IllegalIdentifierName",

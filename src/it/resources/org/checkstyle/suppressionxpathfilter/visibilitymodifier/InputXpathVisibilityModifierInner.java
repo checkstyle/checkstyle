@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.visibilitymodifier;
 
-public class SuppressionXpathRegressionVisibilityModifierInner {
+public class InputXpathVisibilityModifierInner {
     class InnerClass {
         private int field1;
 

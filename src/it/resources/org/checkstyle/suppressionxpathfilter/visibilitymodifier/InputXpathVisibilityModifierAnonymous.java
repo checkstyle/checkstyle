@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.visibilitymodifier;
 
-public class SuppressionXpathRegressionVisibilityModifierAnonymous {
+public class InputXpathVisibilityModifierAnonymous {
     private Runnable runnable = new Runnable() {
 
         public String field1; // warn
