@@ -151,7 +151,7 @@ public class LeftCurlyCheck
 
     /**
      * Specify the policy on placement of a left curly brace (<code>'{'</code>).
-     * */
+     */
     private LeftCurlyOption option = LeftCurlyOption.EOL;
 
     /**
