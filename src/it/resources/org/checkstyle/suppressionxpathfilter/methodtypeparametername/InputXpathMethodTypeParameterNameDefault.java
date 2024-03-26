@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.methodtypeparametername;
 
-public class SuppressionXpathRegressionMethodTypeParameterName1{
+public class InputXpathMethodTypeParameterNameDefault {
   public <TT> void foo() { } // warn
 }
