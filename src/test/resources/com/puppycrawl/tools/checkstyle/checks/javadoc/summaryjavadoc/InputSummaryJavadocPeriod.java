@@ -37,4 +37,10 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc}
      */ // violation above 'Summary .* missing an ending period.'
     void foo8() {}
+
+    /**
+     * Summary sentence ending with correct period and no following whitespace_In practice this
+     * will be used with period characters that have whitespace built in, like the Japanese period!
+     */
+    void foo9() {}
 }
