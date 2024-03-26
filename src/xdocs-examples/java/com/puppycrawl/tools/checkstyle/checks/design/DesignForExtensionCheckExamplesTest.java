@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import static com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck.MSG_KEY;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +34,46 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13:3: " + getCheckMessage(MSG_KEY, "Example1", "m1"),
+            "15:3: " + getCheckMessage(MSG_KEY, "Example1", "m2"),
+            "40:3: " + getCheckMessage(MSG_KEY, "Example1", "toString"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "15:3: " + getCheckMessage(MSG_KEY, "Example2", "m1"),
+            "17:3: " + getCheckMessage(MSG_KEY, "Example2", "m2"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "15:3: " + getCheckMessage(MSG_KEY, "Example3", "m1"),
+            "17:3: " + getCheckMessage(MSG_KEY, "Example3", "m2"),
+            "34:3: " + getCheckMessage(MSG_KEY, "Example3", "m7"),
+            "40:3: " + getCheckMessage(MSG_KEY, "Example3", "m8"),
+            "42:3: " + getCheckMessage(MSG_KEY, "Example3", "toString"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "16:3: " + getCheckMessage(MSG_KEY, "Example4", "m1"),
+            "18:3: " + getCheckMessage(MSG_KEY, "Example4", "m2"),
+            "35:3: " + getCheckMessage(MSG_KEY, "Example4", "m7"),
+            "43:3: " + getCheckMessage(MSG_KEY, "Example4", "toString"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
