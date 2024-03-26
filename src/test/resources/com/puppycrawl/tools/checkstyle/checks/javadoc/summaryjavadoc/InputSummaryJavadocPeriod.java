@@ -37,4 +37,10 @@ public class InputSummaryJavadocPeriod
      * {@summary An especially short bit of Javadoc}
      */ // violation above 'Summary .* missing an ending period.'
     void foo8() {}
+
+    // violation below 'First sentence .* missing an ending period.'
+    /**
+     * Summary sentence containing correct period mid_word, but not at the end
+     */
+    void foo9() throws Exception {}
 }
