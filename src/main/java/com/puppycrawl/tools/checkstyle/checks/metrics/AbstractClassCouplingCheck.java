@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @FileStatefulCheck
 public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
-    /** A package separator - "." */
+    /** A package separator - ".". */
     private static final char DOT = '.';
 
     /** Class names to ignore. */
