@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.visibilitymodifier;
 
-public class SuppressionXpathRegressionVisibilityModifierAnnotation {
+public class InputXpathVisibilityModifierAnnotation {
     @java.lang.Deprecated
     String annotatedString; // warn
 
