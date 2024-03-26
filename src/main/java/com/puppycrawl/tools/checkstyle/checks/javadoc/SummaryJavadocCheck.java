@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -218,13 +220,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
-            if (!summaryDoc.contains(period)) {
+            final String firstSentence = getFirstSentence(ast, period);
+            if (!summaryDoc.contains(period) || firstSentence.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
-            if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+            else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -579,28 +579,72 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Finds and returns first sentence.
      *
      * @param ast Javadoc root node.
+     * @param period Period character.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private static String getFirstSentence(DetailNode ast, String period) {
+        final Deque<DetailNode> stack = new LinkedList<>();
+        stack.push(ast);
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
-            }
-            else {
-                text = getFirstSentence(child);
-            }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
+        boolean foundPeriod = false;
+        while (!stack.isEmpty()) {
+            final DetailNode node = stack.pop();
+            if (node.getChildren().length == 0
+                && appendUpToSentenceEndingPeriod(node.getText(), period, result)) {
+                foundPeriod = true;
                 break;
             }
-
-            result.append(text);
+            // Pushing last child first means it will be processed last
+            for (int childIndex = node.getChildren().length - 1; childIndex >= 0; childIndex--) {
+                stack.push(node.getChildren()[childIndex]);
+            }
+        }
+        if (!foundPeriod) {
+            result.setLength(0);
         }
         return result.toString();
     }
 
+    /**
+     * Find the end of a sentence, and append the sentence to the result if it ends with a period.
+     * If no period is present, append the whole string to the result. The end of sentence detection
+     * here could be replaced in the future by Java's built-in BreakIterator class.
+     *
+     * @param text string to append to result
+     * @param period period character to find
+     * @param result builder to append to
+     * @return true if a sentence ending period was found, false otherwise
+     */
+    private static boolean appendUpToSentenceEndingPeriod(
+            String text, String period, StringBuilder result) {
+        int periodIndex = text.indexOf(period);
+        boolean foundPeriod = false;
+        while (periodIndex >= 0) {
+            final int afterPeriodIndex = periodIndex + period.length();
+
+            // Handle western period separately as it is only the end of a sentence if followed
+            // by whitespace. Other period characters often include whitespace in the character.
+            final boolean endsSentence;
+            if (DEFAULT_PERIOD.equals(period)) {
+                endsSentence = afterPeriodIndex >= text.length()
+                    || Character.isWhitespace(text.charAt(afterPeriodIndex));
+            }
+            else {
+                endsSentence = true;
+            }
+
+            if (endsSentence) {
+                result.append(text, 0, periodIndex);
+                foundPeriod = true;
+                break;
+            }
+            else {
+                periodIndex = text.indexOf(period, afterPeriodIndex);
+            }
+        }
+        if (!foundPeriod) {
+            result.append(text);
+        }
+        return foundPeriod;
+    }
 }
