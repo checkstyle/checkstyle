@@ -39,7 +39,7 @@ public class InputLambdaBodyLengthMax {
                 + "3"
                 + "4"
             ;
-        Supplier<String> s2 = () -> // ok
+        Supplier<String> s2 = () ->
             "1"
                 + "2"
                 + "3"
