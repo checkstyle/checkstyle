@@ -780,18 +780,10 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_blue.png"
+                        src="images/ok_green.png"
                         alt="" />
                   </span>
                   <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
-                  <br />
-                  We can detect URL with protocol type as http://, https:// etc.
-                  <br />
-                  <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
-                    JSNI</a>
-                  could not be detected right now, but might be possible after
-                  comments and javadoc support appear in Checkstyle.
-                  <br />
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -2362,7 +2354,7 @@
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
                     SuppressionCommentFilter</a>,
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
-                    SuppressWarningsFilter</a>,
+                    SuppressWarningsFilter</a>.
         </p>
       </subsection>
     </section>
