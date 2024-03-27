@@ -30,12 +30,12 @@ public interface FileSetCheck
     extends Configurable, Contextualizable {
 
     /**
-     * Sets the MessageDispatcher that is used to dispatch audit events
+     * Sets the ViolationDispatcher that is used to dispatch audit events
      * to AuditListeners during processing.
      *
      * @param dispatcher the dispatcher
      */
-    void setMessageDispatcher(MessageDispatcher dispatcher);
+    void setViolationDispatcher(ViolationDispatcher dispatcher);
 
     /**
      * Initialise the instance. This is the time to verify that everything

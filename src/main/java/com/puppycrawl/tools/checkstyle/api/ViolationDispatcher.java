@@ -24,7 +24,7 @@ import java.util.SortedSet;
 /**
  * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
  */
-public interface MessageDispatcher {
+public interface ViolationDispatcher {
 
     /**
      * Notify all listeners about the beginning of a file audit.
