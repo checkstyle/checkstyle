@@ -38,7 +38,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTypeStyleVariable.java"));
+                new File(getPath("InputXpathArrayTypeStyleVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTypeStyleCheck.class);
@@ -49,7 +49,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
+                        + "[./IDENT[@text='InputXpathArrayTypeStyleVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE["
                         + "./IDENT[@text='String']]/ARRAY_DECLARATOR"
         );
@@ -61,7 +61,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     @Test
     public void testMethodDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTypeStyleMethodDef.java"));
+                new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTypeStyleCheck.class);
@@ -72,7 +72,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
+                    + "[./IDENT[@text='InputXpathArrayTypeStyleMethodDef']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
         );
 

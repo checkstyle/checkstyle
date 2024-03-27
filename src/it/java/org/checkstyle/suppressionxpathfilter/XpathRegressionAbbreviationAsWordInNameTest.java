@@ -40,7 +40,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testAnnotation() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameAnnotation.java"));
+                "InputXpathAbbreviationAsWordInNameAnnotation.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameAnnotation']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameAnnotation']]"
                     + "/OBJBLOCK/ANNOTATION_DEF/IDENT[@text='ANNOTATION']"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testAnnotationField() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameAnnotationField.java"));
+                "InputXpathAbbreviationAsWordInNameAnnotationField.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameAnnotationField']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameAnnotationField']]"
                     + "/OBJBLOCK/ANNOTATION_FIELD_DEF/IDENT[@text='ANNOTATION_FIELD']"
         );
 
@@ -86,7 +86,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameClass.java"));
+                "InputXpathAbbreviationAsWordInNameClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -98,7 +98,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameClass']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameClass']]"
                     + "/OBJBLOCK/CLASS_DEF/IDENT[@text='CLASS']"
         );
 
@@ -109,7 +109,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testEnum() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameEnum.java"));
+                "InputXpathAbbreviationAsWordInNameEnum.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -121,7 +121,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameEnum']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameEnum']]"
                     + "/OBJBLOCK/ENUM_DEF/IDENT[@text='ENUMERATION']"
         );
 
@@ -132,7 +132,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testField() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameField.java"));
+                "InputXpathAbbreviationAsWordInNameField.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -144,7 +144,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameField']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameField']]"
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='FIELD']"
         );
 
@@ -155,7 +155,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameInterface.java"));
+                "InputXpathAbbreviationAsWordInNameInterface.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -167,7 +167,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameInterface']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameInterface']]"
                     + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='INTERFACE']"
         );
 
@@ -178,7 +178,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameMethod.java"));
+                "InputXpathAbbreviationAsWordInNameMethod.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -190,7 +190,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameMethod']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameMethod']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='METHOD']"
         );
 
@@ -201,7 +201,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testParameter() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameParameter.java"));
+                "InputXpathAbbreviationAsWordInNameParameter.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -213,7 +213,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameParameter']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameParameter']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
                     + "/PARAMETERS/PARAMETER_DEF/IDENT[@text='PARAMETER']"
         );
@@ -225,7 +225,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionAbbreviationAsWordInNameVariable.java"));
+                "InputXpathAbbreviationAsWordInNameVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -237,7 +237,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameVariable']]"
+                    + "@text='InputXpathAbbreviationAsWordInNameVariable']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
                     + "/SLIST/VARIABLE_DEF/IDENT[@text='VARIABLE']"
         );
