@@ -41,7 +41,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionAnnotationOnSameLineOne.java"));
+                        "InputXpathAnnotationOnSameLineMethod.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationOnSameLineCheck.class);
@@ -60,17 +60,17 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineOne']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getX']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
@@ -83,7 +83,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionAnnotationOnSameLineTwo.java"));
+                        "InputXpathAnnotationOnSameLineField.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationOnSameLineCheck.class);
@@ -96,17 +96,17 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                        + "[./IDENT[@text='InputXpathAnnotationOnSameLineField']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
@@ -119,7 +119,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionAnnotationOnSameLineThree.java"));
+                        "InputXpathAnnotationOnSameLineInterface.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationOnSameLineCheck.class);
@@ -136,15 +136,15 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF["
-                        + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]",
+                        + "./IDENT[@text='InputXpathAnnotationOnSameLineInterface']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF["
-                        + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
+                        + "./IDENT[@text='InputXpathAnnotationOnSameLineInterface']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF["
-                        + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
+                        + "./IDENT[@text='InputXpathAnnotationOnSameLineInterface']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF["
-                        + "./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineThree']]"
+                        + "./IDENT[@text='InputXpathAnnotationOnSameLineInterface']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
