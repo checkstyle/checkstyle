@@ -355,8 +355,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBranchContains() {
-        final DetailAstImpl root = createToken(null, TokenTypes.CLASS_DEF);
-        final DetailAstImpl modifiers = createToken(root, TokenTypes.MODIFIERS);
+        final DetailAstImpl root = createToken(null, TokenTypes.COMPILATION_UNIT);
+        final DetailAstImpl classDef = createToken(root, TokenTypes.CLASS_DEF);
+        final DetailAstImpl modifiers = createToken(classDef, TokenTypes.MODIFIERS);
         createToken(modifiers, TokenTypes.LITERAL_PUBLIC);
 
         assertWithMessage("invalid result")
@@ -364,6 +365,12 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("invalid result")
                 .that(root.branchContains(TokenTypes.OBJBLOCK))
+                .isFalse();
+        assertWithMessage("invalid result")
+                .that(root.branchContains(TokenTypes.COMPILATION_UNIT))
+                .isTrue();
+        assertWithMessage("negative tokenType")
+                .that(root.branchContains(-1))
                 .isFalse();
     }
 
