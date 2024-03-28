@@ -65,6 +65,10 @@ options { tokenVocab=JavaLanguageLexer; }
      *         DFA states at all can lead to enormous memory usage, but may also
      *         have a negative effect on memory usage from higher garbage collector
      *         activity.
+     * @noinspection OnDemandImport, SuppressionAnnotation, UNUSED_IMPORT
+     * @noinspectionreason OnDemandImport - until issue #14625
+     * @noinspectionreason SuppressionAnnotation - until issue #14625
+     * @noinspectionreason UNUSED_IMPORT - until issue #14625
      */
     public JavaLanguageParser(TokenStream input, int clearDfaLimit) {
         super(input);

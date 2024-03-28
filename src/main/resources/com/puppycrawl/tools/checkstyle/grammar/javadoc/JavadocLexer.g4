@@ -93,6 +93,10 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
      *
      * @param input the character stream to tokenize
      * @param crAwareConstructor dummy parameter
+     * @noinspection OnDemandImport, SuppressionAnnotation, UNUSED_IMPORT
+     * @noinspectionreason OnDemandImport - until issue #14625
+     * @noinspectionreason SuppressionAnnotation - until issue #14625
+     * @noinspectionreason UNUSED_IMPORT - until issue #14625
      */
     public JavadocLexer(CharStream input, boolean crAwareConstructor) {
       super(input);

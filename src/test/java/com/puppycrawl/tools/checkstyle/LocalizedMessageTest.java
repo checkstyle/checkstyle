@@ -82,7 +82,8 @@ public class LocalizedMessageTest {
     /**
      * Tests reload of resource bundle.
      *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspection ExtractMethodRecommender, resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason resource - we have no need to use try with resources in testing
      * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
      *      testing
@@ -139,7 +140,8 @@ public class LocalizedMessageTest {
     /**
      * Tests reload of resource bundle.
      *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspection ExtractMethodRecommender, resource, IOResourceOpenedButNotSafelyClosed
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
      * @noinspectionreason resource - we have no need to use try with resources in testing
      * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
      *      testing

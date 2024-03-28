@@ -201,6 +201,12 @@ public class AbstractAutomaticBeanTest {
                 .isEqualTo(81);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection ExtractMethodRecommender
+     * @noinspectionreason ExtractMethodRecommender - until issue #14625
+     */
     @Test
     public void testBeanConverters() throws Exception {
         final ConverterBean bean = new ConverterBean();

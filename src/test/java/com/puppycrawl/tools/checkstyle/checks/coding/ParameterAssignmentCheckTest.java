@@ -103,6 +103,8 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")

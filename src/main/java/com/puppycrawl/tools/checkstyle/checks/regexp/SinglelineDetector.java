@@ -97,6 +97,8 @@ class SinglelineDetector {
      * @param line the line to check
      * @param matcher the matcher to use
      * @param startPosition the position to start searching from.
+     * @noinspection TailRecursion
+     * @noinspectionreason TailRecursion - until issue #14625
      */
     private void checkLine(int lineNo, String line, Matcher matcher,
             int startPosition) {
