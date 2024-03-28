@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -218,13 +220,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
-            if (!summaryDoc.contains(period)) {
+            final String firstSentence = getFirstSentence(ast, period);
+            if (!summaryDoc.contains(period) || firstSentence.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
-            if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+            else if (containsForbiddenFragment(firstSentence)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
@@ -579,28 +579,61 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Finds and returns first sentence.
      *
      * @param ast Javadoc root node.
+     * @param period Period character.
      * @return first sentence.
      */
-    private static String getFirstSentence(DetailNode ast) {
+    private static String getFirstSentence(DetailNode ast, String period) {
+        final Deque<DetailNode> stack = new LinkedList<>();
+        stack.push(ast);
         final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
+        boolean foundPeriod = false;
+        while (!stack.isEmpty()) {
+            final DetailNode node = stack.pop();
+            if (node.getChildren().length == 0) {
+                if (appendUpToPeriod(node.getText(), period, result)) {
+                    foundPeriod = true;
+                    break;
+                }
             }
-            else {
-                text = getFirstSentence(child);
+            // Pushing last child first means it will be processed last
+            for (int childIndex = node.getChildren().length - 1; childIndex >= 0; childIndex--) {
+                stack.push(node.getChildren()[childIndex]);
             }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
-                break;
-            }
-
-            result.append(text);
+        }
+        if (!foundPeriod) {
+            result.setLength(0);
         }
         return result.toString();
+    }
+
+    /**
+     * Find a period in the given text. If one is present, append the text before the period to the
+     * result. If no period is present, append the whole string to the result.
+     *
+     * @param text string to append to result
+     * @param period period character to find
+     * @param result builder to append to
+     * @return true if a period was found, false otherwise
+     */
+    private static boolean appendUpToPeriod(String text, String period, StringBuilder result) {
+        int periodIndex = text.indexOf(period);
+        boolean foundPeriod = false;
+        while (periodIndex >= 0) {
+            final int afterPeriodIndex = periodIndex + period.length();
+            if (afterPeriodIndex >= text.length()
+                || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+                result.append(text, 0, periodIndex);
+                foundPeriod = true;
+                break;
+            }
+            else {
+                periodIndex = text.indexOf(period, afterPeriodIndex);
+            }
+        }
+        if (!foundPeriod) {
+            result.append(text);
+        }
+        return foundPeriod;
     }
 
 }
