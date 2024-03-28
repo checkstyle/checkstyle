@@ -1,22 +1,15 @@
 package org.checkstyle.suppressionxpathfilter.avoidnestedblocks;
 
-public class SuppressionXpathRegressionAvoidNestedBlocksAllowedInSwitchCase {
-
+public class InputXpathAvoidNestedBlocksBreakOutside {
     int s(int a) {
         int x;
         int y;
         switch (a) {
-            case 0:
-                x = 1;
-            { // warn: statement outside block
-                y = -1;
-                break;
-            }
-            case 1: { // ok: allowInSwitchCase=true
+            case 0: { // warn: break outside block
                 x = 2;
                 y = -2;
-                break;
             }
+            break;
             default:
                 x = 3;
                 y = -3;
