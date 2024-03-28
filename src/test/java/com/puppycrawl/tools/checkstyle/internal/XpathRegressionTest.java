@@ -215,8 +215,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "PackageDeclaration",
             "PatternVariableName",
             "RecordComponentName",
-            "RecordComponentNumber",
-            "RecordTypeParameterName");
+            "RecordComponentNumber");
 
     private Path javaDir;
     private Path inputDir;
