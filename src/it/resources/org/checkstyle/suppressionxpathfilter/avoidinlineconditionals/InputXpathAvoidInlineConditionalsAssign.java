@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.avoidinlineconditionals;
 
-public class SuppressionXpathRegressionAvoidInlineConditionalsAssign {
+public class InputXpathAvoidInlineConditionalsAssign {
     String b;
 
     void setB(String a) {
