@@ -749,7 +749,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isIncrementOrDecrementVariableUsed(DetailAST exprAst) {
         return TokenUtil.isOfType(exprAst.getParent(),
-                TokenTypes.ELIST, TokenTypes.INDEX_OP, TokenTypes.ASSIGN)
+                TokenTypes.ELIST, TokenTypes.INDEX_OP, TokenTypes.ASSIGN, TokenTypes.LITERAL_SWITCH)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
     }
 
