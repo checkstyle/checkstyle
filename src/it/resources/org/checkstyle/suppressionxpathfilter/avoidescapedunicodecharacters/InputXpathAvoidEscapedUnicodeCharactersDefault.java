@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.avoidescapedunicodecharacters;
 
-public class SuppressionXpathRegressionAvoidEscapedUnicodeCharactersDefault {
+public class InputXpathAvoidEscapedUnicodeCharactersDefault {
     private String unitAbbrev2 = "\u03bcs"; /* warn */
 }
