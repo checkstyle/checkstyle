@@ -72,10 +72,10 @@
     <section name="Previous Version Documentation">
       <p>
         Current site contains documentation only for latest, released version.
-        We only support this latest version. We highly recommend read latest documentation first.
+        We only support this latest version. We highly recommend reading the latest documentation first.
         <br/>
         However, you might need documentation for previous releases because you are still using
-        an older version and latest version describe some features that does not work for you.
+        an older version and the latest version describes some features that don't work for you.
         <br/>
         You can find documentation for most old versions using a URL format like
         https://checkstyle.sourceforge.io/version/X.X where "X.X" is the version number.<br/>
@@ -99,7 +99,7 @@
       </ul>
 
       <p>
-        Checkstyle is following own view of
+        Checkstyle is following its own view of
           Hybrid Romantic and Semantic Versioning: This is in the form of
           "<b>First</b>.<b>Second</b>.<b>Third</b>"
       </p>
@@ -107,7 +107,7 @@
         <b>First</b> digit is representing Romantic version.
            When it is the only number increasing, the maintainers marked it as
            a noticeably large breaking compatibility
-           or major conceptual change occurred from their perspective.<br/>
+           or major conceptual change which occurred from their perspective.<br/>
         <b>Second</b> digit is Semantic version which is a combination of major and minor.
            When it is the only number increasing, it means that
            either some breaking compatibility happened
@@ -117,7 +117,7 @@
       </p>
       <p>
         Checkstyle is not using <a href="https://semver.org/">Semantic Versioning</a>
-        due to reason that is explained at
+        due to the reason explained at
         <a href="https://github.com/checkstyle/checkstyle/issues/3709">issue #3709</a>.
       </p>
     </section>
@@ -167,10 +167,10 @@
         </table>
       </div>
       <p>
-        Checkstyle currently is confirmed to be build by all JDKs from 11 through 17.
+        Checkstyle currently is confirmed to be buildable by all JDKs from 11 through 17.
         Most recent JDKs may be supported. Please
         <a href="https://checkstyle.org/report_issue.html">report an issue</a>
-        if there is any problems with most recent JDKs.
+        if there are any problems with most recent JDKs.
       </p>
     </section>
 
@@ -229,7 +229,7 @@
 
     <section name="Additional Checks">
       <p>
-        There are other projects that provide additional checks
+        There are other projects that provide additional checks:
       </p>
       <div class="wrapper">
         <table>
