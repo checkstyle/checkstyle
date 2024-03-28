@@ -29,13 +29,13 @@ import java.util.regex.Pattern;
  * be a sub-package, a class, or an allow/disallow rule.
  */
 class PkgImportControl extends AbstractImportControl {
-    /** The package separator: "." */
+    /** The package separator: ".". */
     private static final String DOT = ".";
 
     /** The regex for the package separator: "\\.". */
     private static final String DOT_REGEX = "\\.";
 
-    /** A pattern matching the package separator: "\." */
+    /** A pattern matching the package separator: "\.". */
     private static final Pattern DOT_REGEX_PATTERN = Pattern.compile(DOT_REGEX);
 
     /** The regex for the escaped package separator: "\\\\.". */
