@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocPeriodAtEnd {
     /**
-     * JAXB 1.0 only default validation event handler
+     * JAXB 1.0 only default validation event handler.
      */
     public static final byte NUL = 0;
     // violation below 'Summary javadoc is missing.'
@@ -64,6 +64,19 @@ public class InputSummaryJavadocPeriodAtEnd {
      *     paragraph.</p>
      */
     public void foo6() {
+
+    }
+    // violation below 'First sentence .* missing an ending period.'
+    /**
+     * JAXB 1.0 missing end period
+     */
+    public void foo7() {
+
+    }
+    /**
+     *.period at beginning of line, then summary sentence.
+     */
+    public void foo8() {
 
     }
 }
