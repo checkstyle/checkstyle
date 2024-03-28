@@ -590,15 +590,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         while (!stack.isEmpty()) {
             final DetailNode node = stack.pop();
             if (node.getChildren().length == 0) {
-                final String text = node.getText();
-                final int periodIndex = findEndingPeriod(text, period);
-                if (periodIndex >= 0) {
+                if (appendUpToPeriod(node.getText(), period, result)) {
                     foundPeriod = true;
-                    result.append(text, 0, periodIndex);
                     break;
-                }
-                else {
-                    result.append(text);
                 }
             }
             // Pushing last child first means it will be processed last
@@ -613,26 +607,33 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Find position of an ending period in the text. Ignores any period not followed by
-     * whitespace.
+     * Find a period in the given text. If one is present, append the text before the period to the
+     * result. If no period is present, append the whole string to the result.
      *
-     * @param text text to search
-     * @param period period character
-     * @return position of period character, or -1 if there is no ending period
+     * @param text string to append to result
+     * @param period period character to find
+     * @param result builder to append to
+     * @return true if a period was found, false otherwise
      */
-    private static int findEndingPeriod(String text, String period) {
+    private static boolean appendUpToPeriod(String text, String period, StringBuilder result) {
         int periodIndex = text.indexOf(period);
+        boolean foundPeriod = false;
         while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
             if (afterPeriodIndex >= text.length()
                 || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+                result.append(text, 0, periodIndex);
+                foundPeriod = true;
                 break;
             }
             else {
                 periodIndex = text.indexOf(period, afterPeriodIndex);
             }
         }
-        return periodIndex;
+        if (!foundPeriod) {
+            result.append(text);
+        }
+        return foundPeriod;
     }
 
 }
