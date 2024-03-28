@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.abbreviationaswordinname;
 
-public class SuppressionXpathRegressionAbbreviationAsWordInNameEnum {
+public class InputXpathAbbreviationAsWordInNameEnum {
 
     enum ENUMERATION { // warn
 

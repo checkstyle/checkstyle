@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.abbreviationaswordinname;
 
-public @interface SuppressionXpathRegressionAbbreviationAsWordInNameAnnotationField {
+public @interface InputXpathAbbreviationAsWordInNameAnnotationField {
 
     String ANNOTATION_FIELD(); // warn
 

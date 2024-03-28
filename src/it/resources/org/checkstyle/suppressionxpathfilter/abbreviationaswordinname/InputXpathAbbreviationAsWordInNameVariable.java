@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.abbreviationaswordinname;
 
-public class SuppressionXpathRegressionAbbreviationAsWordInNameVariable {
+public class InputXpathAbbreviationAsWordInNameVariable {
 
     void method() {
         int VARIABLE; // warn

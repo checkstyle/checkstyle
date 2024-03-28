@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.abbreviationaswordinname;
 
-public interface SuppressionXpathRegressionAbbreviationAsWordInNameParameter {
+public interface InputXpathAbbreviationAsWordInNameParameter {
 
     void method(int PARAMETER); // warn
 
