@@ -28,18 +28,18 @@
     <section name="Enable External DTD load">
       <p>
         The property <code>checkstyle.enableExternalDtdLoad</code>
-        defines ability use custom DTD files in config and load them from some location.
+        defines the ability to use custom DTD files in config and load them from some location.
         The property type
         is <a href="property_types.html#boolean">boolean</a> and defaults
         to <code>false</code>. Disabled by default due to security concerns.
       </p>
       <subsection name="Examples" id="Enable_External_DTD_load_Examples">
         <p>
-          The following is an example of include xml files content in xml by ENTITY feature
-          to let keep common part of configs in single file and composite main config
-          by few smaller parts.
+          The following is an example of including the contents of other xml files by using the
+          ENTITY feature to keep common parts of configs in a single file and then creating
+          composite configs from smaller parts.
           <br/>
-          Imagine we want to define for test sources a bit different requirements
+          Imagine we want to define slightly different requirements for test sources
           than for main code.
         </p>
         <p>
