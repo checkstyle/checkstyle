@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.avoidnestedblocks;
 
-public class SuppressionXpathRegressionAvoidNestedBlocksVariable {
+public class InputXpathAvoidNestedBlocksVariable {
 
     void varAssign() {
         int whichIsWhich = 0;
