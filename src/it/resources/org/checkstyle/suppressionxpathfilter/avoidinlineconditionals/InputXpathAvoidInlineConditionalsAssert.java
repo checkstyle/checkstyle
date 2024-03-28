@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.avoidinlineconditionals;
 
-public class SuppressionXpathRegressionAvoidInlineConditionalsAssert {
+public class InputXpathAvoidInlineConditionalsAssert {
 
     void assertA(String a) {
         // JLS §14.10 - The assert Statement
