@@ -23,16 +23,17 @@
         Prepare development environment in Ubuntu</a>.<br/>
         2. Fork Checkstyle upstream project. As it is described
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
-        3. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
-        by running
+        3. Checkout the current source code from: https://github.com/your_user_name/checkstyle/<br/>
+        to get the copy of your fork on your computer, by running:
       </p>
       <div class="wrap-content">
         <source>
-            git clone git@github.com:you_user_name/checkstyle.git
+            git clone git@github.com:your_user_name/checkstyle.git
         </source>
       </div>
       <p>
-        4. Before opening project in IDE do build in terminal by running in repository root folder
+        4. Before opening project in IDE, do build in terminal to download all needed artifacts<br/>
+        for the project by running in repository root folder:
       </p>
       <div class="wrap-content">
         <source>
@@ -51,7 +52,8 @@
 
       <p>
         Follow these instructions of Git usage and creating a Pull Request:<br/>
-           1) Configure remotes:
+           1) Configure remotes by pointing to the official checkstyle repository,<br/>
+        naming it "upstream":
       </p>
       <div class="wrap-content">
         <source>
@@ -107,7 +109,7 @@
         </source>
       </div>
       <p>
-           7) Rebase your branch over your updated master
+           7) Rebase your branch over your updated master:
       </p>
       <div class="wrap-content">
         <source>
@@ -118,9 +120,10 @@
       <p>
            8) In the process of the rebase, it may discover conflicts.<br/>
            In that case it will stop and allow you to fix the conflicts.<br/>
-           After fixing conflicts, use git add . to update the index with those contents,<br/>
-           and then just run:
+           After fixing conflicts, use
       </p>
+      <source>git add .</source>
+      <p> to update the index with those contents, and then just run:</p>
       <div class="wrap-content">
         <source>
           git rebase --continue
