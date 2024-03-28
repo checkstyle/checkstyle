@@ -72,7 +72,8 @@
     <section name="Previous Version Documentation">
       <p>
         Current site contains documentation only for latest, released version.
-        We only support this latest version. We highly recommend reading the latest documentation first.
+        We only support this latest version. We highly recommend reading the latest documentation
+        first.
         <br/>
         However, you might need documentation for previous releases because you are still using
         an older version and the latest version describes some features that don't work for you.

@@ -100,11 +100,11 @@ public class MyClass {
     <section name="Limitations">
       <p>
       Javadoc by specification could contain any HTML tags that lets users generate the content
-      they need. All tags are copied as is to result in javadoc html pages by the Sun/Oracle 
-      javadoc tool. All bad formatting is the responsibility of user and web-browser. To validate 
-      Checkstyle it needs to parse input into a predictable structure - Abstract Syntax Tree(AST). 
-      Since it is very difficult to parse a free style format, input text needs to follow some format,
-      therefore limitations apply.
+      they need. All tags are copied as is to result in javadoc html pages by the Sun/Oracle
+      javadoc tool. All bad formatting is the responsibility of user and web-browser. To validate
+      Checkstyle it needs to parse input into a predictable structure - Abstract Syntax Tree(AST).
+      Since it is very difficult to parse a free style format, input text needs to follow some
+      format, therefore limitations apply.
       </p>
       <p>
       The comment should be written in <a href="#Tight-HTML_rules">Tight-HTML</a>
@@ -130,7 +130,7 @@ public class MyClass {
         <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so,
         Checkstyle won't show an error about missing end tags, however,
         it leads to broken Tight-HTML structure and as a result leads to not-nested content
-        of the HTML tags in the Abstract Syntax Tree of the Javadoccomment.
+        of the HTML tags in the Abstract Syntax Tree of the Javadoc comment.
         <br/>
         In other words, if HTML tags are not closed Javadoc, grammar cannot determine content
         of these tags, so structure of the parse tree will not be nested like it is while using
@@ -212,11 +212,11 @@ public class MyClass {
         objects.
       </p>
       <p>
-        The main Java grammar skips any whitespaces and newlines, so in Java Abstract Syntax Trees there
-        are no whitespace/newline nodes. In Javadoc comments every whitespace matters, and Javadoc
-        Checks need all those whitespaces and newline nodes to verify format and content of the
-        Javadoc comment. Because of that, the Javadoc grammar includes all whitespaces, and newlines to
-        the parse tree
+        The main Java grammar skips any whitespaces and newlines, so in Java Abstract Syntax Trees
+        there are no whitespace/newline nodes. In Javadoc comments every whitespace matters, and
+        Javadoc Checks need all those whitespaces and newline nodes to verify format and content of
+        the Javadoc comment. Because of that, the Javadoc grammar includes all whitespaces, and
+        newlines to the parse tree
         (<a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#WS">WS</a>,
         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#NEWLINE">
             NEWLINE</a>).
@@ -287,15 +287,15 @@ CLASS_DEF -> CLASS_DEF [5:0]
     `--RCURLY -> } [7:0]
       ]]></source>
       <p>
-        As you see a very small java file transforms into a huge Abstract Syntax Tree, because that is
-        the most detailed tree including all components of the java file: classes, methods,
+        As you see a very small java file transforms into a huge Abstract Syntax Tree, because that
+        is the most detailed tree including all components of the java file: classes, methods,
         comments, etc.
       </p>
       <p>
         In most cases while developing Javadoc Checks, you need to only parse the tree of the exact
-        Javadoc comment. To do that just copy the Javadoc comment to a separate file and remove <b>/**</b>
-        at the beginning and <b>*/</b> at the end. After that, run checkstyle with the <b>-j</b>
-        argument.
+        Javadoc comment. To do that just copy the Javadoc comment to a separate file and remove
+        <b>/**</b> at the beginning and <b>*/</b> at the end. After that, run checkstyle with the
+        <b>-j</b> argument.
       </p>
       <p>MyJavadocComment.javadoc file:</p>
       <source><![CDATA[
@@ -471,8 +471,8 @@ JAVADOC -> JAVADOC [0:0]
       </p>
 
       <p>
-        Here is what you get if the unknown tag doesn't have a matching end tag (for example, HTML5 tag
-        &lt;audio&gt;): <br/>
+        Here is what you get if the unknown tag doesn't have a matching end tag (for example, HTML5
+        tag &lt;audio&gt;): <br/>
         Input:
         <source>&lt;audio&gt;test</source>
         Output:
@@ -484,9 +484,9 @@ JAVADOC -> JAVADOC [0:0]
         </source>
       </div>
       <p>
-        As you see, the Javadoc parser prints an error and doesn't build the AST if an unknown 
-        HTML tag doesn't have a matching end tag. If that's the case, please create an issue for Checkstyle to
-        upgrade the parser.
+        As you see, the Javadoc parser prints an error and doesn't build the AST if an unknown
+        HTML tag doesn't have a matching end tag. If that's the case, please create an issue for
+        Checkstyle to upgrade the parser.
       </p>
 
       <p>
@@ -534,8 +534,8 @@ JAVADOC -> JAVADOC [0:0]
         <table style="table-layout: fixed;">
           <tr>
             <td>
-              1) Unclosed paragraph HTML tag. As you see in the tree, the content of the paragraph tag
-              is not nested to this tag.
+              1) Unclosed paragraph HTML tag. As you see in the tree, the content of the paragraph
+              tag is not nested to this tag.
               That is because HTML tags are not closed by pair tags &lt;/p&gt;, and Checkstyle
               requires <a href="#Tight-HTML_rules">Tight-HTML</a> code to predictably parse
               Javadoc comments.
@@ -621,11 +621,11 @@ JAVADOC -> JAVADOC [0:0]
 
       <p>
         Checks can also be configured to log violations when encountering non-tight HTML tags.
-        The <tt>violateExecutionOnNonTightHtml</tt> property can be used for this purpose in the checks
-        that support it. A custom check needs to extend <tt>AbstractJavadocCheck</tt> to have
-        this functionality readily available. Do note that a check which has this property set to
-        true, will log violations only for the first not-tight HTML tag found. To allow a check to
-        skip processing of javadocs with non-tight HTML, method
+        The <tt>violateExecutionOnNonTightHtml</tt> property can be used for this purpose in the
+        checks that support it. A custom check needs to extend <tt>AbstractJavadocCheck</tt> to
+        have this functionality readily available. Do note that a check which has this property set
+        to true, will log violations only for the first not-tight HTML tag found. To allow a check
+        to skip processing of javadocs with non-tight HTML, method
         <tt>acceptJavadocWithNonTightHtml</tt> in class <tt>AbstractJavadocCheck</tt> can be
         overridden in the check. The following example illustrates how to use this property.
       </p>
@@ -858,9 +858,9 @@ Checkstyle ends with 5 errors.
 
     <section name="Javadoc parser behavior for current HTML version and new HTML version">
       <p>
-      This section shows how the parser should/will behave during the parsing of the current HTML version
-      and any new HTML version. The current version is HTML4, a new version that needs to be supported
-      is HTML5.
+      This section shows how the parser should/will behave during the parsing of the current HTML
+      version and any new HTML version. The current version is HTML4, a new version that needs to
+      be supported is HTML5.
       GeneralToken - mean that after parsing there will be general AstToken - HTML_TAG.
       SpecialToken - mean that after parsing there will be special AstToken - PARAGRAPH, .... .
       </p>

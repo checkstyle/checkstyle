@@ -35,7 +35,7 @@
       </p>
       <subsection name="Examples" id="Enable_External_DTD_load_Examples">
         <p>
-          The following is an example of including the contents of other xml files by using the 
+          The following is an example of including the contents of other xml files by using the
           ENTITY feature to keep common parts of configs in a single file and then creating
           composite configs from smaller parts.
           <br/>
