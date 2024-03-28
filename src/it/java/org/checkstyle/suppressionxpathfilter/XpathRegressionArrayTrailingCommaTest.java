@@ -41,7 +41,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTrailingCommaOne.java"));
+                new File(getPath("InputXpathArrayTrailingCommaLinear.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTrailingCommaCheck.class);
@@ -53,11 +53,11 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaOne']]"
+                + "[./IDENT[@text='InputXpathArrayTrailingCommaLinear']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/EXPR[./NUM_INT[@text='3']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaOne']]"
+                + "[./IDENT[@text='InputXpathArrayTrailingCommaLinear']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/EXPR/NUM_INT[@text='3']"
         );
@@ -69,7 +69,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionArrayTrailingCommaTwo.java"));
+                new File(getPath("InputXpathArrayTrailingCommaMatrix.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ArrayTrailingCommaCheck.class);
@@ -81,7 +81,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaTwo']]"
+                + "[./IDENT[@text='InputXpathArrayTrailingCommaMatrix']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/ARRAY_INIT[./EXPR/NUM_INT[@text='5']]"
         );
