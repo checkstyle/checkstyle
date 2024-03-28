@@ -181,7 +181,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MethodLength",
             "MethodName",
             "MethodParamPad",
-            "MethodTypeParameterName",
             "MissingCtor",
             "MissingJavadocMethod",
             "MissingJavadocPackage",

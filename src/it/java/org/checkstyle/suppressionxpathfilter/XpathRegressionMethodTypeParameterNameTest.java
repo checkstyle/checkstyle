@@ -42,7 +42,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test1() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodTypeParameterName1.java"));
+                new File(getPath("InputXpathMethodTypeParameterNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodTypeParameterNameCheck.class);
@@ -54,11 +54,11 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./"
-                  + "IDENT[@text='SuppressionXpathRegressionMethodTypeParameterName1']]"
+                  + "IDENT[@text='InputXpathMethodTypeParameterNameDefault']]"
                   + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
                   + "/TYPE_PARAMETER[./IDENT[@text='TT']]", "/COMPILATION_UNIT"
                   + "/CLASS_DEF[./IDENT["
-                  + "@text='SuppressionXpathRegressionMethodTypeParameterName1']]"
+                  + "@text='InputXpathMethodTypeParameterNameDefault']]"
                   + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                   + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='TT']"
         );
@@ -69,7 +69,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test2() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodTypeParameterName2.java"));
+                new File(getPath("InputXpathMethodTypeParameterNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodTypeParameterNameCheck.class);
@@ -82,12 +82,12 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                  + "@text='SuppressionXpathRegressionMethodTypeParameterName2']]"
+                  + "@text='InputXpathMethodTypeParameterNameInner']]"
                   + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
                   + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
                   + "/TYPE_PARAMETER[./IDENT[@text='fo_']]", "/COMPILATION_UNIT"
                   + "/CLASS_DEF[./IDENT[@text="
-                  + "'SuppressionXpathRegressionMethodTypeParameterName2']]"
+                  + "'InputXpathMethodTypeParameterNameInner']]"
                   + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Junk']]/OBJBLOCK"
                   + "/METHOD_DEF[./IDENT[@text='foo']]/TYPE_PARAMETERS"
                   + "/TYPE_PARAMETER/IDENT[@text='fo_']"
@@ -99,7 +99,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     @Test
     public void test3() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodTypeParameterName3.java"));
+                new File(getPath("InputXpathMethodTypeParameterNameLowercase.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MethodTypeParameterNameCheck.class);
@@ -112,11 +112,11 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                  + "[@text='SuppressionXpathRegressionMethodTypeParameterName3']]"
+                  + "[@text='InputXpathMethodTypeParameterNameLowercase']]"
                   + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]/TYPE_PARAMETERS"
                   + "/TYPE_PARAMETER[./IDENT[@text='a_a']]", "/COMPILATION_UNIT"
                   + "/CLASS_DEF[./IDENT[@text="
-                  + "'SuppressionXpathRegressionMethodTypeParameterName3']]"
+                  + "'InputXpathMethodTypeParameterNameLowercase']]"
                   + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myMethod']]"
                   + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='a_a']"
         );
