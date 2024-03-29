@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.illegalcatch;
 
-public class SuppressionXpathRegressionIllegalCatchTwo {
+public class InputXpathIllegalCatchTwo {
     public void methodOne() {
         try {
             foo();
