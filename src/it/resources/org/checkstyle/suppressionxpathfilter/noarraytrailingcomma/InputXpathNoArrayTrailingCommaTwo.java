@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.noarraytrailingcomma;
 
-public class SuppressionXpathRegressionNoArrayTrailingCommaTwo {
+public class InputXpathNoArrayTrailingCommaTwo {
     int[] t4 = new int[] {1,}; //warn
 }
