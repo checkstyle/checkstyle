@@ -39,9 +39,9 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDefaultComesLastOne.java"));
+                new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);
@@ -53,11 +53,11 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionDefaultComesLastOne']]/OBJBLOCK"
+                + "[@text='InputXpathDefaultComesLastNonEmptyCase']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP["
                 + "./SLIST/EXPR/ASSIGN/IDENT[@text='id']]",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionDefaultComesLastOne']]/OBJBLOCK"
+                + "[@text='InputXpathDefaultComesLastNonEmptyCase']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
                 + "/LITERAL_DEFAULT"
         );
@@ -67,9 +67,9 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionDefaultComesLastTwo.java"));
+                new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);
@@ -82,7 +82,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionDefaultComesLastTwo']]/OBJBLOCK"
+                + "[@text='InputXpathDefaultComesLastEmptyCase']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/CASE_GROUP"
                 + "/LITERAL_DEFAULT"
         );

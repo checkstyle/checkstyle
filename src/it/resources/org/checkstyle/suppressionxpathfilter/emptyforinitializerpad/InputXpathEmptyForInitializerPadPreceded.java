@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.emptyforinitializerpad;
 
-public class SuppressionXpathRegressionEmptyForInitializerPadPreceded {
+public class InputXpathEmptyForInitializerPadPreceded {
     void method(int bad, int good) {
         for ( ; bad < 1; bad++ ) {//warn
         }

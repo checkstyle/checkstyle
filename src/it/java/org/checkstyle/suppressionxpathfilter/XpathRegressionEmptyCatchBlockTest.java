@@ -41,7 +41,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEmptyCatchBlock1.java"));
+            getPath("InputXpathEmptyCatchBlockOne.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -51,7 +51,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock1']]"
+                + "[./IDENT[@text='InputXpathEmptyCatchBlockOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
@@ -62,7 +62,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEmptyCatchBlock2.java"));
+            getPath("InputXpathEmptyCatchBlockTwo.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -72,7 +72,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionEmptyCatchBlock2']]"
+                + "[./IDENT[@text='InputXpathEmptyCatchBlockTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"
                 + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST"
         );
