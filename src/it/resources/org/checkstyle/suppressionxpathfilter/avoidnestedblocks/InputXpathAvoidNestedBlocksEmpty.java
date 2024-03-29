@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.avoidnestedblocks;
 
-public class SuppressionXpathRegressionAvoidNestedBlocksEmpty {
+public class InputXpathAvoidNestedBlocksEmpty {
 
     void empty() {
         {} // warn
