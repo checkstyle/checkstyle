@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.javadocvariable;
 
-public class SuppressionXpathRegressionJavadocVariableOne {
+public class InputXpathJavadocVariablePrivateClassFields {
 
     private int age; //warn
 

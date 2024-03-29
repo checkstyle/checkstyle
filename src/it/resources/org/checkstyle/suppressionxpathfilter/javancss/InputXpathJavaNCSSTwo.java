@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.javancss;
 
-public class SuppressionXpathRegressionJavaNCSSTwo { // warn
+public class InputXpathJavaNCSSTwo { // warn
 
     int a1 = 1;
     int a2 = 1;

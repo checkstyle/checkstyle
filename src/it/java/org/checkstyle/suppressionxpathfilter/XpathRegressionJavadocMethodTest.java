@@ -44,7 +44,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodOne.java"));
+                new File(getPath("InputXpathJavadocMethodOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -55,13 +55,13 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodOne']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='uninheritableMethod']]/MODIFIERS"
                         + "/LITERAL_PRIVATE");
 
@@ -72,7 +72,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodTwo.java"));
+                new File(getPath("InputXpathJavadocMethodTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -84,7 +84,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodTwo']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkParam']]/PARAMETERS"
                         + "/PARAMETER_DEF/IDENT[@text='x']");
 
@@ -95,7 +95,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodThree.java"));
+                new File(getPath("InputXpathJavadocMethodThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -107,11 +107,11 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
                         + "/TYPE_PARAMETER[./IDENT[@text='T']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkTypeParam']]/TYPE_PARAMETERS"
                         + "/TYPE_PARAMETER/IDENT[@text='T']");
 
@@ -122,7 +122,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodFour.java"));
+                new File(getPath("InputXpathJavadocMethodFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -136,7 +136,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFour']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodFour']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/LITERAL_THROWS/IDENT[@text='Exception']");
 
@@ -147,7 +147,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocMethodFive.java"));
+                new File(getPath("InputXpathJavadocMethodFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
@@ -161,7 +161,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocMethodFive']]"
+                        + "[./IDENT[@text='InputXpathJavadocMethodFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST"
                         + "/LITERAL_THROW/EXPR/LITERAL_NEW"
                         + "/DOT[./IDENT[@text='BuildException']]"
