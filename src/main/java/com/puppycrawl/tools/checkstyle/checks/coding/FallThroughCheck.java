@@ -42,9 +42,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * "fallthru", "fall thru", "fall-thru",
  * "fallthrough", "fall through", "fall-through"
  * "fallsthrough", "falls through", "falls-through" (case-sensitive).
- * The comment containing these words must be all on one line,
- * and must be on the last non-empty line before the {@code case} triggering
- * the warning or on the same line before the {@code case}(ugly, but possible).
+ * The comment containing these words must be on the last non-empty line
+ * before the {@code case} triggering the warning or on the same line before
+ * the {@code case}(ugly, but possible).
  * </p>
  * <p>
  * Note: The check assumes that there is no unreachable code in the {@code case}.
@@ -454,11 +454,30 @@ public class FallThroughCheck extends AbstractCheck {
      * @return true if relief comment found
      */
     private boolean hasReliefComment(DetailAST ast) {
-        return Optional.ofNullable(getNextNonCommentAst(ast))
-                .map(DetailAST::getPreviousSibling)
-                .map(previous -> previous.getFirstChild().getText())
-                .map(text -> reliefPattern.matcher(text).find())
-                .orElse(Boolean.FALSE);
+        DetailAST result = getNextNonCommentAst(ast);
+        boolean hasReliefComment = false;
+
+        while (result != null) {
+            DetailAST previousSibling = result.getPreviousSibling();
+            final int prevLineNumber = previousSibling.getLineNo();
+
+            while (previousSibling != null && previousSibling.getLineNo() == prevLineNumber) {
+                final DetailAST firstChild = previousSibling.getFirstChild();
+                if (firstChild != null) {
+                    if (reliefPattern.matcher(firstChild.getText()).find()) {
+                        hasReliefComment = true;
+                        break;
+                    }
+                }
+                else {
+                    break;
+                }
+                previousSibling = previousSibling.getPreviousSibling();
+            }
+            result = getNextNonCommentAst(result.getParent());
+        }
+
+        return hasReliefComment;
     }
 
 }
