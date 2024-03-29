@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.javadoccontentlocation;
 
-public interface SuppressionXpathRegressionJavadocContentLocationTwo {
+public interface InputXpathJavadocContentLocationTwo {
 
     /* warn */ /**
      * Text.

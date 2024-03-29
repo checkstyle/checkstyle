@@ -38,9 +38,9 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testPrivateClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocVariableOne.java"));
+                new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocVariableCheck.class);
@@ -52,13 +52,13 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariablePrivateClassFields']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariablePrivateClassFields']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariablePrivateClassFields']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='age']]/MODIFIERS/LITERAL_PRIVATE"
         );
 
@@ -67,9 +67,9 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testInnerClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocVariableTwo.java"));
+                new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocVariableCheck.class);
@@ -81,15 +81,15 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariableInnerClassFields']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariableInnerClassFields']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocVariableTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathJavadocVariableInnerClassFields']]/OBJBLOCK"
                 + "/CLASS_DEF[./IDENT[@text='InnerInner2']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='fData']]/MODIFIERS"
                 + "/LITERAL_PUBLIC"
