@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nestedfordepth;
 
-public class SuppressionXpathRegressionNestedForDepthMax {
+public class InputXpathNestedForDepthMax {
     public void test() {
         for (int i1 = 0; i1 < 10; i1++) {
             for (int i2 = 0; i2 < 10; i2++) {

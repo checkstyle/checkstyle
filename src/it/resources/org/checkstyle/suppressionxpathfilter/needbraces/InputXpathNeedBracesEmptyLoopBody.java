@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.needbraces;
 
-public class SuppressionXpathRegressionNeedBracesEmptyLoopBody {
+public class InputXpathNeedBracesEmptyLoopBody {
     private int incrementValue() {
         return 1;
     }

@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.needbraces;
 
-public class SuppressionXpathRegressionNeedBracesDo {
+public class InputXpathNeedBracesDo {
     /** @return helper func **/
     boolean condition()
     {
