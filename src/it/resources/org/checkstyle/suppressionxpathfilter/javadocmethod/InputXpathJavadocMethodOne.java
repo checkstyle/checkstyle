@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.javadocmethod;
 /**
  * Config:
  */
-public class SuppressionXpathRegressionJavadocMethodOne {
+public class InputXpathJavadocMethodOne {
 
     /** {@inheritDoc} */
     public void inheritableMethod() {

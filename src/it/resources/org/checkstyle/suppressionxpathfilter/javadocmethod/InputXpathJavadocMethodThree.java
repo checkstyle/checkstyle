@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.javadocmethod;
 /**
  * Config:
  */
-public class SuppressionXpathRegressionJavadocMethodThree {
+public class InputXpathJavadocMethodThree {
 
     /**
      * Needs a param tag for T.

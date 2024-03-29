@@ -5,6 +5,6 @@ package org.checkstyle.suppressionxpathfilter.javadoctype;
  * @param <A>
  * @param <B>
  */
-public class SuppressionXpathRegressionJavadocTypeThree<A, B, C> { //warn
+public class InputXpathJavadocTypeIncomplete<A, B, C> { //warn
 
 }
