@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.onestatementperline;
 
-public class SuppressionXpathRegressionOneStatementPerLineTwo {
+public class InputXpathOneStatementPerLineForLoopBlock {
     private void foo5(int var1, int var2) {
         for(int n = 0,
             k = 1

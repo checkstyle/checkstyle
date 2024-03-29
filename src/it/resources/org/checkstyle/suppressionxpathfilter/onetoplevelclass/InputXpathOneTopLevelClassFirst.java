@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.onetoplevelclass;
 
-public class SuppressionXpathRegressionOneTopLevelClassFirst {
+public class InputXpathOneTopLevelClassFirst {
     // methods
 }
 
