@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.onestatementperline;
 
-public class SuppressionXpathRegressionOneStatementPerLineOne {
+public class InputXpathOneStatementPerLineClassFields {
     int i; int j; //warn
 }
