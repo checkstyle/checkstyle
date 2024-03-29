@@ -129,7 +129,7 @@ public class MyClass {
         HTML specification (example is
         <a href="https://www.w3.org/TR/html5/tabular-data.html#the-tr-element">TR</a>), so,
         Checkstyle won't show an error about missing end tags, however,
-        it leads to broken Tight-HTML structure and as a result leads to not-nested content
+        it leads to broken Tight-HTML structure and as a result leads to non-nested content
         of the HTML tags in the Abstract Syntax Tree of the Javadoc comment.
         <br/>
         In other words, if HTML tags are not closed Javadoc, grammar cannot determine content
@@ -287,7 +287,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
     `--RCURLY -> } [7:0]
       ]]></source>
       <p>
-        As you see a very small java file transforms into a huge Abstract Syntax Tree, because that
+        As you see, a very small java file transforms into a huge Abstract Syntax Tree, because that
         is the most detailed tree including all components of the java file: classes, methods,
         comments, etc.
       </p>
@@ -620,7 +620,7 @@ JAVADOC -> JAVADOC [0:0]
       </div>
 
       <p>
-        Checks can also be configured to log violations when encountering non-tight HTML tags.
+        Checks can also be configured to log violations on encountering non-tight HTML tags.
         The <tt>violateExecutionOnNonTightHtml</tt> property can be used for this purpose in the
         checks that support it. A custom check needs to extend <tt>AbstractJavadocCheck</tt> to
         have this functionality readily available. Do note that a check which has this property set
@@ -744,7 +744,7 @@ Checkstyle ends with 5 errors.
 
     <section name="Checkstyle SDK GUI">
       <p>
-       The checkstyle GUI allows to show javadoc trees in java files. To run it use
+       Checkstyle GUI allows to show javadoc trees in java files. To run it, use
       </p>
       <div class="wrap-content">
         <source>
@@ -858,7 +858,7 @@ Checkstyle ends with 5 errors.
 
     <section name="Javadoc parser behavior for current HTML version and new HTML version">
       <p>
-      This section shows how the parser should/will behave during the parsing of the current HTML
+      This section shows how the parser should/will behave during parsing of the current HTML
       version and any new HTML version. The current version is HTML4, a new version that needs to
       be supported is HTML5.
       GeneralToken - mean that after parsing there will be general AstToken - HTML_TAG.
