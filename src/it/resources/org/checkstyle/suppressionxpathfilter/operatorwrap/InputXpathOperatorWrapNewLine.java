@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.operatorwrap;
 
-public class SuppressionXpathRegressionOperatorWrapNewLine {
+public class InputXpathOperatorWrapNewLine {
 
     void test() {
         int x = 1 + // warn

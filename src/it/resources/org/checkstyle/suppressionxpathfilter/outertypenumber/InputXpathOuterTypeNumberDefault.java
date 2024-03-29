@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.outertypenumber; // warn
 
-public class SuppressionXpathRegressionOuterTypeNumberDefault {
+public class InputXpathOuterTypeNumberDefault {
     public void test() {}
 }
 

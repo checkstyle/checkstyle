@@ -40,7 +40,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testOperatorWrapNewLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOperatorWrapNewLine.java"));
+                new File(getPath("InputXpathOperatorWrapNewLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OperatorWrapCheck.class);
@@ -53,7 +53,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionOperatorWrapNewLine']]"
+                        + "='InputXpathOperatorWrapNewLine']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]"
                         + "/ASSIGN/EXPR/MINUS[./NUM_INT[@text='4']]"
@@ -67,7 +67,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
     @Test
     public void testOperatorWrapPreviousLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOperatorWrapPreviousLine.java"));
+                new File(getPath("InputXpathOperatorWrapPreviousLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OperatorWrapCheck.class);
@@ -81,7 +81,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
              "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionOperatorWrapPreviousLine']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathOperatorWrapPreviousLine']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]"
                 + "/ASSIGN"
         );
