@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.defaultcomeslast;
 
-public class SuppressionXpathRegressionDefaultComesLastTwo {
+public class InputXpathDefaultComesLastEmptyCase {
     public void test(int i) {
         switch (i) {
             case 1:

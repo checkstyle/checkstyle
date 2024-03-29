@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.declarationorder;
 
-public class SuppressionXpathRegressionDeclarationOrderOne {
+public class InputXpathDeclarationOrderNonStatic {
     private int age;
     public String name;  //warn
 }
