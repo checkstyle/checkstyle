@@ -45,6 +45,36 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>.filter(Objects::nonNull)</lineContent>
+    <details>
+      found   : @GuardSatisfied Object
+      required: @GuardedBy DetailAST
+      Consequence: method in @GuardedBy Objects
+      @GuardedBy boolean nonNull(@GuardSatisfied Object p0)
+      is not a valid method reference for method in @GuardedBy Predicate&lt;@GuardedBy DetailAST&gt;
+      @GuardedBy boolean test(@GuardedBy Predicate&lt;@GuardedBy DetailAST&gt; this, @GuardedBy DetailAST p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>Objects::nonNull, DetailAST::getPreviousSibling)</lineContent>
+    <details>
+      found   : @GuardSatisfied Object
+      required: @GuardedBy DetailAST
+      Consequence: method in @GuardedBy Objects
+      @GuardedBy boolean nonNull(@GuardSatisfied Object p0)
+      is not a valid method reference for method in @GuardedBy Predicate&lt;@GuardedBy DetailAST&gt;
+      @GuardedBy boolean test(@GuardedBy Predicate&lt;@GuardedBy DetailAST&gt; this, @GuardedBy DetailAST p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>@SideEffectFree method toString calls method name with a weaker @ReleasesNoLocks side effect guarantee</message>
