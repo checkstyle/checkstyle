@@ -38,9 +38,9 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testClassFields() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOneStatementPerLineOne.java"));
+                new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneStatementPerLineCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionOneStatementPerLineOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/SEMI"
         );
 
@@ -61,9 +61,9 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testForLoopBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionOneStatementPerLineTwo.java"));
+                new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OneStatementPerLineCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionOneStatementPerLineTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathOneStatementPerLineForLoopBlock']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='foo5']]/SLIST/LITERAL_FOR/SLIST/SEMI[2]"
         );
 

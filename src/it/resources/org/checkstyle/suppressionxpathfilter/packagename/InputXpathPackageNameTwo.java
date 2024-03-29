@@ -3,5 +3,5 @@
         suppressionxpathfilter.
         packagename;
 
-public interface SuppressionXpathRegressionPackageNameTwo {
+public interface InputXpathPackageNameTwo {
 }

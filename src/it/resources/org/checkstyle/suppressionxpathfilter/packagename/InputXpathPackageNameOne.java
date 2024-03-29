@@ -1,4 +1,4 @@
 package org.checkstyle.suppressionxpathfilter.packagename; // warn
 
-public class SuppressionXpathRegressionPackageNameOne {
+public class InputXpathPackageNameOne {
 }
