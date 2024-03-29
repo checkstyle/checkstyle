@@ -40,7 +40,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoArrayTrailingCommaOne.java"));
+                new File(getPath("InputXpathNoArrayTrailingCommaOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoArrayTrailingCommaCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionNoArrayTrailingCommaOne']]"
+                    + "[@text='InputXpathNoArrayTrailingCommaOne']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t1']]/ASSIGN/EXPR"
                     + "/LITERAL_NEW/ARRAY_INIT/COMMA[4]"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNoArrayTrailingCommaTwo.java"));
+                new File(getPath("InputXpathNoArrayTrailingCommaTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoArrayTrailingCommaCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionNoArrayTrailingCommaTwo']]"
+                    + "[./IDENT[@text='InputXpathNoArrayTrailingCommaTwo']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t4']]"
                     + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_INIT/COMMA"
         );

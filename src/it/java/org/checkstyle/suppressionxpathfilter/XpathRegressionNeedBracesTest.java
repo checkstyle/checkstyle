@@ -41,7 +41,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     @Test
     public void testDo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionNeedBracesDo.java"));
+                "InputXpathNeedBracesDo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionNeedBracesDo']]"
+                        + "[./IDENT[@text='InputXpathNeedBracesDo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_DO"
         );
 
@@ -63,7 +63,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionNeedBracesSingleLine.java"));
+                "InputXpathNeedBracesSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNeedBracesSingleLine']]"
+                + "[./IDENT[@text='InputXpathNeedBracesSingleLine']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF"
         );
 
@@ -86,7 +86,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     @Test
     public void testSingleLineLambda() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionNeedBracesSingleLineLambda.java"));
+                "InputXpathNeedBracesSingleLineLambda.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
@@ -99,7 +99,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNeedBracesSingleLineLambda']]"
+                + "[./IDENT[@text='InputXpathNeedBracesSingleLineLambda']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r3']]/ASSIGN/LAMBDA"
         );
 
@@ -110,7 +110,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     @Test
     public void testEmptyLoopBody() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionNeedBracesEmptyLoopBody.java"));
+                "InputXpathNeedBracesEmptyLoopBody.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NeedBracesCheck.class);
@@ -121,7 +121,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNeedBracesEmptyLoopBody']]"
+                + "[./IDENT[@text='InputXpathNeedBracesEmptyLoopBody']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_WHILE"
         );
 

@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nestedtrydepth;
 
-public class SuppressionXpathRegressionNestedTryDepthMax {
+public class InputXpathNestedTryDepthMax {
     public void test() {
         try {
             try {

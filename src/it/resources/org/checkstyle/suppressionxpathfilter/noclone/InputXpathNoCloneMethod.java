@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.noclone;
 
-public class SuppressionXpathRegressionNoCloneOne {
+public class InputXpathNoCloneMethod {
 
     public Object clone() { return null; } // warn
 
