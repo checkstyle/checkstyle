@@ -795,6 +795,27 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testUnmodifiableProperties() {
+        final ImportOrderCheck checkObj = new ImportOrderCheck();
+
+        final String[] expectedGroups = {"groups1", "groups2"};
+        final String[] expectedStaticGroups = {"static1", "static2"};
+        checkObj.setGroups(expectedGroups);
+        checkObj.setStaticGroups(expectedStaticGroups);
+
+        final String[] groups = TestUtil.getInternalState(checkObj, "groups");
+        final String[] staticGroups = TestUtil.getInternalState(checkObj, "staticGroups");
+        groups[0] = "modified";
+        staticGroups[0] = "modified";
+        assertWithMessage("Property 'groups' is not unmodifiable")
+                .that(expectedGroups[0])
+                .isNotEqualTo("modified");
+        assertWithMessage("Property 'staticGroups' is not unmodifiable")
+                .that(expectedStaticGroups[0])
+                .isNotEqualTo("modified");
+    }
+
     /**
      * Finding the appropriate input for testing the "lastImportStatic"
      * field is challenging. Removing it from the reset process might

@@ -673,7 +673,7 @@
     <section name="Pattern[]">
       <p>
         This type represents a set of patterns. The string representation
-        is parsed as a set of forward slash ('/') separated patterns.
+        is parsed as a set of comma (',') separated patterns.
       </p>
     </section>
 
