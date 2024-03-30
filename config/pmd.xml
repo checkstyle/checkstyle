@@ -316,7 +316,8 @@
       <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
-    | //ClassOrInterfaceDeclaration[@SimpleName='Main']"/>
+    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
+    | //ClassOrInterfaceDeclaration[@SimpleName='ImportOrderCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
