@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>setGroups</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Arrays::copyOf with argument</description>
+    <lineContent>groups = Arrays.copyOf(packageGroups, packageGroups.length);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>ImportOrderCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
+    <mutatedMethod>setStaticGroups</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Arrays::copyOf with argument</description>
+    <lineContent>staticGroups = Arrays.copyOf(packageGroups, packageGroups.length);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>PkgImportControl.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
