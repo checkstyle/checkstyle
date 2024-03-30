@@ -353,4 +353,20 @@ public final class TokenUtil {
                 .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
+    /**
+     * Check whether given node a preceding access modifier or not.
+     *
+     * @param node the node whose predecessors are to be checked.
+     * @return true if node is preceded by an access modifier else false.
+     */
+    public static boolean isPrecededByAnyModifier(DetailAST node) {
+        DetailAST tempNode = node;
+        while (tempNode.getPreviousSibling() != null
+            && !isOfType(tempNode.getPreviousSibling(),
+            TokenTypes.LITERAL_PUBLIC, TokenTypes.FINAL, TokenTypes.ABSTRACT)) {
+            tempNode = tempNode.getPreviousSibling();
+        }
+        return tempNode.getPreviousSibling() != null;
+    }
+
 }
