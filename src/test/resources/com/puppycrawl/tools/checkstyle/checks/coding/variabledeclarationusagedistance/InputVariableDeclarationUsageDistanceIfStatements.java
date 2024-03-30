@@ -45,7 +45,7 @@ public class InputVariableDeclarationUsageDistanceIfStatements {
     }
 
     void testConsecutiveIfStatements() {
-        int a = 12; // ok
+        int a = 12;
         int b = 13; // violation 'Distance between .* declaration and its first usage is 2.'
         int c = 14; // violation 'Distance between .* declaration and its first usage is 3.'
         int d = 15; // violation 'Distance between .* declaration and its first usage is 4.'
