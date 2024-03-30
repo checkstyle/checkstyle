@@ -89,11 +89,11 @@ public final class JavadocTokenTypes {
      * <pre>{@code @since 3.4 RELEASE}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@since 3.4 RELEASE]
-     *       |--SINCE_LITERAL[3x0] : [@since]
-     *       |--WS[3x6] : [ ]
-     *       |--DESCRIPTION[3x7] : [3.4 RELEASE]
-     *           |--TEXT[3x7] : [3.4 RELEASE]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SINCE_LITERAL -> @since
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> 3.4 RELEASE
      * }</pre>
      *
      * @see
