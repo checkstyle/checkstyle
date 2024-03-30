@@ -118,7 +118,6 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      */
     protected AbstractClassCouplingCheck(int defaultMax) {
         max = defaultMax;
-        excludeClassesRegexps.add(CommonUtil.createPattern("^$"));
     }
 
     /**
@@ -156,10 +155,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      *
      * @param from array representing regular expressions of classes to ignore.
      */
-    public void setExcludeClassesRegexps(String... from) {
-        Arrays.stream(from)
-                .map(CommonUtil::createPattern)
-                .forEach(excludeClassesRegexps::add);
+    public void setExcludeClassesRegexps(Pattern... from) {
+        excludeClassesRegexps.addAll(Arrays.asList(from));
     }
 
     /**
@@ -186,6 +183,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         classesContexts.clear();
         classesContexts.push(new ClassContext("", null));
         packageName = "";
+        excludeClassesRegexps.add(CommonUtil.createPattern("^$"));
     }
 
     @Override
