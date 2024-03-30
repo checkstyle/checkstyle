@@ -3675,6 +3675,7 @@
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
               </targetClasses>
+              <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.*</param>
               </targetTests>

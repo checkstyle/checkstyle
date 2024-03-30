@@ -170,6 +170,7 @@ public abstract class AbstractAutomaticBean
      */
     private static void registerCustomTypes(ConvertUtilsBean cub) {
         cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new PatternArrayConverter(), Pattern[].class);
         cub.register(new SeverityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
@@ -311,6 +312,25 @@ public abstract class AbstractAutomaticBean
             return CommonUtil.createPattern(value.toString());
         }
 
+    }
+
+    /** A converter that converts a comma-separated string into an array of patterns. */
+    private static final class PatternArrayConverter implements Converter {
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public Object convert(Class type, Object value) {
+            final StringTokenizer tokenizer = new StringTokenizer(
+                    value.toString(), COMMA_SEPARATOR);
+            final List<Pattern> result = new ArrayList<>();
+
+            while (tokenizer.hasMoreTokens()) {
+                final String token = tokenizer.nextToken();
+                result.add(CommonUtil.createPattern(token.trim()));
+            }
+
+            return result.toArray(new Pattern[0]);
+        }
     }
 
     /** A converter that converts strings to severity level. */
