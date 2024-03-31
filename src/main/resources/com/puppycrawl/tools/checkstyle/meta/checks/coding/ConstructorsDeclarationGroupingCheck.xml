@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
+             name="ConstructorsDeclarationGrouping"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that overloaded constructors are grouped together.
+ If there is anything between overloaded constructors ( expect comments )
+ then this check will give an error.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="constructors.declaration.grouping"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
