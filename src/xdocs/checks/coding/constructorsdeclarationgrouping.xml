@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ConstructorsDeclarationGrouping</title>
+  </head>
+  <body>
+    <section name="ConstructorsDeclarationGrouping">
+      <p>Since Checkstyle 10.17.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that all constructors are grouped together.
+          If there is any non-constructor code separating constructors,
+          this check identifies and logs a violation for those ungrouped constructors.
+          The violation message will specify the line number
+          of the last grouped constructor.
+          Comments between constructors are allowed.
+        </p>
+        <p>
+        Rationale: Grouping constructors together in a class improves code readability
+        and maintainability. It allows developers to easily understand
+        the different ways an object can be instantiated
+        and the tasks performed by each constructor.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ConstructorsDeclarationGrouping&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">Example of correct grouping of constructors:</p>
+        <source>
+public class Example1 {
+
+  int x;
+
+  Example1() {}
+
+  Example1(String s) {}
+
+  // comments between constructors are allowed.
+  Example1(int x) {}
+
+  Example1(String s, int x) {}
+
+  void foo() {}
+
+  private enum ExampleEnum {
+
+    ONE, TWO, THREE;
+
+    ExampleEnum() {}
+
+    ExampleEnum(int x) {}
+
+    ExampleEnum(String s) {}
+
+    int x = 10;
+
+    void foo() {}
+  }
+}
+        </source>
+        <p id="Example2-code">Example of incorrect grouping of constructors:</p>
+        <source>
+public class Example2 {
+
+  int x;
+
+  Example2() {}
+
+  Example2(String s){}
+
+  void foo() {}
+
+  Example2(int x) {} // violation
+
+  Example2(String s, int x) {} // violation
+
+  private enum ExampleEnum {
+
+    ONE, TWO, THREE;
+
+    ExampleEnum() {}
+
+    ExampleEnum(int x) {}
+
+    final int x = 10;
+
+    ExampleEnum(String str) {} // violation
+
+    void foo() {}
+  }
+
+  Example2(float f) {} // violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22constructors.declaration.grouping%22">
+              constructors.declaration.grouping
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
