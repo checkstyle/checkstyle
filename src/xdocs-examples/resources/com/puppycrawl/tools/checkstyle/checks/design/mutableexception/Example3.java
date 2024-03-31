@@ -11,36 +11,36 @@
 package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
 // xdoc section -- start
-class FirstClass extends Exception {
+class ThirdClass extends Exception {
     private int code; // OK, extended class name doesn't match with given pattern
 
-    public FirstClass() {
+    public ThirdClass() {
         code = 1;
     }
 }
 
-class MyException extends Exception {
+class MyException3 extends Exception {
     private int code; // OK, extended class name doesn't match with given pattern
 
-    public MyException() {
+    public MyException3() {
         code = 2;
     }
 }
 
-class MyThrowable extends Throwable {
+class MyThrowable3 extends Throwable {
     final int code; // OK
     String message; // violation, The field 'message' must be declared final
 
-    public MyThrowable(int code, String message) {
+    public MyThrowable3(int code, String message) {
         this.code = code;
         this.message = message;
     }
 }
 
-class BadException extends java.lang.Exception {
+class BadException3 extends java.lang.Exception {
     int code; // OK, extended class name doesn't match with given pattern
 
-    public BadException(int code) {
+    public BadException3(int code) {
         this.code = code;
     }
 }
