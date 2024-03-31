@@ -19,10 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 
 public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -33,9 +34,9 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-                "23:5:" + getCheckMessage(MSG_KEY, "code"),
-                "32:5:" + getCheckMessage(MSG_KEY, "message"),
-                "41:5:" + getCheckMessage(MSG_KEY, "code"),
+                "23:17: " + getCheckMessage(MSG_KEY, "code"),
+                "32:12: " + getCheckMessage(MSG_KEY, "message"),
+                "41:9: " + getCheckMessage(MSG_KEY, "code"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,8 +45,8 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-                "23:5:" + getCheckMessage(MSG_KEY, "code"),
-                "41:5:" + getCheckMessage(MSG_KEY, "code"),
+                "23:17: " + getCheckMessage(MSG_KEY, "code"),
+                "41:9: " + getCheckMessage(MSG_KEY, "code"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,7 +55,7 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-                "32:5:" + getCheckMessage(MSG_KEY, "message"),
+                "32:12: " + getCheckMessage(MSG_KEY, "message"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

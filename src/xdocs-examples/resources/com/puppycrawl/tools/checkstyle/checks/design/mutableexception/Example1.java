@@ -19,28 +19,28 @@ class FirstClass extends Exception {
     }
 }
 
-class MyException1 extends Exception {
-    private int code; // violation, The field 'code' must be declared final
+class MyException extends Exception {
+    private int code; // violation. The field 'code' must be declared final
 
-    public MyException1() {
+    public MyException() {
         code = 2;
     }
 }
 
-class MyThrowable1 extends Throwable {
+class MyThrowable extends Throwable {
     final int code; // OK
-    String message; // violation, The field 'message' must be declared final
+    String message; // violation. The field 'message' must be declared final
 
-    public MyThrowable1(int code, String message) {
+    public MyThrowable(int code, String message) {
         this.code = code;
         this.message = message;
     }
 }
 
-class BadException1 extends java.lang.Exception {
-    int code; // violation, The field 'code' must be declared final
+class BadException extends java.lang.Exception {
+    int code; // violation. The field 'code' must be declared final
 
-    public BadException1(int code) {
+    public BadException(int code) {
         this.code = code;
     }
 }
