@@ -397,6 +397,16 @@
           </tr>
           <tr>
             <td>
+              <a href="constructorsdeclarationgrouping.html#ConstructorsDeclarationGrouping">
+                ConstructorsDeclarationGrouping
+              </a>
+            </td>
+            <td>
+              Checks that overloaded constructors are grouped together.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="packagedeclaration.html#PackageDeclaration">
                 PackageDeclaration
               </a>
