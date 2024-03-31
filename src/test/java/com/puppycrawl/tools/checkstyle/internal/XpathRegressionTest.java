@@ -163,6 +163,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "NoWhitespaceBeforeCaseDefaultColon",
             "NPathComplexity",
             "OverloadMethodsDeclarationOrder",
+            "ConstructorsDeclarationGrouping",
             "ParameterAssignment",
             "ParameterName",
             "ParameterNumber",
