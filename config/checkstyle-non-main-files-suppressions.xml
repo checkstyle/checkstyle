@@ -211,6 +211,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]constructorsdeclarationgrouping.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]covariantequals.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]emptystatement.xml.template"/>
