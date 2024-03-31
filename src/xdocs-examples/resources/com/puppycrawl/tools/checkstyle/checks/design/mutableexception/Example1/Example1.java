@@ -8,7 +8,7 @@
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception.Example1;
 
 // xdoc section -- start
 class FirstClass extends Exception {
@@ -20,7 +20,7 @@ class FirstClass extends Exception {
 }
 
 class MyException extends Exception {
-    private int code; // violation. The field 'code' must be declared final
+    private int code; // violation
 
     public MyException() {
         code = 2;
@@ -29,7 +29,7 @@ class MyException extends Exception {
 
 class MyThrowable extends Throwable {
     final int code; // OK
-    String message; // violation. The field 'message' must be declared final
+    String message; // violation
 
     public MyThrowable(int code, String message) {
         this.code = code;
@@ -38,7 +38,7 @@ class MyThrowable extends Throwable {
 }
 
 class BadException extends java.lang.Exception {
-    int code; // violation. The field 'code' must be declared final
+    int code; // violation
 
     public BadException(int code) {
         this.code = code;

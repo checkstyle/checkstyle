@@ -34,30 +34,30 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-                "23:17: " + getCheckMessage(MSG_KEY, "code"),
-                "32:12: " + getCheckMessage(MSG_KEY, "message"),
-                "41:9: " + getCheckMessage(MSG_KEY, "code"),
+            "23:5: " + getCheckMessage(MSG_KEY, "code"),
+            "32:5: " + getCheckMessage(MSG_KEY, "message"),
+            "41:5: " + getCheckMessage(MSG_KEY, "code"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1/Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-                "23:17: " + getCheckMessage(MSG_KEY, "code"),
-                "41:9: " + getCheckMessage(MSG_KEY, "code"),
+            "23:5: " + getCheckMessage(MSG_KEY, "code"),
+            "41:5: " + getCheckMessage(MSG_KEY, "code"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2/Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-                "32:12: " + getCheckMessage(MSG_KEY, "message"),
+            "32:5: " + getCheckMessage(MSG_KEY, "message"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3/Example3.java"), expected);
     }
 }
