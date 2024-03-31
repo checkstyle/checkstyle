@@ -3264,6 +3264,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck*</param>
@@ -3288,6 +3289,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.AvoidNoArgumentSuperConstructorCallCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheckTest</param>
