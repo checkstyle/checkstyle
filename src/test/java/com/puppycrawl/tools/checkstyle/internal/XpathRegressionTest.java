@@ -200,6 +200,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "OuterTypeFilename",
             "OuterTypeNumber",
             "OverloadMethodsDeclarationOrder",
+            "ConstructorsDeclarationGrouping",
             "PackageName",
             "ParameterAssignment",
             "ParameterName",
