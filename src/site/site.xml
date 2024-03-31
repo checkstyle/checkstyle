@@ -114,6 +114,8 @@
           <item name="AvoidInlineConditionals" href="checks/coding/avoidinlineconditionals.html"/>
           <item name="AvoidNoArgumentSuperConstructorCall"
                 href="checks/coding/avoidnoargumentsuperconstructorcall.html"/>
+          <item name="ConstructorsDeclarationGrouping"
+                href="checks/coding/constructorsdeclarationgrouping.html"/>
           <item name="CovariantEquals" href="checks/coding/covariantequals.html"/>
           <item name="DeclarationOrder" href="checks/coding/declarationorder.html"/>
           <item name="DefaultComesLast" href="checks/coding/defaultcomeslast.html"/>
