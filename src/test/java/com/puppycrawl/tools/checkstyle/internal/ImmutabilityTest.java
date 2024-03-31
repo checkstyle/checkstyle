@@ -152,7 +152,9 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.formatString",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.tagRegExp",
         "com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.format",
-        "com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.option"
+        "com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.option",
+        "com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
+            + ".allObjBlocks"
     );
 
     /**
@@ -187,7 +189,8 @@ public class ImmutabilityTest {
      * List of classes not following {@link #testClassesWithMutableFieldsShouldBeStateful()} rule.
      */
     private static final Set<String> SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE = Set.of(
-        "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
+        "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
+        "com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
     );
 
     private static final JavaClasses CHECKSTYLE_CHECKS = new ClassFileImporter()
