@@ -113,8 +113,8 @@ public class FileTwo {
 }
 
 public class FileThree {
-  public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  public void MyMethod() {}
+    // violation, name 'MyMethod' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example2-config">
@@ -135,8 +135,8 @@ public class FileThree {
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
-  public void MyMethodA() {} // violation, name 'MyMethodA' must
-                             // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  public void MyMethodA() {}
+  // violation, name 'MyMethodA' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example3-config">
@@ -162,8 +162,8 @@ public class FileOne {
   public void MyMethod() {} // OK
 }
 public class FileTwo {
-  public void MyMethod() {} // violation,  name 'MyMethod' must
-                            //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  public void MyMethod() {}
+  // violation,  name 'MyMethod' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example4-config">
@@ -224,8 +224,8 @@ public class FileOne {
 }
 
 public class FileTwo {
-  public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  public void MyMethod() {}
+  // violation, name 'MyMethod' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example7-config">
@@ -250,10 +250,10 @@ abstract class FileOne { // OK
   public void MyMethod() {} // OK
 }
 
-abstract class FileTwo { // violation of the AbstractClassName check,
-                         // it should match the pattern &quot;^Abstract.+$&quot;
-  public void MyMethod() {} // violation, name 'MyMethod'
-                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+abstract class FileTwo {
+  // violation of the AbstractClassName check, it should match the pattern &quot;^Abstract.+$&quot;
+  public void MyMethod() {}
+  // violation, name 'MyMethod' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example8-config">
@@ -275,8 +275,8 @@ abstract class FileTwo { // violation of the AbstractClassName check,
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
-  public void MyMethod3() {} // violation, name 'MyMethod3' must
-                             // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+  public void MyMethod3() {}
+  // violation, name 'MyMethod3' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
         </source>
         <p id="Example9-config">
@@ -300,8 +300,8 @@ public class FileOne {
 public class TestClass {
   public void testMethod() {
     final int testVariable1 = 10; // OK
-    final int testVariable2 = 10; // violation of the LocalFinalVariableName check,
-                                  // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
+    final int testVariable2 = 10;
+    // violation of the LocalFinalVariableName check, name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
         </source>
@@ -354,7 +354,8 @@ public class InputTest {
   private int age = 23;
 
   public void changeAge() {
-    age = 24; // violation will be suppressed
+    age = 24;
+    // violation will be suppressed
   }
 }
         </source>
@@ -380,10 +381,12 @@ public class InputTest {
         <p id="Example12-code">Code Example:</p>
         <source>
 public class InputTest {
-  public void throwsMethod() throws RuntimeException { // violation will be suppressed
+  public void throwsMethod() throws RuntimeException {
+    // violation will be suppressed
   }
 
-  public void sampleMethod() throws RuntimeException { // will throw violation here
+  public void sampleMethod() throws RuntimeException {
+    // will throw violation here
   }
 }
         </source>
@@ -412,10 +415,10 @@ public class TestClass {
     final int num = 10; // OK
   }
 
-  public void TestMethod2() { // violation of the MethodName check,
-                              // name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
-    final int num = 10; // violation of the LocalFinalVariableName check,
-                        // name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
+  public void TestMethod2() {
+    // violation of the MethodName check, name 'TestMethod2' must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+    final int num = 10;
+    // violation of the LocalFinalVariableName check, name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
         </source>
