@@ -352,9 +352,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testGeneralClass4() throws Exception {
-        final String[] expected = {
-            "26:9: " + getCheckMessage(MSG_KEY, "z", 3, 1),
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral4.java"), expected);
@@ -407,5 +405,14 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceCloseToBlock.java"), expected);
+    }
+
+    @Test
+    public void testVariableDeclarationUsageDistanceMethodDefinition() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "c", 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceMethodDefinition.java"), expected);
     }
 }
