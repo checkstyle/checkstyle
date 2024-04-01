@@ -24,6 +24,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Abstract base class for all handlers.
@@ -500,6 +501,10 @@ public abstract class AbstractExpressionHandler {
              modifier != null;
              modifier = modifier.getNextSibling()) {
             if (isOnStartOfLine(modifier)
+                 && (!TokenUtil.isOfType(modifier,
+                        TokenTypes.ANNOTATION, TokenTypes.STRICTFP, TokenTypes.LITERAL_STATIC)
+                    || modifier.getPreviousSibling() == null
+                    || !isPrecededByAnyModifier(modifier))
                 && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
@@ -588,6 +593,22 @@ public abstract class AbstractExpressionHandler {
                 && isOnStartOfLine(lparen)) {
             logError(lparen, "lparen", expandedTabsColumnNo(lparen));
         }
+    }
+
+    /**
+     * Check whether given node a preceding access modifier or not.
+     *
+     * @param node the node whose predecessors are to be checked.
+     * @return true if node is preceded by an access modifier else false.
+     */
+    private boolean isPrecededByAnyModifier(DetailAST node) {
+        DetailAST tempNode = node;
+        while (tempNode.getPreviousSibling() != null
+            && !TokenUtil.isOfType(tempNode.getPreviousSibling(),
+            TokenTypes.LITERAL_PUBLIC, TokenTypes.FINAL, TokenTypes.ABSTRACT)) {
+            tempNode = tempNode.getPreviousSibling();
+        }
+        return tempNode.getPreviousSibling() != null;
     }
 
 }
