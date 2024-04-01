@@ -8,13 +8,13 @@
 </module>
 */
 
-package com.puppycrawl.tools.checkstyle.checks.design.mutableexception.Example3;
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
 // xdoc section -- start
-class FirstClass extends Exception {
+class Example3 extends Exception {
     private int code; // OK, extended class name doesn't match with given pattern
 
-    public FirstClass() {
+    public Example3() {
         code = 1;
     }
 }

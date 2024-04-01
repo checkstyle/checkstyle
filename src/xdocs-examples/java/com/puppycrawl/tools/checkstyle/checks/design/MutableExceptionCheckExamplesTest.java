@@ -39,7 +39,7 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
             "41:5: " + getCheckMessage(MSG_KEY, "code"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1/Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
             "41:5: " + getCheckMessage(MSG_KEY, "code"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2/Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -58,6 +58,6 @@ public class MutableExceptionCheckExamplesTest extends AbstractExamplesModuleTes
             "32:5: " + getCheckMessage(MSG_KEY, "message"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3/Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }

@@ -1,20 +1,20 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="MutableException">
-      <property name="format" value="^.*Exception$"/>
-    </module>
+    <module name="MutableException"/>
   </module>
 </module>
+
+
 */
 
-package com.puppycrawl.tools.checkstyle.checks.design.mutableexception.Example2;
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
 // xdoc section -- start
-class FirstClass extends Exception {
-    private int code; // OK, class name doesn't match with given pattern
+class Example1 extends Exception {
+    private int code; // OK, class name doesn't match with default pattern
 
-    public FirstClass() {
+    public Example1() {
         code = 1;
     }
 }
@@ -28,8 +28,8 @@ class MyException extends Exception {
 }
 
 class MyThrowable extends Throwable {
-    final int code; // OK, class name doesn't match with given pattern
-    String message; // OK, class name doesn't match with given pattern
+    final int code; // OK
+    String message; // violation
 
     public MyThrowable(int code, String message) {
         this.code = code;
