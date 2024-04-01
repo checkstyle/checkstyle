@@ -10,6 +10,92 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.15.0">
+      <div class="releaseDate">01.04.2024</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            fix ordering of AST under STRING_TEMPLATE_BEGIN and remove empty
+            STRING_TEMPLATE_CONTENT nodes.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/14615">#14615</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add ignoreMethodAnnotatedBy property to ParameterNumberCheck.
+            Author: sktpy
+            <a href="https://github.com/checkstyle/checkstyle/issues/11340">#11340</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            FallThrough check false positive with labelled break.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/11230">#11230</a>
+          </li>
+          <li>
+            some messages are still hardcoded in english.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enforce new naming convention &quot;InputXpath{Checkname}Xxxx.java&quot; in IT area.
+            Author: Kexin2000, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14715">#14715</a>
+          </li>
+          <li>
+            Wrap `assertThrows` with `getExpectedThrowable` method..
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/11343">#11343</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Kexin2000
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Enforce input naming convention in IT.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/6981">#6981</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Kexin2000, Acesif, 10zhu, Smit Joshi, lmgyuan
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Kexin2000, Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: pinti0001
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Use module properties macro in all templates.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13693">#13693</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.14.2">
       <div class="releaseDate">16.03.2024</div>
       <p>Bug fixes:</p>
