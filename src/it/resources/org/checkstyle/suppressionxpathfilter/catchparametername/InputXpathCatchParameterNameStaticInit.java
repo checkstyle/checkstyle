@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.catchparametername;
 
-public class SuppressionXpathRegressionCatchParameterNameStaticInit {
+public class InputXpathCatchParameterNameStaticInit {
     static {
         do {
             try {

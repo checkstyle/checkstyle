@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.catchparametername;
 
-public class SuppressionXpathRegressionCatchParameterNameAnonymous {
+public class InputXpathCatchParameterNameAnonymous {
     class InnerClass {
         InnerClass() {
             new Runnable() {

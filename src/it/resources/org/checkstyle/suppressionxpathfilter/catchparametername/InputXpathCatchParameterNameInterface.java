@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.catchparametername;
 
-interface SuppressionXpathRegressionCatchParameterNameInterface {
+interface InputXpathCatchParameterNameInterface {
     interface InnerInterface {
         default void method() {
             try {
