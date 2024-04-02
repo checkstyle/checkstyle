@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.catchparametername;
 
-public class SuppressionXpathRegressionCatchParameterNameNested {
+public class InputXpathCatchParameterNameNested {
     public static class NestedClass {
         void method() {
             if (true) {
