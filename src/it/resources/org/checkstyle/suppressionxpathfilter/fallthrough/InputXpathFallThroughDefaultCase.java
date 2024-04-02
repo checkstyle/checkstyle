@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.fallthrough;
 
-public class SuppressionXpathRegressionFallThroughTwo {
+public class InputXpathFallThroughDefaultCase {
     void methodFallThruCustomWords(int i, int j, boolean cond) {
         while (true) {
             switch (i){
