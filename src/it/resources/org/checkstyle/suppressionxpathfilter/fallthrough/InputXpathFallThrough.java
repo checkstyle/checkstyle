@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.fallthrough;
 
-public class SuppressionXpathRegressionFallThroughOne {
+public class InputXpathFallThrough {
     public void test() {
         int id = 0;
         switch (id) {

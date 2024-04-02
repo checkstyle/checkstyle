@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finalclass;
 
-public class SuppressionXpathRegressionFinalClass2 {
+public class InputXpathFinalClassInnerClass {
     class Test { // warn
         private Test(){
 
