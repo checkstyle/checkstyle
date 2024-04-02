@@ -39,7 +39,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator1.java")
+                getPath("InputXpathEmptyLineSeparatorOne.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -61,7 +61,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator2.java")
+                getPath("InputXpathEmptyLineSeparatorTwo.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -83,7 +83,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator3.java")
+                getPath("InputXpathEmptyLineSeparatorThree.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -97,16 +97,16 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                        + "[./IDENT[@text='InputXpathEmptyLineSeparatorThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                        + "[./IDENT[@text='InputXpathEmptyLineSeparatorThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
                         + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator3']]"
+                        + "[./IDENT[@text='InputXpathEmptyLineSeparatorThree']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -117,7 +117,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testFour() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator4.java")
+                getPath("InputXpathEmptyLineSeparatorFour.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -131,7 +131,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
+                        + "[./IDENT[@text='InputXpathEmptyLineSeparatorFour']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/RCURLY"
         );
 
@@ -141,7 +141,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     @Test
     public void testFive() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionEmptyLineSeparator5.java")
+                getPath("InputXpathEmptyLineSeparatorFive.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -156,7 +156,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
+                        + "[./IDENT[@text='InputXpathEmptyLineSeparatorFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/LITERAL_TRY/SLIST"
                         + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn\\n']"
         );

@@ -38,9 +38,9 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testPrimitiveType() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationOne.java"));
+                new File(getPath("InputXpathExplicitInitializationPrimitiveType.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationOne']]"
+                        + "[./IDENT[@text='InputXpathExplicitInitializationPrimitiveType']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
         );
 
@@ -61,9 +61,9 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testObjectType() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionExplicitInitializationTwo.java"));
+                new File(getPath("InputXpathExplicitInitializationObjectType.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ExplicitInitializationCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionExplicitInitializationTwo']]"
+                        + "[./IDENT[@text='InputXpathExplicitInitializationObjectType']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='bar']"
         );
 
