@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.booleanexpressioncomplexity;
 
-public class SuppressionXpathRegressionBooleanExpressionComplexityThree {
+public class InputXpathBooleanExpressionComplexityConditionals {
     public void methodThree() {
         boolean a = true;
         boolean b = false;

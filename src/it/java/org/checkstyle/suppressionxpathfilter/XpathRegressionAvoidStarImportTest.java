@@ -42,7 +42,7 @@ public class XpathRegressionAvoidStarImportTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidStarImport1.java"));
+            "InputXpathAvoidStarImportOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);
@@ -62,7 +62,7 @@ public class XpathRegressionAvoidStarImportTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionAvoidStarImport2.java"));
+            "InputXpathAvoidStarImportTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);

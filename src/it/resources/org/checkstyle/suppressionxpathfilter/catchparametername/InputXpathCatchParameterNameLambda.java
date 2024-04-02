@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.catchparametername;
 
 import java.util.function.Function;
 
-abstract class SuppressionXpathRegressionCatchParameterNameLambda {
+abstract class InputXpathCatchParameterNameLambda {
     abstract void abstracMethod();
 
     private final Function<Integer, Integer> lambdaFunction = a -> {
