@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.catchparametername;
 
-public enum SuppressionXpathRegressionCatchParameterNameEnum {
+public enum InputXpathCatchParameterNameEnum {
     VALUE {
         @Override
         public void method(String op) {
