@@ -141,15 +141,15 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serialField counter Integer objects counter}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@serialField counter Integer objects counter]
-     *       |--SERIAL_FIELD_LITERAL[3x0] : [@serialField]
-     *       |--WS[3x12] : [ ]
-     *       |--FIELD_NAME[3x13] : [counter]
-     *       |--WS[3x20] : [ ]
-     *       |--FIELD_TYPE[3x21] : [Integer]
-     *       |--WS[3x28] : [ ]
-     *       |--DESCRIPTION[3x29] : [objects counter]
-     *           |--TEXT[3x29] : [objects counter]
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SERIAL_FIELD_LITERAL -> @serialField
+     *  |--WS ->
+     *  |--FIELD_NAME -> counter
+     *  |--WS ->
+     *  |--FIELD_TYPE -> Integer
+     *  |--WS ->
+     *  `--DESCRIPTION -> DESCRIPTION
+     *      |--TEXT -> objects counter
      * }</pre>
      *
      * @see
