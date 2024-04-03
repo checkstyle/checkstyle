@@ -42,6 +42,15 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/HideUtilityClassConstructorCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -55,6 +64,21 @@ public class StringUtils // not final to allow subclassing
         <macro name="example">
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/hideutilityclassconstructor/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
