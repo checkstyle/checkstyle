@@ -39,9 +39,9 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testTypeDeclared() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRegressionRecordTypeParameterName1.java"));
+                "InputXpathRecordTypeParameterNameTypeDeclared.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordTypeParameterNameCheck.class);
@@ -49,14 +49,16 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "7:15: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "7:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "foo", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='Other']]/"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='"
+                    + "InputXpathRecordTypeParameterNameTypeDeclared']]/"
                     + "TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='foo']]",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='Other']]/TYPE_PARAMETERS/"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='"
+                    + "InputXpathRecordTypeParameterNameTypeDeclared']]/TYPE_PARAMETERS/"
                     + "TYPE_PARAMETER/IDENT[@text='foo']"
         );
 
@@ -65,9 +67,9 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testTypeDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRegressionRecordTypeParameterName2.java"));
+                "InputXpathRecordTypeParameterNameTypeDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordTypeParameterNameCheck.class);
@@ -75,14 +77,16 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
         final String pattern = "^[A-Z]$";
 
         final String[] expectedViolation = {
-            "4:44: " + getCheckMessage(RecordTypeParameterNameCheck.class,
+            "4:60: " + getCheckMessage(RecordTypeParameterNameCheck.class,
                     AbstractNameCheck.MSG_INVALID_PATTERN, "t", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT"
+                    + "[@text='InputXpathRecordTypeParameterNameTypeDefault']]"
                     + "/TYPE_PARAMETERS/TYPE_PARAMETER[./IDENT[@text='t']]",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputRecordTypeParameterName']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT"
+                    + "[@text='InputXpathRecordTypeParameterNameTypeDefault']]"
                     + "/TYPE_PARAMETERS/TYPE_PARAMETER/IDENT[@text='t']"
                 );
 

@@ -42,9 +42,9 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testMissingTag() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeOne.java"));
+                new File(getPath("InputXpathJavadocTypeMissingTag.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -58,12 +58,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]",
+                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeOne']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeMissingTag']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -71,9 +71,9 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testWrongFormat() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeTwo.java"));
+                new File(getPath("InputXpathJavadocTypeWrongFormat.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -87,11 +87,11 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]",
+                        + "[@text='InputXpathJavadocTypeWrongFormat']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]/MODIFIERS",
+                        + "[@text='InputXpathJavadocTypeWrongFormat']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionJavadocTypeTwo']]"
+                        + "[@text='InputXpathJavadocTypeWrongFormat']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -99,9 +99,9 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testIncomplete() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocTypeThree.java"));
+                new File(getPath("InputXpathJavadocTypeIncomplete.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocTypeCheck.class);
@@ -113,12 +113,12 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]",
+                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
                         + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionJavadocTypeThree']]"
+                        + "[./IDENT[@text='InputXpathJavadocTypeIncomplete']]"
                         + "/MODIFIERS/LITERAL_PUBLIC");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
