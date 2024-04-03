@@ -40,7 +40,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalCatchOne.java"));
+                new File(getPath("InputXpathIllegalCatchOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalCatchCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalCatchOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathIllegalCatchOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='fun']]/SLIST"
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionIllegalCatchTwo.java"));
+                new File(getPath("InputXpathIllegalCatchTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalCatchCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalCatchTwo']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathIllegalCatchTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST"
                 + "/LITERAL_TRY/LITERAL_CATCH"
         );

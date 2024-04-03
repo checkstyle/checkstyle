@@ -39,9 +39,9 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testClassFields() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionAvoidDoubleBraceInitialization.java"));
+            getPath("InputXpathAvoidDoubleBraceInitializationClassFields.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -51,11 +51,11 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionAvoidDoubleBraceInitialization']]"
+                + "[./IDENT[@text='InputXpathAvoidDoubleBraceInitializationClassFields']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='list']]/ASSIGN/EXPR/"
                 + "LITERAL_NEW[./IDENT[@text='ArrayList']]/OBJBLOCK",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionAvoidDoubleBraceInitialization']]"
+                + "[./IDENT[@text='InputXpathAvoidDoubleBraceInitializationClassFields']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='list']]/ASSIGN/EXPR/"
                 + "LITERAL_NEW[./IDENT[@text='ArrayList']]/OBJBLOCK/LCURLY"
         );
@@ -64,9 +64,9 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo.java"));
+            getPath("InputXpathAvoidDoubleBraceInitializationMethodDef.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -76,12 +76,12 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo']]"
+                    + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
                 + "/OBJBLOCK",
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo']]"
+                    + "'InputXpathAvoidDoubleBraceInitializationMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
                 + "/OBJBLOCK/LCURLY"

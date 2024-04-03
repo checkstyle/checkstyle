@@ -39,7 +39,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
     @Test
     public void testInlineConditionalsVariableDef() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidInlineConditionalsVariableDef.java"));
+                getPath("InputXpathAvoidInlineConditionalsVariableDef.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidInlineConditionalsCheck.class);
@@ -51,11 +51,11 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
+                        + "InputXpathAvoidInlineConditionalsVariableDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
+                        + "InputXpathAvoidInlineConditionalsVariableDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
     @Test
     public void testInlineConditionalsAssign() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidInlineConditionalsAssign.java"));
+                getPath("InputXpathAvoidInlineConditionalsAssign.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidInlineConditionalsCheck.class);
@@ -79,7 +79,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsAssign']]"
+                        + "InputXpathAvoidInlineConditionalsAssign']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setB']]/SLIST"
                         + "/EXPR/ASSIGN[./IDENT[@text='b']]/QUESTION"
         );
@@ -91,7 +91,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
     @Test
     public void testInlineConditionalsAssert() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionAvoidInlineConditionalsAssert.java"));
+                getPath("InputXpathAvoidInlineConditionalsAssert.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidInlineConditionalsCheck.class);
@@ -103,11 +103,11 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsAssert']]"
+                        + "InputXpathAvoidInlineConditionalsAssert']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
                         + "/LITERAL_ASSERT/EXPR[./QUESTION/METHOD_CALL/DOT/IDENT[@text='a']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsAssert']]"
+                        + "InputXpathAvoidInlineConditionalsAssert']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='assertA']]/SLIST"
                         + "/LITERAL_ASSERT/EXPR/QUESTION"
         );
