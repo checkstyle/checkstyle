@@ -2,22 +2,22 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DesignForExtension">
-      <property name="requiredJavadocPhrase"
-        value="This[\s\S]*implementation"/>
+      <property name="requiredJavadocPhrase" value="This implementation"/>
     </module>
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 // xdoc section -- start
-public abstract class Foo {
+public abstract class Example3 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
-  private void m3() {m4();}
+  private void m3() {m4();}  // OK. Private method.
 
   protected void m4() { }  // OK. No implementation.
 
@@ -32,16 +32,16 @@ public abstract class Foo {
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // Violation. No required javadoc.
+  public int m7() {return 1;}  // violation
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // OK. Have required javadoc.
+  public int m8() {return 2;}  // violation
 
-  @Override
-  public String toString() {  // Violation. No required javadoc.
+  @Override                    // violation
+  public String toString() {
     return "";
   }
 }
