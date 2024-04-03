@@ -143,13 +143,13 @@ public abstract class Plant {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example1.java"/>
             <param name="type" value="code"/>
         </macro>
 
@@ -159,13 +159,13 @@ public abstract class Plant {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example2.java"/>
             <param name="type" value="code"/>
         </macro>
 
@@ -175,13 +175,13 @@ public abstract class Plant {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
 
@@ -191,13 +191,13 @@ public abstract class Plant {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.txt"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
