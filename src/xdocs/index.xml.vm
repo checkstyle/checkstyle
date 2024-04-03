@@ -468,9 +468,9 @@
               <td><a href="https://sonarcloud.io/projects">Demo site of SonarQube</a></td>
             </tr>
             <tr>
-              <td><a href="http://www.jedit.org/">jEdit</a></td>
+              <td><a href="https://www.jedit.org/">jEdit</a></td>
               <td>Todd Papaioannou</td>
-              <td><a href="http://plugins.jedit.org/plugins/?CheckStylePlugin">
+              <td><a href="https://plugins.jedit.org/plugins/?CheckStylePlugin">
                   JEdit CheckStylePlugin</a></td>
               <td/>
             </tr>
