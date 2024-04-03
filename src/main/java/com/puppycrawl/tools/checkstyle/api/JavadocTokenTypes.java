@@ -148,7 +148,7 @@ public final class JavadocTokenTypes {
      *  |--WS ->
      *  |--FIELD_TYPE -> Integer
      *  |--WS ->
-     *  |--DESCRIPTION -> objects counter
+     *  `--DESCRIPTION -> DESCRIPTION
      *      |--TEXT -> objects counter
      * }</pre>
      *
