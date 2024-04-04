@@ -169,12 +169,12 @@ public abstract class Plant {
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example1 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
   private void m3() {m4();}  // OK. Private method.
 
@@ -199,8 +199,8 @@ public abstract class Foo {
    */
   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
 
-  @Override
-  public String toString() {  // Violation. No javadoc for @Override method.
+  @Override                   // violation
+  public String toString() {
     return &quot;&quot;;
   }
 }
@@ -221,12 +221,12 @@ public abstract class Foo {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example2 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
   private void m3() {m4();}  // OK. Private method.
 
@@ -252,7 +252,7 @@ public abstract class Foo {
   public int m8() {return 2;}  // OK. Have javadoc on overridable method.
 
   @Override
-  public String toString() {  // OK. Have javadoc on overridable method.
+  public String toString() {
     return &quot;&quot;;
   }
 }
@@ -273,12 +273,12 @@ public abstract class Foo {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example3 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
   private void m3() {m4();}  // OK. Private method.
 
@@ -295,16 +295,16 @@ public abstract class Foo {
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // Violation. No required javadoc.
+  public int m7() {return 1;}  // violation
 
   /**
    * This
    * implementation ...
    */
-  public int m8() {return 2;}  // Violation. No required javadoc.
+  public int m8() {return 2;}  // violation
 
-  @Override
-  public String toString() {  // Violation. No required javadoc.
+  @Override                    // violation
+  public String toString() {
     return &quot;&quot;;
   }
 }
@@ -326,12 +326,12 @@ public abstract class Foo {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public abstract class Foo {
+public abstract class Example4 {
   private int bar;
 
-  public int m1() {return 2;}  // Violation. No javadoc.
+  public int m1() {return 2;}  // violation
 
-  public int m2() {return 8;}  // Violation. No javadoc.
+  public int m2() {return 8;}  // violation
 
   private void m3() {m4();}
 
@@ -348,7 +348,7 @@ public abstract class Foo {
   /**
    * Some comments ...
    */
-  public int m7() {return 1;}  // Violation. No required javadoc.
+  public int m7() {return 1;}  // violation
 
   /**
    * This
@@ -356,8 +356,8 @@ public abstract class Foo {
    */
   public int m8() {return 2;}  // OK. Have required javadoc.
 
-  @Override
-  public String toString() {  // Violation. No required javadoc.
+  @Override                    // violation
+  public String toString() {
     return &quot;&quot;;
   }
 }

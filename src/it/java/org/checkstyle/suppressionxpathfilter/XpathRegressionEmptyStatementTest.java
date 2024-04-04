@@ -40,7 +40,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
     @Test
     public void testForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyStatement1.java"));
+                new File(getPath("InputXpathEmptyStatementLoops.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
@@ -48,7 +48,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyStatement1']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementLoops']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/SLIST/LITERAL_FOR/EMPTY_STAT"
         );
@@ -59,7 +59,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
     @Test
     public void testIfBlockEmptyStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionEmptyStatement2.java"));
+                new File(getPath("InputXpathEmptyStatementConditionals.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyStatementCheck.class);
         final String[] expectedViolation = {
@@ -67,7 +67,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyStatement2']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementConditionals']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                         + "/SLIST/LITERAL_IF/EMPTY_STAT"
         );
