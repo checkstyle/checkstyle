@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -260,13 +259,42 @@ public class FinalClassCheck
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
             final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
-                return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
+                return typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
             };
             getNearestClassWithSameName(superClassName, nestedClassCountProvider)
                 .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
                 .ifPresent(ClassDesc::registerNestedSubclass);
         }
+    }
+
+    /**
+     * Calculates and returns the type declaration name matching count.
+     *
+     * <p>
+     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
+     * {@code foo.a.ball} then type declaration name matching count would be calculated by
+     * comparing every character, and updating main counter when we hit "." to prevent matching
+     * "a.b" with "a.ball". In this case type declaration name matching count
+     * would be equal to 6 and not 7 (b of ball is not counted).
+     * </p>
+     *
+     * @param patternClass class against which the given class has to be matched
+     * @param classToBeMatched class to be matched
+     * @return class name matching count
+     */
+    private static int typeDeclarationNameMatchingCount(String patternClass,
+                                                       String classToBeMatched) {
+        final int length = Math.min(classToBeMatched.length(), patternClass.length());
+        int result = 0;
+        for (int idx = 0;
+             idx < length && patternClass.charAt(idx) == classToBeMatched.charAt(idx);
+             ++idx) {
+            if (patternClass.charAt(idx) == PACKAGE_SEPARATOR.charAt(0)) {
+                result = idx;
+            }
+        }
+        return result;
     }
 
     /**
@@ -283,7 +311,8 @@ public class FinalClassCheck
         final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
 
         final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> {
-            return getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
+            return CheckUtil.getAnonSuperTypeMatchingCount(outerTypeDeclName,
+                                                           classDesc.getQualifiedName());
         };
         getNearestClassWithSameName(superClassName, anonClassCountProvider)
             .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
@@ -317,8 +346,8 @@ public class FinalClassCheck
      * }
      * }
      * </pre>
-     * If the {@link Function} {@code countProvider} hadn't used
-     * {@link FinalClassCheck#getAnonSuperTypeMatchingCount} to
+     * If the {@link ToIntFunction} {@code countProvider} hadn't used
+     * {@link CheckUtil#getAnonSuperTypeMatchingCount} to
      * calculate the matching count then the logic would have falsely evaluated
      * {@code Main.One.Two} to be the super class of the anonymous inner class.
      *
@@ -369,49 +398,6 @@ public class FinalClassCheck
             superClassName = CheckUtil.extractQualifiedName(classExtend.getFirstChild());
         }
         return superClassName;
-    }
-
-    /**
-     * Calculates and returns the type declaration matching count when {@code classToBeMatched} is
-     * considered to be super class of an anonymous inner class.
-     *
-     * <p>
-     * Suppose our pattern class is {@code Main.ClassOne} and class to be matched is
-     * {@code Main.ClassOne.ClassTwo.ClassThree} then type declaration name matching count would
-     * be calculated by comparing every character, and updating main counter when we hit "." or
-     * when it is the last character of the pattern class and certain conditions are met. This is
-     * done so that matching count is 13 instead of 5. This is due to the fact that pattern class
-     * can contain anonymous inner class object of a nested class which isn't true in case of
-     * extending classes as you can't extend nested classes.
-     * </p>
-     *
-     * @param patternTypeDeclaration type declaration against which the given type declaration has
-     *                               to be matched
-     * @param typeDeclarationToBeMatched type declaration to be matched
-     * @return type declaration matching count
-     */
-    private static int getAnonSuperTypeMatchingCount(String patternTypeDeclaration,
-                                                    String typeDeclarationToBeMatched) {
-        final int typeDeclarationToBeMatchedLength = typeDeclarationToBeMatched.length();
-        final int minLength = Math
-            .min(typeDeclarationToBeMatchedLength, patternTypeDeclaration.length());
-        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final boolean shouldCountBeUpdatedAtLastCharacter =
-            typeDeclarationToBeMatchedLength > minLength
-                && typeDeclarationToBeMatched.charAt(minLength) == packageSeparator;
-
-        int result = 0;
-        for (int idx = 0;
-             idx < minLength
-                 && patternTypeDeclaration.charAt(idx) == typeDeclarationToBeMatched.charAt(idx);
-             idx++) {
-
-            if (idx == minLength - 1 && shouldCountBeUpdatedAtLastCharacter
-                || patternTypeDeclaration.charAt(idx) == packageSeparator) {
-                result = idx;
-            }
-        }
-        return result;
     }
 
     /**
