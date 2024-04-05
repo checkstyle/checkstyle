@@ -14,6 +14,8 @@
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
+             
+  <suppress checks="LineLength" files="CheckerTest.java"/>
 
   <!-- illegal words are part of Javadoc -->
   <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
