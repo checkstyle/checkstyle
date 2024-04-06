@@ -6,7 +6,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
  */
 class InputIncorrectSummaryJavaDocCheck {
 
-    /**
+/*warn*//**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
