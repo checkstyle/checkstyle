@@ -298,6 +298,14 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVariableSwitchStatement() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableSwitchStatement.java"),
+                expected);
+    }
+
+    @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
