@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-public class SuppressionXpathRegressionIndentationTestTwo {
+public class InputXpathIndentationBasicOffset {
     void test() {} // warn
 }

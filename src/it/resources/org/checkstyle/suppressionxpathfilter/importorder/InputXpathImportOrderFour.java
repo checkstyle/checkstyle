@@ -4,6 +4,6 @@ import java.io.*;
 import java.util.Set;
 import static java.lang.Math.PI; // warn
 
-public class SuppressionXpathRegressionImportOrderFour {
+public class InputXpathImportOrderFour {
     // code
 }

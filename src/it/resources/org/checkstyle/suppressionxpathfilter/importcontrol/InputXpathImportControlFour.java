@@ -5,6 +5,6 @@ import java.util.Scanner; //warn
 import java.util.Arrays;
 
 
-public class SuppressionXpathRegressionImportControlFour {
+public class InputXpathImportControlFour {
 
 }

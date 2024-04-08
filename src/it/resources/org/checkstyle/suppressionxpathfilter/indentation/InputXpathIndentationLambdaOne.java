@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-public class SuppressionXpathRegressionIndentationLambdaTest1 {
+public class InputXpathIndentationLambdaOne {
     void test() {
         MyLambda getA =
         (a) -> a; // warn
