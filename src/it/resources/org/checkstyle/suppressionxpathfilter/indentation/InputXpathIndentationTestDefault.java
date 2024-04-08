@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-public class SuppressionXpathRegressionIndentationTestOne {
+public class InputXpathIndentationTestDefault {
 void wrongIntend() { // warn
     }
 }
