@@ -41,8 +41,12 @@ public class OverloadMethodsDeclarationOrderCheckTest
         final String[] expected = {
             "32:5: " + getCheckMessage(MSG_KEY, 21),
             "60:9: " + getCheckMessage(MSG_KEY, 49),
-            "72:5: " + getCheckMessage(MSG_KEY, 70),
-            "115:5: " + getCheckMessage(MSG_KEY, 104),
+            "65:9: " + getCheckMessage(MSG_KEY, 60),
+            "83:5: " + getCheckMessage(MSG_KEY, 81),
+            "127:5: " + getCheckMessage(MSG_KEY, 116),
+            "138:5: " + getCheckMessage(MSG_KEY, 132),
+            "149:9: " + getCheckMessage(MSG_KEY, 143),
+            "152:5: " + getCheckMessage(MSG_KEY, 138),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
@@ -55,6 +59,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
             "21:9: " + getCheckMessage(MSG_KEY, 15),
             "41:9: " + getCheckMessage(MSG_KEY, 35),
             "57:9: " + getCheckMessage(MSG_KEY, 50),
+            "63:9: " + getCheckMessage(MSG_KEY, 57),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
