@@ -28,18 +28,22 @@
         <p id="Example1-code">Example of correct grouping of overloaded methods:</p>
         <source>
 public void foo(int i) {}
+// comments between overloaded methods are allowed.
 public void foo(String s) {}
 public void foo(String s, int i) {}
 public void foo(int i, String s) {}
 public void notFoo() {}
+private interface ExampleInterface() {}
         </source>
         <p id="Example2-code">Example of incorrect grouping of overloaded methods:</p>
         <source>
 public void foo(int i) {} // OK
+// comments between overloaded methods are allowed.
 public void foo(String s) {} // OK
 public void notFoo() {} // violation. Have to be after foo(String s, int i)
 public void foo(int i, String s) {}
-public void foo(String s, int i) {}
+private interface ExampleInterface() {}
+public void foo(String s, int i) {} // violation. Have to be after foo(int i, String s)
         </source>
       </subsection>
 
