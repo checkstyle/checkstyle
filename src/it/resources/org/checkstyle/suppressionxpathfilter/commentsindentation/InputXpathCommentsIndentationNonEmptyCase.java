@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.commentsindentation;
 
-public class SuppressionXpathRegressionCommentsIndentationNonEmptyCase {
+public class InputXpathCommentsIndentationNonEmptyCase {
     int n;
 
     public void foo() {

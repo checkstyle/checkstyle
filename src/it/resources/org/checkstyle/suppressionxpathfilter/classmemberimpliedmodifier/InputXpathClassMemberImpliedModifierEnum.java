@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.classmemberimpliedmodifier;
 
-public class SuppressionXpathRegressionClassMemberImpliedModifierTwo {
+public class InputXpathClassMemberImpliedModifierEnum {
     public enum Count { //warn
         ONE, TWO, THREE;
     }

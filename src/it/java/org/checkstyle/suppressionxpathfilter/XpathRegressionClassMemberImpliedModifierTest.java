@@ -38,9 +38,9 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testInterface() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionClassMemberImpliedModifierOne.java"));
+                new File(getPath("InputXpathClassMemberImpliedModifierInterface.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
@@ -52,13 +52,13 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']]"
+                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
                         + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']]"
+                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
                         + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionClassMemberImpliedModifierOne']]"
+                        + "@text='InputXpathClassMemberImpliedModifierInterface']]"
                         + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Foo']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -67,9 +67,9 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testEnum() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionClassMemberImpliedModifierTwo.java"));
+                new File(getPath("InputXpathClassMemberImpliedModifierEnum.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
@@ -81,13 +81,13 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']]"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']]"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionClassMemberImpliedModifierTwo']]"
+                    + "[./IDENT[@text='InputXpathClassMemberImpliedModifierEnum']]"
                     + "/OBJBLOCK/ENUM_DEF[./IDENT[@text='Count']]/MODIFIERS/LITERAL_PUBLIC"
         );
 

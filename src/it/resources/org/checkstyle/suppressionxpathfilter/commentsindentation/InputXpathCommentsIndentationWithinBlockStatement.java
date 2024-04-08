@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.commentsindentation;
 
-public class SuppressionXpathRegressionCommentsIndentationWithinBlockStatement {
+public class InputXpathCommentsIndentationWithinBlockStatement {
     public void foo() {
         String s = "F"
         // Comment // warn
