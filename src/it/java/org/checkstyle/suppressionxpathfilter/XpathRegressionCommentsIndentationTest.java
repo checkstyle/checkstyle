@@ -40,8 +40,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSingleLine() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "SingleLine.java"));
+                new File(getPath("InputXpathCommentsIndentationSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -53,7 +52,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationSingleLine']]"
+                + "[@text='InputXpathCommentsIndentationSingleLine']]"
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
@@ -64,8 +63,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "Block.java"));
+                new File(getPath("InputXpathCommentsIndentationBlock.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -77,7 +75,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationBlock']]/OBJBLOCK/"
+                + "[@text='InputXpathCommentsIndentationBlock']]/OBJBLOCK/"
                 + "VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                 + "[@text=' // warn\\n           * Javadoc comment\\n           ']]"
         );
@@ -89,8 +87,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSeparator() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "Separator.java"));
+                new File(getPath("InputXpathCommentsIndentationSeparator.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -102,7 +99,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationSeparator']]"
+                + "[@text='InputXpathCommentsIndentationSeparator']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS/SINGLE_LINE_COMMENT"
                 + "[./COMMENT_CONTENT[@text='///////////// Comment separator // warn\\n']]"
         );
@@ -114,8 +111,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testDistributedStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "DistributedStatement.java"));
+                new File(getPath("InputXpathCommentsIndentationDistributedStatement.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -127,7 +123,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationDistributedStatement']]"
+                + "[@text='InputXpathCommentsIndentationDistributedStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
                 + "[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
@@ -139,8 +135,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testSingleLineBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "SingleLineBlock.java"));
+                new File(getPath("InputXpathCommentsIndentationSingleLineBlock.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -152,7 +147,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationSingleLineBlock']]"
+                + "[@text='InputXpathCommentsIndentationSingleLineBlock']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
                 + "[./COMMENT_CONTENT[@text=' block Comment // warn\\n']]"
         );
@@ -164,8 +159,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "NonEmptyCase.java"));
+                new File(getPath("InputXpathCommentsIndentationNonEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -177,7 +171,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationNonEmptyCase']]"
+                + "[@text='InputXpathCommentsIndentationNonEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
                 + "CASE_GROUP/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
@@ -189,8 +183,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testEmptyCase() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "EmptyCase.java"));
+                new File(getPath("InputXpathCommentsIndentationEmptyCase.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -202,7 +195,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationEmptyCase']]"
+                + "[@text='InputXpathCommentsIndentationEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
                 + "CASE_GROUP/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
@@ -214,8 +207,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     @Test
     public void testWithinBlockStatement() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionCommentsIndentation"
-                                        + "WithinBlockStatement.java"));
+                new File(getPath("InputXpathCommentsIndentationWithinBlockStatement.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CommentsIndentationCheck.class);
@@ -227,7 +219,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationWithinBlockStatement']]"
+                + "[@text='InputXpathCommentsIndentationWithinBlockStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='s']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='O']]"
                 + "/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
