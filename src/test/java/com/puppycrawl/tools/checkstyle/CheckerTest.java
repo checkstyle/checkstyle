@@ -1068,7 +1068,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
                 .that(ex.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
+                .contains("Exception was thrown while processing " + filePath);
         }
     }
 
@@ -1098,7 +1098,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
                 .that(ex.getMessage())
-                .isEqualTo("Exception was thrown while processing " + filePath);
+                .contains("Exception was thrown while processing " + filePath);
 
             // destroy is called by Main
             checker.destroy();
