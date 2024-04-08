@@ -4,7 +4,7 @@ interface MyLambdaInterface {
     int foo(int a, int b);
 };
 
-public class SuppressionXpathRegressionIndentationLambdaTest2 {
+public class InputXpathIndentationLambdaTestTwo {
     void test() {
         MyLambdaInterface div = (a, b)
             -> {

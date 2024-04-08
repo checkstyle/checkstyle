@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-public class SuppressionXpathRegressionIndentationIfWithoutCurly {
+public class InputXpathIndentationIfWithoutCurly {
     void test() {
         if (true)
                 e();
