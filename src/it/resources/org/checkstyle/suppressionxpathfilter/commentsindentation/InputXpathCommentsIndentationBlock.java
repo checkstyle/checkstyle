@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.commentsindentation;
 
-public class SuppressionXpathRegressionCommentsIndentationBlock {
+public class InputXpathCommentsIndentationBlock {
           /* // warn
            * Javadoc comment
            */

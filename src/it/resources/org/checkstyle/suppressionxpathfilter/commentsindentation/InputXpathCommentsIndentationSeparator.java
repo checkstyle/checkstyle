@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.commentsindentation;
 
-public class SuppressionXpathRegressionCommentsIndentationSeparator {
+public class InputXpathCommentsIndentationSeparator {
     public void main(String[] args) {
         int n;
     }
