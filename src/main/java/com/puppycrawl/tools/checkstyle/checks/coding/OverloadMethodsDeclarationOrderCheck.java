@@ -110,7 +110,11 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                 final String methodName =
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
                 final Integer previousIndex = methodIndexMap.get(methodName);
-                if (previousIndex != null && currentIndex - previousIndex > allowedDistance) {
+                final DetailAST previousSibling = currentToken.getPreviousSibling();
+                final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+
+                if (previousIndex != null
+                        && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
                     final int previousLineWithOverloadMethod =
                             methodLineNumberMap.get(methodName);
                     log(currentToken, MSG_KEY,

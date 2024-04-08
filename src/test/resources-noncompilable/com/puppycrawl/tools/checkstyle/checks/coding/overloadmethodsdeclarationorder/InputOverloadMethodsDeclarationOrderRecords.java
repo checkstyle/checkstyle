@@ -60,7 +60,7 @@ public class InputOverloadMethodsDeclarationOrderRecords {
         public MyClass() {
         }
 
-        public void foo(int i, String s) {
+        public void foo(int i, String s) { // violation
         }
 
         public void foo(String s, int i) {
