@@ -918,7 +918,7 @@ public class MainTest {
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
         assertWithMessage("Unexpected system error log")
                 .that(systemErr.getCapturedData())
-                .contains(exceptionMessage);
+                .contains(exceptionMessage.trim());
     }
 
     @Test
