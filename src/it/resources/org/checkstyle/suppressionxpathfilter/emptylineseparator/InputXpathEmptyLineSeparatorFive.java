@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.emptylineseparator;
 
 import java.io.IOException;
 
-public class SuppressionXpathRegressionEmptyLineSeparator5 {
+public class InputXpathEmptyLineSeparatorFive {
 
     int foo1() throws Exception {
         int a = 1;
