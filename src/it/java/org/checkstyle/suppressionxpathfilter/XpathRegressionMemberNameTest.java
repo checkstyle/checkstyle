@@ -39,9 +39,9 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test1() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMemberName1.java"));
+                new File(getPath("InputXpathMemberNameDefault.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -55,7 +55,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionMemberName1']]"
+                        + "='InputXpathMemberNameDefault']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM2']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -63,9 +63,9 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void testIgnoreProtected() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMemberName2.java"));
+                new File(getPath("InputXpathMemberNameIgnoreProtected.java"));
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -82,7 +82,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionMemberName2']]"
+                        + "='InputXpathMemberNameIgnoreProtected']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM1']"
         );
