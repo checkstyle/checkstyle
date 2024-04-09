@@ -1,128 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>acceptFileStarted</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::relativizePath with argument</description>
-    <lineContent>final String stripped = CommonUtil.relativizePath(basedir, fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>LocalizedMessage.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable args</description>
-    <lineContent>this.args = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>addError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/SarifLogger::escape with argument</description>
-    <lineContent>.replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>auditFinished</mutatedMethod>
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>getVersionString</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>final String version = SarifLogger.class.getPackage().getImplementationVersion();</lineContent>
+    <lineContent>return &quot;Checkstyle version: &quot; + Main.class.getPackage().getImplementationVersion();</lineContent>
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SarifLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
-    <mutatedMethod>readResource</mutatedMethod>
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCheckstyle</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/io/InputStream::read</description>
-    <lineContent>int length = inputStream.read(buffer);</lineContent>
+    <description>removed call to com/puppycrawl/tools/checkstyle/Main::getOutputStreamOptions</description>
+    <lineContent>getOutputStreamOptions(options.outputPath));</lineContent>
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>auditStarted</mutatedMethod>
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main</mutatedClass>
+    <mutatedMethod>runCli</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>final String version = XMLLogger.class.getPackage().getImplementationVersion();</lineContent>
+    <lineContent>+ Main.class.getPackage().getImplementationVersion());</lineContent>
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>fileFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Map::remove</description>
-    <lineContent>fileMessages.remove(fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>fileFinished</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Map::remove with argument</description>
-    <lineContent>fileMessages.remove(fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>+ encode(event.getMessage())</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>writer.print(encode(event.getModuleId()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileError</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>writer.print(encode(event.getSourceName()));</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger</mutatedClass>
-    <mutatedMethod>writeFileOpeningTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/XMLLogger::encode with argument</description>
-    <lineContent>writer.println(&quot;&lt;file name=\&quot;&quot; + encode(fileName) + &quot;\&quot;&gt;&quot;);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger$FileMessages</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::synchronizedList with argument</description>
-    <lineContent>private final List&lt;AuditEvent&gt; errors = Collections.synchronizedList(new ArrayList&lt;&gt;());</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XMLLogger.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.XMLLogger$FileMessages</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Collections::synchronizedList with argument</description>
-    <lineContent>private final List&lt;Throwable&gt; exceptions = Collections.synchronizedList(new ArrayList&lt;&gt;());</lineContent>
+    <sourceFile>Main.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.Main$CliOptions</mutatedClass>
+    <mutatedMethod>getExclusions</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/util/stream/Stream::map with receiver</description>
+    <lineContent>.map(Pattern::quote)</lineContent>
   </mutation>
 </suppressedMutations>

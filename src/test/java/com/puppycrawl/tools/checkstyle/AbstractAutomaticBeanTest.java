@@ -297,7 +297,7 @@ public class AbstractAutomaticBeanTest {
                 .containsExactlyElementsIn(
                         Arrays.stream(bean.patterns)
                                 .map(Pattern::pattern)
-                                .collect(Collectors.toList()));
+                                .collect(Collectors.toUnmodifiableList()));
     }
 
     @Test
@@ -317,7 +317,7 @@ public class AbstractAutomaticBeanTest {
                 .containsExactlyElementsIn(
                         Arrays.stream(bean.patterns)
                                 .map(Pattern::pattern)
-                                .collect(Collectors.toList()));
+                                .collect(Collectors.toUnmodifiableList()));
     }
 
     private static final class ConvertUtilsBeanStub extends ConvertUtilsBean {
