@@ -116,6 +116,28 @@ enum FooType {
     {
         //some foo code
     }
+
+    void test() {}
+
+    String str;
+
+    private interface Testing {}
+
+    void test(int x) {} // violation
+
+    private class Inner {
+        void test() {}
+
+        void test(String str) {}
+
+        void test2() {}
+
+        String str;
+
+        void test(int x) {} // violation
+    }
+
+    void test(double d) {} // violation
 }
 
 enum Foo2 {
