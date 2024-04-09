@@ -35,6 +35,7 @@
 <a href="AbstractNode.html#getDeclaredNamespaces(net.sf.saxon.om.NamespaceBinding%5B%5D)">AbstractNode.html#getDeclaredNamespaces(net.sf.saxon.om.NamespaceBinding%5B%5D)</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.OutputStreamOptions.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.PatternConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.PatternArrayConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.RelaxedAccessModifierArrayConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.RelaxedStringArrayConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.ScopeConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
