@@ -38,7 +38,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMagicNumberVariable.java"));
+                new File(getPath("InputXpathMagicNumberVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MagicNumberCheck.class);
@@ -49,11 +49,11 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMagicNumberVariable']]"
+                    + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
                     + "/ASSIGN/EXPR[./NUM_INT[@text='5']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMagicNumberVariable']]"
+                    + "[./IDENT[@text='InputXpathMagicNumberVariable']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d']]"
                     + "/ASSIGN/EXPR/NUM_INT[@text='5']"
         );
@@ -65,7 +65,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     @Test
     public void testMethodDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMagicNumberMethodDef.java"));
+                new File(getPath("InputXpathMagicNumberMethodDef.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MagicNumberCheck.class);
@@ -76,12 +76,12 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMagicNumberMethodDef']]"
+                        + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR[./"
                         + "NUM_INT[@text='20']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMagicNumberMethodDef']]"
+                        + "[./IDENT[@text='InputXpathMagicNumberMethodDef']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodWithMagicNumber']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR/NU"
                         + "M_INT[@text='20']"
@@ -93,7 +93,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     @Test
     public void testAnotherVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMagicNumberAnotherVariable.java"));
+                new File(getPath("InputXpathMagicNumberAnotherVariable.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MagicNumberCheck.class);
@@ -104,7 +104,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMagicNumberAnotherVariable']]"
+                        + "[./IDENT[@text='InputXpathMagicNumberAnotherVariable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='performOperation']]"
                         + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_IF"
                         + "/LITERAL_ELSE/SLIST/EXPR/ASSIGN"

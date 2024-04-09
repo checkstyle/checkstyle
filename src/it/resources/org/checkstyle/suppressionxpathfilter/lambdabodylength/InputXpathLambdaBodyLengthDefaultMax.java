@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.lambdabodylength;
 
 import java.util.function.Function;
 
-public class SuppressionXpathRegressionLambdaBodyLength1 {
+public class InputXpathLambdaBodyLengthDefaultMax {
     void test() {
         Function<String, String> trimmer = (s) -> // warn
             s.trim()
