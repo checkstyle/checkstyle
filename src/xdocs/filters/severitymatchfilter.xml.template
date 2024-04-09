@@ -36,8 +36,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Code Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
