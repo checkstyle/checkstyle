@@ -239,6 +239,7 @@ config
 configurationloader
 Connell's
 constantname
+constructorsdeclarationgrouping
 Contextualizable
 contextualization
 contextualized
