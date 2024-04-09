@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.magicnumber;
 
-public class SuppressionXpathRegressionMagicNumberAnotherVariable {
+public class InputXpathMagicNumberAnotherVariable {
     public void performOperation() {
         try {
             int result = 0;
