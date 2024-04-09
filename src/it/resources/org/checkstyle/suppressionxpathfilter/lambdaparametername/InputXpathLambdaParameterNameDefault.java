@@ -2,8 +2,8 @@ package org.checkstyle.suppressionxpathfilter.lambdaparametername;
 
 import java.util.function.Function;
 
-public class SuppressionXpathRegressionLambdaParameterName2 {
+public class InputXpathLambdaParameterNameDefault {
     void test() {
-        Function<String, String> trimmer = (s) -> s.trim(); // warn
+        Function<String, String> trimmer = S -> S.trim(); // warn
     }
 }
