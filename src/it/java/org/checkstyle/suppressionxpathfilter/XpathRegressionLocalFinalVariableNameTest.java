@@ -42,7 +42,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testResource() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLocalFinalVariableNameResource.java"));
+                new File(getPath("InputXpathLocalFinalVariableNameResource.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LocalFinalVariableNameCheck.class);
@@ -56,7 +56,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionLocalFinalVariableNameResource']]"
+                        + "@text='InputXpathLocalFinalVariableNameResource']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/LITERAL_TRY"
                         + "/RESOURCE_SPECIFICATION/RESOURCES/RESOURCE/IDENT[@text='scanner']"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLocalFinalVariableNameVar.java"));
+                new File(getPath("InputXpathLocalFinalVariableNameVar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LocalFinalVariableNameCheck.class);
@@ -80,7 +80,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionLocalFinalVariableNameVar']]"
+                        + "@text='InputXpathLocalFinalVariableNameVar']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
                         + "/IDENT[@text='VAR1']"
         );
@@ -91,7 +91,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     @Test
     public void testInnerClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionLocalFinalVariableNameInner.java"));
+                new File(getPath("InputXpathLocalFinalVariableNameInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LocalFinalVariableNameCheck.class);
@@ -104,7 +104,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionLocalFinalVariableNameInner']]"
+                        + "@text='InputXpathLocalFinalVariableNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
                         + "/IDENT[@text='VAR1']"
