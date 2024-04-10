@@ -149,6 +149,8 @@
           <item name="OneStatementPerLine" href="checks/coding/onestatementperline.html"/>
           <item name="OverloadMethodsDeclarationOrder"
                 href="checks/coding/overloadmethodsdeclarationorder.html"/>
+          <item name="ConstructorsDeclarationGrouping"
+                href="checks/coding/constructorsdeclarationgrouping.html"/>
           <item name="PackageDeclaration" href="checks/coding/packagedeclaration.html"/>
           <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
