@@ -61,7 +61,7 @@
  &lt;/li&gt;
  &lt;/ol&gt;</description>
          <properties>
-            <property default-value="^$"
+            <property default-value=""
                       name="excludeClassesRegexps"
                       type="java.util.regex.Pattern[]">
                <description>Specify user-configured regular
