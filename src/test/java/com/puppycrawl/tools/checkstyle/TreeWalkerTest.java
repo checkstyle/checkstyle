@@ -673,6 +673,34 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
     }
 
+    @Test
+    public void testSkipFileOnJavaParseException() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addChild(createModuleConfig(ConstantNameCheck.class));
+
+        final List<File> files =
+                Arrays.asList(
+                        new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+                        new File(getPath("InputTreeWalkerProperFileExtension.java")),
+                        new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")));
+
+        final Checker checker = createChecker(config);
+        try {
+            checker.process(files);
+        }
+        catch (CheckstyleException exception) {
+            assertWithMessage("exception is NOT expected").fail();
+        }
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionConfig() throws Exception {
+        final String path = getNonCompilablePath("InputTreeWalkerSkipParsingExceptionConfig.java");
+        final String[] expected = {};
+        verifyWithInlineXmlConfig(path, expected);
+    }
+
     public static class BadJavaDocCheck extends AbstractCheck {
 
         @Override
