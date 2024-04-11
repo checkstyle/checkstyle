@@ -29,14 +29,14 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config">
+        <p id="Example-config">
           For example, the following configuration fragment directs the
           Checker to not report audit events with severity
           level <code>info</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example.java"/>
           <param name="type" value="config"/>
         </macro>
       </subsection>
