@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.membername;
 
-public class SuppressionXpathRegressionMemberName1 {
+public class InputXpathMemberNameDefault {
      public int num1; // OK
      public int NUM2; // warn
 
