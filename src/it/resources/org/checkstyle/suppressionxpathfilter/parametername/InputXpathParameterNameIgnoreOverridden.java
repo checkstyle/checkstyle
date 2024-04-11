@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.parametername;
 
-class SuppressionXpathRegressionParameterNameIgnoreOverridden {
+class InputXpathParameterNameIgnoreOverridden {
 
     void method2(int V2) { // warn
     }

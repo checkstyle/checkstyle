@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.parametername;
 
-class SuppressionXpathRegressionParameterNameAccessModifier {
+class InputXpathParameterNameAccessModifier {
 
     private void method1(int a) { // ok
     }

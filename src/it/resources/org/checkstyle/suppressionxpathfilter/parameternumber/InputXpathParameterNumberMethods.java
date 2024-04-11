@@ -1,13 +1,13 @@
 package org.checkstyle.suppressionxpathfilter.parameternumber;
 
-public class SuppressionXpathRegressionParameterNumberMethods
-        extends SuppressionXpathRegressionParameterNumberDefault {
+public class InputXpathParameterNumberMethods
+        extends InputXpathParameterNumberDefault {
 
     @Override
     void myMethod(int a, int b, int c, int d, int e, int f, int g, int h, // warn
                     int k, int l, int m) {
     }
-    public SuppressionXpathRegressionParameterNumberMethods(int a, int b, int c,  // ok
+    public InputXpathParameterNumberMethods(int a, int b, int c,  // ok
                     int d, int e, int f, int g, int h, int k, int l, int m)
     {
     }
