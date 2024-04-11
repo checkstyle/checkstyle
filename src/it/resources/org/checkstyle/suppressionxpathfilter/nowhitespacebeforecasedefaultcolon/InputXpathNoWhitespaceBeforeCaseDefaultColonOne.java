@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nowhitespacebeforecasedefaultcolon;
 
-public class SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne {
+public class InputXpathNoWhitespaceBeforeCaseDefaultColonOne {
     {
         switch(1) {
             case 1 : // warn

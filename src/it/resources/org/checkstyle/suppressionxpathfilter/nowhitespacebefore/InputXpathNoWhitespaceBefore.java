@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nowhitespacebefore;
 
-public class SuppressionXpathRegressionNoWhitespaceBefore {
+public class InputXpathNoWhitespaceBefore {
     int bad ;//warn
     int good;
 }

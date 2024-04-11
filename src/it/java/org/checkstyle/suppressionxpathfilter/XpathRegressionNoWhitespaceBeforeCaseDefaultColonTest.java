@@ -42,7 +42,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -54,7 +54,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonOne']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
         );
 
@@ -66,7 +66,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -78,7 +78,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonTwo']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"
         );
@@ -91,7 +91,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -103,7 +103,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonThree']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_CASE/COLON"
         );
@@ -116,7 +116,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     public void testFour() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -128,7 +128,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultColonFour']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"
         );

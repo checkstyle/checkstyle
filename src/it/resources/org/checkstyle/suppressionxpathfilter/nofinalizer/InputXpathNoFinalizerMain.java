@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nofinalizer;
 
-public class SuppressionXpathRegressionNoFinalizer1 {
+public class InputXpathNoFinalizerMain {
     public static void main(String[] args) {
         // some code here
     }
