@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.noenumtrailingcomma;
 
-public class SuppressionXpathRegressionNoEnumTrailingCommaOne {
+public class InputXpathNoEnumTrailingCommaOne {
 
     enum Foo3 {
         FOO,
