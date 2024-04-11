@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -32,11 +32,13 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
     }
 
     @Test
-    public void testExample1() throws Exception {
-        final String[] expected = {
+    public void testExample() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
+        final String[] expected = {
+            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
