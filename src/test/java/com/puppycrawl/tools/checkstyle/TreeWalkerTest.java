@@ -35,8 +35,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -671,6 +673,57 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     .that(exception.getCause().getMessage())
                     .isEqualTo(AaCheck.class.toString());
         }
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionTrue() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addChild(createModuleConfig(ConstantNameCheck.class));
+
+        final File[] files = {
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+            new File(getPath("InputTreeWalkerProperFileExtension.java")),
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+        };
+
+        final Checker checker = createChecker(config);
+        final Map<String, List<String>> expectedViolation = new HashMap<>();
+        expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
+                Collections.singletonList(
+                        "10:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
+        verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionFalse() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "false");
+        config.addChild(createModuleConfig(ConstantNameCheck.class));
+
+        final String[] files = {
+            getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+            getPath("InputTreeWalkerProperFileExtension.java"),
+            getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+        };
+
+        try {
+            execute(config, files);
+            assertWithMessage("Exception is expected").fail();
+        }
+        catch (CheckstyleException exception) {
+            assertWithMessage("Error message is unexpected")
+                    .that(exception.getMessage())
+                    .contains("Exception was thrown while processing ");
+        }
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionConfig() throws Exception {
+        final String path = getNonCompilablePath("InputTreeWalkerSkipParsingExceptionConfig.java");
+        final String[] expected = {};
+        verifyWithInlineXmlConfig(path, expected);
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
