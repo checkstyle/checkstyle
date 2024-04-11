@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.classmemberimpliedmodifier;
 
-public class SuppressionXpathRegressionClassMemberImpliedModifierOne {
+public class InputXpathClassMemberImpliedModifierInterface {
     public interface Foo { //warn
     }
 }

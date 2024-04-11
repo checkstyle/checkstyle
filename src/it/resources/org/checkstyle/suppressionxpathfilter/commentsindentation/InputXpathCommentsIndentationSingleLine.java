@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.commentsindentation;
 
-public class SuppressionXpathRegressionCommentsIndentationSingleLine {
+public class InputXpathCommentsIndentationSingleLine {
     int n;
         // Comment // warn
 }
