@@ -1,8 +1,8 @@
 package org.checkstyle.suppressionxpathfilter.parameterassignment;
 
-public class SuppressionXpathRegressionParameterAssignmentCtor {
+public class InputXpathParameterAssignmentMethods {
     int field;
-    SuppressionXpathRegressionParameterAssignmentCtor(int field) {
+    void Test1(int field) {
         int i = field;
         this.field = field;
         i++;
@@ -10,7 +10,7 @@ public class SuppressionXpathRegressionParameterAssignmentCtor {
         this.field++;
     }
     // without parameters
-    SuppressionXpathRegressionParameterAssignmentCtor() {
+    void Test2() {
         field = 0;
     }
 }
