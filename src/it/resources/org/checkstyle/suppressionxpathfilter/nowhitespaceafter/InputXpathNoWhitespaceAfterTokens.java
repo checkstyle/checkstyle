@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nowhitespaceafter;
 
-public class SuppressionXpathRegressionNoWhitespaceAfterTokens {
+public class InputXpathNoWhitespaceAfterTokens {
     public java. lang.String test() { // warn
         return "";
     }

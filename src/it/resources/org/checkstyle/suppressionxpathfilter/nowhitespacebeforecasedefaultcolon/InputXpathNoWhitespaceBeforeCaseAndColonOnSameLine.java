@@ -1,13 +1,13 @@
 package org.checkstyle.suppressionxpathfilter.nowhitespacebeforecasedefaultcolon;
 
-public class SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo {
+public class InputXpathNoWhitespaceBeforeCaseAndColonOnSameLine {
     {
         switch(1) {
-            case 1:
+            case 1 : // warn
                 break;
             case 2:
                 break;
-            default : // warn
+            default:
                 break;
         }
     }

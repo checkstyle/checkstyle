@@ -39,10 +39,10 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testCaseAndColonOnSameLine() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne.java"));
+                        "InputXpathNoWhitespaceBeforeCaseAndColonOnSameLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -54,7 +54,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonOne']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseAndColonOnSameLine']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
         );
 
@@ -63,10 +63,10 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testCaseDefaultAndColonOnSameLine() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultAndColonOnSameLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -78,7 +78,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonTwo']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultAndColonOnSameLine']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"
         );
@@ -88,10 +88,10 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testCaseAndColonOnNewLine() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree.java"));
+                        "InputXpathNoWhitespaceBeforeCaseAndColonOnNewLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -103,7 +103,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonThree']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseAndColonOnNewLine']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_CASE/COLON"
         );
@@ -113,10 +113,10 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    public void testFour() throws Exception {
+    public void testCaseDefaultAndColonOnNewLine() throws Exception {
         final File fileToProcess =
                 new File(getPath(
-                        "SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour.java"));
+                        "InputXpathNoWhitespaceBeforeCaseDefaultAndColonOnNewLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoWhitespaceBeforeCaseDefaultColonCheck.class);
@@ -128,7 +128,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionNoWhitespaceBeforeCaseDefaultColonFour']]"
+                    + "'InputXpathNoWhitespaceBeforeCaseDefaultAndColonOnNewLine']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
                     + "/LITERAL_DEFAULT/COLON"
         );

@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.nolinewrap;
 
-public class SuppressionXpathRegressionNoLineWrap2 {
+public class InputXpathNoLineWrapTokensMethodDef {
     public static // warn
         void test2() {
 

@@ -36,9 +36,9 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testMain() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer1.java"));
+                getPath("InputXpathNoFinalizerMain.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);
@@ -50,13 +50,13 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer1']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerMain']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/LITERAL_PROTECTED"
         );
 
@@ -65,9 +65,9 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testInner() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionNoFinalizer2.java"));
+                getPath("InputXpathNoFinalizerInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NoFinalizerCheck.class);
@@ -79,20 +79,20 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNoFinalizer2']]"
+                + "[./IDENT[@text='InputXpathNoFinalizerInner']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
                 + "METHOD_DEF[./IDENT[@text='finalize']]/MODIFIERS/"
                 + "ANNOTATION[./IDENT[@text='Override']]/AT"
