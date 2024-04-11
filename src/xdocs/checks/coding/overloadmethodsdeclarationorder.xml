@@ -32,6 +32,7 @@ public void foo(String s) {}
 public void foo(String s, int i) {}
 public void foo(int i, String s) {}
 public void notFoo() {}
+private interface Testing() {}
         </source>
         <p id="Example2-code">Example of incorrect grouping of overloaded methods:</p>
         <source>
@@ -40,6 +41,8 @@ public void foo(String s) {} // OK
 public void notFoo() {} // violation. Have to be after foo(String s, int i)
 public void foo(int i, String s) {}
 public void foo(String s, int i) {}
+private interface Testing() {}
+public void foo(double d) {} // violation. Have to be after foo(String s, int i)
         </source>
       </subsection>
 

@@ -12,4 +12,5 @@ public void foo(String s) {}
 public void foo(String s, int i) {}
 public void foo(int i, String s) {}
 public void notFoo() {}
+private interface Testing() {}
 // xdoc section -- end
