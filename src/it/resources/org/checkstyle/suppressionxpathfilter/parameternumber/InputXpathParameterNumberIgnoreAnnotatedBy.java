@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.parameternumber;
 
-public class SuppressionXpathRegressionParameterNumberIgnoreAnnotatedBy {
+public class InputXpathParameterNumberIgnoreAnnotatedBy {
     static class InnerClass {
         static {
             new Object() {

@@ -1,10 +1,10 @@
 package org.checkstyle.suppressionxpathfilter.parenpad;
 
-public class SuppressionXpathRegressionParenPadRightNotPreceded{
+public class InputXpathParenPadLeftFollowed {
     void method() {
         if ( false) {//warn
         }
-        if ( true ) {
+        if (true) {
         }
     }
 }
