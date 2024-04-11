@@ -1,4 +1,4 @@
 package org.checkstyle.suppressionxpathfilter.PACKAGENAME; // warn
 
-public class InputXpathPackageName {
+public class InputXpathPackageNameThree {
 }

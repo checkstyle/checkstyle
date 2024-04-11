@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.parameterassignment;
 
-public class SuppressionXpathRegressionParameterAssignmentLambdas {
+public class InputXpathParameterAssignmentLambdas {
 
     public interface SomeInterface {
         void method(int a);
