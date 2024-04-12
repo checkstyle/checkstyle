@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
-public class SuppressionXpathRegressionIndentationTestThree {
+public class InputXpathIndentationSwitchCase {
     void test() {
         int key = 5;
         switch (key) {

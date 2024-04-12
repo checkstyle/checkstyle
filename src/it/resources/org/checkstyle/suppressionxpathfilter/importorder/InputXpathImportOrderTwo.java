@@ -4,6 +4,6 @@ import java.util.List;
 
 import java.util.Set; // warn
 
-public class SuppressionXpathRegressionImportOrderTwo {
+public class InputXpathImportOrderTwo {
     // code
 }
