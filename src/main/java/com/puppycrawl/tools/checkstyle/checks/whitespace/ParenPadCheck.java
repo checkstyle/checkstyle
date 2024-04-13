@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import java.util.BitSet;
-
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -97,7 +96,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+ * TYPECAST</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+ * STAR</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+ * PLUS</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+ * MINUS</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+ * DIV</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD">
+ * MOD</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+ * LOR</a>,
+ * <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">
+ * LNOT</a>
+ *  .
  * </li>
  * </ul>
  * <p>
@@ -123,19 +141,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 3.0
  */
+@StatelessCheck
 public class ParenPadCheck extends AbstractParenPadCheck {
-
-    /**
-     * Tokens that this check handles.
-     */
-    private final BitSet acceptableTokens;
-
-    /**
-     * Initializes acceptableTokens.
-     */
-    public ParenPadCheck() {
-        acceptableTokens = TokenUtil.asBitSet(makeAcceptableTokens());
-    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -162,6 +169,15 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             case TokenTypes.DOT:
             case TokenTypes.EXPR:
             case TokenTypes.QUESTION:
+            case TokenTypes.TYPECAST:
+            case TokenTypes.STAR:
+            case TokenTypes.PLUS:
+            case TokenTypes.MINUS:
+            case TokenTypes.DIV:
+            case TokenTypes.MOD:
+            case TokenTypes.LAND:
+            case TokenTypes.LOR:
+            case TokenTypes.LNOT:
                 processExpression(ast);
                 break;
             case TokenTypes.LITERAL_FOR:
@@ -239,9 +255,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     }
 
     /**
-     * Checks parens inside {@link TokenTypes#EXPR}, {@link TokenTypes#QUESTION}
-     * and {@link TokenTypes#METHOD_CALL}.
-     *
+     * Checks all parens that are children of a given Token.
+     * 
      * @param ast the token to check.
      */
     private void processExpression(DetailAST ast) {
@@ -253,29 +268,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             else if (currentNode.getType() == TokenTypes.RPAREN && !isInTypecast(currentNode)) {
                 processRight(currentNode);
             }
-            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)) {
-                // Traverse all subtree tokens which will never be configured
-                // to be launched in visitToken()
-                currentNode = currentNode.getFirstChild();
-                continue;
-            }
-
-            // Go up after processing the last child
-            while (currentNode.getNextSibling() == null && currentNode.getParent() != ast) {
-                currentNode = currentNode.getParent();
-            }
             currentNode = currentNode.getNextSibling();
         }
-    }
-
-    /**
-     * Checks whether AcceptableTokens contains the given ast.
-     *
-     * @param ast the token to check.
-     * @return true if the ast is in AcceptableTokens.
-     */
-    private boolean isAcceptableToken(DetailAST ast) {
-        return acceptableTokens.get(ast.getType());
     }
 
     /**
@@ -306,6 +300,15 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
+            TokenTypes.TYPECAST,
+            TokenTypes.STAR,
+            TokenTypes.PLUS,
+            TokenTypes.MINUS,
+            TokenTypes.DIV,
+            TokenTypes.MOD,
+            TokenTypes.LAND,
+            TokenTypes.LOR,
+            TokenTypes.LNOT,
         };
     }
 
