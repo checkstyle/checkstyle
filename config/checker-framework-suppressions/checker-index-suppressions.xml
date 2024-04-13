@@ -2345,17 +2345,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
-    <lineContent>return acceptableTokens.get(ast.getType());</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SeparatorWrapCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter from of Arrays.copyOfRange.</message>
