@@ -79,6 +79,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /** A factory for creating submodules (i.e. the Checks) */
     private ModuleFactory moduleFactory;
 
+    /** Control whether to skip files with Java parsing errors. */
+    private boolean skipFileOnJavaParseException;
+
     /**
      * Creates a new {@code TreeWalker} instance.
      */
@@ -93,6 +96,16 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     public void setModuleFactory(ModuleFactory moduleFactory) {
         this.moduleFactory = moduleFactory;
+    }
+
+    /**
+     * Setter to control whether to skip files with Java parsing errors.
+     *
+     *  @param skipFileOnJavaParseException whether to always check for a trailing comma.
+     *  @since 10.16.0
+     */
+    public void setSkipFileOnJavaParseException(boolean skipFileOnJavaParseException) {
+        this.skipFileOnJavaParseException = skipFileOnJavaParseException;
     }
 
     @Override
@@ -149,23 +162,30 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         // check if already checked and passed the file
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
             final FileContents contents = getFileContents();
-            final DetailAST rootAST = JavaParser.parse(contents);
-            if (!ordinaryChecks.isEmpty()) {
-                walk(rootAST, contents, AstState.ORDINARY);
+            try {
+                final DetailAST rootAST = JavaParser.parse(contents);
+                if (!ordinaryChecks.isEmpty()) {
+                    walk(rootAST, contents, AstState.ORDINARY);
+                }
+                if (!commentChecks.isEmpty()) {
+                    final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
+                    walk(astWithComments, contents, AstState.WITH_COMMENTS);
+                }
+                if (filters.isEmpty()) {
+                    addViolations(violations);
+                }
+                else {
+                    final SortedSet<Violation> filteredViolations =
+                            getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
+                    addViolations(filteredViolations);
+                }
+                violations.clear();
             }
-            if (!commentChecks.isEmpty()) {
-                final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
-                walk(astWithComments, contents, AstState.WITH_COMMENTS);
+            catch (CheckstyleException ex) {
+                if (!skipFileOnJavaParseException) {
+                    throw ex;
+                }
             }
-            if (filters.isEmpty()) {
-                addViolations(violations);
-            }
-            else {
-                final SortedSet<Violation> filteredViolations =
-                    getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
-                addViolations(filteredViolations);
-            }
-            violations.clear();
         }
     }
 
