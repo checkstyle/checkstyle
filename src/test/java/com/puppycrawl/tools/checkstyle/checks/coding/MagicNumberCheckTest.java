@@ -633,6 +633,19 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testMagicNumberIgnoreFieldDeclarationWithAnnotation()
+            throws Exception {
+        final String[] expected = {
+            "16:38: " + getCheckMessage(MSG_KEY, "3"),
+            "20:40: " + getCheckMessage(MSG_KEY, "60"),
+            "21:34: " + getCheckMessage(MSG_KEY, "20"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclarationWithAnnotation.java"),
+                expected);
+    }
+
+    @Test
     public void testIgnoreInAnnotationElementDefault() throws Exception {
         final String[] expected = {
             "18:29: " + getCheckMessage(MSG_KEY, "10"),
