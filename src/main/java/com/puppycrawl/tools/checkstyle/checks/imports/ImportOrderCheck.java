@@ -28,6 +28,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * <p>
@@ -74,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
- * Type is {@code java.util.regex.Pattern[]}.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
@@ -118,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * an additional group, located at the end. Thus, the empty list of static groups (the default
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
- * Type is {@code java.util.regex.Pattern[]}.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
@@ -186,7 +188,7 @@ public class ImportOrderCheck
      * located at the end. Thus, the empty list of type groups (the default value) means one group
      * for all type imports.
      */
-    private Pattern[] groups = EMPTY_PATTERN_ARRAY;
+    private String[] groups = CommonUtil.EMPTY_STRING_ARRAY;
 
     /**
      * Specify list of <b>static</b> import groups. Every group identified either by a common prefix
@@ -196,7 +198,7 @@ public class ImportOrderCheck
      * static imports. This property has effect only when the property {@code option} is set to
      * {@code top} or {@code bottom}.
      */
-    private Pattern[] staticGroups = EMPTY_PATTERN_ARRAY;
+    private String[] staticGroups = CommonUtil.EMPTY_STRING_ARRAY;
 
     /**
      * Control whether type import groups should be separated by, at least, one blank
@@ -263,6 +265,16 @@ public class ImportOrderCheck
     private ImportOrderOption option = ImportOrderOption.UNDER;
 
     /**
+     * Complied array of patterns for property {@code groups}.
+     */
+    private Pattern[] groupsReg = EMPTY_PATTERN_ARRAY;
+
+    /**
+     * Complied array of patterns for property {@code staticGroups}.
+     */
+    private Pattern[] staticGroupsReg = EMPTY_PATTERN_ARRAY;
+
+    /**
      * Setter to specify policy on the relative order between type imports and static imports.
      *
      * @param optionStr string to decode option from
@@ -284,7 +296,8 @@ public class ImportOrderCheck
      * @since 3.2
      */
     public void setGroups(String... packageGroups) {
-        groups = compilePatterns(packageGroups);
+        groups = UnmodifiableCollectionUtil.copyOfArray(packageGroups, packageGroups.length);
+        groupsReg = compilePatterns(packageGroups);
     }
 
     /**
@@ -299,7 +312,8 @@ public class ImportOrderCheck
      * @since 8.12
      */
     public void setStaticGroups(String... packageGroups) {
-        staticGroups = compilePatterns(packageGroups);
+        staticGroups = UnmodifiableCollectionUtil.copyOfArray(packageGroups, packageGroups.length);
+        staticGroupsReg = compilePatterns(packageGroups);
     }
 
     /**
@@ -662,10 +676,10 @@ public class ImportOrderCheck
     private int getGroupNumber(boolean isStatic, String name) {
         final Pattern[] patterns;
         if (isStatic) {
-            patterns = staticGroups;
+            patterns = staticGroupsReg;
         }
         else {
-            patterns = groups;
+            patterns = groupsReg;
         }
 
         int number = getGroupNumber(patterns, name);
