@@ -393,6 +393,9 @@ public class MagicNumberCheck extends AbstractCheck {
                 break;
             }
             node = node.getParent();
+            if (node == null) {
+                break;
+            }
         }
 
         // contains variable declaration
