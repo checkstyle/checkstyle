@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
@@ -141,33 +140,25 @@ public class DefaultLoggerTest {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter infoStreamOptions can not be null");
+        final DefaultLogger logger =
+                new DefaultLogger(outputStream, (OutputStreamOptions) null);
+
+        final boolean closeError = TestUtil.getInternalState(logger, "closeError");
+        assertWithMessage("closeError should be false (default)")
+                .that(closeError)
+                .isFalse();
     }
 
     @Test
-    public void testNullErrorStreamOptions() {
+    public void testNullErrorStreamOptions() throws Exception {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
+        final DefaultLogger logger = new DefaultLogger(outputStream,
+                                            OutputStreamOptions.CLOSE, outputStream, null);
 
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
-                },
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+        final boolean closeError = TestUtil.getInternalState(logger, "closeError");
+        assertWithMessage("closeError should be false (default)")
+                .that(closeError)
+                .isFalse();
     }
 
     @Test
