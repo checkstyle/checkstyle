@@ -288,7 +288,8 @@
       | //ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
       | //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
         or @SimpleName='FinalLocalVariableCheck'
-        or @SimpleName='NPathComplexityCheck']
+        or @SimpleName='NPathComplexityCheck'
+        or @SimpleName='ParenPadCheck']
              //MethodDeclaration[@Name='visitToken']
       | //ClassOrInterfaceDeclaration[@SimpleName='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']

@@ -4550,20 +4550,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (currentNode.getNextSibling() == null &amp;&amp; currentNode.getParent() != ast) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (currentNode.getNextSibling() == null &amp;&amp; currentNode.getParent() != ast) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypecastParenPadCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>

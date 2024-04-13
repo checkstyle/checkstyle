@@ -28,11 +28,8 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class ParenPadCheckTest
     extends AbstractModuleTestSupport {
@@ -541,30 +538,6 @@ public class ParenPadCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParenPadForEnum.java"), expected);
-    }
-
-    /**
-     * Pitest requires us to specify more concrete lower bound for condition for
-     * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,
-     * METHOD_DEF will never reach this method. It is hard to recreate conditions for
-     * all tokens to go through this method. We do not want to change main code to have
-     * this set ok tokens more exact, because it will not be ease to understand.
-     * So we have to use reflection to be sure all
-     * acceptable tokens pass that check.
-     */
-    @Test
-    public void testIsAcceptableToken() throws Exception {
-        final ParenPadCheck check = new ParenPadCheck();
-        final DetailAstImpl ast = new DetailAstImpl();
-        final String message = "Expected that all acceptable tokens will pass isAcceptableToken "
-            + "method, but some token don't: ";
-
-        for (int token : check.getAcceptableTokens()) {
-            ast.setType(token);
-            assertWithMessage(message + TokenUtil.getTokenName(token))
-                    .that(TestUtil.<Boolean>invokeMethod(check, "isAcceptableToken", ast))
-                    .isTrue();
-        }
     }
 
 }
