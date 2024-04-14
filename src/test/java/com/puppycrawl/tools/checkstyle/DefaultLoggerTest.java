@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
@@ -140,34 +139,28 @@ public class DefaultLoggerTest {
 
     @Test
     public void testNullInfoStreamOptions() {
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter infoStreamOptions can not be null");
+        final OutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl =
+                new DefaultLogger(outputStream, (OutputStreamOptions) null);
+
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalArgumentException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+        assertWithMessage("Message should contain exception info")
+                .that(outputStream.toString())
+                .contains("java.lang.IllegalArgumentException: upsss");
     }
 
     @Test
-    public void testNullErrorStreamOptions() {
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
-                    final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
-                            OutputStreamOptions.CLOSE, outputStream, null);
+    public void testNullErrorStreamOptions() throws Exception {
+        final OutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(outputStream,
+                                            OutputStreamOptions.CLOSE, outputStream, null);
 
-                    // Workaround for Eclipse error "The allocated object is never used"
-                    assertWithMessage("defaultLogger should be non-null")
-                            .that(defaultLogger)
-                            .isNotNull();
-                },
-                "IllegalArgumentException expected");
-        assertWithMessage("Invalid error message")
-                .that(ex)
-                .hasMessageThat()
-                        .isEqualTo("Parameter errorStreamOptions can not be null");
+        dl.addException(new AuditEvent(5000, "myfile"), new IllegalArgumentException("upsss"));
+        dl.auditFinished(new AuditEvent(6000, "myfile"));
+        assertWithMessage("Message should contain exception info")
+                .that(outputStream.toString())
+                .contains("java.lang.IllegalArgumentException: upsss");
     }
 
     @Test
