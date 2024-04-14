@@ -23,6 +23,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +84,9 @@ public abstract class AbstractAutomaticBean
 
     /** Comma separator for StringTokenizer. */
     private static final String COMMA_SEPARATOR = ",";
+
+    /** Separator that splits multiple regex expression in a string. */
+    private static final String REGEX_SEPARATOR = COMMA_SEPARATOR;
 
     /** The configuration of this bean. */
     private Configuration configuration;
@@ -170,6 +174,7 @@ public abstract class AbstractAutomaticBean
      */
     private static void registerCustomTypes(ConvertUtilsBean cub) {
         cub.register(new PatternConverter(), Pattern.class);
+        cub.register(new PatternArrayConverter(), Pattern[].class);
         cub.register(new SeverityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
@@ -311,6 +316,24 @@ public abstract class AbstractAutomaticBean
             return CommonUtil.createPattern(value.toString());
         }
 
+    }
+
+    /** A converter that converts a string array to a pattern. */
+    private static final class PatternArrayConverter implements Converter {
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public Object convert(Class type, Object value) {
+            final String plainString = value.toString();
+            Pattern[] patterns = new Pattern[0];
+            if (!CommonUtil.isBlank(plainString)) {
+                final String[] patternStrings = plainString.split(REGEX_SEPARATOR);
+                patterns = Arrays.stream(patternStrings)
+                            .map(CommonUtil::createPattern)
+                            .toArray(Pattern[]::new);
+            }
+            return patterns;
+        }
     }
 
     /** A converter that converts strings to severity level. */
