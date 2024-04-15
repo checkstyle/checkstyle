@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.innerassignment;
 
-public class SuppressionXpathRegressionInnerAssignment1 {
+public class InputXpathInnerAssignment {
 
     public void testMethod() {
         int a, b;
