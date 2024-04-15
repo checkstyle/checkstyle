@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finallocalvariable;
 
-public class SuppressionXpathRegressionFinalLocalVariable2 {
+public class InputXpathFinalLocalVariableForLoop {
     public void method2() {
         for (int i = 0; i < 5; i++) {
             int x; // warn
