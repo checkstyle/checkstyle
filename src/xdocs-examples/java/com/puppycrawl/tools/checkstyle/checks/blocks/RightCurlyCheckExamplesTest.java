@@ -56,7 +56,8 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "35:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+            "24:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "22"),
+            "38:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -74,7 +75,7 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "41:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
+            "44:16: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", "16"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
