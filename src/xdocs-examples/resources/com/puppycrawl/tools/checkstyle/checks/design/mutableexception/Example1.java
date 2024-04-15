@@ -19,28 +19,28 @@ class Example1 extends Exception {
     }
 }
 
-class MyException1 extends Exception {
+class FirstMyException extends Exception {
     private int code; // violation
 
-    public MyException1() {
+    public FirstMyException() {
         code = 2;
     }
 }
 
-class MyThrowable1 extends Throwable {
+class FirstMyThrowable extends Throwable {
     final int code; // OK
     String message; // violation
 
-    public MyThrowable1(int code, String message) {
+    public FirstMyThrowable(int code, String message) {
         this.code = code;
         this.message = message;
     }
 }
 
-class BadException1 extends java.lang.Exception {
+class FirstBadException extends java.lang.Exception {
     int code; // violation
 
-    public BadException1(int code) {
+    public FirstBadException(int code) {
         this.code = code;
     }
 }

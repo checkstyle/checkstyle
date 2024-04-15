@@ -19,28 +19,28 @@ class Example3 extends Exception {
     }
 }
 
-class MyException extends Exception {
+class ThirdMyException extends Exception {
     private int code; // OK, extended class name doesn't match with given pattern
 
-    public MyException() {
+    public ThirdMyException() {
         code = 2;
     }
 }
 
-class MyThrowable extends Throwable {
+class ThirdMyThrowable extends Throwable {
     final int code; // OK
     String message; // violation
 
-    public MyThrowable(int code, String message) {
+    public ThirdMyThrowable(int code, String message) {
         this.code = code;
         this.message = message;
     }
 }
 
-class BadException extends java.lang.Exception {
+class ThirdBadException extends java.lang.Exception {
     int code; // OK, extended class name doesn't match with given pattern
 
-    public BadException(int code) {
+    public ThirdBadException(int code) {
         this.code = code;
     }
 }
