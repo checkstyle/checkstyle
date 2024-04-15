@@ -4,5 +4,5 @@ package org.checkstyle.suppressionxpathfilter.invalidjavadocposition;
 /** // warn
  * Javadoc Comment
  */
-public class SuppressionXpathRegressionInvalidJavadocPositionOne {
+public class InputXpathInvalidJavadocPositionOne {
 }
