@@ -8,37 +8,39 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
+
 // xdoc section -- start
-class FirstClass extends Exception {
+class Example2 extends Exception {
   private int code; // OK, class name doesn't match with given pattern
 
-  public FirstClass() {
+  public Example2() {
     code = 1;
   }
 }
 
-class MyException extends Exception {
-  private int code; // violation, The field 'code' must be declared final
+class SecondMyException extends Exception {
+  private int code; // violation
 
-  public MyException() {
+  public SecondMyException() {
     code = 2;
   }
 }
 
-class MyThrowable extends Throwable {
+class SecondMyThrowable extends Throwable {
   final int code; // OK, class name doesn't match with given pattern
   String message; // OK, class name doesn't match with given pattern
 
-  public MyThrowable(int code, String message) {
+  public SecondMyThrowable(int code, String message) {
     this.code = code;
     this.message = message;
   }
 }
 
-class BadException extends java.lang.Exception {
-  int code; // violation, The field 'code' must be declared final
+class SecondBadException extends java.lang.Exception {
+  int code; // violation
 
-  public BadException(int code) {
+  public SecondBadException(int code) {
     this.code = code;
   }
 }
