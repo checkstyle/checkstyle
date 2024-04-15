@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.invalidjavadocposition;
 
-public class SuppressionXpathRegressionInvalidJavadocPositionFour {
+public class InputXpathInvalidJavadocPositionFour {
     /** // warn
      * Javadoc Comment
      */

@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
-import static org.checkstyle.suppressionxpathfilter.interfaceistype.SuppressionXpathRegressionInterfaceIsType1.a;
+import static org.checkstyle.suppressionxpathfilter.interfaceistype.InputXpathInterfaceIsTypeAllowMarker.a;
 
 // xdoc section -- start
 public class Example2 {
