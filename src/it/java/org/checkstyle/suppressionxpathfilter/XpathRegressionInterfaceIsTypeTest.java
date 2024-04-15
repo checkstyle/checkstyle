@@ -38,9 +38,9 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testAllowMarker() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionInterfaceIsType1.java"));
+                "InputXpathInterfaceIsTypeAllowMarker.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InterfaceIsTypeCheck.class);
@@ -52,11 +52,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]",
+                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]/MODIFIERS",
+                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType1']]"
+                    + "@text='InputXpathInterfaceIsTypeAllowMarker']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -65,9 +65,9 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testAllowMarkerFalse() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionInterfaceIsType2.java"));
+                "InputXpathInterfaceIsType.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InterfaceIsTypeCheck.class);
@@ -81,11 +81,11 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]",
+                    + "@text='InputXpathInterfaceIsType']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]/MODIFIERS",
+                    + "@text='InputXpathInterfaceIsType']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionInterfaceIsType2']]"
+                    + "@text='InputXpathInterfaceIsType']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 

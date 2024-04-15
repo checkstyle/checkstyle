@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.innertypelast;
 
-public class SuppressionXpathRegressionInnerTypeLastTwo {
+public class InputXpathInnerTypeLastTwo {
 
     static {}; // OK
 

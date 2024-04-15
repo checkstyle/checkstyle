@@ -40,7 +40,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionOne.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionOne']]"
+                    + "[./IDENT[@text='InputXpathInvalidJavadocPositionOne']]"
                     + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                     + "[@text='* // warn\\n * Javadoc Comment\\n ']]"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionTwo.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -76,7 +76,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionInvalidJavadocPositionTwo']]"
+                    + "[@text='InputXpathInvalidJavadocPositionTwo']]"
                     + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                     + "[@text='* // warn\\n * Javadoc comment\\n ']]"
         );
@@ -88,7 +88,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionThree.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -100,7 +100,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionThree']]/"
+                    + "[./IDENT[@text='InputXpathInvalidJavadocPositionThree']]/"
                     + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                     + "[@text='* // warn\\n     * Javadoc comment\\n     ']]"
         );
@@ -112,7 +112,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFour.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionFour.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -124,7 +124,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFour']]"
+                + "[./IDENT[@text='InputXpathInvalidJavadocPositionFour']]"
                 + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                 + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
         );
@@ -136,7 +136,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testFive() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionFive.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionFive.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -148,7 +148,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFive']]"
+                + "[./IDENT[@text='InputXpathInvalidJavadocPositionFive']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                 + "[@text='* // warn\\n         * Javadoc comment\\n         ']]"
@@ -161,7 +161,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     @Test
     public void testSix() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionInvalidJavadocPositionSix.java"));
+                new File(getPath("InputXpathInvalidJavadocPositionSix.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InvalidJavadocPositionCheck.class);
@@ -173,7 +173,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionSix']]"
+                + "[./IDENT[@text='InputXpathInvalidJavadocPositionSix']]"
                 + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
                 + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
         );

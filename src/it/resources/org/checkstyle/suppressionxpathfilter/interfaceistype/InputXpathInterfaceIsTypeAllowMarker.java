@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.interfaceistype;
 
-public interface SuppressionXpathRegressionInterfaceIsType1 { // warn
+public interface InputXpathInterfaceIsTypeAllowMarker { // warn
     int a = 3;
 }

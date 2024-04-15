@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.interfacememberimpliedmodifier;
 
-public interface SuppressionXpathRegressionInterfaceMemberImpliedModifier2 {
+public interface InputXpathInterfaceMemberImpliedModifierMethod {
     abstract void setData(); // warn
 }
