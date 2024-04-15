@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finallocalvariable;
 
-public class SuppressionXpathRegressionFinalLocalVariable1 {
+public class InputXpathFinalLocalVariableMethodDef {
     public void testMethod() {
         int x; // warn
         x = 3;

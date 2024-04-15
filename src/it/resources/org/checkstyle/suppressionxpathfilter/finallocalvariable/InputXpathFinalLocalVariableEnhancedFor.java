@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finallocalvariable;
 
-public class SuppressionXpathRegressionFinalLocalVariable6 {
+public class InputXpathFinalLocalVariableEnhancedFor {
     public void method1()
     {
         final java.util.List<Object> list = new java.util.ArrayList<>();
