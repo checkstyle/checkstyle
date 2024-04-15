@@ -1,14 +1,15 @@
 package org.checkstyle.suppressionxpathfilter.customimportorder;
 
 import static java.util.Arrays.sort;
+import static java.lang.Math.PI;
 
-import static java.lang.Math.PI; // warn
+import com.puppycrawl.tools.checkstyle.api.DetailAST; // warn
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class SuppressionXpathRegressionCustomImportOrderThree {
+public class InputXpathCustomImportOrderSix {
     // code
 }

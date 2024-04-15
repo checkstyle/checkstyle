@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finallocalvariable;
 
-public class SuppressionXpathRegressionFinalLocalVariable3 {
+public class InputXpathFinalLocalVariableSwitchCase {
     class InnerClass {
         public void method(final int i) {
             switch (i) {

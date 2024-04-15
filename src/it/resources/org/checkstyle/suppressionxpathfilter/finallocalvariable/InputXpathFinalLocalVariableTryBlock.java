@@ -1,15 +1,12 @@
 package org.checkstyle.suppressionxpathfilter.finallocalvariable;
 
-public class SuppressionXpathRegressionFinalLocalVariable9 {
+public class InputXpathFinalLocalVariableTryBlock {
     private void checkCodeBlock() {
         try {
+            int start = 0; // warn
 
             final int from;
             if (true) {
-                from = 0;
-            } else if (true) {
-                boolean body = false; // warn
-                if (body) return;
                 from = 0;
             } else {
                 return;
@@ -19,4 +16,3 @@ public class SuppressionXpathRegressionFinalLocalVariable9 {
         }
     }
 }
-

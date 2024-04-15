@@ -8,6 +8,6 @@ import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class SuppressionXpathRegressionCustomImportOrderOne {
+public class InputXpathCustomImportOrderOne {
     // code
 }
