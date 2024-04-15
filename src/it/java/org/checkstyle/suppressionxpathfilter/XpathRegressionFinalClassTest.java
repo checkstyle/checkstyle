@@ -37,25 +37,25 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionFinalClass1.java"));
+                "InputXpathFinalClassDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FinalClassCheck.class);
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(FinalClassCheck.class,
-                    FinalClassCheck.MSG_KEY, "SuppressionXpathRegressionFinalClass1"),
+                    FinalClassCheck.MSG_KEY, "InputXpathFinalClassDefault"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]",
+                        + "@text='InputXpathFinalClassDefault']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS",
+                        + "@text='InputXpathFinalClassDefault']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass1']]/MODIFIERS/LITERAL_PUBLIC"
+                        + "@text='InputXpathFinalClassDefault']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -63,9 +63,9 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionFinalClass2.java"));
+                "InputXpathFinalClassInnerClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(FinalClassCheck.class);
@@ -77,13 +77,13 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClassInnerClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClassInnerClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                        + "@text='SuppressionXpathRegressionFinalClass2']]"
+                        + "@text='InputXpathFinalClassInnerClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Test']]/LITERAL_CLASS"
         );
 

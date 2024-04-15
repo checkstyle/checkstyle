@@ -37,7 +37,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     @Test
     public void testEqualsOnly() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEqualsHashCode1.java"));
+            getPath("InputXpathEqualsHashCodeEqualsOnly.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
@@ -48,13 +48,13 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode1']]"
+                        + "[@text='InputXpathEqualsHashCodeEqualsOnly']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode1']]/OBJBLOCK/"
+                        + "[@text='InputXpathEqualsHashCodeEqualsOnly']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode1']]/OBJBLOCK/"
+                        + "[@text='InputXpathEqualsHashCodeEqualsOnly']]/OBJBLOCK/"
                         + "METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -64,7 +64,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     @Test
     public void testHashCodeOnly() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEqualsHashCode2.java"));
+            getPath("InputXpathEqualsHashCodeHashCodeOnly.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
@@ -75,13 +75,13 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode2']]"
+                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode2']]"
+                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCode2']]"
+                        + "[@text='InputXpathEqualsHashCodeHashCodeOnly']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='hashCode']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -91,7 +91,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     @Test
     public void testNestedCase() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionEqualsHashCodeNestedCase.java"));
+            getPath("InputXpathEqualsHashCodeNestedCase.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(EqualsHashCodeCheck.class);
 
@@ -102,15 +102,15 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "[@text='InputXpathEqualsHashCodeNestedCase']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "[@text='InputXpathEqualsHashCodeNestedCase']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionEqualsHashCodeNestedCase']]"
+                        + "[@text='InputXpathEqualsHashCodeNestedCase']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='innerClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"

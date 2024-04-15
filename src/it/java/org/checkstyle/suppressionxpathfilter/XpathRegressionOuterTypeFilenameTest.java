@@ -40,7 +40,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     @Test
     public void testNoPublic() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionOuterTypeFilename1.java"));
+                "InputXpathOuterTypeFilenameOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OuterTypeFilenameCheck.class);
@@ -63,7 +63,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     @Test
     public void testNested() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionOuterTypeFilename2.java"));
+                "InputXpathOuterTypeFilenameTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(OuterTypeFilenameCheck.class);

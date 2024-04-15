@@ -40,7 +40,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocContentLocationOne.java"));
+                new File(getPath("InputXpathJavadocContentLocationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
@@ -52,7 +52,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/INTERFACE_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionJavadocContentLocationOne']]"
+                + "[./IDENT[@text='InputXpathJavadocContentLocationOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
                 + "[./COMMENT_CONTENT[@text='* Text. // warn\\n     ']]"
         );
@@ -64,7 +64,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionJavadocContentLocationTwo.java"));
+                new File(getPath("InputXpathJavadocContentLocationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
@@ -78,7 +78,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                    + "[@text='SuppressionXpathRegressionJavadocContentLocationTwo']]"
+                    + "[@text='InputXpathJavadocContentLocationTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
                     + "[./COMMENT_CONTENT[@text='*\\n     * Text.\\n     ']]"
         );
