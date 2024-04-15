@@ -74,36 +74,36 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class FirstClass extends Exception {
+class Example1 extends Exception {
   private int code; // OK, class name doesn't match with default pattern
 
-  public FirstClass() {
+  public Example1() {
     code = 1;
   }
 }
 
-class MyException extends Exception {
-  private int code; // violation, The field 'code' must be declared final
+class FirstException extends Exception {
+  private int code; // violation
 
-  public MyException() {
+  public FirstException() {
     code = 2;
   }
 }
 
-class MyThrowable extends Throwable {
+class FirstThrowable extends Throwable {
   final int code; // OK
-  String message; // violation, The field 'message' must be declared final
+  String message; // violation
 
-  public MyThrowable(int code, String message) {
+  public FirstThrowable(int code, String message) {
     this.code = code;
     this.message = message;
   }
 }
 
-class BadException extends java.lang.Exception {
-  int code; // violation, The field 'code' must be declared final
+class FirstBadException extends java.lang.Exception {
+  int code; // violation
 
-  public BadException(int code) {
+  public FirstBadException(int code) {
     this.code = code;
   }
 }
@@ -124,36 +124,36 @@ class BadException extends java.lang.Exception {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-class FirstClass extends Exception {
+class Example2 extends Exception {
   private int code; // OK, class name doesn't match with given pattern
 
-  public FirstClass() {
+  public Example2() {
     code = 1;
   }
 }
 
-class MyException extends Exception {
-  private int code; // violation, The field 'code' must be declared final
+class SecondException extends Exception {
+  private int code; // violation
 
-  public MyException() {
+  public SecondException() {
     code = 2;
   }
 }
 
-class MyThrowable extends Throwable {
+class SecondThrowable extends Throwable {
   final int code; // OK, class name doesn't match with given pattern
   String message; // OK, class name doesn't match with given pattern
 
-  public MyThrowable(int code, String message) {
+  public SecondThrowable(int code, String message) {
     this.code = code;
     this.message = message;
   }
 }
 
-class BadException extends java.lang.Exception {
-  int code; // violation, The field 'code' must be declared final
+class SecondBadException extends java.lang.Exception {
+  int code; // violation
 
-  public BadException(int code) {
+  public SecondBadException(int code) {
     this.code = code;
   }
 }
@@ -174,36 +174,36 @@ class BadException extends java.lang.Exception {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-class FirstClass extends Exception {
+class Example3 extends Exception {
   private int code; // OK, extended class name doesn't match with given pattern
 
-  public FirstClass() {
+  public Example3() {
     code = 1;
   }
 }
 
-class MyException extends Exception {
+class ThirdException extends Exception {
   private int code; // OK, extended class name doesn't match with given pattern
 
-  public MyException() {
+  public ThirdException() {
     code = 2;
   }
 }
 
-class MyThrowable extends Throwable {
+class ThirdThrowable extends Throwable {
   final int code; // OK
-  String message; // violation, The field 'message' must be declared final
+  String message; // violation
 
-  public MyThrowable(int code, String message) {
+  public ThirdThrowable(int code, String message) {
     this.code = code;
     this.message = message;
   }
 }
 
-class BadException extends java.lang.Exception {
+class ThirdBadException extends java.lang.Exception {
   int code; // OK, extended class name doesn't match with given pattern
 
-  public BadException(int code) {
+  public ThirdBadException(int code) {
     this.code = code;
   }
 }
