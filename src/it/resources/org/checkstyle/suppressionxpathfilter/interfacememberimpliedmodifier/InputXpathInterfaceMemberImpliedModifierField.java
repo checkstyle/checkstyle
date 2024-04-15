@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.interfacememberimpliedmodifier;
 
-public interface SuppressionXpathRegressionInterfaceMemberImpliedModifier1 {
+public interface InputXpathInterfaceMemberImpliedModifierField {
     public static String str = "random string"; // warn
 }
