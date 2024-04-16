@@ -39,9 +39,9 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testEqualityTrue() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality.java"));
+                new File(getPath("InputXpathStringLiteralEqualityTrue.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -50,11 +50,11 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEqualityTrue']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_IF/EXPR",
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEqualityTrue']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_IF/EXPR/EQUAL[./IDENT[@text='foo']]"
 
@@ -65,9 +65,9 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testEqualityFalse() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality1.java"));
+                new File(getPath("InputXpathStringLiteralEqualityFalse.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -76,11 +76,11 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality1']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEqualityFalse']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_WHILE/EXPR",
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality1']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEqualityFalse']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/LITERAL_WHILE/EXPR/NOT_EQUAL[./IDENT[@text='foo']]"
 
@@ -91,9 +91,9 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testEqualityExp() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionStringLiteralEquality2.java"));
+                new File(getPath("InputXpathStringLiteralEqualityExp.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expectedViolation = {
@@ -102,7 +102,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT"
-                + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionStringLiteralEquality2']]"
+                + "/CLASS_DEF[./IDENT[@text='InputXpathStringLiteralEqualityExp']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='flag']]"
                 + "/ASSIGN/EXPR/EQUAL[./IDENT[@text='foo']]"

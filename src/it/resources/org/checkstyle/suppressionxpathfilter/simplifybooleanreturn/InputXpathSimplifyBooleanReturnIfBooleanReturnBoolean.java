@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.simplifybooleanreturn;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SuppressionXpathRegressionSimplifyBooleanReturnIfBooleanReturnBoolean {
+public class InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean {
     public static void toTest() {
         ArrayList<Boolean> boolList
             = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
