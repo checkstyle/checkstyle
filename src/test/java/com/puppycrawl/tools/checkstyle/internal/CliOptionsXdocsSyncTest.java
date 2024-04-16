@@ -49,7 +49,8 @@ public class CliOptionsXdocsSyncTest {
         final Map<String, String> cmdDesc = new HashMap<>();
 
         final NodeList sections = getSectionsFromXdoc("src/xdocs/cmdline.xml.vm");
-        final Set<String> cmdOptions = getListById(sections.item(2), "CLI_Options");
+        final Set<String> cmdOptions =
+                getListById(sections.item(2), "Command_line_usage_Command_line_options");
         for (String option : cmdOptions) {
             final String text = option.trim().replaceAll("\\s+", " ");
             cmdDesc.put(text.substring(0, 2), text.substring(text.indexOf(" - ") + 3));
