@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.simplifybooleanexpression;
 
-public class SuppressionXpathRegressionSimplifyBooleanExpressionAnonymous {
+public class InputXpathSimplifyBooleanExpressionAnonymous {
 
     class Inner{
         boolean a,b,c,d;

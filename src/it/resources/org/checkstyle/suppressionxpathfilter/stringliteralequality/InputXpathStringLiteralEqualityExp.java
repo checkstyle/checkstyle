@@ -1,8 +1,8 @@
 package org.checkstyle.suppressionxpathfilter.stringliteralequality;
 
-public class SuppressionXpathRegressionStringLiteralEquality {
+public class InputXpathStringLiteralEqualityExp {
     public void myFunction(){
         String foo = "pending";
-        if (foo == "done") {} // warn
+        boolean flag = (foo == "done"); // warn
     }
 }

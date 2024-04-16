@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.singlespaceseparator;
 
-public class SuppressionXpathRegressionSingleSpaceSeparator {
+public class InputXpathSingleSpaceSeparator {
     long  bad;//warn
     long good;
 }

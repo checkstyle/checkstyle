@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.simplifybooleanexpression;
 
-public class SuppressionXpathRegressionSimplifyBooleanExpressionInterface {
+public class InputXpathSimplifyBooleanExpressionInterface {
     interface Inner {
         default void test() {
            boolean a = false, b = false, c = false, d = false;
