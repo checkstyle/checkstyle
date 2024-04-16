@@ -109,4 +109,24 @@ public class InnerAssignmentCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testInnerAssignmentSwitchAndSwitchExpression() throws Exception {
+        final String[] expected = {
+            "28:23: " + getCheckMessage(MSG_KEY),
+            "38:25: " + getCheckMessage(MSG_KEY),
+            "40:25: " + getCheckMessage(MSG_KEY),
+            "41:26: " + getCheckMessage(MSG_KEY),
+            "49:25: " + getCheckMessage(MSG_KEY),
+            "51:31: " + getCheckMessage(MSG_KEY),
+            "52:26: " + getCheckMessage(MSG_KEY),
+            "59:42: " + getCheckMessage(MSG_KEY),
+            "61:34: " + getCheckMessage(MSG_KEY),
+            "94:25: " + getCheckMessage(MSG_KEY),
+            "96:26: " + getCheckMessage(MSG_KEY),
+            "98:27: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
+                expected);
+    }
 }
