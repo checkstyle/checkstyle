@@ -40,9 +40,9 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionUnnecessarySemicolonInEnumeration.java"));
+                getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
@@ -60,9 +60,9 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testAll() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionUnnecessarySemicolonInEnumerationAll.java"
+            "InputXpathUnnecessarySemicolonInEnumerationAll.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text="
-                + "'SuppressionXpathRegressionUnnecessarySemicolonInEnumerationAll']]"
+                + "'InputXpathUnnecessarySemicolonInEnumerationAll']]"
                 + "/OBJBLOCK/SEMI"
         );
 

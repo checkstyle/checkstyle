@@ -2,7 +2,7 @@ package org.checkstyle.suppressionxpathfilter.unusedlocalvariable;
 
 import java.util.function.Predicate;
 
-public class SuppressionXpathRegressionUnusedLocalVariableTwo {
+public class InputXpathUnusedLocalVariableTwo {
 
     int b = 21;
 
