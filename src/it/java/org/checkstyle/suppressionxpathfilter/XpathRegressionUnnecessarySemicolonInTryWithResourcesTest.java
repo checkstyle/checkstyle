@@ -42,7 +42,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources.java"));
+                getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         final String[] expectedViolation = {
@@ -51,7 +51,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources']]"
+                        + "'InputXpathUnnecessarySemicolonInTryWithResourcesDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
                         + "/RESOURCE_SPECIFICATION/SEMI"
         );
@@ -59,9 +59,9 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     }
 
     @Test
-    public void testAllowWhenNoBraceAfterSemicolon() throws Exception {
+    public void testNoBrace() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace.java"
+            "InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace.java"
         ));
 
         final DefaultConfiguration moduleConfig =
@@ -75,7 +75,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                    + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace']]"
+                    + "'InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
                 + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
         );

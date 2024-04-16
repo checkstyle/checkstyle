@@ -42,7 +42,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
     @Test
     public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration.java"));
+            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         final String[] expectedViolation = {
             "4:20: " + getCheckMessage(CLASS,
@@ -52,7 +52,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text="
-                + "'SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration']]"
+                + "'InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault']]"
                 + "/OBJBLOCK/SEMI"
         );
 
@@ -62,7 +62,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
     @Test
     public void testTokens() throws Exception {
         final File fileToProcess = new File(getPath(
-            "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
+            "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
                 + ".java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
         moduleConfig.addProperty("tokens", "METHOD_DEF");
@@ -74,7 +74,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[."
-                + "/IDENT[@text='SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMember"
+                + "/IDENT[@text='InputXpathUnnecessarySemicolonAfterTypeMember"
                     + "DeclarationTokens']]"
                 + "/OBJBLOCK/SEMI[1]"
         );

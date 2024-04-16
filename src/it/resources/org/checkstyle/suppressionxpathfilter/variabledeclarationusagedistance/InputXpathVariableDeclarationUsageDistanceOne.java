@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.variabledeclarationusagedistance;
 
-public class SuppressionXpathRegressionVariableDeclarationUsageDistance1 {
+public class InputXpathVariableDeclarationUsageDistanceOne {
     private int test1;
 
     public void test(int test1) {

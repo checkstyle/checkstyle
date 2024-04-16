@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.variabledeclarationusagedistance;
 
 
-public class SuppressionXpathRegressionVariableDeclarationUsageDistance2 {
+public class InputXpathVariableDeclarationUsageDistanceTwo {
     public void testMethod2() {
         int count; // warn
         int a = 3;

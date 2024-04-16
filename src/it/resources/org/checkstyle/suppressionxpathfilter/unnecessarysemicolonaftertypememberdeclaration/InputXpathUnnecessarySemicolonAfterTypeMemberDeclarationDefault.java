@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.unnecessarysemicolonaftertypememberdeclaration;
 
-public class SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration {
+public class InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault {
     void method(){}; //warn
 }

@@ -3,7 +3,7 @@ package org.checkstyle.suppressionxpathfilter.unnecessarysemicolonintrywithresou
 import java.io.PipedReader;
 import java.io.Reader;
 
-public class SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources {
+public class InputXpathUnnecessarySemicolonInTryWithResourcesDefault {
     void m() throws Exception {
         try(Reader good = new PipedReader()){}
         try(Reader good = new PipedReader();Reader better = new PipedReader()){}
