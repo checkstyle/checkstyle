@@ -586,9 +586,10 @@ public class XdocsPagesTest {
     /**
      * Validates xml check documentation section.
      *
-     * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspection JUnitTestMethodWithNoAssertions, TestMethodWithoutAssertion
      * @noinspectionreason JUnitTestMethodWithNoAssertions -asserts in callstack,
      *      but not in this method
+     * @noinspectionreason TestMethodWithoutAssertion - until issue #14625
      */
     @Test
     public void testAllCheckSectionsEx() throws Exception {
