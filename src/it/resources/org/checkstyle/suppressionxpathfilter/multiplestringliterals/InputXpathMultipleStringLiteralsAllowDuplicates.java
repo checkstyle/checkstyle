@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.multiplestringliterals;
 
-public class SuppressionXpathRegressionMultipleStringLiteralsAllowDuplicates {
+public class InputXpathMultipleStringLiteralsAllowDuplicates {
     String a = "StringContents"; // ok
     public void myTest() {
       String a2 = "StringContents";

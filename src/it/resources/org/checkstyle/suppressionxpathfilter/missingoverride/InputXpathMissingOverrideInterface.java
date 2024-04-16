@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingoverride;
 
-public interface SuppressionXpathRegressionMissingOverrideInterface {
+public interface InputXpathMissingOverrideInterface {
     /**
      * {@inheritDoc}
      */

@@ -40,7 +40,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     @Test
     public void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideClass.java"));
+                "InputXpathMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -52,13 +52,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
@@ -71,7 +71,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     @Test
     public void testInterface() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideInterface.java"));
+                "InputXpathMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -83,16 +83,16 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
         );
@@ -105,7 +105,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     @Test
     public void testAnonymous() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideAnonymous.java"));
+                "InputXpathMissingOverrideAnonymous.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -117,17 +117,17 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                        + "[@text='InputXpathMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
                         + "LITERAL_NEW[./IDENT[@text='Runnable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
@@ -140,9 +140,9 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInheritDocInvalid1() throws Exception {
+    public void testInheritDocInvalidPrivateMethod() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideInheritDocInvalid1.java"));
+                "InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -154,13 +154,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid1']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPrivateMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PRIVATE"
 
         );
@@ -171,9 +171,9 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInheritDocInvalid2() throws Exception {
+    public void testInheritDocInvalidPublicMethod() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideInheritDocInvalid2.java"));
+                "InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -185,13 +185,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInheritDocInvalid2']]"
+                        + "[@text='InputXpathMissingOverrideInheritDocInvalidPublicMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
@@ -202,9 +202,9 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testJavaFiveCompatibility1() throws Exception {
+    public void testJavaFiveCompatibilityOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideClass.java"));
+                "InputXpathMissingOverrideClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -217,13 +217,13 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingOverrideClass']]"
+                        + "[./IDENT[@text='InputXpathMissingOverrideClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='equals']]/MODIFIERS/LITERAL_PUBLIC"
 
         );
@@ -234,9 +234,9 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testJavaFiveCompatibility2() throws Exception {
+    public void testJavaFiveCompatibilityTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingOverrideInterface.java"));
+                "InputXpathMissingOverrideInterface.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingOverrideCheck.class);
@@ -249,16 +249,16 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE",
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideInterface']]"
+                        + "[@text='InputXpathMissingOverrideInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/LITERAL_BOOLEAN"
 
         );
