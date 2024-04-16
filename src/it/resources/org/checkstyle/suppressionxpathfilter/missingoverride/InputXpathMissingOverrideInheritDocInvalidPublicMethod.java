@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingoverride;
 
-public class SuppressionXpathRegressionMissingOverrideInheritDocInvalid2 {
+public class InputXpathMissingOverrideInheritDocInvalidPublicMethod {
     /**
      * {@inheritDoc}
      */

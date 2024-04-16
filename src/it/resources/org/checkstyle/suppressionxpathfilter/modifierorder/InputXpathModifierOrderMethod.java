@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.modifierorder;
 
-public class SuppressionXpathRegressionModifierOrderMethod {
+public class InputXpathModifierOrderMethod {
     private @MethodAnnotation void foo() {} // warn
 }
 

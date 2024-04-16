@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.multiplestringliterals;
 
-public class SuppressionXpathRegressionMultipleStringLiteralsIgnoreRegexp {
+public class InputXpathMultipleStringLiteralsIgnoreRegexp {
 
     public void myTest() {
 
