@@ -41,7 +41,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionModifierOrderMethod.java"));
+            getPath("InputXpathModifierOrderMethod.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -52,11 +52,11 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionModifierOrderMethod']]"
+                        + "[@text='InputXpathModifierOrderMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionModifierOrderMethod']]"
+                        + "[@text='InputXpathModifierOrderMethod']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS"
                         + "/ANNOTATION[./IDENT[@text='MethodAnnotation']]/AT");
 
@@ -66,7 +66,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testVariable() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionModifierOrderVariable.java"));
+            getPath("InputXpathModifierOrderVariable.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -77,7 +77,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionModifierOrderVariable']]"
+                        + "[@text='InputXpathModifierOrderVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -86,7 +86,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     @Test
     public void testAnnotation() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionModifierOrderAnnotation.java"));
+            getPath("InputXpathModifierOrderAnnotation.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -97,10 +97,10 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]"
+                        + "[@text='InputXpathModifierOrderAnnotation']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]",
                 "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionModifierOrderAnnotation']]"
+                        + "[@text='InputXpathModifierOrderAnnotation']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='InterfaceAnnotation']]/AT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
