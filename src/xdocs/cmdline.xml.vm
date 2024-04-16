@@ -49,99 +49,226 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         checks to apply. Command line options are:
       </p>
 
-      <ul id="CLI_Options">
-        <li>
-          <code>-c configurationFile</code> - Specifies the location of the
-          file that defines the configuration modules. The location can either
-          be a filesystem location, or a
-          <a href=
-            "https://docs.oracle.com/javase/8/docs/technotes/guides/lang/resources.html#res_names">
-              name</a>
-          passed to the ClassLoader.getResource() method.
-        </li>
-        <li>
-          <code>-f format</code> - Specifies the output
-          format. Valid values: <code>xml</code>, <code>sarif</code>, <code>plain</code> for <a
-          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>, and
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
-          respectively. Defaults to <code>plain</code>.
-        </li>
-        <li>
-          <code>-p propertiesFile</code> - Sets the property files to load.
-        </li>
-        <li>
-          <code>-o file</code> - Sets the output file. Defaults to stdout.
-        </li>
-        <li>
-          <code>-s line:column</code> - Prints xpath suppressions at the file's line and column
-          position.
-          Argument is the line and column number (separated by a <code>:</code> ) in the file
-          that the suppression should be generated for. The option cannot be used
-          with other options and requires exactly one file to run on to be specified.
-          Note that the generated result will have few queries, joined by pipe(<code>|</code>).
-          Together they will match all AST nodes on specified line
-          and column. You need to choose only one and recheck that it works. Usage of all of them is
-          also ok, but might result in undesirable matching and suppress other issues.
-        </li>
-        <li>
-          <code>-g,--generate-xpath-suppression</code> - Generates to output a suppression xml
-          to use to suppress all violations from user's config. Instead of printing every violation,
-          all violations will be catched and single suppressions xml file will be printed out.
-          Used only
-          with <code>-c</code> option. Output location can be specified with <code>-o</code> option.
-        </li>
-        <li>
-          <code>-w, --tabWidth length</code> - Sets the length of the tab character. Used only with
-          <code>-s</code> option. Default value is 8.
-        </li>
-        <li>
-          <code>-t, --tree</code> - This option is used to display the Abstract Syntax Tree (AST)
-          <b>without any comments</b> of the specified file. It can only be used on a single file
-          and cannot be combined with other options.
-        </li>
-        <li>
-          <code>-T, --treeWithComments</code> - This option is used to display the Abstract Syntax
-          Tree (AST) <b>with comment nodes excluding Javadoc</b> of the specified file. It can only
-          be used on a single file and cannot be combined with other options.
-        </li>
-        <li>
-          <code>-J, --treeWithJavadoc</code> - This option is used to display the Abstract Syntax
-          Tree (AST) <b>with Javadoc nodes</b> of the specified file. It can only be used on a
-          single file and cannot be combined with other options.
-        </li>
-        <li>
-          <code>-j, --javadocTree</code> - This option is used to print the Parse Tree of the
-          Javadoc comment. The file has to contain <b>only Javadoc comment content</b>
-          excluding '/**' and '*/' at the beginning and at the end respectively. It can only be
-          used on a single file and cannot be combined with other options.
-        </li>
-        <li>
-          <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.
-        </li>
-        <li>
-          <code>-e, --exclude excludedPath</code> - Directory/file to exclude from
-          CheckStyle. The path can be the full, absolute path, or relative to the current path.
-          Multiple excludes are allowed.
-        </li>
-        <li>
-          <code>-x, --exclude-regexp excludedPathPattern</code> - Directory/file pattern to
-          exclude from CheckStyle. Multiple excludes are allowed.
-        </li>
-        <li>
-          <code>-V, --version</code> - print product version and exit. Any other option is ignored.
-        </li>
-        <li>
-          <code>-b, --branch-matching-xpath xpathQuery</code>
-           - Shows Abstract Syntax Tree(AST) branches that match given XPath query.
-        </li>
-        <li>
-          <code>-h, --help</code> - print usage help message and exit. Any other option is ignored.
-        </li>
-        <li>
-          <code>-E, --executeIgnoredModules</code> - Allows ignored modules to be run.
-        </li>
-      </ul>
+      <subsection name="Command line options" id="Command_line_usage_Command_line_options">
+        <div class="wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="#c">
+                    <strong>-c</strong> configurationFile
+                  </a>
+                </td>
+                <td>
+                  Specifies the location of the file that defines the configuration modules.
+                  The location can either be a filesystem location, or a name passed to the
+                  ClassLoader.getResource() method.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#f">
+                    <strong>-f</strong> format
+                  </a>
+                </td>
+                <td>
+                  Specifies the output format. Valid values: xml, sarif, plain for XMLLogger,
+                  SarifLogger, and DefaultLogger respectively. Defaults to plain.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#p">
+                    <strong>-p</strong> propertiesFile
+                  </a>
+                </td>
+                <td>
+                  Sets the property files to load.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#o">
+                    <strong>-o</strong> file
+                  </a>
+                </td>
+                <td>
+                  Sets the output file. Defaults to stdout.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#s">
+                    <strong>-s</strong> line:column
+                  </a>
+                </td>
+                <td>
+                  Prints xpath suppressions at the file's line and column position. Argument is the
+                  line and column number (separated by a ':' ) in the file that the suppression
+                  should be generated for. The option cannot be used with other options and
+                  requires exactly one file to run on to be specified. Note that the generated
+                  result will have few queries, joined by pipe (|). Together they will match all
+                  AST nodes on specified line and column. You need to choose only one and recheck
+                  that it works. Usage of all of them is also ok, but might result in undesirable
+                  matching and suppress other issues.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#g">
+                    <strong>-g</strong>, --generate-xpath-suppression
+                  </a>
+                </td>
+                <td>
+                  Generates to output a suppression xml to use to suppress all violations from
+                  user's config. Instead of printing every violation, all violations will be
+                  catched and single suppressions xml file will be printed out. Used only with
+                  -c option. Output location can be specified with -o option.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#w">
+                    <strong>-w</strong>, --tabWidth length
+                  </a>
+                </td>
+                <td>
+                  Sets the length of the tab character. Used only with -s option.
+                  Default value is 8.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#t1">
+                    <strong>-t</strong>, --tree
+                  </a>
+                </td>
+                <td>
+                  This option is used to display the Abstract Syntax Tree
+                  (AST) <b>without any comments</b> of the specified file. It can only be used
+                  on a single file and cannot be combined with other options.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#T2">
+                    <strong>-T</strong>, --treeWithComments
+                  </a>
+                </td>
+                <td>
+                  This option is used to display the Abstract Syntax Tree
+                  (AST) <b>with comment nodes excluding Javadoc</b> of the specified file.
+                  It can only be used on a single file and cannot be combined with other options.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#J1">
+                    <strong>-J</strong>, --treeWithJavadoc
+                  </a>
+                </td>
+                <td>
+                  This option is used to display the Abstract Syntax Tree
+                  (AST) <b>with Javadoc nodes</b> of the specified file. It can only be used on
+                  a single file and cannot be combined with other options. Note that the column
+                  numbers between the 2 will not be in sync with the file's numbering due to the
+                  fact that each javadoc comment is parsed separately from the java file.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#j">
+                    <strong>-j</strong>, --javadocTree
+                  </a>
+                </td>
+                <td>
+                  This option is used to print the Parse Tree of the Javadoc comment. The file has
+                  to contain <b>only Javadoc comment content</b> without including '/**' and '*/'
+                  at the beginning and at the end respectively. It can only be used on a
+                  single file and cannot be combined with other options.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#d">
+                    <strong>-d</strong>, --debug
+                  </a>
+                </td>
+                <td>
+                  Prints all debug logging of CheckStyle utility.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#e1">
+                    <strong>-e</strong>, --exclude excludedPath
+                  </a>
+                </td>
+                <td>
+                  Directory/file to exclude from Checkstyle. The path can be the full,
+                  absolute path, or relative to the current path. Multiple excludes are allowed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#x">
+                    <strong>-x</strong>, --exclude-regexp excludedPathPattern
+                  </a>
+                </td>
+                <td>
+                  Directory/file pattern to exclude from Checkstyle. Multiple excludes are allowed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#V">
+                    <strong>-V</strong>, --version
+                  </a>
+                </td>
+                <td>
+                  Prints product version and exits. Any other option is ignored.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#b">
+                    <strong>-b</strong>, --branch-matching-xpath xpathQuery
+                  </a>
+                </td>
+                <td>
+                  Shows Abstract Syntax Tree(AST) branches that match given XPath query.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#h">
+                    <strong>-h</strong>, --help
+                  </a>
+                </td>
+                <td>
+                  Prints usage help message and exits. Any other option is ignored.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="#E2">
+                    <strong>-E</strong>, --executeIgnoredModules
+                  </a>
+                </td>
+                <td>
+                  Allows ignored modules to be run.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </subsection>
 
       <p>
         Note that the <code>-n packageNamesFile</code>
