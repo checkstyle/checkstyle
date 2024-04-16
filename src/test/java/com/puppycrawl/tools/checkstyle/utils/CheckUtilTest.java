@@ -415,6 +415,8 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
      * @param file The file from which the AST node should be retrieved.
      * @return The AST node associated with the specified token type from the given file.
      * @throws Exception If there's an issue reading or parsing the file.
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     public static DetailAST getNode(File file, int type) throws Exception {
         return getNode(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS), type);
