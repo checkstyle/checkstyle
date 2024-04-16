@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.modifierorder;
 
-public @InterfaceAnnotation @interface SuppressionXpathRegressionModifierOrderAnnotation { //warn
+public @InterfaceAnnotation @interface InputXpathModifierOrderAnnotation { //warn
     int foo();
 }
 

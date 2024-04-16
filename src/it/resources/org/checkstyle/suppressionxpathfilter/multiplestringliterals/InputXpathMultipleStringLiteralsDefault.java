@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.multiplestringliterals;
 
-public class SuppressionXpathRegressionMultipleStringLiteralsDefault {
+public class InputXpathMultipleStringLiteralsDefault {
     String a = "StringContents"; // warn
     String a1 = "unchecked";
 

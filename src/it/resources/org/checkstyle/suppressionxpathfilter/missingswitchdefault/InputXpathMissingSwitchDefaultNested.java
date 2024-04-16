@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingswitchdefault;
 
-public class SuppressionXpathRegressionMissingSwitchDefaultTwo {
+public class InputXpathMissingSwitchDefaultNested {
     public static void test2() {
         int key = 2;
         switch (key) {
