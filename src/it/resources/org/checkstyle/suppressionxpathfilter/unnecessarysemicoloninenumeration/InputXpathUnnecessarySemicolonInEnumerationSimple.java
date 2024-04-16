@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.unnecessarysemicoloninenumeration;
 
-public class SuppressionXpathRegressionUnnecessarySemicolonInEnumeration {
+public class InputXpathUnnecessarySemicolonInEnumerationSimple {
 }
 
 enum Good {

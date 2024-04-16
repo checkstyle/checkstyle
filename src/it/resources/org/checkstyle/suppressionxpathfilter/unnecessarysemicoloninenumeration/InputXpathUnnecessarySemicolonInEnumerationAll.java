@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.unnecessarysemicoloninenumeration;
 
-enum SuppressionXpathRegressionUnnecessarySemicolonInEnumerationAll {
+enum InputXpathUnnecessarySemicolonInEnumerationAll {
     A,B(){ public String toString() { return "";}},; /** warn */
 }

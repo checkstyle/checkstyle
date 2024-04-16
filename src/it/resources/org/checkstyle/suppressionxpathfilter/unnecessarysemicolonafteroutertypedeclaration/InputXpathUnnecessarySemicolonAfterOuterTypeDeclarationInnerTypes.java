@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.unnecessarysemicolonafteroutertypedeclaration;
 
-interface SuppressionXpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes {
+interface InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes {
 
     class Inner1 {
 
