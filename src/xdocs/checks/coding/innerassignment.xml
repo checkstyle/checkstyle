@@ -57,7 +57,7 @@ while ((line = bufferedReader.readLine()) != null); // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example 1:</p>
         <source>
 public class Example1 {
   void foo() throws IOException {
@@ -96,6 +96,42 @@ public class Example1 {
   boolean testMethod() {
     boolean val;
     return val = true; // violation
+  }
+}
+        </source>
+        <p id="Example2-code">Example 2:</p>
+        <source>
+public class Example2 {
+  public void test1(int mode) {
+    int x = 0;
+    x = switch (mode) {
+      case 1 -&gt; x = 1;  // violation
+      case 2 -&gt; {
+        yield x = 2; // violation
+      }
+      default -&gt; x = 0; // violation
+    };
+  }
+  public void test2(int mode) {
+    int x = 0;
+    switch(mode) {
+      case 2 -&gt; {
+        x = 2;
+      }
+      case 1 -&gt; x = 1;
+    }
+  }
+  public void test3(int mode) {
+    int x = 0, y = 0;
+    switch(mode) {
+      case 1:
+      case 2: {
+        x = y = 2; // violation
+      }
+      case 4:
+      case 5:
+        x = 1;
+    }
   }
 }
         </source>
