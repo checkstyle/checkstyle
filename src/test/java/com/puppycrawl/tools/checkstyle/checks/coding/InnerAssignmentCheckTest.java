@@ -27,6 +27,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+import java.io.IOException;
+
 public class InnerAssignmentCheckTest
     extends AbstractModuleTestSupport {
 
@@ -109,4 +111,16 @@ public class InnerAssignmentCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testInnerAssignmentSwitchAndSwitchExpression() throws Exception {
+        final String[] expected = {
+            "25:25: " + getCheckMessage(MSG_KEY),
+            "27:25: " + getCheckMessage(MSG_KEY),
+            "44:42: " + getCheckMessage(MSG_KEY),
+            "46:34: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
+                expected);
+    }
 }
