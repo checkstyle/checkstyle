@@ -83,4 +83,24 @@ public class InputNonEmptyAtclauseDescriptionTwo
                 return 1;
         }
 
+    /**
+     *
+     * @param
+     *
+     */ // violation 2 lines above
+        // both parameter name and its description must be provided
+        public int foo8(int a)
+        {
+                return 1;
+        }
+
+    /**
+     * @throws
+     */ // violation above
+        // both class name and its description must be provided
+        public int foo9(String a) throws Exception
+        {
+            return 1;
+        }
+
 }
