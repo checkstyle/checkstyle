@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingoverride;
 
-public class SuppressionXpathRegressionMissingOverrideAnonymous {
+public class InputXpathMissingOverrideAnonymous {
     Runnable r = new Runnable() {
         /**
          * {@inheritDoc}

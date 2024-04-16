@@ -39,9 +39,9 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMissingSwitchDefaultOne.java"));
+                new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clss);
         final String[] expectedViolation = {
@@ -50,7 +50,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultOne']]"
+                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultSimple']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test1']]"
                         + "/SLIST/LITERAL_SWITCH"
         );
@@ -59,9 +59,9 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMissingSwitchDefaultTwo.java"));
+                new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clss);
 
@@ -71,11 +71,11 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
+                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                         + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMissingSwitchDefaultTwo']]"
+                        + "[./IDENT[@text='InputXpathMissingSwitchDefaultNested']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test2']]"
                         + "/SLIST/LITERAL_SWITCH/CASE_GROUP/SLIST/"
                         + "LITERAL_SWITCH"

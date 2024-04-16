@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingswitchdefault;
 
-public class SuppressionXpathRegressionMissingSwitchDefaultOne {
+public class InputXpathMissingSwitchDefaultSimple {
     public static void test1() {
         int key = 2;
         switch (key) { // warn
