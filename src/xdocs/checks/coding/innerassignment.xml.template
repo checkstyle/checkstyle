@@ -55,10 +55,16 @@ while ((line = bufferedReader.readLine()) != null); // OK
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example 1:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">Example 2:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/innerassignment/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

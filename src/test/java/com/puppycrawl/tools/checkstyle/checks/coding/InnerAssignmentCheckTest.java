@@ -99,6 +99,7 @@ public class InnerAssignmentCheckTest
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
+
             .that(check.getAcceptableTokens())
             .isNotNull();
         assertWithMessage("Default tokens should not be null")
@@ -109,4 +110,20 @@ public class InnerAssignmentCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testInnerAssignmentSwitchAndSwitchExpression() throws Exception {
+        final String[] expected = {
+            "35:25: " + getCheckMessage(MSG_KEY),
+            "37:25: " + getCheckMessage(MSG_KEY),
+            "38:26: " + getCheckMessage(MSG_KEY),
+            "46:25: " + getCheckMessage(MSG_KEY),
+            "48:31: " + getCheckMessage(MSG_KEY),
+            "49:26: " + getCheckMessage(MSG_KEY),
+            "56:42: " + getCheckMessage(MSG_KEY),
+            "58:34: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
+                expected);
+    }
 }
