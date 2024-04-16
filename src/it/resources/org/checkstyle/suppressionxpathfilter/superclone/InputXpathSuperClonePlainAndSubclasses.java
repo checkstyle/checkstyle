@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.superclone;
 
-class SuppressionXpathRegressionSuperClonePlainAndSubclasses {
+class InputXpathSuperClonePlainAndSubclasses {
     public Object clone() { // warn
         return null;
     }

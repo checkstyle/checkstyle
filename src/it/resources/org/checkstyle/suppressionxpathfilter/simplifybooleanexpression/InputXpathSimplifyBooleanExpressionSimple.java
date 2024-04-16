@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.simplifybooleanexpression;
 
-public class SuppressionXpathRegressionSimplifyBooleanExpressionSimple {
+public class InputXpathSimplifyBooleanExpressionSimple {
     private Object c,d,e;
     boolean a,b;
     public void test(){

@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.singlespaceseparator;
 
-public class SuppressionXpathRegressionSingleSpaceSeparatorValidateComments {
+public class InputXpathSingleSpaceSeparatorValidateComments {
     long y;     // an invalid comment // warn
 }
