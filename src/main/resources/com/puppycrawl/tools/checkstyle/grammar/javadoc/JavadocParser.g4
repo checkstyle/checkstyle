@@ -1141,11 +1141,12 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
     | DEPRECATED_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | EXCEPTION_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ CLASS_NAME
+      | EXCEPTION_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ (CLASS_NAME)?
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | PARAM_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ PARAMETER_NAME
+      | PARAM_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ (PARAMETER_NAME)?
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
+
 
       | RETURN_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
@@ -1162,7 +1163,7 @@ javadocTag: AUTHOR_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | SINCE_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
-      | THROWS_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ CLASS_NAME
+      | THROWS_LITERAL (WS | NEWLINE | {!isNextJavadocTag()}? LEADING_ASTERISK)+ (CLASS_NAME)?
           (WS | NEWLINE)* ((WS | NEWLINE) description)?
 
       | VERSION_LITERAL (WS | NEWLINE)* ((WS | NEWLINE) description)?
