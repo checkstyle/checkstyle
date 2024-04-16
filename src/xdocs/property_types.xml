@@ -673,8 +673,21 @@
     <section name="Pattern[]">
       <p>
         This type represents a set of patterns. The string representation
-        is parsed as a set of forward slash ('/') separated patterns.
+        is parsed as a set of comma (',') separated patterns.
       </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple
+        times which is equivalent to a set of comma separated patterns.
+        For example, the following:
+      </p>
+      <source>
+&lt;property name=&quot;patterns&quot; value=&quot;^prefix*$, ^*suffix$&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;patterns&quot; value=&quot;^prefix*&quot;/&gt;
+&lt;property name=&quot;patterns&quot; value=&quot;^*suffix$&quot;/&gt;
+      </source>
     </section>
 
     <section name="RightCurlyOption">

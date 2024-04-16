@@ -23,7 +23,9 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -278,6 +280,60 @@ public class AbstractAutomaticBeanTest {
         }
     }
 
+    @Test
+    public void testBeanConverterPatternArray() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        final String patternString = "^a*$,^b*$, ^c*$";
+        final List<String> expectedPatternStrings = Arrays.asList("^a*$", "^b*$", " ^c*$");
+        config.addProperty("patterns", patternString);
+        bean.configure(config);
+
+        final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
+                .map(Pattern::pattern)
+                .collect(Collectors.toUnmodifiableList());
+
+        assertWithMessage("invalid size of result")
+                .that(bean.patterns)
+                .hasLength(3);
+        assertWithMessage("invalid result")
+                .that(actualPatternStrings)
+                .containsExactlyElementsIn(expectedPatternStrings);
+    }
+
+    @Test
+    public void testBeanConverterPatternArraySingleElement() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        final String patternString = "^a*$";
+        final List<String> expectedPatternStrings = List.of("^a*$");
+        config.addProperty("patterns", patternString);
+        bean.configure(config);
+
+        final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
+                .map(Pattern::pattern)
+                .collect(Collectors.toUnmodifiableList());
+
+        assertWithMessage("invalid size of result")
+                .that(bean.patterns)
+                .hasLength(1);
+        assertWithMessage("invalid result")
+                .that(actualPatternStrings)
+                .containsExactlyElementsIn(expectedPatternStrings);
+    }
+
+    @Test
+    public void testBeanConverterPatternArrayEmptyString() throws Exception {
+        final ConverterBean bean = new ConverterBean();
+        final DefaultConfiguration config = new DefaultConfiguration("bean");
+        config.addProperty("patterns", "");
+        bean.configure(config);
+
+        assertWithMessage("invalid size of result")
+                .that(bean.patterns)
+                .hasLength(0);
+    }
+
     private static final class ConvertUtilsBeanStub extends ConvertUtilsBean {
 
         private int registerCount;
@@ -338,6 +394,7 @@ public class AbstractAutomaticBeanTest {
         private Scope scope;
         private URI uri;
         private AccessModifierOption[] accessModifiers;
+        private Pattern[] patterns;
 
         /**
          * Setter for strings.
@@ -392,6 +449,15 @@ public class AbstractAutomaticBeanTest {
         public void setAccessModifiers(AccessModifierOption... accessModifiers) {
             this.accessModifiers = Arrays.copyOf(accessModifiers,
                     accessModifiers.length);
+        }
+
+        /**
+         * Setter for patterns.
+         *
+         * @param patterns patterns
+         */
+        public void setPatterns(Pattern... patterns) {
+            this.patterns = Arrays.copyOf(patterns, patterns.length);
         }
 
         @Override
