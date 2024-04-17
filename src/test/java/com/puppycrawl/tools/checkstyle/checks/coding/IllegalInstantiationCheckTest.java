@@ -166,6 +166,8 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -193,6 +195,8 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearStateImports() throws Exception {
@@ -219,6 +223,8 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
