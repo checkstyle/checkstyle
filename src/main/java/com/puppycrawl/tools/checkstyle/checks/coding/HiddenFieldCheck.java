@@ -649,6 +649,8 @@ public class HiddenFieldCheck
          *
          * @param field the field to check
          * @return true if this FieldFrame contains instance field
+         * @noinspection TailRecursion
+         * @noinspectionreason TailRecursion - until issue #14625
          */
         public boolean containsInstanceField(String field) {
             return instanceFields.contains(field)
@@ -661,6 +663,8 @@ public class HiddenFieldCheck
          *
          * @param field the field to check
          * @return true if this FieldFrame contains static field
+         * @noinspection TailRecursion
+         * @noinspectionreason TailRecursion - until issue #14625
          */
         public boolean containsStaticField(String field) {
             return staticFields.contains(field)
