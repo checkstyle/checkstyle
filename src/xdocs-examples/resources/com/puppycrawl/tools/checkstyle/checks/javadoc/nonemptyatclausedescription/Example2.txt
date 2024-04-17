@@ -26,3 +26,19 @@ class Test
   }
 }
 // xdoc section -- end
+
+// xdoc section -- start
+class Test
+{
+  // Violation for param and throws tags, parameter and class names must be provided.
+  /**
+  * Some summary.
+  *
+  * <code>@param</code>
+  * <code>@throws</code>
+  */
+  public int method(String a, int b) throws Exception {
+    return 1;
+  }
+}
+// xdoc section -- end
