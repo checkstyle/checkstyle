@@ -4106,7 +4106,7 @@
                    enabled_by_default="false"/>
   <inspection_tool class="SpringBootApplicationYaml" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
-  <!-- until #14448 -->
+  <!-- until #14806 -->
   <inspection_tool class="YAMLSchemaValidation" enabled="false" level="ERROR"
                    enabled_by_default="false"/>
   <inspection_tool class="SpringBootBootstrapConfigurationInspection" enabled="false"
