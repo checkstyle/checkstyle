@@ -885,12 +885,26 @@ no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
-  cd .ci-temp/contribution/checkstyle-tester
+  checkout_from https://github.com/relentless-pursuit/contribution
+  cd .ci-temp/contribution
+  echo "Current directory: $(pwd)"
+  echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+  echo "Fetching remote branches..."
+  git fetch origin
+  echo "Available remote branches:"
+  git branch -r
+  echo "Fetching shallowClone branch..."
+  git fetch origin refs/heads/shallowClone:refs/remotes/origin/shallowClone
+  echo "Checking out shallowClone branch..."
+  git checkout shallowClone
+  echo "Current branch after checkout: $(git rev-parse --abbrev-ref HEAD)"
+  cd checkstyle-tester
+  echo "Current directory: $(pwd)"
   sed -i'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -1026,8 +1040,21 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
-  checkout_from https://github.com/checkstyle/contribution
-  cd .ci-temp/contribution/checkstyle-tester
+  checkout_from https://github.com/relentless-pursuit/contribution
+  cd .ci-temp/contribution
+  echo "Current directory: $(pwd)"
+  echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
+  echo "Fetching remote branches..."
+  git fetch origin
+  echo "Available remote branches:"
+  git branch -r
+  echo "Fetching shallowClone branch..."
+  git fetch origin refs/heads/shallowClone:refs/remotes/origin/shallowClone
+  echo "Checking out shallowClone branch..."
+  git checkout shallowClone
+  echo "Current branch after checkout: $(git rev-parse --abbrev-ref HEAD)"
+  cd checkstyle-tester
+  echo "Current directory: $(pwd)"
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
