@@ -445,12 +445,10 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Return the list of listeners set in this task.
+     * Return the array of listeners set in this task.
      *
-     * @return the list of listeners.
+     * @return the array of listeners.
      * @throws BuildException if the listeners could not be created.
-     * @noinspection MismatchedJavadocCode
-     * @noinspectionreason MismatchedJavadocCode - until issue #14625
      */
     private AuditListener[] getListeners() {
         final int formatterCount = Math.max(1, formatters.size());
