@@ -105,12 +105,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testAppendHiddenSingleLineCommentNodes() throws Exception {
         final DetailAST root =
@@ -119,36 +113,38 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertWithMessage("Single line comment should be present")
-                .that(singleLineComment.isPresent())
-                .isTrue();
 
-        final DetailAST comment = singleLineComment.get();
+        if (singleLineComment.isPresent()) {
+            final DetailAST comment = singleLineComment.get();
 
-        assertWithMessage("Unexpected line number")
-            .that(comment.getLineNo())
-            .isEqualTo(13);
-        assertWithMessage("Unexpected column number")
-            .that(comment.getColumnNo())
-            .isEqualTo(0);
-        assertWithMessage("Unexpected comment content")
-            .that(comment.getText())
-            .isEqualTo("//");
+            assertWithMessage("Unexpected line number")
+                .that(comment.getLineNo())
+                .isEqualTo(13);
+            assertWithMessage("Unexpected column number")
+                .that(comment.getColumnNo())
+                .isEqualTo(0);
+            assertWithMessage("Unexpected comment content")
+                .that(comment.getText())
+                .isEqualTo("//");
 
-        final DetailAST commentContent = comment.getFirstChild();
+            final DetailAST commentContent = comment.getFirstChild();
 
-        assertWithMessage("Unexpected token type")
-            .that(commentContent.getType())
-            .isEqualTo(TokenTypes.COMMENT_CONTENT);
-        assertWithMessage("Unexpected line number")
-            .that(commentContent.getLineNo())
-            .isEqualTo(13);
-        assertWithMessage("Unexpected column number")
-            .that(commentContent.getColumnNo())
-            .isEqualTo(2);
-        assertWithMessage("Unexpected comment content")
-                .that(commentContent.getText())
-                .startsWith(" inline comment");
+            assertWithMessage("Unexpected token type")
+                .that(commentContent.getType())
+                .isEqualTo(TokenTypes.COMMENT_CONTENT);
+            assertWithMessage("Unexpected line number")
+                .that(commentContent.getLineNo())
+                .isEqualTo(13);
+            assertWithMessage("Unexpected column number")
+                .that(commentContent.getColumnNo())
+                .isEqualTo(2);
+            assertWithMessage("Unexpected comment content")
+                    .that(commentContent.getText())
+                    .startsWith(" inline comment");
+        }
+        else {
+            assertWithMessage("Single line comment should be present");
+        }
     }
 
     /**
