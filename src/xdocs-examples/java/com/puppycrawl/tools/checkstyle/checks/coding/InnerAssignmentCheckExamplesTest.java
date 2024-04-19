@@ -45,4 +45,17 @@ public class InnerAssignmentCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "18:19: " + getCheckMessage(MSG_KEY),
+            "20:17: " + getCheckMessage(MSG_KEY),
+            "22:20: " + getCheckMessage(MSG_KEY),
+            "39:15: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example2.java"), expected);
+    }
 }
