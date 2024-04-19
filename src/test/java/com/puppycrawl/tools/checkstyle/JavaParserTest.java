@@ -105,12 +105,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(1);
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testAppendHiddenSingleLineCommentNodes() throws Exception {
         final DetailAST root =
@@ -120,10 +114,10 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
         assertWithMessage("Single line comment should be present")
-                .that(singleLineComment.isPresent())
-                .isTrue();
+            .that(singleLineComment.isPresent())
+            .isTrue();
 
-        final DetailAST comment = singleLineComment.get();
+        final DetailAST comment = singleLineComment.orElseThrow();
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
