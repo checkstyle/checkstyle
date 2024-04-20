@@ -306,7 +306,7 @@ public class RegexpCheck extends AbstractCheck {
      * Recursive method that finds the matches.
      *
      * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14625
+     * @noinspectionreason TailRecursion - until issue #14814
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
