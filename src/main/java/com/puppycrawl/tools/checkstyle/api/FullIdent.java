@@ -75,7 +75,7 @@ public final class FullIdent {
      * @param full the FullIdent to add to
      * @param ast the node to recurse from
      * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14625
+     * @noinspectionreason TailRecursion - until issue #14814
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
