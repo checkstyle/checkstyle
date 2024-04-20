@@ -377,4 +377,18 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Test [ClassName]::new expression. Such expression will be processed as a
+     * normal declaration of a new instance. We need to make sure this does not
+     *
+     * @throws Exception when code tested throws exception
+     */
+    @Test
+    public void testLambdaNew() throws Exception {
+        final String[] expected = {};
+        // no violation until #14787
+        verifyWithInlineConfigParser(
+                getPath("InputClassFanOutComplexityLambdaNew.java"), expected);
+    }
+
 }
