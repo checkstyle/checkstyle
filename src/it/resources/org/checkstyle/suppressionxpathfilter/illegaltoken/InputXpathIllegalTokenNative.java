@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.illegaltoken;
 
-public class SuppressionXpathRegressionIllegalToken2 {
+public class InputXpathIllegalTokenNative {
   public native void myTest(); // warn
 }

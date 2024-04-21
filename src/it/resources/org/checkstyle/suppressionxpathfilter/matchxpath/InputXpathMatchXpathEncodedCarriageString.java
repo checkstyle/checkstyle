@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedCarriageString {
+public class InputXpathMatchXpathEncodedCarriageString {
     String carriageChar = "carriageCharAtEnd\r"; // warning
 }

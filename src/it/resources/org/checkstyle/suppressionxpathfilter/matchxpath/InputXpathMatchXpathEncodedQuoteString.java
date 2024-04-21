@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedQuoteString {
+public class InputXpathMatchXpathEncodedQuoteString {
     String quoteChar = "\"testOne\""; // warning
 }
