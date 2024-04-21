@@ -43,7 +43,7 @@ class InputEmptyLineSeparator // violation ''CLASS_DEF' should be separated from
     // one blank line - ok
     {
         //empty instance initializer
-    }
+    }    /* . */
     // no blank line - fail
     /**
      *

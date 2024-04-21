@@ -622,19 +622,16 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if token have empty line after.
      */
     private boolean hasEmptyLineAfter(DetailAST token) {
-        DetailAST lastToken = token.getLastChild().getLastChild();
-        if (lastToken == null) {
-            lastToken = token.getLastChild();
+        DetailAST currentEnd = token.getLastChild().getLastChild();
+        if (currentEnd == null) {
+            currentEnd = token.getLastChild();
         }
-        DetailAST nextToken = token.getNextSibling();
-        if (TokenUtil.isCommentType(nextToken.getType())) {
-            nextToken = nextToken.getNextSibling();
+        DetailAST nextBegin = token.getNextSibling();
+        if (TokenUtil.isCommentType(nextBegin.getType())) {
+            nextBegin = nextBegin.getNextSibling();
         }
-        // Start of the next token
-        final int nextBegin = nextToken.getLineNo();
-        // End of current token.
-        final int currentEnd = lastToken.getLineNo();
-        return hasEmptyLine(currentEnd + 1, nextBegin - 1);
+
+        return hasEmptyLine(currentEnd, nextBegin);
     }
 
     /**
@@ -652,28 +649,62 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Checks, whether there are empty lines within the specified line range. Line numbering is
-     * started from 1 for parameter values
+     * Checks, whether there are empty lines between two tokens.
      *
-     * @param startLine number of the first line in the range
-     * @param endLine number of the second line in the range
-     * @return {@code true} if found any blank line within the range, {@code false}
+     * @param currentEnd the last token of the current subtree
+     * @param nextBegin the first token of the next subtree
+     * @return {@code true} if found any blank line, {@code false}
      *         otherwise
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private boolean hasEmptyLine(int startLine, int endLine) {
-        // Initial value is false - blank line not found
-        boolean result = false;
-        final FileContents fileContents = getFileContents();
-        for (int line = startLine; line <= endLine; line++) {
-            // Check, if the line is blank. Lines are numbered from 0, so subtract 1
-            if (fileContents.lineIsBlank(line - 1)) {
-                result = true;
-                break;
+    private boolean hasEmptyLine(DetailAST currentEnd, DetailAST nextBegin) {
+        final int currentEndLineNo = currentEnd.getLineNo();
+        final int nextBeginLineNo = nextBegin.getLineNo();
+        final int linesBetween = nextBeginLineNo - currentEndLineNo - 1;
+
+        return getCommentsLineCount(nextBegin, currentEnd) < linesBetween;
+    }
+
+    /**
+     * Get the number of commented lines between the given token and the previous token.
+     *
+     * @param currentToken the current token
+     * @param previousToken the previous token
+     * @return the number of comment lines between the current token and the previous token
+     */
+    private int getCommentsLineCount(DetailAST currentToken, DetailAST previousToken) {
+        int commentsLineCount = 0;
+        DetailAST commentAst = findFirstCommentToken(currentToken);
+
+        while (commentAst != null && TokenUtil.isCommentType(commentAst.getType())) {
+            if (TokenUtil.areOnSameLine(commentAst, previousToken)
+                    || TokenUtil.areOnSameLine(commentAst, currentToken)) {
+                commentAst = commentAst.getNextSibling();
+                continue;
             }
+            final DetailAST commentEnd = commentAst.getLastChild();
+            commentsLineCount += commentEnd.getLineNo() - commentAst.getLineNo() + 1;
+            commentAst = commentAst.getNextSibling();
         }
-        return result;
+        return commentsLineCount;
+    }
+
+    /**
+     * Finds the first comment token in the subtree of the given token.
+     *
+     * @param ast token to start the search
+     * @return the first comment token, or {@code null} if not found
+     */
+    private DetailAST findFirstCommentToken(DetailAST ast) {
+        final DetailAST modifersAst = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final DetailAST commentAst;
+
+        if (modifersAst != null) {
+            commentAst = modifersAst.getFirstChild();
+        }
+        else {
+            commentAst = ast.getFirstChild();
+        }
+        return commentAst;
     }
 
     /**
