@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedAposString {
+public class InputXpathMatchXpathEncodedAposString {
     String aposChar = "'SingleQuoteOnBothSide'"; // warning
 }

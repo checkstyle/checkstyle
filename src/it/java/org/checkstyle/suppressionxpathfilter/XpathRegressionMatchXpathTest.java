@@ -42,7 +42,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathOne.java"));
+                new File(getPath("InputXpathMatchXpathOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MatchXpathCheck.class);
@@ -53,11 +53,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathOne']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathMatchXpathOne']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -68,7 +68,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathTwo.java"));
+                new File(getPath("InputXpathMatchXpathTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MatchXpathCheck.class);
@@ -81,7 +81,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathTwo']]"
+                        + "[./IDENT[@text='InputXpathMatchXpathTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='func1']]"
                         + "/LITERAL_THROWS[./IDENT[@text='RuntimeException']]"
         );
@@ -93,7 +93,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedQuoteString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedQuoteString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedQuoteString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -106,11 +106,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedQuoteString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='\\&quot;testOne\\&quot;']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuoteString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedQuoteString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='\\&quot;testOne\\&quot;']"
         );
@@ -122,7 +122,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedLessString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedLessString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedLessString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -135,11 +135,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedLessString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&lt;testTwo']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedLessString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/"
                     + "STRING_LITERAL[@text='&lt;testTwo']"
         );
@@ -151,7 +151,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedNewLineString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedNewLineString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedNewLineString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -164,11 +164,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedNewLineString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='testFive\\n']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedNewLineString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedNewLineString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='testFive\\n']"
         );
@@ -180,7 +180,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testGreaterString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedGreaterString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedGreaterString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -193,11 +193,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedGreaterString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&gt;testFour']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedGreaterString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedGreaterString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&gt;testFour']"
         );
@@ -209,7 +209,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedAmpString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedAmpString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedAmpString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -222,11 +222,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedAmpString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&amp;testThree']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedAmpString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&amp;testThree']"
         );
@@ -238,7 +238,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedAposString() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedAposString.java"));
+                new File(getPath("InputXpathMatchXpathEncodedAposString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -251,11 +251,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedAposString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                     + "[./STRING_LITERAL[@text='&apos;&apos;SingleQuoteOnBothSide&apos;&apos;']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposString']]/"
+                    + "[./IDENT[@text='InputXpathMatchXpathEncodedAposString']]/"
                     + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                     + "/STRING_LITERAL[@text='&apos;&apos;SingleQuoteOnBothSide&apos;&apos;']"
         );
@@ -267,7 +267,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedCarriageString() throws Exception {
         final File fileToProcess =
-            new File(getPath("SuppressionXpathRegressionMatchXpathEncodedCarriageString.java"));
+            new File(getPath("InputXpathMatchXpathEncodedCarriageString.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -280,12 +280,12 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
-                        + "String']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedCarriageString"
+                        + "']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
                         + "/EXPR[./STRING_LITERAL[@text='carriageCharAtEnd\\r']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedCarriage"
-                        + "String']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedCarriageString"
+                        + "']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='carriageChar']]/ASSIGN"
                         + "/EXPR/STRING_LITERAL[@text='carriageCharAtEnd\\r']"
         );
 
@@ -296,7 +296,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedAmpersandChars() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedAmpChar.java"));
+                new File(getPath("InputXpathMatchXpathEncodedAmpChar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -309,11 +309,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueriesForAmpersand = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedAmpChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&amp;&apos;&apos;']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAmpChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedAmpChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampChar']]/ASSIGN/EXPR"
                         + "/CHAR_LITERAL[@text='&apos;&apos;&amp;&apos;&apos;']"
         );
@@ -325,7 +325,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedQuoteChar() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedQuotChar.java"));
+                new File(getPath("InputXpathMatchXpathEncodedQuoteChar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -338,11 +338,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueriesForQuote = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedQuoteChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quotChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;\\&quot;&apos;&apos;']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedQuotChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedQuoteChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quotChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&quot;&apos;&apos;']"
         );
@@ -354,7 +354,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedLessChar() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedLessChar.java"));
+                new File(getPath("InputXpathMatchXpathEncodedLessChar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -367,11 +367,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueriesForLess = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedLessChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedLessChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedLessChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;&lt;&apos;&apos;']"
         );
@@ -383,7 +383,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedAposChar() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedAposChar.java"));
+                new File(getPath("InputXpathMatchXpathEncodedAposChar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -396,11 +396,11 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueriesForApos = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedAposChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;\\&apos;&apos;&apos;&apos;']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedAposChar']]/"
+                        + "[./IDENT[@text='InputXpathMatchXpathEncodedAposChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;\\&apos;&apos;&apos;&apos;']"
         );
@@ -412,7 +412,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testEncodedGreaterChar() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedGreaterChar.java"));
+                new File(getPath("InputXpathMatchXpathEncodedGreaterChar.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(IllegalTokenCheck.class);
@@ -425,13 +425,13 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueriesForGreater = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
-                        + "GreaterChar']]/"
+                        + "[./IDENT[@text='"
+                        + "InputXpathMatchXpathEncodedGreaterChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
                         + "[./CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncoded"
-                        + "GreaterChar']]/"
+                        + "[./IDENT[@text='"
+                        + "InputXpathMatchXpathEncodedGreaterChar']]/"
                         + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR/"
                         + "CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']"
         );
@@ -443,7 +443,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     @Test
     public void testFollowing() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMatchXpathThree.java"));
+                new File(getPath("InputXpathMatchXpathThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MatchXpathCheck.class);
@@ -456,7 +456,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                        + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathThree']]"
+                        + "/CLASS_DEF[./IDENT[@text='InputXpathMatchXpathThree']]"
                         + "/OBJBLOCK/RCURLY"
         );
 

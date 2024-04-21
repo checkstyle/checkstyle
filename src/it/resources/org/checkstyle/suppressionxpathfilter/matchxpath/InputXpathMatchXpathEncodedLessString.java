@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedLessString {
+public class InputXpathMatchXpathEncodedLessString {
     String lessChar = "<testTwo"; // warning
 }

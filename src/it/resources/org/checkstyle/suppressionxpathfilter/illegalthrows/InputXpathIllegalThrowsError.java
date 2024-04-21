@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.illegalthrows;
 
-public class SuppressionXpathRegressionIllegalThrowsTwo {
+public class InputXpathIllegalThrowsError {
     public void methodOne() throws NullPointerException
     {
     }
