@@ -198,9 +198,9 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      *   JAVADOC_TAG -> JAVADOC_TAG
-     *     |--SEE_LITERAL -> @see
-     *     |--WS ->
-     *     |--REFERENCE -> REFERENCE
+     *    |--SEE_LITERAL -> @see
+     *    |--WS ->
+     *    |--REFERENCE -> REFERENCE
      *        |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
      *        |--HASH -> #
      *        |--MEMBER -> compare
