@@ -197,17 +197,17 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG -> JAVADOC_TAG
-     *       |--SEE_LITERAL -> @see
-     *       |--WS ->
-     *       |--REFERENCE -> REFERENCE
-     *           |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
-     *           |--HASH -> #
-     *           |--MEMBER -> compare
-     *           `--PARAMETERS -> PARAMETERS
-     *               |--LEFT_BRACE -> (
-     *               |--ARGUMENT -> Object
-     *               `--RIGHT_BRACE -> )
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--SEE_LITERAL -> @see
+     *    |--WS ->
+     *    |--REFERENCE -> REFERENCE
+     *        |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *        |--HASH -> #
+     *        |--MEMBER -> compare
+     *        `--PARAMETERS -> PARAMETERS
+     *            |--LEFT_BRACE -> (
+     *            |--ARGUMENT -> Object
+     *            `--RIGHT_BRACE -> )
      * }</pre>
      *
      * @see
