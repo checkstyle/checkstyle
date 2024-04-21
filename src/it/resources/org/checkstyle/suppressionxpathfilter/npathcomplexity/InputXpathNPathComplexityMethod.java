@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.npathcomplexity;
 
-public class SuppressionXpathRegressionNPathComplexityOne {
+public class InputXpathNPathComplexityMethod {
     public void test() { //warn
         while (true) {
             if (1 > 0) {
