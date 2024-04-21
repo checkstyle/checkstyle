@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedAposChar {
+public class InputXpathMatchXpathEncodedAposChar {
     char aposChar = '\''; // warning
 }

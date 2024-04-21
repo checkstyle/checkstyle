@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedGreaterChar {
+public class InputXpathMatchXpathEncodedGreaterChar {
     char greaterChar = '>'; // warning
 }

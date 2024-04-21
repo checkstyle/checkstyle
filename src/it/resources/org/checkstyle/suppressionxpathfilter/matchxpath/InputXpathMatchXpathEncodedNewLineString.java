@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedNewLineString {
+public class InputXpathMatchXpathEncodedNewLineString {
     String newLineChar = "testFive\n"; // warning
 }
