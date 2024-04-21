@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.finalparameters;
 
-public class SuppressionXpathRegressionFinalParameters3 {
+public class InputXpathFinalParametersAnonymous {
 
     class AnonymousClass {
         public void method(int argOne, int argTwo) {} // ok, int is primitive

@@ -1,5 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.matchxpath;
 
-public class SuppressionXpathRegressionMatchXpathEncodedAmpString {
+public class InputXpathMatchXpathEncodedAmpString {
     String ampersandChar = "&testThree"; // warning
 }
