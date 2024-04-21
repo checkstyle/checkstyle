@@ -420,6 +420,15 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
         return getNode(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS), type);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @param root of type DetailAST
+     * @param type of type int
+     * @return call to get() from node
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     private static DetailAST getNode(DetailAST root, int type) {
         final Optional<DetailAST> node = findTokenInAstByPredicate(root,
             ast -> ast.getType() == type);

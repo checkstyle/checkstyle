@@ -263,7 +263,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void visitDotToken(DetailAST dotAst, Deque<VariableDesc> variablesStack) {
         if (dotAst.getParent().getType() != TokenTypes.LITERAL_NEW
                 && shouldCheckIdentTokenNestedUnderDot(dotAst)) {
-            checkIdentifierAst(dotAst.findFirstToken(TokenTypes.IDENT), variablesStack);
+            final DetailAST identifier = dotAst.findFirstToken(TokenTypes.IDENT);
+            if (identifier != null) {
+                checkIdentifierAst(identifier, variablesStack);
+            }
         }
     }
 
@@ -420,14 +423,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInAnonymousInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW;
-        if (isInstanceVarInAnonymousInnerClass
+        final boolean isInstanceVarInInnerClass =
+                grandParent.getType() == TokenTypes.LITERAL_NEW
+                || grandParent.getType() == TokenTypes.CLASS_DEF;
+        if (isInstanceVarInInnerClass
                 || parentAst.getType() != TokenTypes.OBJBLOCK) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText(),
                     varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInAnonymousInnerClass) {
+            if (isInstanceVarInInnerClass) {
                 desc.registerAsInstOrClassVar();
             }
             variablesStack.push(desc);
@@ -518,6 +522,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      *
      * @param superClassName name of the super class
      * @return true if there is another type declaration with same name.
+     * @noinspection MismatchedJavadocCode
+     * @noinspectionreason MismatchedJavadocCode - until issue #14625
      */
     private List<TypeDeclDesc> typeDeclWithSameName(String superClassName) {
         return typeDeclAstToTypeDeclDesc.values().stream()

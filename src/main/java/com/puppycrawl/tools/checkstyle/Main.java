@@ -503,7 +503,7 @@ public final class Main {
     }
 
     /**
-     * Create output stream or return System.out
+     * Create output stream or return System.out.
      *
      * @param outputPath output location
      * @return output stream
@@ -680,7 +680,7 @@ public final class Main {
                         + "Argument is the line and column number (separated by a : ) in the file "
                         + "that the suppression should be generated for. The option cannot be used "
                         + "with other options and requires exactly one file to run on to be "
-                        + "specified. ATTENTION: generated result will have few queries, joined "
+                        + "specified. Note that the generated result will have few queries, joined "
                         + "by pipe(|). Together they will match all AST nodes on "
                         + "specified line and column. You need to choose only one and recheck "
                         + "that it works. Usage of all of them is also ok, but might result in "
@@ -723,35 +723,32 @@ public final class Main {
 
         /** Option that controls whether to print the AST of the file. */
         @Option(names = {"-t", "--tree"},
-                description = "Prints Abstract Syntax Tree(AST) of the checked file. The option "
-                        + "cannot be used other options and requires exactly one file to run on "
-                        + "to be specified.")
+                description = "This option is used to display the Abstract Syntax Tree (AST) "
+                        + "without any comments of the specified file. It can only be used on "
+                        + "a single file and cannot be combined with other options.")
         private boolean printAst;
 
         /** Option that controls whether to print the AST of the file including comments. */
         @Option(names = {"-T", "--treeWithComments"},
-                description = "Prints Abstract Syntax Tree(AST) with comment nodes "
-                        + "of the checked file. The option cannot be used with other options "
-                        + "and requires exactly one file to run on to be specified.")
+                description = "This option is used to display the Abstract Syntax Tree (AST) "
+                        + "with comment nodes excluding Javadoc of the specified file. It can only"
+                        + " be used on a single file and cannot be combined with other options.")
         private boolean printAstWithComments;
 
         /** Option that controls whether to print the parse tree of the javadoc comment. */
         @Option(names = {"-j", "--javadocTree"},
-                description = "Prints Parse Tree of the Javadoc comment. "
-                        + "The file have to contain only Javadoc comment content without "
-                        + "including '/**' and '*/' at the beginning and at the end respectively. "
-                        + "The option cannot be used other options and requires exactly one file "
-                        + "to run on to be specified.")
+                description = "This option is used to print the Parse Tree of the Javadoc comment."
+                        + " The file has to contain only Javadoc comment content "
+                        + "excluding '/**' and '*/' at the beginning and at the end respectively. "
+                        + "It can only be used on a single file and cannot be combined "
+                        + "with other options.")
         private boolean printJavadocTree;
 
         /** Option that controls whether to print the full AST of the file. */
         @Option(names = {"-J", "--treeWithJavadoc"},
-                description = "Prints Abstract Syntax Tree(AST) with Javadoc nodes "
-                        + "and comment nodes of the checked file. Attention that line number and "
-                        + "columns will not be the same as it is a file due to the fact that each "
-                        + "javadoc comment is parsed separately from java file. The option cannot "
-                        + "be used with other options and requires exactly one file to run on to "
-                        + "be specified.")
+                description = "This option is used to display the Abstract Syntax Tree (AST) "
+                        + "with Javadoc nodes of the specified file. It can only be used on a "
+                        + "single file and cannot be combined with other options.")
         private boolean printTreeWithJavadoc;
 
         /** Option that controls whether to print debug info. */

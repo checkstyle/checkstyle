@@ -150,6 +150,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVar3() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariable3.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarInAnonInnerClasses() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
@@ -242,6 +252,59 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarNestedClasses4() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses4.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses5() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "19:11: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "abc"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses5.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses6() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "13:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses6.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarNestedClasses7() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "11:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "23:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "24:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "ab"),
+            "28:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableNestedClasses7.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVarTestWarningSeverity() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -297,6 +360,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -319,6 +388,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateClasses() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -354,6 +429,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStateAnonInnerClass() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -388,6 +469,12 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    /**
+     * Temporary java doc.
+     *
+     * @noinspection OptionalGetWithoutIsPresent
+     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
+     */
     @Test
     public void testClearStatePackageDef() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();

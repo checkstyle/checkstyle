@@ -39,7 +39,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testInnerClone() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionSuperCloneInnerClone.java"));
+                new File(getPath("InputXpathSuperCloneInnerClone.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SuperCloneCheck.class);
@@ -50,8 +50,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpath"
-                        + "RegressionSuperCloneInnerClone']]"
+                        + "[./IDENT[@text='InputXpathSuperCloneInnerClone']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClone']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
@@ -63,7 +62,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testNoSuperClone() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionSuperCloneNoSuperClone.java"));
+                new File(getPath("InputXpathSuperCloneNoSuperClone.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SuperCloneCheck.class);
@@ -74,8 +73,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpath"
-                        + "RegressionSuperCloneNoSuperClone']]"
+                        + "[./IDENT[@text='InputXpathSuperCloneNoSuperClone']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NoSuperClone']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
@@ -87,7 +85,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     @Test
     public void testPlainAndSubclasses() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionSuperClonePlainAndSubclasses.java"));
+                new File(getPath("InputXpathSuperClonePlainAndSubclasses.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SuperCloneCheck.class);
@@ -98,8 +96,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpath"
-                        + "RegressionSuperClonePlainAndSubclasses']]"
+                        + "[./IDENT[@text='InputXpathSuperClonePlainAndSubclasses']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"
         );
 

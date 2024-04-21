@@ -38,15 +38,15 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testInternal() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport1.java"));
+                new File(getPath("InputXpathRedundantImportInternal.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(RedundantImportCheck.class,
                         RedundantImportCheck.MSG_SAME, "org.checkstyle.suppressionxpathfilter"
-                                + ".redundantimport.SuppressionXpathRegressionRedundantImport1"),
+                                + ".redundantimport.InputXpathRedundantImportInternal"),
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT");
@@ -56,9 +56,9 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testLibrary() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport2.java"));
+                new File(getPath("InputXpathRedundantImportLibrary.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {
@@ -73,9 +73,9 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testDuplicate() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionRedundantImport3.java"));
+                new File(getPath("InputXpathRedundantImportDuplicate.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RedundantImportCheck.class);
         final String[] expectedViolation = {

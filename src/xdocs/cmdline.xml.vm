@@ -79,7 +79,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           Argument is the line and column number (separated by a <code>:</code> ) in the file
           that the suppression should be generated for. The option cannot be used
           with other options and requires exactly one file to run on to be specified.
-          ATTENTION: generated result will have few queries, joined by pipe(<code>|</code>).
+          Note that the generated result will have few queries, joined by pipe(<code>|</code>).
           Together they will match all AST nodes on specified line
           and column. You need to choose only one and recheck that it works. Usage of all of them is
           also ok, but might result in undesirable matching and suppress other issues.
@@ -96,26 +96,25 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           <code>-s</code> option. Default value is 8.
         </li>
         <li>
-          <code>-t, --tree</code> - Prints Abstract Syntax Tree(AST) of the checked file. The option
-          cannot be used other options and requires exactly one file to run on to be specified.
+          <code>-t, --tree</code> - This option is used to display the Abstract Syntax Tree (AST)
+          <b>without any comments</b> of the specified file. It can only be used on a single file
+          and cannot be combined with other options.
         </li>
         <li>
-          <code>-T, --treeWithComments</code> - Prints Abstract Syntax Tree(AST) with comment nodes
-          of the checked file. The option cannot be used with other options and requires exactly
-          one file to run on to be specified.
+          <code>-T, --treeWithComments</code> - This option is used to display the Abstract Syntax
+          Tree (AST) <b>with comment nodes excluding Javadoc</b> of the specified file. It can only
+          be used on a single file and cannot be combined with other options.
         </li>
         <li>
-          <code>-J, --treeWithJavadoc</code> - Prints Abstract Syntax Tree(AST) with Javadoc nodes
-          and comment nodes of the checked file. Attention that line number and columns will not be
-          the same as it is a file due to the fact that each javadoc comment is parsed separately
-          from java file. The option cannot be used with other options and requires exactly one
-          file to run on to be specified.
+          <code>-J, --treeWithJavadoc</code> - This option is used to display the Abstract Syntax
+          Tree (AST) <b>with Javadoc nodes</b> of the specified file. It can only be used on a
+          single file and cannot be combined with other options.
         </li>
         <li>
-          <code>-j, --javadocTree</code> - Prints Parse Tree of the Javadoc comment.
-          The file have to contain <b>only Javadoc comment content</b> without including '/**' and
-          '*/' at the beginning and at the end respectively. The option
-          cannot be used other options and requires exactly one file to run on to be specified.
+          <code>-j, --javadocTree</code> - This option is used to print the Parse Tree of the
+          Javadoc comment. The file has to contain <b>only Javadoc comment content</b>
+          excluding '/**' and '*/' at the beginning and at the end respectively. It can only be
+          used on a single file and cannot be combined with other options.
         </li>
         <li>
           <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.
