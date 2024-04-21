@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.illegaltokentext;
 
-public class SuppressionXpathRegressionIllegalTokenText2 {
+public class InputXpathIllegalTokenTextMethod {
     public void myMethod() {
         String illegalString = "forbiddenText"; // warn
     }
