@@ -39,9 +39,9 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder1.java"));
+                getPath("InputXpathOverloadMethodsDeclarationOrderDefault.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -52,13 +52,13 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionOverloadMethodsDeclarationOrder1']]"
+                        + "[@text='InputXpathOverloadMethodsDeclarationOrderDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );
@@ -67,9 +67,9 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testAnonymous() throws Exception {
         final File fileToProcess = new File(
-                getPath("SuppressionXpathRegressionOverloadMethodsDeclarationOrder2.java"));
+                getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
 
@@ -80,19 +80,19 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
-                        + "'SuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'InputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text="
-                        + "'MySuppressionXpathRegressionOverloadMethodsDeclarationOrder2']]"
+                        + "'MyInputXpathOverloadMethodsDeclarationOrderAnonymous']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='overloadMethod']]"
                         + "/MODIFIERS/LITERAL_PUBLIC"
         );

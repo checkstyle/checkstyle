@@ -40,9 +40,9 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNPathComplexityOne.java"));
+                new File(getPath("InputXpathNPathComplexityMethod.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NPathComplexityCheck.class);
@@ -55,13 +55,13 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNPathComplexityMethod']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNPathComplexityMethod']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS",
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityOne']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathNPathComplexityMethod']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -70,9 +70,9 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testStaticBlock() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionNPathComplexityTwo.java"));
+                new File(getPath("InputXpathNPathComplexityStaticBlock.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NPathComplexityCheck.class);
@@ -85,7 +85,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionNPathComplexityTwo']]"
+                + "[./IDENT[@text='InputXpathNPathComplexityStaticBlock']]"
                 + "/OBJBLOCK/STATIC_INIT"
         );
 
