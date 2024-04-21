@@ -197,21 +197,17 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see org.apache.utils.Lists.Comparator#compare(Object)}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@see org.apache.utils.Lists.Comparator#compare(Object)]
-     *       |--SEE_LITERAL[3x0] : [@see]
-     *       |--WS[3x4] : [ ]
-     *       |--REFERENCE[3x5] : [org.apache.utils.Lists.Comparator#compare(Object)]
-     *           |--PACKAGE_CLASS[3x5] : [org.apache.utils]
-     *           |--DOT[3x21] : [.]
-     *           |--CLASS[3x22] : [Lists]
-     *           |--DOT[3x27] : [.]
-     *           |--CLASS[3x28] : [Comparator]
-     *           |--HASH[3x38] : [#]
-     *           |--MEMBER[3x39] : [compare]
-     *           |--PARAMETERS[3x46] : [(Object)]
-     *               |--LEFT_BRACE[3x46] : [(]
-     *               |--ARGUMENT[3x47] : [Object]
-     *               |--RIGHT_BRACE[3x53] : [)]
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--SEE_LITERAL -> @see
+     *    |--WS ->
+     *    |--REFERENCE -> REFERENCE
+     *        |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *        |--HASH -> #
+     *        |--MEMBER -> compare
+     *        `--PARAMETERS -> PARAMETERS
+     *            |--LEFT_BRACE -> (
+     *            |--ARGUMENT -> Object
+     *            `--RIGHT_BRACE -> )
      * }</pre>
      *
      * @see
