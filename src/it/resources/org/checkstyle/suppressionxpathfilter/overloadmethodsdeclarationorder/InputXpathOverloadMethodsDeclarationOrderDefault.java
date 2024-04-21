@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.overloadmethodsdeclarationorder;
 
-public class SuppressionXpathRegressionOverloadMethodsDeclarationOrder1 {
+public class InputXpathOverloadMethodsDeclarationOrderDefault {
 
     public void overloadMethod(String s) {
         //do stuff

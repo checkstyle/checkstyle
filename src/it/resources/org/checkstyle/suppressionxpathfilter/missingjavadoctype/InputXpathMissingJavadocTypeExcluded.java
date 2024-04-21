@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingjavadoctype;
 
-public class SuppressionXpathRegressionMissingJavadocTypeExcluded {
+public class InputXpathMissingJavadocTypeExcluded {
     private class Test { // warn
 
     }

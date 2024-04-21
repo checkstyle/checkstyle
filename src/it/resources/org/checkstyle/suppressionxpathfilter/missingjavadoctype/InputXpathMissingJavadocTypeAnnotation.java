@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.missingjavadoctype;
 
 @TestAnnotation
-public class SuppressionXpathRegressionMissingJavadocTypeAnnotation {
+public class InputXpathMissingJavadocTypeAnnotation {
     @TestAnnotation2 // warn
     public class innerClass {
 

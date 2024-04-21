@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.missingjavadocmethod;
 
-public class SuppressionXpathRegressionMissingJavadocMethod2 {
+public class InputXpathMissingJavadocMethod {
     public void foo() { // warn
         // code
     }
