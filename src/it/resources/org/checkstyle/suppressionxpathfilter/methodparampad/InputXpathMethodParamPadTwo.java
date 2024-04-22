@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.methodparampad;
 
-public class SuppressionXpathRegressionMethodParamPadTwo {
+public class InputXpathMethodParamPadTwo {
     public void sayHello
             (String name) { //warn
 

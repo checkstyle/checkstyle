@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.methodname;
 
-public class SuppressionXpathRegressionMethodName1 {
+public class InputXpathMethodNameDefault {
 
   protected void firstMethod() {} // OK
   private void SecondMethod() {} // warn
