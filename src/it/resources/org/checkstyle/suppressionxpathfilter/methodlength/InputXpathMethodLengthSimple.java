@@ -1,7 +1,7 @@
 package org.checkstyle.suppressionxpathfilter.methodlength;
 
-public class SuppressionXpathRegressionMethodLengthSimple {
-    protected SuppressionXpathRegressionMethodLengthSimple() { // warn
+public class InputXpathMethodLengthSimple {
+    protected InputXpathMethodLengthSimple() { // warn
         // a line
         // a line
         // a line

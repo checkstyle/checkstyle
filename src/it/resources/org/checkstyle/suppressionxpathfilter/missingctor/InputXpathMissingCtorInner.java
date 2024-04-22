@@ -1,8 +1,8 @@
 package org.checkstyle.suppressionxpathfilter.missingctor;
 
-public class SuppressionXpathRegressionMissingCtor2 {
+public class InputXpathMissingCtorInner {
 
-    private SuppressionXpathRegressionMissingCtor2() {
+    private InputXpathMissingCtorInner() {
 
     }
 

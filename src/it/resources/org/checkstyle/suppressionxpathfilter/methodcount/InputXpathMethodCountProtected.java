@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.methodcount;
 
-class SuppressionXpathRegressionMethodCount3 { // warn
+class InputXpathMethodCountProtected { // warn
     protected void foo() {}
     protected void foo1() {}
 }
