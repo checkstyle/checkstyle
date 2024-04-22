@@ -119,11 +119,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Checks whose files need to be renamed to new pattern "InputXpath{Check}Xxx.java"
     // until https://github.com/checkstyle/checkstyle/issues/14715
     private static final Set<String> RENAME_INPUT_XPATH = Set.of(
-            "MethodCount",
-            "MethodLength",
-            "MethodName",
-            "MethodParamPad",
-            "MissingCtor",
             "RequireThis",
             "ReturnCount",
             "RightCurly",

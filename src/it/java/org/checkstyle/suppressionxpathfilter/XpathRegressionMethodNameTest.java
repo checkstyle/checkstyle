@@ -39,9 +39,9 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test1() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName1.java"));
+                new File(getPath("InputXpathMethodNameDefault.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -55,7 +55,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionMethodName1']]"
+                        + "='InputXpathMethodNameDefault']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='SecondMethod']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -63,9 +63,9 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName2.java"));
+                new File(getPath("InputXpathMethodNameInner.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =
@@ -80,7 +80,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionMethodName2']]"
+                        + "='InputXpathMethodNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod2']"
         );
@@ -89,9 +89,9 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test3() throws Exception {
+    public void testCustomProperties() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionMethodName3.java"));
+                new File(getPath("InputXpathMethodNameCustomProperties.java"));
 
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final DefaultConfiguration moduleConfig =

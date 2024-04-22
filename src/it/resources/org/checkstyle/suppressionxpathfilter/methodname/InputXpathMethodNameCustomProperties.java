@@ -8,7 +8,7 @@ interface Check {
 
 }
 
-public class SuppressionXpathRegressionMethodName3 implements Check {
+public class InputXpathMethodNameCustomProperties implements Check {
 
      @Override
      public void FirstMethod() {

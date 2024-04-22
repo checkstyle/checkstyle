@@ -36,9 +36,9 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount1.java")
+            getPath("InputXpathMethodCountDefault.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -52,14 +52,14 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
+                        + "[./IDENT[@text='InputXpathMethodCountDefault']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                        + "[./IDENT[@text='InputXpathMethodCountDefault']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                        + "[./IDENT[@text='InputXpathMethodCountDefault']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -67,9 +67,9 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testPrivate() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount2.java")
+            getPath("InputXpathMethodCountPrivate.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -83,14 +83,14 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]",
+                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount2']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPrivate']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -98,9 +98,9 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testPackage() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount1.java")
+            getPath("InputXpathMethodCountDefault.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -114,14 +114,14 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]",
+                    + "[./IDENT[@text='InputXpathMethodCountDefault']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount1']]"
+                    + "[./IDENT[@text='InputXpathMethodCountDefault']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -129,9 +129,9 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFour() throws Exception {
+    public void testProtected() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount3.java")
+            getPath("InputXpathMethodCountProtected.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -145,14 +145,14 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]",
+                    + "[./IDENT[@text='InputXpathMethodCountProtected']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
+                    + "[./IDENT[@text='InputXpathMethodCountProtected']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount3']]"
+                    + "[./IDENT[@text='InputXpathMethodCountProtected']]"
                     + "/LITERAL_CLASS"
         );
 
@@ -160,9 +160,9 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFive() throws Exception {
+    public void testPublic() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionMethodCount4.java")
+            getPath("InputXpathMethodCountPublic.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -176,14 +176,14 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]",
+                    + "[./IDENT[@text='InputXpathMethodCountPublic']]",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPublic']]"
                     + "/MODIFIERS",
 
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMethodCount4']]"
+                    + "[./IDENT[@text='InputXpathMethodCountPublic']]"
                     + "/LITERAL_CLASS"
         );
 
