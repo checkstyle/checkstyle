@@ -1,8 +1,8 @@
 package org.checkstyle.suppressionxpathfilter.methodlength;
 
-public class SuppressionXpathRegressionMethodLengthNoEmptyLines {
+public class InputXpathMethodLengthNoEmptyLines {
 
-    public SuppressionXpathRegressionMethodLengthNoEmptyLines(){
+    public InputXpathMethodLengthNoEmptyLines(){
         // a line
         // a line
         // a line

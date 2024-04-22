@@ -38,9 +38,9 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testMissingCtor() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingCtor1.java"));
+                "InputXpathMissingCtor.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingCtorCheck.class);
@@ -52,11 +52,11 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]",
+                    + "[./IDENT[@text='InputXpathMissingCtor']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS",
+                    + "[./IDENT[@text='InputXpathMissingCtor']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor1']]/MODIFIERS/LITERAL_PUBLIC"
+                    + "@text='InputXpathMissingCtor']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -64,9 +64,9 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionMissingCtor2.java"));
+                "InputXpathMissingCtorInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingCtorCheck.class);
@@ -78,13 +78,13 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtorInner']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtorInner']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionMissingCtor2']]"
+                    + "@text='InputXpathMissingCtorInner']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/LITERAL_CLASS"
         );
 

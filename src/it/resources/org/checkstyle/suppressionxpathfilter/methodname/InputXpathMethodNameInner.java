@@ -1,6 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.methodname;
 
-public class SuppressionXpathRegressionMethodName2 {
+public class InputXpathMethodNameInner {
     public void myMethod1() { // OK
         }
     class Inner {
