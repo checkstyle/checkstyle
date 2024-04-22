@@ -269,9 +269,6 @@ public final class JavadocTokenTypes {
      *    |--WS ->
      *    `--DESCRIPTION -> DESCRIPTION
      *        |--TEXT -> 1.3
-     *        |--NEWLINE -> \r\n
-     *        `--TEXT ->
-     *
      * }</pre>
      *
      * @see
