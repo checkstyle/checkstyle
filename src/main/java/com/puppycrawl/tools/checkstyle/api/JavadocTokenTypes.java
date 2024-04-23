@@ -264,11 +264,11 @@ public final class JavadocTokenTypes {
      * <pre>{@code @version 1.3}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@version 1.3]
-     *       |--VERSION_LITERAL[3x0] : [@version]
-     *       |--WS[3x8] : [ ]
-     *       |--DESCRIPTION[3x9] : [1.3]
-     *           |--TEXT[3x9] : [1.3]
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--VERSION_LITERAL -> @version
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> 1.3
      * }</pre>
      *
      * @see
