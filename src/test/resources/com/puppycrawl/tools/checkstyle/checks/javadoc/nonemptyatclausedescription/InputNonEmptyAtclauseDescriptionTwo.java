@@ -18,11 +18,11 @@ public class InputNonEmptyAtclauseDescriptionTwo
      * @param c
      * @deprecated
      * @throws Exception
-     */ // violation 5 lines above
-    // violation 5 lines above
-    // violation 5 lines above
-    // violation 5 lines above
-    // violation 5 lines above
+     */ // violation 5 lines above 'At-clause should have a non-empty description'
+    // violation 5 lines above 'At-clause should have a non-empty description'
+    // violation 5 lines above 'At-clause should have a non-empty description'
+    // violation 5 lines above 'At-clause should have a non-empty description'
+    // violation 5 lines above 'At-clause should have a non-empty description'
     public int foo4(String a, int b, double c) throws Exception
     {
         return 1;
@@ -49,7 +49,7 @@ public class InputNonEmptyAtclauseDescriptionTwo
      * @param c Some javadoc
      * @return Some javadoc
      * @exception Exception
-     */ // violation above
+     */ // violation above 'At-clause should have a non-empty description'
     public int foo6(String a, int b, double c) throws Exception
     {
         return 1;
@@ -58,7 +58,7 @@ public class InputNonEmptyAtclauseDescriptionTwo
     /**
      * @param a xxx
      * @return
-     */ // violation above
+     */ // violation above 'At-clause should have a non-empty description'
     int foo(int a) {
         return a;
     }
@@ -76,11 +76,28 @@ public class InputNonEmptyAtclauseDescriptionTwo
      *
      * @throws Exception
      *
-     */ // violation 4 lines above
-    // violation 3 lines above
+     */ // violation 4 lines above 'At-clause should have a non-empty description'
+    // violation 3 lines above 'At-clause should have a non-empty description'
         public int foo7() throws Exception
         {
                 return 1;
         }
 
+    /**
+     *
+     * @param
+     *
+     */ // violation 2 lines above 'At-clause should have a non-empty description'
+        public int foo8(int a)
+        {
+                return 1;
+        }
+
+    /**
+     * @throws
+     */ // violation above 'At-clause should have a non-empty description'
+        public int foo9(String a) throws Exception
+        {
+            return 1;
+        }
 }
