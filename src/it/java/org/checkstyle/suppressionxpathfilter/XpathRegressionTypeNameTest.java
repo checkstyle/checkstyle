@@ -39,9 +39,9 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test1() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTypeName1.java"));
+                new File(getPath("InputXpathTypeNameDefault.java"));
 
         final String pattern = "^[A-Z][a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -55,7 +55,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionTypeName1']]"
+                        + "='InputXpathTypeNameDefault']]"
                         + "/OBJBLOCK/CLASS_DEF/IDENT[@text='SecondName_']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -63,9 +63,9 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void testInterfaceDef() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionTypeName2.java"));
+                new File(getPath("InputXpathTypeNameInterfaceDef.java"));
 
         final String pattern = "^I_[a-zA-Z0-9]*$";
         final DefaultConfiguration moduleConfig =
@@ -81,7 +81,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
-                        + "='SuppressionXpathRegressionTypeName2']]"
+                        + "='InputXpathTypeNameInterfaceDef']]"
                         + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='SecondName']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
