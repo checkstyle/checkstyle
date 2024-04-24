@@ -155,8 +155,6 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -171,8 +169,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 .that(methodDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
-                        "contextStack",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        methodDef.orElseThrow(), "contextStack",
                         contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()))
                 .isTrue();
     }

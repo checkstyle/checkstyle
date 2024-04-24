@@ -92,8 +92,6 @@ public class SuperCloneCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -108,8 +106,8 @@ public class SuperCloneCheckTest
                 .that(methodDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
-                        "methodStack",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        methodDef.orElseThrow(), "methodStack",
                         methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()))
                 .isTrue();
     }

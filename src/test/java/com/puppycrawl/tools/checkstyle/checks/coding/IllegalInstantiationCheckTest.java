@@ -166,8 +166,6 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -183,9 +181,8 @@ public class IllegalInstantiationCheckTest
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(
-                TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "classNames",
-                    classNames -> ((Collection<String>) classNames).isEmpty()))
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                    "classNames", classNames -> ((Collection<String>) classNames).isEmpty()))
             .isTrue();
     }
 
@@ -195,8 +192,6 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearStateImports() throws Exception {
@@ -211,9 +206,8 @@ public class IllegalInstantiationCheckTest
                 .that(importDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(
-                TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.get(), "imports",
-                    imports -> ((Collection<?>) imports).isEmpty()))
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.orElseThrow(),
+                    "imports", imports -> ((Collection<?>) imports).isEmpty()))
             .isTrue();
     }
 
@@ -223,8 +217,6 @@ public class IllegalInstantiationCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -240,8 +232,8 @@ public class IllegalInstantiationCheckTest
                 .that(literalNew.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, literalNew.get(),
-                        "instantiations",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        literalNew.orElseThrow(), "instantiations",
                         instantiations -> ((Collection<DetailAST>) instantiations).isEmpty()))
                 .isTrue();
     }

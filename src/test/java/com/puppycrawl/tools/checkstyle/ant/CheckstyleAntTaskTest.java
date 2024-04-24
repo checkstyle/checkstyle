@@ -858,12 +858,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertLoggedTime(loggedMessages, testingTime, "To process the files");
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     private static void assertLoggedTime(List<MessageLevelPair> loggedMessages,
                                          long testingTime, String expectedMsg) {
 
@@ -875,7 +869,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             .that(optionalMessageLevelPair.isPresent())
             .isTrue();
 
-        final long actualTime = getNumberFromLine(optionalMessageLevelPair.get().getMsg());
+        final long actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
 
         assertWithMessage("Logged time in '" + expectedMsg + "' "
                               + "must be less than the testing time")
