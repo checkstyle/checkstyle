@@ -38,9 +38,9 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount1.java"));
+                new File(getPath("InputXpathThrowsCountDefault.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
         final String[] expectedViolation = {
@@ -49,7 +49,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount1']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountDefault']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                     + "/LITERAL_THROWS[./IDENT[@text='CloneNotSupportedException']]"
 
@@ -60,9 +60,9 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testCustomMax() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount2.java"));
+                new File(getPath("InputXpathThrowsCountCustomMax.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
 
@@ -74,7 +74,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount2']]"
+                    + "/INTERFACE_DEF[./IDENT[@text='InputXpathThrowsCountCustomMax']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
                     + "/LITERAL_THROWS[./IDENT[@text='IllegalStateException']]"
 
@@ -85,9 +85,9 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testPrivateMethods() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionThrowsCount3.java"));
+                new File(getPath("InputXpathThrowsCountPrivateMethods.java"));
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ThrowsCountCheck.class);
 
@@ -99,7 +99,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
         };
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
-                    + "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionThrowsCount3']]"
+                    + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountPrivateMethods']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunc']]"
                     + "/SLIST/VARIABLE_DEF[./IDENT[@text='foo']]"
                     + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='myClass']]"

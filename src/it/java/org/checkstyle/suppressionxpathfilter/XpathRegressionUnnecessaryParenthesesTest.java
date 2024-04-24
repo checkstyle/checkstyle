@@ -37,9 +37,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testClassFields() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses1.java")
+            getPath("InputXpathUnnecessaryParenthesesClassFields.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -52,12 +52,12 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesClassFields']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR",
 
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses1']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesClassFields']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/LPAREN"
         );
@@ -66,9 +66,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testConditionals() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses2.java")
+            getPath("InputXpathUnnecessaryParenthesesConditionals.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -81,12 +81,12 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesConditionals']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_IF/EXPR",
 
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses2']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesConditionals']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_IF/EXPR/LPAREN"
         );
@@ -95,9 +95,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testLambdas() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses3.java")
+            getPath("InputXpathUnnecessaryParenthesesLambdas.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -110,7 +110,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses3']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLambdas']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='predicate']]"
                 + "/ASSIGN/LAMBDA"
         );
@@ -119,9 +119,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testFour() throws Exception {
+    public void testLocalVariables() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses4.java")
+            getPath("InputXpathUnnecessaryParenthesesLocalVariables.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -134,7 +134,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses4']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLocalVariables']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='b']]"
                 + "/ASSIGN/EXPR/PLUS/IDENT[@text='a']"
@@ -144,9 +144,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testFive() throws Exception {
+    public void testStringLiteral() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses5.java")
+            getPath("InputXpathUnnecessaryParenthesesStringLiteral.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -159,7 +159,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses5']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesStringLiteral']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='str']]"
                 + "/ASSIGN/EXPR/PLUS/STRING_LITERAL[@text='Checkstyle']"
@@ -169,9 +169,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testSix() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses6.java")
+            getPath("InputXpathUnnecessaryParenthesesMethodDef.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -184,7 +184,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses6']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='a']]"
                 + "/ASSIGN/EXPR/PLUS/NUM_INT[@text='10']"
@@ -194,9 +194,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testSeven() throws Exception {
+    public void testReturnExpr() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses7.java")
+            getPath("InputXpathUnnecessaryParenthesesReturnExpr.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -209,12 +209,12 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesReturnExpr']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_RETURN/EXPR",
 
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses7']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesReturnExpr']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/LITERAL_RETURN/EXPR/LPAREN"
         );
@@ -223,9 +223,9 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testEight() throws Exception {
+    public void testExprWithMethodParam() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionUnnecessaryParentheses8.java")
+            getPath("InputXpathUnnecessaryParenthesesExprWithMethodParam.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -238,13 +238,13 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesExprWithMethodParam']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='c']]"
                 + "/ASSIGN/EXPR",
 
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionUnnecessaryParentheses8']]"
+                + "[./IDENT[@text='InputXpathUnnecessaryParenthesesExprWithMethodParam']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='c']]"
                 + "/ASSIGN/EXPR/LPAREN"

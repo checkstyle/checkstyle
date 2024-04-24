@@ -39,9 +39,9 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUncommentedMain.java"));
+                new File(getPath("InputXpathUncommentedMainDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UncommentedMainCheck.class);
@@ -53,13 +53,13 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMain']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -68,9 +68,9 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testInStaticClass() throws Exception {
         final File fileToProcess =
-                new File(getPath("SuppressionXpathRegressionUncommentedMainTwo.java"));
+                new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UncommentedMainCheck.class);
@@ -82,15 +82,15 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']"
                         + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionUncommentedMainTwo']]"
+                        + "[./IDENT[@text='InputXpathUncommentedMainInStaticClass']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Launcher']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]/MODIFIERS/LITERAL_PUBLIC"
         );
