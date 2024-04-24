@@ -360,12 +360,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -377,7 +371,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain METHOD_DEF")
                 .that(methodDef.isPresent())
                 .isTrue();
-        final DetailAST variableDef = methodDef.get().getLastChild()
+        final DetailAST variableDef = methodDef.orElseThrow().getLastChild()
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, variableDef,
@@ -388,12 +382,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testClearStateClasses() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -405,7 +393,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain CLASS_DEF")
                 .that(classDef.isPresent())
                 .isTrue();
-        final DetailAST classDefToken = classDef.get();
+        final DetailAST classDefToken = classDef.orElseThrow();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclarations",
@@ -429,12 +417,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testClearStateAnonInnerClass() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -451,7 +433,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         check.beginTree(root);
         check.visitToken(classDefAst);
-        check.visitToken(literalNew.get());
+        check.visitToken(literalNew.orElseThrow());
         check.beginTree(null);
         final Predicate<Object> isClear = anonInnerAstToTypeDesc -> {
             return ((Map<?, ?>) anonInnerAstToTypeDesc).isEmpty();
@@ -469,12 +451,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testClearStatePackageDef() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
@@ -486,7 +462,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain PACKAGE_DEF")
                 .that(packageDef.isPresent())
                 .isTrue();
-        final DetailAST packageDefToken = packageDef.get();
+        final DetailAST packageDefToken = packageDef.orElseThrow();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDefToken,
                         "packageName",

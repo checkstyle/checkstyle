@@ -500,8 +500,6 @@ public class HiddenFieldCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -516,8 +514,8 @@ public class HiddenFieldCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(
-                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "frame",
-                        new CheckIfStatefulFieldCleared()))
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                        "frame", new CheckIfStatefulFieldCleared()))
                 .isTrue();
     }
 

@@ -426,8 +426,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
      * @param root of type DetailAST
      * @param type of type int
      * @return call to get() from node
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     private static DetailAST getNode(DetailAST root, int type) {
         final Optional<DetailAST> node = findTokenInAstByPredicate(root,
@@ -437,6 +435,6 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
             .that(node.isPresent())
             .isTrue();
 
-        return node.get();
+        return node.orElseThrow();
     }
 }

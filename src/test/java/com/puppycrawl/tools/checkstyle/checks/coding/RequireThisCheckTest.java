@@ -562,8 +562,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -578,7 +576,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                         "current", current -> ((Collection<?>) current).isEmpty()))
                 .isTrue();
     }

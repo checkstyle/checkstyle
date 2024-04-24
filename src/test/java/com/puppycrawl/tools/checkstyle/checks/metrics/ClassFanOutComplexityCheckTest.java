@@ -298,8 +298,6 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -315,8 +313,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(importAst.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importAst.get(),
-                    "importedClassPackages",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                    importAst.orElseThrow(), "importedClassPackages",
                     importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()))
                 .isTrue();
     }
@@ -327,8 +325,6 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearStateClassContexts() throws Exception {
@@ -343,7 +339,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                         "classesContexts",
                         classContexts -> ((Collection<?>) classContexts).size() == 1))
                 .isTrue();
@@ -355,8 +351,6 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearStatePackageName() throws Exception {
@@ -371,8 +365,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(packageDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDef.get(),
-                        "packageName",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        packageDef.orElseThrow(), "packageName",
                         packageName -> ((String) packageName).isEmpty()))
                 .isTrue();
     }

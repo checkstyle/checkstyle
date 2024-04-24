@@ -802,8 +802,6 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * leading to hard-to-detect and unstable violations that will affect our users.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -818,8 +816,9 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
                 .that(staticImport.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, staticImport.get(),
-                        "lastImportStatic", lastImportStatic -> !((boolean) lastImportStatic)))
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        staticImport.orElseThrow(), "lastImportStatic",
+                        lastImportStatic -> !((boolean) lastImportStatic)))
                 .isTrue();
 
     }

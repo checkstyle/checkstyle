@@ -161,12 +161,6 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testStatefulFieldsClearedOnBeginTree3() throws Exception {
         final NPathComplexityCheck check = new NPathComplexityCheck();
@@ -180,7 +174,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
 
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.get(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.orElseThrow(),
                         "processingTokenEnd", processingTokenEnd -> {
                             return TestUtil.<Integer>getInternalState(processingTokenEnd,
                                     "endLineNo") == 0
