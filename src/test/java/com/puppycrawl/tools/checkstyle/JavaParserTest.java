@@ -57,12 +57,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isNull();
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testAppendHiddenBlockCommentNodes() throws Exception {
         final DetailAST root =
@@ -76,7 +70,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(blockComment.isPresent())
                 .isTrue();
 
-        final DetailAST comment = blockComment.get();
+        final DetailAST comment = blockComment.orElseThrow();
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
@@ -145,12 +139,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .startsWith(" inline comment");
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testAppendHiddenSingleLineCommentNodes2() throws Exception {
         final DetailAST root =
@@ -163,7 +151,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(singleLineComment.isPresent())
                 .isTrue();
 
-        final DetailAST comment = singleLineComment.get();
+        final DetailAST comment = singleLineComment.orElseThrow();
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
@@ -242,12 +230,6 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .isEqualTo(Arrays.asList("5,4", "8,0"));
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     public void testJava14TextBlocks() throws Exception {
         final DetailAST root =
@@ -262,7 +244,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(textBlockContent.isPresent())
                 .isTrue();
 
-        final DetailAST content = textBlockContent.get();
+        final DetailAST content = textBlockContent.orElseThrow();
         final String expectedContents = "\n                 string";
 
         assertWithMessage("Unexpected line number")

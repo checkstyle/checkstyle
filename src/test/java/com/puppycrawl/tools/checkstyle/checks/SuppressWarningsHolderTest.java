@@ -406,12 +406,6 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder7.java"), expected);
     }
 
-    /**
-     * Temporary java doc.
-     *
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
-     */
     @Test
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
@@ -427,8 +421,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .that(annotationDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, annotationDef.get(),
-                        "ENTRIES",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        annotationDef.orElseThrow(), "ENTRIES",
                         entries -> ((ThreadLocal<List<Object>>) entries).get().isEmpty()))
                 .isTrue();
     }
