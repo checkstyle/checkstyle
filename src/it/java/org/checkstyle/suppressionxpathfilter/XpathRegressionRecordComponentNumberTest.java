@@ -38,9 +38,9 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentNumber1.java"));
+                "InputXpathRecordComponentNumberDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
@@ -52,10 +52,10 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]",
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]"
                     + "/MODIFIERS",
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNumberDefault']]"
                     + "/MODIFIERS/LITERAL_PUBLIC"
         );
 
@@ -64,9 +64,9 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testCustomMax() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentNumber2.java"));
+                "InputXpathRecordComponentNumberCustomMax.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
@@ -79,11 +79,11 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS",
-            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='SuppressionXpathRecordComponentNumber2']]"
+            "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathRecordComponentNumberCustomMax']]"
                     + "/OBJBLOCK/RECORD_DEF[./IDENT[@text='MyRecord']]/MODIFIERS"
                     + "/LITERAL_PUBLIC"
         );

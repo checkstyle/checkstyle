@@ -5,7 +5,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
  *
  * max = 8
  */
-public record SuppressionXpathRecordComponentNumber1(int x, int y, int z, // warn
+public record InputXpathRecordComponentNumberDefault(int x, int y, int z, // warn
                                                 int a, int b, int c,
                                                 int d, int e, int f,
                                                 int g, int h, int i,

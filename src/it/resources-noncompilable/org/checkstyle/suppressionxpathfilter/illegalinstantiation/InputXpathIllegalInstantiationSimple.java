@@ -2,7 +2,7 @@
 
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
-public class SuppressionXpathRegressionIllegalInstantiationSimple {
+public class InputXpathIllegalInstantiationSimple {
     int b = 5; // ok
     public void test() {
         Boolean x = new Boolean(true); // warn

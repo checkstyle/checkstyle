@@ -3,6 +3,6 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentname;
 
 /* Config: default
  */
-public record SuppressionXpathRecordComponentName1(int _value) { // warn
+public record InputXpathRecordComponentNameDefault(int _value) { // warn
 
 }

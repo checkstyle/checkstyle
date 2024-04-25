@@ -5,6 +5,6 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
  *
  * max = 1
  */
-public class SuppressionXpathRecordComponentNumber2 {
+public class InputXpathRecordComponentNumberCustomMax {
     public record MyRecord(int x, int y) { } // warn
 }
