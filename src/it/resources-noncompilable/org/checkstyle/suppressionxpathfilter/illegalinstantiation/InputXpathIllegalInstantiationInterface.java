@@ -2,7 +2,7 @@
 
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
-public class SuppressionXpathRegressionIllegalInstantiationInterface {
+public class InputXpathIllegalInstantiationInterface {
     interface Inner {
         default void test() {
             Boolean x = new Boolean(true); // ok

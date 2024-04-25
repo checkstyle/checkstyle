@@ -2,7 +2,7 @@
 
 package org.checkstyle.suppressionxpathfilter.illegalinstantiation;
 
-public class SuppressionXpathRegressionIllegalInstantiationAnonymous {
+public class InputXpathIllegalInstantiationAnonymous {
     int b = 5; // ok
      class Inner{
         public void test() {

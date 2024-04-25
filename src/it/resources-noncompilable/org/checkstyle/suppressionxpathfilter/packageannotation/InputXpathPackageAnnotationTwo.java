@@ -5,6 +5,6 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.two;
 
 import javax.annotation.Generated;
 
-public class SuppressionXpathRegressionPackageAnnotationOne {
+public class InputXpathPackageAnnotationTwo {
 
 }

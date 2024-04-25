@@ -42,7 +42,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPatternVariableName1.java"));
+                        "InputXpathPatternVariableNameOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
@@ -56,7 +56,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
+                + "[./IDENT[@text='InputXpathPatternVariableNameOne']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/PATTERN_VARIABLE_DEF/"
                 + "IDENT[@text='STRING1']"
@@ -70,7 +70,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPatternVariableName2.java"));
+                        "InputXpathPatternVariableNameTwo.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
 
@@ -85,7 +85,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName2']]"
+                + "[./IDENT[@text='InputXpathPatternVariableNameTwo']]"
                 + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                 + "PATTERN_VARIABLE_DEF/IDENT[@text='s']"
@@ -99,7 +99,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPatternVariableName3.java"));
+                        "InputXpathPatternVariableNameThree.java"));
 
         final String nonDefaultPattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
 
@@ -114,7 +114,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName3']]"
+                    + "[./IDENT[@text='InputXpathPatternVariableNameThree']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/"
                     + "EXPR/LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='STR']"
@@ -128,7 +128,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     public void testFour() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPatternVariableName4.java"));
+                        "InputXpathPatternVariableNameFour.java"));
 
         final String nonDefaultPattern = "^[a-z][_a-zA-Z0-9]{2,}$";
 
@@ -143,7 +143,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='SuppressionXpathRegressionPatternVariableName1']]"
+                    + "[./IDENT[@text='InputXpathPatternVariableNameFour']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                     + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='st']"
