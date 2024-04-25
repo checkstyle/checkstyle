@@ -39,9 +39,9 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentName1.java"));
+                "InputXpathRecordComponentNameDefault.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
@@ -53,7 +53,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='SuppressionXpathRecordComponentName1']]"
+            "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNameDefault']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
 
@@ -62,9 +62,9 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testFormat() throws Exception {
         final File fileToProcess = new File(getNonCompilablePath(
-                "SuppressionXpathRecordComponentName2.java"));
+                "InputXpathRecordComponentNameFormat.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNameCheck.class);
@@ -78,7 +78,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRecordComponentName2']]/OBJBLOCK"
+                + "[./IDENT[@text='InputXpathRecordComponentNameFormat']]/OBJBLOCK"
                 + "/RECORD_DEF[./IDENT[@text='MyRecord']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='otherValue']"
         );

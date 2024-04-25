@@ -3,6 +3,6 @@
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation; // warn
 
-public class SuppressionXpathRegressionPackageAnnotationOne {
+public class InputXpathPackageAnnotationOne {
 
 }

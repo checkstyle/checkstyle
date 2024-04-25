@@ -38,7 +38,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
     @Test
     public void testSimple() throws Exception {
-        final String fileName = "SuppressionXpathRegressionIllegalInstantiationSimple.java";
+        final String fileName = "InputXpathIllegalInstantiationSimple.java";
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
@@ -52,11 +52,11 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionIllegalInstantiationSimple']]"
+                + "[@text='InputXpathIllegalInstantiationSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                 + "VARIABLE_DEF[./IDENT[@text='x']]/ASSIGN/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionIllegalInstantiationSimple']]"
+                + "[./IDENT[@text='InputXpathIllegalInstantiationSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='x']]/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Boolean']]"
         );
@@ -67,7 +67,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
     @Test
     public void testAnonymous() throws Exception {
-        final String fileName = "SuppressionXpathRegressionIllegalInstantiationAnonymous.java";
+        final String fileName = "InputXpathIllegalInstantiationAnonymous.java";
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
@@ -81,11 +81,11 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionIllegalInstantiationAnonymous']]"
+                + "[@text='InputXpathIllegalInstantiationAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='e']]/ASSIGN/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionIllegalInstantiationAnonymous']]"
+                + "[@text='InputXpathIllegalInstantiationAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF"
                 + "[./IDENT[@text='test']]/SLIST/VARIABLE_DEF[./IDENT[@text='e']]"
                 + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Integer']]"
@@ -97,7 +97,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
     @Test
     public void testInterface() throws Exception {
-        final String fileName = "SuppressionXpathRegressionIllegalInstantiationInterface.java";
+        final String fileName = "InputXpathIllegalInstantiationInterface.java";
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
         final DefaultConfiguration moduleConfig =
@@ -111,12 +111,12 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionIllegalInstantiationInterface']]"
+                + "[@text='InputXpathIllegalInstantiationInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]/"
                 + "OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
                 + "VARIABLE_DEF[./IDENT[@text='s']]/ASSIGN/EXPR",
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionIllegalInstantiationInterface']]"
+                + "[@text='InputXpathIllegalInstantiationInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='s']]/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='String']]"

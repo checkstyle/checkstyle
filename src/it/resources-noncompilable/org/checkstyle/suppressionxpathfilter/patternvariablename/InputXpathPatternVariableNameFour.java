@@ -1,9 +1,9 @@
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-public class SuppressionXpathRegressionPatternVariableName2 {
+public class InputXpathPatternVariableNameFour {
     MyClass(Object o1){
-        if (o1 instanceof String s) { // warning
+        if (o1 instanceof String st) { // warning
         }
     }
 }

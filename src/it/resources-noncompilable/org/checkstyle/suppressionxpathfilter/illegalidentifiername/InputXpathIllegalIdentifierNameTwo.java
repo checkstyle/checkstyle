@@ -5,7 +5,7 @@ package org.checkstyle.suppressionxpathfilter.illegalidentifiername;
  *
  * default
  */
-public class SuppressionXpathRegressionIllegalIdentifierNameTestTwo {
+public class InputXpathIllegalIdentifierNameTwo {
     int foo(int yield) { // warn
         return switch (yield) {
             case 1 -> 2;
