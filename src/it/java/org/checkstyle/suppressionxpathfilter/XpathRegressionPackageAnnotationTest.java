@@ -41,7 +41,7 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
     public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPackageAnnotationOne.java"));
+                        "InputXpathPackageAnnotationOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PackageAnnotationCheck.class);
@@ -62,7 +62,7 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
     public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
-                        "SuppressionXpathRegressionPackageAnnotationTwo.java"));
+                        "InputXpathPackageAnnotationTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PackageAnnotationCheck.class);

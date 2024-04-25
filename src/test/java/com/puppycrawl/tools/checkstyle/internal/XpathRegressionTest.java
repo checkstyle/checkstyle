@@ -116,17 +116,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     private static final Set<String> INTERNAL_MODULES = getInternalModules();
 
-    // Checks whose files need to be renamed to new pattern "InputXpath{Check}Xxx.java"
-    // until https://github.com/checkstyle/checkstyle/issues/14715
-    private static final Set<String> RENAME_INPUT_XPATH = Set.of(
-            "IllegalIdentifierName",
-            "IllegalInstantiation",
-            "PackageAnnotation",
-            "PackageDeclaration",
-            "PatternVariableName",
-            "RecordComponentName",
-            "RecordComponentNumber");
-
     private Path javaDir;
     private Path inputDir;
 
@@ -279,7 +268,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         try (DirectoryStream<Path> inputPaths = Files.newDirectoryStream(checkDir)) {
             for (Path inputPath : inputPaths) {
                 final String filename = inputPath.toFile().getName();
-                if (filename.endsWith("java") && !RENAME_INPUT_XPATH.contains(check)) {
+                if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
                     assertWithMessage(
                               "Invalid input file '" + inputPath
