@@ -73,6 +73,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                JavadocLeadingAsteriskAlign
+              </a>
+            </td>
+            <td>
+              Checks that the leading asterisks are aligned vertically under
+              the second asterisk ( * ) of opening Javadoc tag.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocmissingwhitespaceafterasterisk.html#JavadocMissingWhitespaceAfterAsterisk">
                 JavadocMissingWhitespaceAfterAsterisk
               </a>
