@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -455,23 +457,17 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private boolean hasReliefComment(DetailAST ast) {
         final DetailAST nonCommentAst = getNextNonCommentAst(ast);
-        boolean hasReliefComment = false;
-
+        boolean result = false;
         if (nonCommentAst != null) {
-            DetailAST previousSibling = nonCommentAst.getPreviousSibling();
-            final int prevLineNumber = previousSibling.getLineNo();
-
-            while (previousSibling != null && previousSibling.getLineNo() == prevLineNumber) {
-                final DetailAST firstChild = previousSibling.getFirstChild();
-                if (firstChild != null && reliefPattern.matcher(firstChild.getText()).find()) {
-                    hasReliefComment = true;
-                    break;
-                }
-                previousSibling = previousSibling.getPreviousSibling();
-            }
+            final int prevLineNumber = nonCommentAst.getPreviousSibling().getLineNo();
+            result = Stream.iterate(nonCommentAst.getPreviousSibling(),
+                            Objects::nonNull, DetailAST::getPreviousSibling)
+                    .takeWhile(sibling -> sibling.getLineNo() == prevLineNumber)
+                    .map(DetailAST::getFirstChild)
+                    .filter(Objects::nonNull)
+                    .anyMatch(firstChild -> reliefPattern.matcher(firstChild.getText()).find());
         }
-
-        return hasReliefComment;
+        return result;
     }
 
 }
