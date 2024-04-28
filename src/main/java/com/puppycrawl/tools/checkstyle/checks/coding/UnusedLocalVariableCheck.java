@@ -232,8 +232,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (isInsideLocalAnonInnerClass(ast)) {
             visitLocalAnonInnerClass(ast);
         }
-        else if (TokenUtil.isTypeDeclaration(type)) {
-            visitTypeDeclarationToken(ast);
+        else if (isNonLocalTypeDeclaration(ast)) {
+            visitNonLocalTypeDeclarationToken(ast);
         }
         else if (type == TokenTypes.PACKAGE_DEF) {
             packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
@@ -304,18 +304,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Visit the type declaration token.
+     * Visit the non-local type declaration token.
      *
      * @param typeDeclAst type declaration ast
      */
-    private void visitTypeDeclarationToken(DetailAST typeDeclAst) {
-        if (isNonLocalTypeDeclaration(typeDeclAst)) {
-            final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
-            final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
-            depth++;
-            typeDeclarations.push(currTypeDecl);
-            typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
-        }
+    private void visitNonLocalTypeDeclarationToken(DetailAST typeDeclAst) {
+        final String qualifiedName = getQualifiedTypeDeclarationName(typeDeclAst);
+        final TypeDeclDesc currTypeDecl = new TypeDeclDesc(qualifiedName, depth, typeDeclAst);
+        depth++;
+        typeDeclarations.push(currTypeDecl);
+        typeDeclAstToTypeDeclDesc.put(typeDeclAst, currTypeDecl);
     }
 
     /**
