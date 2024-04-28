@@ -10,6 +10,78 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.16.0">
+      <div class="releaseDate">28.04.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            LITERAL_CASE token support in RightCurlyCheck.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14620">#14620</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            OverloadMethodDeclarationOrder check ignores anything besides methods.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14765">#14765</a>
+          </li>
+          <li>
+            MagicNumberCheck NPE when ignoring field declarations.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14788">#14788</a>
+          </li>
+          <li>
+            UnusedLocalVariable does not support local classes.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14092">#14092</a>
+          </li>
+          <li>
+            UnusedImports does not report unused static imports when the method is used as a method
+            reference.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12923">#12923</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            IDEA inspection suppressions resulted from migration to v2022.3.3.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14625">#14625</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Acesif, prathm3, Tara
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Enforce new naming convention &quot;InputXpath{Checkname}Xxxx.java&quot; in IT area.
+            Author: Minghao Li, MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14715">#14715</a>
+          </li>
+          <li>
+            update version of IDEA inspection engine Version:2022.3.3.
+            Author: MANISH-K-07
+            <a href="https://github.com/checkstyle/checkstyle/issues/14448">#14448</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Omar Shawky, Prathamesh-007
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            doc: updated cmdline docs to be more specific.
+            Author: MANISH-K-07
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Prathamesh-007
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.15.0">
       <div class="releaseDate">01.04.2024</div>
       <p>Breaking backward compatibility:</p>
