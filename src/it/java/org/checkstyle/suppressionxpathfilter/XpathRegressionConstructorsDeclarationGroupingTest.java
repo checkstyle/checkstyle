@@ -47,7 +47,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         final String[] expectedViolation = {
             "10:5: " + getCheckMessage(clazz,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 6),
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -79,7 +79,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         final String[] expectedViolation = {
             "12:5: " + getCheckMessage(clazz,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 10),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -112,7 +112,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         final String[] expectedViolation = {
             "14:5: " + getCheckMessage(clazz,
-                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 8),
+                    ConstructorsDeclarationGroupingCheck.MSG_KEY, 12),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
