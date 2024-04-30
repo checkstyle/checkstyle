@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -30,9 +32,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that all constructors are grouped together.
- * If there is any code between the constructors
- * then this check will give an error.
- * Comments between constructors are ignored.
+ * If there is any non-constructor code separating constructors,
+ * this check identifies and logs a violation for those ungrouped constructors.
+ * The violation message will specify the line number of the last grouped constructor.
+ * Comments between constructors are allowed.
+ * </p>
+ * <p>
+ * Rationale: Grouping constructors together in a class improves code readability
+ * and maintainability. It allows developers to easily understand
+ * the different ways an object can be instantiated
+ * and the tasks performed by each constructor.
  * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -46,10 +55,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @since 10.16.0
+ * @since 10.17.0
  */
 
-@FileStatefulCheck
+@StatelessCheck
 public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
 
     /**
@@ -57,11 +66,6 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "constructors.declaration.grouping";
-
-    /**
-     * Specifies different Object Blocks scope.
-     */
-    private final Map<DetailAST, Integer> allObjBlocks = new HashMap<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -76,35 +80,82 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
-    public void beginTree(DetailAST rootAst) {
-        allObjBlocks.clear();
+    public void visitToken(DetailAST ast) {
+        // list of all child ASTs
+        final List<DetailAST> children = getChildList(ast);
+
+        // find first constructor
+        final DetailAST firstConstructor = children.stream()
+                .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+                .findFirst()
+                .orElse(null);
+
+        if (firstConstructor != null) {
+
+            // get all children AST after the first constructor
+            final List<DetailAST> childrenAfterFirstConstructor =
+                    children.subList(children.indexOf(firstConstructor), children.size());
+
+            // find the first index of non-constructor AST after the first constructor, if present
+            final Optional<Integer> indexOfFirstNonConstructor = childrenAfterFirstConstructor
+                    .stream()
+                    .filter(currAst -> !isConstructor(currAst))
+                    .findFirst()
+                    .map(children::indexOf);
+
+            // list of all children after first non-constructor AST
+            final List<DetailAST> childrenAfterFirstNonConstructor = indexOfFirstNonConstructor
+                    .map(index -> children.subList(index, children.size()))
+                    .orElseGet(ArrayList::new);
+
+            // create a list of all constructors that are not grouped to log
+            final List<DetailAST> constructorsToLog = childrenAfterFirstNonConstructor.stream()
+                    .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+                    .collect(Collectors.toUnmodifiableList());
+
+            // find the last grouped constructor
+            final DetailAST lastGroupedConstructor = childrenAfterFirstConstructor.stream()
+                    .takeWhile(ConstructorsDeclarationGroupingCheck::isConstructor)
+                    .reduce((first, second) -> second)
+                    .orElse(firstConstructor);
+
+            // log all constructors that are not grouped
+            constructorsToLog
+                    .forEach(ctor -> log(ctor, MSG_KEY, lastGroupedConstructor.getLineNo()));
+        }
     }
 
-    @Override
-    public void visitToken(DetailAST ast) {
-        final DetailAST currObjBlock = ast.getParent();
-        final Integer previousCtorLineNo = allObjBlocks.get(currObjBlock);
-
-        if (previousCtorLineNo != null) {
-            final DetailAST previousSibling = ast.getPreviousSibling();
-            final int siblingType = previousSibling.getType();
-            final boolean isCtor = siblingType == TokenTypes.CTOR_DEF;
-            final boolean isCompactCtor = siblingType == TokenTypes.COMPACT_CTOR_DEF;
-
-            if (!isCtor && !isCompactCtor) {
-                log(ast, MSG_KEY, previousCtorLineNo);
-            }
-
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
+    /**
+     * Get a list of all children of the given AST.
+     *
+     * @param ast the AST to get children of
+     * @return a list of all children of the given AST
+     */
+    private static List<DetailAST> getChildList(DetailAST ast) {
+        final List<DetailAST> children = new ArrayList<>();
+        DetailAST child = ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild();
+        while (child != null) {
+            children.add(child);
+            child = child.getNextSibling();
         }
-        else {
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
-        }
+        return children;
+    }
+
+    /**
+     * Check if the given AST is a constructor.
+     *
+     * @param ast the AST to check
+     * @return true if the given AST is a constructor, false otherwise
+     */
+    private static boolean isConstructor(DetailAST ast) {
+        return ast.getType() == TokenTypes.CTOR_DEF
+                || ast.getType() == TokenTypes.COMPACT_CTOR_DEF;
     }
 }

@@ -7,13 +7,21 @@
   </head>
   <body>
     <section name="ConstructorsDeclarationGrouping">
-      <p>Since Checkstyle 10.16.0</p>
+      <p>Since Checkstyle 10.17.0</p>
       <subsection name="Description" id="Description">
         <p>
           Checks that all constructors are grouped together.
-          If there is any code between the constructors
-          then this check will give an error.
-          Comments between constructors are ignored.
+          If there is any non-constructor code separating constructors,
+          this check identifies and logs a violation for those ungrouped constructors.
+          The violation message will specify the line number
+          of the last grouped constructor.
+          Comments between constructors are allowed.
+        </p>
+        <p>
+        Rationale: Grouping constructors together in a class improves code readability
+        and maintainability. It allows developers to easily understand
+        the different ways an object can be instantiated
+        and the tasks performed by each constructor.
         </p>
       </subsection>
 
