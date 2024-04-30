@@ -32,7 +32,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that all constructors are grouped together.
  * If there is any code between the constructors
  * then this check will give an error.
- * Comments between constructors are ignored.
+ * The check identifies and flags any constructors that are not grouped together.
+ * The error message will specify the line number from where the constructors are separated.
+ * Comments between constructors are allowed.
  * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -46,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @since 10.16.0
+ * @since 10.17.0
  */
 
 @FileStatefulCheck
@@ -59,9 +61,9 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
     public static final String MSG_KEY = "constructors.declaration.grouping";
 
     /**
-     * Specifies different Object Blocks scope.
+     * Specifies the violation data.
      */
-    private final Map<DetailAST, Integer> allObjBlocks = new HashMap<>();
+    private final Map<DetailAST, ViolationData> violationDataMap = new HashMap<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -83,28 +85,106 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAst) {
-        allObjBlocks.clear();
+        violationDataMap.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST currObjBlock = ast.getParent();
-        final Integer previousCtorLineNo = allObjBlocks.get(currObjBlock);
+        ViolationData astData = violationDataMap.get(currObjBlock);
 
-        if (previousCtorLineNo != null) {
+        if (astData != null) {
             final DetailAST previousSibling = ast.getPreviousSibling();
             final int siblingType = previousSibling.getType();
             final boolean isCtor = siblingType == TokenTypes.CTOR_DEF;
             final boolean isCompactCtor = siblingType == TokenTypes.COMPACT_CTOR_DEF;
 
-            if (!isCtor && !isCompactCtor) {
-                log(ast, MSG_KEY, previousCtorLineNo);
+            if (!isCtor && !isCompactCtor && !astData.isViolation()) {
+                final DetailAST firstNonCtorSibling = astData.getPreviousCtor().getNextSibling();
+                astData = new ViolationData(
+                                        astData.getPreviousCtor(),
+                                        firstNonCtorSibling.getLineNo(),
+                                        true);
             }
 
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
+            if (astData.isViolation()) {
+                log(ast, MSG_KEY, astData.getLineNumber());
+            }
+
+            astData = new ViolationData(
+                                    ast,
+                                    astData.getLineNumber(),
+                                    astData.isViolation());
         }
         else {
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
+            astData = new ViolationData(ast, ast.getLineNo(), false);
+        }
+
+        violationDataMap.put(currObjBlock, astData);
+
+    }
+
+    /**
+     * Data class to store violation data.
+     * It contains information about the constructor, line number and violation status.
+     */
+    private static final class ViolationData {
+
+        /**
+         * Specifies the previous constructor for the current block.
+         */
+        private final DetailAST previousCtor;
+
+        /**
+         * Specifies the line number of the first non-constructor sibling node
+         * following the last constructor for the current block.
+         */
+        private final int lineNumber;
+
+        /**
+         * Specifies the violation status for the current block.
+         */
+        private final boolean violation;
+
+        /**
+         * Creates a new instance of {@code ViolationData}.
+         *
+         * @param ast the last constructor before the separation.
+         * @param lineNo the line number of the last constructor before the separation.
+         * @param violationStatus the violation status.
+         */
+        private ViolationData(DetailAST ast, int lineNo, boolean violationStatus) {
+            this.previousCtor = ast;
+            this.lineNumber = lineNo;
+            this.violation = violationStatus;
+        }
+
+        /**
+         * Gets the previous constructor for the current block.
+         *
+         * @return the last constructor before the separation.
+         */
+        public DetailAST getPreviousCtor() {
+            return previousCtor;
+        }
+
+        /**
+         * Gets the line number of the first non-constructor sibling node
+         * following the last constructor for the current block.
+         *
+         * @return the line number of the first non-constructor sibling node.
+         */
+        public int getLineNumber() {
+            return lineNumber;
+        }
+
+        /**
+         * Gets the violation status for the current block.
+         *
+         * @return the violation status.
+         */
+        public boolean isViolation() {
+            return violation;
         }
     }
 }

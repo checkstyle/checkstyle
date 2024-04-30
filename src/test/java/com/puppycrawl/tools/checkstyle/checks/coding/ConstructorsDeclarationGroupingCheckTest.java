@@ -43,12 +43,17 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_KEY, 19),
-            "27:5: " + getCheckMessage(MSG_KEY, 23),
-            "41:9: " + getCheckMessage(MSG_KEY, 37),
-            "50:13: " + getCheckMessage(MSG_KEY, 44),
-            "53:9: " + getCheckMessage(MSG_KEY, 41),
-            "56:5: " + getCheckMessage(MSG_KEY, 27),
+            "23:5: " + getCheckMessage(MSG_KEY, 21),
+            "27:5: " + getCheckMessage(MSG_KEY, 21),
+            "43:9: " + getCheckMessage(MSG_KEY, 39),
+            "52:13: " + getCheckMessage(MSG_KEY, 48),
+            "55:9: " + getCheckMessage(MSG_KEY, 39),
+            "58:5: " + getCheckMessage(MSG_KEY, 21),
+            "60:5: " + getCheckMessage(MSG_KEY, 21),
+            "78:7: " + getCheckMessage(MSG_KEY, 76),
+            "82:7: " + getCheckMessage(MSG_KEY, 76),
+            "84:7: " + getCheckMessage(MSG_KEY, 76),
+            "87:5: " + getCheckMessage(MSG_KEY, 21),
         };
         verifyWithInlineConfigParser(
                 getPath("InputConstructorsDeclarationGrouping.java"), expected);
@@ -58,8 +63,9 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     public void testConstructorsDeclarationGroupingRecords() throws Exception {
 
         final String[] expected = {
-            "18:9: " + getCheckMessage(MSG_KEY, 12),
-            "34:9: " + getCheckMessage(MSG_KEY, 30),
+            "18:9: " + getCheckMessage(MSG_KEY, 16),
+            "20:9: " + getCheckMessage(MSG_KEY, 16),
+            "34:9: " + getCheckMessage(MSG_KEY, 32),
         };
 
         verifyWithInlineConfigParser(
@@ -105,8 +111,8 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, ctorDef.get(),
-                        "allObjBlocks",
-                        allObjBlocks -> ((Map<DetailAST, Integer>) allObjBlocks).isEmpty()))
+                        "violationDataMap",
+                        violationDataMap -> ((Map<DetailAST, Object>) violationDataMap).isEmpty()))
                 .isTrue();
     }
 

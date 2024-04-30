@@ -17,7 +17,7 @@ public class InputConstructorsDeclarationGroupingRecords {
 
         public MyRecord1 {} // violation
 
-        public MyRecord1(int x, int y, int z) {
+        public MyRecord1(int x, int y, int z) { // violation
             this(x+y, z);
         }
     }

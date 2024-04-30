@@ -38,6 +38,8 @@ public class InputConstructorsDeclarationGrouping {
 
         String str;
 
+        String str2;
+
         Testing(int x) {} // violation
 
         private abstract class Inner {
@@ -55,6 +57,8 @@ public class InputConstructorsDeclarationGrouping {
 
     InputConstructorsDeclarationGrouping(float x) {} // violation
 
+    InputConstructorsDeclarationGrouping(long l) {} // violation
+
     private class Inner {
         Inner() {}
 
@@ -64,4 +68,21 @@ public class InputConstructorsDeclarationGrouping {
         Inner(int x) {}
     }
 
+    private class Inner2 {
+      Inner2() {}
+
+      Inner2(String str) {}
+
+      int x;
+
+      Inner2(int x) {} // violation
+
+      String xx;
+
+      Inner2(double d) {} // violation
+
+      Inner2(float f) {} // violation
+    }
+
+    InputConstructorsDeclarationGrouping(long l, double d) {} // violation
 }
