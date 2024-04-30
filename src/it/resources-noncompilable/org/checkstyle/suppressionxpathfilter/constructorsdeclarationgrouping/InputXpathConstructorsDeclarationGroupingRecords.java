@@ -12,9 +12,5 @@ public class InputXpathConstructorsDeclarationGroupingRecords {
     void foo() {}
 
     public MyRecord {} // warn
-
-    public MyRecord(int x, int y, int z) {
-      this(x+y, z);
-    }
   }
 }
