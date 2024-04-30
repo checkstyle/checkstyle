@@ -26,19 +26,21 @@ public class InputConstructorsDeclarationGrouping {
 
     InputConstructorsDeclarationGrouping(double x) {} // violation
 
-    private enum Testing {
+    private enum InnerEnum1 {
 
         one;
 
         int x;
 
-        Testing() {}
+        InnerEnum1() {}
 
-        Testing(String f) {}
+        InnerEnum1(String f) {}
 
         String str;
 
-        Testing(int x) {} // violation
+        String str2;
+
+        InnerEnum1(int x) {} // violation
 
         private abstract class Inner {
             Inner() {}
@@ -50,10 +52,12 @@ public class InputConstructorsDeclarationGrouping {
             Inner(String g) {} // violation
         }
 
-        Testing(double d) {} // violation
+        InnerEnum1(double d) {} // violation
     }
 
     InputConstructorsDeclarationGrouping(float x) {} // violation
+
+    InputConstructorsDeclarationGrouping(long l) {} // violation
 
     private class Inner {
         Inner() {}
@@ -64,4 +68,52 @@ public class InputConstructorsDeclarationGrouping {
         Inner(int x) {}
     }
 
+    private class Inner2 {
+      Inner2() {}
+
+      Inner2(String str) {}
+
+      int x;
+
+      Inner2(int x) {} // violation
+
+      String xx;
+
+      Inner2(double d) {} // violation
+
+      Inner2(float f) {} // violation
+    }
+
+    InputConstructorsDeclarationGrouping(long l, double d) {} // violation
+
+    InputConstructorsDeclarationGrouping annoynmous = new InputConstructorsDeclarationGrouping() {
+        int x;
+        void test() {}
+        void test2() {}
+    };
+
+    private enum InnerEnum2 {
+        ONE,TWO,THREE;
+        void test() {}
+        void test2() {}
+        void test3() {}
+    }
+
+    private enum InnerEnum3 {
+        InnerEnum3() {}
+    }
+
+    private enum InnerEnum4 {}
+
+    private class Inner3 {
+        void test() {}
+        void test2() {}
+        void test3() {}
+    }
+
+    private class Inner4 {
+        Inner4() {}
+    }
+
+    private class Inner5 {}
 }
