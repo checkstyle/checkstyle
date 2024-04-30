@@ -7,13 +7,16 @@
   </head>
   <body>
     <section name="ConstructorsDeclarationGrouping">
-      <p>Since Checkstyle 10.16.0</p>
+      <p>Since Checkstyle 10.17.0</p>
       <subsection name="Description" id="Description">
         <p>
           Checks that all constructors are grouped together.
-          If there is any code between the constructors
-          then this check will give an error.
-          Comments between constructors are ignored.
+          If there is any other type of code (like method or variable declarations, etc)
+          separating the constructors then this check will log a violation.
+          The check identifies and logs any constructors that are not grouped together.
+          The violation message will specify the line number
+          from where the constructors got separated.
+          Comments between constructors are allowed.
         </p>
       </subsection>
 
