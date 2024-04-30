@@ -15,9 +15,15 @@ public class InputConstructorsDeclarationGroupingRecords {
 
         void foo() {}
 
+        void foo2() {}
+
         public MyRecord1 {} // violation
 
-        public MyRecord1(int x, int y, int z) {
+        public MyRecord1(int a, int b, int c, int d) { // violation
+            this(a+b, c+d);
+        }
+
+        public MyRecord1(int x, int y, int z) { // violation
             this(x+y, z);
         }
     }
@@ -31,6 +37,20 @@ public class InputConstructorsDeclarationGroupingRecords {
 
         String[] str;
 
+        String[] str2;
+
         MyClass(int a) {} // violation
+    }
+
+    public record MyRecord4(double d) {
+        public MyRecord4(double d) {
+            this(d);
+        }
+
+        public MyRecord4 {}
+
+        public MyRecord4(double a, double b) {
+            this(a+b);
+        }
     }
 }

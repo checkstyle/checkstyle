@@ -19,20 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
  * Checks that all constructors are grouped together.
  * If there is any code between the constructors
  * then this check will give an error.
- * Comments between constructors are ignored.
+ * The check identifies and flags any constructors that are not grouped together.
+ * The error message will specify the line number from where the constructors are separated.
+ * Comments between constructors are allowed.
  * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -46,10 +46,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  *
- * @since 10.16.0
+ * @since 10.17.0
  */
 
-@FileStatefulCheck
+@StatelessCheck
 public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
 
     /**
@@ -57,11 +57,6 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "constructors.declaration.grouping";
-
-    /**
-     * Specifies different Object Blocks scope.
-     */
-    private final Map<DetailAST, Integer> allObjBlocks = new HashMap<>();
 
     @Override
     public int[] getDefaultTokens() {
@@ -76,35 +71,58 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
-    public void beginTree(DetailAST rootAst) {
-        allObjBlocks.clear();
+    public void visitToken(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+
+        final int[] tokenTypes = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+        };
+
+        checkConstructorsGrouping(ast);
+
     }
 
-    @Override
-    public void visitToken(DetailAST ast) {
-        final DetailAST currObjBlock = ast.getParent();
-        final Integer previousCtorLineNo = allObjBlocks.get(currObjBlock);
+    /**
+     * Checks that if constructors are grouped together, they should not be
+     * separated from each other.
+     *
+     * @param objectBlock is a class, enum or record block.
+     */
+    private void checkConstructorsGrouping(DetailAST objectBlock) {
+        DetailAST currentToken = objectBlock.getFirstChild();
+        DetailAST previousCtor = null;
+        int firstNonCtorSiblingLineNo = -1;
+        boolean ctorOccured = false;
+        boolean isViolation = false;
 
-        if (previousCtorLineNo != null) {
-            final DetailAST previousSibling = ast.getPreviousSibling();
-            final int siblingType = previousSibling.getType();
-            final boolean isCtor = siblingType == TokenTypes.CTOR_DEF;
-            final boolean isCompactCtor = siblingType == TokenTypes.COMPACT_CTOR_DEF;
+        while (currentToken != null) {
+            if (currentToken.getType() == TokenTypes.CTOR_DEF
+                    || currentToken.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                final DetailAST previousSibling = currentToken.getPreviousSibling();
+                final boolean isCtor = previousSibling.getType() == TokenTypes.CTOR_DEF
+                                        || previousSibling.getType() == TokenTypes.COMPACT_CTOR_DEF;
 
-            if (!isCtor && !isCompactCtor) {
-                log(ast, MSG_KEY, previousCtorLineNo);
+                if (ctorOccured && !isViolation && !isCtor) {
+                    firstNonCtorSiblingLineNo = previousCtor.getNextSibling().getLineNo();
+                    isViolation = true;
+                }
+
+                if (isViolation) {
+                    log(currentToken, MSG_KEY, firstNonCtorSiblingLineNo);
+                }
+
+                previousCtor = currentToken;
+                ctorOccured = true;
             }
 
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
-        }
-        else {
-            allObjBlocks.put(currObjBlock, ast.getLineNo());
+            currentToken = currentToken.getNextSibling();
         }
     }
 }
