@@ -10,6 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgro
 
 // xdoc section -- start
 public class Example1 {
+
   int x;
 
   Example1() {}
@@ -24,6 +25,7 @@ public class Example1 {
   void foo() {}
 
   private enum ExampleEnum {
+
     ONE, TWO, THREE;
 
     ExampleEnum() {}

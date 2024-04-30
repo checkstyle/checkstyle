@@ -7,13 +7,15 @@
   </head>
   <body>
     <section name="ConstructorsDeclarationGrouping">
-      <p>Since Checkstyle 10.16.0</p>
+      <p>Since Checkstyle 10.17.0</p>
       <subsection name="Description" id="Description">
         <p>
           Checks that all constructors are grouped together.
-          If there is any code between the constructors
-          then this check will give an error.
-          Comments between constructors are ignored.
+          If there is any non-constructor code separating constructors,
+          this check identifies and logs a violation for those ungrouped constructors.
+          The violation message will specify the line number
+          of the last grouped constructor.
+          Comments between constructors are allowed.
         </p>
       </subsection>
 
@@ -29,6 +31,7 @@
         <p id="Example1-code">Example of correct grouping of constructors:</p>
         <source>
 public class Example1 {
+
   int x;
 
   Example1() {}
@@ -43,6 +46,7 @@ public class Example1 {
   void foo() {}
 
   private enum ExampleEnum {
+
     ONE, TWO, THREE;
 
     ExampleEnum() {}
@@ -71,9 +75,10 @@ public class Example2 {
 
   Example2(int x) {} // violation
 
-  Example2(String s, int x) {}
+  Example2(String s, int x) {} // violation
 
   private enum ExampleEnum {
+
     ONE, TWO, THREE;
 
     ExampleEnum() {}

@@ -6,9 +6,10 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that all constructors are grouped together.
- If there is any code between the constructors
- then this check will give an error.
- Comments between constructors are ignored.
+ If there is any non-constructor code separating constructors,
+ this check identifies and logs a violation for those ungrouped constructors.
+ The violation message will specify the line number of the last grouped constructor.
+ Comments between constructors are allowed.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="constructors.declaration.grouping"/>
