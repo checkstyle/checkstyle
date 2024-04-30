@@ -20,25 +20,30 @@ public class InputConstructorsDeclarationGrouping {
 
     void foo2() {}
 
-    InputConstructorsDeclarationGrouping(int a) {} // violation
+    InputConstructorsDeclarationGrouping(int a) {}
+    // violation above 'Constructors should be grouped together.*'
 
     int abc;
 
-    InputConstructorsDeclarationGrouping(double x) {} // violation
+    InputConstructorsDeclarationGrouping(double x) {}
+    // violation above 'Constructors should be grouped together.*'
 
-    private enum Testing {
+    private enum InnerEnum1 {
 
         one;
 
         int x;
 
-        Testing() {}
+        InnerEnum1() {}
 
-        Testing(String f) {}
+        InnerEnum1(String f) {}
 
         String str;
 
-        Testing(int x) {} // violation
+        String str2;
+
+        InnerEnum1(int x) {}
+        // violation above 'Constructors should be grouped together.*'
 
         private abstract class Inner {
             Inner() {}
@@ -47,13 +52,19 @@ public class InputConstructorsDeclarationGrouping {
 
             String neko;
 
-            Inner(String g) {} // violation
+            Inner(String g) {}
+            // violation above 'Constructors should be grouped together.*'
         }
 
-        Testing(double d) {} // violation
+        InnerEnum1(double d) {}
+        // violation above 'Constructors should be grouped together.*'
     }
 
-    InputConstructorsDeclarationGrouping(float x) {} // violation
+    InputConstructorsDeclarationGrouping(float x) {}
+    // violation above 'Constructors should be grouped together.*'
+
+    InputConstructorsDeclarationGrouping(long l) {}
+    // violation above 'Constructors should be grouped together.*'
 
     private class Inner {
         Inner() {}
@@ -64,4 +75,56 @@ public class InputConstructorsDeclarationGrouping {
         Inner(int x) {}
     }
 
+    private class Inner2 {
+      Inner2() {}
+
+      Inner2(String str) {}
+
+      int x;
+
+      Inner2(int x) {}
+      // violation above 'Constructors should be grouped together.*'
+
+      String xx;
+
+      Inner2(double d) {}
+      // violation above 'Constructors should be grouped together.*'
+
+      Inner2(float f) {}
+      // violation above 'Constructors should be grouped together.*'
+    }
+
+    InputConstructorsDeclarationGrouping(long l, double d) {}
+    // violation above 'Constructors should be grouped together.*'
+
+    InputConstructorsDeclarationGrouping annoynmous = new InputConstructorsDeclarationGrouping() {
+        int x;
+        void test() {}
+        void test2() {}
+    };
+
+    private enum InnerEnum2 {
+        ONE,TWO,THREE;
+        void test() {}
+        void test2() {}
+        void test3() {}
+    }
+
+    private enum InnerEnum3 {
+        InnerEnum3() {}
+    }
+
+    private enum InnerEnum4 {}
+
+    private class Inner3 {
+        void test() {}
+        void test2() {}
+        void test3() {}
+    }
+
+    private class Inner4 {
+        Inner4() {}
+    }
+
+    private class Inner5 {}
 }

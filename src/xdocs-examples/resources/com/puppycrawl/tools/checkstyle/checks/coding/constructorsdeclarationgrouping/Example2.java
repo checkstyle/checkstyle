@@ -21,9 +21,10 @@ public class Example2 {
 
   Example2(int x) {} // violation
 
-  Example2(String s, int x) {}
+  Example2(String s, int x) {} // violation
 
   private enum ExampleEnum {
+
     ONE, TWO, THREE;
 
     ExampleEnum() {}
