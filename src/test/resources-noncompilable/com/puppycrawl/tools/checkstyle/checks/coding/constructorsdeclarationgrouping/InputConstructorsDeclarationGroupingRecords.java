@@ -8,16 +8,24 @@ ConstructorsDeclarationGrouping
 package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgrouping;
 
 public class InputConstructorsDeclarationGroupingRecords {
-    public record MyRecord1(int x, int y) {
-        public MyRecord1(int a) {
+    public record MyRecord(int x, int y) {
+        public MyRecord(int a) {
             this(a,a);
         }
 
         void foo() {}
 
-        public MyRecord1 {} // violation
+        void foo2() {
+            System.out.println("foo2");
+        }
 
-        public MyRecord1(int x, int y, int z) {
+        public MyRecord {} // violation
+
+        public MyRecord(int a, int b, int c, int d) { // violation
+            this(a+b, c+d);
+        }
+
+        public MyRecord(int x, int y, int z) { // violation
             this(x+y, z);
         }
     }
@@ -28,6 +36,8 @@ public class InputConstructorsDeclarationGroupingRecords {
         MyClass() {}
 
         MyClass(String s) {}
+
+        String[] str;
 
         String[] str;
 
