@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck"
+             name="ConstructorsDeclarationGrouping"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that all constructors are grouped together.
+ If there is any code between the constructors
+ then this check will give an error.
+ The check identifies and flags any constructors that are not grouped together.
+ The error message will specify the line number from where the constructors are separated.
+ Comments between constructors are allowed.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="constructors.declaration.grouping"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
