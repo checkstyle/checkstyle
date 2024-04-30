@@ -495,6 +495,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.AvoidInlineConditionalsCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidNoArgumentSuperConstructorCallCheck",
                 BASE_PACKAGE + ".checks.coding.AvoidNoArgumentSuperConstructorCallCheck");
+        NAME_TO_FULL_MODULE_NAME.put("ConstructorsDeclarationGroupingCheck",
+                BASE_PACKAGE + ".checks.coding.ConstructorsDeclarationGroupingCheck");
         NAME_TO_FULL_MODULE_NAME.put("CovariantEqualsCheck",
                 BASE_PACKAGE + ".checks.coding.CovariantEqualsCheck");
         NAME_TO_FULL_MODULE_NAME.put("DeclarationOrderCheck",
@@ -557,8 +559,6 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.OneStatementPerLineCheck");
         NAME_TO_FULL_MODULE_NAME.put("OverloadMethodsDeclarationOrderCheck",
                 BASE_PACKAGE + ".checks.coding.OverloadMethodsDeclarationOrderCheck");
-        NAME_TO_FULL_MODULE_NAME.put("ConstructorsDeclarationGroupingCheck",
-                BASE_PACKAGE + ".checks.coding.ConstructorsDeclarationGroupingCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageDeclarationCheck",
                 BASE_PACKAGE + ".checks.coding.PackageDeclarationCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
