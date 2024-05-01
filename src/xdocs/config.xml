@@ -539,6 +539,20 @@
               <td><code>.java</code></td>
               <td>3.0</td>
             </tr>
+            <tr>
+              <td>parseExceptionSeverity</td>
+              <td>Severity level to log Java parsing exceptions when they are skipped.</td>
+              <td><a href="property_types.html#SeverityLevel">SeverityLevel</a></td>
+              <td><code>error</code></td>
+              <td>10.16.1</td>
+            </tr>
+            <tr>
+              <td>skipFileOnJavaParseException</td>
+              <td>Control whether to skip files with Java parsing errors.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.16.1</td>
+            </tr>
           </table>
         </div>
       </subsection>
