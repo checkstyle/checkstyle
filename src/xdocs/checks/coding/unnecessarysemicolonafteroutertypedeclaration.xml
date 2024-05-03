@@ -80,25 +80,25 @@
           Example:
         </p>
         <source>
-class A {
+            class A {
 
-   class Nested {
+            class Nested {
 
-   }; // OK, nested type declarations are ignored
+            }; // OK, nested type declarations are ignored
 
-}; // violation
+            }; // violation
 
-interface B {
+            interface B {
 
-}; // violation
+            }; // violation
 
-enum C {
+            enum C {
 
-}; // violation
+            }; // violation
 
-{@literal @}interface D {
+            @interface D {
 
-}; // violation
+            }; // violation
         </source>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
@@ -117,21 +117,21 @@ enum C {
           Example:
         </p>
         <source>
-class A {
+            class S {
 
-}; // violation
+            }; // violation
 
-interface B {
+            interface T {
 
-}; // OK
+            }; // OK
 
-enum C {
+            enum U {
 
-}; // OK
+            }; // OK
 
-{@literal @}interface D {
+            @interface V {
 
-}; // OK
+            }; // OK
         </source>
       </subsection>
 

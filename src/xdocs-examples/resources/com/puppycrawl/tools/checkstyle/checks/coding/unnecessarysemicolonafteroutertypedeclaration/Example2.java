@@ -8,20 +8,23 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
+
 // xdoc section -- start
-class A {
+class S {
 
 }; // violation
 
-interface B {
+interface T {
 
 }; // OK
 
-enum C {
+enum U {
 
 }; // OK
 
-{@literal @}interface D {
+@interface V {
 
 }; // OK
 // xdoc section -- end
+
