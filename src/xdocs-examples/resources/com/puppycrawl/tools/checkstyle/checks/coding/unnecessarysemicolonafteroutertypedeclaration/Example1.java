@@ -6,12 +6,14 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
+
 // xdoc section -- start
 class A {
 
-   class Nested {
+    class Nested {
 
-   }; // OK, nested type declarations are ignored
+    }; // OK, nested type declarations are ignored
 
 }; // violation
 
@@ -23,7 +25,7 @@ enum C {
 
 }; // violation
 
-{@literal @}interface D {
+@interface D {
 
 }; // violation
 // xdoc section -- end
