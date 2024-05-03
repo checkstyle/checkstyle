@@ -96,7 +96,7 @@ enum C {
 
 }; // violation
 
-{@literal @}interface D {
+@interface D {
 
 }; // violation
         </source>
@@ -117,19 +117,19 @@ enum C {
           Example:
         </p>
         <source>
-class A {
+class E {
 
 }; // violation
 
-interface B {
+interface F {
 
 }; // OK
 
-enum C {
+enum G {
 
 }; // OK
 
-{@literal @}interface D {
+@interface H {
 
 }; // OK
         </source>
