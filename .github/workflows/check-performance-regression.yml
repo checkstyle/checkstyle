@@ -30,14 +30,14 @@ jobs:
           java-version: 11
           distribution: 'temurin'
 
-      - name: Checkout latest code
+      - name: Checkout Pull Request Code
         uses: actions/checkout@v4
 
       - name: Clone JDK 17 Repo
         uses: actions/checkout@v4
         with:
           repository: openjdk/jdk17
-          path: ./checkstyle/.ci-temp/jdk17
+          path: ./.ci-temp/jdk17
 
       - name: Setup local maven cache
         uses: actions/cache@v4
