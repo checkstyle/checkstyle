@@ -40,9 +40,6 @@
     <exclude name="AvoidUsingHardCodedIP"/>
     <!-- UTests are required to be public by design -->
     <exclude name="ExcessivePublicCount"/>
-    <!-- we have too much UTs for each main class, it is better to keep all tests in one
-      file to ease navigation and search for test -->
-    <exclude name="ExcessiveClassLength"/>
     <!-- we want to avoid wide throws signature, it is just test -->
     <exclude name="AvoidCatchingGenericException"/>
     <!-- we do not want to invest extra time to make logic ideal
@@ -71,13 +68,13 @@
              token explicitly.
            IndentationCheckTest has a lot of cases. -->
       <property name="violationSuppressXPath"
-              value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+              value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
     </properties>
   </rule>
 
@@ -99,28 +96,28 @@
            In MainTest PMD does not find asserts in lambdas called in the method
              invokeAndWait. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
-                     or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                     or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Name='verify']
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='MainTest']
                        //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
                        //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
+                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
                        //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
-                   | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
+                   , ./ancestor-or-self::ClassDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ImmutabilityTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ImmutabilityTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='MainTest']
                        //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
     </properties>
   </rule>
@@ -129,7 +126,7 @@
     <properties>
       <!-- A false positive. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']"/>
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='CommitValidationTest']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
@@ -141,13 +138,13 @@
          JavadocTokenTypes.testTokenValues contains several asserts as it checks each
           token explicitly. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
                         //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
     </properties>
   </rule>
@@ -157,7 +154,7 @@
       <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
           it would be broken. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='CommitValidationTest']
                         //MethodDeclaration[@Name='validateCommitMessage']"/>
     </properties>
   </rule>
@@ -169,9 +166,9 @@
          easy to maintain. The rule should also only check public methods but has a bug.
          Suppress the false-positives. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
                         //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
+                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='validateRuleNameOrder']"/>
     </properties>
   </rule>
@@ -179,17 +176,17 @@
     <properties>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='DefaultLoggerPowerTest']
                      //MethodDeclaration[@Name='testNewCtor']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamFailsOnRead']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
@@ -202,7 +199,7 @@
     <properties>
       <!-- We use thread to limit the stack size for a test method. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
+               value="./ancestor-or-self::ClassDeclaration[@SimpleName='TestUtil']
                         //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
     </properties>
   </rule>
