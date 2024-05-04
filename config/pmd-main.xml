@@ -20,27 +20,26 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='FileText']
                         //FieldDeclaration//VariableDeclarator[@Name='fullText']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
+                    , //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <property name="allowedResourceTypes"
-               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream"/>
-      <property name="allowedResourceTypes"
-               value="java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
+               value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,
+                      java.io.StringWriter,java.io.CharArrayWriter,java.io.StringReader"/>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='DefaultLogger']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='Main']
                         //MethodDeclaration[@Name='createListener']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='PropertyCacheFile']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='PropertyCacheFile']
                         //MethodDeclaration[@Name='persist' or @Name='serialize']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='XmlLoader']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='XmlLoader']
                         //MethodDeclaration[@Name='resolveEntity']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
                         //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
                         //MethodDeclaration[@Name='iterateAxis']"/>
     </properties>
   </rule>
@@ -57,11 +56,11 @@
       <property name="violationSuppressXPath"
          value="//ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
                         //MethodDeclaration[@Name='writeTablePropertiesRows']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFiles']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFile']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
                         //MethodDeclaration[@Name='getTranslationKeys']"/>
     </properties>
   </rule>
