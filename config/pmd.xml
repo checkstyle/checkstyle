@@ -56,11 +56,6 @@
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
     <exclude name="AtLeastOneConstructor"/>
-    <!-- Turning a local variable to the field may create design problems and extend the scope of
-           the variable. -->
-    <exclude name="AvoidFinalLocalVariable"/>
-    <!-- Conflicts with names that does not mean in/out. -->
-    <exclude name="AvoidPrefixingMethodParameters"/>
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
@@ -166,8 +161,6 @@
     <!-- We need compare by ref as Tree structure is immutable, we can easily
          rely on refs. -->
     <exclude name="CompareObjectsWithEquals"/>
-    <!-- Too many false positives. -->
-    <exclude name="DataflowAnomalyAnalysis"/>
     <!-- This rule does not have any option, unreasonable to use. -->
     <exclude name="ImplicitSwitchFallThrough"/>
     <!-- We reuse Check instances between java files, we need to clear state of
