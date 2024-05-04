@@ -256,8 +256,6 @@ public class FinalClassCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -271,8 +269,9 @@ public class FinalClassCheckTest
                 .that(packageDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDef.get(),
-                        "packageName", packageName -> ((String) packageName).isEmpty()))
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        packageDef.orElseThrow(), "packageName",
+                        packageName -> ((String) packageName).isEmpty()))
                 .isTrue();
     }
 

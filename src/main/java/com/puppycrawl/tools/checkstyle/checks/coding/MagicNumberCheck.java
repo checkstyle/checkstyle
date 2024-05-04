@@ -387,7 +387,7 @@ public class MagicNumberCheck extends AbstractCheck {
     private static boolean isFieldDeclaration(DetailAST ast) {
         DetailAST varDefAST = null;
         DetailAST node = ast;
-        while (node.getType() != TokenTypes.OBJBLOCK) {
+        while (node != null && node.getType() != TokenTypes.OBJBLOCK) {
             if (node.getType() == TokenTypes.VARIABLE_DEF) {
                 varDefAST = node;
                 break;

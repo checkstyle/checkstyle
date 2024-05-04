@@ -385,11 +385,11 @@ public class ModuleReflectionUtilTest {
         }
 
         /**
-         * Temporary java doc.
+         * Method has tail recursive call.
          *
          * @param data of int type.
          * @noinspection TailRecursion
-         * @noinspectionreason TailRecursion - until issue #14625
+         * @noinspectionreason TailRecursion - until issue #14814
          */
         public final void method(int data) {
             field++;

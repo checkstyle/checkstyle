@@ -36,9 +36,9 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testVoid() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount1.java")
+            getPath("InputXpathReturnCountVoid.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -51,16 +51,16 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE/LITERAL_VOID"
         );
 
@@ -68,9 +68,9 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testCustomMaxForVoid() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount1.java")
+            getPath("InputXpathReturnCountVoid.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -85,16 +85,16 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount1']]"
+                + "[./IDENT[@text='InputXpathReturnCountVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testVoid']]/TYPE/LITERAL_VOID"
         );
 
@@ -102,9 +102,9 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void testNonVoid() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount2.java")
+            getPath("InputXpathReturnCountNonVoid.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -117,16 +117,16 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE/LITERAL_BOOLEAN"
         );
 
@@ -134,9 +134,9 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFour() throws Exception {
+    public void testCustomMax() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount2.java")
+            getPath("InputXpathReturnCountNonVoid.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -151,16 +151,16 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount2']]"
+                + "[./IDENT[@text='InputXpathReturnCountNonVoid']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testNonVoid']]/TYPE/LITERAL_BOOLEAN"
         );
 
@@ -168,9 +168,9 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFive() throws Exception {
+    public void testCtor() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount3.java")
+            getPath("InputXpathReturnCountCtor.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -183,24 +183,24 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount3']]"
-                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='SuppressionXpathRegressionReturnCount3']]",
+                + "[./IDENT[@text='InputXpathReturnCountCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpathReturnCountCtor']]",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount3']]"
-                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='SuppressionXpathRegressionReturnCount3']]"
+                + "[./IDENT[@text='InputXpathReturnCountCtor']]"
+                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='InputXpathReturnCountCtor']]"
                 + "/MODIFIERS",
                 "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='SuppressionXpathRegressionReturnCount3']]"
-                + "/OBJBLOCK/CTOR_DEF/IDENT[@text='SuppressionXpathRegressionReturnCount3']"
+                + "[./IDENT[@text='InputXpathReturnCountCtor']]"
+                + "/OBJBLOCK/CTOR_DEF/IDENT[@text='InputXpathReturnCountCtor']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
     @Test
-    public void testSix() throws Exception {
+    public void testLambda() throws Exception {
         final File fileToProcess = new File(
-            getPath("SuppressionXpathRegressionReturnCount4.java")
+            getPath("InputXpathReturnCountLambda.java")
         );
 
         final DefaultConfiguration moduleConfig =
@@ -213,7 +213,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionReturnCount4']]"
+                        + "[./IDENT[@text='InputXpathReturnCountLambda']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testLambda']]/SLIST"
                         + "/VARIABLE_DEF[./IDENT[@text='a']]/ASSIGN/LAMBDA[./IDENT[@text='i']]"
         );

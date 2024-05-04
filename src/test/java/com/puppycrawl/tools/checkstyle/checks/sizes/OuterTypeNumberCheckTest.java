@@ -116,8 +116,6 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
      * check as they are file specific values.
      *
      * @throws Exception if there is an error.
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -133,7 +131,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(
-                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                             "currentDepth",
                             currentDepth -> ((Number) currentDepth).intValue() == 0))
                 .isTrue();

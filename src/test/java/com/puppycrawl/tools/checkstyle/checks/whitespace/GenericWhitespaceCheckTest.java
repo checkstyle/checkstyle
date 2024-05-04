@@ -277,8 +277,6 @@ public class GenericWhitespaceCheckTest
      * start of processing the next file in the check.
      *
      * @throws Exception if there is an error.
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     public void testClearState() throws Exception {
@@ -297,8 +295,8 @@ public class GenericWhitespaceCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(
-                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, genericStart.get(),
-                            "depth",
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                            genericStart.orElseThrow(), "depth",
                             depth -> ((Number) depth).intValue() == 0))
                 .isTrue();
     }

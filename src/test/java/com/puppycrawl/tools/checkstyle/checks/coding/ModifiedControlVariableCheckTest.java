@@ -178,8 +178,6 @@ public class ModifiedControlVariableCheckTest
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -195,8 +193,8 @@ public class ModifiedControlVariableCheckTest
                 .that(methodDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
-                        "variableStack",
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
+                        methodDef.orElseThrow(), "variableStack",
                         variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()))
                 .isTrue();
     }

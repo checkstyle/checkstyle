@@ -8,8 +8,10 @@
 
 // xdoc section -- start
 public void foo(int i) {}
+// comments between overloaded methods are allowed.
 public void foo(String s) {}
 public void foo(String s, int i) {}
 public void foo(int i, String s) {}
 public void notFoo() {}
+private interface ExampleInterface() {}
 // xdoc section -- end

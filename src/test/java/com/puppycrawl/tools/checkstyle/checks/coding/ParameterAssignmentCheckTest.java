@@ -103,8 +103,6 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
      * state of the field will be cleared.
      *
      * @throws Exception when code tested throws exception
-     * @noinspection OptionalGetWithoutIsPresent
-     * @noinspectionreason OptionalGetWithoutIsPresent - until issue #14625
      */
     @Test
     @SuppressWarnings("unchecked")
@@ -119,7 +117,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 .that(methodDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.orElseThrow(),
                 "parameterNamesStack",
                 parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()))
             .isTrue();

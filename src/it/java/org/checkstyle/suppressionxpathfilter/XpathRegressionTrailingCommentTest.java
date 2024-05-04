@@ -37,9 +37,9 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionTrailingComment1.java"));
+                "InputXpathTrailingCommentSingleLine.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TrailingCommentCheck.class);
@@ -51,7 +51,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionTrailingComment1']]/"
+                        + "[./IDENT[@text='InputXpathTrailingCommentSingleLine']]/"
                         + "OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' don&apos;"
                         + "&apos;t use trailing comments :) // warn\\n']]"
         );
@@ -61,9 +61,9 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testBlock() throws Exception {
         final File fileToProcess = new File(getPath(
-                "SuppressionXpathRegressionTrailingComment2.java"));
+                "InputXpathTrailingCommentBlock.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(TrailingCommentCheck.class);
@@ -75,7 +75,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                        + "[./IDENT[@text='SuppressionXpathRegressionTrailingComment2']]"
+                        + "[./IDENT[@text='InputXpathTrailingCommentBlock']]"
                         + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"
         );
 
