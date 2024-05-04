@@ -8,17 +8,18 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 // xdoc section -- start
-public class Test {
-private int a; // violation, missing javadoc for private member
+public class Example3 {
+  private int a; // violation
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // OK
-public int d; // OK
-/*package*/ int e; // violation, missing javadoc for package member
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;
+  public int d;
+  /*package*/ int e; // violation
 }
 // xdoc section -- end

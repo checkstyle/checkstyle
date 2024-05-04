@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +34,42 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "12:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "19:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
