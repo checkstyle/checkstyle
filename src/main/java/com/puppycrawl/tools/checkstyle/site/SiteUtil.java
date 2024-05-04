@@ -256,6 +256,7 @@ public final class SiteUtil {
         Map.entry("LineLengthCheck.fileExtensions", VERSION_8_24),
         // until https://github.com/checkstyle/checkstyle/issues/14052
         Map.entry("JavadocBlockTagLocationCheck.violateExecutionOnNonTightHtml", VERSION_8_24),
+        Map.entry("JavadocLeadingAsteriskAlignCheck.violateExecutionOnNonTightHtml", "10.17.0"),
         Map.entry("JavadocMissingLeadingAsteriskCheck.violateExecutionOnNonTightHtml", "8.38"),
         Map.entry(
             "RequireEmptyLineBeforeBlockTagGroupCheck.violateExecutionOnNonTightHtml",
