@@ -31,6 +31,10 @@
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
     files="filetabcharacter[\\/]Example\d+.java"/>
+  <suppress checks="FileTabCharacter|Indentation"
+    files="javadocleadingasteriskalign[\\/]Example3.java"/>
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]xdocs[\\/]checks[\\/]javadoc[\\/]javadocleadingasteriskalign.xml"/>
 
   <!-- Example deals with line wrapping and check does not take that into account.  -->
   <suppress id="exampleClassName"
