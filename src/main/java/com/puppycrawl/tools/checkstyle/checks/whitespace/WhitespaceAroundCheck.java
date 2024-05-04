@@ -71,6 +71,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * of the catch block (left curly bracket) is not separated from the end
  * of the catch block (right curly bracket).
  * </p>
+ * <p>
+ * Note: <a href="https://openjdk.org/jeps/361">
+ * Switch expressions</a> are ignored by this check.
+ * </p>
  * <ul>
  * <li>
  * Property {@code allowEmptyCatches} - Allow empty catch bodies.
@@ -497,22 +501,31 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isNotRelevantSituation(DetailAST ast, int currentType) {
         final int parentType = ast.getParent().getType();
-        final boolean starImport = currentType == TokenTypes.STAR
-                && parentType == TokenTypes.DOT;
-        final boolean insideCaseGroup = parentType == TokenTypes.CASE_GROUP;
-
-        final boolean starImportOrSlistInsideCaseGroup = starImport || insideCaseGroup;
-        final boolean colonOfCaseOrDefaultOrForEach =
-                isColonOfCaseOrDefault(parentType)
-                        || isColonOfForEach(parentType);
-        final boolean emptyBlockOrType =
-                isEmptyBlock(ast, parentType)
+        final boolean result;
+        switch (parentType) {
+            case TokenTypes.DOT:
+                result = currentType == TokenTypes.STAR;
+                break;
+            case TokenTypes.LITERAL_DEFAULT:
+            case TokenTypes.LITERAL_CASE:
+            case TokenTypes.CASE_GROUP:
+                result = true;
+                break;
+            case TokenTypes.FOR_EACH_CLAUSE:
+                result = ignoreEnhancedForColon;
+                break;
+            case TokenTypes.EXPR:
+                result = currentType == TokenTypes.LITERAL_SWITCH;
+                break;
+            case TokenTypes.ARRAY_INIT:
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                result = currentType == TokenTypes.RCURLY;
+                break;
+            default:
+                result = isEmptyBlock(ast, parentType)
                     || allowEmptyTypes && isEmptyType(ast);
-
-        return starImportOrSlistInsideCaseGroup
-                || colonOfCaseOrDefaultOrForEach
-                || emptyBlockOrType
-                || isArrayInitialization(currentType, parentType);
+        }
+        return result;
     }
 
     /**
@@ -613,41 +626,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
                 && ast.getFirstChild().getType() == TokenTypes.RCURLY;
         }
         return result;
-    }
-
-    /**
-     * Whether colon belongs to cases or defaults.
-     *
-     * @param parentType parent
-     * @return true if current token in colon of case or default tokens
-     */
-    private static boolean isColonOfCaseOrDefault(int parentType) {
-        return parentType == TokenTypes.LITERAL_DEFAULT
-                    || parentType == TokenTypes.LITERAL_CASE;
-    }
-
-    /**
-     * Whether colon belongs to for-each.
-     *
-     * @param parentType parent
-     * @return true if current token in colon of for-each token
-     */
-    private boolean isColonOfForEach(int parentType) {
-        return parentType == TokenTypes.FOR_EACH_CLAUSE
-                && ignoreEnhancedForColon;
-    }
-
-    /**
-     * Is array initialization.
-     *
-     * @param currentType current token
-     * @param parentType parent token
-     * @return true is current token inside array initialization
-     */
-    private static boolean isArrayInitialization(int currentType, int parentType) {
-        return currentType == TokenTypes.RCURLY
-                && (parentType == TokenTypes.ARRAY_INIT
-                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
 
     /**
