@@ -56,11 +56,6 @@
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
     <exclude name="AtLeastOneConstructor"/>
-    <!-- Turning a local variable to the field may create design problems and extend the scope of
-           the variable. -->
-    <exclude name="AvoidFinalLocalVariable"/>
-    <!-- Conflicts with names that does not mean in/out. -->
-    <exclude name="AvoidPrefixingMethodParameters"/>
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
@@ -103,15 +98,15 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']
                            //MethodDeclaration[@Name='isReference']
-      | //ClassOrInterfaceDeclaration[@SimpleName='DetailAstImpl']
+      , //ClassOrInterfaceDeclaration[@SimpleName='DetailAstImpl']
               //MethodDeclaration[@Name='addPreviousSibling']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AnnotationLocationCheck']
+      , //ClassOrInterfaceDeclaration[@SimpleName='AnnotationLocationCheck']
               //MethodDeclaration[@Name='checkAnnotations']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractImportControl']
+      , //ClassOrInterfaceDeclaration[@SimpleName='AbstractImportControl']
               //MethodDeclaration[@Name='checkAccess']
-      | //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
+      , //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
               //MethodDeclaration[@Name='getHandler']
-      | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']
+      , //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']
               //MethodDeclaration[@Name='visitWildCardTypeArgument']"/>
     </properties>
   </rule>
@@ -126,7 +121,7 @@
         or @SimpleName='AbstractCheck' or @SimpleName='AbstractJavadocCheck'
         or @SimpleName='AbstractNode'
         or @SimpleName='AbstractViolationReporter']
-        | //ClassOrInterfaceDeclaration[@SimpleName='AbstractRootNode']
+        , //ClassOrInterfaceDeclaration[@SimpleName='AbstractRootNode']
           //MethodDeclaration[@Name='getParent' or @Name='getDepth']"/>
     </properties>
   </rule>
@@ -166,8 +161,6 @@
     <!-- We need compare by ref as Tree structure is immutable, we can easily
          rely on refs. -->
     <exclude name="CompareObjectsWithEquals"/>
-    <!-- Too many false positives. -->
-    <exclude name="DataflowAnomalyAnalysis"/>
     <!-- This rule does not have any option, unreasonable to use. -->
     <exclude name="ImplicitSwitchFallThrough"/>
     <!-- We reuse Check instances between java files, we need to clear state of
@@ -230,9 +223,9 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']
-                      |//ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                      , //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']
-                      |//ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
+                      , //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
                              //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
@@ -284,53 +277,35 @@
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
         or @SimpleName='VariableDeclarationUsageDistanceCheck'
         or @SimpleName='HandlerFactory']
-      | //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
-      | //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
+      , //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
+      , //ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
+      , //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
         or @SimpleName='FinalLocalVariableCheck'
         or @SimpleName='NPathComplexityCheck']
              //MethodDeclaration[@Name='visitToken']
-      | //ClassOrInterfaceDeclaration[@SimpleName='FallThroughCheck']
+      , //ClassOrInterfaceDeclaration[@SimpleName='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']
-      | //ClassOrInterfaceDeclaration[@SimpleName='ModifiedControlVariableCheck'
+      , //ClassOrInterfaceDeclaration[@SimpleName='ModifiedControlVariableCheck'
         or @SimpleName='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
-      | //ClassOrInterfaceDeclaration[@SimpleName='NoWhitespaceAfterCheck']
+      , //ClassOrInterfaceDeclaration[@SimpleName='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractElementNode'
+      , //ClassOrInterfaceDeclaration[@SimpleName='AbstractElementNode'
         or @SimpleName='AbstractRootNode']
              //MethodDeclaration[@Name='iterateAxis']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
+      , //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
-      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+      , //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
              //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+      , //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
                //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+      , //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
                //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
       "/>
     </properties>
   </rule>
-  <rule ref="category/java/design.xml/TooManyFields">
+  <rule ref="category/java/design.xml/NcssCount">
     <properties>
-      <!-- Unable to split fields out of the class. -->
-      <!-- Main has an annotated field for each command line option. This is by design. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
-    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
-    | //ClassOrInterfaceDeclaration[@SimpleName='ImportOrderCheck']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/TooManyMethods">
-    <properties>
-      <!-- Should match the property 'maxTotal' of `MethodCount` check. -->
-      <property name="maxmethods" value="34"/>
-      <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/ExcessiveClassLength">
-    <properties>
+      <property name="classReportLevel" value="1000" />
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            RequireThisCheck has to work with and identify many frames.
            JavadocMethodCheck is in the process of being rewritten.
@@ -340,6 +315,25 @@
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
         or @SimpleName='SiteUtil']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/TooManyFields">
+    <properties>
+      <!-- Unable to split fields out of the class. -->
+      <!-- Main has an annotated field for each command line option. This is by design. -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
+    , //ClassOrInterfaceDeclaration[@SimpleName='Main']
+    , //ClassOrInterfaceDeclaration[@SimpleName='ImportOrderCheck']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/TooManyMethods">
+    <properties>
+      <!-- Should match the property 'maxTotal' of `MethodCount` check. -->
+      <property name="maxmethods" value="34"/>
+      <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -373,9 +367,9 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                     //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                    |  //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+                    ,  //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
                     //MethodDeclaration[@Name='getDefaultValue']
-                    |  //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+                    ,  //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
                     //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>

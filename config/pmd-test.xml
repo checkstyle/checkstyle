@@ -40,9 +40,6 @@
     <exclude name="AvoidUsingHardCodedIP"/>
     <!-- UTests are required to be public by design -->
     <exclude name="ExcessivePublicCount"/>
-    <!-- we have too much UTs for each main class, it is better to keep all tests in one
-      file to ease navigation and search for test -->
-    <exclude name="ExcessiveClassLength"/>
     <!-- we want to avoid wide throws signature, it is just test -->
     <exclude name="AvoidCatchingGenericException"/>
     <!-- we do not want to invest extra time to make logic ideal
@@ -73,11 +70,11 @@
       <property name="violationSuppressXPath"
               value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   , //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
     </properties>
   </rule>
 
@@ -102,25 +99,25 @@
                value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
                      or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
                        //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                        //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
                        //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
-                   | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
+                   , //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ImmutabilityTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='ImmutabilityTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                   , //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
                        //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
     </properties>
   </rule>
@@ -143,11 +140,11 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                    , //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
                         //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
     </properties>
   </rule>
@@ -171,7 +168,7 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
                         //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
+                    , //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='validateRuleNameOrder']"/>
     </properties>
   </rule>
@@ -181,15 +178,15 @@
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                 , //ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
                      //MethodDeclaration[@Name='testNewCtor']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 , //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 , //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamFailsOnRead']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                 , //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                 , //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
