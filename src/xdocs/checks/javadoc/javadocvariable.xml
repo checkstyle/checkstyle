@@ -81,16 +81,17 @@
           there is no javadoc for any scope member.
         </p>
         <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
+public class Example1 {
+  private int a; // violation
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // violation, missing javadoc for protected member
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // violation, missing javadoc for package member
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c; // violation
+  public int d; // violation
+  /*package*/ int e; // violation
+
 }
         </source>
 
@@ -113,16 +114,16 @@ public int d; // violation, missing javadoc for public member
           is no javadoc for <code>public</code> member.
         </p>
         <source>
-public class Test {
-private int a; // OK
+public class Example2 {
+  private int a;
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // OK
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // OK
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;
+  public int d; // violation
+  /*package*/ int e;
 }
         </source>
 
@@ -147,16 +148,16 @@ public int d; // violation, missing javadoc for public member
           ignores <code>protected</code> member.
         </p>
         <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
+public class Example3 {
+  private int a; // violation
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // OK
-public int d; // OK
-/*package*/ int e; // violation, missing javadoc for package member
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;
+  public int d;
+  /*package*/ int e; // violation
 }
         </source>
         <p id="Example4-config">
@@ -179,18 +180,16 @@ public int d; // OK
           name <code>log</code> or <code>logger</code>.
         </p>
         <source>
-public class Test {
-private int a; // violation, missing javadoc for private member
+public class Example4 {
+  private int a; // violation
 
-/**
- * Some description here
- */
-private int b; // OK
-protected int c; // violation, missing javadoc for protected member
-public int d; // violation, missing javadoc for public member
-/*package*/ int e; // violation, missing javadoc for package member
-private int log; // OK
-private int logger; // OK
+  /**
+   * Some description here
+  */
+  private int b;
+  protected int c; // violation
+  public int d; // violation
+  /*package*/ int e; // violation
 }
         </source>
       </subsection>
