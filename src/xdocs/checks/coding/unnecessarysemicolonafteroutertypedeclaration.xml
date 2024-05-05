@@ -80,11 +80,10 @@
           Example:
         </p>
         <source>
-class A {
+class Example1 {
+  class Nested {
 
-   class Nested {
-
-   }; // OK, nested type declarations are ignored
+  }; // OK, nested type declarations are ignored
 
 }; // violation
 
@@ -96,7 +95,7 @@ enum C {
 
 }; // violation
 
-{@literal @}interface D {
+@interface D {
 
 }; // violation
         </source>
@@ -117,21 +116,24 @@ enum C {
           Example:
         </p>
         <source>
-class A {
+class Example2 {
+  class Nested {
+
+  }; // OK, nested type declarations are ignored
 
 }; // violation
 
-interface B {
+interface T {
 
-}; // OK
+};
 
-enum C {
+enum U {
 
-}; // OK
+};
 
-{@literal @}interface D {
+@interface V {
 
-}; // OK
+};
         </source>
       </subsection>
 
