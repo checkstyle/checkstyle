@@ -287,13 +287,13 @@ public final class JavadocTokenTypes {
      * <pre>{@code @exception SQLException if query is not correct}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@exception SQLException if query is not correct]
-     *       |--EXCEPTION_LITERAL[3x0] : [@exception]
-     *       |--WS[3x10] : [ ]
-     *       |--CLASS_NAME[3x11] : [SQLException]
-     *       |--WS[3x23] : [ ]
-     *       |--DESCRIPTION[3x24] : [if query is not correct]
-     *           |--TEXT[3x24] : [if query is not correct]
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--EXCEPTION_LITERAL -> @exception
+     *    |--WS ->
+     *    |--CLASS_NAME -> SQLException
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT -> if query is not correct
      * }</pre>
      *
      * @see
