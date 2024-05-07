@@ -197,7 +197,7 @@ workflows:
           name: "checkstyle-and-sevntu"
           image-name: *cs_img
           command: "./.ci/validation.sh checkstyle-and-sevntu"
-      # until https://github.com/spotbugs/spotbugs/issues/2759
+      # until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806
       # - validate-with-maven-script:
       #    name: "spotbugs-and-pmd"
       #    image-name: *cs_img
