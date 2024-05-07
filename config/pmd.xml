@@ -26,7 +26,7 @@
       <!-- The PMD check accepts only a string constant as the assertion message.
            This check uses a method call. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocCatchCheck']
+                value="//ClassDeclaration[@SimpleName='JavadocCatchCheck']
                            //MethodDeclaration[@Name='visitJavadocToken']"/>
     </properties>
   </rule>
@@ -34,7 +34,7 @@
     <properties>
       <!-- it is ok to use println in CLI class. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration
+                value="//ClassDeclaration
                        [@SimpleName='Main' or @SimpleName='Main$CliOptions'
                        or @SimpleName='JavadocPropertiesGenerator']"/>
     </properties>
@@ -49,7 +49,7 @@
     <properties>
       <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='RequireThisCheck']"/>
+                value="//ClassDeclaration[@SimpleName='RequireThisCheck']"/>
     </properties>
   </rule>
 
@@ -85,7 +85,7 @@
            JavadocTokenTypes and TokenTypes aren't utility classes. They are
              token definition classes. Also, they are part of the API. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Definitions'
+                value="//ClassDeclaration[@SimpleName='Definitions'
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocTokenTypes'
                            or @SimpleName='TokenTypes'
@@ -96,17 +96,17 @@
     <properties>
       <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='XMLLogger']
+                value="//ClassDeclaration[@SimpleName='XMLLogger']
                            //MethodDeclaration[@Name='isReference']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='DetailAstImpl']
+      | //ClassDeclaration[@SimpleName='DetailAstImpl']
               //MethodDeclaration[@Name='addPreviousSibling']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='AnnotationLocationCheck']
+      | //ClassDeclaration[@SimpleName='AnnotationLocationCheck']
               //MethodDeclaration[@Name='checkAnnotations']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='AbstractImportControl']
+      | //ClassDeclaration[@SimpleName='AbstractImportControl']
               //MethodDeclaration[@Name='checkAccess']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='HandlerFactory']
+      | //ClassDeclaration[@SimpleName='HandlerFactory']
               //MethodDeclaration[@Name='getHandler']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='JavaAstVisitor']
+      | //ClassDeclaration[@SimpleName='JavaAstVisitor']
               //MethodDeclaration[@Name='visitWildCardTypeArgument']"/>
     </properties>
   </rule>
@@ -117,11 +117,11 @@
        AbstractRootNode is what a root node is.
       -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='AbstractFileSetCheck'
+                value="//ClassDeclaration[@SimpleName='AbstractFileSetCheck'
         or @SimpleName='AbstractCheck' or @SimpleName='AbstractJavadocCheck'
         or @SimpleName='AbstractNode'
         or @SimpleName='AbstractViolationReporter']
-        | ./ancestor-or-self::ClassDeclaration[@SimpleName='AbstractRootNode']
+        | //ClassDeclaration[@SimpleName='AbstractRootNode']
           //MethodDeclaration[@Name='getParent' or @Name='getDepth']"/>
     </properties>
   </rule>
@@ -143,7 +143,7 @@
       <!-- Main is a good name for the class containing the main method.
            Tag as inner class name is fine. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Main' or @SimpleName='Tag']"/>
+                value="//ClassDeclaration[@SimpleName='Main' or @SimpleName='Tag']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier">
@@ -180,7 +180,7 @@
       <property name="skipAnnotations" value="true"/>
       <!-- Keeping the duplicated strings maintains readability -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='SarifLogger']"/>
+                value="//ClassDeclaration[@SimpleName='SarifLogger']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
@@ -193,7 +193,7 @@
       <!-- There is no alternative to using System.exit in the CLI class
            to report the return code. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='ExitHelper']"/>
+                value="//ClassDeclaration[@SimpleName='ExitHelper']"/>
     </properties>
   </rule>
 
@@ -221,11 +221,11 @@
            a runtime exception.
            JavadocMethodCheck: Exception type is not predictable. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Checker']
+                value="//ClassDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']
-                      | ./ancestor-or-self::ClassDeclaration[@SimpleName='TranslationCheck']
+                      | //ClassDeclaration[@SimpleName='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']
-                      | ./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocMethodCheck']
+                      | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
                              //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
@@ -244,7 +244,7 @@
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Checker']
+                value="//ClassDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
@@ -253,7 +253,7 @@
       <!-- I do not see any problem, looks like a false positive.
            SiteUtil is a utility class providing different functionality. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='HandlerFactory'
+                value="//ClassDeclaration[@SimpleName='HandlerFactory'
                 or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
@@ -273,32 +273,32 @@
            Splitting PropertiesMacro.getDefaultValue will damage readability
            Splitting SiteUtil.getDefaultValue would not make it more readable -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Main'
+                value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
         or @SimpleName='VariableDeclarationUsageDistanceCheck'
         or @SimpleName='HandlerFactory']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='LeftCurlyCheck'
+      | //ClassDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
+      | //ClassDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
+      | //ClassDeclaration[@SimpleName='LeftCurlyCheck'
         or @SimpleName='FinalLocalVariableCheck'
         or @SimpleName='NPathComplexityCheck']
              //MethodDeclaration[@Name='visitToken']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='FallThroughCheck']
+      | //ClassDeclaration[@SimpleName='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='ModifiedControlVariableCheck'
+      | //ClassDeclaration[@SimpleName='ModifiedControlVariableCheck'
         or @SimpleName='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='NoWhitespaceAfterCheck']
+      | //ClassDeclaration[@SimpleName='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='AbstractElementNode'
+      | //ClassDeclaration[@SimpleName='AbstractElementNode'
         or @SimpleName='AbstractRootNode']
              //MethodDeclaration[@Name='iterateAxis']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='SuppressFilterElement']
+      | //ClassDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='PropertiesMacro']
+      | //ClassDeclaration[@SimpleName='PropertiesMacro']
              //MethodDeclaration[@Name='getDefaultValue']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='SiteUtil']
+      | //ClassDeclaration[@SimpleName='SiteUtil']
                //MethodDeclaration[@Name='getDefaultValue']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='DescriptionExtractor']
+      | //ClassDeclaration[@SimpleName='DescriptionExtractor']
                //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>
@@ -310,7 +310,7 @@
            JavadocMethodCheck is in the process of being rewritten.
            SiteUtil provides a lot of functionality to generate documentation. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocTokenTypes'
+                value="//ClassDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
         or @SimpleName='SiteUtil']"/>
@@ -321,9 +321,9 @@
       <!-- Unable to split fields out of the class. -->
       <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Checker']
-      | ./ancestor-or-self::ClassDeclaration[@SimpleName='Main']
-      |  ./ancestor-or-self::ClassDeclaration[@SimpleName='ImportOrderCheck']"/>
+                value="//ClassDeclaration[@SimpleName='Checker']
+      | //ClassDeclaration[@SimpleName='Main']
+      |  //ClassDeclaration[@SimpleName='ImportOrderCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -332,14 +332,14 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
       <!-- The class Violation has a constructor with many parameters by design. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Violation']"/>
+                value="//ClassDeclaration[@SimpleName='Violation']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">
@@ -351,7 +351,7 @@
            SiteUtil uses a lot of imports to provide logic for generating documentation
             -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='Main'
+                value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
         or @SimpleName='AbstractAutomaticBean'
@@ -364,11 +364,11 @@
       <!-- Till https://github.com/checkstyle/checkstyle/issues/10064
            Splitting SiteUtil's methods will damage readability -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
+                value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
                     //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                    |  ./ancestor-or-self::ClassDeclaration[@SimpleName='SiteUtil']
+                    |  //ClassDeclaration[@SimpleName='SiteUtil']
                     //MethodDeclaration[@Name='getDefaultValue']
-                    |  ./ancestor-or-self::ClassDeclaration[@SimpleName='DescriptionExtractor']
+                    |  //ClassDeclaration[@SimpleName='DescriptionExtractor']
                     //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>
@@ -383,7 +383,7 @@
       overloads a synchronized method, so it should have synchronized
       modifier. -->
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='UniqueProperties'
+                value="//ClassDeclaration[@SimpleName='UniqueProperties'
           or @SimpleName='SequencedProperties']//MethodDeclaration[@Name='keys' or @Name='put']"/>
     </properties>
   </rule>
@@ -398,14 +398,14 @@
   <rule ref="category/java/design.xml/ExcessivePublicCount">
     <properties>
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
 
   <rule ref="category/java/design.xml/NPathComplexity">
     <properties>
       <property name="violationSuppressXPath"
-                value="./ancestor-or-self::ClassDeclaration[@SimpleName='DescriptionExtractor']
+                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
                       //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>

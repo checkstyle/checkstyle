@@ -68,13 +68,13 @@
              token explicitly.
            IndentationCheckTest has a lot of cases. -->
       <property name="violationSuppressXPath"
-              value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
+              value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
     </properties>
   </rule>
 
@@ -82,7 +82,7 @@
     <!-- PMD cannot find assert if it is located in private method of this class called from
            the test method or method of another class. -->
     <properties>
-      <!-- In AllChecksTest, AstRegressionTest and ImportControlCheckTest
+      <!-- In AllChecksTest, AstRegressionTest and ImpotControlCheckTest
            PMD does not find asserts in private methods of the test class called from the
              test method.
            In MainTest PMD does not find asserts in lambdas called in the method
@@ -96,28 +96,28 @@
            In MainTest PMD does not find asserts in lambdas called in the method
              invokeAndWait. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='AllChecksTest'
+               value="//ClassDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
                      or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Name='verify']
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='MainTest']
+                   | //ClassDeclaration[@SimpleName='MainTest']
                        //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
+                   | //ClassDeclaration[@SimpleName='XdocsPagesTest']
                        //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
-                   | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
+                   | //ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
                        //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
-                   , ./ancestor-or-self::ClassDeclaration[starts-with(@SimpleName,'XpathRegression')]
+                   | //ClassDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ImmutabilityTest']
+                   | //ClassDeclaration[@SimpleName='ImmutabilityTest']
                        //MethodDeclaration
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitTest']
                        //MethodDeclaration
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
                        //MethodDeclaration
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='SuppressionFilterTest']
+                   | //ClassDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
-                   , ./ancestor-or-self::ClassDeclaration[@SimpleName='MainTest']
+                   | //ClassDeclaration[@SimpleName='MainTest']
                        //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
     </properties>
   </rule>
@@ -126,7 +126,7 @@
     <properties>
       <!-- A false positive. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='CommitValidationTest']"/>
+               value="//ClassDeclaration[@SimpleName='CommitValidationTest']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
@@ -138,13 +138,13 @@
          JavadocTokenTypes.testTokenValues contains several asserts as it checks each
           token explicitly. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
+               value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
-                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                    | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
-                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                    | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
-                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                    | //ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
                         //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
     </properties>
   </rule>
@@ -154,7 +154,7 @@
       <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
           it would be broken. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='CommitValidationTest']
+               value="//ClassDeclaration[@SimpleName='CommitValidationTest']
                         //MethodDeclaration[@Name='validateCommitMessage']"/>
     </properties>
   </rule>
@@ -166,9 +166,9 @@
          easy to maintain. The rule should also only check public methods but has a bug.
          Suppress the false-positives. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
+               value="//ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
                         //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | ./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
+                    | //ClassDeclarationClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='validateRuleNameOrder']"/>
     </properties>
   </rule>
@@ -176,17 +176,17 @@
     <properties>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='XdocsPagesTest']
+               value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                 | //ClassDeclaration[@SimpleName='DefaultLoggerPowerTest']
                      //MethodDeclaration[@Name='testNewCtor']
-                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | //ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
-                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | //ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamFailsOnRead']
-                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                 | //ClassDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
-                 | ./ancestor-or-self::ClassDeclaration[@SimpleName='CommonUtilTest']
+                 | //ClassDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
@@ -199,7 +199,7 @@
     <properties>
       <!-- We use thread to limit the stack size for a test method. -->
       <property name="violationSuppressXPath"
-               value="./ancestor-or-self::ClassDeclaration[@SimpleName='TestUtil']
+               value="//ClassDeclaration[@SimpleName='TestUtil']
                         //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
     </properties>
   </rule>
