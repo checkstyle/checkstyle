@@ -18,6 +18,10 @@ addCheckstyleBundleToAntResolvers() {
     ivysettings.xml
 }
 
+function list_tasks() {
+  cat "${0}" | sed -E -n 's/^([a-zA-Z0-9\-]*)\)$/\1/p' | sort
+}
+
 case $1 in
 
 all-sevntu-checks)
@@ -1216,7 +1220,8 @@ check-wildcards-on-pitest-target-classes)
 
 *)
   echo "Unexpected argument: $1"
-  sleep 5s
+  echo "Supported tasks:"
+  list_tasks "${0}"
   false
   ;;
 
