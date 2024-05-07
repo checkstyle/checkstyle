@@ -18,7 +18,16 @@ addCheckstyleBundleToAntResolvers() {
     ivysettings.xml
 }
 
+function list_tasks() {
+  cat "${0}" | sed -E -n 's/^([a-zA-Z0-9\-]*)\)$/\1/p' | sort
+}
+
 case $1 in
+
+--list)
+  echo "Supported tasks:"
+  list_tasks "${0}"
+  ;;
 
 all-sevntu-checks)
   working_dir=.ci-temp/all-sevntu-checks
