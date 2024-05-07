@@ -50,6 +50,12 @@
       </p>
 
       <p>
+        Video walkthrough of these instructions is available in this
+        <a href="https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj">
+          YouTube playlist</a>
+      </p>
+
+      <p>
         Follow these instructions of Git usage and creating a Pull Request:<br/>
            1) Configure remotes by pointing to the official checkstyle repository,<br/>
         naming it "upstream":
