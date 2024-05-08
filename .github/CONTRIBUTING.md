@@ -4,7 +4,7 @@
 
 * [Reporting issues](https://checkstyle.org/report_issue.html)
 * [How to report a bug?](https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F)
-* [Issue Template](https://github.com/checkstyle/checkstyle/blob/master/.github/ISSUE_TEMPLATE.md)
+* [Issue Template](https://github.com/checkstyle/checkstyle/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
 
 Please provide issue report in the format that we request, EACH DETAIL IS A HUGE HELP.
 
