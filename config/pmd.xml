@@ -14,6 +14,27 @@
     <!-- too much false-positives from 6.18.0 -->
     <exclude name="UnusedPrivateMethod"/>
   </rule>
+  <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='FilterUtil']
+                        //MethodDeclaration[@Name='isFileExists']
+                | //ClassDeclaration[@SimpleName='TreeWalkerTest']
+                        //MethodDeclaration[@Name='testNoAuditEventsWithoutFilters']
+                | //ClassDeclaration[@SimpleName='OrderedPropertiesCheckTest']
+                        //MethodDeclaration[@Name='getFileNotFoundDetail']
+                | //ClassDeclaration[@SimpleName='UniquePropertiesCheckTest']
+                        //MethodDeclaration[@Name='getFileNotFoundDetail']
+                | //ClassDeclaration[@SimpleName='HeaderCheckTest']
+                        //MethodDeclaration[@Name='testIoExceptionWhenLoadingHeader']
+                | //ClassDeclaration[@SimpleName='CustomImportOrderCheckTest']
+                        //MethodDeclaration[@Name='testGetFullImportIdent']
+               | //ClassDeclaration[@SimpleName='MainFrameTest']
+                        //MethodDeclaration[@Name='testOpenFileButton']
+               | //ClassDeclaration[@SimpleName='ConfigurationLoaderTest']
+                        //MethodDeclaration[@Name='testConfigWithIgnoreExceptionalAttributes']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
       <!-- It is ok to use print stack trace in CLI class. -->
@@ -39,6 +60,39 @@
                        or @SimpleName='JavadocPropertiesGenerator']"/>
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons">
+    <properties>
+      <property name="violationSuppressXPath" value="//ClassDeclaration[
+        @SimpleName='XdocsUrlTest']//MethodDeclaration[@Name='characters' or @Name='endElement']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/LooseCoupling">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='CodeSelectorPresentationTest']
+                     //FieldDeclaration//VariableDeclarator[@Name='linesToPosition']
+                | //ClassDeclaration[@SimpleName='FileText']
+                     //ConstructorDeclaration
+                | //ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                  //MethodDeclaration[@Name=
+                  'testChecksShouldHaveAllowedAbstractClassAsSuperclass']
+                | //ClassDeclaration[@SimpleName='ArchUnitTest']
+                  //MethodDeclaration[@Name='nonProtectedCheckMethodsTest'
+                      or @Name='testClassesInApiDoNotDependOnClassesInUtil']
+               | //ClassDeclaration[@SimpleName='ImmutabilityTest']
+                    //FieldDeclaration//VariableDeclarator[@Name='CHECKSTYLE_CHECKS']
+               | //ClassDeclaration[@SimpleName='ImmutabilityTest']
+                    //MethodDeclaration[@Name='testUtilClassesImmutability']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/UnnecessaryVarargsArrayCreation">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='CustomImportOrderCheckTest']
+                    //MethodDeclaration[@Name='testGetFullImportIdent']"/>
+    </properties>
+  </rule>
+
 
   <rule ref="category/java/documentation.xml">
     <!-- We use class comments as source for xdoc files,
@@ -193,7 +247,16 @@
       <!-- There is no alternative to using System.exit in the CLI class
            to report the return code. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='ExitHelper']"/>
+                value="//ClassDeclaration[@SimpleName='ExitHelper']
+                 | //ClassDeclaration[@SimpleName='MainTest']
+                    //MethodDeclaration[@Name='assertMainReturnCode'] "/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='MainFrame']
+                        //ConstructorDeclaration"/>
     </properties>
   </rule>
 
@@ -254,7 +317,9 @@
            SiteUtil is a utility class providing different functionality. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='HandlerFactory'
-                or @SimpleName='SiteUtil']"/>
+                or @SimpleName='SiteUtil' or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
+                or @SimpleName='Main' or @SimpleName='TreeWalker' or @SimpleName='CheckstyleAntTask'
+                or @SimpleName='TranslationCheck' or @SimpleName='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -372,6 +437,12 @@
                     //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='AbstractInvalidClass']"/>
+    </properties>
+  </rule>
 
   <rule ref="category/java/multithreading.xml">
     <!-- Checkstyle is not thread safe till https://github.com/checkstyle/checkstyle/projects/5. -->
@@ -393,6 +464,28 @@
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
     <!-- Not configurable, decreases readability. -->
     <exclude name="UseStringBufferForStringAppends"/>
+  </rule>
+
+  <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='XMLLogger']
+                        //MethodDeclaration[@Name='encode']
+                | //ClassDeclaration[@SimpleName='InlineTagUtil']
+                      //MethodDeclaration[@Name='convertLinesToString']
+                | //ClassDeclaration[@SimpleName='XdocsPagesTest']
+                      //MethodDeclaration[@Name='validateViolationSection']
+                | //ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
+                     //MethodDeclaration[@Name='createPropertiesText'
+                        or @Name='appendNodeText' or @Name='getAttributeText']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/performance.xml/UseArraysAsList">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
+                        //MethodDeclaration[@Name='getDescriptionNodes']"/>
+    </properties>
   </rule>
 
   <rule ref="category/java/design.xml/ExcessivePublicCount">
