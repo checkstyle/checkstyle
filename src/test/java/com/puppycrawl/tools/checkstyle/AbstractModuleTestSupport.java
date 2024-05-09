@@ -538,7 +538,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param testInputViolations List of TestInputViolation objects.
      * @param actualViolations for a file
      */
-    private void verifyViolations(String file,
+    private static void verifyViolations(String file,
                                   List<TestInputViolation> testInputViolations,
                                   List<String> actualViolations) {
         final List<Integer> actualViolationLines = actualViolations.stream()
