@@ -818,7 +818,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
                         staticImport.orElseThrow(), "lastImportStatic",
-                        lastImportStatic -> !((boolean) lastImportStatic)))
+                        lastImportStatic -> !(boolean) lastImportStatic))
                 .isTrue();
 
     }
