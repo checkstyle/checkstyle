@@ -48,7 +48,7 @@ class IntMatchFilterElement implements IntFilterElement {
 
     @Override
     public final int hashCode() {
-        return Integer.valueOf(matchValue).hashCode();
+        return Integer.hashCode(matchValue);
     }
 
     @Override
