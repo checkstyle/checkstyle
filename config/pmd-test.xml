@@ -99,6 +99,11 @@
                value="//ClassDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
                      or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Name='verify']
+                   | //ClassDeclaration[@SimpleName='AllChecksTest']
+                       //MethodDeclaration[@Name='testAllModulesAreReferencedInConfigFile'
+                        or @Name='testAllCheckTokensAreReferencedInCheckstyleConfigFile'
+                        or @Name='testAllCheckTokensAreReferencedInGoogleConfigFile'
+                        or @Name='testAllCheckstyleModulesHaveXdocDocumentation']
                    | //ClassDeclaration[@SimpleName='MainTest']
                        //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
                    | //ClassDeclaration[@SimpleName='XdocsPagesTest']
@@ -145,7 +150,15 @@
                     | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
                     | //ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
-                        //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
+                        //MethodDeclaration[@Name='testGetValueAtDetailNode']
+                    | //ClassDeclaration[@SimpleName='ClassImportRuleTest']
+                    | //ClassDeclaration[@SimpleName='PkgImportRuleTest']
+                    | //ClassDeclaration[@SimpleName='PkgImportControlTest']
+                       //MethodDeclaration[ends-with(@Name, 'CheckAccess')]
+                    | //ClassDeclaration[@SimpleName='JavadocTagInfoTest']
+                       //MethodDeclaration[@Name='testCoverage']
+                    | //ClassDeclaration[@SimpleName='AstRegressionTest']
+                       //MethodDeclaration[@Name='testCustomAstTree']"/>
     </properties>
   </rule>
 
@@ -200,7 +213,11 @@
       <!-- We use thread to limit the stack size for a test method. -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='TestUtil']
-                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+                        //MethodDeclaration[@Name='getResultWithLimitedResources']
+               | //ClassDeclaration[@SimpleName='SuppressionFilterTest']
+                        //MethodDeclaration[@Name='isConnectionAvailableAndStable']
+               | //ClassDeclaration[@SimpleName='SuppressionsLoaderTest']
+                    //MethodDeclaration[@Name='loadFilterSet']"/>
     </properties>
   </rule>
 </ruleset>
