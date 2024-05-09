@@ -40,9 +40,6 @@
     <exclude name="AvoidUsingHardCodedIP"/>
     <!-- UTests are required to be public by design -->
     <exclude name="ExcessivePublicCount"/>
-    <!-- we have too much UTs for each main class, it is better to keep all tests in one
-      file to ease navigation and search for test -->
-    <exclude name="ExcessiveClassLength"/>
     <!-- we want to avoid wide throws signature, it is just test -->
     <exclude name="AvoidCatchingGenericException"/>
     <!-- we do not want to invest extra time to make logic ideal
@@ -71,13 +68,13 @@
              token explicitly.
            IndentationCheckTest has a lot of cases. -->
       <property name="violationSuppressXPath"
-              value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+              value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
     </properties>
   </rule>
 
@@ -98,29 +95,39 @@
            assertion calls are not required as they are called by the library.
            In MainTest PMD does not find asserts in lambdas called in the method
              invokeAndWait. -->
+      <!-- For AllCheckTest.testAllModulesAreReferencedInConfigFile,
+           testAllCheckTokensAreReferencedInCheckstyleConfigFile,
+           testAllCheckTokensAreReferencedInGoogleConfigFile,
+           testAllCheckstyleModulesHaveXdocDocumentation
+           until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
+               value="//ClassDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
-                     or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                     or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Name='verify']
+                   | //ClassDeclaration[@SimpleName='AllChecksTest']
+                       //MethodDeclaration[@Name='testAllModulesAreReferencedInConfigFile'
+                        or @Name='testAllCheckTokensAreReferencedInCheckstyleConfigFile'
+                        or @Name='testAllCheckTokensAreReferencedInGoogleConfigFile'
+                        or @Name='testAllCheckstyleModulesHaveXdocDocumentation']
+                   | //ClassDeclaration[@SimpleName='MainTest']
                        //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                   | //ClassDeclaration[@SimpleName='XdocsPagesTest']
                        //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
-                   | //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
+                   | //ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
                        //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
-                   | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
+                   | //ClassDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ImmutabilityTest']
+                   | //ClassDeclaration[@SimpleName='ImmutabilityTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
+                   | //ClassDeclaration[@SimpleName='ArchUnitCyclesCheckTest']
                        //MethodDeclaration
-                   | //ClassOrInterfaceDeclaration[@SimpleName='SuppressionFilterTest']
+                   | //ClassDeclaration[@SimpleName='SuppressionFilterTest']
                        //MethodDeclaration[starts-with(@Name, 'testUseCache')]
-                   | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                   | //ClassDeclaration[@SimpleName='MainTest']
                        //MethodDeclaration[starts-with(@Name, 'testMain')]"/>
     </properties>
   </rule>
@@ -129,7 +136,7 @@
     <properties>
       <!-- A false positive. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']"/>
+               value="//ClassDeclaration[@SimpleName='CommitValidationTest']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
@@ -140,15 +147,25 @@
           as they check each token and each rule explicitly.
          JavadocTokenTypes.testTokenValues contains several asserts as it checks each
           token explicitly. -->
+      <!-- For ClassImportRuleTest and all the below suppressions
+          until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
+               value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                    | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                    | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='ParseTreeTablePresentationTest']
-                        //MethodDeclaration[@Name='testGetValueAtDetailNode']"/>
+                    | //ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
+                        //MethodDeclaration[@Name='testGetValueAtDetailNode']
+                    | //ClassDeclaration[@SimpleName='ClassImportRuleTest']
+                    | //ClassDeclaration[@SimpleName='PkgImportRuleTest']
+                    | //ClassDeclaration[@SimpleName='PkgImportControlTest']
+                       //MethodDeclaration[ends-with(@Name, 'CheckAccess')]
+                    | //ClassDeclaration[@SimpleName='JavadocTagInfoTest']
+                       //MethodDeclaration[@Name='testCoverage']
+                    | //ClassDeclaration[@SimpleName='AstRegressionTest']
+                       //MethodDeclaration[@Name='testCustomAstTree']"/>
     </properties>
   </rule>
 
@@ -157,7 +174,7 @@
       <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
           it would be broken. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']
+               value="//ClassDeclaration[@SimpleName='CommitValidationTest']
                         //MethodDeclaration[@Name='validateCommitMessage']"/>
     </properties>
   </rule>
@@ -169,9 +186,9 @@
          easy to maintain. The rule should also only check public methods but has a bug.
          Suppress the false-positives. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
+               value="//ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
                         //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
+                    | //ClassDeclarationClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='validateRuleNameOrder']"/>
     </properties>
   </rule>
@@ -179,17 +196,17 @@
     <properties>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+               value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                 | //ClassDeclaration[@SimpleName='DefaultLoggerPowerTest']
                      //MethodDeclaration[@Name='testNewCtor']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | //ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                 | //ClassDeclaration[@SimpleName='ImportControlLoaderPowerTest']
                      //MethodDeclaration[@Name='testInputStreamFailsOnRead']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                 | //ClassDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
                      //MethodDeclaration[@Name='verifyOutput']
-                 | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                 | //ClassDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
     </properties>
   </rule>
@@ -201,9 +218,16 @@
   <rule ref="category/java/multithreading.xml/DoNotUseThreads">
     <properties>
       <!-- We use thread to limit the stack size for a test method. -->
+      <!-- For SuppressionFilterTest.isConnectionAvailableAndStable and
+           SuppressionsLoaderTest.loadFilterSet
+           https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
-                        //MethodDeclaration[@Name='getResultWithLimitedResources']"/>
+               value="//ClassDeclaration[@SimpleName='TestUtil']
+                        //MethodDeclaration[@Name='getResultWithLimitedResources']
+               | //ClassDeclaration[@SimpleName='SuppressionFilterTest']
+                        //MethodDeclaration[@Name='isConnectionAvailableAndStable']
+               | //ClassDeclaration[@SimpleName='SuppressionsLoaderTest']
+                    //MethodDeclaration[@Name='loadFilterSet']"/>
     </properties>
   </rule>
 </ruleset>
