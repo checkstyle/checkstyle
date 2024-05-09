@@ -14,10 +14,31 @@
     <!-- too much false-positives from 6.18.0 -->
     <exclude name="UnusedPrivateMethod"/>
   </rule>
+  <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='FilterUtil']
+                        //MethodDeclaration[@Name='isFileExists']
+                | //ClassDeclaration[@SimpleName='TreeWalkerTest']
+                        //MethodDeclaration[@Name='testNoAuditEventsWithoutFilters']
+                | //ClassDeclaration[@SimpleName='OrderedPropertiesCheckTest']
+                        //MethodDeclaration[@Name='getFileNotFoundDetail']
+                | //ClassDeclaration[@SimpleName='UniquePropertiesCheckTest']
+                        //MethodDeclaration[@Name='getFileNotFoundDetail']
+                | //ClassDeclaration[@SimpleName='HeaderCheckTest']
+                        //MethodDeclaration[@Name='testIoExceptionWhenLoadingHeader']
+                | //ClassDeclaration[@SimpleName='CustomImportOrderCheckTest']
+                        //MethodDeclaration[@Name='testGetFullImportIdent']
+               | //ClassDeclaration[@SimpleName='MainFrameTest']
+                        //MethodDeclaration[@Name='testOpenFileButton']
+               | //ClassDeclaration[@SimpleName='ConfigurationLoaderTest']
+                        //MethodDeclaration[@Name='testConfigWithIgnoreExceptionalAttributes']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
       <!-- It is ok to use print stack trace in CLI class. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[
+      <property name="violationSuppressXPath" value="//ClassDeclaration[
         @SimpleName='Main']"/>
     </properties>
   </rule>
@@ -26,7 +47,7 @@
       <!-- The PMD check accepts only a string constant as the assertion message.
            This check uses a method call. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocCatchCheck']
+                value="//ClassDeclaration[@SimpleName='JavadocCatchCheck']
                            //MethodDeclaration[@Name='visitJavadocToken']"/>
     </properties>
   </rule>
@@ -34,11 +55,44 @@
     <properties>
       <!-- it is ok to use println in CLI class. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration
+                value="//ClassDeclaration
                        [@SimpleName='Main' or @SimpleName='Main$CliOptions'
                        or @SimpleName='JavadocPropertiesGenerator']"/>
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons">
+    <properties>
+      <property name="violationSuppressXPath" value="//ClassDeclaration[
+        @SimpleName='XdocsUrlTest']//MethodDeclaration[@Name='characters' or @Name='endElement']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/LooseCoupling">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='CodeSelectorPresentationTest']
+                     //FieldDeclaration//VariableDeclarator[@Name='linesToPosition']
+                | //ClassDeclaration[@SimpleName='FileText']
+                     //ConstructorDeclaration
+                | //ClassDeclaration[@SimpleName='ArchUnitSuperClassTest']
+                  //MethodDeclaration[@Name=
+                  'testChecksShouldHaveAllowedAbstractClassAsSuperclass']
+                | //ClassDeclaration[@SimpleName='ArchUnitTest']
+                  //MethodDeclaration[@Name='nonProtectedCheckMethodsTest'
+                      or @Name='testClassesInApiDoNotDependOnClassesInUtil']
+               | //ClassDeclaration[@SimpleName='ImmutabilityTest']
+                    //FieldDeclaration//VariableDeclarator[@Name='CHECKSTYLE_CHECKS']
+               | //ClassDeclaration[@SimpleName='ImmutabilityTest']
+                    //MethodDeclaration[@Name='testUtilClassesImmutability']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/UnnecessaryVarargsArrayCreation">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='CustomImportOrderCheckTest']
+                    //MethodDeclaration[@Name='testGetFullImportIdent']"/>
+    </properties>
+  </rule>
+
 
   <rule ref="category/java/documentation.xml">
     <!-- We use class comments as source for xdoc files,
@@ -49,18 +103,13 @@
     <properties>
       <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='RequireThisCheck']"/>
+                value="//ClassDeclaration[@SimpleName='RequireThisCheck']"/>
     </properties>
   </rule>
 
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
     <exclude name="AtLeastOneConstructor"/>
-    <!-- Turning a local variable to the field may create design problems and extend the scope of
-           the variable. -->
-    <exclude name="AvoidFinalLocalVariable"/>
-    <!-- Conflicts with names that does not mean in/out. -->
-    <exclude name="AvoidPrefixingMethodParameters"/>
     <!-- Calling super() is completely pointless, no matter if class inherits anything or not;
          it is meaningful only if you do not call implicit constructor of the base class. -->
     <exclude name="CallSuperInConstructor"/>
@@ -90,7 +139,7 @@
            JavadocTokenTypes and TokenTypes aren't utility classes. They are
              token definition classes. Also, they are part of the API. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Definitions'
+                value="//ClassDeclaration[@SimpleName='Definitions'
                            or @SimpleName='LoadExternalDtdFeatureProvider'
                            or @SimpleName='JavadocTokenTypes'
                            or @SimpleName='TokenTypes'
@@ -101,17 +150,17 @@
     <properties>
       <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']
+                value="//ClassDeclaration[@SimpleName='XMLLogger']
                            //MethodDeclaration[@Name='isReference']
-      | //ClassOrInterfaceDeclaration[@SimpleName='DetailAstImpl']
+      | //ClassDeclaration[@SimpleName='DetailAstImpl']
               //MethodDeclaration[@Name='addPreviousSibling']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AnnotationLocationCheck']
+      | //ClassDeclaration[@SimpleName='AnnotationLocationCheck']
               //MethodDeclaration[@Name='checkAnnotations']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractImportControl']
+      | //ClassDeclaration[@SimpleName='AbstractImportControl']
               //MethodDeclaration[@Name='checkAccess']
-      | //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
+      | //ClassDeclaration[@SimpleName='HandlerFactory']
               //MethodDeclaration[@Name='getHandler']
-      | //ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']
+      | //ClassDeclaration[@SimpleName='JavaAstVisitor']
               //MethodDeclaration[@Name='visitWildCardTypeArgument']"/>
     </properties>
   </rule>
@@ -122,11 +171,11 @@
        AbstractRootNode is what a root node is.
       -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='AbstractFileSetCheck'
+                value="//ClassDeclaration[@SimpleName='AbstractFileSetCheck'
         or @SimpleName='AbstractCheck' or @SimpleName='AbstractJavadocCheck'
         or @SimpleName='AbstractNode'
         or @SimpleName='AbstractViolationReporter']
-        | //ClassOrInterfaceDeclaration[@SimpleName='AbstractRootNode']
+        | //ClassDeclaration[@SimpleName='AbstractRootNode']
           //MethodDeclaration[@Name='getParent' or @Name='getDepth']"/>
     </properties>
   </rule>
@@ -148,7 +197,7 @@
       <!-- Main is a good name for the class containing the main method.
            Tag as inner class name is fine. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Main' or @SimpleName='Tag']"/>
+                value="//ClassDeclaration[@SimpleName='Main' or @SimpleName='Tag']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier">
@@ -156,6 +205,13 @@
       <property name="ignoredAnnotations" value="" />
       <property name="regex" value="\/\*\s+(package)\s+\*\/" />
       <property name="checkTopLevelTypes" value="false" />
+    </properties>
+  </rule>
+  <rule ref="category/java/codestyle.xml/UnnecessaryBoxing">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='IntMatchFilterElement']
+                        //MethodDeclaration[@Name='hashCode']"/>
     </properties>
   </rule>
 
@@ -166,8 +222,6 @@
     <!-- We need compare by ref as Tree structure is immutable, we can easily
          rely on refs. -->
     <exclude name="CompareObjectsWithEquals"/>
-    <!-- Too many false positives. -->
-    <exclude name="DataflowAnomalyAnalysis"/>
     <!-- This rule does not have any option, unreasonable to use. -->
     <exclude name="ImplicitSwitchFallThrough"/>
     <!-- We reuse Check instances between java files, we need to clear state of
@@ -187,7 +241,7 @@
       <property name="skipAnnotations" value="true"/>
       <!-- Keeping the duplicated strings maintains readability -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']"/>
+                value="//ClassDeclaration[@SimpleName='SarifLogger']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
@@ -200,7 +254,16 @@
       <!-- There is no alternative to using System.exit in the CLI class
            to report the return code. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='ExitHelper']"/>
+                value="//ClassDeclaration[@SimpleName='ExitHelper']
+                 | //ClassDeclaration[@SimpleName='MainTest']
+                    //MethodDeclaration[@Name='assertMainReturnCode'] "/>
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/ConstructorCallsOverridableMethod">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='MainFrame']
+                        //ConstructorDeclaration"/>
     </properties>
   </rule>
 
@@ -228,11 +291,11 @@
            a runtime exception.
            JavadocMethodCheck: Exception type is not predictable. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                value="//ClassDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']
-                      |//ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                      | //ClassDeclaration[@SimpleName='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']
-                      |//ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
+                      | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
                              //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
@@ -242,7 +305,7 @@
        requires some extra IFs. -->
       <property name="problemDepth" value="4"/>
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='ClassResolver']
+                value="//ClassDeclaration[@SimpleName='ClassResolver']
                              //MethodDeclaration[@Name='resolve']"/>
     </properties>
   </rule>
@@ -251,7 +314,7 @@
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                value="//ClassDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
@@ -260,8 +323,10 @@
       <!-- I do not see any problem, looks like a false positive.
            SiteUtil is a utility class providing different functionality. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory'
-                or @SimpleName='SiteUtil']"/>
+                value="//ClassDeclaration[@SimpleName='HandlerFactory'
+                or @SimpleName='SiteUtil' or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
+                or @SimpleName='Main' or @SimpleName='TreeWalker' or @SimpleName='CheckstyleAntTask'
+                or @SimpleName='TranslationCheck' or @SimpleName='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -280,34 +345,47 @@
            Splitting PropertiesMacro.getDefaultValue will damage readability
            Splitting SiteUtil.getDefaultValue would not make it more readable -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
+                value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
         or @SimpleName='VariableDeclarationUsageDistanceCheck'
         or @SimpleName='HandlerFactory']
-      | //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
-      | //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
+      | //ClassDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
+      | //ClassDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
+      | //ClassDeclaration[@SimpleName='LeftCurlyCheck'
         or @SimpleName='FinalLocalVariableCheck'
         or @SimpleName='NPathComplexityCheck']
              //MethodDeclaration[@Name='visitToken']
-      | //ClassOrInterfaceDeclaration[@SimpleName='FallThroughCheck']
+      | //ClassDeclaration[@SimpleName='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']
-      | //ClassOrInterfaceDeclaration[@SimpleName='ModifiedControlVariableCheck'
+      | //ClassDeclaration[@SimpleName='ModifiedControlVariableCheck'
         or @SimpleName='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
-      | //ClassOrInterfaceDeclaration[@SimpleName='NoWhitespaceAfterCheck']
+      | //ClassDeclaration[@SimpleName='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractElementNode'
+      | //ClassDeclaration[@SimpleName='AbstractElementNode'
         or @SimpleName='AbstractRootNode']
              //MethodDeclaration[@Name='iterateAxis']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
+      | //ClassDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
-      | //ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+      | //ClassDeclaration[@SimpleName='PropertiesMacro']
              //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+      | //ClassDeclaration[@SimpleName='SiteUtil']
                //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+      | //ClassDeclaration[@SimpleName='DescriptionExtractor']
                //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
-      "/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/NcssCount">
+    <properties>
+      <property name="classReportLevel" value="1000" />
+      <!-- *TokenTypes are special classes that are big due to a lot of description comments.
+           RequireThisCheck has to work with and identify many frames.
+           JavadocMethodCheck is in the process of being rewritten.
+           SiteUtil provides a lot of functionality to generate documentation. -->
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='JavadocTokenTypes'
+        or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
+        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
+        or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
@@ -315,9 +393,9 @@
       <!-- Unable to split fields out of the class. -->
       <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
-    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
-    | //ClassOrInterfaceDeclaration[@SimpleName='ImportOrderCheck']"/>
+                value="//ClassDeclaration[@SimpleName='Checker']
+      | //ClassDeclaration[@SimpleName='Main']
+      |  //ClassDeclaration[@SimpleName='ImportOrderCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -326,27 +404,14 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/ExcessiveClassLength">
-    <properties>
-      <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten.
-           SiteUtil provides a lot of functionality to generate documentation. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
-        or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
-        or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
-        or @SimpleName='SiteUtil']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
       <!-- The class Violation has a constructor with many parameters by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Violation']"/>
+                value="//ClassDeclaration[@SimpleName='Violation']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">
@@ -358,7 +423,7 @@
            SiteUtil uses a lot of imports to provide logic for generating documentation
             -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
+                value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
         or @SimpleName='AbstractAutomaticBean'
@@ -371,12 +436,18 @@
       <!-- Till https://github.com/checkstyle/checkstyle/issues/10064
            Splitting SiteUtil's methods will damage readability -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
                     //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                    |  //ClassOrInterfaceDeclaration[@SimpleName='SiteUtil']
+                    |  //ClassDeclaration[@SimpleName='SiteUtil']
                     //MethodDeclaration[@Name='getDefaultValue']
-                    |  //ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+                    |  //ClassDeclaration[@SimpleName='DescriptionExtractor']
                     //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='AbstractInvalidClass']"/>
     </properties>
   </rule>
 
@@ -390,7 +461,7 @@
       overloads a synchronized method, so it should have synchronized
       modifier. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='UniqueProperties'
+                value="//ClassDeclaration[@SimpleName='UniqueProperties'
           or @SimpleName='SequencedProperties']//MethodDeclaration[@Name='keys' or @Name='put']"/>
     </properties>
   </rule>
@@ -402,17 +473,39 @@
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
 
+  <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='XMLLogger']
+                        //MethodDeclaration[@Name='encode']
+                | //ClassDeclaration[@SimpleName='InlineTagUtil']
+                      //MethodDeclaration[@Name='convertLinesToString']
+                | //ClassDeclaration[@SimpleName='XdocsPagesTest']
+                      //MethodDeclaration[@Name='validateViolationSection']
+                | //ClassDeclaration[@SimpleName='XdocsJavaDocsTest']
+                     //MethodDeclaration[@Name='createPropertiesText'
+                        or @Name='appendNodeText' or @Name='getAttributeText']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/performance.xml/UseArraysAsList">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
+                        //MethodDeclaration[@Name='getDescriptionNodes']"/>
+    </properties>
+  </rule>
+
   <rule ref="category/java/design.xml/ExcessivePublicCount">
     <properties>
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
     </properties>
   </rule>
 
   <rule ref="category/java/design.xml/NPathComplexity">
     <properties>
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='DescriptionExtractor']
+                value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
                       //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
     </properties>
   </rule>

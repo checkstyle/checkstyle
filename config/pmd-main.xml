@@ -18,29 +18,28 @@
              we value full coverage more than final modifier.
            Picocli fields will have their value injected and should not be marked final. -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='FileText']
+               value="//ClassDeclaration[@SimpleName='FileText']
                         //FieldDeclaration//VariableDeclarator[@Name='fullText']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='CliOptions']"/>
+                    | //ClassDeclaration[@SimpleName='CliOptions']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <property name="allowedResourceTypes"
-               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream"/>
-      <property name="allowedResourceTypes"
-               value="java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
+               value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,
+                      java.io.StringWriter,java.io.CharArrayWriter,java.io.StringReader"/>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@SimpleName='DefaultLogger']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Main']
+               value="//ClassDeclaration[@SimpleName='DefaultLogger']
+                    | //ClassDeclaration[@SimpleName='Main']
                         //MethodDeclaration[@Name='createListener']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='PropertyCacheFile']
+                    | //ClassDeclaration[@SimpleName='PropertyCacheFile']
                         //MethodDeclaration[@Name='persist' or @Name='serialize']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='XmlLoader']
+                    | //ClassDeclaration[@SimpleName='XmlLoader']
                         //MethodDeclaration[@Name='resolveEntity']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
+                    | //ClassDeclaration[@SimpleName='CheckstyleAntTask']
                         //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
+                    | //ClassDeclaration[@SimpleName='AbstractNode']
                         //MethodDeclaration[@Name='iterateAxis']"/>
     </properties>
   </rule>
@@ -48,20 +47,20 @@
     <properties>
       <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
       <property name="violationSuppressXPath"
-         value="//ClassOrInterfaceDeclaration[@SimpleName='AutomaticBean']"/>
+         value="//ClassDeclaration[@SimpleName='AutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/AvoidCatchingGenericException">
     <properties>
       <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
       <property name="violationSuppressXPath"
-         value="//ClassOrInterfaceDeclaration[@SimpleName='PropertiesMacro']
+         value="//ClassDeclaration[@SimpleName='PropertiesMacro']
                         //MethodDeclaration[@Name='writeTablePropertiesRows']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                    | //ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFiles']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='Checker']
+                    | //ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFile']
-                    | //ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
+                    | //ClassDeclaration[@SimpleName='TranslationCheck']
                         //MethodDeclaration[@Name='getTranslationKeys']"/>
     </properties>
   </rule>

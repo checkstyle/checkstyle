@@ -547,7 +547,7 @@ public final class Main {
      * @noinspection PackageVisibleInnerClass
      * @noinspectionreason PackageVisibleInnerClass - we keep this enum package visible for tests
      */
-    enum OutputFormat {
+    /* package */ enum OutputFormat {
         /** XML output format. */
         XML,
         /** SARIF output format. */
