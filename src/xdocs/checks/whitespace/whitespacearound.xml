@@ -57,6 +57,10 @@ try {
           catch block (left curly bracket) is not separated from the end of the catch
           block (right curly bracket).
         </p>
+        <p>
+          Note: <a href="https://openjdk.org/jeps/361">
+          Switch expressions</a> are ignored by this check.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
