@@ -98,7 +98,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             "10:27: " + getCheckMessage(ConstantNameCheck.class,
                         MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
-        verifyWithInlineConfigParser(path, expected);
+        verifyWithInlineConfigParserTwice(path, expected);
     }
 
     /**
@@ -133,7 +133,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                  Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
                      throw new CheckstyleException("No audit events expected");
                  })) {
-            verifyWithInlineConfigParser(getPath("InputTreeWalker.java"), expected);
+            verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);
         }
     }
 
@@ -158,7 +158,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             // This will re-enable walk(..., AstState.WITH_COMMENTS)
             parser.when(() -> JavaParser.appendHiddenCommentNodes(mockAst)).thenReturn(realAst);
 
-            verifyWithInlineConfigParser(path, expected);
+            verifyWithInlineConfigParserTwice(path, expected);
         }
     }
 
@@ -178,7 +178,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             parser.when(() -> JavaParser.appendHiddenCommentNodes(any(DetailAST.class)))
                     .thenThrow(IllegalStateException.class);
 
-            verifyWithInlineConfigParser(getPath("InputTreeWalker.java"), expected);
+            verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);
         }
     }
 
@@ -189,7 +189,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File tempFile = new File(temporaryFolder, "file.pdf");
         Files.copy(originalFile.toPath(), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(tempFile.getPath(), expected);
+        verifyWithInlineConfigParserTwice(tempFile.getPath(), expected);
     }
 
     @Test
@@ -354,7 +354,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testWithCacheWithNoViolation() throws Exception {
         final String path = getPath("InputTreeWalkerWithCacheWithNoViolation.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(path, expected);
+        verifyWithInlineConfigParserTwice(path, expected);
     }
 
     @Test
@@ -416,7 +416,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             writer.write(configComment);
         }
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(file.getPath(), expected);
+        verifyWithInlineConfigParserTwice(file.getPath(), expected);
     }
 
     @Test
@@ -496,7 +496,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(
+        verifyWithInlineConfigParserTwice(
                 getPath("InputTreeWalkerSuppressionCommentFilter.java"),
                 expected);
     }
@@ -509,7 +509,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             "13:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
-        verifyWithInlineConfigParser(
+        verifyWithInlineConfigParserTwice(
                 getPath("InputTreeWalkerMultiCheckOrder.java"),
                 expected);
     }
@@ -524,7 +524,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
         };
 
-        verifyWithInlineConfigParser(
+        verifyWithInlineConfigParserTwice(
                 getPath("InputTreeWalkerMultiCheckOrder2.java"),
                 expected);
     }
@@ -614,7 +614,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 + "/InputTreeWalkerSuppressionXpathFilterAbsolute.java";
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(filePath, expected);
+        verifyWithInlineConfigParserTwice(filePath, expected);
     }
 
     @Test
