@@ -48,6 +48,10 @@
  With this property turned off, this raises violation because the beginning
  of the catch block (left curly bracket) is not separated from the end
  of the catch block (right curly bracket).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note: &lt;a href="https://openjdk.org/jeps/361"&gt;
+ Switch expressions&lt;/a&gt; are ignored by this check.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowEmptyCatches" type="boolean">
