@@ -261,6 +261,13 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
+    public void testSwitchExpressionWhitespaceAround() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAroundSwitchExpressions.java"), expected);
+    }
+
+    @Test
     public void testDoWhileWhitespaceAround() throws Exception {
         final String[] expected = {
             "29:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
