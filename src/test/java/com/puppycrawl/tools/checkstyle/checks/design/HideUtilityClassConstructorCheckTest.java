@@ -146,4 +146,26 @@ public class HideUtilityClassConstructorCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testIgnoreAnnotatedBy() throws Exception {
+        final String[] expected = {
+            "30:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHideUtilityClassConstructorIgnoreAnnotationBy.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testIgnoreAnnotatedByFullQualifier() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputHideUtilityClassConstructor"
+                        + "IgnoreAnnotationByFullyQualifiedName.java"),
+                expected
+        );
+    }
 }
