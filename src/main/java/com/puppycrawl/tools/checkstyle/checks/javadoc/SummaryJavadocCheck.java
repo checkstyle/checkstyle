@@ -19,10 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -48,7 +51,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code "^$"}.
  * </li>
  * <li>
- * Property {@code period} - Specify the period symbol at the end of first javadoc sentence.
+ * Property {@code period} - Specify the period symbol. Used to check the first sentence ends with a
+ * period. Periods that are not followed by a whitespace character are ignored (eg. the period in
+ * v1.0). Because some periods include whitespace built into the character, if this is set to a
+ * non-default value any period will end the sentence, whether it is followed by whitespace or not.
  * Type is {@code java.lang.String}.
  * Default value is {@code "."}.
  * </li>
@@ -154,7 +160,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
     /**
-     * Specify the period symbol at the end of first javadoc sentence.
+     * Specify the period symbol. Used to check the first sentence ends with a period. Periods that
+     * are not followed by a whitespace character are ignored (eg. the period in v1.0). Because some
+     * periods include whitespace built into the character, if this is set to a non-default value
+     * any period will end the sentence, whether it is followed by whitespace or not.
      */
     private String period = DEFAULT_PERIOD;
 
@@ -169,7 +178,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Setter to specify the period symbol at the end of first javadoc sentence.
+     * Setter to specify the period symbol. Used to check the first sentence ends with a period.
+     * Periods that are not followed by a whitespace character are ignored (eg. the period in v1.0).
+     * Because some periods include whitespace built into the character, if this is set to a
+     * non-default value any period will end the sentence, whether it is followed by whitespace or
+     * not.
      *
      * @param period period's value.
      * @since 6.2
@@ -218,14 +231,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final String firstSentence = getFirstSentence(ast);
-            final int endOfSentence = firstSentence.lastIndexOf(period);
-            if (!summaryDoc.contains(period)) {
-                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            if (summaryDoc.contains(period)) {
+                final String firstSentence = getFirstSentenceOrNull(ast, period);
+                if (firstSentence == null) {
+                    log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                }
+                else if (containsForbiddenFragment(firstSentence)) {
+                    log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+                }
             }
-            if (endOfSentence != -1
-                    && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+            else {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
     }
@@ -576,31 +592,74 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Finds and returns first sentence.
+     * Finds and returns the first sentence.
      *
-     * @param ast Javadoc root node.
-     * @return first sentence.
+     * @param ast The Javadoc root node.
+     * @param period The configured period symbol.
+     * @return The first sentence up to and excluding the period, or null if no ending was found.
      */
-    private static String getFirstSentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = DEFAULT_PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
-            }
-            else {
-                text = getFirstSentence(child);
-            }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
+    private static String getFirstSentenceOrNull(DetailNode ast, String period) {
+        final List<String> sentenceParts = new ArrayList<>();
+        String sentence = null;
+        for (String text : (Iterable<String>) streamTextParts(ast)::iterator) {
+            final String sentenceEnding = findSentenceEndingOrNull(text, period);
+            if (sentenceEnding != null) {
+                sentenceParts.add(sentenceEnding);
+                sentence = String.join("", sentenceParts);
                 break;
             }
-
-            result.append(text);
+            else {
+                sentenceParts.add(text);
+            }
         }
-        return result.toString();
+        return sentence;
     }
 
+    /**
+     * Streams through all the text under the given node.
+     *
+     * @param node The Javadoc node to examine.
+     * @return All the text in all nodes that have no child nodes.
+     */
+    private static Stream<String> streamTextParts(DetailNode node) {
+        final Stream<String> stream;
+        if (node.getChildren().length == 0) {
+            stream = Stream.of(node.getText());
+        }
+        else {
+            stream = Stream.of(node.getChildren())
+                .flatMap(SummaryJavadocCheck::streamTextParts);
+        }
+        return stream;
+    }
+
+    /**
+     * Finds the end of a sentence. If a sentence ending period was found, returns the whole string
+     * up to and excluding that period. The end of sentence detection here could be replaced in the
+     * future by Java's built-in BreakIterator class.
+     *
+     * @param text The string to search.
+     * @param period The period character to find.
+     * @return The string up to and excluding the period, or null if no ending was found.
+     */
+    private static String findSentenceEndingOrNull(String text, String period) {
+        int periodIndex = text.indexOf(period);
+        String sentenceEnding = null;
+        while (periodIndex >= 0) {
+            final int afterPeriodIndex = periodIndex + period.length();
+
+            // Handle western period separately as it is only the end of a sentence if followed
+            // by whitespace. Other period characters often include whitespace in the character.
+            if (!DEFAULT_PERIOD.equals(period)
+                || afterPeriodIndex >= text.length()
+                || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
+                sentenceEnding = text.substring(0, periodIndex);
+                break;
+            }
+            else {
+                periodIndex = text.indexOf(period, afterPeriodIndex);
+            }
+        }
+        return sentenceEnding;
+    }
 }
