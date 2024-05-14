@@ -21,7 +21,7 @@
       <p>
         This task runs Checkstyle over specified Java files.
         The latest version of checkstyle can be found at
-        <a href="https://checkstyle.org/">https://checkstyle.org/</a>.
+        <a href="./index.html">https://checkstyle.org/</a>.
 
         This task is included in the checkstyle distribution.
       </p>
