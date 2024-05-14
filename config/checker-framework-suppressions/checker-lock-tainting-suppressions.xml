@@ -448,6 +448,16 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java</fileName>
+    <specifier>type.arguments.not.inferred</specifier>
+    <message>Could not infer type arguments for Optional.map</message>
+    <lineContent>.map(children::indexOf);</lineContent>
+    <details>
+      unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for arg0</message>
