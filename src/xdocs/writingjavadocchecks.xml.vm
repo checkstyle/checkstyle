@@ -766,7 +766,7 @@ Checkstyle ends with 5 errors.
       </p>
       <p>
         For detail reference you can see
-        <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">
+        <a href="./writingchecks.html#The_Checkstyle_SDK_Gui">
           Checkstyle GUI documentation
         </a>.
       </p>
