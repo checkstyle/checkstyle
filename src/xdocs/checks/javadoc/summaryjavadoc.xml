@@ -39,7 +39,7 @@
             </tr>
             <tr>
               <td>period</td>
-              <td>Specify the period symbol at the end of first javadoc sentence.</td>
+              <td>Specify the period symbol. Used to check the first sentence ends with a period. Periods that are not followed by a whitespace character are ignored (eg. the period in v1.0). Because some periods include whitespace built into the character, if this is set to a non-default value any period will end the sentence, whether it is followed by whitespace or not.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>&quot;.&quot;</code></td>
               <td>6.2</td>
