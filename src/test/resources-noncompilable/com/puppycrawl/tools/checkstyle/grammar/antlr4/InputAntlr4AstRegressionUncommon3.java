@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java16
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionUncommon3 implements AutoCloseable {
