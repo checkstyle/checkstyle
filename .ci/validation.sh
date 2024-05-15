@@ -551,36 +551,6 @@ javac14)
   fi
   ;;
 
-javac15)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java15' \
-        src/test/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java15 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 15 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac16)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java16' \
-        src/test/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java16 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 16 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
         src/test/resources-noncompilable \

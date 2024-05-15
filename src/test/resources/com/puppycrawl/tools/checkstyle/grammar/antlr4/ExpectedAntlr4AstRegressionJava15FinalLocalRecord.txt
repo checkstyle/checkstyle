@@ -1,6 +1,6 @@
 COMPILATION_UNIT -> COMPILATION_UNIT [2:0]
 |--SINGLE_LINE_COMMENT -> // [1:0]
-|   `--COMMENT_CONTENT -> non-compiled with javac: Compilable with Java15\n [1:2]
+|   `--COMMENT_CONTENT -> non-compiled with javac: Compilable with Java17\n [1:2]
 |--PACKAGE_DEF -> package [2:0]
 |   |--ANNOTATIONS -> ANNOTATIONS [2:47]
 |   |--DOT -> . [2:47]

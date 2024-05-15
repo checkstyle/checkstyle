@@ -4,7 +4,7 @@ UncommentedMain
 
 */
 
-//non-compiled with javac: Compilable with Java16
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 public record InputUncommentedMainBeginTree2(Integer x) {

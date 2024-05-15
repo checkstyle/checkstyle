@@ -4,7 +4,7 @@ ModifierOrder
 
 */
 
-//non-compiled with javac: Compilable with Java15
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 // violation below ''public' modifier out of order with the JLS suggestions.'
 sealed public class InputModifierOrderSealedAndNonSealed
