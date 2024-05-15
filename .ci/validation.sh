@@ -895,6 +895,7 @@ no-exception-struts)
   sed -i'' 's/#apache-struts/apache-struts/' projects-to-test-on.properties
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-nonjavadoc-error.xml  -p "$BRANCH" -r ../../..  \
+      --useShallowClone \
       --allowExcludes --mode single -xm "-Dcheckstyle.failsOnError=false"
   cd ../../
   removeFolderWithProtectedFiles contribution
