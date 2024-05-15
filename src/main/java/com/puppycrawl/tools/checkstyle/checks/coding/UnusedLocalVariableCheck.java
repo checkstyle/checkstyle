@@ -128,6 +128,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         TokenTypes.COMPACT_CTOR_DEF,
     };
 
+    /**
+     * An array of token types that indicate a variable is being used within
+     * an expression involving increment or decrement operators, or within a switch statement.
+     * When a token of one of these types is the parent of an expression, it indicates that the
+     * variable associated with the increment or decrement operation is being used.
+     * Ex:- TokenTypes.LITERAL_SWITCH: Indicates a switch statement. Variables used within the
+     * switch expression are considered to be used
+     */
+    private static final int[] INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES = {
+        TokenTypes.ELIST,
+        TokenTypes.INDEX_OP,
+        TokenTypes.ASSIGN,
+        TokenTypes.LITERAL_SWITCH,
+    };
+
     /** Package separator. */
     private static final String PACKAGE_SEPARATOR = ".";
 
@@ -750,8 +765,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return true if variable nested in exprAst is used
      */
     private static boolean isIncrementOrDecrementVariableUsed(DetailAST exprAst) {
-        return TokenUtil.isOfType(exprAst.getParent(),
-                TokenTypes.ELIST, TokenTypes.INDEX_OP, TokenTypes.ASSIGN)
+        return TokenUtil.isOfType(exprAst.getParent(), INCREMENT_DECREMENT_VARIABLE_USAGE_TYPES)
                 && exprAst.getParent().getParent().getType() != TokenTypes.FOR_ITERATOR;
     }
 

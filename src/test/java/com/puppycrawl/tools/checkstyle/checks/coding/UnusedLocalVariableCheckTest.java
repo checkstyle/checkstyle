@@ -361,6 +361,34 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVariableSwitchStatement() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableSwitchStatement.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVariableSwitchStatement2() throws Exception {
+        final String[] expected = {
+            "58:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableSwitchStatement2.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVariableSwitchExpression() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "line2"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedLocalVariableSwitchExpression.java"),
+                expected);
+    }
+
+    @Test
     public void testClearStateVariables() throws Exception {
         final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
