@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java15
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.javaparser;
 
 public class InputJavaParserFullJavaIdentifierSupport {
