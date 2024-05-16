@@ -34,11 +34,11 @@ public final class BlockTagUtil {
 
     /** Block tag pattern for a first line. */
     private static final Pattern BLOCK_TAG_PATTERN_FIRST_LINE = Pattern.compile(
-        "/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
+        "/\\*{2,}\\s*@(\\p{Alpha}+)(\\s|$)");
 
     /** Block tag pattern. */
     private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
-        "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+        "^\\s*\\**\\s*@(\\p{Alpha}+)(\\s|$)");
 
     /** Closing tag. */
     private static final String JAVADOC_CLOSING_TAG = "*/";
@@ -77,8 +77,14 @@ public final class BlockTagUtil {
                 final int colNum = tagMatcher.start(1) - 1;
                 final int lineNum = i + 1;
 
-                final String remainder = line.substring(tagMatcher.end(1));
-                String tagValue = remainder.trim();
+                String tagValue;
+                final int matchEnd = tagMatcher.end(1);
+                if (matchEnd == -1) {
+                    tagValue = "";
+                }
+                else {
+                    tagValue = line.substring(matchEnd).trim();
+                }
 
                 // Handle the case where we're on the last line of a Javadoc comment.
                 if (tagValue.endsWith(JAVADOC_CLOSING_TAG)) {

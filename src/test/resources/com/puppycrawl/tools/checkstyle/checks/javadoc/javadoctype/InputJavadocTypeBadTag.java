@@ -17,7 +17,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 /**
  * The following is a bad tag.
  * @mytag Hello   // violation 'Unknown tag 'mytag'.'
+ * // violation below 'Unknown tag 'mytagg''
+ * @mytagg
  */
 public class InputJavadocTypeBadTag
 {
 }
+
+// violation below 'Unknown tag 'badfirstlinetag''
+/** @badfirstlinetag
+ */
+class InputJavadocTypeBadTagFirstLine {}

@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MS
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG_GENERAL;
 
 import org.junit.jupiter.api.Test;
 
@@ -253,6 +254,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "59:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
             "62:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
             "75:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "79:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
@@ -274,6 +276,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "20:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
             "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "23:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeUnusedParamInJavadocForClass.java"),
@@ -284,6 +287,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testBadTag() throws Exception {
         final String[] expected = {
             "19:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "21:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytagg"),
+            "28:5: " + getCheckMessage(MSG_UNKNOWN_TAG, "badfirstlinetag"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeBadTag.java"),

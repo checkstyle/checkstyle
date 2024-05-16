@@ -374,10 +374,9 @@ public class JavadocTypeCheck
         final JavadocTags tags = JavadocUtil.getJavadocTags(textBlock,
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
-            for (final InvalidJavadocTag tag : tags.getInvalidTags()) {
-                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG,
-                    tag.getName());
-            }
+            tags.getInvalidTags().forEach(tag -> {
+                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
+            });
         }
         return tags.getValidTags();
     }
@@ -476,11 +475,18 @@ public class JavadocTypeCheck
                         || recordComponentNames.contains(paramName);
 
                 if (!found) {
-                    final String actualParamName =
-                        TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
-                    log(tag.getLineNo(), tag.getColumnNo(),
-                        MSG_UNUSED_TAG,
-                        JavadocTagInfo.PARAM.getText(), actualParamName);
+                    if (paramName.isEmpty()) {
+                        log(tag.getLineNo(), tag.getColumnNo(),
+                            MSG_UNUSED_TAG_GENERAL,
+                            JavadocTagInfo.PARAM.getText());
+                    }
+                    else {
+                        final String actualParamName =
+                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+                        log(tag.getLineNo(), tag.getColumnNo(),
+                            MSG_UNUSED_TAG,
+                            JavadocTagInfo.PARAM.getText(), actualParamName);
+                    }
                 }
             }
         }
