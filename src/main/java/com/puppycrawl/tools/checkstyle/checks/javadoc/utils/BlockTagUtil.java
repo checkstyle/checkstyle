@@ -34,11 +34,11 @@ public final class BlockTagUtil {
 
     /** Block tag pattern for a first line. */
     private static final Pattern BLOCK_TAG_PATTERN_FIRST_LINE = Pattern.compile(
-        "/\\*{2,}\\s*@(\\p{Alpha}+)\\s");
+        "/\\*{2,}\\s*@(\\p{Alpha}+)(\\s|$)");
 
     /** Block tag pattern. */
     private static final Pattern BLOCK_TAG_PATTERN = Pattern.compile(
-        "^\\s*\\**\\s*@(\\p{Alpha}+)\\s");
+        "^\\s*\\**\\s*@(\\p{Alpha}+)(\\s|$)");
 
     /** Closing tag. */
     private static final String JAVADOC_CLOSING_TAG = "*/";
