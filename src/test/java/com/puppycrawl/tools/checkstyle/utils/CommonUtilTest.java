@@ -491,7 +491,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final URI uri = CommonUtil.getUriByFilename(filename);
 
         final Properties properties = System.getProperties();
-        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toASCIIString(),
             new PropertiesExpander(properties));
         assertWithMessage("Unexpected config name!")
             .that(config.getName())
@@ -505,7 +505,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final URI uri = CommonUtil.getUriByFilename(filename);
 
         final Properties properties = System.getProperties();
-        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toASCIIString(),
             new PropertiesExpander(properties));
         assertWithMessage("Unexpected config name!")
             .that(config.getName())
@@ -531,10 +531,10 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 "com/puppycrawl/tools/checkstyle/utils/"
                         + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
         assertWithMessage("URI is relative to package " + uriRelativeToPackage)
-            .that(uri.toString())
+            .that(uri.toASCIIString())
             .doesNotContain(uriRelativeToPackage);
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
-        assertWithMessage("Content mismatches for: " + uri)
+        assertWithMessage("Content mismatches for: " + uri.toASCIIString())
             .that(content)
             .startsWith("good");
     }
@@ -546,7 +546,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final URI uri = CommonUtil.getUriByFilename(filename);
 
         final Properties properties = System.getProperties();
-        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toASCIIString(),
             new PropertiesExpander(properties));
         assertWithMessage("Unexpected config name!")
             .that(config.getName())
@@ -560,7 +560,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final URI uri = CommonUtil.getUriByFilename(filename);
 
         final Properties properties = System.getProperties();
-        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toASCIIString(),
             new PropertiesExpander(properties));
         assertWithMessage("Unexpected config name!")
             .that(config.getName())

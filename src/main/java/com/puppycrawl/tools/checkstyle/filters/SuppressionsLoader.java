@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -218,10 +217,7 @@ public final class SuppressionsLoader
      */
     public static FilterSet loadSuppressions(String filename)
             throws CheckstyleException {
-        // figure out if this is a File or a URL
-        final URI uri = CommonUtil.getUriByFilename(filename);
-        final InputSource source = new InputSource(uri.toString());
-        return loadSuppressions(source, filename);
+        return loadSuppressions(CommonUtil.sourceFromFilename(filename), filename);
     }
 
     /**
@@ -247,10 +243,7 @@ public final class SuppressionsLoader
      */
     public static Set<TreeWalkerFilter> loadXpathSuppressions(String filename)
             throws CheckstyleException {
-        // figure out if this is a File or a URL
-        final URI uri = CommonUtil.getUriByFilename(filename);
-        final InputSource source = new InputSource(uri.toString());
-        return loadXpathSuppressions(source, filename);
+        return loadXpathSuppressions(CommonUtil.sourceFromFilename(filename), filename);
     }
 
     /**

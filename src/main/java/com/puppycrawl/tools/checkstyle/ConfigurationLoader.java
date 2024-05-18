@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -260,10 +259,7 @@ public final class ConfigurationLoader {
                                                   IgnoredModulesOptions ignoredModulesOptions,
                                                   ThreadModeSettings threadModeSettings)
             throws CheckstyleException {
-        // figure out if this is a File or a URL
-        final URI uri = CommonUtil.getUriByFilename(config);
-        final InputSource source = new InputSource(uri.toString());
-        return loadConfiguration(source, overridePropsResolver,
+        return loadConfiguration(CommonUtil.sourceFromFilename(config), overridePropsResolver,
                 ignoredModulesOptions, threadModeSettings);
     }
 
