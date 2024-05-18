@@ -271,11 +271,11 @@ public final class ImportControlLoader extends XmlLoader {
             return loader.getRoot();
         }
         catch (ParserConfigurationException | SAXException ex) {
-            throw new CheckstyleException("unable to parse " + uri
+            throw new CheckstyleException("unable to parse " + uri.toASCIIString()
                     + " - " + ex.getMessage(), ex);
         }
         catch (IOException ex) {
-            throw new CheckstyleException("unable to read " + uri, ex);
+            throw new CheckstyleException("unable to read " + uri.toASCIIString(), ex);
         }
     }
 
@@ -292,10 +292,10 @@ public final class ImportControlLoader extends XmlLoader {
             return load(source, uri);
         }
         catch (MalformedURLException ex) {
-            throw new CheckstyleException("syntax error in url " + uri, ex);
+            throw new CheckstyleException("syntax error in url " + uri.toASCIIString(), ex);
         }
         catch (IOException ex) {
-            throw new CheckstyleException("unable to find " + uri, ex);
+            throw new CheckstyleException("unable to find " + uri.toASCIIString(), ex);
         }
     }
 
