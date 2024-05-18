@@ -51,6 +51,16 @@
           </tr>
           <tr>
             <td>
+              <a href="constructorsdeclarationgrouping.html#ConstructorsDeclarationGrouping">
+                ConstructorsDeclarationGrouping
+              </a>
+            </td>
+            <td>
+              Checks that all constructors are grouped together.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="covariantequals.html#CovariantEquals">
                 CovariantEquals
               </a>
