@@ -655,6 +655,20 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testLoadConfigurationFromClassPathWithNonAsciiSymbolsInPath() throws Exception {
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                    getResourcePath("æ£µ¥/InputConfigurationLoaderModuleIgnoreSeverity.xml"),
+                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
+
+        final Configuration[] children = config.getChildren();
+        final int length = children[0].getChildren().length;
+        assertWithMessage("Invalid children count")
+            .that(length)
+            .isEqualTo(0);
+    }
+
+    @Test
     public void testParsePropertyString() throws Exception {
         final List<String> propertyRefs = new ArrayList<>();
         final List<String> fragments = new ArrayList<>();

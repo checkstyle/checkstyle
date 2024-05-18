@@ -29,7 +29,6 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -114,7 +113,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         }
         catch (final IOException ex) {
             throw new CheckstyleException(
-                    "unable to load header file " + headerFile, ex);
+                    "unable to load header file " + headerFile.toASCIIString(), ex);
         }
     }
 
@@ -201,10 +200,10 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
         final Set<String> result;
 
         if (headerFile == null) {
-            result = Collections.emptySet();
+            result = Set.of();
         }
         else {
-            result = Collections.singleton(headerFile.toString());
+            result = Set.of(headerFile.toASCIIString());
         }
 
         return result;
