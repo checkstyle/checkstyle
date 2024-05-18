@@ -36,6 +36,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.xml.sax.InputSource;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
@@ -331,6 +333,19 @@ public final class CommonUtil {
     }
 
     /**
+     * Creates an input source from a file.
+     *
+     * @param filename name of the file.
+     * @return input source.
+     * @throws CheckstyleException if an error occurs.
+     */
+    public static InputSource sourceFromFilename(String filename) throws CheckstyleException {
+        // figure out if this is a File or a URL
+        final URI uri = getUriByFilename(filename);
+        return new InputSource(uri.toASCIIString());
+    }
+
+    /**
      * Resolve the specified filename to a URI.
      *
      * @param filename name of the file
@@ -593,5 +608,4 @@ public final class CommonUtil {
         final char character = Character.toChars(codePoints[index])[0];
         return Character.isWhitespace(character);
     }
-
 }
