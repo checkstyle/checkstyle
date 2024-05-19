@@ -55,7 +55,8 @@ echo "Run w"
 
 printDetails() {
   echo ''
-  echo 'If you are ok with the output of this run, you will need to'
+  echo 'If you are ok with the output of this run, you will need \
+to run the following entire multiline command:'
 }
 
 echo "Review results"
