@@ -15,30 +15,32 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
+import java.util.AbstractMap;
 
 public class InputIllegalTypeTestEnhancedInstanceof {
-    public void InputIllegalTypeEnhancedInstanceof() {
+    public void InputIllegalTypeEnhancedInstanceof(Map<Integer, Integer> lmm) {
         LinkedHashMap<Integer, Integer> lhm // violation
                 = new LinkedHashMap<Integer, Integer>();
 
-        if (lhm instanceof LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
+        if (lmm instanceof LinkedHashMap<Integer, Integer> linkedHashMap) { // violation
             System.out.println(linkedHashMap);
-        } else if (lhm instanceof Map<Integer, Integer> map) {
+        } else if (lmm instanceof AbstractMap<Integer, Integer> map) {
             System.out.println(map);
-        } else if (lhm instanceof HashMap<Integer, Integer> hashMap) { // violation
+        } else if (lmm instanceof HashMap<Integer, Integer> hashMap) { // violation
             System.out.println(hashMap);
         }
     }
 
     public void InputIllegalTypeEnhancedInstanceof(TreeSet treeSet) { // violation
-        if (treeSet instanceof TreeSet t) { // violation
+        Object set = new Object();
+        if (set instanceof TreeSet t) { // violation
             System.out.println(t);
         }
     }

@@ -1,7 +1,7 @@
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -86,7 +86,7 @@ public class InputJava14InstanceofWithPatternMatching {
         if (o1 instanceof String s || !(o2 instanceof String s)) {} //ok
         b = ((VoidPredicate) () -> o1 instanceof String s).get();
 
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        List<Integer> arrayList = new ArrayList<Integer>();
         if (arrayList instanceof ArrayList<Integer> ai) {
             System.out.println("Blah");
         }

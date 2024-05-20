@@ -5,10 +5,10 @@ format = ^[a-z][a-zA-Z0-9]+$
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Locale;
 
 public class InputPatternVariableNameEnhancedInstanceofNoSingleChar {
@@ -48,7 +48,7 @@ public class InputPatternVariableNameEnhancedInstanceofNoSingleChar {
         }
         b = ((VoidPredicate) () -> o1 instanceof String s).get(); // violation
 
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        List<Integer> arrayList = new ArrayList<Integer>();
         if (arrayList instanceof ArrayList<Integer> ai) {
             System.out.println("Blah");
         }
