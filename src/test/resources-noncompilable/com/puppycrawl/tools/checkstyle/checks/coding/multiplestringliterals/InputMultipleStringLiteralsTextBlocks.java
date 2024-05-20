@@ -7,7 +7,7 @@ ignoreOccurrenceContext = (default)ANNOTATION
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
 public class InputMultipleStringLiteralsTextBlocks {
