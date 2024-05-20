@@ -1,0 +1,155 @@
+name: Diff-Report
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  AWS_REGION: us-east-2
+  AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
+  USER_LOGIN: ${{ github.event.issue.user.login }}
+
+jobs:
+  check_regression:
+    if: contains(github.event.comment.body, 'GitHub, generate report')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print working directory after checking out your repository branch
+        run: |
+          echo "Current directory after checking out your repository branch:"
+          pwd
+
+      - name: Checkout your repository branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.issue.pull_request.head.ref }}
+          path: your-repo
+
+      - name: Checkout checkstyle repository for testing
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
+          path: checkstyle
+
+      - name: Print working directory after checking out checkstyle
+        run: |
+          echo "Current directory after checking out checkstyle:"
+          pwd
+
+      - name: Download contribution
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/contribution
+          path: .ci-temp/contribution
+
+      - name: Print working directory after checking out contribution
+        run: |
+          echo "Current directory after contribution checkout:"
+          pwd
+
+      - name: Set upstream
+        run: |
+          cd checkstyle
+          bash
+          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          git remote add upstream "$MAIN_REPO_GIT_URL"
+          git fetch upstream
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+
+      - name: Install groovy
+        run: sudo apt install groovy
+
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Fetch my_check.xml from Gist
+        env:
+          MY_PAT: ${{ secrets.MY_PAT }}
+        run: |
+          GIST_URL="https://gist.githubusercontent.com/relentless-pursuit/910014a82baddbfe9fa420a8a4783a8f/raw/2da278b2feb0264fc48e5de5480c4c11c52f2bf1/my_check.xml"
+          if [ -z "$GIST_URL" ]; then
+            echo "Specified Gist URL is invalid"
+            exit 1
+          fi
+          curl -s -H "Authorization: token $MY_PAT" "$GIST_URL" -o my_check.xml
+          if [ ! -f my_check.xml ]; then
+            echo "Failed to fetch my_check.xml"
+            exit 1
+          fi
+          echo "Fetched my_check.xml from $GIST_URL"
+
+      - name: Copy my_check.xml to required directory
+        run: |
+          mkdir -p .ci-temp/contribution/checkstyle-tester
+          cp my_check.xml .ci-temp/contribution/checkstyle-tester/my_check.xml
+          echo "Copied my_check.xml to .ci-temp/contribution/checkstyle-tester/"
+
+      - name: List directory contents
+        run: ls -la .ci-temp/contribution/checkstyle-tester/
+
+      - name: Display contents of my_check.xml
+        run: |
+          echo "Displaying the contents of my_check.xml:"
+          cat my_check.xml
+
+      - name: Extract PR branch name
+        id: extract_branch
+        run: |
+          PR_URL=$(jq -r '.issue.pull_request.url' "$GITHUB_EVENT_PATH")
+          BRANCH=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" $PR_URL | jq -r '.head.ref')
+          echo "PR branch is $BRANCH"
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+
+      - name: Generate report
+        run: |
+          echo "Current directory: $(pwd)"
+          cd .ci-temp/contribution/checkstyle-tester
+          echo "Changed directory to: $(pwd)"
+
+          # List contents of current directory
+          echo "Contents of current directory:"
+          ls -al
+
+          # Set the absolute path to the checkstyle directory
+          REPO="/home/runner/work/testing/testing/"
+          echo "REPO set to: $REPO"
+
+          BASE_BRANCH="upstream/main"
+          export MAVEN_OPTS="-Xmx5g"
+
+          # Use the downloaded my_check.xml
+          groovy ./diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$BRANCH" -c my_check.xml \
+            -l project.properties -xm "-Dcheckstyle.failsOnError=false" --allowExcludes
+
+        env:
+          AWS_REGION: us-east-2
+          AWS_BUCKET_NAME: checkstyle-diff-reports
+          DEFAULT_PROJECTS_LINK: https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties
+          USER_LOGIN: relentless-pursuit
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.23-9/x64
+          JAVA_HOME_11_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.23-9/x64
+
+      - name: List directory contents
+        run: ls -la .ci-temp/contribution/checkstyle-tester/
+
+      - name: Upload Report to AWS S3
+        run: |
+          aws s3 cp ./reports/diff "s3://${{ env.AWS_BUCKET_NAME }}/diff_reports/${{ github.run_id }}/" --recursive
+          echo "Report uploaded to AWS S3."
+
+      - name: Notify completion
+        run: echo "Checkstyle regression testing and report generation completed."

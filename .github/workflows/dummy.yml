@@ -1,0 +1,22 @@
+name: Dummy Report
+
+on:
+  pull_request_review_comment:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  generate_report:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/prototype-branch' && contains(github.event.comment.body, 'generate report')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: prototype-branch
+
+      - name: Dummy step
+        run: echo "Generating report..."

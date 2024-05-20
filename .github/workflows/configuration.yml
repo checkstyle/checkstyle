@@ -1,0 +1,78 @@
+name: Configuration Management
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  create_initial_gist:
+    if: contains(github.event.comment.body, 'check:') && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract module name and set as env var
+        run: |
+          MODULE_NAME=$(echo "${{ github.event.comment.body }}" | sed -n 's/.*check:\([^ ]*\).*/\1/p')
+          echo "MODULE_NAME=$MODULE_NAME" >> $GITHUB_ENV
+
+      - name: Append configurations to my_check.xml
+        run: |
+          CONFIG_FILE="./config/${{ env.MODULE_NAME }}Config.xml"
+          TARGET_XML_FILE="my_check.xml"
+          TMP_CONTENT=$(awk '
+            /<module name="ThrowsCount">/,/<\/module>/ {
+              print
+              if (/<\/module>/ && !f) {
+                print "PLACEHOLDER"
+                f=1
+              }
+              next
+            }
+            1' $TARGET_XML_FILE)
+          echo "$TMP_CONTENT" | sed "/PLACEHOLDER/r $CONFIG_FILE" | sed '/PLACEHOLDER/d' > $TARGET_XML_FILE
+          echo "Updated my_check.xml with configurations from $CONFIG_FILE."
+        shell: bash
+
+      - name: Create and post initial gist
+        env:
+          MY_PAT: ${{ secrets.MY_PAT }}
+        run: |
+          GIST_PAYLOAD=$(jq -Rs '{ "files": { "my_check.xml": { "content": . } } }' my_check.xml)
+          GIST_RESPONSE=$(curl -s -X POST -H "Authorization: token $MY_PAT" -d "$GIST_PAYLOAD" "https://api.github.com/gists")
+          GIST_URL=$(echo $GIST_RESPONSE | jq -r '.html_url')
+          echo "Gist URL: $GIST_URL"
+          PR_COMMENT="Initial configuration has been posted here: $GIST_URL. Please modify the configuration as needed and comment 'updated gist: <GIST_URL>' to update the gist with your changes."
+          curl -s -X POST -H "Authorization: token $MY_PAT" -d "{\"body\": \"$PR_COMMENT\"}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
+
+  handle_updated_gist:
+    if: contains(github.event.comment.body, 'updated gist:') && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for updated gist URL
+        id: check_gist
+        run: |
+          if echo "${{ github.event.comment.body }}" | grep -q '^updated gist: https:\/\/gist\.github\.com\/.*$'; then
+            echo "match=true" >> $GITHUB_ENV
+          else
+            echo "match=false" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      - name: Extract updated gist URL
+        if: env.match == 'true'
+        run: |
+          UPDATED_GIST_URL=$(echo "${{ github.event.comment.body }}" | sed -n 's/.*updated gist: \([^ ]*\).*/\1/p')
+          echo "UPDATED_GIST_URL=$UPDATED_GIST_URL" >> $GITHUB_ENV
+
+      - name: Post final configuration gist URL
+        if: env.match == 'true'
+        env:
+          MY_PAT: ${{ secrets.MY_PAT }}
+        run: |
+          PR_COMMENT="Final configuration to be used for regression testing: $UPDATED_GIST_URL"
+          curl -s -X POST -H "Authorization: token $MY_PAT" -d "{\"body\": \"$PR_COMMENT\"}" "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"

@@ -1,0 +1,24 @@
+<module id="config1" name="AnnotationLocation">
+</module>
+
+<module id="config2" name="AnnotationLocation">
+<property name="allowSamelineSingleParameterlessAnnotation"
+          value="false"/>
+<property name="allowSamelineParameterizedAnnotation" value="false"/>
+<property name="allowSamelineMultipleAnnotations" value="true"/>
+</module>
+
+<module id="config3" name="AnnotationLocation">
+<property name="allowSamelineMultipleAnnotations" value="false"/>
+<property name="allowSamelineSingleParameterlessAnnotation"
+          value="false"/>
+<property name="allowSamelineParameterizedAnnotation" value="true"/>
+</module>
+
+<module id="config4" name="AnnotationLocation">
+<property name="tokens" value="METHOD_DEF"/>
+<property name="allowSamelineMultipleAnnotations" value="false"/>
+<property name="allowSamelineSingleParameterlessAnnotation"
+          value="true"/>
+<property name="allowSamelineParameterizedAnnotation" value="false"/>
+</module>
