@@ -8,7 +8,7 @@ recordMaximum = (default)150
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 public class InputJavaNCSSRecordsMax {// violation 'NCSS for this class is 152 (max allowed is 80)'
