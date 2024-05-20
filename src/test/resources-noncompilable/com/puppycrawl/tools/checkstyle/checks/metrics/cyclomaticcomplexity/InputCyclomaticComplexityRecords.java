@@ -8,7 +8,7 @@ tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SW
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexityRecords {
