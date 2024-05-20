@@ -97,151 +97,190 @@ jobs:
           # shellcheck disable=SC2005
           echo "$(cat "$GITHUB_OUTPUT")"
 
-  make_report:
-    runs-on: ubuntu-latest
-    needs: parse_body
-    if: needs.parse_body.outputs.config_link != ''
-            || needs.parse_body.outputs.new_module_config_link != ''
-    outputs:
-      message: ${{ steps.out.outputs.message }}
-    steps:
-
-      - name: Download checkstyle
-        uses: actions/checkout@v4
-
-      - name: Download files
-        env:
-          NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
-          DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
-          PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
-          LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./.ci/diff-report.sh download-files
-
-      # set main checkstyle repo as an upstream
-      # Diff report will be generated taking upstream's master branch as a base branch
-      - name: set upstream
-        run: |
-          bash
-          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
-          git remote add upstream "$MAIN_REPO_GIT_URL"
-          git fetch upstream
-          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
-          git remote add forked "$FORK_REPO_GIT_URL"
-          git fetch forked
-
-      - name: Setup local maven cache
-        uses: actions/cache@v4
+      - name: Checkout checkstyle repository
+        uses: actions/checkout@v2
         with:
-          path: ~/.m2/repository
-          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+          repository: 'checkstyle/checkstyle'
+          path: 'checkstyle'
 
-      - name: Download contribution
-        uses: actions/checkout@v4
-        with:
-          repository: checkstyle/contribution
-          path: .ci-temp/contribution
-
-      - name: Prepare environment
+      - name: Print working directory after checking out checkstyle
         run: |
-          mv .ci-temp/project.properties ./.ci-temp/contribution/checkstyle-tester/
-          mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
-          sudo apt install groovy
+          echo "Current directory after checkstyle checkout:"
+          pwd
+          ls -la
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Checkout contribution repository
+        uses: actions/checkout@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          repository: 'checkstyle/contribution'
+          path: '.ci-temp/contribution'
 
-      - name: Generate report
-        env:
-          BRANCH: ${{ needs.parse_body.outputs.branch }}
+      - name: Print working directory after checking out contribution
         run: |
+          echo "Current directory after contribution checkout:"
+          pwd
+          ls -la
+
+      - name: Set up paths and generate report
+        run: |
+          echo "Setting up paths for report generation"
           cd .ci-temp/contribution/checkstyle-tester
-          bash
-          REF="forked/$BRANCH"
-          REPO="../../../../checkstyle"
-          BASE_BRANCH="upstream/master"
-          export MAVEN_OPTS="-Xmx5g"
-          if [ -f new_module_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
-              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          elif [ -f patch_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
-              -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          else
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
-              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
-              --allowExcludes
-          fi
+          echo "Current directory in checkstyle-tester:"
+          pwd
+          ls -la
+          
+          # Assuming the need to navigate back to 'checkstyle' directory
+          echo "Navigating back to the checkstyle directory using ../../../../"
+          cd ../../../../checkstyle
+          echo "Current directory after navigating back:"
+          pwd
+          ls -la
 
-      - name: Copy Report to AWS S3 Bucket
-        env:
-          LABEL: ${{ needs.parse_body.outputs.report_label }}
-        run: |
-          bash
-          TIME=$(date +%Y%H%M%S)
-          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
-          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
-          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
-          if [ -n "$LABEL" ]; then
-            echo "$LABEL: " > .ci-temp/message
-          fi
-          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
-
-      - name: Set output
-        id: out
-        run: |
-          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
-
-  # should be always last step
-  send_message:
-    runs-on: ubuntu-latest
-    needs: [ parse_body, make_report ]
-    if: failure() || success()
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Get message
-        env:
-          MSG: ${{ needs.make_report.outputs.message }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p .ci-temp
-          if [ -z "$MSG" ]; then
-            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
-            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
-            API_LINK="${API_LINK}${{github.run_id}}/jobs"
-
-            curl --fail-with-body -X GET "${API_LINK}" \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -o .ci-temp/info.json
-
-            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
-            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
-            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
-            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
-            echo "Report generation failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
-            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
-          else
-            echo "$MSG" > .ci-temp/message
-          fi
-
-      - name: Set message
-        id: out
-        run: |
-          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
-
-      - name: Comment PR
-        uses: checkstyle/contribution/comment-action@master
-        with:
-          message: ${{steps.out.outputs.message}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#  make_report:
+#    runs-on: ubuntu-latest
+#    needs: parse_body
+#    if: needs.parse_body.outputs.config_link != ''
+#            || needs.parse_body.outputs.new_module_config_link != ''
+#    outputs:
+#      message: ${{ steps.out.outputs.message }}
+#    steps:
+#
+#      - name: Download checkstyle
+#        uses: actions/checkout@v4
+#
+#      - name: Download files
+#        env:
+#          NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
+#          DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
+#          PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
+#          LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          ./.ci/diff-report.sh download-files
+#
+#      # set main checkstyle repo as an upstream
+#      # Diff report will be generated taking upstream's master branch as a base branch
+#      - name: set upstream
+#        run: |
+#          bash
+#          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+#          git remote add upstream "$MAIN_REPO_GIT_URL"
+#          git fetch upstream
+#          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+#          git remote add forked "$FORK_REPO_GIT_URL"
+#          git fetch forked
+#
+#      - name: Setup local maven cache
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.m2/repository
+#          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+#
+#      - name: Download contribution
+#        uses: actions/checkout@v4
+#        with:
+#          repository: checkstyle/contribution
+#          path: .ci-temp/contribution
+#
+#      - name: Prepare environment
+#        run: |
+#          mv .ci-temp/project.properties ./.ci-temp/contribution/checkstyle-tester/
+#          mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
+#          sudo apt install groovy
+#
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v4
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: ${{ env.AWS_REGION }}
+#
+#      - name: Generate report
+#        env:
+#          BRANCH: ${{ needs.parse_body.outputs.branch }}
+#        run: |
+#          cd .ci-temp/contribution/checkstyle-tester
+#          bash
+#          REF="forked/$BRANCH"
+#          REPO="../../../../checkstyle"
+#          BASE_BRANCH="upstream/master"
+#          export MAVEN_OPTS="-Xmx5g"
+#          if [ -f new_module_config.xml ]; then
+#            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+#              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          elif [ -f patch_config.xml ]; then
+#            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+#              -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          else
+#            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+#              -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
+#              --allowExcludes
+#          fi
+#
+#      - name: Copy Report to AWS S3 Bucket
+#        env:
+#          LABEL: ${{ needs.parse_body.outputs.report_label }}
+#        run: |
+#          bash
+#          TIME=$(date +%Y%H%M%S)
+#          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
+#          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+#          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
+#          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
+#          if [ -n "$LABEL" ]; then
+#            echo "$LABEL: " > .ci-temp/message
+#          fi
+#          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+#
+#      - name: Set output
+#        id: out
+#        run: |
+#          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+#
+#  # should be always last step
+#  send_message:
+#    runs-on: ubuntu-latest
+#    needs: [ parse_body, make_report ]
+#    if: failure() || success()
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v4
+#
+#      - name: Get message
+#        env:
+#          MSG: ${{ needs.make_report.outputs.message }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          mkdir -p .ci-temp
+#          if [ -z "$MSG" ]; then
+#            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
+#            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
+#            API_LINK="${API_LINK}${{github.run_id}}/jobs"
+#
+#            curl --fail-with-body -X GET "${API_LINK}" \
+#              -H "Accept: application/vnd.github+json" \
+#              -H "Authorization: token $GITHUB_TOKEN" \
+#              -o .ci-temp/info.json
+#
+#            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
+#            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
+#            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
+#            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
+#            echo "Report generation failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
+#            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
+#          else
+#            echo "$MSG" > .ci-temp/message
+#          fi
+#
+#      - name: Set message
+#        id: out
+#        run: |
+#          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+#
+#      - name: Comment PR
+#        uses: checkstyle/contribution/comment-action@master
+#        with:
+#          message: ${{steps.out.outputs.message}}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
