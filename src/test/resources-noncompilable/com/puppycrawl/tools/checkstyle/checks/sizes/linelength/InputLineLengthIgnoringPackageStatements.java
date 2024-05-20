@@ -6,7 +6,7 @@ max = 75
 
 
 */
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.   checkstyle.checks.sizes.linelength;
 
 // violation below 'longer than 75 characters (found 76)'
