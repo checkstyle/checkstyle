@@ -192,12 +192,10 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     public void testInputEqualsAvoidNullEnhancedInstanceof() throws Exception {
 
         final String[] expected = {
-            "15:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "18:36: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "26:50: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "27:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "28:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
-            "29:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "15:50: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "16:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "17:38: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "18:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEqualsAvoidNullEnhancedInstanceof.java"),

@@ -536,21 +536,6 @@ javac11)
   done
   ;;
 
-javac14)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java14' \
-        src/test/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java14 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 14 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
         src/test/resources-noncompilable \

@@ -18,7 +18,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundRecordsAllowEmptyTypes {

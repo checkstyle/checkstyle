@@ -6,7 +6,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 public class InputAnnotationOnSameLineRecordsAndCompactCtors {

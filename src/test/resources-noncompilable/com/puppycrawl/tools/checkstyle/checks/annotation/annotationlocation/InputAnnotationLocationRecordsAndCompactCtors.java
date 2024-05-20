@@ -9,7 +9,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 public class InputAnnotationLocationRecordsAndCompactCtors {

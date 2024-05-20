@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 
 import java.util.function.Predicate;
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 public record InputUnusedLocalVariableRecords(int a, int b) {
     public InputUnusedLocalVariableRecords {
         int ab = 12;
