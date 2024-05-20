@@ -655,6 +655,21 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testLoadConfigurationFromClassPathWithNonAsciiSymbolsInPath() throws Exception {
+        final DefaultConfiguration config =
+                (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+                    getResourcePath("æ£µ¥/InputConfigurationLoaderDefaultProperty.xml"),
+                        new PropertiesExpander(new Properties()));
+
+        final Properties expectedPropertyValues = new Properties();
+        expectedPropertyValues.setProperty("tabWidth", "2");
+        expectedPropertyValues.setProperty("basedir", ".");
+        // charset property uses 2 variables, one is not defined, so default becomes a result value
+        expectedPropertyValues.setProperty("charset", "ASCII");
+        verifyConfigNode(config, "Checker", 0, expectedPropertyValues);
+    }
+
+    @Test
     public void testParsePropertyString() throws Exception {
         final List<String> propertyRefs = new ArrayList<>();
         final List<String> fragments = new ArrayList<>();
