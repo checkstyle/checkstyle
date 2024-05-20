@@ -7,7 +7,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
 public class InputMethodLengthRecordsAndCompactCtors {

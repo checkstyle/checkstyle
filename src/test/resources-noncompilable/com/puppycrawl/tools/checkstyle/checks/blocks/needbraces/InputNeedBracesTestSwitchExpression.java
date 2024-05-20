@@ -7,7 +7,7 @@ tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 public class InputNeedBracesTestSwitchExpression {
