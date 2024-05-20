@@ -10,7 +10,7 @@ tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, REC
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Locale;
@@ -54,7 +54,7 @@ public class InputHiddenFieldRecords {
         private static String model = null;
         private static int price = 2;
 
-        public boolean doStuff(Float f) {
+        public boolean doStuff(Object f) {
             return f instanceof Float price && // violation
                     price.floatValue() > 0 &&
                     model != null &&

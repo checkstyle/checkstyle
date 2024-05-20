@@ -8,7 +8,7 @@ recordMaximum = 4
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;  // violation 'NCSS for this file is 89 (max allowed is 2).'
 
 import java.time.LocalDateTime;
