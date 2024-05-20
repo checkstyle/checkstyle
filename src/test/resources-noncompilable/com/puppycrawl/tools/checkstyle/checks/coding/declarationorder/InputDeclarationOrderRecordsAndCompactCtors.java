@@ -6,7 +6,7 @@ ignoreModifiers = (default)false
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 import java.util.HashMap;
