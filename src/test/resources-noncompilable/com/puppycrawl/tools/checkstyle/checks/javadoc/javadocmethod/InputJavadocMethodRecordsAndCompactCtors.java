@@ -10,7 +10,7 @@ tokens = METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF, RECORD_DE
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 public class InputJavadocMethodRecordsAndCompactCtors {
