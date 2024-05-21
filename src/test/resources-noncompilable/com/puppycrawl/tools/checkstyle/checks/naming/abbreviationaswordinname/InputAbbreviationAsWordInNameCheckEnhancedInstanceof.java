@@ -13,7 +13,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceof {
         if (!(o1 instanceof String STRING) // violation
                 && (o2 instanceof Integer INTEGER)) {} // violation
 
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        List<Integer> arrayList = new ArrayList<Integer>();
         if (arrayList instanceof ArrayList<Integer> aXML) {
             System.out.println("BlahBlah");
         }
