@@ -7,7 +7,7 @@ validateOnlyOverlapping = (default)true
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public record InputRequireThisRecordDefault(int x, int y) {
