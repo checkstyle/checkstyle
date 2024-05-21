@@ -303,7 +303,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "31:28: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
             "35:35: " + getCheckMessage(MSG_KEY, "HashMap"),
             "40:52: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "41:32: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "42:28: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verifyWithInlineConfigParser(

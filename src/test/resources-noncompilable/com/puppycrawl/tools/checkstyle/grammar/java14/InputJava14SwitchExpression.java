@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
 import static java.time.Instant.*;
