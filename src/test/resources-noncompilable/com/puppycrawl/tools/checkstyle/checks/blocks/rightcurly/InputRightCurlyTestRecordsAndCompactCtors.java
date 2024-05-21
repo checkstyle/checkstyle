@@ -6,7 +6,7 @@ tokens = RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import org.w3c.dom.Node;
