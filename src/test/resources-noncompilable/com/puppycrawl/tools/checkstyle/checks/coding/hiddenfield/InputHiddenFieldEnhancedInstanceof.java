@@ -10,7 +10,7 @@ tokens = PATTERN_VARIABLE_DEF
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Locale;
@@ -22,7 +22,7 @@ public class InputHiddenFieldEnhancedInstanceof {
         private final int price = 2;
 
         // Pattern variable price hides field price
-        public boolean doStuff(Float f) {
+        public boolean doStuff(Object f) {
             return f instanceof Float price && // violation
                     price.floatValue() > 0 &&
                     model != null &&

@@ -5,11 +5,11 @@ ignoreEqualsIgnoreCase = (default)false
 
 */
 
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 public class InputEqualsAvoidNullEnhancedInstanceof {
-    public InputEqualsAvoidNullEnhancedInstanceof(String str) {
+    public InputEqualsAvoidNullEnhancedInstanceof(Object str) {
         if (str instanceof String myString) {
             System.out.println("Mystring!!");
             boolean myBool = myString.equals("MyString!!"); // violation 'left .* of .* equals'
