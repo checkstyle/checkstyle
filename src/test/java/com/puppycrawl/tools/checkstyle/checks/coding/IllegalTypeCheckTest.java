@@ -299,11 +299,11 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeEnhancedInstanceof() throws Exception {
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
-            "31:28: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
-            "35:35: " + getCheckMessage(MSG_KEY, "HashMap"),
-            "40:52: " + getCheckMessage(MSG_KEY, "TreeSet"),
-            "41:32: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "29:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "32:28: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "36:35: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "41:52: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "43:28: " + getCheckMessage(MSG_KEY, "TreeSet"),
         };
 
         verifyWithInlineConfigParser(
