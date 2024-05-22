@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java14
+//non-compiled with javac: Compilable with Java17
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
 import java.util.ArrayList;
