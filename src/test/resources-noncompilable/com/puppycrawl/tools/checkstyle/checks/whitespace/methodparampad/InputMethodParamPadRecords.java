@@ -30,7 +30,7 @@ public class InputMethodParamPadRecords {
     //in ctor
     record Mtr2 () { // violation ''(' is preceded with whitespace'
         Mtr2 (String s1, String s2, String s3){ // violation ''(' is preceded with whitespace'
-            this ();
+            this (); // violation ''(' is preceded with whitespace'
         }
     }
 

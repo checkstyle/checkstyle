@@ -25,8 +25,7 @@ public class InputMethodParamPadWhitespaceAround
 
     protected InputMethodParamPadWhitespaceAround ( String s)
     {
-        // ok, until https://github.com/checkstyle/checkstyle/issues/13675
-        this();
+        this(); // violation ''(' is not preceded with whitespace'
     }
 
     public void enhancedFor ()

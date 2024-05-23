@@ -25,7 +25,7 @@
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption">
                <description>Specify policy on how to pad method parameter.</description>
             </property>
-            <property default-value="CTOR_DEF,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF"
+            <property default-value="CTOR_DEF,CTOR_CALL,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL,ENUM_CONSTANT_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
