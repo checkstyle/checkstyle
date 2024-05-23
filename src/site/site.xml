@@ -193,6 +193,8 @@
           <item name="InvalidJavadocPosition" href="checks/javadoc/invalidjavadocposition.html"/>
           <item name="JavadocBlockTagLocation" href="checks/javadoc/javadocblocktaglocation.html"/>
           <item name="JavadocContentLocation" href="checks/javadoc/javadoccontentlocation.html"/>
+          <item name="JavadocLeadingAsteriskAlign"
+                href="checks/javadoc/javadocleadingasteriskalign.html"/>
           <item name="JavadocMethod" href="checks/javadoc/javadocmethod.html"/>
           <item name="JavadocMissingLeadingAsterisk"
                 href="checks/javadoc/javadocmissingleadingasterisk.html"/>
