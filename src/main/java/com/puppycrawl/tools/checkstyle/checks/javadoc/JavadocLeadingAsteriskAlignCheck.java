@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -133,19 +132,18 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final boolean isJavadocStartingLine = ast.getLineNumber() == javadocStartLineNumber;
 
         if (!isJavadocStartingLine) {
-            final OptionalInt leadingAsteriskColumnNumber =
+            final Optional<Integer> leadingAsteriskColumnNumber =
                                         getAsteriskColumnNumber(ast.getText());
 
             leadingAsteriskColumnNumber
+                    .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
+                    .filter(columnNumber -> {
+                        return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
+                    })
                     .ifPresent(columnNumber -> {
-                        final int expandedColumnNumber = expandedTabs(ast.getText(), columnNumber);
-                        final boolean isAsteriskMisaligned = hasInvalidAlignment(
-                                expectedColumnNumberTabsExpanded, expandedColumnNumber);
-                        if (isAsteriskMisaligned) {
-                            logViolation(ast.getLineNumber(),
-                                    expandedColumnNumber,
-                                    expectedColumnNumberTabsExpanded);
-                        }
+                        logViolation(ast.getLineNumber(),
+                                columnNumber,
+                                expectedColumnNumberTabsExpanded);
                     });
         }
     }
@@ -155,19 +153,19 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         // this method checks the alignment of closing javadoc tag.
         final DetailAST javadocEndToken = getBlockCommentAst().getLastChild();
         final String lastLine = fileLines[javadocEndToken.getLineNo() - 1];
-        final OptionalInt endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
+        final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
 
         endingBlockColumnNumber
+                .map(columnNumber -> expandedTabs(lastLine, columnNumber))
+                .filter(columnNumber -> {
+                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
+                })
                 .ifPresent(columnNumber -> {
-                    final int expandedColumnNumber = expandedTabs(lastLine, columnNumber);
-                    final boolean isAsteriskMisaligned = hasInvalidAlignment(
-                            expectedColumnNumberTabsExpanded, expandedColumnNumber);
-                    if (isAsteriskMisaligned) {
-                        logViolation(javadocEndToken.getLineNo(),
-                                expandedColumnNumber,
-                                expectedColumnNumberTabsExpanded);
-                    }
+                    logViolation(javadocEndToken.getLineNo(),
+                            columnNumber,
+                            expectedColumnNumberTabsExpanded);
                 });
+
     }
 
     /**
@@ -192,7 +190,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * @param line javadoc comment line
      * @return asterisk's column number
      */
-    private static OptionalInt getAsteriskColumnNumber(String line) {
+    private static Optional<Integer> getAsteriskColumnNumber(String line) {
         final Pattern pattern = Pattern.compile("^(\\s*)\\*");
         final Matcher matcher = pattern.matcher(line);
 
@@ -202,9 +200,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         return Optional.of(matcher)
                 .filter(Matcher::find)
                 .map(matcherInstance -> matcherInstance.group(1))
-                .map(groupLength -> groupLength.length() + 1)
-                .map(OptionalInt::of)
-                .orElseGet(OptionalInt::empty);
+                .map(groupLength -> groupLength.length() + 1);
     }
 
     /**
@@ -233,8 +229,8 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      * @param asteriskColNumber column number of leading asterisk
      * @return true if the asterisk is aligned properly, false otherwise
      */
-    private static boolean hasInvalidAlignment(int expectedColNumber,
+    private static boolean hasValidAlignment(int expectedColNumber,
                                                int asteriskColNumber) {
-        return expectedColNumber - asteriskColNumber != 0;
+        return expectedColNumber - asteriskColNumber == 0;
     }
 }
