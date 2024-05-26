@@ -10,6 +10,136 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.17.0">
+      <div class="releaseDate">26.05.2024</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            ImportOrder: replace Pattern[] with String[] type for properties staticGroups and groups.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/13758">#13758</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: ConstructorsDeclarationGrouping to check the grouping of overloaded
+            constructors.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14726">#14726</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Checkstyle fails with &quot;Path contains invalid character&quot; if path to config file
+            contains non-ascii characters.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/13012">#13012</a>
+          </li>
+          <li>
+            Null pointer Exception in UnusedLocalVariableCheck.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/13167">#13167</a>
+          </li>
+          <li>
+            False positive for UnusedLocalVariable.
+            Author: Kevin222004
+            <a href="https://github.com/checkstyle/checkstyle/issues/14506">#14506</a>
+          </li>
+          <li>
+            WhitespaceAround reports a violation when switch expression is passed as a method
+            argument.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14825">#14825</a>
+          </li>
+          <li>
+            InnerAssignmentCheck failed for one line code in Java 14 switch expression.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13086">#13086</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Drop ci jobs for unsupported java versions.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14877">#14877</a>
+          </li>
+          <li>
+            test: shallowClone in checkstyle-tester with SHA checkout.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/14662">#14662</a>
+          </li>
+          <li>
+            --- updated-dependencies: - dependency-name: org.codehaus.mojo:exec-maven-plugin  
+            dependency-type: direct:production   update-type: version-update:semver-minor ....
+            Author: dependabot[bot]
+          </li>
+          <li>
+            --- updated-dependencies: - dependency-name:
+            org.codehaus.mojo:build-helper-maven-plugin   dependency-type: direct:production  
+            update-type: version-update:semver-minor ....
+            Author: dependabot[bot]
+          </li>
+          <li>
+            doc: makes links relative for version documentation.
+            Author: rnveach
+          </li>
+          <li>
+            doc: added link to video instructions.
+            Author: SteLeo1602
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: SteLeo1603, prathm3
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            doc: update issue template reference.
+            Author: Emmanuel Ferdman
+          </li>
+          <li>
+            Fix performance test.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14852">#14852</a>
+          </li>
+          <li>
+            Optimize testing methods like verifyWithInlineConfigParser to run Check one time over
+            file.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12586">#12586</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: prathm3
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            build failure due to maven.plugin.json.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14853">#14853</a>
+          </li>
+          <li>
+            Parsing performance regression testing.
+            Author: Minghao Li
+            <a href="https://github.com/checkstyle/checkstyle/issues/14599">#14599</a>
+          </li>
+          <li>
+            doc: added additional explanation for clarification.
+            Author: SteLeo1602
+          </li>
+          <li>
+            doc: Updated demonstrative images on intellij doc page.
+            Author: SteLeo1602
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: prathm3
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.16.0">
       <div class="releaseDate">28.04.2024</div>
       <p>New:</p>
