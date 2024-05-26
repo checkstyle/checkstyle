@@ -15,7 +15,8 @@
       <p>Breaking backward compatibility:</p>
         <ul>
           <li>
-            ImportOrder: replace Pattern[] with String[] type for properties staticGroups and groups.
+            ImportOrder: replace Pattern[] with String[] type for properties staticGroups
+            and groups.
             Author: Minghao Li
             <a href="https://github.com/checkstyle/checkstyle/issues/13758">#13758</a>
           </li>
@@ -72,13 +73,13 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/14662">#14662</a>
           </li>
           <li>
-            --- updated-dependencies: - dependency-name: org.codehaus.mojo:exec-maven-plugin  
+            --- updated-dependencies: - dependency-name: org.codehaus.mojo:exec-maven-plugin
             dependency-type: direct:production   update-type: version-update:semver-minor ....
             Author: dependabot[bot]
           </li>
           <li>
             --- updated-dependencies: - dependency-name:
-            org.codehaus.mojo:build-helper-maven-plugin   dependency-type: direct:production  
+            org.codehaus.mojo:build-helper-maven-plugin   dependency-type: direct:production
             update-type: version-update:semver-minor ....
             Author: dependabot[bot]
           </li>
