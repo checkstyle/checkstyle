@@ -1,0 +1,31 @@
+name: PR Automation Workflow
+
+on:
+  issue_comment:
+    types: [created, edited]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Pull Request Number (required for manual trigger)'
+        required: true
+        type: integer
+      comment_text:
+        description: 'Custom comment text (required for manual trigger)'
+        required: true
+        type: string
+
+jobs:
+  post_custom_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code (Optional)
+        uses: actions/checkout@v3
+        if: github.event_name == 'issue_comment'  # Only checkout if needed for comment event
+
+      - name: Post Comment (Manual Trigger)
+        if: github.event_name == 'workflow_dispatch'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: ${{ github.event.inputs.comment_text }}
+          token: ${{ secrets.GITHUB_TOKEN }}
