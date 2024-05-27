@@ -1,0 +1,283 @@
+name: Automated Regression Report Generation
+env:
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
+  USER_LOGIN: ${{ github.event.issue.user.login }}
+  TARGET_XML_FILE: './config/my_check.xml'
+  MY_PAT: ${{ secrets.MY_PAT }}
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create_initial_gist:
+    if: contains(github.event.comment.body, 'check:')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract module name and set as env var
+        run: |
+          echo "Comment body: ${{ github.event.comment.body }}"
+          MODULE_NAME=$(echo "${{ github.event.comment.body }}" | sed -n 's/.*check:\([^ ]*\).*/\1/p')
+          echo "Extracted MODULE_NAME: $MODULE_NAME"
+          echo "MODULE_NAME=$MODULE_NAME" >> $GITHUB_ENV
+
+      - name: Install Java
+        run: sudo apt-get update && sudo apt-get install -y default-jdk
+
+      - name: Compile and Run XML Parser with Logging
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Listing contents:"
+          ls -al
+          cd src/main/java
+          echo "Changed to src/main/java, listing contents:"
+          ls -al
+          javac com/puppycrawl/tools/checkstyle/XMLParser.java
+          if [ $? -eq 0 ]; then
+            echo "Compile Complete. Listing Directory:"
+            java -cp . com/puppycrawl.tools.checkstyle.XMLParser "../../../config/regression-config/${{ env.MODULE_NAME }}Config.xml" > parsed_output.txt
+          else
+            echo "Compilation failed."
+          fi
+          cd -
+        env:
+          MODULE_NAME: ${{ env.MODULE_NAME }}
+
+      - name: Print the parsed output and set as environment variable
+        run: |
+          echo "PARSED_OUTPUT<<EOF" >> $GITHUB_ENV
+          cat src/main/java/parsed_output.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Comment PR with parsed output
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            **Available Configurations for ${{ env.MODULE_NAME }}:**
+            ```
+            ${{ env.PARSED_OUTPUT }}
+            ```
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          MODULE_NAME: ${{ env.MODULE_NAME }}
+
+  make_report:
+    if: contains(github.event.comment.body, 'Perform regression testing for config')
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.branch.outputs.ref }}
+      commit_sha: ${{ steps.branch.outputs.commit_sha }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract Module Name and Config Type
+        run: |
+          COMMENT_BODY="${{ github.event.comment.body }}"
+          # Use regex to extract the configuration number and module name
+          MODULE_NAME=$(echo "$COMMENT_BODY" | grep -oP 'for config\d+ for \K.*')
+          CONFIG_TYPE=$(echo "$COMMENT_BODY" | grep -oP 'config\K\d+')
+
+          if [[ -z "$MODULE_NAME" || -z "$CONFIG_TYPE" ]]; then
+            echo "Failed to extract module name or configuration type from the comment."
+            exit 1
+          fi
+
+          echo "MODULE_NAME=${MODULE_NAME}" >> $GITHUB_ENV
+          echo "CONFIG_TYPE=${CONFIG_TYPE}" >> $GITHUB_ENV
+
+      - name: Extract and Modify Module Configuration using grep/sed
+        run: |
+          CONFIG_FILE="./config/regression-config/${{ env.MODULE_NAME }}Config.xml"
+          CONFIG_TYPE="config${{ env.CONFIG_TYPE }}"
+          TARGET_XML_FILE="./config/my_check.xml"
+
+          # Extract module configuration and remove the 'id' attribute
+          MODULE_CONFIG=$(cat "$CONFIG_FILE" | grep -Pzo "(?s)<module id=\"$CONFIG_TYPE\".*?<\/module>" | sed -E "s#id=\"$CONFIG_TYPE\"##; s# +># >#g; s#> +<#><#g; s# +# #g")
+
+          if [ -z "$MODULE_CONFIG" ]; then
+            echo "ERROR: No configuration found for $CONFIG_TYPE in $CONFIG_FILE"
+            exit 1
+          fi
+          echo "DEBUG: Extracted and modified MODULE_CONFIG is:"
+          echo "$MODULE_CONFIG"
+
+          # Append the modified configuration to the temporary file
+          echo "DEBUG: Starting to append the configuration to the temporary my_check.xml"
+          awk -v insert="$MODULE_CONFIG" '
+              /<module name="ThrowsCount">/,/<\/module>/ {
+                  print
+                  if (/<\/module>/ && !f) {
+                      print "    " insert
+                      f=1
+                  }
+                  next
+              }
+              1' $TARGET_XML_FILE > temp.xml
+
+
+          if [ $? -ne 0 ]; then
+            echo "ERROR: Failed to update temp_my_check.xml"
+            exit 1
+          fi
+
+          # Log the changes for debugging
+          echo "DEBUG: Updated temp_my_check.xml with new module configuration:"
+          cat $TARGET_XML_FILE
+          cat temp.xml
+
+          # Optionally, replace the original file with the updated temporary file after successful modifications
+          # mv $TEMP_XML_FILE $TARGET_XML_FILE
+          # echo "Original my_check.xml has been updated successfully."
+
+      - name: Getting PR description
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .ci-temp
+          # convert windows line endings to unix in event text
+          echo "$ISSUE_BODY" > .ci-temp/windows.txt
+          tr -d '\15\32' < .ci-temp/windows.txt > .ci-temp/text
+
+          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+          jq --raw-output .head.ref .ci-temp/info.json > .ci-temp/branch
+          jq --raw-output .head.sha .ci-temp/info.json > .ci-temp/commit_sha
+
+      - name: Set branch
+        id: branch
+        run: |
+          ./.ci/append-to-github-output.sh "ref" "$(cat .ci-temp/branch)"
+          # shellcheck disable=SC2002
+          ./.ci/append-to-github-output.sh "commit_sha" "$(cat .ci-temp/commit_sha | cut -c 1-7)"
+
+          echo "GITHUB_OUTPUT:"
+          # need to 'echo' to see output in Github CI
+          # shellcheck disable=SC2005
+          echo "$(cat "$GITHUB_OUTPUT")"
+
+      - name: set upstream
+        run: |
+          bash
+          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          git remote add upstream "$MAIN_REPO_GIT_URL"
+          git fetch upstream
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked "$FORK_REPO_GIT_URL"
+          git fetch forked
+
+      - name: Setup local maven cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Download contribution
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/contribution
+          path: .ci-temp/contribution
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: 'temurin'
+
+      - name: Prepare environment
+        run: |
+          sudo apt install groovy
+
+      - name: Setup local maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Verify project.properties and my_check.xml
+        run: |
+          ls -la .ci-temp/contribution/checkstyle-tester/
+
+      - name: Fetch and prepare configuration files
+        run: |
+          # Fetch project.properties
+          curl -o .ci-temp/project.properties ${{ env.DEFAULT_PROJECTS_LINK }}
+          if [ ! -f .ci-temp/project.properties ]; then
+            echo "Failed to fetch project.properties"
+            exit 1
+          fi
+
+          # Move project.properties to required directory
+          mv .ci-temp/project.properties ./.ci-temp/contribution/checkstyle-tester/
+
+          # Fetch my_check.xml from Gist
+          echo "Copying TARGET_XML_FILE to diff-config.xml"
+          cp temp.xml .ci-temp/contribution/checkstyle-tester/diff-config.xml
+          if [ ! -f .ci-temp/contribution/checkstyle-tester/diff-config.xml ]; then
+            echo "Failed to fetch diff-config.xml"
+            exit 1
+          fi
+
+      - name: Generate report
+        env:
+          BRANCH: ${{ steps.branch.outputs.ref }}
+        run: |
+          cd .ci-temp/contribution/checkstyle-tester
+          bash
+          echo "branch name is $BRANCH"
+          REF="origin/$BRANCH"
+          REPO="../../../../checkstyle" 
+          echo "Listing all branches available:"
+          git branch -a
+          echo "Listing all branches available in REPO:"
+          git -C "$REPO" fetch --all
+          BASE_BRANCH="upstream/master"
+          export MAVEN_OPTS="-Xmx5g"
+
+          # Use the downloaded my_check.xml
+          groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff-config.xml\
+            -l project.properties -xm "-Dcheckstyle.failsOnError=false"
+          
+          echo "Starting the process to create and post a Gist."
+          ROOT_INDEX_FILE="./reports/diff/index.html"
+          if [ -f "$ROOT_INDEX_FILE" ]; then
+            echo "Found root index.html file. Creating Gist..."
+            GIST_PAYLOAD=$(jq -Rs '{ "files": { "index.html": { "content": . } } }' $ROOT_INDEX_FILE)
+            echo "GIST_PAYLOAD: $GIST_PAYLOAD"
+          
+            GIST_RESPONSE=$(curl -s -X POST -H "Authorization: token $MY_PAT" -d "$GIST_PAYLOAD" "https://api.github.com/gists")
+            echo "GIST_RESPONSE: $GIST_RESPONSE"
+
+            GIST_URL=$(echo $GIST_RESPONSE | jq -r '.html_url')
+            echo "Gist URL: $GIST_URL"
+
+            echo "$GIST_URL" > gist_url.txt
+            echo "Gist URL saved to gist_url.txt"
+
+            PR_COMMENT="Url of the index.html: $GIST_URL."
+            echo "PR_COMMENT: $PR_COMMENT"
+
+            COMMENT_URL="https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments"
+            echo "Posting comment to URL: $COMMENT_URL"
+
+            curl -s -X POST -H "Authorization: token $MY_PAT" -d "{\"body\": \"$PR_COMMENT\"}" "$COMMENT_URL"
+            echo "Comment posted successfully."
+          else
+            echo "root index.html file not found!"
+            exit 1
+          fi
