@@ -59,6 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
+ * CTOR_CALL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
  * LITERAL_NEW</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
@@ -133,6 +135,7 @@ public class MethodParamPadCheck
     public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.CTOR_DEF,
+            TokenTypes.CTOR_CALL,
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
             TokenTypes.METHOD_DEF,
