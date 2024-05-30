@@ -807,7 +807,7 @@
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputJavaDocTagContinuationIndentation\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule411bracesareused[\\/]InputNeedBraces\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule411optionalbracesusage[\\/]InputNeedBraces\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4861blockcommentstyle[\\/]InputCommentsIndentationCommentIsAtTheEndOfBlock\.java"/>
   <suppress checks="FileLength"

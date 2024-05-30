@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule411bracesareused;
+package com.google.checkstyle.test.chapter4formatting.rule411optionalbracesusage;
 
 import java.io.*;
 import javax.script.*;
@@ -116,6 +116,13 @@ class InputNeedBraces
 
     /** Empty method block. **/
     public void emptyImplementation() {}
+
+    /** Testing Lambdas. **/
+    static Runnable r2 = ()-> String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");
+    static Runnable r3 = ()->
+            String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");
+    static Runnable r4 = ()-> { String.CASE_INSENSITIVE_ORDER.equals("Hello world one!"); };
+    static Runnable r5 = ()-> {};
 }
 
 class EmptyBlocks {
@@ -212,4 +219,6 @@ class EmptyBlocks {
             for(int b : a) {/*foo*/}
         }
     };
+
+
 }
