@@ -10,7 +10,7 @@ and require updates to support the new token.
 
 **Examples**
 
-- for `RECORD_DEF`, it was reasonable to look at all checks
+- When the `RECORD_DEF` token was introduced, it was reasonable to look at all checks
 that had `CLASS_DEF` in their acceptable tokens.
 - for `TEXT_BLOCK_CONTENT`, it was reasonable to look at all checks
 that had `STRING_LITERAL` in their acceptable tokens.
@@ -27,7 +27,7 @@ which checks are most likely to be impacted.
 - Unnamed variables (`_`), JEP guides us to recognize the new role of the
 underscore for unnamed variables and avoid flagging the non-use of such variables.
 Consequently, we should update `UnusedLocalVariableCheck` to ensure it does not
-incorrectly violate underscore variables.
+incorrectly violate unnamed variables.
 
 ### Always Impacted Checks
 
@@ -46,14 +46,14 @@ can provide valuable insights into best practices and potential pitfalls.
 
 **Example**
 
-- Suppose Java 17 or higher, IntelliJ IDEA introduced an inspection rule to detect
-redundant `strictfp` modifiers. In this case, we should consider updating `RedundantModifierCheck`
-to have a similar behaviour.
+- IntelliJ IDEA introduced an inspection rule for Java 17 or higher to detect
+redundant `strictfp` modifiers. This resulted in analysis of `RedundantModifierCheck`
+to verify if we needed to update it.
 
 ### Real Usages Examples in Large Projects
 
 Review real usage examples of the new language feature in large projects.
-This helps to identify potential issues and ensures that the checks
+This helps to identify potential issues, and ensures that the checks
 are aligned with practical use cases.
 List of representative projects can be found
 [here](https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/github-action-projects1.properties)
@@ -80,8 +80,8 @@ as they can inform the development of effective new checks
 **Example**
 
 - Pattern Matching for instanceof, where the newer pattern matching feature provides
-a more concise and type-safe alternative to traditional casting. We can create check
-to suggest to use this new feature
+a more concise and type-safe alternative to traditional casting. Ideally, we would consider creating a check
+to suggest to use this new feature if we see the typical `if X instanceof Y`, then typecasting pattern. 
 
 ### Discover Similar Checks
 
@@ -91,7 +91,7 @@ These checks serve as references for designing and implementing new checks.
 
 **Examples**
 - **Identifiers and Naming Conventions**: If the new feature introduces
-new tokens involving identifiers explore existing checks related to naming conventions.
+new tokens involving identifiers, explore existing checks related to naming conventions.
 We can create a new similar check to enforce naming conventions for the new feature.
 
 ## How to Create Tracker Issue
