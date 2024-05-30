@@ -129,7 +129,6 @@ BNOT
 booleanexpressioncomplexity
 bothfiles
 Bpmn
-bracesareused
 breadcrumbs
 BSR
 Bsubscribe
@@ -976,6 +975,7 @@ openstreetmap
 operatorwrap
 optgroup
 optimisation
+optionalbracesusage
 OQ
 orderedproperties
 orderingandspacing
