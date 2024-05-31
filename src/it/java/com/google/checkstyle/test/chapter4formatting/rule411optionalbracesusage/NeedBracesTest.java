@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule411bracesareused;
+package com.google.checkstyle.test.chapter4formatting.rule411optionalbracesusage;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ public class NeedBracesTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter4formatting/rule411bracesareused";
+        return "com/google/checkstyle/test/chapter4formatting/rule411optionalbracesusage";
     }
 
     @Test
@@ -55,27 +55,27 @@ public class NeedBracesTest extends AbstractGoogleModuleTestSupport {
             "97:9: " + getCheckMessage(clazz, messageKey, "else"),
             "99:9: " + getCheckMessage(clazz, messageKey, "if"),
             "100:13: " + getCheckMessage(clazz, messageKey, "if"),
-            "126:9: " + getCheckMessage(clazz, messageKey, "while"),
-            "129:9: " + getCheckMessage(clazz, messageKey, "do"),
-            "135:9: " + getCheckMessage(clazz, messageKey, "if"),
-            "138:9: " + getCheckMessage(clazz, messageKey, "if"),
-            "139:9: " + getCheckMessage(clazz, messageKey, "else"),
-            "144:9: " + getCheckMessage(clazz, messageKey, "for"),
-            "147:9: " + getCheckMessage(clazz, messageKey, "for"),
-            "157:13: " + getCheckMessage(clazz, messageKey, "while"),
-            "160:13: " + getCheckMessage(clazz, messageKey, "do"),
-            "166:13: " + getCheckMessage(clazz, messageKey, "if"),
-            "169:13: " + getCheckMessage(clazz, messageKey, "if"),
-            "170:13: " + getCheckMessage(clazz, messageKey, "else"),
-            "175:13: " + getCheckMessage(clazz, messageKey, "for"),
-            "178:13: " + getCheckMessage(clazz, messageKey, "for"),
-            "189:13: " + getCheckMessage(clazz, messageKey, "while"),
-            "192:13: " + getCheckMessage(clazz, messageKey, "do"),
-            "198:13: " + getCheckMessage(clazz, messageKey, "if"),
-            "201:13: " + getCheckMessage(clazz, messageKey, "if"),
-            "202:13: " + getCheckMessage(clazz, messageKey, "else"),
-            "207:13: " + getCheckMessage(clazz, messageKey, "for"),
-            "210:13: " + getCheckMessage(clazz, messageKey, "for"),
+            "133:9: " + getCheckMessage(clazz, messageKey, "while"),
+            "136:9: " + getCheckMessage(clazz, messageKey, "do"),
+            "142:9: " + getCheckMessage(clazz, messageKey, "if"),
+            "145:9: " + getCheckMessage(clazz, messageKey, "if"),
+            "146:9: " + getCheckMessage(clazz, messageKey, "else"),
+            "151:9: " + getCheckMessage(clazz, messageKey, "for"),
+            "154:9: " + getCheckMessage(clazz, messageKey, "for"),
+            "164:13: " + getCheckMessage(clazz, messageKey, "while"),
+            "167:13: " + getCheckMessage(clazz, messageKey, "do"),
+            "173:13: " + getCheckMessage(clazz, messageKey, "if"),
+            "176:13: " + getCheckMessage(clazz, messageKey, "if"),
+            "177:13: " + getCheckMessage(clazz, messageKey, "else"),
+            "182:13: " + getCheckMessage(clazz, messageKey, "for"),
+            "185:13: " + getCheckMessage(clazz, messageKey, "for"),
+            "196:13: " + getCheckMessage(clazz, messageKey, "while"),
+            "199:13: " + getCheckMessage(clazz, messageKey, "do"),
+            "205:13: " + getCheckMessage(clazz, messageKey, "if"),
+            "208:13: " + getCheckMessage(clazz, messageKey, "if"),
+            "209:13: " + getCheckMessage(clazz, messageKey, "else"),
+            "214:13: " + getCheckMessage(clazz, messageKey, "for"),
+            "217:13: " + getCheckMessage(clazz, messageKey, "for"),
         };
 
         final Configuration checkConfig = getModuleConfig("NeedBraces");
