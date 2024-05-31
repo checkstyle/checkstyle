@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule4843defaultcasepresent;
+package com.google.checkstyle.test.chapter4formatting.rule4843defaultlabelpresence;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ public class MissingSwitchDefaultTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter4formatting/rule4843defaultcasepresent";
+        return "com/google/checkstyle/test/chapter4formatting/rule4843defaultlabelpresence";
     }
 
     @Test
