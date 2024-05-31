@@ -1316,8 +1316,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4.3-switch-default">
-                    4.8.4.3 The default case is present</a>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.4.3-switch-default">
+                    4.8.4.3 Presence of the default label</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -1336,7 +1336,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingSwitchDefault">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4843defaultcasepresent/MissingSwitchDefaultTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4843defaultlabelpresence/MissingSwitchDefaultTest.java">
                     test</a>
                 </td>
               </tr>
