@@ -59,8 +59,8 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractGoogleModuleTes
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("OverloadMethodsDeclarationOrder");
-        final String filePath = getPath(
-                "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java");
+        final String filePath =
+                getPath("InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java");
 
         verify(checkConfig, filePath, expected);
     }
