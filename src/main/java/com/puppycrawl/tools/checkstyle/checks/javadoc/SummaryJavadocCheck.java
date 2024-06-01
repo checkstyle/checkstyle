@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
+ *
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$"}.
@@ -96,7 +97,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 6.0
  */
 @StatelessCheck
-public class SummaryJavadocCheck extends AbstractJavadocCheck {
+public class SummaryJavadocCheck extends AbstractJavadocCheck
+{
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
