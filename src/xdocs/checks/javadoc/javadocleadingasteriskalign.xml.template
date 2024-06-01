@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocLeadingAsteriskAlign</title>
+  </head>
+  <body>
+    <section name="JavadocLeadingAsteriskAlign">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the alignment of
+          <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+          leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
+          are aligned vertically under the first asterisk ( &#42; )
+          of opening Javadoc tag. The alignment of closing Javadoc tag ( &#42;/ ) is also checked.
+          If a closing Javadoc tag contains non-whitespace character before it
+          then it's alignment will be ignored.
+          If the ending javadoc line contains a leading asterisk,
+          then that leading asterisk's alignment will be considered,
+          the closing Javadoc tag will be ignored.
+        </p>
+        <p>
+          If you're using tabs then specify the the tab width in the
+          <a href="../../config.html#tabWidth">tabWidth</a> property.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLeadingAsteriskAlignCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example with correct alignment:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-code">
+          Example with incorrect alignment:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example3-config">
+          To configure the check with <code>tabWidth</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="JavadocLeadingAsteriskAlign"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="JavadocLeadingAsteriskAlign"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
