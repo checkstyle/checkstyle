@@ -226,6 +226,62 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    // Contains all the sections which are not migrated to chapter wise testing
+    // in google style documentation.
+    // This list will be removed once all the sections are migrated.
+    // until https://github.com/checkstyle/checkstyle/issues/14937
+    private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
+            "2.1 File name",
+            "2.3.1 Whitespace characters",
+            "2.3.2 Special escape sequences",
+            "2.3.3 Non-ASCII characters",
+            "3 Source file structure",
+            "3.2 Package statement",
+            "3.3.1 No wildcard imports",
+            "3.3.2 No line-wrapping",
+            "3.3.3 Ordering and spacing",
+            "3.4.1 Exactly one top-level class declaration",
+            "3.4.2.1 Overloads: never split",
+            "4.1.1 Use of optional braces",
+            "4.1.2 Nonempty blocks: K & R style",
+            "4.1.3 Empty blocks: may be concise",
+            "4.2 Block indentation: +2 spaces",
+            "4.3 One statement per line",
+            "4.4 Column limit: 100",
+            "4.5.1 Where to break",
+            "4.5.2 Indent continuation lines at least +4 spaces",
+            "4.6.1 Vertical Whitespace",
+            "4.6.2 Horizontal whitespace",
+            "4.8.2.1 One variable per declaration",
+            "4.8.2.2 Declared when needed",
+            "4.8.3.2 No C-style array declarations",
+            "4.8.4.1 Indentation",
+            "4.8.4.2 Fall-through: commented",
+            "4.8.4.3 The default case is present",
+            "4.8.5 Annotations",
+            "4.8.6.1 Block comment style",
+            "4.8.7 Modifiers",
+            "4.8.8 Numeric Literals",
+            "5.2.1 Package names",
+            "5.2.2 Class names",
+            "5.2.3 Method names",
+            "5.2.5 Non-constant field names",
+            "5.2.6 Parameter names",
+            "5.2.7 Local variable names",
+            "5.2.8 Type variable names",
+            "5.3 Camel case: defined",
+            "6.2 Caught exceptions: not ignored",
+            "6.4 Finalizers: not used",
+            "7.1.1 General form",
+            "7.1.2 Paragraphs",
+            "7.1.3 Block tags",
+            "7.2 The summary fragment",
+            "7.3 Where Javadoc is used",
+            "7.3.1 Exception: self-explanatory methods",
+            "7.3.2 Exception: overrides",
+            "7.3.4 Non-required Javadoc"
+    );
+
     /**
      * Generate xdoc content from templates before validation.
      * This method will be removed once
@@ -1773,7 +1829,23 @@ public class XdocsPagesTest {
             Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
+        final boolean isRegularDocumentation = "sun".equals(styleName)
+               || "google".equals(styleName) && PER_MODULE_TESTS_RULES_LIST.contains(ruleName);
 
+        if (isRegularDocumentation) {
+            validateModuleWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
+        }
+        else {
+            validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
+        }
+
+        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
+                .that(itrConfigs.hasNext())
+                .isFalse();
+    }
+
+    private static void validateModuleWiseTesting(Iterator<Node> itrChecks,
+          Iterator<Node> itrConfigs, Set<String> styleChecks, String styleName, String ruleName) {
         while (itrChecks.hasNext()) {
             final Node module = itrChecks.next();
             final String moduleName = module.getTextContent().trim();
@@ -1786,8 +1858,8 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
-                        + "' shouldn't end with 'Check'")
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    + moduleName + "' shouldn't end with 'Check'")
                     .that(moduleName.endsWith("Check"))
                     .isFalse();
 
@@ -1801,13 +1873,14 @@ public class XdocsPagesTest {
                 }
                 catch (NoSuchElementException ignore) {
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                            + moduleName + "' is missing the config link: " + configName).fail();
+                            + moduleName + "' is missing the config link: " + configName)
+                            .fail();
                 }
 
                 assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' has mismatched config/test links")
-                    .that(config.getTextContent().trim())
-                    .isEqualTo(configName);
+                        + moduleName + "' has mismatched config/test links")
+                        .that(config.getTextContent().trim())
+                        .isEqualTo(configName);
 
                 final String configUrl = config.getAttributes().getNamedItem("href")
                         .getTextContent();
@@ -1818,34 +1891,110 @@ public class XdocsPagesTest {
                             + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                    + moduleName + "' should have matching " + configName + " url")
-                        .that(configUrl)
-                        .isEqualTo(expectedUrl);
+                            + moduleName + "' should have matching " + configName + " url")
+                            .that(configUrl)
+                            .isEqualTo(expectedUrl);
                 }
                 else if ("test".equals(configName)) {
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' should have matching " + configName + " url")
+                            + moduleName + "' should have matching " + configName + " url")
                             .that(configUrl)
                             .startsWith("https://github.com/checkstyle/checkstyle/"
                                     + "blob/master/src/it/java/com/" + styleName
                                     + "/checkstyle/test/");
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' should have matching " + configName + " url")
+                            + moduleName + "' should have matching " + configName + " url")
                             .that(configUrl)
                             .endsWith("/" + moduleName + "Test.java");
 
                     assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' should have a test that exists")
+                            + moduleName + "' should have a test that exists")
                             .that(new File(configUrl.substring(53).replace('/',
-                                            File.separatorChar)).exists())
+                                    File.separatorChar)).exists())
                             .isTrue();
                 }
             }
         }
+    }
 
-        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
-                .that(itrConfigs.hasNext())
-                .isFalse();
+    private static void validateChapterWiseTesting(Iterator<Node> itrChecks,
+          Iterator<Node> itrConfigs, Set<String> styleChecks, String styleName, String ruleName) {
+        boolean skip = !itrConfigs.hasNext();
+        Node config = null;
+
+        while (itrChecks.hasNext()) {
+            final Node module = itrChecks.next();
+            final String moduleName = module.getTextContent().trim();
+            final String href = module.getAttributes().getNamedItem("href").getTextContent();
+            // until https://github.com/checkstyle/checkstyle/issues/13132
+            final boolean moduleIsConfig = href.startsWith("config_");
+            final boolean moduleIsCheck = href.startsWith("checks/");
+
+            if (!moduleIsConfig && !moduleIsCheck) {
+                skip = true;
+                continue;
+            }
+
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    + moduleName + "' shouldn't end with 'Check'")
+                    .that(moduleName.endsWith("Check"))
+                    .isFalse();
+
+            styleChecks.remove(moduleName);
+
+            try {
+                config = itrConfigs.next();
+            }
+            catch (NoSuchElementException ignore) {
+                assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                        + moduleName + "' is missing the config link: config").fail();
+            }
+
+            final String configUrl = config.getAttributes().getNamedItem("href")
+                    .getTextContent();
+
+            final String expectedUrl = "https://github.com/search?q="
+                    + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
+                    + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
+
+            assertWithMessage("google_style.xml rule '" + ruleName + "' module '"
+                    + moduleName + "' should have matching config url")
+                    .that(configUrl)
+                    .isEqualTo(expectedUrl);
+
+        }
+
+        if (!skip) {
+            if (itrConfigs.hasNext()) {
+                config = itrConfigs.next();
+                final String configUrl = config.getAttributes().getNamedItem("href")
+                        .getTextContent();
+                final String[] parts = ruleName.split(" ", 2);
+                final String extractedRuleName = parts[1].trim().replaceAll(" ", "");
+
+                assertWithMessage("google_style.xml rule '" + ruleName + "' rule '"
+                        + "' should have matching test url")
+                        .that(configUrl)
+                        .startsWith("https://github.com/checkstyle/checkstyle/"
+                                + "blob/master/src/it/java/com/google"
+                                + "/checkstyle/test/");
+
+                assertWithMessage("google_style.xml rule '" + ruleName
+                        + "' should have matching test url")
+                        .that(configUrl)
+                        .endsWith("/" + extractedRuleName + "Test.java");
+
+                assertWithMessage("google_style.xml rule '" + ruleName
+                        + "' should have a test that exists")
+                        .that(new File(configUrl.substring(53).replace('/',
+                                File.separatorChar)).exists())
+                        .isTrue();
+            }
+            else {
+                assertWithMessage("google_style.xml rule '" + ruleName + "' should have a test url")
+                        .fail();
+            }
+        }
     }
 
     @Test
