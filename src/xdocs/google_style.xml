@@ -561,7 +561,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.2.1-overloads-never-split">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.4.2.1-overloads-never-split">
                     3.4.2.1 Overloads: never split</a>
                 </td>
                 <td>
@@ -570,6 +570,13 @@
                   </span>
                   <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
                     OverloadMethodsDeclarationOrder</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/constructorsdeclarationgrouping.html#ConstructorsDeclarationGrouping">
+                    ConstructorsDeclarationGrouping</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
@@ -577,6 +584,13 @@
                   <br />
                   <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit/OverloadMethodsDeclarationOrderTest.java">
                     test</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit/ConstructorsDeclarationGroupingTest.java">
+                    test</a>
+                  <br />
                 </td>
               </tr>
               <tr>
