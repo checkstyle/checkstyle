@@ -138,7 +138,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.8
  */
 @StatelessCheck
-public class AbbreviationAsWordInNameCheck extends AbstractCheck {
+public class AbbreviationAsWordInNameCheck extends AbstractCheck
+{
 
     /**
      * Warning message key.
