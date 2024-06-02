@@ -31,6 +31,9 @@
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
     files="filetabcharacter[\\/]Example\d+.java"/>
+  <!-- Needs more compact view of the file -->
+  <suppress checks="Indentation"
+    files="returncount[\\/]Example\d+.java"/>
 
   <!-- Example deals with line wrapping and check does not take that into account.  -->
   <suppress id="exampleClassName"
