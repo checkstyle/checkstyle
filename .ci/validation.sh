@@ -1186,6 +1186,63 @@ check-wildcards-on-pitest-target-classes)
   exit "$CLASSES_NO_WILDCARD_COUNT"
   ;;
 
+verify)
+  mvn -e --no-transfer-progress clean verify
+  ;;
+
+package-all-jar)
+  mvn -e --no-transfer-progress clean package -Passembly
+  ;;
+
+website-only)
+  mvn -e --no-transfer-progress clean site -Pno-validations
+  ;;
+
+pmd)
+  mvn -e --no-transfer-progress clean test-compile pmd:check
+  ;;
+
+spotbugs)
+  mvn -e --no-transfer-progress clean test-compile spotbugs:check
+  ;;
+
+checkstyle)
+  mvn -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  ;;
+
+forbiddenapis)
+  mvn -e --no-transfer-progress \
+    clean compile test-compile forbiddenapis:testCheck@forbiddenapis-test
+  ;;
+
+test-class)
+  if [[ -z "$2" ]] ; then
+    echo "Error: test class is not defined."
+    echo "Example: mvn clean test -Dtest=XdocsPagesTest,XdocsJavaDocsTest"
+    exit 1
+  fi
+  mvn -e --no-transfer-progress clean test -Dtest="$2"
+  ;;
+
+test-method)
+  if [[ -n "$2" ]] ; then
+    echo "Error: test method is not defined."
+    echo "Example: mvn clean test -Dtest=CheckerTest#testDestroy"
+    exit 1
+  fi
+  mvn -e --no-transfer-progress clean test -Dtest="$2"
+  ;;
+
+jacoco-local)
+  mvn -e --no-transfer-progress \
+    clean test jacoco:restore-instrumented-classes jacoco:report@default-report
+  echo "Result is at target/site/jacoco/index.html"
+  ;;
+
+sevntu)
+  mvn -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   echo "Supported tasks:"
