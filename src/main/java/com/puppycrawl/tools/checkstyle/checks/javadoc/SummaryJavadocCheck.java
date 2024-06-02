@@ -89,9 +89,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code summary.javaDoc.missing}
  * </li>
  * <li>
- * {@code summary.javaDoc.missing.period}
+ * {@code  summary.javaDoc.missing.period}
  * </li>
  * </ul>
+ *
  *
  * @since 6.0
  */
