@@ -1349,8 +1349,23 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.5-annotations">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.5-annotations">
                     4.8.5 Annotations</a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="4.8.5.2"/>
+                  <a href="#4.8.5.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.5.2-class-annotation-style">
+                    4.8.5.2 Class Annotations</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -1358,12 +1373,22 @@
                   </span>
                   <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
                     AnnotationLocation</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule485annotations/AnnotationLocationTest.java">
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/ClassAnnotationsTest.java">
                     test</a>
                 </td>
               </tr>
