@@ -1773,6 +1773,7 @@ public class XdocsPagesTest {
             Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
+        String globalModuleName = "";
 
         while (itrChecks.hasNext()) {
             final Node module = itrChecks.next();
@@ -1781,6 +1782,7 @@ public class XdocsPagesTest {
             // until https://github.com/checkstyle/checkstyle/issues/13132
             final boolean moduleIsConfig = href.startsWith("config_");
             final boolean moduleIsCheck = href.startsWith("checks/");
+            globalModuleName = moduleName;
 
             if (!moduleIsConfig && !moduleIsCheck) {
                 continue;
@@ -1804,43 +1806,78 @@ public class XdocsPagesTest {
                             + moduleName + "' is missing the config link: " + configName).fail();
                 }
 
-                assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' has mismatched config/test links")
-                    .that(config.getTextContent().trim())
-                    .isEqualTo(configName);
-
+                final String actualConfigName = config.getTextContent().trim();
                 final String configUrl = config.getAttributes().getNamedItem("href")
                         .getTextContent();
 
                 if ("config".equals(configName)) {
-                    final String expectedUrl = "https://github.com/search?q="
-                            + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
-                            + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
-
-                    assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                    + moduleName + "' should have matching " + configName + " url")
-                        .that(configUrl)
-                        .isEqualTo(expectedUrl);
+                    if ("config".equals(actualConfigName)) {
+                        final String expectedUrl = "https://github.com/search?q="
+                                + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
+                                + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                + moduleName + "' should have matching " + configName + " url")
+                                .that(configUrl)
+                                .isEqualTo(expectedUrl);
+                    }
+                    else {
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                + moduleName + "' has mismatched config/test links")
+                                .that(config.getTextContent().trim())
+                                .isEqualTo(configName);
+                    }
                 }
                 else if ("test".equals(configName)) {
-                    assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    if ("test".equals(actualConfigName)) {
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
                                 + moduleName + "' should have matching " + configName + " url")
-                            .that(configUrl)
-                            .startsWith("https://github.com/checkstyle/checkstyle/"
-                                    + "blob/master/src/it/java/com/" + styleName
-                                    + "/checkstyle/test/");
-                    assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                + moduleName + "' should have matching " + configName + " url")
-                            .that(configUrl)
-                            .endsWith("/" + moduleName + "Test.java");
+                                .that(configUrl)
+                                .startsWith("https://github.com/checkstyle/checkstyle/"
+                                        + "blob/master/src/it/java/com/" + styleName
+                                        + "/checkstyle/test/");
 
-                    assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                + moduleName + "' should have matching " + configName + " url")
+                                .that(configUrl)
+                                .endsWith("/" + moduleName + "Test.java");
+
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
                                 + moduleName + "' should have a test that exists")
-                            .that(new File(configUrl.substring(53).replace('/',
-                                            File.separatorChar)).exists())
-                            .isTrue();
+                                .that(new File(configUrl.substring(53).replace('/',
+                                        File.separatorChar)).exists())
+                                .isTrue();
+                    }
+                    else {
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName
+                                + "' has too many configs testing")
+                                .that(itrChecks.hasNext())
+                                .isTrue();
+                        final Node nextModule = itrChecks.next();
+                        final String nextModuleName = nextModule.getTextContent().trim();
+                        final String expectedUrl = "https://github.com/search?q="
+                                + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
+                                + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + nextModuleName;
+
+                        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                                + moduleName + "' should have matching config url")
+                                .that(configUrl)
+                                .isEqualTo(expectedUrl);
+                    }
                 }
             }
+        }
+
+        // checking for the last test
+        if (itrConfigs.hasNext()) {
+            final Node config = itrConfigs.next();
+            final String configName = config.getTextContent().trim();
+            final String configUrl = config.getAttributes().getNamedItem("href").getTextContent();
+            final String[] parts = ruleName.split(" ", 2);
+            final String extractedRuleName = parts[1].trim().replaceAll(" ", "");
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    + globalModuleName + "' should have matching " + configName + " url")
+                    .that(configUrl)
+                    .endsWith("/" + extractedRuleName + "Test.java");
         }
 
         assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
