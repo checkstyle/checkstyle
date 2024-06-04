@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule4843defaultcasepresent;
+package com.google.checkstyle.test.chapter4formatting.rule4843defaultlabelpresence;
 
 public class InputMissingSwitchDefault {
     public void foo() {
