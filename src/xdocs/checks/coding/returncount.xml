@@ -110,24 +110,66 @@
             Example:
         </p>
         <source>
-public class MyClass {
-  public int sign(int x) {
-    if (x &lt; 0)
-      return -1;
-    if (x == 0)
-      return 1;
-    return 0;
-  } // OK
+import java.util.function.Predicate;
 
-  public int badSign(int x) {
-    if (x &lt; -2)
-      return -2;
-    if (x == 0)
-      return 0;
-    if (x &gt; 2)
-      return 2;
-    return 1;
-  } // violation, more than three return statements
+public class Example1 {
+    public Example1() {
+    }
+
+    public Example1(int i) {
+        return;
+    }
+
+    String stringA = &quot;String A&quot;;
+    String stringB = &quot;String B&quot;;
+
+    public int signA() {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public int signB(int x) {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int signC(int x) { // violation, 'max allowed for non-void methods/lambdas is 3'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        if (x &gt; 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
+        if (i &gt; 5) {
+            return true;
+        }
+        return false;
+    };
+
+    final Predicate&lt;Integer&gt; lambdaB = i -&gt; {
+        return i &gt; 5;
+    };
+
+    public void methodA(int x) {
+    }
+
+    public void methodB(int x) {
+        return;
+    }
 }
         </source>
 
@@ -148,13 +190,66 @@ public class MyClass {
             Example:
         </p>
         <source>
-public class MyClass {
-  public void firstMethod(int x) {
-  } // OK
+import java.util.function.Predicate;
 
-  public void badMethod(int x) {
-    return;
-  } // violation, return statements per void method
+public class Example2 {
+    public Example2() {
+    }
+
+    public Example2(int i) { // violation, 'max allowed for void methods/constructors/lambdas is 0'
+        return;
+    }
+
+    String stringA = &quot;String A&quot;;
+    String stringB = &quot;String B&quot;;
+
+    public int signA() {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public int signB(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int signC(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        if (x &gt; 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
+        if (i &gt; 5) {
+            return true;
+        }
+        return false;
+    };
+
+    final Predicate&lt;Integer&gt; lambdaB = i -&gt; {
+        return i &gt; 5;
+    };
+
+    public void methodA(int x) {
+    }
+
+    public void methodB(int x) { // violation, 'max allowed for void methods/constructors/lambdas is 0'
+        return;
+    }
 }
         </source>
 
@@ -177,33 +272,66 @@ public class MyClass {
             Example:
         </p>
         <source>
-public class MyClass {
-  public void firstMethod() {
-  } // OK
+import java.util.function.Predicate;
 
-  public void secondMethod() {
-    return;
-  } // OK
+public class Example3 {
+    public Example3() {
+    }
 
-  public void badMethod(int x) {
-    if (x == 0)
-      return;
-    return;
-  } // violation, more than one return statements
+    public Example3(int i) {
+        return;
+    }
 
-  public int sign(int x) {
-    if (x &lt; 0)
-      return -1;
-    return 0;
-  } // OK
+    String stringA = &quot;String A&quot;;
+    String stringB = &quot;String B&quot;;
 
-  public int badSign(int x) {
-    if (x &lt; 0)
-      return -1;
-    if (x == 0)
-      return 1;
-    return 0;
-  } // violation, more than two return statements in methods
+    public int signA() {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public int signB(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int signC(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        if (x &gt; 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
+        if (i &gt; 5) {
+            return true;
+        }
+        return false;
+    };
+
+    final Predicate&lt;Integer&gt; lambdaB = i -&gt; {
+        return i &gt; 5;
+    };
+
+    public void methodA(int x) {
+    }
+
+    public void methodB(int x) {
+        return;
+    }
 }
         </source>
 
@@ -225,24 +353,66 @@ public class MyClass {
             Example:
         </p>
         <source>
-public class MyClass {
-  public int sign(int x) {
-    if (x &lt; 0)
-      return -1;
-    if (x == 0)
-      return 1;
-    return 0;
-  } // OK
+import java.util.function.Predicate;
 
-  public int badSign(int x) {
-    if (x &lt; -2)
-      return -2;
-    if (x == 0)
-      return 0;
-    if (x &gt; 2)
-      return 2;
-    return 1;
-  } // violation, more than three return statements per method
+public class Example4 {
+    public Example4() {
+    }
+
+    public Example4(int i) {
+        return;
+    }
+
+    String stringA = &quot;String A&quot;;
+    String stringB = &quot;String B&quot;;
+
+    public int signA() {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public int signB(int x) {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        return 1;
+    }
+
+    public int signC(int x) { // violation, 'max allowed for non-void methods/lambdas is 3'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        if (x &gt; 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
+        if (i &gt; 5) {
+            return true;
+        }
+        return false;
+    };
+
+    final Predicate&lt;Integer&gt; lambdaB = i -&gt; {
+        return i &gt; 5;
+    };
+
+    public void methodA(int x) {
+    }
+
+    public void methodB(int x) {
+        return;
+    }
 }
         </source>
 
@@ -275,38 +445,64 @@ public class MyClass {
         <source>
 import java.util.function.Predicate;
 
-public class Test {
-  public Test() {
-  } // OK
-
-  public Test(int i) {
-    return; // violation, max allowed for constructors is 0
-  }
-
-  final Predicate&lt;Integer&gt; p = i -&gt; {
-    if (i &gt; 5) {
-      return true;
+public class Example5 {
+    public Example5() {
     }
-    return false;
-  }; // violation, max allowed for lambdas is 1
 
-  final Predicate&lt;Integer&gt; q = i -&gt; {
-    return i &gt; 5;
-  }; // OK
+    public Example5(int i) { // violation, 'max allowed for void methods/constructors/lambdas is 0'
+        return;
+    }
 
-  public int sign(int x) {
-    if (x &gt; 0)
-      return -1;
-    return 0;
-  } // OK
+    String stringA = &quot;String A&quot;;
+    String stringB = &quot;String B&quot;;
 
-  public int badSign(int x) {
-    if (x &lt; 0)
-      return -1;
-    if (x == 0)
-      return 1;
-    return 0;
-  } // violation, more than two return statements in methods
+    public int signA() {
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        return 0;
+    }
+
+    public int signB(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        return 1;
+    } 
+
+    public int signC(int x) { // violation, 'max allowed for non-void methods/lambdas is 2'
+        if (stringA.equals(stringB)) {
+            return -1;
+        }
+        if (x == 0) {
+            return 0;
+        }
+        if (x &gt; 2) {
+            return 2;
+        }
+        return 1;
+    }
+
+    final Predicate&lt;Integer&gt; lambdaA = i -&gt; { // violation, 'max allowed for non-void methods/lambdas is 1'
+        if (i &gt; 5) {
+            return true;
+        }
+        return false;
+    };
+
+    final Predicate&lt;Integer&gt; lambdaB = i -&gt; {
+        return i &gt; 5;
+    };
+
+    public void methodA(int x) {
+    }
+
+    public void methodB(int x) {
+        return;
+    }
 }
         </source>
       </subsection>
