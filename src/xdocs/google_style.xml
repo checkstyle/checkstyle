@@ -669,6 +669,7 @@
                   </span>
                   <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
                   <br/>
+                  <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt="" />
                   </span>
@@ -1743,6 +1744,7 @@
                   </span>
                   <a href="checks/naming/localvariablename.html#LocalVariableName">LocalVariableName</a>
                   <br/>
+                  <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
@@ -1780,11 +1782,13 @@
                   <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
                     MethodTypeParameterName</a>
                   <br/>
+                  <br/>
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
                     ClassTypeParameterName</a>
+                  <br/>
                   <br/>
                   <span class="wrapper inline">
                     <img
@@ -1793,6 +1797,8 @@
                   </span>
                   <a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
                     InterfaceTypeParameterName</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
@@ -2028,16 +2034,22 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <br />
                   <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
                     SingleLineJavadoc</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img
+                            src="images/ok_blue.png"
+                            alt="" />
+                  </span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition</a>
+                  <br />
                   Recent update for guide that clarify requirements will be
                   addressed at
                   <a href="https://github.com/checkstyle/checkstyle/issues/4052">
                     #4052</a>
-                  <br />
-                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
-                    InvalidJavadocPosition</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
@@ -2069,6 +2081,8 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
@@ -2183,12 +2197,16 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/missingjavadoctype.html#MissingJavadocType">MissingJavadocType</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
                         alt="" />
                   </span>
                   <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
@@ -2230,6 +2248,8 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img
                         src="images/ok_green.png"
@@ -2267,12 +2287,15 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a><br/>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
+                  <br />
                   Overrides are checked by presence of "@Override" annotation on
                   method.
                 </td>
