@@ -181,6 +181,30 @@ final class InputLineLength
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
+
+    /**
+     * Very long url with https: https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+     */
+    public void testHttps() {}
+
+    /**
+     * Very long url with http: http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+     */
+    public void testHttp() {}
+
+    /**
+     * Very long url with ftp: ftp://ftp.dlink.ru/pub/D-Link_Solutions/D-Link_Solutions_for_Business.pdf
+     */
+    final double testFtp = 99.99;
+
+
+    // Very long url with href: href://ftp.dlink.ru/pub/D-Link_Solutions/D-Link_Solutions_for_Business.pdf
+    final long testHref = 9999;
+
+    /**
+     * <a href="www.chholebhatureisthebestdishintheworldddddddddddddddddddd">testing html hyperlink</a>
+     */
+    final float testATagLink = 0.54f;
 }
 
 /** Test class for variable naming in for each clause. */
