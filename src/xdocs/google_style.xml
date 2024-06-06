@@ -805,12 +805,12 @@
                   </span>
                   <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
                   <br />
-                  We can detect URL with protocol type as http://, https:// etc.
                   <br />
                   <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
                     JSNI</a>
-                  could not be detected right now, but might be possible after
-                  comments and javadoc support appear in Checkstyle.
+                  is not supported, see reason at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/14938">
+                    #14938</a>.
                   <br />
                 </td>
                 <td>
