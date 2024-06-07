@@ -41,6 +41,7 @@ public class SingleLineJavadocTest extends AbstractGoogleModuleTestSupport {
             "29: " + msg,
             "35: " + msg,
             "41: " + msg,
+            "47: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("SingleLineJavadoc");

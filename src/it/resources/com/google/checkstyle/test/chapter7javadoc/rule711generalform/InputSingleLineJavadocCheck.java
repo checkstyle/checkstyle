@@ -43,4 +43,12 @@ class InputSingleLineJavadocCheck{
 
     /** Single line Javadoc that references {@link String}. */
     void bar4() {}
+
+    /** @return in single line javadoc */ //warn
+    int bar5() { return 0; }
+
+    /**
+     * @return in multi line javadoc
+     */
+    int bar6() { return 0; }
 }
