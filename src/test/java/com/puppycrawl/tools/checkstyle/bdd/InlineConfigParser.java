@@ -667,6 +667,152 @@ public final class InlineConfigParser {
         }
     }
 
+    public static List<TestInputViolation> getViolationsForGoogleConfig(String inputFilePath)
+            throws Exception {
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+        final List<TestInputViolation> violations = new ArrayList<>();
+        for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+            violations.addAll(getViolationsForGoogleConfig(lines,
+                    lineNo));
+        }
+
+        return violations;
+    }
+
+    /**
+     * Gets the violations based on the lines provided for Google config.
+     *
+     * @param lines all the lines in the file.
+     * @param lineNo the current line number.
+     * @return the list of violations.
+     * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex logic of violation
+     *      parser requires giant if/else
+     * @throws CheckstyleException if violation message is not specified.
+     */
+    // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
+    // -@cs[CyclomaticComplexity] splitting this method is not reasonable.
+    private static List<TestInputViolation> getViolationsForGoogleConfig(List<String> lines,
+         int lineNo) throws CheckstyleException {
+        final List<TestInputViolation> violations = new ArrayList<>();
+        final Matcher violationMatcher =
+                VIOLATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationAboveMatcher =
+                VIOLATION_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationBelowMatcher =
+                VIOLATION_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationAboveWithExplanationMatcher =
+                VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationBelowWithExplanationMatcher =
+                VIOLATION_BELOW_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationWithExplanationMatcher =
+                VIOLATION_WITH_EXPLANATION_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsMatcher =
+                MULTIPLE_VIOLATIONS_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationSomeLinesAboveMatcher =
+                VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationSomeLinesBelowMatcher =
+                VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationsAboveMatcherWithMessages =
+                VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
+        final Matcher violationsSomeLinesAboveMatcher =
+                VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        if (violationMatcher.matches()) {
+            final String violationMessage = violationMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationAboveMatcher.matches()) {
+            final String violationMessage = violationAboveMatcher.group(1);
+            checkWhetherViolationSpecified(true, violationMessage, lineNo);
+            violations.add(new TestInputViolation(lineNo, violationMessage));
+        }
+        else if (violationBelowMatcher.matches()) {
+            final String violationMessage = violationBelowMatcher.group(1);
+            final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationAboveWithExplanationMatcher.matches()) {
+            final String violationMessage = violationAboveWithExplanationMatcher.group(1);
+            checkWhetherViolationSpecified(true, violationMessage, lineNo);
+            violations.add(new TestInputViolation(lineNo, violationMessage));
+        }
+        else if (violationBelowWithExplanationMatcher.matches()) {
+            final String violationMessage = violationBelowWithExplanationMatcher.group(1);
+            final int violationLineNum = lineNo + 2;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationWithExplanationMatcher.matches()) {
+            final String violationMessage = violationWithExplanationMatcher.group(1);
+            final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationSomeLinesAboveMatcher.matches()) {
+            final String violationMessage = violationSomeLinesAboveMatcher.group(2);
+            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
+            final int violationLineNum = lineNo - linesAbove;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationSomeLinesBelowMatcher.matches()) {
+            final String violationMessage = violationSomeLinesBelowMatcher.group(2);
+            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
+            final int violationLineNum = lineNo + linesBelow;
+            checkWhetherViolationSpecified(true, violationMessage,
+                    violationLineNum);
+            violations.add(new TestInputViolation(violationLineNum, violationMessage));
+        }
+        else if (violationsAboveMatcherWithMessages.matches()) {
+            violations.addAll(
+                    getExpectedViolationsForSpecificLineAbove(
+                            lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+        }
+        else if (violationsSomeLinesAboveMatcher.matches()) {
+            violations.addAll(
+                    getExpectedViolations(
+                            lines, lineNo, violationsSomeLinesAboveMatcher));
+        }
+        else if (multipleViolationsMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
+                    .forEach(actualLineNumber -> {
+                        violations.add(new TestInputViolation(actualLineNumber, null));
+                    });
+        }
+        else if (multipleViolationsAboveMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
+                    .forEach(actualLineNumber -> {
+                        violations.add(new TestInputViolation(actualLineNumber, null));
+                    });
+        }
+        else if (multipleViolationsBelowMatcher.matches()) {
+            Collections
+                    .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
+                            lineNo + 2)
+                    .forEach(actualLineNumber -> {
+                        violations.add(new TestInputViolation(actualLineNumber, null));
+                    });
+        }
+
+        return Collections.unmodifiableList(violations);
+    }
+
     private static List<TestInputViolation> getExpectedViolationsForSpecificLineAbove(
                                               List<String> lines, int lineNo, int violationLineNum,
                                               Matcher matcher) {
