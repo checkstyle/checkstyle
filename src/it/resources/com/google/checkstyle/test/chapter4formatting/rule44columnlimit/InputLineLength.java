@@ -181,6 +181,25 @@ final class InputLineLength
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
+
+    /**
+     * Very long url with https: https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+     */
+    String https = "200 OK";
+
+    /**
+     * Very long url with http: http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+     */
+    String http = "200 OK";
+
+    // Very long url with ftp: ftp://ftp.example.com/areallyyyyyyyyyyyylongggggggggggggggggggggggurlllll.text
+    int ftp = 0;
+
+    // Very long url with invalid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search // warn
+    int invalidHref = 88;
+
+    // Very long url with valid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search">
+    int validHref = 54;
 }
 
 /** Test class for variable naming in for each clause. */
