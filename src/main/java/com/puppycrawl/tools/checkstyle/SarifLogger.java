@@ -33,6 +33,7 @@ import java.util.Locale;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 
 /**
@@ -98,6 +99,23 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     /** Content for result representing an error without filename or location. */
     private final String resultErrorOnly;
+
+    /**
+     * Creates a new {@code SarifLogger} instance.
+     *
+     * @param outputStream where to log audit events
+     * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
+     * @throws IllegalArgumentException if outputStreamOptions is null
+     * @throws IOException if there is reading errors.
+     * @noinspection deprecation
+     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     *     because of maven-checkstyle-plugin. Until #12873.
+     */
+    public SarifLogger(
+        OutputStream outputStream,
+        AutomaticBean.OutputStreamOptions outputStreamOptions) throws IOException {
+        this(outputStream, OutputStreamOptions.valueOf(outputStreamOptions.name()));
+    }
 
     /**
      * Creates a new {@code SarifLogger} instance.
