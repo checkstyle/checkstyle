@@ -37,6 +37,9 @@ public class LineLengthTest extends AbstractGoogleModuleTestSupport {
         final String[] expected = {
             "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
             "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
+            "201: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 120),
+            "204: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
+            "207: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 149),
         };
 
         final Configuration checkConfig = getModuleConfig("LineLength");
