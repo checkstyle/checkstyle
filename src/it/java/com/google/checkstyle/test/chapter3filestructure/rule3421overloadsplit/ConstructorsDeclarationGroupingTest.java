@@ -25,6 +25,8 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck;
 
+import java.util.LinkedHashMap;
+
 public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTestSupport {
 
     @Override
