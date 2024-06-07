@@ -219,6 +219,23 @@ public final class InlineConfigParser {
         return testInputConfigBuilder.build();
     }
 
+    public static TestInputConfiguration setViolationsForGoogleConfig(String inputFilePath)
+            throws Exception {
+        final TestInputConfiguration.Builder testInputConfigBuilder =
+                new TestInputConfiguration.Builder();
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+
+        try {
+            setViolationsForGoogleConfig(testInputConfigBuilder, lines);
+        }
+        catch (CheckstyleException ex) {
+            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        }
+
+        return testInputConfigBuilder.build();
+    }
+
     public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
             throws Exception {
         return parse(inputFilePath, true);
@@ -514,6 +531,14 @@ public final class InlineConfigParser {
             final String key = entry.getKey();
             final String value = entry.getValue();
             moduleInputConfigBuilder.addModuleMessage(key, value);
+        }
+    }
+
+    private static void setViolationsForGoogleConfig(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            List<String> lines) throws CheckstyleException {
+        for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+            setViolations(inputConfigBuilder, lines, false, lineNo, true);
         }
     }
 
