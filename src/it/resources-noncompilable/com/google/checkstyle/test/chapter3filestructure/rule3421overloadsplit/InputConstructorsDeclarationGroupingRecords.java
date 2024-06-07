@@ -11,13 +11,15 @@ public class InputConstructorsDeclarationGroupingRecords {
 
         void foo2() {}
 
-        public MyRecord1 {} // warn
+        public MyRecord1 {} // violation 'Constructors should be grouped together.*'
 
-        public MyRecord1(int a, int b, int c, int d) { // warn
+        public MyRecord1(int a, int b, int c, int d) {
+        // violation above 'Constructors should be grouped together.*'
             this(a+b, c+d);
         }
 
-        public MyRecord1(int x, int y, int z) { // warn
+        public MyRecord1(int x, int y, int z) {
+        // violation above 'Constructors should be grouped together.*'
             this(x+y, z);
         }
     }
@@ -33,7 +35,7 @@ public class InputConstructorsDeclarationGroupingRecords {
 
         String[] str2;
 
-        MyClass(int a) {} // warn
+        MyClass(int a) {} // violation 'Constructors should be grouped together.*'
     }
 
     public record MyRecord2(double d) {
