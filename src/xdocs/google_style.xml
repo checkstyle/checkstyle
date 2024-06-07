@@ -2032,16 +2032,11 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_blue.png"
+                        src="images/ok_green.png"
                         alt="" />
                   </span>
                   <a href="checks/javadoc/singlelinejavadoc.html#SingleLineJavadoc">
                     SingleLineJavadoc</a>
-                  <br />
-                  Recent update for guide that clarify requirements will be
-                  addressed at
-                  <a href="https://github.com/checkstyle/checkstyle/issues/4052">
-                    #4052</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
