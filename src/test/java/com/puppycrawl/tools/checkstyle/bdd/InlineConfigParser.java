@@ -219,6 +219,25 @@ public final class InlineConfigParser {
         return testInputConfigBuilder.build();
     }
 
+    public static List<TestInputViolation> getViolationsFromInputFile(String inputFilePath)
+            throws Exception {
+        final TestInputConfiguration.Builder testInputConfigBuilder =
+                new TestInputConfiguration.Builder();
+        final Path filePath = Paths.get(inputFilePath);
+        final List<String> lines = readFile(filePath);
+
+        try {
+            for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+                setViolations(testInputConfigBuilder, lines, false, lineNo, true);
+            }
+        }
+        catch (CheckstyleException ex) {
+            throw new CheckstyleException(ex.getMessage() + " in " + inputFilePath, ex);
+        }
+
+        return testInputConfigBuilder.build().getViolations();
+    }
+
     public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
             throws Exception {
         return parse(inputFilePath, true);
