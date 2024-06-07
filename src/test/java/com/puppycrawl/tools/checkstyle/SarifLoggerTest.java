@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
@@ -30,9 +31,11 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SarifLoggerTest extends AbstractModuleTestSupport {
 
@@ -208,10 +211,40 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
 
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersCloseStreamOptions() throws IOException {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final SarifLogger logger = new SarifLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream");
+
+        assertWithMessage("closeStream should be true")
+                .that(closeStream)
+                .isTrue();
+    }
+
+    /**
+     * We keep this test for 100% coverage. Until #12873.
+     */
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() throws IOException {
+        final OutputStream infoStream = new ByteArrayOutputStream();
+        final SarifLogger logger = new SarifLogger(infoStream,
+                AutomaticBean.OutputStreamOptions.NONE);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream");
+
+        assertWithMessage("closeStream should be false")
+                .that(closeStream)
+                .isFalse();
+    }
+
     @Test
     public void testNullOutputStreamOptions() {
         try {
-            final SarifLogger logger = new SarifLogger(outStream, null);
+            final SarifLogger logger = new SarifLogger(outStream, (OutputStreamOptions) null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
             assertWithMessage("Null instance")
                 .that(logger)
