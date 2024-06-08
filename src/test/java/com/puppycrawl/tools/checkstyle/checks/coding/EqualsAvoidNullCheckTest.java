@@ -270,4 +270,19 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputEqualsAvoidNull2.java"),
                 expected);
     }
+
+    @Test
+    public void testEqualAvoidNullRecordPattern() throws Exception {
+        final String[] expected = {
+            "22:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "29:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "30:32: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "31:33: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "31:55: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEqualsAvoidNullRecordPattern.java"),
+                expected);
+    }
 }
