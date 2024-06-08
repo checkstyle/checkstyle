@@ -33,20 +33,31 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -74,6 +85,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     private static final Pattern WARN_PATTERN = CommonUtil
             .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
+
+    private static final Set<String> CHECKER_CHILDREN = new HashSet<>(Arrays.asList(
+            "BeforeExecutionExclusionFileFilter",
+            "SeverityMatchFilter",
+            "SuppressionFilter",
+            "SuppressionSingleFilter",
+            "SuppressWarningsFilter",
+            "SuppressWithNearbyTextFilter",
+            "SuppressWithPlainTextCommentFilter",
+            "JavadocPackage",
+            "NewlineAtEndOfFile",
+            "UniqueProperties",
+            "OrderedProperties",
+            "RegexpMultiline",
+            "RegexpSingleline",
+            "RegexpOnFilename",
+            "FileLength",
+            "LineLength",
+            "FileTabCharacter"
+    ));
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -449,6 +480,128 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         }
 
         checker.destroy();
+    }
+
+    public final void verifyWithGoogleConfigParser(LinkedHashMap<String, String[]> listOfModules,
+           String filePath, String... expected) throws Exception {
+        final DefaultConfiguration googleConfig = createGoogleConfig(listOfModules);
+        final List<TestInputViolation> testInputConfiguration =
+                InlineConfigParser.getViolationsForGoogleConfig(filePath, googleConfig);
+        final List<String> actualViolations = getActualViolationsForFile(googleConfig, filePath);
+        verifyViolations(filePath, testInputConfiguration, actualViolations);
+        assertWithMessage("Violations for %s differ.", filePath)
+                .that(actualViolations)
+                .containsExactlyElementsIn(expected);
+    }
+
+    private List<String> getActualViolationsForFile(DefaultConfiguration config,
+          String file) throws Exception {
+        stream.flush();
+        stream.reset();
+        final List<File> files = Collections.singletonList(new File(file));
+        final Checker checker = createChecker(config);
+        final Map<String, List<String>> actualViolations =
+                getActualViolations(checker.process(files));
+        checker.destroy();
+        return actualViolations.getOrDefault(file, new ArrayList<>());
+    }
+
+    private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
+        // process each of the lines
+        try (ByteArrayInputStream inputStream =
+                     new ByteArrayInputStream(stream.toByteArray());
+             LineNumberReader lnr = new LineNumberReader(
+                     new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            final Map<String, List<String>> actualViolations = new HashMap<>();
+            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
+                 line = lnr.readLine()) {
+                // have at least 2 characters before the splitting colon,
+                // to not split after the drive letter on Windows
+                final String[] actualViolation = line.split("(?<=.{2}):", 2);
+                final String actualViolationFileName = actualViolation[0];
+                final String actualViolationMessage = actualViolation[1];
+
+                actualViolations
+                        .computeIfAbsent(actualViolationFileName, key -> new ArrayList<>())
+                        .add(actualViolationMessage);
+            }
+
+            return actualViolations;
+        }
+    }
+
+    private DefaultConfiguration createGoogleConfig(LinkedHashMap<String,
+            String[]> listOfModules) {
+        final Configuration masterGoogleConfig;
+        try {
+             masterGoogleConfig = ConfigurationLoader.
+                    loadConfiguration("/google_checks.xml",
+                    new PropertiesExpander(System.getProperties()));
+        }
+        catch (CheckstyleException ex) {
+            throw new IllegalStateException(ex);
+        }
+
+        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration treeWalkerConfig =
+                new DefaultConfiguration(TreeWalker.class.getSimpleName());
+
+        for (Map.Entry<String, String[]> entry : listOfModules.entrySet()) {
+            if (CHECKER_CHILDREN.contains(entry.getKey())) {
+                if (entry.getValue() != null) {
+                    final String[] moduleIds = entry.getValue();
+                    for (String moduleId : moduleIds) {
+                        final Configuration moduleConfig =
+                                getModuleConfig(masterGoogleConfig, entry.getKey(), moduleId);
+                        root.addChild(moduleConfig);
+                    }
+                }
+                else {
+                    final Configuration moduleConfig =
+                            getModuleConfig(masterGoogleConfig, entry.getKey(), null);
+                    root.addChild(moduleConfig);
+                }
+            }
+            else {
+                if (entry.getValue() != null) {
+                    final String[] moduleIds = entry.getValue();
+                    for (String moduleId : moduleIds) {
+                        final Configuration moduleConfig =
+                                getModuleConfig(masterGoogleConfig, entry.getKey(), moduleId);
+                        treeWalkerConfig.addChild(moduleConfig);
+                    }
+                }
+                else {
+                    final Configuration moduleConfig =
+                            getModuleConfig(masterGoogleConfig, entry.getKey(), null);
+                    treeWalkerConfig.addChild(moduleConfig);
+                }
+            }
+        }
+
+        if (treeWalkerConfig.getChildren().length > 0) {
+            root.addChild(treeWalkerConfig);
+        }
+        return root;
+    }
+
+    private void verifyViolations(String file, List<TestInputViolation> testInputViolations,
+          List<String> actualViolations) {
+        final List<Integer> actualViolationLines = actualViolations.stream()
+                .map(violation -> violation.substring(0, violation.indexOf(':')))
+                .map(Integer::valueOf)
+                .collect(Collectors.toUnmodifiableList());
+        final List<Integer> expectedViolationLines = testInputViolations.stream()
+                .map(TestInputViolation::getLineNo)
+                .collect(Collectors.toUnmodifiableList());
+        assertWithMessage("Violation lines for %s differ.", file)
+                .that(actualViolationLines)
+                .isEqualTo(expectedViolationLines);
+        for (int index = 0; index < actualViolations.size(); index++) {
+            assertWithMessage("Actual and expected violations differ.")
+                    .that(actualViolations.get(index))
+                    .matches(testInputViolations.get(index).toRegex());
+        }
     }
 
     /**
