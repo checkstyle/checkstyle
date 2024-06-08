@@ -494,6 +494,24 @@ public class HiddenFieldCheckTest
                 expected);
     }
 
+    @Test
+    public void testHiddenFieldRecordPattern() throws Exception {
+
+        final String[] expected = {
+            "18:46: " + getCheckMessage(MSG_KEY, "s"),
+            "18:53: " + getCheckMessage(MSG_KEY, "x"),
+            "23:39: " + getCheckMessage(MSG_KEY, "s"),
+            "23:46: " + getCheckMessage(MSG_KEY, "x"),
+            "29:45: " + getCheckMessage(MSG_KEY, "s"),
+            "29:52: " + getCheckMessage(MSG_KEY, "x"),
+            "29:63: " + getCheckMessage(MSG_KEY, "z"),
+            "33:37: " + getCheckMessage(MSG_KEY, "s"),
+            "33:44: " + getCheckMessage(MSG_KEY, "x"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputHiddenFieldRecordPattern.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
