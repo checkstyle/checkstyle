@@ -33,7 +33,7 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample1() throws Exception {
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expected = {
             "15:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
             "17:14: " + getCheckMessage(MSG_INVALID_PATTERN, "var_1", pattern),
