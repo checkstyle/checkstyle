@@ -38,6 +38,11 @@
           Java Language Specification</a> for more information about switch statements
           and expressions.
         </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
+          Java Language Specification</a> for more information about patterns.
+        </p>
       </subsection>
 
       <subsection name="Examples" id="Examples">
