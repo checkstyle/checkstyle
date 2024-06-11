@@ -28,9 +28,13 @@
  inputs must be covered.
  &lt;/p&gt;
  &lt;p&gt;
- See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html#jls-15.28"&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28"&gt;
      Java Language Specification&lt;/a&gt; for more information about switch statements
      and expressions.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30"&gt;
+     Java Language Specification&lt;/a&gt; for more information about patterns.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="missing.switch.default"/>
