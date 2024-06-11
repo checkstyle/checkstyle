@@ -395,4 +395,34 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testIdentIsUnnamedTrue() {
+        final DetailAstImpl identifierAst = new DetailAstImpl();
+        identifierAst.setType(TokenTypes.IDENT);
+        identifierAst.setText("_");
+        final boolean result = TokenUtil.isUnnamed(identifierAst);
+
+        assertWithMessage("Result is not expected")
+                .that(result)
+                .isTrue();
+    }
+
+    @Test
+    public void testIdentIsUnnamedFalse() {
+        final DetailAstImpl identifierAst = new DetailAstImpl();
+        final DetailAstImpl stringLiteralAst = new DetailAstImpl();
+        stringLiteralAst.setType(TokenTypes.STRING_LITERAL);
+        identifierAst.setType(TokenTypes.IDENT);
+        identifierAst.setText("x");
+        stringLiteralAst.setText("_");
+        final boolean result = TokenUtil.isUnnamed(identifierAst);
+
+        assertWithMessage("Result is not expected")
+                .that(result)
+                .isFalse();
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.isUnnamed(stringLiteralAst))
+                .isFalse();
+    }
+
 }
