@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -116,7 +117,7 @@ public class LocalVariableNameCheck
             final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
             result = !isFinal && ScopeUtil.isLocalVariableDef(ast);
         }
-        return result;
+        return result && !TokenUtil.isUnnamed(ast.findFirstToken(TokenTypes.IDENT));
     }
 
     /**
