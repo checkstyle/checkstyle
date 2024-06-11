@@ -50,7 +50,7 @@ public class LocalVariableNameCheckTest
     public void testDefault()
             throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
             "122:13: " + getCheckMessage(MSG_INVALID_PATTERN, "ABC", pattern),
@@ -86,6 +86,20 @@ public class LocalVariableNameCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
+    }
+
+    @Test
+    public void testUnnamedVariables() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_result", pattern),
+            "33:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLocalVariableNameUnnamedVariables.java"), expected);
+
     }
 
 }

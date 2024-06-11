@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -41,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
  * </li>
  * </ul>
  * <p>
@@ -71,7 +72,7 @@ public class LocalVariableNameCheck
 
     /** Creates a new {@code LocalVariableNameCheck} instance. */
     public LocalVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^([a-z][a-zA-Z0-9]*|_)$");
     }
 
     /**
