@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -71,7 +72,7 @@ public class LocalVariableNameCheck
 
     /** Creates a new {@code LocalVariableNameCheck} instance. */
     public LocalVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^([a-z][a-zA-Z0-9]*|_)$");
     }
 
     /**
