@@ -116,7 +116,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if a switch block contains a case label with a pattern variable definition.
+     * Checks if a switch block contains a case label with a pattern variable definition
+     * or record pattern definition.
      * In this situation, the compiler enforces the given switch block to cover
      * all possible inputs, and we do not need a default label.
      *
@@ -126,7 +127,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     private static boolean containsPatternCaseLabelElement(DetailAST detailAst) {
         return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
             return ast.getFirstChild() != null
-                    && ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null;
+                    && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
+                    || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
         }).isPresent();
     }
 
