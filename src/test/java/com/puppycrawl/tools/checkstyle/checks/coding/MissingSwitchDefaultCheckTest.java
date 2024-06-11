@@ -107,4 +107,12 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultRecordPattern() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingSwitchDefaultRecordPattern.java"),
+                expected);
+    }
+
 }
