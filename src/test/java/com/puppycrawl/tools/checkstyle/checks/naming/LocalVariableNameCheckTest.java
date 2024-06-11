@@ -88,4 +88,18 @@ public class LocalVariableNameCheckTest
                 getPath("InputLocalVariableNameOneCharInitVarName.java"), expected);
     }
 
+    @Test
+    public void testUnnamedVariables() throws Exception {
+         final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "17:13: " + getCheckMessage(MSG_INVALID_PATTERN, "_mahfouz", pattern),
+            "33:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLocalVariableNameUnnamedVariables.java"), expected);
+
+    }
+
 }
