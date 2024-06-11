@@ -353,4 +353,20 @@ public final class TokenUtil {
                 .collect(BitSet::new, BitSet::set, BitSet::or);
     }
 
+
+    /**
+     * Checks if the given identifier AST node is an unnamed variable.
+     * An unnamed variable is a variable that is just an underscore {@code _}.
+     * A local variable, exception parameter, or lambda parameter that is declared using
+     * an underscore is called an unnamed local variable, unnamed exception parameter,
+     * or unnamed lambda parameter, respectively.
+     *
+     * @param identifierAst the AST node representing the identifier
+     * @return true if the identifier is an unnamed variable, false otherwise
+     */
+    public static boolean isUnnamed(DetailAST identifierAst) {
+        return isOfType(identifierAst, TokenTypes.IDENT)
+                    && "_".equals(identifierAst.getText());
+    }
+
 }
