@@ -46,6 +46,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
+ * Property {@code validateUnnamedVariables} - Control whether to check
+ * <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
+ * unnamed variables </a>.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code validateEnhancedForLoopVariable} - Control whether to check
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  * enhanced for-loop</a> variable.
@@ -121,6 +128,25 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     /** Assigned variables of current scope. */
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
             new ArrayDeque<>();
+
+    /**
+     * Control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
+     * unnamed variables </a>.
+     */
+    private boolean validateUnnamedVariables;
+
+    /**
+     * Setter to control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
+     * unnamed variables </a>.
+     *
+     * @param validateUnnamedVariables whether to check unnamed variables
+     * @since 10.18.0
+     */
+    public final void setValidateUnnamedVariables(boolean validateUnnamedVariables) {
+        this.validateUnnamedVariables = validateUnnamedVariables;
+    }
 
     /**
      * Control whether to check
@@ -222,7 +248,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isVariableInForInit(ast)
-                        && shouldCheckEnhancedForLoopVariable(ast)) {
+                        && shouldCheckEnhancedForLoopVariable(ast)
+                        && shouldCheckUnnamedVariable(ast)) {
                     insertVariable(ast);
                 }
                 break;
@@ -478,6 +505,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
                 || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+    }
+
+    /**
+     * Determines whether unnamed variable should be checked or not.
+     *
+     * @param ast The ast to compare.
+     * @return true if unnamed variable should be checked.
+     */
+    private boolean shouldCheckUnnamedVariable(DetailAST ast) {
+        return validateUnnamedVariables
+                 || !TokenUtil.isUnnamed(ast.findFirstToken(TokenTypes.IDENT));
     }
 
     /**
