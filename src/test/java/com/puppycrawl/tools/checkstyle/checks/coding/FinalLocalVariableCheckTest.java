@@ -405,4 +405,34 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariable3.java"),
             expected);
     }
+
+    @Test
+    public void testValidateUnnamedVariablesTrue() throws Exception {
+        final String[] expected = {
+            "21:22: " + getCheckMessage(MSG_KEY, "i"),
+            "22:17: " + getCheckMessage(MSG_KEY, "_"),
+            "23:17: " + getCheckMessage(MSG_KEY, "__"),
+            "26:13: " + getCheckMessage(MSG_KEY, "_"),
+            "27:13: " + getCheckMessage(MSG_KEY, "_result"),
+            "32:18: " + getCheckMessage(MSG_KEY, "_"),
+            "44:18: " + getCheckMessage(MSG_KEY, "_"),
+            "50:18: " + getCheckMessage(MSG_KEY, "__"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
+            expected);
+    }
+
+    @Test
+    public void testValidateUnnamedVariablesFalse() throws Exception {
+        final String[] expected = {
+            "21:22: " + getCheckMessage(MSG_KEY, "i"),
+            "23:17: " + getCheckMessage(MSG_KEY, "__"),
+            "27:13: " + getCheckMessage(MSG_KEY, "_result"),
+            "50:18: " + getCheckMessage(MSG_KEY, "__"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
+            expected);
+    }
 }
