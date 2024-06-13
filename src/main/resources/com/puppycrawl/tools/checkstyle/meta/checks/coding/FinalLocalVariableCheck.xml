@@ -20,6 +20,13 @@
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
  enhanced for-loop&lt;/a&gt; variable.</description>
             </property>
+            <property default-value="false"
+                      name="validateUnnamedVariables"
+                      type="boolean">
+               <description>Control whether to check
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html"&gt;
+ unnamed variables&lt;/a&gt;.</description>
+            </property>
             <property default-value="VARIABLE_DEF"
                       name="tokens"
                       type="java.lang.String[]"
