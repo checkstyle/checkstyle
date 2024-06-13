@@ -34,9 +34,14 @@
         </p>
         <p>
           See the
-          <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html#jls-15.28">
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28">
           Java Language Specification</a> for more information about switch statements
           and expressions.
+        </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30">
+          Java Language Specification</a> for more information about patterns.
         </p>
       </subsection>
 
