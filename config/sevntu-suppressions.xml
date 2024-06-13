@@ -51,4 +51,8 @@
   <!-- Required for reversing a list -->
   <suppress checks="ForbidCertainImports" files="SiteUtil\.java"/>
 
+  <!-- suppression because of getPackageLocation() method -->
+  <suppress checks="LineLengthExtended"
+            files="src[\\/]it[\\/]java[\\/].*[\\/]rule4853methodsandconstructorsannotations[\\/]MethodsAndConstructorsAnnotationsTest.*\.java"/>
+
 </suppressions>
