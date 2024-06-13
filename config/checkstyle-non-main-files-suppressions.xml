@@ -71,6 +71,10 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
 
+  <!-- suppression because of getPackageLocation() method -->
+  <suppress id="lineLength"
+            files="src[\\/]it[\\/]java[\\/].*[\\/]rule4853methodsandconstructorsannotations[\\/]MethodsAndConstructorsAnnotationsTest.*\.java"/>
+
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>

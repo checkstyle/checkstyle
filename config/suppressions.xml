@@ -11,6 +11,10 @@
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
 
+  <!-- suppression because of getPackageLocation() method -->
+  <suppress checks="LineLength"
+            files="src[\\/]it[\\/]java[\\/].*[\\/]rule4853methodsandconstructorsannotations[\\/]MethodsAndConstructorsAnnotationsTest.*\.java"/>
+
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
