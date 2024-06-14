@@ -456,4 +456,34 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalTypeAbstractClassNameFormat.java"),
                 expected);
     }
+
+    @Test
+    public void testIllegalTypeWithRecordPattern() throws Exception {
+        final String[] expected = {
+            "28:25: " + getCheckMessage(MSG_KEY, "Point"),
+            "29:22: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "29:46: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "39:28: " + getCheckMessage(MSG_KEY, "Rectangle"),
+            "40:28: " + getCheckMessage(MSG_KEY, "Rectangle"),
+            "40:38: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "40:54: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "45:28: " + getCheckMessage(MSG_KEY, "Rectangle"),
+            "45:38: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "45:51: " + getCheckMessage(MSG_KEY, "Point"),
+            "50:28: " + getCheckMessage(MSG_KEY, "Point"),
+            "58:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "61:9: " + getCheckMessage(MSG_KEY, "Box"),
+            "61:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "66:28: " + getCheckMessage(MSG_KEY, "Box"),
+            "66:32: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "76:18: " + getCheckMessage(MSG_KEY, "Point"),
+            "77:18: " + getCheckMessage(MSG_KEY, "Rectangle"),
+            "77:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "77:41: " + getCheckMessage(MSG_KEY, "Point"),
+            "83:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
+                expected);
+    }
 }
