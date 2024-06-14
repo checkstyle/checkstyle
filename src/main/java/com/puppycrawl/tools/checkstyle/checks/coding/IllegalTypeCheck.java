@@ -143,7 +143,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
- * RECORD_COMPONENT_DEF</a>.
+ * RECORD_COMPONENT_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+ * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -264,6 +266,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_COMPONENT_DEF,
+            TokenTypes.RECORD_PATTERN_DEF,
         };
     }
 
@@ -299,6 +302,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
                 visitVariableDef(ast);
                 break;
             case TokenTypes.RECORD_COMPONENT_DEF:
+            case TokenTypes.RECORD_PATTERN_DEF:
                 checkClassName(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:
