@@ -19,15 +19,12 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4852classannotations;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck;
 
 public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
 
@@ -38,31 +35,12 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testAnnotation() throws Exception {
-        final Class<AnnotationLocationCheck> clazz1 = AnnotationLocationCheck.class;
-        final Class<InvalidJavadocPositionCheck> clazz2 = InvalidJavadocPositionCheck.class;
-
-        final Configuration annotationConfig = getModuleConfig("AnnotationLocation",
-                "AnnotationLocationMostCases");
-        final Configuration invalidJavadocPositionConfig =
-                getModuleConfig("InvalidJavadocPosition");
-        final List<Configuration> childrenConfigs = new ArrayList<>();
-        childrenConfigs.add(annotationConfig);
-        childrenConfigs.add(invalidJavadocPositionConfig);
-        final Configuration treeWalkerConfig = createTreeWalkerConfig(childrenConfigs);
-
-        final String annotationAloneMsg = "annotation.location.alone";
-        final String invalidJavadocPositionMsg = "invalid.position";
-
-        final String[] expected = {
-            "17:5: " + getCheckMessage(clazz2, invalidJavadocPositionMsg),
-            "25:22: " + getCheckMessage(clazz1, annotationAloneMsg, "SomeAnnotation2"),
-            "28:22: " + getCheckMessage(clazz1, annotationAloneMsg, "SomeAnnotation2"),
-            "29:5: " + getCheckMessage(clazz2, invalidJavadocPositionMsg),
-        };
+        final Map<String, String[]> listOfModules = new HashMap<>();
+        listOfModules.put("AnnotationLocation", new String[] {"AnnotationLocationMostCases"});
+        listOfModules.put("InvalidJavadocPosition", null);
 
         final String filePath = getPath("InputClassAnnotations.java");
 
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(treeWalkerConfig, filePath, expected, warnList);
+        verifyWithGoogleConfigParser(listOfModules, filePath);
     }
 }
