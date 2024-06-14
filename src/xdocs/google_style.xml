@@ -1409,6 +1409,43 @@
                 </td>
               </tr>
               <tr>
+                <td><a name="4.8.5.3"/>
+                  <a href="#4.8.5.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.5.3-method-annotation-style">
+                    4.8.5.3 Methods And Constructors Annotations</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
+                    AnnotationLocation</a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
+                    InvalidJavadocPosition</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4853methodsandconstructorsannotations/MethodsAndConstructorsAnnotationsTest.java">
+                    test</a>
+                </td>
+              </tr>
+              <tr>
                 <td><a name="4.8.6"/>
                   <a href="#4.8.6">
                     <span class="wrapper inline">
