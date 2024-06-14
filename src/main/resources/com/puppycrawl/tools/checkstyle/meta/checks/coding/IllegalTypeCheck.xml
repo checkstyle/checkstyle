@@ -83,7 +83,7 @@
                       type="boolean">
                <description>Control whether to validate abstract class names.</description>
             </property>
-            <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
+            <property default-value="ANNOTATION_FIELD_DEF,CLASS_DEF,INTERFACE_DEF,METHOD_CALL,METHOD_DEF,METHOD_REF,PARAMETER_DEF,VARIABLE_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF,RECORD_PATTERN_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
