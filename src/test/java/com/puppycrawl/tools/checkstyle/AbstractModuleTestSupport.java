@@ -678,12 +678,21 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final String messageBundle;
         final String messages = "messages";
         final int endIndex = className.lastIndexOf('.');
+        final Map<String, String> messageBundleMappings = new HashMap<>();
+        messageBundleMappings.put("SeverityMatchFilterExamplesTest",
+                "com.puppycrawl.tools.checkstyle.checks.naming.messages");
+
         if (endIndex < 0) {
             messageBundle = messages;
         }
         else {
             final String packageName = className.substring(0, endIndex);
-            messageBundle = packageName + "." + messages;
+            if ("com.puppycrawl.tools.checkstyle.filters".equals(packageName)) {
+                messageBundle = messageBundleMappings.get(className.substring(endIndex + 1));
+            }
+            else {
+                messageBundle = packageName + "." + messages;
+            }
         }
         return messageBundle;
     }
