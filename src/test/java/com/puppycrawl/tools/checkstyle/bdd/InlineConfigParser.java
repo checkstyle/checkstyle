@@ -387,6 +387,10 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck");
         moduleMappings.put("LineLength",
                 "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
+        moduleMappings.put("ParameterName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
+        moduleMappings.put("MethodName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
