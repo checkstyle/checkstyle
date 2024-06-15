@@ -55,6 +55,12 @@
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterName&quot;&gt;
+      &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;MethodName&quot;/&gt;
+  &lt;/module&gt;
   &lt;module name=&quot;SeverityMatchFilter&quot;&gt;
     &lt;property name=&quot;severity&quot; value=&quot;info&quot;/&gt;
     &lt;property name=&quot;acceptOnMatch&quot; value=&quot;false&quot;/&gt;
