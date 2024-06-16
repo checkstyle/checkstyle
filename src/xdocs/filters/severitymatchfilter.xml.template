@@ -36,7 +36,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
       </subsection>
