@@ -40,6 +40,7 @@
   <!-- Suppressed alternative method of pulling partial configuration from file -->
   <suppress checks="CheckstyleTestMakeup" files="[\\/]RightCurlyTest\.java"/>
   <suppress checks="CheckstyleTestMakeup" files="[\\/]ClassAnnotationsTest\.java"/>
+  <suppress checks="CheckstyleTestMakeup" files="[\\/]MethodsAndConstructorsAnnotationsTest\.java"/>
 
   <!-- No need for constructor with cause -->
   <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
