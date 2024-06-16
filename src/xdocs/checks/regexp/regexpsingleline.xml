@@ -178,7 +178,7 @@ class MyClass {
       &lt;!--  Configure a message to be shown on violation of the Check. --&gt;
       &lt;property name=&quot;message&quot;
                 value=&quot;File must contain at least one occurrence of 'license' term&quot;/&gt;
-      &lt;!--  Perform the Check only on files with java extension. --&gt;
+      &lt;!--  Perform the Check only on files with SQL extension. --&gt;
       &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
