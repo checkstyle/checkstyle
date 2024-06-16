@@ -64,8 +64,8 @@ public class NoLineWrapTest extends AbstractGoogleModuleTestSupport {
     public void goodLineLength() throws Exception {
         final int maxLineLength = 100;
         final String[] expected = {
-            "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 112),
-            "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 113),
+            "7: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 112),
+            "9: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", maxLineLength, 113),
         };
 
         final Configuration checkConfig = getModuleConfig("LineLength");
