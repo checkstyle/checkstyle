@@ -71,6 +71,10 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
 
+  <suppress id="lineLength"
+            files="src[\\/]it[\\/]resources[\\/].*[\\/]InputPackageStatement.*\.java"
+            lines="1,5,8"/>
+
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
