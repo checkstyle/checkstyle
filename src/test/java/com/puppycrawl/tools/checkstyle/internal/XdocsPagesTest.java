@@ -236,7 +236,6 @@ public class XdocsPagesTest {
             "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
             "3 Source file structure",
-            "3.2 Package statement",
             "3.3.1 No wildcard imports",
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
