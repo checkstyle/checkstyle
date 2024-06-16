@@ -8,7 +8,7 @@
       <!--  Configure a message to be shown on violation of the Check. -->
       <property name="message"
                 value="File must contain at least one occurrence of 'license' term"/>
-      <!--  Perform the Check only on files with java extension. -->
+      <!--  Perform the Check only on files with SQL extension. -->
       <property name="fileExtensions" value="sql"/>
   </module>
 </module>
