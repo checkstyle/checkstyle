@@ -491,11 +491,33 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     public final void verifyWithGoogleConfigParser(String[] listOfModules,
            String filePath) throws Exception {
-        final DefaultConfiguration googleConfig =
+        final Configuration googleConfig =
                 createConfigForModulesOfGoogleConfig(listOfModules);
         final List<TestInputViolation> violations =
                 InlineConfigParser.getViolationsFromInputFile(filePath);
         final List<String> actualViolations = getActualViolationsForFile(googleConfig, filePath);
+
+        verifyViolations(filePath, violations, actualViolations);
+    }
+
+    /**
+     * Performs verification of the file with the given file path against the whole google config.
+     *
+     * @param filePath file path to verify.
+     * @throws Exception if exception occurs during verification process.
+     */
+    public void verifyWithWholeGoogleConfig(String filePath) throws Exception {
+        final Configuration googleConfig = getMasterGoogleConfig();
+        final Configuration[] children = googleConfig.getChildren();
+        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
+
+        for (Configuration child : children) {
+            root.addChild(child);
+        }
+
+        final List<TestInputViolation> violations =
+                InlineConfigParser.getViolationsFromInputFile(filePath);
+        final List<String> actualViolations = getActualViolationsForFile(root, filePath);
 
         verifyViolations(filePath, violations, actualViolations);
     }
@@ -508,7 +530,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return list of actual violations.
      * @throws Exception if exception occurs during verification process.
      */
-    private List<String> getActualViolationsForFile(DefaultConfiguration config,
+    private List<String> getActualViolationsForFile(Configuration config,
           String file) throws Exception {
         stream.flush();
         stream.reset();
