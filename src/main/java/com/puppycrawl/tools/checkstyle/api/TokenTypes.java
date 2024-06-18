@@ -6687,7 +6687,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.13.0
+     * @since 10
      */
     public static final int EMBEDDED_EXPRESSION =
             JavaLanguageLexer.EMBEDDED_EXPRESSION;
@@ -6738,7 +6738,7 @@ public final class TokenTypes {
      * @see #EMBEDDED_EXPRESSION_END
      * @see #STRING_LITERAL
      *
-     * @since 10.13.0
+     * @since 10.13
      */
     public static final int EMBEDDED_EXPRESSION_END =
             JavaLanguageLexer.EMBEDDED_EXPRESSION_END;
@@ -6778,7 +6778,7 @@ public final class TokenTypes {
      * @see #PATTERN_VARIABLE_DEF
      * @see #PATTERN_DEF
      *
-     * @since 10.14.0
+     * @since 12.14
      */
     public static final int UNNAMED_PATTERN_DEF =
             JavaLanguageLexer.UNNAMED_PATTERN_DEF;
