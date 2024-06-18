@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="ConstructorsDeclarationGrouping">
-      <p>Since Checkstyle 10.17.0</p>
+      <p>Since Checkstyle 10.17</p>
       <subsection name="Description" id="Description">
         <p>
           Checks that all constructors are grouped together.
