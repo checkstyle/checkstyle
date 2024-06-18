@@ -20,13 +20,19 @@
 package com.google.checkstyle.test.base;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import org.checkstyle.base.AbstractItModuleTestSupport;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -40,10 +46,33 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
 
     private static final Set<Class<?>> CHECKSTYLE_MODULES;
 
+    private static final Set<String> CHECKER_CHILDREN = new HashSet<>(Arrays.asList(
+            "BeforeExecutionExclusionFileFilter",
+            "SeverityMatchFilter",
+            "SuppressionFilter",
+            "SuppressionSingleFilter",
+            "SuppressWarningsFilter",
+            "SuppressWithNearbyTextFilter",
+            "SuppressWithPlainTextCommentFilter",
+            "JavadocPackage",
+            "NewlineAtEndOfFile",
+            "UniqueProperties",
+            "OrderedProperties",
+            "RegexpMultiline",
+            "RegexpSingleline",
+            "RegexpOnFilename",
+            "FileLength",
+            "LineLength",
+            "FileTabCharacter"
+    ));
+
     static {
         try {
+            final Properties properties = new Properties();
+            properties.put("org.checkstyle.google.severity", "error");
+            final PropertiesExpander expander = new PropertiesExpander(properties);
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
-                    new PropertiesExpander(System.getProperties()));
+                    expander);
         }
         catch (CheckstyleException ex) {
             throw new IllegalStateException(ex);
@@ -110,4 +139,70 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         return getModuleConfigsByIds(CONFIGURATION, moduleIds);
     }
 
+    /**
+     * Performs verification of the file with the given file path against the whole google config.
+     *
+     * @param filePath file path to verify.
+     * @throws Exception if exception occurs during verification process.
+     */
+    public void verifyWithWholeGoogleConfig(String filePath) throws Exception {
+        verifyWithItConfig(CONFIGURATION, filePath);
+    }
+
+    /**
+     * Performs verification of the file with the given file path against google config.
+     * It uses the specified list of modules to load them from google config for validation.
+     *
+     * @param listOfModules list of modules to load from google config.
+     * @param filePath file path to verify.
+     * @throws Exception if exception occurs during verification process.
+     */
+    public final void verifyWithGoogleConfigParser(String[] listOfModules,
+           String filePath) throws Exception {
+        final DefaultConfiguration googleConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
+        final DefaultConfiguration treeWalkerConfig =
+                new DefaultConfiguration(TreeWalker.class.getSimpleName());
+
+        for (String module : listOfModules) {
+            final List<Configuration> children =
+                    getConfigChildren(module);
+            if (CHECKER_CHILDREN.contains(module)) {
+                for (Configuration child : children) {
+                    googleConfig.addChild(child);
+                }
+            }
+            else {
+                for (Configuration child : children) {
+                    treeWalkerConfig.addChild(child);
+                }
+            }
+        }
+
+        if (treeWalkerConfig.getChildren().length > 0) {
+            googleConfig.addChild(treeWalkerConfig);
+        }
+
+        verifyWithItConfig(googleConfig, filePath);
+    }
+
+    /**
+     * Gets the specified children module(s) from the config.
+     *
+     * @param module the children module to get. It can be either a module name or module id.
+     * @return list of children modules.
+     * @throws CheckstyleException if there is a problem for getting the module.
+     */
+    private static List<Configuration> getConfigChildren(String module)
+            throws CheckstyleException {
+        final List<Configuration> children = new ArrayList<>();
+
+        try {
+            children.add(getModuleConfig(module));
+        }
+        catch (IllegalStateException ex) {
+            children.addAll(getModuleConfigsByIds(module));
+        }
+
+        return children;
+    }
 }
