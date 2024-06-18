@@ -2162,16 +2162,20 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.2-javadoc-paragraphs">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7.1.2-javadoc-paragraphs">
                     7.1.2 Paragraphs</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_green.png"
+                        src="images/ok_blue.png"
                         alt="" />
                   </span>
                   <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
+                  <br />
+                  We don't have support to check for the extra preceding p tag before block tag;
+                  there is known issue to cover it fully:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15011">#15011</a>
                   <br />
                   <br />
                   <span class="wrapper inline">
