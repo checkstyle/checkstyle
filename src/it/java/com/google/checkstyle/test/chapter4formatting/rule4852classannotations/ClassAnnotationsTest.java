@@ -32,13 +32,7 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testAnnotation() throws Exception {
-        final String[] listOfModules = {
-            "AnnotationLocationMostCases",
-            "InvalidJavadocPosition",
-        };
-
         final String filePath = getPath("InputClassAnnotations.java");
-
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithWholeConfig(filePath);
     }
 }

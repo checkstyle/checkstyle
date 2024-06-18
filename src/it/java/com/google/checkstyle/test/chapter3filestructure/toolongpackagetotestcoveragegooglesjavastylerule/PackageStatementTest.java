@@ -40,6 +40,6 @@ public class PackageStatementTest extends AbstractGoogleModuleTestSupport {
             "NoLineWrap",
         };
 
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 }
