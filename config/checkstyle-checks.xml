@@ -189,6 +189,13 @@
     <property name="message"
               value="Package comment marker should not be used if other visibility is defined"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="sinceVersionNumber"/>
+    <property name="format" value="\*\s+@since\s+([1-9][0-9])(\.[0-9]+)?$"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message"
+              value="@since tag must follow the X.Y.Z version format after version 10.5.0."/>
+  </module>
   <module name="RegexpOnFilename">
     <property name="id" value="regexpOnFilenameWithSpace"/>
   </module>
