@@ -92,12 +92,12 @@ strategy:
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
-      image: 'macOS-11'
+      image: 'macOS-12'
       cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
-      image: 'macOS-11'
+      image: 'macOS-12'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
 
     # moved back to Travis till we find a way to keep secrets in azure
@@ -116,7 +116,7 @@ strategy:
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
-      image: 'macOS-11'
+      image: 'macOS-12'
       cmd: "./.ci/validation.sh markdownlint"
       skipCache: true
       needMdl: true
