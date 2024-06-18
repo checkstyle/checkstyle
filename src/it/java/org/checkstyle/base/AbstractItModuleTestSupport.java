@@ -33,23 +33,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -83,26 +78,6 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     private static final Pattern WARN_PATTERN = CommonUtil
             .createPattern(".* *// *warn *|/[*]\\*?\\s?warn\\s?[*]/");
-
-    private static final Set<String> CHECKER_CHILDREN = new HashSet<>(Arrays.asList(
-            "BeforeExecutionExclusionFileFilter",
-            "SeverityMatchFilter",
-            "SuppressionFilter",
-            "SuppressionSingleFilter",
-            "SuppressWarningsFilter",
-            "SuppressWithNearbyTextFilter",
-            "SuppressWithPlainTextCommentFilter",
-            "JavadocPackage",
-            "NewlineAtEndOfFile",
-            "UniqueProperties",
-            "OrderedProperties",
-            "RegexpMultiline",
-            "RegexpSingleline",
-            "RegexpOnFilename",
-            "FileLength",
-            "LineLength",
-            "FileTabCharacter"
-    ));
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -318,7 +293,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             final Configuration config = createTreeWalkerConfig(moduleConfig);
             checker.configure(config);
         }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())
+                || "Checker".equals(moduleConfig.getName())) {
             checker.configure(moduleConfig);
         }
         else {
@@ -480,22 +456,18 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         checker.destroy();
     }
 
+    // unitl https://github.com/checkstyle/checkstyle/issues/14937
     /**
-     * Performs verification of the file with the given file path against google config.
-     * It uses the specified list of modules to load them from google config for validation.
-     * And also uses the array of expected messages for verification.
+     * Performs the verification of the file with the given file path and config.
      *
-     * @param listOfModules list of modules to load from google config.
-     * @param filePath file path to verify.
+     * @param config config to check against.
+     * @param filePath input file path.
      * @throws Exception if exception occurs during verification process.
      */
-    public final void verifyWithGoogleConfigParser(String[] listOfModules,
-           String filePath) throws Exception {
-        final DefaultConfiguration googleConfig =
-                createConfigForModulesOfGoogleConfig(listOfModules);
+    protected void verifyWithItConfig(Configuration config, String filePath) throws Exception {
         final List<TestInputViolation> violations =
-                InlineConfigParser.getViolationsFromInputFile(filePath);
-        final List<String> actualViolations = getActualViolationsForFile(googleConfig, filePath);
+            InlineConfigParser.getViolationsFromInputFile(filePath);
+        final List<String> actualViolations = getActualViolationsForFile(config, filePath);
 
         verifyViolations(filePath, violations, actualViolations);
     }
@@ -508,7 +480,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return list of actual violations.
      * @throws Exception if exception occurs during verification process.
      */
-    private List<String> getActualViolationsForFile(DefaultConfiguration config,
+    private List<String> getActualViolationsForFile(Configuration config,
           String file) throws Exception {
         stream.flush();
         stream.reset();
@@ -551,81 +523,6 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
             return actualViolations;
         }
-    }
-
-    /**
-     * Creates a google configuration based on the list of modules.
-     *
-     * @param listOfModules list of modules to load from google config.
-     * @return google configuration based on the list of modules.
-     * @throws CheckstyleException if there is a problem loading the configuration.
-     */
-    private static DefaultConfiguration createConfigForModulesOfGoogleConfig(
-            String... listOfModules) throws CheckstyleException {
-        final Configuration masterGoogleConfig = getMasterGoogleConfig();
-        final DefaultConfiguration root = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalkerConfig =
-                new DefaultConfiguration(TreeWalker.class.getSimpleName());
-
-        for (String module : listOfModules) {
-            final List<Configuration> children =
-                    getGoogleConfigChildren(masterGoogleConfig, module);
-            if (CHECKER_CHILDREN.contains(module)) {
-                for (Configuration child : children) {
-                    root.addChild(child);
-                }
-            }
-            else {
-                for (Configuration child : children) {
-                    treeWalkerConfig.addChild(child);
-                }
-            }
-        }
-
-        if (treeWalkerConfig.getChildren().length > 0) {
-            root.addChild(treeWalkerConfig);
-        }
-        return root;
-    }
-
-    /**
-     * Returns the whole google configuration.
-     *
-     * @return the google config present in the google_checks.xml
-     * @throws IllegalStateException if there is a problem loading the configuration.
-     */
-    private static Configuration getMasterGoogleConfig() {
-        final Configuration masterGoogleConfig;
-        try {
-            masterGoogleConfig =
-                    ConfigurationLoader.loadConfiguration("/google_checks.xml",
-                            new PropertiesExpander(System.getProperties()));
-        }
-        catch (CheckstyleException ex) {
-            throw new IllegalStateException(ex);
-        }
-        return masterGoogleConfig;
-    }
-
-    /**
-     * Gets the specified children module(s) from google config.
-     *
-     * @param masterGoogleConfig the master google config.
-     * @param module the children module to get. It can be either a module name or module id.
-     * @return list of children modules.
-     * @throws CheckstyleException if there is a problem for getting the module.
-     */
-    private static List<Configuration> getGoogleConfigChildren(Configuration masterGoogleConfig,
-           String module) throws CheckstyleException {
-        final List<Configuration> children = new ArrayList<>();
-        try {
-            children.add(getModuleConfig(masterGoogleConfig, module, null));
-        }
-        catch (IllegalStateException ex) {
-            children.addAll(getModuleConfigsByIds(masterGoogleConfig, module));
-        }
-
-        return children;
     }
 
     /**

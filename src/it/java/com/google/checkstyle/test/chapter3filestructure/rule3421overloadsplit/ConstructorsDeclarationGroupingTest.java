@@ -37,7 +37,7 @@ public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTes
         };
 
         final String filePath = getPath("InputConstructorsDeclarationGrouping.java");
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 
     @Test
@@ -49,6 +49,6 @@ public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTes
         final String filePath =
                 getNonCompilablePath("InputConstructorsDeclarationGroupingRecords.java");
 
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 }
