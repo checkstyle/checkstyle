@@ -37,7 +37,7 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
             "IllegalTokenText",
         };
 
-        verifyWithGoogleConfigParser(modules, filePath);
+        verifyWithConfigParser(modules, filePath);
     }
 
 }
