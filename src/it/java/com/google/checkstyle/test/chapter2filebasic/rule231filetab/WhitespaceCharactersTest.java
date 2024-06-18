@@ -37,7 +37,7 @@ public class WhitespaceCharactersTest extends AbstractGoogleModuleTestSupport {
             "FileTabCharacter",
         };
 
-        verifyWithGoogleConfigParser(modules, filePath);
+        verifyWithConfigParser(modules, filePath);
     }
 
 }
