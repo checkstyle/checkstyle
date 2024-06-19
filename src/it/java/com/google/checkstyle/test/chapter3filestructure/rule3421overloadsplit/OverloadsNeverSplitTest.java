@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
-public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTestSupport {
+public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -31,12 +31,13 @@ public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTes
     }
 
     @Test
-    public void testOverloadConstructors() throws Exception {
+    public void testOverloading() throws Exception {
         final String[] listOfModules = {
             "ConstructorsDeclarationGrouping",
+            "OverloadMethodsDeclarationOrder",
         };
 
-        final String filePath = getPath("InputConstructorsDeclarationGrouping.java");
+        final String filePath = getPath("InputOverloadsNeverSplit.java");
         verifyWithGoogleConfigParser(listOfModules, filePath);
     }
 
@@ -44,10 +45,11 @@ public class ConstructorsDeclarationGroupingTest extends AbstractGoogleModuleTes
     public void testOverloadConstructorsRecords() throws Exception {
         final String[] listOfModules = {
             "ConstructorsDeclarationGrouping",
+            "OverloadMethodsDeclarationOrder",
         };
 
         final String filePath =
-                getNonCompilablePath("InputConstructorsDeclarationGroupingRecords.java");
+                getNonCompilablePath("InputOverloadsNeverSplitRecords.java");
 
         verifyWithGoogleConfigParser(listOfModules, filePath);
     }
