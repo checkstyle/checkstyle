@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter3filestructure.rule32packagestate;
+package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,20 +29,14 @@ public class LineLengthTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter3filestructure/rule32packagestate";
+        return "com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap";
     }
 
     @Test
     public void testLineLength() throws Exception {
         final String[] expected = {
-            "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
-            "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 183),
-            "46: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
-            "47: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 124),
-            "48: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
-            "50: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
-            "53: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 131),
-            "57: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 116),
+            "7: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
+            "9: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
         };
 
         final Configuration checkConfig = getModuleConfig("LineLength");
