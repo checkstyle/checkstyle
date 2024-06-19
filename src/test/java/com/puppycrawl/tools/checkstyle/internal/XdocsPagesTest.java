@@ -241,7 +241,6 @@ public class XdocsPagesTest {
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
-            "3.4.2.1 Overloads: never split",
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
             "4.1.3 Empty blocks: may be concise",
