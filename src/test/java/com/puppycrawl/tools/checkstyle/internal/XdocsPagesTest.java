@@ -243,7 +243,6 @@ public class XdocsPagesTest {
             "3.4.2.1 Overloads: never split",
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
-            "4.1.3 Empty blocks: may be concise",
             "4.2 Block indentation: +2 spaces",
             "4.3 One statement per line",
             "4.4 Column limit: 100",
@@ -1969,8 +1968,7 @@ public class XdocsPagesTest {
             final Node config = itrConfigs.next();
             final String configUrl = config.getAttributes().getNamedItem("href")
                     .getTextContent();
-            final String[] parts = ruleName.split(" ", 2);
-            final String extractedRuleName = parts[1].trim().replaceAll(" ", "");
+            final String extractedRuleName = getExtractedRuleName(ruleName);
 
             assertWithMessage("google_style.xml rule '" + ruleName + "' rule '"
                     + "' should have matching test url")
@@ -1996,6 +1994,32 @@ public class XdocsPagesTest {
                 .that(hasChecks)
                 .isFalse();
         }
+    }
+
+    private static String getExtractedRuleName(String ruleName) {
+        // Remove the preceding section number
+        final String ruleNameWithoutPrecedingNumbers =
+                ruleName.replaceAll("^[0-9.]+\\s*", "");
+
+        // Split the remaining string into parts (words and numbers)
+        final String[] parts = ruleNameWithoutPrecedingNumbers.split("[^A-Za-z0-9]+");
+
+        final StringBuilder extractedRuleName = new StringBuilder();
+
+        for (String part : parts) {
+            if (part.matches("[A-Za-z]+")) {
+                // Capitalize the first letter and make the rest words
+                extractedRuleName
+                        .append(part.substring(0, 1).toUpperCase())
+                        .append(part.substring(1));
+            }
+            else if (part.matches("\\d+")) {
+                // Append numbers directly
+                extractedRuleName.append(part);
+            }
+        }
+
+        return extractedRuleName.toString();
     }
 
     @Test
