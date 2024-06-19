@@ -62,7 +62,7 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputConstructorsDeclarationGroupingRecords.java"),
+                getNonCompilablePath("InputOverloadsNeverSplitRecords.java"),
                 expected);
     }
 

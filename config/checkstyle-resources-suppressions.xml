@@ -805,6 +805,8 @@
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule232specialescape[\\/]InputIllegalTokenText\.java"/>
   <suppress checks="FileLength"
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter3filestructure[\\/]rule3421overloadsplit[\\/]InputOverloadsNeverSplit\.java"/>
+  <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule72thesummaryfragment[\\/]InputCorrectSummaryJavaDocCheck\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter7javadoc[\\/]rule713atclauses[\\/]InputJavaDocTagContinuationIndentation\.java"/>
