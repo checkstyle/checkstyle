@@ -4,11 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.*;
-import java.awt.Dimension;
-import java.awt.Color;
-
-class InputEmptyBlock {
+class InputEmptyFinallyBlocks {
     boolean flag;
     void doSm() {}
     void foo() {
@@ -25,8 +21,8 @@ class InputEmptyBlock {
            if (!flag) {
                doSm();
            }
-        } catch (Exception e) {}
-        finally {} //warn
+        } catch (Exception e) {} // violation 'Empty catch block.'
+        finally {} // violation 'Empty finally block.'
     }
 
     class Inner {
@@ -46,8 +42,8 @@ class InputEmptyBlock {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {}
-            finally {} //warn
+            } catch (Exception e) {} // violation 'Empty catch block.'
+            finally {} // violation 'Empty finally block.'
         }
     }
 
@@ -68,8 +64,8 @@ class InputEmptyBlock {
                if (!flag) {
                    doSm();
                }
-            } catch (Exception e) {}
-            finally {} //warn
+            } catch (Exception e) {} // violation 'Empty catch block.'
+            finally {} // violation 'Empty finally block.'
         }
     };
 }

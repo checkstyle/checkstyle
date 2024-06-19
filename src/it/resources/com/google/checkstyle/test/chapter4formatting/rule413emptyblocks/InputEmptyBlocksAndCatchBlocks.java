@@ -1,31 +1,23 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import java.io.*;
-import java.awt.Dimension;
-import java.awt.Color;
-
-class InputEmptyBlockBasic
+class InputEmptyBlocksAndCatchBlocks
 {
     static {} //ok
 
     public void fooMethod()
     {
-        InputEmptyBlockBasic r = new InputEmptyBlockBasic();
+        InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
         int a = 1;
-        if (a == 1) {} // warn
+        if (a == 1) {} // violation 'Empty if block.'
         char[] s = {'1', '2'};
         int index = 2;
-        if (doSideEffect() == 1) {} // warn
+        if (doSideEffect() == 1) {} // violation 'Empty if block.'
         IO in = new IO();
         while ((r = in.read()) != null) {} // ok
         for (; index < s.length && s[index] != 'x'; index++) {} // ok
-        if (a == 1) {} else {System.identityHashCode("a");}  // warn
+        if (a == 1) {} else {System.identityHashCode("a");}  // violation 'Empty if block.'
         do {} while(a == 1); //ok
-        switch (a) {} //warn
+        switch (a) {} // violation 'Empty switch block.'
         int[] z = {}; // ok
     }
 
@@ -39,9 +31,9 @@ class InputEmptyBlockBasic
 
 class IO
 {
-    public InputEmptyBlockBasic read()
+    public InputEmptyBlocksAndCatchBlocks read()
     {
-        return new InputEmptyBlockBasic();
+        return new InputEmptyBlocksAndCatchBlocks();
     }
 }
 class Empty {} //ok
@@ -63,18 +55,18 @@ class WithInner
     {
         private void withEmpty()
         {
-            InputEmptyBlockBasic r = new InputEmptyBlockBasic();
+            InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
-            if (a == 1) {} // warn
+            if (a == 1) {} // violation 'Empty if block.'
             char[] s = {'1', '2'};
             int index = 2;
-            if (doSideEffect() == 1) {} //warn
+            if (doSideEffect() == 1) {} // violation 'Empty if block.'
             IO in = new IO();
             while ((r = in.read()) != null) {} // ok
             for (; index < s.length && s[index] != 'x'; index++) {} // ok
-            if (a == 1) {} else {System.identityHashCode("a");} // warn
+            if (a == 1) {} else {System.identityHashCode("a");} // violation 'Empty if block.'
             do {} while(a == 1); //ok
-            switch (a) {} //warn
+            switch (a) {} // violation 'Empty switch block.'
             int[] z = {}; // ok
         }
     }
@@ -93,18 +85,18 @@ class WithAnon
             public void emptyMethod() {}
 
             public void fooEmpty() {
-                InputEmptyBlockBasic r = new InputEmptyBlockBasic();
+                InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
                 int a = 1;
-                if (a == 1) {} //warn
+                if (a == 1) {} // violation 'Empty if block.'
                 char[] s = {'1', '2'};
                 int index = 2;
-                if (doSideEffect() == 1) {} //warn
+                if (doSideEffect() == 1) {} // violation 'Empty if block.'
                 IO in = new IO();
                 while ((r = in.read()) != null) {} // ok
                 for (; index < s.length && s[index] != 'x'; index++) {} // ok
-                if (a == 1) {} else {System.identityHashCode("a");} // warn
+                if (a == 1) {} else {System.identityHashCode("a");} // violation 'Empty if block.'
                 do {} while(a == 1); //ok
-                switch (a) {} //warn
+                switch (a) {} // violation 'Empty switch block.'
                 int[] z = {}; // ok
             }
 
@@ -123,7 +115,7 @@ class NewClass {
 
         if (a == 1) {
             System.identityHashCode("a");
-        } else {} // warn
+        } else {} // violation 'Empty else block.'
 
         if (a == 1) {
             System.identityHashCode("a");
@@ -169,17 +161,17 @@ class NewClass {
 
         if (a == 1) {
             /*ignore*/
-        } else if (a != 1) {} //warn
-        else {} //warn
+        } else if (a != 1) {} // violation 'Empty if block.'
+        else {} // violation 'Empty else block.'
 
-        if (a == 1) {} //warn
+        if (a == 1) {} // violation 'Empty if block.'
         else if (a != 1) {
             /*ignore*/
         }
-        else {} //warn
+        else {} // violation 'Empty else block.'
 
-        if (a == 1) {} //warn
-        else if (a != 1) {} //warn
+        if (a == 1) {} // violation 'Empty if block.'
+        else if (a != 1) {} // violation 'Empty if block.'
         else {
             /*ignore*/
         }
@@ -192,7 +184,7 @@ class NewClass {
 
             if (a == 1) {
                 System.identityHashCode("a");
-            } else {} // warn
+            } else {} // violation 'Empty else block.'
 
             if (a == 1) {
                 System.identityHashCode("a");
@@ -238,17 +230,17 @@ class NewClass {
 
             if (a == 1) {
                 /*ignore*/
-            } else if (a != 1) {} //warn
-            else {} //warn
+            } else if (a != 1) {} // violation 'Empty if block.'
+            else {} // violation 'Empty else block.'
 
-            if (a == 1) {} //warn
+            if (a == 1) {} // violation 'Empty if block.'
             else if (a != 1) {
                 /*ignore*/
             }
-            else {} //warn
+            else {} // violation 'Empty else block.'
 
-            if (a == 1) {} //warn
-            else if (a != 1) {} //warn
+            if (a == 1) {} // violation 'Empty if block.'
+            else if (a != 1) {} // violation 'Empty if block.'
             else {
                 /*ignore*/
             }
@@ -261,7 +253,7 @@ class NewClass {
 
                 if (a == 1) {
                     System.identityHashCode("a");
-                } else {} // warn
+                } else {} // violation 'Empty else block.'
 
                 if (a == 1) {
                     System.identityHashCode("a");
@@ -307,17 +299,17 @@ class NewClass {
 
                 if (a == 1) {
                     /*ignore*/
-                } else if (a != 1) {} //warn
-                else {} //warn
+                } else if (a != 1) {} // violation 'Empty if block.'
+                else {} // violation 'Empty else block.'
 
-                if (a == 1) {} //warn
+                if (a == 1) {} // violation 'Empty if block.'
                 else if (a != 1) {
                     /*ignore*/
                 }
-                else {} //warn
+                else {} // violation 'Empty else block.'
 
-                if (a == 1) {} //warn
-                else if (a != 1) {} //warn
+                if (a == 1) {} // violation 'Empty if block.'
+                else if (a != 1) {} // violation 'Empty if block.'
                 else {
                     /*ignore*/
                 }
@@ -333,4 +325,70 @@ class Example {
     void doNothingElse() { // ok
 
     }
+}
+
+class TestingEmptyBlockCatch {
+    boolean flag;
+    void doSm() {}
+    void foo() {
+        try {
+            if (!flag) {
+                doSm();
+            }
+        } catch (Exception e) { /* ignore */ } //ok
+        finally {/* ignore */} //ok
+    }
+
+    void foo2() {
+        try {
+            if (!flag) {
+                doSm();
+            }
+        } catch (Exception e) {} // violation 'Empty catch block.'
+        finally {} // violation 'Empty finally block.'
+    }
+
+    class Inner {
+        boolean flag;
+        void doSm() {}
+        void foo() {
+            try {
+                if (!flag) {
+                    doSm();
+                }
+            } catch (Exception e) { /* ignore */ } //ok
+            finally {/* ignore */} //ok
+        }
+
+        void foo2() {
+            try {
+                if (!flag) {
+                    doSm();
+                }
+            } catch (Exception e) {} // violation 'Empty catch block.'
+            finally {} // violation 'Empty finally block.'
+        }
+    }
+
+    Inner anon = new Inner(){
+        boolean flag;
+        void doSm() {}
+        void foo() {
+            try {
+                if (!flag) {
+                    doSm();
+                }
+            } catch (Exception e) { /* ignore */ } //ok
+            finally {/* ignore */} //ok
+        }
+
+        void foo2() {
+            try {
+                if (!flag) {
+                    doSm();
+                }
+            } catch (Exception e) {} // violation 'Empty catch block.'
+            finally {} // violation 'Empty finally block.'
+        }
+    };
 }
