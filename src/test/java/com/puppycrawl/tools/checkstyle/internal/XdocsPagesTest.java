@@ -231,7 +231,6 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "2.1 File name",
             "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
             "3 Source file structure",
@@ -239,7 +238,6 @@ public class XdocsPagesTest {
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
-            "3.4.2.1 Overloads: never split",
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
