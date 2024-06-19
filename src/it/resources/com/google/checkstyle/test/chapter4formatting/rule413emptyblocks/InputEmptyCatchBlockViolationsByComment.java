@@ -17,7 +17,7 @@ public class InputEmptyCatchBlockViolationsByComment
         try {
             throw new RuntimeException();
         } catch (Exception e)
-        {} // warn
+        {} // violation 'Empty catch block.'
 
     }
 
@@ -25,8 +25,9 @@ public class InputEmptyCatchBlockViolationsByComment
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ignore)
-        /*warn*/ {
+        {
         }
+        // violation 2 lines above 'Empty catch block.'
     }
 
     private void foo3() { // comment
