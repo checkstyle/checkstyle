@@ -817,7 +817,7 @@
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4861blockcommentstyle[\\/]InputCommentsIndentationInSwitchBlock\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule413emptyblocks[\\/]InputEmptyBlockBasic\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule413emptyblocks[\\/]InputEmptyBlocksAndCatchBlocks\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter4formatting[\\/]rule4842fallthrough[\\/]InputFallThrough\.java"/>
   <suppress checks="FileLength"
