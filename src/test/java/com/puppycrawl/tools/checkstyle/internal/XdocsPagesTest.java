@@ -244,7 +244,6 @@ public class XdocsPagesTest {
             "3.4.2.1 Overloads: never split",
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
-            "4.1.3 Empty blocks: may be concise",
             "4.2 Block indentation: +2 spaces",
             "4.3 One statement per line",
             "4.4 Column limit: 100",

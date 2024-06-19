@@ -698,8 +698,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1.3-braces-empty-blocks">
-                    4.1.3 Empty blocks: may be concise</a>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.1.3-braces-empty-blocks">
+                    4.1.3 Empty Blocks</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -716,11 +716,9 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlockTest.java">
-                    test</a>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyCatchBlockTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/EmptyBlocksTest.java">
                     test</a>
                 </td>
               </tr>
