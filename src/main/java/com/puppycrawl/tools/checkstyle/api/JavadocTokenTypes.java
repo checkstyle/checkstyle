@@ -537,13 +537,12 @@ public final class JavadocTokenTypes {
      * <p><b>Example:</b></p>
      * <pre><code>{&#64;inheritDoc}</code></pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--INHERIT_DOC_LITERAL[1x1] : [@inheritDoc]
-     *            |--JAVADOC_INLINE_TAG_END[1x12] : [}]
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START -> {
+     *    |--INHERIT_DOC_LITERAL -> @inheritDoc
+     *    |--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
