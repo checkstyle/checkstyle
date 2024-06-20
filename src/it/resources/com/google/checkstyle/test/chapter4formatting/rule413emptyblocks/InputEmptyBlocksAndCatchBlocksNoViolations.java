@@ -5,7 +5,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.IOException;
 
-public class InputEmptyCatchBlockNoViolations
+public class InputEmptyBlocksAndCatchBlocksNoViolations
 {
     private void foo6() {
         try {
@@ -72,6 +72,32 @@ public class InputEmptyCatchBlockNoViolations
             else {
                 return;
             }
+        }
+    }
+    public void testIfElse() {
+        if (true) {
+            return;
+        } else {
+            return;
+        }
+    }
+    public void testIfElseIfLadder() {
+        if (true) {
+            return;
+        } else if (false) {
+            return;
+        } else {
+            return;
+        }
+    }
+    public void testSwtichCase() {
+        switch (1) {
+            case 1:
+                return;
+            case 2:
+                return;
+            default:
+                return;
         }
     }
 }
