@@ -232,7 +232,6 @@ public class XdocsPagesTest {
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "2.1 File name",
-            "2.3.1 Whitespace characters",
             "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
             "3 Source file structure",

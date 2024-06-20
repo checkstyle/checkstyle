@@ -210,8 +210,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.3.1-whitespace-characters">
-                    2.3.1 Whitespace characters</a>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2.3.1-whitespace-characters">
+                    2.3.1 Whitespace Characters</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -224,7 +224,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule231filetab/FileTabCharacterTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule231filetab/WhitespaceCharactersTest.java">
                     test</a>
                 </td>
               </tr>
