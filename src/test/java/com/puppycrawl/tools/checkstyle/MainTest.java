@@ -345,6 +345,20 @@ public class MainTest {
     }
 
     @Test
+    public void testCustomSeverityVariableForGoogleConfig(@SysOut Capturable systemOut) {
+        assertMainReturnCode(0, "-Dorg.checkstyle.google.severity=error",
+                "-c", "/google_checks.xml", getPath("InputMainCustomSeverityForGoogleConfig.java"));
+
+        final String expectedOutput = addEndOfLine(auditStartMessage.getMessage(),
+                "[ERROR] InputMainCustomSeverityForGoogleConfig.java:1:1: "
+                + "Missing a Javadoc comment. [MissingJavadocType]",
+                auditFinishMessage.getMessage());
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(expectedOutput);
+    }
+
+    @Test
     public void testNonExistentConfigFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertMainReturnCode(-1, "-c", "src/main/resources/non_existent_config.xml",
