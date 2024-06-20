@@ -77,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
@@ -120,6 +121,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testDestroy() throws Exception {
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
         final TestFileSetCheck fileSet = new TestFileSetCheck();
@@ -157,6 +160,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddListener() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addListener(auditAdapter);
 
         // Let's try fire some events
@@ -211,6 +216,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testRemoveListener() throws Exception {
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         final DebugAuditAdapter aa2 = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
@@ -269,6 +276,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testAddBeforeExecutionFileFilter() throws Exception {
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
 
         checker.addBeforeExecutionFileFilter(filter);
@@ -283,6 +292,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testRemoveBeforeExecutionFileFilter() throws Exception {
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         final TestBeforeExecutionFileFilter filter = new TestBeforeExecutionFileFilter();
         final TestBeforeExecutionFileFilter f2 = new TestBeforeExecutionFileFilter();
         checker.addBeforeExecutionFileFilter(filter);
@@ -300,10 +311,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddFilter() {
+    public void testAddFilter() throws CheckstyleException {
         final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
-
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addFilter(filter);
 
         filter.resetFilter();
@@ -317,8 +329,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRemoveFilter() {
+    public void testRemoveFilter() throws CheckstyleException {
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         final DebugFilter filter = new DebugFilter();
         final DebugFilter f2 = new DebugFilter();
         checker.addFilter(filter);
@@ -510,13 +524,15 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetupChildExceptions() {
+    public void testSetupChildExceptions() throws CheckstyleException {
         final Checker checker = new Checker();
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
+        checker.finishLocalSetup();
 
-        final Configuration config = new DefaultConfiguration("java.lang.String");
+        final Configuration config = new DefaultConfiguration(
+                SuppressionXpathFilter.class.getName());
         try {
             checker.setupChild(config);
             assertWithMessage("Exception is expected").fail();
@@ -524,7 +540,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         catch (CheckstyleException ex) {
             assertWithMessage("Error message is not expected")
                 .that(ex.getMessage())
-                .isEqualTo("java.lang.String is not allowed as a child in Checker");
+                .isEqualTo(SuppressionXpathFilter.class.getName()
+                        + " is not allowed as a child in Checker");
         }
     }
 
@@ -552,6 +569,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final PackageObjectFactory factory = new PackageObjectFactory(
             new HashSet<>(), Thread.currentThread().getContextClassLoader());
         checker.setModuleFactory(factory);
+        checker.finishLocalSetup();
 
         final Configuration config = new DefaultConfiguration(
             DebugAuditAdapter.class.getCanonicalName());
@@ -958,6 +976,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addFileSetCheck(check);
         checker.addFilter(new DummyFilterSet());
         checker.configure(checkerConfig);
@@ -1431,6 +1450,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testCheckerProcessCallAllNeededMethodsOfFileSets() throws Exception {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addFileSetCheck(fileSet);
         checker.process(Collections.singletonList(new File("dummy.java")));
         final List<String> expected =
@@ -1441,9 +1462,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetFileSetCheckSetsMessageDispatcher() {
+    public void testSetFileSetCheckSetsMessageDispatcher() throws CheckstyleException {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.finishLocalSetup();
         checker.addFileSetCheck(fileSet);
         assertWithMessage("Message dispatcher was not expected")
             .that(fileSet.getInternalMessageDispatcher())
@@ -1466,6 +1489,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
         };
         checker.setModuleFactory(factory);
+        checker.finishLocalSetup();
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
         checker.process(Collections.singletonList(new File("dummy.java")));
@@ -1490,6 +1514,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             }
         };
         checker.setModuleFactory(factory);
+        checker.finishLocalSetup();
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
         checker.process(Collections.singletonList(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
@@ -1529,6 +1554,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             CloseAndFlushTestByteArrayOutputStream testErrorOutputStream =
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+            checker.finishLocalSetup();
             checker.addListener(new DefaultLogger(testInfoOutputStream,
                 OutputStreamOptions.CLOSE, testErrorOutputStream, OutputStreamOptions.CLOSE));
 
@@ -1558,6 +1584,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         try (CloseAndFlushTestByteArrayOutputStream testInfoOutputStream =
                 new CloseAndFlushTestByteArrayOutputStream()) {
             checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+            checker.finishLocalSetup();
             checker.addListener(new XMLLogger(testInfoOutputStream, OutputStreamOptions.CLOSE));
 
             final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
@@ -1711,7 +1738,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
     }
 
-    public static class DummyFilter implements Filter {
+    public static class DummyFilter extends AbstractAutomaticBean implements Filter {
+
+        @Override
+        protected void finishLocalSetup() {
+            // no code
+        }
 
         @Override
         public boolean accept(AuditEvent event) {
