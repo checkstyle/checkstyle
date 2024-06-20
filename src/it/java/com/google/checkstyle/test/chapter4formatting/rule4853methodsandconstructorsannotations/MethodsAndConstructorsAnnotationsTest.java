@@ -40,6 +40,6 @@ public class MethodsAndConstructorsAnnotationsTest extends AbstractGoogleModuleT
             "InvalidJavadocPosition",
         };
 
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 }
