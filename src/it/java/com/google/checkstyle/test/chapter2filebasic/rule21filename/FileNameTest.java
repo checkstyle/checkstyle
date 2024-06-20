@@ -19,16 +19,15 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
-import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class OuterTypeFilenameTest extends AbstractGoogleModuleTestSupport {
+public class FileNameTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "OuterTypeFilename",
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -37,37 +36,20 @@ public class OuterTypeFilenameTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename1() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
-        final String filePath = getPath("InputOuterTypeFilename1.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputFileName1.java");
+        verifyWithGoogleConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testOuterTypeFilename2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
-        final String filePath = getPath("InputOuterTypeFilename2.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputFileName2.java");
+        verifyWithGoogleConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testOuterTypeFilename3() throws Exception {
-        final String[] expected = {
-            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
-        };
-
-        final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
-        final String filePath = getPath("InputOuterTypeFilename3.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputFileName3.java");
+        verifyWithGoogleConfigParser(MODULES, filePath);
     }
 
 }

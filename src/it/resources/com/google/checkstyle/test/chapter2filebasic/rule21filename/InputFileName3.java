@@ -1,12 +1,12 @@
 package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
-@interface MyAnnotation2 { //warn
+@interface MyAnnotation2 { // violation 'The name of the outer type and the file do not match.'
     String name();
     int version();
 }
 
 @MyAnnotation2(name = "ABC", version = 1)
-class InputOuterTypeFilename3 //ok
+class InputFileName3 //ok
 {
 
 }
