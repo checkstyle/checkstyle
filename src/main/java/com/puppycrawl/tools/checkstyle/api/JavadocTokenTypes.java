@@ -526,7 +526,7 @@ public final class JavadocTokenTypes {
     public static final int LINK_LITERAL = JavadocParser.LINK_LITERAL;
 
     /**
-     * '@inheritDoc' literal in {&#64;inheritDoc} Javadoc inline tag.
+     * '@inheritDoc' literal in {inheritDoc} Javadoc inline tag.
      *
      * <p>Such Javadoc inline tag does not have any arguments and can have such child nodes:</p>
      * <ul>
@@ -535,15 +535,14 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;inheritDoc}</code></pre>
+     * <pre><code>{inheritDoc}</code></pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;inheritDoc}]
-     *            |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *            |--INHERIT_DOC_LITERAL[1x1] : [@inheritDoc]
-     *            |--JAVADOC_INLINE_TAG_END[1x12] : [}]
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *       |--JAVADOC_INLINE_TAG_START -> {
+     *       |--INHERIT_DOC_LITERAL -> @inheritDoc
+     *       |--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
