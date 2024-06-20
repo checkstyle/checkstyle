@@ -69,35 +69,37 @@
           Example:
         </p>
         <source>
-/** @see Math */ // violation, javadoc should be multiline
-public int foo() {
-  return 42;
-}
+public class Example1 {
+  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  public int foo() {
+    return 42;
+  }
 
-/**
- * @return 42
- */  // ok
-public int bar() {
-  return 42;
-}
+  /**
+   * @return 42
+   */
+  public int bar() {
+    return 42;
+  }
+  //ok below, because inline tag is ignored
+  /** {@link #equals(Object)} */
+  public int baz() {
+    return 42;
+  }
 
-/** {@link #equals(Object)} */ // ok
-public int baz() {
-  return 42;
-}
+  /**
+   * &lt;p&gt;the answer to the ultimate question
+   */
+  public int magic() {
+    return 42;
+  }
 
-/**
- * &lt;p&gt;the answer to the ultimate question
- */ // ok
-public int magic() {
-  return 42;
-}
-
-/**
- * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
-public int foobar() {
-  return 42;
+  /**
+   * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+   */
+  public int foobar() {
+    return 42;
+  }
 }
         </source>
         <p id="Example2-config">
@@ -116,35 +118,37 @@ public int foobar() {
           Example:
         </p>
         <source>
-/** @see Math */ // ok
-public int foo() {
+public class Example2 {
+  /** @see Math */
+  public int foo() {
     return 42;
-}
+  }
 
-/**
- * @return 42
- */  // ok
-public int bar() {
-  return 42;
-}
+  /**
+   * @return 42
+   */
+  public int bar() {
+    return 42;
+  }
+  //ok below, because inline tag is ignored
+  /** {@link #equals(Object)} */
+  public int baz() {
+    return 42;
+  }
 
-/** {@link #equals(Object)} */ // ok
-public int baz() {
-  return 42;
-}
+  /**
+   * &lt;p&gt;the answer to the ultimate question
+   */
+  public int magic() {
+    return 42;
+  }
 
-/**
- * &lt;p&gt;the answer to the ultimate question
- */ // ok
-public int magic() {
-  return 42;
-}
-
-/**
- * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
-public int foobar() {
-  return 42;
+  /**
+   * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+   */
+  public int foobar() {
+    return 42;
+  }
 }
         </source>
         <p id="Example3-config">
@@ -163,35 +167,37 @@ public int foobar() {
           Example:
         </p>
         <source>
-/** @see Math */ // violation, javadoc should be multiline
-public int foo() {
-  return 42;
-}
+public class Example3 {
+  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  public int foo() {
+    return 42;
+  }
 
-/**
- * @return 42
- */  // ok
-public int bar() {
-  return 42;
-}
+  /**
+   * @return 42
+   */
+  public int bar() {
+    return 42;
+  }
+  // violation below, 'Javadoc comment should be multi-line'
+  /** {@link #equals(Object)} */
+  public int baz() {
+    return 42;
+  }
 
-/** {@link #equals(Object)} */ // violation, javadoc should be multiline
-public int baz() {
-  return 42;
-}
+  /**
+   * &lt;p&gt;the answer to the ultimate question
+   */
+  public int magic() {
+    return 42;
+  }
 
-/**
- * &lt;p&gt;the answer to the ultimate question
- */ // ok
-public int magic() {
-  return 42;
-}
-
-/**
- * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
-public int foobar() {
-  return 42;
+  /**
+   * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+   */
+  public int foobar() {
+    return 42;
+  }
 }
         </source>
         <p id="Example4-config">
@@ -210,35 +216,37 @@ public int foobar() {
           Example:
         </p>
         <source>
-/** @see Math */ // violation, javadoc should be multiline
-public int foo() {
-  return 42;
-}
+public class Example4 {
+  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  public int foo() {
+    return 42;
+  }
 
-/**
- * @return 42
- */  // ok
-public int bar() {
-  return 42;
-}
+  /**
+   * @return 42
+   */
+  public int bar() {
+    return 42;
+  }
+  //ok below, because inline tag is ignored
+  /** {@link #equals(Object)} */
+  public int baz() {
+    return 42;
+  }
 
-/** {@link #equals(Object)} */ // ok
-public int baz() {
-  return 42;
-}
+  /**
+   * &lt;p&gt;the answer to the ultimate question
+   */ // violation above, 'Unclosed HTML tag found'
+  public int magic() {
+    return 42;
+  }
 
-/**
- * &lt;p&gt;the answer to the ultimate question
- */ // violation, unclosed HTML tag found: p
-public int magic() {
-  return 42;
-}
-
-/**
- * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
- */ // ok
-public int foobar() {
-  return 42;
+  /**
+   * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+   */
+  public int foobar() {
+    return 42;
+  }
 }
         </source>
       </subsection>
