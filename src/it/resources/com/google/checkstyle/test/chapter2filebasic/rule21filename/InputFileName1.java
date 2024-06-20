@@ -6,7 +6,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 }
 
 @MyAnnotation1(name = "ABC", version = 1)
-public class InputOuterTypeFilename1 //ok
+public class InputFileName1 //ok
 {
 
 }
