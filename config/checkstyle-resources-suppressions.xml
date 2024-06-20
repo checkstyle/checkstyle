@@ -86,6 +86,8 @@
     files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
     files="src[\\/]it[\\/]resources[\\/].*[\\/]InputXpathOuterTypeFilename.*\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFileName3\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"
