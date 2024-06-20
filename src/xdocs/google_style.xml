@@ -160,8 +160,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.1-file-name">
-                    2.1 File name</a>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2.1-file-name">
+                    2.1 File Name</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -173,7 +173,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule21filename/OuterTypeFilenameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule21filename/FileNameTest.java">
                     test</a>
                 </td>
               </tr>
