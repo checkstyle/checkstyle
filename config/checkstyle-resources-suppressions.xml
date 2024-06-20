@@ -133,6 +133,8 @@
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]InputWhitespaceCharacters\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputRegressionJavaClass1\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputComments2\.java"/>
@@ -801,7 +803,7 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources-noncompilable[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]javaparser[\\/]InputJavaParserFullJavaIdentifierSupport\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]InputFileTabCharacter\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]InputWhitespaceCharacters\.java"/>
   <suppress checks="FileLength"
     files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule232specialescape[\\/]InputIllegalTokenText\.java"/>
   <suppress checks="FileLength"

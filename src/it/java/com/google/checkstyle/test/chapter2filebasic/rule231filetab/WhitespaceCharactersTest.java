@@ -22,10 +22,8 @@ package com.google.checkstyle.test.chapter2filebasic.rule231filetab;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 
-public class FileTabCharacterTest extends AbstractGoogleModuleTestSupport {
+public class WhitespaceCharactersTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,23 +32,12 @@ public class FileTabCharacterTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testFileTab() throws Exception {
-        final String[] expected = {
-            "8:25: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "51:5: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "121:35: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "122:64: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "130:9: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "131:10: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "132:1: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "133:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
-            "134:3: " + getCheckMessage(FileTabCharacterCheck.class, "containsTab"),
+        final String filePath = getPath("InputWhitespaceCharacters.java");
+        final String[] modules = {
+            "FileTabCharacter",
         };
 
-        final Configuration checkConfig = getModuleConfig("FileTabCharacter");
-        final String filePath = getPath("InputFileTabCharacter.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithGoogleConfigParser(modules, filePath);
     }
 
 }
