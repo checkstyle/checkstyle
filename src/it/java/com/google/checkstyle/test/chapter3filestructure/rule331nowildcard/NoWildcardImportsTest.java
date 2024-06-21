@@ -22,9 +22,8 @@ package com.google.checkstyle.test.chapter3filestructure.rule331nowildcard;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class AvoidStarImportTest extends AbstractGoogleModuleTestSupport {
+public class NoWildcardImportsTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -33,20 +32,12 @@ public class AvoidStarImportTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testStarImport() throws Exception {
-        final String[] expected = {
-            "3:15: Using the '.*' form of import should be avoided - java.io.*.",
-            "4:17: Using the '.*' form of import should be avoided - java.lang.*.",
-            "18:42: Using the '.*' form of import should be avoided - "
-                + "javax.swing.WindowConstants.*.",
-            "19:42: Using the '.*' form of import should be avoided - "
-                + "javax.swing.WindowConstants.*.",
+        final String filePath = getPath("InputNoWildcardImports.java");
+        final String[] module = {
+            "AvoidStarImport",
         };
 
-        final Configuration checkConfig = getModuleConfig("AvoidStarImport");
-        final String filePath = getPath("InputAvoidStarImport.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithGoogleConfigParser(module, filePath);
     }
 
 }
