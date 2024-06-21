@@ -231,7 +231,6 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
             "3 Source file structure",
             "3.3.1 No wildcard imports",
