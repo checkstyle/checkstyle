@@ -2443,23 +2443,22 @@
           <br/>
           <br/>
           <code>org.checkstyle.google.severity=${SeverityLevel}</code>
-          <br/>
-          <br/>
-          where <code>SeverityLevel</code> can be any one of them:
-          <code>ignore</code>, <code>info</code>, <code>warning</code>, <code>error</code>.
-          Default is <code>Warning</code>.
         </p>
         <p>
           Visit here for more details about Severity Levels:
-          <a href="https://checkstyle.sourceforge.io/property_types.html#SeverityLevel">
+          <a href="https://checkstyle.org/property_types.html#SeverityLevel">
             Severity Level
           </a>
         </p>
         <p>
-          Visit here for more details about how to use custom properties:
+          Custom properties can be set by property file ( <code>-p</code> ) in
           <a href="https://checkstyle.org/cmdline.html#Command_line_usage">
-            Command Line Usage
+            CLI
+          </a>,
+          <a href="https://checkstyle.org/anttask.html#Parameters">
+            properties parameter
           </a>
+           in Ant task, or as system variable.
         </p>
       </subsection>
       <subsection name="Suppressions" id="Google_Suppressions">
