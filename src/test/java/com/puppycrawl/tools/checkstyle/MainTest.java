@@ -55,6 +55,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.junitpioneer.jupiter.SetSystemProperty;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -342,6 +343,26 @@ public class MainTest {
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
             .isEqualTo("");
+    }
+
+    @Test
+    @SetSystemProperty(key = "org.checkstyle.google.severity", value = "error")
+    public void testCustomSeverityVariableForGoogleConfig(@SysOut Capturable systemOut) {
+        assertMainReturnCode(1,
+                "-c", "/google_checks.xml", getPath("InputMainCustomSeverityForGoogleConfig.java"));
+
+        final String expectedOutputStart = addEndOfLine(auditStartMessage.getMessage())
+            + "[ERROR] ";
+        final String expectedOutputEnd = addEndOfLine(
+                "InputMainCustomSeverityForGoogleConfig.java:3:1:"
+                    + " Missing a Javadoc comment. [MissingJavadocType]",
+                auditFinishMessage.getMessage());
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .startsWith(expectedOutputStart);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .contains(expectedOutputEnd);
     }
 
     @Test
