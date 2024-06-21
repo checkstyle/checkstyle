@@ -345,6 +345,45 @@ public class MainTest {
     }
 
     @Test
+    public void testCustomSeverityVariableForGoogleConfig(@SysOut Capturable systemOut) {
+        assertMainReturnCode(1, "-c", "/google_checks.xml",
+                "-p", getPath("InputMainCustomSeverityForGoogleConfig.properties"),
+                getPath("InputMainCustomSeverityForGoogleConfig.java"));
+
+        final String expectedOutputStart = addEndOfLine(auditStartMessage.getMessage())
+            + "[ERROR] ";
+        final String expectedOutputEnd = addEndOfLine(
+                "InputMainCustomSeverityForGoogleConfig.java:3:1:"
+                    + " Missing a Javadoc comment. [MissingJavadocType]",
+                auditFinishMessage.getMessage());
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .startsWith(expectedOutputStart);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .endsWith(expectedOutputEnd);
+    }
+
+    @Test
+    public void testDefaultSeverityVariableForGoogleConfig(@SysOut Capturable systemOut) {
+        assertMainReturnCode(0, "-c", "/google_checks.xml",
+                getPath("InputMainCustomSeverityForGoogleConfig.java"));
+
+        final String expectedOutputStart = addEndOfLine(auditStartMessage.getMessage())
+                + "[WARN] ";
+        final String expectedOutputEnd = addEndOfLine(
+                "InputMainCustomSeverityForGoogleConfig.java:3:1:"
+                        + " Missing a Javadoc comment. [MissingJavadocType]",
+                auditFinishMessage.getMessage());
+        assertWithMessage("Unexpected output log")
+                .that(systemOut.getCapturedData())
+                .startsWith(expectedOutputStart);
+        assertWithMessage("Unexpected output log")
+                .that(systemOut.getCapturedData())
+                .endsWith(expectedOutputEnd);
+    }
+
+    @Test
     public void testNonExistentConfigFile(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) {
         assertMainReturnCode(-1, "-c", "src/main/resources/non_existent_config.xml",
