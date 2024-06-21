@@ -911,7 +911,7 @@ innerPattern
     ;
 
 guardedPattern
-    : primaryPattern guard expr
+    : primaryPattern guard expression
     ;
 
 /**
