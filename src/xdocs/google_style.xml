@@ -2432,6 +2432,23 @@
           </table>
         </div>
       </subsection>
+      <subsection name="Severity Level" id="Google_Severity_Level">
+        <p>
+          To adjust the default severity level for violations using Checkstyle's
+          Google style configuration, set the following system property:
+        </p>
+        <p>
+          <code>org.checkstyle.google.severity</code>
+        </p>
+        <p>
+          For detailed guidance on severity levels, refer to the
+          <a href="./property_types.html#SeverityLevel">Severity Level</a>.
+          To configure this property, see the instructions for the
+          <a href="./cmdline.html#Command_line_usage">CLI's <code>-p</code> option</a> , or use the
+          <a href="./anttask.html#Parameters"><code>properties</code> parameter in Ant</a>,
+          or set the Java system property before running Checkstyle.
+        </p>
+      </subsection>
       <subsection name="Suppressions" id="Google_Suppressions">
         <p>
           It is possible to suppress some violations by embeded filters
