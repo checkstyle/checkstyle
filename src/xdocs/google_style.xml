@@ -2435,6 +2435,30 @@
           </table>
         </div>
       </subsection>
+      <subsection name="Overrides" id="Google_Overrides">
+        <p>
+          To change the default severity level, use the following custom property variable:
+          <br/>
+          <br/>
+          <code>org.checkstyle.google.severity=${SeverityLevel}</code>
+        </p>
+        <p>
+          Visit here for more details about Severity Levels:
+          <a href="https://checkstyle.org/property_types.html#SeverityLevel">
+            Severity Level
+          </a>
+        </p>
+        <p>
+          Custom properties can be set by property file ( <code>-p</code> ) in
+          <a href="https://checkstyle.org/cmdline.html#Command_line_usage">
+            CLI
+          </a>,
+          <a href="https://checkstyle.org/anttask.html#Parameters">
+            properties parameter
+          </a>
+           in Ant task.
+        </p>
+      </subsection>
       <subsection name="Suppressions" id="Google_Suppressions">
         <p>
           It is possible to suppress some violations by embeded filters
