@@ -19,15 +19,11 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
-import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class AvoidEscapedUnicodeCharactersTest extends AbstractGoogleModuleTestSupport {
+public class NonAsciiCharactersTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -36,20 +32,8 @@ public class AvoidEscapedUnicodeCharactersTest extends AbstractGoogleModuleTestS
 
     @Test
     public void testUnicodeEscapes() throws Exception {
-        final String[] expected = {
-            "5:42: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "15:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "25:36: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "33:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "35:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "36:47: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-        };
-
-        final Configuration checkConfig = getModuleConfig("AvoidEscapedUnicodeCharacters");
-        final String filePath = getPath("InputAvoidEscapedUnicodeCharacters.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputNonAsciiCharacters.java");
+        verifyWithConfigParser(new String[] {"AvoidEscapedUnicodeCharacters"}, filePath);
     }
 
 }
