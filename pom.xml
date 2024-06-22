@@ -3382,6 +3382,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck*</param>
@@ -3414,6 +3415,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest</param>
