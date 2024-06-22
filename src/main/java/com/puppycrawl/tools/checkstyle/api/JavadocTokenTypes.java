@@ -563,29 +563,27 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}</code>
      * </pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code> |--JAVADOC_INLINE_TAG[1x0] :
-     *               [{&#64;linkplain org.apache.utils.Lists.Comparator#compare(Object) compare}]
-     *        |--JAVADOC_INLINE_TAG_START[1x0] : [{]
-     *        |--LINKPLAIN_LITERAL[1x1] : [@linkplain]
-     *        |--WS[1x11] : [ ]
-     *        |--REFERENCE[1x12] : [org.apache.utils.Lists.Comparator#compare(Object)]
-     *            |--PACKAGE_CLASS[1x12] : [org.apache.utils]
-     *            |--DOT[1x28] : [.]
-     *            |--CLASS[1x29] : [Lists]
-     *            |--DOT[1x34] : [.]
-     *            |--CLASS[1x35] : [Comparator]
-     *            |--HASH[1x45] : [#]
-     *            |--MEMBER[1x46] : [compare]
-     *            |--PARAMETERS[1x53] : [(Object)]
-     *                |--LEFT_BRACE[1x53] : [(]
-     *                |--ARGUMENT[1x54] : [Object]
-     *                |--RIGHT_BRACE[1x60] : [)]
-     *        |--DESCRIPTION[1x61] : [ compare]
-     *            |--TEXT[1x61] : [ compare]
-     *        |--JAVADOC_INLINE_TAG_END[1x69] : [}]
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START -> {
+     *    |--LINKPLAIN_LITERAL -> @linkplain
+     *    |--WS ->
+     *    |--REFERENCE -> org.apache.utils.Lists.Comparator#compare(Object)
+     *        |--PACKAGE_CLASS -> org.apache.utils
+     *        |--DOT -> .
+     *        |--CLASS -> Lists
+     *        |--DOT -> .
+     *        |--CLASS -> Comparator
+     *        |--HASH -> #
+     *        |--MEMBER -> compare
+     *        |--PARAMETERS -> (Object)
+     *            |--LEFT_BRACE -> (
+     *            |--ARGUMENT -> Object
+     *            |--RIGHT_BRACE -> )
+     *     |--DESCRIPTION -> compare
+     *         |--TEXT -> compare
+     *     |--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
