@@ -1,8 +1,10 @@
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
-public class InputAvoidEscapedUnicodeCharacters {
+// -@cs[AbbreviationAsWordInName] Input should be named as its section name.
+public class InputNonASCIICharacters {
 
-    /*warn*/private String unitAbbrev2 = "\u03bcs";
+    private String unitAbbrev2 = "\u03bcs";
+    // violation above 'Unicode escape(s) usage should be avoided.'
 
     private String unitAbbrev3 = "\u03bcs"; //Greek letter mu ok
 
@@ -12,7 +14,8 @@ public class InputAvoidEscapedUnicodeCharacters {
     public Object fooString()
     {
         String unitAbbrev = "μs";
-        /*warn*/String unitAbbrev2 = "\u03bcs";
+        String unitAbbrev2 = "\u03bcs";
+        // violation above 'Unicode escape(s) usage should be avoided.'
         String unitAbbrev3 = "\u03bcs"; // Greek letter mu, "s" ok
         String fakeUnicode = "asd\tsasd";
         String fakeUnicode2 = "\\u23\\u123i\\u";
@@ -22,7 +25,8 @@ public class InputAvoidEscapedUnicodeCharacters {
 
     public Object fooChar()
     {
-        /*warn*/char unitAbbrev2 = '\u03bc';
+        char unitAbbrev2 = '\u03bc';
+        // violation above 'Unicode escape(s) usage should be avoided.'
         char unitAbbrev3 = '\u03bc'; // Greek letter mu, "s" ok
         String content = "";
         /*byte order mark ok*/return '\ufeff' + content;
@@ -30,9 +34,12 @@ public class InputAvoidEscapedUnicodeCharacters {
 
     public void multiplyString()
     {
-        /*warn*/String unitAbbrev2 = "asd\u03bcsasd";
+        String unitAbbrev2 = "asd\u03bcsasd";
+        // violation above 'Unicode escape(s) usage should be avoided.'
         String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s"*/ //ok
-        /*warn*/String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
-        /*warn*/String allCharactersEscaped = "\u03bc\u03bc";
+        String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
+        // violation above 'Unicode escape(s) usage should be avoided.'
+        String allCharactersEscaped = "\u03bc\u03bc";
+        // violation above 'Unicode escape(s) usage should be avoided.'
     }
 }
