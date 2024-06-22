@@ -1145,7 +1145,6 @@ ci-temp-check)
         fail=1
     fi
     ls -A .ci-temp
-    sleep 5s
     exit $fail
   ;;
 
