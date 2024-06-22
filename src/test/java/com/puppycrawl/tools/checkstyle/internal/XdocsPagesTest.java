@@ -231,7 +231,6 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "2.3.3 Non-ASCII characters",
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
@@ -2001,10 +2000,10 @@ public class XdocsPagesTest {
 
         for (String part : parts) {
             if (part.matches("[A-Za-z]+")) {
-                // Capitalize the first letter and make the rest words
+                // Capitalize the first letter and make the rest words lowercase
                 extractedRuleName
                         .append(part.substring(0, 1).toUpperCase(Locale.ENGLISH))
-                        .append(part.substring(1));
+                        .append(part.substring(1).toLowerCase(Locale.ENGLISH));
             }
             else if (part.matches("\\d+")) {
                 // Append numbers directly
