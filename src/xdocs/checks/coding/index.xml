@@ -274,6 +274,17 @@
           </tr>
           <tr>
             <td>
+              <a href="missingnullcaseinswitch.html#MissingNullCaseInSwitch">
+                MissingNullCaseInSwitch
+              </a>
+            </td>
+            <td>
+             Checks that a given switch statement or expression that use a reference type
+             in its selector expression has a {@code null} case label.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="missingswitchdefault.html#MissingSwitchDefault">
                 MissingSwitchDefault
               </a>
