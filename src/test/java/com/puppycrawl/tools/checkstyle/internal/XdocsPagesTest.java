@@ -240,7 +240,6 @@ public class XdocsPagesTest {
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
-            "4.3 One statement per line",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
             "4.5.2 Indent continuation lines at least +4 spaces",
