@@ -16,12 +16,14 @@
       </macro>
     </section>
 
-    <section name="Localization Support">
+    <section name="How to set system property for CLI">
       <p>
-        Checkstyle supports localization of the output messages.
-        If your language is not supported, please consider
-        translating the messages in the <code>messages.properties</code> file. Please let us
-        know if you translate the file.
+        System properties should be provided to <code>java</code> command.
+        Example: <code>java -D&lt;property&gt;=&lt;value&gt; -jar ... </code>
+      </p>
+      <p>
+        Attention to Windows users: system properties should be wrapped with <code>"</code>.
+        Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
       </p>
     </section>
 
@@ -127,6 +129,10 @@ Starting audit...
 Audit done.
 Checkstyle ends with 2 errors.
           </source>
+        </p>
+        <p>
+          Attention to Windows users: system properties should be wrapped with <code>"</code>.
+          Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
         </p>
       </subsection>
     </section>
