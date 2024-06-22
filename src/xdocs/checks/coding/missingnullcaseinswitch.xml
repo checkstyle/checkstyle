@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingNullCaseInSwitch</title>
+  </head>
+  <body>
+    <section name="MissingNullCaseInSwitch">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that switch statement or expression that uses reference type in case labels has
+          a <code>null</code> case label.
+        </p>
+        <p>
+         Rationale: switch statements and expressions in Java throw a
+          <code>NullPointerException</code> if the selector expression evaluates
+          to <code>null</code>. With the introduction of patterns in case label,
+          It is now possible to integrate a null check within the switch,
+          eliminating the risk of <code>NullPointerException</code> and simplifies the code
+          as there is no need for an external null check before entering the switch.
+        </p>
+        <p>
+          Limitations due to not being type-aware:
+        </p>
+        <ul>
+          <li>
+             This check does not differentiate between primitive types and
+             their boxed counterparts in case labels.
+             Therefore, any case label with an integer will not violate this check,
+             even if it is a reference type <code>Integer</code>.
+          </li>
+          <li>
+            This check will not violate case labels with idents even if
+            this is an identifier of Enums. We can't tell if the identifier
+            is an Enum or just a normal final variable.
+          </li>
+        </ul>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28">
+          Java Language Specification</a> for more information about switch statements
+          and expressions.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;MissingNullCaseInSwitch&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example of violation:
+        </p>
+        <source>
+public class Example1 {
+  void testString(String obj) {
+    // violation below, 'switch using reference types should have a null case.'
+    switch (obj) {
+      case "something" -> {}
+    }
+    switch (obj) {
+      case null -> {}
+      case "something" -> {}
+      default -> {}
+    }
+  }
+  void testPatterns(Object obj) {
+    // violation below, 'switch using reference types should have a null case.'
+    switch (obj) {
+      case Integer i : {} break;
+      default : {}
+    }
+    switch (obj) {
+      case null -> {}
+      case Integer i -> {}
+      default -> {}
+    }
+  }
+  void testPrimitives(int obj) {
+    switch (obj) {   // ok, this is a primitive type can't be null
+      case 1 -> {}
+    }
+  }
+
+  void testBoxedType(Integer obj) {
+    // ok, we can't tell if '1' is of a reference or primitive type
+    switch (obj) {
+      case 1 -> {}
+    }
+  }
+
+  void testEnum(E obj) {
+    // ok, we can't tell if Ident 'ONE' is of a reference or primitive type
+    switch (obj) {
+      case ONE -> {}
+    }
+  }
+  enum E {ONE}
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingNullCaseInSwitch">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.switch.nullcase%22">
+              missing.switch.nullcase
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
