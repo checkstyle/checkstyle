@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck"
+             name="MissingNullCaseInSwitch"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a given switch statement or expression that use a reference type in its selector
+ expression has a {@code null} case label.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: switch statements and expressions in Java throw a
+ {@code NullPointerException} if the selector expression evaluates to {@code null}.
+ As of Java 21, it is now possible to integrate a null check within the switch,
+ eliminating the risk of {@code NullPointerException} and simplifies the code
+ as there is no need for an external null check before entering the switch.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28"&gt;
+ Java Language Specification&lt;/a&gt; for more information about switch statements and expressions.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Specifically, this check validates switch statement or expression
+ that use patterns or strings in their case labels.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Due to Checkstyle not being type-aware, this check cannot validate other reference types,
+ such as enums; syntactically, these are no different from other constants.
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;Attention&lt;/b&gt;: this Check should be activated only on source code
+ that is compiled by jdk21 or above.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="missing.switch.nullcase"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
