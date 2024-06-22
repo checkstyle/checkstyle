@@ -233,7 +233,6 @@ public class XdocsPagesTest {
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
-            "3 Source file structure",
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
