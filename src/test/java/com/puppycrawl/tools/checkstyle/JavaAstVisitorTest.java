@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
@@ -162,6 +163,42 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .that(orderedVisitorMethodNames)
                 .containsExactlyElementsIn(orderedBaseVisitorMethodNames)
                 .inOrder();
+    }
+
+    /**
+     * The reason we have this test is that we forgot to add the imaginary 'EXPR' node
+     * to a production rule in the parser grammar (we should have used 'expression'
+     * instead of 'expr'). This test is a reminder to question the usage of the 'expr' parser
+     * rule in the parser grammar when we update the count to make sure we are not missing
+     * an imaginary 'EXPR' node in the AST.
+     *
+     * @throws IOException if file does not exist
+     */
+    @Test
+    public void countExprUsagesInParserGrammar() throws IOException {
+        final String parserGrammarFilename = "src/main/resources/com/puppycrawl"
+                + "/tools/checkstyle/grammar/java/JavaLanguageParser.g4";
+
+        final int actualExprCount = Arrays.stream(new FileText(new File(parserGrammarFilename),
+                        StandardCharsets.UTF_8.name()).toLinesArray())
+                .mapToInt(JavaAstVisitorTest::countExprInLine)
+                .sum();
+
+        // Any time we update this count, we should question why we are not building an imaginary
+        // 'EXPR' node.
+        final int expectedExprCount = 45;
+
+        assertWithMessage("The 'expr' parser rule does not build an imaginary"
+                + " 'EXPR' node. Any usage of this rule should be questioned.")
+                .that(actualExprCount)
+                .isEqualTo(expectedExprCount);
+
+    }
+
+    private static int countExprInLine(String line) {
+        return (int) Arrays.stream(line.split(" "))
+                .filter("expr"::equals)
+                .count();
     }
 
     /**
