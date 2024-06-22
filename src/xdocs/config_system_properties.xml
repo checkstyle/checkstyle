@@ -128,6 +128,10 @@ Audit done.
 Checkstyle ends with 2 errors.
           </source>
         </p>
+        <p>
+          Attention to Windows users: system properties should be wrapped with <code>"</code>.
+          Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
+        </p>
       </subsection>
     </section>
 
