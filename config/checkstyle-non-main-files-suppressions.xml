@@ -228,6 +228,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]missingctor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]missingnullcaseinswitch.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]missingswitchdefault.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]multiplevariabledeclarations.xml.template"/>
