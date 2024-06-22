@@ -2136,7 +2136,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitGuardedPattern(JavaLanguageParser.GuardedPatternContext ctx) {
         final DetailAstImpl guardAstNode = flattenedTree(ctx.guard());
         guardAstNode.addChild(visit(ctx.primaryPattern()));
-        guardAstNode.addChild(visit(ctx.expr()));
+        guardAstNode.addChild(visit(ctx.expression()));
         return guardAstNode;
     }
 
