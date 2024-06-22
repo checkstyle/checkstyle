@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingNullCaseInSwitch</title>
+  </head>
+  <body>
+    <section name="MissingNullCaseInSwitch">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that a given switch statement or expression that use a reference type
+          in its selector expression has a <code>null</code> case label.
+        </p>
+        <p>
+          Rationale: switch statements and expressions in Java throw a
+          <code>NullPointerException</code> if the selector expression evaluates
+          to <code>null</code>. As of Java 21,
+          it is now possible to integrate a null check within the switch,
+          eliminating the risk of <code>NullPointerException</code> and simplifies the code
+          as there is no need for an external null check before entering the switch.
+        </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28">
+          Java Language Specification</a> for more information about switch statements
+          and expressions.
+        </p>
+        <p>
+          Specifically, this check validates switch statement or expression
+          that use patterns or strings in their case labels.
+        </p>
+        <p>
+          Due to Checkstyle not being type-aware, this check cannot validate other reference types,
+          such as enums; syntactically, these are no different from other constants.
+        </p>
+        <p>
+          <b>Attention</b>: this Check should be activated only on source code
+          that is compiled by jdk21 or above.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/missingnullcaseinswitch/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example of violation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/missingnullcaseinswitch/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingNullCaseInSwitch">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="MissingNullCaseInSwitch"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="MissingNullCaseInSwitch"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
