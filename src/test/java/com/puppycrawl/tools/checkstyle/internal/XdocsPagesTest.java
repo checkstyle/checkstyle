@@ -232,7 +232,6 @@ public class XdocsPagesTest {
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "2.3.3 Non-ASCII characters",
-            "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
             "4.1.1 Use of optional braces",
