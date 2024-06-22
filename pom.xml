@@ -243,11 +243,12 @@
       -Xep:AssertJIsNull:ERROR
       -Xep:AutowiredConstructor:ERROR
       -Xep:CanonicalAnnotationSyntax:ERROR
-      -Xep:DirectReturn:ERROR
       -Xep:CollectorMutability:ERROR
+      -Xep:DirectReturn:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
