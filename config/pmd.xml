@@ -209,6 +209,10 @@
       <property name="ignoredAnnotations" value="" />
       <property name="regex" value="\/\*\s+(package)\s+\*\/" />
       <property name="checkTopLevelTypes" value="false" />
+      <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='Main']
+                        //EnumDeclaration[@SimpleName='OutputFormat']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/UnnecessaryBoxing">
@@ -217,14 +221,6 @@
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='IntMatchFilterElement']
                         //MethodDeclaration[@Name='hashCode']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
-    <properties>
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='Main']
-                        //EnumDeclaration[@SimpleName='OutputFormat']"/>
     </properties>
   </rule>
 
@@ -350,6 +346,7 @@
   <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <property name="methodReportLevel" value="32"/>
+      <property name="classReportLevel" value="1000" />
       <!-- Main, PackageObjectFactory, RequireThisCheck, HandlerFactory,
              VariableDeclarationUsageDistanceCheck,
              are big and should not be split without a good reason.
@@ -362,6 +359,10 @@
            SuppressFilterElement is a single constructor and can't be split easily
            Splitting PropertiesMacro.getDefaultValue will damage readability
            Splitting SiteUtil.getDefaultValue would not make it more readable -->
+      <!-- *TokenTypes are special classes that are big due to a lot of description comments.
+           RequireThisCheck has to work with and identify many frames.
+           JavadocMethodCheck is in the process of being rewritten.
+           SiteUtil provides a lot of functionality to generate documentation. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
@@ -389,18 +390,8 @@
       | //ClassDeclaration[@SimpleName='SiteUtil']
                //MethodDeclaration[@Name='getDefaultValue']
       | //ClassDeclaration[@SimpleName='DescriptionExtractor']
-               //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/NcssCount">
-    <properties>
-      <property name="classReportLevel" value="1000" />
-      <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten.
-           SiteUtil provides a lot of functionality to generate documentation. -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavadocTokenTypes'
+               //MethodDeclaration[@Name='getDescriptionFromJavadoc']
+      | //ClassDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
         or @SimpleName='SiteUtil']"/>
