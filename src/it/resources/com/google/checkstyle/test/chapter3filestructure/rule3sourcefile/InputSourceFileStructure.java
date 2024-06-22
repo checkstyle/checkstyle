@@ -16,8 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile; //warn
-import java.io.Serializable; //warn
+package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;// violation ''package' .*'
+import java.io.Serializable; // violation ''import' should be separated from previous line.'
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +30,12 @@ import java.util.Set;
 import javax.swing.AbstractAction;
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
-class InputEmptyLineSeparator //warn
+class InputSourceFileStructure
+// violation above ''CLASS_DEF' should be separated from previous line.'
 {
     public static final double FOO_PI = 3.1415;
     private boolean flag = true;
-    static {  //warn
+    static {  // violation ''STATIC_INIT' should be separated from previous line.'
         //empty static initializer
     }
 
@@ -47,12 +48,12 @@ class InputEmptyLineSeparator //warn
      *
      *
      */
-    private InputEmptyLineSeparator()
+    private InputSourceFileStructure()
     {
         //empty
     }
 
-    public int compareTo(InputEmptyLineSeparator aObject)
+    public int compareTo(InputSourceFileStructure aObject)
     {
         int number = 0;
         return 0;
@@ -63,7 +64,8 @@ class InputEmptyLineSeparator //warn
      * @param result
      * @return
      */
-    public static <T> Callable<T> callable(Runnable task, T result) // warn
+    public static <T> Callable<T> callable(Runnable task, T result)
+    // violation above ''METHOD_DEF' should be separated from previous line.'
     {
         return null;
     }
@@ -72,14 +74,15 @@ class InputEmptyLineSeparator //warn
     {
         return 666;
     }
-    interface IntEnum { //warn
+    interface IntEnum {
+    // violation above ''INTERFACE_DEF' should be separated from previous line.'
     }
 
     class InnerClass {
 
         public static final double FOO_PI_INNER = 3.1415;
         private boolean flagInner = true;
-        { //warn
+        { // violation ''INSTANCE_INIT' should be separated from previous line.'
             //empty instance initializer
         }
 
@@ -98,7 +101,7 @@ class InputEmptyLineSeparator //warn
     }
 
     class InnerClass3 { //ok
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+        public int compareTo(InputSourceFileStructure aObject) //ok
         {
             int number = 0;
             return 0;
@@ -110,14 +113,15 @@ class InputEmptyLineSeparator //warn
 class Class1 { //ok
     private Class1() {} //ok
 }
-class Class2{ //warn
-    public int compareTo(InputEmptyLineSeparator aObject) //ok
+class Class2{ // violation ''CLASS_DEF' should be separated from previous line.'
+    public int compareTo(InputSourceFileStructure aObject) //ok
     {
         int number = 0;
         return 0;
     }
-    Class2 anon = new Class2(){ //warn
-        public int compareTo(InputEmptyLineSeparator aObject) //ok
+    Class2 anon = new Class2(){
+    // violation above ''VARIABLE_DEF' should be separated from previous line.'
+        public int compareTo(InputSourceFileStructure aObject) //ok
         {
             int number = 0;
             return 0;
