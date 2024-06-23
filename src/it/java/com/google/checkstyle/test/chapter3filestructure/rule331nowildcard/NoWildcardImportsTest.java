@@ -37,7 +37,7 @@ public class NoWildcardImportsTest extends AbstractGoogleModuleTestSupport {
             "AvoidStarImport",
         };
 
-        verifyWithGoogleConfigParser(module, filePath);
+        verifyWithConfigParser(module, filePath);
     }
 
 }

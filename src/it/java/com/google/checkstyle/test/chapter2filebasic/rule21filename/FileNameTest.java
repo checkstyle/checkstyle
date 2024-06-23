@@ -37,19 +37,19 @@ public class FileNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOuterTypeFilename1() throws Exception {
         final String filePath = getPath("InputFileName1.java");
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testOuterTypeFilename2() throws Exception {
         final String filePath = getPath("InputFileName2.java");
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testOuterTypeFilename3() throws Exception {
         final String filePath = getPath("InputFileName3.java");
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
 }

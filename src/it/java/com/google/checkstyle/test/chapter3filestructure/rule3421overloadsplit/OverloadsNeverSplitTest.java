@@ -31,14 +31,14 @@ public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testOverloading() throws Exception {
+    public void testOverloadConstructors() throws Exception {
         final String[] listOfModules = {
             "ConstructorsDeclarationGrouping",
             "OverloadMethodsDeclarationOrder",
         };
 
         final String filePath = getPath("InputOverloadsNeverSplit.java");
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
         final String filePath =
                 getNonCompilablePath("InputOverloadsNeverSplitRecords.java");
 
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 }
