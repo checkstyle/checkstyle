@@ -37,6 +37,6 @@ public class FieldAnnotationsTest extends AbstractGoogleModuleTestSupport {
             "InvalidJavadocPosition",
         };
 
-        verifyWithGoogleConfigParser(listOfModules, filePath);
+        verifyWithConfigParser(listOfModules, filePath);
     }
 }
