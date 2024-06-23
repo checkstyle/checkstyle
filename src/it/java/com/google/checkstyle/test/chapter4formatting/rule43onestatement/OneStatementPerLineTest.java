@@ -38,14 +38,14 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
     public void testOneStatement() throws Exception {
         final String filePath = getPath("InputOneStatementPerLine.java");
 
-        verifyWithGoogleConfigParser(MODULE, filePath);
+        verifyWithConfigParser(MODULE, filePath);
     }
 
     @Test
     public void testOneStatementNonCompilableInput() throws Exception {
         final String filePath = getNonCompilablePath("InputOneStatementPerLine.java");
 
-        verifyWithGoogleConfigParser(MODULE, filePath);
+        verifyWithConfigParser(MODULE, filePath);
     }
 
 }

@@ -39,34 +39,34 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     public void testEmptyBlocksAndCatchBlocks() throws Exception {
         final String filePath = getPath("InputEmptyBlocksAndCatchBlocks.java");
 
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testEmptyFinallyBlocks() throws Exception {
         final String filePath = getPath("InputEmptyFinallyBlocks.java");
 
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testEmptyCatchBlockNoViolations() throws Exception {
         final String filePath = getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java");
 
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testEmptyCatchBlockViolationsByComment() throws Exception {
         final String filePath = getPath("InputEmptyCatchBlockViolationsByComment.java");
 
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
         final String filePath = getPath("InputEmptyCatchBlockViolationsByVariableName.java");
 
-        verifyWithGoogleConfigParser(MODULES, filePath);
+        verifyWithConfigParser(MODULES, filePath);
     }
 }
