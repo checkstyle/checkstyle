@@ -3,7 +3,8 @@ package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 /**
  * Two import statements on the same line are illegal.
  */
-import java.io.EOFException; import java.io.BufferedReader; //warn
+import java.io.EOFException; import java.io.BufferedReader;
+// violation above 'Only one statement per line allowed.'
 
 public class InputOneStatementPerLine {
 
@@ -47,15 +48,15 @@ public class InputOneStatementPerLine {
    * Simplest form of illegal layouts.
    */
   public void doIllegal() {
-    one = 1; two = 2; //warn
+    one = 1; two = 2; // violation 'Only one statement per line allowed.'
     if (one == 1) {
-        one++; two++; //warn
+        one++; two++; // violation 'Only one statement per line allowed.'
     }
-    if (one != 1) { one++; } else { one--; } //warn
+    if (one != 1) { one++; } else { one--; } // violation 'Only one statement per line allowed.'
     int n = 10;
 
-    doLegal(); doLegal(); //warn
-    while (one == 1) {one++; two--;} //warn
+    doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
+    while (one == 1) {one++; two--;} // violation 'Only one statement per line allowed.'
 
   }
 
@@ -65,7 +66,7 @@ public class InputOneStatementPerLine {
    */
   public void doIllegal2() {
     one = 1
-    ; two = 2; //warn
+    ; two = 2; // violation 'Only one statement per line allowed.'
   }
 
   class Inner
@@ -92,15 +93,15 @@ public class InputOneStatementPerLine {
        * Simplest form a an illegal layout.
        */
       public void doIllegal() {
-        one = 1; two = 2; //warn
+        one = 1; two = 2; // violation 'Only one statement per line allowed.'
         if (one == 1) {
-            one++; two++; //warn
+            one++; two++; // violation 'Only one statement per line allowed.'
         }
-        if (one != 1) { one++; } else { one--; } //warn
+        if (one != 1) { one++; } else { one--; } // violation 'Only one statement per line allowed.'
         int n = 10;
 
-        doLegal(); doLegal(); //warn
-        while (one == 1) {one++; two--;} //warn
+        doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
+        while (one == 1) {one++; two--;} // violation 'Only one statement per line allowed.'
 
       }
   }
@@ -108,7 +109,7 @@ public class InputOneStatementPerLine {
   /**
    * Two declaration statements on the same line are illegal.
    */
-  int a; int b; //warn
+  int a; int b; // violation 'Only one statement per line allowed.'
 
   /**
    * Two declaration statements which are not on the same line
@@ -120,7 +121,7 @@ public class InputOneStatementPerLine {
   /**
    * Two assignment (declaration) statements on the same line are illegal.
    */
-  int e = 1; int f = 2; //warn
+  int e = 1; int f = 2; // violation 'Only one statement per line allowed.'
 
   /**
    * Two assignment (declaration) statements on the different lines
@@ -135,7 +136,8 @@ public class InputOneStatementPerLine {
    */
   private void foo() {
     //Two object creation statements on the same line are illegal.
-    Object obj1 = new Object(); Object obj2 = new Object(); //warn
+    Object obj1 = new Object(); Object obj2 = new Object();
+    // violation above 'Only one statement per line allowed.'
   }
 
   /**
@@ -167,7 +169,7 @@ public class InputOneStatementPerLine {
    * are illegal.
    */
   int o = 1, p = 2,
-      r = 5; int t; //warn
+      r = 5; int t; // violation 'Only one statement per line allowed.'
 
   /**
    * Two assignment (declaration) statement
@@ -185,7 +187,7 @@ public class InputOneStatementPerLine {
    */
   int var1 = 5,
       var4 = 5; int var2 = 6,
-      var3 = 5; //warn
+      var3 = 5; // violation 'Only one statement per line allowed.'
 
   /**
    * Two statements on the same line
@@ -193,7 +195,7 @@ public class InputOneStatementPerLine {
    * are illegal.
    */
   int var6 = 5; int var7 = 6,
-      var8 = 5; //warn
+      var8 = 5; // violation 'Only one statement per line allowed.'
 
   /**
    * Two statements on the same line
@@ -205,7 +207,7 @@ public class InputOneStatementPerLine {
 
     ); toString (
 
-    ); //warn
+    ); // violation 'Only one statement per line allowed.'
   }
 
 
@@ -214,7 +216,7 @@ public class InputOneStatementPerLine {
    * of 2 statements on one line.
    */
   int var9 = 1, var10 = 5
-      ; int var11 = 2; //warn
+      ; int var11 = 2; // violation 'Only one statement per line allowed.'
 
 
   /**
@@ -304,6 +306,6 @@ public class InputOneStatementPerLine {
             k = 1
             ; n<5
             ;
-            n++, k--) { var1++; var2++; } //warn
+            n++, k--) { var1++; var2++; } // violation 'Only one statement per line allowed.'
     }
 }

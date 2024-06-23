@@ -17,35 +17,27 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
+package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
 
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
-public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
-
-    private static final String[] MODULE = {
-        "OneStatementPerLine",
-    };
+public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter4formatting/rule43onestatement";
+        return "com/google/checkstyle/test/chapter2filebasic/rule232specialescape";
     }
 
     @Test
-    public void testOneStatement() throws Exception {
-        final String filePath = getPath("InputOneStatementPerLine.java");
+    public void testIllegalTokens() throws Exception {
+        final String filePath = getPath("InputSpecialEscapeSequences.java");
+        final String[] modules = {
+            "IllegalTokenText",
+        };
 
-        verifyWithGoogleConfigParser(MODULE, filePath);
-    }
-
-    @Test
-    public void testOneStatementNonCompilableInput() throws Exception {
-        final String filePath = getNonCompilablePath("InputOneStatementPerLine.java");
-
-        verifyWithGoogleConfigParser(MODULE, filePath);
+        verifyWithGoogleConfigParser(modules, filePath);
     }
 
 }

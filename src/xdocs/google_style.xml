@@ -237,7 +237,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.3.2-special-escape-sequences">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2.3.2-special-escape-sequences">
                     2.3.2 Special escape sequences</a>
                 </td>
                 <td>
@@ -251,7 +251,7 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule232specialescape/IllegalTokenTextTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter2filebasic/rule232specialescape/SpecialEscapeSequencesTest.java">
                     test</a>
                 </td>
               </tr>
@@ -291,7 +291,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3-source-file-structure">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3-source-file-structure">
                     <strong>3 Source file structure</strong>
                   </a>
                 </td>
@@ -306,7 +306,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/EmptyLineSeparatorTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule3sourcefile/SourceFileStructureTest.java">
                     test</a>
                 </td>
               </tr>
@@ -758,7 +758,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.3-one-statement-per-line">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.3-one-statement-per-line">
                     4.3 One statement per line</a>
                 </td>
                 <td>

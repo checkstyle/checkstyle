@@ -231,16 +231,13 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "2.3.2 Special escape sequences",
             "2.3.3 Non-ASCII characters",
-            "3 Source file structure",
             "3.3.2 No line-wrapping",
             "3.3.3 Ordering and spacing",
             "3.4.1 Exactly one top-level class declaration",
             "4.1.1 Use of optional braces",
             "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
-            "4.3 One statement per line",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
             "4.5.2 Indent continuation lines at least +4 spaces",
