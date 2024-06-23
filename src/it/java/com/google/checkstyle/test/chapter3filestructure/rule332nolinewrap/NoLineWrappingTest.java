@@ -22,10 +22,8 @@ package com.google.checkstyle.test.chapter3filestructure.rule332nolinewrap;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
-public class LineLengthTest extends AbstractGoogleModuleTestSupport {
+public class NoLineWrappingTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -33,17 +31,14 @@ public class LineLengthTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testLineLength() throws Exception {
-        final String[] expected = {
-            "7: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
-            "9: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
+    public void testBadLineWrap() throws Exception {
+        final String filePath = getPath("InputNoLineWrapping.java");
+        final String[] modules = {
+            "NoLineWrap",
+            "LineLength",
         };
 
-        final Configuration checkConfig = getModuleConfig("LineLength");
-        final String filePath = getPath("InputLineLength.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithConfigParser(modules, filePath);
     }
 
 }

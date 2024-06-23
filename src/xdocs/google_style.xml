@@ -410,7 +410,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.2-import-line-wrapping">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.3.2-import-line-wrapping">
                     3.3.2 No line-wrapping</a>
                 </td>
                 <td>
@@ -430,13 +430,10 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/LineLengthTest.java">
-                    test</a>
-                  <br />
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrapTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap/NoLineWrappingTest.java">
                     test</a>
                 </td>
               </tr>
