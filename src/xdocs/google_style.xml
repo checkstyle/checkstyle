@@ -446,7 +446,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.3-import-ordering-and-spacing">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.3.3-import-ordering-and-spacing">
                     3.3.3 Ordering and spacing</a>
                 </td>
                 <td>
@@ -460,7 +460,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CustomImportOrder">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/CustomImportOrderTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing/OrderingAndSpacingTest.java">
                     test</a>
                 </td>
               </tr>
