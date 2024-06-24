@@ -7,24 +7,24 @@ import java.util.List;
 
 @TestClassAnnotation
 class InputLeftCurlyAnnotations
-{ //warn
+{ // violation ''{' at column 1 should be on the previous line.'
     private static final int X = 10;
     @Override
     public boolean equals(Object other)
-    { //warn
+    { // violation ''{' at column 5 should be on the previous line.'
         return false;
     }
 
     @Override
     @SuppressWarnings("unused")
     public int hashCode()
-    { //warn
+    { // violation ''{' at column 5 should be on the previous line.'
         int a = 10;
         return 1;
     }
 
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { //warn
+    { // violation ''{' at column 5 should be on the previous line.'
         Integer i = this.X;
         List<String> l = new ArrayList();
         return "SomeString";
@@ -47,7 +47,7 @@ class InputLeftCurlyAnnotations2 {
     }
 
     @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { //warn
+    { // violation ''{' at column 5 should be on the previous line.'
         Integer i = this.X;
         List<String> l = new ArrayList();
         return "SomeString";
