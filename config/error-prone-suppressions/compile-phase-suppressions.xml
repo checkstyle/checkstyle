@@ -13,4 +13,11 @@
     <description>Avoid `Collectors.to{List,Map,Set}` in favor of collectors that emphasize (im)mutability</description>
     <lineContent>}).collect(Collectors.toSet()));</lineContent>
   </error>
+  <!-- This identity conversion prevents potential `NullPointerException`s from being thrown. -->
+  <error>
+    <sourceFile>SarifLogger.java</sourceFile>
+    <bugPattern>IdentityConversion</bugPattern>
+    <description>This method invocation appears redundant; remove it or suppress this warning and add a comment explaining its purpose</description>
+    <lineContent>.replace(VERSION_PLACEHOLDER, String.valueOf(version))</lineContent>
+  </error>
 </suppressedErrors>
