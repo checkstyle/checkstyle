@@ -232,7 +232,6 @@ public class XdocsPagesTest {
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "3.4.1 Exactly one top-level class declaration",
-            "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
@@ -1981,23 +1980,22 @@ public class XdocsPagesTest {
         // Remove the preceding section number
         final String ruleNameWithoutPrecedingNumbers =
                 ruleName.replaceAll("^[0-9.]+\\s*", "");
+        // & considered as definition of term, words around should be considered as single term
+        final String ruleNameWithoutAmp =
+                ruleNameWithoutPrecedingNumbers.replaceAll(" & ", "");
 
         // Split the remaining string into parts (words and numbers)
-        final String[] parts = ruleNameWithoutPrecedingNumbers.split("[^A-Za-z0-9]+");
+        final String[] parts = ruleNameWithoutAmp.split("[^A-Za-z0-9]+");
 
         final StringBuilder extractedRuleName = new StringBuilder(120);
-
         for (String part : parts) {
+            String camelCasesPart = part;
             if (part.matches("[A-Za-z]+")) {
                 // Capitalize the first letter and make the rest words lowercase
-                extractedRuleName
-                        .append(part.substring(0, 1).toUpperCase(Locale.ENGLISH))
-                        .append(part.substring(1).toLowerCase(Locale.ENGLISH));
+                camelCasesPart = part.substring(0, 1).toUpperCase(Locale.ENGLISH)
+                        + part.substring(1).toLowerCase(Locale.ENGLISH);
             }
-            else if (part.matches("\\d+")) {
-                // Append numbers directly
-                extractedRuleName.append(part);
-            }
+            extractedRuleName.append(camelCasesPart);
         }
 
         final String result = extractedRuleName.toString();
