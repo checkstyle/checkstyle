@@ -232,7 +232,6 @@ public class XdocsPagesTest {
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "3.4.1 Exactly one top-level class declaration",
-            "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
@@ -2005,6 +2004,14 @@ public class XdocsPagesTest {
             else if (part.matches("\\d+")) {
                 // Append numbers directly
                 extractedRuleName.append(part);
+            }
+        }
+
+        // If found Abbreviation, make the next letter lowercase
+        for (int index = 0; index < extractedRuleName.length() - 1; index++) {
+            if (Character.isUpperCase(extractedRuleName.charAt(index))) {
+                extractedRuleName.setCharAt(
+                        index + 1, Character.toLowerCase(extractedRuleName.charAt(index + 1)));
             }
         }
 
