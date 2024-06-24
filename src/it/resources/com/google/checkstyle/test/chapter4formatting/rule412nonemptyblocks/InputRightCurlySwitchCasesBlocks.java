@@ -22,7 +22,7 @@ public class InputRightCurlySwitchCasesBlocks {
             case 1:{
                 int x = 1;
                 break;
-            } default :          // warn
+            } default : // violation ''}' at column 13 should be alone on a line.'
                 int x = 0;
         }
     }
@@ -31,7 +31,7 @@ public class InputRightCurlySwitchCasesBlocks {
         int k = 0;
         switch (k) {
             case 1:{
-                 int x = 1;}   // warn
+                 int x = 1;}   // violation ''}' at column 28 should be alone on a line.'
             case 2:
                  int x = 2;
                  break;
@@ -54,7 +54,8 @@ public class InputRightCurlySwitchCasesBlocks {
             case 1:{
                  int x = 1;
             }
-            case 2: { int x = 2;}    // warn
+            case 2: {
+                int x = 2;}    // violation ''}' at column 27 should be alone on a line.'
         }
     }
 }
