@@ -523,6 +523,7 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
