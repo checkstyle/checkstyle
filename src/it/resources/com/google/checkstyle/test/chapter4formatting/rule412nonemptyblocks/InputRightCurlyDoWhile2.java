@@ -59,28 +59,25 @@ public class InputRightCurlyDoWhile2 {
 
     public void foo5() {
         do {
-        } // warn
+        } // violation ''}' at column 9 should be on the same line as the next part of .*'
         while (true);
     }
 
     public void foo6() {
-        do {} // warn
+        do {} // violation ''}' at column 13 should be on the same line as the next part of .*'
         while (true);
     }
 
     public void foo7() {
-        do
-        {
+        do {
 
         } while (true);
     }
 
     public void foo8() {
-        do
+        do {
 
-        {
-
-        } // warn
+        } // violation ''}' at column 9 should be on the same line as the next part of .*'
 
         while
 
