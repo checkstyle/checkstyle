@@ -523,6 +523,14 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="MissingNullCaseInSwitch">
+      <!--
+        We will not use this check because case null
+        is only supported by newer versions of Java (21).
+        Using a 'case null' will not compile in old Java codebases.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
     <module name="MultipleStringLiterals"/>
