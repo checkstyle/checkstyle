@@ -2535,6 +2535,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2594,6 +2596,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2610,6 +2614,7 @@
               <compilerArgs combine.children="append">
                 <!-- -Awarns turns type-checking errors into warnings. -->
                 <arg>-Awarns</arg>
+                <arg>-Alint=trustArrayLenZero</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
@@ -2653,6 +2658,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2711,6 +2718,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2768,6 +2777,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2826,6 +2837,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2886,6 +2899,8 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
               <annotationProcessorPaths>
                 <path>
@@ -2945,7 +2960,13 @@
               <compilerArguments>
                 <Xmaxerrs>10000</Xmaxerrs>
                 <Xmaxwarns>10000</Xmaxwarns>
+                <Xlint>all</Xlint>
+                <Alint>trustArrayLenZero</Alint>
               </compilerArguments>
+
+              <compilerArgument>-Xlint:all</compilerArgument>
+              <compilerArgument>-Alint=trustArrayLenZero </compilerArgument>
+
               <annotationProcessorPaths>
                 <path>
                   <groupId>org.checkerframework</groupId>
