@@ -454,6 +454,28 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testAbbreviationAsWordInNameCheckRecordPatterns()
+            throws Exception {
+
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "23:39: " + getWarningMessage("POINT", expectedCapitalCount),
+            "27:60: " + getWarningMessage("COLOR", expectedCapitalCount),
+            "31:53: " + getWarningMessage("XXXXX", expectedCapitalCount),
+            "31:69: " + getWarningMessage("ssSTRING", expectedCapitalCount),
+            "39:52: " + getWarningMessage("COLOR", expectedCapitalCount),
+            "40:52: " + getWarningMessage("YYYYY", expectedCapitalCount),
+            "40:66: " + getWarningMessage("cCOLOOR", expectedCapitalCount),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputAbbreviationAsWordInNameCheckRecordPatterns.java"),
+                expected);
+    }
+
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
         return getCheckMessage(MSG_KEY, typeName, expectedCapitalCount);
     }
