@@ -176,13 +176,13 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     /**
      * Checks if the case contains null label.
      *
-     * @param ast the switch statement we are checking
+     * @param detailAST the switch statement we are checking
      * @return returnValue the ast of null label
      */
-    private static boolean hasNullCaseLabel(DetailAST ast) {
-        final DetailAST firstChild = ast.getFirstChild();
-        return firstChild != null
-                && TokenUtil.isOfType(firstChild.getFirstChild(), TokenTypes.LITERAL_NULL);
-
+    private static boolean hasNullCaseLabel(DetailAST detailAST) {
+        return TokenUtil.findFirstTokenByPredicate(detailAST.getParent(), ast -> {
+            final DetailAST expr = ast.findFirstToken(TokenTypes.EXPR);
+            return expr != null && expr.findFirstToken(TokenTypes.LITERAL_NULL) != null;
+       }).isPresent();
     }
 }
