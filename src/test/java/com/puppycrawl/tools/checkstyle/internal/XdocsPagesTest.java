@@ -254,7 +254,6 @@ public class XdocsPagesTest {
             "5.2.6 Parameter names",
             "5.2.7 Local variable names",
             "5.2.8 Type variable names",
-            "5.3 Camel case: defined",
             "6.2 Caught exceptions: not ignored",
             "6.4 Finalizers: not used",
             "7.1.1 General form",
