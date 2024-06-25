@@ -22,10 +22,10 @@ package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck;
 
-public class NoFinalizerTest extends AbstractGoogleModuleTestSupport {
+public class FinalizersNotUsedTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULE = {"NoFinalizer"};
 
     @Override
     protected String getPackageLocation() {
@@ -34,40 +34,14 @@ public class NoFinalizerTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testNoFinalizerBasic() throws Exception {
-        final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
-
-        final String[] expected = {
-            "5:5: " + msg,
-        };
-
-        final Configuration checkConfig = getModuleConfig("NoFinalizer");
         final String filePath = getPath("InputNoFinalizer.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithConfigParser(MODULE, filePath);
     }
 
     @Test
     public void testNoFinalizerExtended() throws Exception {
-        final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
-
-        final String[] expected = {
-            "9:5: " + msg,
-            "21:5: " + msg,
-            "33:5: " + msg,
-            "45:5: " + msg,
-            "57:5: " + msg,
-            "69:5: " + msg,
-            "79:9: " + msg,
-            "119:13: " + msg,
-            "136:5: " + msg,
-        };
-
-        final Configuration checkConfig = getModuleConfig("NoFinalizer");
         final String filePath = getPath("InputNoFinalizeExtend.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithConfigParser(MODULE, filePath);
     }
 
 }
