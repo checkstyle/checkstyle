@@ -37,9 +37,6 @@ public final class DefaultConfiguration implements Configuration {
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 1157875385356127169L;
 
-    /** Constant for optimization. */
-    private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
-
     /** The name of this configuration. */
     private final String name;
 
@@ -104,7 +101,7 @@ public final class DefaultConfiguration implements Configuration {
     @Override
     public Configuration[] getChildren() {
         return children.toArray(
-                EMPTY_CONFIGURATION_ARRAY);
+                new Configuration[0]);
     }
 
     @Override
