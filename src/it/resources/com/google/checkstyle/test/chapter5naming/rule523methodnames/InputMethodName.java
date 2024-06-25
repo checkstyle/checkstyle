@@ -8,44 +8,44 @@ package com.google.checkstyle.test.chapter5naming.rule523methodnames;
  */
 public class InputMethodName {
     void foo() {}
-    void Foo() {} //warn
-    void fOo() {} //warn
+    void Foo() {} // violation 'Method name 'Foo' must match pattern .*'
+    void fOo() {} // violation 'Method name 'fOo' must match pattern .*'
     void f0o() {}
-    void f$o() {} //warn
-    void f_oo() {} //warn
-    void f() {} //warn
-    void fO() {} //warn
+    void f$o() {} // violation 'Method name '.*' must match pattern .*'
+    void f_oo() {} // violation 'Method name 'f_oo' must match pattern .*'
+    void f() {} // violation 'Method name 'f' must match pattern .*'
+    void fO() {} // violation 'Method name 'fO' must match pattern .*'
 
     class InnerFoo {
         void foo() {}
-        void Foo() {} //warn
-        void fOo() {} //warn
+        void Foo() {} // violation 'Method name 'Foo' must match pattern .*'
+        void fOo() {} // violation 'Method name 'fOo' must match pattern .*'
         void f0o() {}
-        void f$o() {} //warn
-        void f_oo() {} //warn
-        void f() {} //warn
-        void fO() {} //warn
+        void f$o() {} // violation 'Method name '.*' must match pattern .*'
+        void f_oo() {} // violation 'Method name 'f_oo' must match pattern .*'
+        void f() {} // violation 'Method name 'f' must match pattern .*'
+        void fO() {} // violation 'Method name 'fO' must match pattern .*'
     }
 
     InnerFoo anon = new InnerFoo() {
         void foo() {}
-        void Foo() {} //warn
-        void fOo() {} //warn
+        void Foo() {} // violation 'Method name 'Foo' must match pattern .*'
+        void fOo() {} // violation 'Method name 'fOo' must match pattern .*'
         void f0o() {}
-        void f$o() {} //warn
-        void f_oo() {} //warn
-        void f() {} //warn
-        void fO() {} //warn
+        void f$o() {} // violation 'Method name '.*' must match pattern .*'
+        void f_oo() {} // violation 'Method name 'f_oo' must match pattern .*'
+        void f() {} // violation 'Method name 'f' must match pattern .*'
+        void fO() {} // violation 'Method name 'fO' must match pattern .*'
     };
 }
 
 interface FooIn {
     void foo();
-    void Foo(); //warn
-    void fOo(); //warn
+    void Foo(); // violation 'Method name 'Foo' must match pattern .*'
+    void fOo(); // violation 'Method name 'fOo' must match pattern .*'
     void f0o();
-    void f$o(); //warn
-    void f_oo(); //warn
-    void f(); //warn
-    void fO(); //warn
+    void f$o(); // violation 'Method name '.*' must match pattern .*'
+    void f_oo(); // violation 'Method name 'f_oo' must match pattern .*'
+    void f(); // violation 'Method name 'f' must match pattern .*'
+    void fO(); // violation 'Method name 'fO' must match pattern .*'
 }
