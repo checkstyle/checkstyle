@@ -727,4 +727,21 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberMagicNumber3.java"), expected);
     }
+
+    @Test
+    public void testMagicNumberInGuards() throws Exception {
+        final String[] expected = {
+            "21:63: " + getCheckMessage(MSG_KEY, "3"),
+            "21:72: " + getCheckMessage(MSG_KEY, "8"),
+            "27:58: " + getCheckMessage(MSG_KEY, "3"),
+            "27:68: " + getCheckMessage(MSG_KEY, "6"),
+            "31:50: " + getCheckMessage(MSG_KEY, "10.88"),
+            "33:46: " + getCheckMessage(MSG_KEY, "6"),
+            "39:59: " + getCheckMessage(MSG_KEY, "0.5"),
+            "39:67: " + getCheckMessage(MSG_KEY, "5"),
+            "44:23: " + getCheckMessage(MSG_KEY, "6"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMagicNumberMagicNumberInGuards.java"), expected);
+    }
 }
