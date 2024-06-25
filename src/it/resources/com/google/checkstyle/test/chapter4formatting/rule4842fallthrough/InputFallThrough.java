@@ -11,7 +11,7 @@ public class InputFallThrough
                 break;
             case 2:
                 i++;
-            case 3: //warn
+            case 3: // violation 'Fall through from previous branch of the switch statement.'
                 i++;
                 break;
             case 4:
@@ -35,7 +35,7 @@ public class InputFallThrough
             case 11: {
                 i++;
             }
-            case 12:  //warn
+            case 12:  // violation 'Fall through from previous branch of the switch statement.'
                 if (false)
                     break;
                 else
@@ -44,13 +44,13 @@ public class InputFallThrough
                 if (true) {
                     return;
                 }
-            case 14:  //warn
+            case 14:  // violation 'Fall through from previous branch of the switch statement.'
                 if (true) {
                     return;
                 } else {
                     //do nothing
                 }
-            case 15:  //warn
+            case 15:  // violation 'Fall through from previous branch of the switch statement.'
                 do {
                     System.identityHashCode("something");
                     return;
@@ -67,7 +67,7 @@ public class InputFallThrough
                 while(cond) {
                     break;
                 }
-            case 19:  //warn
+            case 19:  // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                     break;
@@ -84,7 +84,7 @@ public class InputFallThrough
                 } catch (Error e) {
                     return;
                 }
-            case 21:  //warn
+            case 21:  // violation 'Fall through from previous branch of the switch statement.'
                 try {
                     i++;
                 } catch (RuntimeException e) {
@@ -120,7 +120,7 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default:  //warn
+            default:  // violation 'Fall through from previous branch of the switch statement.'
                 // this is the last label
                 i++;
             }
@@ -176,7 +176,7 @@ public class InputFallThrough
               if (true) {
                   return;
               }
-          case 14:  //warn
+          case 14:  // violation 'Fall through from previous branch of the switch statement.'
               if (true) {
                   return;
               } else {
@@ -366,12 +366,13 @@ public class InputFallThrough
           case 0:
               i++; /* Continue with next case */
 
-          case 1:  //warn
+          case 1:  // violation 'Fall through from previous branch of the switch statement.'
               i++;
           /* Continue with next case.  */
-          case 2:  //warn
+          case 2:  // violation 'Fall through from previous branch of the switch statement.'
               i++;
-          /* Continue with next case. */case 3:  //warn
+          /* Continue with next case. */case 3:  
+              // violation above 'Fall through from previous branch of the switch statement.'
                 break;
           case 4:
               i++;
@@ -437,15 +438,15 @@ public class InputFallThrough
                   i++; // falls-through
               case 12:
                   i++; // fall--through
-              case 13: //warn
+              case 13: // violation 'Fall through from previous branch of the switch statement.'
                   i++; // fall+through
-              case 14: //warn
+              case 14: // violation 'Fall through from previous branch of the switch statement.'
                   i++; // falls_thru
-              case 15: //warn
+              case 15: // violation 'Fall through from previous branch of the switch statement.'
                   i++; // falls=through
-              case 16: //warn
+              case 16: // violation 'Fall through from previous branch of the switch statement.'
                   i++; // falls-throug
-              default: //warn
+              default: // violation 'Fall through from previous branch of the switch statement.'
                   throw new RuntimeException();
           }
       }
