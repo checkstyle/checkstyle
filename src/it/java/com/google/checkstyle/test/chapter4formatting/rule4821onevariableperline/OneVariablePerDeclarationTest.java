@@ -22,10 +22,8 @@ package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck;
 
-public class MultipleVariableDeclarationsTest extends AbstractGoogleModuleTestSupport {
+public class OneVariablePerDeclarationTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,39 +32,8 @@ public class MultipleVariableDeclarationsTest extends AbstractGoogleModuleTestSu
 
     @Test
     public void testMultipleVariableDeclarations() throws Exception {
-        final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
-            "multiple.variable.declarations.comma");
-        final String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class,
-            "multiple.variable.declarations");
-
-        final String[] expected = {
-            "5:5: " + msgComma,
-            "6:5: " + msg,
-            "9:9: " + msgComma,
-            "10:9: " + msg,
-            "14:5: " + msg,
-            "17:5: " + msg,
-            "31:9: " + msgComma,
-            "32:9: " + msg,
-            "35:13: " + msgComma,
-            "36:13: " + msg,
-            "40:9: " + msg,
-            "43:9: " + msg,
-            "57:13: " + msgComma,
-            "58:13: " + msg,
-            "61:17: " + msgComma,
-            "62:17: " + msg,
-            "66:13: " + msg,
-            "69:13: " + msg,
-            "86:5: " + msgComma,
-            "89:5: " + msgComma,
-        };
-
-        final Configuration checkConfig = getModuleConfig("MultipleVariableDeclarations");
-        final String filePath = getPath("InputMultipleVariableDeclarations.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputOneVariablePerDeclaration.java");
+        verifyWithConfigParser(new String[] {"MultipleVariableDeclarations"}, filePath);
     }
 
 }
