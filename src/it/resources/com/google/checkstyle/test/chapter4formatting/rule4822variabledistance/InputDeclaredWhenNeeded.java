@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4822variabledistance;
 import java.util.*;
-public class InputVariableDeclarationUsageDistanceCheck {
+public class InputDeclaredWhenNeeded {
 
     private static int test1 = 0;
 
@@ -34,7 +34,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
         a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
     }
 
-    public InputVariableDeclarationUsageDistanceCheck(int test1) {
+    public InputDeclaredWhenNeeded(int test1) {
         int temp = -1;
         this.test1 = test1;
         temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
@@ -42,7 +42,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public boolean testMethod() {
         int temp = 7;
-        new InputVariableDeclarationUsageDistanceCheck(2);
+        new InputDeclaredWhenNeeded(2);
         String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
         boolean result = false;
         String str = "";
@@ -68,7 +68,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
     }
 
     public void testMethod3() {
-        int count; //warn
+        int count;
+        // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.*'
         int a = 3;
         int b = 3;
         a = a + b;
@@ -216,7 +217,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testMethod14() {
         Session s = openSession();
-        Transaction t = s.beginTransaction(); //warn
+        Transaction t = s.beginTransaction();
+        // violation above 'Distance between variable 't' .* first usage is 5, but allowed 3.'
         A a = new A();
         E d1 = new E();
         C1 c = new C1();
@@ -480,7 +482,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testIssue32_9() {
         Options options = new Options();
-        Option myOption = null; //warn
+        Option myOption = null;
+        // violation above 'Distance between variable 'myOption' .* usage is 7, but allowed 3.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -492,7 +495,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null; //warn
+        Option myOption = null;
+        // violation above 'Distance between variable 'myOption' .* usage is 6, but allowed 3.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -505,7 +509,8 @@ public class InputVariableDeclarationUsageDistanceCheck {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0;  // warn
+        int count = 0;
+        // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.'
         String[] files = {};
 
         System.identityHashCode("Data archival started");
