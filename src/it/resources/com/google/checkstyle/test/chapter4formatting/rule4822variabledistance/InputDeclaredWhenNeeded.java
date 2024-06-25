@@ -68,7 +68,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
     }
 
     public void testMethod3() {
-        int count; //warn
+        int count; // violation 'Distance between variable 'count' declaration and its first usage is 4, but allowed 3.*'
         int a = 3;
         int b = 3;
         a = a + b;
@@ -216,7 +216,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testMethod14() {
         Session s = openSession();
-        Transaction t = s.beginTransaction(); //warn
+        Transaction t = s.beginTransaction(); // violation 'Distance between variable 't' declaration and its first usage is 5, but allowed 3.'
         A a = new A();
         E d1 = new E();
         C1 c = new C1();
@@ -480,7 +480,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testIssue32_9() {
         Options options = new Options();
-        Option myOption = null; //warn
+        Option myOption = null; // violation 'Distance between variable 'myOption' declaration and its first usage is 7, but allowed 3.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -492,7 +492,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null; //warn
+        Option myOption = null; // violation 'Distance between variable 'myOption' declaration and its first usage is 6, but allowed 3.'
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -505,7 +505,7 @@ public class InputVariableDeclarationUsageDistanceCheck {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0;  // warn
+        int count = 0; // violation 'Distance between variable 'count' declaration and its first usage is 4, but allowed 3.'
         String[] files = {};
 
         System.identityHashCode("Data archival started");
