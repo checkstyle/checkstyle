@@ -239,7 +239,6 @@ public class XdocsPagesTest {
             "4.5.2 Indent continuation lines at least +4 spaces",
             "4.6.1 Vertical Whitespace",
             "4.6.2 Horizontal whitespace",
-            "4.8.3.2 No C-style array declarations",
             "4.8.4.1 Indentation",
             "4.8.4.3 Presence of the default label",
             "4.8.5 Annotations",
@@ -2002,7 +2001,9 @@ public class XdocsPagesTest {
             }
         }
 
-        return extractedRuleName.toString();
+        final String result = extractedRuleName.toString();
+
+        return result.replaceAll("CStyle", "Cstyle");
     }
 
     @Test
