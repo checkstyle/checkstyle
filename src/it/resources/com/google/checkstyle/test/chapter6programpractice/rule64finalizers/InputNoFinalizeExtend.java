@@ -6,7 +6,7 @@ class InputNoFinalizeExtend {
         // This method do some stuff
     }
 
-    protected void finalize() throws Throwable { //warn
+    protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
         try {
             doStuff();
         } finally {
@@ -18,7 +18,7 @@ class InputNoFinalizeExtend {
 // negates effect of superclass finalizer
 class EmptyFinalizer {
 
-    protected void finalize() throws Throwable { //warn
+    protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
         // empty finalize ()
     }
 }
@@ -30,7 +30,7 @@ class WithoutTryCatchFinalizer {
         // This method do some stuff
     }
 
-    protected void finalize() throws Throwable { //warn
+    protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
         doStuff();
     }
 }
@@ -42,7 +42,7 @@ class InputPublicFinalizer {
         // This method do some stuff
     }
 
-    public void finalize() throws Throwable { //warn
+    public void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
         try {
             doStuff();
         } finally {
@@ -54,7 +54,7 @@ class InputPublicFinalizer {
 // unless (or worse) finalizer
 class InputSuperFinalizer {
 
-    protected void finalize() throws Throwable { //warn
+    protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
         super.finalize();
     }
 }
@@ -66,7 +66,7 @@ class InputStaticFinalizer {
         // This method do some stuff
     }
 
-    protected void finalize() { //warn
+    protected void finalize() { // violation 'Avoid using finalizer method.'
         try {
             doStuff();
         } finally {
@@ -76,7 +76,7 @@ class InputStaticFinalizer {
 
     class InnerFinalizer {
 
-        protected void finalize() { //warn
+        protected void finalize() { // violation 'Avoid using finalizer method.'
             try {
                 doStuff();
             } finally {
@@ -116,7 +116,7 @@ class WithAnonymousClass {
                 System.identityHashCode("You hit it!");
             }
 
-            protected void finalize() { //warn
+            protected void finalize() { // violation 'Avoid using finalizer method.'
                 try {
                     doStuff();
                 } finally {
@@ -133,5 +133,5 @@ class WithAnonymousClass {
 }
 
 interface WithFinalizer {
-    void finalize(); //warn
+    void finalize(); // violation 'Avoid using finalizer method.'
 }
