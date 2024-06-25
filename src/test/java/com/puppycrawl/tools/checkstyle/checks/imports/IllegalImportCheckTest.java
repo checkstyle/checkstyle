@@ -157,4 +157,25 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalImportDefault7.java"), expected);
     }
 
+    @Test
+    public void testIllegalPackagesAndClassesRegularExpression2()
+            throws Exception {
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "19:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "20:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "33:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
+            "34:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "35:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "36:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "37:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "38:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalImportDefault7.java"), expected);
+    }
+
 }
