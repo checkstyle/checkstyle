@@ -1,45 +1,35 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class InputRightCurlyOther
-{
+class InputRightCurlyOther {
     /** @see test method **/
-    int foo() throws InterruptedException
-    {
+    int foo() throws InterruptedException {
         int x = 1;
         int a = 2;
-        while (true)
-        {
-            try
-            {
-                if (x > 0)
-                {
+        while (true) {
+            try {
+                if (x > 0) {
                     break;
                 } else if (x < 0) {  //ok
 
                     ;
-                } //warn
-                else
-                {
+                } // violation ''}' at column 17 should be on the same line as the next part of .*'
+                else {
                     break;
                 }//ok
-                switch (a)
-                {
+                switch (a) {
                 case 0:
                     break;
                 default:
                     break;
                 } //ok
-            } //warn
-            catch (Exception e)
-            {
+            } // violation ''}' at column 13 should be on the same line as the next part of .*'
+            catch (Exception e) {
                 break;
             }//ok
         }//ok
 
-        synchronized (this)
-        {
-            do
-            {
+        synchronized (this) {
+            do {
                 x = 2;
             } while (x == 2); //ok
         }//ok
@@ -47,8 +37,7 @@ class InputRightCurlyOther
         this.wait(666
                  ); // Bizarre, but legal
 
-        for (int k = 0; k < 1; k++)
-        {
+        for (int k = 0; k < 1; k++) {
             String innerBlockVariable = "";
         }//ok
 
@@ -60,27 +49,26 @@ class InputRightCurlyOther
     }//ok
 
 
-    static
-    {
+    static {
         int x = 1;
     }//ok
 
-    public enum GreetingsEnum
-    {
+    public enum GreetingsEnum {
         HELLO,
         GOODBYE
-    }; //ok
+    };
 
-    void method2()
-    {
+    void method2() {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } System. //warn
+            flag = !flag; } System. // violation ''}' at column 27 should have line break before.'
               identityHashCode("Xe-xe");
 
 
-        if (flag) { System.identityHashCode("some foo"); }
+        if (flag) {
+            System.identityHashCode("some foo");
+        }
     } //ok
 } //ok
 
@@ -88,58 +76,79 @@ class InputRightCurlyOther
  * Test input for closing brace if that brace terminates
  * a statement or the body of a constructor.
  */
-class FooCtor
-{
+class FooCtorAlone {
     int i;
-    public FooCtor()
-    {
+    public FooCtorAlone() {
         i = 1;
-    }} // warn
+    }} // violation ''}' at column 5 should be alone on a line.'
 
 /**
 * Test input for closing brace if that brace terminates
 * a statement or the body of a method.
 */
-class FooMethod
-{
-    public void fooMethod()
-    {
+class FooMethodAlone {
+    public void fooMethod() {
         int i = 1;
-    }} // warn
+    }} // violation ''}' at column 5 should be alone on a line.'
 
 /**
 * Test input for closing brace if that brace terminates
 * a statement or the body of a named class.
 */
-class FooInner
-{
-    class InnerFoo
-    {
-        public void fooInnerMethod ()
-        {
+class FooInnerAlone {
+    class InnerFoo {
+        public void fooInnerMethod () {
 
         }
-    }} //ok
+    }}
 
-class EnumContainer {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+class EnumContainerAlone {
+    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }
 }
 
-class WithArrays {
+class WithArraysAlone {
     String[] s = {""}; // ok
     String[] empty = {}; // ok
     String[] s1 = {
         "foo", "foo",
     }; // ok
-    String[] s2 =
-        {
+    String[] s2 = {
             "foo", "foo",
         }; // ok
-    String[] s3 =
-        {
+    String[] s3 = {
             "foo",
             "foo",
         }; // ok
     String[] s4 =
         {"foo", "foo"}; // ok
+}
+
+class Interface {
+    public @interface TestAnnotation {}
+
+    public @interface TestAnnotation1 { String someValue(); }
+
+    public @interface TestAnnotation2 {
+        String someValue();}
+
+    public @interface TestAnnotation3 {
+        String someValue();
+    } //ok
+
+    public @interface TestAnnotation4 { String someValue();
+    } //ok
+}
+
+enum TestEnum {}
+
+enum TestEnum1 { SOME_VALUE; }
+
+enum TestEnum2 {
+    SOME_VALUE;}
+
+enum TestEnum3 {
+    SOME_VALUE;
+}
+
+enum TestEnum4 { SOME_VALUE;
 }
