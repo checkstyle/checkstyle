@@ -4,14 +4,16 @@ package com.google.checkstyle.test.chapter7javadoc.rule72thesummaryfragment;
  * A {@code Foo. Foo}
  * is a simple Javadoc. Some javadoc.
  */
-class InputIncorrectSummaryJavaDocCheck {
+class InputIncorrectSummaryFragment {
 
-/*warn*//**
+    // violation below 'First sentence of Javadoc is missing an ending period.'
+    /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
      */
     void foo3() {}
 
-/*warn*//**
+    // violation below 'Summary javadoc is missing.'
+    /**
      * @throws Exception if a problem occurs
      */
     void foo4() throws Exception {}
@@ -29,14 +31,16 @@ class InputIncorrectSummaryJavaDocCheck {
      */
     public static final byte NUL = 0;
 
-/*warn*//**
+    // violation below 'Summary javadoc is missing.'
+    /**
      * <a href="mailto:vlad@htmlbook.ru"/>
      */
      class InnerInputCorrectJavaDocParagraphCheck {
 
-/*warn*//**
-          * foooo@foooo
-          */
+        // violation below 'First sentence of Javadoc is missing an ending period.'
+        /**
+         * foooo@foooo
+         */
         public static final byte NUL = 0;
 
         /**
@@ -44,18 +48,21 @@ class InputIncorrectSummaryJavaDocCheck {
          */
         public static final byte NUL_2 = 0;
 
- /*warn*//**
+        // violation below 'Forbidden summary fragment.'
+        /**
          * This method
          * returns some javadoc. Some javadoc.
          */
         boolean emulated() {return false;}
 
-/*warn*//**
+        // violation below 'Summary javadoc is missing.'
+        /**
          * <a href="mailto:vlad@htmlbook.ru"/>
          */
         void foo2() {}
 
-/*warn*//**
+        // violation below 'Summary javadoc is missing.'
+        /**
          * @return the
          * customer ID some javadoc.
          */
@@ -66,7 +73,8 @@ class InputIncorrectSummaryJavaDocCheck {
          */
         void foo3() {}
 
-/*warn*//**
+        // violation below 'Summary javadoc is missing.'
+        /**
          * @throws Exception if a problem occurs
          */
         void foo4() throws Exception {}
@@ -80,7 +88,8 @@ class InputIncorrectSummaryJavaDocCheck {
         void foo6() {}
     }
 
-/*warn*//**
+    // violation below 'Forbidden summary fragment.'
+    /**
       * A {@code InnerInputCorrectJavaDocParagraphCheck} is a simple code.
       */
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
@@ -100,7 +109,8 @@ class InputIncorrectSummaryJavaDocCheck {
          */
         void foo3() {}
 
-/*warn*//**
+        // violation below 'Summary javadoc is missing.'
+        /**
          * @throws Exception if a problem occurs
          */
         void foo4() throws Exception {}
