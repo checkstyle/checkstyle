@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter6programpractice.rule64finalizers;
 
 public class InputNoFinalizer
 {
-    public void finalize() //warn
+    public void finalize() // violation 'Avoid using finalizer method.'
     {
         // It's not enough to check if the METHOD_DEF branch contains a PARAMETER_DEF, as that would
         // treat this method as having a parameter.
