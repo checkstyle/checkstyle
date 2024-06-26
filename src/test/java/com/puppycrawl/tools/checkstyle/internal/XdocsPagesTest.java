@@ -242,7 +242,6 @@ public class XdocsPagesTest {
             "4.8.4.3 Presence of the default label",
             "4.8.5 Annotations",
             "4.8.6.1 Block comment style",
-            "4.8.8 Numeric Literals",
             "5.2.1 Package names",
             "5.2.5 Non-constant field names",
             "5.2.6 Parameter names",
