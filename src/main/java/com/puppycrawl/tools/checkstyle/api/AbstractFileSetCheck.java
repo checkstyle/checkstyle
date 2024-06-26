@@ -51,7 +51,7 @@ public abstract class AbstractFileSetCheck
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
     /** The dispatcher errors are fired to. */
-    private MessageDispatcher messageDispatcher;
+    private ViolationDispatcher violationDispatcher;
 
     /**
      * Specify the file extensions of the files to process.
@@ -111,18 +111,18 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
-        this.messageDispatcher = messageDispatcher;
+    public final void setViolationDispatcher(ViolationDispatcher violationDispatcher) {
+        this.violationDispatcher = violationDispatcher;
     }
 
     /**
      * A message dispatcher is used to fire violations to
      * interested audit listeners.
      *
-     * @return the current MessageDispatcher.
+     * @return the current violationDispatcher.
      */
-    protected final MessageDispatcher getMessageDispatcher() {
-        return messageDispatcher;
+    protected final ViolationDispatcher getViolationDispatcher() {
+        return violationDispatcher;
     }
 
     /**
@@ -246,7 +246,7 @@ public abstract class AbstractFileSetCheck
 
     /**
      * Notify all listeners about the errors in a file.
-     * Calls {@code MessageDispatcher.fireErrors()} with
+     * Calls {@code ViolationDispatcher.fireErrors()} with
      * all logged errors and then clears errors' list.
      *
      * @param fileName the audited file
@@ -255,7 +255,7 @@ public abstract class AbstractFileSetCheck
         final FileContext fileContext = context.get();
         final SortedSet<Violation> errors = new TreeSet<>(fileContext.violations);
         fileContext.violations.clear();
-        messageDispatcher.fireErrors(fileName, errors);
+        violationDispatcher.fireErrors(fileName, errors);
     }
 
     /**
