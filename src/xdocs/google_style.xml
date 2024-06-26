@@ -1545,7 +1545,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.8-numeric-literals">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.8-numeric-literals">
                     4.8.8 Numeric Literals</a>
                 </td>
                 <td>
@@ -1558,7 +1558,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/UpperEllTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/NumericLiteralsTest.java">
                     test</a>
                 </td>
               </tr>
