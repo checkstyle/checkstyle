@@ -246,7 +246,6 @@ public class XdocsPagesTest {
             "4.8.6.1 Block comment style",
             "4.8.7 Modifiers",
             "4.8.8 Numeric Literals",
-            "5.2.1 Package names",
             "5.2.2 Class names",
             "5.2.3 Method names",
             "5.2.5 Non-constant field names",
