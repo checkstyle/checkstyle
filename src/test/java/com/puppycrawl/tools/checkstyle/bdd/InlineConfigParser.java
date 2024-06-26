@@ -700,7 +700,7 @@ public final class InlineConfigParser {
         for (int index = 1; index <= expectedMessageCount; index++) {
             final String lineWithMessage = lines.get(lineNo + index);
             final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
-            if (messageMatcher.matches()) {
+            if (messageMatcher.find()) {
                 final String violationMessage = messageMatcher.group(1);
                 results.add(new TestInputViolation(violationLineNum, violationMessage));
             }
