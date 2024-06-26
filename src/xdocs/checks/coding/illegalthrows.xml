@@ -64,14 +64,17 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
-  public void func1() throws RuntimeException {} // violation
-  public void func2() throws Exception {}  // ok
-  public void func3() throws Error {}  // violation
-  public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+public class Example1 {
+  void f1() throws RuntimeException {} // violation
+  void f2() throws Exception {}
+  void f3() throws Error {}  // violation
+  void f4() throws Throwable {} // violation
+  void f5() throws NullPointerException {}
   @Override
-  public void toString() throws Error {} // ok
+  public String toString() throws Error {
+    String str = &quot;&quot;;
+    return str;
+  }
 }
         </source>
         <p id="Example2-config">
@@ -88,14 +91,17 @@ public class Test {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
-  public void func1() throws RuntimeException {} // ok
-  public void func2() throws Exception {}  // ok
-  public void func3() throws Error {}  // ok
-  public void func4() throws Throwable {} // ok
-  public void func5() throws NullPointerException {} // violation
+public class Example2 {
+  void f1() throws RuntimeException {}
+  void f2() throws Exception {}
+  void f3() throws Error {}
+  void f4() throws Throwable {}
+  void f5() throws NullPointerException {} // violation
   @Override
-  public void toString() throws Error {} // ok
+  public String toString() throws Error {
+    String str = &quot;&quot;;
+    return str;
+  }
 }
         </source>
         <p id="Example3-config">
@@ -105,21 +111,24 @@ public class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalThrows&quot;&gt;
-      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
+      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;f1&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
-  public void func1() throws RuntimeException {} // ok
-  public void func2() throws Exception {}  // ok
-  public void func3() throws Error {}  // violation
-  public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+public class Example3 {
+  void f1() throws RuntimeException {}
+  void f2() throws Exception {}
+  void f3() throws Error {} // violation
+  void f4() throws Throwable {} // violation
+  void f5() throws NullPointerException {}
   @Override
-  public void toString() throws Error {} // ok
+  public String toString() throws Error {
+    String str = &quot;&quot;;
+    return str;
+  }
 }
         </source>
         <p id="Example4-config">
@@ -136,14 +145,17 @@ public class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
-  public void func1() throws RuntimeException {} // violation
-  public void func2() throws Exception {}  // ok
-  public void func3() throws Error {}  // violation
-  public void func4() throws Throwable {} // violation
-  public void func5() throws NullPointerException {} // ok
+public class Example4 {
+  void f1() throws RuntimeException {} // violation
+  void f2() throws Exception {}
+  void f3() throws Error {}  // violation
+  void f4() throws Throwable {} // violation
+  void f5() throws NullPointerException {}
   @Override
-  public void toString() throws Error {} // violation
+  public String toString() throws Error { // violation
+    String str = &quot;&quot;;
+    return str;
+  }
 }
         </source>
       </subsection>
