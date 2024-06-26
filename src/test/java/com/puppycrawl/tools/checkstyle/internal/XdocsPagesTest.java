@@ -247,7 +247,6 @@ public class XdocsPagesTest {
             "4.8.7 Modifiers",
             "4.8.8 Numeric Literals",
             "5.2.1 Package names",
-            "5.2.3 Method names",
             "5.2.5 Non-constant field names",
             "5.2.6 Parameter names",
             "5.2.7 Local variable names",
