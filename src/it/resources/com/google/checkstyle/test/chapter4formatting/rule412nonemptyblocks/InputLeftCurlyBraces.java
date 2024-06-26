@@ -1,134 +1,118 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-class InputLeftCurlyBraces
-{ //warn
-    /** @return helper func **/
-    boolean condition()
-    { //warn
-        return false;
+class InputLeftCurlyBraces 
+{ // // violation ''{' at column 1 should be on the previous line.'
+  /**
+   * @return helper func *
+   */
+  boolean condition() 
+  { // // violation ''{' at column 5 should be on the previous line.'
+    return false;
+  }
+
+  /** Test do/while loops * */
+  void testDoWhile() 
+  { // // violation ''{' at column 5 should be on the previous line.'
+
+    do {
+      testDoWhile();
+    } while (condition());
+
+    do testDoWhile();
+    while (condition());
+  }
+
+  /** Test while loops * */
+  void testWhile() 
+  { // // violation ''{' at column 5 should be on the previous line.'
+
+    while (condition()) {
+      testWhile();
     }
 
-    /** Test do/while loops **/
-    void testDoWhile()
-    { //warn
+    while (condition())
+      ;
+    while (condition()) testWhile();
+    while (condition()) if (condition()) testWhile();
+  }
 
-        do {
-            testDoWhile();
-        }
-        while (condition());
+  /** Test for loops * */
+  void testFor() 
+  { // // violation ''{' at column 5 should be on the previous line.'
 
-
-        do testDoWhile(); while (condition());
+    for (int i = 1; i < 5; i++) {
+      testFor();
     }
 
-    /** Test while loops **/
-    void testWhile()
-    { //warn
+    for (int i = 1; i < 5; i++)
+      ;
+    for (int i = 1; i < 5; i++) testFor();
+    for (int i = 1; i < 5; i++) if (i > 2) testFor();
+  }
 
-        while (condition()) {
-            testWhile();
-        }
+  /** Test if constructs * */
+  public void testIf() 
+  { // // violation ''{' at column 5 should be on the previous line.'
 
-
-        while(condition());
-        while (condition())
-            testWhile();
-        while (condition())
-            if (condition())
-                testWhile();
+    if (condition()) {
+      testIf();
+    } else if (condition()) {
+      testIf();
+    } else {
+      testIf();
     }
 
-    /** Test for loops **/
-    void testFor()
-    {  //warn
-
-        for (int i = 1; i < 5; i++) {
-            testFor();
-        }
-
-
-        for(int i = 1;i < 5;i++);
-        for (int i = 1; i < 5; i++)
-            testFor();
-        for (int i = 1; i < 5;
-             i++)
-            if (i > 2)
-                testFor();
+    if (condition())
+      ;
+    if (condition()) testIf();
+    if (condition()) testIf();
+    else testIf();
+    if (condition()) testIf();
+    else {
+      testIf();
     }
+    if (condition()) {
+      testIf();
+    } else testIf();
+    if (condition()) if (condition()) testIf();
+  }
 
-    /** Test if constructs **/
-    public void testIf()
-    { //warn
+  void whitespaceAfterSemi() 
+  { // // violation ''{' at column 5 should be on the previous line.'
 
-        if (condition()) {
-            testIf();
-        }
-        else if (condition()) {
-            testIf();
-        }
-        else {
-            testIf();
-        }
+    int i = 1;
+    int j = 2;
 
+    for (; ; ) {}
+  }
 
-        if (condition());
-        if (condition())
-            testIf();
-        if (condition())
-            testIf();
-        else
-            testIf();
-        if (condition())
-            testIf();
-        else {
-            testIf();
-        }
-        if (condition()) {
-            testIf();
-        }
-        else
-            testIf();
-        if (condition())
-            if (condition())
-                testIf();
-    }
+  /** Empty constructor block. * */
+  public InputLeftCurlyBraces() {}
 
-    void whitespaceAfterSemi()
-    { //warn
-
-        int i = 1;int j = 2;
-
-
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputLeftCurlyBraces() {}
-
-    /** Empty method block. **/
-    public void emptyImplementation() {}
+  /** Empty method block. * */
+  public void emptyImplementation() {}
 }
 
 class EnumContainerLeft {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+  private enum Suit {
+    CLUBS,
+    HEARTS,
+    SPADES,
+    DIAMONDS
+  } // ok
 }
 
 class WithArraysLeft { // ok
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
-    String[] s1 = { // ok
-        "foo", "foo",
-    };
-    String[] s2 =
-        { // ok
-            "foo", "foo",
-        };
-    String[] s3 =
-        { // ok
-            "foo",
-            "foo",
-        };
-    String[] s4 =
-        {"foo", "foo"}; // ok
+  String[] s = {""}; // ok
+  String[] empty = {}; // ok
+  String[] s1 = { // ok
+          "foo", "foo",
+  };
+  String[] s2 = { // ok
+          "foo", "foo",
+  };
+  String[] s3 = { // ok
+          "foo", "foo",
+  };
+  String[] s4 = {"foo", "foo"}; // ok
 }

@@ -36,21 +36,7 @@ public class LeftCurlyTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLeftCurlyBraces() throws Exception {
-        final String[] expected = {
-            "4:1: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 1),
-            "7:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "13:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "26:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "43:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "61:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-            "97:5: " + getCheckMessage(LeftCurlyCheck.class, MSG_KEY_LINE_PREVIOUS, "{", 5),
-        };
-
-        final Configuration checkConfig = getModuleConfig("LeftCurly");
-        final String filePath = getPath("InputLeftCurlyBraces.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithWholeConfig(getPath("InputLeftCurlyBraces.java"));
     }
 
     @Test
