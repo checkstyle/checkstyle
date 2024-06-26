@@ -239,7 +239,6 @@ public class XdocsPagesTest {
             "4.8.4.1 Indentation",
             "4.8.5 Annotations",
             "4.8.6.1 Block comment style",
-            "5.2.5 Non-constant field names",
             "5.2.6 Parameter names",
             "5.2.7 Local variable names",
             "5.2.8 Type variable names",
