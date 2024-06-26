@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputEmptyBlocksAndCatchBlocks
 {
-    static {} //ok
+    static {} 
 
     public void fooMethod()
     {
@@ -13,12 +13,12 @@ class InputEmptyBlocksAndCatchBlocks
         int index = 2;
         if (doSideEffect() == 1) {} // violation 'Empty if block.'
         IO in = new IO();
-        while ((r = in.read()) != null) {} // ok
-        for (; index < s.length && s[index] != 'x'; index++) {} // ok
+        while ((r = in.read()) != null) {} 
+        for (; index < s.length && s[index] != 'x'; index++) {} 
         if (a == 1) {} else {System.identityHashCode("a");}  // violation 'Empty if block.'
-        do {} while(a == 1); //ok
+        do {} while(a == 1); 
         switch (a) {} // violation 'Empty switch block.'
-        int[] z = {}; // ok
+        int[] z = {}; 
     }
 
     public int doSideEffect()
@@ -36,13 +36,13 @@ class IO
         return new InputEmptyBlocksAndCatchBlocks();
     }
 }
-class Empty {} //ok
+class Empty {} 
 
-interface EmptyImplement {} //ok
+interface EmptyImplement {} 
 
 class WithInner
 {
-    static {} //ok
+    static {} 
 
     public void emptyMethod() {}
 
@@ -62,12 +62,12 @@ class WithInner
             int index = 2;
             if (doSideEffect() == 1) {} // violation 'Empty if block.'
             IO in = new IO();
-            while ((r = in.read()) != null) {} // ok
-            for (; index < s.length && s[index] != 'x'; index++) {} // ok
+            while ((r = in.read()) != null) {} 
+            for (; index < s.length && s[index] != 'x'; index++) {} 
             if (a == 1) {} else {System.identityHashCode("a");} // violation 'Empty if block.'
-            do {} while(a == 1); //ok
+            do {} while(a == 1); 
             switch (a) {} // violation 'Empty switch block.'
-            int[] z = {}; // ok
+            int[] z = {}; 
         }
     }
 }
@@ -92,12 +92,12 @@ class WithAnon
                 int index = 2;
                 if (doSideEffect() == 1) {} // violation 'Empty if block.'
                 IO in = new IO();
-                while ((r = in.read()) != null) {} // ok
-                for (; index < s.length && s[index] != 'x'; index++) {} // ok
+                while ((r = in.read()) != null) {} 
+                for (; index < s.length && s[index] != 'x'; index++) {} 
                 if (a == 1) {} else {System.identityHashCode("a");} // violation 'Empty if block.'
-                do {} while(a == 1); //ok
+                do {} while(a == 1); 
                 switch (a) {} // violation 'Empty switch block.'
-                int[] z = {}; // ok
+                int[] z = {}; 
             }
 
             public int doSideEffect()
@@ -119,13 +119,13 @@ class NewClass {
 
         if (a == 1) {
             System.identityHashCode("a");
-        } else {/*ignore*/} // OK
+        } else {/*ignore*/} 
 
         if (a == 1) {
             /*ignore*/
         } else {
             System.identityHashCode("a");
-        } // ok
+        } 
 
         if (a == 1) {
             System.identityHashCode("a");
@@ -188,13 +188,13 @@ class NewClass {
 
             if (a == 1) {
                 System.identityHashCode("a");
-            } else {/*ignore*/} // OK
+            } else {/*ignore*/} 
 
             if (a == 1) {
                 /*ignore*/
             } else {
                 System.identityHashCode("a");
-            } // ok
+            } 
 
             if (a == 1) {
                 System.identityHashCode("a");
@@ -257,13 +257,13 @@ class NewClass {
 
                 if (a == 1) {
                     System.identityHashCode("a");
-                } else {/*ignore*/} // OK
+                } else {/*ignore*/} 
 
                 if (a == 1) {
                     /*ignore*/
                 } else {
                     System.identityHashCode("a");
-                } // ok
+                } 
 
                 if (a == 1) {
                     System.identityHashCode("a");
@@ -320,9 +320,9 @@ class NewClass {
 
 class Example {
 
-    void doNothing() {} // ok
+    void doNothing() {} 
 
-    void doNothingElse() { // ok
+    void doNothingElse() { 
 
     }
 }
@@ -335,8 +335,8 @@ class TestingEmptyBlockCatch {
             if (!flag) {
                 doSm();
             }
-        } catch (Exception e) { /* ignore */ } //ok
-        finally {/* ignore */} //ok
+        } catch (Exception e) { /* ignore */ } 
+        finally {/* ignore */} 
     }
 
     void foo2() {
@@ -356,8 +356,8 @@ class TestingEmptyBlockCatch {
                 if (!flag) {
                     doSm();
                 }
-            } catch (Exception e) { /* ignore */ } //ok
-            finally {/* ignore */} //ok
+            } catch (Exception e) { /* ignore */ } 
+            finally {/* ignore */} 
         }
 
         void foo2() {
@@ -378,8 +378,8 @@ class TestingEmptyBlockCatch {
                 if (!flag) {
                     doSm();
                 }
-            } catch (Exception e) { /* ignore */ } //ok
-            finally {/* ignore */} //ok
+            } catch (Exception e) { /* ignore */ } 
+            finally {/* ignore */} 
         }
 
         void foo2() {
