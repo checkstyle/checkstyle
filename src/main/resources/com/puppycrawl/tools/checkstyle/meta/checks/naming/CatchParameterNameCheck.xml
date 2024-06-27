@@ -22,7 +22,7 @@
  &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
-            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"
+            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
