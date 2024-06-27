@@ -43,7 +43,7 @@
 
     <section name="Starting Development">
       <p>
-        Here you can find instructions of importing and debugging the project for IDEs:<br/>
+        Here you can find instructions on importing and debugging the project for IDEs:<br/>
         <a href="eclipse.html">Eclipse IDE</a><br/>
         <a href="netbeans.html">NetBeans IDE</a><br/>
         <a href="idea.html">IntelliJ IDEA IDE</a><br/>

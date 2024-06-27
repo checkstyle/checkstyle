@@ -55,12 +55,13 @@
     <section name="Report an issue">
 
       <p>
-        All functional changes in project should have registered issue and wide explanation in it.
-        Issue number has to be referenced in git commit message, see format below.
+        All functional changes in the project should have a registered issue and detailed
+        explanation in it. The Issue number has to be referenced in the git commit message,
+        see format below.
       </p>
 
       <p>
-        To report issue please follow our best practices page - <a href="report_issue.html">
+        To report an issue please follow our best practices page - <a href="report_issue.html">
         How to report an issue?</a> (<a href="report_issue.html#How_to_report_a_bug.3F">
         How to report a bug?</a>)
       </p>
@@ -68,7 +69,7 @@
 
     <section name="Build">
       <p>
-        Project is following general maven layout and phases for build.
+        The project is following a general maven layout and phases for its build.
         Generated jars will be in folder <code>target</code>.
       </p>
 
@@ -87,13 +88,7 @@
     <section name="Quality matters">
 
       <p>
-        The developer team of checkstyle is really a lazy bunch of
-        people.  We try to avoid work as best as we can, but most of all
-        we try to avoid working on bugs that are reported by end users.
-      </p>
-
-      <p>
-        To that end, we use a set of development tools that ensure that
+        We use a set of development tools that ensure that
         the quality of our code is kept at a fairly high level. Like
         most projects today, we use JUnit to test our code. However, we
         do take this one step further and measure the coverage of our
@@ -107,7 +102,7 @@
         <br/>
         <code>mvn test jacoco:restore-instrumented-classes jacoco:report@default-report</code>.
         <br/>
-        Check results on report target/site/jacoco/index.html in project home folder.
+        Check the results of the report in target/site/jacoco/index.html in project home folder.
       </p>
 
       <p>
@@ -127,8 +122,8 @@
       </p>
 
       <p>
-        The last step of verification that all works fine please do testing of your
-        functionality on any open-source project (Spring, Hibernate, ....).
+        For the last step of verification, to ensure that everything works fine, please test
+        your functionality on any open-source project (Spring, Hibernate, ....).
         Here is how to do it by
         <a href=
           "https://github.com/checkstyle/contribution/tree/master/checkstyle-tester#checkstyle-tester">
