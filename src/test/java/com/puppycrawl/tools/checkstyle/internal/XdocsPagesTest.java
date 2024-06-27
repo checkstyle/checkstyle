@@ -239,7 +239,6 @@ public class XdocsPagesTest {
             "4.6.1 Vertical Whitespace",
             "4.6.2 Horizontal whitespace",
             "4.8.4.1 Indentation",
-            "4.8.4.3 Presence of the default label",
             "4.8.5 Annotations",
             "4.8.6.1 Block comment style",
             "5.2.5 Non-constant field names",
