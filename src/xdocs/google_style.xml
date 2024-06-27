@@ -650,7 +650,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1.2-blocks-k-r-style">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.1.2-blocks-k-r-style">
                     4.1.2 Nonempty blocks: K &amp; R style</a>
                 </td>
                 <td>
@@ -669,13 +669,10 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
                     config</a>
                   <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/LeftCurlyTest.java">
-                    test</a>
-                  <br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
                     config</a>
                   <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/RightCurlyTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/NonemptyBlocksKrStyleTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1228,7 +1225,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3.2-array-declarations">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.3.2-array-declarations">
                     4.8.3.2 No C-style array declarations</a>
                 </td>
                 <td>
@@ -1241,7 +1238,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray/ArrayTypeStyleTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray/NoCstyleArrayDeclarationsTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1522,7 +1519,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.7-modifiers">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.7-modifiers">
                     4.8.7 Modifiers</a>
                 </td>
                 <td>
@@ -1535,7 +1532,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModifierOrder">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule487modifiers/ModifierOrderTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule487modifiers/ModifiersTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1548,7 +1545,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.8-numeric-literals">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.8-numeric-literals">
                     4.8.8 Numeric Literals</a>
                 </td>
                 <td>
@@ -1561,7 +1558,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/UpperEllTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule488numericliterals/NumericLiteralsTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1648,7 +1645,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.2-class-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.2-class-names">
                     5.2.2 Class names</a>
                 </td>
                 <td>
@@ -1663,7 +1660,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule522typenames/TypeNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule522typenames/ClassNamesTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1676,7 +1673,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.3-method-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.3-method-names">
                     5.2.3 Method names</a>
                 </td>
                 <td>
@@ -1694,7 +1691,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule523methodnames/MethodNamesTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1949,7 +1946,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule53camelcase/AbbreviationAsWordInNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule53camelcase/CamelCaseDefinedTest.java">
                     test</a>
                 </td>
               </tr>
@@ -2055,7 +2052,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.4-finalizers">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s6.4-finalizers">
                     6.4 Finalizers: not used</a>
                 </td>
                 <td>
@@ -2068,7 +2065,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoFinalizer">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule64finalizers/NoFinalizerTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule64finalizers/FinalizersNotUsedTest.java">
                     test</a>
                 </td>
               </tr>

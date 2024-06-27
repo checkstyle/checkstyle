@@ -232,30 +232,22 @@ public class XdocsPagesTest {
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
             "3.4.1 Exactly one top-level class declaration",
-            "4.1.2 Nonempty blocks: K & R style",
             "4.2 Block indentation: +2 spaces",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
             "4.5.2 Indent continuation lines at least +4 spaces",
             "4.6.1 Vertical Whitespace",
             "4.6.2 Horizontal whitespace",
-            "4.8.3.2 No C-style array declarations",
             "4.8.4.1 Indentation",
             "4.8.4.3 Presence of the default label",
             "4.8.5 Annotations",
             "4.8.6.1 Block comment style",
-            "4.8.7 Modifiers",
-            "4.8.8 Numeric Literals",
             "5.2.1 Package names",
-            "5.2.2 Class names",
-            "5.2.3 Method names",
             "5.2.5 Non-constant field names",
             "5.2.6 Parameter names",
             "5.2.7 Local variable names",
             "5.2.8 Type variable names",
-            "5.3 Camel case: defined",
             "6.2 Caught exceptions: not ignored",
-            "6.4 Finalizers: not used",
             "7.1.1 General form",
             "7.1.2 Paragraphs",
             "7.1.3 Block tags",
@@ -1986,26 +1978,27 @@ public class XdocsPagesTest {
         // Remove the preceding section number
         final String ruleNameWithoutPrecedingNumbers =
                 ruleName.replaceAll("^[0-9.]+\\s*", "");
+        // & considered as definition of term, words around should be considered as single term
+        final String ruleNameWithoutAmp =
+                ruleNameWithoutPrecedingNumbers.replaceAll(" & ", "");
 
         // Split the remaining string into parts (words and numbers)
-        final String[] parts = ruleNameWithoutPrecedingNumbers.split("[^A-Za-z0-9]+");
+        final String[] parts = ruleNameWithoutAmp.split("[^A-Za-z0-9]+");
 
         final StringBuilder extractedRuleName = new StringBuilder(120);
-
         for (String part : parts) {
+            String camelCasesPart = part;
             if (part.matches("[A-Za-z]+")) {
                 // Capitalize the first letter and make the rest words lowercase
-                extractedRuleName
-                        .append(part.substring(0, 1).toUpperCase(Locale.ENGLISH))
-                        .append(part.substring(1).toLowerCase(Locale.ENGLISH));
+                camelCasesPart = part.substring(0, 1).toUpperCase(Locale.ENGLISH)
+                        + part.substring(1).toLowerCase(Locale.ENGLISH);
             }
-            else if (part.matches("\\d+")) {
-                // Append numbers directly
-                extractedRuleName.append(part);
-            }
+            extractedRuleName.append(camelCasesPart);
         }
 
-        return extractedRuleName.toString();
+        final String result = extractedRuleName.toString();
+
+        return result.replaceAll("CStyle", "Cstyle");
     }
 
     @Test

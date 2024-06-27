@@ -15,6 +15,24 @@ public class InputMissingSwitchDefaultCheckNullCaseLabel {
             case SECOND: counter--;
             case null: counter=counter+2;
         }
+        switch (i) {
+            case FIRST:
+            case SECOND:
+            case null:
+                counter=counter+2;
+        }
+        switch (i) {
+            case FIRST:
+            case null:
+            case SECOND:
+                counter=counter+2;
+        }
+        switch (i) {
+            case null:
+            case FIRST:
+            case SECOND:
+                counter=counter+2;
+        }
     }
     enum SwitchInput {
         FIRST,
