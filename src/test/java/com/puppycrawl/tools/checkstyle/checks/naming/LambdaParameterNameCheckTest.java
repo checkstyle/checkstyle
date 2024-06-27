@@ -79,7 +79,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdaParameterNameSwitchExpression() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
             "19:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
@@ -91,6 +91,22 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
+            expected);
+    }
+
+    @Test
+    public void testLambdaParameterNameUnnamed() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "30:36: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "34:36: " + getCheckMessage(MSG_INVALID_PATTERN, "_BAD", pattern),
+            "37:36: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD_", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputLambdaParameterNameUnnamed.java"),
             expected);
     }
 
