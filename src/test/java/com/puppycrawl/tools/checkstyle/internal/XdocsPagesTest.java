@@ -231,7 +231,6 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "3.4.1 Exactly one top-level class declaration",
             "4.2 Block indentation: +2 spaces",
             "4.4 Column limit: 100",
             "4.5.1 Where to break",

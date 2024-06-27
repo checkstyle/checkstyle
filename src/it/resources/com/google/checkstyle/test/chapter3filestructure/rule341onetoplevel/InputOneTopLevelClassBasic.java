@@ -22,7 +22,8 @@ public class InputOneTopLevelClassBasic
     }
 }
 
-class NoSuperClone //warn
+// violation below 'Top-level class NoSuperClone has to reside in its own source file.'
+class NoSuperClone
 {
     public Object clone()
     {
@@ -30,7 +31,8 @@ class NoSuperClone //warn
     }
 }
 
-class InnerClone //warn
+// violation below 'Top-level class InnerClone has to reside in its own source file.'
+class InnerClone
 {
     public Object clone()
     {
@@ -47,17 +49,20 @@ class InnerClone //warn
 
 // This could not pass as valid semantically but tests that
 // type arguments are ignored when checking super calls
-class CloneWithTypeArguments //warn
+// violation below 'Top-level class CloneWithTypeArguments has to reside in its own source file.'
+class CloneWithTypeArguments
 {
     //Some code
 }
 
-class CloneWithTypeArgumentsAndNoSuper //warn
+// violation below '.* class CloneWithTypeArgumentsAndNoSuper has to reside in .* own source file.'
+class CloneWithTypeArgumentsAndNoSuper
 {
 }
 
 //Check that super keyword isn't snagged here
-class MyClassWithGenericSuperMethod //warn
+// violation below '.* class MyClassWithGenericSuperMethod has to reside in its own source file.'
+class MyClassWithGenericSuperMethod
 {
     void someMethod(java.util.List<? super java.util.Map> l)
     {
@@ -74,7 +79,8 @@ class MyClassWithGenericSuperMethod //warn
     }
 }
 
-class AnotherClass { //warn
+// violation below 'Top-level class AnotherClass has to reside in its own source file.'
+class AnotherClass {
 
     /**
      * Not a valid clone override. Should not get flagged.
