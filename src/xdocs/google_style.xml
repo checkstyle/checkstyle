@@ -1727,7 +1727,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.5-non-constant-field-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.5-non-constant-field-names">
                     5.2.5 Non-constant field names</a>
                 </td>
                 <td>
@@ -1740,7 +1740,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames/MemberNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames/NonConstantFieldNamesTest.java">
                     test</a>
                 </td>
               </tr>
