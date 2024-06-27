@@ -74,7 +74,7 @@
 public class Example1 {
   public void method1(int V1){} // ok, ParameterName's severity is info
 
-  public void Method2(){} // violation, MethodName's severity is default it is error
+  public void Method2(){} // violation, MethodName severity is default it is error
 }
         </source>
       </subsection>
