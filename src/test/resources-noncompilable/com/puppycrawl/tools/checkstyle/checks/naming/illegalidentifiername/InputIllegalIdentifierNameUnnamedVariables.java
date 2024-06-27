@@ -38,6 +38,7 @@ public class InputIllegalIdentifierNameUnnamedVariables {
             case R(int _ ,int _): {}
             default : {}
         }
+        
         if (o instanceof R(int _ , _)) {}
     }
 
