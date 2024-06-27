@@ -108,7 +108,6 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
-binded
 bitbucket
 bjrke
 bleh
@@ -645,6 +644,7 @@ javadocpropertiesgenerator
 javadocstyle
 javadoctagcontinuationindentation
 javadoctags
+Javadoctoken
 javadoctype
 javadocvariable
 Javaee
