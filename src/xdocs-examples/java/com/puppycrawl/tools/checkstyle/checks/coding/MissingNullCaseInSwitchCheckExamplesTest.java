@@ -17,36 +17,27 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.naming;
+package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MissingNullCaseInSwitchCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+public class MissingNullCaseInSwitchCheckExamplesTest extends
+        AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername";
+        return "com/puppycrawl/tools/checkstyle/checks/coding/missingnullcaseinswitch";
     }
 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "18:5: " + getCheckMessage(MSG_KEY),
+            "30:5: " + getCheckMessage(MSG_KEY),
         };
-
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
-    }
-
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {
-            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "_s", "^[a-z]([a-zA-Z]+)*$"),
-            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", "^[a-z]([a-zA-Z]+)*$"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 }

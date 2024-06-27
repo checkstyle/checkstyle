@@ -46,7 +46,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LambdaParameterNameCheck.class);
-        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
+        final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
             "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
