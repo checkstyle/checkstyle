@@ -1,6 +1,6 @@
 /*
 CatchParameterName
-format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+)$
+format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$
 
 
 */
