@@ -46,7 +46,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
 
         final String[] expectedViolation = {
             "10:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
@@ -71,7 +71,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
         final DefaultConfiguration moduleConfig =
             createModuleConfig(IllegalIdentifierNameCheck.class);
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
 
         final String[] expectedViolation = {
             "9:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
