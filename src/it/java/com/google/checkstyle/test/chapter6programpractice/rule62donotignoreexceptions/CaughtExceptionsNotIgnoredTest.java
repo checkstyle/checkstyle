@@ -22,10 +22,8 @@ package com.google.checkstyle.test.chapter6programpractice.rule62donotignoreexce
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
 
-public class EmptyBlockTest extends AbstractGoogleModuleTestSupport {
+public class CaughtExceptionsNotIgnoredTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -33,18 +31,9 @@ public class EmptyBlockTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testEmptyBlockCatch() throws Exception {
-        final String[] expected = {
-            "29:17: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
-            "50:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
-            "72:21: " + getCheckMessage(EmptyBlockCheck.class, "block.empty", "finally"),
-        };
-
-        final Configuration checkConfig = getModuleConfig("EmptyBlock");
-        final String filePath = getPath("InputEmptyBlockCatch.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+    public void testEmptyFinallyBlock() throws Exception {
+        final String filePath = getPath("InputEmptyFinallyBlock.java");
+        verifyWithConfigParser(new String[] {"EmptyBlock"}, filePath);
     }
 
 }

@@ -8,7 +8,7 @@ import java.io.*;
 import java.awt.Dimension;
 import java.awt.Color;
 
-class InputEmptyBlockCatch {
+class InputEmptyFinallyBlock {
     boolean flag;
     void doSm() {}
     void foo() {
@@ -26,7 +26,7 @@ class InputEmptyBlockCatch {
                doSm();
            }
         } catch (Exception e) {}
-        finally {} //warn
+        finally {} // violation 'Empty finally block.'
     }
 
     class Inner {
@@ -47,7 +47,7 @@ class InputEmptyBlockCatch {
                    doSm();
                }
             } catch (Exception e) {}
-            finally {} //warn
+            finally {} // violation 'Empty finally block.'
         }
     }
 
@@ -69,7 +69,7 @@ class InputEmptyBlockCatch {
                    doSm();
                }
             } catch (Exception e) {}
-            finally {} //warn
+            finally {} // violation 'Empty finally block.'
         }
     };
 
