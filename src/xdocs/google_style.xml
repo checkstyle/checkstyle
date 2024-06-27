@@ -513,7 +513,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.1-one-top-level-class">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.4.1-one-top-level-class">
                     3.4.1 Exactly one top-level class declaration</a>
                 </td>
                 <td>
@@ -526,7 +526,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel/OneTopLevelClassTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel/ExactlyOneTopLevelClassDeclarationTest.java">
                     test</a>
                 </td>
               </tr>
