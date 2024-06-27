@@ -236,7 +236,6 @@ public class XdocsPagesTest {
             "4.4 Column limit: 100",
             "4.5.1 Where to break",
             "4.5.2 Indent continuation lines at least +4 spaces",
-            "4.6.1 Vertical Whitespace",
             "4.6.2 Horizontal whitespace",
             "4.8.4.1 Indentation",
             "4.8.4.3 Presence of the default label",
