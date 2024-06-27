@@ -6,15 +6,15 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks identifiers with a pattern for a set of illegal names, such as those
- that are restricted or contextual keywords. Examples include "yield", "record", "_", and
+ that are restricted or contextual keywords. Examples include "yield", "record", and
  "var". Please read more at
- &lt;a href="https://docs.oracle.com/javase/specs/jls/se14/html/jls-3.html#jls-3.9"&gt;
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-3.html#jls-3.9"&gt;
  Java Language Specification&lt;/a&gt; to get to know more about restricted keywords. Since this
  check uses a pattern to specify valid identifiers, users can also prohibit the usage
  of certain symbols, such as "$", or any non-ascii character.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="(?i)^(?!(record|yield|var|permits|sealed|_)$).+$"
+            <property default-value="(?i)^(?!(record|yield|var|permits|sealed)$).+$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
