@@ -17,7 +17,7 @@ public class InputMissingDeprecatedBadDeprecated
      * @deprecated        stuff
      */
     protected InputMissingDeprecatedBadDeprecated() {
-    // violation above '.*@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
+    // violation above '@java.lang.Deprecated annotation.*@deprecated Javadoc tag.*description.'
     }
 
     /**
