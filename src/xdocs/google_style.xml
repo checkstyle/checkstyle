@@ -2001,7 +2001,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.2-caught-exceptions">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s6.2-caught-exceptions">
                     6.2 Caught exceptions: not ignored</a>
                 </td>
                 <td>
@@ -2016,7 +2016,7 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/EmptyBlockTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions/CaughtExceptionsNotIgnoredTest.java">
                     test</a>
                 </td>
               </tr>
