@@ -33,7 +33,7 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
 
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
