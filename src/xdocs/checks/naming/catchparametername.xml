@@ -42,7 +42,7 @@
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+)$&quot;</code></td>
+              <td><code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$&quot;</code></td>
               <td>6.14</td>
             </tr>
           </table>
