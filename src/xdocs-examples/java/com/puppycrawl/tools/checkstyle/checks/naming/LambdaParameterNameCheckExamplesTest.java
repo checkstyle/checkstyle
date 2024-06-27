@@ -34,7 +34,7 @@ public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^[a-z][a-zA-Z0-9]*$"),
+            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

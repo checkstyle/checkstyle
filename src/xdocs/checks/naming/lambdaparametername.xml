@@ -28,7 +28,7 @@
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[a-z][a-zA-Z0-9]*$&quot;</code></td>
+              <td><code>&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;</code></td>
               <td>8.11</td>
             </tr>
           </table>
