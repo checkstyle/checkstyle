@@ -21,6 +21,7 @@
           <li>allows <code>e</code> abbreviation (suitable for exceptions end errors)</li>
           <li>allows <code>ex</code> abbreviation (suitable for exceptions)</li>
           <li>allows <code>t</code> abbreviation (suitable for throwables)</li>
+          <li>allows <code>_</code> for unnamed catch parameters</li>
           <li>prohibits numbered abbreviations like <code>e1</code> or <code>t2</code></li>
           <li>prohibits one letter prefixes like <code>pException</code></li>
           <li>prohibits two letter abbreviations like <code>ie</code> or <code>ee</code></li>
@@ -42,7 +43,7 @@
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+)$&quot;</code></td>
+              <td><code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$&quot;</code></td>
               <td>6.14</td>
             </tr>
           </table>
