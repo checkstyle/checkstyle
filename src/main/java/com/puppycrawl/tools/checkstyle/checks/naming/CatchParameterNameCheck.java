@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"}.
+ * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"}.
  * </li>
  * </ul>
  * <p>
@@ -67,7 +67,7 @@ public class CatchParameterNameCheck extends AbstractNameCheck {
      * Creates a new {@code CatchParameterNameCheck} instance.
      */
     public CatchParameterNameCheck() {
-        super("^(e|t|ex|[a-z][a-z][a-zA-Z]+)$");
+        super("^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
     }
 
     @Override
