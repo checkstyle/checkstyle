@@ -14,8 +14,9 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo2() {
+        // violation 2 lines below '.* indentation should be the same level as line 18.'
         foo3();
-                         // warn
+                         // odd indentation comment
     }
 
     public void foo3() {
@@ -30,11 +31,13 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public void foooooooooooooooooooooooooooooooooooooooooo() { }
 
-     /////////////////////////////// warn (a single-line border to separate a group of methods)
+     /////////////////////////////// odd indentation comment
 
+    // violation 2 lines above '.* indentation should be the same level as line 37.'
     public void foo7() {
+        // violation 2 lines below'.* indentation should be the same level as line 39.'
         int a = 0;
-// warn
+// odd indentation comment
     }
 
     /////////////////////////////// (a single-line border to separate a group of methods)
@@ -43,15 +46,18 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public class TestClass {
         public void test() {
+            // violation 3 lines below '.* indentation should be the same level as line 51.'
+            // violation 4 lines below'.* indentation should be the same level as line 48.'
             int a = 0;
-               // warn
+               // odd indentation comment
         }
-          // warn
+          // odd indentation comment
     }
 
     public void foo9() {
+        // violation 2 lines below '.* indentation should be the same level as line 59.'
         this.foo1();
-             // warn
+             // odd indentation comment
     }
 
     //    public void foo10() {
@@ -67,11 +73,12 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo12() {
+        // violation 5 lines below '.* indentation should be the same level as line 77.'
         String
             .valueOf(new Integer(0))
             .trim()
             .length();
-                  // warn
+                  // odd indentation comment
     }
 
     public void foo13() {
@@ -82,10 +89,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo14() {
+        // violation 4 lines below '.* indentation should be the same level as line 93.'
         String.valueOf(new Integer(0))
             .trim()
             .length();
-                               // warn
+                               // odd indentation comment
     }
 
     public void foo15() {
@@ -95,9 +103,10 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo16() {
+        // violation 3 lines below '.* indentation should be the same level as line 107.'
         String
             .valueOf(new Integer(0));
-                     // warn
+                     // odd indentation comment
     }
 
     public void foo17() {
@@ -109,10 +118,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo18() {
+        // violation 4 lines below '.* indentation should be the same level as line 126.'
         String
             .valueOf(new Integer(0))
             .trim()
-                             // warn
+                             // odd indentation comment
             .length();
     }
 
@@ -128,6 +138,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo20() {
+        // violation 8 lines below '.* indentation should be the same level as line 142.'
         (new Thread(new Runnable() {
             @Override
             public void run() {
@@ -135,7 +146,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
             }
         })).
             run();
-                          // warn
+                          // odd indentation comment
     }
 
     public void foo21() {
@@ -158,10 +169,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         for (int i = 0; i < 5; i++) {
             org.junit.Assert.assertEquals(expected.get(i), array[i]);
         }
+        // violation 4 lines below '.* indentation should be the same level as line 173.'
         String s = String.format(java.util.Locale.ENGLISH, "The array element "
                 + "immediately following the end of the collection should be nulled",
             array[1]);
-                                 // warn
+                                 // odd indentation comment
     }
 
     public void foo23() {
@@ -170,8 +182,9 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo24() {
+        // violation 2 lines below '.* indentation should be the same level as line 186.'
         new Object();
-                     // warn
+                     // odd indentation comment
     }
 
     public String foo25() {
@@ -181,9 +194,10 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public String foo26() {
+        // violation 3 lines below '.* indentation should be the same level as line 198.'
         return String.format(java.util.Locale.ENGLISH, "%d",
             1);
-                                  // warn
+                                  // odd indentation comment
     }
 
     public void foo27() {
@@ -203,15 +217,17 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
 
     public String foo29() {
         int a = 5;
+        // violation 3 lines below '.* indentation should be the same level as line 221.'
         return String.format(java.util.Locale.ENGLISH, "%d",
             1);
-                          // warn
+                          // odd indentation comment
     }
 
     public void foo30() {
         // comment
+        // violation 2 lines below '.* indentation should be the same level as line 229.'
         int a = 5;
-// warn
+// odd indentation comment
     }
 
     public void foo31() {
@@ -222,16 +238,18 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo32() {
+        // violation 4 lines below '.* indentation should be the same level as line 242.'
         String s = new String ("A"
             + "B"
             + "C");
-            // warn
+            // odd indentation comment
     }
 
     public void foo33() {
         // comment
+        // violation 2 lines below '.* indentation should be the same level as line 251.'
         this.foo22();
-// warn
+// odd indentation comment
     }
 
     public void foo34() throws Exception {
@@ -242,17 +260,19 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo35() throws Exception {
+        // violation 4 lines below '.* indentation should be the same level as line 264.'
         throw new Exception("",
             new Exception()
         );
-            // warn
+            // odd indentation comment
     }
 
     public void foo36() throws Exception {
+        // violation 4 lines below '.* indentation should be the same level as line 272.'
         throw new Exception("",
             new Exception()
         );
-// warn
+// odd indentation comment
     }
 
     public void foo37() throws Exception {
@@ -261,20 +281,23 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo38() throws Exception {
+        // violation 2 lines below '.* indentation should be the same level as line 285.'
         throw new Exception("", new Exception());
-              // warn
+              // odd indentation comment
     }
 
     public void foo39() throws Exception {
+        // violation 3 lines below'.* indentation should be the same level as line 291.'
         throw new Exception("",
             new Exception());
-         // warn
+         // odd indentation comment
     }
 
     public void foo40() throws Exception {
         int a = 88;
+        // violation 2 lines below '.* indentation should be the same level as line 299.'
         throw new Exception("", new Exception());
-         // warn
+         // odd indentation comment
     }
 
     public void foo41() throws Exception {
@@ -312,14 +335,16 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo45() {
         int ar = 5;
         // comment
+        // violation 2 lines below '.* indentation should be the same level as line 339.'
         ar = 6;
-         // warn
+         // odd indentation comment
     }
 
     public void foo46() {
+    // violation 3 lines below '.* indentation should be the same level as line 348.'
 // comment
 // block
-// warn
+// odd indentation comment
     }
 
     public void foo47() {
@@ -330,10 +355,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public void foo48() {
+        // violation 4 lines below '.* indentation should be the same level as line 359.'
         int a = 5;
 // comment
 // block
-// warn
+// odd indentation comment
     }
 
     public void foo49() {
@@ -349,10 +375,11 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     }
 
     public String foo51() {
+        // violation 4 lines below '.* indentation should be the same level as line 379.'
         return String
             .valueOf("11"
             );
-         // warn
+         // odd indentation comment
     }
 
     public String foo52() {
