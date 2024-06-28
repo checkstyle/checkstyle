@@ -18,7 +18,8 @@ class InputLocalVariableNameOneCharVarName
             //some code
         }
 
-        for(int I_ndex = 1; I_ndex < 10; I_ndex++) { //warn
+        for(int I_ndex = 1; I_ndex < 10; I_ndex++) {
+            // violation above 'Local variable name 'I_ndex' must match pattern'
             //some code
         }
 
@@ -42,23 +43,28 @@ class InputLocalVariableNameOneCharVarName
               // something
         }
 
-        for(int i_ndex = 1; i_ndex < 10; i_ndex++) { //warn
+        for(int i_ndex = 1; i_ndex < 10; i_ndex++) {
+            // violation above 'Local variable name 'i_ndex' must match pattern'
             //some code
         }
 
-        for(int ii_i1 = 1; ii_i1 < 10; ii_i1++) { //warn
+        for(int ii_i1 = 1; ii_i1 < 10; ii_i1++) {
+            // violation above 'Local variable name 'ii_i1' must match pattern'
             //some code
         }
 
-        for(int $index = 1; $index < 10; $index++) { //warn
+        for(int $index = 1; $index < 10; $index++) {
+            // violation above 'Local variable name .* must match pattern'
             //some code
         }
 
-        for(int in$dex = 1; in$dex < 10; in$dex++) { //warn
+        for(int in$dex = 1; in$dex < 10; in$dex++) {
+            // violation above 'Local variable name .* must match pattern'
             //some code
         }
 
-        for(int index$ = 1; index$ < 10; index$++) { //warn
+        for(int index$ = 1; index$ < 10; index$++) {
+            // violation above 'Local variable name .* must match pattern'
             //some code
         }
     }
