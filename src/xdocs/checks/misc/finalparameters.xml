@@ -42,6 +42,14 @@
               <td>6.2</td>
             </tr>
             <tr>
+              <td>ignoreUnnamedParameters</td>
+              <td>Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+ unnamed parameters</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>10.18.0</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -144,6 +152,63 @@ public class Example3 {
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
   public static void main(String[] args) { } // violation, 'args should be final'
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check to enforce final parameters for catch and
+          for-each blocks while ignoring unnamed parameters:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;FinalParameters&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;FOR_EACH_CLAUSE, LITERAL_CATCH&quot;/&gt;
+      &lt;property name=&quot;ignoreUnnamedParameters&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <source>
+public class Example4 {
+
+  void testCatchParameters() {
+    try {
+      int x = 1 / 0;
+    }
+    catch (Exception e) { // violation, 'Parameter e should be final'
+      System.out.println(e);
+    }
+    try {
+      int x = 1 / 0;
+    }
+    catch (Exception _) { // ok, unnamed catch parameter, it is implicitly final
+      System.out.println(&quot;infinity&quot;);
+    }
+    try {
+      int x = 1 / 0;
+    }
+    // it is ok to have unnamed final parameters
+    // but it is unnecessary as it is implicitly final
+    catch (final Exception _) {
+      System.out.println(&quot;infinity&quot;);
+    }
+  }
+
+  void testForEachParameters() {
+    int[] l = {1, 2, 3};
+    int x = 0;
+    for (int number: l) { // violation, 'Parameter number should be final'
+      System.out.println(number);
+    }
+    // ok, unnamed enhanced for loop variable, it is implicitly final
+    for (int _: l) {
+      x++;
+    }
+  }
+
 }
         </source>
       </subsection>
