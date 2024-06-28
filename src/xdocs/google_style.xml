@@ -2110,7 +2110,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.1-javadoc-multi-line">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7.1.1-javadoc-multi-line">
                     7.1.1 General form</a>
                 </td>
                 <td>
@@ -2134,11 +2134,9 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/SingleLineJavadocTest.java">
-                    test</a>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InvalidJavadocPositionTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule711generalform/GeneralFormTest.java">
                     test</a>
                 </td>
               </tr>
