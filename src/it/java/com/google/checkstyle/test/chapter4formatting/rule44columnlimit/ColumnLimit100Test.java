@@ -22,10 +22,8 @@ package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
-public class LineLengthTest extends AbstractGoogleModuleTestSupport {
+public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -34,17 +32,8 @@ public class LineLengthTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLineLength() throws Exception {
-        final String[] expected = {
-            "5: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 112),
-            "29: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 113),
-            "198: " + getCheckMessage(LineLengthCheck.class, "maxLineLen", 100, 154),
-        };
-
-        final Configuration checkConfig = getModuleConfig("LineLength");
-        final String filePath = getPath("InputLineLength.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputColumnLimit.java");
+        verifyWithConfigParser(new String[] {"LineLength"}, filePath);
     }
 
 }
