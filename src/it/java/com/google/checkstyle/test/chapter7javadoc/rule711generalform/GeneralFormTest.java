@@ -22,10 +22,13 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheck;
 
-public class SingleLineJavadocTest extends AbstractGoogleModuleTestSupport {
+public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "SingleLineJavadoc",
+        "InvalidJavadocPosition",
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -33,22 +36,9 @@ public class SingleLineJavadocTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testSingleLineJavadoc() throws Exception {
-        final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
-
-        final String[] expected = {
-            "13: " + msg,
-            "29: " + msg,
-            "35: " + msg,
-            "41: " + msg,
-            "47: " + msg,
-        };
-
-        final Configuration checkConfig = getModuleConfig("SingleLineJavadoc");
-        final String filePath = getPath("InputSingleLineJavadocCheck.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+    public void testSingleLineJavadocAndInvalidJavadocPosition() throws Exception {
+        final String filePath = getPath("InputSingleLineJavadocAndInvalidJavadocPosition.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
 }
