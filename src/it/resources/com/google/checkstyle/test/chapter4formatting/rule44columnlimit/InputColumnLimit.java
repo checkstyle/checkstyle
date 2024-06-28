@@ -1,8 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; //ok
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; //ok
-final class InputLineLength
+final class InputColumnLimit
 {
-    // Long line ---------------------------------------------------------------------------------------- //warn
+    // Long line ----------------------------------------------------------------------------------------
+    // violation above 'Line is longer than 100 characters (found 105).'
     // Contains a tab ->    <-
     // Contains trailing whitespace ->
 
@@ -26,7 +27,8 @@ final class InputLineLength
     protected int mNumCreated2 = 0;
 
     /** commas are wrong **/
-    private int[] mInts = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, }; //warn
+    private int[] mInts = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
+    // violation above 'Line is longer than 100 characters (found 106).'
 
     //
     // Accessor tests
@@ -85,7 +87,7 @@ final class InputLineLength
     }
 
     /** constructor that is 10 lines long **/
-    private InputLineLength()
+    private InputColumnLimit()
     {
         // a line
         // a line
@@ -195,7 +197,8 @@ final class InputLineLength
     // Very long url with ftp: ftp://ftp.example.com/areallyyyyyyyyyyyylongggggggggggggggggggggggurlllll.text
     int ftp = 0;
 
-    // Very long url with invalid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search // warn
+    // violation below 'Line is longer than 100 characters (found 146).'
+    // Very long url with invalid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search
     int invalidHref = 88;
 
     // Very long url with valid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
