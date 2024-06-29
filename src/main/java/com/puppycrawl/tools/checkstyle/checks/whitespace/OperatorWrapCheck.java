@@ -31,7 +31,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks the policy on how to wrap lines on operators.
+ * Checks the policy on how to wrap lines on
+ * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">
+ * operators</a>.
+ * </p>
+ * <p>
+ * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.20.2">
+ * Java Language Specification</a> for more information about {@code instanceof} operator.
  * </p>
  * <ul>
  * <li>
