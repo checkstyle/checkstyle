@@ -192,4 +192,20 @@ public class OperatorWrapCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapWithTrimOptionProperty.java"), expected);
     }
+
+    @Test
+    public void testInstanceOfOperator() throws Exception {
+        final String[] expected = {
+            "17:15: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "23:15: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "30:23: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "34:23: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "42:33: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "53:33: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "60:15: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+            "67:38: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOperatorWrapInstanceOfOperator.java"), expected);
+    }
 }
