@@ -47,7 +47,7 @@ class InputMethodParamPad
 
         int init = 9;
 
-        /*ok*/ for (Map.Entry<String, String> entry :
+        for (Map.Entry<String, String> entry :
             map.entrySet())
         {
             int i = flag == true ?
@@ -92,7 +92,7 @@ class InputMethodParamPad
 
             int init = 9;
 
-            /*ok*/ for (Map.Entry<String, String> entry :
+            for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 int i = flag == true ?
@@ -138,7 +138,7 @@ class InputMethodParamPad
             boolean flag = false;
             int init = 9;
 
-            /*ok*/ for (Map.Entry<String, String> entry :
+            for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 int i = flag == true ?
@@ -175,7 +175,7 @@ class AsInput1 {
     int abc = 0;
     String string
         = "string";
-    double PI = // ok
+    double PI =
             3.1415;
 }
 

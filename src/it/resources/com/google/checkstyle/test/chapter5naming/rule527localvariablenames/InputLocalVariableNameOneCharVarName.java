@@ -8,13 +8,13 @@ class InputLocalVariableNameOneCharVarName
 {
     public void fooMethod()
     {
-        for(int i = 1; i <10; i++) { //ok
+        for(int i = 1; i <10; i++) {
             //some code
         }
 
-        int i = 0; // ok
+        int i = 0;
 
-        for(int index = 1; index < 10; index++) { //ok
+        for(int index = 1; index < 10; index++) {
             //some code
         }
 
@@ -24,21 +24,21 @@ class InputLocalVariableNameOneCharVarName
 
         int index = 1;
 
-        for(; index < 10; index++) { //ok
+        for(; index < 10; index++) {
             //some code
         }
 
-        for(; i < 12; i++) { //ok
+        for(; i < 12; i++) {
             //some code
         }
 
         Map<String, String> map = new HashMap<String, String>();
 
-        for (Map.Entry<String, String> e : map.entrySet()) { //ok
+        for (Map.Entry<String, String> e : map.entrySet()) {
             //some code
         }
 
-        for (int a = 0, b[] = { 1 }, c[][] = { { 1 }, { 2 } }; a < 10; a++) { //ok
+        for (int a = 0, b[] = { 1 }, c[][] = { { 1 }, { 2 } }; a < 10; a++) {
               // something
         }
 
