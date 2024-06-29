@@ -48,6 +48,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
+ * Property {@code ignoreUnnamedParameters} -
+ * Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+ * unnamed parameters</a>.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -103,6 +110,12 @@ public class FinalParametersCheck extends AbstractCheck {
     private boolean ignorePrimitiveTypes;
 
     /**
+     * Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+     * unnamed parameters</a>.
+     */
+    private boolean ignoreUnnamedParameters = true;
+
+    /**
      * Setter to ignore primitive types as parameters.
      *
      * @param ignorePrimitiveTypes true or false.
@@ -110,6 +123,18 @@ public class FinalParametersCheck extends AbstractCheck {
      */
     public void setIgnorePrimitiveTypes(boolean ignorePrimitiveTypes) {
         this.ignorePrimitiveTypes = ignorePrimitiveTypes;
+    }
+
+    /**
+     * Setter to ignore
+     * <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+     * unnamed parameters</a>.
+     *
+     * @param ignoreUnnamedParameters true or false.
+     * @since 10.18.0
+     */
+    public void setIgnoreUnnamedParameters(boolean ignoreUnnamedParameters) {
+        this.ignoreUnnamedParameters = ignoreUnnamedParameters;
     }
 
     @Override
@@ -195,7 +220,8 @@ public class FinalParametersCheck extends AbstractCheck {
      */
     private void checkParam(final DetailAST param) {
         if (param.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(TokenTypes.FINAL) == null
-                && !isIgnoredParam(param)
+                && !isIgnoredPrimitiveParam(param)
+                && !isIgnoredUnnamedParam(param)
                 && !CheckUtil.isReceiverParameter(param)) {
             final DetailAST paramName = param.findFirstToken(TokenTypes.IDENT);
             final DetailAST firstNode = CheckUtil.getFirstNode(param);
@@ -210,7 +236,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param paramDef {@link TokenTypes#PARAMETER_DEF PARAMETER_DEF}
      * @return true if param has to be skipped.
      */
-    private boolean isIgnoredParam(DetailAST paramDef) {
+    private boolean isIgnoredPrimitiveParam(DetailAST paramDef) {
         boolean result = false;
         if (ignorePrimitiveTypes) {
             final DetailAST type = paramDef.findFirstToken(TokenTypes.TYPE);
@@ -223,6 +249,17 @@ public class FinalParametersCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     *  Checks for skip current param due to <b>ignoreUnnamedParameters</b> option.
+     *
+     * @param paramDef parameter to check
+     * @return true if the parameter should be skipped due to the ignoreUnnamedParameters option.
+     */
+    private boolean isIgnoredUnnamedParam(final DetailAST paramDef) {
+        final DetailAST paramName = paramDef.findFirstToken(TokenTypes.IDENT);
+        return ignoreUnnamedParameters && paramName != null && "_".equals(paramName.getText());
     }
 
 }
