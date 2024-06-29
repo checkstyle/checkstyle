@@ -32,7 +32,7 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable
      * @return Some text.
      * @throws Exception Some text.
      */
-    String method4() throws Exception { // ok
+    String method4() throws Exception {
         return "null";
     }
 

@@ -3,103 +3,103 @@ package com.google.checkstyle.test.chapter7javadoc.rule73wherejavadocrequired;
 /**
  * This is a Javadoc comment.
  */
-public class InputMissingJavadocTypeCheckNoViolations { // OK
-  private int myInt; // OK
-  int myOtherInt; // OK
+public class InputMissingJavadocTypeCheckNoViolations {
+  private int myInt;
+  int myOtherInt;
 
   /**
    * This is a Javadoc comment.
    */
-  public class InnerPublic implements MyInterfacePublic { // OK
+  public class InnerPublic implements MyInterfacePublic {
 
   }
 
   /**
    * This is a Javadoc comment.
    */
-  public enum MyEnumPublic { // OK
+  public enum MyEnumPublic {
 
   }
 
   /**
    * This is a Javadoc comment.
    */
-  public interface MyInterfacePublic {  // OK
+  public interface MyInterfacePublic {
 
     /**
      * This is a Javadoc comment.
      */
-    class MyInterfaceClass {}  // OK
+    class MyInterfaceClass {}
   }
 
   /**
    * This is a Javadoc comment.
    */
-  public @interface MyAnnotationPublic { // OK
-
-  }
-
-  /**
-   * This is a Javadoc comment.
-   */
-  protected class InnerProtected { // OK
+  public @interface MyAnnotationPublic {
 
   }
 
   /**
    * This is a Javadoc comment.
    */
-  protected enum MyEnumProtected { // OK
+  protected class InnerProtected {
 
   }
 
   /**
    * This is a Javadoc comment.
    */
-  protected interface MyInterfaceProtected {  // OK
+  protected enum MyEnumProtected {
 
   }
 
   /**
    * This is a Javadoc comment.
    */
-  protected @interface MyAnnotationProtected { // OK
+  protected interface MyInterfaceProtected {
 
   }
 
-  class Inner { // OK
+  /**
+   * This is a Javadoc comment.
+   */
+  protected @interface MyAnnotationProtected {
 
   }
 
-  enum MyEnum { // OK
+  class Inner {
 
   }
 
-  interface MyInterface {  // OK
+  enum MyEnum {
 
   }
 
-  @interface MyAnnotation { // OK
+  interface MyInterface {
 
   }
 
-  private class InnerPrivate { // OK
+  @interface MyAnnotation {
 
   }
 
-  private enum MyEnumPrivate { // OK
+  private class InnerPrivate {
 
   }
 
-  private interface MyInterfacePrivate {  // OK
+  private enum MyEnumPrivate {
 
   }
 
-  private @interface MyAnnotationPrivate { // OK
+  private interface MyInterfacePrivate {
+
+  }
+
+  private @interface MyAnnotationPrivate {
 
   }
 
   public void myMethod() {
-    class MyMethodClass {} // OK
+    class MyMethodClass {}
   }
 }

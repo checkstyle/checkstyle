@@ -9,49 +9,49 @@ class InputRightCurlyOther {
             try {
                 if (x > 0) {
                     break;
-                } else if (x < 0) {  //ok
+                } else if (x < 0) {
 
                     ;
                 } // violation ''}' at column 17 should be on the same line as the next part of .*'
                 else {
                     break;
-                }//ok
+                }
                 switch (a) {
                 case 0:
                     break;
                 default:
                     break;
-                } //ok
+                }
             } // violation ''}' at column 13 should be on the same line as the next part of .*'
             catch (Exception e) {
                 break;
-            }//ok
-        }//ok
+            }
+        }
 
         synchronized (this) {
             do {
                 x = 2;
-            } while (x == 2); //ok
-        }//ok
+            } while (x == 2);
+        }
 
         this.wait(666
                  ); // Bizarre, but legal
 
         for (int k = 0; k < 1; k++) {
             String innerBlockVariable = "";
-        }//ok
+        }
 
 
         if (System.currentTimeMillis() > 1000)
             return 1;
         else
             return 2;
-    }//ok
+    }
 
 
     static {
         int x = 1;
-    }//ok
+    }
 
     public enum GreetingsEnum {
         HELLO,
@@ -69,8 +69,8 @@ class InputRightCurlyOther {
         if (flag) {
             System.identityHashCode("some foo");
         }
-    } //ok
-} //ok
+    }
+}
 
 /**
  * Test input for closing brace if that brace terminates
@@ -107,20 +107,20 @@ class EnumContainerAlone {
 }
 
 class WithArraysAlone {
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
+    String[] s = {""};
+    String[] empty = {};
     String[] s1 = {
         "foo", "foo",
-    }; // ok
+    };
     String[] s2 = {
             "foo", "foo",
-        }; // ok
+        };
     String[] s3 = {
             "foo",
             "foo",
-        }; // ok
+        };
     String[] s4 =
-        {"foo", "foo"}; // ok
+        {"foo", "foo"};
 }
 
 class Interface {
@@ -133,10 +133,10 @@ class Interface {
 
     public @interface TestAnnotation3 {
         String someValue();
-    } //ok
+    }
 
     public @interface TestAnnotation4 { String someValue();
-    } //ok
+    }
 }
 
 enum TestEnum {}

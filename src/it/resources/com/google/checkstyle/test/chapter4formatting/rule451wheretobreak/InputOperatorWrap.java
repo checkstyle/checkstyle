@@ -56,7 +56,7 @@ class InputOperatorWrap
 
         int init = 9;
 
-        /*ok*/ for (Map.Entry<String, String> entry :
+        for (Map.Entry<String, String> entry :
             map.entrySet())
         {
             /*warn*/int i = flag == true ?
@@ -101,7 +101,7 @@ class InputOperatorWrap
 
             int init = 9;
 
-            /*ok*/ for (Map.Entry<String, String> entry :
+            for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 /*warn*/int i = flag == true ?
@@ -147,7 +147,7 @@ class InputOperatorWrap
             boolean flag = false;
             int init = 9;
 
-            /*ok*/ for (Map.Entry<String, String> entry :
+            for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
                 /*warn*/int i = flag == true ?
@@ -184,7 +184,7 @@ class AsInput {
     int abc = 0;
     String string
         = "string";
-    double PI = // ok
+    double PI =
             3.1415;
 }
 
