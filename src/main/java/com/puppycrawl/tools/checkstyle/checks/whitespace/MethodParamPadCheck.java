@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <p>
  * Checks the padding between the identifier of a method definition,
- * constructor definition, method call, or constructor invocation;
+ * constructor definition, method call, constructor invocation, record or record pattern;
  * and the left parenthesis of the parameter list.
  * That is, if the identifier and left parenthesis are on the same line,
  * checks whether a space is required immediately after the identifier or
@@ -72,7 +72,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
  * ENUM_CONSTANT_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+ * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -142,6 +144,7 @@ public class MethodParamPadCheck
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_PATTERN_DEF,
         };
     }
 

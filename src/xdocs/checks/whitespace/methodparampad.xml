@@ -11,7 +11,7 @@
       <subsection name="Description" id="Description">
         <p>
           Checks the padding between the identifier of a method definition,
-          constructor definition, method call, or constructor invocation; and
+          constructor definition, method call, constructor invocation, record or record pattern; and
           the left parenthesis of the parameter list. That is, if the
           identifier and left parenthesis are on the same line, checks whether
           a space is required immediately after the identifier or such a space
@@ -66,6 +66,8 @@
                     ENUM_CONSTANT_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+                    RECORD_PATTERN_DEF</a>
                   .
               </td>
               <td>
@@ -85,6 +87,8 @@
                     ENUM_CONSTANT_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+                    RECORD_PATTERN_DEF</a>
                   .
               </td>
               <td>3.4</td>
