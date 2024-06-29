@@ -191,6 +191,7 @@ public class MethodParamPadCheckTest
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_PATTERN_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -223,5 +224,19 @@ public class MethodParamPadCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputMethodParamPadSetOptionTrim.java"), expected);
+    }
+
+    @Test
+    public void testRecordPattern() throws Exception {
+        final String[] expected = {
+            "19:41: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "22:42: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "22:50: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "36:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodParamPadCheckRecordPattern.java"), expected);
     }
 }
