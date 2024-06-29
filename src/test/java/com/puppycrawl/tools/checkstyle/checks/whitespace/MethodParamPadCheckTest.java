@@ -191,6 +191,7 @@ public class MethodParamPadCheckTest
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_PATTERN_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -223,5 +224,39 @@ public class MethodParamPadCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputMethodParamPadSetOptionTrim.java"), expected);
+    }
+
+    @Test
+    public void testRecordPattern() throws Exception {
+        final String[] expected = {
+            "19:41: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "22:42: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "22:50: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "31:39: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "36:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "57:41: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "57:49: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodParamPadCheckRecordPattern.java"), expected);
+    }
+
+    @Test
+    public void testRecordPattern2() throws Exception {
+        final String[] expected = {
+            "23:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "23:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "31:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "36:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "39:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "40:26: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "44:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "46:22: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+            "50:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "50:47: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodParamPadCheckRecordPattern2.java"), expected);
     }
 }
