@@ -20,7 +20,7 @@ class inputHeaderClass {
 
 }
 
-class ValidName {} //ok
+class ValidName {}
 
 class _ValidName {} // violation 'Type name '_ValidName' must match pattern'
 
@@ -28,7 +28,7 @@ class Valid_Name {} // violation 'Type name 'Valid_Name' must match pattern'
 
 class ValidName_ {} // violation 'Type name 'ValidName_' must match pattern'
 
-interface Foo {} // ok
+interface Foo {}
 
 interface _Foo {} // violation 'Type name '_Foo' must match pattern'
 
@@ -42,7 +42,7 @@ interface Fo$o {} // violation 'Type name '.*' must match pattern'
 
 interface Foo$ {} // violation 'Type name '.*' must match pattern'
 
-enum FooEnum {} //ok
+enum FooEnum {}
 
 enum _FooEnum {} // violation 'Type name '_FooEnum' must match pattern'
 
@@ -62,7 +62,7 @@ interface bbb {} // violation 'Type name 'bbb' must match pattern'
 
 enum ccc {} // violation 'Type name 'ccc' must match pattern'
 
-@interface Annotation {} //ok
+@interface Annotation {}
 
 @interface _Annotation {}
 // violation above 'Type name '_Annotation' must match pattern'

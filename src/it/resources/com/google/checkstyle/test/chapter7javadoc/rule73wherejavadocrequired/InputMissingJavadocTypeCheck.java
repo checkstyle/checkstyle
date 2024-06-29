@@ -35,7 +35,7 @@ public class InputMissingJavadocTypeCheck { //warn
     }
 
     public void myMethod() {
-        class MyMethodClass {} // ok
+        class MyMethodClass {}
     }
 
 }

@@ -2,15 +2,15 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputLeftCurlyMethod
 { // violation ''{' at column 1 should be on the previous line.'
-    InputLeftCurlyMethod() {} //ok
-    InputLeftCurlyMethod(String aOne) {//ok
+    InputLeftCurlyMethod() {}
+    InputLeftCurlyMethod(String aOne) {
     }
     InputLeftCurlyMethod(int aOne)
     { // violation ''{' at column 5 should be on the previous line.'
     }
 
-    void method1() {}//ok
-    void method2() {//ok
+    void method1() {}
+    void method2() {
     }
     void method3()
     { // violation ''{' at column 5 should be on the previous line.'
@@ -23,7 +23,7 @@ class InputLeftCurlyMethod
     {// violation ''{' at column 5 should be on the previous line.'
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 
@@ -31,9 +31,9 @@ enum InputLeftCurlyMethodEnum
 {// violation ''{' at column 1 should be on the previous line.'
     CONSTANT1("hello")
     {// violation ''{' at column 5 should be on the previous line.'
-        void method1() {}//ok
+        void method1() {}
         void method2() {
-        }//ok
+        }
         void method3()
         {// violation ''{' at column 9 should be on the previous line.'
         }
@@ -45,11 +45,11 @@ enum InputLeftCurlyMethodEnum
         {// violation ''{' at column 9 should be on the previous line.'
         }
         void method6(String aOne,
-                     String aTwo) {//ok
+                     String aTwo) {
         }
     },
 
-    CONSTANT2("hello") {//ok
+    CONSTANT2("hello") {
 
     },
 
@@ -62,8 +62,8 @@ enum InputLeftCurlyMethodEnum
 
     }
 
-    void method1() {}//ok
-    void method2() {//ok
+    void method1() {}
+    void method2() {
     }
     void method3()
     {// violation ''{' at column 5 should be on the previous line.'
@@ -76,7 +76,7 @@ enum InputLeftCurlyMethodEnum
     {// violation ''{' at column 5 should be on the previous line.'
     }
     void method6(String aOne,
-                 String aTwo) {// ok
+                 String aTwo) {
     }
 }
 
