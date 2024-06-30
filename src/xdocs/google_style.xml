@@ -779,7 +779,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.4-column-limit">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.4-column-limit">
                     4.4 Column limit: 100</a>
                 </td>
                 <td>
@@ -803,7 +803,7 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule44columnlimit/LineLengthTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule44columnlimit/ColumnLimit100Test.java">
                     test</a>
                 </td>
               </tr>
