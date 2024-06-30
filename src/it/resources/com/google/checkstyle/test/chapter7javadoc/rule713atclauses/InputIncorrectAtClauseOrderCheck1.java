@@ -37,7 +37,7 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @deprecated Some text.
-     * @throws Exception Some text. //warn
+     * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
      */
     String method(String aString) throws Exception
     {
@@ -48,7 +48,7 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
      * Some text.
      * @serialData Some javadoc.
      * @return Some text.
-     * @param aString Some text. //warn
+     * @param aString Some text. // violation 'Block tags have to appear in the order .*'
      * @throws Exception Some text.
      */
     String method1(String aString) throws Exception
@@ -70,8 +70,8 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
          * Some text.
          * @return Some text.
          * @deprecated Some text.
-         * @param aString Some text. //warn
-         * @throws Exception Some text. //warn
+         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+         * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method(String aString) throws Exception
         {
@@ -81,8 +81,8 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
-         * @param aString Some text. //warn
+         * @return Some text. // violation 'Block tags have to appear in the order .*'
+         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method1(String aString) throws Exception
         {
@@ -95,10 +95,10 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @param aString Some text. //warn
+         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
          * @serialData Some javadoc.
          * @deprecated Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method(String aString) throws Exception
         {
@@ -109,7 +109,7 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable
          * Some text.
          * @param aString Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method1(String aString) throws Exception
         {

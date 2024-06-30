@@ -240,7 +240,6 @@ public class XdocsPagesTest {
             "5.2.6 Parameter names",
             "5.2.8 Type variable names",
             "7.1.2 Paragraphs",
-            "7.1.3 Block tags",
             "7.3 Where Javadoc is used",
             "7.3.1 Exception: self-explanatory methods",
             "7.3.2 Exception: overrides",

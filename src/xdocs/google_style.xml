@@ -2190,7 +2190,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1.3-javadoc-at-clauses">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7.1.3-javadoc-at-clauses">
                     7.1.3 Block tags</a>
                 </td>
                 <td>
@@ -2218,15 +2218,11 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/AtclauseOrderTest.java">
-                    test</a><br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/JavadocTagContinuationIndentationTest.java">
-                    test</a><br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/NonEmptyAtclauseDescriptionTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/BlockTagsTest.java">
                     test</a>
                 </td>
               </tr>
