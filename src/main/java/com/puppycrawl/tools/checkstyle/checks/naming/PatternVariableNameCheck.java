@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
  * </li>
  * </ul>
  * <p>
@@ -51,7 +51,7 @@ public class PatternVariableNameCheck extends AbstractNameCheck {
 
     /** Creates a new {@code PatternVariableNameCheck} instance. */
     public PatternVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^([a-z][a-zA-Z0-9]*|_)$");
     }
 
     @Override
