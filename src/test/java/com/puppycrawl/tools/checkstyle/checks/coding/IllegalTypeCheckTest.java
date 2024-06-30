@@ -480,10 +480,31 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "77:18: " + getCheckMessage(MSG_KEY, "Rectangle"),
             "77:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
             "77:41: " + getCheckMessage(MSG_KEY, "Point"),
-            "83:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
+                expected);
+    }
+
+    @Test
+    public void testIllegalTypeWithUnnamedVariables() throws Exception {
+        final String[] expected = {
+            "30:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "35:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "41:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "53:38: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "57:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "57:41: " + getCheckMessage(MSG_KEY, "Point"),
+            "61:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "66:28: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "87:14: " + getCheckMessage(MSG_KEY, "Point"),
+            "88:14: " + getCheckMessage(MSG_KEY, "Point"),
+            "92:25: " + getCheckMessage(MSG_KEY, "Point"),
+            "93:22: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+            "93:46: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeWithUnnamedVariables.java"),
                 expected);
     }
 }
