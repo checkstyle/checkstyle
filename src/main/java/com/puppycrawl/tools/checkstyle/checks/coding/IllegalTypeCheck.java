@@ -334,6 +334,57 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if current variable or pattern variable is unnamed.
+     *
+     * @param variableDef variable to check.
+     * @return true if the variable is unnamed.
+     */
+    private static boolean isUnnamedVariable(DetailAST variableDef) {
+        final DetailAST ident = variableDef.findFirstToken(TokenTypes.IDENT);
+        return "_".equals(ident.getText());
+    }
+
+    /**
+     * Checks if current ast is a record pattern that should be ignored.
+     * Record patterns should be ignored if all of its nested component are
+     * unnamed pattern definition or unnamed pattern variables. In this case
+     * the record pattern is not used.
+     *
+     * @param ast node to check.
+     * @return true if the node is a record pattern that should be ignored.
+     */
+    private boolean ignoreRecordPattern(DetailAST ast) {
+        return ast.getType() == TokenTypes.RECORD_PATTERN_DEF
+               && ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS) != null
+               && !checkRecordPatternComponents(
+                    ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS));
+    }
+
+    /**
+     * Checks if record pattern components are unnamed patterns or variables.
+     * If all the nested components are unnamed then the record pattern is not used.
+     *
+     * @param recordComponents record components to check.
+     * @return true if at least one nested component is not unnamed.
+     */
+    private boolean checkRecordPatternComponents(DetailAST recordComponents) {
+        boolean result = false;
+        for (DetailAST ast = recordComponents.getFirstChild(); ast != null;
+             ast = ast.getNextSibling()) {
+            if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF
+                && !isUnnamedVariable(ast)) {
+                result = true;
+                break;
+            }
+            if (ast.getType() == TokenTypes.RECORD_PATTERN_DEF) {
+                result = checkRecordPatternComponents(
+                    ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS));
+            }
+        }
+        return result;
+    }
+
+    /**
      * Checks is modifiers contain verifiable type.
      *
      * @param modifiers
@@ -401,7 +452,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param variableDef variable to check.
      */
     private void visitVariableDef(DetailAST variableDef) {
-        if (isVerifiable(variableDef)) {
+        if (isVerifiable(variableDef) && !isUnnamedVariable(variableDef)) {
             checkClassName(variableDef);
         }
     }
@@ -460,9 +511,11 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param ast node to check.
      */
     private void checkClassName(DetailAST ast) {
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        checkType(type);
-        checkTypeParameters(ast);
+        if (!ignoreRecordPattern(ast)) {
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            checkType(type);
+            checkTypeParameters(ast);
+        }
     }
 
     /**
