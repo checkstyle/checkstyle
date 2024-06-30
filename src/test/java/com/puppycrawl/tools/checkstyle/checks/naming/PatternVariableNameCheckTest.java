@@ -48,7 +48,7 @@ public class PatternVariableNameCheckTest
     @Test
     public void testDefault() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
             "18:39: " + getCheckMessage(MSG_INVALID_PATTERN, "OTHER", pattern),
@@ -96,6 +96,28 @@ public class PatternVariableNameCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
                         "InputPatternVariableNameEnhancedInstanceofNoSingleChar.java"),
+                expected);
+    }
+
+    @Test
+    public void testPatternVariableNameUnnamed() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "17:33: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "19:33: " + getCheckMessage(MSG_INVALID_PATTERN, "_s", pattern),
+            "22:33: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "29:25: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "32:25: " + getCheckMessage(MSG_INVALID_PATTERN, "_s", pattern),
+            "40:67: " + getCheckMessage(MSG_INVALID_PATTERN, "_Color", pattern),
+            "45:59: " + getCheckMessage(MSG_INVALID_PATTERN, "_Color", pattern),
+            "51:76: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputPatternVariableNameUnnamed.java"),
                 expected);
     }
 }
