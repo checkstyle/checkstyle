@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
-class InputNonEmptyAtclauseDescriptionCheck
+class InputNonEmptyAtclauseDescription
 {
     /**
      * Some javadoc
@@ -29,13 +29,19 @@ class InputNonEmptyAtclauseDescriptionCheck
         return 1;
     }
 
+    // violation 8 lines below 'At-clause should have a non-empty description.'
+    // violation 8 lines below 'At-clause should have a non-empty description.'
+    // violation 8 lines below 'At-clause should have a non-empty description.'
+    // violation 8 lines below 'At-clause should have a non-empty description.'
+    // violation 8 lines below 'At-clause should have a non-empty description.'
+    // violation 8 lines below 'At-clause should have a non-empty description.'
     /**
      *
      * @param a
      * @param b
      * @param c
-     * @deprecated
      * @throws Exception
+     * @deprecated
      * @deprecated
      */
     public int foo3(String a, int b, double c) throws Exception
@@ -43,13 +49,18 @@ class InputNonEmptyAtclauseDescriptionCheck
         return 1;
     }
 
+    // violation 7 lines below 'At-clause should have a non-empty description.'
+    // violation 7 lines below 'At-clause should have a non-empty description.'
+    // violation 7 lines below 'At-clause should have a non-empty description.'
+    // violation 7 lines below 'At-clause should have a non-empty description.'
+    // violation 7 lines below 'At-clause should have a non-empty description.'
     /**
      *
      * @param a
      * @param b
      * @param c
-     * @deprecated
      * @throws Exception
+     * @deprecated
      */
     public int foo4(String a, int b, double c) throws Exception
     {
