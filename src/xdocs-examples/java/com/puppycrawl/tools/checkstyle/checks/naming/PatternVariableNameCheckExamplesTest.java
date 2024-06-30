@@ -34,7 +34,7 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
 
-        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", pattern),
