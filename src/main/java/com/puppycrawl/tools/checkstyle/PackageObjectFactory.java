@@ -535,6 +535,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.MagicNumberCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingCtorCheck",
                 BASE_PACKAGE + ".checks.coding.MissingCtorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MissingNullCaseInSwitchCheck",
+                BASE_PACKAGE + ".checks.coding.MissingNullCaseInSwitchCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingSwitchDefaultCheck",
                 BASE_PACKAGE + ".checks.coding.MissingSwitchDefaultCheck");
         NAME_TO_FULL_MODULE_NAME.put("ModifiedControlVariableCheck",
