@@ -46,7 +46,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        final String defaultPattern = "^[a-z][a-zA-Z0-9]*$";
+        final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedViolation = {
             "6:33: " + getCheckMessage(PatternVariableNameCheck.class,
