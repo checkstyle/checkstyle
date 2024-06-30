@@ -40,7 +40,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks that particular classes or interfaces are never used.
  * </p>
  * <p>
- * Rationale: Helps reduce coupling on concrete classes.
+ * Rationale: Helps reduce coupling on concrete classes by promoting
+ * the use of interfaces or more generic types rather than concrete implementations.
+ * </p>
+ * <p>
+ * The focus is on scenarios where the use of concrete types can introduce coupling,
+ * such as in variable declarations, method return types, or parameters.
+ * Types that do not contribute to coupling are not considered violations.
+ * If a type cannot be used in a way that introduces dependency,
+ * it falls outside the scope of this check.
+ * </p>
+ * <p>
+ * For example, when {@code instanceof} is used without a corresponding pattern,
+ * it does not introduce tight coupling. Therefore, such instances should not be
+ * flagged as violations. Since there is no variable, there is no opportunity to
+ * gain flexibility by making the type looser.
  * </p>
  * <p>
  * For additional restriction of type usage see also:
