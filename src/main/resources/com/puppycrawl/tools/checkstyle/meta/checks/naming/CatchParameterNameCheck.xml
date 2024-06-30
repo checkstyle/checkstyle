@@ -16,13 +16,14 @@
  &lt;li&gt;allows {@code e} abbreviation (suitable for exceptions end errors)&lt;/li&gt;
  &lt;li&gt;allows {@code ex} abbreviation (suitable for exceptions)&lt;/li&gt;
  &lt;li&gt;allows {@code t} abbreviation (suitable for throwables)&lt;/li&gt;
+ &lt;li&gt;allows {@code _} for unnamed catch parameters&lt;/li&gt;
  &lt;li&gt;prohibits numbered abbreviations like {@code e1} or {@code t2}&lt;/li&gt;
  &lt;li&gt;prohibits one letter prefixes like {@code pException}&lt;/li&gt;
  &lt;li&gt;prohibits two letter abbreviations like {@code ie} or {@code ee}&lt;/li&gt;
  &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
-            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"
+            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
