@@ -10,6 +10,259 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.18.0">
+      <div class="releaseDate">30.06.2024</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            LITERAL_WHEN and LAND tokens in switch statements should have EXPR child.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/15082">#15082</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            CatchParameterName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15015">#15015</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            LambdaParameterName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15014">#15014</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            IllegalIdentifierName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15016">#15016</a>
+          </li>
+          <li>
+            LocalFinalVariableName must include `_`.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15012">#15012</a>
+          </li>
+          <li>
+            Define severity for google style config by variable.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15053">#15053</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : IllegalType.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14946">#14946</a>
+          </li>
+          <li>
+            False positive in FinalLocalVariable check on unnamed variables.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14981">#14981</a>
+          </li>
+          <li>
+            Add support to check grouping of Constructors in google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14907">#14907</a>
+          </li>
+          <li>
+            new check: LeadingAsteriskAlignCheck.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/6723">#6723</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingSwitchDefault : False positive when `case null` in switch labeled statement group.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15123">#15123</a>
+          </li>
+          <li>
+            LocalVariableNameCheck incorrectly flags variables named `_` (see JEP456).
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14688">#14688</a>
+          </li>
+          <li>
+            Add Support for Java 21 Record Pattern : MissingSwitchDefault.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14891">#14891</a>
+          </li>
+          <li>
+            Remove href from LineLength module property in google style config and update test cases.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14955">#14955</a>
+          </li>
+          <li>
+            False positives when first sentence of Javadoc is on a separate line.
+            Author: patchwork01
+            <a href="https://github.com/checkstyle/checkstyle/issues/14689">#14689</a>
+          </li>
+          <li>
+            MethodParamPad ignores explicit constructor invocation.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/13675">#13675</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax: OperatorWrap .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15007">#15007</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Livinglaser3, SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Migrate google style guide tests to follow chapter wise testing.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14937">#14937</a>
+          </li>
+          <li>
+            Update all Inputs that has inlined violations to avoid leading and trailing wildcard .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/15144">#15144</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Bdd violations messages should allow skip of leading and trailing &#39;.*&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15138">#15138</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: MagicNumber.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15107">#15107</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax : AbbreviationAsWordInName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15004">#15004</a>
+          </li>
+          <li>
+            Add support to check input file against whole google configuration for Google IT tests.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15026">#15026</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: Indentation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14971">#14971</a>
+          </li>
+          <li>
+            resolve PMD warning on config.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14936">#14936</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Add regexp module to checkstyle_checks.xml config to validate `since` version number.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12653">#12653</a>
+          </li>
+          <li>
+            Issue #14899: Updated google coverage page regarding section 7.1.2 Paragraphs.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15022">#15022</a>
+          </li>
+          <li>
+            Add new section 4.8.5.4 Field Annotations in google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14914">#14914</a>
+          </li>
+          <li>
+            Add new section 4.8.5.3 Methods and Constructors Annotations in google style guide
+            implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14911">#14911</a>
+          </li>
+          <li>
+            Wrong comment in documentation example.
+            Author: kshuryhin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14996">#14996</a>
+          </li>
+          <li>
+            Google style IT test Inputs should have support  of violation message.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14929">#14929</a>
+          </li>
+          <li>
+            Add new section 4.8.5.2 Class Annotations to google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14910">#14910</a>
+          </li>
+          <li>
+            Google style 7.1.1 has reference to already closed issue .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14947">#14947</a>
+          </li>
+          <li>
+            Remove JSNI message from google style coverage page and explain the reason behind it.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14938">#14938</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : HiddenField.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14964">#14964</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : EqualsAvoidNull.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14952">#14952</a>
+          </li>
+          <li>
+            Google Style page isn&#39;t consistent in spacing with multiple checks.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14930">#14930</a>
+          </li>
+          <li>
+            Rename section 4.8.4.3 of google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14909">#14909</a>
+          </li>
+          <li>
+            Rename section 4.1.1 of google style guide implementation and add new test cases for
+            lambdas.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14908">#14908</a>
+          </li>
+          <li>
+            Create and Document Check Update Procedure for New Language Features.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14889">#14889</a>
+          </li>
+          <li>
+            Add Latest Version of Google Java Style Guide .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14899">#14899</a>
+          </li>
+          <li>
+            spelling: added detailed message to spelling test script.
+            Author: SteLeo1602
+          </li>
+          <li>
+            doc: fixes release notes from release.
+            Author: rnveach
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.17.0">
       <div class="releaseDate">26.05.2024</div>
       <p>Breaking backward compatibility:</p>
