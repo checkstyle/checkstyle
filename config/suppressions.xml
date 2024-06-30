@@ -62,6 +62,8 @@
   <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
   <!-- Utility class is combination of a lot of different methods .  -->
   <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
+  <!-- IllegalType has 6 options which require 6 additional methods (setters) -->
+  <suppress checks="MethodCount" files="[\\/]IllegalType.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
