@@ -162,6 +162,21 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATIONS_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*(\\d+) violations (\\d+) lines above:$");
 
+    /**
+     * <p>
+     * Multiple violations for line. Violations are Y lines below, messages are X lines below.
+     * {@code
+     *   // X violations Y lines below:
+     *   //                            'violation message1'
+     *   //                            'violation messageX'
+     * }
+     *
+     * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
+     * </p>
+     */
+    private static final Pattern VIOLATIONS_SOME_LINES_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*(\\d+) violations (\\d+) lines below:$");
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -598,6 +613,8 @@ public final class InlineConfigParser {
                 VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(lines.get(lineNo));
         final Matcher violationsSomeLinesAboveMatcher =
                 VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(lines.get(lineNo));
+        final Matcher violationsSomeLinesBelowMatcher =
+                VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(lines.get(lineNo));
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             final int violationLineNum = lineNo + 1;
@@ -654,13 +671,18 @@ public final class InlineConfigParser {
         }
         else if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLineAbove(
+                getExpectedViolationsForSpecificLine(
                     lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
                 getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher));
+                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+        }
+        else if (violationsSomeLinesBelowMatcher.matches()) {
+            inputConfigBuilder.addViolations(
+                    getExpectedViolations(
+                            lines, lineNo, violationsSomeLinesBelowMatcher, false));
         }
         else if (multipleViolationsMatcher.matches()) {
             Collections
@@ -690,7 +712,7 @@ public final class InlineConfigParser {
         }
     }
 
-    private static List<TestInputViolation> getExpectedViolationsForSpecificLineAbove(
+    private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
                                               List<String> lines, int lineNo, int violationLineNum,
                                               Matcher matcher) {
         final List<TestInputViolation> results = new ArrayList<>();
@@ -716,11 +738,13 @@ public final class InlineConfigParser {
 
     private static List<TestInputViolation> getExpectedViolations(
                                               List<String> lines, int lineNo,
-                                              Matcher matcher) {
-        final int linesAbove =
+                                              Matcher matcher, boolean isAbove) {
+        final int violationLine =
             Integer.parseInt(matcher.group(2));
-        final int violationLineNum = lineNo - linesAbove + 1;
-        return getExpectedViolationsForSpecificLineAbove(lines,
+        final int violationLineNum =
+                isAbove ? lineNo - violationLine + 1
+                        : lineNo + violationLine + 1;
+        return getExpectedViolationsForSpecificLine(lines,
             lineNo, violationLineNum, matcher);
     }
 
