@@ -19,16 +19,18 @@
 
 package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class ClassTypeParameterNameTest extends AbstractGoogleModuleTestSupport {
+public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String MSG_KEY = "name.invalidPattern";
+    private static final String[] MODULES = {
+        "MethodTypeParameterName",
+        "RecordTypeParameterName",
+        "InterfaceTypeParameterName",
+        "ClassTypeParameterName",
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -36,21 +38,26 @@ public class ClassTypeParameterNameTest extends AbstractGoogleModuleTestSupport 
     }
 
     @Test
-    public void testClassDefault() throws Exception {
-        final Configuration configuration = getModuleConfig("ClassTypeParameterName");
-        final String format = configuration.getProperty("format");
-        final Map<String, String> messages = configuration.getMessages();
-
-        final String[] expected = {
-            "5:36: " + getCheckMessage(messages, MSG_KEY, "t", format),
-            "13:14: " + getCheckMessage(messages, MSG_KEY, "foo", format),
-            "27:24: " + getCheckMessage(messages, MSG_KEY, "$foo", format),
-        };
-
-        final String filePath = getPath("InputClassTypeParameterName.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(configuration, filePath, expected, warnList);
+    public void testMethodDefault() throws Exception {
+        final String filePath = getPath("InputMethodTypeParameterName.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
+    @Test
+    public void testClassDefault() throws Exception {
+        final String filePath = getPath("InputClassTypeParameterName.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
+
+    @Test
+    public void testInterfaceDefault() throws Exception {
+        final String filePath = getPath("InputInterfaceTypeParameterName.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
+
+    @Test
+    public void testRecordDefault() throws Exception {
+        final String filePath = getNonCompilablePath("InputRecordTypeParameterName.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
 }
