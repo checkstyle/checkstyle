@@ -1638,6 +1638,31 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
+    <specifier>cast.unsafe</specifier>
+    <message>cast from &quot;@KeyFor(&quot;super&quot;) Object&quot; to &quot;@KeyFor(&quot;[error for expression: super; error: Invalid &apos;super&apos; because the expression did not parse. Error message: Encountered unexpected token:&lt;EOF&gt;]&quot;) String&quot; cannot be statically verified</message>
+    <lineContent>final String keyString = (String) key;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
+    <specifier>contracts.postcondition</specifier>
+    <message>postcondition of put is not satisfied.</message>
+    <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
+    <details>
+      found   : key is @KeyFor(&quot;super&quot;)
+      required: key is @KeyFor(&quot;this&quot;)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
+    <specifier>expression.unparsable</specifier>
+    <message>Expression invalid in dependent type annotation: [error for expression: super; error: Invalid &apos;super&apos; because the expression did not parse. Error message: Encountered unexpected token:&lt;EOF&gt;]</message>
+    <lineContent>final String keyString = (String) key;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to setFileExtensions(java.lang.String...) not allowed on the given receiver.</message>
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>

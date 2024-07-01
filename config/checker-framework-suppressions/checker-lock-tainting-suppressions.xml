@@ -46,13 +46,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
-    <specifier>method.guarantee.violated</specifier>
-    <message>@SideEffectFree method toString calls method name with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>return name().toLowerCase(Locale.ROOT);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Main.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>messages.forEach(System.out::println);</lineContent>
