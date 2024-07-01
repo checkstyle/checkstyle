@@ -1857,7 +1857,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.8-type-variable-names">
                     5.2.8 Type variable names</a>
                 </td>
                 <td>
@@ -1895,24 +1895,16 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/MethodTypeParameterNameTest.java">
-                    test</a>
-                  <br />
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
                     config</a>
-                  <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/ClassTypeParameterNameTest.java">
-                    test</a>
                   <br />
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/InterfaceTypeParameterNameTest.java">
-                    test</a>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/RecordTypeParameterNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/TypeVariableNamesTest.java">
                     test</a>
                   <br />
                 </td>
