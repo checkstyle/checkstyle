@@ -3047,6 +3047,50 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testIndentationRecordPattern()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+
+        final String fileName = getNonCompilablePath(
+                "InputIndentationRecordPattern.java");
+        final String[] expected = {
+            "19:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "24:9: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 8, 12),
+            "29:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "31:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "34:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "37:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "39:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "40:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "41:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "42:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "45:17: " + getCheckMessage(MSG_ERROR, "Rectangle", 16, 12),
+            "46:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "47:25: " + getCheckMessage(MSG_ERROR, "boolean", 24, 12),
+            "48:17: " + getCheckMessage(MSG_ERROR, "int", 16, 12),
+            "49:25: " + getCheckMessage(MSG_ERROR, "_", 24, 12),
+            "50:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
+            "51:17: " + getCheckMessage(MSG_ERROR, ")", 16, 8),
+            "55:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "56:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "57:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "58:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "59:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "60:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "61:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "69:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 16),
+            "70:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
