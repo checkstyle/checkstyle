@@ -40,7 +40,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks that particular classes or interfaces are never used.
  * </p>
  * <p>
- * Rationale: Helps reduce coupling on concrete classes.
+ * Rationale: Helps reduce coupling on concrete classes by promoting
+ * the use of interfaces or more generic types rather than concrete implementations.
+ * </p>
+ * <p>
+ * The focus is on scenarios where the use of concrete types can introduce coupling,
+ * such as in variable declarations, method return types, or parameters.
+ * Types that do not contribute to coupling are not considered violations.
+ * If a type cannot be used in a way that introduces dependency,
+ * it falls outside the scope of this check.
+ * </p>
+ * <p>
+ * For example, when {@code instanceof} is used without a corresponding pattern,
+ * it does not introduce tight coupling. Therefore, such instances should not be
+ * flagged as violations. Since there is no variable, there is no opportunity to
+ * gain flexibility by making the type looser.
  * </p>
  * <p>
  * For additional restriction of type usage see also:
@@ -334,6 +348,57 @@ public final class IllegalTypeCheck extends AbstractCheck {
     }
 
     /**
+     * Checks if current variable or pattern variable is unnamed.
+     *
+     * @param variableDef variable to check.
+     * @return true if the variable is unnamed.
+     */
+    private static boolean isUnnamedVariable(DetailAST variableDef) {
+        final DetailAST ident = variableDef.findFirstToken(TokenTypes.IDENT);
+        return "_".equals(ident.getText());
+    }
+
+    /**
+     * Checks if current ast is a record pattern that should be ignored.
+     * Record patterns should be ignored if all of its nested component are
+     * unnamed pattern definition or unnamed pattern variables. In this case
+     * the record pattern is not used.
+     *
+     * @param ast node to check.
+     * @return true if the node is a record pattern that should be ignored.
+     */
+    private static boolean ignoreRecordPattern(DetailAST ast) {
+        final DetailAST recordComponents =
+                ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS);
+        return recordComponents != null
+               && !checkRecordPatternComponents(recordComponents);
+    }
+
+    /**
+     * Check whether any named component or nested component
+     * in the record pattern exists.
+     *
+     * @param recordComponents record components to check.
+     * @return true if at least one nested component is named.
+     */
+    private static boolean checkRecordPatternComponents(DetailAST recordComponents) {
+        boolean result = false;
+        for (DetailAST ast = recordComponents.getFirstChild(); ast != null;
+             ast = ast.getNextSibling()) {
+            if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF
+                && !isUnnamedVariable(ast)) {
+                result = true;
+                break;
+            }
+            if (ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS) != null) {
+                result = checkRecordPatternComponents(
+                    ast.findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS));
+            }
+        }
+        return result;
+    }
+
+    /**
      * Checks is modifiers contain verifiable type.
      *
      * @param modifiers
@@ -401,7 +466,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param variableDef variable to check.
      */
     private void visitVariableDef(DetailAST variableDef) {
-        if (isVerifiable(variableDef)) {
+        if (isVerifiable(variableDef) && !isUnnamedVariable(variableDef)) {
             checkClassName(variableDef);
         }
     }
@@ -460,9 +525,11 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param ast node to check.
      */
     private void checkClassName(DetailAST ast) {
-        final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        checkType(type);
-        checkTypeParameters(ast);
+        if (!ignoreRecordPattern(ast)) {
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            checkType(type);
+            checkTypeParameters(ast);
+        }
     }
 
     /**
