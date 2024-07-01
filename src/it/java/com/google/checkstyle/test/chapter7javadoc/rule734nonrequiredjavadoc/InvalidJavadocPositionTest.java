@@ -29,7 +29,7 @@ public class InvalidJavadocPositionTest extends AbstractGoogleModuleTestSupport 
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter7javadoc/rule711generalform";
+        return "com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc";
     }
 
     @Test
