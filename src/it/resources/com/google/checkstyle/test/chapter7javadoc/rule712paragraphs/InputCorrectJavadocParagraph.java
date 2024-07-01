@@ -2,51 +2,62 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
 /**
  * Some Javadoc.
- * <p> //warn
- * /^ WARN/   Some Javadoc.<p> //warn
+ *
+ * <p>Some Javadoc.
  *
  */
-class InputIncorrectJavadocParagraphCheck {
+class InputCorrectJavadocParagraph {
 
     /**
-     * Some Javadoc.<P>  //warn
+     * Some Javadoc.
      *
-     * <p>  Some Javadoc. //warn
+     * <p>{@code function} will never be invoked with a null value.
      *
      * @since 8.0
      */
     public static final byte NUL = 0;
 
     /**
-     * Some <p>Javadoc.//warn
+     * Some Javadoc.
      *
      * <p>Some Javadoc.
+     *
+     * <pre>
+     * class Foo {
+     *
+     *   void foo() {}
+     * }
+     * </pre>
      *
      * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
 
-    /**<p>Some Javadoc. //warn
-     * <p> //warn
-     * <p><p> //warn
-     * <p>/^WARN/   Some Javadoc.<p>*/ //warn
+    /**
+     * Some Javadoc.
+     *
+     * <p>Some Javadoc.
+     *
+     */
      class InnerInputCorrectJavaDocParagraphCheck {
 
         /**
-         * Some Javadoc.<p> //warn
+         * Some Javadoc.
+         *
+         * <p>Some Javadoc.
+         *
+         * <p>Some Javadoc.
          *
          * @since 8.0
          */
         public static final byte NUL = 0;
 
-        /**<p> //warn
-         * /^WARN/ Some Javadoc.
+        /**
+         * Some Javadoc.
          *
-         * <P> //warn
-         * /^WARN/
-         * <p> //warn
-         *  /^WARN/ Some Javadoc.<p> //warn
+         * <p>Some Javadoc.
+         *
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
@@ -56,7 +67,9 @@ class InputIncorrectJavadocParagraphCheck {
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
 
         /**
-         * <p>Some Javadoc. //warn
+         * Some Javadoc.
+         *
+         * <p>Some Javadoc.
          *
          * <p>Some Javadoc.
          *
@@ -65,12 +78,14 @@ class InputIncorrectJavadocParagraphCheck {
         public static final byte NUL = 0;
 
         /**
-         * /WARN/  Some Javadoc.<p> //warn
+         * Some Javadoc.
          *
-         *  <p>  Some Javadoc. //warn
+         * <p>Some Javadoc.
+         *
+         * <p>Some Javadoc.
          *
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-         *     Documentation about <p> GWT emulated source</a> //warn
+         *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
     };

@@ -19,16 +19,16 @@
 
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class RequireEmptyLineBeforeBlockTagGroupTest extends AbstractGoogleModuleTestSupport {
+public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "JavadocParagraph",
+        "RequireEmptyLineBeforeBlockTagGroup",
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -37,37 +37,28 @@ public class RequireEmptyLineBeforeBlockTagGroupTest extends AbstractGoogleModul
 
     @Test
     public void testJavadocParagraphCorrect() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        final Configuration checkConfig = getModuleConfig(
-                "RequireEmptyLineBeforeBlockTagGroup");
-        final String filePath = getPath(
-                "InputCorrectRequireEmptyLineBeforeBlockTagGroupCheck.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        final String filePath = getPath("InputCorrectJavadocParagraph.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
     @Test
     public void testJavadocParagraphIncorrect() throws Exception {
-        final String[] expected = {
-            "5: " + getTagCheckMessage("@since"),
-            "11: " + getTagCheckMessage("@param"),
-            "19: " + getTagCheckMessage("@param"),
-        };
+        final String filePath = getPath("InputIncorrectJavadocParagraph.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
 
-        final Configuration checkConfig = getModuleConfig(
-                "RequireEmptyLineBeforeBlockTagGroup");
+    @Test
+    public void testRequireEmptyLineBeforeBlockTagGroupCorrect() throws Exception {
         final String filePath = getPath(
-                "InputIncorrectRequireEmptyLineBeforeBlockTagGroupCheck.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+                "InputCorrectRequireEmptyLineBeforeBlockTagGroup.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
-    private static String getTagCheckMessage(String tag) throws IOException {
-        return getCheckMessage(RequireEmptyLineBeforeBlockTagGroupCheck.class,
-                "javadoc.tag.line.before",
-                tag);
+    @Test
+    public void testRequireEmptyLineBeforeBlockTagGroupIncorrect() throws Exception {
+        final String filePath = getPath(
+                "InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
+
 }
