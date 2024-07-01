@@ -16,15 +16,6 @@
       </macro>
     </section>
 
-    <section name="Localization Support">
-      <p>
-        Checkstyle supports localization of the output messages.
-        If your language is not supported, please consider
-        translating the messages in the <code>messages.properties</code> file. Please let us
-        know if you translate the file.
-      </p>
-    </section>
-
     <section name="Enable External DTD load">
       <p>
         The property <code>checkstyle.enableExternalDtdLoad</code>
@@ -127,6 +118,10 @@ Starting audit...
 Audit done.
 Checkstyle ends with 2 errors.
           </source>
+        </p>
+        <p>
+          Attention to Windows users: system properties should be wrapped with <code>"</code>.
+          Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
         </p>
       </subsection>
     </section>

@@ -157,6 +157,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         property file is specified, the system properties are ignored.
       </p>
       <p>
+        Attention to Windows users: system properties should be wrapped with <code>"</code>.
+        Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
+      </p>
+      <p>
         CLI is implemented by means of <a href="https://picocli.info">picocli</a>
         library. Our CLI supports definition of arguments in file
         by means of <a href="https://picocli.info/#AtFiles">AtFiles</a> feature
