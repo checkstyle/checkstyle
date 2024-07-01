@@ -16,14 +16,14 @@ class InputIncorrectAtClauseOrderCheck2 implements Serializable
     /**
      * Some text.
      * @throws Exception Some text.
-     * @param aString Some text. //warn
+     * @param aString Some text. // violation 'Block tags have to appear in the order .*'
      */
     void method2(String aString) throws Exception {}
 
     /**
      * Some text.
      * @deprecated Some text.
-     * @throws Exception Some text. //warn
+     * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
      */
     void method3() throws Exception {}
 
@@ -56,7 +56,7 @@ class InputIncorrectAtClauseOrderCheck2 implements Serializable
         /**
          * Some text.
          * @deprecated Some text.
-         * @throws Exception Some text. //warn
+         * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
          */
         void method3() throws Exception {}
 
@@ -64,7 +64,7 @@ class InputIncorrectAtClauseOrderCheck2 implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
-         * @return Some text. //warn
+         * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method4() throws Exception {
             return "null";
@@ -75,21 +75,21 @@ class InputIncorrectAtClauseOrderCheck2 implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @param aString Some text. //warn
+         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
          */
         void method2(String aString) throws Exception {}
 
         /**
          * Some text.
          * @deprecated Some text.
-         * @throws Exception Some text. //warn
+         * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
          */
         void method3() throws Exception {}
 
         /**
          * Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
         String method4() throws Exception {
             return "null";

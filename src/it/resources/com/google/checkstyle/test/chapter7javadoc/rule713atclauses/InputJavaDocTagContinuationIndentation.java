@@ -43,9 +43,9 @@ class InputJavaDocTagContinuationIndentation implements Serializable
      *     Some javadoc.
      * @return Some text.
      * @serialData Some javadoc.
-     * @deprecated Some text.
-     *    Some javadoc. // warn
      * @throws Exception Some text.
+     *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+     * @deprecated Some text.
      */
     String method(String aString) throws Exception
     {
@@ -55,9 +55,9 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     /**
      * Some text.
      * @serialData Some javadoc.
-     * @return Some text.
-     *     Some javadoc.
      * @param aString Some text.
+     *     Some javadoc.
+     * @return Some text.
      * @throws Exception Some text.
      */
     String method1(String aString) throws Exception
@@ -67,16 +67,16 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
     /**
      * Some text.
-     * @throws Exception Some text.
-     *     Some javadoc.
      * @param aString Some text.
+     *     Some javadoc.
+     * @throws Exception Some text.
      */
     void method2(String aString) throws Exception {}
 
     /**
      * Some text.
-     * @deprecated Some text.
      * @throws Exception Some text.
+     * @deprecated Some text.
      *     Some javadoc.
      */
     void method3() throws Exception {}
@@ -93,9 +93,9 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
     /**
      * Some text.
-     * @deprecated Some text.
-     * @return Some text.
      * @param aString Some text.
+     * @return Some text.
+     * @deprecated Some text.
      */
     String method5(String aString)
     {
@@ -105,13 +105,13 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     /**
      * Some text.
      * @param aString Some text.
-     * @return Some text.
-     *    Some javadoc. // warn
-     * @serialData Some javadoc.
-     * @param aInt Some text.
-     *    Some javadoc. // warn
-     * @throws Exception Some text.
      * @param aBoolean Some text.
+     * @param aInt Some text.
+     *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+     * @return Some text.
+     *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+     * @serialData Some javadoc.
+     * @throws Exception Some text.
      * @deprecated Some text.
      */
     String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -131,11 +131,11 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     {
         /**
          * Some text.
-         * @return Some text.
-         * @deprecated Some text.
-         *     Some javadoc.
          * @param aString Some text.
+         * @return Some text.
          * @throws Exception Some text.
+         *     Some javadoc.
+         * @deprecated Some text.
          *     Some javadoc.
          */
         String method(String aString) throws Exception
@@ -145,10 +145,10 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         * @throws Exception Some text.
+         * @param aString Some text.
          *     Some javadoc.
          * @return Some text.
-         * @param aString Some text.
+         * @throws Exception Some text.
          *     Some javadoc.
          */
         String method1(String aString) throws Exception
@@ -168,16 +168,16 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         * @deprecated Some text.
          * @throws Exception Some text.
+         * @deprecated Some text.
          */
         void method3() throws Exception {}
 
         /**
          * Some text.
+         * @return Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
-         * @return Some text.
          */
         String method4() throws Exception
         {
@@ -187,8 +187,8 @@ class InputJavaDocTagContinuationIndentation implements Serializable
         /**
          * Some text.
          * @param aString Some text.
-         * @deprecated Some text.
          * @return Some text.
+         * @deprecated Some text.
          */
         String method5(String aString)
         {
@@ -198,12 +198,14 @@ class InputJavaDocTagContinuationIndentation implements Serializable
         /**
          * Some text.
          * @param aString Some text.
-         * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // warn
-         * @throws Exception Some text.
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @param aBoolean Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
+         * @return Some text.
+         * @throws Exception Some text.
          * @deprecated Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -216,13 +218,15 @@ class InputJavaDocTagContinuationIndentation implements Serializable
     {
         /**
          * Some text.
-         * @throws Exception Some text.
          * @param aString Some text.
-         *   Some javadoc. // warn
-         * @serialData Some javadoc.
-         *    Some javadoc. // warn
-         * @deprecated Some text.
+         *   Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @return Some text.
+         * @throws Exception Some text.
+         * @serialData Some javadoc.
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
+         * @deprecated Some text.
          */
         String method(String aString) throws Exception
         {
@@ -233,8 +237,8 @@ class InputJavaDocTagContinuationIndentation implements Serializable
          * Some text.
          * @param aString Some text.
          *     Some javadoc.
-         * @throws Exception Some text.
          * @return Some text.
+         * @throws Exception Some text.
          */
         String method1(String aString) throws Exception
         {
@@ -243,24 +247,24 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
+         * @param aString Some text.
          * @throws Exception Some text.
          *     Some javadoc.
-         * @param aString Some text.
          */
         void method2(String aString) throws Exception {}
 
         /**
          * Some text.
+         * @throws Exception Some text.
          * @deprecated Some text.
          *     Some javadoc.
-         * @throws Exception Some text.
          */
         void method3() throws Exception {}
 
         /**
          * Some text.
-         * @throws Exception Some text.
          * @return Some text.
+         * @throws Exception Some text.
          */
         String method4() throws Exception
         {
@@ -269,9 +273,9 @@ class InputJavaDocTagContinuationIndentation implements Serializable
 
         /**
          * Some text.
-         * @deprecated Some text.
-         * @return Some text.
          * @param aString Some text.
+         * @return Some text.
+         * @deprecated Some text.
          */
         String method5(String aString)
         {
@@ -282,13 +286,16 @@ class InputJavaDocTagContinuationIndentation implements Serializable
          * Some text.
          *       Some javadoc.
          * @param aString Some text.
-         *    Some javadoc. // warn
-         * @return Some text.
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @param aInt Some text.
-         *    Some javadoc. // warn
-         * @throws Exception Some text.
-         *    Some javadoc. // warn
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @param aBoolean Some text.
+         * @return Some text.
+         * @throws Exception Some text.
+         *    Some javadoc.
+         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @deprecated Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -307,7 +314,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable
  *     Some javadoc.
  *     Some javadoc.
  * @see Some javadoc.
- *    Some javadoc. // warn
+ *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
  * @author max
  */
 enum Foo3 {}
@@ -319,7 +326,7 @@ enum Foo3 {}
  * @since Some javadoc.
  *     Some javadoc.
  * @serialData Some javadoc.
- *   Some javadoc. // warn
+ *   Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
  * @author max
  */
 interface FooIn5 {}
