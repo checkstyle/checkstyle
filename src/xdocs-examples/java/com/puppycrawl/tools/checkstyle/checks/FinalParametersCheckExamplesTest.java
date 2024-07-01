@@ -56,4 +56,14 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:12: " + getCheckMessage(MSG_KEY, "e"),
+            "44:10: " + getCheckMessage(MSG_KEY, "number"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example4.java"), expected);
+    }
 }
