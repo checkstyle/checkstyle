@@ -86,6 +86,23 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example4-config">
+          To configure the check to enforce final parameters for catch and
+          for-each blocks while ignoring unnamed parameters:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
