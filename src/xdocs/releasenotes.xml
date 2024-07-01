@@ -74,7 +74,8 @@
       <p>Bug fixes:</p>
         <ul>
           <li>
-            MissingSwitchDefault : False positive when `case null` in switch labeled statement group.
+            MissingSwitchDefault : False positive when `case null` in switch labeled
+            statement group.
             Author: mahfouz72
             <a href="https://github.com/checkstyle/checkstyle/issues/15123">#15123</a>
           </li>
@@ -89,7 +90,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/14891">#14891</a>
           </li>
           <li>
-            Remove href from LineLength module property in google style config and update test cases.
+            Remove href from LineLength module property in google style config
+            and update test cases.
             Author: Mauryan Kansara
             <a href="https://github.com/checkstyle/checkstyle/issues/14955">#14955</a>
           </li>
