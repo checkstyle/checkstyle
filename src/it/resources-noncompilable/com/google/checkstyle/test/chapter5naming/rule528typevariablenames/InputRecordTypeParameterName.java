@@ -10,38 +10,40 @@ import org.w3c.dom.Node;
  * pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"
  *
  */
-public record InputRecordTypeParameterName<t>(Integer x, String str) { // warn
+public record InputRecordTypeParameterName<t>(Integer x, String str) {
+    // violation above 'Record type name 't' must match pattern'
     public <TT> void foo() { }
 
-    <e_e> void foo(int i) {
+    <T> void foo(int i) {
     }
 }
 
-record Other <foo extends Serializable & Cloneable> // warn
+// violation below 'Record type name 'foo' must match pattern'
+record Other <foo extends Serializable & Cloneable>
 (LinkedHashMap<String, Node> linkedHashMap) {
 
     foo getOne() {
         return null;//comment
     }
 
-    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) {
+    <T extends foo> /*comment*/T getTwo(T a) {
         return null;
     }
 
-    <foo extends Runnable> foo getShadow() {
+    <E extends Runnable> E getShadow() {
         return null;
     }
 
-    static record Junk <foo>() { // warn
-        <_fo extends foo> void getMoreFoo() {
+    static record Junk <foo>() { // violation 'Record type name 'foo' must match pattern'
+        <E extends foo> void getMoreFoo() {
         }
     }
 }
 
 record MoreOther <T extends Cloneable>(char c, String string) {
 
-    interface Boo<Input> {
-        Input boo();
+    interface Boo<I> {
+        I boo();
     }
 
     interface FooInterface<T> {
@@ -49,10 +51,10 @@ record MoreOther <T extends Cloneable>(char c, String string) {
     }
 
     interface FooInterface2 {
-        Input foo();
+        I foo();
     }
 
-    record Input(int x, int y) {
+    record I(int x, int y) {
 
     }
 }
