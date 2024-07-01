@@ -240,7 +240,6 @@ public class XdocsPagesTest {
             "4.8.6.1 Block comment style",
             "5.2.6 Parameter names",
             "5.2.7 Local variable names",
-            "5.2.8 Type variable names",
             "7.1.1 General form",
             "7.1.2 Paragraphs",
             "7.1.3 Block tags",
