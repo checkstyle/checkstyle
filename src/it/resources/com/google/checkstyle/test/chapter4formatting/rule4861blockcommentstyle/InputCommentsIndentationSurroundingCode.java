@@ -10,7 +10,8 @@ public class InputCommentsIndentationSurroundingCode
         if (true) {
             // here initialize some variables
             int k = 0; // trailing comment
-              // warn
+              // odd indentation comment
+            // violation above '.* indentation should be the same level as line 15.'
             int b = 10;
             // sss
         }
@@ -20,14 +21,18 @@ public class InputCommentsIndentationSurroundingCode
         if (true) {
             /* some */
             int k = 0;
-                /* // warn */
+                /* // odd indentation comment
+                */
+            // violation 2 lines above '.* indentation should be the same level as line 27.'
             int b = 10;
-                /* // warn
+                /* // odd indentation comment
                  * */
+            // violation 2 lines above '.* indentation should be the same level as line 31.'
             double d; /* trailing comment */
-                /* // warn
+                /* // odd indentation comment
              *
                 */
+            // violation 3 lines above '.* indentation should be the same level as line 36.'
             boolean bb;
             /***/
             /* my comment*/
@@ -47,9 +52,11 @@ public class InputCommentsIndentationSurroundingCode
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                           /// // warn
-                       /* // warn
+                           /// // odd indentation comment
+                       /* // odd indentation comment
                         * one fine day ... */
+                                    // violation 3 lines above '.* indentation should.* as line 60.'
+                                    // violation 3 lines above '.* indentation should.* as line 60.'
                                     && b == 1)   ) {
         }
     }
@@ -87,7 +94,8 @@ public class InputCommentsIndentationSurroundingCode
               // ...
               // block
               // ...
-              // warn
+              // odd indentation comment
+        // violation above '.* indentation should be the same level as line 99.'
         String someStr = new String();
     }
 
@@ -95,8 +103,9 @@ public class InputCommentsIndentationSurroundingCode
              // comment
              // ...
              // block
-             // warn
+             // odd indentation comment
         // comment
+        // violation 2 lines above'.* indentation should be the same level as line 109.'
         String someStr = new String();
     }
 
@@ -105,7 +114,8 @@ public class InputCommentsIndentationSurroundingCode
                                  // ...
                                  // block
                                  // ...
-                                 // warn
+                                 // odd indentation comment
+        // violation above '.* indentation should be the same level as line 119.'
         String someStr = new String();
     }
 
