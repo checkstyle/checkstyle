@@ -16,19 +16,23 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 break;
             case "3":
-            /* // warn */
+            /* // odd indentation comment
+            *  */
+                // violation 2 lines above '.* indentation should be the same level as line 22.'
                 foo1();
                 /* com */
                 break;
             case "5":
+                // violation 2 lines below '.* indentation should be the same level as line 27, 29.'
                 foo1();
-                   // warn
+                   // odd indentation comment
             case "6":
                 int k = 7;
                 // fall through
             case "7":
+                // violation 2 lines below '.* indentation should be the same level as line 34, 36.'
                 if (true) {}
-                   // warn
+                   // odd indentation comment
             case "8":
                 break;
             case "9":
@@ -45,18 +49,21 @@ public class InputCommentsIndentationInSwitchBlock {
                 // fall through
             }
             case "12": {
-      // warn
+      // odd indentation comment
+                // violation above '.* indentation should be the same level as line 54.'
                 int i;
             }
             case "13": {
                        // some comment in empty case block
             }
             case "14": {
-        // warn
+        // odd indentation comment
+            // violation above '.* indentation should be the same level as line 62.'
             }
             case "15": {
+                // violation 2 lines below '.* indentation should be the same level as line 65.'
                 foo1();
-                      // warn
+                      // odd indentation comment
             }
             case "16": {
                 int a;
@@ -65,7 +72,8 @@ public class InputCommentsIndentationInSwitchBlock {
             case "17": {
                 int a;
             }
-              // warn
+                // violation below '.* indentation should be the same level as line 72, 77.'
+          // odd indentation comment
                 case "18": { System.lineSeparator();
                 }   // trailing comment
             case "19":
@@ -85,7 +93,8 @@ public class InputCommentsIndentationInSwitchBlock {
                 case 0:
 
                 case 1:
-                        // warn
+                    // violation below '.* indentation should be the same level as line 98.'
+                        // odd indentation comment
                     int b = 10;
                 default:
                  // comment
@@ -109,8 +118,9 @@ public class InputCommentsIndentationInSwitchBlock {
                 // no break here
             case -1:
                  // what
+                 // violation 2 lines below '.* indentation should be the same .* as line 122, 124.'
                  s.indexOf("no way");
-               // warn
+               // odd indentation comment
             case 1:
             case 2:
                 i--;
@@ -122,7 +132,8 @@ public class InputCommentsIndentationInSwitchBlock {
         }
 
         String breaks = ""
-        // warn
+        // violation below '.* indentation should be the same level as line 137.'
+        // odd indentation comment
             + "</table>"
             // middle
             + ""
@@ -135,8 +146,9 @@ public class InputCommentsIndentationInSwitchBlock {
         switch (a) {
             case 1:
             default:
-    // warn
+    // odd indentation comment
         }
+        // violation 2 lines above'.* indentation should be the same level as line 150.'
     }
 
     public void foo3() {
@@ -153,8 +165,9 @@ public class InputCommentsIndentationInSwitchBlock {
         int a = 1;
         switch (a) {
             case 1:
+                // violation 2 lines below '.* indentation should be the same .* as line 169, 171.'
                 int b;
-                  // warn
+                  // odd indentation comment
             default:
         }
     }
@@ -196,13 +209,17 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 // comment
                 // comment
+                // violation 2 lines below'.* indentation should be the same .* as line 213, 215.'
             case 4:
-    // warn
+    // odd indentation comment
             case 5:
+                // violation 4 lines below 'indentation should be the same level as line 218, 223.'
+                // violation 4 lines below 'indentation should be the same level as line 218, 223.'
+                // violation 4 lines below 'indentation should be the same level as line 218, 223.'
                 s.toString().toString().toString();
-                      // warn
-                    // warn
-                 // warn
+                      // odd indentation comment
+                    // odd indentation comment
+                 // odd indentation comment
             default:
         }
     }
@@ -225,8 +242,9 @@ public class InputCommentsIndentationInSwitchBlock {
                 // comment
                 s.toString().toString().toString();
                 // comment
+            // violation 2 lines below '.* indentation should be the same level as line 246, 248.'
             case 4:
-      // warn
+      // odd indentation comment
             default:
         }
     }

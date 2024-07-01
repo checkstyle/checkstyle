@@ -68,6 +68,8 @@
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputNoLineWrapping\.java"/>
   <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]rule4861blockcommentstyle[\\/].*"/>
+  <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>

@@ -6,8 +6,11 @@ public class InputCommentsIndentationInEmptyBlock {
         int a = 5, b = 3, v = 6;
         if (a == b
             && v == b || ( a ==1
-                   /// // warn
-                       /* // warn
+                               // violation 2 lines below '.* should be the same level as line 15.'
+                               // violation 3 lines below '.* should be the same level as line 15.'
+                   /// // odd indentation comment
+                               //
+                       /* // odd indentation comment
                         * one fine day ... */
                                && b == 1)   ) {
             // Cannot clearly detect user intention of explanation target.
@@ -30,8 +33,9 @@ public class InputCommentsIndentationInEmptyBlock {
         if (a == b
             && v == b || (a == 1
             && b == 1)) {
-// warn
+// odd indentation comment
         }
+        // violation 2 lines above '.* indentation should be the same level as line 37.'
     }
 
     // Comments here should be ok by Check
@@ -54,7 +58,8 @@ public class InputCommentsIndentationInEmptyBlock {
     private static void foo5() { // trailing
         if (true) // trailing comment
         {
-// warn
+            // violation below '.* indentation should be the same level as line 63.'
+// odd indentation comment
         }
         if (true) { // trailing comment
 
@@ -68,8 +73,9 @@ public class InputCommentsIndentationInEmptyBlock {
         try {
 
         } catch (Exception e) {
-// warn
+// odd indentation comment
         }
+        // violation 2 lines above '.* indentation should be the same level as line 77.'
     }
 
     public void foo7() {
