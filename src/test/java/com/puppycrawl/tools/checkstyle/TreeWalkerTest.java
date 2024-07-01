@@ -35,9 +35,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,7 +59,10 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
@@ -670,6 +676,129 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             assertWithMessage("wrong order of Check executions")
                     .that(exception.getCause().getMessage())
                     .isEqualTo(AaCheck.class.toString());
+        }
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionTrue() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addProperty("javaParseExceptionSeverity", "ignore");
+        config.addChild(createModuleConfig(ConstantNameCheck.class));
+
+        final File[] files = {
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+            new File(getPath("InputTreeWalkerProperFileExtension.java")),
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+        };
+
+        final Checker checker = createChecker(config);
+        final Map<String, List<String>> expectedViolation = new HashMap<>();
+        expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
+                Collections.singletonList(
+                        "10:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
+        verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionFalse() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "false");
+        config.addChild(createModuleConfig(ConstantNameCheck.class));
+
+        final String[] files = {
+            getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+            getPath("InputTreeWalkerProperFileExtension.java"),
+            getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+        };
+        final Exception ex = TestUtil.getExpectedThrowable(CheckstyleException.class,
+                () -> execute(config, files),
+                "Exception is expected");
+        assertWithMessage("Error message is unexpected")
+                .that(ex.getMessage())
+                .contains("Exception was thrown while processing ");
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionConfig() throws Exception {
+        final String path = getNonCompilablePath("InputTreeWalkerSkipParsingExceptionConfig.java");
+        final String[] expected = {};
+        verifyWithInlineXmlConfig(path, expected);
+    }
+
+    @Test
+    public void testSkipFileOnJavaParseExceptionSkipChecks() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addProperty("javaParseExceptionSeverity", "ignore");
+        config.addChild(createModuleConfig(NoCodeInFileCheck.class));
+
+        final Checker checker = createChecker(config);
+
+        final File[] files = {
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+            new File(getPath("InputTreeWalkerProperFileExtension.java")),
+        };
+        final Map<String, List<String>> expectedViolation = new HashMap<>();
+        expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
+                new ArrayList<>());
+
+        verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverityDefaultError() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addChild(createModuleConfig(NoCodeInFileCheck.class));
+
+        final Checker checker = createChecker(config);
+
+        final File[] files = {
+            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+            new File(getPath("InputTreeWalkerProperFileExtension.java")),
+        };
+
+        final Map<String, List<String>> expectedViolation = new HashMap<>();
+        expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
+                new ArrayList<>());
+        expectedViolation.put(getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+                List.of("1: Got an exception - IllegalStateException occurred while parsing file "
+                        + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
+
+        verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverity() throws Exception {
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        final File testFile = new File(
+                getNonCompilablePath("InputTreeWalkerSkipParsingException.java"));
+
+        for (SeverityLevel severityLevel : SeverityLevel.values()) {
+            final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+            config.addProperty("skipFileOnJavaParseException", "true");
+            config.addProperty("javaParseExceptionSeverity", severityLevel.getName());
+            config.addChild(createModuleConfig(NoCodeInFileCheck.class));
+
+            final TreeWalker treeWalker = new TreeWalker();
+            treeWalker.setModuleFactory(factory);
+            treeWalker.configure(config);
+
+            final SortedSet<Violation> violations = treeWalker.process(testFile,
+                    new FileText(testFile, StandardCharsets.UTF_8.name()));
+            assertWithMessage("Incorrect length of violation")
+                    .that(violations.size())
+                    .isEqualTo(1);
+            assertWithMessage("Incorrect severity of violation")
+                    .that(violations.first().getSeverityLevel())
+                    .isEqualTo(severityLevel);
+            assertWithMessage("Incorrect customized message")
+                    .that(violations.first().getViolation())
+                    .contains("Got an exception - "
+                            + "IllegalStateException occurred while parsing file ");
         }
     }
 
