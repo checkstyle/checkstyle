@@ -236,7 +236,6 @@ public class XdocsPagesTest {
             "4.6.2 Horizontal whitespace",
             "4.8.4.1 Indentation",
             "4.8.5 Annotations",
-            "7.1.2 Paragraphs",
             "7.3 Where Javadoc is used",
             "7.3.1 Exception: self-explanatory methods",
             "7.3.2 Exception: overrides"
