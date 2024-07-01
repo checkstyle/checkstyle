@@ -19,14 +19,16 @@
 
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class PatternVariableNameTest extends AbstractGoogleModuleTestSupport {
+public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "LocalVariableName",
+        "PatternVariableName",
+    };
 
     private static final String MSG_KEY = "name.invalidPattern";
 
@@ -37,32 +39,22 @@ public class PatternVariableNameTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testPatternVariableName() throws Exception {
-        final Configuration checkConfig = getModuleConfig("PatternVariableName");
-        final String format = checkConfig.getProperty("format");
-        final Map<String, String> messages = checkConfig.getMessages();
-        final String[] expected = {
-            "11:39: " + getCheckMessage(messages, MSG_KEY, "OTHER", format),
-            "21:34: " + getCheckMessage(messages, MSG_KEY, "Count", format),
-            "36:36: " + getCheckMessage(messages, MSG_KEY, "aA", format),
-            "37:42: " + getCheckMessage(messages, MSG_KEY, "a1_a", format),
-            "40:34: " + getCheckMessage(messages, MSG_KEY, "A_A", format),
-            "41:43: " + getCheckMessage(messages, MSG_KEY, "aa2_a", format),
-            "53:37: " + getCheckMessage(messages, MSG_KEY, "_a", format),
-            "59:43: " + getCheckMessage(messages, MSG_KEY, "_aa", format),
-            "63:41: " + getCheckMessage(messages, MSG_KEY, "aa_", format),
-            "68:38: " + getCheckMessage(messages, MSG_KEY, "aaa$aaa", format),
-            "69:36: " + getCheckMessage(messages, MSG_KEY, "$aaaaaa", format),
-            "70:37: " + getCheckMessage(messages, MSG_KEY, "aaaaaa$", format),
-            "77:41: " + getCheckMessage(messages, MSG_KEY, "_A_aa_B", format),
-
-        };
-
         final String filePath =
                 getNonCompilablePath(
                         "InputPatternVariableNameEnhancedInstanceofTestDefault.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
 
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+    @Test
+    public void testLocalAndPatternVariableName() throws Exception {
+        final String filePath = getPath("InputLocalVariableNameSimple.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
+
+    @Test
+    public void testOneChar() throws Exception {
+        final String filePath = getPath("InputLocalVariableNameOneCharVarName.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
 }
