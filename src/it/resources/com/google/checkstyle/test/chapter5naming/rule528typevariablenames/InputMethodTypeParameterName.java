@@ -2,30 +2,30 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-class InputMethodTypeParameterName <t>
+class InputMethodTypeParameterName <T>
 {
     public <TT> void foo() { }
 
-    <e_e> void foo(int i) { //warn
+    <e_e> void foo(int i) { // violation 'Method type name 'e_e' must match pattern'
     }
 }
 
-class Other2 <foo extends Serializable & Cloneable> {
+class Other2 <T extends Serializable & Cloneable> {
 
-    foo getOne() {
+    T getOne() {
     return null;
     }
 
-    <Tfo$o2T extends foo> Tfo$o2T getTwo(Tfo$o2T a) { //warn
+    <Tfo$o2T extends T> Tfo$o2T getTwo(Tfo$o2T a) { // violation 'Method type name .* must match pattern'
     return null;
     }
 
-    <foo_ extends Runnable> foo getShadow() { //warn
+    <foo_ extends Runnable> T getShadow() { // violation 'Method type name 'foo_' must match pattern'
     return null;
     }
 
-    static class Junk <$foo> {
-        <_abc extends $foo> void getMoreFoo() { //warn
+    static class Junk <E> {
+        <_abc extends E> void getMoreFoo() { // violation 'Method type name '_abc' must match pattern'
     }
     }
 }
@@ -34,12 +34,12 @@ class MoreOther3 <T extends Cloneable> {
 
     <E extends T> void getMore() {
         new Other2() {
-            <T$> void getMoreFoo() { //warn
+            <T$> void getMoreFoo() { // violation 'Method type name .* must match pattern'
         }
     };
 
         Other2 o = new Other2() {
-            <EE> void getMoreFoo() { //warn
+            <EE> void getMoreFoo() { // violation 'Method type name 'EE' must match pattern'
             }
         };
     }

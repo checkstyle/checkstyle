@@ -2,30 +2,30 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-public class InputInterfaceTypeParameterName <t>
+public class InputInterfaceTypeParameterName <T>
 {
     public <TT> void foo() { }
 
-    <e_e> void foo(int i) {
+    <T> void foo(int i) {
     }
 }
 
-class OtherClass <foo extends Serializable & Cloneable> {
+class OtherClass <T extends Serializable & Cloneable> {
 
-    foo getOne() {
+    T getOne() {
         return null;//comment
     }
 
-    <Tfo$o2T extends foo> /*comment*/Tfo$o2T getTwo(Tfo$o2T a) {
+    <X extends T> /*comment*/X getTwo(X a) {
         return null;
     }
 
-    <foo extends Runnable> foo getShadow() {
+    <E extends Runnable> E getShadow() {
         return null;
     }
 
-    static class Junk <foo> {
-        <_fo extends foo> void getMoreFoo() {
+    static class Junk <E> {
+        <T extends E> void getMoreFoo() {
         }
     }
 }
@@ -45,7 +45,7 @@ class MoreOtherClass <T extends Cloneable> {
     }
 }
 
-interface Boo<Input> { // warn
+interface Boo<Input> { // violation 'Interface type name 'Input' must match pattern'
     Input boo();
 }
 
@@ -73,11 +73,11 @@ interface FooInterface6<RequestT> {
     Input foo();
 }
 
-interface FooInterface7<Request> { // warn
+interface FooInterface7<Request> { // violation 'Interface type name 'Request' must match pattern'
     Input foo();
 }
 
-interface FooInterface8<TRequest> { // warn
+interface FooInterface8<TRequest> { // violation 'Interface type name 'TRequest' must match pattern'
     Input foo();
 }
 
