@@ -331,10 +331,10 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     public void testUnusedLocalVarLambdas() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo"),
-            "20:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
-            "31:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo2"),
-            "32:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo3"),
-            "33:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent"),
+            "19:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
+            "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo2"),
+            "30:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "hoo3"),
+            "32:15: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent"),
             "34:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "myComponent3"),
             "40:25: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
             "52:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "j"),
