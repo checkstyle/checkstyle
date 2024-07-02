@@ -17,6 +17,28 @@
         </p>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowUnnamedVariables</td>
+              <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+ unnamed variables</a> in Java 21+).</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>10.18.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -24,11 +46,75 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnusedLocalVariable&quot;/&gt;
+    &lt;module name=&quot;UnusedLocalVariable&quot;&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Example1 {
+  {
+    int k = 12; // violation, assign and update but never use 'k'
+    k++;
+  }
+
+  int a;
+  Example1(int a) { // ok, as 'a' is a constructor parameter not a local variable
+    this.a = 12;
+  }
+
+  void method(int b) {
+    int[] arr = {1, 2, 3};  // violation, unused named local variable 'arr'
+    int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
+    anotherArr[0] = 4;
+  }
+
+  String convertValue(String newValue) {
+    String s = newValue.toLowerCase(); // violation, unused named local variable 's'
+    String _ = newValue.toLowerCase(); // ok, '_' is unnamed variable
+    return newValue.toLowerCase();
+  }
+
+  void read() throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String s; // violation, unused named local variable 's'
+    while ((s = reader.readLine()) != null) {}
+    try (BufferedReader reader1 = // ok, 'reader1' is a resource
+                 new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
+    try {
+    } catch (Exception e) { }  // ok, 'e' is an exception parameter
+  }
+
+  void loops() {
+    int j = 12;
+    for (int i = 0; j &lt; 11; i++)  // violation, unused named local variable 'i'
+      for (int p = 0; j &lt; 11; p++) p /= 2;    // ok, 'p' is used
+    for (Integer _ : new  int[0]) { } // ok, '_' is unnamed variable
+  }
+
+  void lambdas() {
+    Predicate&lt;String&gt; obj = (String str) -&gt; true; // ok, 'str' is a lambda parameter
+    obj.test(&quot;Test&quot;);
+  }
+}
+        </source>
+        <p id="Example2-config">
+           To configure the check to violate variables named with a single underscore
+           if they are not used:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedLocalVariable&quot;&gt;
+        &lt;property name=&quot;allowUnnamedVariables&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
           Example:
         </p>
         <source>
@@ -51,6 +137,7 @@ class Example1 {
 
   String convertValue(String newValue) {
     String s = newValue.toLowerCase(); // violation, unused local variable 's'
+    String _ = newValue.toLowerCase(); // violation, unused local variable '_'
     return newValue.toLowerCase();
   }
 
@@ -61,16 +148,14 @@ class Example1 {
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
     try {
-    } catch (Exception e) { // ok, 'e' is an exception parameter
-    }
+    } catch (Exception e) { }  // ok, 'e' is an exception parameter
   }
 
   void loops() {
     int j = 12;
-    for (int i = 0; j &lt; 11; i++) { // violation, unused local variable 'i'
-    }
-    for (int p = 0; j &lt; 11; p++)   // ok, 'p' is used
-      p /= 2;
+    for (int i = 0; j &lt; 11; i++)  // violation, unused local variable 'i'
+      for (int p = 0; j &lt; 11; p++) p /= 2;   // ok, 'p' is used
+    for (Integer _ : new  int[0]) { } // violation, unused local variable '_'
   }
 
   void lambdas() {
@@ -95,6 +180,11 @@ class Example1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.var%22">
               unused.local.var
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.named.local.var%22">
+              unused.named.local.var
             </a>
           </li>
         </ul>

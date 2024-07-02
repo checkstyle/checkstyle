@@ -17,13 +17,22 @@
         </p>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -31,7 +40,24 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-config">
+           To configure the check to violate variables named with a single underscore
+           if they are not used:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
