@@ -1,6 +1,6 @@
 /*
 UnusedLocalVariable
-
+allowUnnamedVariables = false
 
 */
 

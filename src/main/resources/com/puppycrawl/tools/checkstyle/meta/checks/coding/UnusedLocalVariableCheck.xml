@@ -15,8 +15,16 @@
  components are classified as different kind of variables by
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html"&gt;&lt;/a&gt;.
  &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true" name="allowUnnamedVariables" type="boolean">
+               <description>Allow variables named with a single underscore
+ (known as &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+ unnamed variables&lt;/a&gt; in Java 21+).</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="unused.local.var"/>
+            <message-key key="unused.named.local.var"/>
          </message-keys>
       </check>
    </module>
