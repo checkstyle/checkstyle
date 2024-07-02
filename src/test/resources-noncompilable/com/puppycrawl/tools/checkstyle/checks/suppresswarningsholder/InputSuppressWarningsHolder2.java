@@ -5,10 +5,10 @@ aliasList = (default)
 com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
 com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck
+allowUnnamedVariables = false
 
 com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck
 format = ^[a-z][_a-zA-Z0-9]{2,}$
-
 
 */
 
