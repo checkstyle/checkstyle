@@ -136,6 +136,7 @@
           <item name="MagicNumber" href="checks/coding/magicnumber.html"/>
           <item name="MatchXpath" href="checks/coding/matchxpath.html"/>
           <item name="MissingCtor" href="checks/coding/missingctor.html"/>
+          <item name="MissingNullCaseInSwitch" href="checks/coding/missingnullcaseinswitch.html"/>
           <item name="MissingSwitchDefault" href="checks/coding/missingswitchdefault.html"/>
           <item name="ModifiedControlVariable" href="checks/coding/modifiedcontrolvariable.html"/>
           <item name="MultipleStringLiterals" href="checks/coding/multiplestringliterals.html"/>
