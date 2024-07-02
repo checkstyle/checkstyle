@@ -1,6 +1,6 @@
 /*
 UnusedLocalVariable
-
+allowUnnamedVariables = false
 
 */
 
@@ -11,8 +11,8 @@ public class InputUnusedLocalVariableLocalClasses {
     int a = 12;
 
     void foo() {
-        int a = 12; // violation
-        int ab = 1; // violation
+        int a = 12; // violation, 'Unused local variable*.'
+        int ab = 1; // violation, 'Unused local variable*.'
 
         class asd {
             InputUnusedLocalVariableLocalClasses a = new InputUnusedLocalVariableLocalClasses() {

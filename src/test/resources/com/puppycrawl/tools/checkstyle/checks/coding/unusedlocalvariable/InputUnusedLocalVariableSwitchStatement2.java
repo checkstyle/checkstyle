@@ -1,5 +1,6 @@
 /*
 UnusedLocalVariable
+allowUnnamedVariables = false
 
 */
 
@@ -55,7 +56,7 @@ public class InputUnusedLocalVariableSwitchStatement2 {
         String[] tests = { "one", "two" };
         int i = 0;
         i++;
-        int j = 0; // violation 'Unused local variable 'j''
+        int j = 0; // violation, 'Unused local variable 'j''
         for (String test : tests) {
             switch (i) {
                 default:

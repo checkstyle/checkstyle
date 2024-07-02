@@ -1,6 +1,6 @@
 /*
 UnusedLocalVariable
-
+allowUnnamedVariables = false
 
 */
 
@@ -11,13 +11,12 @@ import java.util.function.Supplier;
 public class InputUnusedLocalVariableLambdaExpression {
     private final LambdaTest<String> myComponent = LambdaTest.lazy(() -> {
         String foo = "";
-        String hoo = ""; // violation
+        String hoo = ""; // violation, 'Unused local variable*.'
         new Runnable() {
             String hoo = "";
-
             @Override
             public void run() {
-                String j = hoo; // violation
+                String j = hoo; // violation, 'Unused local variable*.'
                 String ja = foo;
                 ja += "asd";
             }
@@ -26,18 +25,19 @@ public class InputUnusedLocalVariableLambdaExpression {
     });
 
     final LambdaTest<String> nestedLambdas = LambdaTest.lazy(() -> {
-        String foo = "";
-        String hoo = "";
-        String hoo2 = ""; // violation
-        String hoo3 = ""; // violation
-        final LambdaTest<String> myComponent = LambdaTest.lazy(() -> { // violation
-            final LambdaTest<String> myComponent3 = LambdaTest.lazy(() -> { // violation
+        String foo = "", hoo = "";
+        String hoo2 = ""; // violation, 'Unused local variable*.'
+        String hoo3 = ""; // violation, 'Unused local variable*.'
+        // violation below, 'Unused local variable*.'
+        final LambdaTest<String> myComponent = LambdaTest.lazy(() -> {
+            // violation below, 'Unused local variable*.'
+            final LambdaTest<String> myComponent3 = LambdaTest.lazy(() -> {
                 new Runnable() {
                     String hoo2 = "";
 
                     @Override
                     public void run() {
-                        String j = hoo; // violation
+                        String j = hoo; // violation, 'Unused local variable*.'
                         String ja = foo;
                         ja += hoo2;
                     }
@@ -49,7 +49,7 @@ public class InputUnusedLocalVariableLambdaExpression {
 
                 @Override
                 public void run() {
-                    String j = hoo3; // violation
+                    String j = hoo3; // violation, 'Unused local variable*.'
                     String ja = foo;
                     ja += "asd";
                 }
@@ -62,7 +62,7 @@ public class InputUnusedLocalVariableLambdaExpression {
             @Override
             public void run() {
                 String j = hoo2;
-                String ja = foo; // violation
+                String ja = foo; // violation, 'Unused local variable*.'
                 j += hoo2;
             }
         };
@@ -70,7 +70,7 @@ public class InputUnusedLocalVariableLambdaExpression {
     });
 
     final LambdaTest<String> nestedLambdas2 = LambdaTest.lazy(() -> {
-        String k = ""; // violation
+        String k = ""; // violation, 'Unused local variable*.'
         final LambdaTest<String> nestedLambdas = LambdaTest.lazy(() -> {
             new LambdaTest<String>() {
                 void foo() {
