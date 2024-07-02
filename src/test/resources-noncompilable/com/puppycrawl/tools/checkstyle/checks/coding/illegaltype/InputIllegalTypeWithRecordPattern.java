@@ -42,12 +42,12 @@ public class InputIllegalTypeWithRecordPattern {
         //                  'Usage of type 'Rectangle' is not allowed.'
         //                  'Usage of type 'ColoredPoint' is not allowed.'
         //                  'Usage of type 'ColoredPoint' is not allowed.'
-        if (obj instanceof Rectangle(ColoredPoint(Point(int _,int _),_),_)) { }
+        if (obj instanceof Rectangle(ColoredPoint(Point(int _,int y),_),_)) { }
         // 3 violations above:
         //                  'Usage of type 'Rectangle' is not allowed.'
         //                  'Usage of type 'ColoredPoint' is not allowed.'
         //                  'Usage of type 'Point' is not allowed.'
-        if (obj instanceof Point(_,_)) { }
+        if (obj instanceof Point(_,int y)) { }
         // violation above, 'Usage of type 'Point' is not allowed.'
 
     }
@@ -73,14 +73,13 @@ public class InputIllegalTypeWithRecordPattern {
     public void testWithSwitch(Object obj) {
         switch (obj) {
             // violation below,  'Usage of type 'Point' is not allowed.'
-            case Point(_,_) -> System.out.println("point");
-            case Rectangle(ColoredPoint(Point(_, _),_),_) -> System.out.println("rectangle");
+            case Point(_,int y) -> System.out.println("point");
+            case Rectangle(ColoredPoint(Point(_, int y),_),_) -> System.out.println("rectangle");
               // 3 violations above:
               //                  'Usage of type 'Rectangle' is not allowed.'
              //                  'Usage of type 'ColoredPoint' is not allowed.'
             //                    'Usage of type 'Point' is not allowed.'
-            // violation below,  'Usage of type 'ColoredPoint' is not allowed.'
-            case ColoredPoint _ -> System.out.println("coloredPoint");
+            case ColoredPoint _ -> { } // ok, the illegal type 'ColoredPoint' can't be used
             default -> throw new IllegalStateException("Unexpected value: " + obj);
         }
     }
