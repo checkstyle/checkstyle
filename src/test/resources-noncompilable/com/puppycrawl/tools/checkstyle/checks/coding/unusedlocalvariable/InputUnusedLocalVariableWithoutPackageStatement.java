@@ -9,7 +9,7 @@ public class InputUnusedLocalVariableWithoutPackageStatement {
     int a = 12;
 
     void method() {
-        int a = 1; // violation
+        int a = 1; // violation, 'Unused local variable'
         InputUnusedLocalVariableWithoutPackageStatement obj =
                 new InputUnusedLocalVariableWithoutPackageStatement() {
                     void method() {
@@ -21,7 +21,7 @@ public class InputUnusedLocalVariableWithoutPackageStatement {
 
     void anotherMethod() {
         int var1 = 12;
-        int var2 = 13; // violation
+        int var2 = 13; // violation, 'Unused local variable'
         Foo obj = new Foo() {
             void method() {
                 var2 += var1;
@@ -42,7 +42,7 @@ class Foo {
         int var3 = 13;
 
         void method() {
-            int var3 = 13; // violation
+            int var3 = 13; // violation, 'Unused local variable'
             int var1 = 12;
             SharkFoo obj = new SharkFoo() {
                 void method() {

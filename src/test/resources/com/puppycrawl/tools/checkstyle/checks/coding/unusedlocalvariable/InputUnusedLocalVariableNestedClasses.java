@@ -18,10 +18,10 @@ public class InputUnusedLocalVariableNestedClasses {
     class AnotherClass {
 
         void method() {
-            int V = 1; // violation
+            int V = 1; // violation, 'Unused local variable'
             int G = 1;
-            int S = 1; // violation
-            int Q = 1; // violation
+            int S = 1; // violation, 'Unused local variable'
+            int Q = 1; // violation, 'Unused local variable'
             InputUnusedLocalVariableNestedClasses obj
                     = new InputUnusedLocalVariableNestedClasses() {
                 void method() {
@@ -33,7 +33,7 @@ public class InputUnusedLocalVariableNestedClasses {
     }
 
     void method() {
-        int variable = 1; // violation
+        int variable = 1; // violation, 'Unused local variable'
         A.B obj = new A.B() {
             void method() {
                 variable += 1;
@@ -41,7 +41,7 @@ public class InputUnusedLocalVariableNestedClasses {
         };
         obj.getClass();
 
-        int anotherVariable = 2; // violation
+        int anotherVariable = 2; // violation, 'Unused local variable'
         A.B.innerClass obj2 = new A.B().new innerClass() {
             void method() {
                 anotherVariable += 1;
@@ -64,8 +64,8 @@ public class InputUnusedLocalVariableNestedClasses {
                 public int k = 1;
 
                 void testInterfaces() {
-                    int s = 12; // violation
-                    int n = 13; // violation
+                    int s = 12; // violation, 'Unused local variable'
+                    int n = 13; // violation, 'Unused local variable'
                     foo obj = new foo() {
                         @Override
                         public Class<? extends Annotation> annotationType() {
