@@ -17,6 +17,28 @@
         </p>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowUnnamedVariables</td>
+              <td>Allow <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+ unnamed variables</a> to not be violated as unused.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>10.18.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -24,7 +46,9 @@
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;UnusedLocalVariable&quot;/&gt;
+    &lt;module name=&quot;UnusedLocalVariable&quot;&gt;
+      &lt;property name=&quot;allowUnnamedVariables&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
@@ -61,8 +85,7 @@ class Example1 {
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader(&quot;abc.txt&quot;))) {}
     try {
-    } catch (Exception e) { // ok, 'e' is an exception parameter
-    }
+    } catch (Exception e) { }// ok, 'e' is an exception parameter
   }
 
   void loops() {
@@ -95,6 +118,11 @@ class Example1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.local.var%22">
               unused.local.var
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.named.local.var%22">
+              unused.named.local.var
             </a>
           </li>
         </ul>
