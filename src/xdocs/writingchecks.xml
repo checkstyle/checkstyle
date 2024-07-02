@@ -540,7 +540,7 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Logging violations">
 
       <p>
-        Detecting violation is one thing. Presenting them to the user is
+        Detecting violations is one thing. Presenting them to the user is
         another. To do that, the Check base class provides several log
         methods, the simplest of them being <code>Check.log(String)</code>. In your
         Check you can simply use a verbatim violation string as the argument, i.e.
