@@ -17,6 +17,15 @@
         </p>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:

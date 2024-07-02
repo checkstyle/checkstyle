@@ -34,11 +34,11 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
-            "25:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
-            "31:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "37:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "48:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
+            "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
+            "27:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
+            "33:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "39:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "49:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
