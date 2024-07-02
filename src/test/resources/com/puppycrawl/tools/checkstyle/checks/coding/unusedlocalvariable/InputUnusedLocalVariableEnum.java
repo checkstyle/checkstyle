@@ -19,7 +19,7 @@ public enum InputUnusedLocalVariableEnum {
     });
 
     InputUnusedLocalVariableEnum(Object obj) {
-        int a = 12; // violation
+        int a = 12; // violation, 'Unused local variable*.'
         a = (int) obj;
     }
 
@@ -47,7 +47,7 @@ public enum InputUnusedLocalVariableEnum {
     static int a = 12;
 
     public void testIncrementAndDecrementKinds() {
-        int a = 0; // violation
+        int a = 0; // violation, 'Unused local variable*.'
         a = ++this.a;
         a++;
         a--;
@@ -74,10 +74,10 @@ public enum InputUnusedLocalVariableEnum {
         boolean b1 = true;
         if (b1) {
         }
-        boolean a; // violation
+        boolean a; // violation, 'Unused local variable*.'
         if ((a = true) != false) {
         }
-        boolean j; // violation
+        boolean j; // violation, 'Unused local variable*.'
         if (j = true) {
         }
         boolean k = true, l = false;
@@ -89,7 +89,7 @@ public enum InputUnusedLocalVariableEnum {
 class a {
 
     void method() {
-        int d = 12; // violation
+        int d = 12; // violation, 'Unused local variable*.'
         InputUnusedLocalVariableEnum.nestedClass obj =
                 new InputUnusedLocalVariableEnum.nestedClass() {
                     void method() {
