@@ -1660,16 +1660,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 238),
+            "14: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 100),
         };
 
-        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "75");
-
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("charset", "IBM1098");
-
-        verify(checkerConfig, getPath("InputCheckerTestCharset.java"), expected);
+        verifyWithInlineXmlConfig(getPath("InputCheckerTestCharset.java"),
+                expected);
     }
 
     @Test
