@@ -1753,7 +1753,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.6-parameter-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.6-parameter-names">
                     5.2.6 Parameter names</a>
                 </td>
                 <td>
@@ -1787,27 +1787,17 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/ParameterNameTest.java">
-                    test</a>
-                  <br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
                     config
                   </a>
                   <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule51identifiernames/CatchParameterNameTest.java">
-                    test
-                  </a>
-                  <br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
                     config</a>
-                  <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/LambdaParameterNameTest.java">
-                    test</a>
                   <br/>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentName">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/RecordComponentNameTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule526parameternames/ParameterNamesTest.java">
                     test</a>
                 </td>
               </tr>

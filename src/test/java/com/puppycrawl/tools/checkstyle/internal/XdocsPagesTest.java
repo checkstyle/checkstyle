@@ -237,7 +237,6 @@ public class XdocsPagesTest {
             "4.6.2 Horizontal whitespace",
             "4.8.4.1 Indentation",
             "4.8.5 Annotations",
-            "5.2.6 Parameter names",
             "5.2.8 Type variable names",
             "7.1.2 Paragraphs",
             "7.3 Where Javadoc is used",
