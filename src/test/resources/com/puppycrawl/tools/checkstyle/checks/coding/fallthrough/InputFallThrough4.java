@@ -109,7 +109,7 @@ public class InputFallThrough4 {
    void method5(int i, int j, boolean cond) {
       while (true) {
           switch (i){
-          case 5: // violation 'Fall\ through from the last branch of the switch statement'
+          case 5:
               i++;
               /* block */ /* fallthru */ // comment
           }

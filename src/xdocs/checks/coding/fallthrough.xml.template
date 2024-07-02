@@ -22,8 +22,7 @@
           "fallthru", "fall thru", "fall-thru",
           "fallthrough", "fall through", "fall-through"
           "fallsthrough", "falls through", "falls-through" (case-sensitive).
-          The comment containing these words must be all on one line,
-          and must be on the last non-empty line before the
+          The comment containing these words must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
           the same line before the <code>case</code>
           (ugly, but possible).

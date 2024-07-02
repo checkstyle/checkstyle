@@ -22,8 +22,7 @@
           &quot;fallthru&quot;, &quot;fall thru&quot;, &quot;fall-thru&quot;,
           &quot;fallthrough&quot;, &quot;fall through&quot;, &quot;fall-through&quot;
           &quot;fallsthrough&quot;, &quot;falls through&quot;, &quot;falls-through&quot; (case-sensitive).
-          The comment containing these words must be all on one line,
-          and must be on the last non-empty line before the
+          The comment containing these words must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
           the same line before the <code>case</code>
           (ugly, but possible).
@@ -84,7 +83,8 @@ class Example1 {
       switch (i) {
         case 1:
           i++;
-        case 2: // violation 'Fall\ through from previous branch of the switch'
+          /* block */ /* fallthru */ // comment
+        case 2: // ok, ReliefPattern is present in above line.
           i++;
           break;
         case 3:
