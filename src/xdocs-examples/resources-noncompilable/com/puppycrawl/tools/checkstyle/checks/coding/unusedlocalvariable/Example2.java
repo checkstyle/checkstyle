@@ -1,12 +1,14 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="UnusedLocalVariable"/>
+    <module name="UnusedLocalVariable">
+        <property name="allowUnnamedVariables" value="false"/>
+    </module>
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
-
 import java.io.*;
 import java.util.function.Predicate;
 // xdoc section -- start
@@ -29,6 +31,7 @@ class Example1 {
 
   String convertValue(String newValue) {
     String s = newValue.toLowerCase(); // violation, unused local variable 's'
+    String _ = newValue.toLowerCase(); // violation, unused local variable 'i'
     return newValue.toLowerCase();
   }
 
@@ -39,16 +42,14 @@ class Example1 {
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader("abc.txt"))) {}
     try {
-    } catch (Exception e) { // ok, 'e' is an exception parameter
-    }
+    } catch (Exception e) { }  // ok, 'e' is an exception parameter
   }
 
   void loops() {
     int j = 12;
-    for (int i = 0; j < 11; i++) { // violation, unused local variable 'i'
-    }
-    for (int p = 0; j < 11; p++)   // ok, 'p' is used
-      p /= 2;
+    for (int i = 0; j < 11; i++)  // violation, unused local variable 'i'
+      for (int p = 0; j < 11; p++) p /= 2;   // ok, 'p' is used
+    for (Integer _ : new  int[0]) { } // violation, unused local variable '_'
   }
 
   void lambdas() {

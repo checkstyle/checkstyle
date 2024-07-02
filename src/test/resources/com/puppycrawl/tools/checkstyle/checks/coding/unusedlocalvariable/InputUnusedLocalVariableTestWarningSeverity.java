@@ -1,7 +1,7 @@
 /*
 UnusedLocalVariable
 severity = warning
-
+allowUnnamedVariables = false
 
 */
 
