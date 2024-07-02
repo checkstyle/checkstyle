@@ -5,9 +5,11 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
  * format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"
  *
  */
-public record InputRecordComponentName<t>(int _componentName, // warn
+// violation below 'Record component name '_componentName' must match pattern'
+public record InputRecordComponentName<t>(int _componentName,
                                           String componentName2) {
 }
 
-record InputRecordComponentName<t>(int Capital) { // warn
+// violation below 'Record component name 'Capital' must match pattern'
+record InputRecordComponentName<t>(int Capital) {
 }
