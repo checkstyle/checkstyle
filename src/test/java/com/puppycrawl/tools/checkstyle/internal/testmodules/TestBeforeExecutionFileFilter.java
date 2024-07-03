@@ -19,11 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
-public final class TestBeforeExecutionFileFilter implements BeforeExecutionFileFilter {
+public final class TestBeforeExecutionFileFilter extends AutomaticBean
+        implements BeforeExecutionFileFilter {
 
     private boolean called;
+
+    @Override
+    protected void finishLocalSetup() {
+        // no code
+    }
 
     @Override
     public boolean accept(String uri) {

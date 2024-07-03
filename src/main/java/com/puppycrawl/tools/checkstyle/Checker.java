@@ -140,7 +140,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * The instance needs to be contextualized and configured.
      */
     public Checker() {
-        addListener(counter);
+        listeners.add(counter);
         log = LogFactory.getLog(Checker.class);
     }
 
@@ -473,11 +473,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) child;
-                bean.contextualize(childContext);
-                bean.configure(childConf);
-            }
+            final AbstractAutomaticBean bean = (AbstractAutomaticBean) child;
+            bean.contextualize(childContext);
+            bean.configure(childConf);
         }
         catch (final CheckstyleException ex) {
             throw new CheckstyleException(
@@ -486,19 +484,20 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         if (child instanceof FileSetCheck) {
             final FileSetCheck fsc = (FileSetCheck) child;
             fsc.init();
-            addFileSetCheck(fsc);
+            fsc.setMessageDispatcher(this);
+            fileSetChecks.add(fsc);
         }
         else if (child instanceof BeforeExecutionFileFilter) {
             final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
-            addBeforeExecutionFileFilter(filter);
+            beforeExecutionFileFilters.addBeforeExecutionFileFilter(filter);
         }
         else if (child instanceof Filter) {
             final Filter filter = (Filter) child;
-            addFilter(filter);
+            filters.addFilter(filter);
         }
         else if (child instanceof AuditListener) {
             final AuditListener listener = (AuditListener) child;
-            addListener(listener);
+            listeners.add(listener);
         }
         else {
             throw new CheckstyleException(
