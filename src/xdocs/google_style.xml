@@ -832,7 +832,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5.1-line-wrapping-where-to-break">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.5.1-line-wrapping-where-to-break">
                     4.5.1 Where to break</a>
                 </td>
                 <td>
@@ -857,19 +857,13 @@
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/OperatorWrapTest.java">
-                    test</a>
-                  <br />
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
                     config</a>
-                  <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/SeparatorWrapTest.java">
-                    test</a>
                   <br />
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
                     config</a>
                   <br />
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/MethodParamPadTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/WhereToBreakTest.java">
                     test</a>
                 </td>
               </tr>
