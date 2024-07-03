@@ -2,12 +2,12 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 public class InputNoWhitespaceBeforeCaseDefaultColon {
     {
-        switch(1) {
-            case 1 : // warn
+        switch (1) {
+            case 1 : // violation '':' is preceded with whitespace.'
                 break;
             case 2:
                 break;
-            default : // warn
+            default : // violation '':' is preceded with whitespace.'
                 break;
         }
     }
