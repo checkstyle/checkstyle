@@ -14,7 +14,7 @@ public class InputSeparatorWrapMethodRef {
     void badCase() {
         String[] stringArray = { "Barbara", "James", "Mary", "John",
             "Patricia", "Robert", "Michael", "Linda" };
-        /*warn*/ Arrays.sort(stringArray, String::
+        /*warn*/ Arrays.sort(stringArray, String:: // violation ''::' should be on a new line.'
                 compareToIgnoreCase);
     }
 }

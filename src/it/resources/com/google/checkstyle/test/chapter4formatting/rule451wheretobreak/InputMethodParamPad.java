@@ -5,82 +5,9 @@ import java.util.Map;
 
 class InputMethodParamPad
 {
-    void test()
-    {
-        int x = 1 +
-                 2 -
-            3
-            -
-            4;
-        x = x + 2;
-        boolean y = true
-            &&
-            false;
-         y = true &&
-            false;
-        y = false
-            && true;
-    }
-
-    void testAssignment()
-    {
-        int x
-            = 0;
-        int y =
-            0;
-    }
-
-    <
-     T extends Comparable &
-        java.io.Serializable
-    >
-    void testGenerics1()
-    {
-        Comparable
-            <
-            String
-            >
-            c = new String();
-        Map<String, String> map = new HashMap<String, String>();
-
-        boolean flag = false;
-
-        int init = 9;
-
-        for (Map.Entry<String, String> entry :
-            map.entrySet())
-        {
-            int i = flag == true ?
-                    1 : 2;
-        }
-
-         if (init !=
-                9)
-        {
-
-        }
-
-         while (init ==
-                10)
-        {
-
-        }
-
-         if (init >
-                10)
-        {
-
-        } else {}
-
-         while (init < 10 ||
-                !flag) {
-
-        }
-    }
-
     class Inner {
         void testGenerics1
-        () //warn
+        () // violation ''(' should be on the previous line.'
         {
             Comparable
                 <
@@ -91,43 +18,13 @@ class InputMethodParamPad
             boolean flag = false;
 
             int init = 9;
-
-            for (Map.Entry<String, String> entry :
-                map.entrySet())
-            {
-                int i = flag == true ?
-                        1 : 2;
-            }
-
-             if (init !=
-                    9)
-            {
-
-            }
-
-             while (init ==
-                    10)
-            {
-
-            }
-
-             if (init >
-                    10)
-            {
-
-            } else {}
-
-             while (init < 10 ||
-                    !flag) {
-
-            }
         }
     }
 
     Inner anon = new Inner
-            (){  //warn
+            (){  // violation ''(' should be on the previous line.'
         void testGenerics1
-        () //warn
+        () // violation ''(' should be on the previous line.'
         {
             Comparable
                 <
@@ -137,36 +34,6 @@ class InputMethodParamPad
             Map<String, String> map = new HashMap<String, String>();
             boolean flag = false;
             int init = 9;
-
-            for (Map.Entry<String, String> entry :
-                map.entrySet())
-            {
-                int i = flag == true ?
-                        1 : 2;
-            }
-
-             if (init !=
-                    9)
-            {
-
-            }
-
-             while (init ==
-                    10)
-            {
-
-            }
-
-             if (init >
-                    10)
-            {
-
-            } else {}
-
-             while (init < 10 ||
-                    !flag) {
-
-            }
         }
     };
 }
@@ -182,9 +49,6 @@ class AsInput1 {
 class Ternary2 {
     void foo() {
         boolean flag = true;
-        int i = flag == true ?
-                1 :
-                2;
         int i2 = flag == true
                 ?
                 1
@@ -350,12 +214,12 @@ class AssignClass3 {
     };
 
     enum TestEnum {
-        FIRST () // warn
+        FIRST () // violation ''(' is preceded with whitespace.'
             {
             },
 
         SECOND
-            () // warn
+            () // violation ''(' should be on the previous line.'
             {
             }
     }
