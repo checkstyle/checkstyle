@@ -808,6 +808,7 @@
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>-Alint=trustArrayLenZero</arg>
           </compilerArgs>
         </configuration>
       </plugin>
