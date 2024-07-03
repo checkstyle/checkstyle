@@ -105,6 +105,7 @@ public class InputVariableDeclarationUsageDistanceTryResources {
         final boolean[] states = {fieldStatistics.isEmpty(), fieldStatistics.isEmpty()};
         Object[] keys = fieldStatistics.keySet().toArray(new String[0]);
         Object[] values = fieldStatistics.values().toArray(new myClass[0]);
+        // violation above 'Distance .* is 2.'
         for (int i = 0; i < states.length; i++) {
             if (states[i]) {
                 out.write(((String) keys[i]).getBytes());

@@ -204,7 +204,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 final DetailAST variableUsageAst = entry.getKey();
                 final int dist = entry.getValue();
                 if (dist > allowedDistance
-                        && !isInitializationSequence(variableUsageAst, variable.getText())) {
+                        && !isVariableUsedInInitializationSequence(
+                                variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
                         log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
                     }
@@ -245,42 +246,97 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if statements between declaration and usage of variable are
      *         initialization methods.
      */
-    private static boolean isInitializationSequence(
+    private static boolean isVariableUsedInInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
         boolean result = true;
         boolean isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
+        boolean varUsed = false;
 
         while (result && !isUsedVariableDeclarationFound && currentSiblingAst != null) {
-            if (currentSiblingAst.getType() == TokenTypes.EXPR
-                    && currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
-                final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
-                final String instanceName = getInstanceName(methodCallAst);
-                if (instanceName.isEmpty()) {
-                    result = false;
-                }
-                else if (!instanceName.equals(initInstanceName)) {
-                    if (initInstanceName.isEmpty()) {
-                        initInstanceName = instanceName;
+            switch (currentSiblingAst.getType()) {
+                case TokenTypes.EXPR:
+                    if (currentSiblingAst.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+                        final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
+                        final String instanceName = getInstanceName(methodCallAst);
+                        if (initInstanceName.isEmpty()) {
+                            initInstanceName = instanceName;
+                        }
+                        result = areInstanceNamesEqual(initInstanceName, instanceName);
+                        if (isVariableUsed(variableName, methodCallAst)) {
+                            varUsed = true;
+                        }
                     }
                     else {
                         result = false;
                     }
-                }
+                    break;
+                case TokenTypes.VARIABLE_DEF:
+                    final String currentVariableName =
+                            currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
+                    isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
+                    break;
 
-            }
-            else if (currentSiblingAst.getType() == TokenTypes.VARIABLE_DEF) {
-                final String currentVariableName =
-                        currentSiblingAst.findFirstToken(TokenTypes.IDENT).getText();
-                isUsedVariableDeclarationFound = variableName.equals(currentVariableName);
-            }
-            else {
-                result = currentSiblingAst.getType() == TokenTypes.SEMI;
+                default:
+                    result = currentSiblingAst.getType() == TokenTypes.SEMI;
+                    break;
             }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
+        if (variableUsageAst != null) {
+            result = result && varUsed;
+        }
         return result;
+    }
+
+    /**
+     * Checks if the provided instance names are equal.
+     *
+     * @param initInstanceName The init instance name.
+     * @param instanceName The instance name.
+     * @return true if the instance names is equal to initInstanceName.
+     */
+    private static boolean areInstanceNamesEqual(String initInstanceName, String instanceName) {
+        return !instanceName.isEmpty()
+                        && instanceName.equals(initInstanceName);
+    }
+
+    /**
+     * Checks if the specified variable name matches any identifier.
+     *
+     * @param variableName The name of the variable to search for within the AST.
+     * @param ast The root of the (AST) to search within.
+     * @return true if the variable name matches any identifier within the AST;
+     */
+    private static boolean isVariableUsed(String variableName, DetailAST ast) {
+        final List<DetailAST> identAst = getIdentAst(ast);
+        return identAst.stream()
+            .map(DetailAST::getText)
+            .anyMatch(name -> name.equals(variableName));
+    }
+
+    /**
+     * Return the list of ident AST.
+     *
+     * @param ast The root of the (AST) to search within.
+     * @return list of ident ast within the given AST;
+     */
+    private static List<DetailAST> getIdentAst(DetailAST ast) {
+        DetailAST curNode = ast;
+        final List<DetailAST> identList = new ArrayList<>();
+        while (curNode.getType() != TokenTypes.SEMI) {
+            if (curNode.getType() == TokenTypes.IDENT) {
+                identList.add(curNode);
+            }
+            DetailAST child = curNode.getFirstChild();
+            while (child == null) {
+                child = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = child;
+        }
+        return identList;
     }
 
     /**
