@@ -43,6 +43,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedLocalVariableCheck.class);
+        moduleConfig.addProperty("allowUnnamedVariables", "false");
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
@@ -78,6 +79,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(UnusedLocalVariableCheck.class);
+        moduleConfig.addProperty("allowUnnamedVariables", "false");
 
         final String[] expectedViolation = {
             "10:9: " + getCheckMessage(UnusedLocalVariableCheck.class,

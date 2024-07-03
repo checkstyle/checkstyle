@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="UnusedLocalVariable"/>
+    <module name="UnusedLocalVariable">
+      <property name="allowUnnamedVariables" value="false"/>
+    </module>
   </module>
 </module>
 */
@@ -39,8 +41,7 @@ class Example1 {
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader("abc.txt"))) {}
     try {
-    } catch (Exception e) { // ok, 'e' is an exception parameter
-    }
+    } catch (Exception e) { }// ok, 'e' is an exception parameter
   }
 
   void loops() {
