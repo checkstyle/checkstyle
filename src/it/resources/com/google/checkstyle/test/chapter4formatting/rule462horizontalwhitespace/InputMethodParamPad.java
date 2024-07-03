@@ -8,16 +8,16 @@ public class InputMethodParamPad
         super();
     }
 
-    public InputMethodParamPad (int aParam) // warn
+    public InputMethodParamPad (int aParam) // violation ''(' is preceded with whitespace.'
     {
-        super (); // warn
+        super (); // violation ''(' is preceded with whitespace.'
     }
 
     public void method()
     {
     }
 
-    public void method (int aParam) // warn
+    public void method (int aParam) // violation ''(' is preceded with whitespace.'
     {
     }
 
@@ -26,30 +26,30 @@ public class InputMethodParamPad
     {
         // invoke constructor
         InputMethodParamPad pad = new InputMethodParamPad();
-        pad = new InputMethodParamPad (); // warn
+        pad = new InputMethodParamPad (); // violation ''(' is preceded with whitespace.'
         pad = new
             InputMethodParamPad();
 
         // call method
         method();
-        method (); // warn
+        method (); // violation ''(' is preceded with whitespace.'
     }
 
     public void dottedCalls()
     {
         this.method();
-        this.method (); // warn
+        this.method (); // violation ''(' is preceded with whitespace.'
         this.
             method();
 
         InputMethodParamPad p = new InputMethodParamPad();
         p.method();
-        p.method (); // warn
+        p.method (); // violation ''(' is preceded with whitespace.'
         p.
             method();
 
         java.lang.Integer.parseInt("0");
-        java.lang.Integer.parseInt ("0"); // warn
+        java.lang.Integer.parseInt ("0"); // violation ''(' is preceded with whitespace.'
         java.lang.Integer.
             parseInt("0");
     }
