@@ -138,8 +138,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT",
-                    "STRING_TEMPLATE_CONTENT")
+                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                     .collect(Collectors.toUnmodifiableSet()));
         // we do not use this check as it is deprecated
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
@@ -242,7 +241,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // comments should be skipped as nobody write in octal or unicode code style
                 "COMMENT_CONTENT",
                 // until #14291
-                "TEXT_BLOCK_CONTENT", "STRING_TEMPLATE_CONTENT"
+                "TEXT_BLOCK_CONTENT"
                 )
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
