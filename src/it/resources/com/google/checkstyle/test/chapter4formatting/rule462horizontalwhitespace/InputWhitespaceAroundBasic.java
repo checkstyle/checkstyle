@@ -6,21 +6,22 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
  **/
 class InputWhitespaceAroundBasic
 {
-    /** warn **/
-    private int mVar1= 1; // warn
-    /** warn **/
-    private int mVar2 =1; // warn
+    private int mVar1= 1; // violation ''=' is not preceded with whitespace.'
+    private int mVar2 =1; // violation ''=' is not followed by whitespace.'
     /** Should be ok **/
     private int mVar3 = 1;
+    int xyz;       // multiple space between content and double slash.
+    int abc; //       multiple space between double slash and comment's text.
+    int pqr;       //     testing both.
 
     /** method **/
     void method1()
     {
         final int a = 1;
-        int b= 1; // warn
-        b= 1; // warn
-        b +=1; // warn
-        b -=- 1 + (+ b); // warn
+        int b= 1; // violation ''=' is not preceded with whitespace.'
+        b= 1; // violation ''=' is not preceded with whitespace.'
+        b +=1; // violation ''.*' is not followed by whitespace.'
+        b -=- 1 + (+ b); // violation ''-=' is not followed by whitespace.'
         b = b ++ + b --; // ok
         b = ++ b - -- b; // ok
     }
@@ -28,11 +29,11 @@ class InputWhitespaceAroundBasic
     /** method **/
     void method2()
     {
-        synchronized(this) { //warn
+        synchronized(this) { // violation ''synchronized' is not followed by whitespace.'
         }
-        try {//warn
+        try {// violation ''{' is not followed by whitespace.'
         }
-        catch (RuntimeException e) {//warn
+        catch (RuntimeException e) {// violation ''{' is not followed by whitespace.'
         }
     }
 
@@ -49,7 +50,7 @@ class InputWhitespaceAroundBasic
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded) //warn
+        if( !complicatedStuffNeeded) // violation ''if' is not followed by whitespace.'
         {
             return; // should not complain about missing WS after return
         }
@@ -67,7 +68,7 @@ class InputWhitespaceAroundBasic
     {
         if ( true )
         {
-            return(2); // //warn
+            return(2); // // violation ''return' is not followed by whitespace.'
         }
         else
         {
@@ -89,13 +90,13 @@ class InputWhitespaceAroundBasic
     private void testQuestions()
     {
 
-        boolean b = (1 ==2) ? false : true; //warn
+        boolean b = (1 ==2) ? false : true; // violation ''==' is not followed by whitespace.'
     }
 
     /** star test **/
     private void starTest()
     {
-        int x = 2 * 3* 4; //warn
+        int x = 2 * 3* 4; // violation ''*' is not preceded with whitespace.'
     }
 
     /** boolean test **/
@@ -110,12 +111,12 @@ class InputWhitespaceAroundBasic
     private void divTest()
     {
         int a = 4 % 2;
-        int b = 4% 2;//warn
-        int c = 4 %2;//warn
-        int d = 4% 2;//warn
+        int b = 4% 2;// violation ''%' is not preceded with whitespace.'
+        int c = 4 %2;// violation ''%' is not followed by whitespace.'
+        int d = 4% 2;// violation ''%' is not preceded with whitespace.'
         int e = 4 / 2;
-        int f = 4/ 2;//warn
-        int g = 4 /2;//warn
+        int f = 4/ 2;// violation ''/' is not preceded with whitespace.'
+        int g = 4 /2;// violation ''/' is not followed by whitespace.'
 
     }
 
@@ -144,10 +145,10 @@ class InputWhitespaceAroundBasic
         assert "OK".equals(null) ? false : true : "Whups";
 
         // missing WS around assert
-        assert(true);//warn
+        assert(true);// violation ''assert' is not followed by whitespace.'
 
         // missing WS around colon
-        assert true: "Whups";//warn
+        assert true: "Whups"; // violation '':' is not preceded with whitespace.'
     }
 
     /** another check */
@@ -238,9 +239,12 @@ class SpecialCasesInForLoop
 
     void forColon() {
         int ll[] = new int[10];
-        for (int x:ll) {} // warn
-        for (int x :ll) {} // warn
-        for (int x: ll) {} // warn
+        for (int x:ll) {}
+        // 2 violations above:
+        //                    '':' is not followed by whitespace.'
+        //                    '':' is not preceded with whitespace.'
+        for (int x :ll) {} // violation '':' is not followed by whitespace.'
+        for (int x: ll) {} // violation '':' is not preceded with whitespace.'
         for (int x : ll) {} // ok
     }
 }
@@ -254,8 +258,8 @@ class NewGoogleOperators
     {
        Runnable l;
 
-       l = ()-> { }; //warn
-       l = () ->{ }; //warn
+       l = ()-> { }; // violation ''->' is not preceded with whitespace.'
+       l = () ->{ }; // violation ''->' is not followed by whitespace.'
        l = () -> { }; //ok
        l = () -> {}; //ok
 
