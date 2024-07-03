@@ -8,8 +8,8 @@ class InputOperatorWrap
 {
     void test()
     {
-        /*warn*/int x = 1 +
-                /*warn*/ 2 -
+        int x = 1 + // violation '.* should be on a new line.'
+                 2 - // violation ''-' should be on a new line.'
             3
             -
             4;
@@ -17,15 +17,16 @@ class InputOperatorWrap
         boolean y = true
             &&
             false;
-        /*warn*/ y = true &&
+         y = true && // violation ''&&' should be on a new line.'
             false;
         y = false
             && true;
         /* Note: The three tests below will be used when issue #3381 is closed */
         Arrays.sort(null, String
+                    // violation below ''::' should be on a new line.'
                     ::
                     compareToIgnoreCase);
-        Arrays.sort(null, String::  /*warn*/
+        Arrays.sort(null, String::   // violation ''::' should be on a new line.'
                     compareToIgnoreCase);
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
@@ -40,7 +41,7 @@ class InputOperatorWrap
     }
 
     <
-    /*warn*/ T extends Comparable &
+     T extends Comparable & // violation ''&' should be on a new line.'
         java.io.Serializable
     >
     void testGenerics1()
@@ -59,37 +60,36 @@ class InputOperatorWrap
         for (Map.Entry<String, String> entry :
             map.entrySet())
         {
-            /*warn*/int i = flag == true ?
+            int i = flag == true ? // violation ''?' should be on a new line.'
                     1 : 2;
         }
 
-        /*warn*/ if (init !=
+         if (init != // violation ''!=' should be on a new line.'
                 9)
         {
 
         }
 
-        /*warn*/ while (init ==
+         while (init == // violation ''==' should be on a new line.'
                 10)
         {
 
         }
 
-        /*warn*/ if (init >
+         if (init > // violation ''>' should be on a new line.'
                 10)
         {
 
         } else {}
 
-        /*warn*/ while (init < 10 ||
+         while (init < 10 || // violation '.* should be on a new line.'
                 !flag) {
 
         }
     }
 
     class Inner {
-        void testGenerics1
-        ()
+        void testGenerics1()
         {
             Comparable
                 <
@@ -104,39 +104,37 @@ class InputOperatorWrap
             for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                /*warn*/int i = flag == true ?
+                int i = flag == true ? // violation ''?' should be on a new line.'
                         1 : 2;
             }
 
-            /*warn*/ if (init !=
+             if (init != // violation ''!=' should be on a new line.'
                     9)
             {
 
             }
 
-            /*warn*/ while (init ==
+             while (init == // violation ''==' should be on a new line.'
                     10)
             {
 
             }
 
-            /*warn*/ if (init >
+             if (init > // violation ''>' should be on a new line.'
                     10)
             {
 
             } else {}
 
-            /*warn*/ while (init < 10 ||
+             while (init < 10 || // violation '.* should be on a new line.'
                     !flag) {
 
             }
         }
     }
 
-    Inner anon = new Inner
-            (){
-        void testGenerics1
-        ()
+    Inner anon = new Inner(){
+        void testGenerics1()
         {
             Comparable
                 <
@@ -150,29 +148,29 @@ class InputOperatorWrap
             for (Map.Entry<String, String> entry :
                 map.entrySet())
             {
-                /*warn*/int i = flag == true ?
+                int i = flag == true ? // violation ''?' should be on a new line.'
                         1 : 2;
             }
 
-            /*warn*/ if (init !=
+             if (init != // violation ''!=' should be on a new line.'
                     9)
             {
 
             }
 
-            /*warn*/ while (init ==
+             while (init == // violation ''==' should be on a new line.'
                     10)
             {
 
             }
 
-            /*warn*/ if (init >
+             if (init > // violation ''>' should be on a new line.'
                     10)
             {
 
             } else {}
 
-            /*warn*/ while (init < 10 ||
+             while (init < 10 || // violation '.* should be on a new line.'
                     !flag) {
 
             }
@@ -191,7 +189,7 @@ class AsInput {
 class Ternary {
     void foo() {
         boolean flag = true;
-        /*warn*/int i = flag == true ?
+        int i = flag == true ? // violation ''?' should be on a new line.'
                 1 :
                 2;
         int i2 = flag == true
