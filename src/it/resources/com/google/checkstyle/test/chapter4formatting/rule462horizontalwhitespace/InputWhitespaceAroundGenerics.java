@@ -9,15 +9,35 @@ public class InputWhitespaceAroundGenerics
 }
 
 //No whitespace after commas
-class BadCommas < A,B,C extends Map < A,String > > //warn
+class BadCommas < A, B, C extends Map < A, String > >
+// 7 violations above:
+//  ''\<' is followed by whitespace.'
+//  ''\<' is preceded with whitespace.'
+//  ''\<' is followed by whitespace.'
+//  ''\<' is preceded with whitespace.'
+//  ''\>' is followed by whitespace.'
+//  ''\>' is preceded with whitespace.'
+//  ''\>' is preceded with whitespace.'
 {
-    private java.util.Hashtable < Integer, D > p = //warn
-        new java.util.Hashtable < Integer, D > (); //warn
+    private java.util.Hashtable < Integer, D > p =
+    // 3 violations above:
+    //  ''\<' is followed by whitespace.'
+    //  ''\<' is preceded with whitespace.'
+    //  ''\>' is preceded with whitespace.'
+        new java.util.Hashtable < Integer, D >();
+    // 3 violations above:
+    //  ''\<' is followed by whitespace.'
+    //  ''\<' is preceded with whitespace.'
+    //  ''\>' is preceded with whitespace.'
 }
 
 class Wildcard
 {
-    public static void foo(Collection < ? extends Wildcard[] > collection) { //warn
+    public static void foo(Collection < ? extends Wildcard[] > collection) {
+        // 3 violations above:
+        //  ''\<' is followed by whitespace.'
+        //  ''\<' is preceded with whitespace.'
+        //  ''\>' is preceded with whitespace.'
         // A statement is important in this method to flush out any
         // issues with parsing the wildcard in the signature
         collection.size();
