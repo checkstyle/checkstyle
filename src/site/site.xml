@@ -173,6 +173,8 @@
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
+          <item name="WhenShouldBeUsed"
+                href="checks/coding/whenshouldbeused.html"/>
         </item>
         <item name="Headers" href="checks/header/index.html" collapse="true">
           <item name="Header" href="checks/header/header.html"/>
