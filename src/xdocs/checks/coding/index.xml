@@ -571,6 +571,17 @@
               Checks the distance between declaration of variable and its first usage.
             </td>
           </tr>
+          <tr>
+            <td>
+              <a href="whenshouldbeused.html#WhenShouldBeUsed">
+                WhenShouldBeUsed
+              </a>
+            </td>
+            <td>
+              Ensures that <code>when</code> is used instead of a single
+              <code>if</code> statement inside a case block.
+            </td>
+          </tr>
         </table>
       </div>
     </section>
