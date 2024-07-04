@@ -163,4 +163,21 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameUnnamedVariables.java"), expected);
     }
+
+    @Test
+    public void testIllegalIdentifierNameRecordPattern() throws Exception {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+
+        final String[] expected = {
+            "16:36: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "17:47: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "17:59: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "17:74: " + getCheckMessage(MSG_INVALID_PATTERN, "sealed", format),
+            "26:28: " + getCheckMessage(MSG_INVALID_PATTERN, "permits", format),
+            "26:41: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "30:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permits", format),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
+    }
 }
