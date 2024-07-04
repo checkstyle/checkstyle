@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheck"
+             name="WhenShouldBeUsed"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Ensures that {@code when} is used instead of a single {@code if}
+ statement inside a case block.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Java 21 has introduced enhancements for switch statements and expressions
+ that allow the use of patterns in case labels. The {@code when} keyword is used to specify
+ condition for a case label, also called as guarded case labels. This syntax is more readable
+ and concise than the single {@code if} statement inside the pattern match block.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-Guard"&gt;
+ Java Language Specification&lt;/a&gt; for more information about guarded case labels.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30"&gt;
+ Java Language Specification&lt;/a&gt; for more information about patterns.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="when.should.be.used"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
