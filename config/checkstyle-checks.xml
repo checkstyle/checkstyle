@@ -575,6 +575,14 @@
     <module name="UnnecessarySemicolonInTryWithResources"/>
     <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
+    <module name="WhenShouldBeUsed">
+      <!--
+        We will not use this check because guarded case label
+        is only supported by newer versions of Java (21).
+        Using 'when' will not compile in older Java code.
+        -->
+      <property name="severity" value="ignore"/>
+    </module>
 
     <!-- Filters -->
     <module name="SuppressionCommentFilter">
