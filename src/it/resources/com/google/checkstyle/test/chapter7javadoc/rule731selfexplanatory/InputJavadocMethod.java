@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
  * The following is a bad tag.
  * @mytag Hello
  */
-public class InputJavadocMethodCheck extends OverrideClass
+public class InputJavadocMethod extends OverrideClass
 {
     //with comments
 
