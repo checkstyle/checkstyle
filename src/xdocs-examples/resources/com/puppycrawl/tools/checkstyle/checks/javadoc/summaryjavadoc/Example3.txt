@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="SummaryJavadocCheck">
+    <module name="SummaryJavadoc">
       <property name="forbiddenSummaryFragments"
         value="^This method returns.*"/>
     </module>
