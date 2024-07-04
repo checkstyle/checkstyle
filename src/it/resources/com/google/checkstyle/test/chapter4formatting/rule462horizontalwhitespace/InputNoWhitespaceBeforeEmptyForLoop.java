@@ -9,13 +9,13 @@ public class InputNoWhitespaceBeforeEmptyForLoop {
         for (int x = 0; ; ) { // ok
             break;
         }
-        for (int x = 0 ; ; ) { // warning
+        for (int x = 0 ; ; ) { // violation '';' is preceded with whitespace.'
             break;
         }
         for (int x = 0; x < 10; ) { // ok
             break;
         }
-        for (int x = 0; x < 10 ; ) { // warning
+        for (int x = 0; x < 10 ; ) { // violation '';' is preceded with whitespace.'
             break;
         }
     }

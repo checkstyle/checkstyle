@@ -3,8 +3,8 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 public class InputNoWhitespaceBeforeColonOfLabel {
 
     {
-        label1 : // warn
-        for(int i = 0; i < 10; i++) {}
+        label1 : // violation '':' is preceded with whitespace.'
+        for (int i = 0; i < 10; i++) {}
     }
 
     public void foo() {
