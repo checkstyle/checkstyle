@@ -25,10 +25,11 @@ class badCase {
         int i = 0;
 
         String s = "ffffooooString";
-        /*warn*/boolean b = s.
+        // violation below ''.' should be on a new line.'
+        boolean b = s.
             isEmpty();
         foo(i
-                ,s);
+                ,s); // violation '',' should be on the previous line.'
         int[] j;
     }
     public static String foo(int i, String s)
