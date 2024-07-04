@@ -459,7 +459,7 @@ assembly-run-all-jar)
   echo version:"$CS_POM_VERSION"
   mkdir -p .ci-temp
   FOLDER=src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired
-  FILE=InputMissingJavadocTypeCheckNoViolations.java
+  FILE=InputMissingJavadocTypeCorrect.java
   java -jar target/checkstyle-"$CS_POM_VERSION"-all.jar -c /google_checks.xml \
         $FOLDER/$FILE > .ci-temp/output.log
   fail=0
