@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>WhenShouldBeUsed</title>
+  </head>
+  <body>
+    <section name="WhenShouldBeUsed">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Ensures that <code>when</code> is used instead of a single
+          <code>if</code> statement inside a case block.
+        </p>
+        <p>
+          Rationale: Java 21 has introduced enhancements for switch statements and expressions
+          that allow the use of patterns in case labels.
+          The <code>when</code> keyword is used to specify condition for a case label,
+          also called as guarded case labels. This syntax is more readable
+          and concise than the single <code>if</code> statement inside the pattern match block.
+        </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-Guard">
+          Java Language Specification</a> for more information about guarded case labels.
+        </p>
+        <p>
+          See the
+          <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30">
+          Java Language Specification</a> for more information about patterns.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;WhenShouldBeUsed&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example of violation:
+        </p>
+        <source>
+public class Example1 {
+
+  void testNoGuard(Object o) {
+    switch (o) {
+      // violation below,  ''when' expression should be used*.'
+      case String s -&gt; {
+        if (s.isEmpty()) {
+          System.out.println(&quot;empty string&quot;);
+        }
+      }
+      default -&gt; {}
+    }
+
+    switch (o) {
+      // this example is ok, not a single if statement inside the case block
+      case String s -&gt; {
+        System.out.println(&quot;String&quot;);
+        if (s.isEmpty()) {
+          System.out.println(&quot;but empty&quot;);
+        }
+      }
+      default -&gt; {}
+    }
+  }
+
+  void testGuardedCaseLabel(Object o) {
+    switch (o) {
+      case String s when s.isEmpty() -&gt; {
+        System.out.println(&quot;empty string&quot;);
+      }
+      default -&gt; {}
+    }
+  }
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhenShouldBeUsed">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22when.should.be.used%22">
+              when.should.be.used
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

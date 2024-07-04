@@ -289,5 +289,7 @@
          files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
 
 </suppressions>
