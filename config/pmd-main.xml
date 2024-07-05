@@ -61,7 +61,9 @@
                     | //ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFile']
                     | //ClassDeclaration[@SimpleName='TranslationCheck']
-                        //MethodDeclaration[@Name='getTranslationKeys']"/>
+                        //MethodDeclaration[@Name='getTranslationKeys']
+                    | //ClassDeclaration[@SimpleName='TreeWalker']
+                        //MethodDeclaration[@Name='processFiltered']"/>
     </properties>
   </rule>
 </ruleset>
