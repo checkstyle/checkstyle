@@ -22,10 +22,13 @@ package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 
-public class MissingJavadocMethodTest extends AbstractGoogleModuleTestSupport {
+public class ExceptionSelfExplanatoryMembersTest extends AbstractGoogleModuleTestSupport {
+
+    private static final String[] MODULES = {
+        "MissingJavadocMethod",
+        "JavadocMethod",
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -33,18 +36,9 @@ public class MissingJavadocMethodTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testJavadocMethod() throws Exception {
-        final String msg = getCheckMessage(MissingJavadocMethodCheck.class, "javadoc.missing");
-
-        final String[] expected = {
-            "57:5: " + msg,
-        };
-
-        final Configuration checkConfig = getModuleConfig("MissingJavadocMethod");
-        final String filePath = getPath("InputMissingJavadocMethodCheck.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+    public void testBothModules() throws Exception {
+        final String filePath = getPath("InputJavadocMethodAndMissingJavadocMethod.java");
+        verifyWithConfigParser(MODULES, filePath);
     }
 
 }
