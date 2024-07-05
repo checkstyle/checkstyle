@@ -231,10 +231,7 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "4.2 Block indentation: +2 spaces",
-            "4.5.2 Indent continuation lines at least +4 spaces",
             "4.6.2 Horizontal whitespace",
-            "4.8.4.1 Indentation",
             "4.8.5 Annotations",
             "7.1.2 Paragraphs",
             "7.3 Where Javadoc is used",
