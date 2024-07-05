@@ -231,8 +231,7 @@ public class XdocsPagesTest {
     // This list will be removed once all the sections are migrated.
     // until https://github.com/checkstyle/checkstyle/issues/14937
     private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "4.8.5 Annotations",
-            "7.3.1 Exception: self-explanatory methods"
+            "4.8.5 Annotations"
     );
 
     /**
