@@ -17,13 +17,12 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
-
-import org.junit.jupiter.api.Test;
+package com.google.checkstyle.test.chapter4formatting.rule452continuationlines;
 
 import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
+import org.junit.jupiter.api.Test;
 
-public class IndentationTest extends AbstractIndentationTestSupport {
+public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentationTestSupport {
 
     private static final String[] MODULES = {
         "Indentation",

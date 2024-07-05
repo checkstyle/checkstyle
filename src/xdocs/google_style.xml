@@ -718,7 +718,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.2-block-indentation">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.2-block-indentation">
                     4.2 Block indentation: +2 spaces</a>
                 </td>
                 <td>
@@ -739,7 +739,7 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule42blockindentation/BlockIndentation2SpacesTest.java">
                     test</a>
                 </td>
               </tr>
@@ -876,7 +876,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5.2-line-wrapping-indent">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.5.2-line-wrapping-indent">
                     4.5.2 Indent continuation lines at least +4 spaces</a>
                 </td>
                 <td>
@@ -888,7 +888,7 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4841indentation/IndentationTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule452continuationlines/IndentContinuationLinesAtLeast4SpacesTest.java">
                     test</a>
                 </td>
               </tr>
@@ -1260,7 +1260,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4.1-switch-indentation">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.4.1-switch-indentation">
                     4.8.4.1 Indentation</a>
                 </td>
                 <td>
