@@ -25,6 +25,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+
+import org.checkerframework.common.value.qual.ArrayLen;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -38,13 +42,14 @@ public final class DefaultConfiguration implements Configuration {
     private static final long serialVersionUID = 1157875385356127169L;
 
     /** Constant for optimization. */
-    private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
+    private static final @ArrayLen(0) Configuration[] EMPTY_CONFIGURATION_ARRAY =
+            new Configuration[0];
 
     /** The name of this configuration. */
     private final String name;
 
     /** The list of child Configurations. */
-    private final List<Configuration> children = new ArrayList<>();
+    private final @Nonnull List<Configuration> children = new ArrayList<>();
 
     /** The map from property names to property values. */
     private final Map<String, String> propertyMap = new HashMap<>();
