@@ -539,6 +539,20 @@
               <td><code>.java</code></td>
               <td>3.0</td>
             </tr>
+            <tr>
+              <td>javaParseExceptionSeverity</td>
+              <td>Severity level to log Java parsing exceptions when they are skipped.</td>
+              <td><a href="property_types.html#SeverityLevel">SeverityLevel</a></td>
+              <td><code>error</code></td>
+              <td>10.18.0</td>
+            </tr>
+            <tr>
+              <td>skipFileOnJavaParseException</td>
+              <td>Control whether to skip files with Java parsing exceptions.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.18.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -604,6 +618,18 @@
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
   ...
 &lt;/module&gt;
+        </source>
+        <p>
+          To configure <code>TreeWalker</code> so that it
+          skips files with java parsing exceptions with severity level <code>ignore</code>:
+        </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+   &lt;property name=&quot;skipFileOnJavaParseException&quot; value=&quot;true&quot;/&gt;
+   &lt;property name=&quot;javaParseExceptionSeverity&quot; value=&quot;ignore&quot;/&gt;
+   ...
+&lt;/module&gt;
+
         </source>
       </subsection>
 
