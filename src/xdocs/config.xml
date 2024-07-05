@@ -539,6 +539,20 @@
               <td><code>.java</code></td>
               <td>3.0</td>
             </tr>
+            <tr>
+              <td>javaParseExceptionSeverity</td>
+              <td>Specify severity level to log Java parsing exceptions when they are skipped.</td>
+              <td><a href="property_types.html#SeverityLevel">SeverityLevel</a></td>
+              <td><code>error</code></td>
+              <td>10.18.0</td>
+            </tr>
+            <tr>
+              <td>skipFileOnJavaParseException</td>
+              <td>Control whether to skip files with Java parsing exceptions.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.18.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -603,6 +617,36 @@
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
   ...
+&lt;/module&gt;
+        </source>
+        <p>
+          By default, <code>skipFileOnJavaParseException</code> is set to false.
+          In this case, when using new Java features that are not yet supported by Checkstyle,
+          Checkstyle will fail to parse them, log parsing exceptions, and may halt processing,
+          failing to analyze other files.
+        </p>
+        <p>
+          To configure <code>TreeWalker</code> so that it skips files with java parsing exceptions,
+          preventing execution from stopping on an exception and instead
+          printing it as a violation:
+        </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+   &lt;property name=&quot;skipFileOnJavaParseException&quot; value=&quot;true&quot;/&gt;
+   ...
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure <code>TreeWalker</code> so that it
+          skips files with java parsing exceptions,
+          preventing execution from stopping on an exception and does not
+          print it as a violation:
+        </p>
+        <source>
+&lt;module name=&quot;TreeWalker&quot;&gt;
+   &lt;property name=&quot;skipFileOnJavaParseException&quot; value=&quot;true&quot;/&gt;
+   &lt;property name=&quot;javaParseExceptionSeverity&quot; value=&quot;ignore&quot;/&gt;
+   ...
 &lt;/module&gt;
         </source>
       </subsection>
