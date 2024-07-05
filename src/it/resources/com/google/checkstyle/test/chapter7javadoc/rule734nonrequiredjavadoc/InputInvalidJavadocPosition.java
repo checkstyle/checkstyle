@@ -1,20 +1,26 @@
-package /** warn */ com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
+package /** odd javadoc */ com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
+// violation above 'Javadoc comment is placed in the wrong location.'
 
-/** warn */
+// violation below 'Javadoc comment is placed in the wrong location.'
+/** odd javadoc */
 import java.lang.String;
 
-/** warn */
+// violation below 'Javadoc comment is placed in the wrong location.'
+/** odd javadoc */
 /** valid */
 class InputInvalidJavadocPosition {
-    /** warn */
+    /** odd javadoc */
+    // violation above 'Javadoc comment is placed in the wrong location.'
 }
 /** valid */
 /* ignore */
 class InputInvalidJavadocPosition2 {
-    /** warn */
+    // violation below 'Javadoc comment is placed in the wrong location.'
+    /** odd javadoc */
     static { /* ignore */ }
 
-    /** warn */
+    // violation below 'Javadoc comment is placed in the wrong location.'
+    /** odd javadoc */
     /** valid */
     int field1;
     /** valid */
@@ -24,9 +30,10 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     @Deprecated int field4;
 
-    int /** warn */ field20;
-    int field21 /** warn */;
-    @Deprecated /** warn */ int field22;
+    int /** odd javadoc */ field20; // violation 'Javadoc comment is placed in the wrong location.'
+    int field21 /** odd javadoc */; // violation 'Javadoc comment is placed in the wrong location.'
+    @Deprecated /** odd javadoc */ int field22;
+    // violation above 'Javadoc comment is placed in the wrong location.'
 
     void method1() {}
     /** valid */
@@ -36,19 +43,28 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     String[] method4() { return null; }
 
-    void /** warn */ method20() {}
-    void method21 /** warn */ () {}
-    void method22(/** warn */) {}
-    void method23() /** warn */ {}
-    void method24() { /** warn */ }
-    void method25() { /** warn */ int variable; }
+    // violation below 'Javadoc comment is placed in the wrong location.'
+    void /** odd javadoc */ method20() {}
+    void method21 /** odd javadoc */ () {}
+    // violation above 'Javadoc comment is placed in the wrong location.'
+    void method22(/** odd javadoc */) {}
+    // violation above 'Javadoc comment is placed in the wrong location.'
+    void method23() /** odd javadoc */ {}
+    // violation above 'Javadoc comment is placed in the wrong location.'
+    void method24() { /** odd javadoc */ }
+    // violation above 'Javadoc comment is placed in the wrong location.'
+    void method25() { /** odd javadoc */ int variable; }
+    // violation above 'Javadoc comment is placed in the wrong location.'
 }
 @Deprecated
-/** warn */
+/** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
 class InputInvalidJavadocPosition3 {}
 /** valid */
 @Deprecated
 class InputInvalidJavadocPosition4 {}
-class /** warn */ InputInvalidJavadocPosition5 {}
-class InputInvalidJavadocPosition6 /** warn */ {}
-/** warn */
+// violation below 'Javadoc comment is placed in the wrong location.'
+class /** odd javadoc */ InputInvalidJavadocPosition5 {}
+// violation below 'Javadoc comment is placed in the wrong location.'
+class InputInvalidJavadocPosition6 /** odd javadoc */ {}
+/** odd javadoc */
+// violation above 'Javadoc comment is placed in the wrong location.'
