@@ -239,8 +239,7 @@ public class XdocsPagesTest {
             "7.1.2 Paragraphs",
             "7.3 Where Javadoc is used",
             "7.3.1 Exception: self-explanatory methods",
-            "7.3.2 Exception: overrides",
-            "7.3.4 Non-required Javadoc"
+            "7.3.2 Exception: overrides"
     );
 
     /**
