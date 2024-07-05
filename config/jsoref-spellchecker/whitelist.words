@@ -117,6 +117,7 @@ blockandinlinetags
 blockcomment
 blockcommentposition
 blockcommentstyle
+blockindentation
 blockquote
 blog
 blogspot
@@ -240,6 +241,7 @@ Contextualizable
 contextualization
 contextualized
 Contextualizing
+continuationlines
 courtlink
 courtlinkkk
 covariantequals
