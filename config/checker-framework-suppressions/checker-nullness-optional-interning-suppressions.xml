@@ -874,6 +874,72 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter args of Violation constructor.</message>
+    <lineContent>new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
+    <details>
+      found   : @Initialized @Nullable Object @Initialized @NonNull []
+      required: @Initialized @NonNull Object @Initialized @NonNull []
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of TreeWalker.walk.</message>
+    <lineContent>walk(rootAST, contents, AstState.ORDINARY);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter customMessage of Violation constructor.</message>
+    <lineContent>getClass(), null));</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter moduleId of Violation constructor.</message>
+    <lineContent>new Object[] {ex.getMessage()}, javaParseExceptionSeverity, null,</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter root of JavaParser.appendHiddenCommentNodes.</message>
+    <lineContent>final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rootAST of TreeWalker.getFilteredViolations.</message>
+    <lineContent>getFilteredViolations(file.getAbsolutePath(), contents, rootAST);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: childContext, moduleFactory</message>
     <lineContent>public TreeWalker() {</lineContent>
