@@ -2290,8 +2290,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.3.1-javadoc-exception-self-explanatory">
-                    7.3.1 Exception: self-explanatory methods</a>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7.3.1-javadoc-exception-self-explanatory">
+                    7.3.1 Exception: self-explanatory members</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -2312,11 +2312,9 @@
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/MissingJavadocMethodTest.java">
-                    test</a>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
                     config</a><br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/JavadocMethodTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory/ExceptionSelfExplanatoryMethodsTest.java">
                     test</a>
                 </td>
               </tr>
