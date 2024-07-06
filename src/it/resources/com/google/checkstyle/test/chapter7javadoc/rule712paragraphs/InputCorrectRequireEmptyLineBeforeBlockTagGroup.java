@@ -5,7 +5,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
  *
  * @since 8.36
  */
-class InputCorrectRequireEmptyLineBeforeBlockTagGroupCheck {
+class InputCorrectRequireEmptyLineBeforeBlockTagGroup {
 
     /**
      * This javadoc does not have a tag. There should be no violations.
