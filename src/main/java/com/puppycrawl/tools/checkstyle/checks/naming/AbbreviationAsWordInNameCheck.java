@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Validates abbreviations (consecutive capital letters) length in
  * identifier name, it also allows to enforce camel case naming. Please read more at
- * <a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
+ * <a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </p>
  * <p>'_' is considered as word separator in identifier name.</p>

@@ -52,7 +52,7 @@
         </macro>
         <p id="Example3-config">
           To configure the check for names that are camel case word with T as suffix
-          (<a href="https://checkstyle.org/styleguides/google-java-style-20180523/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
+          (<a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
         <macro name="example">
           <param name="path"
