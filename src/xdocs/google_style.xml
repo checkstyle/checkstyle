@@ -93,7 +93,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1-introduction">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s1-introduction">
                     <strong>1 Introduction</strong>
                   </a>
                 </td>
@@ -110,7 +110,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1.1-terminology">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s1.1-terminology">
                     1.1 Terminology notes</a>
                 </td>
                 <td>--</td>
@@ -126,7 +126,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s1.2-guide-notes">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s1.2-guide-notes">
                     1.2 Guide notes</a>
                 </td>
                 <td>--</td>
@@ -143,7 +143,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2-source-file-basics">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2-source-file-basics">
                     <strong>2 Source file basics</strong>
                   </a>
                 </td>
@@ -186,7 +186,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s2.2-file-encoding">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2.2-file-encoding">
                     2.2 File encoding: UTF-8
                   </a>
                 </td>
@@ -319,7 +319,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.1-copyright-statement">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.1-copyright-statement">
                     3.1 License or copyright information, if present</a>
                 </td>
                 <td>--</td>
@@ -368,7 +368,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3-import-statements">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.3-import-statements">
                     3.3 Import statements
                   </a>
                 </td>
@@ -473,7 +473,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.3.4-import-class-not-static">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.3.4-import-class-not-static">
                     3.3.4 No static import for classes</a>
                 </td>
                 <td>
@@ -497,7 +497,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4-class-declaration">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.4-class-declaration">
                     3.4 Class declaration
                   </a>
                 </td>
@@ -539,7 +539,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s3.4.2-class-member-ordering">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s3.4.2-class-member-ordering">
                     3.4.2 Class member ordering</a>
                 </td>
                 <td>--</td>
@@ -592,7 +592,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4-formatting">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4-formatting">
                     <strong>4 Formatting</strong>
                   </a>
                 </td>
@@ -608,7 +608,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.1-braces">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.1-braces">
                     4.1 Braces
                   </a>
                 </td>
@@ -816,7 +816,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.5-line-wrapping">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.5-line-wrapping">
                     4.5 Line-wrapping
                   </a>
                 </td>
@@ -901,7 +901,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6-whitespace">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.6-whitespace">
                     4.6 Whitespace
                   </a>
                 </td>
@@ -1041,7 +1041,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.6.3-horizontal-alignment">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.6.3-horizontal-alignment">
                     4.6.3 Horizontal alignment: never required</a>
                 </td>
                 <td>--</td>
@@ -1056,7 +1056,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.7-grouping-parentheses">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.7-grouping-parentheses">
                     4.7 Grouping parentheses: recommended</a>
                 </td>
                 <td>--</td>
@@ -1071,7 +1071,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8-specific-constructs">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8-specific-constructs">
                     4.8 Specific constructs
                   </a>
                 </td>
@@ -1087,7 +1087,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.1-enum-classes">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.1-enum-classes">
                     4.8.1 Enum classes</a>
                 </td>
                 <td>--</td>
@@ -1102,7 +1102,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.2-variable-declarations">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.2-variable-declarations">
                     4.8.2 Variable declarations</a>
                 </td>
                 <td>↓</td>
@@ -1172,7 +1172,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3-arrays">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.3-arrays">
                     4.8.3 Arrays</a>
                 </td>
                 <td>↓</td>
@@ -1187,7 +1187,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.3.1-array-initializers">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.3.1-array-initializers">
                     4.8.3.1 Array initializers: can be "block-like"</a>
                 </td>
                 <td>--</td>
@@ -1228,7 +1228,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.4-switch">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.4-switch">
                     4.8.4 Switch statements</a>
                 </td>
                 <td>--</td>
@@ -1453,7 +1453,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s4.8.6-comments">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.6-comments">
                     4.8.6 Comments</a>
                 </td>
                 <td>↓</td>
@@ -1548,7 +1548,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5-naming">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5-naming">
                     <strong>5 Naming</strong>
                   </a>
                 </td>
@@ -1564,7 +1564,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.1-identifier-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.1-identifier-names">
                     5.1 Rules common to all identifiers</a>
                 </td>
                 <td>"5.2 Rules of identifier type" already includes this rule.
@@ -1580,7 +1580,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2-specific-identifier-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2-specific-identifier-names">
                     5.2 Rules by identifier type
                   </a>
                 </td>
@@ -1681,7 +1681,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.2.4-constant-names">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.2.4-constant-names">
                     5.2.4 Constant names</a>
                 </td>
                 <td>
@@ -1883,7 +1883,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s5.3-camel-case">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
                     5.3 Camel case: defined</a>
                 </td>
                 <td>
@@ -1916,7 +1916,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6-programming-practices">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s6-programming-practices">
                     <strong>6 Programming Practices</strong>
                   </a>
                 </td>
@@ -1932,7 +1932,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.1-override-annotation">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s6.1-override-annotation">
                     6.1 @Override: always used</a>
                 </td>
                 <td>
@@ -1986,7 +1986,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s6.3-static-members">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s6.3-static-members">
                     6.3 Static members: qualified using class</a>
                 </td>
                 <td>
@@ -2035,7 +2035,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7-javadoc">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7-javadoc">
                     <strong>7 Javadoc</strong>
                   </a>
                 </td>
@@ -2051,7 +2051,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20180523/javaguide.html#s7.1-javadoc-formatting">
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s7.1-javadoc-formatting">
                     7.1 Formatting
                   </a>
                 </td>
