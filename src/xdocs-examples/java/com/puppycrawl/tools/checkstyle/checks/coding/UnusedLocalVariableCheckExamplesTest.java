@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,13 +35,30 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
-            "25:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
-            "31:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "37:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
-            "48:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
+            "16:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "k"),
+            "26:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "arr"),
+            "32:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
+            "39:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "s"),
+            "49:10: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "i"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "k"),
+            "27:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "arr"),
+            "33:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "34:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+            "40:5: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+            "50:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "i"),
+            "52:10: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "_"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example2.java"), expected);
     }
 }
