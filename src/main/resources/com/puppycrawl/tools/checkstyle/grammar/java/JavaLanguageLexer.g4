@@ -112,16 +112,19 @@ tokens {
     PERMITS_CLAUSE, PATTERN_DEF, LITERAL_WHEN,
     RECORD_PATTERN_DEF, RECORD_PATTERN_COMPONENTS,
 
-    STRING_TEMPLATE_BEGIN, STRING_TEMPLATE_MID, STRING_TEMPLATE_END,
-    STRING_TEMPLATE_CONTENT, EMBEDDED_EXPRESSION_BEGIN, EMBEDDED_EXPRESSION,
-    EMBEDDED_EXPRESSION_END,
+    // We removed support for string template. String template tokens
+    // are no longer used, but we need to keep them to preserve token numbering,
+    // so that we are not breaking change with older versions.
+    // We used 'DEPRECATED' as prefix to indicate that they are not used.
+    DEPRECATED_STRING_TEMPLATE_BEGIN,DEPRECATED_STRING_TEMPLATE_MID, DEPRECATED_STRING_TEMPLATE_END,
+    DEPRECATED_STRING_TEMPLATE_CONTENT, DEPRECATED_EMBEDDED_EXPRESSION_BEGIN,
+    DEPRECATED_EMBEDDED_EXPRESSION, DEPRECATED_EMBEDDED_EXPRESSION_END,
 
     LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
 }
 
 @header {
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
-import com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
@@ -140,7 +143,6 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     }
 
     private CommentListener commentListener = null;
-    private CompositeLexerContextCache contextCache = null;
 
     /**
      * Sets the CommentListener for the lexer.
@@ -149,10 +151,6 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
      */
     public void setCommentListener(CommentListener commentListener) {
             this.commentListener = commentListener;
-    }
-
-    public void setContextCache(CompositeLexerContextCache contextCache) {
-        this.contextCache = contextCache;
     }
 
     /** Tracks the starting line of a block comment. */
@@ -258,11 +256,6 @@ fragment StringFragment: (EscapeSequence | ~["\\\r\n]);
 
 STRING_LITERAL:         '"' StringFragment* '"';
 
-STRING_TEMPLATE_BEGIN:  '"'
-                        { _input.LA(1) != '"' }?
-                        { contextCache.enterTemplateContext(StringTemplate); }
-                        ;
-
 TEXT_BLOCK_LITERAL_BEGIN: '"' '"' '"' -> pushMode(TextBlock);
 
 LITERAL_NULL:            'null';
@@ -271,12 +264,8 @@ LITERAL_NULL:            'null';
 
 LPAREN:                  '(';
 RPAREN:                  ')';
-LCURLY:                  '{'
-                         { contextCache.updateLeftCurlyBraceContext(); }
-                         ;
-RCURLY:                  '}'
-                         { contextCache.updateRightCurlyBraceContext(); }
-                         ;
+LCURLY:                  '{';
+RCURLY:                  '}';
 LBRACK:                  '[';
 RBRACK:                  ']';
 SEMI:                    ';';
@@ -333,9 +322,6 @@ DOUBLE_COLON:            '::';
 
 AT:                      '@';
 ELLIPSIS:                '...';
-
-// String templates
-
 
 // Text block fragments
 
@@ -467,12 +453,3 @@ mode TextBlock;
     TEXT_BLOCK_LITERAL_END
         : '"' '"' '"' -> popMode
         ;
-
-// String template lexical mode
-mode StringTemplate;
-
-    STRING_TEMPLATE_CONTENT: StringFragment+;
-
-    EMBEDDED_EXPRESSION_BEGIN: '\\' '{' -> pushMode(DEFAULT_MODE);
-
-    STRING_TEMPLATE_END:  '"' { contextCache.exitTemplateContext(); };
