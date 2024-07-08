@@ -46,12 +46,24 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]NestedEnum.java$"/>
 </module>
 
-<!-- Permanent suppression for text block templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
+<!-- Permanent suppression for string templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]StringTemplateTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplate.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]micro[\\/]org[\\/]openjdk[\\/]bench[\\/]java[\\/]lang[\\/]StringTemplateFMT.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]Basic.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]FormatterBuilder.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]template[\\/]T8312814.java$"/>
 </module>
 
 <!-- non-compilable -->
