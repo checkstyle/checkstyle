@@ -19,9 +19,14 @@
 
 package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
+import com.google.googlejavaformat.java.Formatter;
 
 public class FileNameTest extends AbstractGoogleModuleTestSupport {
 
@@ -37,6 +42,11 @@ public class FileNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOuterTypeFilename1() throws Exception {
         final String filePath = getPath("InputFileName1.java");
+
+        final String original = Files.readString(Paths.get(filePath));
+        final String formatted = new Formatter().formatSource(original);
+        Files.write(Paths.get(filePath), formatted.getBytes(StandardCharsets.UTF_8));
+
         verifyWithConfigParser(MODULES, filePath);
     }
 
