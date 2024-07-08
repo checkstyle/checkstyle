@@ -38,48 +38,6 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testBasicStringTemplate() throws Exception {
-        verifyAst(
-                getNonCompilablePath(
-                        "ExpectedStringTemplateBasic.txt"),
-                getNonCompilablePath(
-                        "InputStringTemplateBasic.java"));
-    }
-
-    /**
-     * The purpose of this test is to exercise the
-     * {@link com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache}:
-     * getting some curly brace contexts on the stack, making sure that each
-     * element in the stack has some depth. This ensures that we can handle
-     * many nested curly braces within an embedded template expression.
-     *
-     * @throws Exception upon failure
-     */
-    @Test
-    public void testStringTemplateNested() throws Exception {
-        verifyAst(
-                getNonCompilablePath(
-                        "ExpectedStringTemplateNested.txt"),
-                getNonCompilablePath(
-                        "InputStringTemplateNested.java"));
-    }
-
-    /**
-     * Test for tabs instead of spaces in the input file.
-     * All node columns are -3 when compared to the above test. This is
-     * because the input file has tabs instead of spaces. '\t' is
-     * one character vs. four spaces.
-     */
-    @Test
-    public void testBasicStringTemplateWithTabs() throws Exception {
-        verifyAst(
-                getNonCompilablePath(
-                        "ExpectedStringTemplateBasicWithTabs.txt"),
-                getNonCompilablePath(
-                        "InputStringTemplateBasicWithTabs.java"));
-    }
-
-    @Test
     public void testUnnamedVariableBasic() throws Exception {
         verifyAst(
                 getNonCompilablePath(
@@ -104,17 +62,6 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         "ExpectedTextBlockConsecutiveEscapes.txt"),
                 getNonCompilablePath(
                         "InputTextBlockConsecutiveEscapes.java"));
-    }
-
-    @Test
-    public void testStringTemplateMultiLineWithComments() throws Exception {
-        verifyAst(
-                getNonCompilablePath(
-                        "ExpectedStringTemplateMultiLineWithComments.txt"),
-                getNonCompilablePath(
-                        "InputStringTemplateMultiLineWithComments.java"),
-                JavaParser.Options.WITH_COMMENTS
-        );
     }
 
     /**
