@@ -600,3 +600,6 @@
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]GuardNotAllowed.java$"/>
 </module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]micro[\\/]org[\\/]openjdk[\\/]bench[\\/]java[\\/]lang[\\/]StringTemplateFMT.java$"/>
+</module>
