@@ -226,14 +226,6 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
-    // Contains all the sections which are not migrated to chapter wise testing
-    // in google style documentation.
-    // This list will be removed once all the sections are migrated.
-    // until https://github.com/checkstyle/checkstyle/issues/14937
-    private static final Set<String> PER_MODULE_TESTS_RULES_LIST = Set.of(
-            "4.8.5 Annotations"
-    );
-
     /**
      * Generate xdoc content from templates before validation.
      * This method will be removed once
@@ -1781,14 +1773,13 @@ public class XdocsPagesTest {
             Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
-        final boolean isRegularDocumentation = "sun".equals(styleName)
-               || "google".equals(styleName) && PER_MODULE_TESTS_RULES_LIST.contains(ruleName);
+        final boolean isGoogleDocumentation = "google".equals(styleName);
 
-        if (isRegularDocumentation) {
-            validateModuleWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
+        if (isGoogleDocumentation) {
+            validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
         else {
-            validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
+            validateModuleWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
         }
 
         assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
