@@ -6,17 +6,17 @@ import static java.io.File.createTempFile;
 
 
 // comments
-import static javax.swing.WindowConstants.*;
-// violation above 'Extra separation in import group before 'javax.swing.WindowConstants.*''
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+// violation above 'Extra separation .* before 'javax.swing.WindowConstants.DISPOSE_ON_CLOSE''
 
 // comments
 
-import com.google.checkstyle.test.chapter2filebasic.rule21filename.*;
+import com.google.checkstyle.test.chapter2filebasic.rule21filename.InputFileName1;
 // violation above ''com.google.checkstyle.test.*' should be separated .* by one line.'
-import com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.*;
+import com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.SourceFileStructureTest;
 // comments
 
-import com.google.common.reflect.*;
+import com.google.common.reflect.TypeToken;
 // violation above 'Extra separation in import group before 'com.google.common.reflect.*''
 import java.util.List;
 
@@ -29,5 +29,6 @@ import java.util.StringTokenizer;
 import java.util.concurrent.AbstractExecutorService;
 // violation above 'Extra separation .* before 'java.util.concurrent.AbstractExecutorService''
 
+/** Some javadoc. */
 public class InputOrderingAndSpacing5 {
 }
