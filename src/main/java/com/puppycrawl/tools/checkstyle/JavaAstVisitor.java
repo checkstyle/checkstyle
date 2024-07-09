@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -103,9 +102,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     /** String representation of the right shift operator. */
     private static final String RIGHT_SHIFT = ">>";
-
-    /** String representation of the double quote character. */
-    private static final String QUOTE = "\"";
 
     /**
      * The tokens here are technically expressions, but should
@@ -1538,14 +1534,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitTemplateExp(JavaLanguageParser.TemplateExpContext ctx) {
-        final DetailAstImpl dot = create(ctx.DOT());
-        dot.addChild(visit(ctx.expr()));
-        dot.addChild(visit(ctx.templateArgument()));
-        return dot;
-    }
-
-    @Override
     public DetailAstImpl visitPostfix(JavaLanguageParser.PostfixContext ctx) {
         final DetailAstImpl postfix;
         if (ctx.postfix.getType() == JavaLanguageLexer.INC) {
@@ -1752,137 +1740,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         ctx.arrayDeclarator().forEach(child -> dot.addChild(visit(child)));
         dot.addChild(create(ctx.LITERAL_CLASS()));
         return dot;
-    }
-
-    @Override
-    public DetailAstImpl visitTemplateArgument(JavaLanguageParser.TemplateArgumentContext ctx) {
-        return Objects.requireNonNullElseGet(visit(ctx.template()),
-                () -> buildSimpleStringTemplateArgument(ctx));
-    }
-
-    /**
-     * Builds a simple string template argument AST, which basically means that we
-     * transform a string literal into a string template AST because it is a
-     * string template argument.
-     *
-     * @param ctx the TemplateArgumentContext to build AST from
-     * @return DetailAstImpl of string template argument
-     */
-    private static DetailAstImpl buildSimpleStringTemplateArgument(
-            JavaLanguageParser.TemplateArgumentContext ctx) {
-        final int startColumn = ctx.start.getCharPositionInLine();
-        final int endColumn = startColumn + ctx.getText().length() - 1;
-        final int lineNumber = ctx.start.getLine();
-
-        final DetailAstImpl templateArgument = createImaginary(
-                TokenTypes.STRING_TEMPLATE_BEGIN, QUOTE,
-                lineNumber, startColumn
-        );
-
-        final int quoteLength = QUOTE.length();
-        final int tokenTextLength = ctx.getText().length();
-
-        final String actualContent = ctx.getText()
-                    .substring(quoteLength, tokenTextLength - quoteLength);
-
-        final DetailAstImpl content = createImaginary(
-                TokenTypes.STRING_TEMPLATE_CONTENT, actualContent,
-                lineNumber, startColumn + quoteLength
-        );
-        templateArgument.addChild(content);
-
-        final DetailAstImpl end = createImaginary(
-                TokenTypes.STRING_TEMPLATE_END, QUOTE,
-                lineNumber, endColumn
-        );
-        templateArgument.addChild(end);
-
-        return templateArgument;
-    }
-
-    @Override
-    public DetailAstImpl visitStringTemplate(JavaLanguageParser.StringTemplateContext ctx) {
-        final DetailAstImpl stringTemplateBegin = visit(ctx.stringTemplateBegin());
-
-        final Optional<DetailAstImpl> expression = Optional.ofNullable(ctx.expr())
-                .map(this::visit);
-
-        if (expression.isPresent()) {
-            final DetailAstImpl imaginaryExpression =
-                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-            imaginaryExpression.addChild(expression.orElseThrow());
-            stringTemplateBegin.addChild(imaginaryExpression);
-        }
-
-        ctx.stringTemplateMiddle().stream()
-                .map(this::buildStringTemplateMiddle)
-                .forEach(stringTemplateBegin::addChild);
-
-        final DetailAstImpl stringTemplateEnd = visit(ctx.stringTemplateEnd());
-        stringTemplateBegin.addChild(stringTemplateEnd);
-        return stringTemplateBegin;
-    }
-
-    /**
-     * Builds a string template middle AST.
-     *
-     * @param ctx the StringTemplateMiddleContext to build AST from
-     * @return DetailAstImpl of string template middle
-     */
-    private DetailAstImpl buildStringTemplateMiddle(
-            JavaLanguageParser.StringTemplateMiddleContext ctx) {
-        final DetailAstImpl stringTemplateMiddle =
-                visit(ctx.stringTemplateMid());
-
-        final Optional<DetailAstImpl> expression = Optional.ofNullable(ctx.expr())
-                .map(this::visit);
-
-        if (expression.isPresent()) {
-            final DetailAstImpl imaginaryExpression =
-                    createImaginary(TokenTypes.EMBEDDED_EXPRESSION);
-            imaginaryExpression.addChild(expression.orElseThrow());
-            addLastSibling(stringTemplateMiddle, imaginaryExpression);
-        }
-
-        return stringTemplateMiddle;
-    }
-
-    @Override
-    public DetailAstImpl visitStringTemplateBegin(
-            JavaLanguageParser.StringTemplateBeginContext ctx) {
-        final DetailAstImpl stringTemplateBegin =
-                create(ctx.STRING_TEMPLATE_BEGIN());
-        final Optional<DetailAstImpl> stringTemplateContent =
-                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
-                        .map(this::create);
-        stringTemplateContent.ifPresent(stringTemplateBegin::addChild);
-        final DetailAstImpl embeddedExpressionBegin = create(ctx.EMBEDDED_EXPRESSION_BEGIN());
-        stringTemplateBegin.addChild(embeddedExpressionBegin);
-        return stringTemplateBegin;
-    }
-
-    @Override
-    public DetailAstImpl visitStringTemplateMid(JavaLanguageParser.StringTemplateMidContext ctx) {
-        final DetailAstImpl embeddedExpressionEnd = create(ctx.EMBEDDED_EXPRESSION_END());
-        final Optional<DetailAstImpl> stringTemplateContent =
-                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
-                        .map(this::create);
-        stringTemplateContent.ifPresent(self -> addLastSibling(embeddedExpressionEnd, self));
-        final DetailAstImpl embeddedExpressionBegin = create(ctx.EMBEDDED_EXPRESSION_BEGIN());
-        addLastSibling(embeddedExpressionEnd, embeddedExpressionBegin);
-        return embeddedExpressionEnd;
-    }
-
-    @Override
-    public DetailAstImpl visitStringTemplateEnd(JavaLanguageParser.StringTemplateEndContext ctx) {
-        final DetailAstImpl embeddedExpressionEnd = create(ctx.EMBEDDED_EXPRESSION_END());
-        final Optional<DetailAstImpl> stringTemplateContent =
-                Optional.ofNullable(ctx.STRING_TEMPLATE_CONTENT())
-                        .map(this::create);
-        stringTemplateContent.ifPresent(self -> addLastSibling(embeddedExpressionEnd, self));
-        final DetailAstImpl stringTemplateEnd = create(ctx.STRING_TEMPLATE_END());
-        addLastSibling(embeddedExpressionEnd, stringTemplateEnd);
-        return embeddedExpressionEnd;
     }
 
     @Override
@@ -2250,39 +2107,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         detailAst.setType(tokenType);
         detailAst.setText(TokenUtil.getTokenName(tokenType));
         return detailAst;
-    }
-
-    /**
-     * Create a DetailAstImpl from a given token type and text. This method
-     * should be used for imaginary nodes only, i.e. 'OBJBLOCK -&gt; OBJBLOCK',
-     * where the text on the RHS matches the text on the LHS.
-     *
-     * @param tokenType the token type of this DetailAstImpl
-     * @param text the text of this DetailAstImpl
-     * @return new DetailAstImpl of given type
-     */
-    private static DetailAstImpl createImaginary(int tokenType, String text) {
-        final DetailAstImpl imaginary = new DetailAstImpl();
-        imaginary.setType(tokenType);
-        imaginary.setText(text);
-        return imaginary;
-    }
-
-    /**
-     * Creates an imaginary DetailAstImpl with the given token details.
-     *
-     * @param tokenType the token type of this DetailAstImpl
-     * @param text the text of this DetailAstImpl
-     * @param lineNumber the line number of this DetailAstImpl
-     * @param columnNumber the column number of this DetailAstImpl
-     * @return imaginary DetailAstImpl from given details
-     */
-    private static DetailAstImpl createImaginary(
-            int tokenType, String text, int lineNumber, int columnNumber) {
-        final DetailAstImpl imaginary = createImaginary(tokenType, text);
-        imaginary.setLineNo(lineNumber);
-        imaginary.setColumnNo(columnNumber);
-        return imaginary;
     }
 
     /**
