@@ -149,7 +149,7 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         verifyWithItConfig(CONFIGURATION, filePath);
     }
 
-    // until https://github.com/checkstyle/checkstyle/issues/14937
+    // until https://github.com/checkstyle/checkstyle/issues/15214
     /**
      * Performs verification of the file with the given file path against config.
      * It uses the specified list of modules to load them from config for validation.
