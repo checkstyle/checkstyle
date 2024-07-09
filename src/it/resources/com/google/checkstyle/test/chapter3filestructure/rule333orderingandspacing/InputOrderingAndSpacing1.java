@@ -4,6 +4,7 @@ import static java.io.File.createTempFile;
 import static java.awt.Button.ABORT;
 // violation above '.* 'java.awt.Button.ABORT' .* Should be before 'java.io.File.createTempFile'.'
 import static javax.swing.WindowConstants.*;
+// violation above 'Using the '.*' form of import should be avoided'
 import java.awt.Button;
 // violation above ''java.awt.Button' should be separated from previous import group by one line.'
 import java.awt.Frame;
@@ -26,4 +27,5 @@ import com.google.common.base.Ascii;
 //                    'Extra separation in import group before 'com.google.common.base.Ascii''
 //                    '.* 'com.google.common.base.Ascii' .* Should be before 'javax.swing.JTable'.'
 
+/** Some javadoc. */
 public class InputOrderingAndSpacing1 {}

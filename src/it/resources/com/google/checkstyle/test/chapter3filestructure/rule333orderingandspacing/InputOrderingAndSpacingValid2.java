@@ -17,5 +17,6 @@ import java.util.NoSuchElementException;
 import javax.accessibility.Accessible;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
+/** Some javadoc. */
 public class InputOrderingAndSpacingValid2 {
 }
