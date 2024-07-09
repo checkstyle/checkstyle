@@ -24,11 +24,6 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class OrderingAndSpacingTest extends AbstractGoogleModuleTestSupport {
-
-    private static final String[] MODULE = {
-        "CustomImportOrder",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing";
@@ -36,50 +31,42 @@ public class OrderingAndSpacingTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCustomImport1() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacing1.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacing1.java"));
     }
 
     @Test
     public void testCustomImport2() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacing2.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacing2.java"));
     }
 
     @Test
     public void testCustomImport3() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacing3.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacing3.java"));
     }
 
     @Test
     public void testCustomImport4() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacing4.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacing4.java"));
     }
 
     @Test
     public void testCustomImport5() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacing5.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacing5.java"));
     }
 
     @Test
     public void testValid() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacingValid.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacingValid.java"));
     }
 
     @Test
     public void testValid2() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacingValid2.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacingValid2.java"));
     }
 
     @Test
     public void testValidGoogleStyleOrderOfImports() throws Exception {
-        final String filePath = getPath("InputOrderingAndSpacingNoImports.java");
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOrderingAndSpacingNoImports.java"));
     }
 
 }

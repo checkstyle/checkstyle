@@ -1,4 +1,5 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
+
 // it is not forbidden to have extra lines (more than one) between package and import group
 
 
@@ -16,5 +17,6 @@ import java.util.NoSuchElementException;
 import javax.accessibility.Accessible;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
+/** Some javadoc. */
 public class InputOrderingAndSpacingValid {
 }
