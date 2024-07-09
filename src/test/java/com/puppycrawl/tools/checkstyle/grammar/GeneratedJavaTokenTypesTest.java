@@ -737,27 +737,6 @@ public class GeneratedJavaTokenTypesTest {
              .that(JavaLanguageLexer.RECORD_PATTERN_COMPONENTS)
              .isEqualTo(216);
         assertWithMessage(message)
-            .that(JavaLanguageLexer.STRING_TEMPLATE_BEGIN)
-            .isEqualTo(217);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.STRING_TEMPLATE_MID)
-            .isEqualTo(218);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.STRING_TEMPLATE_END)
-            .isEqualTo(219);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.STRING_TEMPLATE_CONTENT)
-            .isEqualTo(220);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.EMBEDDED_EXPRESSION_BEGIN)
-            .isEqualTo(221);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.EMBEDDED_EXPRESSION)
-            .isEqualTo(222);
-        assertWithMessage(message)
-            .that(JavaLanguageLexer.EMBEDDED_EXPRESSION_END)
-            .isEqualTo(223);
-        assertWithMessage(message)
             .that(JavaLanguageLexer.LITERAL_UNDERSCORE)
             .isEqualTo(224);
         assertWithMessage(message)
