@@ -1,98 +1,101 @@
 //non-compiled with javac: Compilable with Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgrouping;
 
+/** Some javadoc. */
 public class InputOverloadsNeverSplitRecords {
-    public record MyRecord1(int x, int y) {
-        public MyRecord1(int a) {
-            this(a,a);
-        }
-
-        void foo() {}
-
-        void foo2() {}
-
-        public MyRecord1 {} // violation 'Constructors should be grouped together.*'
-
-        public MyRecord1(int a, int b, int c, int d) {
-        // violation above 'Constructors should be grouped together.*'
-            this(a+b, c+d);
-        }
-
-        public MyRecord1(int x, int y, int z) {
-        // violation above 'Constructors should be grouped together.*'
-            this(x+y, z);
-        }
+  /** Some javadoc. */
+  public record MyRecord1(int x, int y) {
+    public MyRecord1(int a) {
+      this(a, a);
     }
 
-    class MyClass {
-        int x = 20;
+    void foo() {}
 
-        MyClass() {}
+    void foo2() {}
 
-        MyClass(String s) {}
+    public MyRecord1 {} // violation 'Constructors should be grouped together.*'
 
-        String[] str;
-
-        String[] str2;
-
-        MyClass(int a) {} // violation 'Constructors should be grouped together.*'
+    public MyRecord1(int a, int b, int c, int d) {
+      // violation above 'Constructors should be grouped together.*'
+      this(a + b, c + d);
     }
 
-    public record MyRecord2(double d) {
-        public MyRecord2(double a, double b, double c) {
-            this(a+b+c);
-        }
+    public MyRecord1(int x, int y, int z) {
+      // violation above 'Constructors should be grouped together.*'
+      this(x + y, z);
+    }
+  }
 
-        public MyRecord2 {}
+  class MyClass {
+    int xyz = 20;
 
-        public MyRecord2(double a, double b) {
-            this(a+b);
-        }
+    MyClass() {}
+
+    MyClass(String s) {}
+
+    String[] str;
+
+    String[] str2;
+
+    MyClass(int a) {} // violation 'Constructors should be grouped together.*'
+  }
+
+  /** Some javadoc. */
+  public record MyRecord2(double d) {
+    public MyRecord2(double a, double b, double c) {
+      this(a + b + c);
     }
 
-    public record MyRecord3(float f) {
-        public MyRecord3(float a, float b, float c) {
-            this(a+b+c);
-        }
+    public MyRecord2 {}
+
+    public MyRecord2(double a, double b) {
+      this(a + b);
     }
+  }
 
-    public record MyRecord4(String str) {
-        public MyRecord4 {}
+  /** Some javadoc. */
+  public record MyRecord3(float f) {
+    public MyRecord3(float a, float b, float c) {
+      this(a + b + c);
     }
+  }
 
-    public record MyRecord5(long l) {
-        void test() {}
+  /** Some javadoc. */
+  public record MyRecord4(String str) {
+    public MyRecord4 {}
+  }
 
-        void test2() {}
+  /** Some javadoc. */
+  public record MyRecord5(long l) {
+    void test() {}
 
-        void test3() {}
-    }
+    void test2() {}
 
-    public record MyRecord6(String str, int x) {}
+    void test3() {}
+  }
 
-    public void overloadMethod(int i)
-    {
-        //some foo code
-    }
+  /** Some javadoc. */
+  public record MyRecord6(String str, int x) {}
 
-    public void overloadMethod(String s)
-    {
-        //some foo code
-    }
+  public void overloadMethod(int i) {
+    //some foo code
+  }
 
-    public void overloadMethod(boolean b)
-    {
-        //some foo code
-    }
+  public void overloadMethod(String s) {
+    //some foo code
+  }
 
-    public void fooMethod()
-    {
+  public void overloadMethod(boolean b) {
+    //some foo code
+  }
 
-    }
+  public void fooMethod() {
 
-    public void overloadMethod(String s, Boolean b, int i)
-    // violation above 'All overloaded methods should be placed next to each other. .* '83'
-    {
-        //some foo code
-    }
+  }
+
+  // violation below 'All overloaded methods should be placed next to each other. .* '89'
+  public void overloadMethod(String s, Boolean b, int i) {
+    //some foo code
+  }
 }
