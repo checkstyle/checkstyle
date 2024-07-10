@@ -412,6 +412,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.google.googlejavaformat</groupId>
+      <artifactId>google-java-format</artifactId>
+      <version>1.22.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
       <version>${saxon.version}</version>
