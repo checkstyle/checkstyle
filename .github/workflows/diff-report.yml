@@ -97,6 +97,36 @@ jobs:
           # shellcheck disable=SC2005
           echo "$(cat "$GITHUB_OUTPUT")"
 
+      - name: Extract config name
+        id: extract_config_name
+        run: |
+          CONFIG_NAME=$(grep -oP '(?<=Diff Regression config: ).*?(?=/config.xml)' .ci-temp/text | awk -F'/' '{print $(NF-1)"/"$NF}')
+          echo "config_name=$CONFIG_NAME" >> $GITHUB_OUTPUT
+          echo "Extracted config name: $CONFIG_NAME"
+
+      - name: Extract check and example
+        id: extract_check_example
+        run: |
+          CHECK_EXAMPLE=$(echo "${{ github.event.comment.body }}" | grep -oP '(?<=Github, generate report ).*')
+          echo "check_example=$CHECK_EXAMPLE" >> $GITHUB_OUTPUT
+          echo "Extracted CHECK_EXAMPLE: $CHECK_EXAMPLE"
+          if [ -z "$CHECK_EXAMPLE" ]; then
+            echo "No valid check example found. Exiting."
+            exit 1
+          fi
+
+      - name: Validate check example
+        run: |
+          CONFIG_NAME="${{ steps.extract_config_name.outputs.config_name }}"
+          CHECK_EXAMPLE="${{ steps.extract_check_example.outputs.check_example }}"
+          if [ "$CONFIG_NAME" != "$CHECK_EXAMPLE" ]; then
+            echo "Error: The check example in the comment does not match the configuration in the PR description."
+            echo "PR Config: $CONFIG_NAME"
+            echo "Comment Example: $CHECK_EXAMPLE"
+            exit 1
+          fi
+          echo "Check example matches configuration."
+
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
