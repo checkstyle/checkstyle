@@ -20,6 +20,10 @@
 package com.google.checkstyle.test.base;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,6 +33,8 @@ import java.util.Set;
 
 import org.checkstyle.base.AbstractItModuleTestSupport;
 
+import com.google.googlejavaformat.java.Formatter;
+import com.google.googlejavaformat.java.FormatterException;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -137,6 +143,21 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     protected static List<Configuration> getModuleConfigsByIds(String... moduleIds)
             throws CheckstyleException {
         return getModuleConfigsByIds(CONFIGURATION, moduleIds);
+    }
+
+    /**
+     * Formats the file with Google Java Format.
+     *
+     * @param filePath file path to format.
+     * @throws IOException if an I/O error occurs.
+     * @throws FormatterException if an error occurs during formatting.
+     */
+    protected void formatFileWithGoogleJavaFormat(String filePath)
+            throws IOException, FormatterException {
+        final Path path = Paths.get(filePath);
+        final String original = Files.readString(path);
+        final String formatted = new Formatter().formatSource(original);
+        Files.write(path, formatted.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
