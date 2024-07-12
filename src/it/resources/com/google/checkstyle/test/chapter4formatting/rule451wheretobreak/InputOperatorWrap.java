@@ -15,7 +15,7 @@ class InputOperatorWrap
             4;
         x = x + 2;
         boolean y = true
-            &&
+            && // violation ''&&' should be on a new line.'
             false;
          y = true && // violation ''&&' should be on a new line.'
             false;
