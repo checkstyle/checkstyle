@@ -818,6 +818,7 @@ missingdeprecated
 missingjavadocmethod
 missingjavadocpackage
 missingjavadoctype
+missingnullcaseinswitch
 missingoverride
 missingperiod
 missingswitchdefault
@@ -941,6 +942,7 @@ npe
 npm
 nrmancuso
 NTU
+nullcase
 NULLCHECK
 nullness
 numberperline
