@@ -120,4 +120,24 @@ public class PatternVariableNameCheckTest
                         "InputPatternVariableNameUnnamed.java"),
                 expected);
     }
+
+    @Test
+    public void testPatternVariableNameRecordPattern() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "15:36: " + getCheckMessage(MSG_INVALID_PATTERN, "XX", pattern),
+            "15:44: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "20:49: " + getCheckMessage(MSG_INVALID_PATTERN, "S", pattern),
+            "25:28: " + getCheckMessage(MSG_INVALID_PATTERN, "XX", pattern),
+            "25:36: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
+            "31:41: " + getCheckMessage(MSG_INVALID_PATTERN, "S", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputPatternVariableNameRecordPattern.java"),
+                expected);
+    }
 }
