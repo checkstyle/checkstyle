@@ -20,21 +20,26 @@ public class InputFallThrough {
           throw new RuntimeException("");
         case 6:
           continue;
-        case 7: {
-          break;
-        }
-        case 8: {
-          return;
-        }
-        case 9: {
-          throw new RuntimeException("");
-        }
-        case 10: {
-          continue;
-        }
-        case 11: {
-          i++;
-        }
+        case 7:
+          { // violation 'should be on the previous line'
+            break;
+          }
+        case 8:
+          { // violation 'should be on the previous line'
+            return;
+          }
+        case 9:
+          { // violation 'should be on the previous line'
+            throw new RuntimeException("");
+          }
+        case 10:
+          { // violation 'should be on the previous line'
+            continue;
+          }
+        case 11:
+          { // violation 'should be on the previous line'
+            i++;
+          }
         case 12: // violation 'Fall through from previous branch of the switch statement.'
           if (false) {
             break;
@@ -152,22 +157,27 @@ public class InputFallThrough {
           throw new RuntimeException("");
         case 6:
           continue;
-        case 7: {
-          break;
-        }
-        case 8: {
-          return;
-        }
-        case 9: {
-          throw new RuntimeException("");
-        }
-        case 10: {
-          continue;
-        }
-        case 11: {
-          i++;
-        }
-        // fallthru
+        case 7:
+          { // violation 'should be on the previous line'
+            break;
+          }
+        case 8:
+          { // violation 'should be on the previous line'
+            return;
+          }
+        case 9:
+          { // violation 'should be on the previous line'
+            throw new RuntimeException("");
+          }
+        case 10:
+          { // violation 'should be on the previous line'
+            continue;
+          }
+        case 11:
+          { // violation 'should be on the previous line'
+            i++;
+          }
+          // fallthru
         case 12:
           if (false) {
             break;
@@ -253,7 +263,8 @@ public class InputFallThrough {
           }
         case 24:
           i++;
-        /* fallthru */ case 25:
+          // violation below 'incorrect indentation level'
+          /* fallthru */ case 25:
           i++;
           break;
 
@@ -285,13 +296,15 @@ public class InputFallThrough {
         case 1:
           i++;
           // fallthru
-        case 2: {
-          i++;
-        }
-        // fallthru
+        case 2:
+          { // violation 'should be on the previous line'
+            i++;
+          }
+          // fallthru
         case 3:
           i++;
-        /* fallthru */ case 4:
+          // violation below 'incorrect indentation level'
+          /* fallthru */ case 4:
           break;
         case 5:
           i++;
@@ -312,7 +325,8 @@ public class InputFallThrough {
           /* fallthru */
         case 2:
           i++;
-        /* fallthru */ case 3:
+          // violation below 'incorrect indentation level'
+          /* fallthru */ case 3:
           break;
         case 4:
           i++;
@@ -333,7 +347,8 @@ public class InputFallThrough {
           /*fallthru*/
         case 2:
           i++;
-        /*fallthru*/ case 3:
+          // violation below 'incorrect indentation level'
+          /*fallthru*/ case 3:
           break;
         case 4:
           i++;
@@ -354,7 +369,8 @@ public class InputFallThrough {
           /* falls through */
         case 2:
           i++;
-        /* falls through */ case 3:
+          // violation below 'incorrect indentation level'
+          /* falls through */ case 3:
           break;
         case 4:
           i++;
@@ -375,8 +391,10 @@ public class InputFallThrough {
           /* Continue with next case.  */
         case 2: // violation 'Fall through from previous branch of the switch statement.'
           i++;
-        /* Continue with next case. */ case 3:
-          // violation above 'Fall through from previous branch of the switch statement.'
+          /* Continue with next case. */ case 3:
+          // 2 violations above:
+          //   'Fall through from previous branch of the switch statement.'
+          //   'incorrect indentation level'
           break;
         case 4:
           i++;

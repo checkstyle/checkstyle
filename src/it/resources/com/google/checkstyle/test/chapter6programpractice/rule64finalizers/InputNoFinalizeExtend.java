@@ -119,20 +119,20 @@ class WithAnonymousClass {
   public void foo() {
 
     Ball b =
-            new Ball() {
+        new Ball() {
 
-              public void hit() {
-                System.identityHashCode("You hit it!");
-              }
+          public void hit() {
+            System.identityHashCode("You hit it!");
+          }
 
-              protected void finalize() { // violation 'Avoid using finalizer method.'
-                try {
-                  doStuff();
-                } finally {
-                  // do nothing
-                }
-              }
-            };
+          protected void finalize() { // violation 'Avoid using finalizer method.'
+            try {
+              doStuff();
+            } finally {
+              // do nothing
+            }
+          }
+        };
     b.hit();
   }
 
