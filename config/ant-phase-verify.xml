@@ -166,7 +166,10 @@
           <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
           <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
           <exclude name="**/InputJavaParser.java"/>
-
+          <exclude name="**/InputTreeWalkerSkipParsingException.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
@@ -203,6 +206,10 @@
           <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
           <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
           <exclude name="**/InputJavaParser.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingException.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingException2.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
           <!-- This check does not apply to grammar input files -->
           <exclude name="**/grammar/**/*"/>
           <!-- No need to check xpathmapper files -->
