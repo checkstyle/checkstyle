@@ -11,7 +11,7 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
 
 */
 
-//non-compiled with javac: Compilable with Java17
+//non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckPatterns {
@@ -20,5 +20,19 @@ public class InputUnnecessaryParenthesesCheckPatterns {
 
         boolean result = (o instanceof String a) ?
                 (o instanceof String x) : (!(o instanceof String y));
+
+        boolean f =  (o instanceof String x);
+        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+
+        boolean b = (!(o instanceof Rectangle(_, _)));
+        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+        boolean c = !(o instanceof Rectangle(_, _));
+
+        if ((!(o instanceof Rectangle(_, _)))) {}
+        // violation above, 'Unnecessary parentheses around expression.'
+        if (!(o instanceof Rectangle( _, _))) {}
+
     }
+
+    record Rectangle(int x, int y) { }
 }

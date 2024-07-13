@@ -185,7 +185,11 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUnnecessaryParenthesesPatterns() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "24:22: " + getCheckMessage(MSG_ASSIGN),
+            "27:21: " + getCheckMessage(MSG_ASSIGN),
+            "31:13: " + getCheckMessage(MSG_EXPR),
+        };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
                 "InputUnnecessaryParenthesesCheckPatterns.java"),
