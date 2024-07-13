@@ -5,7 +5,7 @@ set -e
 # max difference tolerance in %
 THRESHOLD_PERCENTAGE=10
 # baseline of execution time in seconds
-BASELINE_SECONDS=415.72
+BASELINE_SECONDS=384.02
 
 # JDK version
 JDK_VERSION=17
@@ -64,9 +64,12 @@ compare_results() {
         echo "Missing EXECUTION_TIME_SECONDS as an argument."
         exit 1
     fi
-  # Calculate percentage difference for execution time
+  # Calculate absolute percentage difference for execution time
   local DEVIATION_IN_SECONDS=$(echo "scale=4; \
     ((${EXECUTION_TIME_SECONDS} - ${BASELINE_SECONDS}) / ${BASELINE_SECONDS}) * 100" | bc)
+  DEVIATION_IN_SECONDS=$(echo "scale=4; \
+    if ($DEVIATION_IN_SECONDS < 0) -($DEVIATION_IN_SECONDS) else $DEVIATION_IN_SECONDS" | bc)
+
   echo "Execution Time Difference: $DEVIATION_IN_SECONDS%"
 
   # Check if differences exceed the maximum allowed difference
