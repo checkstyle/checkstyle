@@ -92,6 +92,8 @@
                     LAMBDA</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+                    RECORD_PATTERN_DEF</a>
                   .
               </td>
               <td>
@@ -139,6 +141,8 @@
                     LAMBDA</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+                    RECORD_PATTERN_DEF</a>
                   .
               </td>
               <td>3.0</td>
