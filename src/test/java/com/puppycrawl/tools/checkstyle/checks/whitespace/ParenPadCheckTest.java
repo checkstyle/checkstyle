@@ -567,4 +567,17 @@ public class ParenPadCheckTest
         }
     }
 
+    @Test
+    public void testParenPadWithWhenExpression() throws Exception {
+        final String[] expected = {
+            "21:38: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "25:33: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:41: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "29:43: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "29:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParenPadCheckWhenExpression.java"), expected);
+    }
+
 }
