@@ -5,7 +5,7 @@ set -e
 # max difference tolerance in %
 THRESHOLD_PERCENTAGE=10
 # baseline of execution time in seconds
-BASELINE_SECONDS=415.72
+BASELINE_SECONDS=384.02
 
 # JDK version
 JDK_VERSION=17
