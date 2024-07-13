@@ -97,7 +97,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
+ * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -306,6 +308,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_PATTERN_DEF,
         };
     }
 
