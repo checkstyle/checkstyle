@@ -567,4 +567,36 @@ public class ParenPadCheckTest
         }
     }
 
+    @Test
+    public void testParenPadForRecordPattern() throws Exception {
+        final String[] expected = {
+            "14:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "16:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "16:60: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "22:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "22:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "26:46: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "26:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "26:73: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "31:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "31:47: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "31:62: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "31:74: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "42:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "44:23: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "44:38: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "52:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "52:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "56:36: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "56:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "56:63: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "61:30: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "61:37: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "61:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "61:64: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputParenPadForRecordPattern.java"), expected);
+    }
+
 }
