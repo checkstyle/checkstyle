@@ -1,22 +1,26 @@
-package com.google.checkstyle.test.chapter5naming.rule522typenames;
+package com.google.checkstyle.test.chapter5naming.rule522classnames;
 
+// violation below 'Type name 'inputHeaderClass' must match pattern'
 class inputHeaderClass {
-    // violation above 'Type name 'inputHeaderClass' must match pattern'
 
-    public interface InputHeader___Interface {};
-    // violation above 'Type name 'InputHeader___Interface' .* .*'
+  // violation below 'Type name 'InputHeader___Interface' .* .*'
+  public interface InputHeader___Interface {}
+  ;
 
-    public enum inputHeaderEnum { one, two };
-    // violation above 'Type name 'inputHeaderEnum' must match pattern'
+  // violation below 'Type name 'inputHeaderEnum' must match pattern'
+  public enum inputHeaderEnum {
+    one,
+    two
+  };
 
-    class NoValid$Name {}
-    // violation above 'Type name '.*' must match pattern'
+  class NoValid$Name {}
+  // violation above 'Type name 'NoValid\$Name' must match pattern'
 
-    class $NoValidName {}
-    // violation above 'Type name '.*' must match pattern'
+  class $NoValidName {}
+  // violation above 'Type name '\$NoValidName' must match pattern'
 
-    class NoValidName$ {}
-    // violation above 'Type name '.*' must match pattern'
+  class NoValidName$ {}
+  // violation above 'Type name 'NoValidName\$' must match pattern'
 
 }
 
@@ -36,11 +40,11 @@ interface Fo_o {} // violation 'Type name 'Fo_o' must match pattern'
 
 interface Foo_ {} // violation 'Type name 'Foo_' must match pattern'
 
-interface $Foo {} // violation 'Type name '.*' must match pattern'
+interface $Foo {} // violation 'Type name '\$Foo' must match pattern'
 
-interface Fo$o {} // violation 'Type name '.*' must match pattern'
+interface Fo$o {} // violation 'Type name 'Fo\$o' must match pattern'
 
-interface Foo$ {} // violation 'Type name '.*' must match pattern'
+interface Foo$ {} // violation 'Type name 'Foo\$' must match pattern'
 
 enum FooEnum {}
 
@@ -50,11 +54,11 @@ enum Foo_Enum {} // violation 'Type name 'Foo_Enum' must match pattern'
 
 enum FooEnum_ {} // violation 'Type name 'FooEnum_' must match pattern'
 
-enum $FooEnum {} // violation 'Type name '.*' must match pattern'
+enum $FooEnum {} // violation 'Type name '\$FooEnum' must match pattern'
 
-enum Foo$Enum {} // violation 'Type name '.*' must match pattern'
+enum Foo$Enum {} // violation 'Type name 'Foo\$Enum' must match pattern'
 
-enum FooEnum$ {} // violation 'Type name '.*' must match pattern'
+enum FooEnum$ {} // violation 'Type name 'FooEnum\$' must match pattern'
 
 class aaa {} // violation 'Type name 'aaa' must match pattern'
 
@@ -74,10 +78,10 @@ enum ccc {} // violation 'Type name 'ccc' must match pattern'
 // violation above 'Type name 'Annotation_' must match pattern'
 
 @interface $Annotation {}
-// violation above 'Type name '.*' must match pattern'
+// violation above 'Type name '\$Annotation' must match pattern'
 
 @interface Annot$ation {}
-// violation above 'Type name '.*' must match pattern'
+// violation above 'Type name 'Annot\$ation' must match pattern'
 
 @interface Annotation$ {}
-// violation above 'Type name '.*' must match pattern'
+// violation above 'Type name 'Annotation\$' must match pattern'
