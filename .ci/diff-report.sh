@@ -40,7 +40,7 @@ download-files)
   echo "Downloading files..."
 
   # check for projects link from PR, if not found use default from contribution repo
-  LINK="${LINK_FROM_PR:-$DEFAULT_PROJECTS_LINK}"
+  LINK="${DIFF_PROJECTS_LINK:-$DEFAULT_PROJECTS_LINK}"
 
   # get projects file
   curl --fail-with-body -X GET "${LINK}" \

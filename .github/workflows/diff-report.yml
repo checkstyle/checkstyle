@@ -114,7 +114,7 @@ jobs:
           NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
           DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
           PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
-          LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
+          DIFF_PROJECTS_LINK: ${{ needs.parse_body.outputs.projects_link }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./.ci/diff-report.sh download-files
