@@ -2,86 +2,80 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-public class InputInterfaceTypeParameterName <T>
-{
-    public <TT> void foo() { }
+public class InputInterfaceTypeParameterName<T> {
+  public <TT> void foo() {}
 
-    <T> void foo(int i) {
-    }
+  <T> void foo(int i) {}
 }
 
-class OtherClass <T extends Serializable & Cloneable> {
+class OtherClass<T extends Serializable & Cloneable> {
 
-    T getOne() {
-        return null;//comment
-    }
+  T getOne() {
+    return null; // comment
+  }
 
-    <X extends T> /*comment*/X getTwo(X a) {
-        return null;
-    }
+  <X extends T> /*comment*/ X getTwo(X a) {
+    return null;
+  }
 
-    <E extends Runnable> E getShadow() {
-        return null;
-    }
+  <E extends Runnable> E getShadow() {
+    return null;
+  }
 
-    static class Junk <E> {
-        <T extends E> void getMoreFoo() {
-        }
-    }
+  static class Junk<E> {
+    <T extends E> void getMoreFoo() {}
+  }
 }
 
-class MoreOtherClass <T extends Cloneable> {
+class MoreOtherClass<T extends Cloneable> {
 
-    <E extends T> void getMore() {
-        new Other() {
-            <T> void getMoreFoo() {
-            }
-        };
+  <E extends T> void getMore() {
+    new Other() {
+      <T> void getMoreFoo() {}
+    };
 
-//        Other o = new Other() {
-//            <EE> void getMoreFoo() {
-//            }
-//        };
-    }
+    //        Other o = new Other() {
+    //            <EE> void getMoreFoo() {
+    //            }
+    //        };
+  }
 }
 
 interface Boo<Input> { // violation 'Interface type name 'Input' must match pattern'
-    Input boo();
+  Input boo();
 }
 
 interface FooInterface<T> {
-    T foo();
+  T foo();
 }
 
 interface FooInterface2 {
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface3<T2> {
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface4<E> {
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface5<X> {
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface6<RequestT> {
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface7<Request> { // violation 'Interface type name 'Request' must match pattern'
-    Input foo();
+  Input foo();
 }
 
 interface FooInterface8<TRequest> {
-    // violation above 'Interface type name 'TRequest' must match pattern'
-    Input foo();
+  // violation above 'Interface type name 'TRequest' must match pattern'
+  Input foo();
 }
 
-class Input {
-
-}
+class Input {}
