@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+// non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 
 /* Config:
@@ -6,10 +6,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
  *
  */
 // violation below 'Record component name '_componentName' must match pattern'
-public record InputRecordComponentName<t>(int _componentName,
-                                          String componentName2) {
-}
+public record InputRecordComponentName<t>(int _componentName, String componentName2) {}
 
 // violation below 'Record component name 'Capital' must match pattern'
-record InputRecordComponentName<t>(int Capital) {
-}
+record InputRecordComponentName<t>(int Capital) {}
