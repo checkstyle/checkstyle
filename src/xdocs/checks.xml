@@ -1385,6 +1385,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/whenshouldbeused.html#WhenShouldBeUsed">
+                WhenShouldBeUsed
+              </a>
+            </td>
+            <td>
+              Ensures that <code>when</code> is used instead of a single
+              <code>if</code> statement inside a case block.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/design/visibilitymodifier.html#VisibilityModifier">
                 VisibilityModifier
               </a>
