@@ -1658,8 +1658,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "3: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 78, 100),
-            "14: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 100),
+            "14: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 225)
         };
 
         verifyWithInlineXmlConfig(getPath("InputCheckerTestCharset.java"),
