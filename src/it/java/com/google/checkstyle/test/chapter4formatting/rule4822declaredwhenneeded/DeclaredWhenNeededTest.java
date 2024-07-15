@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter4formatting.rule4822variabledistance;
+package com.google.checkstyle.test.chapter4formatting.rule4822declaredwhenneeded;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,11 +27,11 @@ public class DeclaredWhenNeededTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter4formatting/rule4822variabledistance";
+        return "com/google/checkstyle/test/chapter4formatting/rule4822declaredwhenneeded";
     }
 
     @Test
-    public void testArrayTypeStyle() throws Exception {
+    public void testVariableDeclarationUsageDistance() throws Exception {
         final String filePath = getPath("InputDeclaredWhenNeeded.java");
         verifyWithConfigParser(new String[] {"VariableDeclarationUsageDistance"}, filePath);
     }
