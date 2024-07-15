@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT;
 
+import com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter.InputNoWhitespaceAfterArrayDeclarations2;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -229,6 +230,8 @@ public class EmptyBlockCheckTest
     public void testEmptyBlockSwitchExpressions() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "116:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "118:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
@@ -242,5 +245,18 @@ public class EmptyBlockCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyBlockTestUppercaseOptionProperty.java"), expected);
+    }
+
+    @Test
+    public void testEmptyBlockCaseAndDefaultWithTextOption() throws Exception {
+        final String[] expected = {
+            "20:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "24:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "33:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "37:24: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default")
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyBlockCaseAndDefaultWithTextOption.java"),
+                expected);
     }
 }
