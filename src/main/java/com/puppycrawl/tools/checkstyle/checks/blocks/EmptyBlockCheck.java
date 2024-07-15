@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -175,8 +176,9 @@ public class EmptyBlockCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST leftCurly = findLeftCurly(ast);
-        if (leftCurly != null) {
+        final Optional<DetailAST> lcurlyOptional = findLeftCurly(ast);
+        if (lcurlyOptional.isPresent()) {
+            final DetailAST leftCurly = lcurlyOptional.orElseThrow();
             if (option == BlockOption.STATEMENT) {
                 final boolean emptyBlock;
                 if (leftCurly.getType() == TokenTypes.LCURLY) {
@@ -270,23 +272,28 @@ public class EmptyBlockCheck
      * @param ast a {@code DetailAST} value
      * @return the left curly corresponding to the block to be checked
      */
-    private static DetailAST findLeftCurly(DetailAST ast) {
-        final DetailAST leftCurly;
-        final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
-        if ((ast.getType() == TokenTypes.LITERAL_CASE
-                || ast.getType() == TokenTypes.LITERAL_DEFAULT)
-                && ast.getNextSibling() != null
-                && ast.getNextSibling().getFirstChild() != null
-                && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {
-            leftCurly = ast.getNextSibling().getFirstChild();
+    private static Optional<DetailAST> findLeftCurly(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        final Optional<DetailAST> lcurlyOptional;
+
+        if (parentType == TokenTypes.SWITCH_RULE) {
+            lcurlyOptional = Optional.ofNullable(parent.findFirstToken(TokenTypes.SLIST));
         }
-        else if (slistAST == null) {
-            leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
+        else if (parentType == TokenTypes.CASE_GROUP) {
+            final DetailAST statementList = ast.getNextSibling();
+            lcurlyOptional = Optional.ofNullable(statementList)
+                         .map(DetailAST::getFirstChild)
+                         .filter(node -> node.getType() == TokenTypes.SLIST);
         }
         else {
-            leftCurly = slistAST;
+            DetailAST leftCurly = ast.findFirstToken(TokenTypes.SLIST);
+            if (leftCurly == null) {
+                leftCurly = ast.findFirstToken(TokenTypes.LCURLY);
+            }
+            lcurlyOptional = Optional.ofNullable(leftCurly);
         }
-        return leftCurly;
+        return lcurlyOptional;
     }
 
 }

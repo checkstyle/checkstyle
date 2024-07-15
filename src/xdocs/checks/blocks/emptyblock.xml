@@ -166,13 +166,13 @@ public class Example2 {
 }
         </source>
         <p id="Example3-config">
-          To configure the check for default in switch block:
+          To configure the check for case and default in switch block:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;EmptyBlock&quot;&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE,LITERAL_DEFAULT&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -180,16 +180,40 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <source>
 public class Example3 {
-  private void test(int a) {
+
+  private void testBadSwitchStatement(int a) {
     switch (a) {
-      case 1: someMethod();
-      default: // OK, as there is no block
-    }
-    switch (a) {
-      case 1: someMethod();
-      default: {} // violation 'Must have at least one statement'
+      case 1 : { }  // violation, 'Must have at least one statement'
+      default : { }  // violation, 'Must have at least one statement'
     }
   }
+
+  private void testGoodSwitchStatement(int a) {
+    switch (a) {
+      case 1: { someMethod(); }
+      default: { someMethod(); }
+    }
+    switch (a) {
+      case 1: { someMethod(); }
+      default: // OK, as there is no block
+    }
+  }
+
+  private void testBadSwitchRule(int a) {
+    switch (a) {
+      case 1 -&gt; { } // violation, 'Must have at least one statement'
+      default -&gt; { } // violation, 'Must have at least one statement'
+    }
+  }
+
+  private void testGoodSwitchRule(int a) {
+    switch (a) {
+      case 1 -&gt; { someMethod(); }
+      default -&gt; { someMethod(); }
+    }
+  }
+
+  void someMethod() { }
 }
         </source>
       </subsection>
