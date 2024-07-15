@@ -106,6 +106,31 @@ class Example3 {
   }
 }
         </source>
+        <p id="Example4-config">
+          An example of how to configure the check to validate final pattern variables only:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PatternVariableName&quot;/&gt;
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;checks&quot; value=&quot;PatternVariableName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//PATTERN_VARIABLE_DEF[
+            not(./MODIFIERS/FINAL)]/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Code Example:</p>
+        <source>
+class Example4 {
+  void foo(Object o1){
+    // ok below, not a final pattern variable
+    if (o1 instanceof String BAD) {}
+    if (o1 instanceof final String BAD) {} // violation
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
