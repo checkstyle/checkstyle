@@ -30,6 +30,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *  A catch parameter and resources in try statements
  * are considered to be a local, final variables.
  * </p>
+ * <p>
+ * This check does not support final pattern variables. Instead, use
+ * <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
+ * PatternVariableName</a>.
+ * </p>
  * <ul>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
