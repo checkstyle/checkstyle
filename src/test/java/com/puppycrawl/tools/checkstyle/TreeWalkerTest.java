@@ -166,6 +166,28 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     /**
+     * This test checks the negated scenario of {if(waitsForProcessing)} condition
+     * of walk() method in AbstractJavadocCheck.
+     */
+    @Test
+    public void testConditionRequiredWithOrdinaryChecks() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String path = getPath("InputTreeWalkerJavadocNoViolation.java");
+        final DetailAST mockAST = mock();
+        final DetailAST realAST = JavaParser.parseFile(new File(path),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        // Ensure that there is no calls to walk(..., AstState.ORDINARY)
+        doThrow(IllegalStateException.class).when(mockAST).getFirstChild();
+        try (MockedStatic<JavaParser> parser = Mockito.mockStatic(JavaParser.class)) {
+            parser.when(() -> JavaParser.parse(any(FileContents.class))).thenReturn(mockAST);
+            // This will re-enable walk(..., AstState.WITH_COMMENTS)
+            parser.when(() -> JavaParser.appendHiddenCommentNodes(mockAST)).thenReturn(realAST);
+
+            verifyWithInlineConfigParserTwice(path, expected);
+        }
+    }
+
+    /**
      * This test is needed for 100% coverage. The method {@link Mockito#mockStatic} is used to
      * ensure that the {@code if (!commentChecks.isEmpty())} condition cannot be removed.
      */
