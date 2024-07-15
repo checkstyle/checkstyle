@@ -279,6 +279,7 @@ dcm
 Dconnection
 Ddry
 declarationorder
+declaredwhenneeded
 Deconstruction
 defau
 defaultcomeslast
@@ -1390,7 +1391,6 @@ validator
 VALUEEEE
 vararg
 variabledeclarationusagedistance
-variabledistance
 Veach
 Versioning
 verticalwhitespace
