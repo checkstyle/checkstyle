@@ -50,13 +50,13 @@ public class InputOneStatementPerLine {
   public void doIllegal() {
     one = 1; two = 2; // violation 'Only one statement per line allowed.'
     if (one == 1) {
-        one++; two++; // violation 'Only one statement per line allowed.'
+      one++; two++; // violation 'Only one statement per line allowed.'
     }
     if (one != 1) { one++; } else { one--; } // violation 'Only one statement per line allowed.'
     int n = 10;
 
     doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
-    while (one == 1) {one++; two--;} // violation 'Only one statement per line allowed.'
+    while (one == 1) { one++; two--; } // violation 'Only one statement per line allowed.'
 
   }
 
@@ -69,42 +69,43 @@ public class InputOneStatementPerLine {
     ; two = 2; // violation 'Only one statement per line allowed.'
   }
 
-  class Inner
-  {
-      /**
-       * Dummy variable to work on.
-       */
-      private int one = 0;
+  class Inner {
+    /**
+     * Dummy variable to work on.
+     */
+    private int one = 0;
 
-      /**
-       * Dummy variable to work on.
-       */
-      private int two = 0;
+    /**
+     * Dummy variable to work on.
+     */
+    private int two = 0;
 
-      /**
-       * Simple legal method.
-       */
-      public void doLegal() {
-        one = 1;
-        two = 2;
+    /**
+     * Simple legal method.
+     */
+    public void doLegal() {
+      one = 1;
+      two = 2;
+    }
+
+    /**
+     * Simplest form a an illegal layout.
+     */
+    public void doIllegal() {
+      one = 1; two = 2; // violation 'Only one statement per line allowed.'
+      if (one == 1) {
+        one++; two++; // violation 'Only one statement per line allowed.'
+      }
+      if (one != 1) { one++; } else { one--; } // violation 'Only one statement per line allowed.'
+      int n = 10;
+
+      doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
+      while (one == 1) {
+        one++; two--; // violation 'Only one statement per line allowed.'
       }
 
-      /**
-       * Simplest form a an illegal layout.
-       */
-      public void doIllegal() {
-        one = 1; two = 2; // violation 'Only one statement per line allowed.'
-        if (one == 1) {
-            one++; two++; // violation 'Only one statement per line allowed.'
-        }
-        if (one != 1) { one++; } else { one--; } // violation 'Only one statement per line allowed.'
-        int n = 10;
-
-        doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
-        while (one == 1) {one++; two--;} // violation 'Only one statement per line allowed.'
-
-      }
-  }
+    }
+    }
 
   /**
    * Two declaration statements on the same line are illegal.
@@ -145,39 +146,39 @@ public class InputOneStatementPerLine {
    * is legal.
    */
   int i = 1, j = 2,
-      k = 5;
+          k = 5;
 
   /**
    * One multiline  assignment (declaration) statement
    * is legal.
    */
   int l = 1,
-      m = 2,
-      n = 5;
+          m = 2,
+          n = 5;
 
   /**
    * One multiline  assignment (declaration) statement
    * is legal.
    */
   int w = 1,
-      x = 2,
-      y = 5
-          ;
+          x = 2,
+          y = 5
+                  ;
 
   /**
    * Two multiline  assignment (declaration) statements
    * are illegal.
    */
   int o = 1, p = 2,
-      r = 5; int t; // violation 'Only one statement per line allowed.'
+          r = 5; int t; // violation 'Only one statement per line allowed.'
 
   /**
    * Two assignment (declaration) statement
    * which are not on the same lines and are legal.
    */
   int four = 1,
-      five = 5
-          ;
+          five = 5
+                  ;
   int seven = 2;
 
   /**
@@ -187,7 +188,7 @@ public class InputOneStatementPerLine {
    */
   int var1 = 5,
       var4 = 5; int var2 = 6,
-      var3 = 5; // violation 'Only one statement per line allowed.'
+          var3 = 5; // violation 'Only one statement per line allowed.'
 
   /**
    * Two statements on the same line
@@ -224,9 +225,9 @@ public class InputOneStatementPerLine {
    */
   private void foo3() {
     for (int n = 0,
-         k = 1;
-         n < 5; n++,
-             k--) {
+        k = 1;
+        n < 5; n++,
+           k--) {
 
     }
   }
@@ -276,36 +277,42 @@ public class InputOneStatementPerLine {
     /**
      * a "forever" loop.
      */
-    for(;;){} //legal
+    for (;;){} //legal
   }
 
   public void foo6() {
-  /**
-   * One statement inside for block is legal
-   */
-    for (;;) { one = 5; } //legal
+    /**
+     * One statement inside for block is legal
+     */
+    for (;;) {
+      one = 5;
+    } //legal
   }
 
   /**
    * One statement inside multiline for loop is legal.
    */
   private void foo7() {
-    for(int n = 0,
-            k = 1
-            ; n<5
-            ;
-            n++, k--) { var1++; } //legal
-    }
+    for (int n = 0,
+        k = 1
+        ; n < 5
+        ;
+        n++, k--) {
+      var1++;
+    } //legal
+  }
 
   /**
    * Two statements on the same lne
    * inside multiline for loop are illegal.
    */
   private void foo8() {
-    for(int n = 0,
-            k = 1
-            ; n<5
-            ;
-            n++, k--) { var1++; var2++; } // violation 'Only one statement per line allowed.'
+    for (int n = 0,
+        k = 1
+        ; n < 5
+        ;
+        n++, k--) {
+      var1++; var2++; // violation 'Only one statement per line allowed.'
     }
+  }
 }
