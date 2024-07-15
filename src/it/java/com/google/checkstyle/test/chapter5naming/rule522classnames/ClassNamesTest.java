@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter5naming.rule522typenames;
+package com.google.checkstyle.test.chapter5naming.rule522classnames;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,11 +27,11 @@ public class ClassNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter5naming/rule522typenames";
+        return "com/google/checkstyle/test/chapter5naming/rule522classnames";
     }
 
     @Test
-    public void testTypeName() throws Exception {
+    public void testClassNames() throws Exception {
         final String filePath = getPath("InputClassNames.java");
         verifyWithConfigParser(new String[] {"TypeName"}, filePath);
     }
