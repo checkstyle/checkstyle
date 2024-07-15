@@ -8,6 +8,11 @@
  Checks that local final variable names conform to a specified pattern.
   A catch parameter and resources in try statements
  are considered to be a local, final variables.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check does not support final pattern variables. Instead, use
+ &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName"&gt;
+ PatternVariableName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^([a-z][a-zA-Z0-9]*|_)$"
