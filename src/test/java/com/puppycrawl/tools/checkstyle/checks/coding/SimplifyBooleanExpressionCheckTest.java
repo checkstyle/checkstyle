@@ -56,6 +56,19 @@ public class SimplifyBooleanExpressionCheckTest
     }
 
     @Test
+    public void testWhenExpression() throws Exception {
+        final String[] expected = {
+            "13:41: " + getCheckMessage(MSG_KEY),
+            "16:41: " + getCheckMessage(MSG_KEY),
+            "17:41: " + getCheckMessage(MSG_KEY),
+            "22:41: " + getCheckMessage(MSG_KEY),
+            "23:44: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSimplifyBooleanExpressionWithWhen.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
         assertWithMessage("Acceptable tokens should not be null")
