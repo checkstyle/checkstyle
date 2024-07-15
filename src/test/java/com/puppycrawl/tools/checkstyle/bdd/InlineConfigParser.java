@@ -406,6 +406,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
         moduleMappings.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
+        moduleMappings.put("SuppressionXpathSingleFilter",
+                "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter");
 
         String fullyQualifiedClassName;
         if (moduleMappings.containsKey(moduleName)) {
