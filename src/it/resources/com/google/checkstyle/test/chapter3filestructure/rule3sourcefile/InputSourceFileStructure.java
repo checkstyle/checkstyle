@@ -17,114 +17,89 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;// violation ''package' .*'
-import java.io.Serializable; // violation ''import' should be separated from previous line.'
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.Collections;
-import java.util.Calendar;
-import java.util.Set;
+import java.util.concurrent.Callable; // violation ''import' should be separated from previous line.'
+class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated from previous line.'
+  public static final double FOO_PI = 3.1415;
+  private boolean flag = true;
+  static { // violation ''STATIC_INIT' should be separated from previous line.'
+    // empty static initializer
+  }
 
-import javax.swing.AbstractAction;
+  {
+    // empty instance initializer
+  }
 
-import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;
-class InputSourceFileStructure
-// violation above ''CLASS_DEF' should be separated from previous line.'
-{
-    public static final double FOO_PI = 3.1415;
-    private boolean flag = true;
-    static {  // violation ''STATIC_INIT' should be separated from previous line.'
-        //empty static initializer
-    }
+  /** */
+  private InputSourceFileStructure() {
+    // empty
+  }
 
-    {
-        //empty instance initializer
-    }
+  public int compareTo(InputSourceFileStructure aObject) {
+    int number = 0;
+    return 0;
+  }
+  /**
+   * @param task
+   * @param result
+   * @return
+   */
+  public static <T> Callable<T> callable(Runnable task, T result)
+  // violation above ''METHOD_DEF' should be separated from previous line.'
+  {
+    return null;
+  }
 
-    /**
-     *
-     *
-     *
-     */
-    private InputSourceFileStructure()
-    {
-        //empty
-    }
-
-    public int compareTo(InputSourceFileStructure aObject)
-    {
-        int number = 0;
-        return 0;
-    }
-    /**
-     *
-     * @param task
-     * @param result
-     * @return
-     */
-    public static <T> Callable<T> callable(Runnable task, T result)
-    // violation above ''METHOD_DEF' should be separated from previous line.'
-    {
-        return null;
-    }
-
-    public int getBeastNumber()
-    {
-        return 666;
-    }
-    interface IntEnum {
+  public int getBeastNumber() {
+    return 666;
+  }
+  interface IntEnum {
     // violation above ''INTERFACE_DEF' should be separated from previous line.'
+  }
+
+  class InnerClass {
+
+    public static final double FOO_PI_INNER = 3.1415;
+    private boolean flagInner = true;
+    { // violation ''INSTANCE_INIT' should be separated from previous line.'
+      // empty instance initializer
     }
 
-    class InnerClass {
-
-        public static final double FOO_PI_INNER = 3.1415;
-        private boolean flagInner = true;
-        { // violation ''INSTANCE_INIT' should be separated from previous line.'
-            //empty instance initializer
-        }
-
-        private InnerClass()
-        {
-            //empty
-        }
-
+    private InnerClass() {
+      // empty
     }
+  }
 
-    class InnerClass2 { //ok
-        private InnerClass2() //ok
-        {
-            //empty
-        }
-    }
-
-    class InnerClass3 { //ok
-        public int compareTo(InputSourceFileStructure aObject) //ok
-        {
-            int number = 0;
-            return 0;
-        }
-
-    }
-}
-
-class Class1 { //ok
-    private Class1() {} //ok
-}
-class Class2{ // violation ''CLASS_DEF' should be separated from previous line.'
-    public int compareTo(InputSourceFileStructure aObject) //ok
+  class InnerClass2 { // ok
+    private InnerClass2() // ok
     {
-        int number = 0;
-        return 0;
+      // empty
     }
-    Class2 anon = new Class2(){
-    // violation above ''VARIABLE_DEF' should be separated from previous line.'
-        public int compareTo(InputSourceFileStructure aObject) //ok
-        {
-            int number = 0;
-            return 0;
-        }
-    };
+  }
+
+  class InnerClass3 { // ok
+    public int compareTo(InputSourceFileStructure aObject) // ok
+    {
+      int number = 0;
+      return 0;
+    }
+  }
+}
+
+class Class1 { // ok
+  private Class1() {} // ok
+}
+class Class2 { // violation ''CLASS_DEF' should be separated from previous line.'
+  public int compareTo(InputSourceFileStructure aObject) // ok
+  {
+    int number = 0;
+    return 0;
+  }
+  Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
+          new Class2() {
+            public int compareTo(InputSourceFileStructure aObject) // ok
+            {
+              int number = 0;
+              return 0;
+            }
+          };
 }
