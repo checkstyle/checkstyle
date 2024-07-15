@@ -113,9 +113,9 @@ public class InputEmptyBlockSwitchExpressions {
     void howMany8(Nums k) {
         switch (k) {
             case ONE -> System.out.println("case two");
-            case TWO, THREE -> {} // ok, empty blocks are allowed for cases
+            case TWO, THREE -> {} // violation, 'Must have at least one statement'
 
-            case FOUR -> {} // ok, empty blocks are allowed for cases
+            case FOUR -> {} // violation, 'Must have at least one statement'
 
             default -> throw new IllegalStateException("Not a nums");
         }
