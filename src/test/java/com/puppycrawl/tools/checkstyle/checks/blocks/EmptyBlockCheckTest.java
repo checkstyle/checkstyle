@@ -229,6 +229,8 @@ public class EmptyBlockCheckTest
     public void testEmptyBlockSwitchExpressions() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "116:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "118:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
