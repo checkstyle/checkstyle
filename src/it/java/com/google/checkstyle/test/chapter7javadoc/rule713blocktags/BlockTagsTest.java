@@ -17,7 +17,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
+package com.google.checkstyle.test.chapter7javadoc.rule713blocktags;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter7javadoc/rule713atclauses";
+        return "com/google/checkstyle/test/chapter7javadoc/rule713blocktags";
     }
 
     @Test
