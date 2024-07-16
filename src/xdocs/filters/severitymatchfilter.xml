@@ -67,6 +67,16 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">
+            Example code:
+        </p>
+        <source>
+public class Example1 {
+  public void method1(int V1){} // ok, ParameterName's severity is info
+
+  public void Method2(){} // violation, MethodName's severity is defaulted to error
+}
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
