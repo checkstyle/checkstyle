@@ -31,7 +31,7 @@
         </source>
       </div>
       <p>
-        4. Before opening project in your IDE, build the project in your terminal to download<br/>
+        4. Before opening project in IDE, build the project in your terminal to download<br/>
         all needed artifacts. From the repository root folder, run:
       </p>
       <div class="wrap-content">
@@ -43,7 +43,7 @@
 
     <section name="Starting Development">
       <p>
-        Here you can find instructions of importing and debugging the project for IDEs:<br/>
+        Here you can find instructions about importing and debugging the project for IDEs:<br/>
         <a href="eclipse.html">Eclipse IDE</a><br/>
         <a href="netbeans.html">NetBeans IDE</a><br/>
         <a href="idea.html">IntelliJ IDEA IDE</a><br/>
