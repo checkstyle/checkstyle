@@ -11,10 +11,42 @@ import java.io.Serializable;
  * @since Some javadoc.
  * @deprecated Some javadoc.
  */
-class InputCorrectAtClauseOrderCheck2 implements Serializable
-{
+class InputCorrectAtClauseOrderCheck2 implements Serializable {
+  /**
+   * Some text.
+   *
+   * @param aString Some text.
+   * @throws Exception Some text.
+   */
+  void method2(String aString) throws Exception {}
+
+  /**
+   * Some text.
+   *
+   * @throws Exception Some text.
+   * @deprecated Some text.
+   */
+  void method3() throws Exception {}
+
+  /**
+   * Some text.
+   *
+   * @return Some text.
+   * @throws Exception Some text.
+   */
+  String method4() throws Exception {
+    return "null";
+  }
+
+  /**
+   * @author max
+   * @version 1.0
+   * @since Some javadoc.
+   */
+  class InnerClassWithAnnotations2 {
     /**
      * Some text.
+     *
      * @param aString Some text.
      * @throws Exception Some text.
      */
@@ -22,6 +54,7 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable
 
     /**
      * Some text.
+     *
      * @throws Exception Some text.
      * @deprecated Some text.
      */
@@ -29,50 +62,21 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable
 
     /**
      * Some text.
+     *
      * @return Some text.
      * @throws Exception Some text.
+     * @serialData Some javadoc.
      */
     String method4() throws Exception {
-        return "null";
+      return "null";
     }
+  }
 
-    /**
-     *
-     * @author max
-     * @version 1.0
-     * @since Some javadoc.
-     */
-    class InnerClassWithAnnotations2
-    {
+  InnerClassWithAnnotations2 anon =
+      new InnerClassWithAnnotations2() {
         /**
          * Some text.
-         * @param aString Some text.
-         * @throws Exception Some text.
-         */
-        void method2(String aString) throws Exception {}
-
-        /**
-         * Some text.
-         * @throws Exception Some text.
-         * @deprecated Some text.
-         */
-        void method3() throws Exception {}
-
-        /**
-         * Some text.
-         * @return Some text.
-         * @throws Exception Some text.
-         * @serialData Some javadoc.
-         */
-        String method4() throws Exception {
-            return "null";
-        }
-    }
-
-    InnerClassWithAnnotations2 anon = new InnerClassWithAnnotations2()
-    {
-        /**
-         * Some text.
+         *
          * @param aString Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
@@ -81,6 +85,7 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable
 
         /**
          * Some text.
+         *
          * @throws Exception Some text.
          * @deprecated Some text.
          */
@@ -88,14 +93,16 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable
 
         /**
          * Some text.
+         *
          * @return Some text.
          * @throws Exception Some text.
          */
         String method4() throws Exception {
-            return "null";
+          return "null";
         }
-    };
+      };
 }
+
 /**
  * Some javadoc.
  *

@@ -11,101 +11,108 @@ import java.io.Serializable;
  * @since Some javadoc.
  * @deprecated Some javadoc.
  */
-class InputCorrectAtClauseOrderCheck1 implements Serializable
-{
+class InputCorrectAtClauseOrderCheck1 implements Serializable {
 
-    /**
-     * The client's first name.
-     * @serial
-     */
-    private String fFirstName;
+  /**
+   * The client's first name.
+   *
+   * @serial
+   */
+  private String fFirstName;
 
-    /**
-     * The client's first name.
-     * @serial
-     */
-    private String sSecondName;
+  /**
+   * The client's first name.
+   *
+   * @serial
+   */
+  private String sSecondName;
 
-    /**
-     * The client's first name.
-     * @serialField
-     */
-    private String tThirdName;
+  /**
+   * The client's first name.
+   *
+   * @serialField
+   */
+  private String tThirdName;
 
+  /**
+   * Some text.
+   *
+   * @param aString Some text.
+   * @return Some text.
+   * @throws Exception Some text.
+   * @serialData Some javadoc.
+   * @deprecated Some text.
+   */
+  String method(String aString) throws Exception {
+    return "null";
+  }
+
+  /**
+   * Some text.
+   *
+   * @param aString Some text.
+   * @return Some text.
+   * @throws Exception Some text.
+   * @serialData Some javadoc.
+   */
+  String method1(String aString) throws Exception {
+    return "null";
+  }
+
+  /**
+   * @author max
+   * @version 1.0
+   * @since Some javadoc.
+   */
+  class InnerClassWithAnnotations1 {
     /**
      * Some text.
+     *
      * @param aString Some text.
      * @return Some text.
      * @throws Exception Some text.
-     * @serialData Some javadoc.
      * @deprecated Some text.
      */
     String method(String aString) throws Exception {
-        return "null";
+      return "null";
     }
 
     /**
      * Some text.
+     *
      * @param aString Some text.
      * @return Some text.
      * @throws Exception Some text.
      * @serialData Some javadoc.
      */
     String method1(String aString) throws Exception {
-        return "null";
+      return "null";
     }
+  }
 
-    /**
-     *
-     * @author max
-     * @version 1.0
-     * @since Some javadoc.
-     */
-    class InnerClassWithAnnotations1 {
+  InnerClassWithAnnotations1 anon =
+      new InnerClassWithAnnotations1() {
         /**
          * Some text.
+         *
          * @param aString Some text.
          * @return Some text.
          * @throws Exception Some text.
          * @deprecated Some text.
          */
         String method(String aString) throws Exception {
-            return "null";
+          return "null";
         }
 
         /**
          * Some text.
-         * @param aString Some text.
-         * @return Some text.
-         * @throws Exception Some text.
-         * @serialData Some javadoc.
-         */
-        String method1(String aString) throws Exception {
-            return "null";
-        }
-    }
-
-    InnerClassWithAnnotations1 anon = new InnerClassWithAnnotations1()
-    {
-        /**
-         * Some text.
-         * @param aString Some text.
-         * @return Some text.
-         * @throws Exception Some text.
-         * @deprecated Some text.
-         */
-        String method(String aString) throws Exception {
-            return "null";
-        }
-
-        /**
-         * Some text.
+         *
          * @param aString Some text.
          * @return Some text.
          * @throws Exception Some text.
          */
         String method1(String aString) throws Exception {
-            return "null";
+          return "null";
         }
-    };
+      };
 }
