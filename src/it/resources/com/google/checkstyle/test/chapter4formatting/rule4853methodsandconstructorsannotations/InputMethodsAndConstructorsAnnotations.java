@@ -1,90 +1,72 @@
 package com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstructorsannotations;
 
 public class InputMethodsAndConstructorsAnnotations {
-    public @interface SomeAnnotation1 { }
+  public @interface SomeAnnotation1 {}
 
-    public @interface SomeAnnotation2 { }
+  public @interface SomeAnnotation2 {}
 
-    // ********testing methods.***********
+  // ********testing methods.***********
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1
-    @SomeAnnotation2
-    void test1() {}
+  /** testing. */
+  @SomeAnnotation1
+  @SomeAnnotation2
+  void test1() {}
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1 void test2() {}
+  /** testing. */
+  @SomeAnnotation1
+  void test2() {}
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1 @SomeAnnotation2
-    // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-    void test3() {}
+  /** testing. */
+  @SomeAnnotation1 @SomeAnnotation2
+  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  void test3() {}
 
-    @SomeAnnotation1
-    @SomeAnnotation2
-    /** // violation 'Javadoc comment is placed in the wrong location.'
-     * testing.
-     */
-    void test4() {}
+  @SomeAnnotation1
+  @SomeAnnotation2
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  void test4() {}
 
-    @SomeAnnotation1 @SomeAnnotation2
-    // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-    /** // violation 'Javadoc comment is placed in the wrong location.'
-     * testing.
-     */
-    void test5() {}
+  @SomeAnnotation1 @SomeAnnotation2
+  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  void test5() {}
 
-    @SomeAnnotation1 @SomeAnnotation2 void test6() {}
-    // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  @SomeAnnotation1 @SomeAnnotation2 void test6() {}
+  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
 
-    @SuppressWarnings("all") void test7() {}
-    // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
+  @SuppressWarnings("all") void test7() {}
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
 
-    // ********testing constructors.*********
+  // ********testing constructors.*********
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1
-    @SomeAnnotation2
-    InputMethodsAndConstructorsAnnotations() {}
+  /** testing. */
+  @SomeAnnotation1
+  @SomeAnnotation2
+  InputMethodsAndConstructorsAnnotations() {}
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1 InputMethodsAndConstructorsAnnotations(float f) {}
+  /** testing. */
+  @SomeAnnotation1
+  InputMethodsAndConstructorsAnnotations(float f) {}
 
-    /**
-     * testing.
-     */
-    @SomeAnnotation1 @SomeAnnotation2
-    // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-    InputMethodsAndConstructorsAnnotations(int x) {}
+  /** testing. */
+  @SomeAnnotation1 @SomeAnnotation2
+  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  InputMethodsAndConstructorsAnnotations(int x) {}
 
-    @SomeAnnotation1
-    @SomeAnnotation2
-    /** // violation 'Javadoc comment is placed in the wrong location.'
-     * testing.
-     */
-    InputMethodsAndConstructorsAnnotations(String str) {}
+  @SomeAnnotation1
+  @SomeAnnotation2
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  InputMethodsAndConstructorsAnnotations(String str) {}
 
-    @SomeAnnotation1 @SomeAnnotation2
-    // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-    /** // violation 'Javadoc comment is placed in the wrong location.'
-     * testing.
-     */
-    InputMethodsAndConstructorsAnnotations(double d) {}
+  @SomeAnnotation1 @SomeAnnotation2
+  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  InputMethodsAndConstructorsAnnotations(double d) {}
 
-    @SomeAnnotation1 @SomeAnnotation2  InputMethodsAndConstructorsAnnotations(String a,
-                                                                              String b) {}
-    // violation 2 lines above 'Annotation 'SomeAnnotation2' should be alone on line.'
+  // violation below 'Annotation 'SomeAnnotation2' should be alone on line.'
+  @SomeAnnotation1 @SomeAnnotation2
+  InputMethodsAndConstructorsAnnotations(String a, String b) {}
 
-    @SuppressWarnings("all") InputMethodsAndConstructorsAnnotations(int x, int y) {}
-    // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
+  @SuppressWarnings("all") InputMethodsAndConstructorsAnnotations(int x, int y) {}
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
 }
