@@ -98,7 +98,7 @@ public final class InlineConfigParser {
 
     /** A pattern to find the string: "// violation, explanation". */
     private static final Pattern VIOLATION_WITH_EXPLANATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,\\s.+\\s(?:.*)?$");
+            .compile(".*//\\s*violation,\\s.+\\s(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// X violations". */
     private static final Pattern MULTIPLE_VIOLATIONS_PATTERN = Pattern
@@ -647,8 +647,11 @@ public final class InlineConfigParser {
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationWithExplanationMatcher.matches()) {
+            final String violationMessage = violationWithExplanationMatcher.group(1);
             final int violationLineNum = lineNo + 1;
-            inputConfigBuilder.addViolation(violationLineNum, null);
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
