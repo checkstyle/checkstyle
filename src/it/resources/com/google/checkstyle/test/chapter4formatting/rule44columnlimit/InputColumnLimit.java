@@ -1,236 +1,238 @@
-package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; //ok
-import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; //ok
-final class InputColumnLimit
-{
-    // Long line ----------------------------------------------------------------------------------------
-    // violation above 'Line is longer than 100 characters (found 105).'
-    // Contains a tab ->    <-
-    // Contains trailing whitespace ->
+package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; // ok
 
-    // Name format tests
-    //
-    /** Invalid format **/
-    public static final int badConstant = 2;
-    /** Valid format **/
-    public static final int MAX_ROWS = 2;
+import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.*; // ok
 
-    /** Invalid format **/
-    private static int badStatic = 2;
-    /** Valid format **/
-    private static int sNumCreated = 0;
+final class InputColumnLimit {
+  // Long line
+  // ----------------------------------------------------------------------------------------------------
+  // violation above 'Line is longer than 100 characters (found 105).'
+  // Contains a tab ->    <-
+  // Contains trailing whitespace ->
 
-    /** Invalid format **/
-    private int badMember = 2;
-    /** Valid format **/
-    private int mNumCreated1 = 0;
-    /** Valid format **/
-    protected int mNumCreated2 = 0;
+  // Name format tests
+  //
+  /** Invalid format * */
+  public static final int badConstant = 2;
 
-    /** commas are wrong **/
-    private int[] mInts = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, };
-    // violation above 'Line is longer than 100 characters (found 106).'
+  /** Valid format * */
+  public static final int MAX_ROWS = 2;
 
-    //
-    // Accessor tests
-    //
-    /** should be private **/
-    public static int sTest1;
-    /** should be private **/
-    protected static int sTest3;
-    /** should be private **/
-    static int sTest2;
+  /** Invalid format * */
+  private static int badStatic = 2;
 
-    /** should be private **/
-    int mTest1;
-    /** should be private **/
-    public int mTest2;
+  /** Valid format * */
+  private static int sNumCreated = 0;
 
-    //
-    // Parameter name format tests
-    //
+  /** Invalid format * */
+  private int badMember = 2;
 
-    /**
-     * @return hack
-     * @param badFormat1 bad format
-     * @param badFormat2 bad format
-     * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
-     **/
-    int test1(int badFormat1,int badFormat2,
-              final int badFormat3)
-        throws java.lang.Exception
-    {
-        return 0;
+  /** Valid format * */
+  private int mNumCreated1 = 0;
+
+  /** Valid format * */
+  protected int mNumCreated2 = 0;
+
+  /** commas are wrong * */
+  private int[] mInts =
+      new int[] {
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
+        // violation above 'Line is longer than 100 characters (found 105).'
+      };
+
+  //
+  // Accessor tests
+  //
+  /** should be private * */
+  public static int sTest1;
+
+  /** should be private * */
+  protected static int sTest3;
+
+  /** should be private * */
+  static int sTest2;
+
+  /** should be private * */
+  int mTest1;
+
+  /** should be private * */
+  public int mTest2;
+
+  //
+  // Parameter name format tests
+  //
+
+  /**
+   * @return hack
+   * @param badFormat1 bad format
+   * @param badFormat2 bad format
+   * @param badFormat3 bad format
+   * @throws java.lang.Exception abc
+   */
+  int test1(int badFormat1, int badFormat2, final int badFormat3) throws java.lang.Exception {
+    return 0;
+  }
+
+  /** method that is 20 lines long * */
+  private void longMethod() {
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+  }
+
+  /** constructor that is 10 lines long * */
+  private InputColumnLimit() {
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+    // a line
+  }
+
+  /** test local variables */
+  private void localVariables() {
+    // normal decl
+    int abc = 0;
+    int ABC = 0;
+
+    // final decls
+    final int cde = 0;
+    final int CDE = 0;
+
+    // decl in for loop init statement
+    for (int k = 0; k < 1; k++) {
+      String innerBlockVariable = "";
     }
-
-    /** method that is 20 lines long **/
-    private void longMethod()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
+    for (int I = 0; I < 1; I++) {
+      String InnerBlockVariable = "";
     }
+  }
 
-    /** constructor that is 10 lines long **/
-    private InputColumnLimit()
-    {
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-        // a line
-    }
+  /** test method pattern */
+  void ALL_UPPERCASE_METHOD() {}
 
-    /** test local variables */
-    private void localVariables()
-    {
-        // normal decl
-        int abc = 0;
-        int ABC = 0;
+  /** test illegal constant * */
+  private static final int BAD__NAME = 3;
 
-        // final decls
-        final int cde = 0;
-        final int CDE = 0;
+  // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
+  // long line that has a tab ->    <- and would be OK if tab counted as 1 char
+  // tabs that count as one char because of their position ->    <-   ->    <-, OK
 
-        // decl in for loop init statement
-        for (int k = 0; k < 1; k++)
-        {
-            String innerBlockVariable = "";
-        }
-        for (int I = 0; I < 1; I++)
-        {
-            String InnerBlockVariable = "";
-        }
-    }
+  /** some lines to test the column after tabs */
+  void violateColumnAfterTabs() {
+    // with tab-width 8 all statements below start at the same column,
+    // with different combinations of ' ' and '\t' before the statement
+    int tab0 = 1;
+    int tab1 = 1;
+    int tab2 = 1;
+    int tab3 = 1;
+    int tab4 = 1;
+    int tab5 = 1;
+  }
 
-    /** test method pattern */
-    void ALL_UPPERCASE_METHOD()
-    {
-    }
+  // MEMME:
+  /* MEMME: a
+   * MEMME:
+   * OOOO
+   */
+  /* NOTHING */
+  /* YES */
+  /* MEMME: x */
+  /* YES!! */
 
-    /** test illegal constant **/
-    private static final int BAD__NAME = 3;
+  /** test long comments * */
+  void veryLong() {
+    /*
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    blah blah blah blah
+    enough talk */
+  }
 
-    // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // long line that has a tab ->    <- and would be OK if tab counted as 1 char
-    // tabs that count as one char because of their position ->    <-   ->    <-, OK
+  /**
+   * @see to lazy to document all args. Testing excessive # args
+   */
+  void toManyArgs(
+          int aArg1,
+          int aArg2,
+          int aArg3,
+          int aArg4,
+          int aArg5,
+          int aArg6,
+          int aArg7,
+          int aArg8,
+          int aArg9) {}
 
-    /** some lines to test the column after tabs */
-    void violateColumnAfterTabs()
-    {
-        // with tab-width 8 all statements below start at the same column,
-        // with different combinations of ' ' and '\t' before the statement
-                int tab0 =1;
-            int tab1 =1;
-             int tab2 =1;
-        int tab3 =1;
-            int tab4 =1;
-              int tab5 =1;
-    }
+  /**
+   * Very long url with https: https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+   */
+  String https = "200 OK";
 
-    // MEMME:
-    /* MEMME: a
-     * MEMME:
-     * OOOO
-     */
-    /* NOTHING */
-    /* YES */ /* MEMME: x */ /* YES!! */
+  /**
+   * Very long url with http: http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+   */
+  String http = "200 OK";
 
-    /** test long comments **/
-    void veryLong()
-    {
-        /*
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          blah blah blah blah
-          enough talk */
-    }
+  // Very long url with ftp: ftp://ftp.example.com/areallyyyyyyyyyyyylongggggggggggggggggggggggurlllll.text
+  int ftp = 0;
 
-    /**
-     * @see to lazy to document all args. Testing excessive # args
-     **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
-                    int aArg6, int aArg7, int aArg8, int aArg9)
-    {
-    }
+  // violation below 'Line is longer than 100 characters (found 144).'
+  // Very long url with invalid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search
+  int invalidHref = 88;
 
-    /**
-     * Very long url with https: https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
-     */
-    String https = "200 OK";
+  // Very long url with valid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
+  int validHref = 54;
 
-    /**
-     * Very long url with http: http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
-     */
-    String http = "200 OK";
-
-    // Very long url with ftp: ftp://ftp.example.com/areallyyyyyyyyyyyylongggggggggggggggggggggggurlllll.text
-    int ftp = 0;
-
-    // violation below 'Line is longer than 100 characters (found 146).'
-    // Very long url with invalid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search
-    int invalidHref = 88;
-
-    // Very long url with valid href: href="www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
-    int validHref = 54;
-
-    // Very long url with valid href: href    =    "www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
-    int validHrefWithWhiteSpaces = 54;
+  // Very long url with valid href: href    = "www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
+  int validHrefWithWhiteSpaces = 54;
 }
 
 /** Test class for variable naming in for each clause. */
-class InputSimple2
-{
-    /** Some more Javadoc. */
-    public void doSomething()
-    {
-        //"O" should be named "o"
-        for (Object O : new java.util.ArrayList())
-        {
-
-        }
-    }
+class InputSimple2 {
+  /** Some more Javadoc. */
+  public void doSomething() {
+    // "O" should be named "o"
+    for (Object O : new java.util.ArrayList()) {}
+  }
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
-{
-    /** ABC constant */
-    ABC,
+enum MyEnum1 {
+  /** ABC constant */
+  ABC,
 
-    /** XYZ constant */
-    XYZ;
+  /** XYZ constant */
+  XYZ;
 
-    /** Should be mSomeMember */
-    private int someMember;
+  /** Should be mSomeMember */
+  private int someMember;
 }
