@@ -69,6 +69,8 @@
                     LITERAL_CASE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                     LAMBDA</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>
@@ -110,6 +112,8 @@
                     LITERAL_CASE</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                     LAMBDA</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>3.0</td>
