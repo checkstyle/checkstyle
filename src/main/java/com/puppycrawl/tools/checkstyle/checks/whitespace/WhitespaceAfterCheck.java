@@ -76,7 +76,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
  * LITERAL_CASE</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
- * LAMBDA</a>.
+ * LAMBDA</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+ * LITERAL_WHEN</a>.
  * </li>
  * </ul>
  * <p>
@@ -139,6 +141,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LITERAL_TRY,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
