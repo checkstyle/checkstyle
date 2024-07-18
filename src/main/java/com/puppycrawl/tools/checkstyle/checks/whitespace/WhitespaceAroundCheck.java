@@ -219,7 +219,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ASSERT">
  * LITERAL_ASSERT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">
- * TYPE_EXTENSION_AND</a>.
+ * TYPE_EXTENSION_AND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+ * LITERAL_WHEN</a>.
  * </li>
  * </ul>
  * <p>
@@ -327,6 +329,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LITERAL_ASSERT,
             TokenTypes.TYPE_EXTENSION_AND,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
@@ -389,6 +392,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
