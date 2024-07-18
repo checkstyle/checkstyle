@@ -344,6 +344,7 @@ public class WhitespaceAroundCheckTest
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LITERAL_WHEN,
         };
         assertWithMessage("Default acceptable tokens are invalid")
                 .that(actual)
@@ -565,5 +566,21 @@ public class WhitespaceAroundCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAfterEmoji.java"), expected);
+    }
+
+    @Test
+    public void testLiteralWhen() throws Exception {
+        final String[] expected = {
+            "14:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "16:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "18:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "23:38: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "23:38: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "when"),
+            "27:38: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "27:38: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "when"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputWhitespaceAroundLiteralWhen.java"),
+            expected);
     }
 }
