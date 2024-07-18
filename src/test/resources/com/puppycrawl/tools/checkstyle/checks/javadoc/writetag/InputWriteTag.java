@@ -2,14 +2,14 @@
 WriteTag
 tag = @author
 tagFormat = \\S
-tagSeverity = (default)info
+tagSeverity = error
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 3 lines below , 'param @author must match pattern '\\S'.*'
+// violation 3 lines below 'Javadoc tag @author=Daniel Grenner'
 /**
  * Testing tag writing
  * @author Daniel Grenner

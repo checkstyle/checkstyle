@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
  */
 public class InputRegexpMultilineMultilineSupport {
     void method() { // violation below
-// abc - violation
+// abc
 // def
 // abc
     }
