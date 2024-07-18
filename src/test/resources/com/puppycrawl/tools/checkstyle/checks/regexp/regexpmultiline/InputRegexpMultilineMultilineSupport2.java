@@ -18,10 +18,10 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
  * matchAcrossLines = true
  */
 public class InputRegexpMultilineMultilineSupport2 {
-    void method() { // violation below
-// abc - violation
-// def // violation below
-// abc - violation
+    void method() {
+// abc // violation
+// def
+// abc // violation
     }
 
     void method2() {
