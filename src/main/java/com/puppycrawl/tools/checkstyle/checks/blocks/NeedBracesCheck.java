@@ -177,8 +177,7 @@ public class NeedBracesCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_CASE:
             case TokenTypes.LITERAL_DEFAULT:
-                result = hasUnbracedStatements(ast)
-                    && !isSwitchLabeledExpression(ast);
+                result = hasUnbracedStatements(ast);
                 break;
             case TokenTypes.LITERAL_ELSE:
                 result = ast.findFirstToken(TokenTypes.LITERAL_IF) == null;
@@ -416,35 +415,6 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     private static boolean isInSwitchRule(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.SWITCH_RULE;
-    }
-
-    /**
-     * Checks if current expression is a switch labeled expression. If so,
-     * braces are not allowed e.g.:
-     * <p>
-     * {@code
-     * case 1 -> 4;
-     * }
-     * </p>
-     *
-     * @param ast the ast to check
-     * @return true if current expression is a switch labeled expression.
-     */
-    private static boolean isSwitchLabeledExpression(DetailAST ast) {
-        final DetailAST parent = ast.getParent();
-        return switchRuleHasSingleExpression(parent);
-    }
-
-    /**
-     * Checks if current switch labeled expression contains only a single expression.
-     *
-     * @param switchRule {@link TokenTypes#SWITCH_RULE}.
-     * @return true if current switch rule has a single expression.
-     */
-    private static boolean switchRuleHasSingleExpression(DetailAST switchRule) {
-        final DetailAST possibleExpression = switchRule.findFirstToken(TokenTypes.EXPR);
-        return possibleExpression != null
-                && possibleExpression.getFirstChild().getFirstChild() == null;
     }
 
     /**

@@ -82,14 +82,11 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
         };
     }
 
-    /**
-     * Braces not allowed in switch expression with switch labeled expression
-     */
     int howMany5(Nums k) {
         return switch (k) {
-            case ONE -> 1; // braces not allowed, ok
-            case TWO, THREE -> 3; // braces not allowed, ok
-            case FOUR -> 4; // braces not allowed, ok
+            case ONE -> 1; // violation
+            case TWO, THREE -> 3; // violation
+            case FOUR -> 4; // violation
             default -> {
                 throw new IllegalStateException("Not a Nums");
             }
