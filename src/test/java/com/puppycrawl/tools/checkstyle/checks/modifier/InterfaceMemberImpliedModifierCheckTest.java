@@ -385,4 +385,25 @@ public class InterfaceMemberImpliedModifierCheckTest
         }
     }
 
+    @Test
+    public void testSealedClassInInterface() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, "final"),
+            "11:5: " + getCheckMessage(MSG_KEY, "public"),
+            "11:5: " + getCheckMessage(MSG_KEY, "static"),
+            "16:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "16:5: " + getCheckMessage(MSG_KEY, "public"),
+            "20:5: " + getCheckMessage(MSG_KEY, "public"),
+            "20:5: " + getCheckMessage(MSG_KEY, "static"),
+            "24:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:9: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "static"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "33:5: " + getCheckMessage(MSG_KEY, "public"),
+            "33:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputInterfaceMemberImpliedModifierSealedClasses.java"),
+            expected);
+    }
 }
