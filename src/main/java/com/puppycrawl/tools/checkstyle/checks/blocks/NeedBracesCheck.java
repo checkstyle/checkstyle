@@ -419,32 +419,26 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current expression is a switch labeled expression. If so,
-     * braces are not allowed e.g.:
-     * <p>
-     * {@code
-     * case 1 -> 4;
+     * Checks if the current case or default label is a switch labeled expression.
+     * If so, braces are not allowed e.g.:
+     * <pre>
+     * return switch(x) {
+     *    case Integer i -&gt; 3; // no braces allowed
+     *    case String s -&gt; s.length(); // no braces allowed
+     *    default -&gt; {throw new Exception();} // braces are allowed
      * }
-     * </p>
+     * </pre>
      *
-     * @param ast the ast to check
-     * @return true if current expression is a switch labeled expression.
+     * @param ast the ast to check representing a case or default label.
+     * @return true if current label is a switch labeled expression.
      */
     private static boolean isSwitchLabeledExpression(DetailAST ast) {
-        final DetailAST parent = ast.getParent();
-        return switchRuleHasSingleExpression(parent);
-    }
-
-    /**
-     * Checks if current switch labeled expression contains only a single expression.
-     *
-     * @param switchRule {@link TokenTypes#SWITCH_RULE}.
-     * @return true if current switch rule has a single expression.
-     */
-    private static boolean switchRuleHasSingleExpression(DetailAST switchRule) {
-        final DetailAST possibleExpression = switchRule.findFirstToken(TokenTypes.EXPR);
-        return possibleExpression != null
-                && possibleExpression.getFirstChild().getFirstChild() == null;
+        final DetailAST caseParent = ast.getParent();
+        final DetailAST switchAST = caseParent.getParent();
+        final boolean isSwitchExpression = switchAST.getParent().getType() == TokenTypes.EXPR
+                ad;
+        final boolean caseParentHasExpression = caseParent.findFirstToken(TokenTypes.EXPR) != null;
+        return isSwitchExpression && caseParentHasExpression;
     }
 
     /**
