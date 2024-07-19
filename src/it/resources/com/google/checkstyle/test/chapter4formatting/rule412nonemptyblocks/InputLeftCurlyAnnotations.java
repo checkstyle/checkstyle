@@ -8,52 +8,58 @@ import java.util.List;
 @TestClassAnnotation
 class InputLeftCurlyAnnotations
 { // violation ''{' at column 1 should be on the previous line.'
-    private static final int X = 10;
-    @Override
-    public boolean equals(Object other)
-    { // violation ''{' at column 5 should be on the previous line.'
-        return false;
-    }
+  private static final int X = 10;
 
-    @Override
-    @SuppressWarnings("unused")
-    public int hashCode()
-    { // violation ''{' at column 5 should be on the previous line.'
-        int a = 10;
-        return 1;
-    }
+  @Override
+  public boolean equals(
+      Object other)
+  { // violation ''{' at column 3 should be on the previous line.'
+    return false;
+  }
 
-    @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { // violation ''{' at column 5 should be on the previous line.'
-        Integer i = this.X;
-        List<String> l = new ArrayList();
-        return "SomeString";
-    }
+  @Override
+  @SuppressWarnings("unused")
+  public int hashCode()
+  { // violation ''{' at column 3 should be on the previous line.'
+    int a = 10;
+    return 1;
+  }
+
+  @Override
+  @SuppressWarnings({"unused", "unchecked", "static-access"})
+  public String toString()
+  { // violation ''{' at column 3 should be on the previous line.'
+    Integer i = this.X;
+    List<String> l = new ArrayList();
+    return "SomeString";
+  }
 }
 
 @TestClassAnnotation
 class InputLeftCurlyAnnotations2 {
-    private static final int X = 10;
-    @Override
-    public boolean equals(Object other) {
-        return false;
-    }
+  private static final int X = 10;
 
-    @Override
-    @SuppressWarnings("unused")
-    public int hashCode() {
-        int a = 10;
-        return 1;
-    }
+  @Override
+  public boolean equals(Object other) {
+    return false;
+  }
 
-    @Override @SuppressWarnings({"unused", "unchecked", "static-access"}) public String toString()
-    { // violation ''{' at column 5 should be on the previous line.'
-        Integer i = this.X;
-        List<String> l = new ArrayList();
-        return "SomeString";
-    }
+  @Override
+  @SuppressWarnings("unused")
+  public int hashCode() {
+    int a = 10;
+    return 1;
+  }
+
+  @Override
+  @SuppressWarnings({"unused", "unchecked", "static-access"})
+  public String toString()
+  { // violation ''{' at column 3 should be on the previous line.'
+    Integer i = this.X;
+    List<String> l = new ArrayList();
+    return "SomeString";
+  }
 }
 
 @Target(ElementType.TYPE)
-@interface TestClassAnnotation {
-}
+@interface TestClassAnnotation {}

@@ -2,280 +2,261 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputNonemptyBlocksLeftRightCurly
 { // violation ''{' at column 1 should be on the previous line.'
-    /** @return helper func **/
-    boolean condition()
-    { // violation ''{' at column 5 should be on the previous line.'
-        return false;
+  /**
+   * @return helper func *
+   */
+  boolean condition()
+  { // violation ''{' at column 3 should be on the previous line.'
+    return false;
+  }
+
+  /** Test do/while loops * */
+  void testDoWhile()
+  { // violation ''{' at column 3 should be on the previous line.'
+
+    do {
+      testDoWhile();
+    } // violation ''}' at column 5 should be on the same line as the next part of .*'
+    while (condition());
+
+    do testDoWhile();
+    while (condition());
+  }
+
+  /** Test while loops * */
+  void testWhile()
+  { // violation ''{' at column 3 should be on the previous line.'
+
+    while (condition()) {
+      testWhile();
     }
 
-    /** Test do/while loops **/
-    void testDoWhile()
-    { // violation ''{' at column 5 should be on the previous line.'
+    while (condition())
+      ;
+    while (condition()) testWhile();
+    while (condition()) if (condition()) testWhile();
+  }
 
-        do {
-            testDoWhile();
-        } // violation ''}' at column 9 should be on the same line as the next part of .*'
-        while (condition());
+  /** Test for loops * */
+  void testFor()
+  { // violation ''{' at column 3 should be on the previous line.'
 
-
-        do testDoWhile(); while (condition());
+    for (int i = 1; i < 5; i++) {
+      testFor();
     }
 
-    /** Test while loops **/
-    void testWhile()
-    { // violation ''{' at column 5 should be on the previous line.'
+    for (int i = 1; i < 5; i++)
+      ;
+    for (int i = 1; i < 5; i++) testFor();
+    for (int i = 1; i < 5; i++) if (i > 2) testFor();
+  }
 
-        while (condition()) {
-            testWhile();
-        }
+  /** Test if constructs * */
+  public void testIf()
+  { // violation ''{' at column 3 should be on the previous line.'
 
-
-        while(condition());
-        while (condition())
-            testWhile();
-        while (condition())
-            if (condition())
-                testWhile();
+    if (condition()) {
+      testIf();
+    } // violation ''}' at column 5 should be on the same line as the next part of .*'
+    else if (condition()) {
+      testIf();
+    } // violation ''}' at column 5 should be on the same line as the next part of .*'
+    else {
+      testIf();
     }
 
-    /** Test for loops **/
-    void testFor()
-    {  // violation ''{' at column 5 should be on the previous line.'
-
-        for (int i = 1; i < 5; i++) {
-            testFor();
-        }
-
-
-        for(int i = 1;i < 5;i++);
-        for (int i = 1; i < 5; i++)
-            testFor();
-        for (int i = 1; i < 5;
-             i++)
-            if (i > 2)
-                testFor();
+    if (condition())
+      ;
+    if (condition()) testIf();
+    if (condition()) testIf();
+    else testIf();
+    if (condition()) testIf();
+    else {
+      testIf();
     }
+    if (condition()) {
+      testIf();
+    } // violation ''}' at column 5 should be on the same line as the next part of .*'
+    else testIf();
+    if (condition()) if (condition()) testIf();
+  }
 
-    /** Test if constructs **/
-    public void testIf()
-    { // violation ''{' at column 5 should be on the previous line.'
+  void whitespaceAfterSemi()
+  { // violation ''{' at column 3 should be on the previous line.'
 
-        if (condition()) {
-            testIf();
-        } // violation ''}' at column 9 should be on the same line as the next part of .*'
-        else if (condition()) {
-            testIf();
-        } // violation ''}' at column 9 should be on the same line as the next part of .*'
-        else {
-            testIf();
-        }
+    int i = 1;
+    int j = 2;
 
+    for (; ; ) {}
+  }
 
-        if (condition());
-        if (condition())
-            testIf();
-        if (condition())
-            testIf();
-        else
-            testIf();
-        if (condition())
-            testIf();
-        else {
-            testIf();
-        }
-        if (condition()) {
-            testIf();
-        } // violation ''}' at column 9 should be on the same line as the next part of .*'
-        else
-            testIf();
-        if (condition())
-            if (condition())
-                testIf();
-    }
+  /** Empty constructor block. * */
+  public InputNonemptyBlocksLeftRightCurly() {}
 
-    void whitespaceAfterSemi()
-    { // violation ''{' at column 5 should be on the previous line.'
-
-        int i = 1;int j = 2;
-
-
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputNonemptyBlocksLeftRightCurly() {}
-
-    /** Empty method block. **/
-    public void emptyImplementation() {}
+  /** Empty method block. * */
+  public void emptyImplementation() {}
 }
 
 class EnumContainerLeft {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+  private enum Suit {
+    CLUBS,
+    HEARTS,
+    SPADES,
+    DIAMONDS
+  } // ok
 }
 
 class WithArraysLeft { // ok
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
-    String[] s1 = { // ok
-        "foo", "foo",
-    };
-    String[] s2 =
-        { // ok
-            "foo", "foo",
-        };
-    String[] s3 =
-        { // ok
-            "foo",
-            "foo",
-        };
-    String[] s4 =
-        {"foo", "foo"}; // ok
+  String[] s = {""}; // ok
+  String[] empty = {}; // ok
+  String[] s1 = { // ok
+    "foo", "foo",
+  };
+  String[] s2 = { // ok
+    "foo", "foo",
+  };
+  String[] s3 = { // ok
+    "foo", "foo",
+  };
+  String[] s4 = {"foo", "foo"}; // ok
 }
 
 class InputRightCurlyOther2
 { // violation ''{' at column 1 should be on the previous line.'
-    /** @see test method **/
-    int foo() throws InterruptedException
+  /**
+   * @see test method *
+   */
+  int foo()
+      throws InterruptedException
+  { // violation ''{' at column 3 should be on the previous line.'
+    int x = 1;
+    int a = 2;
+    while (true)
     { // violation ''{' at column 5 should be on the previous line.'
-        int x = 1;
-        int a = 2;
-        while (true)
+      try
+      { // violation ''{' at column 7 should be on the previous line.'
+        if (x > 0)
         { // violation ''{' at column 9 should be on the previous line.'
-            try
-            { // violation ''{' at column 13 should be on the previous line.'
-                if (x > 0)
-                { // violation ''{' at column 17 should be on the previous line.'
-                    break;
-                } else if (x < 0) {  //ok
+          break;
+        } else if (x < 0) { // ok
 
-                    ;
-                }
-                // violation above ''}' at column 17 should be on the same line as the next part.*'
-                else
-                { // violation ''{' at column 17 should be on the previous line.'
-                    break;
-                }//ok
-                switch (a)
-                { // violation ''{' at column 17 should be on the previous line.'
-                    case 0:
-                        break;
-                    default:
-                        break;
-                } //ok
-            } // violation ''}' at column 13 should be on the same line as the next part of .*'
-            catch (Exception e)
-            { // violation ''{' at column 13 should be on the previous line.'
-                break;
-            }//ok
-        }//ok
-
-        synchronized (this)
-        { // violation ''{' at column 9 should be on the previous line.'
-            do
-            { // violation ''{' at column 13 should be on the previous line.'
-                x = 2;
-            } while (x == 2); //ok
-        }//ok
-
-        this.wait(666
-        ); // Bizarre, but legal
-
-        for (int k = 0; k < 1; k++)
-        { // violation ''{' at column 9 should be on the previous line.'
-            String innerBlockVariable = "";
-        }//ok
-
-
-        if (System.currentTimeMillis() > 1000)
-            return 1;
+          ;
+        } // violation ''}' at column 9 should be on the same line as the next part.*'
         else
-            return 2;
-    }//ok
+        { // violation ''{' at column 9 should be on the previous line.'
+          break;
+        } // ok
+        switch (a)
+        { // violation ''{' at column 9 should be on the previous line.'
+          case 0:
+            break;
+          default:
+            break;
+        } // ok
+      } // violation ''}' at column 7 should be on the same line as the next part of .*'
+      catch (Exception e)
+      { // violation ''{' at column 7 should be on the previous line.'
+        break;
+      } // ok
+    } // ok
 
-
-    static
+    synchronized (this)
     { // violation ''{' at column 5 should be on the previous line.'
-        int x = 1;
-    }//ok
+      do
+      { // violation ''{' at column 7 should be on the previous line.'
+        x = 2;
+      } while (x == 2); // ok
+    } // ok
 
-    public enum GreetingsEnum
+    this.wait(666); // Bizarre, but legal
+
+    for (int k = 0; k < 1; k++)
     { // violation ''{' at column 5 should be on the previous line.'
-        HELLO,
-        GOODBYE
-    }; //ok
+      String innerBlockVariable = "";
+    } // ok
 
-    void method2()
-    { // violation ''{' at column 5 should be on the previous line.'
-        boolean flag = true;
-        if (flag) {
-            System.identityHashCode("heh");
-            flag = !flag; } System.
-            // violation above ''}' at column 27 should have line break before.'
-            identityHashCode("Xe-xe");
+    if (System.currentTimeMillis() > 1000) return 1;
+    else return 2;
+  } // ok
 
+  static
+  { // violation ''{' at column 3 should be on the previous line.'
+    int x = 1;
+  } // ok
 
-        if (flag) { System.identityHashCode("some foo"); }
-        // violation above ''{' at column 19 should have line break after.'
-    } //ok
-} //ok
+  public enum GreetingsEnum
+  { // violation ''{' at column 3 should be on the previous line.'
+    HELLO,
+    GOODBYE
+  }; // ok
+
+  void method2()
+  { // violation ''{' at column 3 should be on the previous line.'
+    boolean flag = true;
+    if (flag) {
+      System.identityHashCode("heh");
+      flag = !flag; } System.
+      // violation above ''}' at column 21 should have line break before.'
+      identityHashCode("Xe-xe");
+
+    if (flag) { System.identityHashCode("some foo"); }
+    // violation above ''{' at column 15 should have line break after.'
+  } // ok
+} // ok
 
 /**
- * Test input for closing brace if that brace terminates
- * a statement or the body of a constructor.
+ * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
 class FooCtor
 { // violation ''{' at column 1 should be on the previous line.'
-    int i;
-    public FooCtor()
-    { // violation ''{' at column 5 should be on the previous line.'
-        i = 1;
-    }} // violation ''}' at column 5 should be alone on a line.'
+  int i;
 
-/**
- * Test input for closing brace if that brace terminates
- * a statement or the body of a method.
- */
+  public FooCtor()
+  { // violation ''{' at column 3 should be on the previous line.'
+    i = 1;
+  }} // violation ''}' at column 3 should be alone on a line.'
+
+/** Test input for closing brace if that brace terminates a statement or the body of a method. */
 class FooMethod
 { // violation ''{' at column 1 should be on the previous line.'
-    public void fooMethod()
-    { // violation ''{' at column 5 should be on the previous line.'
-        int i = 1;
-    }} // violation ''}' at column 5 should be alone on a line.'
+  public void fooMethod()
+  { // violation ''{' at column 3 should be on the previous line.'
+    int i = 1;
+  }} // violation ''}' at column 3 should be alone on a line.'
 
 /**
- * Test input for closing brace if that brace terminates
- * a statement or the body of a named class.
+ * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
 class FooInner
 { // violation ''{' at column 1 should be on the previous line.'
-    class InnerFoo
+  class InnerFoo
+  { // violation ''{' at column 3 should be on the previous line.'
+    public void fooInnerMethod()
     { // violation ''{' at column 5 should be on the previous line.'
-        public void fooInnerMethod ()
-        { // violation ''{' at column 9 should be on the previous line.'
-
-        }
-    }} //ok
+    }
+  }
+} // ok
 
 class EnumContainer {
-    private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS } // ok
+  private enum Suit {
+    CLUBS,
+    HEARTS,
+    SPADES,
+    DIAMONDS
+  } // ok
 }
 
 class WithArrays {
-    String[] s = {""}; // ok
-    String[] empty = {}; // ok
-    String[] s1 = {
-            "foo", "foo",
-    }; // ok
-    String[] s2 =
-            {
-                    "foo", "foo",
-            }; // ok
-    String[] s3 =
-            {
-                    "foo",
-                    "foo",
-            }; // ok
-    String[] s4 =
-            {"foo", "foo"}; // ok
+  String[] s = {""}; // ok
+  String[] empty = {}; // ok
+  String[] s1 = {
+    "foo", "foo",
+  }; // ok
+  String[] s2 = {
+    "foo", "foo",
+  }; // ok
+  String[] s3 = {
+    "foo", "foo",
+  }; // ok
+  String[] s4 = {"foo", "foo"}; // ok
 }
