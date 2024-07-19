@@ -68,4 +68,16 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
+        final String[] expected = {
+            "24:36: " + getCheckMessage(MSG_INVALID_PATTERN, "BAD", pattern),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
+    }
 }
