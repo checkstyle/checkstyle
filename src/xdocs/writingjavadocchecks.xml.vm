@@ -403,7 +403,7 @@ class MyCheck extends AbstractJavadocCheck {
 
       <p>
         Checkstyle does not support HTML5 tags with optional end tags. See
-        <a href='https://github.com/checkstyle/checkstyle/issues/3332'/> for details.
+        <a href="https://github.com/checkstyle/checkstyle/issues/3332">issue</a> for details.
       </p>
 
       <p>
