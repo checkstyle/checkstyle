@@ -179,7 +179,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "ARRAY_INIT",
                 "ELLIPSIS",
                 // these are covered by GenericWhitespaceCheck
-                "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START")
+                "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START",
+                "LITERAL_WHEN")
             .collect(Collectors.toUnmodifiableSet()));
 
         // google
