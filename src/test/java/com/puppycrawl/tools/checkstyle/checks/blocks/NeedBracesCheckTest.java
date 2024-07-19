@@ -276,4 +276,15 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testPatternMatchingForSwitch() throws Exception {
+        final String[] expected = {
+
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNeedBracesPatternMatchingForSwitch.java"),
+            expected);
+
+    }
+
 }
