@@ -23,6 +23,9 @@ abstract class AbstractClassOther {
     }
 }
 
+
+
+
 class NonAbstractClass {
 }
 
