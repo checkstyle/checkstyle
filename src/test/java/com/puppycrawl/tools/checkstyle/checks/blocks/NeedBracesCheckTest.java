@@ -276,4 +276,48 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testPatternMatchingForSwitch() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "25:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "28:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "53:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "58:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "61:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "74:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "78:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "91:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNeedBracesPatternMatchingForSwitch.java"),
+            expected);
+    }
+
+    @Test
+    public void testPatternMatchingForSwitchAllowSingleLine() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "25:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "28:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "58:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "61:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "74:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputNeedBracesPatternMatchingForSwitchAllowSingleLine.java"),
+            expected);
+    }
+
 }
