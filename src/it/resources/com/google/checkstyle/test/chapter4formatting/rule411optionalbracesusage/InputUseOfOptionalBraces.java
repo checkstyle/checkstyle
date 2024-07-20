@@ -22,19 +22,21 @@ class InputUseOfOptionalBraces {
 
   /** Test while loops * */
   void testWhile() {
+    String testing = "testing";
+
     // Valid
     while (condition()) {
       testWhile();
     }
 
     // Invalid
-    while (condition()) // violation ''while' construct must use '{}'s.'
-      ;
+    while (condition()); // violation ''while' construct must use '{}'s.'
     while (condition()) // violation ''while' construct must use '{}'s.'
     testWhile();
     while (condition()) // violation ''while' construct must use '{}'s.'
     if (condition()) // violation ''if' construct must use '{}'s.'
       testWhile();
+    if (testing != null) testing = "ss"; // violation ''if' construct must use '{}'s.'
   }
 
   /** Test for loops * */
