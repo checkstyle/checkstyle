@@ -155,6 +155,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * targeted identifiers (abbreviations in the classes, interfaces, variables
      * and methods names, ... ).
      */
+
     private int allowedAbbreviationLength =
             DEFAULT_ALLOWED_ABBREVIATIONS_LENGTH;
 
