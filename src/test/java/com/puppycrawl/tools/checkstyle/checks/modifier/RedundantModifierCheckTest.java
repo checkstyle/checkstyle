@@ -333,4 +333,25 @@ public class RedundantModifierCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierRecords.java"), expected);
     }
+
+    @Test
+    public void testSealedClasses() throws Exception {
+        final String[] expected = {
+            "11:4: " + getCheckMessage(MSG_KEY, "final"),
+            "11:10: " + getCheckMessage(MSG_KEY, "public"),
+            "11:17: " + getCheckMessage(MSG_KEY, "static"),
+            "16:4: " + getCheckMessage(MSG_KEY, "abstract"),
+            "16:13: " + getCheckMessage(MSG_KEY, "public"),
+            "20:4: " + getCheckMessage(MSG_KEY, "public"),
+            "20:12: " + getCheckMessage(MSG_KEY, "static"),
+            "24:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:18: " + getCheckMessage(MSG_KEY, "public"),
+            "29:4: " + getCheckMessage(MSG_KEY, "public"),
+            "29:11: " + getCheckMessage(MSG_KEY, "static"),
+            "33:4: " + getCheckMessage(MSG_KEY, "public"),
+            "33:11: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierSealedClasses.java"), expected);
+    }
 }
