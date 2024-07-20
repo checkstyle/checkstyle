@@ -22,6 +22,8 @@ class InputUseOfOptionalBraces {
 
   /** Test while loops * */
   void testWhile() {
+    String k = "testing";
+
     // Valid
     while (condition()) {
       testWhile();
@@ -35,6 +37,7 @@ class InputUseOfOptionalBraces {
     while (condition()) // violation ''while' construct must use '{}'s.'
     if (condition()) // violation ''if' construct must use '{}'s.'
       testWhile();
+    if (k != null) k = "ss"; // violation ''if' construct must use '{}'s.'
   }
 
   /** Test for loops * */
