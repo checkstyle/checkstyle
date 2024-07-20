@@ -331,4 +331,12 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testAnnotationLocationOnLocalAndPatternVariables() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationLocationLocalAndPatternVariables.java"),
+            expected);
+    }
+
 }
