@@ -83,6 +83,10 @@
   <suppress checks="OuterTypeFilename"
     files="rule522classnames[\\/]InputClassNames\.java"/>
   <suppress checks="OuterTypeFilename"
+    files="rule462horizontalwhitespace[\\/]InputWhitespaceAroundBasic\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="rule462horizontalwhitespace[\\/]InputWhitespaceAroundEmptyTypesAndCycles\.java"/>
+  <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
     files="src[\\/]it[\\/]resources[\\/].*[\\/]InputXpathOuterTypeFilename.*\.java"/>
