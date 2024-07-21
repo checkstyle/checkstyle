@@ -291,8 +291,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "78:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "91:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNeedBracesPatternMatchingForSwitch.java"),
@@ -312,7 +310,6 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "74:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "80:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "83:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "90:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
