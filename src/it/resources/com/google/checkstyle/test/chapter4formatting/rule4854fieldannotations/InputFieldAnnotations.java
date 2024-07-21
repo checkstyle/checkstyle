@@ -3,12 +3,17 @@ package com.google.checkstyle.test.chapter4formatting.rule4854fieldannotations;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Some javadoc. */
 public class InputFieldAnnotations {
+  /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 
+  /** Some javadoc. */
   public @interface SomeAnnotation2 {}
 
+  /** Some javadoc. */
   public @interface SomeAnnotation3 {
+    /** Some javadoc. */
     int x();
   }
 
@@ -31,13 +36,13 @@ public class InputFieldAnnotations {
 
   @SomeAnnotation1 @SomeAnnotation2 boolean test = false;
 
-  @SuppressWarnings("all") @SomeAnnotation3(x = 0) float pi = 3.14f;
+  @Deprecated @SomeAnnotation3(x = 0) float pi = 3.14f;
 
   @SomeAnnotation1 @SomeAnnotation3(x = 14)
   /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   List<String> list = new ArrayList<>();
 
-  @SuppressWarnings("all")
+  @Deprecated
   @SomeAnnotation1
   /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   InputFieldAnnotations obj = new InputFieldAnnotations();
