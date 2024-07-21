@@ -31,12 +31,6 @@ public class FieldAnnotationsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testAnnotations() throws Exception {
-        final String filePath = getPath("InputFieldAnnotations.java");
-        final String[] listOfModules = {
-            "AnnotationLocationMostCases",
-            "InvalidJavadocPosition",
-        };
-
-        verifyWithConfigParser(listOfModules, filePath);
+        verifyWithWholeConfig(getPath("InputFieldAnnotations.java"));
     }
 }
