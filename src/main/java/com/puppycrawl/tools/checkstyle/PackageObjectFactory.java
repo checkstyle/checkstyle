@@ -621,6 +621,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.design.MutableExceptionCheck");
         NAME_TO_FULL_MODULE_NAME.put("OneTopLevelClassCheck",
                 BASE_PACKAGE + ".checks.design.OneTopLevelClassCheck");
+        NAME_TO_FULL_MODULE_NAME.put("SealedShouldHavePermitsListCheck",
+                BASE_PACKAGE + ".checks.design.SealedShouldHavePermitsListCheck");
         NAME_TO_FULL_MODULE_NAME.put("ThrowsCountCheck",
                 BASE_PACKAGE + ".checks.design.ThrowsCountCheck");
         NAME_TO_FULL_MODULE_NAME.put("VisibilityModifierCheck",
