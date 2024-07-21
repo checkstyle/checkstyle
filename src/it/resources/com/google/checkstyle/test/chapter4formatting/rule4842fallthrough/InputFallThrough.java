@@ -20,21 +20,26 @@ public class InputFallThrough {
           throw new RuntimeException("");
         case 6:
           continue;
-        case 7: {
+        case 7:
+          {
           break;
-        }
-        case 8: {
+          }
+        case 8:
+          {
           return;
-        }
-        case 9: {
+          }
+        case 9:
+          {
           throw new RuntimeException("");
-        }
-        case 10: {
+          }
+        case 10:
+          {
           continue;
-        }
-        case 11: {
+          }
+        case 11:
+          {
           i++;
-        }
+          }
         case 12: // violation 'Fall through from previous branch of the switch statement.'
           if (false) {
             break;
@@ -152,21 +157,26 @@ public class InputFallThrough {
           throw new RuntimeException("");
         case 6:
           continue;
-        case 7: {
+        case 7:
+          {
           break;
-        }
-        case 8: {
+          }
+        case 8:
+          {
           return;
-        }
-        case 9: {
+          }
+        case 9:
+          {
           throw new RuntimeException("");
-        }
-        case 10: {
+          }
+        case 10:
+          {
           continue;
-        }
-        case 11: {
+          }
+        case 11:
+          {
           i++;
-        }
+          }
         // fallthru
         case 12:
           if (false) {
@@ -285,9 +295,10 @@ public class InputFallThrough {
         case 1:
           i++;
           // fallthru
-        case 2: {
+        case 2:
+          {
           i++;
-        }
+          }
         // fallthru
         case 3:
           i++;
