@@ -11,7 +11,8 @@ public class InputRightCurlyDoWhile {
 
   public void foo2() {
     int i = 1;
-    while (i < 5) {
+    while (i < 5)
+    {
       String.CASE_INSENSITIVE_ORDER.equals(i + " ");
       i++;
     }
@@ -19,7 +20,8 @@ public class InputRightCurlyDoWhile {
 
   public void foo3() {
     int i = 1;
-    do {
+    do
+    {
       i++;
       String.CASE_INSENSITIVE_ORDER.equals(i + " ");
     } while (i < 5);
@@ -29,25 +31,34 @@ public class InputRightCurlyDoWhile {
     int prog, user;
     prog = (int) (Math.random() * 10) + 1;
     Scanner input = new Scanner(System.in, "utf-8");
-    if (input.hasNextInt()) {
-      do {
+    if (input.hasNextInt())
+    {
+      do
+      {
         user = input.nextInt();
-        if (user == prog) {
+        if (user == prog)
+        {
           String.CASE_INSENSITIVE_ORDER.equals("Good!");
-        } else {
-          if (user > 0 && user <= 10) {
+        } else
+        {
+          if (user > 0 && user <= 10)
+          {
             String.CASE_INSENSITIVE_ORDER.equals("Bad! ");
-            if (prog < user) {
+            if (prog < user)
+            {
               String.CASE_INSENSITIVE_ORDER.equals("My number is less than yours.");
-            } else {
+            } else
+            {
               String.CASE_INSENSITIVE_ORDER.equals("My number is greater than yours");
             }
-          } else {
+          } else
+          {
             String.CASE_INSENSITIVE_ORDER.equals("Violation!");
           }
         }
       } while (user != prog);
-    } else {
+    } else
+    {
       String.CASE_INSENSITIVE_ORDER.equals("Violation!");
     }
     String.CASE_INSENSITIVE_ORDER.equals("Goodbye!");

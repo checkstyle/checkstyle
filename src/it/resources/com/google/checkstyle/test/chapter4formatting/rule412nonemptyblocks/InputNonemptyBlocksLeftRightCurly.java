@@ -14,7 +14,8 @@ class InputNonemptyBlocksLeftRightCurly
   void testDoWhile()
   { // violation ''{' at column 3 should be on the previous line.'
 
-    do {
+    do
+    {
       testDoWhile();
     } // violation ''}' at column 5 should be on the same line as the next part of .*'
     while (condition());
@@ -27,7 +28,8 @@ class InputNonemptyBlocksLeftRightCurly
   void testWhile()
   { // violation ''{' at column 3 should be on the previous line.'
 
-    while (condition()) {
+    while (condition())
+    {
       testWhile();
     }
 
@@ -41,7 +43,8 @@ class InputNonemptyBlocksLeftRightCurly
   void testFor()
   { // violation ''{' at column 3 should be on the previous line.'
 
-    for (int i = 1; i < 5; i++) {
+    for (int i = 1; i < 5; i++)
+    {
       testFor();
     }
 
@@ -55,13 +58,16 @@ class InputNonemptyBlocksLeftRightCurly
   public void testIf()
   { // violation ''{' at column 3 should be on the previous line.'
 
-    if (condition()) {
+    if (condition())
+    {
       testIf();
     } // violation ''}' at column 5 should be on the same line as the next part of .*'
-    else if (condition()) {
+    else if (condition())
+    {
       testIf();
     } // violation ''}' at column 5 should be on the same line as the next part of .*'
-    else {
+    else
+    {
       testIf();
     }
 
@@ -71,10 +77,12 @@ class InputNonemptyBlocksLeftRightCurly
     if (condition()) testIf();
     else testIf();
     if (condition()) testIf();
-    else {
+    else
+    {
       testIf();
     }
-    if (condition()) {
+    if (condition())
+    {
       testIf();
     } // violation ''}' at column 5 should be on the same line as the next part of .*'
     else testIf();
@@ -131,23 +139,23 @@ class InputRightCurlyOther2
   { // violation ''{' at column 3 should be on the previous line.'
     int x = 1;
     int a = 2;
-    while (true)
-    { // violation ''{' at column 5 should be on the previous line.'
+    while (true) {  // violation '\'{' at column 18 should be on a new line.'
       try
-      { // violation ''{' at column 7 should be on the previous line.'
+      {
         if (x > 0)
-        { // violation ''{' at column 9 should be on the previous line.'
+        {
           break;
-        } else if (x < 0) { // ok
+        } else if (x < 0)
+        { // ok
 
           ;
         } // violation ''}' at column 9 should be on the same line as the next part.*'
         else
-        { // violation ''{' at column 9 should be on the previous line.'
+        {
           break;
         } // ok
         switch (a)
-        { // violation ''{' at column 9 should be on the previous line.'
+        {
           case 0:
             break;
           default:
@@ -155,15 +163,15 @@ class InputRightCurlyOther2
         } // ok
       } // violation ''}' at column 7 should be on the same line as the next part of .*'
       catch (Exception e)
-      { // violation ''{' at column 7 should be on the previous line.'
+      {
         break;
       } // ok
     } // ok
 
     synchronized (this)
-    { // violation ''{' at column 5 should be on the previous line.'
+    {
       do
-      { // violation ''{' at column 7 should be on the previous line.'
+      {
         x = 2;
       } while (x == 2); // ok
     } // ok
@@ -171,7 +179,7 @@ class InputRightCurlyOther2
     this.wait(666); // Bizarre, but legal
 
     for (int k = 0; k < 1; k++)
-    { // violation ''{' at column 5 should be on the previous line.'
+    {
       String innerBlockVariable = "";
     } // ok
 
@@ -193,14 +201,15 @@ class InputRightCurlyOther2
   void method2()
   { // violation ''{' at column 3 should be on the previous line.'
     boolean flag = true;
-    if (flag) {
+    if (flag)
+    {
       System.identityHashCode("heh");
       flag = !flag; } System.
       // violation above ''}' at column 21 should have line break before.'
       identityHashCode("Xe-xe");
 
     if (flag) { System.identityHashCode("some foo"); }
-    // violation above ''{' at column 15 should have line break after.'
+    // violation above ''{' at column 15 should be on a new line.'
   } // ok
 } // ok
 
