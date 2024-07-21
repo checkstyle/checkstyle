@@ -389,6 +389,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
