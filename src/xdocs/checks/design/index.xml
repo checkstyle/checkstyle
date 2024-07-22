@@ -90,6 +90,16 @@
           </tr>
           <tr>
             <td>
+              <a href="sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">
+                SealedShouldHavePermitsList
+              </a>
+            </td>
+            <td>
+              Checks that sealed classes and interfaces have a permits list.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="throwscount.html#ThrowsCount">
                 ThrowsCount
               </a>
