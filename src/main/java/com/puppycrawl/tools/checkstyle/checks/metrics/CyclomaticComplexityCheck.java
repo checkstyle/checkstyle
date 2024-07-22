@@ -39,10 +39,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * The complexity is equal to the number of decision points {@code + 1}.
- * Decision points: {@code if}, {@code while}, {@code do}, {@code for},
- * {@code ?:}, {@code catch}, {@code switch}, {@code case} statements and
- * operators {@code &amp;&amp;} and {@code ||} in the body of target.
+ * Decision points:
  * </p>
+ * <ul>
+ * <li>
+ * {@code if}, {@code while}, {@code do}, {@code for},
+ * {@code ?:}, {@code catch}, {@code switch}, {@code case} statements.
+ * </li>
+ * <li>
+ *  Operators {@code &amp;&amp;} and {@code ||} in the body of target.
+ * </li>
+ * <li>
+ *  {@code when} expression in case labels, also known as guards.
+ * </li>
+ * </ul>
  * <p>
  * By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10 consider
  * re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
@@ -93,7 +103,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
  * LAND</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
- * LOR</a>.
+ * LOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+ * LITERAL_WHEN</a>.
  * </li>
  * </ul>
  * <p>
@@ -177,6 +189,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.LAND,
             TokenTypes.LOR,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
@@ -198,6 +211,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.LAND,
             TokenTypes.LOR,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_WHEN,
         };
     }
 
