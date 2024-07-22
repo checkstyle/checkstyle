@@ -329,4 +329,19 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
             getPath("InputWhitespaceAfterWithEmoji.java"), expected);
     }
+
+    @Test
+    public void testLiteralWhen() throws Exception {
+        final String[] expected = {
+            "14:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "16:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "18:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "20:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "35:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+            "45:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputWhitespaceAfterLiteralWhen.java"),
+            expected);
+    }
 }
