@@ -22,7 +22,7 @@
           The complexity is equal to the number of decision points <code> + 1</code>.
           Decision points: <code>if</code>, <code>while</code>
           , <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>
-          , <code>switch</code>, <code>case</code>
+          , <code>switch</code>, <code>case</code>, <code>when</code>
           statements and operators <code>&amp;&amp;</code> and <code>||</code>
           in the body of target.
         </p>
