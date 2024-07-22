@@ -133,4 +133,21 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
                 expected);
     }
 
+    @Test
+    public void testWhenExpression() throws Exception {
+
+        final int max = 0;
+
+        final String[] expected = {
+            "17:21: " + getCheckMessage(MSG_KEY, 6, max),
+            "21:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "25:27: " + getCheckMessage(MSG_KEY, 6, max),
+            "29:48: " + getCheckMessage(MSG_KEY, 1, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
+                expected);
+    }
+
 }
