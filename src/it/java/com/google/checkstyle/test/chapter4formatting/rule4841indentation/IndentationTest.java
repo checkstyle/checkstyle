@@ -100,4 +100,9 @@ public class IndentationTest extends AbstractIndentationTestSupport {
         verifyWithConfigParser(MODULES, filePath);
     }
 
+    @Test
+    public void tetsFastMatcher() throws Exception {
+        final String filePath = getPath("InputFastMatcher.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
 }

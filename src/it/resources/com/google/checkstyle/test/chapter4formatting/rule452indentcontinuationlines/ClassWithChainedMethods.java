@@ -1,4 +1,4 @@
-package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
+package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines;
 
 public class ClassWithChainedMethods {
 

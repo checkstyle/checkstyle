@@ -31,7 +31,7 @@ public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentati
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter4formatting/rule4841indentation";
+        return "com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines";
     }
 
     @Test
@@ -100,4 +100,9 @@ public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentati
         verifyWithConfigParser(MODULES, filePath);
     }
 
+    @Test
+    public void tetsFastMatcher() throws Exception {
+        final String filePath = getPath("InputFastMatcher.java");
+        verifyWithConfigParser(MODULES, filePath);
+    }
 }
