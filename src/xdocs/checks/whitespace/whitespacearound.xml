@@ -239,6 +239,8 @@ try {
                     GENERIC_END</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                     ELLIPSIS</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>
@@ -344,6 +346,8 @@ try {
                     LITERAL_ASSERT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_EXTENSION_AND">
                     TYPE_EXTENSION_AND</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>3.0</td>
