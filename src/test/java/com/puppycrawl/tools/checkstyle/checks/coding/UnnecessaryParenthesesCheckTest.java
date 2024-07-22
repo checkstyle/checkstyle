@@ -342,4 +342,19 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesOperator3.java"), expected);
     }
+
+    @Test
+    public void testWhenExpressions() throws Exception {
+        final String[] expected = {
+            "22:33: " + getCheckMessage(MSG_EXPR),
+            "24:32: " + getCheckMessage(MSG_EXPR),
+            "28:26: " + getCheckMessage(MSG_EXPR),
+            "31:31: " + getCheckMessage(MSG_EXPR),
+            "31:32: " + getCheckMessage(MSG_EXPR),
+            "37:44: " + getCheckMessage(MSG_EXPR),
+            "40:44: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnnecessaryParenthesesWhenExpressions.java"), expected);
+    }
 }
