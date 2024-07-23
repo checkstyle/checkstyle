@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule488numericliterals;
 
 class InputNumericLiterals {
-  /** test * */
-  private final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
+  /** test. * */
+  private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
   private String notWarn = "666l"; // ok
 
@@ -15,21 +15,21 @@ class InputNumericLiterals {
     return 666l + 666L; // violation 'Should use uppercase 'L'.'
   }
 
-  private void processUpperEll(long aLong) {
+  private void processUpperEll(long xyz) {
     long bad =
             (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
                     & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
     long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
     long[] array = {
-            66l, // violation 'Should use uppercase 'L'.'
-            66L, // ok
+        66l, // violation 'Should use uppercase 'L'.'
+        66L, // ok
     };
   }
 
   private void processUpperEll(String s, long l) {}
 
   class Inner {
-    /** test * */
+    /** test. * */
     private static final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
     private static final String notWarn = "666l"; // ok
@@ -43,7 +43,7 @@ class InputNumericLiterals {
       return 666l + 666L; // violation 'Should use uppercase 'L'.'
     }
 
-    private void processUpperEll(long aLong) {
+    private void processUpperEll(long xyz) {
       long bad =
               (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
                       & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
@@ -52,16 +52,16 @@ class InputNumericLiterals {
 
     private void processUpperEll(String s, long l) {
       long[] array = {
-              66l, // violation 'Should use uppercase 'L'.'
-              66L, // ok
+          66l, // violation 'Should use uppercase 'L'.'
+          66L, // ok
       };
     }
 
     void fooMethod() {
       Foo foo =
               new Foo() {
-                /** test * */
-                private final long IGNORE = 666l + 666L; // violation 'Should use uppercase 'L'.'
+                /** test. * */
+                private final long ignore = 666l + 666L; // violation 'Should use uppercase 'L'.'
 
                 private String notWarn = "666l"; // ok
 
@@ -74,18 +74,18 @@ class InputNumericLiterals {
                   return 666l + 666L; // violation 'Should use uppercase 'L'.'
                 }
 
-                private void processUpperEll(long aLong) {
+                private void processUpperEll(long x) {
                   long bad =
                           (4 + 5 * 7 ^ 66l / 7 + 890) // violation 'Should use uppercase 'L'.'
                                   & (88l + 78 * 4); // violation 'Should use uppercase 'L'.'
                   long good = (4 + 5 * 7 ^ 66L / 7 + 890) & (88L + 78 * 4); // ok
                   long[] array = {
-                          66l, // violation 'Should use uppercase 'L'.'
-                          66L, // ok
+                      66l, // violation 'Should use uppercase 'L'.'
+                      66L, // ok
                   };
                 }
 
-                private void processUpperEll(String s, long aLong) {}
+                private void processUpperEll(String s, long x) {}
               };
     }
   }
