@@ -32,8 +32,7 @@ public class NumericLiteralsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testUpperEll() throws Exception {
-        final String filePath = getPath("InputNumericLiterals.java");
-        verifyWithConfigParser(new String[] {"UpperEll"}, filePath);
+        verifyWithWholeConfig(getPath("InputNumericLiterals.java"));
     }
 
 }
