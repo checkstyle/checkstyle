@@ -25,10 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULE = {
-        "OneStatementPerLine",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule43onestatement";
@@ -36,16 +32,12 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOneStatement() throws Exception {
-        final String filePath = getPath("InputOneStatementPerLine.java");
-
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getPath("InputOneStatementPerLine.java"));
     }
 
     @Test
     public void testOneStatementNonCompilableInput() throws Exception {
-        final String filePath = getNonCompilablePath("InputOneStatementPerLine.java");
-
-        verifyWithConfigParser(MODULE, filePath);
+        verifyWithWholeConfig(getNonCompilablePath("InputOneStatementPerLine.java"));
     }
 
 }
