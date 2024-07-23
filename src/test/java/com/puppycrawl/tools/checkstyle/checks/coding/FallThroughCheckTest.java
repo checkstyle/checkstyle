@@ -391,4 +391,37 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputFallThroughSwitchRules.java"),
                 expected);
     }
+
+    @Test
+    public void testFallThroughWithPatternMatching() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "31:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "35:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "44:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThroughWithPatternMatching.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughWithPatternMatchingCheckLastCase() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "21:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "33:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "36:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "36:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "48:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "61:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
+                expected);
+    }
 }
