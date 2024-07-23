@@ -32,8 +32,7 @@ public class ModifiersTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testModifierOrder() throws Exception {
-        final String filePath = getPath("InputModifierOrder.java");
-        verifyWithConfigParser(new String[] {"ModifierOrder"}, filePath);
+        verifyWithWholeConfig(getPath("InputModifierOrder.java"));
     }
 
 }
