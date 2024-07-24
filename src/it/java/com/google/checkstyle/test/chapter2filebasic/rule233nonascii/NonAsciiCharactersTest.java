@@ -32,8 +32,7 @@ public class NonAsciiCharactersTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testUnicodeEscapes() throws Exception {
-        final String filePath = getPath("InputNonAsciiCharacters.java");
-        verifyWithConfigParser(new String[] {"AvoidEscapedUnicodeCharacters"}, filePath);
+        verifyWithWholeConfig(getPath("InputNonAsciiCharacters.java"));
     }
 
 }

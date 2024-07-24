@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter2filebasic.rule233nonascii;
 
+/** Some javadoc. */
 public class InputNonAsciiCharacters {
 
   private String unitAbbrev2 = "\u03bcs";
@@ -9,6 +10,7 @@ public class InputNonAsciiCharacters {
 
   private String unitAbbrev4 = "\u03bcs"; // Greek letter mu
 
+  /** Some javadoc. */
   public Object fooString() {
     String unitAbbrev = "μs";
     String unitAbbrev2 = "\u03bcs";
@@ -20,6 +22,7 @@ public class InputNonAsciiCharacters {
     /*byte order mark ok*/ return "\ufeff" + content;
   }
 
+  /** Some javadoc. */
   public Object fooChar() {
     char unitAbbrev2 = '\u03bc';
     // violation above 'Unicode escape(s) usage should be avoided.'
@@ -28,6 +31,7 @@ public class InputNonAsciiCharacters {
     /*byte order mark ok*/ return '\ufeff' + content;
   }
 
+  /** Some javadoc. */
   public void multiplyString() {
     String unitAbbrev2 = "asd\u03bcsasd";
     // violation above 'Unicode escape(s) usage should be avoided.'
