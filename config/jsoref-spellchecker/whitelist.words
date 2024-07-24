@@ -1372,6 +1372,7 @@ unnecessarysemicolonintrywithresources
 Unproxyable
 unregister
 unsubscribe
+unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlocalvariable
 uppercased
