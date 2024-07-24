@@ -30,19 +30,21 @@ class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated fr
     // empty instance initializer
   }
 
-  /** */
+  /** Some javadoc. */
   private InputVerticalWhitespace() {
     // empty
   }
 
-  public int compareTo(InputVerticalWhitespace aObject) {
+  public int compareTo(InputVerticalWhitespace obj) {
     int number = 0;
     return 0;
   }
   /**
-   * @param task
-   * @param result
-   * @return
+   * Some javadoc.
+   *
+   * @param task some description.
+   * @param result some description.
+   * @return some description.
    */
   public static <T> Callable<T> callable(Runnable task, T result) {
     // violation above ''METHOD_DEF' should be separated from previous line.'
@@ -75,26 +77,26 @@ class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated fr
   }
 
   class InnerClass3 { // ok
-    public int compareTo(InputVerticalWhitespace aObject) { // ok
+    public int compareTo(InputVerticalWhitespace obj) { // ok
       int number = 0;
       return 0;
     }
   }
-}
 
-class Clazz { // ok
-  private Clazz() {} // ok
-}
-class Class2 { // violation ''CLASS_DEF' should be separated from previous line.'
-  public int compareTo(InputVerticalWhitespace aObject) { // ok
-    int number = 0;
-    return 0;
+  class Clazz { // ok
+    private Clazz() {} // ok
   }
-  Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
-      new Class2() {
-        public int compareTo(InputVerticalWhitespace aObject) { // ok
-          int number = 0;
-          return 0;
-        }
-      };
+  class Class2 { // violation ''CLASS_DEF' should be separated from previous line.'
+    public int compareTo(InputVerticalWhitespace obj) { // ok
+      int number = 0;
+      return 0;
+    }
+    Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
+            new Class2() {
+              public int compareTo(InputVerticalWhitespace obj) { // ok
+                int number = 0;
+                return 0;
+              }
+            };
+  }
 }
