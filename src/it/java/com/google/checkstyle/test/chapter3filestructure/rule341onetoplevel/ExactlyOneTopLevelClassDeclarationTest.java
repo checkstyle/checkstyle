@@ -25,8 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class ExactlyOneTopLevelClassDeclarationTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {"OneTopLevelClass"};
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel";
@@ -34,26 +32,22 @@ public class ExactlyOneTopLevelClassDeclarationTest extends AbstractGoogleModule
 
     @Test
     public void testBad() throws Exception {
-        final String filePath = getPath("InputOneTopLevelClassBasic.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputOneTopLevelClassBasic.java"));
     }
 
     @Test
     public void testGood() throws Exception {
-        final String filePath = getPath("InputOneTopLevelClassGood.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputOneTopLevelClassGood.java"));
     }
 
     @Test
     public void testBad1() throws Exception {
-        final String filePath = getPath("InputOneTopLevelClassBad1.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputOneTopLevelClassBad1.java"));
     }
 
     @Test
     public void testBad2() throws Exception {
-        final String filePath = getPath("InputOneTopLevelClassBad2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputOneTopLevelClassBad2.java"));
     }
 
 }
