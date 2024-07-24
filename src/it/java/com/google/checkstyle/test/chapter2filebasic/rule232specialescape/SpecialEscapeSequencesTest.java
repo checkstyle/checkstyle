@@ -32,12 +32,7 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
 
     @Test
     public void testIllegalTokens() throws Exception {
-        final String filePath = getPath("InputSpecialEscapeSequences.java");
-        final String[] modules = {
-            "IllegalTokenText",
-        };
-
-        verifyWithConfigParser(modules, filePath);
+        verifyWithWholeConfig(getPath("InputSpecialEscapeSequences.java"));
     }
 
 }
