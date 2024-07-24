@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck"
+             name="UnusedCatchParameterShouldBeUnnamed"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;&#xD;
+ Ensures that catch parameters that are not used are declared as unnamed parameter.&#xD;
+ &lt;/p&gt;&#xD;
+ &lt;p&gt;&#xD;
+ Rationale:&#xD;
+ &lt;/p&gt;&#xD;
+ &lt;ul&gt;&#xD;
+     &lt;li&gt;&#xD;
+         Improves code readability by clearly indicating which parameters are unused.&#xD;
+     &lt;/li&gt;&#xD;
+     &lt;li&gt;&#xD;
+         Follows Java conventions for denoting unused parameters with an underscore ({@code _})&#xD;
+     &lt;/li&gt;&#xD;
+     &lt;li&gt;&#xD;
+         Helps developers quickly identify parameters that are intentionally ignored,&#xD;
+         reducing potential confusion and aiding in code maintenance.&#xD;
+     &lt;/li&gt;&#xD;
+ &lt;/ul&gt;&#xD;
+ &lt;p&gt;&#xD;
+ See the &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;&#xD;
+ Java Language Specification&lt;/a&gt; for more information about unnamed variables.&#xD;
+ &lt;/p&gt;&#xD;
+ &lt;p&gt;&#xD;
+ &lt;b&gt;Attention&lt;/b&gt;: This check should be activated only on source code&#xD;
+ that is compiled by jdk21 or higher;&#xD;
+ unnamed catch parameters come out as the first preview in Java 21.&#xD;
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unused.catch.parameter"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
