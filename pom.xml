@@ -3286,6 +3286,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest</param>
@@ -3313,6 +3314,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheckTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
