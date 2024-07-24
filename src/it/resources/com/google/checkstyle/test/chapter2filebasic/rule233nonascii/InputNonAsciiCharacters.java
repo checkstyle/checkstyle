@@ -15,6 +15,8 @@ public class InputNonAsciiCharacters {
     String unitAbbrev = "μs";
     String unitAbbrev2 = "\u03bcs";
     // violation above 'Unicode escape(s) usage should be avoided.'
+    final String r4 = "\u1111sdfsd\444";
+    // violation above 'Unicode escape(s) usage should be avoided.'
     String unitAbbrev3 = "\u03bcs"; // Greek letter mu, "s" ok
     String fakeUnicode = "asd\tsasd";
     String fakeUnicode2 = "\\u23\\u123i\\u";
