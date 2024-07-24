@@ -13,8 +13,6 @@ public class InputSpecialEscapeSequences {
     final String r1 = "\u0008";
     final String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
     final String r3 = "\u000csssdfsd"; // violation 'Consider using special escape sequence .*'
-    final String r4 = "\u1111sdfsd\444";
-
     final char r5 = '\012'; // violation 'Consider using special escape sequence .*'
     final char r6 = '\u0022'; // violation 'Consider using special escape sequence .*'
     final char r7 = '\b';
@@ -63,8 +61,6 @@ public class InputSpecialEscapeSequences {
       final String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
       final String r3 = "\u000csssdfsd";
       // violation above 'Consider using special escape sequence .*'
-      final String r4 = "\u1111sdfsd\444";
-
       final char r5 = '\012'; // violation 'Consider using special escape sequence .*'
       final char r6 = '\u0022'; // violation 'Consider using special escape sequence .*'
       final char r7 = '\b';
@@ -111,8 +107,6 @@ public class InputSpecialEscapeSequences {
                 final String r2 = "\u0009"; // violation 'Consider using special escape sequence .*'
                 final String r3 = "\u000csssdfsd";
                 // violation above 'Consider using special escape sequence .*'
-                final String r4 = "\u1111sdfsd\444";
-
                 final char r5 = '\012'; // violation 'Consider using special escape sequence .*'
                 final char r6 = '\u0022'; // violation 'Consider using special escape sequence .*'
                 final char r7 = '\b';
