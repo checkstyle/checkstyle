@@ -1,8 +1,11 @@
 package com.google.checkstyle.test.chapter4formatting.rule4853methodsandconstructorsannotations;
 
+/** Some javadoc. */
 public class InputMethodsAndConstructorsAnnotations {
+  /** Some javadoc. */
   public @interface SomeAnnotation1 {}
 
+  /** Some javadoc. */
   public @interface SomeAnnotation2 {}
 
   // ********testing methods.***********
@@ -33,7 +36,7 @@ public class InputMethodsAndConstructorsAnnotations {
   @SomeAnnotation1 @SomeAnnotation2 void test6() {}
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
 
-  @SuppressWarnings("all") void test7() {}
+  @SuppressWarnings("blah") void test7() {}
   // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
 
   // ********testing constructors.*********
@@ -66,5 +69,5 @@ public class InputMethodsAndConstructorsAnnotations {
                                                                             String b) {}
 
   // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
-  @SuppressWarnings("all") InputMethodsAndConstructorsAnnotations(int x, int y) {}
+  @SuppressWarnings("blah") InputMethodsAndConstructorsAnnotations(int x, int y) {}
 }

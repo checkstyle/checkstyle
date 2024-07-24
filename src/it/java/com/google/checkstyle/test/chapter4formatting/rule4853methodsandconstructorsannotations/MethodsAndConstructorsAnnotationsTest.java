@@ -33,13 +33,6 @@ public class MethodsAndConstructorsAnnotationsTest extends AbstractGoogleModuleT
 
     @Test
     public void testAnnotation() throws Exception {
-        final String filePath = getPath("InputMethodsAndConstructorsAnnotations.java");
-
-        final String[] listOfModules = {
-            "AnnotationLocationMostCases",
-            "InvalidJavadocPosition",
-        };
-
-        verifyWithConfigParser(listOfModules, filePath);
+        verifyWithWholeConfig(getPath("InputMethodsAndConstructorsAnnotations.java"));
     }
 }
