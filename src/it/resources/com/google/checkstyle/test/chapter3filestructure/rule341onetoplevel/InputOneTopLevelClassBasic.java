@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.rule341onetoplevel;
 
+/** Some javadoc. */
 public class InputOneTopLevelClassBasic {
   public InputOneTopLevelClassBasic() throws CloneNotSupportedException {
     super.equals(new String());
@@ -34,6 +35,7 @@ class InnerClone {
         return super.clone();
       }
     }
+
     return null;
   }
 }
