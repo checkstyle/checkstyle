@@ -16,7 +16,8 @@
 // License along with this library; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
-package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;// violation ''package' .*'
+// violation below ''package' should be separated from previous line.'
+package com.google.checkstyle.test.chapter3filestructure.rule3sourcefile;
 import java.util.concurrent.Callable; // violation ''import' should be separated from previous line.'
 class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated from previous line.'
   public static final double FOO_PI = 3.1415;
@@ -29,23 +30,24 @@ class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated f
     // empty instance initializer
   }
 
-  /** */
+  /** Some javadoc... */
   private InputSourceFileStructure() {
     // empty
   }
 
-  public int compareTo(InputSourceFileStructure aObject) {
+  public int compareTo(InputSourceFileStructure obj) {
     int number = 0;
     return 0;
   }
   /**
-   * @param task
-   * @param result
-   * @return
+   * Some javadoc...
+   *
+   * @param task some description....
+   * @param result some description....
+   * @return some description....
    */
-  public static <T> Callable<T> callable(Runnable task, T result)
-  // violation above ''METHOD_DEF' should be separated from previous line.'
-  {
+  public static <T> Callable<T> callable(Runnable task, T result) {
+    // violation above ''METHOD_DEF' should be separated from previous line.'
     return null;
   }
 
@@ -70,34 +72,34 @@ class InputSourceFileStructure { // violation ''CLASS_DEF' should be separated f
   }
 
   class InnerClass2 { // ok
-    private InnerClass2() // ok
-    {
+    private InnerClass2() { // ok
       // empty
     }
   }
 
   class InnerClass3 { // ok
-    public int compareTo(InputSourceFileStructure aObject) // ok
-    {
+    public int compareTo(InputSourceFileStructure obj) { // ok
       int number = 0;
       return 0;
     }
   }
 }
 
+// violation below 'Top-level class Class1 has to reside in its own source file.'
 class Class1 { // ok
   private Class1() {} // ok
 }
-class Class2 { // violation ''CLASS_DEF' should be separated from previous line.'
-  public int compareTo(InputSourceFileStructure aObject) // ok
-  {
+class Class2 {
+  // 2 violations above:
+  //  'Top-level class Class2 has to reside in its own source file.'
+  //  'CLASS_DEF' should be separated from previous line.'
+  public int compareTo(InputSourceFileStructure obj) { // ok
     int number = 0;
     return 0;
   }
   Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
           new Class2() {
-            public int compareTo(InputSourceFileStructure aObject) // ok
-            {
+            public int compareTo(InputSourceFileStructure obj) { // ok
               int number = 0;
               return 0;
             }
