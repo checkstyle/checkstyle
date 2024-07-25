@@ -7,9 +7,11 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
   int version();
 }
 
+// violation below 'Top-level class InputFileName3 has to reside in its own source file.'
 @MyAnnotation2(name = "ABC", version = 1)
 class InputFileName3 {} // ok
 
+// violation below 'Top-level class Enum2 has to reside in its own source file.'
 enum Enum2 { // ok
   A,
   B,
@@ -22,6 +24,7 @@ enum Enum2 { // ok
   }
 }
 
+// violation below 'Top-level class TestRequireThisEnum2 has to reside in its own source file.'
 interface TestRequireThisEnum2 { // ok
   enum DayOfWeek {
     SUNDAY,
