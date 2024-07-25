@@ -106,6 +106,48 @@ class Example3 {
   }
 }
         </source>
+        <p id="Example4-config">
+          An example of how to configure the check with different format for final and non-final
+          pattern variables:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;PatternVariableName&quot;&gt;
+        &lt;property name=&quot;id&quot; value=&quot;FinalPatternVariableName&quot;/&gt;
+        &lt;property name=&quot;format&quot; value=&quot;^[A-Z][A-Z0-9]*$&quot;/&gt;
+    &lt;/module&gt;
+
+    &lt;module name=&quot;PatternVariableName&quot;&gt;
+        &lt;property name=&quot;id&quot; value=&quot;NonFinalPatternVariableName&quot;/&gt;
+        &lt;property name=&quot;format&quot; value=&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;/&gt;
+    &lt;/module&gt;
+
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;id&quot; value=&quot;FinalPatternVariableName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//PATTERN_VARIABLE_DEF[
+            not(./MODIFIERS/FINAL)]/IDENT&quot;/&gt;
+    &lt;/module&gt;
+
+    &lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+      &lt;property name=&quot;id&quot; value=&quot;NonFinalPatternVariableName&quot;/&gt;
+      &lt;property name=&quot;query&quot; value=&quot;//PATTERN_VARIABLE_DEF[
+            (./MODIFIERS/FINAL)]/IDENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">Code Example:</p>
+        <source>
+class Example4 {
+  void foo(Object o1){
+    if (o1 instanceof String BAD) {} // violation
+    if (o1 instanceof String good) {}
+    if (o1 instanceof final String GOOD) {}
+    if (o1 instanceof final String bad) {} // violation
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

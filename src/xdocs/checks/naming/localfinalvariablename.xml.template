@@ -14,6 +14,11 @@
           A catch parameter and resources in try statements
           are considered to be a local, final variables.
         </p>
+        <p>
+          This check does not support final pattern variables. Instead, use
+          <a href="patternvariablename.html#PatternVariableName">
+          PatternVariableName</a>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
