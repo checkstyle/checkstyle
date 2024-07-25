@@ -1,7 +1,10 @@
 package com.google.checkstyle.test.chapter4formatting.rule4822declaredwhenneeded;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
+/** Some javadoc. */
 public class InputDeclaredWhenNeeded {
 
   private static int test1 = 0;
@@ -9,22 +12,22 @@ public class InputDeclaredWhenNeeded {
   static {
     int b = 0;
     int d = 0;
-    {
-      d = ++b;
-    }
+      {
+        d = ++b;
+      }
   }
 
   static {
     int c = 0;
     int a = 3;
     int b = 2;
-    {
-      a = a + b;
-      c = b;
-    }
-    {
-      c--;
-    }
+      {
+        a = a + b;
+        c = b;
+      }
+      {
+        c--;
+      }
     a = 7;
   }
 
@@ -36,12 +39,14 @@ public class InputDeclaredWhenNeeded {
     a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
   }
 
+  /** Some javadoc. */
   public InputDeclaredWhenNeeded(int test1) {
     int temp = -1;
     this.test1 = test1;
     temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
   }
 
+  /** Some javadoc. */
   public boolean testMethod() {
     int temp = 7;
     new InputDeclaredWhenNeeded(2);
@@ -55,16 +60,18 @@ public class InputDeclaredWhenNeeded {
     return result;
   }
 
+  /** Some javadoc. */
   public void testMethod2() {
     int count;
     int a = 3;
     int b = 2;
-    {
-      a = a + b - 5 + 2 * a;
-      count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
-    }
+      {
+        a = a + b - 5 + 2 * a;
+        count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
+      }
   }
 
+  /** Some javadoc. */
   public void testMethod3() {
     int count;
     // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.*'
@@ -76,6 +83,7 @@ public class InputDeclaredWhenNeeded {
     count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 4)
   }
 
+  /** Some javadoc. */
   public void testMethod4(int arg) {
     int d = 0;
     for (int i = 0; i < 10; i++) {
@@ -85,20 +93,26 @@ public class InputDeclaredWhenNeeded {
       }
     }
 
-    String ar[] = {"1", "2"};
+    String[] ar = {"1", "2"};
     for (String st : ar) {
       System.identityHashCode(st);
     }
   }
 
+  /** Some javadoc. */
   public void testMethod5() {
     int arg = 7;
     boolean b = true;
     boolean bb = false;
-    if (b) if (!bb) b = false;
+    if (b) {
+      if (!bb) {
+        b = false;
+      }
+    }
     testMethod4(arg); // DECLARATION OF VARIABLE 'arg' SHOULD BE HERE (distance = 2)
   }
 
+  /** Some javadoc. */
   public void testMethod6() {
     int blockNumWithSimilarVar = 3;
     int dist = 0;
@@ -123,6 +137,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public boolean testMethod7(int a) {
     boolean res;
     switch (a) {
@@ -135,22 +150,24 @@ public class InputDeclaredWhenNeeded {
     return res;
   }
 
+  /** Some javadoc. */
   public void testMethod8() {
     int b = 0;
     int c = 0;
     int m = 0;
     int n = 0;
-    {
-      c++;
-      b++;
-    }
-    {
-      n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
-      m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
-      b++;
-    }
+      {
+        c++;
+        b++;
+      }
+      {
+        n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
+        m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
+        b++;
+      }
   }
 
+  /** Some javadoc. */
   public void testMethod9() {
     boolean result = false;
     boolean b1 = true;
@@ -163,6 +180,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public boolean testMethod10() {
     boolean result;
     try {
@@ -175,6 +193,7 @@ public class InputDeclaredWhenNeeded {
     return result;
   }
 
+  /** Some javadoc. */
   public void testMethod11() {
     int a = 0;
     int b = 10;
@@ -189,6 +208,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public void testMethod12() {
     boolean result = false;
     boolean b3 = true;
@@ -204,6 +224,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public void testMethod13() {
     int i = 9;
     int j = 6;
@@ -211,6 +232,7 @@ public class InputDeclaredWhenNeeded {
     int k = j + 10;
   }
 
+  /** Some javadoc. */
   public void testMethod14() {
     Session s = openSession();
     Transaction t = s.beginTransaction();
@@ -230,6 +252,7 @@ public class InputDeclaredWhenNeeded {
     s.close();
   }
 
+  /** Some javadoc. */
   public boolean isCheckBoxEnabled(int path) {
     String model = "";
     if (true) {
@@ -248,12 +271,14 @@ public class InputDeclaredWhenNeeded {
     return true;
   }
 
+  /** Some javadoc. */
   public Object readObject(String in) throws Exception {
     String startDay = new String("");
     String endDay = new String("");
     return new String(startDay + endDay);
   }
 
+  /** Some javadoc. */
   public int[] getSelectedIndices() {
     int[] sel = new int[5];
     String model = "";
@@ -268,6 +293,7 @@ public class InputDeclaredWhenNeeded {
     return sel;
   }
 
+  /** Some javadoc. */
   public void testMethod15() {
     String confDebug = "";
     if (!confDebug.equals("") && !confDebug.equals("null")) {
@@ -313,8 +339,11 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public void testMethod16() {
-    int wh = 1, i = 4, k = 0;
+    int wh = 1;
+    int i = 0;
+    int k = 7;
     if (i > 0) {
       k++;
     } else if (wh > 0) {
@@ -324,21 +353,22 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
-  protected JMenuItem createSubMenuItem(LogLevel level) {
-    final JMenuItem result = new JMenuItem(level.toString());
+  protected JmenuItem createSubMenuItem(LogLevel level) {
+    final JmenuItem result = new JmenuItem(level.toString());
     final LogLevel logLevel = level;
     result.setMnemonic(level.toString().charAt(0));
     result.addActionListener(
             new ActionListener() {
-              public void actionPerformed(ActionEvent e) {
-                showLogLevelColorChangeDialog(result, logLevel);
-                // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
-              }
-            });
+            public void actionPerformed(ActionEvent e) {
+              showLogLevelColorChangeDialog(result, logLevel);
+              // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
+            }
+          });
 
     return result;
   }
 
+  /** Some javadoc. */
   public static Color darker(Color color, double fraction) {
     int red = (int) Math.round(color.getRed() * (1.0 - fraction));
     int green = (int) Math.round(color.getGreen() * (1.0 - fraction));
@@ -363,26 +393,29 @@ public class InputDeclaredWhenNeeded {
     return new Color(red, green, blue, alpha);
   }
 
+  /** Some javadoc. */
   public void testFinal() {
     AuthUpdateTask task = null;
     final long intervalMs = 30 * 60000L;
-    Object authCheckUrl = null, authInfo = null;
+    Object authCheckUrl = null;
+    Object authInfo = null;
     task =
             new AuthUpdateTask(
                     authCheckUrl,
                     authInfo,
-                    new IAuthListener() {
-                      @Override
+                    new IauthListener() {
+                  @Override
                       public void authTokenChanged(String cookie, String token) {
-                        fireAuthTokenChanged(cookie, token);
-                      }
-                    });
+                    fireAuthTokenChanged(cookie, token);
+                  }
+                });
 
     Timer timer = new Timer("Auth Guard", true);
     timer.schedule(task, intervalMs / 2, intervalMs); // DECLARATION OF VARIABLE 'intervalMs'
     // SHOULD BE HERE (distance = 2)
   }
 
+  /** Some javadoc. */
   public void testForCycle() {
     int filterCount = 0;
     for (int i = 0; i < 10; i++, filterCount++) {
@@ -396,6 +429,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public void testIssue32_1() {
     Option srcDdlFile = OptionBuilder.create("f");
     Option logDdlFile = OptionBuilder.create("o");
@@ -409,6 +443,7 @@ public class InputDeclaredWhenNeeded {
     options.addOption(srcDdlFile, logDdlFile, help); // distance=1
   }
 
+  /** Some javadoc. */
   public void testIssue32_2() {
     int mm = Integer.parseInt("2");
     long timeNow = 0;
@@ -420,6 +455,7 @@ public class InputDeclaredWhenNeeded {
     cal.set(Calendar.MINUTE, mm); // distance=1
   }
 
+  /** Some javadoc. */
   public void testIssue32_3(MyObject[] objects) {
     Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
     for (int i = 0; i < objects.length; i++) {
@@ -431,6 +467,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   public String testIssue32_4(boolean flag) {
     StringBuilder builder = new StringBuilder();
     builder.append("flag is ");
@@ -445,38 +482,43 @@ public class InputDeclaredWhenNeeded {
     return builder.toString();
   }
 
+  /** Some javadoc. */
   public void testIssue32_5() {
     Option a = null;
     Option b = null;
     Option c = null;
-    boolean isCNull = isNull(c); // distance=1
-    boolean isBNull = isNull(b); // distance=1
-    boolean isANull = isNull(a); // distance=1
+    boolean isCnull = isNull(c); // distance=1
+    boolean isBnull = isNull(b); // distance=1
+    boolean isAnull = isNull(a); // distance=1
   }
 
+  /** Some javadoc. */
   public void testIssue32_6() {
-    Option aOpt = null;
-    Option bOpt = null;
-    Option cOpt = null;
-    isNull(cOpt); // distance = 1
-    isNull(bOpt); // distance = 2
-    isNull(aOpt); // distance = 3
+    Option aopt = null;
+    Option bopt = null;
+    Option copt = null;
+    isNull(copt); // distance = 1
+    isNull(bopt); // distance = 2
+    isNull(aopt); // distance = 3
   }
 
+  /** Some javadoc. */
   public void testIssue32_7() {
     String line = "abc";
-    otherWriter.write(line);
+    OtherWriter.write(line);
     line.charAt(1);
-    builder.append(line);
+    Builder.append(line);
     test(line, line, line);
   }
 
+  /** Some javadoc. */
   public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
     String l1 = "1";
 
     w3.write(l1); // distance=3
   }
 
+  /** Some javadoc. */
   public void testIssue32_9() {
     Options options = new Options();
     Option myOption = null;
@@ -490,6 +532,7 @@ public class InputDeclaredWhenNeeded {
     myOption.setArgName("abc"); // distance=7
   }
 
+  /** Some javadoc. */
   public void testIssue32_10() {
     Options options = new Options();
     Option myOption = null;
@@ -502,6 +545,7 @@ public class InputDeclaredWhenNeeded {
     myOption.setArgName("q"); // distance=6
   }
 
+  /** Some javadoc. */
   public int testIssue32_11(String toDir) throws Exception {
     int count = 0;
     // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.'
@@ -575,9 +619,9 @@ public class InputDeclaredWhenNeeded {
 
   class Serializable {}
 
-  class JMenuItem {
+  class JmenuItem {
 
-    public JMenuItem(String string) {}
+    public JmenuItem(String string) {}
 
     public void addActionListener(ActionListener actionListener) {}
 
@@ -590,7 +634,7 @@ public class InputDeclaredWhenNeeded {
 
   class ActionEvent {}
 
-  private void showLogLevelColorChangeDialog(JMenuItem j, LogLevel l) {}
+  private void showLogLevelColorChangeDialog(JmenuItem j, LogLevel l) {}
 
   static class Color {
 
@@ -615,10 +659,10 @@ public class InputDeclaredWhenNeeded {
 
   class AuthUpdateTask {
 
-    public AuthUpdateTask(Object authCheckUrl, Object authInfo, IAuthListener iAuthListener) {}
+    public AuthUpdateTask(Object authCheckUrl, Object authInfo, IauthListener authListener) {}
   }
 
-  interface IAuthListener {
+  interface IauthListener {
 
     void authTokenChanged(String cookie, String token);
   }
@@ -694,14 +738,14 @@ public class InputDeclaredWhenNeeded {
     public void setColor(int i) {}
   }
 
-  static class otherWriter {
+  static class OtherWriter {
 
     public static void write(String line) {}
   }
 
   void test(String s, String s1, String s2) {}
 
-  static class builder {
+  static class Builder {
 
     public static void append(String line) {}
   }
