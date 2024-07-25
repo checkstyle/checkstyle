@@ -32,13 +32,6 @@ public class PackageStatementTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testPackageStatement() throws Exception {
-        final String filePath = getPath("InputPackageStatement.java");
-
-        final String[] listOfModules = {
-            "LineLength",
-            "NoLineWrap",
-        };
-
-        verifyWithConfigParser(listOfModules, filePath);
+        verifyWithWholeConfig(getPath("InputPackageStatement.java"));
     }
 }
