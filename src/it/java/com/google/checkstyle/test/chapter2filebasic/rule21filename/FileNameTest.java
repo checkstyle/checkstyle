@@ -25,10 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class FileNameTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "OuterTypeFilename",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter2filebasic/rule21filename";
@@ -36,20 +32,17 @@ public class FileNameTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOuterTypeFilename1() throws Exception {
-        final String filePath = getPath("InputFileName1.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputFileName1.java"));
     }
 
     @Test
     public void testOuterTypeFilename2() throws Exception {
-        final String filePath = getPath("InputFileName2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputFileName2.java"));
     }
 
     @Test
     public void testOuterTypeFilename3() throws Exception {
-        final String filePath = getPath("InputFileName3.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputFileName3.java"));
     }
 
 }
