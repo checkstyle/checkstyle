@@ -32,8 +32,7 @@ public class SourceFileStructureTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testEmptyLineSeparator() throws Exception {
-        final String filePath = getPath("InputSourceFileStructure.java");
-        verifyWithConfigParser(new String[] {"EmptyLineSeparator"}, filePath);
+        verifyWithWholeConfig(getPath("InputSourceFileStructure.java"));
     }
 
 }
