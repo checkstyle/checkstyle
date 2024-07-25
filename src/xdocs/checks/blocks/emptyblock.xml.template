@@ -65,17 +65,17 @@ switch (a) {
             <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
-          To configure the check for default in switch block:
+          To configure the check for case and default in switch block:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock/Example3.java"/>
+                   value="/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock/Example3.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock/Example3.java"/>
+                   value="/resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/blocks/emptyblock/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
