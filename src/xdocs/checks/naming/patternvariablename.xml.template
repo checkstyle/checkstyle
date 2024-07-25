@@ -69,6 +69,21 @@
                  value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example4-config">
+          An example of how to configure the check with different format for final and non-final
+          pattern variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/naming/patternvariablename/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
