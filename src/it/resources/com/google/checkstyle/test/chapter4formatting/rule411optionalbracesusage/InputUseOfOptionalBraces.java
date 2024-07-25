@@ -2,13 +2,15 @@ package com.google.checkstyle.test.chapter4formatting.rule411optionalbracesusage
 
 class InputUseOfOptionalBraces {
   /**
+   * some javadoc..
+   *
    * @return helper func *
    */
   boolean condition() {
     return false;
   }
 
-  /** Test do/while loops * */
+  /** Test do/while loops. */
   void testDoWhile() {
     // Valid
     do {
@@ -20,27 +22,25 @@ class InputUseOfOptionalBraces {
     while (condition());
   }
 
-  /** Test while loops * */
+  /** Test while loops. */
   void testWhile() {
-    String k = "testing";
-
     // Valid
     while (condition()) {
       testWhile();
     }
 
     // Invalid
+    while (condition()); // violation ''while' construct must use '{}'s.'
     while (condition()) // violation ''while' construct must use '{}'s.'
-      ;
-    while (condition()) // violation ''while' construct must use '{}'s.'
-    testWhile();
-    while (condition()) // violation ''while' construct must use '{}'s.'
-    if (condition()) // violation ''if' construct must use '{}'s.'
       testWhile();
+    while (condition()) // violation ''while' construct must use '{}'s.'
+      if (condition()) // violation ''if' construct must use '{}'s.'
+          testWhile();
+    String k = "testing";
     if (k != null) k = "ss"; // violation ''if' construct must use '{}'s.'
   }
 
-  /** Test for loops * */
+  /** Test for loops. */
   void testFor() {
     // Valid
     for (int i = 1; i < 5; i++) {
@@ -48,18 +48,17 @@ class InputUseOfOptionalBraces {
     }
 
     // Invalid
+    for (int i = 1; i < 5; i++); // violation ''for' construct must use '{}'s.'
     for (int i = 1; i < 5; i++) // violation ''for' construct must use '{}'s.'
-      ;
-    for (int i = 1; i < 5; i++) // violation ''for' construct must use '{}'s.'
-    testFor();
+      testFor();
     for (int i = 1; // violation ''for' construct must use '{}'s.'
         i < 5;
         i++)
       if (i > 2) // violation ''if' construct must use '{}'s.'
-      testFor();
+        testFor();
   }
 
-  /** Test if constructs * */
+  /** Test if constructs. */
   public void testIf() {
     // Valid
     if (condition()) {
@@ -71,26 +70,25 @@ class InputUseOfOptionalBraces {
     }
 
     // Invalid
+    if (condition()); // violation ''if' construct must use '{}'s.'
     if (condition()) // violation ''if' construct must use '{}'s.'
-      ;
+      testIf();
     if (condition()) // violation ''if' construct must use '{}'s.'
-    testIf();
-    if (condition()) // violation ''if' construct must use '{}'s.'
-    testIf();
+      testIf();
     else // violation ''else' construct must use '{}'s.'
-    testIf();
+      testIf();
     if (condition()) // violation ''if' construct must use '{}'s.'
-    testIf();
+      testIf();
     else {
       testIf();
     }
     if (condition()) {
       testIf();
     } else // violation ''else' construct must use '{}'s.'
-    testIf();
-    if (condition()) // violation ''if' construct must use '{}'s.'
-    if (condition()) // violation ''if' construct must use '{}'s.'
       testIf();
+    if (condition()) // violation ''if' construct must use '{}'s.'
+      if (condition()) // violation ''if' construct must use '{}'s.'
+          testIf();
   }
 
   void whitespaceAfterSemi() {
@@ -102,13 +100,13 @@ class InputUseOfOptionalBraces {
     for (; ; ) {}
   }
 
-  /** Empty constructor block. * */
+  /** Empty constructor block. */
   public InputUseOfOptionalBraces() {}
 
-  /** Empty method block. * */
+  /** Empty method block. */
   public void emptyImplementation() {}
 
-  /** Testing Lambdas. * */
+  /** Testing Lambdas. */
   static Runnable r2 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");
 
   static Runnable r3 = () -> String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");
@@ -117,164 +115,149 @@ class InputUseOfOptionalBraces {
         String.CASE_INSENSITIVE_ORDER.equals("Hello world one!");
       };
   static Runnable r5 = () -> {};
-}
 
-class EmptyBlocks {
-  boolean flag = true;
-  int[] a = {
-    1, 2, 3, 4,
-  };
-
-  void foo() {
-    while (flag) // violation ''while' construct must use '{}'s.'
-      ;
-    while (flag) {}
-    while (flag) {
-      /*foo*/
-    }
-    do // violation ''do' construct must use '{}'s.'
-      ;
-    while (flag);
-    do {} while (flag);
-    do {
-      /*foo*/
-    } while (flag);
-    if (flag) // violation ''if' construct must use '{}'s.'
-      ;
-    if (flag) {}
-    if (flag) {
-      /*foo*/
-    }
-    if (flag) // violation ''if' construct must use '{}'s.'
-      ;
-    else // violation ''else' construct must use '{}'s.'
-      ;
-    if (flag) {
-    } else {
-    }
-    if (flag) {
-      /*foo*/
-    } else {
-      /*foo*/
-    }
-    for (int i = 0; i < 10; i++) // violation ''for' construct must use '{}'s.'
-      ;
-    for (int i = 0; i < 10; i++) {}
-    for (int i = 0; i < 10; i++) {
-      /*foo*/
-    }
-    for (int b : a) // violation ''for' construct must use '{}'s.'
-      ;
-    for (int b : a) {}
-    for (int b : a) {
-      /*foo*/
-    }
-  }
-
-  class InnerEmptyBlocks {
+  class EmptyBlocks {
     boolean flag = true;
-    int[] a = {
-      1, 2, 3, 4,
+    int[] abc = {
+        1, 2, 3, 4,
     };
 
     void foo() {
-      while (flag) // violation ''while' construct must use '{}'s.'
-        ;
+      while (flag); // violation ''while' construct must use '{}'s.'
       while (flag) {}
       while (flag) {
         /*foo*/
       }
-      do // violation ''do' construct must use '{}'s.'
-        ;
+      do ; // violation ''do' construct must use '{}'s.'
       while (flag);
       do {} while (flag);
       do {
         /*foo*/
       } while (flag);
-      if (flag) // violation ''if' construct must use '{}'s.'
-        ;
-      if (flag) {}
+      if (flag) ; // violation ''if' construct must use '{}'s.'
+      if (flag) { /*foo*/ }
       if (flag) {
         /*foo*/
       }
-      if (flag) // violation ''if' construct must use '{}'s.'
-        ;
-      else // violation ''else' construct must use '{}'s.'
-        ;
+      if (flag) ; // violation ''if' construct must use '{}'s.'
+      else ; // violation ''else' construct must use '{}'s.'
+      // violation below 'Empty if block.'
       if (flag) {
       } else {
       }
+      // violation 2 lines above 'Empty else block.'
       if (flag) {
         /*foo*/
       } else {
         /*foo*/
       }
-      for (int i = 0; i < 10; i++) // violation ''for' construct must use '{}'s.'
-        ;
+      for (int i = 0; i < 10; i++); // violation ''for' construct must use '{}'s.'
       for (int i = 0; i < 10; i++) {}
       for (int i = 0; i < 10; i++) {
         /*foo*/
       }
-      for (int b : a) // violation ''for' construct must use '{}'s.'
-        ;
-      for (int b : a) {}
-      for (int b : a) {
+      for (int b : abc); // violation ''for' construct must use '{}'s.'
+      for (int b : abc) {}
+      for (int b : abc) {
         /*foo*/
       }
     }
-  }
 
-  InnerEmptyBlocks anon =
-      new InnerEmptyBlocks() {
-        boolean flag = true;
-        int[] a = {
+    class InnerEmptyBlocks {
+      boolean flag = true;
+      int[] abc = {
           1, 2, 3, 4,
-        };
-
-        void foo() {
-          while (flag) // violation ''while' construct must use '{}'s.'
-            ;
-          while (flag) {}
-          while (flag) {
-            /*foo*/
-          }
-          do // violation ''do' construct must use '{}'s.'
-            ;
-          while (flag);
-          do {} while (flag);
-          do {
-            /*foo*/
-          } while (flag);
-          if (flag) // violation ''if' construct must use '{}'s.'
-            ;
-          if (flag) {}
-          if (flag) {
-            /*foo*/
-          }
-          if (flag) // violation ''if' construct must use '{}'s.'
-            ;
-          else // violation ''else' construct must use '{}'s.'
-            ;
-          if (flag) {
-          } else {
-          }
-          if (flag) {
-            /*foo*/
-          } else {
-            /*foo*/
-          }
-          for (int i = 0; i < 10; i++) // violation ''for' construct must use '{}'s.'
-            ;
-          for (int i = 0; i < 10; i++) {}
-          for (int i = 0; i < 10; i++) {
-            /*foo*/
-          }
-          for (int b : a) // violation ''for' construct must use '{}'s.'
-            ;
-          for (int b : a) {}
-          for (int b : a) {
-            /*foo*/
-          }
-        }
       };
+
+      void foo() {
+        while (flag); // violation ''while' construct must use '{}'s.'
+        while (flag) {}
+        while (flag) {
+          /*foo*/
+        }
+        do ; // violation ''do' construct must use '{}'s.'
+        while (flag);
+        do {} while (flag);
+        do {
+          /*foo*/
+        } while (flag);
+        if (flag) ; // violation ''if' construct must use '{}'s.'
+        if (flag) { /*foo*/ }
+        if (flag) {
+          /*foo*/
+        }
+        if (flag) ; // violation ''if' construct must use '{}'s.'
+        else ; // violation ''else' construct must use '{}'s.'
+        // violation below 'Empty if block.'
+        if (flag) {
+        } else {
+        }
+        // violation 2 lines above 'Empty else block.'
+        if (flag) {
+          /*foo*/
+        } else {
+          /*foo*/
+        }
+        for (int i = 0; i < 10; i++); // violation ''for' construct must use '{}'s.'
+        for (int i = 0; i < 10; i++) {}
+        for (int i = 0; i < 10; i++) {
+          /*foo*/
+        }
+        for (int b : abc); // violation ''for' construct must use '{}'s.'
+        for (int b : abc) {}
+        for (int b : abc) {
+          /*foo*/
+        }
+      }
+    }
+
+    InnerEmptyBlocks anon =
+            new InnerEmptyBlocks() {
+              boolean flag = true;
+              int[] abc = {
+                  1, 2, 3, 4,
+              };
+
+              void foo() {
+                while (flag); // violation ''while' construct must use '{}'s.'
+                while (flag) {}
+                while (flag) {
+                  /*foo*/
+                }
+                do ; // violation ''do' construct must use '{}'s.'
+                while (flag);
+                do {} while (flag);
+                do {
+                  /*foo*/
+                } while (flag);
+                if (flag) ; // violation ''if' construct must use '{}'s.'
+                if (flag) { /*foo*/ }
+                if (flag) {
+                  /*foo*/
+                }
+                if (flag) ; // violation ''if' construct must use '{}'s.'
+                else ; // violation ''else' construct must use '{}'s.'
+                // violation below 'Empty if block.'
+                if (flag) {
+                } else {
+                }
+                // violation 2 lines above 'Empty else block.'
+                if (flag) {
+                  /*foo*/
+                } else {
+                  /*foo*/
+                }
+                for (int i = 0; i < 10; i++); // violation ''for' construct must use '{}'s.'
+                for (int i = 0; i < 10; i++) {}
+                for (int i = 0; i < 10; i++) {
+                  /*foo*/
+                }
+                for (int b : abc); // violation ''for' construct must use '{}'s.'
+                for (int b : abc) {}
+                for (int b : abc) {
+                  /*foo*/
+                }
+              }
+            };
+  }
 }
