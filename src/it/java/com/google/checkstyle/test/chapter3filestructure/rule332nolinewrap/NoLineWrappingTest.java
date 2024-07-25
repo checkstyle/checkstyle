@@ -32,13 +32,7 @@ public class NoLineWrappingTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testBadLineWrap() throws Exception {
-        final String filePath = getPath("InputNoLineWrapping.java");
-        final String[] modules = {
-            "NoLineWrap",
-            "LineLength",
-        };
-
-        verifyWithConfigParser(modules, filePath);
+        verifyWithWholeConfig(getPath("InputNoLineWrapping.java"));
     }
 
 }
