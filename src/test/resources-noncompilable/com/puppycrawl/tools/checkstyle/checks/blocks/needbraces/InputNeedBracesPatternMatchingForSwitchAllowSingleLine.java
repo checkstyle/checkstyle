@@ -84,8 +84,7 @@ public class InputNeedBracesPatternMatchingForSwitchAllowSingleLine {
                 yield 0;
         };
 
-        int b;
-        b =  switch (o) {
+        int b = switch (o) {
             case Integer i when (i == 0) -> i;
             case String s when (s.equals("a")) -> s.length();
             case Point(int x, int y ) when (x>=0 && y >=0) ->

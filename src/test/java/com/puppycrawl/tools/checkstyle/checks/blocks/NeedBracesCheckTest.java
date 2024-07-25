@@ -317,4 +317,14 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testNeedBracesSwitchLabeledExpression() throws Exception {
+        final String[] expected = {
+            "38:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNeedBracesSwitchLabeledExpression.java"),
+            expected);
+    }
+
 }
