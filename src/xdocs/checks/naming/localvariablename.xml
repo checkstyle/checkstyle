@@ -13,6 +13,11 @@
           Checks that local, non-<code>final</code> variable names conform to a specified pattern.
           A catch parameter is considered to be a local variable.
         </p>
+        <p>
+          This check does not support pattern variables. Instead, use
+          <a href="patternvariablename.html#PatternVariableName">
+          PatternVariableName</a>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
