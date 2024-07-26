@@ -54,7 +54,10 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "24:16: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "19:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "21:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "30:16: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
