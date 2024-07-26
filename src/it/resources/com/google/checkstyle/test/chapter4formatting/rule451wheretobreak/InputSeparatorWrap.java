@@ -1,6 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
+/** Some javadoc. */
 public class InputSeparatorWrap {
+  /** Some javadoc. */
   public void goodCase() {
     int i = 0;
     String s = "ffffooooString";
@@ -15,17 +17,18 @@ public class InputSeparatorWrap {
   public static void foo(int i, String s) {}
 }
 
-class badCase {
+// violation below 'Top-level class BadCase has to reside in its own source file.'
+class BadCase {
 
-  public void goodCase(int... aFoo) {
+  public void goodCase(int... foo) {
     int i = 0;
 
     String s = "ffffooooString";
     // violation below ''.' should be on a new line.'
     boolean b = s.
-        isEmpty();
+            isEmpty();
     foo(i
-            ,s); // violation '',' should be on the previous line.'
+            , s); // violation '',' should be on the previous line.'
     int[] j;
   }
 
@@ -35,8 +38,8 @@ class badCase {
     CharSequence seq = null;
     Object truncationIndicator = null;
     return new StringBuilder(maxLength)
-        .append(seq, 0, truncationLength)
-        .append(truncationIndicator)
-        .toString();
+            .append(seq, 0, truncationLength)
+            .append(truncationIndicator)
+            .toString();
   }
 }

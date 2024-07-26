@@ -2,6 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import java.util.Arrays;
 
+/** Some javdoc. */
 public class InputSeparatorWrapMethodRef {
 
   void goodCase() {
