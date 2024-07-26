@@ -59,6 +59,17 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInsideCaseBody() throws Exception {
+
+        final String[] expected = {
+            "17:25: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNestedIfDepthInsideCaseBody.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final NestedIfDepthCheck check = new NestedIfDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
