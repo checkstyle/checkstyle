@@ -150,7 +150,8 @@ public class XdocsPagesTest {
             "Header.header",
             "RegexpHeader.header",
             // until https://github.com/checkstyle/checkstyle/issues/13376
-            "CustomImportOrder.customImportOrderRules"
+            "CustomImportOrder.customImportOrderRules",
+            "RedundantModifier.jdkVersion"
     );
 
     private static final Set<String> SUN_MODULES = Collections.unmodifiableSet(
