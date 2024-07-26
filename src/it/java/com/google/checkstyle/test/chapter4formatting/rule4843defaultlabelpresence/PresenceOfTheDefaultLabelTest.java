@@ -32,8 +32,7 @@ public class PresenceOfTheDefaultLabelTest extends AbstractGoogleModuleTestSuppo
 
     @Test
     public void testPresenceOfDefaultLabel() throws Exception {
-        final String filePath = getPath("InputPresenceOfDefaultLabel.java");
-        verifyWithConfigParser(new String[] {"MissingSwitchDefault"}, filePath);
+        verifyWithWholeConfig(getPath("InputPresenceOfDefaultLabel.java"));
     }
 
 }
