@@ -211,6 +211,7 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
+
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"

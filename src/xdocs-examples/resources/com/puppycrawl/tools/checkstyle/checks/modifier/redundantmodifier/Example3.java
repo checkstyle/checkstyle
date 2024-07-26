@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="RedundantModifier"/>
+    <module name="RedundantModifier">
+        <property name="jdkVersion" value="11"/>
+    </module>
   </module>
 </module>
 */
@@ -9,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 // xdoc section -- start
-public class Example1 {
+public class Example3 {
 
   void test() {
     // violation below, 'Redundant 'final' modifier'
@@ -33,7 +35,7 @@ public class Example1 {
         A, B, C
   }
 
-  // violation below, 'Redundant 'strictfp' modifier'
+  // ok below, 'strictfp' is not redundant before JDK 17
   public strictfp class Test { }
 
   AutoCloseable lock() {
