@@ -41,26 +41,22 @@ public class PackageNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testGoodPackageName() throws Exception {
-        final String filePath = getPath("packagenames", "InputPackageNameGood.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("packagenames", "InputPackageNameGood.java"));
     }
 
     @Test
     public void testBadPackageName() throws Exception {
-        final String filePath = getPath("packageNamesCamelCase", "InputPackageNameBad.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("packageNamesCamelCase", "InputPackageNameBad.java"));
     }
 
     @Test
     public void testBadPackageName2() throws Exception {
-        final String filePath = getPath("_packagenames", "InputBadPackageName2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("_packagenames", "InputBadPackageName2.java"));
     }
 
     @Test
     public void testBadPackageName3() throws Exception {
-        final String filePath = getPath("$packagenames", "InputPackageBadName3.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("$packagenames", "InputPackageBadName3.java"));
     }
 
 }
