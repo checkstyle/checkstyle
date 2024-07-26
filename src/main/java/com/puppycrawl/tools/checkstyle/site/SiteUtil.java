@@ -166,7 +166,8 @@ public final class SiteUtil {
         HEADER_CHECK_HEADER,
         REGEXP_HEADER_CHECK_HEADER,
         // until https://github.com/checkstyle/checkstyle/issues/13376
-        "CustomImportOrderCheck.customImportOrderRules"
+        "CustomImportOrderCheck.customImportOrderRules",
+        "RedundantModifier.jdkVersion"
     );
 
     /**

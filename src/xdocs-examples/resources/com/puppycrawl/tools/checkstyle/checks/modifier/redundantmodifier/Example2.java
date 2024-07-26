@@ -24,8 +24,8 @@ public class Example2 {
   abstract interface I {
     public abstract void m();
     // 2 violations above:
-    //                   'Redundant 'public' modifier'
-    //                   'Redundant 'abstract' modifier'
+    //    'Redundant 'public' modifier'
+    //    'Redundant 'abstract' modifier'
     public int x = 0;
   }
 
