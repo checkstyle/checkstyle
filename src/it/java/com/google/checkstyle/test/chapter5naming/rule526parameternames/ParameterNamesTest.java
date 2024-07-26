@@ -25,13 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "LambdaParameterName",
-        "ParameterName",
-        "RecordComponentName",
-        "CatchParameterName",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule526parameternames";
@@ -39,26 +32,22 @@ public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLambdaParameterName() throws Exception {
-        final String filePath = getPath("InputLambdaParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputLambdaParameterName.java"));
     }
 
     @Test
     public void testGeneralParameterName() throws Exception {
-        final String filePath = getPath("InputParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputParameterName.java"));
     }
 
     @Test
     public void testRecordParameterName() throws Exception {
-        final String filePath = getNonCompilablePath("InputRecordComponentName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getNonCompilablePath("InputRecordComponentName.java"));
     }
 
     @Test
     public void testCatchParameterName() throws Exception {
-        final String filePath = getPath("InputCatchParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCatchParameterName.java"));
     }
 
 }
