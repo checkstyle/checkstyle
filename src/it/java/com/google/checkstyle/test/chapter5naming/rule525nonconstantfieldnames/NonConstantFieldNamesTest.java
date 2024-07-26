@@ -25,8 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class NonConstantFieldNamesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {"MemberName"};
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames";
@@ -34,14 +32,12 @@ public class NonConstantFieldNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testMemberName() throws Exception {
-        final String filePath = getPath("InputNonConstantNamesBasic.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNonConstantNamesBasic.java"));
     }
 
     @Test
     public void testSimple() throws Exception {
-        final String filePath = getPath("InputNonConstantNamesSimple.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNonConstantNamesSimple.java"));
     }
 
 }

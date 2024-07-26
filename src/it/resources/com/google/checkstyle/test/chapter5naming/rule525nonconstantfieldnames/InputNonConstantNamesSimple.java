@@ -18,8 +18,8 @@ final class InputNonConstantNamesSimple {
 
   private int[] m$nts = // violation 'Member name 'm\$nts' must match pattern'
           new int[] {
-                  1, 2, 3,
-                  4
+              1, 2, 3,
+              4
           };
 
   public static int sTest1;
@@ -36,20 +36,8 @@ final class InputNonConstantNamesSimple {
 
   public int mTes$t2; // violation 'Member name 'mTes\$t2' must match pattern'
 
-  /** test local variables. This Check doesn't verify local variables, only members. */
   private void localVariables() {
     int a;
-    int aA;
-    int a1_a;
-    int A_A;
-    int aa2_a;
-    int _a;
-    int _aa;
-    int aa_;
-    int aaa$aaa;
-    int $aaaaaa;
-    int aaaaaa$;
-
     int aa;
     int aaAa1a;
     int aaAaaAa2a1;
