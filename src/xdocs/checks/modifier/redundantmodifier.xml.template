@@ -34,6 +34,9 @@
             <code>record</code> definitions that are declared as <code>final</code> and nested
             <code>record</code> definitions that are declared as <code>static</code>.
           </li>
+          <li>
+            <code>strictfp</code> modifier on java 17 or later.
+          </li>
         </ol>
 
         <p>
