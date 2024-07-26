@@ -32,8 +32,7 @@ public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLineLength() throws Exception {
-        final String filePath = getPath("InputColumnLimit.java");
-        verifyWithConfigParser(new String[] {"LineLength"}, filePath);
+        verifyWithWholeConfig(getPath("InputColumnLimit.java"));
     }
 
 }
