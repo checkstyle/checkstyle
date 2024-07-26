@@ -25,7 +25,7 @@ import java.lang.Class; // no violation
 // violation ''//' has more than 1 empty lines before.'
 import java.lang.Integer;
 
-// no violation
+// ok
 import java.lang.Long;
 
 
