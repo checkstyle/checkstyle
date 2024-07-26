@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -59,6 +59,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code record} definitions that are declared as {@code final} and nested
  * {@code record} definitions that are declared as {@code static}.
+ * </li>
+ * <li>
+ * {@code strictfp} modifier when using JDK 17 or later. See reason at
+ * <a href="https://openjdk.org/jeps/306">JEP 306</a>
  * </li>
  * </ol>
  * <p>
@@ -144,6 +148,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code jdkVersion} - Set the JDK version that you are using.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code "17"}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -184,7 +193,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class RedundantModifierCheck
     extends AbstractCheck {
 
@@ -201,6 +210,28 @@ public class RedundantModifierCheck
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
+
+    /**
+     * Set the JDK version that you are using.
+     *
+     */
+    private String jdkVersion = String.valueOf(JavaLanguageLevel.LEVEL_17.getIntValue());
+
+    /**
+     * Java language level based on the JDK version.
+     */
+    private JavaLanguageLevel javaLanguageLevel = JavaLanguageLevel.getLevel(jdkVersion);
+
+    /**
+     * Setter to set the JDK version that you are using.
+     *
+     * @param jdkVersion the Java version
+     * @since 10.18.0
+     */
+    public void setJdkVersion(String jdkVersion) {
+        this.jdkVersion = jdkVersion;
+        javaLanguageLevel = JavaLanguageLevel.getLevel(this.jdkVersion);
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -260,6 +291,10 @@ public class RedundantModifierCheck
 
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
+        }
+
+        if (javaLanguageLevel.isGreaterThanOrEqual(JavaLanguageLevel.LEVEL_17)) {
+            checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
     }
 
@@ -522,6 +557,75 @@ public class RedundantModifierCheck
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
         TokenUtil.forEachChild(modifiers, TokenTypes.ANNOTATION, annotationsList::add);
         return annotationsList;
+    }
+
+    /**
+     * Represents the Java language level.
+     */
+    public enum JavaLanguageLevel {
+
+        /**
+         * Represents Java language level less than 17.
+         */
+        LEVEL_LT_17(16),
+
+        /**
+         * Represents Java language level 17.
+         */
+        LEVEL_17(17),;
+
+        /**
+         * The value of the language level.
+         */
+        private final int value;
+
+        /**
+         * Creates a new instance.
+         *
+         * @param value the value of the language level
+         */
+        JavaLanguageLevel(int value) {
+            this.value = value;
+        }
+
+        /**
+         * Getter for the value.
+         *
+         * @return the value of the language level
+         */
+        private int getIntValue() {
+            return value;
+        }
+
+        /**
+         * Returns the language level based on the JDK version.
+         *
+         * @param jdkVersion the JDK version
+         * @return the java language level
+         */
+        private static JavaLanguageLevel getLevel(String jdkVersion) {
+            final JavaLanguageLevel level;
+            final int jdk17 = 17;
+            if (jdkVersion.startsWith("1.")
+                    || Integer.parseInt(jdkVersion) < jdk17) {
+                level = LEVEL_LT_17;
+            }
+            else {
+                level = LEVEL_17;
+            }
+            return level;
+        }
+
+        /**
+         * Checks if the current language level is greater than or equal
+         * to the given language level.
+         *
+         * @param that the language level to compare
+         * @return true if the current language level is greater than or equal
+         */
+        private boolean isGreaterThanOrEqual(JavaLanguageLevel that) {
+            return this.getIntValue() >= that.getIntValue();
+        }
     }
 
 }
