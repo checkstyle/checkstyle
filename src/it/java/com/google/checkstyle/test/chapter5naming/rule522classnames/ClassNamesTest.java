@@ -32,8 +32,7 @@ public class ClassNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testClassNames() throws Exception {
-        final String filePath = getPath("InputClassNames.java");
-        verifyWithConfigParser(new String[] {"TypeName"}, filePath);
+        verifyWithWholeConfig(getPath("InputClassNames.java"));
     }
 
 }
