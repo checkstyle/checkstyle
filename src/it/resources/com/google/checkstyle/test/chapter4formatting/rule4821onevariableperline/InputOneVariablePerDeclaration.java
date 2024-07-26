@@ -3,12 +3,17 @@ package com.google.checkstyle.test.chapter4formatting.rule4821onevariableperline
 /** Some javadoc. */
 public class InputOneVariablePerDeclaration {
   int mnp, efg; // violation 'Each variable declaration must be in its own statement.'
-  int i1; int j1; // violation 'Only one variable definition per line allowed.'
+  int i1; int j1;
+  // 2 violations above:
+  //  'Only one variable definition per line allowed.'
+  //  'Only one statement per line allowed.'
 
   void method1() {
     String str, str1; // violation 'Each variable declaration must be in its own statement.'
     java.lang.Object obj; Object obj1;
-    // violation above 'Only one variable definition per line allowed.'
+    // 2 violations above:
+    //  'Only one variable definition per line allowed.'
+    //  'Only one statement per line allowed.'
   }
 
   // second definition is wrapped
@@ -31,13 +36,18 @@ public class InputOneVariablePerDeclaration {
 
   class Inner {
     int xyz, qwe; // violation 'Each variable declaration must be in its own statement.'
-    int i1; int j1; // violation 'Only one variable definition per line allowed.'
+    int i1; int j1;
+    // 2 violations above:
+    //  'Only one variable definition per line allowed.'
+    //  'Only one statement per line allowed.'
 
     void method1() {
       String str, str1;
       // violation above 'Each variable declaration must be in its own statement.'
       java.lang.Object obj; Object obj1;
-      // violation above 'Only one variable definition per line allowed.'
+      // 2 violations above:
+      //  'Only one variable definition per line allowed.'
+      //  'Only one statement per line allowed.'
     }
 
     // second definition is wrapped
@@ -61,13 +71,18 @@ public class InputOneVariablePerDeclaration {
     Inner anon =
             new Inner() {
               int abc, pqr; // violation 'Each variable declaration must be in its own statement.'
-              int i1; int j1; // violation 'Only one variable definition per line allowed.'
+              int i1; int j1;
+              // 2 violations above:
+              //  'Only one variable definition per line allowed.'
+              //  'Only one statement per line allowed.'
 
               void method1() {
                 String str, str1;
                 // violation above 'Each variable declaration must be in its own statement.'
                 java.lang.Object obj; Object obj1;
-                // violation above 'Only one variable definition per line allowed.'
+                // 2 violations above:
+                //  'Only one variable definition per line allowed.'
+                //  'Only one statement per line allowed.'
               }
 
               // second definition is wrapped
@@ -79,7 +94,8 @@ public class InputOneVariablePerDeclaration {
               // violation below 'Only one variable definition per line allowed.'
               java.lang
                   .String string1; java.lang.String[]
-                          strings1;
+                      strings1;
+              // violation 2 lines above '.* incorrect indentation .*, expected .*: 10, 12, 14.'
 
               void method2() {
                 for (int i = 0, j = 0; i < 10; i++, j--) { // ok
