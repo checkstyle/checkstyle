@@ -34,6 +34,10 @@
             <code>record</code> definitions that are declared as <code>final</code> and nested
             <code>record</code> definitions that are declared as <code>static</code>.
           </li>
+          <li>
+            <code>strictfp</code> modifier on java 17 or later. See reason at
+            <a href="https://openjdk.org/jeps/306">JEP 306</a>
+          </li>
         </ol>
 
         <p>
@@ -152,6 +156,13 @@ public class ClassExtending extends ClassExample {
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td>jdkVersion</td>
+              <td>Allow the check to be aware of the Java version, using only the major part of it.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>11</code></td>
+              <td>10.18.0</td>
             </tr>
             <tr>
               <td>tokens</td>
