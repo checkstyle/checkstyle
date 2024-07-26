@@ -60,6 +60,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code record} definitions that are declared as {@code final} and nested
  * {@code record} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * {@code strictfp} modifier on java 17 or later.
+ * </li>
  * </ol>
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -169,6 +172,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
  * RECORD_DEF</a>.
  * </li>
+ * <li>
+ * Property {@code jdkVersion} - Allow the check to be aware of the Java version.
+ * Type is {@code int}.
+ * Default value is {@code 9}.
+ * </li>
  * </ul>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -201,6 +209,21 @@ public class RedundantModifierCheck
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
+
+    /**
+     * Allow the check to be aware of the Java version.
+     */
+    private int jdkVersion = 9;
+
+    /**
+     * Setter to allow the check to be aware of the Java version.
+     *
+     * @param jdkVersion the Java version
+     * @since 10.18.0
+     */
+    public void setJdkVersion(int jdkVersion) {
+        this.jdkVersion = jdkVersion;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -260,6 +283,10 @@ public class RedundantModifierCheck
 
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
+        }
+
+        if (jdkVersion >= 17) {
+            checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
     }
 
