@@ -1,12 +1,17 @@
 // non-compiled with javac: Compilable with Java17
+
 package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 
-/* Config:
+/**
+ * some javadoc.
+ * Config:
  * format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"
  *
  */
-// violation below 'Record component name '_componentName' must match pattern'
-public record InputRecordComponentName<t>(int _componentName, String componentName2) {}
+public record InputRecordComponentName<E>(int _componentName, String componentName2) {}
+// violation above 'Record component name '_componentName' must match pattern'
 
-// violation below 'Record component name 'Capital' must match pattern'
-record InputRecordComponentName<t>(int Capital) {}
+record InputRecordComponentName<E>(int Capital) {}
+// 2 violations above:
+//  'Top-level class InputRecordComponentName has to reside in its own source file.'
+//  'Record component name 'Capital' must match pattern'
