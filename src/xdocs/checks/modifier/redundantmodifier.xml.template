@@ -156,17 +156,33 @@ public class ClassExtending extends ClassExample {
         <p id="Example1-config"> To configure the check: </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-
-        <p id="Example2-config">
-          To configure the check to check only methods and not variables:
+        <p id="Example1-code">
+          Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example2-config">
+          To configure the check to check only methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
