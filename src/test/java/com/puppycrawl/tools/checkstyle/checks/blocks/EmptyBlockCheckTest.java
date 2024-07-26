@@ -229,6 +229,8 @@ public class EmptyBlockCheckTest
     public void testEmptyBlockSwitchExpressions() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "116:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "118:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
@@ -242,5 +244,18 @@ public class EmptyBlockCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyBlockTestUppercaseOptionProperty.java"), expected);
+    }
+
+    @Test
+    public void testEmptyBlockCaseAndDefaultWithTextOption() throws Exception {
+        final String[] expected = {
+            "20:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "24:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "33:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "37:24: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyBlockCaseAndDefaultWithTextOption.java"),
+                expected);
     }
 }
