@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule525nonconstantfieldnames;
 
+/** some javadoc. */
 public class InputNonConstantNamesBasic {
   public int mPublic; // violation 'Member name 'mPublic' must match pattern'
   protected int mProtected; // violation 'Member name 'mProtected' must match pattern'
@@ -16,7 +17,10 @@ public class InputNonConstantNamesBasic {
   int ppackage; // ok
   private int pprivate; // ok
 
-  int ABC = 0; // violation 'Member name 'ABC' must match pattern'
+  int ABC = 0;
+  // 2 violations above:
+  //  'Abbreviation in name 'ABC' must contain no more than '1' consecutive capital letters.'
+  //  'Member name 'ABC' must match pattern'
   final int C_D_E = 0; // violation 'Member name 'C_D_E' must match pattern'
 
   public int $mPublic; // violation 'Member name '\$mPublic' must match pattern'
