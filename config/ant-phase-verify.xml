@@ -53,6 +53,8 @@
                 file="config/suppressions.xml"/>
       <property key="checkstyle.suppressions-xpath.file"
                 file="config/suppressions-xpath.xml"/>
+      <property key="checkstyle.java.version"
+                value="${java.version}"/>
     </checkstyle>
 
     <tstamp>

@@ -1578,6 +1578,7 @@
               <target>
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
+                <property name="java.version" value="${java.version}"/>
                 <ant antfile="config/ant-phase-verify.xml" />
               </target>
             </configuration>
