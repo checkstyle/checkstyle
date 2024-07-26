@@ -60,6 +60,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code record} definitions that are declared as {@code final} and nested
  * {@code record} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * {@code strictfp} modifier on java 17 or later. See reason at
+ * <a href="https://openjdk.org/jeps/306">JEP 306</a>
+ * </li>
  * </ol>
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -144,6 +148,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code jdkVersion} - Allow the check to be aware of the Java version,
+ * using only the major part of it.
+ * Type is {@code int}.
+ * Default value is {@code 11}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -184,6 +194,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 3.0
  */
+
 @StatelessCheck
 public class RedundantModifierCheck
     extends AbstractCheck {
@@ -201,6 +212,33 @@ public class RedundantModifierCheck
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
+
+    /**
+     * Default value of jdk version.
+     */
+    private static final int DEFAULT_JDK_VERSION = 11;
+
+    /**
+     * Constant for Java 17 version number.
+     */
+    private static final int JAVA_17 = 17;
+
+    /**
+     * Allow the check to be aware of the Java version,
+     * using only the major part of it.
+     */
+    private int jdkVersion = DEFAULT_JDK_VERSION;
+
+    /**
+     * Setter to allow the check to be aware of the Java version,
+     * using only the major part of it.
+     *
+     * @param jdkVersion the Java version
+     * @since 10.18.0
+     */
+    public void setJdkVersion(int jdkVersion) {
+        this.jdkVersion = jdkVersion;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -260,6 +298,10 @@ public class RedundantModifierCheck
 
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
+        }
+
+        if (jdkVersion >= JAVA_17) {
+            checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
     }
 
