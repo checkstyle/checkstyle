@@ -32,8 +32,7 @@ public class OneVariablePerDeclarationTest extends AbstractGoogleModuleTestSuppo
 
     @Test
     public void testMultipleVariableDeclarations() throws Exception {
-        final String filePath = getPath("InputOneVariablePerDeclaration.java");
-        verifyWithConfigParser(new String[] {"MultipleVariableDeclarations"}, filePath);
+        verifyWithWholeConfig(getPath("InputOneVariablePerDeclaration.java"));
     }
 
 }
