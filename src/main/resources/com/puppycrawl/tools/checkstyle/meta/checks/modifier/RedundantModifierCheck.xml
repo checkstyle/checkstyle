@@ -33,6 +33,10 @@
  {@code record} definitions that are declared as {@code final} and nested
  {@code record} definitions that are declared as {@code static}.
  &lt;/li&gt;
+ &lt;li&gt;
+ {@code strictfp} modifier when using JDK 17 or later. See reason at
+ &lt;a href="https://openjdk.org/jeps/306"&gt;JEP 306&lt;/a&gt;
+ &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
  interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -116,6 +120,9 @@
  }
  &lt;/pre&gt;</description>
          <properties>
+            <property default-value="17" name="jdkVersion" type="java.lang.String">
+               <description>Set the JDK version that you are using.</description>
+            </property>
             <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
