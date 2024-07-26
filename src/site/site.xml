@@ -104,6 +104,8 @@
           <item name="InterfaceIsType" href="checks/design/interfaceistype.html"/>
           <item name="MutableException" href="checks/design/mutableexception.html"/>
           <item name="OneTopLevelClass" href="checks/design/onetoplevelclass.html"/>
+          <item name="SealedShouldHavePermitsList"
+                href="checks/design/sealedshouldhavepermitslist.html"/>
           <item name="ThrowsCount" href="checks/design/throwscount.html"/>
           <item name="VisibilityModifier" href="checks/design/visibilitymodifier.html"/>
         </item>
