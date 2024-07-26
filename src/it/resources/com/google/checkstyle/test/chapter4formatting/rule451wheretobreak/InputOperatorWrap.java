@@ -15,7 +15,7 @@ class InputOperatorWrap {
     boolean y = true
         &&
         false;
-     y = true && // violation ''&&' should be on a new line.'
+    y = true && // violation ''&&' should be on a new line.'
         false;
     y = false
         && true;
@@ -37,16 +37,14 @@ class InputOperatorWrap {
         0;
   }
 
-  <
-   T extends Comparable & // violation ''&' should be on a new line.'
-      java.io.Serializable
-  >
-  void testGenerics1() {
+  <T extends Comparable & // violation ''&' should be on a new line.'
+      java.io.Serializable>
+      void testGenerics1() {
     Comparable
-      <
-      String
-      >
-      c = new String();
+        <
+        String
+        >
+        c = new String();
     Map<String, String> map = new HashMap<String, String>();
 
     boolean flag = false;
@@ -55,33 +53,30 @@ class InputOperatorWrap {
 
     for (Map.Entry<String, String> entry :
         map.entrySet()) {
-        int i = flag == true ? // violation ''?' should be on a new line.'
-                1 : 2;
+      int i = flag == true ? // violation ''?' should be on a new line.'
+              1 : 2;
     }
 
     if (init != // violation ''!=' should be on a new line.'
-        9) {}
+        9) { /* ignore */ }
 
     while (init == // violation ''==' should be on a new line.'
-        10) {}
+        10) { }
 
     if (init > // violation ''>' should be on a new line.'
-        10) {
-
-    } else {
-    }
+        10) { /* ignore */ }
 
     while (init < 10 || // violation ''\|\|' should be on a new line.'
-        !flag) {}
+        !flag) { }
   }
 
   class Inner {
     void testGenerics1() {
       Comparable
-        <
-        String
-        >
-        c = new String();
+          <
+          String
+          >
+          c = new String();
       Map<String, String> map = new HashMap<String, String>();
       boolean flag = false;
 
@@ -89,21 +84,18 @@ class InputOperatorWrap {
 
       for (Map.Entry<String, String> entry :
           map.entrySet()) {
-          int i = flag == true ? // violation ''?' should be on a new line.'
-                  1 : 2;
+        int i = flag == true ? // violation ''?' should be on a new line.'
+                1 : 2;
       }
 
       if (init != // violation ''!=' should be on a new line.'
-          9) {}
+          9) { /* ignore */ }
 
       while (init == // violation ''==' should be on a new line.'
-          10) {}
+          10) { }
 
       if (init > // violation ''>' should be on a new line.'
-          10) {
-
-      } else {
-      }
+          10) { /* ignore */ }
 
       while (init < 10 || // violation ''\|\|' should be on a new line.'
           !flag) {}
@@ -114,10 +106,10 @@ class InputOperatorWrap {
       new Inner() {
         void testGenerics1() {
           Comparable
-            <
-            String
-            >
-            c = new String();
+              <
+              String
+              >
+              c = new String();
           Map<String, String> map = new HashMap<String, String>();
           boolean flag = false;
           int init = 9;
@@ -129,202 +121,199 @@ class InputOperatorWrap {
           }
 
           if (init != // violation ''!=' should be on a new line.'
-              9) {}
+              9) { /* ignore */ }
 
           while (init == // violation ''==' should be on a new line.'
-              10) {}
+              10) { }
 
           if (init > // violation ''>' should be on a new line.'
-              10) {
-
-          } else {
-          }
+              10) { /* ignore */ }
 
           while (init < 10 || // violation ''\|\|' should be on a new line.'
               !flag) {}
         }
       };
-}
 
-class AsInput {
-  int abc = 0;
-  String string
-      = "string";
-  double PI =
-      3.1415;
-}
-
-class Ternary {
-  void foo() {
-    boolean flag = true;
-    int i = flag == true ? // violation ''?' should be on a new line.'
-        1 :
-        2;
-    int i2 = flag == true
-        ?
-        1
-        :
-        2;
-    int i3 = flag == true
-        ? 1
-        : 2;
-  }
-}
-
-class AssignClass {
-  void foo() {
-    int i = 0;
-    int j = 0;
-    i +=
-            1;
-    j
-         += 2;
-    i -=
-            1;
-    j
-         -= 2;
-    i /=
-            1;
-    j
-         /= 2;
-    i *=
-            1;
-    j
-         *= 2;
-    i %=
-            1;
-    j
-         %= 2;
-    i ^=
-            1;
-    j
-         ^= 2;
-    i |=
-            1;
-    j
-         |= 2;
-    i &=
-            1;
-    j
-         &= 2;
-    i >>=
-            1;
-    j
-        >>= 2;
-    i >>>=
-            1;
-    j
-        >>>= 2;
-    i <<=
-            1;
-    j
-        <<= 2;
+  class AsInput {
+    int abc = 0;
+    String string
+            = "string";
+    double pi =
+            3.1415;
   }
 
-  class InnerClass {
+  class Ternary {
+    void foo() {
+      boolean flag = true;
+      int i = flag == true ? // violation ''?' should be on a new line.'
+              1 :
+              2;
+      int i2 = flag == true
+              ?
+              1
+              :
+              2;
+      int i3 = flag == true
+              ? 1
+              : 2;
+    }
+  }
+
+  class AssignClass {
     void foo() {
       int i = 0;
       int j = 0;
       i +=
               1;
       j
-           += 2;
+              += 2;
       i -=
               1;
       j
-           -= 2;
+              -= 2;
       i /=
               1;
       j
-           /= 2;
+              /= 2;
       i *=
               1;
       j
-           *= 2;
+              *= 2;
       i %=
               1;
       j
-           %= 2;
+              %= 2;
       i ^=
               1;
       j
-           ^= 2;
+              ^= 2;
       i |=
               1;
       j
-           |= 2;
+              |= 2;
       i &=
               1;
       j
-           &= 2;
+              &= 2;
       i >>=
               1;
       j
-          >>= 2;
+              >>= 2;
       i >>>=
               1;
       j
-          >>>= 2;
+              >>>= 2;
       i <<=
               1;
       j
-          <<= 2;
-    }
-  }
-
-  InnerClass anon =
-      new InnerClass() {
-        void foo() {
-          int i = 0;
-          int j = 0;
-          i +=
-                  1;
-          j
-               += 2;
-          i -=
-                  1;
-          j
-               -= 2;
-          i /=
-                  1;
-          j
-               /= 2;
-          i *=
-                  1;
-          j
-               *= 2;
-          i %=
-                  1;
-          j
-               %= 2;
-          i ^=
-                  1;
-          j
-               ^= 2;
-          i |=
-                  1;
-          j
-               |= 2;
-          i &=
-                  1;
-          j
-               &= 2;
-          i >>=
-                  1;
-          j
-              >>= 2;
-          i >>>=
-                  1;
-          j
-              >>>= 2;
-          i <<=
-                  1;
-          j
               <<= 2;
-        }
-      };
+    }
 
-  <T extends Comparable
-        & java.io.Serializable>
-  void testWrapBeforeOperator() {}
+    class InnerClass {
+      void foo() {
+        int i = 0;
+        int j = 0;
+        i +=
+                1;
+        j
+                += 2;
+        i -=
+                1;
+        j
+                -= 2;
+        i /=
+                1;
+        j
+                /= 2;
+        i *=
+                1;
+        j
+                *= 2;
+        i %=
+                1;
+        j
+                %= 2;
+        i ^=
+                1;
+        j
+                ^= 2;
+        i |=
+                1;
+        j
+                |= 2;
+        i &=
+                1;
+        j
+                &= 2;
+        i >>=
+                1;
+        j
+                >>= 2;
+        i >>>=
+                1;
+        j
+                >>>= 2;
+        i <<=
+                1;
+        j
+                <<= 2;
+      }
+    }
+
+    InnerClass anon =
+            new InnerClass() {
+              void foo() {
+                int i = 0;
+                int j = 0;
+                i +=
+                        1;
+                j
+                        += 2;
+                i -=
+                        1;
+                j
+                        -= 2;
+                i /=
+                        1;
+                j
+                        /= 2;
+                i *=
+                        1;
+                j
+                        *= 2;
+                i %=
+                        1;
+                j
+                        %= 2;
+                i ^=
+                        1;
+                j
+                        ^= 2;
+                i |=
+                        1;
+                j
+                        |= 2;
+                i &=
+                        1;
+                j
+                        &= 2;
+                i >>=
+                        1;
+                j
+                        >>= 2;
+                i >>>=
+                        1;
+                j
+                        >>>= 2;
+                i <<=
+                        1;
+                j
+                        <<= 2;
+              }
+            };
+
+    <T extends Comparable
+            & java.io.Serializable>
+        void testWrapBeforeOperator() {}
+  }
 }
