@@ -11,13 +11,13 @@ final class InputLocalVariableNameSimple {
 
   private int badMember = 2;
 
-  private int mNumCreated1 = 0;
+  private int numCreated1 = 0;
 
-  protected int mNumCreated2 = 0;
+  protected int numCreated2 = 0;
 
-  private int[] mInts = new int[] {1, 2, 3, 4};
+  private int[] ints = new int[] {1, 2, 3, 4};
 
-  /** test local variables */
+  /** test local variables. */
   private void localVariables() {
     // bad examples
     int a;

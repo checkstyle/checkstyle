@@ -2,15 +2,19 @@
 
 package com.google.checkstyle.test.chapter5naming.rule527localvariablenames;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
+/** some javadoc. */
 public class InputPatternVariableNameEnhancedInstanceofTestDefault {
   private Object obj;
 
   static boolean doStuff(Object obj) {
     return obj instanceof Integer OTHER && OTHER > 0;
-    // violation above 'Pattern variable name 'OTHER' must match pattern'
+    // 2 violations above:
+    //  'Abbreviation in name 'OTHER' must contain no more than '1' consecutive capital letters.'
+    //  'Pattern variable name 'OTHER' must match pattern'
   }
 
   static {
@@ -33,7 +37,8 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
     public boolean get();
   }
 
-  public void t(Object o1, Object o2) {
+  /** some javadoc. */
+  public void testing(Object o1, Object o2) {
     Object b;
     Object c;
     if (!(o1 instanceof String aA)
@@ -65,17 +70,17 @@ public class InputPatternVariableNameEnhancedInstanceofTestDefault {
       System.out.println("done");
     }
 
-    {
-      while (!(o1 instanceof String _aa)) {
-        // violation above 'Pattern variable name '_aa' must match pattern'
-        L3:
-        break L3;
+      {
+        while (!(o1 instanceof String _aa)) {
+          // violation above 'Pattern variable name '_aa' must match pattern'
+          L3:
+          break L3;
+        }
+        while (o1 instanceof String aa_) {
+          // violation above 'Pattern variable name 'aa_' must match pattern'
+          aa_.length();
+        }
       }
-      while (o1 instanceof String aa_) {
-        // violation above 'Pattern variable name 'aa_' must match pattern'
-        aa_.length();
-      }
-    }
 
     int x = o1 instanceof String aaa$aaa ? aaa$aaa.length() : 2;
     // violation above 'Pattern variable name .* must match pattern'
