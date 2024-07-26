@@ -34,6 +34,10 @@
             <code>record</code> definitions that are declared as <code>final</code> and nested
             <code>record</code> definitions that are declared as <code>static</code>.
           </li>
+          <li>
+            <code>strictfp</code> modifier when using JDK 17 or later. See reason at
+            <a href="https://openjdk.org/jeps/306">JEP 306</a>
+          </li>
         </ol>
 
         <p>
@@ -154,6 +158,13 @@ public class ClassExtending extends ClassExample {
               <th>since</th>
             </tr>
             <tr>
+              <td>jdkVersion</td>
+              <td>Set the JDK version that you are using.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>&quot;21&quot;</code></td>
+              <td>10.18.0</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -245,6 +256,7 @@ public class Example1 {
         A, B, C
   }
 
+  // violation below, 'Redundant 'strictfp' modifier'
   public strictfp class Test { }
 
   AutoCloseable lock() {
