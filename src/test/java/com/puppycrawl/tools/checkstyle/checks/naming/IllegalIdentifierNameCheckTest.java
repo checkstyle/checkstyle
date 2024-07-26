@@ -74,7 +74,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalIdentifierNameDefault() throws Exception {
 
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$";
 
         final String[] expected = {
             "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
@@ -142,7 +142,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameLambda() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$";
 
         final String[] expected = {
             "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
@@ -166,7 +166,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIllegalIdentifierNameRecordPattern() throws Exception {
-        final String format = "(?i)^(?!(record|yield|var|permits|sealed)$).+$";
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$";
 
         final String[] expected = {
             "16:36: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
@@ -179,5 +179,21 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
+    }
+
+    @Test
+    public void testIllegalIdentifierNamePatternMatchingForSwitch() throws Exception {
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$";
+
+        final String[] expected = {
+            "16:36: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "22:35: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "24:26: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "28:16: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+            "33:39: " + getCheckMessage(MSG_INVALID_PATTERN, "when", format),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalIdentifierNamePatternMatchingForSwitch.java"),
+                expected);
     }
 }

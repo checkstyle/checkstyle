@@ -149,6 +149,8 @@ public class XdocsPagesTest {
             // loads string into memory similar to file
             "Header.header",
             "RegexpHeader.header",
+            // property is an int, but we cut off excess to accommodate old versions
+            "RedundantModifierCheck.jdkVersion",
             // until https://github.com/checkstyle/checkstyle/issues/13376
             "CustomImportOrder.customImportOrderRules"
     );

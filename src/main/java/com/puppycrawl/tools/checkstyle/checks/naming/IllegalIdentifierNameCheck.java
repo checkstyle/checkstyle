@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "(?i)^(?!(record|yield|var|permits|sealed)$).+$"}.
+ * Default value is {@code "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -94,7 +94,7 @@ public class IllegalIdentifierNameCheck extends AbstractNameCheck {
      * Creates a new {@code IllegalIdentifierNameCheck} instance.
      */
     public IllegalIdentifierNameCheck() {
-        super("(?i)^(?!(record|yield|var|permits|sealed)$).+$");
+        super("(?i)^(?!(record|yield|var|permits|sealed|when)$).+$");
     }
 
     @Override

@@ -35,7 +35,7 @@
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;(?i)^(?!(record|yield|var|permits|sealed)$).+$&quot;</code></td>
+              <td><code>&quot;(?i)^(?!(record|yield|var|permits|sealed|when)$).+$&quot;</code></td>
               <td>8.36</td>
             </tr>
             <tr>
