@@ -25,16 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "OperatorWrap",
-        "MethodParamPad",
-        "SeparatorWrapDot",
-        "SeparatorWrapComma",
-        "SeparatorWrapMethodRef",
-        "SeparatorWrapEllipsis",
-        "SeparatorWrapArrayDeclarator",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule451wheretobreak";
@@ -42,44 +32,37 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOperatorWrap() throws Exception {
-        final String filePath = getPath("InputOperatorWrap.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputOperatorWrap.java"));
     }
 
     @Test
     public void testMethodParamPad() throws Exception {
-        final String filePath = getPath("InputMethodParamPad.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
     }
 
     @Test
     public void testSeparatorWrapDot() throws Exception {
-        final String filePath = getPath("InputSeparatorWrap.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSeparatorWrap.java"));
     }
 
     @Test
     public void testSeparatorWrapComma() throws Exception {
-        final String filePath = getPath("InputSeparatorWrapComma.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSeparatorWrapComma.java"));
     }
 
     @Test
     public void testSeparatorWrapMethodRef() throws Exception {
-        final String filePath = getPath("InputSeparatorWrapMethodRef.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSeparatorWrapMethodRef.java"));
     }
 
     @Test
     public void testEllipsis() throws Exception {
-        final String filePath = getPath("InputSeparatorWrapEllipsis.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSeparatorWrapEllipsis.java"));
     }
 
     @Test
     public void testArrayDeclarator() throws Exception {
-        final String filePath = getPath("InputSeparatorWrapArrayDeclarator.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSeparatorWrapArrayDeclarator.java"));
     }
 
 }

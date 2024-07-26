@@ -5,6 +5,5 @@ class InputSeparatorWrapEllipsis {
   public void testMethodWithGoodWrapping(String... parameters) {}
 
   public void testMethodWithBadWrapping(String
-      ...parameters) { // violation ''...' should be on the previous line.'
-  }
+      ... parameters) {} // violation ''...' should be on the previous line.'
 }
