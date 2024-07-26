@@ -25,11 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "LocalVariableName",
-        "PatternVariableName",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule527localvariablenames";
@@ -37,22 +32,18 @@ public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testPatternVariableName() throws Exception {
-        final String filePath =
-                getNonCompilablePath(
-                        "InputPatternVariableNameEnhancedInstanceofTestDefault.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getNonCompilablePath(
+                "InputPatternVariableNameEnhancedInstanceofTestDefault.java"));
     }
 
     @Test
     public void testLocalAndPatternVariableName() throws Exception {
-        final String filePath = getPath("InputLocalVariableNameSimple.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputLocalVariableNameSimple.java"));
     }
 
     @Test
     public void testOneChar() throws Exception {
-        final String filePath = getPath("InputLocalVariableNameOneCharVarName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputLocalVariableNameOneCharVarName.java"));
     }
 
 }
