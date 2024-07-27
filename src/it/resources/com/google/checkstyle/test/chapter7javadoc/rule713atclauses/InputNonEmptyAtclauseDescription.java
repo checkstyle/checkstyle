@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule713atclauses;
 
 class InputNonEmptyAtclauseDescription {
   /**
-   * Some javadoc
+   * Some javadoc.
    *
    * @param a Some javadoc
    * @param b Some javadoc
@@ -16,6 +16,8 @@ class InputNonEmptyAtclauseDescription {
   }
 
   /**
+   * Some javadoc.
+   *
    * @param a Some javadoc
    * @param b Some javadoc
    * @param c Some javadoc
@@ -26,13 +28,15 @@ class InputNonEmptyAtclauseDescription {
     return 1;
   }
 
-  // violation 7 lines below 'At-clause should have a non-empty description.'
-  // violation 7 lines below 'At-clause should have a non-empty description.'
-  // violation 7 lines below 'At-clause should have a non-empty description.'
-  // violation 7 lines below 'At-clause should have a non-empty description.'
-  // violation 7 lines below 'At-clause should have a non-empty description.'
-  // violation 7 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
+  // violation 9 lines below 'At-clause should have a non-empty description.'
   /**
+   * some javadoc.
+   *
    * @param a
    * @param b
    * @param c
@@ -44,12 +48,14 @@ class InputNonEmptyAtclauseDescription {
     return 1;
   }
 
-  // violation 6 lines below 'At-clause should have a non-empty description.'
-  // violation 6 lines below 'At-clause should have a non-empty description.'
-  // violation 6 lines below 'At-clause should have a non-empty description.'
-  // violation 6 lines below 'At-clause should have a non-empty description.'
-  // violation 6 lines below 'At-clause should have a non-empty description.'
+  // violation 8 lines below 'At-clause should have a non-empty description.'
+  // violation 8 lines below 'At-clause should have a non-empty description.'
+  // violation 8 lines below 'At-clause should have a non-empty description.'
+  // violation 8 lines below 'At-clause should have a non-empty description.'
+  // violation 8 lines below 'At-clause should have a non-empty description.'
   /**
+   * some javadoc.
+   *
    * @param a
    * @param b
    * @param c
