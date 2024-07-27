@@ -60,6 +60,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code record} definitions that are declared as {@code final} and nested
  * {@code record} definitions that are declared as {@code static}.
  * </li>
+ * <li>
+ * {@code strictfp} modifier when using JDK 17 or later. See reason at
+ * <a href="https://openjdk.org/jeps/306">JEP 306</a>
+ * </li>
  * </ol>
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -144,6 +148,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code jdkVersion} - Set the JDK version that you are using.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code "21"}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -201,6 +210,32 @@ public class RedundantModifierCheck
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
+
+    /**
+     * Constant for jdk 17 version number.
+     */
+    private static final int JDK_17 = 17;
+
+    /**
+     * Constant for jdk 21 version number.
+     */
+    private static final int JDK_21 = 21;
+
+    /**
+     * Set the JDK version that you are using.
+     *
+     */
+    private String jdkVersion = String.valueOf(JDK_21);
+
+    /**
+     * Setter to set the JDK version that you are using.
+     *
+     * @param jdkVersion the Java version
+     * @since 10.18.0
+     */
+    public void setJdkVersion(String jdkVersion) {
+        this.jdkVersion = jdkVersion;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -260,6 +295,10 @@ public class RedundantModifierCheck
 
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
+        }
+
+        if (Integer.parseInt(jdkVersion) >= JDK_17) {
+            checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
     }
 
