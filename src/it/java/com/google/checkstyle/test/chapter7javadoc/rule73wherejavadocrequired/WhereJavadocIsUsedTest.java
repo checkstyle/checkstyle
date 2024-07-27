@@ -25,12 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class WhereJavadocIsUsedTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "MissingJavadocType",
-        "JavadocMethod",
-        "MissingJavadocMethod",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired";
@@ -38,20 +32,17 @@ public class WhereJavadocIsUsedTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testMissingJavadocTypeIncorrect() throws Exception {
-        final String filePath = getPath("InputMissingJavadocTypeIncorrect.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputMissingJavadocTypeIncorrect.java"));
     }
 
     @Test
     public void testMissingJavadocTypeCorrect() throws Exception {
-        final String filePath = getPath("InputMissingJavadocTypeCorrect.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputMissingJavadocTypeCorrect.java"));
     }
 
     @Test
     public void testJavadocMethodAndMissingJavadocMethod() throws Exception {
-        final String filePath = getPath("InputJavadocMethodAndMissingJavadocMethod.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 
 }
