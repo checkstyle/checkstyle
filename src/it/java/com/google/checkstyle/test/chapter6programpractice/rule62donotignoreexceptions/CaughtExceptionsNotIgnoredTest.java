@@ -32,8 +32,7 @@ public class CaughtExceptionsNotIgnoredTest extends AbstractGoogleModuleTestSupp
 
     @Test
     public void testEmptyFinallyBlock() throws Exception {
-        final String filePath = getPath("InputEmptyFinallyBlock.java");
-        verifyWithConfigParser(new String[] {"EmptyBlock"}, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyFinallyBlock.java"));
     }
 
 }
