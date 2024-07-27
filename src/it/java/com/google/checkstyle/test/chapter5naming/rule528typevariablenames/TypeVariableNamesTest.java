@@ -25,13 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "MethodTypeParameterName",
-        "RecordTypeParameterName",
-        "InterfaceTypeParameterName",
-        "ClassTypeParameterName",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule528typevariablenames";
@@ -39,25 +32,21 @@ public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testMethodDefault() throws Exception {
-        final String filePath = getPath("InputMethodTypeParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputMethodTypeParameterName.java"));
     }
 
     @Test
     public void testClassDefault() throws Exception {
-        final String filePath = getPath("InputClassTypeParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputClassTypeParameterName.java"));
     }
 
     @Test
     public void testInterfaceDefault() throws Exception {
-        final String filePath = getPath("InputInterfaceTypeParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputInterfaceTypeParameterName.java"));
     }
 
     @Test
     public void testRecordDefault() throws Exception {
-        final String filePath = getNonCompilablePath("InputRecordTypeParameterName.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getNonCompilablePath("InputRecordTypeParameterName.java"));
     }
 }
