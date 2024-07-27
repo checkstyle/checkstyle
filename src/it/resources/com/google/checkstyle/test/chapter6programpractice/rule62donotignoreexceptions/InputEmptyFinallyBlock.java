@@ -28,6 +28,7 @@ class InputEmptyFinallyBlock {
         doSm();
       }
     } catch (Exception e) {
+      /* ignore */
     } finally {
     } // violation above 'Empty finally block.'
   }
@@ -55,6 +56,7 @@ class InputEmptyFinallyBlock {
           doSm();
         }
       } catch (Exception e) {
+        /* ignore */
       } finally {
       } // violation above 'Empty finally block.'
     }
@@ -84,6 +86,7 @@ class InputEmptyFinallyBlock {
               doSm();
             }
           } catch (Exception e) {
+            /* ignore */
           } finally {
           } // violation above 'Empty finally block.'
         }
