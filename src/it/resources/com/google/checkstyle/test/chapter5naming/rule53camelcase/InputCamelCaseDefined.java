@@ -9,10 +9,13 @@ class InputCamelCaseDefined {
   boolean supportsIpv6OnIos;
 
   void XmlHttpRequest() {}
+  // violation above 'Method name 'XmlHttpRequest' must match pattern'
 
   void YouTubeImporter() {}
+  // violation above 'Method name 'YouTubeImporter' must match pattern'
 
   void YoutubeImporter() {}
+  // violation above 'Method name 'YoutubeImporter' must match pattern'
 
   class InnerGood {
 
@@ -23,10 +26,13 @@ class InputCamelCaseDefined {
     boolean supportsIpv6OnIos;
 
     void XmlHttpRequest() {}
+    // violation above 'Method name 'XmlHttpRequest' must match pattern'
 
     void YouTubeImporter() {}
+    // violation above 'Method name 'YouTubeImporter' must match pattern'
 
     void YoutubeImporter() {}
+    // violation above 'Method name 'YoutubeImporter' must match pattern'
   }
 
   InputCamelCaseDefined anonymousGood =
@@ -39,10 +45,13 @@ class InputCamelCaseDefined {
             boolean supportsIpv6OnIos;
 
             void XmlHttpRequest() {}
+            // violation above 'Method name 'XmlHttpRequest' must match pattern'
 
             void YouTubeImporter() {}
+            // violation above 'Method name 'YouTubeImporter' must match pattern'
 
             void YoutubeImporter() {}
+            // violation above 'Method name 'YoutubeImporter' must match pattern'
           };
 
   class AbbreviationsIncorrect {
@@ -54,7 +63,9 @@ class InputCamelCaseDefined {
     // violation above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
     void XMLHTTPRequest() {}
-    // violation above 'XMLHTTPRequest.* more than '1' .* capital letters.'
+    // 2 violations above:
+    //  'XMLHTTPRequest.* more than '1' .* capital letters.'
+    //  'Method name 'XMLHTTPRequest' must match pattern'
 
     class InnerBad {
 
@@ -65,7 +76,9 @@ class InputCamelCaseDefined {
       // violation above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
       void XMLHTTPRequest() {}
-      // violation above 'XMLHTTPRequest.* more than '1' .* capital letters.'
+      // 2 violations above:
+      //  'XMLHTTPRequest.* more than '1' .* capital letters.'
+      //  'Method name 'XMLHTTPRequest' must match pattern'
     }
 
     InputCamelCaseDefined anonymousBad =
@@ -78,7 +91,9 @@ class InputCamelCaseDefined {
               // violation above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
               void XMLHTTPRequest() {}
-              // violation above 'XMLHTTPRequest.* more than '1' .* capital letters.'
+              // 2 violations above:
+              //  'XMLHTTPRequest.* more than '1' .* capital letters.'
+              //  'Method name 'XMLHTTPRequest' must match pattern'
             };
   }
 }
