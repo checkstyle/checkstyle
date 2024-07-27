@@ -75,6 +75,16 @@ class InputCorrectSummaryFragment {
           return false;
         }
 
+        /** Some Javadoc. This method returns some javadoc. */
+        boolean emulated() {
+          return false;
+        }
+
+        /** Some Javadoc. This method returns some javadoc. Some Javadoc. */
+        boolean emulated1() {
+          return false;
+        }
+
         /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
         void foo3() {}
 
@@ -90,16 +100,6 @@ class InputCorrectSummaryFragment {
 
         /** An especially short bit of Javadoc. */
         void foo6() {}
-
-        /** Some Javadoc. This method returns some javadoc. */
-        boolean emulated() {
-          return false;
-        }
-
-        /** Some Javadoc. This method returns some javadoc. Some Javadoc. */
-        boolean emulated1() {
-          return false;
-        }
 
         /**
          * This is valid.
