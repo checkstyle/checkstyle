@@ -16,6 +16,7 @@ class InputNoFinalizeExtend {
 }
 
 // negates effect of superclass finalizer
+// violation below 'Top-level class EmptyFinalizer has to reside in its own source file.'
 class EmptyFinalizer {
 
   protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
@@ -24,6 +25,7 @@ class EmptyFinalizer {
 }
 
 // fails to call superclass finalize method
+// violation below 'Top-level class WithoutTryCatchFinalizer has to reside in its own source file.'
 class WithoutTryCatchFinalizer {
 
   public static void doStuff() {
@@ -36,6 +38,7 @@ class WithoutTryCatchFinalizer {
 }
 
 // public finalizer
+// violation below 'Top-level class InputPublicFinalizer has to reside in its own source file.'
 class InputPublicFinalizer {
 
   public static void doStuff() {
@@ -52,6 +55,7 @@ class InputPublicFinalizer {
 }
 
 // unless (or worse) finalizer
+// violation below 'Top-level class InputSuperFinalizer has to reside in its own source file.'
 class InputSuperFinalizer {
 
   protected void finalize() throws Throwable { // violation 'Avoid using finalizer method.'
@@ -60,6 +64,7 @@ class InputSuperFinalizer {
 }
 
 // public finalizer
+// violation below 'Top-level class InputStaticFinalizer has to reside in its own source file.'
 class InputStaticFinalizer {
 
   public static void doStuff() {
@@ -86,6 +91,7 @@ class InputStaticFinalizer {
   }
 }
 
+// violation below 'Top-level class WithoutFinalize has to reside in its own source file.'
 class WithoutFinalize {
   public void doStuff() {
     // This method do some stuff
@@ -100,8 +106,10 @@ class WithoutFinalize {
   }
 }
 
+// violation below 'Top-level class WithoutMethods has to reside in its own source file.'
 class WithoutMethods {}
 
+// violation below 'Top-level class WithAnonymousClass has to reside in its own source file.'
 class WithAnonymousClass {
 
   public static void doStuff() {
@@ -133,6 +141,7 @@ class WithAnonymousClass {
   }
 }
 
+// violation below 'Top-level class WithFinalizer has to reside in its own source file.'
 interface WithFinalizer {
   void finalize(); // violation 'Avoid using finalizer method.'
 }

@@ -25,8 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class FinalizersNotUsedTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {"NoFinalizer"};
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter6programpractice/rule64finalizers";
@@ -34,14 +32,12 @@ public class FinalizersNotUsedTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testNoFinalizerBasic() throws Exception {
-        final String filePath = getPath("InputNoFinalizer.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoFinalizer.java"));
     }
 
     @Test
     public void testNoFinalizerExtended() throws Exception {
-        final String filePath = getPath("InputNoFinalizeExtend.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoFinalizeExtend.java"));
     }
 
 }
