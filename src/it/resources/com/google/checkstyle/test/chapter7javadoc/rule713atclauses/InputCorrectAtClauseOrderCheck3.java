@@ -15,30 +15,32 @@ class InputCorrectAtClauseOrderCheck3 implements Serializable {
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @return Some text.
    * @serialData Some javadoc.
    * @deprecated Some text.
    */
-  String method5(String aString) {
+  String method5(String str) {
     return "null";
   }
 
   /**
    * Some text.
    *
-   * @param aString Some text.
-   * @param aInt Some text.
-   * @param aBoolean Some text.
+   * @param str Some text.
+   * @param number Some text.
+   * @param bool Some text.
    * @return Some text.
    * @throws Exception Some text.
    * @deprecated Some text.
    */
-  String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+  String method6(String str, int number, boolean bool) throws Exception {
     return "null";
   }
 
   /**
+   * summary.
+   *
    * @author max
    * @version 1.0
    * @since Some javadoc.
@@ -47,26 +49,26 @@ class InputCorrectAtClauseOrderCheck3 implements Serializable {
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @return Some text.
      * @serialData Some javadoc.
      * @deprecated Some text.
      */
-    String method5(String aString) {
+    String method5(String str) {
       return "null";
     }
 
     /**
      * Some text.
      *
-     * @param aString Some text.
-     * @param aInt Some text.
-     * @param aBoolean Some text.
+     * @param str Some text.
+     * @param number Some text.
+     * @param bool Some text.
      * @return Some text.
      * @throws Exception Some text.
      * @deprecated Some text.
      */
-    String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+    String method6(String str, int number, boolean bool) throws Exception {
       return "null";
     }
   }
@@ -76,25 +78,25 @@ class InputCorrectAtClauseOrderCheck3 implements Serializable {
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @return Some text.
          * @deprecated Some text.
          */
-        String method5(String aString) {
+        String method5(String str) {
           return "null";
         }
 
         /**
          * Some text.
          *
-         * @param aString Some text.
-         * @param aInt Some text.
-         * @param aBoolean Some text.
+         * @param str Some text.
+         * @param number Some text.
+         * @param bool Some text.
          * @return Some text.
          * @throws Exception Some text.
          * @deprecated Some text.
          */
-        String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+        String method6(String str, int number, boolean bool) throws Exception {
           return "null";
         }
       };

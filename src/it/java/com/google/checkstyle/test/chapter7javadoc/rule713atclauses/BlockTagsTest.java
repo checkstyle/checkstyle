@@ -25,12 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "AtclauseOrder",
-        "JavadocTagContinuationIndentation",
-        "NonEmptyAtclauseDescription",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule713atclauses";
@@ -38,55 +32,46 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCorrectAtClauseOrder1() throws Exception {
-        final String filePath = getPath("InputCorrectAtClauseOrderCheck1.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck1.java"));
     }
 
     @Test
     public void testCorrectAtClauseOrder2() throws Exception {
-        final String filePath = getPath("InputCorrectAtClauseOrderCheck2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck2.java"));
     }
 
     @Test
     public void testCorrectAtClauseOrder3() throws Exception {
-        final String filePath = getPath("InputCorrectAtClauseOrderCheck3.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck3.java"));
     }
 
     @Test
     public void testIncorrectAtClauseOrder1() throws Exception {
-        final String filePath = getPath("InputIncorrectAtClauseOrderCheck1.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck1.java"));
     }
 
     @Test
     public void testIncorrectAtClauseOrder2() throws Exception {
-        final String filePath = getPath("InputIncorrectAtClauseOrderCheck2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck2.java"));
     }
 
     @Test
     public void testIncorrectAtClauseOrder3() throws Exception {
-        final String filePath = getPath("InputIncorrectAtClauseOrderCheck3.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck3.java"));
     }
 
     @Test
     public void testJavadocTagContinuationIndentation() throws Exception {
-        final String filePath = getPath("InputJavaDocTagContinuationIndentation.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputJavaDocTagContinuationIndentation.java"));
     }
 
     @Test
     public void testNonEmptyAtclauseDescription() throws Exception {
-        final String filePath = getPath("InputNonEmptyAtclauseDescription.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescription.java"));
     }
 
     @Test
     public void testNonEmptyAtclauseDescriptionSpaceSequence() throws Exception {
-        final String filePath = getPath("InputNonEmptyAtclauseDescriptionSpaceSeq.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescriptionSpaceSeq.java"));
     }
 }

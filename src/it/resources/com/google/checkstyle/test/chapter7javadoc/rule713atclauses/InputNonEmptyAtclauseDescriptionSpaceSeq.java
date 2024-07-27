@@ -29,10 +29,12 @@ class InputNonEmptyAtclauseDescriptionSpaceSeq {
    */
   public InputNonEmptyAtclauseDescriptionSpaceSeq(String a, int b, double c) {}
 
-  // violation 4 lines below  'At-clause should have a non-empty description.'
-  // violation 4 lines below  'At-clause should have a non-empty description.'
-  // violation 4 lines below  'At-clause should have a non-empty description.'
+  // violation 6 lines below  'At-clause should have a non-empty description.'
+  // violation 6 lines below  'At-clause should have a non-empty description.'
+  // violation 6 lines below  'At-clause should have a non-empty description.'
   /**
+   * Some javadoc.
+   *
    * @param a
    * @param e
    * @deprecated
