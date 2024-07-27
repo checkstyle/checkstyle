@@ -28,6 +28,8 @@ class InputCorrectRequireEmptyLineBeforeBlockTagGroup {
   }
 
   /**
+   * summary.
+   *
    * @return this only has a tag.
    */
   public static boolean test() {

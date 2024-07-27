@@ -25,11 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "JavadocParagraph",
-        "RequireEmptyLineBeforeBlockTagGroup",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule712paragraphs";
@@ -37,28 +32,22 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testJavadocParagraphCorrect() throws Exception {
-        final String filePath = getPath("InputCorrectJavadocParagraph.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectJavadocParagraph.java"));
     }
 
     @Test
     public void testJavadocParagraphIncorrect() throws Exception {
-        final String filePath = getPath("InputIncorrectJavadocParagraph.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectJavadocParagraph.java"));
     }
 
     @Test
     public void testRequireEmptyLineBeforeBlockTagGroupCorrect() throws Exception {
-        final String filePath = getPath(
-                "InputCorrectRequireEmptyLineBeforeBlockTagGroup.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
     @Test
     public void testRequireEmptyLineBeforeBlockTagGroupIncorrect() throws Exception {
-        final String filePath = getPath(
-                "InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
 }
