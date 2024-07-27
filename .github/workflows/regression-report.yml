@@ -31,6 +31,10 @@ concurrency:
 
 jobs:
   check_pr_status:
+    if: |
+      github.event.issue.pull_request
+           && (startsWith(github.event.comment.body, 'Github, generate report for ')
+              || startsWith(github.event.comment.body, 'GitHub, generate report for '))
     runs-on: ubuntu-latest
     steps:
       - name: Check PR status
@@ -47,10 +51,6 @@ jobs:
           fi
 
   parse_comment:
-    if: |
-      github.event.issue.pull_request
-           && (startsWith(github.event.comment.body, 'Github, generate report for ')
-              || startsWith(github.event.comment.body, 'GitHub, generate report for '))
     runs-on: ubuntu-latest
     needs: check_pr_status
     outputs:
