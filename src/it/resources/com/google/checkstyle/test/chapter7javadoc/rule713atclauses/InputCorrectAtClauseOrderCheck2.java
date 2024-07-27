@@ -15,10 +15,10 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @throws Exception Some text.
    */
-  void method2(String aString) throws Exception {}
+  void method2(String str) throws Exception {}
 
   /**
    * Some text.
@@ -39,6 +39,8 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
   }
 
   /**
+   * summary.
+   *
    * @author max
    * @version 1.0
    * @since Some javadoc.
@@ -47,10 +49,10 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @throws Exception Some text.
      */
-    void method2(String aString) throws Exception {}
+    void method2(String str) throws Exception {}
 
     /**
      * Some text.
@@ -77,11 +79,11 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
          */
-        void method2(String aString) throws Exception {}
+        void method2(String str) throws Exception {}
 
         /**
          * Some text.
@@ -101,26 +103,26 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
           return "null";
         }
       };
+
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version 1.0
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated Some javadoc.
+   */
+  enum Foo {}
+
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version 1.0
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated Some javadoc.
+   */
+  interface FooIn {}
 }
-
-/**
- * Some javadoc.
- *
- * @author max
- * @version 1.0
- * @see Some javadoc.
- * @since Some javadoc.
- * @deprecated Some javadoc.
- */
-enum Foo {}
-
-/**
- * Some javadoc.
- *
- * @author max
- * @version 1.0
- * @see Some javadoc.
- * @since Some javadoc.
- * @deprecated Some javadoc.
- */
-interface FooIn {}

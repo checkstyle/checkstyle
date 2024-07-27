@@ -18,48 +18,50 @@ class InputCorrectAtClauseOrderCheck1 implements Serializable {
    *
    * @serial
    */
-  private String fFirstName;
+  private String firstname;
 
   /**
    * The client's first name.
    *
    * @serial
    */
-  private String sSecondName;
+  private String secondname;
 
   /**
    * The client's first name.
    *
    * @serialField
    */
-  private String tThirdName;
+  private String thirdname;
 
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @return Some text.
    * @throws Exception Some text.
    * @serialData Some javadoc.
    * @deprecated Some text.
    */
-  String method(String aString) throws Exception {
+  String method(String str) throws Exception {
     return "null";
   }
 
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @return Some text.
    * @throws Exception Some text.
    * @serialData Some javadoc.
    */
-  String method1(String aString) throws Exception {
+  String method1(String str) throws Exception {
     return "null";
   }
 
   /**
+   * summary.
+   *
    * @author max
    * @version 1.0
    * @since Some javadoc.
@@ -68,24 +70,24 @@ class InputCorrectAtClauseOrderCheck1 implements Serializable {
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @return Some text.
      * @throws Exception Some text.
      * @deprecated Some text.
      */
-    String method(String aString) throws Exception {
+    String method(String str) throws Exception {
       return "null";
     }
 
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @return Some text.
      * @throws Exception Some text.
      * @serialData Some javadoc.
      */
-    String method1(String aString) throws Exception {
+    String method1(String str) throws Exception {
       return "null";
     }
   }
@@ -95,23 +97,23 @@ class InputCorrectAtClauseOrderCheck1 implements Serializable {
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @return Some text.
          * @throws Exception Some text.
          * @deprecated Some text.
          */
-        String method(String aString) throws Exception {
+        String method(String str) throws Exception {
           return "null";
         }
 
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @return Some text.
          * @throws Exception Some text.
          */
-        String method1(String aString) throws Exception {
+        String method1(String str) throws Exception {
           return "null";
         }
       };
