@@ -67,12 +67,12 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
     foo2();
   }
 
-  /** Ok, missing params tags and return tags in javadoc are allowed */
+  /** Ok, missing params tags and return tags in javadoc are allowed. */
   public String testingParams(String param1, String param2) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + param1 + param2;
   }
 
-  /** Ok, missing params tags and return tags in javadoc are allowed */
+  /** Ok, missing params tags and return tags in javadoc are allowed. */
   protected String testingParams(int param1, int param2) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + param1 + param2;
   }
@@ -111,7 +111,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
     foo2();
   }
 
-  /** Ok, missing params tags in javadoc are allowed */
+  /** Ok, missing params tags in javadoc are allowed. */
   public InputJavadocMethodAndMissingJavadocMethod(double a, double b) {
     foo2();
     foo91();
@@ -140,6 +140,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
   }
 }
 
+// violation below 'Top-level class OverrideClass has to reside in its own source file.'
 class OverrideClass {
 
   public String foo92() {
@@ -147,4 +148,5 @@ class OverrideClass {
   }
 }
 
+// violation below 'Top-level class MyAnnotation has to reside in its own source file.'
 @interface MyAnnotation {}
