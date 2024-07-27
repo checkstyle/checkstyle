@@ -4,10 +4,10 @@ class InputParameterName {
 
   /** Some more Javadoc. */
   public void doSomething(
-          int aaa,
-          int abn,
-          String aaA,
-          boolean bB) { // violation 'Parameter name 'bB' must match pattern'
+      int aaa,
+      int abn,
+      String aaA,
+      boolean bB) { // violation 'Parameter name 'bB' must match pattern'
     for (Object obj : new java.util.ArrayList()) {}
   }
 
@@ -23,9 +23,9 @@ class InputParameterName {
     private int someMember;
 
     public void doEnum(
-            int aaaL,
-            long llll_llll, // violation 'Parameter name 'llll_llll' must match pattern'
-            boolean bB) {} // violation 'Parameter name 'bB' must match pattern'
+        int aaaL,
+        long llll_llll, // violation 'Parameter name 'llll_llll' must match pattern'
+        boolean bB) {} // violation 'Parameter name 'bB' must match pattern'
   }
 
   /** Test public vs private method parameter naming check. */
@@ -48,14 +48,14 @@ class InputParameterName {
     private InputParameterNameSimplePub(float p) {}
 
     void toManyArgs(
-            int $arg1, // violation 'Parameter name .* must match pattern'
-            int ar$g2, // violation 'Parameter name .* must match pattern'
-            int arg3$, // violation 'Parameter name .* must match pattern'
-            int a_rg4, // violation 'Parameter name 'a_rg4' must match pattern'
-            int _arg5, // violation 'Parameter name '_arg5' must match pattern'
-            int arg6_, // violation 'Parameter name 'arg6_' must match pattern'
-            int aArg7, // violation 'Parameter name 'aArg7' must match pattern'
-            int aArg8, // violation 'Parameter name 'aArg8' must match pattern'
-            int aar_g) {} // violation 'Parameter name 'aar_g' must match pattern'
+        int $arg1, // violation 'Parameter name .* must match pattern'
+        int ar$g2, // violation 'Parameter name .* must match pattern'
+        int arg3$, // violation 'Parameter name .* must match pattern'
+        int a_rg4, // violation 'Parameter name 'a_rg4' must match pattern'
+        int _arg5, // violation 'Parameter name '_arg5' must match pattern'
+        int arg6_, // violation 'Parameter name 'arg6_' must match pattern'
+        int aArg7, // violation 'Parameter name 'aArg7' must match pattern'
+        int aArg8, // violation 'Parameter name 'aArg8' must match pattern'
+        int aar_g) {} // violation 'Parameter name 'aar_g' must match pattern'
   }
 }
