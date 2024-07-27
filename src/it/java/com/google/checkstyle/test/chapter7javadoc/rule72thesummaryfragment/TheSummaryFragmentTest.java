@@ -25,8 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class TheSummaryFragmentTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {"SummaryJavadoc"};
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment";
@@ -34,14 +32,12 @@ public class TheSummaryFragmentTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String filePath = getPath("InputCorrectSummaryFragment.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectSummaryFragment.java"));
     }
 
     @Test
     public void testIncorrect() throws Exception {
-        final String filePath = getPath("InputIncorrectSummaryFragment.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectSummaryFragment.java"));
     }
 
 }
