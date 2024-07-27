@@ -9,6 +9,7 @@ class InputMethodTypeParameterName<T> {
   }
 }
 
+// violation below 'Top-level class Other2 has to reside in its own source file.'
 class Other2<T extends Serializable & Cloneable> {
 
   T getOne() {
@@ -16,7 +17,7 @@ class Other2<T extends Serializable & Cloneable> {
   }
 
   <Tfo$o2T extends T> Tfo$o2T getTwo(Tfo$o2T a) {
-    // violation above 'Method type name .* must match pattern'
+    // violation above 'Method type name 'Tfo\$o2T' must match pattern'
     return null;
   }
 
@@ -32,11 +33,12 @@ class Other2<T extends Serializable & Cloneable> {
   }
 }
 
+// violation below 'Top-level class MoreOther3 has to reside in its own source file.'
 class MoreOther3<T extends Cloneable> {
 
   <E extends T> void getMore() {
     new Other2() {
-      <T$> void getMoreFoo() { // violation 'Method type name .* must match pattern'
+      <T$> void getMoreFoo() { // violation 'Method type name 'T\$' must match pattern'
       }
     };
 
