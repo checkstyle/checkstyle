@@ -25,11 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class ExceptionOverridesTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "MissingJavadocMethod",
-        "JavadocMethod",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule732exceptionoverrides";
@@ -37,8 +32,7 @@ public class ExceptionOverridesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testBothModules() throws Exception {
-        final String filePath = getPath("InputJavadocMethodAndMissingJavadocMethod.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 
 }
