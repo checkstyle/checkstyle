@@ -566,4 +566,21 @@ public class WhitespaceAroundCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundAfterEmoji.java"), expected);
     }
+
+    @Test
+    public void testWhitespaceAroundAfterPermitsList() throws Exception {
+        final String[] expected = {
+            "25:53: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "25:53: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "25:54: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "26:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "26:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "26:41: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "27:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "27:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "27:49: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAroundAfterPermitsList.java"), expected);
+    }
 }
