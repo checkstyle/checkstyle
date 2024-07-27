@@ -34,14 +34,12 @@ public class TheSummaryFragmentTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCorrect() throws Exception {
-        final String filePath = getPath("InputCorrectSummaryFragment.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCorrectSummaryFragment.java"));
     }
 
     @Test
     public void testIncorrect() throws Exception {
-        final String filePath = getPath("InputIncorrectSummaryFragment.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIncorrectSummaryFragment.java"));
     }
 
 }
