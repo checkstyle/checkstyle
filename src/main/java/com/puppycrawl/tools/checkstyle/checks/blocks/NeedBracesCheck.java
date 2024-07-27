@@ -434,11 +434,11 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     private static boolean isSwitchLabeledExpression(DetailAST ast) {
         final DetailAST caseParent = ast.getParent();
-        final DetailAST switchAST = caseParent.getParent();
-        final boolean isSwitchExpression = switchAST.getParent().getType() == TokenTypes.EXPR
-                || switchAST.getParent().getParent().getType() == TokenTypes.EXPR;
-        final boolean caseParentHasExpression = caseParent.findFirstToken(TokenTypes.EXPR) != null;
-        return isSwitchExpression && caseParentHasExpression;
+        final DetailAST switchAst = caseParent.getParent();
+        final boolean isSwitchExpression = switchAst.getParent().getType() == TokenTypes.EXPR
+                || switchAst.getParent().getParent().getType() == TokenTypes.EXPR;
+        final boolean isChildOfExpression = caseParent.findFirstToken(TokenTypes.EXPR) != null;
+        return isSwitchExpression && isChildOfExpression;
     }
 
     /**
