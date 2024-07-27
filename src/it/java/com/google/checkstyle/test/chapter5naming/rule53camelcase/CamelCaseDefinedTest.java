@@ -31,8 +31,7 @@ public class CamelCaseDefinedTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCamelCaseNames() throws Exception {
-        final String filePath = getPath("InputCamelCaseDefined.java");
-        verifyWithConfigParser(new String[] {"AbbreviationAsWordInName"}, filePath);
+        verifyWithWholeConfig(getPath("InputCamelCaseDefined.java"));
     }
 
 }
