@@ -581,6 +581,14 @@
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnusedCatchParameterShouldBeUnnamed">
+      <!--
+        We should not use this check until we migrate to
+        java 21. Unnamed catch parameters will not compile on older
+        java versions.
+      -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="UnusedLocalVariable"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed">
