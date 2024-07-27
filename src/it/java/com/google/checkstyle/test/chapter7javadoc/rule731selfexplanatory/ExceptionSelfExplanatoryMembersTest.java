@@ -37,8 +37,7 @@ public class ExceptionSelfExplanatoryMembersTest extends AbstractGoogleModuleTes
 
     @Test
     public void testBothModules() throws Exception {
-        final String filePath = getPath("InputJavadocMethodAndMissingJavadocMethod.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 
 }
