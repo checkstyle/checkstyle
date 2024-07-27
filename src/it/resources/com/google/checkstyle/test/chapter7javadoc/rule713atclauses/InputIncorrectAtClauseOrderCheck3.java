@@ -18,24 +18,24 @@ class InputIncorrectAtClauseOrderCheck3 implements Serializable {
    *
    * @deprecated Some text.
    * @return Some text. // violation 'Block tags have to appear in the order .*'
-   * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+   * @param str Some text. // violation 'Block tags have to appear in the order .*'
    */
-  String method5(String aString) {
+  String method5(String str) {
     return "null";
   }
 
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @return Some text.
    * @serialData Some javadoc.
-   * @param aInt Some text. // violation 'Block tags have to appear in the order .*'
+   * @param number Some text. // violation 'Block tags have to appear in the order .*'
    * @throws Exception Some text.
-   * @param aBoolean Some text. // violation 'Block tags have to appear in the order .*'
+   * @param bool Some text. // violation 'Block tags have to appear in the order .*'
    * @deprecated Some text.
    */
-  String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+  String method6(String str, int number, boolean bool) throws Exception {
     return "null";
   }
 
@@ -52,25 +52,25 @@ class InputIncorrectAtClauseOrderCheck3 implements Serializable {
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @deprecated Some text.
      * @return Some text. // violation 'Block tags have to appear in the order .*'
      */
-    String method5(String aString) {
+    String method5(String str) {
       return "null";
     }
 
     /**
      * Some text.
      *
-     * @param aString Some text.
+     * @param str Some text.
      * @return Some text.
-     * @param aInt Some text. // violation 'Block tags have to appear in the order .*'
+     * @param number Some text. // violation 'Block tags have to appear in the order .*'
      * @throws Exception Some text.
-     * @param aBoolean Some text. // violation 'Block tags have to appear in the order .*'
+     * @param bool Some text. // violation 'Block tags have to appear in the order .*'
      * @deprecated Some text.
      */
-    String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+    String method6(String str, int number, boolean bool) throws Exception {
       return "null";
     }
   }
@@ -83,23 +83,23 @@ class InputIncorrectAtClauseOrderCheck3 implements Serializable {
          *
          * @deprecated Some text.
          * @return Some text. // violation 'Block tags have to appear in the order .*'
-         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+         * @param str Some text. // violation 'Block tags have to appear in the order .*'
          */
-        String method5(String aString) {
+        String method5(String str) {
           return "null";
         }
 
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @return Some text.
-         * @param aInt Some text. // violation 'Block tags have to appear in the order .*'
+         * @param number Some text. // violation 'Block tags have to appear in the order .*'
          * @throws Exception Some text.
-         * @param aBoolean Some text. // violation 'Block tags have to appear in the order .*'
+         * @param bool Some text. // violation 'Block tags have to appear in the order .*'
          * @deprecated Some text.
          */
-        String method6(String aString, int aInt, boolean aBoolean) throws Exception {
+        String method6(String str, int number, boolean bool) throws Exception {
           return "null";
         }
       };
