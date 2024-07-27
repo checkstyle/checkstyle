@@ -19,13 +19,21 @@
           static initializers and instance initializers</a>.
         </p>
         <p>
-          The complexity is equal to the number of decision points <code> + 1</code>.
-          Decision points: <code>if</code>, <code>while</code>
-          , <code>do</code>, <code>for</code>, <code>?:</code>, <code>catch</code>
-          , <code>switch</code>, <code>case</code>
-          statements and operators <code>&amp;&amp;</code> and <code>||</code>
-          in the body of target.
+          The complexity is equal to the number of decision points <code>+ 1</code>.
+          Decision points:
         </p>
+        <ul>
+          <li>
+            <code>if</code>, <code>while</code>, <code>do</code>, <code>for</code>,
+            <code>?:</code>, <code>catch</code>, <code>switch</code>, <code>case</code> statements.
+          </li>
+          <li>
+            Operators <code>&amp;&amp;</code> and <code>||</code> in the body of target.
+          </li>
+          <li>
+            <code>when</code> expression in case labels, also known as guards.
+          </li>
+        </ul>
         <p>
           By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10
           consider re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
@@ -90,6 +98,8 @@
                     LAND</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
                     LOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>
@@ -113,6 +123,8 @@
                     LAND</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
                     LOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHEN">
+                    LITERAL_WHEN</a>
                   .
               </td>
               <td>3.2</td>
