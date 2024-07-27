@@ -17,32 +17,32 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
    *
    * @serial
    */
-  private String fFirstName;
+  private String firstName;
 
   /**
    * The client's first name.
    *
    * @serial
    */
-  private String sSecondName;
+  private String secondName;
 
   /**
    * The client's first name.
    *
    * @serialField
    */
-  private String tThirdName;
+  private String thirdName;
 
   /**
    * Some text.
    *
-   * @param aString Some text.
+   * @param str Some text.
    * @return Some text.
    * @serialData Some javadoc.
    * @deprecated Some text.
    * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
    */
-  String method(String aString) throws Exception {
+  String method(String str) throws Exception {
     return "null";
   }
 
@@ -51,10 +51,10 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
    *
    * @serialData Some javadoc.
    * @return Some text.
-   * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+   * @param str Some text. // violation 'Block tags have to appear in the order .*'
    * @throws Exception Some text.
    */
-  String method1(String aString) throws Exception {
+  String method1(String str) throws Exception {
     return "null";
   }
 
@@ -72,10 +72,10 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
      *
      * @return Some text.
      * @deprecated Some text.
-     * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+     * @param str Some text. // violation 'Block tags have to appear in the order .*'
      * @throws Exception Some text. // violation 'Block tags have to appear in the order .*'
      */
-    String method(String aString) throws Exception {
+    String method(String str) throws Exception {
       return "null";
     }
 
@@ -84,9 +84,9 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
      *
      * @throws Exception Some text.
      * @return Some text. // violation 'Block tags have to appear in the order .*'
-     * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+     * @param str Some text. // violation 'Block tags have to appear in the order .*'
      */
-    String method1(String aString) throws Exception {
+    String method1(String str) throws Exception {
       return "null";
     }
   }
@@ -97,23 +97,23 @@ class InputIncorrectAtClauseOrderCheck1 implements Serializable {
          * Some text.
          *
          * @throws Exception Some text.
-         * @param aString Some text. // violation 'Block tags have to appear in the order .*'
+         * @param str Some text. // violation 'Block tags have to appear in the order .*'
          * @serialData Some javadoc.
          * @deprecated Some text.
          * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
-        String method(String aString) throws Exception {
+        String method(String str) throws Exception {
           return "null";
         }
 
         /**
          * Some text.
          *
-         * @param aString Some text.
+         * @param str Some text.
          * @throws Exception Some text.
          * @return Some text. // violation 'Block tags have to appear in the order .*'
          */
-        String method1(String aString) throws Exception {
+        String method1(String str) throws Exception {
           return "null";
         }
       };
