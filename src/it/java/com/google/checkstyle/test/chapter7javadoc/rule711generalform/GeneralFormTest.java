@@ -25,11 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "SingleLineJavadoc",
-        "InvalidJavadocPosition",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule711generalform";
@@ -37,8 +32,7 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testSingleLineJavadocAndInvalidJavadocPosition() throws Exception {
-        final String filePath = getPath("InputSingleLineJavadocAndInvalidJavadocPosition.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputSingleLineJavadocAndInvalidJavadocPosition.java"));
     }
 
 }
