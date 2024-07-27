@@ -14,10 +14,20 @@
  &lt;/p&gt;
  &lt;p&gt;
  The complexity is equal to the number of decision points {@code + 1}.
- Decision points: {@code if}, {@code while}, {@code do}, {@code for},
- {@code ?:}, {@code catch}, {@code switch}, {@code case} statements and
- operators {@code &amp;amp;&amp;amp;} and {@code ||} in the body of target.
+ Decision points:
  &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ {@code if}, {@code while}, {@code do}, {@code for},
+ {@code ?:}, {@code catch}, {@code switch}, {@code case} statements.
+ &lt;/li&gt;
+ &lt;li&gt;
+  Operators {@code &amp;amp;&amp;amp;} and {@code ||} in the body of target.
+ &lt;/li&gt;
+ &lt;li&gt;
+  {@code when} expression in case labels, also known as guards.
+ &lt;/li&gt;
+ &lt;/ul&gt;
  &lt;p&gt;
  By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10 consider
  re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
@@ -42,7 +52,7 @@
                <description>Control whether to treat
  the whole switch block as a single decision point.</description>
             </property>
-            <property default-value="LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_CATCH,QUESTION,LAND,LOR"
+            <property default-value="LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_CATCH,QUESTION,LAND,LOR,LITERAL_WHEN"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
