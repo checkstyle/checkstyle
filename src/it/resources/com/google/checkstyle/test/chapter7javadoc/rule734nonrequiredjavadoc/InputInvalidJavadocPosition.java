@@ -1,7 +1,6 @@
-package
-    /** odd javadoc */
+package // violation 'package statement should not be line-wrapped.'
+    /** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
     com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
-// violation 2 lines above 'Javadoc comment is placed in the wrong location.'
 
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** odd javadoc */
@@ -9,33 +8,34 @@ import java.lang.String;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** odd javadoc */
-/** valid */
+/** valid javadoc. */
 class InputInvalidJavadocPosition {
   /** odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
-/** valid */
+/** valid javadoc. */
 /* ignore */
 class InputInvalidJavadocPosition2 {
-  /** odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
+  // violation above '.* InputInvalidJavadocPosition2 has to reside in its own source file.'
+
+  /** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
   static {
     /* ignore */
   }
 
   // violation below 'Javadoc comment is placed in the wrong location.'
   /** odd javadoc */
-  /** valid */
+  /** valid javadoc. */
   int field1;
 
-  /** valid */
+  /** valid javadoc. */
   int[] field2;
 
-  /** valid */
+  /** valid javadoc. */
   public int[] field3;
 
-  /** valid */
+  /** valid javadoc. */
   @Deprecated int field4;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
@@ -54,15 +54,15 @@ class InputInvalidJavadocPosition2 {
 
   void method1() {}
 
-  /** valid */
+  /** valid javadoc. */
   void method2() {}
 
-  /** valid */
+  /** valid javadoc. */
   <T> T method3() {
     return null;
   }
 
-  /** valid */
+  /** valid javadoc. */
   String[] method4() {
     return null;
   }
@@ -74,18 +74,18 @@ class InputInvalidJavadocPosition2 {
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method21
-      /** odd javadoc */
-      () {}
+  /** odd javadoc */
+  () {} // violation ''(' should be on the previous line.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method22(
-      /** odd javadoc */
-      ) {}
+  /** odd javadoc */
+  ) {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method23()
-      /** odd javadoc */
-      {}
+    /** odd javadoc */
+    {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method24() {
@@ -97,25 +97,26 @@ class InputInvalidJavadocPosition2 {
     /** odd javadoc */
     int variable;
   }
+
+  @Deprecated
+  /** odd javadoc */
+  // violation above 'Javadoc comment is placed in the wrong location.'
+  class InputInvalidJavadocPosition3 {}
+
+  /** valid javadoc. */
+  @Deprecated
+  class InputInvalidJavadocPosition4 {}
+
+  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
+  class
+  /** odd javadoc */
+  InputInvalidJavadocPosition5 {}
+  // violation above ''InputInvalidJavadocPosition5' has incorrect indentation .* 2, expected .* 6.'
+
+  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
+  class InputInvalidJavadocPosition6
+    /** odd javadoc */
+    {} // violation ''}' at column 6 should be alone on a line.'
+  /** odd javadoc */
+  // violation above 'Javadoc comment is placed in the wrong location.'
 }
-
-@Deprecated
-/** odd javadoc */
-// violation above 'Javadoc comment is placed in the wrong location.'
-class InputInvalidJavadocPosition3 {}
-
-/** valid */
-@Deprecated
-class InputInvalidJavadocPosition4 {}
-
-// violation 2 lines below 'Javadoc comment is placed in the wrong location.'
-class
-/** odd javadoc */
-InputInvalidJavadocPosition5 {}
-
-// violation 2 lines below 'Javadoc comment is placed in the wrong location.'
-class InputInvalidJavadocPosition6
-/** odd javadoc */
- {}
-/** odd javadoc */
-// violation above 'Javadoc comment is placed in the wrong location.'
