@@ -8,14 +8,22 @@ public class InputMainComplexityOverflow {
 
   public void provokeNpathIntegerOverflow()
     {
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+        {
+        if (true)
+          {
+          if (true)
+            {
+            if (true)
+              {
+              if (true)
+                {
+                if (true)
+                  {
+                  if (true)
+                    {
+                    if (true)
+                      {
                     }
                   }
                 }
@@ -24,14 +32,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+        {
+        if (true)
+          {
+          if (true)
+            {
+            if (true)
+              {
+              if (true)
+                {
+                if (true)
+                  {
+                  if (true)
+                    {
+                    if (true)
+                      {
                     }
                   }
                 }
@@ -40,14 +56,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+        {
+        if (true)
+          {
+          if (true)
+            {
+            if (true)
+              {
+              if (true)
+                {
+                if (true)
+                  {
+                  if (true)
+                    {
+                    if (true)
+                      {
                     }
                   }
                 }
@@ -56,14 +80,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+        {
+        if (true)
+          {
+          if (true)
+            {
+            if (true)
+              {
+              if (true)
+                {
+                if (true)
+                  {
+                  if (true)
+                    {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -72,14 +104,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -88,14 +128,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -104,14 +152,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -120,14 +176,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -136,14 +200,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }
@@ -152,14 +224,22 @@ public class InputMainComplexityOverflow {
           }
         }
       }
-      if (true) {
-        if (true) {
-          if (true) {
-            if (true) {
-              if (true) {
-                if (true) {
-                  if (true) {
-                    if (true) {
+      if (true)
+      {
+        if (true)
+        {
+          if (true)
+          {
+            if (true)
+            {
+              if (true)
+              {
+                if (true)
+                {
+                  if (true)
+                  {
+                    if (true)
+                    {
                     }
                   }
                 }

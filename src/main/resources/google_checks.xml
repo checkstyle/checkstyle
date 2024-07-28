@@ -81,16 +81,16 @@
       <property name="id" value="LeftCurlyEol"/>
       <property name="tokens"
                value="ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, ENUM_DEF,
-                    INTERFACE_DEF, LAMBDA, METHOD_DEF, OBJBLOCK, LITERAL_SWITCH,
-                    STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF, LITERAL_CATCH, LITERAL_TRY,
-                    LITERAL_WHILE, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR,
-                    LITERAL_IF, LITERAL_SYNCHRONIZED"/>
+                    INTERFACE_DEF, LAMBDA, METHOD_DEF, OBJBLOCK,
+                    STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="LeftCurly">
       <property name="id" value="LeftCurlyNl"/>
       <property name="option" value="nl"/>
       <property name="tokens"
-                value="LITERAL_CASE, LITERAL_DEFAULT" />
+                value="LITERAL_CASE, LITERAL_DEFAULT, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH,
+                       LITERAL_SYNCHRONIZED, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO,
+                       LITERAL_CATCH, LITERAL_TRY, LITERAL_FINALLY" />
     </module>
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
