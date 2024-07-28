@@ -842,7 +842,7 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         // we just reference there all violations
         final String[][] outputValues = {
-                {"InputMainComplexityOverflow", "1", "172"},
+                {"InputMainComplexityOverflow", "1", "252"},
         };
 
         final int allowedLength = 170;
@@ -1343,102 +1343,1214 @@ public class MainTest {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
-                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2"
-                    + "//EN\"",
+                "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration "
+                    + "1.2//EN\"",
                 "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
                 "<suppressions>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"MissingJavadocMethodCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                  +  "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" 
+                    + "'provokeNpathIntegerOverflow']]\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
-                "       checks=\"LeftCurlyCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST\"/>",
+                "       id=\"LeftCurlyEol\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]" +
+                    "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]" +
+                    "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]" +
+                    "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]" +
+                    "/OBJBLOCK/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/" +
+                    "SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/" +
+                    "SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT" 
+             +       "[@text='InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/" +
+                    "SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF" +
+                    "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF" +
+                    "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/" +
+                    "SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/" +
+                    "SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/" +
+                    "LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
                 "       checks=\"EmptyBlockCheck\"",
-                "       query=\"/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
-                    + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF"
-                    + "/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST"
-                    + "/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
+                "<suppress-xpath",
+                "       files=\"InputMainComplexityOverflow.java\"",
+                "       checks=\"IndentationCheck\"",
+                "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text=" +
+                    "'InputMainComplexityOverflow']]/OBJBLOCK/METHOD_DEF[./IDENT[@text=" +
+                    "'provokeNpathIntegerOverflow']]/SLIST/LITERAL_IF/SLIST/LITERAL_IF/SLIST/RCURLY\"/>",
                 "</suppressions>");
 
         assertMainReturnCode(0, "-c", "/google_checks.xml", "--generate-xpath-suppression",
