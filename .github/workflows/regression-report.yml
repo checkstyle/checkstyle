@@ -20,9 +20,6 @@ env:
 on:
   issue_comment:
     types: [ created ]
-  pull_request:
-    types:
-      - opened
 
 permissions:
   contents: read
