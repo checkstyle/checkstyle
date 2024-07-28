@@ -19,56 +19,56 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
 
 import java.lang.Object; // ok
 
-import java.lang.Class; // no violation
+import java.lang.Class; // ok
 
 
 // ok
 import java.lang.Integer;
 
-// no violation
+// ok
 import java.lang.Long;
 
 
 /*
- * violation
+ * javadoc
  */
 import java.lang.Float;
 
 /*
- * no violation
+ * javadoc
  */
 import java.lang.Double;
 
 
 /**
- * violation
+ * javadoc
  */
 import java.lang.Character;
 
 /**
- * no violation
+ * javadoc
  */
 import java.lang.String;
 
 /*
- * no violation
+ * javadoc
  */
-/* no violation */
+/* javadoc */
 import java.lang.Object;
 
 
 // ok
 // .
 import java.lang.Boolean;
-// no violation
+// ok
 import java.lang.Byte;
 
-// no violation
-/* no violation */
+// ok
+/* javadoc */
 import java.lang.Short;
 
 
-/* violation */
+/* ok javadoc */
 // .
 import java.lang.Number;
 
@@ -76,7 +76,7 @@ import java.lang.Number;
 import java.lang.Runnable;
 import java.lang.Thread;
 
-// no violation
+// ok
 
 
 // ok
@@ -84,7 +84,7 @@ import java.lang.StringBuilder;
 
 
 /*
- * violation
+ * javadoc
  */
 import static java.lang.Math.abs;
 
@@ -93,7 +93,7 @@ public class InputEmptyLineSeparatorWithComments2 {
 
     public int testViolationWithoutComment = 1;
 
-    public int testNoViolationWithoutComment = 2; // no violation
+    public int testNoViolationWithoutComment = 2; // ok
 
 
     // Should have violation
@@ -105,26 +105,26 @@ public class InputEmptyLineSeparatorWithComments2 {
 
     /*
      * Should have
-     * violation
+     * something
      */
     public int testViolationWithMultilineComment = 5;
 
     /*
      * Should not have
-     * violation
+     * something
      */
     public int testNoViolationWithMultilineComment = 6;
 
 
     /**
      * Should have
-     * violation
+     * something
      */
     public int testViolationWithJavadoc = 7;
 
     /**
      * Should not have
-     * violation
+     * something
      */
     public int testNoViolationWithJavadoc = 8;
 
@@ -133,29 +133,29 @@ public class InputEmptyLineSeparatorWithComments2 {
     } // ok
 
     public void testNoViolationWithoutComment() {
-    } // no violation
+    } // ok
 
 
-    // Should have violation
+    // Should be ok
     public void testViolationWithSingleLineComment() {
     }
 
     // Should not have
-    // a violation
+    // something
     public void testNoViolationWithSingleLineComment() {
     }
 
 
     /*
      * Should have
-     * violation
+     * something
      */
     public void testViolationWithMultilineComment() {
     }
 
     /*
      * Should not have
-     * violation
+     * something
      */
     public void testNoViolationWithMultilineComment() {
     }
@@ -163,24 +163,24 @@ public class InputEmptyLineSeparatorWithComments2 {
 
     /**
      * Should have
-     * violation
+     * something
      */
     public void testViolationWithJavadoc() {
     }
 
     /**
      * Should not have
-     * violation
+     * something
      */
     public void testNoViolationWithJavadoc() {
     }
 
-    public static class Class1 { } // no violation
+    public static class Class1 { } // ok
 
 
     public static class Class2 { } // ok
 
-    // no violation
+    // ok
     public static class Class3 { }
 
 
@@ -190,46 +190,46 @@ public class InputEmptyLineSeparatorWithComments2 {
 
     // ok
     public
-    // no violation
+    // ok
     static class Class5 { }
 
 
     // ok
     public
-    /* no violation */
+    /* javadoc  */
     static class Class6 { }
 
     /*
      * Should not have
-     * violation
+     * something
      */
     public static class Class7 { }
 
 
     /*
      * Should have
-     * violation
+     * something
      */
     public static class Class8 { }
 
     /**
      * Should not have
-     * violation
+     * something
      */
     public static class Class9 { }
 
 
     /**
      * Should have
-     * violation
+     * something
      */
     public static class Class10 {
         {
-            // no violation
+            // ok
         }
     }
 
-    // no violation
+    // ok
     public interface Interface1 { }
 
 
@@ -241,15 +241,15 @@ public class InputEmptyLineSeparatorWithComments2 {
     interface Interface3 { }
 
 
-    /* violation */
+    /* something */
     /* . */
     /* . */
     /* . */
     interface Interface4 { }
 
-    // no violation
+    // ok
 
-    // no violation
+    // ok
     // .
     // .
     // .
@@ -261,19 +261,19 @@ public class InputEmptyLineSeparatorWithComments2 {
         E1, E2
     }
 
-    // no violation
+    // ok
     public enum Enum2 { }
 
 
     // ok
-    // no violation
+    // ok
 
-    // no violation
+    // ok
     public enum Enum3 { }
-    // no violation
+    // ok
 
     public enum Enum4 { }
-    // no violation
+    // ok
 
     public enum Enum5 { }
 
@@ -294,7 +294,7 @@ public class InputEmptyLineSeparatorWithComments2 {
         abs(2);
     }
 
-    // no violation
+    // ok
 
 
     // ok
@@ -302,7 +302,7 @@ public class InputEmptyLineSeparatorWithComments2 {
        abs(1);
     }
 
-    /* no violation */
+    /* something */
     { }
 
 
@@ -318,24 +318,24 @@ public class InputEmptyLineSeparatorWithComments2 {
         testNoViolationWithJavadoc = 1;
     }
 
-    // no violation
+    // ok
     /* . */ public InputEmptyLineSeparatorWithComments2(int i) {
         testNoViolationWithJavadoc = 1;
     }
 
-    // no violation
-    // no violation
+    // ok
+    // ok
 
-    // no violation
+    // ok
     public InputEmptyLineSeparatorWithComments2(int i, int j) {
         testNoViolationWithJavadoc = 1;
     }
 
 
     // ok
-    // no violation
+    // ok
 
-    // no violation
+    // ok
 
 
 
