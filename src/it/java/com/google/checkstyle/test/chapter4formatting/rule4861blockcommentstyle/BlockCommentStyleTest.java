@@ -25,8 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {"CommentsIndentation"};
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle";
@@ -34,30 +32,22 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCommentIsAtTheEndOfBlock() throws Exception {
-        final String filePath =
-            getPath("InputCommentsIndentationCommentIsAtTheEndOfBlock.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCommentsIndentationCommentIsAtTheEndOfBlock.java"));
     }
 
     @Test
     public void testCommentIsInsideSwitchBlock() throws Exception {
-        final String filePath =
-            getPath("InputCommentsIndentationInSwitchBlock.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCommentsIndentationInSwitchBlock.java"));
     }
 
     @Test
     public void testCommentIsInsideEmptyBlock() throws Exception {
-        final String filePath =
-            getPath("InputCommentsIndentationInEmptyBlock.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCommentsIndentationInEmptyBlock.java"));
     }
 
     @Test
     public void testSurroundingCode() throws Exception {
-        final String filePath =
-            getPath("InputCommentsIndentationSurroundingCode.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputCommentsIndentationSurroundingCode.java"));
     }
 
 }
