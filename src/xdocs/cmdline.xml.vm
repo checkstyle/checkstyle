@@ -148,7 +148,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         option has been dropped for Checkstyle 5.0, because of significant changes regarding
         package name file handling. See <a href="config.html#Packages">this link</a> for details.
       </p>
-
+      <p>
+        To define system property for execution look at
+        <a href="config_system_properties.html#Properties">system properties</a>.
+      </p>
       <p>
         Set the properties for <a href="config.html#Properties">expanded
         property values</a> by either by assigning system properties using the

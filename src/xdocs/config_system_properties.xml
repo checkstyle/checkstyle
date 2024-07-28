@@ -16,6 +16,17 @@
       </macro>
     </section>
 
+    <section name="How to set system property for CLI">
+      <p>
+        System properties should be provided to <code>java</code> command.
+        Example: <code>java -D&lt;property&gt;=&lt;value&gt; -jar ... </code>
+      </p>
+      <p>
+        Attention to Windows users: system properties should be wrapped with <code>"</code>.
+        Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
+      </p>
+    </section>
+
     <section name="Enable External DTD load">
       <p>
         The property <code>checkstyle.enableExternalDtdLoad</code>
@@ -118,6 +129,10 @@ Starting audit...
 Audit done.
 Checkstyle ends with 2 errors.
           </source>
+        </p>
+        <p>
+          Attention to Windows users: system properties should be wrapped with <code>"</code>.
+          Example: <code>-D"&lt;property&gt;=&lt;value&gt;"</code>
         </p>
       </subsection>
     </section>
