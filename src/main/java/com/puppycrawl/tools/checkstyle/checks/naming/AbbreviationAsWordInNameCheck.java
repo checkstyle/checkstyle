@@ -267,6 +267,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         };
     }
 
+
+
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
