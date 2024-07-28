@@ -1284,6 +1284,14 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">SealedShouldHavePermitsList</a>
+            </td>
+            <td>
+            Checks that sealed classes and interfaces have a permits list.
+            </td>
+          </tr>
+          <tr>
             <td><a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a></td>
             <td>
             Restricts throws statements to a specified count.</td>
