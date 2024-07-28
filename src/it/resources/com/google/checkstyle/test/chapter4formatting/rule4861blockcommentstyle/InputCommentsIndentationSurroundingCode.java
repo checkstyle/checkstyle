@@ -1,16 +1,18 @@
 // comment
+
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
 import java.util.Arrays;
 
 // some
+/** some javadoc. */
 public class InputCommentsIndentationSurroundingCode {
   private void foo1() {
     if (true) {
       // here initialize some variables
       int k = 0; // trailing comment
         // odd indentation comment
-      // violation above '.* indentation should be the same level as line 14.'
+      // violation above '.* indentation should be the same level as line 16.'
       int b = 10;
       // sss
     }
@@ -22,18 +24,17 @@ public class InputCommentsIndentationSurroundingCode {
       int k = 0;
           /* // odd indentation comment
            */
-      // violation 2 lines above '.* indentation should be the same level as line 26.'
+      // violation 2 lines above '.* indentation should be the same level as line 28.'
       int b = 10;
           /* // odd indentation comment
            * */
-      // violation 2 lines above '.* indentation should be the same level as line 30.'
+      // violation 2 lines above '.* indentation should be the same level as line 32.'
       double d; /* trailing comment */
            /* // odd indentation comment
        *
        */
-      // violation 3 lines above '.* indentation should be the same level as line 35.'
+      // violation 3 lines above '.* indentation should be the same level as line 37.'
       boolean bb;
-      /***/
       /* my comment*/
       /*
        *
@@ -48,15 +49,17 @@ public class InputCommentsIndentationSurroundingCode {
   }
 
   private void foo3() {
-    int a = 5, b = 3, v = 6;
+    int a = 5;
+    int b = 3;
+    int v = 6;
     if (a == b && v == b
             || (a == 1
                 /// // odd indentation comment
           /* // odd indentation comment
            * one fine day ... */
-            // violation 3 lines above '.* indentation should.* as line 59.'
-            // violation 3 lines above '.* indentation should.* as line 59.'
-            && b == 1)) {}
+            // violation 3 lines above '.* indentation should.* as line 62.'
+            // violation 3 lines above '.* indentation should.* as line 62.'
+            && b == 1)) { /* foo */ }
   }
 
   private static void com() {
@@ -67,56 +70,60 @@ public class InputCommentsIndentationSurroundingCode {
           // This example of trailing block comments was found in PMD sources.
           /* TOP */ {
           "",
-  },
+    },
           /* ALWAYS */ {
           "", "",
-  },
+    },
           /* NEVER */ {
           "NEVER", "UNKNOWN", "NEVER",
-  },
+    },
           /* UNKNOWN */ {"UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN"},
   };
 
   private void foo4() {
-    if (!Arrays.equals(new String[] {""}, new String[] {""})/* wierd trailing comment */ ) {}
+    if (!Arrays.equals(new String[] {""}, new String[] {""})/* wierd comment */) { /* foo */ }
   }
 
-  /** some javadoc */
-  private static void l() {}
+  /** some javadoc. */
+  private static void testing() {}
 
+  /** some javadoc. */
   public void foid5() {
     String s = "";
     s.toString().toString().toString();
     // comment
   }
 
+  /** some javadoc. */
   public void foo6() {
     // comment
     // ...
     // block
     // ...
           // odd indentation comment
-    // violation above '.* indentation should be the same level as line 100.'
+    // violation above '.* indentation should be the same level as line 105.'
     String someStr = new String();
   }
 
+  /** some javadoc. */
   public void foo7() {
     // comment
     // ...
     // block
         // odd indentation comment
     // comment
-    // violation 2 lines above'.* indentation should be the same level as line 110.'
+    // violation 2 lines above'.* indentation should be the same level as line 116.'
     String someStr = new String();
   }
 
+  /** some javadoc. */
   public void foo8() {
     String s = new String(); // comment
     // ...
     // block
     // ...
             // odd indentation comment
-    // violation above '.* indentation should be the same level as line 120.'
+    // violation above '.* indentation should be the same level as line 127.'
     String someStr = new String();
   }
 
@@ -124,13 +131,14 @@ public class InputCommentsIndentationSurroundingCode {
     return "";
   }
 
+  /** some javadoc. */
   public void foo10() throws Exception {
 
     final String pattern = "^foo$";
 
     final String[] expected = {
-            "7:13: " + foo9("", "", ""),
-            // comment
+        "7:13: " + foo9("", "", ""),
+        // comment
     };
   }
 } // The Check should not throw NPE here!
