@@ -570,7 +570,13 @@
     <module name="OneStatementPerLine"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
+    <module name="ParameterAlignment">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="ParameterAssignment"/>
+    <module name="ParameterPlacement">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="RequireThis"/>
     <module name="ReturnCount">
       <property name="max" value="1"/>
