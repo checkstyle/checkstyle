@@ -1,10 +1,13 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
+/** some javadoc. */
 public class InputWhitespaceAfterBad {
+  /** some javadoc. */
   public void check1(int x,int y) { // violation '',' is not followed by whitespace.'
     for(int a = 1,b = 2;a < 5;a++,b--)
       ;
-    // 6 violations 2 lines above:
+    // 7 violations 2 lines above:
+    //  ''for' construct must use '{}'s.'
     //  ''for' is not followed by whitespace.'
     //  ''for' is not followed by whitespace.'
     //  '',' is not followed by whitespace.'
@@ -15,7 +18,10 @@ public class InputWhitespaceAfterBad {
       // 2 violations above:
       //  ''while' is not followed by whitespace.'
       //  ''while' is not followed by whitespace.'
-      int a = 0,b = 1; // violation '',' is not followed by whitespace.'
+      int a = 0,b = 1;
+      // 2 violations above:
+      //  'Each variable declaration must be in its own statement.'
+      //  '',' is not followed by whitespace.'
     }
     do{
       // 3 violations above:
@@ -29,6 +35,7 @@ public class InputWhitespaceAfterBad {
     //  ''while' is not followed by whitespace.'
   }
 
+  /** some javadoc. */
   public void check2(final int a,final int b) { // violation '',' is not followed by whitespace.'
     if((float)a == 0.0) {
       // 3 violations above:
@@ -45,32 +52,36 @@ public class InputWhitespaceAfterBad {
     }
   }
 
+  /** some javadoc. */
   public void check3(int...a) { // violation ''...' is not followed by whitespace.'
     Runnable r2 = () ->String.valueOf("Hello world two!");
     // 2 violations above:
     //  ''->' is not followed by whitespace.'
     //  ''->' is not followed by whitespace.'
     switch(a[0]) {
-        // 2 violations above:
-        //  ''switch' is not followed by whitespace.'
-        //  ''switch' is not followed by whitespace.'
+      // 2 violations above:
+      //  ''switch' is not followed by whitespace.'
+      //  ''switch' is not followed by whitespace.'
       default:
         break;
     }
   }
 
+  /** some javadoc. */
   public void check4() throws java.io.IOException {
     try(java.io.InputStream ignored = System.in;) {}
-    // 4 violations above:
+    // 5 violations above:
     //  ''try' is not followed by whitespace.'
     //  ''try' is not followed by whitespace.'
+    //  'Empty try block.'
     //  ''{' is not followed by whitespace.'
     //  ''}' is not preceded with whitespace.'
   }
 
+  /** some javadoc. */
   public void check5() {
     try {
-
+      /* foo */
     } finally{
       // 3 violations above:
       //  ''finally' is not followed by whitespace.'
@@ -78,7 +89,9 @@ public class InputWhitespaceAfterBad {
       //  ''{' is not preceded with whitespace.'
     }
     try {
+      /* foo */
     } catch (Exception e) {
+      /* foo */
     } finally{
       // 3 violations above:
       //  ''finally' is not followed by whitespace.'
@@ -87,8 +100,10 @@ public class InputWhitespaceAfterBad {
     }
   }
 
+  /** some javadoc. */
   public void check6() {
     try {
+      /* foo */
     } catch(Exception e) {
       // 2 violations above:
       //  ''catch' is not followed by whitespace.'
@@ -96,6 +111,7 @@ public class InputWhitespaceAfterBad {
     }
   }
 
+  /** some javadoc. */
   public void check7() {
     synchronized(this) {
       // 2 violations above:
@@ -107,6 +123,7 @@ public class InputWhitespaceAfterBad {
     }
   }
 
+  /** some javadoc. */
   public String check8() {
     return("a" + "b");
     // 2 violations above:
