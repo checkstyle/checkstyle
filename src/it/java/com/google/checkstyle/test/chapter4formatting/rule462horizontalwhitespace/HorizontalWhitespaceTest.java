@@ -25,16 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "WhitespaceAround",
-        "WhitespaceAfter",
-        "GenericWhitespace",
-        "MethodParamPad",
-        "ParenPad",
-        "NoWhitespaceBefore",
-        "NoWhitespaceBeforeCaseDefaultColon",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace";
@@ -42,78 +32,66 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundBasic() throws Exception {
-        final String filePath = getPath("InputWhitespaceAroundBasic.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundBasic.java"));
     }
 
     @Test
     public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
-        final String filePath = getPath("InputWhitespaceAroundEmptyTypesAndCycles.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundEmptyTypesAndCycles.java"));
     }
 
     @Test
     public void testWhitespaceAfterBad() throws Exception {
-        final String filePath = getPath("InputWhitespaceAfterBad.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterBad.java"));
     }
 
     @Test
     public void testWhitespaceAfterGood() throws Exception {
-        final String filePath = getPath("InputWhitespaceAfterGood.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterGood.java"));
     }
 
     @Test
     public void testParenPad() throws Exception {
-        final String filePath = getPath("InputParenPad.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputParenPad.java"));
     }
 
     @Test
     public void testNoWhitespaceBeforeEmptyForLoop() throws Exception {
-        final String filePath = getPath("InputNoWhitespaceBeforeEmptyForLoop.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEmptyForLoop.java"));
     }
 
     @Test
     public void testNoWhitespaceBeforeColonOfLabel() throws Exception {
-        final String filePath = getPath("InputNoWhitespaceBeforeColonOfLabel.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeColonOfLabel.java"));
     }
 
     @Test
     public void testNoWhitespaceBeforeAnnotations() throws Exception {
-        final String filePath = getPath("InputNoWhitespaceBeforeAnnotations.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeAnnotations.java"));
     }
 
     @Test
     public void testNoWhitespaceBeforeCaseDefaultColon() throws Exception {
-        final String filePath = getPath("InputNoWhitespaceBeforeCaseDefaultColon.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"));
     }
 
     @Test
     public void testMethodParamPad() throws Exception {
-        final String filePath = getPath("InputMethodParamPad.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
     }
 
     @Test
     public void testWhitespaceAroundGenerics() throws Exception {
-        final String filePath = getPath("InputWhitespaceAroundGenerics.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundGenerics.java"));
     }
 
     @Test
     public void testGenericWhitespace() throws Exception {
-        final String filePath = getPath("InputGenericWhitespace.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputGenericWhitespace.java"));
     }
 
     @Test
     public void genericEndsTheLine() throws Exception {
-        verifyWithConfigParser(MODULES, getPath("InputGenericWhitespaceEndsTheLine.java"));
+        verifyWithWholeConfig(getPath("InputGenericWhitespaceEndsTheLine.java"));
     }
 }

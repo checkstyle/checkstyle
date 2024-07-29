@@ -58,7 +58,7 @@ class InputGenericWhitespace implements Comparable<InputGenericWhitespace>, Seri
     //  ''\>' is preceded with whitespace.'
   }
 
-  public int compareTo(InputGenericWhitespace aObject) {
+  public int compareTo(InputGenericWhitespace obj) {
     return 0;
   }
 
