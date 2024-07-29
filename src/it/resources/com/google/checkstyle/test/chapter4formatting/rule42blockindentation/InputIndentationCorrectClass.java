@@ -2,8 +2,10 @@ package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 import java.util.Iterator;
 
+/** some javadoc. */
 public class InputIndentationCorrectClass implements Runnable, Cloneable {
 
+  /** some javadoc. */
   @Override
   public void run() {
     SecondClassWithLongLongLongLongName anon = new SecondClassWithLongLongLongLongName() {};
@@ -24,8 +26,8 @@ public class InputIndentationCorrectClass implements Runnable, Cloneable {
       // OOOO Auto-generated constructor stub
     }
   }
+
+  class SecondClassWithLongLongLongLongName extends InputIndentationCorrectClass {}
+
+  class SecondClassReturnWithVeryVeryVeryLongName {}
 }
-
-class SecondClassWithLongLongLongLongName extends InputIndentationCorrectClass {}
-
-class SecondClassReturnWithVeryVeryVeryLongName {}

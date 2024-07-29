@@ -25,10 +25,6 @@ import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 
 public class BlockIndentation2SpacesTest extends AbstractIndentationTestSupport {
 
-    private static final String[] MODULES = {
-        "Indentation",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule42blockindentation";
@@ -36,73 +32,61 @@ public class BlockIndentation2SpacesTest extends AbstractIndentationTestSupport 
 
     @Test
     public void testCorrectClass() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectClass.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectClass.java"));
     }
 
     @Test
     public void testCorrectField() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectFieldAndParameter.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectFieldAndParameter.java"));
     }
 
     @Test
     public void testCorrectFor() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectForAndParameter.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectForAndParameter.java"));
     }
 
     @Test
     public void testCorrectIf() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectIfAndParameter.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectIfAndParameter.java"));
     }
 
     @Test
     public void testCorrectNewKeyword() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectNewChildren.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectNewChildren.java"));
     }
 
     @Test
     public void testCorrect() throws Exception {
-        final String filePath = getPath("InputIndentationCorrect.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrect.java"));
     }
 
     @Test
     public void testCorrectReturn() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectReturnAndParameter.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectReturnAndParameter.java"));
     }
 
     @Test
     public void testCorrectWhile() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectWhileDoWhileAndParameter.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectWhileDoWhileAndParameter.java"));
     }
 
     @Test
     public void testCorrectChained() throws Exception {
-        final String filePath = getPath("ClassWithChainedMethodsCorrect.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("ClassWithChainedMethodsCorrect.java"));
     }
 
     @Test
     public void testWarnChained() throws Exception {
-        final String filePath = getPath("ClassWithChainedMethods.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("ClassWithChainedMethods.java"));
     }
 
     @Test
     public void testCorrectAnnotationArrayInit() throws Exception {
-        final String filePath = getPath("InputIndentationCorrectAnnotationArrayInit.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputIndentationCorrectAnnotationArrayInit.java"));
     }
 
     @Test
     public void tetsFastMatcher() throws Exception {
-        final String filePath = getPath("InputFastMatcher.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
 }
