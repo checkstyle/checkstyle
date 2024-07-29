@@ -1043,6 +1043,14 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/parameteralignment.html#ParameterAlignment">
+                ParameterAlignment
+              </a>
+            </td>
+            <td>Checks alignment of parameters.</td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/parameterassignment.html#ParameterAssignment">
                 ParameterAssignment
               </a>
@@ -1058,6 +1066,14 @@
           <tr>
             <td><a href="checks/sizes/parameternumber.html#ParameterNumber">ParameterNumber</a></td>
             <td>Checks the number of parameters of a method or constructor.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/parameterplacement.html#ParameterPlacement">
+                ParameterPlacement
+              </a>
+            </td>
+            <td>Checks placement of parameters.</td>
           </tr>
           <tr>
             <td><a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a></td>
