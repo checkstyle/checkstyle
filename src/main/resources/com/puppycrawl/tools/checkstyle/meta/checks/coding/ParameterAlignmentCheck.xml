@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ParameterAlignmentCheck"
+             name="ParameterAlignment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks alignment of parameters.
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="METHOD_DEF,CTOR_DEF,RECORD_DEF,METHOD_CALL,CTOR_CALL,SUPER_CTOR_CALL,LITERAL_NEW,ANNOTATION"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="parameter.alignment"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
