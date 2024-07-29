@@ -3,13 +3,14 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-/** Test input for GitHub issue #3090. https://github.com/checkstyle/checkstyle/issues/3090 */
+/** Test input for GitHub issue #3090. https://github.com/checkstyle/checkstyle/issues/3090 . */
 public class InputRightCurlyDoWhile2 {
 
   public void foo1() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo2() {
     int i = 1;
     while (i < 5) {
@@ -18,6 +19,7 @@ public class InputRightCurlyDoWhile2 {
     }
   }
 
+  /** some javadoc. */
   public void foo3() {
     int i = 1;
     do {
@@ -26,8 +28,10 @@ public class InputRightCurlyDoWhile2 {
     } while (i < 5);
   }
 
+  /** some javadoc. */
   public void foo4() {
-    int prog, user;
+    int prog;
+    int user;
     prog = (int) (Math.random() * 10) + 1;
     Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);
     if (input.hasNextInt()) {

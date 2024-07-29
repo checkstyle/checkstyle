@@ -2,6 +2,8 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputRightCurlyOther {
   /**
+   * summary.
+   *
    * @see test method *
    */
   int foo() throws InterruptedException {
@@ -42,8 +44,11 @@ class InputRightCurlyOther {
       String innerBlockVariable = "";
     }
 
-    if (System.currentTimeMillis() > 1000) return 1;
-    else return 2;
+    if (System.currentTimeMillis() > 1000) {
+      return 1;
+    } else {
+      return 2;
+    }
   }
 
   static {
@@ -53,14 +58,17 @@ class InputRightCurlyOther {
   public enum GreetingsEnum {
     HELLO,
     GOODBYE
-  };
+  }
 
   void method2() {
     boolean flag = true;
     if (flag) {
       System.identityHashCode("heh");
-      flag = !flag; } System. // violation ''}' at column 21 should have line break before.'
-      identityHashCode("Xe-xe");
+      // 2 violations 3 lines below:
+      //  ''}' at column 21 should have line break before.'
+      //  ''method def' child has incorrect indentation level 6, expected level should be 4.'
+      flag = !flag; } System
+      .identityHashCode("Xe-xe");
 
     if (flag) {
       System.identityHashCode("some foo");
@@ -72,27 +80,31 @@ class InputRightCurlyOther {
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
  */
 class FooCtorAlone {
-  int i;
+  // violation above 'Top-level class FooCtorAlone has to reside in its own source file.'
+  int test;
 
   public FooCtorAlone() {
-    i = 1;
-  }} // violation ''}' at column 3 should be alone on a line.'
+    test = 1;
+  } } // violation ''}' at column 3 should be alone on a line.'
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 class FooMethodAlone {
+  // violation above 'Top-level class FooMethodAlone has to reside in its own source file.'
   public void fooMethod() {
     int i = 1;
-  }} // violation ''}' at column 3 should be alone on a line.'
+  } } // violation ''}' at column 3 should be alone on a line.'
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
  */
 class FooInnerAlone {
+  // violation above 'Top-level class FooInnerAlone has to reside in its own source file.'
   class InnerFoo {
     public void fooInnerMethod() {}
   }
 }
 
+// violation below 'Top-level class EnumContainerAlone has to reside in its own source file.'
 class EnumContainerAlone {
   private enum Suit {
     CLUBS,
@@ -102,8 +114,9 @@ class EnumContainerAlone {
   }
 }
 
+// violation below 'Top-level class WithArraysAlone has to reside in its own source file.'
 class WithArraysAlone {
-  String[] s = {""};
+  String[] ss = {""};
   String[] empty = {};
   String[] s1 = {
     "foo", "foo",
@@ -117,6 +130,7 @@ class WithArraysAlone {
   String[] s4 = {"foo", "foo"};
 }
 
+// violation below 'Top-level class Interface has to reside in its own source file.'
 class Interface {
   public @interface TestAnnotation {}
 
@@ -137,20 +151,25 @@ class Interface {
   }
 }
 
+// violation below 'Top-level class TestEnum has to reside in its own source file.'
 enum TestEnum {}
 
+// violation below 'Top-level class TestEnum1 has to reside in its own source file.'
 enum TestEnum1 {
   SOME_VALUE;
 }
 
+// violation below 'Top-level class TestEnum2 has to reside in its own source file.'
 enum TestEnum2 {
   SOME_VALUE;
 }
 
+// violation below 'Top-level class TestEnum3 has to reside in its own source file.'
 enum TestEnum3 {
   SOME_VALUE;
 }
 
+// violation below 'Top-level class TestEnum4 has to reside in its own source file.'
 enum TestEnum4 {
   SOME_VALUE;
 }
