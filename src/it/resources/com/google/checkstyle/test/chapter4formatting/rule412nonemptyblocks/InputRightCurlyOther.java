@@ -7,38 +7,48 @@ class InputRightCurlyOther {
   int foo() throws InterruptedException {
     int x = 1;
     int a = 2;
-    while (true) {
-      try {
-        if (x > 0) {
+    while (true)
+    {
+      try
+      {
+        if (x > 0)
+        {
           break;
-        } else if (x < 0) {
+        } else if (x < 0)
+        {
 
           ;
         } // violation ''}' at column 9 should be on the same line as the next part of .*'
-        else {
+        else
+        {
           break;
         }
-        switch (a) {
+        switch (a)
+        {
           case 0:
             break;
           default:
             break;
         }
       } // violation ''}' at column 7 should be on the same line as the next part of .*'
-      catch (Exception e) {
+      catch (Exception e)
+      {
         break;
       }
     }
 
-    synchronized (this) {
-      do {
+    synchronized (this)
+    {
+      do
+      {
         x = 2;
       } while (x == 2);
     }
 
     this.wait(666); // Bizarre, but legal
 
-    for (int k = 0; k < 1; k++) {
+    for (int k = 0; k < 1; k++)
+    {
       String innerBlockVariable = "";
     }
 
@@ -57,12 +67,14 @@ class InputRightCurlyOther {
 
   void method2() {
     boolean flag = true;
-    if (flag) {
+    if (flag)
+    {
       System.identityHashCode("heh");
       flag = !flag; } System. // violation ''}' at column 21 should have line break before.'
       identityHashCode("Xe-xe");
 
-    if (flag) {
+    if (flag)
+    {
       System.identityHashCode("some foo");
     }
   }

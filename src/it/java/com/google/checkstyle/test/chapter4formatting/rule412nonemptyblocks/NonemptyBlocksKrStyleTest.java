@@ -26,7 +26,8 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
 
     private static final String[] MODULES = {
-        "LeftCurly",
+        "LeftCurlyEol",
+        "LeftCurlyNl",
         "RightCurlySame",
         "RightCurlyAlone",
     };
