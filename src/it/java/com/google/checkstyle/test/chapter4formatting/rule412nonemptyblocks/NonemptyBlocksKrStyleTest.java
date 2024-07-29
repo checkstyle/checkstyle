@@ -25,12 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "LeftCurly",
-        "RightCurlySame",
-        "RightCurlyAlone",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks";
@@ -38,56 +32,47 @@ public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLeftAndRightCurlyBraces() throws Exception {
-        final String filePath = getPath("InputNonemptyBlocksLeftRightCurly.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputNonemptyBlocksLeftRightCurly.java"));
     }
 
     @Test
     public void testLeftCurlyAnnotations() throws Exception {
-        final String filePath = getPath("InputLeftCurlyAnnotations.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputLeftCurlyAnnotations.java"));
     }
 
     @Test
     public void testLeftCurlyMethods() throws Exception {
-        final String filePath = getPath("InputLeftCurlyMethod.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputLeftCurlyMethod.java"));
     }
 
     @Test
     public void testRightCurly() throws Exception {
-        final String filePath = getPath("InputRightCurly.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurly.java"));
     }
 
     @Test
     public void testRightCurlyLiteralDoDefault() throws Exception {
-        final String filePath = getPath("InputRightCurlyDoWhile.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurlyDoWhile.java"));
     }
 
     @Test
     public void testRightCurlyOther() throws Exception {
-        final String filePath = getPath("InputRightCurlyOther.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurlyOther.java"));
     }
 
     @Test
     public void testRightCurlyLiteralDo() throws Exception {
-        final String filePath = getPath("InputRightCurlyDoWhile2.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurlyDoWhile2.java"));
     }
 
     @Test
     public void testRightCurlySwitch() throws Exception {
-        final String filePath = getPath("InputRightCurlySwitchCase.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurlySwitchCase.java"));
     }
 
     @Test
     public void testRightCurlySwitchCases() throws Exception {
-        final String filePath = getPath("InputRightCurlySwitchCasesBlocks.java");
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputRightCurlySwitchCasesBlocks.java"));
     }
 
 }
