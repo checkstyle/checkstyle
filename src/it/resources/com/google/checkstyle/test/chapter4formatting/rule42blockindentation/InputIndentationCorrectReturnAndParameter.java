@@ -140,27 +140,27 @@ class InputIndentationCorrectReturnAndParameter {
           || conditionNoArg();
     }
   }
+
+  class SecondClassLongNam4 {
+
+    public SecondClassLongNam4(String string) {}
+
+    String getString(FooReturnClass instance, int integer) {
+      return "String";
+    }
+
+    int getInteger(FooReturnClass instance, String string) {
+      return -1;
+    }
+
+    boolean getBoolean(FooReturnClass instance, boolean flag) {
+      return false;
+    }
+
+    SecondClassLongNam4 getInstance() {
+      return new SecondClassLongNam4("VeryLoooooooooo" + "oongString");
+    }
+  }
+
+  class FooReturnClass {}
 }
-
-class SecondClassLongNam4 {
-
-  public SecondClassLongNam4(String string) {}
-
-  String getString(FooReturnClass instance, int integer) {
-    return "String";
-  }
-
-  int getInteger(FooReturnClass instance, String string) {
-    return -1;
-  }
-
-  boolean getBoolean(FooReturnClass instance, boolean flag) {
-    return false;
-  }
-
-  SecondClassLongNam4 getInstance() {
-    return new SecondClassLongNam4("VeryLoooooooooo" + "oongString");
-  }
-}
-
-class FooReturnClass {}
