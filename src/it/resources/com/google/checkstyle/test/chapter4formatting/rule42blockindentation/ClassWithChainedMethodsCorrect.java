@@ -1,6 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
+/** some javadoc. */
 public class ClassWithChainedMethodsCorrect {
+  /** some javadoc. */
   public ClassWithChainedMethodsCorrect() {
 
     String someString = "";
