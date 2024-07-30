@@ -12,7 +12,7 @@ class InputIndentationCorrectIfAndParameter {
         "Loooooooooooooooooong",
         new SecondClassLongNam3("Loooooooooooooooooog")
             .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-        new InnerClassFoo())) {}
+        new InnerClassFoo())) { /* foo */ }
 
     if (conditionSecond(
             10000000000.0,
@@ -36,7 +36,7 @@ class InputIndentationCorrectIfAndParameter {
         || conditionNoArg()
         || conditionNoArg()
         || conditionNoArg()
-        || conditionNoArg()) {}
+        || conditionNoArg()) { /* foo */ }
   }
 
   private boolean conditionFirst(String longString, int integer, InnerClassFoo someInstance) {
@@ -82,7 +82,7 @@ class InputIndentationCorrectIfAndParameter {
                 "Loooooooooooooooooong",
                 new SecondClassLongNam3("Loooooooooooooooooog")
                     .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-                new InnerClassFoo())) {}
+                new InnerClassFoo())) { /* foo */ }
 
             if (conditionSecond(
                     10000000000.0,
@@ -106,7 +106,7 @@ class InputIndentationCorrectIfAndParameter {
                 || conditionNoArg()
                 || conditionNoArg()
                 || conditionNoArg()
-                || conditionNoArg() && fooooooooobooleanBooleanVeryLongName) {}
+                || conditionNoArg() && fooooooooobooleanBooleanVeryLongName) { /* foo */ }
           }
         };
 
@@ -115,7 +115,7 @@ class InputIndentationCorrectIfAndParameter {
           "Loooooooooooooooooong",
           new SecondClassLongNam3("Loooooooooooooooooog")
               .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-          new InnerClassFoo())) {}
+          new InnerClassFoo())) { /* foo */ }
 
       if (conditionSecond(
               10000000000.0,
@@ -139,30 +139,30 @@ class InputIndentationCorrectIfAndParameter {
           || conditionNoArg()
           || conditionNoArg()
           || conditionNoArg()
-          || conditionNoArg()) {}
+          || conditionNoArg()) { /* foo */ }
     }
   }
+
+  class SecondClassLongNam3 {
+
+    public SecondClassLongNam3(String string) {}
+
+    String getString(FooIfClass instance, int integer) {
+      return "String";
+    }
+
+    int getInteger(FooIfClass instance, String string) {
+      return -1;
+    }
+
+    boolean getBoolean(FooIfClass instance, boolean flag) {
+      return false;
+    }
+
+    SecondClassLongNam3 getInstance() {
+      return new SecondClassLongNam3("VeryLoooooooooo" + "oongString");
+    }
+  }
+
+  class FooIfClass {}
 }
-
-class SecondClassLongNam3 {
-
-  public SecondClassLongNam3(String string) {}
-
-  String getString(FooIfClass instance, int integer) {
-    return "String";
-  }
-
-  int getInteger(FooIfClass instance, String string) {
-    return -1;
-  }
-
-  boolean getBoolean(FooIfClass instance, boolean flag) {
-    return false;
-  }
-
-  SecondClassLongNam3 getInstance() {
-    return new SecondClassLongNam3("VeryLoooooooooo" + "oongString");
-  }
-}
-
-class FooIfClass {}

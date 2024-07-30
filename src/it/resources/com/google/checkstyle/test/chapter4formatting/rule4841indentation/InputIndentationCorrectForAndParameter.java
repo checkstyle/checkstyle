@@ -100,27 +100,27 @@ class InputIndentationCorrectForAndParameter {
                           + "oooooooooong"))) {}
     }
   }
+
+  class SecondForClassWithLongName1 implements Iterable<String> {
+
+    public SecondForClassWithLongName1(String string) {}
+
+    int getInteger(FooForClass instance, String string) {
+      return -1;
+    }
+
+    Map<String, String> getMap(FooForClass instance, int integer, String string) {
+      return new HashMap<String, String>();
+    }
+
+    List<String> getList(FooForClass instance, long longLong, String string) {
+      return new ArrayList<String>();
+    }
+
+    public Iterator<String> iterator() {
+      return null;
+    }
+  }
+
+  class FooForClass {}
 }
-
-class SecondForClassWithLongName1 implements Iterable<String> {
-
-  public SecondForClassWithLongName1(String string) {}
-
-  int getInteger(FooForClass instance, String string) {
-    return -1;
-  }
-
-  Map<String, String> getMap(FooForClass instance, int integer, String string) {
-    return new HashMap<String, String>();
-  }
-
-  List<String> getList(FooForClass instance, long longLong, String string) {
-    return new ArrayList<String>();
-  }
-
-  public Iterator<String> iterator() {
-    return null;
-  }
-}
-
-class FooForClass {}
