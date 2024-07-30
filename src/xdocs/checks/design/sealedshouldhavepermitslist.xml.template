@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>SealedShouldHavePermitsList</title>
+  </head>
+  <body>
+    <section name="SealedShouldHavePermitsList">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks that sealed classes and interfaces have a permits list.
+        </p>
+        <p>
+          Rationale: When a permits clause is omitted from a sealed class,
+          any class within the same compilation unit can extend it. This differs
+          from other sealed classes where permitted subclasses are explicitly
+          declared, making them readily visible to the reader. Without a permits
+          clause, identifying potential subclasses requires searching the entire
+          compilation unit, which can be challenging, especially in large files
+          with complex class hierarchies.
+        </p>
+        <p>
+          See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2">
+          Java Language Specification</a> for more information about sealed classes.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/design/sealedshouldhavepermitslist/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/design/sealedshouldhavepermitslist/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SealedShouldHavePermitsList">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <macro name="violation-messages">
+          <param name="checkName" value="SealedShouldHavePermitsList"/>
+        </macro>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.design
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <macro name="parent-module">
+          <param name="moduleName" value="SealedShouldHavePermitsList"/>
+        </macro>
+      </subsection>
+    </section>
+  </body>
+</document>
