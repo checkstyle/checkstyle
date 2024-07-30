@@ -1,9 +1,11 @@
 package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines;
 
+/** some javadoc. */
 public class ClassWithChainedMethods {
 
   public ClassWithChainedMethods(Object... params) {}
 
+  /** some javadoc. */
   public static void main(String[] args) {
     new ClassWithChainedMethods()
         .getInstance("string_one")
