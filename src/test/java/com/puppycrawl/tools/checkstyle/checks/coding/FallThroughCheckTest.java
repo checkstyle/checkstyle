@@ -252,7 +252,6 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "112:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFallThrough4.java"),
@@ -332,10 +331,8 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
             // until https://github.com/checkstyle/checkstyle/issues/13553
-            "33:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             // until https://github.com/checkstyle/checkstyle/issues/13553
-            "107:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFallThroughLastLineCommentCheck.java"),
@@ -355,12 +352,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testReliefCommentBetweenMultipleComment() throws Exception {
-        final String[] expected = {
-            // until https://github.com/checkstyle/checkstyle/issues/13553
-            "25:17: " + getCheckMessage(MSG_FALL_THROUGH),
-            // until https://github.com/checkstyle/checkstyle/issues/13553
-            "34:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-        };
+        final String[] expected = {};
         verifyWithInlineConfigParser(
                 getPath("InputFallThrough8.java"),
                 expected);
@@ -383,12 +375,45 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSwitchLabeledRules() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFallThroughSwitchRules.java"),
+                expected);
+    }
+
+    @Test
+    public void testInlineSingleCase() throws Exception {
+        final String[] expected = {
+            "12:17: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughInlineSingleCase.java"),
+                expected);
+    }
+
+    @Test
+    public void testInlineMultipleComment() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughMultipleReliefPatterns.java"),
+                expected);
+    }
+
+    @Test
+    public void testFallThroughWithoutReliefPattern() throws Exception {
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "45:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "54:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "60:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "77:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "94:9: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughWithoutReliefPattern.java"),
                 expected);
     }
 
