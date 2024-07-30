@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck"
+             name="SealedShouldHavePermitsList"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that sealed classes and interfaces have a permits list.
+ &lt;/p&gt;
+ &lt;p&gt;
+     Rationale: When a permits clause is omitted from a sealed class,
+     any class within the same compilation unit can extend it. This differs
+     from other sealed classes where permitted subclasses are explicitly
+     declared, making them readily visible to the reader. Without a permits
+     clause, identifying potential subclasses requires searching the entire
+     compilation unit, which can be challenging, especially in large files
+     with complex class hierarchies.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2"&gt;
+ Java Language Specification&lt;/a&gt; for more information about sealed classes.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="sealed.should.have.permits"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
