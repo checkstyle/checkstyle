@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -45,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The comment containing these words must be all on one line,
  * and must be on the last non-empty line before the {@code case} triggering
  * the warning or on the same line before the {@code case}(ugly, but possible).
+ * Any other comment may follow on the same line.
  * </p>
  * <p>
  * Note: The check assumes that there is no unreachable code in the {@code case}.
@@ -454,11 +457,19 @@ public class FallThroughCheck extends AbstractCheck {
      * @return true if relief comment found
      */
     private boolean hasReliefComment(DetailAST ast) {
-        return Optional.ofNullable(getNextNonCommentAst(ast))
-                .map(DetailAST::getPreviousSibling)
-                .map(previous -> previous.getFirstChild().getText())
-                .map(text -> reliefPattern.matcher(text).find())
-                .orElse(Boolean.FALSE);
+        final DetailAST nonCommentAst = getNextNonCommentAst(ast);
+        boolean result = false;
+        if (nonCommentAst != null) {
+            final int prevLineNumber = nonCommentAst.getPreviousSibling().getLineNo();
+            result = Stream.iterate(nonCommentAst.getPreviousSibling(),
+                            Objects::nonNull,
+                            DetailAST::getPreviousSibling)
+                    .takeWhile(sibling -> sibling.getLineNo() == prevLineNumber)
+                    .map(DetailAST::getFirstChild)
+                    .filter(Objects::nonNull)
+                    .anyMatch(firstChild -> reliefPattern.matcher(firstChild.getText()).find());
+        }
+        return result;
     }
 
 }
