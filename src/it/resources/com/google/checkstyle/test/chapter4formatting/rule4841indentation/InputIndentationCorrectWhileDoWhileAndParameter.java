@@ -244,27 +244,27 @@ class InputIndentationCorrectWhileDoWhileAndParameter {
           || conditionNoArg());
     }
   }
+
+  class SecondWhileLongNam1 {
+
+    public SecondWhileLongNam1(String string) {}
+
+    String getString(FooWhileClass instance, int integer) {
+      return "String";
+    }
+
+    int getInteger(FooWhileClass instance, String string) {
+      return -1;
+    }
+
+    boolean getBoolean(FooWhileClass instance, boolean flag) {
+      return false;
+    }
+
+    SecondWhileLongNam1 getInstance() {
+      return new SecondWhileLongNam1("VeryLoooooooooo" + "oongString");
+    }
+  }
+
+  class FooWhileClass {}
 }
-
-class SecondWhileLongNam1 {
-
-  public SecondWhileLongNam1(String string) {}
-
-  String getString(FooWhileClass instance, int integer) {
-    return "String";
-  }
-
-  int getInteger(FooWhileClass instance, String string) {
-    return -1;
-  }
-
-  boolean getBoolean(FooWhileClass instance, boolean flag) {
-    return false;
-  }
-
-  SecondWhileLongNam1 getInstance() {
-    return new SecondWhileLongNam1("VeryLoooooooooo" + "oongString");
-  }
-}
-
-class FooWhileClass {}

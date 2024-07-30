@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
+/** some javadoc. */
 public abstract class InputIndentationCorrect {
 
   static int i;
@@ -8,20 +9,21 @@ public abstract class InputIndentationCorrect {
     i = 0;
   }
 
-  int[] c = {
+  int[] pqr = {
     1, 2, 3,
     4, 5, 6
   };
-  int b;
+  int abc;
 
   {
-    b = 2;
+    abc = 2;
   }
 
   public boolean matches(char c) {
     return false;
   }
 
+  /** some javadoc. */
   public void foo() {
     int i = 0;
     for (; i < 9; i++) {
@@ -55,8 +57,9 @@ public abstract class InputIndentationCorrect {
     /* Some code*/
   }
 
+  /** some javadoc. */
   public void doSmth() {
-    for (int h : c) {
+    for (int h : pqr) {
       someFooMethod("longString", "veryLongString", "superVeryExtraLongString");
     }
   }
@@ -98,6 +101,6 @@ public abstract class InputIndentationCorrect {
           }
         };
 
-    private static final String ZEROES = "0\u0660\u06f0" + "\u0c66\u0ce6" + "\u1c40\u1c50";
+    private static final String ZEROES = "" + "";
   }
 }
