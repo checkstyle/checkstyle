@@ -451,6 +451,31 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for obj</message>
+    <lineContent>.filter(Objects::nonNull)</lineContent>
+    <details>
+      found   : @GuardSatisfied Object
+      required: @GuardedBy DetailAST
+      Consequence: method in @GuardedBy Objects
+      @GuardedBy boolean nonNull(@GuardSatisfied Object p0)
+      is not a valid method reference for method in @GuardedBy Predicate&lt;@GuardedBy DetailAST&gt;
+      @GuardedBy boolean test(@GuardedBy Predicate&lt;@GuardedBy DetailAST&gt; this, @GuardedBy DetailAST p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>type.arguments.not.inferred</specifier>
+    <message>Could not infer type arguments for Stream.iterate</message>
+    <lineContent>result = Stream.iterate(nonCommentAst.getPreviousSibling(),</lineContent>
+    <details>
+      unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for arg0</message>
