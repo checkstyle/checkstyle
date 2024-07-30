@@ -18,6 +18,7 @@
  The comment containing these words must be all on one line,
  and must be on the last non-empty line before the {@code case} triggering
  the warning or on the same line before the {@code case}(ugly, but possible).
+ Any other comment may follow on the same line.
  &lt;/p&gt;
  &lt;p&gt;
  Note: The check assumes that there is no unreachable code in the {@code case}.
