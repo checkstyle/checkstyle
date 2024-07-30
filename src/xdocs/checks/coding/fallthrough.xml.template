@@ -26,7 +26,7 @@
           and must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
           the same line before the <code>case</code>
-          (ugly, but possible).
+          (ugly, but possible). Any other comment may follow on the same line.
         </p>
         <p>
           Note: The check assumes that there is no unreachable
