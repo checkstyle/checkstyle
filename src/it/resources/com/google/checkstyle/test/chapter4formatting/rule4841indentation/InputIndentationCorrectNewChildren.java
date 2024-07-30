@@ -1,8 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
+/** some javadoc. */
 public class InputIndentationCorrectNewChildren {
 
-  private final StringBuffer mFilter =
+  private final StringBuffer filter =
       new StringBuffer(
           new CharSequence() {
             @Override

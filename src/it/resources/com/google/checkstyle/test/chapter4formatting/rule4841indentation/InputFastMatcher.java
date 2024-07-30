@@ -1,5 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
+/** some javadoc. */
 public class InputFastMatcher {
 
   public boolean matches(char c) {

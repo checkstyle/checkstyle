@@ -130,27 +130,27 @@ class InputIndentationCorrectFieldAndParameter {
                   || conditionNoArg();
         };
   }
+
+  class SecondFieldLongNam2 {
+
+    public SecondFieldLongNam2(String string) {}
+
+    String getString(FooFieldClass instance, int integer) {
+      return "String";
+    }
+
+    int getInteger(FooFieldClass instance, String string) {
+      return -1;
+    }
+
+    boolean getBoolean(FooFieldClass instance, boolean flag) {
+      return false;
+    }
+
+    SecondFieldLongNam2 getInstance() {
+      return new SecondFieldLongNam2("VeryLoooooooooo" + "oongString");
+    }
+  }
+
+  class FooFieldClass {}
 }
-
-class SecondFieldLongNam2 {
-
-  public SecondFieldLongNam2(String string) {}
-
-  String getString(FooFieldClass instance, int integer) {
-    return "String";
-  }
-
-  int getInteger(FooFieldClass instance, String string) {
-    return -1;
-  }
-
-  boolean getBoolean(FooFieldClass instance, boolean flag) {
-    return false;
-  }
-
-  SecondFieldLongNam2 getInstance() {
-    return new SecondFieldLongNam2("VeryLoooooooooo" + "oongString");
-  }
-}
-
-class FooFieldClass {}
