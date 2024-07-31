@@ -1,5 +1,7 @@
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * Test input for MethodNameCheck specifically whether the method name equals the class name.
  *
@@ -21,6 +23,24 @@ public class InputMethodName {
   void f() {} // violation 'Method name 'f' must match pattern'
 
   void fO() {} // violation 'Method name 'fO' must match pattern'
+
+  @Test
+  void testing_foo() {}
+
+  @Test
+  void testing_Foo() {}
+
+  @Test
+  void testing_fOo() {}
+
+  @Test
+  void testingFoo() {}
+
+  @Test
+  void testingFoo_foo() {}
+
+  @Test
+  void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
 
   class InnerFoo {
     void foo() {}
