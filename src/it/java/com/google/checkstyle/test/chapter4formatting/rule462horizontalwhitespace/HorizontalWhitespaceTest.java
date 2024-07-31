@@ -94,4 +94,9 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     public void genericEndsTheLine() throws Exception {
         verifyWithWholeConfig(getPath("InputGenericWhitespaceEndsTheLine.java"));
     }
+
+    @Test
+    public void testWhitespaceAroundWhen() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputWhitespaceAroundWhen.java"));
+    }
 }
