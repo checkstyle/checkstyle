@@ -958,7 +958,7 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
                     WhitespaceAround</a>
@@ -1009,6 +1009,13 @@
                   opposite for ellipsis. This will be addressed in the issue
                   <a href="https://github.com/checkstyle/checkstyle/issues/6707">
                     #6707</a>.
+                  <br/>
+                  <br/>
+                  There are some false positive and negative cases for "{}" and "{ }".
+                  See issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15338">
+                    #15338</a>
+                  for more detailed explanation.
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
