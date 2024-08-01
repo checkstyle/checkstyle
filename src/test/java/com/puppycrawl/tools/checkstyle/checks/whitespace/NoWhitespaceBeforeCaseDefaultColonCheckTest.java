@@ -88,4 +88,20 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
                 .isEqualTo(check.getAcceptableTokens());
     }
 
+    @Test
+    public void testPatternMatchingForSwitch() throws Exception {
+        final String[] expected = {
+            "14:62: " + getCheckMessage(MSG_KEY, ":"),
+            "16:21: " + getCheckMessage(MSG_KEY, ":"),
+            "18:21: " + getCheckMessage(MSG_KEY, ":"),
+            "20:67: " + getCheckMessage(MSG_KEY, ":"),
+            "23:36: " + getCheckMessage(MSG_KEY, ":"),
+            "25:21: " + getCheckMessage(MSG_KEY, ":"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputNoWhitespaceBeforeCaseDefaultColonPatternMatchingForSwitch.java"),
+                expected);
+    }
+
 }
