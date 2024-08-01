@@ -227,7 +227,7 @@
       <p>New:</p>
         <ul>
           <li>
-            Add ignoreMethodAnnotatedBy property to ParameterNumberCheck.
+            Add ignoreAnnotatedBy property to ParameterNumberCheck.
             Author: sktpy
             <a href="https://github.com/checkstyle/checkstyle/issues/11340">#11340</a>
           </li>
