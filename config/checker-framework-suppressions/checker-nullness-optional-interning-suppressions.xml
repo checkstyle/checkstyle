@@ -720,7 +720,7 @@
     <lineContent>.orElse(fullName);</lineContent>
     <details>
       found   : String
-      required: @KeyFor(&quot;com.puppycrawl.tools.checkstyle.PackageObjectFactory.NAME_TO_FULL_MODULE_NAME&quot;) String
+      required: @KeyFor(&quot;com.puppycrawl.tools.checkstyle.PackageObjectFactory.class.NAME_TO_FULL_MODULE_NAME&quot;) String
     </details>
   </checkerFrameworkError>
 

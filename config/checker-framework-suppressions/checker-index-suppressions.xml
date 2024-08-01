@@ -2505,7 +2505,7 @@
     <lineContent>return COLUMN_NAMES[column];</lineContent>
     <details>
       found   : int
-      required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&quot;) -- an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.COLUMN_NAMES&apos;s length
+      required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&quot;) -- an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&apos;s length
     </details>
   </checkerFrameworkError>
 
@@ -2842,7 +2842,7 @@
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
     <lineContent>.substring(lastIndexOfClasspathProtocol));</lineContent>
     <details>
-      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.utils.CommonUtil.CLASSPATH_URL_PROTOCOL&quot;) int
+      found   : @LTEqLengthOf(&quot;com.puppycrawl.tools.checkstyle.utils.CommonUtil.class.CLASSPATH_URL_PROTOCOL&quot;) int
       required: @LTEqLengthOf(&quot;filename&quot;) int
     </details>
   </checkerFrameworkError>
