@@ -2,12 +2,12 @@ package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.IOException;
 
+/** some javadoc. */
 public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo() {
     try {
       throw new RuntimeException();
-    } catch (Exception expected) // ok
-    {
+    } catch (Exception expected) { // ok
 
     }
   }
@@ -22,8 +22,7 @@ public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo2() {
     try {
       throw new IOException();
-    } catch (IOException | NullPointerException | ArithmeticException expected) // ok
-    {
+    } catch (IOException | NullPointerException | ArithmeticException expected) { // ok
     }
   }
 
@@ -37,8 +36,7 @@ public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo4() {
     try {
       throw new IOException();
-    } catch (IOException | NullPointerException | ArithmeticException expected) // ok
-    {
+    } catch (IOException | NullPointerException | ArithmeticException expected) { // ok
     }
   }
 
