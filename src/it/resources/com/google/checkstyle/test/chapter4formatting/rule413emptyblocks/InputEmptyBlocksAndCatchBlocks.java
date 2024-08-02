@@ -7,11 +7,11 @@ class InputEmptyBlocksAndCatchBlocks {
   public void fooMethod() {
     InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
     int a = 1;
-    if (a == 1) {} // violation 'Empty if block.'
+    if (a == 1) { } // violation 'Empty if block.'
     char[] s = {'1', '2'};
     int index = 2;
-    if (doSideEffect() == 1) {} // violation 'Empty if block.'
-    IO in = new IO();
+    if (doSideEffect() == 1) { } // violation 'Empty if block.'
+    Io in = new Io();
     while ((r = in.read()) != null) {}
     for (; index < s.length && s[index] != 'x'; index++) {}
     if (a == 1) {
@@ -20,7 +20,10 @@ class InputEmptyBlocksAndCatchBlocks {
     }
     do {} while (a == 1);
     switch (a) {
-    } // violation above 'Empty switch block.'
+    }
+    // 2 violations 2 lines above:
+    //  'switch without "default" clause.'
+    //  'Empty switch block.'
     int[] z = {};
   }
 
@@ -31,16 +34,20 @@ class InputEmptyBlocksAndCatchBlocks {
   public void emptyMethod() {}
 }
 
-class IO {
+// violation below 'Top-level class Io has to reside in its own source file.'
+class Io {
   public InputEmptyBlocksAndCatchBlocks read() {
     return new InputEmptyBlocksAndCatchBlocks();
   }
 }
 
+// violation below 'Top-level class Empty has to reside in its own source file.'
 class Empty {}
 
+// violation below 'Top-level class EmptyImplement has to reside in its own source file.'
 interface EmptyImplement {}
 
+// violation below 'Top-level class WithInner has to reside in its own source file.'
 class WithInner {
   static {
   }
@@ -55,11 +62,11 @@ class WithInner {
     private void withEmpty() {
       InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
       int a = 1;
-      if (a == 1) {} // violation 'Empty if block.'
+      if (a == 1) { } // violation 'Empty if block.'
       char[] s = {'1', '2'};
       int index = 2;
-      if (doSideEffect() == 1) {} // violation 'Empty if block.'
-      IO in = new IO();
+      if (doSideEffect() == 1) { } // violation 'Empty if block.'
+      Io in = new Io();
       while ((r = in.read()) != null) {}
       for (; index < s.length && s[index] != 'x'; index++) {}
       if (a == 1) {
@@ -68,12 +75,16 @@ class WithInner {
       }
       do {} while (a == 1);
       switch (a) {
-      } // violation above 'Empty switch block.'
+      }
+      // 2 violations 2 lines above:
+      //  'switch without "default" clause.'
+      //  'Empty switch block.'
       int[] z = {};
     }
   }
 }
 
+// violation below 'Top-level class WithAnon has to reside in its own source file.'
 class WithAnon {
   interface AnonWithEmpty {
     public void fooEmpty();
@@ -88,11 +99,11 @@ class WithAnon {
           public void fooEmpty() {
             InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
-            if (a == 1) {} // violation 'Empty if block.'
+            if (a == 1) { } // violation 'Empty if block.'
             char[] s = {'1', '2'};
             int index = 2;
-            if (doSideEffect() == 1) {} // violation 'Empty if block.'
-            IO in = new IO();
+            if (doSideEffect() == 1) { } // violation 'Empty if block.'
+            Io in = new Io();
             while ((r = in.read()) != null) {}
             for (; index < s.length && s[index] != 'x'; index++) {}
             if (a == 1) {
@@ -101,7 +112,10 @@ class WithAnon {
             }
             do {} while (a == 1);
             switch (a) {
-            } // violation above 'Empty switch block.'
+            }
+            // 2 violations 2 lines above:
+            //  'switch without "default" clause.'
+            //  'Empty switch block.'
             int[] z = {};
           }
 
@@ -112,6 +126,7 @@ class WithAnon {
   }
 }
 
+// violation below 'Top-level class NewClass has to reside in its own source file.'
 class NewClass {
 
   void foo() {
@@ -168,23 +183,21 @@ class NewClass {
 
     if (a == 1) {
       /*ignore*/
+      // violation below 'Empty if block.'
     } else if (a != 1) {
-    } // violation above 'Empty if block.'
-    else {
-    } // violation above 'Empty else block.'
-
-    if (a == 1) {
-    } // violation above 'Empty if block.'
-    else if (a != 1) {
-      /*ignore*/
     } else {
     } // violation above 'Empty else block.'
 
     if (a == 1) {
-    } // violation above 'Empty if block.'
-    else if (a != 1) {
-    } // violation above 'Empty if block.'
-    else {
+    } else if (a != 1) { // violation above 'Empty if block.'
+      /*ignore*/
+    } else {
+    } // violation above 'Empty else block.'
+
+    // violation below 'Empty if block.'
+    if (a == 1) {
+    } else if (a != 1) {
+    } else { // violation above 'Empty if block.'
       /*ignore*/
     }
   }
@@ -245,23 +258,22 @@ class NewClass {
 
       if (a == 1) {
         /*ignore*/
+        // violation below 'Empty if block.'
       } else if (a != 1) {
-      } // violation above 'Empty if block.'
-      else {
+      } else {
       } // violation above 'Empty else block.'
 
+      // violation below 'Empty if block.'
       if (a == 1) {
-      } // violation above 'Empty if block.'
-      else if (a != 1) {
+      } else if (a != 1) {
         /*ignore*/
       } else {
       } // violation above 'Empty else block.'
 
+      // violation below 'Empty if block.'
       if (a == 1) {
-      } // violation above 'Empty if block.'
-      else if (a != 1) {
-      } // violation above 'Empty if block.'
-      else {
+      } else if (a != 1) {
+      } else { // violation above 'Empty if block.'
         /*ignore*/
       }
     }
@@ -323,23 +335,21 @@ class NewClass {
 
             if (a == 1) {
               /*ignore*/
+              // violation below 'Empty if block.'
             } else if (a != 1) {
-            } // violation above 'Empty if block.'
-            else {
-            } // violation above 'Empty else block.'
-
-            if (a == 1) {
-            } // violation above 'Empty if block.'
-            else if (a != 1) {
-              /*ignore*/
             } else {
             } // violation above 'Empty else block.'
 
             if (a == 1) {
-            } // violation above 'Empty if block.'
-            else if (a != 1) {
-            } // violation above 'Empty if block.'
-            else {
+            } else if (a != 1) { // violation above 'Empty if block.'
+              /*ignore*/
+            } else {
+            } // violation above 'Empty else block.'
+
+            // violation below 'Empty if block.'
+            if (a == 1) {
+            } else if (a != 1) {
+            } else { // violation above 'Empty if block.'
               /*ignore*/
             }
           }
@@ -347,6 +357,7 @@ class NewClass {
   }
 }
 
+// violation below 'Top-level class Example has to reside in its own source file.'
 class Example {
 
   void doNothing() {}
@@ -354,6 +365,7 @@ class Example {
   void doNothingElse() {}
 }
 
+// violation below 'Top-level class TestingEmptyBlockCatch has to reside in its own source file.'
 class TestingEmptyBlockCatch {
   boolean flag;
 
@@ -376,9 +388,9 @@ class TestingEmptyBlockCatch {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block.'
     } catch (Exception e) {
-    } // violation above 'Empty catch block.'
-    finally {
+    } finally {
     } // violation above 'Empty finally block.'
   }
 
@@ -404,9 +416,9 @@ class TestingEmptyBlockCatch {
         if (!flag) {
           doSm();
         }
+        // violation below 'Empty catch block.'
       } catch (Exception e) {
-      } // violation above 'Empty catch block.'
-      finally {
+      } finally {
       } // violation above 'Empty finally block.'
     }
   }
@@ -434,9 +446,9 @@ class TestingEmptyBlockCatch {
             if (!flag) {
               doSm();
             }
+            // violation below 'Empty catch block.'
           } catch (Exception e) {
-          } // violation above 'Empty catch block.'
-          finally {
+          } finally {
           } // violation above 'Empty finally block.'
         }
       };
