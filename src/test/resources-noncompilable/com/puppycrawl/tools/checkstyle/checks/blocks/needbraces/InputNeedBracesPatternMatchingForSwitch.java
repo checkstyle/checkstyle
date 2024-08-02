@@ -85,16 +85,15 @@ public class InputNeedBracesPatternMatchingForSwitch {
         };
 
         int b =  switch (o) {
-            case Integer i when (i == 0) -> i;
-            // until https://github.com/checkstyle/checkstyle/issues/15322
-            case String s when (s.equals("a")) -> s.length();  // violation
-            case Point(int x, int y ) when (x>=0 && y >=0) ->  // violation
+            case Integer i when (i == 0) -> i; // violation
+            case String s when (s.equals("a")) -> s.length(); // violation
+            case Point(int x, int y ) when (x>=0 && y >=0) -> // violation
                 x + y;
             case Integer i when (i == 9) -> {
                 int n = i;
                 yield n;
             }
-            default -> 0;
+            default -> 0; // violation
         };
     }
     record Point(int x, int y) {}
