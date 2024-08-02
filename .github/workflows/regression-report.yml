@@ -30,12 +30,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check_pr_status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR status
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.issue.pull_request.url }}
+        run: |
+          PR_STATE=$(curl --fail-with-body -s -H "Authorization: token $GITHUB_TOKEN" \
+                     -H "Accept: application/vnd.github.v3+json" \
+                     "$PR_URL" | jq -r .state)
+          if [ "$PR_STATE" != "open" ]; then
+            echo "PR is not active"
+            exit 1
+          fi
+
   parse_comment:
     if: |
       github.event.issue.pull_request
            && (startsWith(github.event.comment.body, 'Github, generate report for ')
               || startsWith(github.event.comment.body, 'GitHub, generate report for '))
     runs-on: ubuntu-latest
+    needs: check_pr_status
     outputs:
       config_bundle_path: ${{ steps.parse.outputs.config_bundle_path }}
       config_link: ${{ steps.set_links.outputs.config_link }}
@@ -58,19 +75,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Check PR status
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.issue.pull_request.url }}
-        run: |
-          PR_STATE=$(curl --fail-with-body -s -H "Authorization: token $GITHUB_TOKEN" \
-                     -H "Accept: application/vnd.github.v3+json" \
-                     "$PR_URL" | jq -r .state)
-          if [ "$PR_STATE" != "open" ]; then
-            echo "PR is not active"
-            exit 1
-          fi
 
       - name: Parse comment
         id: parse
@@ -222,10 +226,27 @@ jobs:
         run: |
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
+  add_sad_Emoji:
+    needs: [ check_pr_status, parse_comment, make_report ]
+    if: cancelled()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add sad Emoji
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'confused'
+            });
+
   # should be always last step
   send_message:
     runs-on: ubuntu-latest
-    needs: [ parse_comment, make_report ]
+    needs: [ check_pr_status, parse_comment, make_report ]
     if: failure() || success()
     steps:
       - name: Checkout repository
