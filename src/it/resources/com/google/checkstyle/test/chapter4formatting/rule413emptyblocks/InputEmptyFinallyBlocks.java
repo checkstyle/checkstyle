@@ -2,6 +2,7 @@
 // Test case file for checkstyle.
 // Created: 2001
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 class InputEmptyFinallyBlocks {
@@ -16,8 +17,7 @@ class InputEmptyFinallyBlocks {
       }
     } catch (Exception e) {
       /* ignore */
-    } // ok
-    finally {
+    } finally { // ok
       /* ignore */
     } // ok
   }
@@ -27,9 +27,9 @@ class InputEmptyFinallyBlocks {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block.'
     } catch (Exception e) {
-    } // violation above 'Empty catch block.'
-    finally {
+    } finally {
     } // violation above 'Empty finally block.'
   }
 
@@ -45,8 +45,7 @@ class InputEmptyFinallyBlocks {
         }
       } catch (Exception e) {
         /* ignore */
-      } // ok
-      finally {
+      } finally { // ok
         /* ignore */
       } // ok
     }
@@ -56,9 +55,9 @@ class InputEmptyFinallyBlocks {
         if (!flag) {
           doSm();
         }
+        // violation below 'Empty catch block.'
       } catch (Exception e) {
-      } // violation above 'Empty catch block.'
-      finally {
+      } finally {
       } // violation above 'Empty finally block.'
     }
   }
@@ -76,8 +75,7 @@ class InputEmptyFinallyBlocks {
             }
           } catch (Exception e) {
             /* ignore */
-          } // ok
-          finally {
+          } finally { // ok
             /* ignore */
           } // ok
         }
@@ -87,15 +85,16 @@ class InputEmptyFinallyBlocks {
             if (!flag) {
               doSm();
             }
+            // violation below 'Empty catch block.'
           } catch (Exception e) {
-          } // violation above 'Empty catch block.'
-          finally {
+          } finally {
           } // violation above 'Empty finally block.'
         }
       };
-}
 
-interface InterfaceEndingWithSemiColon2 {
-  public void fooEmpty();
+  interface InterfaceEndingWithSemiColon2 {
+    public void fooEmpty();
+  }
+
+  ; // ok until #7541
 }
-; // ok until #7541
