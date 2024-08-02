@@ -1334,6 +1334,35 @@
                 <td/>
               </tr>
               <tr>
+                <td><a name="4.8.5.1"/>
+                  <a href="#4.8.5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.5.1-type-use-annotation-style">
+                    4.8.5.1 Type-use annotations
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Type-use annotations cannot be detected by Checkstyle due to it's
+                  <a href="https://checkstyle.org/writingchecks.html#Limitations">
+                    limitations</a>,
+                  see issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15416">
+                    #15416</a>
+                  for more detailed explanation.
+                </td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="4.8.5.2"/>
                   <a href="#4.8.5.2">
                     <span class="wrapper inline">
