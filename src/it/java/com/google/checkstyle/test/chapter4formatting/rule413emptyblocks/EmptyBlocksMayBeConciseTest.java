@@ -25,11 +25,6 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport {
 
-    private static final String[] MODULES = {
-        "EmptyBlock",
-        "EmptyCatchBlock",
-    };
-
     @Override
     protected String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule413emptyblocks";
@@ -37,36 +32,26 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
 
     @Test
     public void testEmptyBlocksAndCatchBlocks() throws Exception {
-        final String filePath = getPath("InputEmptyBlocksAndCatchBlocks.java");
-
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocks.java"));
     }
 
     @Test
     public void testEmptyFinallyBlocks() throws Exception {
-        final String filePath = getPath("InputEmptyFinallyBlocks.java");
-
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
     }
 
     @Test
     public void testEmptyCatchBlockNoViolations() throws Exception {
-        final String filePath = getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java");
-
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java"));
     }
 
     @Test
     public void testEmptyCatchBlockViolationsByComment() throws Exception {
-        final String filePath = getPath("InputEmptyCatchBlockViolationsByComment.java");
-
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByComment.java"));
     }
 
     @Test
     public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
-        final String filePath = getPath("InputEmptyCatchBlockViolationsByVariableName.java");
-
-        verifyWithConfigParser(MODULES, filePath);
+        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
     }
 }

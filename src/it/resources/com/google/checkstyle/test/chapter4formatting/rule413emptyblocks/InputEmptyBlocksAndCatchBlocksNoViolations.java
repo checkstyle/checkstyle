@@ -1,10 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
 import java.io.IOException;
 
+/** some javadoc. */
 public class InputEmptyBlocksAndCatchBlocksNoViolations {
   private void foo6() {
     try {
@@ -14,6 +16,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void testTryCatch() {
     try {
       int y = 0;
@@ -28,6 +31,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void testTryCatch3() {
     try {
       int y = 0;
@@ -42,6 +46,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void testTryCatch4() {
     int y = 0;
     int u = 8;
@@ -53,18 +58,21 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void setFormats() {
     try {
       int k = 4;
     } catch (Exception e) {
       Object k = null;
-      if (k != null) k = "ss";
-      else {
+      if (k != null) {
+        k = "ss";
+      } else {
         return;
       }
     }
   }
 
+  /** some javadoc. */
   public void testIfElse() {
     if (true) {
       return;
@@ -73,6 +81,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void testIfElseIfLadder() {
     if (true) {
       return;
@@ -83,6 +92,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     }
   }
 
+  /** some javadoc. */
   public void testSwtichCase() {
     switch (1) {
       case 1:
