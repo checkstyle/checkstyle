@@ -2285,7 +2285,7 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_green.png"
+                        src="images/ok_blue.png"
                         alt="" />
                   </span>
                   <a href="checks/javadoc/missingjavadocmethod.html#MissingJavadocMethod">MissingJavadocMethod</a>
@@ -2297,6 +2297,15 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
+                  <br/>
+                  <br/>
+                  "protected" methods are not detected for missing javadoc, it will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15434">#15434</a>
+                  <br/>
+                  <br/>
+                  Optional javadoc for "simple, obvious" members is not fully supported,
+                  it will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15414">#15414</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
