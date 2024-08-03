@@ -486,4 +486,17 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
                 expected);
     }
+
+    @Test
+    public void testIllegalTypeInPermitsList() throws Exception {
+        final String[] expected = {
+            "22:52: " + getCheckMessage(MSG_KEY, "D"),
+            "27:28: " + getCheckMessage(MSG_KEY, "D"),
+            "32:27: " + getCheckMessage(MSG_KEY, "C"),
+            "35:27: " + getCheckMessage(MSG_KEY, "D"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputIllegalTypeInPermitsList.java"),
+                expected);
+    }
 }
