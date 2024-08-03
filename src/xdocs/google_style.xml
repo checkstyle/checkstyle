@@ -790,6 +790,7 @@
                   </span>
                   <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
                   <br />
+                  <br />
                   We can detect URL with protocol type as http://, https:// etc.
                   <br />
                   <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
@@ -798,6 +799,10 @@
                   <a href="https://github.com/checkstyle/checkstyle/issues/14938">
                     #14938</a>.
                   <br />
+                  <br />
+                  Long identifiers will be handled at
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15233">#15233</a>.
+                  <br/>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
