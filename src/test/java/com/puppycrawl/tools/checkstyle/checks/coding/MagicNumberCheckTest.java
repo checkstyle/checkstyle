@@ -744,4 +744,16 @@ public class MagicNumberCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputMagicNumberMagicNumberInGuards.java"), expected);
     }
+
+    @Test
+    public void testMagicNumberWithUnnamedVariables() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY, "9"),
+            "22:21: " + getCheckMessage(MSG_KEY, "17"),
+            "23:20: " + getCheckMessage(MSG_KEY, "3.1415"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
+                expected);
+    }
 }
