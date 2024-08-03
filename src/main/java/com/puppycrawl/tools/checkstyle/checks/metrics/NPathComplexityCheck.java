@@ -139,6 +139,14 @@ public final class NPathComplexityCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "npathComplexity";
 
+    /** Tokens that are considered as case labels. */
+    private static final int[] CASE_LABEL_TOKENS = {
+        TokenTypes.EXPR,
+        TokenTypes.PATTERN_DEF,
+        TokenTypes.PATTERN_VARIABLE_DEF,
+        TokenTypes.RECORD_PATTERN_DEF,
+    };
+
     /** Default allowed complexity. */
     private static final int DEFAULT_MAX = 200;
 
@@ -508,17 +516,21 @@ public final class NPathComplexityCheck extends AbstractCheck {
     }
 
     /**
-     * Counts number of case constants (EXPR) tokens in a switch labeled rule.
+     * Counts number of case constants tokens in a switch labeled rule.
      *
      * @param ast switch rule token.
-     * @return number of case constant (EXPR) tokens.
+     * @return number of case constant tokens.
      */
     private static int countCaseConstants(DetailAST ast) {
         final AtomicInteger counter = new AtomicInteger();
         final DetailAST literalCase = ast.getFirstChild();
 
-        TokenUtil.forEachChild(literalCase,
-            TokenTypes.EXPR, node -> counter.getAndIncrement());
+        for (DetailAST node = literalCase.getFirstChild(); node != null;
+                    node = node.getNextSibling()) {
+            if (TokenUtil.isOfType(node, CASE_LABEL_TOKENS)) {
+                counter.getAndIncrement();
+            }
+        }
 
         return counter.get();
     }
