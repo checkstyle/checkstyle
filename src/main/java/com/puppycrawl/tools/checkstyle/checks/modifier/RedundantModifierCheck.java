@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -59,6 +59,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code record} definitions that are declared as {@code final} and nested
  * {@code record} definitions that are declared as {@code static}.
+ * </li>
+ * <li>
+ * {@code strictfp} modifier when using JDK 17 or later. See reason at
+ * <a href="https://openjdk.org/jeps/306">JEP 306</a>
  * </li>
  * </ol>
  * <p>
@@ -144,6 +148,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <ul>
  * <li>
+ * Property {@code jdkVersion} - Set the JDK version that you are using.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code "21"}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -184,7 +193,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class RedundantModifierCheck
     extends AbstractCheck {
 
@@ -201,6 +210,33 @@ public class RedundantModifierCheck
         TokenTypes.LITERAL_STATIC,
         TokenTypes.ABSTRACT,
     };
+
+    /**
+     * Constant for jdk 21 version number.
+     */
+    private static final int JDK_21 = 21;
+
+    /**
+     * Set the JDK version that you are using.
+     *
+     */
+    private String jdkVersion = String.valueOf(JDK_21);
+
+    /**
+     * Java language level based on the JDK version.
+     */
+    private JavaLanguageLevel javaLanguageLevel = JavaLanguageLevel.getLevel(jdkVersion);
+
+    /**
+     * Setter to set the JDK version that you are using.
+     *
+     * @param jdkVersion the Java version
+     * @since 10.18.0
+     */
+    public void setJdkVersion(String jdkVersion) {
+        this.jdkVersion = jdkVersion;
+        javaLanguageLevel = JavaLanguageLevel.getLevel(this.jdkVersion);
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -260,6 +296,10 @@ public class RedundantModifierCheck
 
         if (isInterfaceOrAnnotationMember(ast)) {
             processInterfaceOrAnnotation(ast);
+        }
+
+        if (javaLanguageLevel.getIntValue() >= JavaLanguageLevel.LEVEL_17.getIntValue()) {
+            checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
     }
 
