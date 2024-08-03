@@ -655,7 +655,7 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
                   <br/>
@@ -664,6 +664,13 @@
                     <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a>
+                  <br/>
+                  <br/>
+                  The "Exception" part of the rule is not satisfied,
+                  it will be addressed in the issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/14294">
+                    #14294
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
