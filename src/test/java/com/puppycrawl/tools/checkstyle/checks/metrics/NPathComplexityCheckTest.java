@@ -250,6 +250,28 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPatternMatchingForSwitch() throws Exception {
+
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "23:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "32:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "41:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "50:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "68:5: " + getCheckMessage(MSG_KEY, 4, 1),
+            "76:5: " + getCheckMessage(MSG_KEY, 4, 1),
+            "86:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "95:5: " + getCheckMessage(MSG_KEY, 3, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNPathComplexityPatternMatchingForSwitch.java"),
+            expected);
+
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final NPathComplexityCheck npathComplexityCheckObj = new NPathComplexityCheck();
         final int[] actual = npathComplexityCheckObj.getAcceptableTokens();
