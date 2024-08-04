@@ -1615,7 +1615,18 @@
                   <a href="styleguides/google-java-style-20220203/javaguide.html#s5.1-identifier-names">
                     5.1 Rules common to all identifiers</a>
                 </td>
-                <td>"5.2 Rules of identifier type" already includes this rule.
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/catchparametername.html#CatchParameterName">CatchParameterName</a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule51identifiernames/RulesCommonToAllIdentifiersTest.java">
+                    test</a>
                 </td>
                 <td/>
               </tr>
