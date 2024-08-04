@@ -1010,13 +1010,6 @@
                   <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
                     NoWhitespaceBeforeCaseDefaultColon</a>
                   <br />
-                  <br />
-                  Between a type annotation and "[]" or "..." cannot be checked
-                  yet and actually "NoWhitespaceBefore" configuration checks the
-                  opposite for ellipsis. This will be addressed in the issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/6707">
-                    #6707</a>.
-                  <br/>
                   <br/>
                   There are some false positive and negative cases for "{}" and "{ }".
                   See issue
