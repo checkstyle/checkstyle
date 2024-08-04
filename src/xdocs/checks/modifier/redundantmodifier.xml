@@ -34,6 +34,10 @@
             <code>record</code> definitions that are declared as <code>final</code> and nested
             <code>record</code> definitions that are declared as <code>static</code>.
           </li>
+          <li>
+            <code>strictfp</code> modifier when using JDK 17 or later. See reason at
+            <a href="https://openjdk.org/jeps/306">JEP 306</a>
+          </li>
         </ol>
 
         <p>
@@ -154,6 +158,13 @@ public class ClassExtending extends ClassExample {
               <th>since</th>
             </tr>
             <tr>
+              <td>jdkVersion</td>
+              <td>Set the JDK version that you are using.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>&quot;21&quot;</code></td>
+              <td>10.18.0</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -236,8 +247,8 @@ public class Example1 {
   abstract interface I {
     public abstract void m();
     // 2 violations above:
-    //                   'Redundant 'public' modifier'
-    //                   'Redundant 'abstract' modifier'
+    //    'Redundant 'public' modifier'
+    //    'Redundant 'abstract' modifier'
     public int x = 0; // violation, 'Redundant 'public' modifier'
   }
 
@@ -245,6 +256,7 @@ public class Example1 {
         A, B, C
   }
 
+  // violation below, 'Redundant 'strictfp' modifier'
   public strictfp class Test { }
 
   AutoCloseable lock() {
@@ -283,8 +295,8 @@ public class Example2 {
   abstract interface I {
     public abstract void m();
     // 2 violations above:
-    //                   'Redundant 'public' modifier'
-    //                   'Redundant 'abstract' modifier'
+    //    'Redundant 'public' modifier'
+    //    'Redundant 'abstract' modifier'
     public int x = 0;
   }
 
@@ -297,6 +309,55 @@ public class Example2 {
   AutoCloseable lock() {
     return null;
   }
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check if you are using JDK 11:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RedundantModifier&quot;&gt;
+        &lt;property name=&quot;jdkVersion&quot; value=&quot;11&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+public class Example3 {
+
+  void test() {
+    // violation below, 'Redundant 'final' modifier'
+    try (final var a = lock()) {
+
+    } catch (Exception e) {
+
+    }
+  }
+
+  // violation below, 'Redundant 'abstract' modifier'
+  abstract interface I {
+    public abstract void m();
+    // 2 violations above:
+    //    'Redundant 'public' modifier'
+    //    'Redundant 'abstract' modifier'
+    public int x = 0; // violation, 'Redundant 'public' modifier'
+  }
+
+  static enum E { // violation, 'Redundant 'static' modifier'
+        A, B, C
+  }
+
+  // ok below, 'strictfp' is not redundant before JDK 17
+  public strictfp class Test { }
+
+  AutoCloseable lock() {
+    return null;
+  }
+
 }
         </source>
       </subsection>
