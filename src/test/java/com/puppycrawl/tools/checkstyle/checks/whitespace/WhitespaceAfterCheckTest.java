@@ -344,4 +344,13 @@ public class WhitespaceAfterCheckTest
             getNonCompilablePath("InputWhitespaceAfterLiteralWhen.java"),
             expected);
     }
+
+    @Test
+    public void testUnnamedPattern() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputWhitespaceAfterUnnamedPattern.java"),
+            expected);
+
+    }
 }
