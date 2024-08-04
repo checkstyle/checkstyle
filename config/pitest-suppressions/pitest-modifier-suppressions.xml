@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>RedundantModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck$JavaLanguageLevel</mutatedClass>
+    <mutatedMethod>getLevel</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>else if (Integer.parseInt(jdkVersion) &lt; Jdk21) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RedundantModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck$JavaLanguageLevel</mutatedClass>
+    <mutatedMethod>getLevel</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (Integer.parseInt(jdkVersion) &lt; Jdk21) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RedundantModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck$JavaLanguageLevel</mutatedClass>
+    <mutatedMethod>getLevel</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Integer::parseInt</description>
+    <lineContent>else if (Integer.parseInt(jdkVersion) &lt; Jdk21) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RedundantModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck$JavaLanguageLevel</mutatedClass>
+    <mutatedMethod>getLevel</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>else if (Integer.parseInt(jdkVersion) &lt; Jdk21) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>RedundantModifierCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck$JavaLanguageLevel</mutatedClass>
+    <mutatedMethod>getLevel</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>else if (Integer.parseInt(jdkVersion) &lt; Jdk21) {</lineContent>
+  </mutation>
+</suppressedMutations>
