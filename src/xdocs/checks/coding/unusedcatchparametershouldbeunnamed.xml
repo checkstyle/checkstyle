@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedCatchParameterShouldBeUnnamed</title>
+  </head>
+  <body>
+    <section name="UnusedCatchParameterShouldBeUnnamed">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Ensures that catch parameters that are not used are declared as an unnamed variable.
+        </p>
+        <p>
+          Rationale:
+        </p>
+        <ul>
+          <li>
+            Improves code readability by clearly indicating which parameters are unused.
+          </li>
+          <li>
+            Follows Java conventions for denoting unused parameters with an
+            underscore (<code>_</code>).
+          </li>
+        </ul>
+        <p>
+          See the <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+          Java Language Specification</a>
+          for more information about unnamed variables.
+        </p>
+        <p>
+          <b>Attention</b>: This check should be activated only on source code that is
+          compiled by jdk21 or higher;
+          unnamed catch parameters came out as the first preview in Java 21.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnusedCatchParameterShouldBeUnnamed&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Example1 {
+
+  void test() {
+
+    try {
+      int x = 1 / 0;
+      // violation below, 'Unused catch parameter 'exception' should be unnamed'
+    } catch (Exception exception) {
+      System.out.println(&quot;infinity&quot;);
+    }
+
+    try {
+      int x = 1 / 0;
+      // ok below, 'declared as unnamed parameter'
+    } catch (Exception _) {
+      System.out.println(&quot;infinity&quot;);
+    }
+
+    try {
+      int x = 1 / 0;
+      // ok below, ''exception' is used'
+    } catch (Exception exception) {
+      System.out.println(&quot;Got Exception - &quot; +  exception.getMessage());
+    }
+
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedCatchParameterShouldBeUnnamed">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.catch.parameter%22">
+              unused.catch.parameter
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

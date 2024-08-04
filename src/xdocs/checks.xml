@@ -1388,6 +1388,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unusedcatchparametershouldbeunnamed.html#UnusedCatchParameterShouldBeUnnamed">
+                UnusedCatchParameterShouldBeUnnamed
+              </a>
+            </td>
+            <td>
+              Ensures that catch parameters that are not used are declared as an unnamed variable.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unusedlocalvariable.html#UnusedLocalVariable">
                 UnusedLocalVariable
               </a>
