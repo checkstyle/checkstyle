@@ -811,7 +811,9 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="ModifierOrder"/>
-    <module name="RedundantModifier"/>
+    <module name="RedundantModifier">
+      <property name="jdkVersion" value="${checkstyle.java.version}"/>
+    </module>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">

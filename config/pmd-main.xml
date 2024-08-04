@@ -66,4 +66,16 @@
                         //MethodDeclaration[@Name='processFiltered']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/SingularField">
+    <properties>
+      <!-- we are intentionally adding 'jdkVersion'
+           as a user-facing property. However, we do not read this field directly;
+           instead, we read from another field that abstracts the internal implementation
+           of this property.
+      -->
+      <property name="violationSuppressXPath"
+         value="//ClassDeclaration[@SimpleName='RedundantModifierCheck']
+                       //FieldDeclaration//VariableDeclarator[@Name='jdkVersion']"/>
+    </properties>
+  </rule>
 </ruleset>
