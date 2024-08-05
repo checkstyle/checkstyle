@@ -1204,7 +1204,7 @@
                 SimplifyBooleanReturn
               </a>
             </td>
-            <td>Checks for over-complicated boolean return statements.</td>
+            <td>Checks for over-complicated boolean return or yield statements.</td>
           </tr>
           <tr>
             <td>

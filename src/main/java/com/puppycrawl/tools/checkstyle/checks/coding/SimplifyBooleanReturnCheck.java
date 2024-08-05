@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for over-complicated boolean return statements.
+ * Checks for over-complicated boolean return or yield statements.
  * For example the following code
  * </p>
  * <pre>
@@ -105,55 +105,56 @@ public class SimplifyBooleanReturnCheck
             final DetailAST condition = ast.getFirstChild().getNextSibling();
             final DetailAST thenStatement = condition.getNextSibling().getNextSibling();
 
-            if (canReturnOnlyBooleanLiteral(thenStatement)
-                && canReturnOnlyBooleanLiteral(elseStatement)) {
+            if (canReturnOrYieldOnlyBooleanLiteral(thenStatement)
+                && canReturnOrYieldOnlyBooleanLiteral(elseStatement)) {
                 log(ast, MSG_KEY);
             }
         }
     }
 
     /**
-     * Returns if an AST is a return statement with a boolean literal
-     * or a compound statement that contains only such a return statement.
+     * Returns if an AST is a return or a yield statement with a boolean literal
+     * or a compound statement that contains only such a return or a yield statement.
      *
      * <p>Returns {@code true} iff ast represents
      * <pre>
-     * return true/false;
+     * return/yield true/false;
      * </pre>
      * or
      * <pre>
      * {
-     *   return true/false;
+     *   return/yield true/false;
      * }
      * </pre>
      *
      * @param ast the syntax tree to check
-     * @return if ast is a return statement with a boolean literal.
+     * @return if ast is a return or a yield statement with a boolean literal.
      */
-    private static boolean canReturnOnlyBooleanLiteral(DetailAST ast) {
+    private static boolean canReturnOrYieldOnlyBooleanLiteral(DetailAST ast) {
         boolean result = true;
-        if (!isBooleanLiteralReturnStatement(ast)) {
+        if (!isBooleanLiteralReturnOrYieldStatement(ast)) {
             final DetailAST firstStatement = ast.getFirstChild();
-            result = isBooleanLiteralReturnStatement(firstStatement);
+            result = isBooleanLiteralReturnOrYieldStatement(firstStatement);
         }
         return result;
     }
 
     /**
-     * Returns if an AST is a return statement with a boolean literal.
+     * Returns if an AST is a return or a yield statement with a boolean literal.
      *
      * <p>Returns {@code true} iff ast represents
      * <pre>
-     * return true/false;
+     * return/yield true/false;
      * </pre>
      *
      * @param ast the syntax tree to check
-     * @return if ast is a return statement with a boolean literal.
+     * @return if ast is a return or a yield statement with a boolean literal.
      */
-    private static boolean isBooleanLiteralReturnStatement(DetailAST ast) {
+    private static boolean isBooleanLiteralReturnOrYieldStatement(DetailAST ast) {
         boolean booleanReturnStatement = false;
 
-        if (ast != null && ast.getType() == TokenTypes.LITERAL_RETURN) {
+        if (ast != null && (ast.getType() == TokenTypes.LITERAL_RETURN
+                                || ast.getType() == TokenTypes.LITERAL_YIELD)) {
             final DetailAST expr = ast.getFirstChild();
 
             if (expr.getType() != TokenTypes.SEMI) {
