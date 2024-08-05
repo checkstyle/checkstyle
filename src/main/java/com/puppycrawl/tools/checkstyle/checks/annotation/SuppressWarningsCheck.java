@@ -102,7 +102,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
  * COMPACT_CTOR_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+ * PATTERN_VARIABLE_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -176,6 +178,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
