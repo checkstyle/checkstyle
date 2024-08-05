@@ -19,14 +19,11 @@
 
 package com.google.checkstyle.test.chapter5naming.rule51identifiernames;
 
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public class CatchParameterNameTest extends AbstractGoogleModuleTestSupport {
+public class RulesCommonToAllIdentifiersTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -35,24 +32,7 @@ public class CatchParameterNameTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCatchParameterName() throws Exception {
-        final String msgKey = "name.invalidPattern";
-        final Configuration checkConfig = getModuleConfig("CatchParameterName");
-        final String format = checkConfig.getProperty("format");
-        final Map<String, String> messages = checkConfig.getMessages();
-
-        final String[] expected = {
-            "47:28: " + getCheckMessage(messages, msgKey, "iException", format),
-            "50:28: " + getCheckMessage(messages, msgKey, "ex_1", format),
-            "53:28: " + getCheckMessage(messages, msgKey, "eX", format),
-            "56:28: " + getCheckMessage(messages, msgKey, "eXX", format),
-            "59:28: " + getCheckMessage(messages, msgKey, "x_y_z", format),
-            "62:28: " + getCheckMessage(messages, msgKey, "Ex", format),
-        };
-
-        final String filePath = getPath("InputCatchParameterName.java");
-
-        final Integer[] warnList = getLinesWithWarn(filePath);
-        verify(checkConfig, filePath, expected, warnList);
+        verifyWithWholeConfig(getPath("InputCatchParameterName.java"));
     }
 
 }
