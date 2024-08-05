@@ -1081,4 +1081,19 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
                 getNonCompilablePath("InputSuppressWarningsRecords.java"), expected);
     }
 
+    @Test
+    public void testSuppressWarningsPatternVariables() throws Exception {
+
+        final String[] expected = {
+            "17:57: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+            "19:62: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
+            "21:44: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
+            "23:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSuppressWarningsPatternVariables.java"),
+                expected);
+    }
+
 }
