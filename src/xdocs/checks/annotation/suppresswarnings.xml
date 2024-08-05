@@ -92,6 +92,8 @@
                     COMPACT_CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>
@@ -119,6 +121,8 @@
                     COMPACT_CTOR_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>5.0</td>
