@@ -30,9 +30,7 @@ import java.util.Set;
 import org.checkstyle.base.AbstractItModuleTestSupport;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -147,43 +145,6 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
      */
     protected void verifyWithWholeConfig(String filePath) throws Exception {
         verifyWithItConfig(CONFIGURATION, filePath);
-    }
-
-    // until https://github.com/checkstyle/checkstyle/issues/15214
-    /**
-     * Performs verification of the file with the given file path against config.
-     * It uses the specified list of modules to load them from config for validation.
-     *
-     * @param listOfModules list of modules to load from config.
-     * @param filePath file path to verify.
-     * @throws Exception if exception occurs during verification process.
-     */
-    protected final void verifyWithConfigParser(String[] listOfModules,
-           String filePath) throws Exception {
-        final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
-        final DefaultConfiguration treeWalkerConfig =
-                new DefaultConfiguration(TreeWalker.class.getSimpleName());
-
-        for (String module : listOfModules) {
-            final List<Configuration> children =
-                    getConfigChildren(module);
-            if (CHECKER_CHILDREN.contains(module)) {
-                for (Configuration child : children) {
-                    rootConfig.addChild(child);
-                }
-            }
-            else {
-                for (Configuration child : children) {
-                    treeWalkerConfig.addChild(child);
-                }
-            }
-        }
-
-        if (treeWalkerConfig.getChildren().length > 0) {
-            rootConfig.addChild(treeWalkerConfig);
-        }
-
-        verifyWithItConfig(rootConfig, filePath);
     }
 
     /**
