@@ -45,6 +45,16 @@ public class SimplifyBooleanReturnCheckTest
     }
 
     @Test
+    public void testYield() throws Exception {
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY),
+            "28:17: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputSimplifyBooleanReturnWithYield.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final SimplifyBooleanReturnCheck check = new SimplifyBooleanReturnCheck();
         assertWithMessage("Acceptable tokens should not be null")
