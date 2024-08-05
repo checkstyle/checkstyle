@@ -59,6 +59,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is:
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+ * VARIABLE_DEF</a>.
+ * </li>
  * </ul>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -224,6 +232,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
+        return getAcceptableTokens();
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.DOT,
             TokenTypes.VARIABLE_DEF,
@@ -249,13 +262,28 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return getDefaultTokens();
-    }
-
-    @Override
     public int[] getRequiredTokens() {
-        return getDefaultTokens();
+        return new int[] {
+            TokenTypes.DOT,
+            TokenTypes.IDENT,
+            TokenTypes.SLIST,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.COMPILATION_UNIT,
+            TokenTypes.LAMBDA,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+        };
     }
 
     @Override

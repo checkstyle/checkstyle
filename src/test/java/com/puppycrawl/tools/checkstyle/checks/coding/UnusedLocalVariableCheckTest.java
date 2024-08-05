@@ -53,7 +53,6 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         final int[] actual = checkObj.getRequiredTokens();
         final int[] expected = {
             TokenTypes.DOT,
-            TokenTypes.VARIABLE_DEF,
             TokenTypes.IDENT,
             TokenTypes.SLIST,
             TokenTypes.LITERAL_FOR,
