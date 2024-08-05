@@ -5,7 +5,7 @@
              name="SimplifyBooleanReturn"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks for over-complicated boolean return statements.
+ Checks for over-complicated boolean return or yield statements.
  For example the following code
  &lt;/p&gt;
  &lt;pre&gt;

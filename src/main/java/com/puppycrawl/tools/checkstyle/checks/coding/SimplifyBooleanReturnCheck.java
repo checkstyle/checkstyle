@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for over-complicated boolean return statements.
+ * Checks for over-complicated boolean return or yield statements.
  * For example the following code
  * </p>
  * <pre>
@@ -113,22 +113,22 @@ public class SimplifyBooleanReturnCheck
     }
 
     /**
-     * Returns if an AST is a return statement with a boolean literal
-     * or a compound statement that contains only such a return statement.
+     * Returns if an AST is a return or a yield statement with a boolean literal
+     * or a compound statement that contains only such a return or a yield statement.
      *
      * <p>Returns {@code true} iff ast represents
      * <pre>
-     * return true/false;
+     * return/yield true/false;
      * </pre>
      * or
      * <pre>
      * {
-     *   return true/false;
+     *   return/yield true/false;
      * }
      * </pre>
      *
      * @param ast the syntax tree to check
-     * @return if ast is a return statement with a boolean literal.
+     * @return if ast is a return or a yield statement with a boolean literal.
      */
     private static boolean canReturnOnlyBooleanLiteral(DetailAST ast) {
         boolean result = true;
@@ -140,20 +140,21 @@ public class SimplifyBooleanReturnCheck
     }
 
     /**
-     * Returns if an AST is a return statement with a boolean literal.
+     * Returns if an AST is a return or a yield statement with a boolean literal.
      *
      * <p>Returns {@code true} iff ast represents
      * <pre>
-     * return true/false;
+     * return/yield true/false;
      * </pre>
      *
      * @param ast the syntax tree to check
-     * @return if ast is a return statement with a boolean literal.
+     * @return if ast is a return or a yield statement with a boolean literal.
      */
     private static boolean isBooleanLiteralReturnStatement(DetailAST ast) {
         boolean booleanReturnStatement = false;
 
-        if (ast != null && ast.getType() == TokenTypes.LITERAL_RETURN) {
+        if (ast != null && (ast.getType() == TokenTypes.LITERAL_RETURN
+                                || ast.getType() == TokenTypes.LITERAL_YIELD)) {
             final DetailAST expr = ast.getFirstChild();
 
             if (expr.getType() != TokenTypes.SEMI) {
