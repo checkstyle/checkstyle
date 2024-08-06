@@ -365,6 +365,15 @@ public class NoWhitespaceAfterCheckTest
                 expected);
     }
 
+    @Test
+    public void testNoWhitespaceAfterUnnamedPattern() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNoWhitespaceAfterUnnamedPattern.java"),
+                expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
