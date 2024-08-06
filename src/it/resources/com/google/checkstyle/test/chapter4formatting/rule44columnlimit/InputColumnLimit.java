@@ -13,6 +13,12 @@ final class InputColumnLimit {
         // violation above 'Line is longer than 100 characters (found 105).'
       };
 
+  @SuppressWarnings({"LineLength"})
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee = 99; // ok, suppression used, check name in camelcase
+
+  @SuppressWarnings({"linelength"})
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee2 = 99; // ok, suppression used, check name in lowercase
+
   /**
    * Some javadoc.
    *
