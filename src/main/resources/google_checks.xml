@@ -17,7 +17,6 @@
  -->
 
 <module name="Checker">
-  <module name="SuppressWarningsFilter"/>
 
   <property name="charset" value="UTF-8"/>
 
@@ -29,11 +28,22 @@
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>
   </module>
+
+  <module name="SuppressWarningsFilter"/>
+
   <!-- https://checkstyle.org/filters/suppressionfilter.html -->
   <module name="SuppressionFilter">
     <property name="file" value="${org.checkstyle.google.suppressionfilter.config}"
            default="checkstyle-suppressions.xml" />
     <property name="optional" value="true"/>
+  </module>
+
+  <!-- https://checkstyle.org/filters/suppresswithnearbytextfilter.html -->
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+              value="CHECKSTYLE.SUPPRESS\: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
   </module>
 
   <!-- Checks for whitespace                               -->
