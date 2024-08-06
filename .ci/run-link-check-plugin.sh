@@ -7,6 +7,25 @@ pwd
 uname -a
 mvn --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
+
+# Function to calculate the replacement string based on the file depth
+calculate_replacement() {
+    local file_path="$1"
+    local relative_path="${file_path#$DIRECTORY/}"
+    local depth=$(echo "$relative_path" | grep -o "/" | wc -l)
+    local replacement=""
+    for ((i=0; i<depth; i++)); do
+        replacement="../$replacement"
+    done
+    echo "$replacement"
+}
+
+# convert all javadoc website links to relative links
+grep -rl "https://checkstyle.org" "$DIRECTORY" | while read -r file; do
+    replacement=$(calculate_replacement "$file")
+    sed -i "s|https://checkstyle.org|$replacement|g" "$file"
+done
+
 mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 mkdir -p .ci-temp
