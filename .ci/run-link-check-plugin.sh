@@ -29,8 +29,8 @@ grep -rl "https://checkstyle.org" src/main/java | while read -r file; do
     sed -i "s|https://checkstyle.org|$replacement|g" "$file"
 done
 
-mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
-   -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
+mvn -e --no-transfer-progress -Pno-validations clean site -Dlinkcheck.skip=false \
+   -Dmaven.javadoc.skip=false
 mkdir -p .ci-temp
 
 OPTION=$1
