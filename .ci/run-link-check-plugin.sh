@@ -7,6 +7,10 @@ pwd
 uname -a
 mvn --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
+
+# conver all javadoc website links to relative links
+grep -rl "https://checkstyle.org" src/main/java | xargs sed -i 's|https://checkstyle.org|..|g'
+
 mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 mkdir -p .ci-temp
