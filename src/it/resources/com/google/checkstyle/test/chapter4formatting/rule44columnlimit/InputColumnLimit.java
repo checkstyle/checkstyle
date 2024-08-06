@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; // ok
 
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest; // ok
+import java.io.IOException;
 
 final class InputColumnLimit {
   // Long line
@@ -50,4 +51,55 @@ final class InputColumnLimit {
 
   // Very long url with valid href: href    = "www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
   int validHrefWithWhiteSpaces = 54;
+
+  // @cs-: LineLength for +1 lines
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee = 99; // ok
+
+  // @cs-: LineLength for +1 lines
+  void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddd(int x, int y) {} // ok
+
+  // @cs-: LineLength for +1 lines
+  void testingParametersNames(int areallllllyyyyyyyyyyyyyyyyyylonnnnggggggggggname, int anotherlongnameblahblahblah) {} // ok
+  // Above code is wrap-able. User should not use suppression for such cases
+
+  // @cs-: LineLength for +1 lines
+  InputColumnLimit inputColumnLimit = (InputColumnLimit) ((Object) new com.google.checkstyle.test.chapter4formatting.rule44columnlimit.InputColumnLimit()); // ok
+  // Above code is wrap-able. User should not use suppression for such cases
+
+  void testing() {
+    try {
+      throwExceptionBasedOnCondition();
+    // @cs-: LineLength for +1 lines
+    } catch (IOException | NullPointerException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
+      // Above code is wrap-able. User should not use suppression for such cases
+      System.out.println(ex.getMessage());
+    }
+  }
+
+  // @cs-: LineLength for +2 lines
+  void throwExceptionBasedOnCondition()
+      throws IOException, NullPointerException, ArrayIndexOutOfBoundsException, ClassNotFoundException { // ok
+    // Above code is wrap-able. User should not use suppression for such cases
+    int condition = new java.util.Random().nextInt(3);
+    switch (condition) {
+      case 0:
+        throw new IOException("Test IOException");
+      case 1:
+        throw new NullPointerException("Test NullPointerException");
+      case 2:
+        throw new ArrayIndexOutOfBoundsException("Test ArrayIndexOutOfBoundsException");
+      case 3:
+        throw new ClassNotFoundException("Test ClassNotFoundException");
+      default:
+    }
+  }
+
+  // @cs-: LineLength for +1 lines
+  class LonggggggggggggggggggggggggggggClassssssssssssssssssssssssssNameeeeeeeeeeeeeeSoooooBoooooorrriinngggg {
+    void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddd(int x, int y) {} // ok
+    // @cs-: LineLength for -1 lines
+
+    int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee = 99; // ok
+    // @cs-: LineLength for -1 lines
+  }
 }

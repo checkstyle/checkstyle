@@ -19,6 +19,13 @@
 <module name="Checker">
   <module name="SuppressWarningsFilter"/>
 
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+              value="@cs-: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+
   <property name="charset" value="UTF-8"/>
 
   <property name="severity" value="${org.checkstyle.google.severity}" default="warning"/>
