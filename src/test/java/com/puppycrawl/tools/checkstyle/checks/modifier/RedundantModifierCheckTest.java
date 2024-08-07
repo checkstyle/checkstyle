@@ -354,4 +354,72 @@ public class RedundantModifierCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierSealedClasses.java"), expected);
     }
+
+    @Test
+    public void testStrictfpWithVersionBeforeJava9() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:9: " + getCheckMessage(MSG_KEY, "public"),
+            "27:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:9: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierStrictfpWithVersionBeforeJava9.java"),
+                expected);
+    }
+
+    @Test
+    public void testStrictfpWithOldVersion() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:9: " + getCheckMessage(MSG_KEY, "public"),
+            "27:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:9: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierStrictfpWithOldVersion.java"),
+                expected);
+    }
+
+    @Test
+    public void testStrictfpWithJava17() throws Exception {
+        final String[] expected = {
+            "15:19: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "18:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "21:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "24:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "27:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "30:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "30:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "34:9: " + getCheckMessage(MSG_KEY, "public"),
+            "34:16: " + getCheckMessage(MSG_KEY, "static"),
+            "34:23: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "42:9: " + getCheckMessage(MSG_KEY, "final"),
+            "42:15: " + getCheckMessage(MSG_KEY, "strictfp"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierStrictfpWithJava17.java"),
+                expected);
+    }
+
+    @Test
+    public void testStrictfpWithDefaultVersion() throws Exception {
+        final String[] expected = {
+            "14:19: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "17:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "20:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "23:5: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "26:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "29:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "29:14: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "33:9: " + getCheckMessage(MSG_KEY, "public"),
+            "33:16: " + getCheckMessage(MSG_KEY, "static"),
+            "33:23: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "41:9: " + getCheckMessage(MSG_KEY, "final"),
+            "41:15: " + getCheckMessage(MSG_KEY, "strictfp"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierStrictfpWithDefaultVersion.java"),
+                expected);
+    }
 }
