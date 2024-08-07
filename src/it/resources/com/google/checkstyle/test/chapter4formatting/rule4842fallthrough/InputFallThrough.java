@@ -264,7 +264,7 @@ public class InputFallThrough {
         case 24:
           i++;
           // violation below 'incorrect indentation level'
-          /* fallthru */ case 25:
+        /* fallthru */ case 25:
           i++;
           break;
 
@@ -304,7 +304,7 @@ public class InputFallThrough {
         case 3:
           i++;
           // violation below 'incorrect indentation level'
-          /* fallthru */ case 4:
+        /* fallthru */ case 4:
           break;
         case 5:
           i++;
@@ -326,7 +326,7 @@ public class InputFallThrough {
         case 2:
           i++;
           // violation below 'incorrect indentation level'
-          /* fallthru */ case 3:
+        /* fallthru */ case 3:
           break;
         case 4:
           i++;
