@@ -603,4 +603,11 @@ public class WhitespaceAroundCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundAfterPermitsList.java"), expected);
     }
+
+    @Test
+    public void testWhitespaceAroundUnnamedPatterns() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAroundUnnamedPattern.java"), expected);
+    }
 }
