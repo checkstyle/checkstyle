@@ -5,4 +5,4 @@ matchDirectoryStructure = (default)true
 
 */
 
-/* Comment only */ // ok
+/* Comment only */ 

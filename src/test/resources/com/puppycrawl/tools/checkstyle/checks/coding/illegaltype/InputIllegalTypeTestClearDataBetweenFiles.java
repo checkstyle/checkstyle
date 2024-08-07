@@ -11,7 +11,7 @@ public class InputIllegalTypeTestClearDataBetweenFiles implements InputIllegalTy
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
-        c = null; // ^ ok
+        c = null; 
     private java.util.List d = null;
 
     public abstract class AbstractClass {/*one more comment*/}
