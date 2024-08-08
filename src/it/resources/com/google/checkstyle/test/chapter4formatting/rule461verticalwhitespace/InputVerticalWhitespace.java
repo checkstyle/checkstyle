@@ -92,11 +92,11 @@ class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated fr
       return 0;
     }
     Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
-            new Class2() {
-              public int compareTo(InputVerticalWhitespace obj) { // ok
-                int number = 0;
-                return 0;
-              }
-            };
+        new Class2() {
+          public int compareTo(InputVerticalWhitespace obj) { // ok
+            int number = 0;
+            return 0;
+          }
+        };
   }
 }
