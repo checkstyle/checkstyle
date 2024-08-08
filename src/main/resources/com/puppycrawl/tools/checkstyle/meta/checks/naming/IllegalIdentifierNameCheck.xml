@@ -14,7 +14,7 @@
  of certain symbols, such as "$", or any non-ascii character.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="(?i)^(?!(record|yield|var|permits|sealed)$).+$"
+            <property default-value="(?i)^(?!(record|yield|var|permits|sealed|when)$).+$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
