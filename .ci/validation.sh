@@ -706,7 +706,7 @@ no-error-sevntu-checks)
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
+  checkout_from https://github.com/mahfouz72/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
@@ -723,7 +723,7 @@ no-error-contribution)
   echo CS_version: "${CS_POM_VERSION}"
   mvn -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from https://github.com/mahfouz72/contribution.git
   cd .ci-temp/contribution
   cd patch-diff-report-tool
   mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
