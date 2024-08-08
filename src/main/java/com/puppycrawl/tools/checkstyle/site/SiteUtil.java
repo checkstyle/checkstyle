@@ -1147,17 +1147,16 @@ public final class SiteUtil {
             throws MacroExecutionException {
         Class<?> result = null;
 
-        if (field != null) {
+        if (PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD
+                .contains(moduleName + DOT + propertyName)) {
+            result = getPropertyClass(propertyName, instance);
+        }
+        if (field != null && result == null) {
             result = field.getType();
         }
         if (result == null) {
-            if (!PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD
-                    .contains(moduleName + DOT + propertyName)) {
-                throw new MacroExecutionException(
-                        "Could not find field " + propertyName + " in class " + moduleName);
-            }
-
-            result = getPropertyClass(propertyName, instance);
+            throw new MacroExecutionException(
+                    "Could not find field " + propertyName + " in class " + moduleName);
         }
         if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
