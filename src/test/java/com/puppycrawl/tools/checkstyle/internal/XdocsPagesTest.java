@@ -1364,21 +1364,21 @@ public class XdocsPagesTest {
             Field field, String propertyName) throws Exception {
         Class<?> result = null;
 
-        if (field != null) {
+        if (PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD.contains(sectionName + "." + propertyName)) {
+            final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
+                    propertyName);
+            result = descriptor.getPropertyType();
+        }
+        if (field != null && result == null) {
             result = field.getType();
         }
         if (result == null) {
             assertWithMessage(
                     fileName + " section '" + sectionName + "' could not find field "
                             + propertyName)
-                    .that(PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD)
-                    .contains(sectionName + "." + propertyName);
-
-            final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
-                    propertyName);
-            result = descriptor.getPropertyType();
+                    .fail();
         }
-        if (result == List.class || result == Set.class) {
+        if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
             final Class<?> parameterClass = (Class<?>) type.getActualTypeArguments()[0];
 
