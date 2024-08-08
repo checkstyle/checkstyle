@@ -251,7 +251,6 @@ public class RedundantModifierCheck
         else {
             singleVersionNumber = jdkVersion;
         }
-
         this.jdkVersion = Integer.parseInt(singleVersionNumber);
     }
 
