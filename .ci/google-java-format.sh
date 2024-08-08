@@ -12,7 +12,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule528" \
     | grep -v "rule53camelcase" \
     | grep -v "rule522classnames" \
-    | grep -v "rule51identifiernames" \
     | grep -v "rule41" | grep -v "rule42" | grep -v "rule43onestatement" \
     | grep -v "rule44columnlimit" \
     | grep -v "rule45" | grep -v "rule461verticalwhitespace" | grep -v "rule462" \
