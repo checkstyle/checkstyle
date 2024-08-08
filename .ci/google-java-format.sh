@@ -7,7 +7,7 @@ JAR_PATH="$1"
 INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
     | sed "s|src/it/resources/com/google/checkstyle/test/||" \
     | grep -v "rule711generalform" | grep -v "rule712paragraphs" | grep -v "rule713atclauses" \
-    | grep -v "rule72thesummaryfragment" | grep -v "rule73" \
+    | grep -v "rule73" \
     | grep -v "rule64" \
     | grep -v "rule528" \
     | grep -v "rule53camelcase" \
