@@ -202,6 +202,22 @@
                 <td/>
               </tr>
               <tr>
+                <td><a name="2.3"/>
+                  <a href="#2.3">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s2.3-special-characters">
+                    2.3 Special characters
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="2.3.1"/>
                   <a href="#2.3.1">
                     <span class="wrapper inline">
@@ -1484,6 +1500,35 @@
                   <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations/FieldAnnotationsTest.java">
                     test</a>
                 </td>
+              </tr>
+              <tr>
+                <td><a name="4.8.5.5"/>
+                  <a href="#4.8.5.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.5.5-local-parameter-annotation-style  ">
+                    4.8.5.5 Parameter and local variable annotations
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Type-use annotations cannot be detected by Checkstyle due to it's
+                  <a href="https://checkstyle.org/writingchecks.html#Limitations">
+                    limitations</a>,
+                  see issue
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15416">
+                    #15416</a>
+                  for more detailed explanation.
+                </td>
+                <td/>
               </tr>
               <tr>
                 <td><a name="4.8.6"/>
