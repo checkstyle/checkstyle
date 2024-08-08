@@ -10,20 +10,20 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //no violation: trailing comment
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //ok: trailing comment
 import java.io.Serializable; // violation ''import' should be separated from previous line.'
-import java.util.ArrayList; /*no violation: trailing comment*/
+import java.util.ArrayList; /*ok: trailing comment*/
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.Collections;
-/* no violation: block comment after token*/
+/* ok: block comment after token*/
 
 import java.io.PrintWriter;
-//no violation: single-line comment after token
+//ok: single-line comment after token
 
-import javax.swing.AbstractAction; /* no violation: no trailing comment
+import javax.swing.AbstractAction; /* ok: no trailing comment
 */
 
 import org.apache.commons.beanutils.locale.converters.ByteLocaleConverter;

@@ -10,7 +10,7 @@ ignoreComments = true
 
 */
 // violation 11 lines above 'Required pattern .* missing'
-// violation due to ignoreComments=true
+// due to ignoreComments=true
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 public class InputRegexpTrailingComment11 {

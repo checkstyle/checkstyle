@@ -16,7 +16,7 @@ import java.lang.Object; // no violation
 
 import java.lang.Class; // no violation
 
-// no violation
+// ok below
 import java.lang.Long;
 
 /*
@@ -31,12 +31,12 @@ import java.lang.Double;
 import java.lang.Object;
 
 // .
-// no violation
+// ok below
 import java.lang.Boolean;
-// no violation
+// ok below
 import java.lang.Byte;
 
-// no violation
+// ok below
 /* no violation */
 import java.lang.Short;
 import java.lang.Number;

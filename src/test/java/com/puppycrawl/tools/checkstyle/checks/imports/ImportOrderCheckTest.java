@@ -342,7 +342,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWildcard() throws Exception {
         final String[] expected = {
-            "24:1: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
+            "21:1: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
         };
 
         verifyWithInlineConfigParser(

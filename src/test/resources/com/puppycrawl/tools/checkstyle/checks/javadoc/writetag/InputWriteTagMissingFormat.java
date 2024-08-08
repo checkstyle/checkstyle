@@ -2,14 +2,14 @@
 WriteTag
 tag = @author
 tagFormat = (default)null
-tagSeverity = (default)info
+tagSeverity = error
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 3 lines below , 'Missing @author tag.*'
+// violation 3 lines below 'Javadoc tag @author=Daniel Grenner'
 /**
  * Testing tag writing
  * @author Daniel Grenner
