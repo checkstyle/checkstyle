@@ -165,6 +165,8 @@ public final class SiteUtil {
         // loads string into memory similar to file
         HEADER_CHECK_HEADER,
         REGEXP_HEADER_CHECK_HEADER,
+        // property is an int, but we cut off excess to accommodate old versions
+        "RedundantModifierCheck.jdkVersion",
         // until https://github.com/checkstyle/checkstyle/issues/13376
         "CustomImportOrderCheck.customImportOrderRules"
     );
