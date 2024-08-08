@@ -40,6 +40,7 @@ public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTe
             "25:12: " + getCheckMessage(MSG_KEY, "abstract"),
             "29:5: " + getCheckMessage(MSG_KEY, "public"),
             "32:3: " + getCheckMessage(MSG_KEY, "static"),
+            "37:10: " + getCheckMessage(MSG_KEY, "strictfp"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -53,5 +54,19 @@ public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTe
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "18:10: " + getCheckMessage(MSG_KEY, "final"),
+            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:5: " + getCheckMessage(MSG_KEY, "public"),
+            "27:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "31:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:3: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
