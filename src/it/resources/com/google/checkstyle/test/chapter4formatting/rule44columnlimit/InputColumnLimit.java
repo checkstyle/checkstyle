@@ -1,6 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; // ok
 
 import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest; // ok
+import java.io.IOException;
 
 final class InputColumnLimit {
   // Long line
@@ -50,4 +51,54 @@ final class InputColumnLimit {
 
   // Very long url with valid href: href    = "www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
   int validHrefWithWhiteSpaces = 54;
+
+  @SuppressWarnings({"LineLength"})
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee = 99; // ok, suppression used, check name in camelcase
+
+  @SuppressWarnings({"linelength"})
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee2 = 99; // ok, suppression used, check name in lowercase
+
+  @SuppressWarnings({"linelength"})
+  void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddd(int x, int y) {} // ok
+
+  @SuppressWarnings({"linelength"})
+  void testingParametersNames(int areallllllyyyyyyyyyyyyyyyyyylonnnnggggggggggname, int anotherlongnameblahblahblah) {} // ok
+
+  @SuppressWarnings({"linelength"})
+  InputColumnLimit inputColumnLimit = (InputColumnLimit) ((Object) new com.google.checkstyle.test.chapter4formatting.rule44columnlimit.InputColumnLimit()); // ok
+
+  @SuppressWarnings({"linelength"})
+  void testing() {
+    try {
+      throwExceptionBasedOnCondition();
+
+    } catch (IOException | NullPointerException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) { // ok, got suppressed
+      System.out.println(ex.getMessage());
+    }
+  }
+
+  @SuppressWarnings({"linelength"})
+  void throwExceptionBasedOnCondition()
+      throws IOException, NullPointerException, ArrayIndexOutOfBoundsException, ClassNotFoundException { // ok, got suppressed
+    // Above is violation of the rule, user should not use suppression for such cases
+    int condition = new java.util.Random().nextInt(3);
+    switch (condition) {
+      case 0:
+        throw new IOException("Test IOException");
+      case 1:
+        throw new NullPointerException("Test NullPointerException");
+      case 2:
+        throw new ArrayIndexOutOfBoundsException("Test ArrayIndexOutOfBoundsException");
+      case 3:
+        throw new ClassNotFoundException("Test ClassNotFoundException");
+      default:
+    }
+  }
+
+  @SuppressWarnings({"linelength"})
+  class LonggggggggggggggggggggggggggggClassssssssssssssssssssssssssNameeeeeeeeeeeeeeSoooooBoooooorrriinngggg {
+    void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddd(int x, int y) {} // ok
+
+    int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee = 99; // ok
+  }
 }

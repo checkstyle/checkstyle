@@ -807,8 +807,8 @@
                     #14938</a>.
                   <br />
                   <br />
-                  Long identifiers will be handled at
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15233">#15233</a>.
+                  To suppress this rule for longer identifiers, please use this annotation:
+                  <code>@SuppressWarnings({"LineLength"})</code>
                   <br/>
                 </td>
                 <td>
