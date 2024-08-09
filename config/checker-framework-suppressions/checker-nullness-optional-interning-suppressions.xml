@@ -2525,6 +2525,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLambdaParameterShouldBeUnnamedCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference lambdaParameters.peek()</message>
+    <lineContent>&amp;&amp; ast.equals(lambdaParameters.peek().enclosingLambda)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of Map.put.</message>
