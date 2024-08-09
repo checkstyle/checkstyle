@@ -262,6 +262,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unusedcatchparametershouldbeunnamed.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unusedlambdaparametershouldbeunnamed.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]coding[\\/]unusedlocalvariable.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]xdocs[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>

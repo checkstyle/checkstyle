@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck"
+             name="UnusedLambdaParameterShouldBeUnnamed"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Ensures that lambda parameters that are not used are declared as an unnamed variable.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale:
+ &lt;/p&gt;
+ &lt;ul&gt;
+     &lt;li&gt;
+         Improves code readability by clearly indicating which parameters are unused.
+     &lt;/li&gt;
+     &lt;li&gt;
+         Follows Java conventions for denoting unused parameters with an underscore ({@code _}).
+     &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ See the &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+ Java Language Specification&lt;/a&gt; for more information about unnamed variables.
+ &lt;/p&gt;
+ &lt;p&gt;
+ &lt;b&gt;Attention&lt;/b&gt;: Unnamed variables are available as a preview feature in Java 21,
+ and became an official part of the language in Java 22.
+ This check should be activated only on source code which meets those requirements.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="unused.lambda.parameter"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
