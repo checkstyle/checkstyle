@@ -211,28 +211,29 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
-no-error-pmd)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from "https://github.com/pmd/build-tools.git"
-  cd .ci-temp/build-tools/
-  mvn -e --no-transfer-progress install
-  cd ..
-  git clone https://github.com/pmd/pmd.git
-  cd pmd
-  ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
-                -DskipTests \
-                -Dmaven.javadoc.skip=true \
-                -Dmaven.source.skip=true \
-                -Dpmd.skip=true \
-                -Dcheckstyle.skip=false \
-                -Dcheckstyle.version="${CS_POM_VERSION}"
-  cd ..
-  removeFolderWithProtectedFiles build-tools
-  removeFolderWithProtectedFiles pmd
-  ;;
+# until https://github.com/checkstyle/checkstyle/issues/15475
+#no-error-pmd)
+#  CS_POM_VERSION="$(getCheckstylePomVersion)"
+#  echo "CS_version: ${CS_POM_VERSION}"
+#  mvn -e --no-transfer-progress clean install -Pno-validations
+#  echo "Checkout target sources ..."
+#  checkout_from "https://github.com/pmd/build-tools.git"
+#  cd .ci-temp/build-tools/
+#  mvn -e --no-transfer-progress install
+#  cd ..
+#  git clone https://github.com/pmd/pmd.git
+#  cd pmd
+#  ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
+#                -DskipTests \
+#                -Dmaven.javadoc.skip=true \
+#                -Dmaven.source.skip=true \
+#                -Dpmd.skip=true \
+#                -Dcheckstyle.skip=false \
+#                -Dcheckstyle.version="${CS_POM_VERSION}"
+#  cd ..
+#  removeFolderWithProtectedFiles build-tools
+#  removeFolderWithProtectedFiles pmd
+#  ;;
 
 no-violation-test-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
