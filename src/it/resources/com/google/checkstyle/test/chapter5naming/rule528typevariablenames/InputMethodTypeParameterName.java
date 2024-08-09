@@ -43,9 +43,9 @@ class MoreOther3<T extends Cloneable> {
     };
 
     Other2 o =
-            new Other2() {
-              <EE> void getMoreFoo() { // violation 'Method type name 'EE' must match pattern'
-              }
-            };
+        new Other2() {
+          <EE> void getMoreFoo() { // violation 'Method type name 'EE' must match pattern'
+          }
+        };
   }
 }
