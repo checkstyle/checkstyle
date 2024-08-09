@@ -137,10 +137,11 @@ workflows:
           name: "no-error-xwiki"
           image-name: "cimg/openjdk:18.0.1"
           command: "./.ci/validation.sh no-error-xwiki"
-      - validate-with-maven-script:
-          name: "no-error-pmd"
-          image-name: *cs_img
-          command: "./.ci/validation.sh no-error-pmd"
+#      until https://github.com/checkstyle/checkstyle/issues/15475
+#      - validate-with-maven-script:
+#          name: "no-error-pmd"
+#          image-name: *cs_img
+#          command: "./.ci/validation.sh no-error-pmd"
       - validate-with-maven-script:
           name: "no-exception-struts"
           image-name: *cs_img
