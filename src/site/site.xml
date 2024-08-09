@@ -175,6 +175,8 @@
                 href="checks/coding/unnecessarysemicolonintrywithresources.html"/>
           <item name="UnusedCatchParameterShouldBeUnnamed"
                 href="checks/coding/unusedcatchparametershouldbeunnamed.html"/>
+          <item name="UnusedLambdaParameterShouldBeUnnamed"
+                href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
           <item name="VariableDeclarationUsageDistance"
                 href="checks/coding/variabledeclarationusagedistance.html"/>
