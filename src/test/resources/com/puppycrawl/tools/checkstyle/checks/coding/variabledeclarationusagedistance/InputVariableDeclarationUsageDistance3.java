@@ -20,8 +20,8 @@ public class InputVariableDeclarationUsageDistance3 {
          byte[] data, int offset, int length, OutputStream out)
          throws IOException {
          out.write((byte) ((length & 0x3F) + ' '));
-         byte a;  // ok
-         byte b; // ok
+         byte a;
+         byte b;
          byte c;
 
          for (int i = 0; i < length;) {

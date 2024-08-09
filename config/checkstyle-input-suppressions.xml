@@ -76,16 +76,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]coding[\\/]unnecessarysemicolonaftertypememberdeclaration[\\/]InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance3.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceDefault2.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceIfStatements.java"/>
-  <suppress id="UnnecessaryOkComment"
-            files="checks[\\/]coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceLabels.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentsAfterMethodCall.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]indentation[\\/]commentsindentation[\\/]InputCommentsIndentationCommentsAfterMethodCall.java"/>
