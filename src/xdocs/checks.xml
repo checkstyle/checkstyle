@@ -1398,6 +1398,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unusedlambdaparametershouldbeunnamed.html#UnusedLambdaParameterShouldBeUnnamed">
+                UnusedLambdaParameterShouldBeUnnamed
+              </a>
+            </td>
+            <td>
+              Ensures that lambda parameters that are not used are declared as an unnamed variable.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unusedlocalvariable.html#UnusedLocalVariable">
                 UnusedLocalVariable
               </a>
