@@ -1,6 +1,6 @@
 /*
 RedundantModifier
-
+jdkVersion = 11
 
 */
 

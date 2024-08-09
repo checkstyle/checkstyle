@@ -34,6 +34,10 @@
             <code>record</code> definitions that are declared as <code>final</code> and nested
             <code>record</code> definitions that are declared as <code>static</code>.
           </li>
+          <li>
+            <code>strictfp</code> modifier when using JDK 17 or later. See reason at
+            <a href="https://openjdk.org/jeps/306">JEP 306</a>
+          </li>
         </ol>
 
         <p>
@@ -182,6 +186,22 @@ public class ClassExtending extends ClassExample {
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          To configure the check if you are using JDK 11:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
