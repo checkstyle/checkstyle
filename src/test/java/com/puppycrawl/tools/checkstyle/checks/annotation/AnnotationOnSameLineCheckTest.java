@@ -149,4 +149,12 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testAnnotationOnSameLinePatternVariables() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationOnSameLinePatternVariables.java"),
+            expected);
+    }
+
 }
