@@ -81,4 +81,19 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
                expected);
     }
 
+    @Test
+    public void testUnnamedVariables() throws Exception {
+
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "14:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "16:9: " + getCheckMessage(MSG_MULTIPLE),
+            "18:9: " + getCheckMessage(MSG_MULTIPLE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMultipleVariableDeclarationsUnnamedVariables.java"),
+               expected);
+    }
+
 }
