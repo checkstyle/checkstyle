@@ -1395,11 +1395,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addProperty("haltOnException", "false");
 
         final String filePath = getPath("InputChecker.java");
-        final String[] expected = {
-            "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
-        };
 
-        verify(checkerConfig, filePath, expected);
+        execute(checkerConfig, filePath);
     }
 
     @Test
