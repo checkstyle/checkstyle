@@ -19,6 +19,10 @@
           pattern to specify valid identifiers, users can also prohibit the usage
           of certain symbols, such as "$", or any non-ascii character.
         </p>
+        <p>
+          We will support latest java versions keywords please override the format property
+          if you want to revert it to older java versions keywords only.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">

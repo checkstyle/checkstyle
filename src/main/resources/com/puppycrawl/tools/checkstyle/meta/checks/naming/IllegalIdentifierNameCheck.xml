@@ -12,9 +12,13 @@
  Java Language Specification&lt;/a&gt; to get to know more about restricted keywords. Since this
  check uses a pattern to specify valid identifiers, users can also prohibit the usage
  of certain symbols, such as "$", or any non-ascii character.
+ &lt;/p&gt;
+ &lt;p&gt;
+ We will support latest java keywords please override the format property
+ if you want to revert it to older java versions keywords only.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="(?i)^(?!(record|yield|var|permits|sealed)$).+$"
+            <property default-value="(?i)^(?!(record|yield|var|permits|sealed|when)$).+$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
