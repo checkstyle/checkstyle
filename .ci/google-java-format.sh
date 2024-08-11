@@ -14,7 +14,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule53camelcase" \
     | grep -v "rule522classnames" \
     | grep -v "rule41" \
-    | grep -v "rule42" \
+    | grep -v "rule42/ClassWithChainedMethods.java" \
     | grep -v "rule43onestatement" \
     | grep -v "rule44columnlimit" \
     | grep -v "rule45" \
