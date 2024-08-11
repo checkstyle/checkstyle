@@ -11,7 +11,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
     | grep -v "rule713atclauses" \
     | grep -v "rule734nonrequiredjavadoc" \
-    | grep -v "rule64" \
     | grep -v "rule53camelcase" \
     | grep -v "rule522classnames" \
     | grep -v "rule41" \
