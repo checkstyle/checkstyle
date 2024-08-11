@@ -34,11 +34,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * check uses a pattern to specify valid identifiers, users can also prohibit the usage
  * of certain symbols, such as "$", or any non-ascii character.
  * </p>
+ * <p>
+ * We will support latest java versions keywords please override the format property
+ * if you want to revert it to older java versions keywords only.
+ * </p>
  * <ul>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "(?i)^(?!(record|yield|var|permits|sealed)$).+$"}.
+ * Default value is {@code "(?i)^(?!(record|yield|var|permits|sealed|when)$).+$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -94,7 +98,7 @@ public class IllegalIdentifierNameCheck extends AbstractNameCheck {
      * Creates a new {@code IllegalIdentifierNameCheck} instance.
      */
     public IllegalIdentifierNameCheck() {
-        super("(?i)^(?!(record|yield|var|permits|sealed)$).+$");
+        super("(?i)^(?!(record|yield|var|permits|sealed|when)$).+$");
     }
 
     @Override
