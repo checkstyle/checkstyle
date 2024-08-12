@@ -40,7 +40,7 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
-      - uses: shanegenschaw/pull-request-comment-trigger@v2.1.0
+      - uses: shanegenschaw/pull-request-comment-trigger@v3.0.0
         name: React with rocket on run
         with:
           trigger: ','
