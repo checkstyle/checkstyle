@@ -38,6 +38,10 @@
             <code>strictfp</code> modifier when using JDK 17 or later. See reason at
             <a href="https://openjdk.org/jeps/306">JEP 306</a>
           </li>
+          <li>
+            <code>final</code> modifier on unnamed variables and unnamed pattern variables
+            when using JDK 21 or later.
+          </li>
         </ol>
 
         <p>
@@ -188,6 +192,8 @@ public class ClassExtending extends ClassExample {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>
@@ -211,6 +217,8 @@ public class ClassExtending extends ClassExample {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>3.0</td>
