@@ -20,7 +20,17 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule45" \
     | grep -v "rule461verticalwhitespace" \
     | grep -v "rule462" \
-    | grep -v "rule48" \
+    | grep -v "rule487modifiers/InputModifierOrder.java" \
+    | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
+    | grep -v "rule4822declaredwhenneeded/InputDeclaredWhenNeeded.java" \
+    | grep -v "rule4841indentation/ClassWithChainedMethods.java" \
+    | grep -v "rule4842fallthrough/InputFallThrough.java" \
+    | grep -v "rule485annotations/InputAnnotationLocation.java" \
+    | grep -v "rule485annotations/InputAnnotationLocationVariables.java" \
+    | grep -v "rule4852classannotations/InputClassAnnotations.java" \
+    | grep -v "rule4853methods.*/InputMethodsAndConstructorsAnnotations.java" \
+    | grep -v "rule4854fieldannotations/InputFieldAnnotations.java" \
+    | grep -v "rule4861blockcommentstyle/InputCommentsIndentation.*.java" \
     | grep -v "rule3sourcefile" \
     | grep -v "rule331nowildcard" \
     | grep -v "rule332nolinewrap" \
