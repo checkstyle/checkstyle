@@ -64,6 +64,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code strictfp} modifier when using JDK 17 or later. See reason at
  * <a href="https://openjdk.org/jeps/306">JEP 306</a>
  * </li>
+ * <li>
+ * {@code final} modifier on unnamed variables and unnamed pattern variables
+ * when using JDK 21 or later.
+ * </li>
  * </ol>
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -178,7 +182,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+ * PATTERN_VARIABLE_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -275,6 +281,7 @@ public class RedundantModifierCheck
             TokenTypes.RESOURCE,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -300,8 +307,13 @@ public class RedundantModifierCheck
             case TokenTypes.RECORD_DEF:
                 checkForRedundantModifier(ast, TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
                 break;
-            case TokenTypes.CLASS_DEF:
             case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.PATTERN_VARIABLE_DEF:
+                if (jdkVersion >= JDK_21 && isUnnamedVariable(ast)) {
+                    checkForRedundantModifier(ast, TokenTypes.FINAL);
+                }
+                break;
+            case TokenTypes.CLASS_DEF:
             case TokenTypes.ANNOTATION_FIELD_DEF:
                 break;
             default:
@@ -315,6 +327,18 @@ public class RedundantModifierCheck
         if (jdkVersion >= JDK_17) {
             checkForRedundantModifier(ast, TokenTypes.STRICTFP);
         }
+    }
+
+    /**
+     * Check if the variable is unnamed.
+     *
+     * @param variableAst ast node st node of type {@link TokenTypes#VARIABLE_DEF}
+     *     or {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the variable is unnamed
+     */
+    private boolean isUnnamedVariable(DetailAST variableAst) {
+        return "_".equals(variableAst.findFirstToken(TokenTypes.IDENT)
+                .getText());
     }
 
     /**
