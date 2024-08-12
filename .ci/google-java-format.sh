@@ -24,7 +24,13 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule3sourcefile" \
     | grep -v "rule331nowildcard" \
     | grep -v "rule332nolinewrap" \
-    | grep -v "rule333orderingandspacing" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing1.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing2.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing3.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing4.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing5.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid2.java" \
     | grep -v "rule3421overloadsplit" \
     | grep -v "rule231filetab" \
     ))
