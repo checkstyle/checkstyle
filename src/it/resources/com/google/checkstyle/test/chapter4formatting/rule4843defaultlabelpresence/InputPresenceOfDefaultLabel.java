@@ -48,22 +48,22 @@ public class InputPresenceOfDefaultLabel {
             break;
         }
         Foo foo =
-                new Foo() {
-                  /** Some javadoc. */
-                  public void foo() {
-                    int i = 1;
-                    switch (i) { // violation 'switch without "default" clause.'
-                      case 1:
-                        i++;
-                        break;
-                      case 2:
-                        i--;
-                        break;
-                    }
-                    switch (i) { // violation 'switch without "default" clause.'
-                    }
-                  }
-                };
+            new Foo() {
+              /** Some javadoc. */
+              public void foo() {
+                int i = 1;
+                switch (i) { // violation 'switch without "default" clause.'
+                  case 1:
+                    i++;
+                    break;
+                  case 2:
+                    i--;
+                    break;
+                }
+                switch (i) { // violation 'switch without "default" clause.'
+                }
+              }
+            };
       }
     }
   }
