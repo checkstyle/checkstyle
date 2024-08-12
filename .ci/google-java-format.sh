@@ -25,7 +25,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule331nowildcard" \
     | grep -v "rule332nolinewrap" \
     | grep -v "rule333orderingandspacing" \
-    | grep -v "rule3421overloadsplit" \
+    | grep -v "rule3421overloadsplit/InputOverloadsNeverSplit.java" \
     | grep -v "rule231filetab" \
     ))
 
