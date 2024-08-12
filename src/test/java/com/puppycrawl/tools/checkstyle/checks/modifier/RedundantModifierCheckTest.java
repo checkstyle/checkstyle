@@ -154,6 +154,9 @@ public class RedundantModifierCheckTest
             TokenTypes.RESOURCE,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.LAMBDA,
         };
         assertWithMessage("Invalid acceptable tokens")
             .that(actual)
@@ -420,6 +423,36 @@ public class RedundantModifierCheckTest
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputRedundantModifierStrictfpWithDefaultVersion.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalUnnamedVariablesWithDefaultVersion() throws Exception {
+        final String[] expected = {
+            "18:26: " + getCheckMessage(MSG_KEY, "final"),
+            "24:9: " + getCheckMessage(MSG_KEY, "final"),
+            "34:18: " + getCheckMessage(MSG_KEY, "final"),
+            "44:14: " + getCheckMessage(MSG_KEY, "final"),
+            "51:14: " + getCheckMessage(MSG_KEY, "final"),
+            "54:18: " + getCheckMessage(MSG_KEY, "final"),
+            "65:53: " + getCheckMessage(MSG_KEY, "final"),
+            "69:53: " + getCheckMessage(MSG_KEY, "final"),
+            "69:70: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantModifierFinalUnnamedVariables.java"),
+                expected);
+    }
+
+    @Test
+    public void testFinalUnnamedVariablesWithOldVersion() throws Exception {
+        final String[] expected = {
+            "38:14: " + getCheckMessage(MSG_KEY, "final"),
+            "45:14: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputRedundantModifierFinalUnnamedVariablesWithOldVersion.java"),
                 expected);
     }
 }
