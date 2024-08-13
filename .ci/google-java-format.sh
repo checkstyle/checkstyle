@@ -9,7 +9,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule711generalform" \
     | grep -v "rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java" \
     | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
-    | grep -v "rule713atclauses" \
+    | grep -v "rule713atclauses/InputJavaDocTagContinuationIndentation.java" \
     | grep -v "rule734nonrequiredjavadoc" \
     | grep -v "rule53camelcase" \
     | grep -v "rule522classnames" \
