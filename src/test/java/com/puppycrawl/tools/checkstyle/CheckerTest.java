@@ -1383,23 +1383,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHaltOnExceptionOff() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CheckWhichThrowsError.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addChild(treeWalkerConfig);
-
-        checkerConfig.addProperty("haltOnException", "false");
-
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
         };
 
-        verify(checkerConfig, filePath, expected);
+        verifyWithInlineXmlConfig(filePath, expected);
     }
 
     @Test
