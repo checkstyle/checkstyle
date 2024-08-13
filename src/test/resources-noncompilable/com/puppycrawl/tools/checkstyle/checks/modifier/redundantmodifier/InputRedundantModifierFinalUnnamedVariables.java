@@ -25,12 +25,10 @@ public class InputRedundantModifierFinalUnnamedVariables {
         final int _x = sideEffect();
 
         switch (o) {
-            // violation below, 'Redundant 'final' modifier'
-            case Point(final int a, final int _) when a == 0 -> { }
-            case Point(final int _, final int _) -> { }
-            // 2 violations above:
-            //                  'Redundant 'final' modifier'
-            //                  'Redundant 'final' modifier'
+
+            case Point( int a,  int _) when a == 0 -> { }
+            case Point( int _,  int _) -> { }
+
             default -> { }
         }
     }

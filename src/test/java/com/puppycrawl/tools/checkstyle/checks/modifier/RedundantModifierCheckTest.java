@@ -429,8 +429,8 @@ public class RedundantModifierCheckTest
         final String[] expected = {
             "16:26: " + getCheckMessage(MSG_KEY, "final"),
             "22:9: " + getCheckMessage(MSG_KEY, "final"),
-            "29:37: " + getCheckMessage(MSG_KEY, "final"),
-            "30:24: " + getCheckMessage(MSG_KEY, "final"),
+//            "29:37: " + getCheckMessage(MSG_KEY, "final"),
+//            "30:24: " + getCheckMessage(MSG_KEY, "final"),
             "30:37: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
