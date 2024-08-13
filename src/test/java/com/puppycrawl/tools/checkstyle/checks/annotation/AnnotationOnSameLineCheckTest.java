@@ -149,4 +149,14 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testAnnotationOnSameLinePatternVariables() throws Exception {
+        final String[] expected = {
+            "37:8: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAnnotationOnSameLinePatternVariables.java"),
+            expected);
+    }
+
 }
