@@ -17,7 +17,8 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule42/ClassWithChainedMethods.java" \
     | grep -v "rule43onestatement" \
     | grep -v "rule44columnlimit" \
-    | grep -v "rule45" \
+    | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
+    | grep -v "rule451wheretobreak" \
     | grep -v "rule461verticalwhitespace" \
     | grep -v "rule462" \
     | grep -v "rule487modifiers/InputModifierOrder.java" \
