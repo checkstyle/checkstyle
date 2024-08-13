@@ -77,6 +77,7 @@ import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
+import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckWhichThrowsError;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestBeforeExecutionFileFilter;
@@ -1383,23 +1384,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHaltOnExceptionOff() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CheckWhichThrowsError.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addChild(treeWalkerConfig);
-
-        checkerConfig.addProperty("haltOnException", "false");
-
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
             "1: " + getCheckMessage(EXCEPTION_MSG, "java.lang.IndexOutOfBoundsException: test"),
         };
 
-        verify(checkerConfig, filePath, expected);
+        verifyWithInlineXmlConfig(filePath, expected);
     }
 
     @Test
@@ -1881,30 +1871,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
                         cacheChildCount, actualChildCount);
                 log(ast, msg);
             }
-        }
-
-    }
-
-    public static class CheckWhichThrowsError extends AbstractCheck {
-
-        @Override
-        public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
-        }
-
-        @Override
-        public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
-        }
-
-        @Override
-        public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
-        }
-
-        @Override
-        public void visitToken(DetailAST ast) {
-            throw new IndexOutOfBoundsException("test");
         }
 
     }
