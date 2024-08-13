@@ -12,7 +12,9 @@ class InputIndentationCorrectIfAndParameter {
         "Loooooooooooooooooong",
         new SecondClassLongNam3("Loooooooooooooooooog")
             .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-        new InnerClassFoo())) { /* foo */ }
+        new InnerClassFoo())) {
+      /* foo */
+    }
 
     if (conditionSecond(
             10000000000.0,
@@ -36,7 +38,9 @@ class InputIndentationCorrectIfAndParameter {
         || conditionNoArg()
         || conditionNoArg()
         || conditionNoArg()
-        || conditionNoArg()) { /* foo */ }
+        || conditionNoArg()) {
+      /* foo */
+    }
   }
 
   private boolean conditionFirst(String longString, int integer, InnerClassFoo someInstance) {
@@ -82,7 +86,9 @@ class InputIndentationCorrectIfAndParameter {
                 "Loooooooooooooooooong",
                 new SecondClassLongNam3("Loooooooooooooooooog")
                     .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-                new InnerClassFoo())) { /* foo */ }
+                new InnerClassFoo())) {
+              /* foo */
+            }
 
             if (conditionSecond(
                     10000000000.0,
@@ -106,7 +112,9 @@ class InputIndentationCorrectIfAndParameter {
                 || conditionNoArg()
                 || conditionNoArg()
                 || conditionNoArg()
-                || conditionNoArg() && fooooooooobooleanBooleanVeryLongName) { /* foo */ }
+                || conditionNoArg() && fooooooooobooleanBooleanVeryLongName) {
+              /* foo */
+            }
           }
         };
 
@@ -115,7 +123,9 @@ class InputIndentationCorrectIfAndParameter {
           "Loooooooooooooooooong",
           new SecondClassLongNam3("Loooooooooooooooooog")
               .getInteger(new FooIfClass(), "Loooooooooooooooooog"),
-          new InnerClassFoo())) { /* foo */ }
+          new InnerClassFoo())) {
+        /* foo */
+      }
 
       if (conditionSecond(
               10000000000.0,
@@ -139,7 +149,9 @@ class InputIndentationCorrectIfAndParameter {
           || conditionNoArg()
           || conditionNoArg()
           || conditionNoArg()
-          || conditionNoArg()) { /* foo */ }
+          || conditionNoArg()) {
+        /* foo */
+      }
     }
   }
 
