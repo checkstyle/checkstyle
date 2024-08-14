@@ -170,7 +170,8 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      */
     private static boolean isSwitchExpression(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.EXPR
-                || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+                || ast.getParent().getParent().getType() == TokenTypes.EXPR
+                || ast.getParent().getParent().getParent().getType() == TokenTypes.EXPR;
     }
 
     /**
