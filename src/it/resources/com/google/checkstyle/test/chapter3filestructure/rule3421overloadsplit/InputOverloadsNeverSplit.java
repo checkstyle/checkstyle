@@ -1,8 +1,6 @@
 package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 
-/**
- * Testing.
- */
+/** Testing. */
 public class InputOverloadsNeverSplit {
 
   int abc;
@@ -18,15 +16,16 @@ public class InputOverloadsNeverSplit {
   void foo2() {}
 
   InputOverloadsNeverSplit(int a) {}
-  // violation above 'Constructors should be grouped together.*'
+
+  // violation 2 lines above 'Constructors should be grouped together.*'
 
   int abcd;
 
   InputOverloadsNeverSplit(double x) {}
-  // violation above 'Constructors should be grouped together.*'
+
+  // violation 2 lines above 'Constructors should be grouped together.*'
 
   private enum InnerEnum1 {
-
     one;
 
     int xyz;
@@ -55,10 +54,12 @@ public class InputOverloadsNeverSplit {
   }
 
   InputOverloadsNeverSplit(float x) {}
-  // violation above 'Constructors should be grouped together.*'
+
+  // violation 2 lines above 'Constructors should be grouped together.*'
 
   InputOverloadsNeverSplit(long l) {}
-  // violation above 'Constructors should be grouped together.*'
+
+  // violation 2 lines above 'Constructors should be grouped together.*'
 
   private class Inner {
     Inner() {}
@@ -87,18 +88,23 @@ public class InputOverloadsNeverSplit {
   }
 
   InputOverloadsNeverSplit(long l, double d) {}
-  // violation above 'Constructors should be grouped together.*'
 
-  InputOverloadsNeverSplit annoynmous = new InputOverloadsNeverSplit() {
-    int xyz;
+  // violation 2 lines above 'Constructors should be grouped together.*'
 
-    void test() {}
+  InputOverloadsNeverSplit annoynmous =
+      new InputOverloadsNeverSplit() {
+        int xyz;
 
-    void test2() {}
-  };
+        void test() {}
+
+        void test2() {}
+      };
 
   private enum InnerEnum2 {
-    ONE, TWO, THREE;
+    ONE,
+    TWO,
+    THREE;
+
     void test() {}
 
     void test2() {}
@@ -107,7 +113,7 @@ public class InputOverloadsNeverSplit {
   }
 
   private enum InnerEnum3 {
-      InnerEnum3() {}
+    InnerEnum3() {}
   }
 
   private enum InnerEnum4 {}
@@ -127,63 +133,55 @@ public class InputOverloadsNeverSplit {
   private class Inner5 {}
 
   public void overloadMethod(int i) {
-    //some foo code
+    // some foo code
   }
 
   public void overloadMethod(String s) {
-    //some foo code
+    // some foo code
   }
 
   public void overloadMethod(boolean b) {
-    //some foo code
+    // some foo code
   }
 
-  public void fooMethod() {
+  public void fooMethod() {}
 
-  }
-
-  // violation below 'All overloaded methods should be placed next to each other. .* '137'.'
+  // violation below 'All overloaded methods should be placed next to each other. .* '143'.'
   public void overloadMethod(String s, Boolean b, int i) {
-    //some foo code
+    // some foo code
   }
 
-  InputOverloadsNeverSplit anonymous = new InputOverloadsNeverSplit() {
-    public void overloadMethod(int i) {
-      //some foo code
-    }
+  InputOverloadsNeverSplit anonymous =
+      new InputOverloadsNeverSplit() {
+        public void overloadMethod(int i) {
+          // some foo code
+        }
 
-    public void overloadMethod(String s) {
-      //some foo code
-    }
+        public void overloadMethod(String s) {
+          // some foo code
+        }
 
-    public void overloadMethod(boolean b) {
-      //some foo code
-    }
+        public void overloadMethod(boolean b) {
+          // some foo code
+        }
 
-    public void fooMethod() {
+        public void fooMethod() {}
 
-    }
+        // violation below 'All overloaded methods should be placed next to each other. .* '164'.'
+        public void overloadMethod(String s, Boolean b, int i) {
+          // some foo code
+        }
+      };
 
-    // violation below 'All overloaded methods should be placed next to each other. .* '159'.'
-    public void overloadMethod(String s, Boolean b, int i) {
-      //some foo code
-    }
-  };
+  public void testing() {}
 
-  public void testing() {
-  }
+  private void testing(int a) {}
 
-  private void testing(int a) {
-  }
+  public void testing(int a, int b) {}
 
-  public void testing(int a, int b) {
-  }
+  public static void testing(String a) {}
 
-  public static void testing(String a) {
-  }
-
-  public void testing(String a, String b) {
-  }
+  public void testing(String a, String b) {}
 
   interface Fooable {
     public abstract void foo(int i);
@@ -193,7 +191,7 @@ public class InputOverloadsNeverSplit {
     public abstract void noFoo();
 
     public abstract void foo(String s, Boolean b, int i);
-    // violation above 'All overloaded methods should be placed next to each other. .* '191'.'
+    // violation above 'All overloaded methods should be placed next to each other. .* '189'.'
 
   }
 
@@ -217,24 +215,22 @@ public class InputOverloadsNeverSplit {
     }
 
     public void overloadMethod(int i) {
-      //some foo code
+      // some foo code
     }
 
     public void overloadMethod(String s) {
-      //some foo code
+      // some foo code
     }
 
     public void overloadMethod(boolean b) {
-      //some foo code
+      // some foo code
     }
 
-    public void fooMethod() {
+    public void fooMethod() {}
 
-    }
-
-    // violation below 'All overloaded methods should be placed next to each other. .* '227'.'
+    // violation below 'All overloaded methods should be placed next to each other. .* '225'.'
     public void overloadMethod(String s, Boolean b, int i) {
-      //some foo code
+      // some foo code
     }
   }
 }

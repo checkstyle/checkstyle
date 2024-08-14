@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+// non-compiled with javac: Compilable with Java17
 
 package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgrouping;
 
@@ -79,23 +79,21 @@ public class InputOverloadsNeverSplitRecords {
   public record MyRecord6(String str, int x) {}
 
   public void overloadMethod(int i) {
-    //some foo code
+    // some foo code
   }
 
   public void overloadMethod(String s) {
-    //some foo code
+    // some foo code
   }
 
   public void overloadMethod(boolean b) {
-    //some foo code
+    // some foo code
   }
 
-  public void fooMethod() {
-
-  }
+  public void fooMethod() {}
 
   // violation below 'All overloaded methods should be placed next to each other. .* '89'
   public void overloadMethod(String s, Boolean b, int i) {
-    //some foo code
+    // some foo code
   }
 }
