@@ -51,7 +51,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule333orderingandspacing/InputOrderingAndSpacing5.java" \
     | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid.java" \
     | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid2.java" \
-    | grep -v "rule3421overloadsplit" \
+    | grep -v "rule3421overloadsplit/InputOverloadsNeverSplit.java" \
     | grep -v "rule231filetab" \
     ))
 
