@@ -115,4 +115,15 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultWithSwitchExpressionUnderMethodCall() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputMissingSwitchDefaultCheckSwitchExpressionUnderMethodCall.java"),
+                expected);
+    }
+
 }
