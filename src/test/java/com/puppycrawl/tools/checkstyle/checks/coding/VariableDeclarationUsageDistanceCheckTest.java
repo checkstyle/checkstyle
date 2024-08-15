@@ -408,4 +408,14 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceCloseToBlock.java"), expected);
     }
+
+    @Test
+    public void testVariableDeclarationUsageDistancePatternVariables() throws Exception {
+        final String[] expected = {
+            "35:9: " + getCheckMessage(MSG_KEY, "b", 5, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputVariableDeclarationUsageDistancePatternVariables.java"),
+                expected);
+    }
 }
