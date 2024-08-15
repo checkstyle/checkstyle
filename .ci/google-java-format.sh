@@ -57,3 +57,10 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
 for INPUT_PATH in "${INPUT_PATHS[@]}"; do
   java -jar "$JAR_PATH" --replace src/it/resources/com/google/checkstyle/test/"$INPUT_PATH"
 done
+
+INPUT_PATHS_FOR_FORMATTED_INPUTS=($(find src/it/resources/com/google/checkstyle/test/ \
+    -name "InputFormatted*.java" | sed "s|src/it/resources/com/google/checkstyle/test/||"))
+
+for INPUT_PATH in "${INPUT_PATHS_FOR_FORMATTED_INPUTS[@]}"; do
+  java -jar "$JAR_PATH" --replace src/it/resources/com/google/checkstyle/test/"$INPUT_PATH"
+done
