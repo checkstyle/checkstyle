@@ -58,7 +58,8 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheckTest$ViolationFileSetCheck",
             "com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
+            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet",
+            "com.puppycrawl.tools.checkstyle.CheckerTest$CheckWhichThrowsError"
     ));
 
     private final List<ModuleInputConfiguration> childrenModules;
