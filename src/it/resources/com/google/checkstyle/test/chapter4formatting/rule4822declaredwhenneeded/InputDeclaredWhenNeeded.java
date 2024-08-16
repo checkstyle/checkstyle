@@ -430,7 +430,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_1() {
+  public void testIssue321() {
     Option srcDdlFile = OptionBuilder.create("f");
     Option logDdlFile = OptionBuilder.create("o");
     Option help = OptionBuilder.create("h");
@@ -444,7 +444,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_2() {
+  public void testIssue322() {
     int mm = Integer.parseInt("2");
     long timeNow = 0;
     Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
@@ -456,7 +456,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_3(MyObject[] objects) {
+  public void testIssue323(MyObject[] objects) {
     Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
     for (int i = 0; i < objects.length; i++) {
       objects[i].setEnabled(true);
@@ -468,7 +468,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public String testIssue32_4(boolean flag) {
+  public String testIssue324(boolean flag) {
     StringBuilder builder = new StringBuilder();
     builder.append("flag is ");
     builder.append(flag);
@@ -483,7 +483,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_5() {
+  public void testIssue325() {
     Option a = null;
     Option b = null;
     Option c = null;
@@ -493,7 +493,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_6() {
+  public void testIssue326() {
     Option aopt = null;
     Option bopt = null;
     Option copt = null;
@@ -503,7 +503,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_7() {
+  public void testIssue327() {
     String line = "abc";
     OtherWriter.write(line);
     line.charAt(1);
@@ -512,14 +512,14 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
+  public void testIssue328(Writer w1, Writer w2, Writer w3) {
     String l1 = "1";
 
     w3.write(l1); // distance=3
   }
 
   /** Some javadoc. */
-  public void testIssue32_9() {
+  public void testIssue329() {
     Options options = new Options();
     Option myOption = null;
     // violation above 'Distance between variable 'myOption' .* usage is 7, but allowed 3.'
@@ -533,7 +533,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public void testIssue32_10() {
+  public void testIssue3210() {
     Options options = new Options();
     Option myOption = null;
     // violation above 'Distance between variable 'myOption' .* usage is 6, but allowed 3.'
@@ -546,7 +546,7 @@ public class InputDeclaredWhenNeeded {
   }
 
   /** Some javadoc. */
-  public int testIssue32_11(String toDir) throws Exception {
+  public int testIssue3211(String toDir) throws Exception {
     int count = 0;
     // violation above 'Distance between variable 'count' .* first usage is 4, but allowed 3.'
     String[] files = {};
