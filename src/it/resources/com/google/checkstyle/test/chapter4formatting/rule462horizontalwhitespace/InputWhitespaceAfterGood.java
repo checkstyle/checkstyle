@@ -3,9 +3,9 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 /** some javadoc. */
 public class InputWhitespaceAfterGood {
 
-  int xyz;       // multiple space between content and double slash.
+  int xyz; // multiple space between content and double slash.
   int abc; //       multiple space between double slash and comment's text.
-  int pqr;       //     testing both.
+  int pqr; //     testing both.
 
   /** some javadoc. */
   public void check1(int x, int y) {
