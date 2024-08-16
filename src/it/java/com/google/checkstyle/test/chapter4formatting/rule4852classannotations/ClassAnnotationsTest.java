@@ -35,4 +35,10 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
         final String filePath = getPath("InputClassAnnotations.java");
         verifyWithWholeConfig(filePath);
     }
+
+    @Test
+    public void testAnnotationFormatted() throws Exception {
+        final String filePath = getPath("InputFormattedClassAnnotations.java");
+        verifyWithWholeConfig(filePath);
+    }
 }
