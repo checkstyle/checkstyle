@@ -43,6 +43,17 @@ public class InputMethodName {
   void testing_0123() {}
 
   @Test
+  void Testing_Foo() {} // violation 'Method name 'Testing_Foo' must match pattern'
+
+  @Test
+  void t_estingFoo() {} // violation 'Method name 't_estingFoo' must match pattern'
+
+  @Test
+  void _testingFoo() {} // violation 'Method name '_testingFoo' must match pattern'
+
+  void Testing_Foo2() {} // violation 'Method name 'Testing_Foo2' must match pattern'
+
+  @Test
   void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
 
   class InnerFoo {
@@ -62,17 +73,17 @@ public class InputMethodName {
 
     void fO() {} // violation 'Method name 'fO' must match pattern'
 
-    void testing_foo() {}
+    void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
 
-    void testing_Foo() {}
+    void testing_Foo() {} // violation 'Method name 'testing_Foo' must match pattern'
 
-    void testing_fOo() {}
+    void testing_fOo() {} // violation 'Method name 'testing_fOo' must match pattern'
 
     void testingFoo() {}
 
-    void testingFoo_foo() {}
+    void testingFoo_foo() {} // violation 'Method name 'testingFoo_foo' must match pattern'
 
-    void testing_0123() {}
+    void testing_0123() {} // violation 'Method name 'testing_0123' must match pattern'
 
     void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
   }
