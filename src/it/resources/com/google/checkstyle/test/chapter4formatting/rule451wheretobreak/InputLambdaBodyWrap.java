@@ -50,6 +50,7 @@ public class InputLambdaBodyWrap {
   }
 
   private void showComplexNestedLambda() {
+    // this non-compliant as lambda consists of a NOT single expression
     Function<Integer, Function<Integer, Integer>> createAdder =
         x ->
             (y ->
@@ -62,22 +63,22 @@ public class InputLambdaBodyWrap {
           return value;
         };
 
+    // violation 3 lines below ''{' at column 11 should be on the previous line.'
     java.util.function.Predicate<String> predicate = str
         ->
-          // violation below ''{' at column 11 should be on the previous line.'
           {
             return str.isEmpty();
           };
 
+    // violation 3 lines below ''{' at column 11 should be on the previous line.'
     Function<String, BiFunction<String, String, String>> s =
         (String label) ->
-          // violation below ''{' at column 11 should be on the previous line.'
           {
             return (a, b) ->
-              // violation below ''{' at column 15 should be on the previous line.'
               {
                 return a + " " + b;
               };
           };
+    // violation 4 lines above ''{' at column 15 should be on the previous line.'
   }
 }
