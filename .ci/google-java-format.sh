@@ -29,7 +29,16 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule451wheretobreak" \
     | grep -v "rule461verticalwhitespace" \
-    | grep -v "rule462" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterBad.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterGood.java" \
+    | grep -v "rule462horizontalwhitespace/InputParenPad.java" \
+    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeEmptyForLoop.java" \
+    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeColonOfLabel.java" \
+    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeCaseDefaultColon.java" \
+    | grep -v "rule462horizontalwhitespace/InputMethodParamPad.java" \
+    | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java" \
+    | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
     | grep -v "rule487modifiers/InputModifierOrder.java" \
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
     | grep -v "rule4822declaredwhenneeded/InputDeclaredWhenNeeded.java" \
