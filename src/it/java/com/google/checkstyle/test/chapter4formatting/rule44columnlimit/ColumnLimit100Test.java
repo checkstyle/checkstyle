@@ -35,4 +35,9 @@ public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputColumnLimit.java"));
     }
 
+    @Test
+    public void testLineLengthFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedColumnLimit.java"));
+    }
+
 }
