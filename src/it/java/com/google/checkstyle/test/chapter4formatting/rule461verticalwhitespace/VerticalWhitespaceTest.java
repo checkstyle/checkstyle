@@ -35,4 +35,9 @@ public class VerticalWhitespaceTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputVerticalWhitespace.java"));
     }
 
+    @Test
+    public void testEmptyLineSeparatorFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedVerticalWhitespace.java"));
+    }
+
 }
