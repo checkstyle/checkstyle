@@ -217,6 +217,27 @@
       </div>
     </section>
 
+    <section name="Supported Language Level">
+      <p>
+        Checkstyle's grammar and checks currently support all Java language features introduced
+        in Java 21 and below (both regular and preview), except for:
+      </p>
+      <ul>
+        <li>
+          <a href="https://openjdk.org/jeps/445">JEP 445: Unnamed Classes and Instance Main Methods</a>.
+          See reason at <a href="https://github.com/checkstyle/checkstyle/issues/13987">#13987</a>.
+        </li>
+        <li>
+          <a href="https://openjdk.org/jeps/430">JEP 430: String Templates</a>.
+          See reason at <a href="https://github.com/checkstyle/checkstyle/issues/14805">#14805</a>.
+        </li>
+      </ul>
+      <p>
+        Please <a href="report_issue.html">report an issue</a> if you
+        encounter any issues with the support of the latest Java language features.
+      </p>
+    </section>
+
     <section name="Limitations">
       <p>
         Checkstyle is a single file static analysis tool, for more details please read
