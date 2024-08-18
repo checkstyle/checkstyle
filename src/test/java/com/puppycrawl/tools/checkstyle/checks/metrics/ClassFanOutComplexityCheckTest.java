@@ -292,6 +292,18 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 getPath("InputClassFanOutComplexityThrows.java"), expected);
     }
 
+    @Test
+    public void testSealedClasses() throws Exception {
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "32:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputClassFanOutComplexitySealedClasses.java"),
+                expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
