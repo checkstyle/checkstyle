@@ -46,7 +46,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below, 'NPath Complexity is 5 (max allowed is 1)'
     void testGuardsInRule(Object o) {
         switch (o) {
             case Integer i when i > 0 -> {}
@@ -55,7 +55,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below, 'NPath Complexity is 5 (max allowed is 1)'
     void testGuardsInStatement(Object o) {
         switch (o) {
             case Integer i when i > 0 : {} break;

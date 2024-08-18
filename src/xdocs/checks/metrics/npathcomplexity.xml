@@ -75,6 +75,7 @@
             <tr><td>switch ([expr]) { case : [case-range] default: [default-range] }</td>
               <td>S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)</td>
             </tr>
+            <tr><td>when[expr]</td><td>NP(expr) + 1</td></tr>
             <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2
             </td></tr>
             <tr><td>goto label</td><td>1</td></tr>

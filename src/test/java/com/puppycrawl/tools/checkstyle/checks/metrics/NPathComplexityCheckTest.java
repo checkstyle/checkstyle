@@ -257,8 +257,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "23:5: " + getCheckMessage(MSG_KEY, 3, 1),
             "32:5: " + getCheckMessage(MSG_KEY, 3, 1),
             "41:5: " + getCheckMessage(MSG_KEY, 3, 1),
-            "50:5: " + getCheckMessage(MSG_KEY, 3, 1),
-            "59:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "50:5: " + getCheckMessage(MSG_KEY, 5, 1),
+            "59:5: " + getCheckMessage(MSG_KEY, 5, 1),
             "68:5: " + getCheckMessage(MSG_KEY, 4, 1),
             "76:5: " + getCheckMessage(MSG_KEY, 4, 1),
             "86:5: " + getCheckMessage(MSG_KEY, 3, 1),
@@ -267,6 +267,28 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputNPathComplexityPatternMatchingForSwitch.java"),
+            expected);
+
+    }
+
+    @Test
+    public void testWhenExpression() throws Exception {
+
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "20:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "28:5: " + getCheckMessage(MSG_KEY, 3, 1),
+            "36:5: " + getCheckMessage(MSG_KEY, 4, 1),
+            "44:5: " + getCheckMessage(MSG_KEY, 4, 1),
+            "52:5: " + getCheckMessage(MSG_KEY, 5, 1),
+            "60:5: " + getCheckMessage(MSG_KEY, 7, 1),
+            "69:5: " + getCheckMessage(MSG_KEY, 5, 1),
+            "77:5: " + getCheckMessage(MSG_KEY, 5, 1),
+            "85:5: " + getCheckMessage(MSG_KEY, 6, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNPathComplexityWhenExpression.java"),
             expected);
 
     }
@@ -294,6 +316,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
+            TokenTypes.LITERAL_WHEN,
         };
         assertWithMessage("Acceptable tokens should not be null")
             .that(actual)
@@ -326,6 +349,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_DEFAULT,
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.SWITCH_RULE,
+            TokenTypes.LITERAL_WHEN,
         };
         assertWithMessage("Required tokens should not be null")
             .that(actual)
