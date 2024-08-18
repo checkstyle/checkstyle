@@ -36,7 +36,7 @@ case $1 in
 # Downloads all files necessary to generate regression report to the parent directory.
 download-files)
   checkForVariable "GITHUB_TOKEN"
-  mkdir .ci-temp
+  mkdir -p .ci-temp
   echo "Downloading files..."
 
   # check for projects link from PR, if not found use default from contribution repo
