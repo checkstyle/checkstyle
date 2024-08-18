@@ -217,6 +217,19 @@
       </div>
     </section>
 
+    <section name="Supported Java Language Version">
+      <p>
+        Checkstyle's grammar and checks currently support all Java language features introduced
+        in <a href="https://docs.oracle.com/javase/specs/jls/se21/html/index.html">Java 21</a>
+        and below. We may support preview features depending on community demand,
+        but please note that support for any preview feature may change at any time.
+      </p>
+      <p>
+        Please <a href="report_issue.html">report an issue</a> if you
+        encounter any issues with the support of the latest Java language features.
+      </p>
+    </section>
+
     <section name="Limitations">
       <p>
         Checkstyle is a single file static analysis tool, for more details please read
