@@ -36,8 +36,19 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testCommentIsAtTheEndOfBlockFormatted() throws Exception {
+        verifyWithWholeConfig(
+                getPath("InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock.java"));
+    }
+
+    @Test
     public void testCommentIsInsideSwitchBlock() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationInSwitchBlock.java"));
+    }
+
+    @Test
+    public void testCommentIsInsideSwitchBlockFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInSwitchBlock.java"));
     }
 
     @Test
@@ -46,8 +57,18 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testCommentIsInsideEmptyBlockFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInEmptyBlock.java"));
+    }
+
+    @Test
     public void testSurroundingCode() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationSurroundingCode.java"));
+    }
+
+    @Test
+    public void testSurroundingCodeFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationSurroundingCode.java"));
     }
 
 }
