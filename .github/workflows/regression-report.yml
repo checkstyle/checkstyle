@@ -16,6 +16,15 @@ env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
   USER_LOGIN: ${{ github.event.issue.user.login }}
+  # yamllint disable-line rule:line-length
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.properties"
+  EXTRACTOR_VERSION: 2024-08-27
+  CACHE_KEY_PR: "simple-cache-key-PR-${{ github.sha }}"
+  CACHE_KEY_MASTER: "simple-cache-key-MASTER-${{ github.sha }}"
+  CACHE_KEY_CONTRIBUTION: "simple-cache-key-CONTRIBUTION-${{ github.sha }}"
+  CACHE_KEY_CONFIG_FILES: "config-files-${{ github.sha }}"
+  CACHE_KEY_GENERATED_CONFIGS: "generated-configs-${{ github.sha }}"
+  GENERATED_CONFIGS_PATH: generated_configs
 
 on:
   issue_comment:
@@ -33,8 +42,17 @@ jobs:
   check_pr_status:
     if: |
       github.event.issue.pull_request
-           && (startsWith(github.event.comment.body, 'Github, generate report for ')
-              || startsWith(github.event.comment.body, 'GitHub, generate report for '))
+      && (startsWith(github.event.comment.body, 'Github, generate report for ')
+          ||  startsWith(github.event.comment.body, 'GitHub, generate report for ')
+          ||  startsWith(github.event.comment.body,
+                         'Github, generate report for configs in PR description')
+          ||  startsWith(github.event.comment.body,
+                         'GitHub, generate report for configs in PR description')
+          ||  startsWith(github.event.comment.body,
+                         'Github, generate report by config from')
+          ||  startsWith(github.event.comment.body,
+                         'GitHub, generate report by config from'))
+
     runs-on: ubuntu-latest
     steps:
       - name: Check PR status
@@ -50,16 +68,68 @@ jobs:
             exit 1
           fi
 
+  checkout_and_cache:
+    runs-on: ubuntu-latest
+    needs: [ check_pr_status ]
+    steps:
+      - name: Create .ci-temp directory
+        run: mkdir -p .ci-temp
+
+      - name: Checkout Checkstyle root
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
+          path: .
+
+      - name: Cache Checkstyle root checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: ${{ env.CACHE_KEY_MASTER }}
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: .
+
+      - name: Cache PR Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: ${{ env.CACHE_KEY_PR }}
+
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
+          path: .ci-temp/checkstyle
+
+      - name: Cache checkouts
+        uses: actions/cache@v4
+        with:
+          path: .ci-temp/checkstyle
+          key: ${{ env.CACHE_KEY_MASTER }}
+
+      - name: Checkout contribution repository
+        uses: actions/checkout@v4
+        with:
+          repository: checkstyle/contribution
+          path: .ci-temp/contribution
+
+      - name: Cache contribution checkout
+        uses: actions/cache@v4
+        with:
+          path: .ci-temp/contribution
+          key: ${{ env.CACHE_KEY_CONTRIBUTION }}
+
   parse_comment:
     runs-on: ubuntu-latest
-    needs: check_pr_status
+    needs: [ check_pr_status, checkout_and_cache ]
     outputs:
-      config_bundle_path: ${{ steps.parse.outputs.config_bundle_path }}
-      config_link: ${{ steps.set_links.outputs.config_link }}
-      projects_link: ${{ steps.set_links.outputs.projects_link }}
-      branch: ${{ steps.set_branch.outputs.ref }}
-      commit_sha: ${{ steps.set_branch.outputs.commit_sha }}
-
+      mode: ${{ steps.parse.outputs.mode }}
+      config_bundle: ${{ steps.parse.outputs.config_bundle }}
+      input_file: ${{ steps.parse.outputs.input_file }}
     steps:
       - name: React to comment
         uses: actions/github-script@v7
@@ -73,30 +143,262 @@ jobs:
               content: 'rocket'
             })
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Restore Master Checkstyle Checkout
+        uses: actions/cache@v4
+        with:
+          path: .ci-temp/checkstyle
+          key: "${{ env.CACHE_KEY_MASTER }}"
+
+      - name: Restore PR Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_PR }}"
 
       - name: Parse comment
         id: parse
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
-          CONFIG_BUNDLE_PATH=$(echo "$COMMENT_BODY" | \
-            sed -E 's/.*(Github|GitHub), generate report for //g')
-          echo "CONFIG_BUNDLE_PATH=$CONFIG_BUNDLE_PATH"
-          ./.ci/append-to-github-output.sh "config_bundle_path" "$CONFIG_BUNDLE_PATH"
+          PATTERN_FOR_DESCRIPTION='^Git[Hh]ub, generate report for configs in PR description$'
+          PATTERN_FOR='^Git[Hh]ub, generate report for'
+          PATTERN_BY_CONFIG_FROM='^Git[Hh]ub, generate report by config from'
+
+          if [[ "$COMMENT_BODY" =~ $PATTERN_FOR_DESCRIPTION ]]; then
+            ./.ci/append-to-github-output.sh "mode" "configs_in_pr_description"
+
+          elif [[ "$COMMENT_BODY" =~ $PATTERN_FOR ]]; then
+            ./.ci/append-to-github-output.sh "mode" "existing_config_bundle"
+            CONFIG_BUNDLE=$(echo "$COMMENT_BODY" | sed -E "s/$PATTERN_FOR //g")
+            ./.ci/append-to-github-output.sh "config_bundle" "$CONFIG_BUNDLE"
+
+          elif [[ "$COMMENT_BODY" =~ $PATTERN_BY_CONFIG_FROM ]]; then
+            ./.ci/append-to-github-output.sh "mode" "generated_config_bundle"
+            INPUT_FILE=$(echo "$COMMENT_BODY" | sed -E "s/$PATTERN_BY_CONFIG_FROM //g")
+            ./.ci/append-to-github-output.sh "input_file" "$INPUT_FILE"
+
+          else
+            echo "No recognized pattern found in '$COMMENT_BODY'."
+            exit 1
+          fi
+
+  handle_existing_config_bundle:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'existing_config_bundle'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.set_links.outputs.config_link }}
+      projects_link: ${{ steps.set_links.outputs.projects_link }}
+    steps:
+      - name: Restore Master Checkstyle Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_MASTER }}"
 
       - name: Set config and projects links
         id: set_links
         run: |
           BASE_URL="https://raw.githubusercontent.com/checkstyle/test-configs/main"
-          CONFIG_BUNDLE_PATH="${{ steps.parse.outputs.config_bundle_path }}"
-          CONFIG_LINK="$BASE_URL/$CONFIG_BUNDLE_PATH/config.xml"
-          PROJECTS_LINK="$BASE_URL/$CONFIG_BUNDLE_PATH/list-of-projects.properties"
-          echo "CONFIG_LINK=$CONFIG_LINK"
-          echo "PROJECTS_LINK=$PROJECTS_LINK"
+          CONFIG_BUNDLE="${{ needs.parse_comment.outputs.config_bundle }}"
+          CONFIG_LINK="$BASE_URL/$CONFIG_BUNDLE/config.xml"
+          PROJECTS_LINK="$BASE_URL/$CONFIG_BUNDLE/list-of-projects.properties"
           ./.ci/append-to-github-output.sh "config_link" "$CONFIG_LINK"
           ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_LINK"
+
+  handle_generated_config_bundle:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'generated_config_bundle'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.generated_config_bundle.outputs.config_link }}
+      projects_link: ${{ steps.generated_config_bundle.outputs.projects_link }}
+    steps:
+      - name: Restore PR Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_PR }}"
+
+      - name: Find input file
+        id: find_input_file
+        run: |
+          INPUT_FILE="${{ needs.parse_comment.outputs.input_file }}"
+          WORKSPACE="${{ github.workspace }}"
+
+          FOUND_FILES=$(find "$WORKSPACE/src" -type f -path "*$INPUT_FILE")
+
+          if [ "$(echo "$FOUND_FILE" | wc -l)" -gt 1 ]; then
+            echo "Error: Multiple matching files found"
+            exit 1
+          elif [ -z "$FOUND_FILES" ]; then
+            echo "Error: Could not find input file"
+            exit 1
+          fi
+
+          FOUND_FILE="$FOUND_FILES"
+          ./.ci/append-to-github-output.sh "input_file" "$FOUND_FILE"
+
+      - name: Download DiffTool JAR
+        uses: robinraju/release-downloader@v1.8
+        with:
+          repository: "checkstyle/test-configs"
+          tag: "extractor-${{env.EXTRACTOR_VERSION}}"
+          fileName: "extractor-all-${{env.EXTRACTOR_VERSION}}.jar"
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Generate config
+        id: generated_config_bundle
+        env:
+          DEFAULT_PROJECTS_LINK: ${{ env.DEFAULT_PROJECTS_LINK }}
+        run: |
+          FOUND_FILE="${{ steps.find_input_file.outputs.input_file }}"
+          BASE_PATH=".ci-temp/checkstyle"
+          OUTPUT_DIR="${{ env.GENERATED_CONFIGS_PATH }}"
+          mkdir -p "$OUTPUT_DIR"
+
+          echo "Original FOUND_FILE = $FOUND_FILE"
+
+          # Remove .ci-temp/checkstyle/ from the beginning of FOUND_FILE
+          RELATIVE_PATH=${FOUND_FILE#.ci-temp/checkstyle/}
+
+          echo "Processed RELATIVE_PATH = $RELATIVE_PATH"
+
+          # Generate a unique name for the config file
+          CONFIG_FILE_NAME=$(basename "$FOUND_FILE" .java)_config.xml
+          CONFIG_FILE_PATH="$OUTPUT_DIR/$CONFIG_FILE_NAME"
+
+          # Generate a name for the projects file
+          PROJECT_FILE_PATH="$OUTPUT_DIR/projects.properties"
+
+          # Run the extractor
+            java -jar extractor-all-${{env.EXTRACTOR_VERSION}}.jar \
+            "$BASE_PATH" \
+            --input-file "$RELATIVE_PATH" \
+            "$CONFIG_FILE_PATH" \
+            "$PROJECT_FILE_PATH"
+
+          # Set the config and project file paths
+          ./.ci/append-to-github-output.sh "config_link" "$CONFIG_FILE_PATH"
+          ./.ci/append-to-github-output.sh "projects_link" "$PROJECT_FILE_PATH"
+
+          # Print the contents of the files to the logs
+          echo "Contents of CONFIG_FILE_PATH:"
+          cat "$CONFIG_FILE_PATH"
+
+      - name: Cache Generated Config and Project Files
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.GENERATED_CONFIGS_PATH }}
+          key: ${{ env.CACHE_KEY_GENERATED_CONFIGS }}
+
+  handle_configs_in_pr_description:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'configs_in_pr_description'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.parse_description.outputs.config_link }}
+      projects_link: ${{ steps.parse_description.outputs.projects_link }}
+    steps:
+      - name: Restore Master Checkstyle Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_MASTER }}"
+
+      - name: Getting PR description
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .ci-temp
+          # convert windows line endings to unix in event text
+          echo "$ISSUE_BODY" > .ci-temp/windows.txt
+          tr -d '\15\32' < .ci-temp/windows.txt > .ci-temp/text
+
+          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+          jq --raw-output .head.ref .ci-temp/info.json > .ci-temp/branch
+          jq --raw-output .head.sha .ci-temp/info.json > .ci-temp/commit_sha
+
+      - name: Parsing content of PR description
+        id: parse_description
+        run: |
+          ./.ci/diff-report.sh parse-pr-description-text
+
+  download_configs:
+    needs: [
+      parse_comment,
+      handle_existing_config_bundle,
+      handle_generated_config_bundle,
+      handle_configs_in_pr_description
+    ]
+    if: |
+      always() &&
+      (needs.handle_existing_config_bundle.result == 'success'
+        || needs.handle_generated_config_bundle.result == 'success'
+        || needs.handle_configs_in_pr_description.result == 'success')
+    runs-on: ubuntu-latest
+    outputs:
+      download_files_failed: ${{ steps.download_files.outputs.failed }}
+      branch: ${{ steps.set_branch.outputs.ref }}
+      commit_sha: ${{ steps.set_branch.outputs.commit_sha }}
+    steps:
+      - name: Restore Master Checkstyle Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_MASTER }}"
+
+      - name: Restore Generated Config and Project Files
+        if: needs.handle_generated_config_bundle.result == 'success'
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.GENERATED_CONFIGS_PATH }}
+          key: ${{ env.CACHE_KEY_GENERATED_CONFIGS }}
+
+      - name: Process local-based generated Config and Project File
+        if: needs.handle_generated_config_bundle.result == 'success'
+        env:
+          DIFF_CONFIG_LINK: ${{ needs.handle_generated_config_bundle.outputs.config_link }}
+          DIFF_PROJECTS_LINK: ${{ needs.handle_generated_config_bundle.outputs.projects_link }}
+        run: |
+          mkdir -p .ci-temp
+          echo "Config link: $DIFF_CONFIG_LINK"
+          echo "Projects link: $DIFF_PROJECTS_LINK"
+          cp "$DIFF_CONFIG_LINK" .ci-temp/diff_config.xml
+          cp "$DIFF_PROJECTS_LINK" .ci-temp/project.properties
+
+      - name: Download URL-based Config and Project File
+        id: download_files
+        if: needs.handle_existing_config_bundle.result == 'success'
+          || needs.handle_configs_in_pr_description.result == 'success'
+        env:
+          DIFF_CONFIG_LINK: ${{
+            needs.handle_existing_config_bundle.outputs.config_link
+            || needs.handle_configs_in_pr_description.outputs.config_link
+            }}
+          DIFF_PROJECTS_LINK: ${{
+            needs.handle_existing_config_bundle.outputs.projects_link
+            || needs.handle_configs_in_pr_description.outputs.projects_link
+            || env.DEFAULT_PROJECTS_LINK
+            }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .ci-temp
+          if ! ./.ci/diff-report.sh download-files; then
+            ./.ci/append-to-github-output.sh "failed" "true"
+            exit 1
+          fi
 
       - name: Set branch
         env:
@@ -122,36 +424,45 @@ jobs:
           # shellcheck disable=SC2005
           echo "$(cat "$GITHUB_OUTPUT")"
 
+      - name: Cache config files
+        uses: actions/cache@v4
+        with:
+          path: |
+            .ci-temp/*.xml
+            .ci-temp/project.properties
+          key: ${{ env.CACHE_KEY_CONFIG_FILES }}
+
   make_report:
+    needs: [ download_configs ]
+    if: always() && needs.download_configs.result == 'success'
     runs-on: ubuntu-latest
-    needs: parse_comment
-    if: needs.parse_comment.outputs.config_link != ''
-      || needs.parse_comment.outputs.projects_link != ''
     outputs:
       message: ${{ steps.out.outputs.message }}
-      download_files_failed: ${{ steps.download_files.outputs.failed }}
     steps:
+      - name: Restore Master Checkstyle Checkout
+        uses: actions/cache@v4
+        with:
+          path: .ci-temp/checkstyle
+          key: "${{ env.CACHE_KEY_MASTER }}"
 
-      - name: Download checkstyle
-        uses: actions/checkout@v4
+      - name: Restore PR Checkout
+        uses: actions/cache@v4
+        with:
+          path: .
+          key: "${{ env.CACHE_KEY_PR }}"
 
-      - name: Download files
-        id: download_files
-        env:
-          DIFF_CONFIG_LINK: ${{ needs.parse_comment.outputs.config_link }}
-          DIFF_PROJECTS_LINK: ${{ needs.parse_comment.outputs.projects_link }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if ! ./.ci/diff-report.sh download-files; then
-            ./.ci/append-to-github-output.sh "failed" "true"
-            exit 1
-          fi
+      - name: Restore config files from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .ci-temp/*.xml
+            .ci-temp/project.properties
+          key: ${{ env.CACHE_KEY_CONFIG_FILES }}
 
-      # set main checkstyle repo as an upstream
-      # Diff report will be generated taking upstream's master branch as a base branch
-      - name: set upstream
+      - name: Set upstream
         run: |
           bash
+          cd .ci-temp/checkstyle
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
           git remote add upstream "$MAIN_REPO_GIT_URL"
           git fetch upstream
@@ -165,11 +476,11 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      - name: Download contribution
-        uses: actions/checkout@v4
+      - name: Restore Contribution Checkout
+        uses: actions/cache@v4
         with:
-          repository: checkstyle/contribution
           path: .ci-temp/contribution
+          key: "${{ env.CACHE_KEY_CONTRIBUTION }}"
 
       - name: Prepare environment
         run: |
@@ -186,12 +497,12 @@ jobs:
 
       - name: Generate report
         env:
-          BRANCH: ${{ needs.parse_comment.outputs.branch }}
+          BRANCH: ${{ needs.download_configs.outputs.branch }}
         run: |
           cd .ci-temp/contribution/checkstyle-tester
           bash
           REF="forked/$BRANCH"
-          REPO="../../../../checkstyle"
+          REPO="${{ github.workspace }}/.ci-temp/checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
@@ -212,7 +523,7 @@ jobs:
         run: |
           bash
           TIME=$(date +%Y%H%M%S)
-          FOLDER="${{needs.parse_comment.outputs.commit_sha}}_$TIME"
+          FOLDER="${{needs.download_configs.outputs.commit_sha}}_$TIME"
           DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
@@ -246,8 +557,8 @@ jobs:
   # should be always last step
   send_message:
     runs-on: ubuntu-latest
-    needs: [ check_pr_status, parse_comment, make_report ]
-    if: failure() || success()
+    needs: [ check_pr_status, parse_comment, download_configs, make_report ]
+    if: always()
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -255,7 +566,7 @@ jobs:
       - name: Get message
         env:
           MSG: ${{ needs.make_report.outputs.message }}
-          DOWNLOAD_FAILED: ${{ needs.make_report.outputs.download_files_failed }}
+          DOWNLOAD_FAILED: ${{ needs.download_configs.outputs.download_files_failed }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
