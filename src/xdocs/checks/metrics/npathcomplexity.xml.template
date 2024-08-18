@@ -77,6 +77,7 @@
             </tr>
             <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2
             </td></tr>
+            <tr><td> when [expr] </td><td>NP(expr) + 1</td></tr>
             <tr><td>goto label</td><td>1</td></tr>
             <tr><td>break</td><td>1</td></tr>
             <tr><td>Expressions</td><td>Number of &amp;&amp; and || operators in expression. No
