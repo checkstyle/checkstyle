@@ -105,12 +105,6 @@
       <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1]
                                      or preceding-sibling::*[last()][self::LCURLY]]"/>
     </module>
-    <module name="SuppressionXpathSingleFilter">
-      <property name="checks" value="MethodName"/>
-      <property name="query" value="//METHOD_DEF[
-                                     .//ANNOTATION/IDENT[@text='Test']]//*"/>
-      <property name="message" value="'[a-z][a-z0-9][_a-zA-Z0-9]*'.*"/>
-    </module>
     <module name="WhitespaceAfter">
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
@@ -360,6 +354,12 @@
       <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
       <message key="name.invalidPattern"
              value="Method name ''{0}'' must match pattern ''{1}''."/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="MethodName"/>
+      <property name="query" value="//METHOD_DEF[
+                                     .//ANNOTATION/IDENT[@text='Test']]//*"/>
+      <property name="message" value="'[a-z][a-z0-9][_a-zA-Z0-9]*'.*"/>
     </module>
     <module name="SingleLineJavadoc"/>
     <module name="EmptyCatchBlock">
