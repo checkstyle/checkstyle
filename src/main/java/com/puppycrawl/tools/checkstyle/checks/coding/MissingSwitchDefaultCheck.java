@@ -81,6 +81,19 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "missing.switch.default";
 
+    /**
+     * The possible parents of a switch statement.
+     */
+    private static final int[] SWITCH_STATEMENT_PARENTS = {
+        TokenTypes.SLIST,
+        TokenTypes.LITERAL_IF,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.LITERAL_DO,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LABELED_STAT,
+    };
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -169,8 +182,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if part of a switch expression
      */
     private static boolean isSwitchExpression(DetailAST ast) {
-        return ast.getParent().getType() == TokenTypes.EXPR
-                || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+        return !TokenUtil.isOfType(ast.getParent(), SWITCH_STATEMENT_PARENTS);
     }
 
     /**
