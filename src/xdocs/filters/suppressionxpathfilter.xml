@@ -428,7 +428,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
         <source>
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
-            .//ANNOTATION/IDENT[@text='Generated']]&quot;/&gt;
+            .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
         </source>
         <p>
           The problem with query above that it will suppress violations for all methods with
@@ -440,7 +440,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
         <source>
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[.//ANNOTATION[
-            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]&quot;/&gt;
+            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*&quot;/&gt;
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
