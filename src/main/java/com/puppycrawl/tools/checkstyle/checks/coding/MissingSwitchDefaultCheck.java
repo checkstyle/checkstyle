@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -72,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 3.1
  */
-@StatelessCheck
+@FileStatefulCheck
 public class MissingSwitchDefaultCheck extends AbstractCheck {
 
     /**
@@ -80,6 +80,19 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "missing.switch.default";
+
+    /**
+     * The possible parents of a switch statement.
+     */
+    private static final int[] SWITCH_STATEMENT_PARENTS = {
+        TokenTypes.SLIST,
+        TokenTypes.LITERAL_IF,
+        TokenTypes.LITERAL_ELSE,
+        TokenTypes.LITERAL_DO,
+        TokenTypes.LITERAL_WHILE,
+        TokenTypes.LITERAL_FOR,
+        TokenTypes.LABELED_STAT,
+    };
 
     @Override
     public int[] getDefaultTokens() {
@@ -169,8 +182,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if part of a switch expression
      */
     private static boolean isSwitchExpression(DetailAST ast) {
-        return ast.getParent().getType() == TokenTypes.EXPR
-                || ast.getParent().getParent().getType() == TokenTypes.EXPR;
+        return !TokenUtil.isOfType(ast.getParent(), SWITCH_STATEMENT_PARENTS);
     }
 
     /**
