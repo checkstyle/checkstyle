@@ -143,25 +143,31 @@ class InputClassComplexity {
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassComplexity {
+// A is ignored because the superclass doesn't depend on the permitted subclasses
+sealed class InputClassComplexity permits A {
   Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
   Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
   Date date = new Date(); // Counted, 1
   Time time = new Time(); // Counted, 2
 }
+
+final class A extends InputClassComplexity { } // InputClassComplexity is counted, 1
         </source>
 
         <p id="Example4-code">
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassComplexity {
+// A is ignored because the superclass doesn't depend on the permitted subclasses
+sealed class InputClassComplexity permits A {
   Set set = new HashSet(); // Set, HashSet ignored due to default excludedClasses property
   Map map = new HashMap(); // Map, HashMap ignored due to default excludedClasses property
   Date date = new Date(); // Counted, 1
   Time time = new Time(); // Counted, 2
   Place place = new Place(); // violation, total is 3
 }
+
+final class A extends InputClassComplexity { } // InputClassComplexity is counted, 1
         </source>
 
         <p id="Example5-config">
