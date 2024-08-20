@@ -192,6 +192,10 @@
     files="[\\/]InputJava14TextBlocksTabSize\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputStringTemplateBasicWithTabs\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputCheckerTabCharacter\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputCheckerTabCharacterCustomWidth\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"

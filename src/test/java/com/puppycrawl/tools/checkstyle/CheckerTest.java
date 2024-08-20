@@ -1395,25 +1395,21 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationDefault() throws Exception {
         final String[] expected = {
-            "10:17: violation",
-            "13:33: violation",
+            "17:17: violation",
+            "21:49: violation",
         };
-        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.txt"),
+        verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
             expected);
     }
 
     @Test
-    public void testTabViolation() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(VerifyPositionAfterTabFileSet.class);
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("tabWidth", "4");
+    public void testTabViolationCustomWidth() throws Exception {
         final String[] expected = {
-            "10:13: violation",
-            "13:33: violation",
+            "18:17: violation",
+            "22:37: violation",
         };
-        verify(checkerConfig, getPath("InputCheckerTabCharacter.txt"),
-            expected);
+
+        verifyWithInlineXmlConfig(getPath("InputCheckerTabCharacterCustomWidth.java"), expected);
     }
 
     @Test
@@ -1920,23 +1916,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         public MessageDispatcher getInternalMessageDispatcher() {
             return getMessageDispatcher();
-        }
-
-    }
-
-    public static class VerifyPositionAfterTabFileSet extends AbstractFileSetCheck {
-
-        @Override
-        protected void processFiltered(File file, FileText fileText) {
-            int lineNumber = 0;
-            for (String line : getFileContents().getLines()) {
-                final int position = line.lastIndexOf('\t');
-                lineNumber++;
-
-                if (position != -1) {
-                    log(lineNumber, position + 1, "violation");
-                }
-            }
         }
 
     }
