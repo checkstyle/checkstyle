@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
-  <module name = "com.puppycrawl.tools.checkstyle.internal.testmodules.VerifyPositionAfterTabFileSet" />
   <property name = "tabWidth" value = "4" />
+  <module name = "com.puppycrawl.tools.checkstyle.internal.testmodules.VerifyPositionAfterTabFileSet" />
 </module>
 */
 
