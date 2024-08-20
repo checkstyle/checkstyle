@@ -75,4 +75,9 @@ public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputRightCurlySwitchCasesBlocks.java"));
     }
 
+    @Test
+    public void testRightCurlySwitchCasesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNonemptyBlockKrStyle.java"));
+    }
+
 }
