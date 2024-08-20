@@ -69,4 +69,9 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     public void testLambdaBodyWrap() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaBodyWrap.java"));
     }
+
+    @Test
+    public void testWhereToBreakFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhereToBreak.java"));
+    }
 }
