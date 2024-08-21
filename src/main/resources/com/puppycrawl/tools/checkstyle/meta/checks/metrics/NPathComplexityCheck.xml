@@ -64,6 +64,7 @@
  &lt;td&gt;NP(for-range) + NP(expr1)+ NP(expr2) + NP(expr3) + 1&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;switch ([expr]) { case : [case-range] default: [default-range] }&lt;/td&gt;
  &lt;td&gt;S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;when[expr]&lt;/td&gt;&lt;td&gt;NP(expr) + 1&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;[expr1] ? [expr2] : [expr3]&lt;/td&gt;&lt;td&gt;NP(expr1) + NP(expr2) + NP(expr3) + 2&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;goto label&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;break&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
  &lt;tr&gt;&lt;td&gt;Expressions&lt;/td&gt;
