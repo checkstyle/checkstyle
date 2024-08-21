@@ -1377,6 +1377,7 @@ unregister
 unsubscribe
 unusedcatchparametershouldbeunnamed
 unusedimports
+unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
 uppercased
 upperell
