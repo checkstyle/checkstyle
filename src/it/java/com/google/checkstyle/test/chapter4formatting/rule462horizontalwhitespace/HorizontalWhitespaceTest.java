@@ -36,8 +36,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceAroundBasicFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundBasic.java"));
+    }
+
+    @Test
     public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundEmptyTypesAndCycles.java"));
+    }
+
+    @Test
+    public void testWhitespaceAroundEmptyTypesCyclesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundEmptyTypesAndCycles.java"));
     }
 
     @Test
@@ -46,8 +56,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceAfterBadFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterBad.java"));
+    }
+
+    @Test
     public void testWhitespaceAfterGood() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAfterGood.java"));
+    }
+
+    @Test
+    public void testWhitespaceAfterGoodFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterGood.java"));
     }
 
     @Test
@@ -56,8 +76,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testParenPadFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedParenPad.java"));
+    }
+
+    @Test
     public void testNoWhitespaceBeforeEmptyForLoop() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEmptyForLoop.java"));
+    }
+
+    @Test
+    public void testNoWhitespaceBeforeEmptyForLoopFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeEmptyForLoop.java"));
     }
 
     @Test
@@ -66,8 +96,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testNoWhitespaceBeforeColonOfLabelFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeColonOfLabel.java"));
+    }
+
+    @Test
     public void testNoWhitespaceBeforeAnnotations() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeAnnotations.java"));
+    }
+
+    @Test
+    public void testNoWhitespaceBeforeAnnotationsFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeAnnotations.java"));
     }
 
     @Test
@@ -76,8 +116,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testNoWhitespaceBeforeCaseDefaultColonFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeCaseDefaultColon.java"));
+    }
+
+    @Test
     public void testMethodParamPad() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
+    }
+
+    @Test
+    public void testMethodParamPadFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad.java"));
     }
 
     @Test
@@ -86,8 +136,18 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceAroundGenericsFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundGenerics.java"));
+    }
+
+    @Test
     public void testGenericWhitespace() throws Exception {
         verifyWithWholeConfig(getPath("InputGenericWhitespace.java"));
+    }
+
+    @Test
+    public void testGenericWhitespaceFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedGenericWhitespace.java"));
     }
 
     @Test
@@ -96,7 +156,17 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void genericEndsTheLineFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedGenericWhitespaceEndsTheLine.java"));
+    }
+
+    @Test
     public void testWhitespaceAroundWhen() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputWhitespaceAroundWhen.java"));
+    }
+
+    @Test
+    public void testWhitespaceAroundWhenFormatted() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundWhen.java"));
     }
 }
