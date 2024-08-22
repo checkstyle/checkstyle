@@ -135,7 +135,7 @@
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppresswithplaintextcommentfilter[\\/]Input.*"/>
   <suppress checks="FileTabCharacter"
-    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]InputWhitespaceCharacters\.java"/>
+    files="[\\/]it[\\/]resources[\\/]com[\\/]google[\\/]checkstyle[\\/]test[\\/]chapter2filebasic[\\/]rule231filetab[\\/]Input.*\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputRegressionJavaClass1\.java"/>
   <suppress checks="FileTabCharacter"
