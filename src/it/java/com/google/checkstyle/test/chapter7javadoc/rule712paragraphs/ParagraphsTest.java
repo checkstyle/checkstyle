@@ -36,8 +36,18 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testJavadocParagraphCorrectFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedCorrectJavadocParagraph.java"));
+    }
+
+    @Test
     public void testJavadocParagraphIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectJavadocParagraph.java"));
+    }
+
+    @Test
+    public void testJavadocParagraphIncorrectFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedIncorrectJavadocParagraph.java"));
     }
 
     @Test
@@ -46,8 +56,20 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testRequireEmptyLineBeforeBlockTagGroupCorrectFormatted() throws Exception {
+        verifyWithWholeConfig(
+                getPath("InputFormattedCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
+    }
+
+    @Test
     public void testRequireEmptyLineBeforeBlockTagGroupIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
+    }
+
+    @Test
+    public void testRequireEmptyLineBeforeBlockTagGroupIncorrectFormatted() throws Exception {
+        verifyWithWholeConfig(
+                getPath("InputFormattedIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
 }
