@@ -132,7 +132,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
             return ast.getFirstChild() != null
                     && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
-                    || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
+            );
         }).isPresent();
     }
 

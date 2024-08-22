@@ -16,7 +16,7 @@ env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
   # yamllint disable-line rule:line-length
-  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/mahfouz72/contribution/new-java21-projects/checkstyle-tester/projects-to-test-on-for-github-action.properties"
   USER_LOGIN: ${{ github.event.issue.user.login }}
 
 on:
