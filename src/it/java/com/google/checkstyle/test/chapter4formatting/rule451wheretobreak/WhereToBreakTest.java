@@ -36,8 +36,18 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testOperatorWrapFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedOperatorWrap.java"));
+    }
+
+    @Test
     public void testMethodParamPad() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
+    }
+
+    @Test
+    public void testMethodParamPadFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad.java"));
     }
 
     @Test
@@ -46,8 +56,18 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testSeparatorWrapDotFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSeparatorWrap.java"));
+    }
+
+    @Test
     public void testSeparatorWrapComma() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapComma.java"));
+    }
+
+    @Test
+    public void testSeparatorWrapCommaFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapComma.java"));
     }
 
     @Test
@@ -56,8 +76,18 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testSeparatorWrapMethodRefFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapMethodRef.java"));
+    }
+
+    @Test
     public void testEllipsis() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapEllipsis.java"));
+    }
+
+    @Test
+    public void testEllipsisFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapEllipsis.java"));
     }
 
     @Test
@@ -66,7 +96,17 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testArrayDeclaratorFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapArrayDeclarator.java"));
+    }
+
+    @Test
     public void testLambdaBodyWrap() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaBodyWrap.java"));
+    }
+
+    @Test
+    public void testLambdaBodyWrapFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedLambdaBodyWrap.java"));
     }
 }
