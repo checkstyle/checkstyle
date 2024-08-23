@@ -37,6 +37,9 @@
  {@code strictfp} modifier when using JDK 17 or later. See reason at
  &lt;a href="https://openjdk.org/jeps/306"&gt;JEP 306&lt;/a&gt;
  &lt;/li&gt;
+ &lt;li&gt;
+ {@code final} modifier on unnamed variables when using JDK 22 or later.
+ &lt;/li&gt;
  &lt;/ol&gt;
  &lt;p&gt;
  interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
@@ -120,12 +123,12 @@
  }
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="21" name="jdkVersion" type="java.lang.String">
+            <property default-value="22" name="jdkVersion" type="java.lang.String">
                <description>Set the JDK version that you are using.
  Old JDK version numbering is supported (e.g. 1.8 for Java 8)
  as well as just the major JDK version alone (e.g. 8) is supported.</description>
             </property>
-            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF"
+            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF,LITERAL_CATCH,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
