@@ -38,6 +38,9 @@
             <code>strictfp</code> modifier when using JDK 17 or later. See reason at
             <a href="https://openjdk.org/jeps/306">JEP 306</a>
           </li>
+          <li>
+            <code>final</code> modifier on unnamed variables when using JDK 22 or later.
+          </li>
         </ol>
 
         <p>
@@ -161,7 +164,7 @@ public class ClassExtending extends ClassExample {
               <td>jdkVersion</td>
               <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td><code>&quot;21&quot;</code></td>
+              <td><code>&quot;22&quot;</code></td>
               <td>10.18.0</td>
             </tr>
             <tr>
@@ -188,6 +191,12 @@ public class ClassExtending extends ClassExample {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                    LITERAL_CATCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
                   .
               </td>
               <td>
@@ -211,6 +220,12 @@ public class ClassExtending extends ClassExample {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                    LITERAL_CATCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                    LAMBDA</a>
                   .
               </td>
               <td>3.0</td>
