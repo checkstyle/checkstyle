@@ -35,4 +35,9 @@ public class SourceFileStructureTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputSourceFileStructure.java"));
     }
 
+    @Test
+    public void testEmptyLineSeparatorFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedSourceFileStructure.java"));
+    }
+
 }
