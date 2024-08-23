@@ -35,4 +35,9 @@ public class NoLineWrappingTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputNoLineWrapping.java"));
     }
 
+    @Test
+    public void testBadLineWrapFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoLineWrapping.java"));
+    }
+
 }
