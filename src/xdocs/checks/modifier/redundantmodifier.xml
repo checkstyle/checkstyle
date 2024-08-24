@@ -162,7 +162,7 @@ public class ClassExtending extends ClassExample {
             </tr>
             <tr>
               <td>jdkVersion</td>
-              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported.</td>
+              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>&quot;22&quot;</code></td>
               <td>10.18.0</td>
