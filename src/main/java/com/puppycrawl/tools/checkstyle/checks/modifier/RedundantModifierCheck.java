@@ -154,6 +154,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Property {@code jdkVersion} - Set the JDK version that you are using.
  * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
  * as well as just the major JDK version alone (e.g. 8) is supported.
+ * This property only considers features from officially released
+ * Java versions as supported. Features introduced in preview releases are not considered
+ * supported until they are included in a non-preview release.
  * Type is {@code java.lang.String}.
  * Default value is {@code "22"}.
  * </li>
@@ -237,6 +240,9 @@ public class RedundantModifierCheck
      * Set the JDK version that you are using.
      * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
      * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases are not considered
+     * supported until they are included in a non-preview release.
      *
      */
     private int jdkVersion = JDK_22;
@@ -245,6 +251,9 @@ public class RedundantModifierCheck
      * Setter to set the JDK version that you are using.
      * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
      * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases are not considered
+     * supported until they are included in a non-preview release.
      *
      * @param jdkVersion the Java version
      * @since 10.18.0
