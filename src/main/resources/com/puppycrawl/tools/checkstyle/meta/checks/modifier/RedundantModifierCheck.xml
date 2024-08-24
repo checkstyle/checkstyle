@@ -126,7 +126,10 @@
             <property default-value="22" name="jdkVersion" type="java.lang.String">
                <description>Set the JDK version that you are using.
  Old JDK version numbering is supported (e.g. 1.8 for Java 8)
- as well as just the major JDK version alone (e.g. 8) is supported.</description>
+ as well as just the major JDK version alone (e.g. 8) is supported.
+ This property only considers features from officially released
+ Java versions as supported. Features introduced in preview releases are not considered
+ supported until they are included in a non-preview release.</description>
             </property>
             <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE,ANNOTATION_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF,LITERAL_CATCH,LAMBDA"
                       name="tokens"
