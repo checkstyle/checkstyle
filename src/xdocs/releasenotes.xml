@@ -10,6 +10,681 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.18.0">
+      <div class="releaseDate">25.08.2024</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            RedundantModifer Should Violate Final Modifer on Unnamed Variables if jdkVersion GTE 22.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15159">#15159</a>
+          </li>
+          <li>
+            Remove Support for String Template Syntax.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14805">#14805</a>
+          </li>
+          <li>
+            LITERAL_WHEN and LAND tokens in switch statements should have EXPR child.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/15082">#15082</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            RedundantModifierCheck: New property &#39;jdkVersion&#39; to violate strictfp as
+            redundant modifier if version LTE 17.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/10798">#10798</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: SuppressWarnings.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15062">#15062</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: WhitespaceAround.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15027">#15027</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: WhitespaceAfter.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15025">#15025</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : ParenPad.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14948">#14948</a>
+          </li>
+          <li>
+            new Treewalker property to skip all nested Modules if there is parsing exception.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12542">#12542</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            UnusedLocalVariable.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14950">#14950</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: FinalParameter .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14963">#14963</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : MethodParamPad.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14966">#14966</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            PatternVariableName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14970">#14970</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            CatchParameterName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15015">#15015</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            LambdaParameterName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15014">#15014</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            IllegalIdentifierName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15016">#15016</a>
+          </li>
+          <li>
+            LocalFinalVariableName must include `_`.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15012">#15012</a>
+          </li>
+          <li>
+            Define severity for google style config by variable.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15053">#15053</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : IllegalType.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14946">#14946</a>
+          </li>
+          <li>
+            False positive in FinalLocalVariable check on unnamed variables.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14981">#14981</a>
+          </li>
+          <li>
+            Add support to check grouping of Constructors in google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14907">#14907</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: New Check
+            UnusedLambdaParameterShouldBeUnnamed.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15059">#15059</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: New Check
+            UnusedCatchParameterShouldBeUnnamed.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15058">#15058</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: New Check SealedShouldHavePermitsList.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14975">#14975</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: New Check
+            WhenShouldBeUsed.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14985">#14985</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: New Check
+            MissingNullCaseInSwitch.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14979">#14979</a>
+          </li>
+          <li>
+            new check: LeadingAsteriskAlignCheck.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/6723">#6723</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingSwitchDefault false positive on switch expressions when wrapped in return().
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15504">#15504</a>
+          </li>
+          <li>
+            Update NPathComplexity Check to Account for when expression as a Possible Execution Path.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15445">#15445</a>
+          </li>
+          <li>
+            Google style: method names should not allow to have &#39;_&#39; unless they are
+            annotated by Test.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15429">#15429</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: SimplifyBooleanReturn.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15040">#15040</a>
+          </li>
+          <li>
+            NeedBraces Check Should violate Switch Expressions with Arrow Syntax That Directly
+            Yields a Value.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15322">#15322</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: NPathComplexity.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15047">#15047</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:  CyclomaticComplexity.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15045">#15045</a>
+          </li>
+          <li>
+            Update EmptyBlockCheck to Violate Empty Case Blocks with Arrow Syntax.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15029">#15029</a>
+          </li>
+          <li>
+            MissingSwitchDefault : False positive when `case null` in switch labeled statement group.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15123">#15123</a>
+          </li>
+          <li>
+            LocalVariableNameCheck incorrectly flags variables named `_` (see JEP456).
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14688">#14688</a>
+          </li>
+          <li>
+            Add Support for Java 21 Record Pattern : MissingSwitchDefault.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14891">#14891</a>
+          </li>
+          <li>
+            Remove href from LineLength module property in google style config and update test cases.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14955">#14955</a>
+          </li>
+          <li>
+            False positives when first sentence of Javadoc is on a separate line.
+            Author: patchwork01
+            <a href="https://github.com/checkstyle/checkstyle/issues/14689">#14689</a>
+          </li>
+          <li>
+            MethodParamPad ignores explicit constructor invocation.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/13675">#13675</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: update documentation for jdkVersion property in RedundantModifierCheck.
+            Author: mahfouz72
+          </li>
+          <li>
+            create &quot;InputFormattedXxxxxx&quot; files for Indentation and other formatting Checks.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15340">#15340</a>
+          </li>
+          <li>
+            Add supported Java Language Level to website.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/13293">#13293</a>
+          </li>
+          <li>
+            Minimize list of excludes in google-java-format.sh.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15449">#15449</a>
+          </li>
+          <li>
+            doc: updated documentation for suppressionxpathfilter.
+            Author: Mauryan Kansara
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: ClassFanOutComplexitiy.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15078">#15078</a>
+          </li>
+          <li>
+            CI job to keep some Inputs to be formatted by google-java-format.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15236">#15236</a>
+          </li>
+          <li>
+            Update InlineConfigParser to enforce the presence of vio….
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15452">#15452</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:
+            VariableDeclarationUsageDistance .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15043">#15043</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            Clarification of lambda coverage by in google  style.
+            Author: Ruslan Diachenko, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4006">#4006</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: NoWhitespaceAfter.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15224">#15224</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            AnnotationOnSameLineCheck.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15061">#15061</a>
+          </li>
+          <li>
+            Google style coverage table should have all paragraphs .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15217">#15217</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Livinglaser3, Sushant Kumar Singh, SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: Indentation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15108">#15108</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            MultipleVariableDeclarations.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15070">#15070</a>
+          </li>
+          <li>
+            grab setter types even if field exists for override.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/15466">#15466</a>
+          </li>
+          <li>
+            Migrate google style guide tests to follow whole config testing approach.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15214">#15214</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: WhitespaceAfter.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15057">#15057</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: WhitespaceAround.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15225">#15225</a>
+          </li>
+          <li>
+            Remove from google style coverage table links to already merged issues .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15442">#15442</a>
+          </li>
+          <li>
+            regression-report.yml workflow shall run only active PRs. .
+            Author: piyush kumar sadangi, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15412">#15412</a>
+          </li>
+          <li>
+            Format google IT tests&#39; input files to follow all the rules of google java style
+            guide.
+            Author: Mauryan Kansara, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15218">#15218</a>
+          </li>
+          <li>
+            Finalize coverage table for google style on state on July 2024.
+            Author: Mauryan Kansara, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15329">#15329</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: MagicNumber.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15069">#15069</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: IllegalType.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15010">#15010</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:
+            NoWhitespaceBeforeCaseDefaultColon.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15048">#15048</a>
+          </li>
+          <li>
+            doc: Update releasenotes.xml to place correct name of property - ignoreAnnotatedBy.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Add EmptyCatchBlock module usage for section 6.2 Caught exceptions: not ignored in
+            google style coverage page.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15252">#15252</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: WhitespaceAround.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15297">#15297</a>
+          </li>
+          <li>
+            Remove condition for triggering new workflow on active PR.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15400">#15400</a>
+          </li>
+          <li>
+            Refactor new Github Workflow: regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15394">#15394</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: mahfouz72, SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            New Github workflow that provide links to test-configs but reuse contribution repo for
+            report generation.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15234">#15234</a>
+          </li>
+          <li>
+            LocalFinalVariableName: false negative on pattern variable.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/10971">#10971</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: NestedIfDepth .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15036">#15036</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: FallThrough .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15038">#15038</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:
+            BooleanExpressionComplexity .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15044">#15044</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: InterfaceMemberImpliedModifier.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15079">#15079</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: UnnecessaryParentheses.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14972">#14972</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: NeedBraces.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15034">#15034</a>
+          </li>
+          <li>
+            Add Check Support for Java 17 Sealed Classes: RedundantModifer.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15087">#15087</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax:
+            AnnotationLocation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15060">#15060</a>
+          </li>
+          <li>
+            doc: fixes for links.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            minor : Extend exclude list for openjdk projects.
+            Author: mahfouz72
+          </li>
+          <li>
+            doc: improved grammar, spelling, and punctuation.
+            Author: SteLeo1602
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:
+            SimplifyBooleanExpression.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15039">#15039</a>
+          </li>
+          <li>
+            doc: remove Localization section from system properties web page.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax : UnnecessaryParenthesesCheck.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15003">#15003</a>
+          </li>
+          <li>
+            Reduce performance threshold value.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15241">#15241</a>
+          </li>
+          <li>
+            Rename LINKS_FROM_PR to DIFF_PROJECTS_LINK for diff-report.sh.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15261">#15261</a>
+          </li>
+          <li>
+            XDoc conversion from Javadoc do not relativize links and break previous document version.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14875">#14875</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: ParenPad.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14980">#14980</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax : PatternVariableName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15005">#15005</a>
+          </li>
+          <li>
+            Migrate google style guide tests to follow chapter wise testing.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14937">#14937</a>
+          </li>
+          <li>
+            Refactor SummaryJavadocCheck into SummaryJavadoc for configs.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15197">#15197</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax: IllegalIdentifierName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15006">#15006</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax: Indentation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15055">#15055</a>
+          </li>
+          <li>
+            doc: fix releasenotes line length violation.
+            Author: mahfouz72
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax: OperatorWrap .
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15007">#15007</a>
+          </li>
+          <li>
+            Update all Inputs that has inlined violations to avoid leading and trailing wildcard .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/15144">#15144</a>
+          </li>
+          <li>
+            Bdd violations messages should allow skip of leading and trailing &#39;.*&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15138">#15138</a>
+          </li>
+          <li>
+            Enable checks from Error Prone Support.
+            Author: Rick Ossendrijver
+            <a href="https://github.com/checkstyle/checkstyle/issues/14137">#14137</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: MagicNumber.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15107">#15107</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern Syntax : AbbreviationAsWordInName.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15004">#15004</a>
+          </li>
+          <li>
+            Add support to check input file against whole google configuration for Google IT tests.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15026">#15026</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: Indentation.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14971">#14971</a>
+          </li>
+          <li>
+            resolve PMD warning on config.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14936">#14936</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Rohanraj123
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Add regexp module to checkstyle_checks.xml config to validate `since` version number.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/12653">#12653</a>
+          </li>
+          <li>
+            Issue #14899: Updated google coverage page regarding section 7.1.2 Paragraphs.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15022">#15022</a>
+          </li>
+          <li>
+            Add new section 4.8.5.4 Field Annotations in google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14914">#14914</a>
+          </li>
+          <li>
+            Add new section 4.8.5.3 Methods and Constructors Annotations in google style guide
+            implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14911">#14911</a>
+          </li>
+          <li>
+            Wrong comment in documentation example.
+            Author: kshuryhin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14996">#14996</a>
+          </li>
+          <li>
+            Google style IT test Inputs should have support  of violation message.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14929">#14929</a>
+          </li>
+          <li>
+            Add new section 4.8.5.2 Class Annotations to google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14910">#14910</a>
+          </li>
+          <li>
+            Google style 7.1.1 has reference to already closed issue .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14947">#14947</a>
+          </li>
+          <li>
+            Remove JSNI message from google style coverage page and explain the reason behind it.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14938">#14938</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : HiddenField.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14964">#14964</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Record Pattern : EqualsAvoidNull.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14952">#14952</a>
+          </li>
+          <li>
+            Google Style page isn&#39;t consistent in spacing with multiple checks.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14930">#14930</a>
+          </li>
+          <li>
+            Rename section 4.8.4.3 of google style guide implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14909">#14909</a>
+          </li>
+          <li>
+            Rename section 4.1.1 of google style guide implementation and add new test cases for
+            lambdas.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14908">#14908</a>
+          </li>
+          <li>
+            Create and Document Check Update Procedure for New Language Features.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14889">#14889</a>
+          </li>
+          <li>
+            Add Latest Version of Google Java Style Guide .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14899">#14899</a>
+          </li>
+          <li>
+            spelling: added detailed message to spelling test script.
+            Author: SteLeo1602
+          </li>
+          <li>
+            doc: fixes release notes from release.
+            Author: rnveach
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.17.0">
       <div class="releaseDate">26.05.2024</div>
       <p>Breaking backward compatibility:</p>
