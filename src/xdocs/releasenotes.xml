@@ -171,7 +171,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15504">#15504</a>
           </li>
           <li>
-            Update NPathComplexity Check to Account for when expression as a Possible Execution Path.
+            Update NPathComplexity Check to Account for
+            when expression as a Possible Execution Path.
             Author: mahfouz72
             <a href="https://github.com/checkstyle/checkstyle/issues/15445">#15445</a>
           </li>
@@ -208,7 +209,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15029">#15029</a>
           </li>
           <li>
-            MissingSwitchDefault : False positive when `case null` in switch labeled statement group.
+            MissingSwitchDefault : False positive when `case null`
+            in switch labeled statement group.
             Author: mahfouz72
             <a href="https://github.com/checkstyle/checkstyle/issues/15123">#15123</a>
           </li>
@@ -223,7 +225,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/14891">#14891</a>
           </li>
           <li>
-            Remove href from LineLength module property in google style config and update test cases.
+            Remove href from LineLength module property in google style config
+            and update test cases.
             Author: Mauryan Kansara
             <a href="https://github.com/checkstyle/checkstyle/issues/14955">#14955</a>
           </li>
@@ -245,7 +248,8 @@
             Author: mahfouz72
           </li>
           <li>
-            create &quot;InputFormattedXxxxxx&quot; files for Indentation and other formatting Checks.
+            create &quot;InputFormattedXxxxxx&quot; files for Indentation
+            and other formatting Checks.
             Author: Mauryan Kansara
             <a href="https://github.com/checkstyle/checkstyle/issues/15340">#15340</a>
           </li>
@@ -296,7 +300,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/4006">#4006</a>
           </li>
           <li>
-            Add Check Support for Java 21 Unnamed Variables &amp; Patterns Syntax: NoWhitespaceAfter.
+            Add Check Support for Java 21 Unnamed Variables &amp;
+            Patterns Syntax: NoWhitespaceAfter.
             Author: mahfouz72
             <a href="https://github.com/checkstyle/checkstyle/issues/15224">#15224</a>
           </li>
@@ -447,7 +452,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15079">#15079</a>
           </li>
           <li>
-            Add Check Support for Java 21 Pattern Matching for Switch Syntax: UnnecessaryParentheses.
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax:
+            UnnecessaryParentheses.
             Author: mahfouz72
             <a href="https://github.com/checkstyle/checkstyle/issues/14972">#14972</a>
           </li>
@@ -505,7 +511,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15261">#15261</a>
           </li>
           <li>
-            XDoc conversion from Javadoc do not relativize links and break previous document version.
+            XDoc conversion from Javadoc do not relativize links
+            and break previous document version.
             Author: Roman Ivanov
             <a href="https://github.com/checkstyle/checkstyle/issues/14875">#14875</a>
           </li>
