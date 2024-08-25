@@ -66,6 +66,11 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTagContinuationIndentationFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedJavaDocTagContinuationIndentation.java"));
+    }
+
+    @Test
     public void testNonEmptyAtclauseDescription() throws Exception {
         verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescription.java"));
     }
