@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.18.0-SNAPSHOT</version>
+  <version>10.18.0</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -1578,7 +1578,7 @@
               <target>
                 <property name="mvn.project.build.directory" value="${project.build.directory}" />
                 <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
-                <property name="mvn.java.version" value="${java.version}"/>
+                <property name="mvn.java.version" value="${java.version}" />
                 <ant antfile="config/ant-phase-verify.xml" />
               </target>
             </configuration>
