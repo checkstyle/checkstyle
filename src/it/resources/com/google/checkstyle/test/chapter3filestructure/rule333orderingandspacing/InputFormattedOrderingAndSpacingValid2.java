@@ -1,8 +1,5 @@
 package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspacing;
 
-// it is not forbidden to have extra lines (more than one) between package and import group
-
-
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
 
@@ -19,12 +16,14 @@ import javax.accessibility.Accessible;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
 /** Some javadoc. */
-public class InputOrderingAndSpacingValid {
+public class InputFormattedOrderingAndSpacingValid2 {
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
     boolean hasAnnotation = containsAnnotation((DetailAST) new Object(), "Override");
     Object annotation = getAnnotation((DetailAST) new Object(), "Override");
+
+    // comments
 
     // Use of com.puppycrawl.tools.checkstyle classes
     FinalClassCheck finalClassCheck = new FinalClassCheck();
@@ -42,6 +41,8 @@ public class InputOrderingAndSpacingValid {
     } catch (NoSuchElementException e) {
       e.printStackTrace();
     }
+
+    // comments
 
     // Use of javax.accessibility classes
     Accessible accessible;
