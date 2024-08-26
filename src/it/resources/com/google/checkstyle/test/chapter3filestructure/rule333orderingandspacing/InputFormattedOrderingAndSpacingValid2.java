@@ -16,12 +16,14 @@ import javax.accessibility.Accessible;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
 /** Some javadoc. */
-public class InputOrderingAndSpacingValid {
+public class InputFormattedOrderingAndSpacingValid2 {
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
     boolean hasAnnotation = containsAnnotation((DetailAST) new Object(), "Override");
     Object annotation = getAnnotation((DetailAST) new Object(), "Override");
+
+    // comments
 
     // Use of com.puppycrawl.tools.checkstyle classes
     FinalClassCheck finalClassCheck = new FinalClassCheck();
@@ -39,6 +41,8 @@ public class InputOrderingAndSpacingValid {
     } catch (NoSuchElementException e) {
       e.printStackTrace();
     }
+
+    // comments
 
     // Use of javax.accessibility classes
     Accessible accessible;

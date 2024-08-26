@@ -16,7 +16,7 @@ import javax.accessibility.Accessible;
 import org.apache.commons.beanutils.converters.ArrayConverter;
 
 /** Some javadoc. */
-public class InputOrderingAndSpacingValid {
+public class InputFormattedOrderingAndSpacingValid {
   /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
