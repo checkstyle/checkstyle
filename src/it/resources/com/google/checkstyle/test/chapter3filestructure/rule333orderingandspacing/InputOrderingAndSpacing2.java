@@ -38,4 +38,54 @@ import com.google.common.reflect.*;
 
 /** Some javadoc. */
 public class InputOrderingAndSpacing2 {
+  /** Some javadoc. */
+  public static void main(String[] args) {
+    try {
+      createTempFile("temp", ".txt");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    int abortAction = ABORT;
+    int closeOperation = EXIT_ON_CLOSE;
+
+    List<String> list = new ArrayList<>();
+    StringTokenizer tokenizer = new StringTokenizer("Hello World");
+
+    AbstractExecutorService abstractExecutorService = new AbstractExecutorService() {
+      @Override
+      public void shutdown() {
+      }
+
+      @Override
+      public List<Runnable> shutdownNow() {
+        return null;
+      }
+
+      @Override
+      public boolean isShutdown() {
+        return false;
+      }
+
+      @Override
+      public boolean isTerminated() {
+        return false;
+      }
+
+      @Override
+      public boolean awaitTermination(long timeout, java.util.concurrent.TimeUnit unit) {
+        return false;
+      }
+
+      @Override
+      public void execute(Runnable command) {
+      }
+    };
+    ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    TypeToken<?> typeToken = TypeToken.of(String.class);
+
+    FileNameTest testing1 = new FileNameTest();
+
+    SourceFileStructureTest testing2 = new SourceFileStructureTest();
+  }
 }
