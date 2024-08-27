@@ -1,6 +1,10 @@
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test input for MethodNameCheck specifically whether the method name equals the class name.
@@ -55,6 +59,79 @@ public class InputMethodName {
 
   @Test
   void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_foo1(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_Foo1(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_fOo1(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testingFoo1(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testingFoo_foo1(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_01231(String str) {}
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void Testing_Foo1(String str) {} // violation 'Method name 'Testing_Foo1' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void t_esting1(String str) {} // violation 'Method name 't_esting1' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void _testing1(String str) {} // violation 'Method name '_testing1' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void TestingFooBad1(String str) {} // violation 'Method name 'TestingFooBad1' must match pattern'
+
+  @RepeatedTest(2)
+  void testing_foo2() {}
+
+  @RepeatedTest(2)
+  void testing_Foo2() {}
+
+  @RepeatedTest(2)
+  void testing_fOo2() {}
+
+  @RepeatedTest(2)
+  void testingFoo2() {}
+
+  @RepeatedTest(2)
+  void testingFoo_foo2() {}
+
+  @RepeatedTest(2)
+  void testing_01232() {}
+
+  @RepeatedTest(2)
+  void Testing_Foo3() {} // violation 'Method name 'Testing_Foo3' must match pattern'
+
+  @RepeatedTest(2)
+  void t_esting2() {} // violation 'Method name 't_esting2' must match pattern'
+
+  @RepeatedTest(2)
+  void _testing2() {} // violation 'Method name '_testing2' must match pattern'
+
+  @RepeatedTest(2)
+  void TestingFooBad2() {} // violation 'Method name 'TestingFooBad2' must match pattern'
+
+  @BeforeAll
+  static void _testingFoooo() {} // violation 'Method name '_testingFoooo' must match pattern'
 
   class InnerFoo {
     void foo() {}
