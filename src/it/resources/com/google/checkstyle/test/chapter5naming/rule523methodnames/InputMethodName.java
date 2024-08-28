@@ -1,6 +1,9 @@
 package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 /**
  * Test input for MethodNameCheck specifically whether the method name equals the class name.
@@ -55,6 +58,69 @@ public class InputMethodName {
 
   @Test
   void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
+
+  @ParameterizedTest
+  void testing_foo1() {}
+
+  @ParameterizedTest
+  void testing_Foo1() {}
+
+  @ParameterizedTest
+  void testing_fOo1() {}
+
+  @ParameterizedTest
+  void testingFoo1() {}
+
+  @ParameterizedTest
+  void testingFoo_foo1() {}
+
+  @ParameterizedTest
+  void testing_01231() {}
+
+  @ParameterizedTest
+  void Testing_Foo1() {} // violation 'Method name 'Testing_Foo1' must match pattern'
+
+  @ParameterizedTest
+  void t_esting1() {} // violation 'Method name 't_esting1' must match pattern'
+
+  @ParameterizedTest
+  void _testing1() {} // violation 'Method name '_testing1' must match pattern'
+
+  @ParameterizedTest
+  void TestingFooBad1() {} // violation 'Method name 'TestingFooBad1' must match pattern'
+
+  @RepeatedTest(0)
+  void testing_foo2() {}
+
+  @RepeatedTest(0)
+  void testing_Foo2() {}
+
+  @RepeatedTest(0)
+  void testing_fOo2() {}
+
+  @RepeatedTest(0)
+  void testingFoo2() {}
+
+  @RepeatedTest(0)
+  void testingFoo_foo2() {}
+
+  @RepeatedTest(0)
+  void testing_01232() {}
+
+  @RepeatedTest(0)
+  void Testing_Foo3() {} // violation 'Method name 'Testing_Foo3' must match pattern'
+
+  @RepeatedTest(0)
+  void t_esting2() {} // violation 'Method name 't_esting2' must match pattern'
+
+  @RepeatedTest(0)
+  void _testing2() {} // violation 'Method name '_testing2' must match pattern'
+
+  @RepeatedTest(0)
+  void TestingFooBad2() {} // violation 'Method name 'TestingFooBad2' must match pattern'
+
+  @BeforeAll
+  static void _testingFoooo() {} // violation 'Method name '_testingFoooo' must match pattern'
 
   class InnerFoo {
     void foo() {}
