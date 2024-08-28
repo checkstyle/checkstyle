@@ -27,8 +27,6 @@ or set of validation rules (best practices).
 
 [![][milestone img]][milestone]
 
-Contributors chat: [![][matrix_con img]][matrix_con]
-
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
 or at [Maven repo](https://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
