@@ -358,7 +358,7 @@
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="MethodName"/>
       <property name="query" value="//METHOD_DEF[
-                                     .//ANNOTATION/IDENT[@text='Test']]//*"/>
+                                     .//ANNOTATION/IDENT[contains(@text, 'Test')]]//*"/>
       <property name="message" value="'[a-z][a-z0-9][_a-zA-Z0-9]*'.*"/>
     </module>
     <module name="SingleLineJavadoc"/>
