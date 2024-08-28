@@ -35,7 +35,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  group: ${{ github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -582,7 +582,7 @@ jobs:
               echo "Failed to download or process the specified configuration(s)."
               echo "Error details: $DOWNLOAD_ERROR"
               echo "<br>Please ensure you've used one of the following commands correctly:"
-              echo "- 'GitHub, generate report for <config_name>'"
+              echo "- 'GitHub, generate report for <config_bundle_path>'"
               echo "- 'GitHub, generate report by config from <file_path>'"
               echo "- 'GitHub, generate report for configs in PR description'"
               echo "<br>And check that all specified configs or files exist and are valid."
