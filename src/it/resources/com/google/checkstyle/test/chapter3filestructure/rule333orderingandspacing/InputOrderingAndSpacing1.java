@@ -28,4 +28,26 @@ import com.google.common.base.Ascii;
 //                    '.* 'com.google.common.base.Ascii' .* Should be before 'javax.swing.JTable'.'
 
 /** Some javadoc. */
-public class InputOrderingAndSpacing1 {}
+public class InputOrderingAndSpacing1 {
+  /** some javadoc. */
+  public static void main(String[] args) {
+    // Use of static imports
+    try {
+      File tempFile = createTempFile("temp", ".txt");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    int abortAction = ABORT;
+
+    Frame frame = new Frame();
+
+    JTable table = new JTable();
+    int closeOperation = EXIT_ON_CLOSE;
+
+    File file = new File("example.txt");
+    InputStream inputStream = System.in;
+    Reader reader = null;
+
+    char ascii = Ascii.BS;
+  }
+}
