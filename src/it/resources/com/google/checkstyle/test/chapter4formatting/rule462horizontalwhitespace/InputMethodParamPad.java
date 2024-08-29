@@ -4,16 +4,20 @@ import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
 public class InputMethodParamPad {
+  /** some javadoc. */
   public InputMethodParamPad() {
     super();
   }
 
+  /** some javadoc. */
   public InputMethodParamPad (int param) { // violation ''(' is preceded with whitespace.'
     super (); // violation ''(' is preceded with whitespace.'
   }
 
+  /** some javadoc. */
   public void method() {}
 
+  /** some javadoc. */
   public void method (int param) {} // violation ''(' is preceded with whitespace.'
 
   /** some javadoc. */

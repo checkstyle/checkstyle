@@ -17,6 +17,7 @@ import javax.accessibility. // violation 'import statement should not be line-wr
 /** Some javadoc. */
 public class InputNoLineWrapping {
 
+  /** Some javadoc. */
   public void fooMethod() {
     //
   }

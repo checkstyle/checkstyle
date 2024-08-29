@@ -12,6 +12,7 @@ public class InputSeparatorWrapComma {
     foo(i, s); // ok
   }
 
+  /** Some javadoc. */
   public static void foo(int i, String s) {}
 }
 

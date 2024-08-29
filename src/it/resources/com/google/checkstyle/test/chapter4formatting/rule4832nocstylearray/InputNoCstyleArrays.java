@@ -5,6 +5,7 @@ public class InputNoCstyleArrays {
   private int[] javastyle = new int[0];
   private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
 
+  /** some javadoc. */
   public static void mainJava(String[] javastyle) {} // ok
 
   /** some javadoc. */
