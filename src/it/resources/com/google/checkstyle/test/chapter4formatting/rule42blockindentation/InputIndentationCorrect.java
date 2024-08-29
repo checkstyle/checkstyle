@@ -19,6 +19,7 @@ public abstract class InputIndentationCorrect {
     abc = 2;
   }
 
+  /** some javadoc. */
   public boolean matches(char c) {
     return false;
   }
@@ -42,17 +43,21 @@ public abstract class InputIndentationCorrect {
     }
   }
 
+  /** some javadoc. */
   public boolean veryLongLongLongCondition() {
     return veryLongLongLongCondition2();
   }
 
+  /** some javadoc. */
   public boolean veryLongLongLongCondition2() {
     return false;
   }
 
+  /** some javadoc. */
   public void someFooMethod(
       String longString, String superLongString, String exraSuperLongString) {}
 
+  /** some javadoc. */
   public void fooThrowMethod() throws Exception {
     /* Some code*/
   }
