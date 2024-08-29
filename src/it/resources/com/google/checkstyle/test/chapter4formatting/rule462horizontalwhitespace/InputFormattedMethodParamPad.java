@@ -4,16 +4,20 @@ import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
 public class InputFormattedMethodParamPad {
+  /** some javadoc. */
   public InputFormattedMethodParamPad() {
     super();
   }
 
+  /** some javadoc. */
   public InputFormattedMethodParamPad(int param) {
     super();
   }
 
+  /** some javadoc. */
   public void method() {}
 
+  /** some javadoc. */
   public void method(int param) {}
 
   /** some javadoc. */

@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 /** Contains examples of using comments at the end of the block. */
 public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
 
+  /** some javadoc. */
   public void foo1() {
     foo2();
     // OOOO: missing functionality
@@ -15,16 +16,19 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public void foo3() {
     foo2();
     // refreshDisplay();
   }
 
+  /** some javadoc. */
   public void foo4() {
     foooooooooooooooooooooooooooooooooooooooooo();
     // ^-- some hint
   }
 
+  /** some javadoc. */
   public void foooooooooooooooooooooooooooooooooooooooooo() {}
 
   /////////////////////////////// odd indentation comment
@@ -38,6 +42,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
 
   /////////////////////////////// (a single-line border to separate a group of methods)
 
+  /** some javadoc. */
   public void foo8() {}
 
   /** some javadoc. */
@@ -62,6 +67,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
   //
   //    }
 
+  /** some javadoc. */
   public void foo11() {
     String.valueOf(new Integer(0)).trim().length();
     // comment
@@ -74,6 +80,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public void foo13() {
     String.valueOf(new Integer(0)).trim().length();
     // comment
@@ -86,6 +93,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public void foo15() {
     String.valueOf(new Integer(0));
     // comment
@@ -173,6 +181,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public void foo23() {
     new Object();
     // comment
@@ -185,6 +194,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public String foo25() {
     return String.format(java.util.Locale.ENGLISH, "%d", 1);
     // comment
@@ -270,6 +280,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public void foo37() throws Exception {
     throw new Exception("", new Exception());
     // comment
@@ -388,6 +399,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
     // odd indentation comment
   }
 
+  /** some javadoc. */
   public String foo52() {
     return String.valueOf("11");
     // comment

@@ -70,11 +70,13 @@ public class InputFormattedWhitespaceAfterGood {
     }
   }
 
+  /** some javadoc. */
   public void check7() {
     synchronized (this) {
     }
   }
 
+  /** some javadoc. */
   public String check8() {
     return ("a" + "b");
   }

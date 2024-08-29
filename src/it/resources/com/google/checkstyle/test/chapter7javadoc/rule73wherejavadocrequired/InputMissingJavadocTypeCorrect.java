@@ -49,6 +49,7 @@ public class InputMissingJavadocTypeCorrect {
 
   private @interface MyAnnotationPrivate {}
 
+  /** some javadoc. */
   public void myMethod() {
     class MyMethodClass {}
   }

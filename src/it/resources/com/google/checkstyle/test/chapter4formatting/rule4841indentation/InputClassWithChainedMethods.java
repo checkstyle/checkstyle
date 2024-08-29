@@ -21,10 +21,12 @@ public class InputClassWithChainedMethods {
     // violation above ''new' has incorrect indentation level 4, expected .* 8.'
   }
 
+  /** some javadoc. */
   public String doNothing(String something, String... uselessParams) {
     return something;
   }
 
+  /** some javadoc. */
   public InputClassWithChainedMethods getInstance(String... uselessParams) {
     return this;
   }
