@@ -12,17 +12,22 @@ public class InputFormattedNoWhitespaceBeforeAnnotations {
   @NonNull int @NonNull [] @NonNull [] fiel1; // ok until #8205
   @NonNull int @NonNull [] @NonNull [] field2; // ok
 
+  /** some javadoc. */
   public void foo(final char @NonNull [] param) {} // ok
 
   // @NonNull int @NonNull ... field3; // non-compilable
   // @NonNull int @NonNull... field4; // non-compilable
 
+  /** some javadoc. */
   public void foo1(final char[] param) {} // ok
 
+  /** some javadoc. */
   public void foo2(final char[] param) {} // ok
 
+  /** some javadoc. */
   public void foo3(final char @NonNull [] param) {} // ok until #8205
 
+  /** some javadoc. */
   public void foo4(final char @NonNull [] param) {} // ok
 
   void test1(String... param) {} // ok until #8205
