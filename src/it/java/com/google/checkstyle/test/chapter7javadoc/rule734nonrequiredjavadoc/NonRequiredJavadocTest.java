@@ -35,4 +35,9 @@ public class NonRequiredJavadocTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputInvalidJavadocPosition.java"));
     }
 
+    @Test
+    public void testDefaultFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedInvalidJavadocPosition.java"));
+    }
+
 }
