@@ -12,11 +12,13 @@ public class ClassWithChainedMethodsCorrect {
     doNothing(someString.concat("zyx").concat("255, 254, 253"));
   }
 
+  /** some javadoc. */
   public static void main(String[] args) {
     ClassWithChainedMethodsCorrect classWithChainedMethodsCorrect =
         new ClassWithChainedMethodsCorrect();
   }
 
+  /** some javadoc. */
   public String doNothing(String something) {
     return something;
   }

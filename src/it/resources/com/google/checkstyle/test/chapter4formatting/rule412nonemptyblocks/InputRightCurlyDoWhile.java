@@ -5,6 +5,7 @@ import java.util.Scanner;
 /** Test input for GitHub issue #3090. https://github.com/checkstyle/checkstyle/issues/3090 . */
 public class InputRightCurlyDoWhile {
 
+  /** some javadoc. */
   public void foo1() {
     do {} while (true);
   }
@@ -57,25 +58,30 @@ public class InputRightCurlyDoWhile {
     String.CASE_INSENSITIVE_ORDER.equals("Goodbye!");
   }
 
+  /** some javadoc. */
   public void foo5() {
     do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
     while (true);
   }
 
+  /** some javadoc. */
   public void foo6() {
     do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
     while (true);
   }
 
+  /** some javadoc. */
   public void foo7() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo8() {
     do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
     while (true);
   }
 
+  /** some javadoc. */
   public void foo9() {
     do {} while (true);
   }
