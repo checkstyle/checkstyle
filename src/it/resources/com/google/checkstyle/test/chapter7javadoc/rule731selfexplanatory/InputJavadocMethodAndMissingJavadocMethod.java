@@ -57,7 +57,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + x;
   }
 
-  // ok, methods smaller than 2 lines does not require javadoc
+  /** some javadoc. */
   public void smallMethod1() {
     foo2();
   }
@@ -101,7 +101,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
     foo3();
   }
 
-  // ok, constructors smaller than 2 lines does not require javadoc
+  /** some javadoc. */
   public InputJavadocMethodAndMissingJavadocMethod(int a, int b) {
     foo2();
   }
@@ -137,6 +137,32 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClasss {
   @Override
   public String foo92() {
     return "Fooooo" + "ooo" + "ooooooo" + "ooooo" + "ooo";
+  }
+
+  int xyz = 99;
+
+  public int getXyz() {
+    return xyz;
+  }
+
+  public void setXyz(int xyz) {
+    this.xyz = xyz;
+  }
+
+  int abc = 101;
+
+  // violation below 'Missing a Javadoc comment.'
+  public int getAbc() { // this will not work
+    abc = 55;
+    abc += 1;
+    return abc;
+  }
+
+  // violation below 'Missing a Javadoc comment.'
+  public void setAbc(int abc) { // this will not work
+    abc = 55;
+    abc += 1;
+    this.abc = abc;
   }
 }
 

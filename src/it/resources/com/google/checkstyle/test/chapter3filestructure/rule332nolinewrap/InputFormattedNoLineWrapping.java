@@ -6,6 +6,7 @@ import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcove
 /** Some javadoc. */
 public class InputFormattedNoLineWrapping {
 
+  /** Some javadoc. */
   public void fooMethod() {
     //
   }
