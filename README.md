@@ -123,9 +123,6 @@ are in the file named "LICENSE.apache20" in this directory.
 [mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
 [mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
-[matrix_con]:https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im
-[matrix_con img]:https://matrix.to/img/matrix-badge.svg
-
 [stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
 [stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
