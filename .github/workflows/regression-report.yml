@@ -561,7 +561,8 @@ jobs:
       download_configs,
       make_report ]
     if: always()
-      && (needs.make_report.outputs.message != ''
+      && (needs.make_report.result == 'failure'
+          || needs.make_report.outputs.message != ''
           || needs.download_configs.result == 'failure'
           || needs.handle_generated_config_bundle.result == 'failure')
     steps:
@@ -572,6 +573,7 @@ jobs:
         env:
           MSG: ${{ needs.make_report.outputs.message }}
           DOWNLOAD_RESULT: ${{ needs.download_configs.result }}
+          MAKE_REPORT_RESULT: ${{ needs.make_report.result }}
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -593,6 +595,11 @@ jobs:
               echo "Failed to generate config from the specified file."
               echo "Please ensure the file exists and the path is correct."
               echo "<br>Usage: 'GitHub, generate report by config from <file_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then
+            {
+              echo "Report generation failed. Please check the logs for more details."
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ -z "$MSG" ]; then
