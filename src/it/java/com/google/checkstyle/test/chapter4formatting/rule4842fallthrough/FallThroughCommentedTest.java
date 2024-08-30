@@ -35,4 +35,9 @@ public class FallThroughCommentedTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFallThrough.java"));
     }
 
+    @Test
+    public void testFallThroughFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedFallThrough.java"));
+    }
+
 }
