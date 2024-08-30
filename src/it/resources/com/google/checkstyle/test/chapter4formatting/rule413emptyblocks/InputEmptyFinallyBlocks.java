@@ -91,10 +91,4 @@ class InputEmptyFinallyBlocks {
           } // violation above 'Empty finally block.'
         }
       };
-
-  interface InterfaceEndingWithSemiColon2 {
-    public void fooEmpty();
-  }
-
-  ; // ok until #7541
 }
