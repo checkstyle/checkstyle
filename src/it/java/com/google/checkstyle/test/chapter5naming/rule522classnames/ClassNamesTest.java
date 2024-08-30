@@ -35,4 +35,9 @@ public class ClassNamesTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputClassNames.java"));
     }
 
+    @Test
+    public void testClassNamesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedClassNames.java"));
+    }
+
 }
