@@ -81,7 +81,7 @@
   <suppress checks="OuterTypeFilename"
     files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
-    files="rule522classnames[\\/]InputClassNames\.java"/>
+    files="rule522classnames[\\/]Input.*ClassNames\.java"/>
   <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
   <suppress checks="OuterTypeFilename"
