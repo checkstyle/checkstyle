@@ -23,7 +23,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.ScrollPaneLayout;
 
-class InputNoWildcardImports {
+class InputFormattedNoWildcardImports {
   public static void main(String[] args) {
     // Use of static imports
     try {
