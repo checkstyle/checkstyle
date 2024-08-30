@@ -35,4 +35,9 @@ public class DeclaredWhenNeededTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputDeclaredWhenNeeded.java"));
     }
 
+    @Test
+    public void testVariableDeclarationUsageDistanceFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedDeclaredWhenNeeded.java"));
+    }
+
 }
