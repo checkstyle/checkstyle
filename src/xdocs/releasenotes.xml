@@ -38,7 +38,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/15567">#15567</a>
           </li>
           <li>
-            create &quot;InputFormattedXxxxxx&quot; files for Indentation and other formatting Checks.
+            create &quot;InputFormattedXxxxxx&quot; files for Indentation and
+            other formatting Checks.
             Author: Mauryan Kansara
             <a href="https://github.com/checkstyle/checkstyle/issues/15340">#15340</a>
           </li>
