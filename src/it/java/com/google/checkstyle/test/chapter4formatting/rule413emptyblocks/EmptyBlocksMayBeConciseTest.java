@@ -36,8 +36,18 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     }
 
     @Test
+    public void testEmptyBlocksAndCatchBlocksFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedEmptyBlocksAndCatchBlocks.java"));
+    }
+
+    @Test
     public void testEmptyFinallyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
+    }
+
+    @Test
+    public void testEmptyFinallyBlocksFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedEmptyFinallyBlocks.java"));
     }
 
     @Test
