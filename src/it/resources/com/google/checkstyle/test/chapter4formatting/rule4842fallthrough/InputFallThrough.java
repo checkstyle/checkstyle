@@ -147,7 +147,7 @@ public class InputFallThrough {
           break;
         case 2:
           i++;
-          // fallthru
+        // fallthru
         case 3:
           i++;
           break;
@@ -177,7 +177,7 @@ public class InputFallThrough {
           { // violation 'should be on the previous line'
             i++;
           }
-          // fallthru
+        // fallthru
         case 12:
           if (false) {
             break;
@@ -194,7 +194,7 @@ public class InputFallThrough {
           } else {
             // do nothing
           }
-          // fallthru
+        // fallthru
         case 15:
           do {
             System.identityHashCode("something");
@@ -213,7 +213,7 @@ public class InputFallThrough {
           while (cond) {
             break;
           }
-          // fallthru
+        // fallthru
         case 19:
           try {
             i++;
@@ -232,7 +232,7 @@ public class InputFallThrough {
           } catch (Error e) {
             return;
           }
-          // fallthru
+        // fallthru
         case 21:
           try {
             i++;
@@ -251,7 +251,7 @@ public class InputFallThrough {
           } finally {
             i++;
           }
-          /* fallthru */
+        /* fallthru */
         case 23:
           switch (j) {
             case 1:
@@ -276,7 +276,7 @@ public class InputFallThrough {
             default:
               return;
           }
-          // fallthru
+        // fallthru
         default:
           // this is the last label
           i++;
@@ -294,12 +294,12 @@ public class InputFallThrough {
 
         case 1:
           i++;
-          // fallthru
+        // fallthru
         case 2:
           { // violation 'should be on the previous line'
             i++;
           }
-          // fallthru
+        // fallthru
         case 3:
           i++;
         /* fallthru */ case 4:
@@ -320,7 +320,7 @@ public class InputFallThrough {
 
         case 1:
           i++;
-          /* fallthru */
+        /* fallthru */
         case 2:
           i++;
         /* fallthru */ case 3:
@@ -341,11 +341,10 @@ public class InputFallThrough {
 
         case 1:
           i++;
-          /*fallthru*/
+        /*fallthru*/
         case 2:
           i++;
-          // violation below 'incorrect indentation level'
-          /*fallthru*/ case 3:
+        /*fallthru*/ case 3:
           break;
         case 4:
           i++;
@@ -363,11 +362,10 @@ public class InputFallThrough {
 
         case 1:
           i++;
-          /* falls through */
+        /* falls through */
         case 2:
           i++;
-          // violation below 'incorrect indentation level'
-          /* falls through */ case 3:
+        /* falls through */ case 3:
           break;
         case 4:
           i++;
@@ -385,13 +383,11 @@ public class InputFallThrough {
 
         case 1: // violation 'Fall through from previous branch of the switch statement.'
           i++;
-          /* Continue with next case.  */
+        /* Continue with next case.  */
         case 2: // violation 'Fall through from previous branch of the switch statement.'
           i++;
-          /* Continue with next case. */ case 3:
-          // 2 violations above:
-          //   'Fall through from previous branch of the switch statement.'
-          //   'incorrect indentation level'
+        /* Continue with next case. */ case 3:
+          // violation above 'Fall through from previous branch of the switch statement.'
           break;
         case 4:
           i++;
