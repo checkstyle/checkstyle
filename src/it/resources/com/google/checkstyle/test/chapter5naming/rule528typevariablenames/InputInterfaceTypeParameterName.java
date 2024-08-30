@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /** some javadoc. */
 public class InputInterfaceTypeParameterName<T> {
+  /** some javadoc. */
   public <TT> void foo() {}
 
   <T> void foo(int i) {}
