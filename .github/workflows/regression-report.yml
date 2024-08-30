@@ -304,6 +304,7 @@ jobs:
     outputs:
       config_link: ${{ steps.parse_description.outputs.config_link }}
       projects_link: ${{ steps.parse_description.outputs.projects_link }}
+      report_label: ${{ steps.parse_description.outputs.report_label }}
     steps:
       - name: Restore Master Checkstyle Checkout
         uses: actions/cache@v4
@@ -351,6 +352,7 @@ jobs:
     outputs:
       branch: ${{ steps.set_branch.outputs.ref }}
       commit_sha: ${{ steps.set_branch.outputs.commit_sha }}
+      report_label: ${{ needs.handle_configs_in_pr_description.outputs.report_label }}
     steps:
       - name: Restore Master Checkstyle Checkout
         uses: actions/cache@v4
@@ -519,6 +521,8 @@ jobs:
           fi
 
       - name: Copy Report to AWS S3 Bucket
+        env:
+          LABEL: ${{ needs.download_configs.outputs.report_label }}
         run: |
           bash
           TIME=$(date +%Y%H%M%S)
