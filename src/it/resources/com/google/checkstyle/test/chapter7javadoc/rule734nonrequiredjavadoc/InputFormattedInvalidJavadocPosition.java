@@ -1,5 +1,6 @@
 package // violation 'package statement should not be line-wrapped.'
-    /** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
+    /** odd javadoc */
+    // violation above 'Javadoc comment is placed in the wrong location.'
     com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
@@ -9,17 +10,18 @@ import javax.swing.JFrame;
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** odd javadoc */
 /** valid javadoc. */
-class InputInvalidJavadocPosition {
+class InputFormattedInvalidJavadocPosition {
   /** odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
 /** valid javadoc. */
 /* ignore */
-class InputInvalidJavadocPosition2 {
-  // violation above '.* InputInvalidJavadocPosition2 has to reside in its own source file.'
+class ExtraInputInvalidJavadocPosition2 {
+  // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
 
-  /** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** odd javadoc */
+  // violation above 'Javadoc comment is placed in the wrong location.'
   static {
     /* ignore */
   }
@@ -45,7 +47,8 @@ class InputInvalidJavadocPosition2 {
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   int field21
-      /** odd javadoc */;
+      /** odd javadoc */
+      ;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   @Deprecated
@@ -74,18 +77,24 @@ class InputInvalidJavadocPosition2 {
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method21
-  /** odd javadoc */
-  () {} // violation ''(' should be on the previous line.'
+      /** odd javadoc */
+      () {}
+
+  // 2 violations 2 lines above:
+  //  '.* incorrect indentation level 6, expected level should be 2.'
+  //  ''(' should be on the previous line.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method22(
-  /** odd javadoc */
-  ) {}
+      /** odd javadoc */
+      ) {} // violation '.* incorrect indentation level 6, expected level should be 2.'
 
-  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
+  // 2 violations 4 lines below:
+  //  '.* indentation should be the same level as line 97.'
+  //  'Javadoc comment is placed in the wrong location.'
   void method23()
-    /** odd javadoc */
-    {}
+        /** odd javadoc */
+      {} // violation '.* has incorrect indentation level 6, expected level should be 4.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method24() {
@@ -111,12 +120,16 @@ class InputInvalidJavadocPosition2 {
   class
   /** odd javadoc */
   InputInvalidJavadocPosition5 {}
-  // violation above ''InputInvalidJavadocPosition5' has incorrect indentation .* 2, expected .* 6.'
+
+  // violation 2 lines above '.* incorrect indentation .* 2, expected .* 6.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   class InputInvalidJavadocPosition6
-    /** odd javadoc */
-    {} // violation ''}' at column 6 should be alone on a line.'
+  /** extra violation below until https://github.com/google/google-java-format/issues/1126 */
+  {}
+  // 2 violations above:
+  //  ''class def lcurly' has incorrect indentation level 2, expected level should be 4.'
+  //  ''}' at column 4 should be alone on a line.'
   /** odd javadoc */
   // violation above 'Javadoc comment is placed in the wrong location.'
 }
