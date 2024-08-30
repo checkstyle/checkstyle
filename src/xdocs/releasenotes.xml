@@ -10,6 +10,50 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.18.1">
+      <div class="releaseDate">30.08.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            google_checks failing on &#39;MethodName&#39; with @ParameterizedTest.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15556">#15556</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Failure in make_report of regression-report.yml does not make comment in PR.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15579">#15579</a>
+          </li>
+          <li>
+            Handling the concurrency model in the new workflow.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15573">#15573</a>
+          </li>
+          <li>
+            regression-report.yml workflow sending messages upon successful completition.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15567">#15567</a>
+          </li>
+          <li>
+            create &quot;InputFormattedXxxxxx&quot; files for Indentation and other formatting Checks.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15340">#15340</a>
+          </li>
+          <li>
+            Fix the error of the new workflow running for every comment not matching pattern.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15565">#15565</a>
+          </li>
+          <li>
+            Updating regression-report.yml to allow running regression for input java file.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15518">#15518</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.18.0">
       <div class="releaseDate">25.08.2024</div>
       <p>Breaking backward compatibility:</p>
