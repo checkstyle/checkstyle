@@ -8,7 +8,7 @@ package // violation 'package statement should not be line-wrapped.'
 import javax.swing.JFrame;
 
 /** some javadoc. */
-public class InputSingleLineJavadocAndInvalidJavadocPosition {
+public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
 
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
   void foo1() {}
@@ -16,11 +16,10 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
   void foo2() {}
 
-  /** @throws CheckstyleException if a problem occurs */
-  // 3 violations above:
-  //  'Javadoc tag '@throws' should be preceded with an empty line.'
-  //  'Single-line Javadoc comment should be multi-line.'
-  //  'Summary javadoc is missing.'
+  // violation below 'Summary javadoc is missing.'
+  /**
+   * @throws CheckstyleException if a problem occurs
+   */
   void foo3() {}
 
   /**
@@ -36,21 +35,19 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   /** An especially short bit of Javadoc. */
   void foo6() {}
 
-  // 3 violations 4 lines below:
-  //  'Javadoc tag '@inheritDoc' should be preceded with an empty line.'
-  //  'Single-line Javadoc comment should be multi-line.'
-  //  'Summary javadoc is missing.'
-  /** @inheritDoc */
+  // violation below 'Summary javadoc is missing.'
+  /**
+   * @inheritDoc
+   */
   void foo7() {}
 
   /** {@inheritDoc} */
   void foo8() {}
 
-  // 3 violations 4 lines below:
-  //  'Javadoc tag '@customTag' should be preceded with an empty line.'
-  //  'Single-line Javadoc comment should be multi-line.'
-  //  'Summary javadoc is missing.'
-  /** @customTag */
+  // violation below 'Summary javadoc is missing.'
+  /**
+   * @customTag
+   */
   void bar() {}
 
   /**
@@ -62,21 +59,19 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
    */
   void bar2() {}
 
-  // 3 violations 4 lines below:
-  //  'Javadoc tag '@customTag' should be preceded with an empty line.'
-  //  'Single-line Javadoc comment should be multi-line.'
-  //  'Summary javadoc is missing.'
-  /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a>text */
+  // violation below 'Summary javadoc is missing.'
+  /**
+   * @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a>text
+   */
   void bar3() {}
 
   /** Single line Javadoc that references {@link String}. */
   void bar4() {}
 
-  // 3 violations 4 lines below:
-  //  'Javadoc tag '@return' should be preceded with an empty line.'
-  //  'Single-line Javadoc comment should be multi-line.'
-  //  'Summary javadoc is missing.'
-  /** @return in single line javadoc */
+  // violation below 'Summary javadoc is missing.'
+  /**
+   * @return in single line javadoc
+   */
   int bar5() {
     return 0;
   }
@@ -94,16 +89,16 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** invalid javadoc. */
 /** valid javadoc. */
-class InputInvalidJavadocPosition {
-  // violation above '.* InputInvalidJavadocPosition has to reside in its own source file.'
+class ExtraInputInvalidJavadocPosition {
+  // violation above '.* ExtraInputInvalidJavadocPosition has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
   /** invalid javadoc. */
 }
 
 /** valid javadoc. */
 /* ignore */
-class InputInvalidJavadocPosition2 {
-  // violation above '.* InputInvalidJavadocPosition2 has to reside in its own source file.'
+class ExtraInputInvalidJavadocPosition2 {
+  // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
   /** invalid javadoc. */
   static {
@@ -161,18 +156,28 @@ class InputInvalidJavadocPosition2 {
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method21
-  /** invalid javadoc. */
-  () {} // violation ''(' should be on the previous line.'
+      /** invalid javadoc. */
+      () {}
+
+  // 2 violations 2 lines above:
+  //  ''method def lparen' has incorrect indentation level 6, expected .* 2.'
+  //  ''(' should be on the previous line.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method22(
-  /** invalid javadoc. */
-  ) {}
+      /** invalid javadoc. */
+      ) {}
 
-  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
+  // violation 2 lines above ''method def rparen' has incorrect indentation level 6, expected .* 2.'
+
+  // 2 violations 4 lines below:
+  //  '.* indentation should be the same level as line 178.'
+  //  'Javadoc comment is placed in the wrong location.'
   void method23()
-    /** invalid javadoc. */
-    {}
+        /** invalid javadoc. */
+      {}
+
+  // violation 2 lines above ''method def lcurly' has incorrect indentation level 6, expected .* 4.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method24() {
@@ -186,29 +191,32 @@ class InputInvalidJavadocPosition2 {
   }
 }
 
-// violation 2 lines below '.* InputInvalidJavadocPosition3 has to reside in its own source file.'
+// violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 @Deprecated
 /** invalid javadoc. */
-class InputInvalidJavadocPosition3 {}
+class ExtraInputInvalidJavadocPosition3 {}
 
-// violation 2 lines below '.* InputInvalidJavadocPosition4 has to reside in its own source file.'
+// violation 2 lines below '.* has to reside in its own source file.'
 /** valid javadoc. */
 @Deprecated
-class InputInvalidJavadocPosition4 {}
+class ExtraInputInvalidJavadocPosition4 {}
 
-// violation 2 lines below '.* InputInvalidJavadocPosition5 has to reside in its own source file.'
+// violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 class
 /** invalid javadoc. */
-InputInvalidJavadocPosition5 {}
-// violation above ''InputInvalidJavadocPosition5' has incorrect indentation .* 0, expected .* 4.'
+ExtraInputInvalidJavadocPosition5 {}
 
-// violation 2 lines below '.* InputInvalidJavadocPosition6 has to reside in its own source file.'
+// violation 2 lines above '.* has incorrect indentation .* 0, expected .* 4.'
+
+// violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
-class InputInvalidJavadocPosition6
-  /** invalid javadoc. */
-  {}
+class ExtraInputInvalidJavadocPosition6
 /** invalid javadoc. */
-// violation 2 lines above''}' at column 4 should be alone on a line.'
-// violation 2 lines above 'Javadoc comment is placed in the wrong location.'
+{}
+/** invalid javadoc. */
+// 2 violations 2 lines above:
+//  ''class def lcurly' has incorrect indentation level 0, expected level should be 2.'
+//  ''}' at column 2 should be alone on a line.'
+// violation 4 lines above 'Javadoc comment is placed in the wrong location.'
