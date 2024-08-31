@@ -5573,28 +5573,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to getListSelectionModel() not allowed on the given receiver.</message>
-    <lineContent>getListSelectionModel().addListSelectionListener(event -&gt; {</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
-      required: @Initialized @NonNull ListToTreeSelectionModelWrapper
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ListToTreeSelectionModelWrapper.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to updateSelectedPathsFromSelectedRows() not allowed on the given receiver.</message>
-    <lineContent>updateSelectedPathsFromSelectedRows();</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
-      required: @Initialized @NonNull ListToTreeSelectionModelWrapper
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Toolkit.getImage.</message>
