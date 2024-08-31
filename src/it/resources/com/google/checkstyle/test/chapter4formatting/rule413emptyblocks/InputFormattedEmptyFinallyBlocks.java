@@ -5,7 +5,7 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-class InputEmptyFinallyBlocks {
+class InputFormattedEmptyFinallyBlocks {
   boolean flag;
 
   void doSm() {}
