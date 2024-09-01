@@ -30,7 +30,7 @@ import javax.swing.tree.TreePath;
  * in the DefaultTreeSelectionModel.
  *
  */
-class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /** A unique serial version identifier. */
     private static final long serialVersionUID = 2267930983939339510L;
@@ -58,7 +58,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      *
      * @return the list selection model
      */
-    protected final ListSelectionModel getListSelectionModel() {
+    public ListSelectionModel getListSelectionModel() {
         return listSelectionModel;
     }
 
