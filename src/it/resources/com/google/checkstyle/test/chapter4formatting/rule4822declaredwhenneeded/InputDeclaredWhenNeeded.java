@@ -12,22 +12,22 @@ public class InputDeclaredWhenNeeded {
   static {
     int b = 0;
     int d = 0;
-      {
-        d = ++b;
-      }
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      d = ++b;
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
   }
 
   static {
     int c = 0;
     int a = 3;
     int b = 2;
-      {
-        a = a + b;
-        c = b;
-      }
-      {
-        c--;
-      }
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      a = a + b;
+      c = b;
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      c--;
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
     a = 7;
   }
 
@@ -65,10 +65,10 @@ public class InputDeclaredWhenNeeded {
     int count;
     int a = 3;
     int b = 2;
-      {
-        a = a + b - 5 + 2 * a;
-        count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
-      }
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      a = a + b - 5 + 2 * a;
+      count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
   }
 
   /** Some javadoc. */
@@ -156,15 +156,15 @@ public class InputDeclaredWhenNeeded {
     int c = 0;
     int m = 0;
     int n = 0;
-      {
-        c++;
-        b++;
-      }
-      {
-        n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
-        m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
-        b++;
-      }
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      c++;
+      b++;
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+      n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
+      m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
+      b++;
+    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
   }
 
   /** Some javadoc. */
@@ -358,12 +358,12 @@ public class InputDeclaredWhenNeeded {
     final LogLevel logLevel = level;
     result.setMnemonic(level.toString().charAt(0));
     result.addActionListener(
-            new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-              showLogLevelColorChangeDialog(result, logLevel);
-              // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
-            }
-          });
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            showLogLevelColorChangeDialog(result, logLevel);
+            // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
+          }
+        });
 
     return result;
   }
@@ -400,15 +400,15 @@ public class InputDeclaredWhenNeeded {
     Object authCheckUrl = null;
     Object authInfo = null;
     task =
-            new AuthUpdateTask(
-                    authCheckUrl,
-                    authInfo,
-                    new IauthListener() {
-                  @Override
-                      public void authTokenChanged(String cookie, String token) {
-                    fireAuthTokenChanged(cookie, token);
-                  }
-                });
+        new AuthUpdateTask(
+            authCheckUrl,
+            authInfo,
+            new IauthListener() {
+              @Override
+              public void authTokenChanged(String cookie, String token) {
+                fireAuthTokenChanged(cookie, token);
+              }
+            });
 
     Timer timer = new Timer("Auth Guard", true);
     timer.schedule(task, intervalMs / 2, intervalMs); // DECLARATION OF VARIABLE 'intervalMs'

@@ -48,7 +48,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
     | grep -v "rule487modifiers/InputModifierOrder.java" \
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
-    | grep -v "rule4822declaredwhenneeded/InputDeclaredWhenNeeded.java" \
     | grep -v "rule4841indentation/ClassWithChainedMethods.java" \
     | grep -v "rule485annotations/InputAnnotationLocation.java" \
     | grep -v "rule485annotations/InputAnnotationLocationVariables.java" \
