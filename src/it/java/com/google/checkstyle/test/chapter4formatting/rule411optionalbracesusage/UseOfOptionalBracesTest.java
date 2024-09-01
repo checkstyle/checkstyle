@@ -35,4 +35,9 @@ public class UseOfOptionalBracesTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputUseOfOptionalBraces.java"));
     }
 
+    @Test
+    public void testNeedBracesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedUseOfOptionalBraces.java"));
+    }
+
 }
