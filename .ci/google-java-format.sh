@@ -13,7 +13,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java" \
     | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
     | grep -v "rule522classnames/InputClassNames.java" \
-    | grep -v "rule411optionalbracesusage/InputUseOfOptionalBraces.java" \
     | grep -v "rule412nonemptyblocks/InputNonemptyBlocksLeftRightCurly.java" \
     | grep -v "rule412nonemptyblocks/InputLeftCurlyAnnotations.java" \
     | grep -v "rule412nonemptyblocks/InputLeftCurlyMethod.java" \
