@@ -263,7 +263,8 @@ public class InputFallThrough {
           }
         case 24:
           i++;
-        /* fallthru */ case 25:
+          // violation below 'incorrect indentation level 10, expected level should be 8'
+          /* fallthru */ case 25:
           i++;
           break;
 
@@ -302,7 +303,8 @@ public class InputFallThrough {
           // fallthru
         case 3:
           i++;
-        /* fallthru */ case 4:
+          // violation below 'incorrect indentation level 10, expected level should be 8'
+          /* fallthru */ case 4:
           break;
         case 5:
           i++;
@@ -323,7 +325,8 @@ public class InputFallThrough {
           /* fallthru */
         case 2:
           i++;
-        /* fallthru */ case 3:
+          // violation below 'incorrect indentation level 10, expected level should be 8'
+          /* fallthru */ case 3:
           break;
         case 4:
           i++;
