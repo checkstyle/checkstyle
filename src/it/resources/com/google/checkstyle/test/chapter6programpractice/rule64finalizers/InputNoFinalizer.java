@@ -20,6 +20,6 @@ public class InputNoFinalizer {
     runnable.run();
   }
 
-  // should not be reported by NoFinalizer check
+  /** should not be reported by NoFinalizer check. */
   public void finalize(String x) {}
 }

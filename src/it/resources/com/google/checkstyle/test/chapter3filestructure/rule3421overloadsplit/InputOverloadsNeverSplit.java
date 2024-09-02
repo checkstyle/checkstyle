@@ -132,21 +132,26 @@ public class InputOverloadsNeverSplit {
 
   private class Inner5 {}
 
+  /** some javadoc. */
   public void overloadMethod(int i) {
     // some foo code
   }
 
+  /** some javadoc. */
   public void overloadMethod(String s) {
     // some foo code
   }
 
+  /** some javadoc. */
   public void overloadMethod(boolean b) {
     // some foo code
   }
 
+  /** some javadoc. */
   public void fooMethod() {}
 
-  // violation below 'All overloaded methods should be placed next to each other. .* '143'.'
+  // violation 2 lines below 'All overloaded methods should be placed next to each other. .* '146'.'
+  /** some javadoc. */
   public void overloadMethod(String s, Boolean b, int i) {
     // some foo code
   }
@@ -167,20 +172,24 @@ public class InputOverloadsNeverSplit {
 
         public void fooMethod() {}
 
-        // violation below 'All overloaded methods should be placed next to each other. .* '164'.'
+        // violation below 'All overloaded methods should be placed next to each other. .* '169'.'
         public void overloadMethod(String s, Boolean b, int i) {
           // some foo code
         }
       };
 
+  /** some javadoc. */
   public void testing() {}
 
   private void testing(int a) {}
 
+  /** some javadoc. */
   public void testing(int a, int b) {}
 
+  /** some javadoc. */
   public static void testing(String a) {}
 
+  /** some javadoc. */
   public void testing(String a, String b) {}
 
   interface Fooable {
@@ -191,7 +200,7 @@ public class InputOverloadsNeverSplit {
     public abstract void noFoo();
 
     public abstract void foo(String s, Boolean b, int i);
-    // violation above 'All overloaded methods should be placed next to each other. .* '189'.'
+    // violation above 'All overloaded methods should be placed next to each other. .* '198'.'
 
   }
 
@@ -228,7 +237,7 @@ public class InputOverloadsNeverSplit {
 
     public void fooMethod() {}
 
-    // violation below 'All overloaded methods should be placed next to each other. .* '225'.'
+    // violation below 'All overloaded methods should be placed next to each other. .* '234'.'
     public void overloadMethod(String s, Boolean b, int i) {
       // some foo code
     }
