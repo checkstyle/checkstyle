@@ -81,7 +81,7 @@ public class Example1 {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;TodoComment&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;(?i)(TODO)|(FIXME)&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -95,7 +95,7 @@ public class Example2 {
   int x;
   public void test() {
     i++;   // TODO: do differently in future    // violation
-    i++;   // todo: do differently in future
+    i++;   // todo: do differently in future    // violation
     i=i/x; // FIXME: handle x = 0 case          // violation
     i=i/x; // FIX :  handle x = 0 case
   }

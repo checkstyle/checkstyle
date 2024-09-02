@@ -43,9 +43,10 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "1:3: " + getCheckMessage(MSG_KEY, "(TODO)|(FIXME)"),
-            "18:14: " + getCheckMessage(MSG_KEY, "(TODO)|(FIXME)"),
-            "20:14: " + getCheckMessage(MSG_KEY, "(TODO)|(FIXME)"),
+            "1:3: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "18:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "19:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "20:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
