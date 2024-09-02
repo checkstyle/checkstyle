@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="TodoComment">
-      <property name="format" value="(TODO)|(FIXME)"/>
+      <property name="format" value="(?i)(TODO)|(FIXME)"/>
     </module>
   </module>
 </module>
