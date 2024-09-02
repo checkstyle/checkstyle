@@ -72,12 +72,17 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testCorrectChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethodsCorrect.java"));
+        verifyWithWholeConfig(getPath("InputClassWithChainedMethodsCorrect.java"));
     }
 
     @Test
     public void testWarnChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethods.java"));
+        verifyWithWholeConfig(getPath("InputClassWithChainedMethods.java"));
+    }
+
+    @Test
+    public void testWarnChainedFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedClassWithChainedMethods.java"));
     }
 
     @Test
