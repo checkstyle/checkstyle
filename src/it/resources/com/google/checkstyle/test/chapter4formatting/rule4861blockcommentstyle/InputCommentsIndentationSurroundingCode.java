@@ -127,6 +127,7 @@ public class InputCommentsIndentationSurroundingCode {
     String someStr = new String();
   }
 
+  /** some javadoc. */
   public String foo9(String s1, String s2, String s3) {
     return "";
   }

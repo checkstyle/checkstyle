@@ -6,6 +6,7 @@ import java.util.Scanner;
 /** Test input for GitHub issue #3090. https://github.com/checkstyle/checkstyle/issues/3090 . */
 public class InputFormattedRightCurlyDoWhile2 {
 
+  /** some javadoc. */
   public void foo1() {
     do {} while (true);
   }
@@ -58,22 +59,27 @@ public class InputFormattedRightCurlyDoWhile2 {
     String.CASE_INSENSITIVE_ORDER.equals("Goodbye!");
   }
 
+  /** some javadoc. */
   public void foo5() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo6() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo7() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo8() {
     do {} while (true);
   }
 
+  /** some javadoc. */
   public void foo9() {
     do {} while (true);
   }

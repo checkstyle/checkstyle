@@ -52,12 +52,12 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + param;
   }
 
-  // ok, default scope method does not require javadoc
+  /** Some javadoc. */
   String defaultScope(int x) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + x;
   }
 
-  // ok, methods smaller than 2 lines does not require javadoc
+  /** Some javadoc. */
   public void smallMethod1() {
     foo2();
   }
@@ -101,7 +101,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
     foo3();
   }
 
-  // ok, constructors smaller than 2 lines does not require javadoc
+  /** Some javadoc. */
   public InputJavadocMethodAndMissingJavadocMethod(int a, int b) {
     foo2();
   }
