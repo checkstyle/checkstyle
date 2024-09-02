@@ -21,7 +21,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule412nonemptyblocks/InputRightCurlySwitchCase.java" \
     | grep -v "rule412nonemptyblocks/InputRightCurlySwitchCasesBlocks.java" \
     | grep -v "rule413emptyblocks/InputEmptyBlocksAndCatchBlocks.java" \
-    | grep -v "rule413emptyblocks/InputEmptyFinallyBlocks.java" \
     | grep -v "rule42blockindentation/ClassWithChainedMethods.java" \
     | grep -v "rule43onestatement/InputOneStatementPerLine.java" \
     | grep -v "rule44columnlimit/InputColumnLimit.java" \
