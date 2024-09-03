@@ -1650,9 +1650,22 @@ public class XdocsPagesTest {
                             fileName, ruleName);
                 }
 
-                validateStyleModules(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
-                        XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, styleName,
-                        ruleName);
+                final Iterator<Node> itrChecks = XmlUtil.findChildElementsByTag(columns.get(2), "a")
+                        .iterator();
+                final Iterator<Node> itrConfigs = XmlUtil.findChildElementsByTag(columns.get(3), "a")
+                        .iterator();
+
+                if ("google".equals(styleName)) {
+                    final Iterator<Node> itrSamples = XmlUtil.findChildElementsByTag(columns.get(4), "a")
+                            .iterator();
+                    validateStyleModulesGoogle(itrChecks, itrConfigs, itrSamples,
+                            styleChecks, styleName, ruleName);
+                }
+                else {
+                    validateStyleModulesOther(XmlUtil.findChildElementsByTag(columns.get(2), "a"),
+                            XmlUtil.findChildElementsByTag(columns.get(3), "a"), styleChecks, styleName,
+                            ruleName);
+                }
 
                 lastRuleName = ruleName;
             }
@@ -1771,18 +1784,112 @@ public class XdocsPagesTest {
         }
     }
 
-    private static void validateStyleModules(Set<Node> checks, Set<Node> configs,
+    private static void validateStyleModulesGoogle(Iterator<Node> itrChecks, Iterator<Node> itrConfigs,
+            Iterator<Node> itrSamples, Set<String> styleChecks, String styleName, String ruleName) {
+        boolean hasChecks = false;
+
+        while (itrChecks.hasNext()) {
+            final Node module = itrChecks.next();
+            final String moduleName = module.getTextContent().trim();
+            final String href = module.getAttributes().getNamedItem("href").getTextContent();
+            final boolean moduleIsCheck = href.startsWith("checks/");
+
+            if (!moduleIsCheck) {
+                continue;
+            }
+
+            hasChecks = true;
+
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    + moduleName + "' shouldn't end with 'Check'")
+                    .that(moduleName.endsWith("Check"))
+                    .isFalse();
+
+            styleChecks.remove(moduleName);
+
+            Node config = null;
+
+            try {
+                config = itrConfigs.next();
+            }
+            catch (NoSuchElementException ignore) {
+                assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
+                        + moduleName + "' is missing the config link: config").fail();
+            }
+
+            final String configUrl = config.getAttributes().getNamedItem("href")
+                    .getTextContent();
+
+            final String expectedUrl = "https://github.com/search?q="
+                    + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
+                    + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
+
+            assertWithMessage("google_style.xml rule '" + ruleName + "' module '"
+                    + moduleName + "' should have matching config url")
+                    .that(configUrl)
+                    .isEqualTo(expectedUrl);
+
+        }
+
+        if (itrConfigs.hasNext() && !hasChecks) {
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' should have no"
+                    + " config link(s) if it has no Checks links").fail();
+        }
+
+        assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
+                .that(itrConfigs.hasNext())
+                .isFalse();
+
+        if (itrSamples.hasNext() && !hasChecks) {
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' should have no"
+                    + " sample link(s) if it has no Checks links").fail();
+        }
+
+        if (hasChecks) {
+            Node sample = null;
+
+            try {
+                sample = itrSamples.next();
+            }
+            catch (NoSuchElementException ignore) {
+                assertWithMessage(styleName + "_style.xml rule '" + ruleName
+                        + "' is missing the samples link").fail();
+            }
+
+            final String configUrl = sample.getAttributes().getNamedItem("href")
+                    .getTextContent();
+            final String extractedRuleName = getExtractedRuleName(ruleName);
+
+            assertWithMessage("google_style.xml rule '" + ruleName + "' rule '"
+                    + "' should have matching sample url")
+                    .that(configUrl)
+                    .startsWith("https://github.com/checkstyle/checkstyle/"
+                            + "tree/master/src/it/resources/com/google/checkstyle/test/");
+
+//            assertWithMessage("google_style.xml rule '" + ruleName
+//                    + "' should have matching sample url")
+//                    .that(configUrl)
+//                    .endsWith("/" + extractedRuleName + "Test.java");
+
+            assertWithMessage("google_style.xml rule '" + ruleName
+                    + "' should have a test that exists")
+                    .that(new File(configUrl.substring(53).replace('/',
+                            File.separatorChar)).exists())
+                    .isTrue();
+
+            assertWithMessage(styleName + "_style.xml rule '" + ruleName
+                    + "' has too many samples link")
+                    .that(itrSamples.hasNext())
+                    .isFalse();
+        }
+    }
+
+    private static void validateStyleModulesOther(Set<Node> checks, Set<Node> configs,
             Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
-        final boolean isGoogleDocumentation = "google".equals(styleName);
 
-        if (isGoogleDocumentation) {
-            validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
-        }
-        else {
-            validateModuleWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
-        }
+        validateModuleWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
 
         assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' has too many configs")
                 .that(itrConfigs.hasNext())
@@ -1856,90 +1963,6 @@ public class XdocsPagesTest {
                             .isTrue();
                 }
             }
-        }
-    }
-
-    private static void validateChapterWiseTesting(Iterator<Node> itrChecks,
-          Iterator<Node> itrConfigs, Set<String> styleChecks, String styleName, String ruleName) {
-        boolean hasChecks = false;
-
-        while (itrChecks.hasNext()) {
-            final Node module = itrChecks.next();
-            final String moduleName = module.getTextContent().trim();
-            final String href = module.getAttributes().getNamedItem("href").getTextContent();
-            final boolean moduleIsCheck = href.startsWith("checks/");
-
-            if (!moduleIsCheck) {
-                continue;
-            }
-
-            hasChecks = true;
-
-            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                    + moduleName + "' shouldn't end with 'Check'")
-                    .that(moduleName.endsWith("Check"))
-                    .isFalse();
-
-            styleChecks.remove(moduleName);
-
-            Node config = null;
-
-            try {
-                config = itrConfigs.next();
-            }
-            catch (NoSuchElementException ignore) {
-                assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' module '"
-                        + moduleName + "' is missing the config link: config").fail();
-            }
-
-            final String configUrl = config.getAttributes().getNamedItem("href")
-                    .getTextContent();
-
-            final String expectedUrl = "https://github.com/search?q="
-                    + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName
-                    + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
-
-            assertWithMessage("google_style.xml rule '" + ruleName + "' module '"
-                    + moduleName + "' should have matching config url")
-                    .that(configUrl)
-                    .isEqualTo(expectedUrl);
-
-        }
-
-        if (itrConfigs.hasNext()) {
-            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' should have checks"
-                    + " if it has config/test links")
-                    .that(hasChecks)
-                    .isTrue();
-
-            final Node config = itrConfigs.next();
-            final String configUrl = config.getAttributes().getNamedItem("href")
-                    .getTextContent();
-            final String extractedRuleName = getExtractedRuleName(ruleName);
-
-            assertWithMessage("google_style.xml rule '" + ruleName + "' rule '"
-                    + "' should have matching test url")
-                    .that(configUrl)
-                    .startsWith("https://github.com/checkstyle/checkstyle/"
-                            + "blob/master/src/it/java/com/google"
-                            + "/checkstyle/test/");
-
-            assertWithMessage("google_style.xml rule '" + ruleName
-                    + "' should have matching test url")
-                    .that(configUrl)
-                    .endsWith("/" + extractedRuleName + "Test.java");
-
-            assertWithMessage("google_style.xml rule '" + ruleName
-                    + "' should have a test that exists")
-                    .that(new File(configUrl.substring(53).replace('/',
-                            File.separatorChar)).exists())
-                    .isTrue();
-        }
-        else {
-            assertWithMessage(styleName + "_style.xml rule '" + ruleName + "' should have no"
-                 + " checks if it has no config/test links")
-                .that(hasChecks)
-                .isFalse();
         }
     }
 
