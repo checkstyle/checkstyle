@@ -823,8 +823,12 @@
                     #14938</a>.
                   <br />
                   <br />
-                  Long identifiers will be handled at
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15233">#15233</a>.
+                  To suppress this rule for longer identifiers, please use
+                  <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+                    SuppressWithNearbyTextFilter
+                  </a>.
+                  Check out <a href="#Google_Suppressions">Suppressions</a>
+                  section to learn how to use this suppression.
                   <br/>
                 </td>
                 <td>
@@ -1381,7 +1385,7 @@
                         alt="" />
                   </span>
                   Type-use annotations cannot be detected by Checkstyle due to it's
-                  <a href="https://checkstyle.org/writingchecks.html#Limitations">
+                  <a href="writingchecks.html#Limitations">
                     limitations</a>,
                   see issue
                   <a href="https://github.com/checkstyle/checkstyle/issues/15416">
@@ -2506,10 +2510,12 @@
           <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
             SuppressWithNearbyCommentFilter</a>,
           <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">
-            SuppressionCommentFilter</a>
-          and
+            SuppressionCommentFilter</a>,
           <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">
-            SuppressWarningsFilter</a>.
+            SuppressWarningsFilter</a>
+          and
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter</a>.
         </p>
         <p>
           Location of config file for
@@ -2548,6 +2554,18 @@
           format.
         </p>
         <p>
+          To suppress a check for few lines below or above, use
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter
+          </a>
+          suppression, use <code>// CHECKSTYLE.SUPPRESS: NameOfCheck for ([+-]\d+) lines</code> comment.
+          ( replace NameOfCheck with the check you want to suppress.
+          For suppressing a check few lines below,
+          replace <i>([+-]\d+)</i> with <i>+NumberOfLines</i> where <i>NumberOfLines</i>
+          is number of the lines below from the comment's line number,
+          for suppressing a check few lines above, use &quot;-&quot; instead of &quot;+&quot;. )
+        </p>
+        <p>
           For more details please review exact configuration of Filters in google_checks.xml:
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
                     SuppressionFilter</a>,
@@ -2559,6 +2577,8 @@
                     SuppressionCommentFilter</a>,
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
                     SuppressWarningsFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+                    SuppressWithNearbyTextFilter</a>
         </p>
       </subsection>
     </section>
