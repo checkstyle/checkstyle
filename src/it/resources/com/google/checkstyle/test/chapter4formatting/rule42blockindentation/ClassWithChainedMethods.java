@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 /** some javadoc. */
 public class ClassWithChainedMethods {
 
+  /** some javadoc. */
   public ClassWithChainedMethods(Object... params) {}
 
   /** some javadoc. */
@@ -21,10 +22,12 @@ public class ClassWithChainedMethods {
     // violation above ''new' has incorrect indentation level 4, expected .* 8.'
   }
 
+  /** some javadoc. */
   public String doNothing(String something, String... uselessParams) {
     return something;
   }
 
+  /** some javadoc. */
   public ClassWithChainedMethods getInstance(String... uselessParams) {
     return this;
   }
