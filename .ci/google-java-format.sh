@@ -48,9 +48,12 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
     | grep -v "rule4841indentation/InputClassWithChainedMethods.java" \
     | grep -v "rule4852classannotations/InputClassAnnotations.java" \
-    | grep -v "rule4853methods.*/InputMethodsAndConstructorsAnnotations.java" \
+    | grep -v "rule4853methodsandconstructorsannotations/InputMethodsAndConstructorsAnnotations.java" \
     | grep -v "rule4854fieldannotations/InputFieldAnnotations.java" \
-    | grep -v "rule4861blockcommentstyle/InputCommentsIndentation.*.java" \
+    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationCommentIsAtTheEndOfBlock.java" \
+    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInEmptyBlock.java" \
+    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInSwitchBlock.java" \
+    | grep -v "rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode.java" \
     | grep -v "rule3sourcefile/InputSourceFileStructure.java" \
     | grep -v "rule332nolinewrap/InputNoLineWrapping.java" \
     | grep -v "rule333orderingandspacing/InputOrderingAndSpacing1.java" \
