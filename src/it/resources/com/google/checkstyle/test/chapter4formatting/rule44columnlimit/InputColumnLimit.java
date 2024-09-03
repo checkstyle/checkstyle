@@ -1,11 +1,17 @@
-package com.google.checkstyle.test.chapter4formatting.rule44columnlimit; // ok
+package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest; // ok
+// ok above, longer package statements are allowed
+
+// ok below, longer imports are allowed
+import com.google.checkstyle.test.chapter3filestructure.toolongpackagetotestcoveragegooglesjavastylerule.PackageStatementTest;
+import java.io.IOException;
 
 final class InputColumnLimit {
   // Long line
   // ----------------------------------------------------------------------------------------------------
   // violation above 'Line is longer than 100 characters (found 105).'
+
+  PackageStatementTest pckgStmt = new PackageStatementTest();
 
   private int[] testing =
       new int[] {
@@ -50,4 +56,144 @@ final class InputColumnLimit {
 
   // Very long url with valid href: href    = "www.google.com/search?hl=en&q=java+style+guide+checkstyle+check+href+length+limit&btnG=Google+Search"
   int validHrefWithWhiteSpaces = 54;
+
+  // violation below 'Line is longer than 100 characters (found 118).'
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee1 = 99;
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+  int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaabllee2 = 99;
+  // suppressed above.
+
+  // violation below 'Line is longer than 100 characters (found 109).'
+  void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddddddddddd1() {}
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+  void longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddddddddddd2() {}
+  // suppressed above.
+
+  final boolean isValid = true;
+  final boolean isValid2 = true;
+  final boolean isValid3 = true;
+  final boolean isValid4 = true;
+  final boolean isValid5 = true;
+
+  void testingNestedIf1() {
+    if (isValid) {
+      if (isValid2) {
+        if (isValid3) {
+          if (isValid4) {
+            if (isValid5) {
+              // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+              longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddddddddddd1();
+            }
+          }
+        }
+      }
+    }
+  }
+
+  void testingNestedIf2() {
+    if (isValid) {
+      if (isValid2) {
+        if (isValid3) {
+          if (isValid4) {
+            if (isValid5) {
+              // violation below 'Line is longer than 100 characters (found 114).'
+              longggggggggggggggggggggmethoooooooooooooooooooooodddddddddddddddddddddddddddddddddddddddddddddd2();
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // violation below 'Line is longer than 100 characters (found 179).'
+  void testingParametersNames1(int areallllllyyyyyyyyyyyyyyyyyylonnnnggggggggggnameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee, int anotherlongnameblahblahblah) {}
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+  void testingParametersNames2(int areallllllyyyyyyyyyyyyyyyyyylonnnnggggggggggnameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee, int anotherlongnameblahblahblah) {}
+  // suppressed above.
+
+  // violation below 'Line is longer than 100 characters (found 156).'
+  InputColumnLimit inputColumnLimit1 = (InputColumnLimit) ((Object) new com.google.checkstyle.test.chapter4formatting.rule44columnlimit.InputColumnLimit());
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+  InputColumnLimit inputColumnLimit2 = (InputColumnLimit) ((Object) new com.google.checkstyle.test.chapter4formatting.rule44columnlimit.InputColumnLimit());
+  // suppressed above.
+  // Above code is wrap-able, user should not use suppression for such cases
+
+  void testing1() {
+    try {
+      throwExceptionBasedOnCondition1();
+      // violation below 'Line is longer than 100 characters (found 111).'
+    } catch (IOException | NullPointerException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
+      System.out.println(ex.getMessage());
+    }
+  }
+
+  void testing2() {
+    try {
+      throwExceptionBasedOnCondition2();
+      // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+    } catch (IOException | NullPointerException | ArrayIndexOutOfBoundsException | ClassNotFoundException ex) {
+      // Above code is wrap-able. User should not use suppression for such cases
+      System.out.println(ex.getMessage());
+    }
+  }
+
+  // violation 2 lines below 'Line is longer than 100 characters (found 104).'
+  void throwExceptionBasedOnCondition1()
+      throws IOException, NullPointerException, ArrayIndexOutOfBoundsException, ClassNotFoundException {
+    int condition = new java.util.Random().nextInt(3);
+    switch (condition) {
+      case 0:
+        throw new IOException("Test IOException");
+      case 1:
+        throw new NullPointerException("Test NullPointerException");
+      case 2:
+        throw new ArrayIndexOutOfBoundsException("Test ArrayIndexOutOfBoundsException");
+      case 3:
+        throw new ClassNotFoundException("Test ClassNotFoundException");
+      default:
+    }
+  }
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +2 lines
+  void throwExceptionBasedOnCondition2()
+          throws IOException, NullPointerException, ArrayIndexOutOfBoundsException, ClassNotFoundException {
+    // suppressed above.
+    // Above code is wrap-able. User should not use suppression for such cases
+    int condition = new java.util.Random().nextInt(3);
+    switch (condition) {
+      case 0:
+        throw new IOException("Test IOException");
+      case 1:
+        throw new NullPointerException("Test NullPointerException");
+      case 2:
+        throw new ArrayIndexOutOfBoundsException("Test ArrayIndexOutOfBoundsException");
+      case 3:
+        throw new ClassNotFoundException("Test ClassNotFoundException");
+      default:
+    }
+  }
+
+  // CHECKSTYLE.SUPPRESS: LineLength for +1 lines
+  class LonggggggggggggggggggggggggggggClassssssssssssssssssssssssssNameeeeeeeeeeeeeeSoooooBoooooorrriinngggg1 {
+    // ok below, as it is suppressed.
+    void longggggggggggggggggggggmethooooooooooooooooooooooddddddddddddddddddddddddddddddddddddddddddddddddddddddd(int x, int y) {}
+    // CHECKSTYLE.SUPPRESS: LineLength for -1 lines
+
+    // ok below, as it is suppressed.
+    int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaablleeeeeeeeeeee = 99;
+    // CHECKSTYLE.SUPPRESS: LineLength for -1 lines
+  }
+
+  // violation below 'Line is longer than 100 characters (found 112).'
+  class LonggggggggggggggggggggggggggggClassssssssssssssssssssssssssNameeeeeeeeeeeeeeSoooooBoooooorrriinngggg2 {
+    // violation below 'Line is longer than 100 characters (found 131).'
+    void longggggggggggggggggggggmethooooooooooooooooooooooddddddddddddddddddddddddddddddddddddddddddddddddddddddd(int x, int y) {}
+
+    // violation below 'Line is longer than 100 characters (found 129).'
+    int aaaarealllllllllllllllllyyyyyyyyyyylllllllloooooooooooooooonnnnnnnnnnnnnnnnnggggggggggvvvvvvaarriaaablleeeeeeeeeeee = 99;
+  }
 }
