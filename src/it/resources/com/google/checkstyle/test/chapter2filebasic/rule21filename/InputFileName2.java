@@ -13,8 +13,10 @@ public class InputFileName2 { // ok
     }
   }
 
+  /** Some javadoc. */
   public native void nativeMethod();
 
+  /** Some javadoc. */
   public void methodWithLiterals() {
     final String ref = "<a href=\"";
     final String refCase = "<A hReF=\"";

@@ -12,11 +12,13 @@ public class InputClassWithChainedMethodsCorrect {
     doNothing(someString.concat("zyx").concat("255, 254, 253"));
   }
 
+  /** some javadoc. */
   public static void main(String[] args) {
     InputClassWithChainedMethodsCorrect classWithChainedMethodsCorrect =
         new InputClassWithChainedMethodsCorrect();
   }
 
+  /** some javadoc. */
   public String doNothing(String something) {
     return something;
   }

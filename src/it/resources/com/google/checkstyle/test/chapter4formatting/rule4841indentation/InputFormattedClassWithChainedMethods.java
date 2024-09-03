@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 /** some javadoc. */
 public class InputFormattedClassWithChainedMethods {
 
+  /** some javadoc. */
   public InputFormattedClassWithChainedMethods(Object... params) {}
 
   /** some javadoc. */
@@ -22,10 +23,12 @@ public class InputFormattedClassWithChainedMethods {
             .doNothing("nothing");
   }
 
+  /** some javadoc. */
   public String doNothing(String something, String... uselessParams) {
     return something;
   }
 
+  /** some javadoc. */
   public InputFormattedClassWithChainedMethods getInstance(String... uselessParams) {
     return this;
   }
