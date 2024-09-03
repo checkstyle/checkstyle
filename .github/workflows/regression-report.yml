@@ -657,3 +657,25 @@ jobs:
         with:
           message: ${{steps.out.outputs.message}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clean up cache
+        if: always()
+        run: |
+          echo "Cleaning up cache..."
+          # List of cache keys to remove
+          CACHE_KEYS=(
+            "${{ env.CACHE_KEY_PR }}"
+            "${{ env.CACHE_KEY_MASTER }}"
+            "${{ env.CACHE_KEY_CONTRIBUTION }}"
+            "${{ env.CACHE_KEY_CONFIG_FILES }}"
+            "${{ env.CACHE_KEY_GENERATED_CONFIGS }}"
+          )
+
+          for key in "${CACHE_KEYS[@]}"; do
+            echo "Removing cache with key: $key"
+            curl --fail-with-body -X DELETE \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/${{ github.repository }}/actions/caches?key=$key"
+          done
+          echo "Cache cleanup completed."
