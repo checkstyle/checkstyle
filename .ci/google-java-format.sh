@@ -4,6 +4,22 @@ set -e
 
 JAR_PATH="$1"
 
+echo "Checking that all excluded java files in this script have matching InputFormatted* file:"
+NOT_FOUND_CONTENT=$(grep -e '^  .*/Input' "${BASH_SOURCE}" \
+  | sed -E 's/.*Input([^\.]+)\..*java.*/\1/' \
+  | while read -r name; do \
+    [[ $(find ./src -type f -name "InputFormatted${name}.java") ]] \
+    || echo "Create InputFormatted${name}.java for Input${name}.java";\
+  done)
+
+if [[ $(echo -n "$NOT_FOUND_CONTENT" | wc --chars) -eq 0 ]]; then
+  echo "Excluded Input files matches to InputFormatted files."
+else
+  echo "not fount matches: $NOT_FOUND_CONTENT"
+  exit 1
+fi
+
+echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
 INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
     | sed "s|src/it/resources/com/google/checkstyle/test/||" \
     | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
