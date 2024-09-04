@@ -29,13 +29,40 @@ public class InputMethodName {
   void fO() {} // violation 'Method name 'fO' must match pattern'
 
   @Test
-  void testing_foo() {}
+  void testing_foo() {
+    class LocalFoo {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    }
+
+    new Object() {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    };
+  }
+
+  void testing_foo(@FooTest String str) {
+    // violation above 'Method name 'testing_foo' must match pattern'
+    class LocalFoo {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    }
+
+    new Object() {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    };
+  }
 
   @Test
-  void testing_Foo() {}
+  void testing_Foo() {} // violation 'Method name 'testing_Foo' must match pattern'
 
   @Test
-  void testing_fOo() {}
+  void testing_fOo() {} // violation 'Method name 'testing_fOo' must match pattern'
 
   @Test
   void testingFoo() {}
@@ -44,7 +71,7 @@ public class InputMethodName {
   void testingFoo_foo() {}
 
   @Test
-  void testing_0123() {}
+  void testing_0123() {} // violation 'Method name 'testing_0123' must match pattern'
 
   @Test
   void Testing_Foo() {} // violation 'Method name 'Testing_Foo' must match pattern'
@@ -60,17 +87,47 @@ public class InputMethodName {
   @Test
   void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
 
-  @ParameterizedTest
-  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_foo1(String str) {}
+  @Test
+  void testing_foo_() {} // violation 'Method name 'testing_foo_' must match pattern'
+
+  @Test
+  void testing_Foo_() {} // violation 'Method name 'testing_Foo_' must match pattern'
+
+  @Test
+  void testing__foo() {} // violation 'Method name 'testing__foo' must match pattern'
+
+  @Test
+  void testing__Foo() {} // violation 'Method name 'testing__Foo' must match pattern'
+
+  @Test
+  void testing__foo_() {} // violation 'Method name 'testing__foo_' must match pattern'
+
+  @Test
+  void testing__Foo_() {} // violation 'Method name 'testing__Foo_' must match pattern'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_Foo1(String str) {}
+  void testing_foo1(String str) {
+    class LocalFoo {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    }
+
+    new Object() {
+      void foo() {}
+
+      void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    };
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_fOo1(String str) {}
+  void testing_Foo1(String str) {} // violation 'Method name 'testing_Foo1' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_fOo1(String str) {} // violation 'Method name 'testing_fOo1' must match pattern'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
@@ -82,7 +139,7 @@ public class InputMethodName {
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_01231(String str) {}
+  void testing_01231(String str) {} // violation 'Method name 'testing_01231' must match pattern'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
@@ -104,10 +161,10 @@ public class InputMethodName {
   void testing_foo2() {}
 
   @RepeatedTest(2)
-  void testing_Foo2() {}
+  void testing_Foo2() {} // violation 'Method name 'testing_Foo2' must match pattern'
 
   @RepeatedTest(2)
-  void testing_fOo2() {}
+  void testing_fOo2() {} // violation 'Method name 'testing_fOo2' must match pattern'
 
   @RepeatedTest(2)
   void testingFoo2() {}
@@ -116,7 +173,7 @@ public class InputMethodName {
   void testingFoo_foo2() {}
 
   @RepeatedTest(2)
-  void testing_01232() {}
+  void testing_01232() {} // violation 'Method name 'testing_01232' must match pattern'
 
   @RepeatedTest(2)
   void Testing_Foo3() {} // violation 'Method name 'Testing_Foo3' must match pattern'
@@ -132,6 +189,9 @@ public class InputMethodName {
 
   @BeforeAll
   static void _testingFoooo() {} // violation 'Method name '_testingFoooo' must match pattern'
+
+  @org.junit.jupiter.api.Test
+  void testing_fq() {}
 
   class InnerFoo {
     void foo() {}
@@ -201,4 +261,6 @@ public class InputMethodName {
 
     void fO(); // violation 'Method name 'fO' must match pattern'
   }
+
+  @interface FooTest {}
 }
