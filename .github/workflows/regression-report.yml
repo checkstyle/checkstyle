@@ -33,6 +33,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  actions: write
 
 concurrency:
   group: ${{ github.run_id }}
