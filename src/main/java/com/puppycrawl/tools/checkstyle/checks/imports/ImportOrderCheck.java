@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * Property {@code groups} - Specify list of <b>type import</b> groups. Every group identified
  * either by a common prefix string, or by a regular expression enclosed in forward slashes
- * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
+ * (e.g. {@code /regexp/}). If an import matches two or more groups, the best match is selected. All type imports, which does not match any group, falls into an
  * additional group, located at the end.
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
  * Type is {@code java.lang.String[]}.
@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * Property {@code staticGroups} - Specify list of <b>static</b> import groups. Every group
  * identified either by a common prefix string, or by a regular expression enclosed in forward
- * slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
+ * slashes (e.g. {@code /regexp/}). If an import matches two or more groups, the best match is selected. All static imports, which does not match any group, fall into
  * an additional group, located at the end. Thus, the empty list of static groups (the default
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
@@ -184,6 +184,7 @@ public class ImportOrderCheck
     /**
      * Specify list of <b>type import</b> groups. Every group identified either by a common prefix
      * string, or by a regular expression enclosed in forward slashes (e.g. {@code /regexp/}).
+     * If an import matches two or more groups, the best match is selected.
      * All type imports, which does not match any group, falls into an additional group,
      * located at the end. Thus, the empty list of type groups (the default value) means one group
      * for all type imports.
@@ -193,6 +194,7 @@ public class ImportOrderCheck
     /**
      * Specify list of <b>static</b> import groups. Every group identified either by a common prefix
      * string, or by a regular expression enclosed in forward slashes (e.g. {@code /regexp/}).
+     * If an import matches two or more groups, the best match is selected.
      * All static imports, which does not match any group, fall into an additional group, located
      * at the end. Thus, the empty list of static groups (the default value) means one group for all
      * static imports. This property has effect only when the property {@code option} is set to
@@ -288,7 +290,7 @@ public class ImportOrderCheck
     /**
      * Setter to specify list of <b>type import</b> groups. Every group identified either by a
      * common prefix string, or by a regular expression enclosed in forward slashes
-     * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
+     * (e.g. {@code /regexp/}). If an import matches two or more groups, the best match is selected. All type imports, which does not match any group, falls into an
      * additional group, located at the end. Thus, the empty list of type groups (the default value)
      * means one group for all type imports.
      *
@@ -303,7 +305,7 @@ public class ImportOrderCheck
     /**
      * Setter to specify list of <b>static</b> import groups. Every group identified either by a
      * common prefix string, or by a regular expression enclosed in forward slashes
-     * (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into an
+     * (e.g. {@code /regexp/}). If an import matches two or more groups, the best match is selected. All static imports, which does not match any group, fall into an
      * additional group, located at the end. Thus, the empty list of static groups (the default
      * value) means one group for all static imports. This property has effect only when
      * the property {@code option} is set to {@code top} or {@code bottom}.
