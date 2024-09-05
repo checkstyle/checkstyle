@@ -33,9 +33,9 @@
 public class Example1 {
   public void foo() {
     int i = 5;
-    if(i &gt; 3); // violation
+    if(i &gt; 3); // violation 'Empty statement'
     i++;
-    for (i = 0; i &lt; 5; i++); // violation
+    for (i = 0; i &lt; 5; i++); // violation 'Empty statement'
     i++;
     while (i &gt; 10)
       i++;
