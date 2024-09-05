@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 public class InputFinalClassAnonymousInnerClass {
     static class a {
-        static class b { // violation
+        static class b { // violation 'Class b should be declared as final'
             private b() {
             }
         }
@@ -24,7 +24,7 @@ public class InputFinalClassAnonymousInnerClass {
                 }
             }
         }
-        class m { // violation
+        class m { // violation 'Class m should be declared as final'
             private m() {
             }
             class q {
@@ -37,7 +37,7 @@ public class InputFinalClassAnonymousInnerClass {
     class m {
         private m() {
         }
-        class q { // violation
+        class q { // violation 'Class q should be declared as final'
             private q() {
             }
         }
@@ -49,7 +49,7 @@ public class InputFinalClassAnonymousInnerClass {
         private jasper() {
         }
         class a {
-            class b { // violation
+            class b { // violation 'Class b should be declared as final'
                 private b() {
                 }
             }
@@ -64,11 +64,11 @@ public class InputFinalClassAnonymousInnerClass {
     }
 
     class n {
-        class g { // violation
+        class g { // violation 'Class g should be declared as final'
             private g() {
             }
         }
-        class y { // violation
+        class y { // violation 'Class y should be declared as final'
             private y() {
             }
         }
@@ -81,14 +81,14 @@ public class InputFinalClassAnonymousInnerClass {
         };
     }
     class vl {
-        class n { // violation
+        class n { // violation 'Class n should be declared as final'
             private n() {
             }
         }
     }
 
     class var1 {
-        class n { // violation
+        class n { // violation 'Class n should be declared as final'
             private n() {
             }
         }

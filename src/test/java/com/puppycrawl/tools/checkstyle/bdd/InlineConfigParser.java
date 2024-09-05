@@ -256,7 +256,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".UnusedCatchParameterShouldBeUnnamedCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck",

@@ -16,7 +16,7 @@ public class InputFinalClassInnerAndNestedClass {
     private class SubClass extends SuperClass {
     } // violation above 'Class SubClass should be declared as final'
 
-    class SameName { // violation
+    class SameName { // violation 'Class SameName should be declared as final'
         private SameName() {
         }
     }
@@ -42,7 +42,7 @@ public class InputFinalClassInnerAndNestedClass {
     }
 
     class TestNestedClasses {
-        class SameName { // violation
+        class SameName { // violation 'Class SameName should be declared as final'
             private SameName() {
             }
             class Test3 {
@@ -66,7 +66,7 @@ enum foo {
         }
 
         class D {
-            class B { // violation
+            class B { // violation 'Class B should be declared as final'
                 private B() {
                 }
             }
@@ -81,7 +81,7 @@ class foo2 {
     }
 
     class a extends c {
-        class c { // violation
+        class c { // violation 'Class c should be declared as final'
             private c() {
             }
         }
