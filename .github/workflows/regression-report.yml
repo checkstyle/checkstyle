@@ -23,6 +23,7 @@ env:
   CACHE_KEY_MASTER: "simple-cache-key-MASTER-${{ github.sha }}"
   CACHE_KEY_CONTRIBUTION: "simple-cache-key-CONTRIBUTION-${{ github.sha }}"
   CACHE_KEY_CONFIG_FILES: "config-files-${{ github.sha }}-${{ github.event.comment.id }}"
+  # yamllint disable-line rule:line-length
   CACHE_KEY_GENERATED_CONFIGS: "generated-configs-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
 
@@ -72,27 +73,35 @@ jobs:
   checkout_and_cache:
     runs-on: ubuntu-latest
     needs: [ check_pr_status ]
+    outputs:
+      pr_branch: ${{ steps.get_pr_details.outputs.branch }}
+      commit_sha: ${{ steps.get_pr_details.outputs.commit_sha }}
     steps:
       - name: Create .ci-temp directory
         run: mkdir -p .ci-temp
 
-      - name: Checkout Checkstyle root
-        uses: actions/checkout@v4
-        with:
-          repository: checkstyle/checkstyle
-          path: .
+      - name: Get PR branch and fork details
+        id: get_pr_details
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.issue.pull_request.url }}
+        run: |
+          PR_INFO="$(curl --fail-with-body -s -H "Authorization: token $GITHUB_TOKEN" "$PR_URL")"
+          BRANCH="$(echo "$PR_INFO" | jq -r .head.ref)"
+          FORK_REPO="$(echo "$PR_INFO" | jq -r .head.repo.full_name)"
+          COMMIT_SHA="$(echo "$PR_INFO" | jq -r .head.sha)"
 
-      - name: Cache Checkstyle root checkout
-        uses: actions/cache@v4
-        with:
-          path: .
-          key: ${{ env.CACHE_KEY_MASTER }}
+          {
+            echo "branch=$BRANCH"
+            echo "fork_repo=$FORK_REPO"
+            echo "commit_sha=$COMMIT_SHA"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          path: .
+          repository: ${{ steps.get_pr_details.outputs.fork_repo }}
+          ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Cache PR Checkout
         uses: actions/cache@v4
@@ -259,16 +268,10 @@ jobs:
           DEFAULT_PROJECTS_LINK: ${{ env.DEFAULT_PROJECTS_LINK }}
         run: |
           FOUND_FILE="${{ steps.find_input_file.outputs.input_file }}"
-          BASE_PATH=".ci-temp/checkstyle"
           OUTPUT_DIR="${{ env.GENERATED_CONFIGS_PATH }}"
           mkdir -p "$OUTPUT_DIR"
 
-          echo "Original FOUND_FILE = $FOUND_FILE"
-
-          # Remove .ci-temp/checkstyle/ from the beginning of FOUND_FILE
-          RELATIVE_PATH=${FOUND_FILE#.ci-temp/checkstyle/}
-
-          echo "Processed RELATIVE_PATH = $RELATIVE_PATH"
+          echo "Using input file: $FOUND_FILE"
 
           # Generate a unique name for the config file
           CONFIG_FILE_NAME=$(basename "$FOUND_FILE" .java)_config.xml
@@ -278,9 +281,9 @@ jobs:
           PROJECT_FILE_PATH="$OUTPUT_DIR/projects.properties"
 
           # Run the extractor
-            java -jar extractor-all-${{env.EXTRACTOR_VERSION}}.jar \
-            "$BASE_PATH" \
-            --input-file "$RELATIVE_PATH" \
+          java -jar extractor-all-${{env.EXTRACTOR_VERSION}}.jar \
+            "$WORKSPACE" \
+            --input-file "$FOUND_FILE" \
             "$CONFIG_FILE_PATH" \
             "$PROJECT_FILE_PATH"
 
@@ -324,14 +327,6 @@ jobs:
           echo "$ISSUE_BODY" > .ci-temp/windows.txt
           tr -d '\15\32' < .ci-temp/windows.txt > .ci-temp/text
 
-          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -o .ci-temp/info.json
-
-          jq --raw-output .head.ref .ci-temp/info.json > .ci-temp/branch
-          jq --raw-output .head.sha .ci-temp/info.json > .ci-temp/commit_sha
-
       - name: Parsing content of PR description
         id: parse_description
         run: |
@@ -351,8 +346,6 @@ jobs:
         || needs.handle_configs_in_pr_description.result == 'success')
     runs-on: ubuntu-latest
     outputs:
-      branch: ${{ steps.set_branch.outputs.ref }}
-      commit_sha: ${{ steps.set_branch.outputs.commit_sha }}
       report_label: ${{ needs.handle_configs_in_pr_description.outputs.report_label }}
     steps:
       - name: Restore Master Checkstyle Checkout
@@ -402,30 +395,6 @@ jobs:
             exit 1
           fi
 
-      - name: Set branch
-        env:
-          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: set_branch
-        run: |
-          mkdir -p .ci-temp
-          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -o .ci-temp/info.json
-
-          jq --raw-output .head.ref .ci-temp/info.json > .ci-temp/branch
-          jq --raw-output .head.sha .ci-temp/info.json > .ci-temp/commit_sha
-
-          ./.ci/append-to-github-output.sh "ref" "$(cat .ci-temp/branch)"
-          # shellcheck disable=SC2002
-          ./.ci/append-to-github-output.sh "commit_sha" "$(cat .ci-temp/commit_sha | cut -c 1-7)"
-
-          echo "GITHUB_OUTPUT:"
-          # need to 'echo' to see output in Github CI
-          # shellcheck disable=SC2005
-          echo "$(cat "$GITHUB_OUTPUT")"
-
       - name: Cache config files
         uses: actions/cache@v4
         with:
@@ -435,7 +404,7 @@ jobs:
           key: ${{ env.CACHE_KEY_CONFIG_FILES }}
 
   make_report:
-    needs: [ download_configs ]
+    needs: [ download_configs, checkout_and_cache ]
     if: always() && needs.download_configs.result == 'success'
     runs-on: ubuntu-latest
     outputs:
@@ -520,12 +489,10 @@ jobs:
           echo "-------------------------------"
 
       - name: Generate report
-        env:
-          BRANCH: ${{ needs.download_configs.outputs.branch }}
         run: |
           cd .ci-temp/contribution/checkstyle-tester
           bash
-          REF="forked/$BRANCH"
+          REF="forked/${{ needs.checkout_and_cache.outputs.pr_branch }}"
           REPO="${{ github.workspace }}/.ci-temp/checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
@@ -546,10 +513,11 @@ jobs:
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.download_configs.outputs.report_label }}
+          COMMIT_SHA: ${{ needs.checkout_and_cache.outputs.commit_sha }}
         run: |
           bash
           TIME=$(date +%Y%H%M%S)
-          FOLDER="${{needs.download_configs.outputs.commit_sha}}_$TIME"
+          FOLDER="${COMMIT_SHA}_$TIME"
           DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
