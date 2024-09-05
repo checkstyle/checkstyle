@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 public record InputFinalClassNestedInRecord(int a) {
 
     record b() {
-        class c { // violation
+        class c { // violation 'Class c should be declared as final'
             private c() {
             }
         }
@@ -28,7 +28,7 @@ public record InputFinalClassNestedInRecord(int a) {
 
     record s() {
         record f() {
-            class j { // violation
+            class j { // violation 'Class j should be declared as final'
                 private j() {
                 }
             }

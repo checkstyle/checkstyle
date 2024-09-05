@@ -21,11 +21,11 @@ public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
         }
     }
 
-    class b { // violation
+    class b { // violation 'Class b should be declared as final'
         private b() {
         }
         class foo {
-            class m { // violation
+            class m { // violation 'Class m should be declared as final'
                 private m() {
                 }
             }
@@ -47,7 +47,7 @@ public interface InputFinalClassNestedInInterfaceWithAnonInnerClass {
         }
     }
 
-    class c extends foo.m { // violation
+    class c extends foo.m { // violation 'Class c should be declared as final'
         private c() {
         }
     }

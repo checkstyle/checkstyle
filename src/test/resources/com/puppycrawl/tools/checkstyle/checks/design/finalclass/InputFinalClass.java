@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
 import java.util.ArrayList;
 
-public class InputFinalClass // violation
+public class InputFinalClass // violation 'Class InputFinalClass should be declared as final'
 {
     private InputFinalClass() {}
 }
@@ -16,7 +16,7 @@ public class InputFinalClass // violation
 final class test2 {}
 class test3
 {
-   class test4 // violation
+   class test4 // violation 'Class test4 should be declared as final'
    {
        private test4() {}
    }
@@ -113,21 +113,21 @@ enum testenum1
 enum testenum2
 {
     A, B;
-
-    public static class someinnerClass // violation
+    // violation below 'Class someinnerClass should be declared as final'
+    public static class someinnerClass
     {
         private someinnerClass() {}
     }
 }
 
 interface TestInterface {
-    class SomeClass { // violation
+    class SomeClass { // violation 'Class SomeClass should be declared as final'
         private SomeClass() {}
     }
 }
 
 @interface SomeAnnotation {
-    class SomeClass { // violation
+    class SomeClass { // violation 'Class SomeClass should be declared as final'
         private SomeClass() {}
     }
 }
@@ -148,7 +148,7 @@ class TestAnonymousInnerClasses {
     }
 }
 
-class TestNewKeyword { // violation
+class TestNewKeyword { // violation 'Class TestNewKeyword should be declared as final'
 
     private TestNewKeyword(String s) {
         String a = "hello" + s;
@@ -181,7 +181,7 @@ abstract class TestPrivateCtorInAbstractClasses {
 class TestAnonymousInnerClassInsideNestedClass {
     private TestAnonymousInnerClassInsideNestedClass() { }
 
-    static class NestedClass { // violation
+    static class NestedClass { // violation 'Class NestedClass should be declared as final'
 
         public final static TestAnonymousInnerClassInsideNestedClass ONE
                 = new TestAnonymousInnerClassInsideNestedClass() {

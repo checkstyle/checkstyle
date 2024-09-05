@@ -12,7 +12,8 @@ public @interface InputFinalClassAnnotation {
         private FinalClass() {}
     }
 
-    class DerivedClass extends SuperClass { // violation
+    class DerivedClass extends SuperClass {
+        // violation above 'Class DerivedClass should be declared as final'
         private DerivedClass() {}
     }
 

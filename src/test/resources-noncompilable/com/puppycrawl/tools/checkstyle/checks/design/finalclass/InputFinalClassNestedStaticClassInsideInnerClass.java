@@ -11,7 +11,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
     class M {
         class A {
             static class B {
-                static class C { // violation
+                static class C { // violation 'Class C should be declared as final'
                     private C() {
                     }
                 }
@@ -29,7 +29,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
     }
 
     class A {
-        class B { // violation
+        class B { // violation 'Class B should be declared as final'
             class C {
                 private C() {}
             }
@@ -40,7 +40,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
     }
 
     class B {
-        class C { // violation
+        class C { // violation 'Class C should be declared as final'
             private C() {}
             class D extends Mw.B.C {
             }
@@ -57,7 +57,7 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
 
     class PR {
         static class P {
-            static class Q { // violation
+            static class Q { // violation 'Class Q should be declared as final'
                 private Q() {
                 }
             }
@@ -73,14 +73,14 @@ public class InputFinalClassNestedStaticClassInsideInnerClass {
     }
 
     class X {
-        class F { // violation
+        class F { // violation 'Class F should be declared as final'
             private F() {
             }
         }
     }
 
     class a {
-        static class c { // violation
+        static class c { // violation 'Class c should be declared as final'
             private c() {
             }
         }
