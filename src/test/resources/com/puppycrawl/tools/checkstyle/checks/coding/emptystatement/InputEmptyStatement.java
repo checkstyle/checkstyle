@@ -15,28 +15,28 @@ public class InputEmptyStatement
 {
    public InputEmptyStatement()
    {
-      ; // violation
+      ; // violation 'Empty statement'
    }
 
    public void EmptyMethod()
    {
-      ; // violation
+      ; // violation 'Empty statement'
    }
 
    public void EmptyStatements(boolean cond)
    {
-      for (;cond;); // violation
+      for (;cond;); // violation 'Empty statement'
 
       for (;cond;)
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
 
-      if (true); // violation
+      if (true); // violation 'Empty statement'
 
       if (true)
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
 
       if (cond)
@@ -46,44 +46,44 @@ public class InputEmptyStatement
 
       else
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
 
       switch (1)
       {
          case 1 :
-            ; // violation
+            ; // violation 'Empty statement'
          default :
-            ; // violation
+            ; // violation 'Empty statement'
       }
 
-      while (cond); // violation
+      while (cond); // violation 'Empty statement'
 
       while (cond)
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
 
-      do; // violation
+      do; // violation 'Empty statement'
       while (cond);
 
       do
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
       while (cond);
 
       try
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
       catch (Exception ex)
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
       finally
       {
-         ; // violation
+         ; // violation 'Empty statement'
       }
    }
 }
