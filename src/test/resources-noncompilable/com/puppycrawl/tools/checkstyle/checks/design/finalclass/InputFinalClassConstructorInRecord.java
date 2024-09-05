@@ -24,7 +24,7 @@ public record InputFinalClassConstructorInRecord(String string) {
     }
 
     class X {
-        class F { // violation
+        class F { // violation 'Class F should be declared as final'
             private F() {
             }
         }

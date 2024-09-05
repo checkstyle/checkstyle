@@ -32,7 +32,8 @@ public enum InputFinalClassEnum {
         private FinalClass() {}
     }
 
-    static class DerivedClass extends SuperClass { // violation
+    static class DerivedClass extends SuperClass {
+        // violation above 'Class DerivedClass should be declared as final'
         private DerivedClass() {}
     }
 

@@ -10,7 +10,7 @@ public enum InputFinalClassNestedInEnumWithAnonInnerClass {
     class n {
         private n() {
         }
-        class j { // violation
+        class j { // violation 'Class j should be declared as final'
             private j() {
             }
         }
@@ -24,7 +24,7 @@ public enum InputFinalClassNestedInEnumWithAnonInnerClass {
             private j() {
             }
         }
-        class n { // violation
+        class n { // violation 'Class n should be declared as final'
             private n() {
             }
         }
