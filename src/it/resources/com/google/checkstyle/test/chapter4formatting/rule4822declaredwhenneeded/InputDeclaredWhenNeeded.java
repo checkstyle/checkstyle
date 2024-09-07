@@ -353,6 +353,7 @@ public class InputDeclaredWhenNeeded {
     }
   }
 
+  /** Some javadoc. */
   protected JmenuItem createSubMenuItem(LogLevel level) {
     final JmenuItem result = new JmenuItem(level.toString());
     final LogLevel logLevel = level;
