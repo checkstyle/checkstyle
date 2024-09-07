@@ -22,13 +22,16 @@ fi
 echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
 INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
     | sed "s|src/it/resources/com/google/checkstyle/test/||" \
-    | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
-    | grep -v "rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java" \
-    | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
-    | grep -v "rule713atclauses/InputJavaDocTagContinuationIndentation.java" \
-    | grep -v "rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java" \
-    | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
-    | grep -v "rule522classnames/InputClassNames.java" \
+    | grep -v "rule231filetab/InputWhitespaceCharacters.java" \
+    | grep -v "rule3sourcefile/InputSourceFileStructure.java" \
+    | grep -v "rule332nolinewrap/InputNoLineWrapping.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing1.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing2.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing3.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing4.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing5.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid.java" \
+    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid2.java" \
     | grep -v "rule412nonemptyblocks/InputNonemptyBlocksLeftRightCurly.java" \
     | grep -v "rule412nonemptyblocks/InputLeftCurlyAnnotations.java" \
     | grep -v "rule412nonemptyblocks/InputLeftCurlyMethod.java" \
@@ -40,7 +43,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule42blockindentation/ClassWithChainedMethods.java" \
     | grep -v "rule43onestatement/InputOneStatementPerLine.java" \
     | grep -v "rule44columnlimit/InputColumnLimit.java" \
-    | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule451wheretobreak/InputOperatorWrap.java" \
     | grep -v "rule451wheretobreak/InputMethodParamPad.java" \
     | grep -v "rule451wheretobreak/InputSeparatorWrap.java" \
@@ -49,6 +51,7 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule451wheretobreak/InputSeparatorWrapEllipsis.java" \
     | grep -v "rule451wheretobreak/InputSeparatorWrapArrayDeclarator.java" \
     | grep -v "rule451wheretobreak/InputLambdaBodyWrap.java" \
+    | grep -v "rule452indentcontinuationlines/ClassWithChainedMethods.java" \
     | grep -v "rule461verticalwhitespace/InputVerticalWhitespace.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundBasic.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterBad.java" \
@@ -60,7 +63,6 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule462horizontalwhitespace/InputMethodParamPad.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java" \
     | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
-    | grep -v "rule487modifiers/InputModifierOrder.java" \
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
     | grep -v "rule4841indentation/InputClassWithChainedMethods.java" \
     | grep -v "rule4852classannotations/InputClassAnnotations.java" \
@@ -70,16 +72,14 @@ INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.j
     | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInEmptyBlock.java" \
     | grep -v "rule4861blockcommentstyle/InputCommentsIndentationInSwitchBlock.java" \
     | grep -v "rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode.java" \
-    | grep -v "rule3sourcefile/InputSourceFileStructure.java" \
-    | grep -v "rule332nolinewrap/InputNoLineWrapping.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing1.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing2.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing3.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing4.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacing5.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid.java" \
-    | grep -v "rule333orderingandspacing/InputOrderingAndSpacingValid2.java" \
-    | grep -v "rule231filetab/InputWhitespaceCharacters.java" \
+    | grep -v "rule487modifiers/InputModifierOrder.java" \
+    | grep -v "rule522classnames/InputClassNames.java" \
+    | grep -v "rule53camelcase/InputCamelCaseDefined.java" \
+    | grep -v "rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java" \
+    | grep -v "rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java" \
+    | grep -v "rule712paragraphs/InputIncorrectJavadocParagraph.java" \
+    | grep -v "rule713atclauses/InputJavaDocTagContinuationIndentation.java" \
+    | grep -v "rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java" \
     ))
 
 for INPUT_PATH in "${INPUT_PATHS[@]}"; do
