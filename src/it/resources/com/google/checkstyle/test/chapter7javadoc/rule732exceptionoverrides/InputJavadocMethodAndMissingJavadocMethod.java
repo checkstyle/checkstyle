@@ -62,7 +62,7 @@ public class InputJavadocMethodAndMissingJavadocMethod extends OverrideClass {
     foo2();
   }
 
-  // ok, methods smaller than 2 lines does not require javadoc
+  /** some javadoc. */
   protected void smallMethod2() {
     foo2();
   }
