@@ -85,6 +85,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 /**
  * CheckerTest.
@@ -1651,6 +1652,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    /**
+     * This tests uses 'verify' method, because it needs some config
+     * to be executed on non-existing Input file,
+     * but BDD style methods need config in existing file.
+     *
+     * @throws Exception exception
+     */
+    @SuppressForbidden
     @Test
     public void testViolationMessageOnIoException() throws Exception {
         final DefaultConfiguration checkConfig =
