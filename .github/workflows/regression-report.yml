@@ -19,12 +19,7 @@ env:
   # yamllint disable-line rule:line-length
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.properties"
   EXTRACTOR_VERSION: 2024-08-27
-  CACHE_KEY_PR: "simple-cache-key-PR-${{ github.sha }}"
-  CACHE_KEY_MASTER: "simple-cache-key-MASTER-${{ github.sha }}"
-  CACHE_KEY_CONTRIBUTION: "simple-cache-key-CONTRIBUTION-${{ github.sha }}"
-  CACHE_KEY_CONFIG_FILES: "config-files-${{ github.sha }}-${{ github.event.comment.id }}"
-  # yamllint disable-line rule:line-length
-  CACHE_KEY_GENERATED_CONFIGS: "generated-configs-${{ github.sha }}-${{ github.event.comment.id }}"
+  CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
 
 on:
@@ -76,6 +71,8 @@ jobs:
     outputs:
       pr_branch: ${{ steps.get_pr_details.outputs.branch }}
       commit_sha: ${{ steps.get_pr_details.outputs.commit_sha }}
+    env:
+      CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
     steps:
       - name: Create .ci-temp directory
         run: mkdir -p .ci-temp
@@ -90,7 +87,6 @@ jobs:
           BRANCH="$(echo "$PR_INFO" | jq -r .head.ref)"
           FORK_REPO="$(echo "$PR_INFO" | jq -r .head.repo.full_name)"
           COMMIT_SHA="$(echo "$PR_INFO" | jq -r .head.sha)"
-
           {
             echo "branch=$BRANCH"
             echo "fork_repo=$FORK_REPO"
@@ -103,23 +99,21 @@ jobs:
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
-      - name: Cache PR Checkout
-        uses: actions/cache@v4
-        with:
-          path: .
-          key: ${{ env.CACHE_KEY_PR }}
-
       - name: Checkout master branch
         uses: actions/checkout@v4
         with:
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
 
-      - name: Cache checkouts
-        uses: actions/cache@v4
-        with:
-          path: .ci-temp/checkstyle
-          key: ${{ env.CACHE_KEY_MASTER }}
+      - name: Setup Git remotes
+        run: |
+          cd .ci-temp/checkstyle
+          git remote add upstream https://github.com/checkstyle/checkstyle.git
+          git remote add forked https://github.com/${{ steps.get_pr_details.outputs.fork_repo }}.git
+          git fetch upstream
+          git fetch forked
+          git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
+               forked/${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout contribution repository
         uses: actions/checkout@v4
@@ -127,11 +121,11 @@ jobs:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
 
-      - name: Cache contribution checkout
-        uses: actions/cache@v4
+      - name: Save cache
+        uses: actions/cache/save@v4
         with:
-          path: .ci-temp/contribution
-          key: ${{ env.CACHE_KEY_CONTRIBUTION }}
+          path: .
+          key: ${{ env.CACHE_KEY }}
 
   parse_comment:
     runs-on: ubuntu-latest
@@ -153,17 +147,12 @@ jobs:
               content: 'rocket'
             })
 
-      - name: Restore Master Checkstyle Checkout
-        uses: actions/cache@v4
-        with:
-          path: .ci-temp/checkstyle
-          key: "${{ env.CACHE_KEY_MASTER }}"
-
-      - name: Restore PR Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_PR }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Parse comment
         id: parse
@@ -200,11 +189,12 @@ jobs:
       config_link: ${{ steps.set_links.outputs.config_link }}
       projects_link: ${{ steps.set_links.outputs.projects_link }}
     steps:
-      - name: Restore Master Checkstyle Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_MASTER }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Set config and projects links
         id: set_links
@@ -224,11 +214,12 @@ jobs:
       config_link: ${{ steps.generated_config_bundle.outputs.config_link }}
       projects_link: ${{ steps.generated_config_bundle.outputs.projects_link }}
     steps:
-      - name: Restore PR Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_PR }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Find input file
         id: find_input_file
@@ -299,7 +290,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY_GENERATED_CONFIGS }}
+          key: ${{ env.CACHE_KEY }}-generated-configs
 
   handle_configs_in_pr_description:
     needs: [ parse_comment, checkout_and_cache ]
@@ -310,11 +301,12 @@ jobs:
       projects_link: ${{ steps.parse_description.outputs.projects_link }}
       report_label: ${{ steps.parse_description.outputs.report_label }}
     steps:
-      - name: Restore Master Checkstyle Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_MASTER }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Getting PR description
         env:
@@ -348,18 +340,19 @@ jobs:
     outputs:
       report_label: ${{ needs.handle_configs_in_pr_description.outputs.report_label }}
     steps:
-      - name: Restore Master Checkstyle Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_MASTER }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Restore Generated Config and Project Files
         if: needs.handle_generated_config_bundle.result == 'success'
         uses: actions/cache@v4
         with:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY_GENERATED_CONFIGS }}
+          key: ${{ env.CACHE_KEY }}-generated-configs
 
       - name: Process local-based generated Config and Project File
         if: needs.handle_generated_config_bundle.result == 'success'
@@ -401,7 +394,7 @@ jobs:
           path: |
             .ci-temp/*.xml
             .ci-temp/project.properties
-          key: ${{ env.CACHE_KEY_CONFIG_FILES }}
+          key: ${{ env.CACHE_KEY }}-config-files
 
   make_report:
     needs: [ download_configs, checkout_and_cache ]
@@ -410,48 +403,26 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message }}
     steps:
-      - name: Restore Master Checkstyle Checkout
-        uses: actions/cache@v4
-        with:
-          path: .ci-temp/checkstyle
-          key: "${{ env.CACHE_KEY_MASTER }}"
-
-      - name: Restore PR Checkout
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           path: .
-          key: "${{ env.CACHE_KEY_PR }}"
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Restore config files from cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: |
             .ci-temp/*.xml
             .ci-temp/project.properties
-          key: ${{ env.CACHE_KEY_CONFIG_FILES }}
-
-      - name: Set upstream
-        run: |
-          bash
-          cd .ci-temp/checkstyle
-          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
-          git remote add upstream "$MAIN_REPO_GIT_URL"
-          git fetch upstream
-          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
-          git remote add forked "$FORK_REPO_GIT_URL"
-          git fetch forked
+          key: ${{ env.CACHE_KEY }}-config-files
 
       - name: Setup local maven cache
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
-
-      - name: Restore Contribution Checkout
-        uses: actions/cache@v4
-        with:
-          path: .ci-temp/contribution
-          key: "${{ env.CACHE_KEY_CONTRIBUTION }}"
 
       - name: Prepare environment
         run: |
@@ -492,20 +463,20 @@ jobs:
         run: |
           cd .ci-temp/contribution/checkstyle-tester
           bash
-          REF="forked/${{ needs.checkout_and_cache.outputs.pr_branch }}"
+          PR_BRANCH="${{ needs.checkout_and_cache.outputs.pr_branch }}"
           REPO="${{ github.workspace }}/.ci-temp/checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+            groovy diff.groovy -r "$REPO" -p "$PR_BRANCH" -pc new_module_config.xml -m single\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           elif [ -f patch_config.xml ]; then
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" -bc diff_config.xml\
               -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           else
-            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" -c diff_config.xml\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           fi
