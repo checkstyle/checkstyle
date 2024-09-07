@@ -84,13 +84,4 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
     }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
-    }
 }
