@@ -34,4 +34,25 @@ public class InputMissingJavadocTypeIncorrect { // violation 'Missing a Javadoc 
 
   class AdditionalClass { // OK, not public
   }
+
+  // violation below 'Missing a Javadoc comment.'
+  protected int testProtectedMethod1() {
+    return 0;
+  }
+
+  // violation below 'Missing a Javadoc comment.'
+  protected void testProtectedMethod2() {}
+
+  // violation below 'Missing a Javadoc comment.'
+  protected class TestProtectedInnerClass {
+    // violation below 'Missing a Javadoc comment.'
+    protected void testProtectedInnerMethod() {}
+
+    // violation below 'Missing a Javadoc comment.'
+    public void testPublicInnerMethod() {}
+
+    private void testPrivateInnerMethod() {}
+
+    void testPackagePrivateInnerMethod() {}
+  }
 }
