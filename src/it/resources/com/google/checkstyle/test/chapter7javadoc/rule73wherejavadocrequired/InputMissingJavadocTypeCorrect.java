@@ -53,4 +53,25 @@ public class InputMissingJavadocTypeCorrect {
   public void myMethod() {
     class MyMethodClass {}
   }
+
+  /** some javadoc. */
+  protected int testProtectedMethod1() {
+    return 0;
+  }
+
+  /** some javadoc. */
+  protected void testProtectedMethod2() {}
+
+  /** some javadoc. */
+  protected class TestProtectedInnerClass {
+    /** some javadoc. */
+    protected void testProtectedInnerMethod() {}
+
+    /** some javadoc. */
+    public void testPublicInnerMethod() {}
+
+    private void testPrivateInnerMethod() {}
+
+    void testPackagePrivateInnerMethod() {}
+  }
 }
