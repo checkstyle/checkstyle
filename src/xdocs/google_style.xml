@@ -2399,11 +2399,6 @@
                         alt="" />
                   </span>
                   <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
-                  <br/>
-                  <br/>
-                  "protected" methods are not detected for missing javadoc, it will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15434">#15434</a>
-                  <br/>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">

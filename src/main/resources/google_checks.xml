@@ -347,11 +347,16 @@
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="MissingJavadocMethod">
-      <property name="scope" value="public"/>
+      <property name="scope" value="protected"/>
       <property name="allowMissingPropertyJavadoc" value="true"/>
       <property name="allowedAnnotations" value="Override, Test"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF,
                                    COMPACT_CTOR_DEF"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="MissingJavadocMethod"/>
+      <property name="query" value="//METHOD_DEF[ancestor::CLASS_DEF
+                                  [./MODIFIERS/LITERAL_PROTECTED]]"/>
     </module>
     <module name="MissingJavadocType">
       <property name="scope" value="protected"/>
