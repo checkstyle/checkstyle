@@ -66,8 +66,8 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_KEY, "x"),
             "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "20:37: " + getCheckMessage(MSG_KEY, "args"),
-            "24:9: " + getCheckMessage(MSG_KEY, "result"),
+            "23:37: " + getCheckMessage(MSG_KEY, "args"),
+            "28:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
