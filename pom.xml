@@ -1858,7 +1858,8 @@
                 <!-- content of file does not matter at all -->
                 <exclude>**/RegexpOnFilenameCheckTest.class</exclude>
 
-                <!-- due to https://github.com/checkstyle/checkstyle/pull/13193 All the code needs to be in single line -->
+                <!-- due to https://github.com/checkstyle/checkstyle/pull/13193
+                     All the code needs to be in single line -->
                 <exclude>**/OneStatementPerLineCheckTest.class</exclude>
 
                 <!-- this class contain forbidden verify method -->
@@ -1871,9 +1872,6 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
-
-                <!-- all bellow until https://github.com/checkstyle/checkstyle/issues/11446 -->
-                <exclude>**/CheckerTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
