@@ -81,7 +81,17 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  public void foo() {
+    int x = 1;
+    int y = 2; // violation 'Variable 'y' should be declared final'
+    int z = 3; // violation 'Variable 'z' should be declared final'
+    x = z;
+  }
+}
+        </source>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
@@ -94,6 +104,21 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  // violation below 'Variable 'unchangedVariable' should be declared final'
+  void bar(int unchangedVariable,int changedVariable) {
+    int someVariable = unchangedVariable;
+    // violation above 'Variable 'someVariable' should be declared final'
+    changedVariable += someVariable;
+    final int[] arr =  {1,2,3};
+    for(int value : arr){
+      System.out.println(value);
+    }
+  }
+}
         </source>
         <p>
           By default, this Check skip final validation on
@@ -120,8 +145,14 @@
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-for (int number : myNumbers) { // violation
-  System.out.println(number);
+class Example3 {
+  void foo(){
+    final int[] myNumbers = {1,2,3};
+    // violation below 'Variable 'number' should be declared final'
+    for (int number : myNumbers) {
+      System.out.println(number);
+    }
+  }
 }
         </source>
         <p id="Example4-config">
@@ -140,15 +171,20 @@ for (int number : myNumbers) { // violation
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class MyClass {
-  static int foo(int x, int y) { //violations, parameters should be final
+class Example4
+{
+  static int foo(int x, int y) {
+    // 2 violations above:
+    //  'Variable 'x' should be declared final'
+    //  'Variable 'y' should be declared final'
     return x+y;
   }
-  public static void main (String []args) { //violation, parameters should be final
+  public static void main (String []args) {
+    // violation above 'Variable 'args' should be declared final'
     for (String i : args) {
       System.out.println(i);
     }
-    int result=foo(1,2); // violation
+    int result=foo(1,2); // violation 'Variable 'result' should be declared final'
   }
 }
         </source>
