@@ -330,9 +330,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     public void testLastLine() throws Exception {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
-            // until https://github.com/checkstyle/checkstyle/issues/13553
             "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            // until https://github.com/checkstyle/checkstyle/issues/13553
         };
         verifyWithInlineConfigParser(
                 getPath("InputFallThroughLastLineCommentCheck.java"),
