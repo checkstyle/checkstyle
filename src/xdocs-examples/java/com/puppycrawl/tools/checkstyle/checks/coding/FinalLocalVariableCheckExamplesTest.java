@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
@@ -35,36 +35,41 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:9: " + getCheckMessage(MSG_KEY, 'y'),
+            "16:9: " + getCheckMessage(MSG_KEY, 'z'),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "15:16: " + getCheckMessage(MSG_KEY, "unchangedVariable"),
+            "16:9: " + getCheckMessage(MSG_KEY, "someVariable"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19:14: " + getCheckMessage(MSG_KEY, "number"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "17:22: " + getCheckMessage(MSG_KEY, "x"),
+            "17:29: " + getCheckMessage(MSG_KEY, "y"),
+            "23:37: " + getCheckMessage(MSG_KEY, "args"),
+            "28:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
