@@ -38,18 +38,29 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example2-config">
           To configure the check so that it checks local variables and
           parameters:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p>
           By default, this Check skip final validation on
@@ -66,13 +77,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -81,13 +92,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
