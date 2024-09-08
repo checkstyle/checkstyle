@@ -150,7 +150,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       </p>
       <p>
         To define system property for execution look at
-        <a href="config_system_properties.html#Properties">system properties</a>.
+        <a href="config_system_properties.html">system properties</a>.
       </p>
       <p>
         Set the properties for <a href="config.html#Properties">expanded
