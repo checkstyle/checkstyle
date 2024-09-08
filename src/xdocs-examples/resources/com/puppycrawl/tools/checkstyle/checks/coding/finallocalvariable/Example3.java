@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 class Example3 {
   void foo(){
     final int[] myNumbers = {1,2,3};
-    // violation below 'Variable 'number' should be declared final'
+    // violation below, 'Variable 'number' should be declared final'
     for (int number : myNumbers) {
       System.out.println(number);
     }
