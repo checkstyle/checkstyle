@@ -213,6 +213,7 @@ jobs:
     outputs:
       config_link: ${{ steps.generated_config_bundle.outputs.config_link }}
       projects_link: ${{ steps.generated_config_bundle.outputs.projects_link }}
+      label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -292,6 +293,14 @@ jobs:
           path: ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}-generated-configs
 
+      - name: Extract filename and create label
+        id: create_label
+        run: |
+          INPUT_FILE="${{ needs.parse_comment.outputs.input_file }}"
+          FILENAME=$(basename "$INPUT_FILE")
+          LABEL="Generated config for $FILENAME"
+          ./.ci/append-to-github-output.sh "label" "$LABEL"
+
   handle_configs_in_pr_description:
     needs: [ parse_comment, checkout_and_cache ]
     if: needs.parse_comment.outputs.mode == 'configs_in_pr_description'
@@ -338,7 +347,12 @@ jobs:
         || needs.handle_configs_in_pr_description.result == 'success')
     runs-on: ubuntu-latest
     outputs:
-      report_label: ${{ needs.handle_configs_in_pr_description.outputs.report_label }}
+      report_label: >-
+        ${{
+          needs.handle_configs_in_pr_description.outputs.report_label
+          || needs.handle_generated_config_bundle.outputs.label
+          || ''
+        }}
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
