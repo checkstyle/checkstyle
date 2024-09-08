@@ -21,11 +21,11 @@ class Example4
     return x+y;
   }
   public static void main (String []args) {
-    // violation above 'Variable 'args' should be declared final'
+    // violation above, 'Variable 'args' should be declared final'
     for (String i : args) {
       System.out.println(i);
     }
-    int result=foo(1,2); // violation 'Variable 'result' should be declared final'
+    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end
