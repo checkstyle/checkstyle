@@ -9,16 +9,19 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
+
 // xdoc section -- start
-public class MyClass {
-  static int foo(int x, int y) { //violations, parameters should be final
+class Example4
+{
+  static int foo(int x, int y) { // 2 violations
     return x+y;
   }
-  public static void main (String []args) { //violation, parameters should be final
+  public static void main (String []args) { // violation
     for (String i : args) {
       System.out.println(i);
     }
-    int result=foo(1,2); // violation
+    int result=foo(1,2); // violation 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end
