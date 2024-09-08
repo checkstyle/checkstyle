@@ -188,6 +188,7 @@ jobs:
     outputs:
       config_link: ${{ steps.set_links.outputs.config_link }}
       projects_link: ${{ steps.set_links.outputs.projects_link }}
+      label: ${{ steps.create_label.outputs.label }}
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -205,6 +206,13 @@ jobs:
           PROJECTS_LINK="$BASE_URL/$CONFIG_BUNDLE/list-of-projects.properties"
           ./.ci/append-to-github-output.sh "config_link" "$CONFIG_LINK"
           ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_LINK"
+
+      - name: Create label
+        id: create_label
+        run: |
+          CONFIG_BUNDLE="${{ needs.parse_comment.outputs.config_bundle }}"
+          LABEL="Report for $CONFIG_BUNDLE"
+          ./.ci/append-to-github-output.sh "label" "$LABEL"
 
   handle_generated_config_bundle:
     needs: [ parse_comment, checkout_and_cache ]
@@ -351,6 +359,7 @@ jobs:
         ${{
           needs.handle_configs_in_pr_description.outputs.report_label
           || needs.handle_generated_config_bundle.outputs.label
+          || needs.handle_existing_config_bundle.outputs.label
           || ''
         }}
     steps:
