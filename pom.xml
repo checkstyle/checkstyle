@@ -1872,9 +1872,6 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
-
-                <!-- until https://github.com/checkstyle/checkstyle/issues/15636 -->
-                <exclude>**/CheckerTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
