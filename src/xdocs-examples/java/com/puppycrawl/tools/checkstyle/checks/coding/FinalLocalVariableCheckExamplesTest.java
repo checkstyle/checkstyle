@@ -35,8 +35,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_KEY, 'y'),
-            "16:9: " + getCheckMessage(MSG_KEY, 'z'),
+            "21:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,8 +44,10 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "15:16: " + getCheckMessage(MSG_KEY, "unchangedVariable"),
-            "16:9: " + getCheckMessage(MSG_KEY, "someVariable"),
+            "15:22: " + getCheckMessage(MSG_KEY, "x"),
+            "15:29: " + getCheckMessage(MSG_KEY, "y"),
+            "21:37: " + getCheckMessage(MSG_KEY, "args"),
+            "26:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -55,7 +56,8 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19:14: " + getCheckMessage(MSG_KEY, "number"),
+            "22:17: " + getCheckMessage(MSG_KEY, "i"),
+            "25:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

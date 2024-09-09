@@ -10,16 +10,20 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 // xdoc section -- start
-class Example2 {
-  // violation below, 'Variable 'unchangedVariable' should be declared final'
-  void bar(int unchangedVariable,int changedVariable) {
-    int someVariable = unchangedVariable;
-    // violation above, 'Variable 'someVariable' should be declared final'
-    changedVariable += someVariable;
-    final int[] arr =  {1,2,3};
-    for(int value : arr){
-      System.out.println(value);
+class Example2
+{
+  static int foo(int x, int y) {
+    // 2 violations above:
+    //  'Variable 'x' should be declared final'
+    //  'Variable 'y' should be declared final'
+    return x+y;
+  }
+  public static void main (String []args) {
+    // violation above, 'Variable 'args' should be declared final'
+    for (String i : args) {
+      System.out.println(i);
     }
+    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end

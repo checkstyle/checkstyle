@@ -9,12 +9,16 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 // xdoc section -- start
-class Example1 {
-  public void foo() {
-    int x = 1;
-    int y = 2; // violation, 'Variable 'y' should be declared final'
-    int z = 3; // violation, 'Variable 'z' should be declared final'
-    x = z;
+class Example1
+{
+  static int foo(int x, int y) {
+    return x+y;
+  }
+  public static void main (String []args) {
+    for (String i : args) {
+      System.out.println(i);
+    }
+    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end

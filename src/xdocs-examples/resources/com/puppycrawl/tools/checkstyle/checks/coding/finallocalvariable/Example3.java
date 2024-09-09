@@ -12,13 +12,17 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 // xdoc section -- start
-class Example3 {
-  void foo(){
-    final int[] myNumbers = {1,2,3};
-    // violation below, 'Variable 'number' should be declared final'
-    for (int number : myNumbers) {
-      System.out.println(number);
+class Example3
+{
+  static int foo(int x, int y) {
+    return x+y;
+  }
+  public static void main (String []args) {
+    // violation below, 'Variable 'i' should be declared final'
+    for (String i : args) {
+      System.out.println(i);
     }
+    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end
