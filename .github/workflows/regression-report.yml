@@ -317,6 +317,7 @@ jobs:
       config_link: ${{ steps.parse_description.outputs.config_link }}
       projects_link: ${{ steps.parse_description.outputs.projects_link }}
       report_label: ${{ steps.parse_description.outputs.report_label }}
+      patch_config_link: ${{ steps.parse_description.outputs.patch_config_link }}
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -397,6 +398,10 @@ jobs:
           DIFF_CONFIG_LINK: ${{
             needs.handle_existing_config_bundle.outputs.config_link
             || needs.handle_configs_in_pr_description.outputs.config_link
+            }}
+          PATCH_CONFIG_LINK: ${{
+            needs.handle_configs_in_pr_description.outputs.patch_config_link
+            || ''
             }}
           DIFF_PROJECTS_LINK: ${{
             needs.handle_existing_config_bundle.outputs.projects_link
@@ -482,6 +487,18 @@ jobs:
           fi
           echo "-------------------------------"
 
+      - name: Print patch_config.xml
+        run: |
+          echo "Contents of patch_config.xml:"
+          echo "-----------------------------"
+          if [ -f .ci-temp/contribution/checkstyle-tester/patch_config.xml ]; then
+          cat .ci-temp/contribution/checkstyle-tester/patch_config.xml
+          else
+          echo "patch_config.xml not found"
+          fi
+          echo "-----------------------------"
+
+
       - name: Generate report
         run: |
           cd .ci-temp/contribution/checkstyle-tester
@@ -491,14 +508,17 @@ jobs:
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
+            echo "Generating report for new module"
             groovy diff.groovy -r "$REPO" -p "$PR_BRANCH" -pc new_module_config.xml -m single\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           elif [ -f patch_config.xml ]; then
+            echo "Generating report with patch config"
             groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" -bc diff_config.xml\
               -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
           else
+            echo "Generating standard diff report"
             groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" -c diff_config.xml\
               -l project.properties -xm "-Dcheckstyle.failsOnError=false"\
               --allowExcludes
