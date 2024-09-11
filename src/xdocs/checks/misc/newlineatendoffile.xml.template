@@ -108,17 +108,17 @@ StaticMethodCandidateCheck.name = Static Method Candidate
         </macro>
 
         <p id="Example4-config">
-          To configure the check to work only on Java, XML and Python files:
+          To configure the check to work only on Java, XML and Cpp files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Python file <code>Example4.py</code>:</p>
+        <p id="Example4-code">Cpp file <code>Example4.cpp</code>:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.py"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
           <param name="type" value="code"/>
         </macro>
 
