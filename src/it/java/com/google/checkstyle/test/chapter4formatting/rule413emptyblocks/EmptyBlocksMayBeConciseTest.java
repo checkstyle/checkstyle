@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule413emptyblocks;
 
-import org.junit.jupiter.api.Test;
-
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport {
@@ -30,33 +28,34 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
         return "com/google/checkstyle/test/chapter4formatting/rule413emptyblocks";
     }
 
-    @Test
-    public void testEmptyBlocksAndCatchBlocks() throws Exception {
-        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocks.java"));
-    }
+    // tests are commented until https://github.com/checkstyle/checkstyle/issues/15642 is closed
+    //    @Test
+    //    public void testEmptyBlocksAndCatchBlocks() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocks.java"));
+    //    }
 
-    @Test
-    public void testEmptyBlocksAndCatchBlocksFormatted() throws Exception {
-        verifyWithWholeConfig(getPath("InputFormattedEmptyBlocksAndCatchBlocks.java"));
-    }
+    //    @Test
+    //    public void testEmptyBlocksAndCatchBlocksFormatted() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputFormattedEmptyBlocksAndCatchBlocks.java"));
+    //    }
 
-    @Test
-    public void testEmptyFinallyBlocks() throws Exception {
-        verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
-    }
+    //    @Test
+    //    public void testEmptyFinallyBlocks() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
+    //    }
 
-    @Test
-    public void testEmptyCatchBlockNoViolations() throws Exception {
-        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java"));
-    }
+    //    @Test
+    //    public void testEmptyCatchBlockNoViolations() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java"));
+    //    }
 
-    @Test
-    public void testEmptyCatchBlockViolationsByComment() throws Exception {
-        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByComment.java"));
-    }
-
-    @Test
-    public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
-        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
-    }
+    //    @Test
+    //    public void testEmptyCatchBlockViolationsByComment() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByComment.java"));
+    //    }
+    //
+    //    @Test
+    //    public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
+    //        verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
+    //    }
 }

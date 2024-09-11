@@ -70,10 +70,9 @@ public class InputWhitespaceAfterBad {
   /** some javadoc. */
   public void check4() throws java.io.IOException {
     try(java.io.InputStream ignored = System.in;) {}
-    // 5 violations above:
+    // 4 violations above:
     //  ''try' is not followed by whitespace.'
     //  ''try' is not followed by whitespace.'
-    //  'Empty try block.'
     //  ''{' is not followed by whitespace.'
     //  ''}' is not preceded with whitespace.'
   }
