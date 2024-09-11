@@ -64,7 +64,7 @@ public class NewlineAtEndOfFileCheckExamplesTest extends AbstractExamplesModuleT
             "1: " + getCheckMessage(MSG_KEY_NO_NEWLINE_EOF),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.py"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.cpp"), expected);
     }
 
     @Test
