@@ -128,19 +128,20 @@ public class Example3 { // &#x2936;
         </source>
 
         <p id="Example4-config">
-          To configure the check to work only on Java, XML and Python files:
+          To configure the check to work only on Java, XML and Cpp files:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;NewlineAtEndOfFile&quot;&gt;
-    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, py&quot;/&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml, cpp&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Python file <code>Example4.py</code>:</p>
+        <p id="Example4-code">Cpp file <code>Example4.cpp</code>:</p>
         <source>
-print(&quot;Hello world!&quot;)
-# no &#x2936; below it is violation
+int main() { // &#x2936;
+    return 0;// &#x2936;
+} // no &#x2936; below it is violation
         </source>
 
         <p id="Example5-code">Java file <code>Example5.java</code>:</p>
