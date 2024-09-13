@@ -696,24 +696,15 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ban_red.png" alt="" />
                   </span>
-                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-                  config</a>)
-                  <br />
-                  <br />
-                  <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
-                  </span>
-                  <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
-                  config</a>)
+                  This section's implementation is in progress, visit
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15338">
+                    #15338
+                  </a>
+                  for detailed discussion
                 </td>
-                <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks">
-                    samples</a>
-                </td>
+                <td/>
               </tr>
               <tr>
                 <td><a name="4.2"/>
@@ -2013,11 +2004,6 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-                  config</a>)
-                  <br />
-                  <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>

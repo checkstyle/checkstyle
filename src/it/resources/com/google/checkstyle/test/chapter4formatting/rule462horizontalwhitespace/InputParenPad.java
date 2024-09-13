@@ -334,39 +334,33 @@ public class InputParenPad {
 
     private void tryWithResources() throws Exception {
       try (AutoCloseable a = null) {}
-      // 3 violations above:
-      //  'Empty try block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       try (AutoCloseable a = null;
            AutoCloseable b = null) {}
-      // 3 violations above:
-      //  'Empty try block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       try (AutoCloseable a = null;
            AutoCloseable b = null) {}
-      // 3 violations above:
-      //  'Empty try block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       try (AutoCloseable a = null;
            AutoCloseable b = null) {}
-      // 3 violations above:
-      //  'Empty try block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       try (AutoCloseable a = null ) {}
-      // 4 violations above:
+      // 3 violations above:
       //  '')' is preceded with whitespace.'
-      //  'Empty try block.'
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       try (AutoCloseable a = null;
            AutoCloseable b = null ) {}
-      // 4 violations above:
+      // 3 violations above:
       //  '')' is preceded with whitespace.'
-      //  'Empty try block.'
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
     }

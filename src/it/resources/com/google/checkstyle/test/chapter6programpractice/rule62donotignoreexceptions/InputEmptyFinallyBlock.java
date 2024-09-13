@@ -30,7 +30,7 @@ class InputEmptyFinallyBlock {
     } catch (Exception e) {
       /* ignore */
     } finally {
-    } // violation above 'Empty finally block.'
+    }
   }
 
   class Inner {
@@ -58,7 +58,7 @@ class InputEmptyFinallyBlock {
       } catch (Exception e) {
         /* ignore */
       } finally {
-      } // violation above 'Empty finally block.'
+      }
     }
   }
 
@@ -88,7 +88,7 @@ class InputEmptyFinallyBlock {
           } catch (Exception e) {
             /* ignore */
           } finally {
-          } // violation above 'Empty finally block.'
+          }
         }
       };
 
