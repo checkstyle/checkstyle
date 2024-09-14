@@ -4,13 +4,17 @@ class InputEmptyBlocksAndCatchBlocks {
   static {
   }
 
+  static {}
+
+  static { } // violation 'Empty blocks should have no spaces.'
+
   public void fooMethod() {
     InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
     int a = 1;
-    if (a == 1) { } // no warn 'Empty if block.' until #15338
+    if (a == 1) { } // violation 'Empty blocks should have no spaces.'
     char[] s = {'1', '2'};
     int index = 2;
-    if (doSideEffect() == 1) { } // no warn 'Empty if block.' until #15338
+    if (doSideEffect() == 1) { } // violation 'Empty blocks should have no spaces.'
     Io in = new Io();
     while ((r = in.read()) != null) {}
     for (; index < s.length && s[index] != 'x'; index++) {}
@@ -21,8 +25,7 @@ class InputEmptyBlocksAndCatchBlocks {
     do {} while (a == 1);
     switch (a) {
     }
-    // 1 violations 2 lines above:
-    //  'switch without "default" clause.'
+    // violation 2 lines above 'switch without "default" clause.'
     int[] z = {};
   }
 
@@ -31,6 +34,44 @@ class InputEmptyBlocksAndCatchBlocks {
   }
 
   public void emptyMethod() {}
+
+  void foo() throws Exception {
+    int a = 90;
+
+    if (a == 1) {
+    } else {}
+
+    if (a == 1) {
+    } else { } // violation 'Empty blocks should have no spaces.'
+    // false negative above
+
+    try (MyResource r = new MyResource()) { } // violation 'Empty blocks should have no spaces.'
+    try (MyResource r = new MyResource()) {}
+    try (MyResource r = new MyResource()) {} catch (Exception expected) {} // false negative
+    try (MyResource r = new MyResource()) {} catch (Exception expected) { } // false negative
+    // violation above 'Empty blocks should have no spaces.'
+    try (MyResource r = new MyResource()) {
+
+    } catch (Exception expected) {} // false negative
+    try (MyResource r = new MyResource()) {
+
+    } catch (Exception expected) { } // violation 'Empty blocks should have no spaces.'
+    // false negative above
+    try (MyResource r = new MyResource()) {;}
+    // 3 violations above:
+    //  ''{' at column 43 should have line break after.'
+    //  'WhitespaceAround: '{' is not followed by whitespace.'
+    //  'WhitespaceAround: '}' is not preceded with whitespace.'
+  }
+
+  /** some. */
+  public class MyResource implements AutoCloseable {
+    /** some. */
+    @Override
+    public void close() throws Exception {
+      System.out.println("Closed MyResource");
+    }
+  }
 }
 
 // violation below 'Top-level class Io has to reside in its own source file.'
@@ -61,10 +102,10 @@ class WithInner {
     private void withEmpty() {
       InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
       int a = 1;
-      if (a == 1) { } // no warn 'Empty if block.' until #15338 until #15338
+      if (a == 1) { } // violation 'Empty blocks should have no spaces.'
       char[] s = {'1', '2'};
       int index = 2;
-      if (doSideEffect() == 1) { } // no warn 'Empty if block.' until #15338
+      if (doSideEffect() == 1) { } // violation 'Empty blocks should have no spaces.'
       Io in = new Io();
       while ((r = in.read()) != null) {}
       for (; index < s.length && s[index] != 'x'; index++) {}
@@ -75,8 +116,7 @@ class WithInner {
       do {} while (a == 1);
       switch (a) {
       }
-      // 1 violations 2 lines above:
-      //  'switch without "default" clause.'
+      // violation 2 lines above 'switch without "default" clause.'
       int[] z = {};
     }
   }
@@ -97,10 +137,10 @@ class WithAnon {
           public void fooEmpty() {
             InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
-            if (a == 1) { } // no warn 'Empty if block.' until #15338
+            if (a == 1) { } // violation 'Empty blocks should have no spaces.'
             char[] s = {'1', '2'};
             int index = 2;
-            if (doSideEffect() == 1) { } // no warn 'Empty if block.' until #15338
+            if (doSideEffect() == 1) { } // violation 'Empty blocks should have no spaces.'
             Io in = new Io();
             while ((r = in.read()) != null) {}
             for (; index < s.length && s[index] != 'x'; index++) {}
@@ -111,9 +151,7 @@ class WithAnon {
             do {} while (a == 1);
             switch (a) {
             }
-            // 1 violations 2 lines above:
-            //  'switch without "default" clause.'
-            //  now warn 'Empty switch block.' until #15338
+            // violation 2 lines above 'switch without "default" clause.'
             int[] z = {};
           }
 
