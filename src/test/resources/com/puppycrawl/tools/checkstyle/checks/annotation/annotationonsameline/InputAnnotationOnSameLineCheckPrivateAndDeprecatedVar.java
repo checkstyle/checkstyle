@@ -16,16 +16,19 @@ import java.util.ArrayList;
 
 public class InputAnnotationOnSameLineCheckPrivateAndDeprecatedVar {
 
-    @Ann        // violation
+    @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
     private List<String> names = new ArrayList<>();
 
     @Ann private List<String> names2 = new ArrayList<>();
 
-    @SuppressWarnings("deprecation")        // violation
+    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
+    @SuppressWarnings("deprecation")
     @Ann Integer x;
 
-    @SuppressWarnings("deprecation")        // violation
-    @Ann                                    // violation
+    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
+    @SuppressWarnings("deprecation")
+    @Ann
+    // violation above, "Annotation 'Ann' should be on the same line with its target."
     Integer x2;
 
     @SuppressWarnings("deprecation") @Ann @Ann2 @Ann3 @Ann4 Integer x3;
