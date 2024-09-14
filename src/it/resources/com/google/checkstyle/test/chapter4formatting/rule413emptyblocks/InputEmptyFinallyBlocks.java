@@ -30,7 +30,7 @@ class InputEmptyFinallyBlocks {
       // violation below 'Empty catch block.'
     } catch (Exception e) {
     } finally {
-    } // violation above 'Empty finally block.'
+    }
   }
 
   class Inner {
@@ -58,7 +58,7 @@ class InputEmptyFinallyBlocks {
         // violation below 'Empty catch block.'
       } catch (Exception e) {
       } finally {
-      } // violation above 'Empty finally block.'
+      }
     }
   }
 
@@ -88,7 +88,7 @@ class InputEmptyFinallyBlocks {
             // violation below 'Empty catch block.'
           } catch (Exception e) {
           } finally {
-          } // violation above 'Empty finally block.'
+          }
         }
       };
 }
