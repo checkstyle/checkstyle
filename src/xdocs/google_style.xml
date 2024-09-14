@@ -698,21 +698,27 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-                  config</a>)
-                  <br />
-                  <br />
-                  <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
-                  </span>
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                   config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/regexp/regexpsinglelinejava.html#RegexpSinglelineJava">RegexpSinglelineJava</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSinglelineJava">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  There are some false-negatives regarding K &amp; R style brackets
+                  for empty blocks, they're addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15338">#15338</a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks">
-                    samples</a>
+                    samples
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -2013,11 +2019,6 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyBlock">
-                  config</a>)
-                  <br />
-                  <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>

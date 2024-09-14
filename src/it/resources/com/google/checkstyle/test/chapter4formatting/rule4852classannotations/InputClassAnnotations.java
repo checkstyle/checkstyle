@@ -8,11 +8,13 @@ public class InputClassAnnotations {
    * Custom annotation 1.
    */
   public @interface SomeAnnotation1 { }
+  // violation above 'Empty blocks should have no spaces.'
 
   /**
    * Custom annotation 2.
    */
   public @interface SomeAnnotation2 { }
+  // violation above 'Empty blocks should have no spaces.'
 
   /**
    * Inner class 2.

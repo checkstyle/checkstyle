@@ -78,11 +78,6 @@
     <module name="NoLineWrap">
       <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
-    <module name="EmptyBlock">
-      <property name="option" value="TEXT"/>
-      <property name="tokens"
-               value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
-    </module>
     <module name="NeedBraces">
       <property name="tokens"
                value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
@@ -143,6 +138,19 @@
                may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>
       <message key="ws.notPreceded"
               value="WhitespaceAround: ''{0}'' is not preceded with whitespace."/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="WhitespaceAround"/>
+      <property name="query" value="//*[self::LITERAL_IF or self::LITERAL_ELSE or self::STATIC_INIT
+                                 or self::LITERAL_TRY or self::LITERAL_CATCH]/SLIST[count(./*)=1]
+                                 | //*[self::STATIC_INIT or self::LITERAL_TRY or self::LITERAL_IF]
+                                 //*[self::RCURLY][parent::SLIST[count(./*)=1]]"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="\{[ ]+\}"/>
+      <property name="message" value="Empty blocks should have no spaces. Empty blocks
+                                   may only be represented as '{}' when not part of a
+                                   multi-block statement (4.1.3)"/>
     </module>
     <module name="OneStatementPerLine"/>
     <module name="MultipleVariableDeclarations"/>
