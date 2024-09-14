@@ -13,7 +13,9 @@ import org.junit.Before;
 // xdoc section -- start
 class Example1 {
 
-  @SuppressWarnings("deprecation") // violation
+  @SuppressWarnings("deprecation")
+  // violation above, "Annotation 'SuppressWarnings'
+  // should be on the same line with its target."
   public Example1() {
   }
 
@@ -30,15 +32,19 @@ class Example1 {
   @Deprecated public Test1() {  // OK
   }
 
-  @Override // violation
+  @Override // violation, "Annotation 'Override'
+  // should be on the same line with its target."
   public void fun1() {
   }
 
-  @Before // violation
+  @Before // violation, "Annotation 'Before'
+  // should be on the same line with its target."
   @Override public void fun2() {  // OK
   }
 
-  @SuppressWarnings("deprecation") // violation
+  @SuppressWarnings("deprecation")
+  // violation above, "Annotation 'SuppressWarnings'
+  // should be on the same line with its target."
   @Before public void fun3() {
   }
 
