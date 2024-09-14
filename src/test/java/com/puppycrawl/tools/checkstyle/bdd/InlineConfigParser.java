@@ -200,7 +200,6 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotationCheck",
             "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck",
             "com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck",
