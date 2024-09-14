@@ -13,7 +13,8 @@ import org.junit.Before;
 // xdoc section -- start
 class Example1 {
 
-  @SuppressWarnings("deprecation") // violation
+  // violation below, "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
   public Example1() {
   }
 
@@ -30,15 +31,16 @@ class Example1 {
   @Deprecated public Test1() {  // OK
   }
 
-  @Override // violation
+  @Override // violation, "should be on the same line with its target."
   public void fun1() {
   }
 
-  @Before // violation
+  @Before // violation, "should be on the same line with its target."
   @Override public void fun2() {  // OK
   }
 
-  @SuppressWarnings("deprecation") // violation
+  // violation below, "should be on the same line with its target."
+  @SuppressWarnings("deprecation")
   @Before public void fun3() {
   }
 

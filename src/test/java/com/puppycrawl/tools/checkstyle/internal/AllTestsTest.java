@@ -49,7 +49,7 @@ public class AllTestsTest {
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walk(Paths.get("src/test/java"), filePath -> {
+        walkVisible(Paths.get("src/test/java"), filePath -> {
             grabAllTests(allTests, filePath.toFile());
         });
 
@@ -57,10 +57,10 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walk(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
+        walkVisible(Paths.get("src/test/resources/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
-        walk(Paths.get("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
+        walkVisible(Paths.get("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
     }
@@ -69,7 +69,7 @@ public class AllTestsTest {
     public void testAllTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walk(Paths.get("src/main/java"), filePath -> {
+        walkVisible(Paths.get("src/main/java"), filePath -> {
             grabAllFiles(allTests, filePath.toFile());
         });
 
@@ -77,14 +77,29 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walk(Paths.get("src/test/java"), filePath -> {
+        walkVisible(Paths.get("src/test/java"), filePath -> {
             verifyHasProductionFile(allTests, filePath.toFile());
         });
     }
 
-    private static void walk(Path path, Consumer<Path> action) throws IOException {
+    /**
+     * Walks through the file tree rooted at the specified path and performs the given action
+     * on each visible (non-hidden) file path.
+     *
+     * <p>This method recursively traverses the directory tree starting from the specified
+     * {@code path}. It filters out hidden files and directories before applying the provided
+     * {@code action} to each visible file path. The definition of what constitutes a hidden
+     * file or directory is operating system dependent, and this method uses the underlying
+     * file system's criteria for hidden files.</p>
+     *
+     * @param path   the starting path for the file tree traversal
+     * @param action the action to be performed on each visible file path
+     * @throws IOException if an I/O error occurs while accessing the file system
+     */
+    private static void walkVisible(Path path, Consumer<Path> action) throws IOException {
         try (Stream<Path> walk = Files.walk(path)) {
-            walk.forEach(action);
+            walk.filter(filePath -> !filePath.toFile().isHidden())
+                .forEach(action);
         }
     }
 
