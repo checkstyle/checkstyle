@@ -8,30 +8,26 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
     InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
     int a = 1;
     if (a == 1) {}
-    // 3 violations above:
-    //  'Empty if block.'
+    // 2 violations above:
     //  ''{' is not followed by whitespace.'
     //  ''}' is not preceded with whitespace.'
     char[] s = {'1', '2'};
     int index = 2;
     if (doSideEffect() == 1) {}
-    // 3 violations above:
-    //  'Empty if block.'
+    // 2 violations above:
     //  ''{' is not followed by whitespace.'
     //  ''}' is not preceded with whitespace.'
     Io in = new Io();
     while ((r = in.read()) != null) {}
     for (; index < s.length && s[index] != 'x'; index++) {}
     if (a == 1) {
-    } else { // violation above 'Empty if block.'
+    } else {
       System.identityHashCode("a");
     }
     do {} while (a == 1);
     switch (a) {
     }
-    // 2 violations 2 lines above:
-    //  'switch without "default" clause.'
-    //  'Empty switch block.'
+    //  violation 2 lines above 'switch without "default" clause.'
     int[] z = {};
   }
 
@@ -71,30 +67,26 @@ class ExtraWithInner {
       InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
       int a = 1;
       if (a == 1) {}
-      // 3 violations above:
-      //  'Empty if block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       char[] s = {'1', '2'};
       int index = 2;
       if (doSideEffect() == 1) {}
-      // 3 violations above:
-      //  'Empty if block.'
+      // 2 violations above:
       //  ''{' is not followed by whitespace.'
       //  ''}' is not preceded with whitespace.'
       Io in = new Io();
       while ((r = in.read()) != null) {}
       for (; index < s.length && s[index] != 'x'; index++) {}
       if (a == 1) {
-      } else { // violation above 'Empty if block.'
+      } else {
         System.identityHashCode("a");
       }
       do {} while (a == 1);
       switch (a) {
       }
-      // 2 violations 2 lines above:
-      //  'switch without "default" clause.'
-      //  'Empty switch block.'
+      //  violation 2 lines above 'switch without "default" clause.'
       int[] z = {};
     }
   }
@@ -116,30 +108,26 @@ class ExtraWithAnon {
             InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
             if (a == 1) {}
-            // 3 violations above:
-            //  'Empty if block.'
+            // 2 violations above:
             //  ''{' is not followed by whitespace.'
             //  ''}' is not preceded with whitespace.'
             char[] s = {'1', '2'};
             int index = 2;
             if (doSideEffect() == 1) {}
-            // 3 violations above:
-            //  'Empty if block.'
+            // 2 violations above:
             //  ''{' is not followed by whitespace.'
             //  ''}' is not preceded with whitespace.'
             Io in = new Io();
             while ((r = in.read()) != null) {}
             for (; index < s.length && s[index] != 'x'; index++) {}
             if (a == 1) {
-            } else { // violation above 'Empty if block.'
+            } else {
               System.identityHashCode("a");
             }
             do {} while (a == 1);
             switch (a) {
             }
-            // 2 violations 2 lines above:
-            //  'switch without "default" clause.'
-            //  'Empty switch block.'
+            //  violation 2 lines above 'switch without "default" clause.'
             int[] z = {};
           }
 
@@ -159,9 +147,31 @@ class ExtraNewClass {
     if (a == 1) {
       System.identityHashCode("a");
     } else {
-    } // violation above 'Empty else block.'
+    }
 
     if (a == 1) {
+      System.identityHashCode("a");
+    } else {
+      /*ignore*/
+    }
+
+    if (a == 1) {
+      /*ignore*/
+    } else {
+      System.identityHashCode("a");
+    }
+
+    if (a == 1) {
+      System.identityHashCode("a");
+    } else if (a != 1) {
+      /*ignore*/
+    } else {
+      /*ignore*/
+    }
+
+    if (a == 1) {
+      /*ignore*/
+    } else if (a != 1) {
       System.identityHashCode("a");
     } else {
       /*ignore*/
@@ -169,28 +179,6 @@ class ExtraNewClass {
 
     if (a == 1) {
       /*ignore*/
-    } else {
-      System.identityHashCode("a");
-    }
-
-    if (a == 1) {
-      System.identityHashCode("a");
-    } else if (a != 1) {
-      /*ignore*/
-    } else {
-      /*ignore*/
-    }
-
-    if (a == 1) {
-      /*ignore*/
-    } else if (a != 1) {
-      System.identityHashCode("a");
-    } else {
-      /*ignore*/
-    }
-
-    if (a == 1) {
-      /*ignore*/
     } else if (a != 1) {
       /*ignore*/
     } else {
@@ -207,21 +195,19 @@ class ExtraNewClass {
 
     if (a == 1) {
       /*ignore*/
-      // violation below 'Empty if block.'
     } else if (a != 1) {
     } else {
-    } // violation above 'Empty else block.'
+    }
 
     if (a == 1) {
-    } else if (a != 1) { // violation above 'Empty if block.'
+    } else if (a != 1) {
       /*ignore*/
     } else {
-    } // violation above 'Empty else block.'
+    }
 
-    // violation below 'Empty if block.'
     if (a == 1) {
     } else if (a != 1) {
-    } else { // violation above 'Empty if block.'
+    } else {
       /*ignore*/
     }
   }
@@ -234,9 +220,31 @@ class ExtraNewClass {
       if (a == 1) {
         System.identityHashCode("a");
       } else {
-      } // violation above 'Empty else block.'
+      }
 
       if (a == 1) {
+        System.identityHashCode("a");
+      } else {
+        /*ignore*/
+      }
+
+      if (a == 1) {
+        /*ignore*/
+      } else {
+        System.identityHashCode("a");
+      }
+
+      if (a == 1) {
+        System.identityHashCode("a");
+      } else if (a != 1) {
+        /*ignore*/
+      } else {
+        /*ignore*/
+      }
+
+      if (a == 1) {
+        /*ignore*/
+      } else if (a != 1) {
         System.identityHashCode("a");
       } else {
         /*ignore*/
@@ -244,28 +252,6 @@ class ExtraNewClass {
 
       if (a == 1) {
         /*ignore*/
-      } else {
-        System.identityHashCode("a");
-      }
-
-      if (a == 1) {
-        System.identityHashCode("a");
-      } else if (a != 1) {
-        /*ignore*/
-      } else {
-        /*ignore*/
-      }
-
-      if (a == 1) {
-        /*ignore*/
-      } else if (a != 1) {
-        System.identityHashCode("a");
-      } else {
-        /*ignore*/
-      }
-
-      if (a == 1) {
-        /*ignore*/
       } else if (a != 1) {
         /*ignore*/
       } else {
@@ -282,22 +268,19 @@ class ExtraNewClass {
 
       if (a == 1) {
         /*ignore*/
-        // violation below 'Empty if block.'
       } else if (a != 1) {
       } else {
-      } // violation above 'Empty else block.'
+      }
 
-      // violation below 'Empty if block.'
       if (a == 1) {
       } else if (a != 1) {
         /*ignore*/
       } else {
-      } // violation above 'Empty else block.'
+      }
 
-      // violation below 'Empty if block.'
       if (a == 1) {
       } else if (a != 1) {
-      } else { // violation above 'Empty if block.'
+      } else {
         /*ignore*/
       }
     }
@@ -311,9 +294,31 @@ class ExtraNewClass {
             if (a == 1) {
               System.identityHashCode("a");
             } else {
-            } // violation above 'Empty else block.'
+            }
 
             if (a == 1) {
+              System.identityHashCode("a");
+            } else {
+              /*ignore*/
+            }
+
+            if (a == 1) {
+              /*ignore*/
+            } else {
+              System.identityHashCode("a");
+            }
+
+            if (a == 1) {
+              System.identityHashCode("a");
+            } else if (a != 1) {
+              /*ignore*/
+            } else {
+              /*ignore*/
+            }
+
+            if (a == 1) {
+              /*ignore*/
+            } else if (a != 1) {
               System.identityHashCode("a");
             } else {
               /*ignore*/
@@ -321,28 +326,6 @@ class ExtraNewClass {
 
             if (a == 1) {
               /*ignore*/
-            } else {
-              System.identityHashCode("a");
-            }
-
-            if (a == 1) {
-              System.identityHashCode("a");
-            } else if (a != 1) {
-              /*ignore*/
-            } else {
-              /*ignore*/
-            }
-
-            if (a == 1) {
-              /*ignore*/
-            } else if (a != 1) {
-              System.identityHashCode("a");
-            } else {
-              /*ignore*/
-            }
-
-            if (a == 1) {
-              /*ignore*/
             } else if (a != 1) {
               /*ignore*/
             } else {
@@ -359,21 +342,19 @@ class ExtraNewClass {
 
             if (a == 1) {
               /*ignore*/
-              // violation below 'Empty if block.'
             } else if (a != 1) {
             } else {
-            } // violation above 'Empty else block.'
+            }
 
             if (a == 1) {
-            } else if (a != 1) { // violation above 'Empty if block.'
+            } else if (a != 1) {
               /*ignore*/
             } else {
-            } // violation above 'Empty else block.'
+            }
 
-            // violation below 'Empty if block.'
             if (a == 1) {
             } else if (a != 1) {
-            } else { // violation above 'Empty if block.'
+            } else {
               /*ignore*/
             }
           }
@@ -415,7 +396,7 @@ class ExtraTestingEmptyBlockCatch {
       // violation below 'Empty catch block.'
     } catch (Exception e) {
     } finally {
-    } // violation above 'Empty finally block.'
+    }
   }
 
   class Inner {
@@ -443,7 +424,7 @@ class ExtraTestingEmptyBlockCatch {
         // violation below 'Empty catch block.'
       } catch (Exception e) {
       } finally {
-      } // violation above 'Empty finally block.'
+      }
     }
   }
 
@@ -473,7 +454,7 @@ class ExtraTestingEmptyBlockCatch {
             // violation below 'Empty catch block.'
           } catch (Exception e) {
           } finally {
-          } // violation above 'Empty finally block.'
+          }
         }
       };
 }

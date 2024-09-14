@@ -159,11 +159,9 @@ class InputUseOfOptionalBraces {
         ;
       else
         ;
-      // violation below 'Empty if block.'
       if (flag) {
       } else {
       }
-      // violation 2 lines above 'Empty else block.'
       if (flag) {
         /*foo*/
       } else {
@@ -222,11 +220,9 @@ class InputUseOfOptionalBraces {
           ;
         else
           ;
-        // violation below 'Empty if block.'
         if (flag) {
         } else {
         }
-        // violation 2 lines above 'Empty else block.'
         if (flag) {
           /*foo*/
         } else {
@@ -287,11 +283,9 @@ class InputUseOfOptionalBraces {
               ;
             else
               ;
-            // violation below 'Empty if block.'
             if (flag) {
             } else {
             }
-            // violation 2 lines above 'Empty else block.'
             if (flag) {
               /*foo*/
             } else {
