@@ -11,43 +11,50 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 import java.util.List;
 
-@Ann        // violation
+@Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
 @Ann2 interface TestInterface {
 
-    @Ann    // violation
+    @Ann    // violation, "Annotation 'Ann' should be on the same line with its target."
     @Ann2 Integer getX();
 }
 
-public @Ann     // violation
-@Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann     // violation
+public @Ann     // violation, "Annotation 'Ann' should be on the same line with its target."
+@Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann
+        // violation above, "Annotation 'Ann' should be on the same line with its target."
         @Ann2 TestInterface {
 
-    @Ann        // violation
-    @Ann2 private Integer x = new @Ann      // violation
+    @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
+    @Ann2 private Integer x = new @Ann
+            // violation above, "Annotation 'Ann' should be on the same line with its target."
             @Ann2 Integer(0);
 
-    private List<@Ann       // violation
+    private List<@Ann
+            // violation above, "Annotation 'Ann' should be on the same line with its target."
             @Ann2 Integer> integerList;
 
-    @Ann        // violation
+    @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
     @Ann2 enum TestEnum {
         A1, A2
     }
 
-    @Ann        // violation
+    @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
     @Ann2 public InputAnnotationOnSameLineCheckInterfaceAndEnum() {}
 
-    @Ann        // violation
-    @Ann2 public void setX(@Ann             // violation
-            @Ann2 int x) throws @Ann        // violation
+    @Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
+    @Ann2 public void setX(@Ann
+            // violation above, "Annotation 'Ann' should be on the same line with its target."
+            @Ann2 int x) throws @Ann
+            // violation above, "Annotation 'Ann' should be on the same line with its target."
                     @Ann2 Exception {
-        this.<@Ann                          // violation
+        this.<@Ann
+                // violation above, "Annotation 'Ann' should be on the same line with its target."
                 @Ann2 Integer> getXAs();
         this.x = x;
     }
 
     @Override public Integer getX() {
-        return (@Ann                        // violation
+        return (@Ann
+                // violation above, "Annotation 'Ann' should be on the same line with its target."
                 @Ann2 Integer) x;
     }
 
@@ -56,9 +63,9 @@ public @Ann     // violation
     }
 }
 
-@Ann        // violation
+@Ann        // violation, "Annotation 'Ann' should be on the same line with its target."
 @Ann2 @interface TestAnnotation {
 
-    @Ann    // violation
+    @Ann    // violation, "Annotation 'Ann' should be on the same line with its target."
     @Ann2 int x();
 }

@@ -106,7 +106,9 @@
         <source>
 class Example1 {
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation above, &quot;Annotation 'SuppressWarnings'
+  // should be on the same line with its target.&quot;
   public Example1() {
   }
 
@@ -123,15 +125,19 @@ class Example1 {
   @Deprecated public Test1() {  // OK
   }
 
-  @Override // violation
+  @Override // violation, &quot;Annotation 'Override'
+  // should be on the same line with its target.&quot;
   public void fun1() {
   }
 
-  @Before // violation
+  @Before // violation, &quot;Annotation 'Before'
+  // should be on the same line with its target.&quot;
   @Override public void fun2() {  // OK
   }
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation above, &quot;Annotation 'SuppressWarnings'
+  // should be on the same line with its target.&quot;
   @Before public void fun3() {
   }
 
@@ -162,7 +168,9 @@ class Example1 {
 
 class Example2 implements Foo {
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  @SuppressWarnings(&quot;deprecation&quot;)
+  // violation above, &quot;Annotation 'SuppressWarnings'
+  // should be on the same line with its target.&quot;
   public Example2() {
   }
 
@@ -170,7 +178,8 @@ class Example2 implements Foo {
   public void doSomething() {
   }
 
-  @Nullable // violation
+  @Nullable // violation, &quot;Annotation 'Nullable'
+  // should be on the same line with its target.&quot;
   String s;
 
 }
