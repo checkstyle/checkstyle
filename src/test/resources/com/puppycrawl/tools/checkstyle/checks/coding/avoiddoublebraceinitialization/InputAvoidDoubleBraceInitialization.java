@@ -11,12 +11,13 @@ import java.util.ArrayList;
 
 public class InputAvoidDoubleBraceInitialization {
     void m() {
-        ArrayList<?> list = new ArrayList<Object>() { // violation
+        // violation below 'Avoid double brace initialization.'
+        ArrayList<?> list = new ArrayList<Object>() {
             {
                 add(null);
             }
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             {
                 add(null);
             }
@@ -25,40 +26,40 @@ public class InputAvoidDoubleBraceInitialization {
                 add(null);
             }
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             // some comment
             {
                 add(null);
             }
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             {
                 add(null);
             } // some comment
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             {
                 add(null);
             }
             // some comment
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             /* comment */ {
                 add(null);
             }
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             {
                 add(null);
             }
             /* comment */
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             {
                 add(null);
             } /* comment */
         };
-        list = new ArrayList<Object>() { // violation
+        list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
             ;
             ;
             {}
@@ -66,15 +67,16 @@ public class InputAvoidDoubleBraceInitialization {
             ;
             ;
         };
-        Object obj = new Serializable() {  // violation
+        Object obj = new Serializable() { // violation 'Avoid double brace initialization.'
             {}
         };
-        new ArrayList<Object>() {{ // violation
+        new ArrayList<Object>() {{ // violation 'Avoid double brace initialization.'
                 add("1");
                 add("2");
         }};
-        new ArrayList<Object>() {{ add("1");}}; // violation
-        new ArrayList<Object>() {{ add("1");}{ add("2");}}; // violation
+        new ArrayList<Object>() {{ add("1");}}; // violation 'Avoid double brace initialization.'
+        // violation below 'Avoid double brace initialization.'
+        new ArrayList<Object>() {{ add("1");}{ add("2");}};
         list = new ArrayList<Object>() {
             {
                 add(null);
