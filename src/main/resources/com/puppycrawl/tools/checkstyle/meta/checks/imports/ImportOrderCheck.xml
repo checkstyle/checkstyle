@@ -43,7 +43,9 @@
             <property default-value="" name="groups" type="java.lang.String[]">
                <description>Specify list of &lt;b&gt;type import&lt;/b&gt; groups. Every group identified
  either by a common prefix string, or by a regular expression enclosed in forward slashes
- (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
+ (e.g. {@code /regexp/}). If an import matches two or more groups,
+ the best match is selected (closest to the start, and the longest match).
+ All type imports, which does not match any group, falls into an
  additional group, located at the end.
  Thus, the empty list of type groups (the default value) means one group for all type imports.</description>
             </property>
@@ -78,7 +80,9 @@
             <property default-value="" name="staticGroups" type="java.lang.String[]">
                <description>Specify list of &lt;b&gt;static&lt;/b&gt; import groups. Every group
  identified either by a common prefix string, or by a regular expression enclosed in forward
- slashes (e.g. {@code /regexp/}). All static imports, which does not match any group, fall into
+ slashes (e.g. {@code /regexp/}). If an import matches two or more groups,
+ the best match is selected (closest to the start, and the longest match).
+ All static imports, which does not match any group, fall into
  an additional group, located at the end. Thus, the empty list of static groups (the default
  value) means one group for all static imports. This property has effect only when the property
  {@code option} is set to {@code top} or {@code bottom}.</description>
