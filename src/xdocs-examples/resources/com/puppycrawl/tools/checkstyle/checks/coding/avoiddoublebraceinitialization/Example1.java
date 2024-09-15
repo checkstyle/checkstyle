@@ -13,12 +13,14 @@ import java.util.List;
 
 // xdoc section -- start
 class Example1 {
-  List<Integer> list1 = new ArrayList<>() { // violation
+  // violation below 'Avoid double brace initialization.'
+  List<Integer> list1 = new ArrayList<>() {
     {
       add(1);
     }
   };
-  List<String> list2 = new ArrayList<>() { // violation
+  // violation below 'Avoid double brace initialization.'
+  List<String> list2 = new ArrayList<>() {
         ;
     // comments and semicolons are ignored
     {
