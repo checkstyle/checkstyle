@@ -106,7 +106,8 @@
         <source>
 class Example1 {
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  // violation below, &quot;should be on the same line with its target.&quot;
+  @SuppressWarnings(&quot;deprecation&quot;)
   public Example1() {
   }
 
@@ -123,15 +124,16 @@ class Example1 {
   @Deprecated public Test1() {  // OK
   }
 
-  @Override // violation
+  @Override // violation, &quot;should be on the same line with its target.&quot;
   public void fun1() {
   }
 
-  @Before // violation
+  @Before // violation, &quot;should be on the same line with its target.&quot;
   @Override public void fun2() {  // OK
   }
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  // violation below, &quot;should be on the same line with its target.&quot;
+  @SuppressWarnings(&quot;deprecation&quot;)
   @Before public void fun3() {
   }
 
@@ -162,7 +164,8 @@ class Example1 {
 
 class Example2 implements Foo {
 
-  @SuppressWarnings(&quot;deprecation&quot;) // violation
+  // violation below, &quot;should be on the same line with its target.&quot;
+  @SuppressWarnings(&quot;deprecation&quot;)
   public Example2() {
   }
 
@@ -170,7 +173,8 @@ class Example2 implements Foo {
   public void doSomething() {
   }
 
-  @Nullable // violation
+  // violation below, &quot;should be on the same line with its target.&quot;
+  @Nullable
   String s;
 
 }
