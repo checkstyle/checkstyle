@@ -22,7 +22,9 @@ import javax.annotation.Nullable;
 
 class Example2 implements Foo {
 
-  @SuppressWarnings("deprecation") // violation
+  @SuppressWarnings("deprecation")
+  // violation above, "Annotation 'SuppressWarnings'
+  // should be on the same line with its target."
   public Example2() {
   }
 
@@ -30,7 +32,8 @@ class Example2 implements Foo {
   public void doSomething() {
   }
 
-  @Nullable // violation
+  @Nullable // violation, "Annotation 'Nullable'
+  // should be on the same line with its target."
   String s;
 
 }
