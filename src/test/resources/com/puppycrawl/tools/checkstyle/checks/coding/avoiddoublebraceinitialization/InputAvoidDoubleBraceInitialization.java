@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class InputAvoidDoubleBraceInitialization {
     void m() {
-        ArrayList<?> list = new ArrayList<Object>() { // violation 'Avoid double brace initialization.'
+        // violation below 'Avoid double brace initialization.'
+        ArrayList<?> list = new ArrayList<Object>() {
             {
                 add(null);
             }
@@ -66,7 +67,8 @@ public class InputAvoidDoubleBraceInitialization {
             ;
             ;
         };
-        Object obj = new Serializable() {  // violation 'Avoid double brace initialization.'
+        // violation below 'Avoid double brace initialization.'
+        Object obj = new Serializable() {
             {}
         };
         new ArrayList<Object>() {{ // violation 'Avoid double brace initialization.'
