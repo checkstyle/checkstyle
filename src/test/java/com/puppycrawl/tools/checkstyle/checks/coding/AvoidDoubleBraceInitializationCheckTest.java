@@ -37,19 +37,19 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "14:53: " + getCheckMessage(MSG_KEY),
-            "19:40: " + getCheckMessage(MSG_KEY),
-            "28:40: " + getCheckMessage(MSG_KEY),
-            "34:40: " + getCheckMessage(MSG_KEY),
-            "39:40: " + getCheckMessage(MSG_KEY),
-            "45:40: " + getCheckMessage(MSG_KEY),
-            "50:40: " + getCheckMessage(MSG_KEY),
-            "56:40: " + getCheckMessage(MSG_KEY),
-            "61:40: " + getCheckMessage(MSG_KEY),
-            "69:41: " + getCheckMessage(MSG_KEY),
-            "72:33: " + getCheckMessage(MSG_KEY),
-            "76:33: " + getCheckMessage(MSG_KEY),
+            "15:53: " + getCheckMessage(MSG_KEY),
+            "20:40: " + getCheckMessage(MSG_KEY),
+            "29:40: " + getCheckMessage(MSG_KEY),
+            "35:40: " + getCheckMessage(MSG_KEY),
+            "40:40: " + getCheckMessage(MSG_KEY),
+            "46:40: " + getCheckMessage(MSG_KEY),
+            "51:40: " + getCheckMessage(MSG_KEY),
+            "57:40: " + getCheckMessage(MSG_KEY),
+            "62:40: " + getCheckMessage(MSG_KEY),
+            "70:41: " + getCheckMessage(MSG_KEY),
+            "73:33: " + getCheckMessage(MSG_KEY),
             "77:33: " + getCheckMessage(MSG_KEY),
+            "79:33: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidDoubleBraceInitialization.java"),

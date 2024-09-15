@@ -46,12 +46,14 @@
         </p>
         <source>
 class Example1 {
-  List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
+  // violation below 'Avoid double brace initialization.'
+  List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() {
     {
       add(1);
     }
   };
-  List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
+  // violation below 'Avoid double brace initialization.'
+  List&lt;String&gt; list2 = new ArrayList&lt;&gt;() {
         ;
     // comments and semicolons are ignored
     {
