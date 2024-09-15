@@ -46,9 +46,9 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
             "51:40: " + getCheckMessage(MSG_KEY),
             "57:40: " + getCheckMessage(MSG_KEY),
             "62:40: " + getCheckMessage(MSG_KEY),
-            "71:41: " + getCheckMessage(MSG_KEY),
-            "74:33: " + getCheckMessage(MSG_KEY),
-            "78:33: " + getCheckMessage(MSG_KEY),
+            "70:41: " + getCheckMessage(MSG_KEY),
+            "73:33: " + getCheckMessage(MSG_KEY),
+            "77:33: " + getCheckMessage(MSG_KEY),
             "79:33: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(

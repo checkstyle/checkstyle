@@ -67,8 +67,7 @@ public class InputAvoidDoubleBraceInitialization {
             ;
             ;
         };
-        // violation below 'Avoid double brace initialization.'
-        Object obj = new Serializable() {
+        Object obj = new Serializable() { // violation 'Avoid double brace initialization.'
             {}
         };
         new ArrayList<Object>() {{ // violation 'Avoid double brace initialization.'
@@ -76,7 +75,8 @@ public class InputAvoidDoubleBraceInitialization {
                 add("2");
         }};
         new ArrayList<Object>() {{ add("1");}}; // violation 'Avoid double brace initialization.'
-        new ArrayList<Object>() {{ add("1");}{ add("2");}}; // violation 'Avoid double brace initialization.'
+        // violation below 'Avoid double brace initialization.'
+        new ArrayList<Object>() {{ add("1");}{ add("2");}};
         list = new ArrayList<Object>() {
             {
                 add(null);
