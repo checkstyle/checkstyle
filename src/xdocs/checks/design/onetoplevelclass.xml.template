@@ -25,7 +25,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -37,7 +37,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-code">
@@ -45,7 +45,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-code">
@@ -53,7 +53,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

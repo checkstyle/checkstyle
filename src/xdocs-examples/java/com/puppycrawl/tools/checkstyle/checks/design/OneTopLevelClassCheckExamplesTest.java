@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -32,20 +32,21 @@ public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample1() throws Exception {
+   public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:1: " + getCheckMessage(MSG_KEY, "ViolationExample1"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "16:1: " + getCheckMessage(MSG_KEY, "ViolationExample2"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }
