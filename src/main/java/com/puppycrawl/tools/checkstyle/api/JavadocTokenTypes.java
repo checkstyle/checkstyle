@@ -227,21 +227,21 @@ public final class JavadocTokenTypes {
      * <pre>{@code @serial include}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@serial include]
-     *       |--SERIAL_LITERAL[3x0] : [@serial]
-     *       |--WS[3x7] : [ ]
-     *       |--LITERAL_INCLUDE[3x8] : [include]
+     *   |--JAVADOC_TAG -> JAVADOC_TAG
+     *       |--SERIAL_LITERAL -> @serial
+     *       |--WS
+     *       |--LITERAL_INCLUDE -> include
      * }</pre>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code @serial serialized company name}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@serial serialized company name]
-     *       |--SERIAL_LITERAL[3x0] : [@serial]
-     *       |--WS[3x7] : [ ]
-     *       |--DESCRIPTION[3x8] : [serialized company name]
-     *           |--TEXT[3x8] : [serialized company name]
+     *   |--JAVADOC_TAG-> JAVADOC_TAG
+     *       |--SERIAL_LITERAL -> @serial
+     *       |--WS
+     *       |--DESCRIPTION -> DESCRIPTION
+     *           |--TEXT -> serialized company name
      * }</pre>
      *
      * @see
