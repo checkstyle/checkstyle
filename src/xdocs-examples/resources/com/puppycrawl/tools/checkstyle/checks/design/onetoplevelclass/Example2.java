@@ -6,12 +6,14 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
+
 // xdoc section -- start
-class Foo { // OK, first top-level class
+class Example2 { // OK, first top-level class
   // methods
 }
 
-class Foo2 { // violation, second top-level class
+class ViolationExample2 { // violation, "has to reside in its own source file."
   // methods
 }
 // xdoc section -- end

@@ -6,8 +6,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
+
 // xdoc section -- start
-public class Foo { // OK, only one top-level class
+public class Example3 { // OK, only one top-level class
   // methods
 }
 // xdoc section -- end
