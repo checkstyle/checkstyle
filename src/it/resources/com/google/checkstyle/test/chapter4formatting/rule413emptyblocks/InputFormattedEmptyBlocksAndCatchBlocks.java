@@ -4,19 +4,19 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
   static {
   }
 
+  static {
+  }
+
+  static {
+  }
+
   public void fooMethod() {
     InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
     int a = 1;
     if (a == 1) {}
-    // 2 violations above:
-    //  ''{' is not followed by whitespace.'
-    //  ''}' is not preceded with whitespace.'
     char[] s = {'1', '2'};
     int index = 2;
     if (doSideEffect() == 1) {}
-    // 2 violations above:
-    //  ''{' is not followed by whitespace.'
-    //  ''}' is not preceded with whitespace.'
     Io in = new Io();
     while ((r = in.read()) != null) {}
     for (; index < s.length && s[index] != 'x'; index++) {}
@@ -27,7 +27,7 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
     do {} while (a == 1);
     switch (a) {
     }
-    //  violation 2 lines above 'switch without "default" clause.'
+    // violation 2 lines above 'switch without "default" clause.'
     int[] z = {};
   }
 
@@ -36,6 +36,47 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
   }
 
   public void emptyMethod() {}
+
+  void foo() throws Exception {
+    int a = 90;
+
+    if (a == 1) {
+    } else {
+    }
+
+    if (a == 1) {
+    } else {
+    }
+
+    try (MyResource r = new MyResource()) {}
+    try (MyResource r = new MyResource()) {}
+    try (MyResource r = new MyResource()) {
+    } catch (Exception expected) {
+    }
+    try (MyResource r = new MyResource()) {
+    } catch (Exception expected) {
+    }
+    try (MyResource r = new MyResource()) {
+
+    } catch (Exception expected) {
+    }
+    try (MyResource r = new MyResource()) {
+
+    } catch (Exception expected) {
+    }
+    try (MyResource r = new MyResource()) {
+      ;
+    }
+  }
+
+  /** some. */
+  public class MyResource implements AutoCloseable {
+    /** some. */
+    @Override
+    public void close() throws Exception {
+      System.out.println("Closed MyResource");
+    }
+  }
 }
 
 // violation below 'Top-level class ExtraIo has to reside in its own source file.'
@@ -67,15 +108,9 @@ class ExtraWithInner {
       InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
       int a = 1;
       if (a == 1) {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace.'
-      //  ''}' is not preceded with whitespace.'
       char[] s = {'1', '2'};
       int index = 2;
       if (doSideEffect() == 1) {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace.'
-      //  ''}' is not preceded with whitespace.'
       Io in = new Io();
       while ((r = in.read()) != null) {}
       for (; index < s.length && s[index] != 'x'; index++) {}
@@ -86,7 +121,7 @@ class ExtraWithInner {
       do {} while (a == 1);
       switch (a) {
       }
-      //  violation 2 lines above 'switch without "default" clause.'
+      // violation 2 lines above 'switch without "default" clause.'
       int[] z = {};
     }
   }
@@ -108,15 +143,9 @@ class ExtraWithAnon {
             InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
             if (a == 1) {}
-            // 2 violations above:
-            //  ''{' is not followed by whitespace.'
-            //  ''}' is not preceded with whitespace.'
             char[] s = {'1', '2'};
             int index = 2;
             if (doSideEffect() == 1) {}
-            // 2 violations above:
-            //  ''{' is not followed by whitespace.'
-            //  ''}' is not preceded with whitespace.'
             Io in = new Io();
             while ((r = in.read()) != null) {}
             for (; index < s.length && s[index] != 'x'; index++) {}
@@ -127,7 +156,7 @@ class ExtraWithAnon {
             do {} while (a == 1);
             switch (a) {
             }
-            //  violation 2 lines above 'switch without "default" clause.'
+            // violation 2 lines above 'switch without "default" clause.'
             int[] z = {};
           }
 
