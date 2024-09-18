@@ -23,9 +23,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
-
 public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals";
@@ -34,9 +33,10 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-                "13:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
-                "18:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
-                "20:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+            "13:14: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY,
+                    "\"StringContents\"", 2),
+            "18:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"DoubleString\"", 2),
+            "21:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,7 +45,7 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-                "22:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+            "22:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,8 +54,9 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-                "16:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
-                "21:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2)
+            "16:14: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY,
+                    "\"StringContents\"", 2),
+            "22:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"DoubleString\"", 2),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -64,10 +65,11 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-                "15:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
-                "16:15: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 2),
-                "20:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
-                "22:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+            "15:14: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY,
+                    "\"StringContents\"", 2),
+            "16:15: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"unchecked\"", 2),
+            "20:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"DoubleString\"", 2),
+            "23:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);

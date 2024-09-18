@@ -17,7 +17,8 @@ public class Example4 {
   @SuppressWarnings("unchecked")
   public void myTest() {
     String a2 = "StringContents"; // OK
-    String a3 = "DoubleString" + "DoubleString"; // violation, "DoubleString" occurs twice
+    String a3 = "DoubleString" + "DoubleString"; // violation,
+    // "DoubleString" occurs twice
     String a4 = "SingleString"; // OK
     String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
   }
