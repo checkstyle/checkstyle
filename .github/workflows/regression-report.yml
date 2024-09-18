@@ -318,6 +318,7 @@ jobs:
       projects_link: ${{ steps.parse_description.outputs.projects_link }}
       report_label: ${{ steps.parse_description.outputs.report_label }}
       patch_config_link: ${{ steps.parse_description.outputs.patch_config_link }}
+      new_module_config_link: ${{ steps.parse_description.outputs.new_module_config_link }}
     steps:
       - name: Restore cache
         uses: actions/cache/restore@v4
@@ -401,6 +402,10 @@ jobs:
             }}
           PATCH_CONFIG_LINK: ${{
             needs.handle_configs_in_pr_description.outputs.patch_config_link
+            || ''
+            }}
+          NEW_MODULE_CONFIG_LINK: ${{
+            needs.handle_configs_in_pr_description.outputs.new_module_config_link
             || ''
             }}
           DIFF_PROJECTS_LINK: ${{
@@ -523,6 +528,17 @@ jobs:
             echo "patch_config.xml not found"
           fi
           echo "-----------------------------"
+
+      - name: Print new_module_config.xml
+        run: |
+          echo "Contents of new_module_config.xml:"
+          echo "-----------------------------------"
+          if [ -f .ci-temp/new_module_config.xml ]; then
+            cat .ci-temp/new_module_config.xml
+          else
+            echo "new_module_config.xml not found"
+          fi
+          echo "-----------------------------------"
 
       - name: Generate report
         run: |
