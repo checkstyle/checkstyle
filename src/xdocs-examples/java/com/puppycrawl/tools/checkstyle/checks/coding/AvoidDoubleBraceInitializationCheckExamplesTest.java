@@ -35,8 +35,8 @@ public class AvoidDoubleBraceInitializationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:43: " + getCheckMessage(MSG_KEY, "list1"),
-            "21:42: " + getCheckMessage(MSG_KEY, "list2"),
+            "17:43: " + getCheckMessage(MSG_KEY, "list1"),
+            "23:42: " + getCheckMessage(MSG_KEY, "list2"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

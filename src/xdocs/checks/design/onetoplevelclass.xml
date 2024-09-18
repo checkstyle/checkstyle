@@ -38,15 +38,11 @@
           An example of code with violations:
         </p>
         <source>
-public class Foo { // OK, first top-level class
+public class Example1 { // OK, first top-level class
   // methods
 }
 
-class Foo2 { // violation, second top-level class
-  // methods
-}
-
-record Foo3 { // violation, third top-level &quot;class&quot;
+class ViolationExample1 { // violation, &quot;has to reside in its own source file.&quot;
   // methods
 }
         </source>
@@ -54,11 +50,11 @@ record Foo3 { // violation, third top-level &quot;class&quot;
           An example of code without public top-level type:
         </p>
         <source>
-class Foo { // OK, first top-level class
+class Example2 { // OK, first top-level class
   // methods
 }
 
-class Foo2 { // violation, second top-level class
+class ViolationExample2 { // violation, &quot;has to reside in its own source file.&quot;
   // methods
 }
         </source>
@@ -66,7 +62,7 @@ class Foo2 { // violation, second top-level class
           An example of code without violations:
         </p>
         <source>
-public class Foo { // OK, only one top-level class
+public class Example3 { // OK, only one top-level class
   // methods
 }
         </source>
