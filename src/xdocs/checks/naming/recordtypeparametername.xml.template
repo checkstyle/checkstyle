@@ -27,7 +27,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example1.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -36,13 +36,13 @@
         <p id="Example2-config">Configuration:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/recordtypeparametername/Example2.txt"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
