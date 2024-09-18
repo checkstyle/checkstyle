@@ -71,17 +71,18 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
-  public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
-  }
-}
+            public class Example1 {
+            String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+            String a1 = "&quot;unchecked&quot;;
+            @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+            public void myTest() {
+            String a2 = &quot;StringContents&quot;; // OK
+            String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation,
+            // &quot;DoubleString&quot; occurs twice
+            String a4 = &quot;SingleString&quot;; // OK
+            String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+            }
+            }
         </source>
         <p id="Example2-config">
           To configure the check so that it allows two occurrences of each
@@ -98,17 +99,17 @@ public class MyClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
-  public void myTest() {
-    String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
-    String a4 = &quot;SingleString&quot;; // OK
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
-  }
-}
+            public class Example2 {
+            String a = &quot;StringContents&quot;;
+            String a1 = &quot;unchecked&quot;;
+            @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+            public void myTest() {
+            String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
+            String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
+            String a4 = &quot;SingleString&quot;; // OK
+            String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
+            }
+            }
         </source>
         <p id="Example3-config">
           To configure the check so that it ignores &quot;, &quot; and empty strings:
@@ -125,17 +126,18 @@ public class MyClass {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
-  public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
-  }
-}
+            public class Example3 {
+            String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+            String a1 = &quot;unchecked&quot;;
+            @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
+            public void myTest() {
+            String a2 = &quot;StringContents&quot;; // OK
+            String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation,
+            // &quot;DoubleString&quot; occurs twice
+            String a4 = &quot;SingleString&quot;; // OK
+            String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
+            }
+            }
         </source>
         <p id="Example4-config">
           To configure the check so that it flags duplicate strings in all
@@ -153,17 +155,18 @@ public class MyClass {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // violation, &quot;unchecked&quot; occurs twice
-  public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
-    String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
-  }
-}
+            public class Example4 {
+            String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+            String a1 = &quot;unchecked&quot;; // // violation, &quot;unchecked&quot; occurs twice
+            @SuppressWarnings(&quot;unchecked&quot;)
+            public void myTest() {
+            String a2 = &quot;StringContents&quot;; // OK
+            String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation,
+            // &quot;DoubleString&quot; occurs twice
+            String a4 = &quot;SingleString&quot;; // OK
+            String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
+            }
+            }
         </source>
       </subsection>
 
