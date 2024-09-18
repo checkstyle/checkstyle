@@ -13,12 +13,12 @@ public class Example1 {
     int mid = 0;
     int high = 0;
 
-    int lower, higher; // violation, multiple variables declared in the same statement
+    int lower, higher; // violation, multiple variables declared in same statement
 
     int value, // violation, multiple variables declared in the same statement
         index;
 
-    int place = mid, number = high;  // violation, multiple variables declared in the same statement
+    int place = mid, number = high;  // violation, multiple variables declared
   }
 }
 // xdoc section -- end
