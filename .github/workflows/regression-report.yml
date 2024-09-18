@@ -673,7 +673,9 @@ jobs:
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
-        uses: checkstyle/contribution/comment-action@master
+        uses: peter-evans/create-or-update-comment@v3
         with:
-          message: ${{steps.out.outputs.message}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.issue.number }}
+          body: ${{ steps.out.outputs.message }}
