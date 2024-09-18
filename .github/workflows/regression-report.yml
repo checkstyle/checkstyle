@@ -451,8 +451,8 @@ jobs:
             .ci-temp/project.properties
           key: ${{ env.CACHE_KEY }}-config-files
 
-      - name: Setup local maven cache
-        uses: actions/cache@v4
+      - name: Restore local maven cache
+        uses: actions/cache/restore@v4
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
