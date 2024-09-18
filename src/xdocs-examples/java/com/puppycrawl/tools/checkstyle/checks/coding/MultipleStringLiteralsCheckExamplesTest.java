@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
+
 public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +34,42 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+                "13:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
+                "18:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+                "20:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+                "22:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+                "16:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
+                "21:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2)
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+                "15:14: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 2),
+                "16:15: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 2),
+                "20:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+                "22:17: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
