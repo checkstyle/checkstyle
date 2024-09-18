@@ -35,13 +35,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example1.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example1.txt"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -50,13 +50,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example2.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example2.txt"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -64,13 +64,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example3.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example3.txt"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -80,13 +80,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example4.txt"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/multiplestringliterals/Example4.txt"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
