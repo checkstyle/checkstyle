@@ -56,7 +56,7 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
         final String[] expected = {
             "16:14: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY,
                     "\"StringContents\"", 2),
-            "22:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"DoubleString\"", 2),
+            "21:17: " + getCheckMessage(MultipleStringLiteralsCheck.MSG_KEY, "\"DoubleString\"", 2),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
