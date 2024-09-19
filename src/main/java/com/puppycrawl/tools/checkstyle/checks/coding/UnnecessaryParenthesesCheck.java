@@ -176,7 +176,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">
+ * LPAREN</a>.
  * </li>
  * </ul>
  * <p>
@@ -386,6 +388,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.LPAREN,
         };
     }
 
@@ -436,6 +439,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BXOR,
             TokenTypes.BOR,
             TokenTypes.BAND,
+            TokenTypes.LPAREN,
         };
     }
 
@@ -453,10 +457,12 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         if (isLambdaSingleParameterSurrounded(ast)) {
             log(ast, MSG_LAMBDA);
         }
+        else if (isConditionalExpressionSurrounded(ast, parent)) {
+            log(ast, MSG_EXPR);
+        }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
             final boolean surrounded = isSurrounded(ast);
-            // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
                 parentToSkip = ast.getParent();
                 log(ast, MSG_IDENT, ast.getText());
@@ -677,6 +683,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     * Checks if the given token is a LPAREN token which surrounds conditional expression
+     *  QUESTION token.
+     *
+     * @param token {@code DetailAST} token to be checked
+     * @param parent {@code DetailAST} parent of the token to be checked
+     * @return {@code true} if the token is a left parentheses and has a '?' token as its parent
+     *         node which means it is surrounded by parentheses in the conditional expression
+     */
+    private static boolean isConditionalExpressionSurrounded(DetailAST token, DetailAST parent) {
+        return token.getType() == TokenTypes.LPAREN && parent.getType() == TokenTypes.QUESTION;
     }
 
     /**
