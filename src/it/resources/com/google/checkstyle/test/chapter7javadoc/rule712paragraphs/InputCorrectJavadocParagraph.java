@@ -97,4 +97,40 @@ class InputCorrectJavadocParagraph {
           return false;
         }
       };
+
+  /**
+   * Some summary.
+   *
+   * <p>testing
+   *
+   * <p>testing
+   */
+  class InnerPrecedingPTag {
+    /**
+     * Some summary.
+     *
+     * <p><b>testing</b>
+     */
+    public void foo() {}
+
+    /**
+     * Some summary.
+     *
+     * <table>
+     *   <thead>
+     *     <p></p>
+     *   </thead>
+     * </table>
+     */
+    public void fooo() {}
+
+    /**
+     * Some summary.
+     *
+     * <p>testing...
+     *
+     * <pre>testing...</pre>
+     */
+    public void foooo() {}
+  }
 }
