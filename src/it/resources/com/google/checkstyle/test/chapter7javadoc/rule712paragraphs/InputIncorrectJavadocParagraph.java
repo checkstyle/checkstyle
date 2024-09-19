@@ -127,4 +127,48 @@ class InputIncorrectJavadocParagraph {
           return false;
         }
       };
+
+  /* 4 lines below, no violation until #15503 */
+  /**
+   * Some summary.
+   *
+   * <p><h1>Testing...</h1></p>
+   */
+  class InnerPrecedingPTag {
+    /* 5 lines below, no violation until #15503 */
+    /**
+     * Some summary.
+     *
+     *<p>
+     *  <ul>
+     *    <p>
+     *      <li>1</li> // should NOT give violation as there is not empty line before
+     *    </p>
+     *  </ul>
+     *</p>
+     */
+    public void foo() {}
+
+    /* 5 lines below, no violation until #15503 */
+    /**
+     *  Some summary.
+     *
+     * <p>
+     *  <table>
+     *  </table>
+     * </p>
+     */
+    public void fooo() {}
+
+    /* 5 lines below, no violation until #15503 */
+    /**
+     * Some summary.
+     *
+     * <p>
+     *   <pre>testing...</pre>
+     *   <pre>testing...</pre>
+     * <p>
+     */
+    public void foooo() {}
+  }
 }
