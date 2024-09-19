@@ -37,7 +37,7 @@ public class MultipleVariableDeclarationsCheckExamplesTest
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
             "19:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
-            "22:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "21:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
