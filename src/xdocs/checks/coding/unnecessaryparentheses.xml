@@ -177,6 +177,8 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                     BOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
                     BAND</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+                    QUESTION</a>
                   .
               </td>
               <td>
@@ -372,6 +374,33 @@ class Example2 {
     if (x &gt;= 0 &amp; (x &lt;= 8 ^ y &lt;= 11) &amp; y &gt;= 8) {
       return;
     }
+  }
+
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check to detect unnecessary parentheses around conditional expressions
+          <code> '?' </code>:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;UnnecessaryParentheses&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;QUESTION&quot; /&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class Example3 {
+
+  void method() {
+    int a = 9, b = 8;
+    int c = (a &gt; b) ? 1 : 0; // violation 'Unnecessary parentheses around expression'
+
+    int d = c == 1 ? (b % 2 == 0) ? 1 : 0 : 5;
+    // violation above 'Unnecessary parentheses around expression'
   }
 
 }

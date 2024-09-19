@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -436,6 +439,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BXOR,
             TokenTypes.BOR,
             TokenTypes.BAND,
+            TokenTypes.QUESTION,
         };
     }
 
@@ -452,6 +456,10 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
         if (isLambdaSingleParameterSurrounded(ast)) {
             log(ast, MSG_LAMBDA);
+        }
+        else if (ast.getType() == TokenTypes.QUESTION) {
+            getParenthesesChildrenAroundQuestion(ast)
+                .forEach(unnecessaryChild -> log(unnecessaryChild, MSG_EXPR));
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
@@ -677,6 +685,27 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             }
         }
         return result;
+    }
+
+    /**
+     *  Returns the direct LPAREN tokens children to a given QUESTION token which
+     *  contain an expression not a literal variable.
+     *
+     *  @param questionToken {@code DetailAST} question token to be checked
+     *  @return the direct children to the given question token which their types are LPAREN
+     *          tokens and not contain a literal inside the parentheses
+     */
+    private static List<DetailAST> getParenthesesChildrenAroundQuestion(DetailAST questionToken) {
+        final List<DetailAST> surroundedChildren = new ArrayList<>();
+        DetailAST directChild = questionToken.getFirstChild();
+        while (directChild != null) {
+            if (directChild.getType() == TokenTypes.LPAREN
+                    && !TokenUtil.isOfType(directChild.getNextSibling(), LITERALS)) {
+                surroundedChildren.add(directChild);
+            }
+            directChild = directChild.getNextSibling();
+        }
+        return Collections.unmodifiableList(surroundedChildren);
     }
 
     /**
