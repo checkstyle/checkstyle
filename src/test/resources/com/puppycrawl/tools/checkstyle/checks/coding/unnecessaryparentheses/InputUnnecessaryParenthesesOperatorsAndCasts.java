@@ -6,7 +6,7 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
          MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, \
          LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LITERAL_INSTANCEOF, GT, LT, GE, \
          LE, EQUAL, NOT_EQUAL, UNARY_MINUS, UNARY_PLUS, INC, DEC, LNOT, BNOT, \
-         POST_INC, POST_DEC
+         POST_INC, POST_DEC, LPAREN
 
 
 */
@@ -41,15 +41,17 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
 
         int i = (int) arg2;
         i = ((int) arg2); // violation 'Unnecessary parentheses around assignment right-hand side'
-
         x += (i + 100 + arg1); // violation 'Unnecessary parentheses around assignment right.*side'
         a = (a + b) * (c + d);
         b = ((((a + b) * (c + d)))); // violation 'parentheses around assignment right.*side'
-        c = (((a) <= b)) ? 0 : 1; // violation 'Unnecessary parentheses around identifier 'a''
+        c = (((a) <= b)) ? 0 : 1;
+        // 3 violations above:
+        //  'Unnecessary parentheses around expression'
+        //  'Unnecessary parentheses around expression'
+        //  'Unnecessary parentheses around identifier 'a''
         d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // 5 violations
         e = ("this") + ("that") + ("is" + "other"); // 2 violations
         f = ("this is a really, really long string that should be truncated."); // 2 violations
-
         return (x + a + b + d); // violation 'Unnecessary parentheses around return value'
     }
 
@@ -61,9 +63,15 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
 
     public static int f4(int z, int a) {
         int r = (z * a); // violation 'Unnecessary parentheses around assignment right-hand side'
-        r = (a > z) ? a : z;
-        r = ((a > z) ? a : z); // violation 'Unnecessary parentheses around assignment right.*side'
+        r = (a > z) ? a : z; // violation 'Unnecessary parentheses around expression'
+        r = ((a > z) ? a : z);
+        // 2 violations above
+        //  'Unnecessary parentheses around assignment right.*side'
+        //  'Unnecessary parentheses around expression'
         r = (a > z) ? a : (z + z);
+        // 2 violations above
+        //  'Unnecessary parentheses around expression'
+        //  'Unnecessary parentheses around expression'
         return (r * r - 1); // violation 'Unnecessary parentheses around return value'
     }
 
@@ -77,11 +85,9 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         if ((x > y)) { // violation 'Unnecessary parentheses around expression'
             print(y);
         }
-
         while ((x < 10)) { // violation 'Unnecessary parentheses around expression'
             print(x++);
         }
-
         do {
             print((y+=100)); // violation 'Unnecessary parentheses around expression'
         } while (y < (4000)); // violation 'Unnecessary parentheses around literal '4000''
@@ -102,9 +108,7 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
 
     private int f7() {
         String f;
-
         f = ("12345678901234567890123"); // 2 violations
-
         return 0;
     }
 
