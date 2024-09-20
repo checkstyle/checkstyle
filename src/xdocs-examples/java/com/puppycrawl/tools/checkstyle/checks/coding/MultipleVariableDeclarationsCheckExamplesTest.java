@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck.MSG_MULTIPLE_COMMA;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MultipleVariableDeclarationsCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,9 +35,10 @@ public class MultipleVariableDeclarationsCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "19:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "21:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
         };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
