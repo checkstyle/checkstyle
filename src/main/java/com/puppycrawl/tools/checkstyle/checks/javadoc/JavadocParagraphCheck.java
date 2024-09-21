@@ -150,7 +150,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
+                && (JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START
+                || JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.PARAGRAPH)) {
             checkParagraphTag(ast);
         }
     }
@@ -181,7 +182,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
-        if (allowNewlineParagraph && isImmediatelyFollowedByText(tag)) {
+        if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
+            log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+        }
+        if (isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
     }
@@ -270,10 +274,30 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if the paragraph tag is immediately followed by the text.
      */
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
-        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
-        return nextSibling.getType() == JavadocTokenTypes.NEWLINE
-                || nextSibling.getType() == JavadocTokenTypes.EOF
+        DetailNode nextSibling;
+
+        if (JavadocUtil.getFirstChild(tag).getType() == JavadocTokenTypes.PARAGRAPH) {
+            final DetailNode paragraphToken = JavadocUtil.getFirstChild(tag);
+            final DetailNode paragraphStartTagToken = JavadocUtil.getFirstChild(paragraphToken);
+            nextSibling = JavadocUtil.getNextSibling(paragraphStartTagToken);
+        }
+        else {
+            nextSibling = JavadocUtil.getNextSibling(tag);
+        }
+
+        return nextSibling.getType() == JavadocTokenTypes.EOF
                 || nextSibling.getText().startsWith(" ");
+    }
+
+    /**
+     * Tests whether the paragraph tag is immediately followed by the new line.
+     *
+     * @param tag html tag.
+     * @return true, if the paragraph tag is immediately followed by the new line.
+     */
+    private static boolean isImmediatelyFollowedByNewLine(DetailNode tag) {
+        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
+        return nextSibling.getType() == JavadocTokenTypes.NEWLINE;
     }
 
 }
