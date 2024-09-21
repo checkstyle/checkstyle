@@ -338,12 +338,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     @Override
     public final int[] getRequiredTokens() {
-        return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.RECORD_DEF,
-        };
+        return CommonUtil.EMPTY_INT_ARRAY;
     }
 
     @Override
@@ -354,25 +349,16 @@ public class JavadocMethodCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
     @Override
     public final void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.METHOD_DEF
-                 || ast.getType() == TokenTypes.CTOR_DEF
-                 || ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF
-                 || ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
-            processAST(ast);
-        }
+        processAST(ast);
     }
 
     /**
