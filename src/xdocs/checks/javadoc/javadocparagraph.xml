@@ -29,6 +29,14 @@
             nested paragraph tags are allowed to do that.
           </li>
         </ul>
+        <p>
+          <b>ATTENTION:</b>
+          <ul>
+            <li>This Check ignores HTML comments.</li>
+            <li>The Check ignores all the nested paragraph tags,
+            it will not give any kind of violation if the paragraph tag is nested.</li>
+          </ul>
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
