@@ -33,9 +33,7 @@ class InputIncorrectJavadocParagraph {
    *
    * <p>Some Javadoc.
    *
-   * @see <a
-   *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-   *     Documentation about GWT emulated source</a>
+   * @see <a href="example.com">Documentation about GWT emulated source</a>
    */
   boolean emulated() {
     return false;
@@ -80,14 +78,12 @@ class InputIncorrectJavadocParagraph {
      *
      * <p>
      *   Some Javadoc.<p>
-     * @see <a
-     *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-     *     Documentation about GWT emulated source</a>
+     * @see <a href="example.com">Documentation about GWT emulated source</a>
      */
-    // 2 violations 5 lines above:
+    // 2 violations 3 lines above:
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
-    // violation 7 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
+    // violation 5 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
     boolean emulated() {
       return false;
     }
@@ -115,8 +111,7 @@ class InputIncorrectJavadocParagraph {
          *
          *  <p>  Some Javadoc.
          *
-         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-         *     Documentation about <p> GWT emulated source</a>
+         * @see <a href="example.com">Documentation about <p> GWT emulated source</a>
          */
         // 2 violations 2 lines above:
         //  '<p> tag should be placed immediately before the first word'
@@ -126,28 +121,31 @@ class InputIncorrectJavadocParagraph {
         }
       };
 
-  /* 4 lines below, no violation until #15685 */
+  // violation 4 lines below '<p> tag should be placed immediately before the first word'
   /**
    * Some summary.
    *
    * <p><h1>Testing...</h1></p>
    */
   class InnerPrecedingPtag {
-    /* 5 lines below, no violation until #15685 */
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      * Some summary.
      *
      *<p>
      *  <ul>
      *    <p>
-     *      <li>1</li> // should NOT give violation as there is not empty line before
+     *      <li>1</li> should NOT give violation as there is not empty line before
      *    </p>
      *  </ul>
      *</p>
      */
+    // 2 violations 6 lines above:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should be preceded with an empty line.'
     public void foo() {}
 
-    /* 5 lines below, no violation until #15685 */
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      *  Some summary.
      *
@@ -158,7 +156,7 @@ class InputIncorrectJavadocParagraph {
      */
     public void fooo() {}
 
-    /* 5 lines below, no violation until #15685 */
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      * Some summary.
      *
