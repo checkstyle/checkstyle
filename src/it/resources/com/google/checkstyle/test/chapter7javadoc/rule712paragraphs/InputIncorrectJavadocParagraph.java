@@ -135,7 +135,11 @@ class InputIncorrectJavadocParagraph {
    * <p><h1>Testing...</h1></p>
    */
   class InnerPrecedingPtag {
-    /* 5 lines below, no violation until #15503 */
+    /* 9 lines below, no violation until #15503 */
+    // violation 7 lines below '\<p\> tag should be placed immediately before the first word'
+    // 2 violations 8 lines below:
+    //  '\<p\> tag should be placed immediately before the first word, with no space after.'
+    //  '\<p\> tag should be preceded with an empty line.'
     /**
      * Some summary.
      *
@@ -149,7 +153,8 @@ class InputIncorrectJavadocParagraph {
      */
     public void foo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 6 lines below, no violation until #15503 */
+    // violation 4 lines below '\<p\> tag should be placed immediately before the first word'
     /**
      *  Some summary.
      *
@@ -160,7 +165,8 @@ class InputIncorrectJavadocParagraph {
      */
     public void fooo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 6 lines below, no violation until #15503 */
+    // violation 4 lines below '\<p\> tag should be placed immediately before the first word'
     /**
      * Some summary.
      *
