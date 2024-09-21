@@ -150,7 +150,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
+                && (JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START
+                || JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.PARAGRAPH)) {
             checkParagraphTag(ast);
         }
     }
@@ -270,7 +271,17 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if the paragraph tag is immediately followed by the text.
      */
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
-        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
+        DetailNode nextSibling;
+
+        if (JavadocUtil.getFirstChild(tag).getType() == JavadocTokenTypes.PARAGRAPH) {
+            final DetailNode paragraphToken = JavadocUtil.getFirstChild(tag);
+            final DetailNode paragraphStartTagToken = JavadocUtil.getFirstChild(paragraphToken);
+            nextSibling = JavadocUtil.getNextSibling(paragraphStartTagToken);
+        }
+        else {
+            nextSibling = JavadocUtil.getNextSibling(tag);
+        }
+
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
                 || nextSibling.getText().startsWith(" ");
