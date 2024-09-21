@@ -29,6 +29,9 @@
             nested paragraph tags are allowed to do that.
           </li>
         </ul>
+        <p>
+          <b>ATTENTION:</b> This Check ignores HTML comments.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
