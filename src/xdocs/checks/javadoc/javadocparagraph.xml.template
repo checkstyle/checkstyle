@@ -41,14 +41,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">By default, the check will report a violation if there is a new line
           or whitespace after the &lt;p&gt; tag: </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -56,7 +56,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -65,7 +65,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
