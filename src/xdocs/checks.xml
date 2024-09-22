@@ -166,8 +166,8 @@
                 ClassDataAbstractionCoupling
               </a>
             </td>
-            <td>Measures the number of instantiations of other classes within the given class
-              or record.</td>
+            <td>Measures the number of distinct classes that are instantiated
+              within the given class or record.</td>
           </tr>
           <tr>
             <td>
