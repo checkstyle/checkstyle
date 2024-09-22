@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Measures the number of instantiations of other classes
+ * Measures the number of distinct classes that are instantiated
  * within the given class or record. This type of coupling is not caused by inheritance or
  * the object-oriented paradigm. Generally speaking, any data type with other
  * data types as members or local variable that is an instantiation (object)

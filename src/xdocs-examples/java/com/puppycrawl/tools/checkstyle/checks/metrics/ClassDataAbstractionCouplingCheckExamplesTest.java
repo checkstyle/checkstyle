@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck.MSG_KEY;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ClassDataAbstractionCouplingCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -34,100 +36,132 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigInteger",
+            "Example1",
+            "Example3",
+            "Example4",
+            "Example5",
+            "Example6",
+            "Example7"
+        ).toString();
 
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "22:1: " + getCheckMessage(MSG_KEY, 3, 2, "[AtomicInteger, BigDecimal, BigInteger]"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/deeper/Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/deeper/Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
-        final String[] expected = {
+        final String expectedClasses = List.of(
+            "AtomicInteger",
+            "BigInteger",
+            "Example2",
+            "Example3",
+            "Example4",
+            "Example5",
+            "Example7",
+            "Example8"
+        ).toString();
 
+        final String[] expected = {
+            "27:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/deeper/Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
-        final String[] expected = {
+        final String expectedClasses = List.of(
+                "AtomicInteger",
+                "BigDecimal",
+                "BigInteger",
+                "ByteArrayInputStream",
+                "CharArrayWriter",
+                "File",
+                "MathContext",
+                "StringWriter"
+        ).toString();
 
+        final String[] expected = {
+            "28:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example8.java"), expected);
     }
 
     @Test
     public void testExample9() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example9.java"), expected);
     }
 
     @Test
     public void testExample10() throws Exception {
-        final String[] expected = {
+        final String expectedClasses = List.of(
+                "AtomicInteger",
+                "BigDecimal",
+                "BigInteger",
+                "Example2",
+                "Example3",
+                "Example4",
+                "Example6",
+                "MathContext"
+        ).toString();
 
+        final String[] expected = {
+            "33:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example10.java"), expected);
     }
 
     @Test
     public void testExample11() throws Exception {
-        final String[] expected = {
+        final String[] expected = {};
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example11.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
     }
 }
