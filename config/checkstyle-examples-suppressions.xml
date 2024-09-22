@@ -70,4 +70,9 @@
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
 
+  <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
+  <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
+
+
+
 </suppressions>
