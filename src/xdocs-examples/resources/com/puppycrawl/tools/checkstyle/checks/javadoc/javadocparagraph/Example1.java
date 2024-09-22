@@ -5,8 +5,10 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 // xdoc section -- start
+// violation 5 lines below '<p> tag should be preceded with an empty line'
 /**
  * No tag (ok).
  *
@@ -19,6 +21,8 @@
  * <p> Whitespace after tag (violation).
  *
  */
-public class TestClass {
+// violation 6 lines above 'tag should be placed immediately before the first word'
+// violation 4 lines above 'tag should be placed immediately before the first word'
+public class Example1 {
 }
 // xdoc section -- end
