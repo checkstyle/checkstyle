@@ -19,8 +19,6 @@ env:
   # yamllint disable-line rule:line-length
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.properties"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
-  # yamllint disable-line rule:line-length
-  POM_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/f08a12ee4dc34892b0438d1f69f447ed8db2c60c/checkstyle-tester/pom.xml"
   EXTRACTOR_VERSION: 2024-08-27
   DIFF_TOOL_VERSION: "1.0-SNAPSHOT-all"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
@@ -457,22 +455,13 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      - name: Create checkstyle-tester directory
-        run: mkdir -p .ci-temp/test-configs/checkstyle-tester
-
-      - name: Download pom.xml
-        run: |
-          mkdir -p .ci-temp/test-configs/checkstyle-tester
-          curl --fail-with-body -L -o \
-          .ci-temp/test-configs/checkstyle-tester/pom.xml "${{ env.POM_URL }}"
-
       - name: Download DiffTool JAR
         uses: robinraju/release-downloader@v1.8
         with:
           repository: "checkstyle/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
           fileName: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
-          out-file-path: ".ci-temp/test-configs/checkstyle-tester"
+          out-file-path: ".ci-temp"
 
       - name: Download patch-diff-report-tool JAR
         uses: robinraju/release-downloader@v1.8
@@ -481,7 +470,7 @@ jobs:
           tag: "patch-diff-report-tool-${{ env.PATCH_DIFF_TOOL_VERSION }}"
           fileName: >-
             patch-diff-report-tool-${{ env.PATCH_DIFF_TOOL_VERSION }}-jar-with-dependencies.jar
-          out-file-path: ".ci-temp/test-configs/checkstyle-tester"
+          out-file-path: ".ci-temp"
 
       - name: Set up Java 21
         uses: actions/setup-java@v4
@@ -542,7 +531,7 @@ jobs:
 
       - name: Generate report
         run: |
-          cd .ci-temp/test-configs/checkstyle-tester
+          cd .ci-temp
           bash
           PR_BRANCH="${{ needs.checkout_and_cache.outputs.pr_branch }}"
           REPO="${{ github.workspace }}/.ci-temp/checkstyle"
@@ -555,26 +544,28 @@ jobs:
           NEW_MODULE_CONFIG="${{ github.workspace }}/.ci-temp/new_module_config.xml"
           PROJECT_PROPERTIES="${{ github.workspace }}/.ci-temp/project.properties"
 
-          # Path to the JAR file (since we are already in the right directory)
+          # Paths to the JAR files
           DIFFTOOL_JAR="diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
+          PATCH_DIFF_TOOL_JAR="patch-diff-report-tool-\
+          ${{ env.PATCH_DIFF_TOOL_VERSION }}-jar-with-dependencies.jar"
 
           # Run DiffTool with appropriate arguments
           if [ -f "$NEW_MODULE_CONFIG" ]; then
             echo "Generating report for new module"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -p "$PR_BRANCH" -pc "$NEW_MODULE_CONFIG" \
               -m single -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes
+              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           elif [ -f "$PATCH_CONFIG" ]; then
             echo "Generating report with patch config"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" \
               -p "$PR_BRANCH" -bc "$DIFF_CONFIG" \
               -pc "$PATCH_CONFIG" -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes
+              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           else
             echo "Generating standard diff report"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" \
               -c "$DIFF_CONFIG" -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
-              --allowExcludes
+              --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           fi
 
       - name: Copy Report to AWS S3 Bucket
@@ -585,7 +576,7 @@ jobs:
           bash
           TIME=$(date +%Y%H%M%S)
           FOLDER="${COMMIT_SHA}_$TIME"
-          DIFF="./.ci-temp/test-configs/checkstyle-tester/reports/diff"
+          DIFF="./.ci-temp/reports/diff"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
           if [ -n "$LABEL" ]; then
