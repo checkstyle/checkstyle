@@ -69,6 +69,7 @@
         <p id="Example1-code">By default, the check will report a violation if there is a new line
           or whitespace after the &lt;p&gt; tag: </p>
         <source>
+// violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
 /**
  * No tag (ok).
  *
@@ -81,7 +82,9 @@
  * &lt;p&gt; Whitespace after tag (violation).
  *
  */
-public class TestClass {
+// violation 6 lines above 'tag should be placed immediately before the first word'
+// violation 4 lines above 'tag should be placed immediately before the first word'
+public class Example1 {
 }
         </source>
         <p id="Example2-config">
@@ -101,11 +104,12 @@ public class TestClass {
           the following example will not have any violations:
         </p>
         <source>
+// violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
 /**
  * No tag (ok).
  *
  * &lt;p&gt;Tag immediately before the text (ok).
- * &lt;p&gt;No blank line before the tag (violation).
+ * &lt;p&gt;No blank line before the tag.
  *
  * &lt;p&gt;
  * New line after tag (ok).
@@ -113,7 +117,7 @@ public class TestClass {
  * &lt;p&gt; Whitespace after tag (ok).
  *
  */
-public class TestClass {
+public class Example2 {
 }
         </source>
       </subsection>
