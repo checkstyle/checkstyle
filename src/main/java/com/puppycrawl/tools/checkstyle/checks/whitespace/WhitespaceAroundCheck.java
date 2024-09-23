@@ -46,7 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * may optionally be exempted from the policy using the {@code allowEmptyMethods},
  * {@code allowEmptyConstructors}, {@code allowEmptyTypes}, {@code allowEmptyLoops},
- * {@code allowEmptyLambdas} and {@code allowEmptyCatches} properties.
+ * {@code allowEmptyLambdas}, {@code allowEmptyCatches}
+ * and {@code allowEmptySwitchBlockStatements} properties.
  * </p>
  * <p>
  * This check does not flag as violation double brace initialization like:
@@ -98,6 +99,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code allowEmptyMethods} - Allow empty method bodies.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
+ * Property {@code allowEmptySwitchBlockStatements} - Allow empty switch blocks
+ * and block statements.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -268,6 +275,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean allowEmptyLambdas;
     /** Allow empty catch bodies. */
     private boolean allowEmptyCatches;
+    /** Allow empty switch blocks and block statements. */
+    private boolean allowEmptySwitchBlockStatements;
     /**
      * Ignore whitespace around colon in
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -473,6 +482,16 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         allowEmptyCatches = allow;
     }
 
+    /**
+     * Setter to allow empty switch blocks and block statements.
+     *
+     * @param allow {@code true} to allow empty switch case and default blocks.
+     * @since 10.19.0
+     */
+    public void setAllowEmptySwitchBlockStatements(boolean allow) {
+        allowEmptySwitchBlockStatements = allow;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -599,7 +618,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
                 || isEmptyCtorBlockCheckedFromRcurly(ast)
                 || isEmptyLoop(ast, parentType)
                 || isEmptyLambda(ast, parentType)
-                || isEmptyCatch(ast, parentType);
+                || isEmptyCatch(ast, parentType)
+                || isEmptySwitchBlockStatement(ast);
     }
 
     /**
@@ -718,6 +738,41 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyCatch(DetailAST ast, int parentType) {
         return allowEmptyCatches && isEmptyBlock(ast, parentType, TokenTypes.LITERAL_CATCH);
+    }
+
+    /**
+     * Tests if the given {@code DetailAst} is part of an allowed empty
+     * switch case or default block.
+     *
+     * @param ast the {@code DetailAst} to test.
+     * @return {@code true} if {@code ast} makes up part of an allowed
+     *         empty switch case or default block.
+     */
+    private boolean isEmptySwitchBlockStatement(DetailAST ast) {
+        final boolean isEmptySwitchBlockStatement;
+
+        if (allowEmptySwitchBlockStatements) {
+            final DetailAST parent = ast.getParent();
+            final DetailAST grandParent = parent.getParent();
+
+            final boolean isEmptyCaseInSwitchRule =
+                    isEmptyBlock(ast, parent.getType(), TokenTypes.SWITCH_RULE);
+
+            final boolean isEmptyCaseGroupCheckedFromLcurly =
+                    isEmptyBlock(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
+
+            final boolean isEmptyCaseGroupCheckedFromRcurly =
+                    parent.getFirstChild().getType() == TokenTypes.RCURLY
+                      && grandParent.getParent().getType() == TokenTypes.CASE_GROUP;
+
+            isEmptySwitchBlockStatement = isEmptyCaseInSwitchRule
+                    || isEmptyCaseGroupCheckedFromLcurly || isEmptyCaseGroupCheckedFromRcurly;
+        }
+        else {
+            isEmptySwitchBlockStatement = false;
+        }
+
+        return isEmptySwitchBlockStatement;
     }
 
     /**
