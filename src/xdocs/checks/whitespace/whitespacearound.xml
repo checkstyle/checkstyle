@@ -109,6 +109,13 @@ try {
               <td>4.0</td>
             </tr>
             <tr>
+              <td>allowEmptySwitchCase</td>
+              <td>Allow empty switch case and default bodies.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.18.2</td>
+            </tr>
+            <tr>
               <td>allowEmptyTypes</td>
               <td>Allow empty class, interface and enum bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>

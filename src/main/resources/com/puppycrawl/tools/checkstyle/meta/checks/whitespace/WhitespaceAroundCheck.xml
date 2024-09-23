@@ -72,6 +72,9 @@
             <property default-value="false" name="allowEmptyTypes" type="boolean">
                <description>Allow empty class, interface and enum bodies.</description>
             </property>
+            <property default-value="false" name="allowEmptySwitchCase" type="boolean">
+               <description>Allow empty switch case and default bodies.</description>
+            </property>
             <property default-value="true" name="ignoreEnhancedForColon" type="boolean">
                <description>Ignore whitespace around colon in
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
