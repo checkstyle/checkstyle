@@ -610,4 +610,47 @@ public class WhitespaceAroundCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundUnnamedPattern.java"), expected);
     }
+
+    @Test
+    public void testSwitchCasesParens() throws Exception {
+        final String[] expected = {
+            "33:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "33:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "37:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "37:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "48:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "48:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "52:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "52:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "61:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "61:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "71:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "71:47: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "80:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "80:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "85:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "85:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAroundSwitchCasesParens.java"),
+                expected);
+    }
+
+    @Test
+    public void testSwitchCasesParensWithAllowEmptySwitchCase() throws Exception {
+        final String[] expected = {
+            "49:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "49:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "59:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "59:47: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "68:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "68:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "73:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "73:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchCase.java"),
+                expected);
+    }
 }
