@@ -31,7 +31,8 @@ public @interface Beta {} // empty annotation type
           may optionally be exempted from the policy using the <code>
           allowEmptyMethods</code>, <code>allowEmptyConstructors</code>,
           <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>,
-          <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
+          <code>allowEmptyLambdas</code>, <code>allowEmptyCatches</code> and
+          <code>allowEmptySwitchLabels</code>
           properties.
         </p>
         <p>This check does not flag as violation double brace initialization like:</p>

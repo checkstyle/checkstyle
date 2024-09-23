@@ -24,7 +24,8 @@
  &lt;p&gt;
  may optionally be exempted from the policy using the {@code allowEmptyMethods},
  {@code allowEmptyConstructors}, {@code allowEmptyTypes}, {@code allowEmptyLoops},
- {@code allowEmptyLambdas} and {@code allowEmptyCatches} properties.
+ {@code allowEmptyLambdas}, {@code allowEmptyCatches}
+ and {@code allowEmptySwitchCase} properties.
  &lt;/p&gt;
  &lt;p&gt;
  This check does not flag as violation double brace initialization like:
@@ -68,6 +69,9 @@
             </property>
             <property default-value="false" name="allowEmptyMethods" type="boolean">
                <description>Allow empty method bodies.</description>
+            </property>
+            <property default-value="false" name="allowEmptySwitchCase" type="boolean">
+               <description>Allow empty switch case and default bodies.</description>
             </property>
             <property default-value="false" name="allowEmptyTypes" type="boolean">
                <description>Allow empty class, interface and enum bodies.</description>
