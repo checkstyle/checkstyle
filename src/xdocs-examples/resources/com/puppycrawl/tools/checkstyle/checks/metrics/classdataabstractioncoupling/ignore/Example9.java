@@ -35,7 +35,7 @@ public class Example9 {
   BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0); // Counted 4
 
-  // As per the module properties, instances from java.io package are not counted
+  // Ignored using module excludedPackages property
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
   CharArrayWriter charArrayWriter = new CharArrayWriter();
   PipedReader pipedReader = new PipedReader();

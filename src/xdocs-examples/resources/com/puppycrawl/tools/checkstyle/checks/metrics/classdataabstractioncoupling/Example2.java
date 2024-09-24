@@ -23,8 +23,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 // xdoc section -- start
 // violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example2 {
-  Set ignored1 = new HashSet(); // Ignored by default
-  Map ignored2 = new HashMap(); // Ignored by default
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger("0");

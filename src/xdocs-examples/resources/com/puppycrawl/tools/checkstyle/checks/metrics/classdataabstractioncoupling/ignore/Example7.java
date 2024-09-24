@@ -38,7 +38,7 @@ public class Example7 {
   Example4 example4 = new Example4();
   Example5 example5 = new Example5(); // Counted 7
 
-  // *Reader$ excluded using Regex
-  BufferedReader excluded = new BufferedReader(new PipedReader());
+  // Ignored using module excludeClassesRegexps property
+  BufferedReader bufferedReader = new BufferedReader(new PipedReader());
 }
 // xdoc section -- end

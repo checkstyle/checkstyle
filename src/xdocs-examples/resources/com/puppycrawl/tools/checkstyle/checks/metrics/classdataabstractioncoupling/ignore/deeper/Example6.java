@@ -28,7 +28,7 @@ public class Example6 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
-  AtomicInteger atomicInteger = new AtomicInteger(); // Counted, 1
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger("0");
   Example2 example2 = new Example2();
   Example3 example3 = new Example3();
