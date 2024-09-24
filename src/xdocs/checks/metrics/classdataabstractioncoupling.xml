@@ -146,8 +146,8 @@ public class Example1 {
         <source>
 // violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
 public class Example2 {
-  Set ignored1 = new HashSet(); // Ignored by default
-  Map ignored2 = new HashMap(); // Ignored by default
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
 
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger(&quot;0&quot;);
@@ -247,7 +247,7 @@ public class Example6 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
 
-  AtomicInteger atomicInteger = new AtomicInteger(); // Counted, 1
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger(&quot;0&quot;);
   Example2 example2 = new Example2();
   Example3 example3 = new Example3();
@@ -291,8 +291,8 @@ public class Example7 {
   Example4 example4 = new Example4();
   Example5 example5 = new Example5(); // Counted 7
 
-  // *Reader$ excluded using Regex
-  BufferedReader excluded = new BufferedReader(new PipedReader());
+  // Ignored using module excludeClassesRegexps property
+  BufferedReader bufferedReader = new BufferedReader(new PipedReader());
 }
         </source>
 
@@ -348,7 +348,7 @@ public class Example9 {
   BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
   MathContext mathContext = new MathContext(0); // Counted 4
 
-  // As per the module properties, instances from java.io package are not counted
+  // Ignored using module excludedPackages property
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
   CharArrayWriter charArrayWriter = new CharArrayWriter();
   PipedReader pipedReader = new PipedReader();
@@ -392,7 +392,7 @@ class Example10 {
   Example4 example5 = new Example4();
   Example6 example6 = new Example6(); // Counted 8
 
-  // Ignored, as per the module properties, instances from java.io package
+  // Ignored using module excludedPackages property
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
   PipedReader pipedReader = new PipedReader();
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
@@ -468,7 +468,7 @@ class Example11 {
 
   class Data {
     public Data() {
-      Example11 foo = new Example11(); // Ignored, same file
+      Example11 example11 = new Example11(); // Ignored same file
     }
   }
 }
