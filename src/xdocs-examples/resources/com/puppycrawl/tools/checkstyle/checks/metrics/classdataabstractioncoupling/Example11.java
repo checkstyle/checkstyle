@@ -35,7 +35,7 @@ class Example11 {
 
   class Data {
     public Data() {
-      Example11 foo = new Example11(); // Ignored, same file
+      Example11 example11 = new Example11(); // Ignored same file
     }
   }
 }
