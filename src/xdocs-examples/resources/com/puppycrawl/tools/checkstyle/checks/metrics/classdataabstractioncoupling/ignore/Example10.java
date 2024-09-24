@@ -43,7 +43,7 @@ class Example10 {
   Example4 example5 = new Example4();
   Example6 example6 = new Example6(); // Counted 8
 
-  // Ignored, as per the module properties, instances from java.io package
+  // Ignored using module excludedPackages property
   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
   PipedReader pipedReader = new PipedReader();
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
