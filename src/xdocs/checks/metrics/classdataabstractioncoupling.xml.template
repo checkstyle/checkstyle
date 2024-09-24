@@ -10,8 +10,8 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <p>
-          Measures the number of instantiations of other
-          classes within the given class or record. This type of coupling is not
+          Measures the number of distinct classes that are instantiated
+          within the given class or record. This type of coupling is not
           caused by inheritance or the object-oriented
           paradigm. Generally speaking, any data type with other data
           types as members or local variable that is an instantiation
@@ -84,7 +84,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -96,7 +96,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -105,7 +105,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -114,7 +114,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -126,7 +126,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -135,17 +135,17 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
         <p id="Example5-config">
           To configure the check with three excluded classes <code>HashMap</code>,
-          <code>HashSet</code> and <code>Place</code>:
+          <code>HashSet</code> and <code>Example1</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -157,7 +157,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -166,7 +166,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -176,7 +176,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -188,7 +188,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -197,7 +197,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -207,7 +207,7 @@
 
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -219,7 +219,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example9.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -228,7 +228,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/ignore/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -265,7 +265,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example11.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example11-code">
@@ -273,7 +273,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/classdataabstractioncoupling/Example11.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
