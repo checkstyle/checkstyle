@@ -610,4 +610,74 @@ public class WhitespaceAroundCheckTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputWhitespaceAroundUnnamedPattern.java"), expected);
     }
+
+    @Test
+    public void testSwitchCasesParens() throws Exception {
+        final String[] expected = {
+            "33:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "33:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "37:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "37:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "47:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "47:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "51:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "51:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "59:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "59:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "68:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "68:47: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "76:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "76:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "81:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "81:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "89:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "89:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "89:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "89:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "96:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "96:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "100:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "100:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "100:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "100:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "100:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "100:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "108:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "108:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "115:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputWhitespaceAroundSwitchCasesParens.java"),
+                expected);
+    }
+
+    @Test
+    public void testSwitchCasesParensWithAllowEmptySwitchBlockStatements() throws Exception {
+        final String fileName =
+                "InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStatements.java";
+
+        final String[] expected = {
+            "49:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "49:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "59:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "59:47: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "68:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "68:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "73:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "73:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "84:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "84:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "88:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "88:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "88:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "88:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "88:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "88:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "96:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "96:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(fileName),
+                expected);
+    }
 }
