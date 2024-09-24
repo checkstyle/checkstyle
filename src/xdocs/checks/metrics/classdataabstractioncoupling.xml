@@ -10,8 +10,8 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
         <p>
-          Measures the number of instantiations of other
-          classes within the given class or record. This type of coupling is not
+          Measures the number of distinct classes that are instantiated
+          within the given class or record. This type of coupling is not
           caused by inheritance or the object-oriented
           paradigm. Generally speaking, any data type with other data
           types as members or local variable that is an instantiation
@@ -130,12 +130,13 @@
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // Counted, 3
+public class Example1 {
+  private Set&lt;Object&gt; set = new HashSet&lt;&gt;(); // Excluded by default
+  private Map&lt;Object,Object&gt; map = new HashMap&lt;&gt;(); // Excluded by default
+
+  private Instant instant = Instant.now(); // Counted, 1
+  private LocalTime localTime = LocalTime.now();
+  private Object object = new Object(); // Counted, 3
 }
         </source>
 
@@ -143,13 +144,20 @@ class InputClassCoupling {
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  Place place = new Place(); // violation, total is 8
+// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+public class Example2 {
+  Set ignored1 = new HashSet(); // Excluded by default
+  Map ignored2 = new HashMap(); // Excluded by default
+
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+
+  Example1 example1 = new Example1();
+  Example3 example3 = new Example3();
+  Example4 example4 = new Example4(); // ...
+  Example5 example5 = new Example5();
+  Example6 example6 = new Example6();
+  Example7 example7 = new Example7(); // Counted 8
 }
         </source>
 
@@ -173,11 +181,11 @@ class InputClassCoupling {
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassCoupling {
+public class Example3 {
   Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
   Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
+  Instant instant = Instant.now(); // Counted, 1
+  LocalTime localTime = LocalTime.now(); // Counted, 2
 }
         </source>
 
@@ -185,24 +193,25 @@ class InputClassCoupling {
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  Place place = new Place(); // violation, total is 3
+// violation below, &quot;Class Data Abstraction Coupling is 3 (max allowed is 2).&quot;
+public class Example4 {
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted, 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;); // ...
+  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;); // Counted 3
 }
         </source>
 
         <p id="Example5-config">
           To configure the check with three excluded classes <code>HashMap</code>,
-          <code>HashSet</code> and <code>Place</code>:
+          <code>HashSet</code> and <code>Example1</code>:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Place&quot;/&gt;
+      &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet, Example1&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -215,13 +224,18 @@ class InputClassCoupling {
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // Ignored
-  Map map = new HashMap(); // Ignored
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  Place place = new Place(); // Ignored
+public class Example5 {
+  Set set = new HashSet(); // Not counted 1
+  Map map = new HashMap();  // ...
+  Example1 example1 = new Example1(); // Not counted 3
+
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  Example2 example2 = new Example2();
+  Example3 example3 = new Example3(); // ...
+  Example4 example4 = new Example4();
+  Example6 example6 = new Example6();
+  Example7 example7 = new Example7(); // Counted 7
 }
         </source>
 
@@ -229,13 +243,20 @@ class InputClassCoupling {
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // Ignored
-  Map map = new HashMap(); // Ignored
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  Space space = new Space(); // violation, total is 8
+// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+public class Example6 {
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted, 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+
+  // instantiation of 5 counted distinct other user defined classes
+  Example2 example2 = new Example2();
+  Example3 example3 = new Example3();
+  Example4 example4 = new Example4(); // ...
+  Example5 example5 = new Example5();
+  Example7 example7 = new Example7();
+  Example8 example8 = new Example8(); // Counted 8
 }
         </source>
 
@@ -260,13 +281,21 @@ class InputClassCoupling {
           The check passes without violations in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  BufferedReader br = new BufferedReader(); // Ignored
+public class Example7 {
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted, 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+
+  // instantiation of 5 counted distinct other user defined classes
+  Example1 example1 = new Example1();
+  Example2 example2 = new Example2();
+  Example3 example3 = new Example3();
+  Example4 example4 = new Example4();
+  Example5 example5 = new Example5(); // Counted 7
+
+  // *Reader$ excluded using Regex
+  BufferedReader excluded = new BufferedReader(new PipedReader());
 }
         </source>
 
@@ -274,13 +303,19 @@ class InputClassCoupling {
           The check results in a violation in the following:
         </p>
         <source>
-class InputClassCoupling {
-  Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
-  Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  File file = new File(); // violation, total is 8
+// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+public class Example8 {
+  Set set = new HashSet(); // Ignored by default
+  Map map = new HashMap(); // Ignored by default
+
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  MathContext mathContext = new MathContext(0);
+  ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
+  CharArrayWriter charArrayWriter = new CharArrayWriter();
+  StringWriter stringWriter = new StringWriter();
+  File file = new File(&quot;path&quot;); // Counted 8
 }
         </source>
 
@@ -307,13 +342,20 @@ class InputClassCoupling {
         <source>
 import java.io.BufferedReader;
 
-class InputClassCoupling {
+public class Example9 {
   Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
   Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  BufferedReader br = new BufferedReader(); // Ignored
+
+  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  MathContext mathContext = new MathContext(0); // Counted 4
+
+  // As per the module properties, instances from java.io package are not counted
+  ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
+  CharArrayWriter charArrayWriter = new CharArrayWriter();
+  PipedReader pipedReader = new PipedReader();
+  BufferedReader bufferedReader = new BufferedReader(pipedReader);
 }
         </source>
 
@@ -321,15 +363,43 @@ class InputClassCoupling {
           The check results in a violation in the following:
         </p>
         <source>
-import java.util.StringTokenizer;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example6;
 
-class InputClassCoupling {
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.CharArrayWriter;
+import java.io.PipedReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
+// violation below, &quot;Class Data Abstraction Coupling is 8 (max allowed is 7).&quot;
+class Example10 {
   Set set = new HashSet(); // HashSet ignored due to default excludedClasses property
   Map map = new HashMap(); // HashMap ignored due to default excludedClasses property
-  Date date = new Date(); // Counted, 1
-  Time time = new Time(); // Counted, 2
-  // instantiation of 5 other user defined classes
-  StringTokenizer st = new StringTokenizer(); // violation, total is 8
+
+  AtomicInteger atomicInteger = new AtomicInteger();
+  BigInteger bigInteger = new BigInteger(&quot;0&quot;);
+  BigDecimal bigDecimal = new BigDecimal(&quot;0&quot;);
+  MathContext mathContext = new MathContext(0);
+  Example2 example3 = new Example2();
+  Example3 example4 = new Example3();
+  Example4 example5 = new Example4();
+  Example6 example6 = new Example6();
+
+  // As per the module properties, instances from java.io package are not counted
+  ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
+  PipedReader pipedReader = new PipedReader();
+  BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  CharArrayWriter charArrayWriter = new CharArrayWriter();
 }
         </source>
 
@@ -368,7 +438,7 @@ class InputClassCoupling {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
-      &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
+      &lt;property name=&quot;excludedPackages&quot; value=&quot;com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -377,18 +447,32 @@ class InputClassCoupling {
           And the file <code>a.b.Foo.java</code> is:
         </p>
         <source>
-package a.b;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example8;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example9;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example4;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example5;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example6;
 
-import a.b.Bar;
-import a.b.c.Baz;
+class Example11 {
+  // Will be ignored, located inside classdataabstractioncoupling.ignore package
+  Example7 baz7 = new Example7();
+  Example8 baz8 = new Example8();
+  Example9 baz9 = new Example9();
 
-class Foo {
-  Bar bar; // Will be ignored, located inside ignored a.b package
-  Baz baz; // Will not be ignored, located inside a.b.c package
-  Data data; // Will not be ignored, same file
+  // Counted, located outside of classdataabstractioncoupling.ignore package
+  Example1 example1 = new Example1();
+  Example2 example2 = new Example2();
+  Example3 example3 = new Example3();
+  Example4 example4 = new Example4();
+  Example5 baz5 = new Example5();
+  Example6 baz6 = new Example6();
+  Data data = new Data(); // Not ignored - Counted 7
 
   class Data {
-    Foo foo; // Will not be ignored, same file
+    public Data() {
+      Example11 foo = new Example11(); // Ignored, same file
+    }
   }
 }
         </source>
