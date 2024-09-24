@@ -64,36 +64,42 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "29:17: " + getCheckMessage(MSG_LITERAL, "0"),
             "39:11: " + getCheckMessage(MSG_ASSIGN),
             "43:11: " + getCheckMessage(MSG_ASSIGN),
-            "45:11: " + getCheckMessage(MSG_ASSIGN),
-            "47:11: " + getCheckMessage(MSG_ASSIGN),
-            "48:16: " + getCheckMessage(MSG_IDENT, "a"),
-            "49:14: " + getCheckMessage(MSG_IDENT, "a"),
-            "49:20: " + getCheckMessage(MSG_IDENT, "b"),
-            "49:26: " + getCheckMessage(MSG_LITERAL, "600"),
-            "49:40: " + getCheckMessage(MSG_LITERAL, "12.5f"),
-            "49:56: " + getCheckMessage(MSG_IDENT, "arg2"),
-            "50:14: " + getCheckMessage(MSG_STRING, "\"this\""),
-            "50:25: " + getCheckMessage(MSG_STRING, "\"that\""),
-            "51:11: " + getCheckMessage(MSG_ASSIGN),
-            "51:14: " + getCheckMessage(MSG_STRING, "\"this is a really, really...\""),
-            "53:16: " + getCheckMessage(MSG_RETURN),
-            "57:21: " + getCheckMessage(MSG_LITERAL, "1"),
-            "57:26: " + getCheckMessage(MSG_LITERAL, "13.5"),
-            "58:22: " + getCheckMessage(MSG_LITERAL, "true"),
-            "59:17: " + getCheckMessage(MSG_IDENT, "b"),
-            "63:17: " + getCheckMessage(MSG_ASSIGN),
-            "65:11: " + getCheckMessage(MSG_ASSIGN),
-            "67:16: " + getCheckMessage(MSG_RETURN),
-            "77:13: " + getCheckMessage(MSG_EXPR),
-            "81:16: " + getCheckMessage(MSG_EXPR),
-            "86:19: " + getCheckMessage(MSG_EXPR),
-            "87:23: " + getCheckMessage(MSG_LITERAL, "4000"),
-            "92:19: " + getCheckMessage(MSG_ASSIGN),
-            "94:11: " + getCheckMessage(MSG_ASSIGN),
-            "94:16: " + getCheckMessage(MSG_LITERAL, "3"),
-            "95:26: " + getCheckMessage(MSG_ASSIGN),
-            "106:11: " + getCheckMessage(MSG_ASSIGN),
-            "106:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
+            "44:11: " + getCheckMessage(MSG_ASSIGN),
+            "46:11: " + getCheckMessage(MSG_ASSIGN),
+            "47:13: " + getCheckMessage(MSG_EXPR),
+            "47:14: " + getCheckMessage(MSG_EXPR),
+            "47:16: " + getCheckMessage(MSG_IDENT, "a"),
+            "52:14: " + getCheckMessage(MSG_IDENT, "a"),
+            "52:20: " + getCheckMessage(MSG_IDENT, "b"),
+            "52:26: " + getCheckMessage(MSG_LITERAL, "600"),
+            "52:40: " + getCheckMessage(MSG_LITERAL, "12.5f"),
+            "52:56: " + getCheckMessage(MSG_IDENT, "arg2"),
+            "53:14: " + getCheckMessage(MSG_STRING, "\"this\""),
+            "53:25: " + getCheckMessage(MSG_STRING, "\"that\""),
+            "54:11: " + getCheckMessage(MSG_ASSIGN),
+            "54:14: " + getCheckMessage(MSG_STRING, "\"this is a really, really...\""),
+            "55:16: " + getCheckMessage(MSG_RETURN),
+            "59:21: " + getCheckMessage(MSG_LITERAL, "1"),
+            "59:26: " + getCheckMessage(MSG_LITERAL, "13.5"),
+            "60:22: " + getCheckMessage(MSG_LITERAL, "true"),
+            "61:17: " + getCheckMessage(MSG_IDENT, "b"),
+            "65:17: " + getCheckMessage(MSG_ASSIGN),
+            "66:13: " + getCheckMessage(MSG_EXPR),
+            "67:11: " + getCheckMessage(MSG_ASSIGN),
+            "67:14: " + getCheckMessage(MSG_EXPR),
+            "71:13: " + getCheckMessage(MSG_EXPR),
+            "71:27: " + getCheckMessage(MSG_EXPR),
+            "75:16: " + getCheckMessage(MSG_RETURN),
+            "85:13: " + getCheckMessage(MSG_EXPR),
+            "88:16: " + getCheckMessage(MSG_EXPR),
+            "92:19: " + getCheckMessage(MSG_EXPR),
+            "93:23: " + getCheckMessage(MSG_LITERAL, "4000"),
+            "98:19: " + getCheckMessage(MSG_ASSIGN),
+            "100:11: " + getCheckMessage(MSG_ASSIGN),
+            "100:16: " + getCheckMessage(MSG_LITERAL, "3"),
+            "101:26: " + getCheckMessage(MSG_ASSIGN),
+            "111:11: " + getCheckMessage(MSG_ASSIGN),
+            "111:14: " + getCheckMessage(MSG_STRING, "\"12345678901234567890123\""),
         };
 
         verifyWithInlineConfigParser(
@@ -186,9 +192,12 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnnecessaryParenthesesPatterns() throws Exception {
         final String[] expected = {
-            "24:22: " + getCheckMessage(MSG_ASSIGN),
-            "27:21: " + getCheckMessage(MSG_ASSIGN),
-            "31:13: " + getCheckMessage(MSG_EXPR),
+            "21:26: " + getCheckMessage(MSG_EXPR),
+            "22:17: " + getCheckMessage(MSG_EXPR),
+            "22:43: " + getCheckMessage(MSG_EXPR),
+            "26:22: " + getCheckMessage(MSG_ASSIGN),
+            "29:21: " + getCheckMessage(MSG_ASSIGN),
+            "33:13: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -215,6 +224,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "20:20: " + getCheckMessage(MSG_EXPR),
+            "32:13: " + getCheckMessage(MSG_EXPR),
             "34:13: " + getCheckMessage(MSG_EXPR),
             "35:20: " + getCheckMessage(MSG_EXPR),
             "39:13: " + getCheckMessage(MSG_EXPR),
@@ -227,6 +237,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "55:17: " + getCheckMessage(MSG_EXPR),
             "56:28: " + getCheckMessage(MSG_EXPR),
             "61:13: " + getCheckMessage(MSG_EXPR),
+            "65:19: " + getCheckMessage(MSG_EXPR),
             "66:14: " + getCheckMessage(MSG_EXPR),
             "67:24: " + getCheckMessage(MSG_EXPR),
             "70:13: " + getCheckMessage(MSG_EXPR),
@@ -356,5 +367,19 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnnecessaryParenthesesWhenExpressions.java"), expected);
+    }
+
+    @Test
+    public void testUnnecessaryParenthesesConditionalExpression() throws Exception {
+        final String[] expected = {
+            "19:17: " + getCheckMessage(MSG_EXPR),
+            "19:29: " + getCheckMessage(MSG_LITERAL, "3"),
+            "19:35: " + getCheckMessage(MSG_LITERAL, "4"),
+            "25:18: " + getCheckMessage(MSG_EXPR),
+            "28:31: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
+
     }
 }
