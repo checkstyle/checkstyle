@@ -127,9 +127,28 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClosedParagraphs() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "21: " + getCheckMessage(MSG_LINE_BEFORE),
+            "27: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "27: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28: " + getCheckMessage(MSG_LINE_BEFORE),
+            "34: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "35: " + getCheckMessage(MSG_TAG_AFTER),
+            "37: " + getCheckMessage(MSG_TAG_AFTER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrect3.java"), expected);
+    }
+
+    @Test
     public void testJavadocParagraph() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_LINE_BEFORE),
+            "27: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "27: " + getCheckMessage(MSG_LINE_BEFORE),
             "30: " + getCheckMessage(MSG_MISPLACED_TAG),
             "30: " + getCheckMessage(MSG_LINE_BEFORE),
         };
