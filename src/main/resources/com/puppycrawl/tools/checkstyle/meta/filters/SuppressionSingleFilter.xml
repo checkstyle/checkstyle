@@ -9,8 +9,8 @@
  specified file, class, checks, message, module id, lines, and columns.
  &lt;/p&gt;
  &lt;p&gt;
- Rationale: To allow users use suppressions configured in the same config with other modules.
- SuppressionFilter and SuppressionXpathFilter are require separate file.
+ Rationale: To allow users to use suppressions configured in the same config as other modules.
+ {@code SuppressionFilter} and {@code SuppressionXpathFilter} require a separate file.
  &lt;/p&gt;
  &lt;p&gt;
  Advice: If checkstyle configuration is used for several projects, single suppressions on common
@@ -22,8 +22,8 @@
  users wants to suppress multiple violations.
  &lt;/p&gt;
  &lt;p&gt;
- SuppressionSingleFilter can suppress Checks that have Treewalker or
- Checker as parent module.
+ {@code SuppressionSingleFilter} can suppress Checks that have {@code Treewalker} or
+ {@code Checker} as parent module.
  &lt;/p&gt;</description>
          <properties>
             <property name="checks" type="java.util.regex.Pattern">
