@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * violations in the specified file, class, checks, message, module id, and xpath.
  * </p>
  * <p>
- * Rationale: To allow users use suppressions configured in the same config with
- * other modules. SuppressionFilter and SuppressionXpathFilter are require separate file.
+ * Rationale: To allow users to use suppressions configured in the same config as other modules.
+ * {@code SuppressionFilter} and {@code SuppressionXpathFilter} require a separate file.
  * </p>
  * <p>
  * Advice: If checkstyle configuration is used for several projects, single suppressions
@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * instances if users wants to suppress multiple violations.
  * </p>
  * <p>
- * SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
+ * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
  * </p>
  * <ul>
  * <li>
