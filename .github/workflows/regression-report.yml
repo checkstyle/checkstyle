@@ -118,7 +118,6 @@ jobs:
           git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
                forked/${{ steps.get_pr_details.outputs.branch }}
 
-
       - name: Save cache
         uses: actions/cache/save@v4
         with:
@@ -296,8 +295,10 @@ jobs:
       - name: Cache Generated Config and Project Files
         uses: actions/cache@v4
         with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
+          path: |
+            .
+            ${{ env.GENERATED_CONFIGS_PATH }}
+          key: ${{ env.CACHE_KEY }}
 
       - name: Extract filename and create label
         id: create_label
@@ -366,16 +367,11 @@ jobs:
       - name: Restore cache
         uses: actions/cache/restore@v4
         with:
-          path: .
+          path: |
+            .
+            ${{ env.GENERATED_CONFIGS_PATH }}
           key: ${{ env.CACHE_KEY }}
           fail-on-cache-miss: true
-
-      - name: Restore Generated Config and Project Files
-        if: needs.handle_generated_config_bundle.result == 'success'
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
 
       - name: Process local-based generated Config and Project File
         if: needs.handle_generated_config_bundle.result == 'success'
