@@ -15,9 +15,9 @@
           and xpath.
         </p>
         <p>
-          Rationale: To allow users use suppressions configured in the same config with
-          other modules. SuppressionFilter and SuppressionXpathFilter are require separate
-          file.
+          Rationale: To allow users to use suppressions configured in the same config as other
+          modules. <code>SuppressionFilter</code> and <code>SuppressionXpathFilter</code> require
+          a separate file.
         </p>
         <p>
           Advice: If checkstyle configuration is used for several projects, single suppressions
@@ -32,7 +32,8 @@
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
-          SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
+          <code>SuppressionXpathSingleFilter</code> can suppress Checks that have
+          <code>Treewalker</code> as parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">
