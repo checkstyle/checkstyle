@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -70,6 +72,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * {@code javadoc.paragraph.misplaced.tag}
  * </li>
  * <li>
+ * {@code javadoc.paragraph.preceded.block.tag}
+ * </li>
+ * <li>
  * {@code javadoc.paragraph.redundant.paragraph}
  * </li>
  * <li>
@@ -114,6 +119,20 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_EXTRA_TAG = "javadoc.paragraph.preceded.block.tag";
+
+    /**
+     * Set of block tags supported by this check.
+     */
+    private static final Set<String> BLOCK_TAGS =
+            Set.of("address", "blockquote", "div", "dl",
+                   "h1", "h2", "h3", "h4", "h5", "h6","hr",
+                   "ol", "p", "pre", "table", "ul");
 
     /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
@@ -181,12 +200,54 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
+
+        final BlockTagViolation blockTag = checkIfFollowedByBlockTag(tag);
+
+        if (blockTag != null) {
+            log(blockTag.getLineNumber(), blockTag.getColumnNumber(),
+                MSG_EXTRA_TAG, blockTag.getHtmlTagName());
+        }
+
         if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
         if (isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
+    }
+
+    /**
+     * Determines whether or not the paragraph tag is followed by block tag.
+     *
+     * @param tag html tag.
+     * @return block tag if the paragraph tag is followed by block tag.
+     */
+    private BlockTagViolation checkIfFollowedByBlockTag(DetailNode tag) {
+        BlockTagViolation blockTag = null;
+        DetailNode htmlElement = JavadocUtil.getNextSibling(tag);
+
+        while (htmlElement != null && htmlElement.getType() != JavadocTokenTypes.HTML_ELEMENT) {
+            if (htmlElement.getType() == JavadocTokenTypes.TEXT
+                    && !CommonUtil.isBlank(htmlElement.getText())) {
+                htmlElement = null;
+                break;
+            }
+            htmlElement = JavadocUtil.getNextSibling(htmlElement);
+        }
+
+        if (htmlElement != null) {
+            final DetailNode htmlTag = JavadocUtil.getFirstChild(htmlElement);
+            final DetailNode htmlTagFirstChild = JavadocUtil.getFirstChild(htmlTag);
+            for (DetailNode child: htmlTagFirstChild.getChildren()) {
+                final String htmlTagName = child.getText();
+                if (BLOCK_TAGS.contains(htmlTagName)) {
+                  blockTag = new BlockTagViolation(htmlElement.getLineNumber(),
+                          htmlElement.getColumnNumber(), htmlTagName);
+                }
+            }
+        }
+
+        return blockTag;
     }
 
     /**
@@ -289,4 +350,37 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE;
     }
 
+      /**
+       * Class to store block tag violation details.
+       */
+    private class BlockTagViolation {
+        private final int lineNumber;
+        private final int columnNumber;
+        private final String htmlTagName;
+
+        /**
+         * Constructor.
+         *
+         * @param lineNumber line number.
+         * @param columnNumber column number.
+         * @param htmlTagName html tag name.
+         */
+        public BlockTagViolation(int lineNumber, int columnNumber, String htmlTagName) {
+            this.lineNumber = lineNumber;
+            this.columnNumber = columnNumber;
+            this.htmlTagName = htmlTagName;
+        }
+
+        public int getLineNumber() {
+            return lineNumber;
+        }
+
+        public int getColumnNumber() {
+            return columnNumber;
+        }
+
+        public String getHtmlTagName() {
+            return htmlTagName;
+        }
+    }
 }
