@@ -115,6 +115,7 @@ class InputFormattedIncorrectJavadocParagraph {
    *
    * <h1>Testing...</h1>
    */
+  // violation 2 lines above 'block-level tag '<h1>' is preceded by <p> tag'
   class InnerPrecedingPtag {
     /* 5 lines below, no violation until #15685 */
     /**
@@ -127,7 +128,8 @@ class InputFormattedIncorrectJavadocParagraph {
      *   <li>1 // should NOT give violation as there is not empty line before
      * </ul>
      */
-    // violation 4 lines above '<p> tag should be preceded with an empty line.'
+    // violation 5 lines above 'block-level tag '<ul>' is preceded by <p> tag'
+    // violation 5 lines above '<p> tag should be preceded with an empty line.'
     public void foo() {}
 
     /* 5 lines below, no violation until #15685 */
@@ -139,6 +141,7 @@ class InputFormattedIncorrectJavadocParagraph {
      * <table>
      *  </table>
      */
+    // violation 3 lines above 'block-level tag '<table>' is preceded by <p> tag'
     public void fooo() {}
 
     /* 5 lines below, no violation until #15685 */
@@ -151,6 +154,7 @@ class InputFormattedIncorrectJavadocParagraph {
      *
      * <pre>testing...</pre>
      */
+    // violation 4 lines above 'block-level tag '<pre>' is preceded by <p> tag'
     public void foooo() {}
   }
 }

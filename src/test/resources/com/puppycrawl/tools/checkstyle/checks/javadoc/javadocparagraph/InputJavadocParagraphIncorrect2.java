@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 /**
  * Some Javadoc.
  * <p>
- * /^ WARN/   Some Javadoc.<p>
+ *    Some Javadoc.<p>
  */
 // 2 violations 2 lines above:
 //  '<p> tag should be placed immediately before the first word'
@@ -56,7 +56,7 @@ class InputJavadocParagraphIncorrect2 {
     /**<p>Some Javadoc.<p>
      * <p>
      * <p><p>
-     * <p>/^WARN/   Some Javadoc.<p>*/
+     * <p>   Some Javadoc.<p>*/
     // 2 violations 2 lines above:
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
@@ -69,7 +69,7 @@ class InputJavadocParagraphIncorrect2 {
         //  '<p> tag should be placed immediately before the first word'
         //  '<p> tag should be preceded with an empty line.'
         /**
-         * Some Javadoc./WARN/<p>
+         * Some Javadoc.<p>
          *
          * @since 8.0
          */
@@ -81,19 +81,17 @@ class InputJavadocParagraphIncorrect2 {
         // violation 5 lines below '<p> tag should be placed immediately before the first word'
         /**
          * <p>
-         * /^WARN/ Some Javadoc.
+         *  Some Javadoc.
          *
          * <P>
-         * /^WARN/
+         *
          * <p>
-         *  /^WARN/ Some Javadoc.<p>
+         *   Some Javadoc.<p>
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
+        // violation 5 lines above '<p> tag should be placed immediately before the first word'
         // 2 violations 5 lines above:
-        //  '<p> tag should be placed immediately before the first word'
-        //  '<p> tag should be preceded with an empty line.'
-        // 2 violations 7 lines above:
         //  '<p> tag should be placed immediately before the first word'
         //  '<p> tag should be preceded with an empty line.'
         boolean emulated() {return false;}
@@ -117,7 +115,7 @@ class InputJavadocParagraphIncorrect2 {
         //  '<p> tag should be preceded with an empty line.'
         // violation 4 lines below '<p> tag should be placed immediately before the first word'
         /**
-         * /WARN/  Some Javadoc.<p>
+         *   Some Javadoc.<p>
          *
          *  <p>  Some Javadoc.
          *

@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 /**
  * Some Javadoc.
  * <p>
- * /^ WARN/   Some Javadoc.<p>
+ *    Some Javadoc.<p>
  *
  */
 // violation 3 lines above 'tag should be preceded with an empty line.'
@@ -46,7 +46,7 @@ class InputJavadocParagraphIncorrect {
     /**<p>Some Javadoc.<p>
      * <p>
      * <p><p>
-     * <p>/^WARN/   Some Javadoc.<p>*/
+     * <p>   Some Javadoc.<p>*/
     // violation 2 lines above 'tag should be preceded with an empty line.'
     // 2 violations 2 lines above:
     //  '<p> tag should be placed immediately before the first word'
@@ -55,7 +55,7 @@ class InputJavadocParagraphIncorrect {
 
         // violation 2 lines below 'tag should be preceded with an empty line.'
         /**
-         * Some Javadoc./WARN/<p>
+         * Some Javadoc.<p>
          *
          * @since 8.0
          */
@@ -63,17 +63,16 @@ class InputJavadocParagraphIncorrect {
 
         // violation below 'Redundant \<p\> tag.'
         /**<p>
-         * /^WARN/ Some Javadoc.
+         *  Some Javadoc.
          *
          * <P> // violation 'tag should be placed immediately before the first word'
-         * /^WARN/
+         *
          * <p>
-         *  /^WARN/ Some Javadoc.<p>
+         *   Some Javadoc.<p>
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
-        // violation 5 lines above 'tag should be preceded with an empty line.'
-        // violation 5 lines above 'tag should be preceded with an empty line.'
+        // violation 4 lines above 'tag should be preceded with an empty line.'
         boolean emulated() {return false;}
     }
 
@@ -92,7 +91,7 @@ class InputJavadocParagraphIncorrect {
 
         // violation 2 lines below 'tag should be preceded with an empty line.'
         /**
-         * /WARN/  Some Javadoc.<p>
+         *   Some Javadoc.<p>
          *
          *  <p>  Some Javadoc. // violation 'tag should be placed immediately before the first word'
          *
