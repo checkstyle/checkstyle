@@ -23,6 +23,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
  * <p> Whitespace after tag (ok).
  *
  */
+// violation 6 lines above 'tag should be placed immediately before the first word'
+// violation 4 lines above 'tag should be placed immediately before the first word'
 public class Example2 {
 }
 // xdoc section -- end
