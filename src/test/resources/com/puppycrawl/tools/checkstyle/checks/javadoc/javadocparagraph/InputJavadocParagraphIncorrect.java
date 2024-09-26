@@ -39,7 +39,7 @@ class InputJavadocParagraphIncorrect {
     /**<p>Some Javadoc.<p>  // 3 violations
      * <p>  // 2 violations
      * <p><p>  // 2 violations
-     * <p>/^WARN/   Some Javadoc.<p>*/  // 2 violations
+     * <p>/^WARN/   Some Javadoc.<p>*/ // violation 'tag should be preceded with an empty line.'
      class InnerInputJavadocParagraphIncorrect {
 
         /**

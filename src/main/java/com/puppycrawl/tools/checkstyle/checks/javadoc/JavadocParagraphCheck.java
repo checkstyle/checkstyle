@@ -272,7 +272,6 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
         final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
-                || nextSibling.getType() == JavadocTokenTypes.EOF
                 || nextSibling.getText().startsWith(" ");
     }
 
