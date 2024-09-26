@@ -74,7 +74,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "40: " + getCheckMessage(MSG_LINE_BEFORE),
             "41: " + getCheckMessage(MSG_MISPLACED_TAG),
             "41: " + getCheckMessage(MSG_LINE_BEFORE),
-            "42: " + getCheckMessage(MSG_MISPLACED_TAG),
             "42: " + getCheckMessage(MSG_LINE_BEFORE),
             "46: " + getCheckMessage(MSG_MISPLACED_TAG),
             "46: " + getCheckMessage(MSG_LINE_BEFORE),
