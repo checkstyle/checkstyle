@@ -14,13 +14,13 @@ import static org.checkstyle.suppressionxpathfilter.interfaceistype.InputXpathIn
 public class Example1 {
   public void foo() {
     int myInteger = 0;
-    {                      // violation
+    {                      // violation, 'avoid nested block'
       myInteger = 2;
     }
     System.out.println("myInteger = " + myInteger);
 
     switch (a) {
-      case 1: {                    // violation
+      case 1: {                    // violation, 'avoid nested block'
         System.out.println("Case 1");
         break;
       }
