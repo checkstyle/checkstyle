@@ -29,7 +29,7 @@ public class InputUnnecessaryParenthesesIfStatement {
         x = 0;
         y = 0;
 
-        z = (x < y) ? x : y;
+        z = (x < y) ? x : y;  // violation 'Unnecessary parentheses around expression'
 
         if ((x < y)           // violation 'Unnecessary parentheses around expression'
                 && (x > z)) { // violation 'Unnecessary parentheses around expression'
@@ -62,7 +62,7 @@ public class InputUnnecessaryParenthesesIfStatement {
                 || Integer.valueOf(y) instanceof Integer) {
             return;
         }
-        if (x == ((y<z) ? y : z) &&
+        if (x == ((y<z) ? y : z) && // violation 'Unnecessary parentheses around expression'
             ((x>y && y>z)                  // violation 'Unnecessary parentheses around expression'
                     || (!(x<z) && y>z))) { // violation 'Unnecessary parentheses around expression'
             return;
