@@ -128,14 +128,14 @@ class InputIncorrectJavadocParagraph {
         }
       };
 
-  /* 4 lines below, no violation until #15503 */
+  /* 4 lines below, no violation until #15685 */
   /**
    * Some summary.
    *
    * <p><h1>Testing...</h1></p>
    */
   class InnerPrecedingPtag {
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      * Some summary.
      *
@@ -149,7 +149,7 @@ class InputIncorrectJavadocParagraph {
      */
     public void foo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      *  Some summary.
      *
@@ -160,7 +160,7 @@ class InputIncorrectJavadocParagraph {
      */
     public void fooo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      * Some summary.
      *
