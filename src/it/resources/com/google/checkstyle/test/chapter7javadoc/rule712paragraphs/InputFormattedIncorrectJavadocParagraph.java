@@ -29,9 +29,7 @@ class InputFormattedIncorrectJavadocParagraph {
    *
    * <p>Some Javadoc.
    *
-   * @see <a
-   *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-   *     Documentation about GWT emulated source</a>
+   * @see <a href="example.com">Documentation about GWT emulated source</a>
    */
   boolean emulated() {
     return false;
@@ -77,9 +75,7 @@ class InputFormattedIncorrectJavadocParagraph {
      *
      * <p>
      *
-     * @see <a
-     *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-     *     Documentation about GWT emulated source</a>
+     * @see <a href="example.com">Documentation about GWT emulated source</a>
      */
     boolean emulated() {
       return false;
@@ -106,9 +102,7 @@ class InputFormattedIncorrectJavadocParagraph {
          *
          * <p>Some Javadoc.
          *
-         * @see <a
-         *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-         *     Documentation about
+         * @see <a href="example.com">Documentation about
          *     <p>GWT emulated source</a>
          */
         // violation 2 lines above '<p> tag should be preceded with an empty line.'
@@ -117,7 +111,9 @@ class InputFormattedIncorrectJavadocParagraph {
         }
       };
 
-  // violation 4 lines below '<p> tag should be placed immediately before the first word'
+  // 2 violations 6 lines below:
+  //  '<p> tag should be placed immediately before the first word'
+  //  '<p> tag should not precede HTML block-tag '<h1>''
   /**
    * Some summary.
    *
@@ -126,7 +122,10 @@ class InputFormattedIncorrectJavadocParagraph {
    * <h1>Testing...</h1>
    */
   class InnerPrecedingPtag {
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+
+    // 2 violations 6 lines below:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should not precede HTML block-tag '<ul>''
     /**
      * Some summary.
      *
@@ -134,7 +133,7 @@ class InputFormattedIncorrectJavadocParagraph {
      *
      * <ul>
      *   <p>
-     *   <li>1 // should NOT give violation as there is not empty line before
+     *   <li>1 should NOT give violation as there is not empty line before
      * </ul>
      */
     // 2 violations 4 lines above:
@@ -142,7 +141,9 @@ class InputFormattedIncorrectJavadocParagraph {
     //  '<p> tag should be preceded with an empty line.'
     public void foo() {}
 
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+    // 2 violations 6 lines below:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should not precede HTML block-tag '<table>''
     /**
      * Some summary.
      *
@@ -153,7 +154,9 @@ class InputFormattedIncorrectJavadocParagraph {
      */
     public void fooo() {}
 
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+    // 2 violations 6 lines below:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should not precede HTML block-tag '<pre>''
     /**
      * Some summary.
      *
