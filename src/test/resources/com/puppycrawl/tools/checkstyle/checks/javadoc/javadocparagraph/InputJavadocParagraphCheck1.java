@@ -28,6 +28,9 @@ class Check {
     * Checks whether file contains code. Files which are considered to have no code:
     * </p>
     * <p>
-    */ // 2 violations above
+    */
+   // 2 violations 2 lines above:
+   //  '\<p\> tag should be placed immediately before the first word'
+   //  '\<p\> tag should be preceded with an empty line.'
     void inheritDocWithThrows() {}
 }
