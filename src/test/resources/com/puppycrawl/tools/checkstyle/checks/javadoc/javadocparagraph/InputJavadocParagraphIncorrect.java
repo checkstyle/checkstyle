@@ -9,7 +9,7 @@ allowNewlineParagraph = (default)true
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * Some Javadoc. // 2 violations below
+ * Some Javadoc. // violation below 'ddg'
  * <p>
  * /^ WARN/   Some Javadoc.<p> // 2 violations
  *
@@ -49,8 +49,9 @@ class InputJavadocParagraphIncorrect {
          */
         public static final byte NUL = 0;
 
+        // violations above 'Redundant <p> tag.'
         /**<p>
-         * /^WARN/ Some Javadoc. // 2 violations above
+         * Some Javadoc.
          *
          * <P> // violation 'tag should be placed immediately before the first word'
          * /^WARN/
