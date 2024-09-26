@@ -33,8 +33,7 @@ class InputIncorrectJavadocParagraph {
    *
    * <p>Some Javadoc.
    *
-   * @see <a
-   *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+   * @see <a href="example.com">
    *     Documentation about GWT emulated source</a>
    */
   boolean emulated() {
@@ -80,14 +79,13 @@ class InputIncorrectJavadocParagraph {
      *
      * <p>
      *   Some Javadoc.<p>
-     * @see <a
-     *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+     * @see <a href="example.com">
      *     Documentation about GWT emulated source</a>
      */
-    // 2 violations 5 lines above:
+    // 2 violations 4 lines above:
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
-    // violation 7 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
+    // violation 6 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
     boolean emulated() {
       return false;
     }
@@ -115,7 +113,7 @@ class InputIncorrectJavadocParagraph {
          *
          *  <p>  Some Javadoc.
          *
-         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="example.com">
          *     Documentation about <p> GWT emulated source</a>
          */
         // 2 violations 2 lines above:
@@ -140,7 +138,7 @@ class InputIncorrectJavadocParagraph {
      *<p>
      *  <ul>
      *    <p>
-     *      <li>1</li> // should NOT give violation as there is not empty line before
+     *      <li>1</li> should NOT give violation as there is not empty line before
      *    </p>
      *  </ul>
      *</p>
