@@ -16,7 +16,7 @@ import static org.checkstyle.suppressionxpathfilter.interfaceistype.InputXpathIn
 public class Example2 {
   public void foo() {
     int myInteger = 0;
-    {                      // violation
+    {                      // violation, 'avoid nested block'
       myInteger = 2;
     }
     System.out.println("myInteger = " + myInteger);
