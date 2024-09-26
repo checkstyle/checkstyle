@@ -8,9 +8,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
  * <p>
  */
 class InputFormattedIncorrectJavadocParagraph {
-  // violation 3 lines above '<p> tag should be placed immediately before the first word'
 
-  // violation 4 lines below '<p> tag should be placed immediately before the first word'
   /**
    * Some Javadoc.
    *
@@ -37,9 +35,6 @@ class InputFormattedIncorrectJavadocParagraph {
     return false;
   }
 
-  // violation 6 lines below '<p> tag should be placed immediately before the first word'
-  // violation 7 lines below '<p> tag should be placed immediately before the first word'
-  // violation 8 lines below '<p> tag should be placed immediately before the first word'
   /**
    * Some Javadoc.
    *
@@ -54,9 +49,7 @@ class InputFormattedIncorrectJavadocParagraph {
    * <p>
    */
   class InnerInputCorrectJavaDocParagraphCheck {
-    // violation 3 lines above '<p> tag should be placed immediately before the first word'
 
-    // violation 4 lines below '<p> tag should be placed immediately before the first word'
     /**
      * Some Javadoc.
      *
@@ -66,7 +59,6 @@ class InputFormattedIncorrectJavadocParagraph {
      */
     public static final byte NUL = 0;
 
-    // violation 8 lines below '<p> tag should be placed immediately before the first word'
     /**
      * /^WARN/ Some Javadoc.
      *
@@ -97,7 +89,6 @@ class InputFormattedIncorrectJavadocParagraph {
          */
         public static final byte NUL = 0;
 
-        // violation 4 lines below '<p> tag should be placed immediately before the first word'
         /**
          * /WARN/ Some Javadoc.
          *
@@ -115,4 +106,51 @@ class InputFormattedIncorrectJavadocParagraph {
           return false;
         }
       };
+
+  /* 4 lines below, no violation until #15685 */
+  /**
+   * Some summary.
+   *
+   * <p>
+   *
+   * <h1>Testing...</h1>
+   */
+  class InnerPrecedingPtag {
+    /* 5 lines below, no violation until #15685 */
+    /**
+     * Some summary.
+     *
+     * <p>
+     *
+     * <ul>
+     *   <p>
+     *   <li>1 // should NOT give violation as there is not empty line before
+     * </ul>
+     */
+    // violation 4 lines above '<p> tag should be preceded with an empty line.'
+    public void foo() {}
+
+    /* 5 lines below, no violation until #15685 */
+    /**
+     * Some summary.
+     *
+     * <p>
+     *
+     * <table>
+     *  </table>
+     */
+    public void fooo() {}
+
+    /* 5 lines below, no violation until #15685 */
+    /**
+     * Some summary.
+     *
+     * <p>
+     *
+     * <pre>testing...</pre>
+     *
+     * <pre>testing...</pre>
+     */
+    public void foooo() {}
+  }
 }
