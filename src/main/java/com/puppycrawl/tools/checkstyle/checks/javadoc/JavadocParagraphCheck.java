@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -62,6 +66,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <ul>
  * <li>
  * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.extra.paragraph}
  * </li>
  * <li>
  * {@code javadoc.paragraph.line.before}
@@ -114,6 +121,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_EXTRA_TAG = "javadoc.paragraph.extra.paragraph";
 
     /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
@@ -181,8 +194,46 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
+
+        checkIfFollowedByBlockTag(tag);
+
         if (allowNewlineParagraph && isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+        }
+    }
+
+    /**
+     * Determines whether or not the paragraph tag is followed by block tag.
+     *
+     * @param tag html tag.
+     */
+    private void checkIfFollowedByBlockTag(DetailNode tag) {
+        DetailNode htmlElement = JavadocUtil.getNextSibling(tag);
+        while (htmlElement != null && htmlElement.getType() != JavadocTokenTypes.HTML_ELEMENT) {
+            if (htmlElement.getType() == JavadocTokenTypes.TEXT
+                    && !CommonUtil.isBlank(htmlElement.getText().trim())) {
+                htmlElement = null;
+                break;
+            }
+            htmlElement = JavadocUtil.getNextSibling(htmlElement);
+        }
+
+        if (htmlElement != null) {
+            final DetailNode htmlTag = JavadocUtil.getFirstChild(htmlElement);
+
+            if ("HTML_TAG".equals(htmlTag.getText())) {
+                final Set<String> blockTags = new HashSet<>(Arrays.asList("address", "blockquote",
+                        "div", "dl", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "ol",
+                        "p", "pre", "table", "ul"));
+                final DetailNode htmlElementStart = JavadocUtil.getFirstChild(htmlTag);
+                final DetailNode[] children = htmlElementStart.getChildren();
+                final String htmlTagName = children[1].getText();
+
+                if (blockTags.contains(htmlTagName)) {
+                    log(htmlElement.getLineNumber(), htmlElement.getColumnNumber(),
+                            MSG_EXTRA_TAG, "<" + htmlTagName + ">");
+                }
+            }
         }
     }
 
