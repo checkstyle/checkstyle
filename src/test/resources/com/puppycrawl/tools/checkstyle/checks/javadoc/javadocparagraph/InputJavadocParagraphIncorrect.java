@@ -8,23 +8,17 @@ allowNewlineParagraph = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
-// 2 violations 5 lines below:
-//  'tag should be placed immediately before the first word'
-//  'tag should be preceded with an empty line.'
+// violation 3 lines below '<p> tag should be preceded with an empty line.'
 /**
  * Some Javadoc.
  * <p>
  * /^ WARN/   Some Javadoc.<p>
  *
  */
-// 2 violations 3 lines above:
-//  'tag should be placed immediately before the first word'
-//  'tag should be preceded with an empty line.'
+// violation 3 lines above 'tag should be preceded with an empty line.'
 class InputJavadocParagraphIncorrect {
 
-    // 2 violations 4 lines below:
-    //  'tag should be placed immediately before the first word'
-    //  'tag should be preceded with an empty line.'
+    // violation 2 lines below 'tag should be preceded with an empty line.'
     /**
      * Some Javadoc.<P>
      *
@@ -45,28 +39,21 @@ class InputJavadocParagraphIncorrect {
      */
     boolean emulated() {return false;}
 
-    // 3 violations 7 lines below:
-    //  'tag should be placed immediately before the first word'
+    // 2 violations 4 lines below:
     //  'tag should be preceded with an empty line.'
     //  'Redundant <p> tag.'
-    // 2 violations 4 lines below:
-    //  'tag should be placed immediately before the first word'
-    //  'tag should be preceded with an empty line.'
+    // violation 2 lines below 'tag should be preceded with an empty line.'
     /**<p>Some Javadoc.<p>
      * <p>
      * <p><p>
      * <p>/^WARN/   Some Javadoc.<p>*/
+    // violation 2 lines above 'tag should be preceded with an empty line.'
     // 2 violations 2 lines above:
-    //  'tag should be placed immediately before the first word'
-    //  'tag should be preceded with an empty line.'
-    // 2 violations 4 lines above:
     //  'tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
      class InnerInputJavadocParagraphIncorrect {
 
-        // 2 violations 4 lines below:
-        //  'tag should be placed immediately before the first word'
-        //  'tag should be preceded with an empty line.'
+        // violation 2 lines below 'tag should be preceded with an empty line.'
         /**
          * Some Javadoc./WARN/<p>
          *
@@ -74,9 +61,7 @@ class InputJavadocParagraphIncorrect {
          */
         public static final byte NUL = 0;
 
-        // 2 violations 3 lines below:
-        //  'tag should be placed immediately before the first word'
-        //  'Redundant \<p\> tag.'
+        // violation below 'Redundant <p> tag.'
         /**<p>
          * /^WARN/ Some Javadoc.
          *
@@ -87,12 +72,8 @@ class InputJavadocParagraphIncorrect {
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about GWT emulated source</a>
          */
-        // 2 violations 5 lines above:
-        //  'tag should be placed immediately before the first word'
-        //  'tag should be preceded with an empty line.'
-        // 2 violations 7 lines above:
-        //  'tag should be placed immediately before the first word'
-        //  'tag should be preceded with an empty line.'
+        // violation 5 lines above 'tag should be preceded with an empty line.'
+        // violation 5 lines above 'tag should be preceded with an empty line.'
         boolean emulated() {return false;}
     }
 
@@ -109,9 +90,7 @@ class InputJavadocParagraphIncorrect {
         // violation 5 lines above 'Empty line should be followed by <p> tag on the next line.'
         public static final byte NUL = 0;
 
-        // 2 violations 4 lines below:
-        //  'tag should be placed immediately before the first word'
-        //  'tag should be preceded with an empty line.'
+        // violation 2 lines below 'tag should be preceded with an empty line.'
         /**
          * /WARN/  Some Javadoc.<p>
          *

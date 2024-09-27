@@ -23,14 +23,13 @@ public class InputJavadocParagraphCheck1 {
 // violation 4 lines above '<p> tag should be preceded with an empty line'
 class Check {
 
+   // violation 2 lines below 'Redundant <p> tag.'
    /**
     * <p>
     * Checks whether file contains code. Files which are considered to have no code:
     * </p>
     * <p>
     */
-   // 2 violations 2 lines above:
-   //  '\<p\> tag should be placed immediately before the first word'
-   //  '\<p\> tag should be preceded with an empty line.'
+   // violation 2 lines above '<p> tag should be preceded with an empty line.'
     void inheritDocWithThrows() {}
 }
