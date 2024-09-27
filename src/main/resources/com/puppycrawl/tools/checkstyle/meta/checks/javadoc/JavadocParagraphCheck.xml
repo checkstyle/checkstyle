@@ -31,6 +31,7 @@
          </properties>
          <message-keys>
             <message-key key="javadoc.missed.html.close"/>
+            <message-key key="javadoc.paragraph.extra.paragraph"/>
             <message-key key="javadoc.paragraph.line.before"/>
             <message-key key="javadoc.paragraph.misplaced.tag"/>
             <message-key key="javadoc.paragraph.redundant.paragraph"/>

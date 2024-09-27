@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_EXTRA_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
@@ -136,5 +137,56 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphCheck1.java"), expected);
+    }
+
+    @Test
+    public void testBlockTagsWithPrecedingParagraphTag() throws Exception {
+        final String[] expected = {
+            "14:7: " + getCheckMessage(MSG_EXTRA_TAG, "<h1>"),
+            "23: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "24:9: " + getCheckMessage(MSG_EXTRA_TAG, "<ul>"),
+            "25: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "25: " + getCheckMessage(MSG_LINE_BEFORE),
+            "42: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "43:9: " + getCheckMessage(MSG_EXTRA_TAG, "<table>"),
+            "55: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "57: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "57:15: " + getCheckMessage(MSG_EXTRA_TAG, "<ol>"),
+            "67: " + getCheckMessage(MSG_LINE_BEFORE),
+            "69: " + getCheckMessage(MSG_LINE_BEFORE),
+            "72: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "72: " + getCheckMessage(MSG_LINE_BEFORE),
+            "83: " + getCheckMessage(MSG_LINE_BEFORE),
+            "87: " + getCheckMessage(MSG_LINE_BEFORE),
+            "93: " + getCheckMessage(MSG_LINE_BEFORE),
+            "97: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "101: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "110: " + getCheckMessage(MSG_LINE_BEFORE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrect3.java"), expected);
+    }
+
+    @Test
+    public void testBlockTagsWithPrecedingParagraphTag2() throws Exception {
+        final String[] expected = {
+            "14:7: " + getCheckMessage(MSG_EXTRA_TAG, "<h1>"),
+            "23:9: " + getCheckMessage(MSG_EXTRA_TAG, "<ul>"),
+            "24: " + getCheckMessage(MSG_LINE_BEFORE),
+            "38:9: " + getCheckMessage(MSG_EXTRA_TAG, "<table>"),
+            "51:15: " + getCheckMessage(MSG_EXTRA_TAG, "<ol>"),
+            "58: " + getCheckMessage(MSG_LINE_BEFORE),
+            "60: " + getCheckMessage(MSG_LINE_BEFORE),
+            "63: " + getCheckMessage(MSG_LINE_BEFORE),
+            "71: " + getCheckMessage(MSG_LINE_BEFORE),
+            "75: " + getCheckMessage(MSG_LINE_BEFORE),
+            "81: " + getCheckMessage(MSG_LINE_BEFORE),
+            "91:8: " + getCheckMessage(MSG_EXTRA_TAG, "<h1>"),
+            "101: " + getCheckMessage(MSG_LINE_BEFORE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrect4.java"), expected);
     }
 }
