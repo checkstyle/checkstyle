@@ -58,17 +58,13 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_MISPLACED_TAG),
             "16: " + getCheckMessage(MSG_LINE_BEFORE),
             "17: " + getCheckMessage(MSG_MISPLACED_TAG),
             "17: " + getCheckMessage(MSG_LINE_BEFORE),
-            "29: " + getCheckMessage(MSG_MISPLACED_TAG),
             "29: " + getCheckMessage(MSG_LINE_BEFORE),
             "31: " + getCheckMessage(MSG_MISPLACED_TAG),
             "39: " + getCheckMessage(MSG_LINE_BEFORE),
             "41: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "55: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "55: " + getCheckMessage(MSG_LINE_BEFORE),
             "55: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "56: " + getCheckMessage(MSG_MISPLACED_TAG),
             "56: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -130,7 +126,6 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     public void testJavadocParagraph() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_LINE_BEFORE),
-            "30: " + getCheckMessage(MSG_MISPLACED_TAG),
             "30: " + getCheckMessage(MSG_LINE_BEFORE),
         };
 

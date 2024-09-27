@@ -29,8 +29,6 @@ class Check {
     * </p>
     * <p>
     */
-   // 2 violations 2 lines above:
-   //  '\<p\> tag should be placed immediately before the first word'
-   //  '\<p\> tag should be preceded with an empty line.'
+   // violation 2 lines above '<p> tag should be preceded with an empty line.'
     void inheritDocWithThrows() {}
 }
