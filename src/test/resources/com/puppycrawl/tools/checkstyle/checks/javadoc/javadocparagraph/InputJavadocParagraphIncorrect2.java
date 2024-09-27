@@ -34,7 +34,10 @@ class InputJavadocParagraphIncorrect2 {
      */
     boolean emulated() {return false;}
 
-    /**<p>Some Javadoc.<p>  // 2 violations
+    // 2 violations 3 lines below:
+    //  'tag should be preceded with an empty line.'
+    //  'Redundant \<p\> tag.'
+    /**<p>Some Javadoc.<p>
      * <p>  // violation '<p> tag should be preceded with an empty line.'
      * <p><p>  // violation '<p> tag should be preceded with an empty line.'
      * <p>/^WARN/   Some Javadoc.<p>*/
