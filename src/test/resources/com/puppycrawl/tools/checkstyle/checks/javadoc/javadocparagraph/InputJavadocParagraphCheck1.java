@@ -29,6 +29,6 @@ class Check {
     * </p>
     * <p>
     */
-   // violation 2 lines above '\<p\> tag should be preceded with an empty line.'
+   // violation 2 lines above '<p> tag should be preceded with an empty line.'
     void inheritDocWithThrows() {}
 }
