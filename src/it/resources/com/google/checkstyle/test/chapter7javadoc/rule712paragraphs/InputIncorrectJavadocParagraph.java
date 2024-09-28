@@ -1,22 +1,16 @@
 package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 
-// 2 violations 5 lines below:
-//  '\<p\> tag should be placed immediately before the first word'
-//  '\<p\> tag should be preceded with an empty line.'
+// violation 3 lines below '<p> tag should be preceded with an empty line.'
 /**
  * Some Javadoc.
  * <p>
  * /^ WARN/ Some Javadoc.<p>
  */
-// 2 violations 2 lines above:
-//  '\<p\> tag should be placed immediately before the first word'
-//  '\<p\> tag should be preceded with an empty line.'
+// violation 2 lines above '<p> tag should be preceded with an empty line.'
 
 class InputIncorrectJavadocParagraph {
 
-  // 2 violations 4 lines below:
-  //  '\<p\> tag should be placed immediately before the first word'
-  //  '\<p\> tag should be preceded with an empty line.'
+  // violation 2 lines below '<p> tag should be preceded with an empty line.'
   /**
    * Some Javadoc.<p>
    *
@@ -24,10 +18,10 @@ class InputIncorrectJavadocParagraph {
    *
    * @since 8.0
    */
-  // violation 4 lines above '\<p\> tag should be placed immediately before the first word'
+  // violation 4 lines above '<p> tag should be placed immediately before the first word'
   public static final byte NUL = 0;
 
-  // violation 2 lines below '\<p\> tag should be preceded with an empty line.'
+  // violation 2 lines below '<p> tag should be preceded with an empty line.'
   /**
    * Some <p>Javadoc.
    *
@@ -41,26 +35,18 @@ class InputIncorrectJavadocParagraph {
     return false;
   }
 
-  // violation 4 lines below 'Redundant \<p\> tag.'
-  // 2 violations 4 lines below:
-  //                            '\<p\> tag should be placed immediately before the first word'
-  //                            '\<p\> tag should be preceded with an empty line.'
+  // violation 2 lines below 'Redundant <p> tag.'
+  // violation 2 lines below '<p> tag should be preceded with an empty line.'
   /**<p>Some Javadoc.
    * <p>
    * <p><p>
    * <p>/^WARN/ Some Javadoc.<p>
    */
-  // 2 violations 3 lines above:
-  //  '\<p\> tag should be placed immediately before the first word'
-  //  '\<p\> tag should be preceded with an empty line.'
-  // 2 violations 5 lines above:
-  //  '\<p\> tag should be placed immediately before the first word'
-  //  '\<p\> tag should be preceded with an empty line.'
+  // violation 3 lines above '<p> tag should be preceded with an empty line.'
+  // violation 3 lines above '<p> tag should be preceded with an empty line.'
   class InnerInputCorrectJavaDocParagraphCheck {
 
-    // 2 violations 4 lines below:
-    //  '\<p\> tag should be placed immediately before the first word'
-    //  '\<p\> tag should be preceded with an empty line.'
+    // violation 2 lines below '<p> tag should be preceded with an empty line.'
     /**
      * Some Javadoc.<p>
      *
@@ -68,10 +54,7 @@ class InputIncorrectJavadocParagraph {
      */
     public static final byte NUL = 0;
 
-    // 2 violations 4 lines below:
-    //  '\<p\> tag should be placed immediately before the first word'
-    //  'Redundant \<p\> tag.'
-    // violation 4 lines below '\<p\> tag should be placed immediately before the first word'
+    // violation below 'Redundant <p> tag.'
     /**<p>
      * /^WARN/ Some Javadoc.
      *
@@ -83,13 +66,9 @@ class InputIncorrectJavadocParagraph {
      *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
      */
-    // 2 violations 6 lines above:
-    //  '\<p\> tag should be placed immediately before the first word'
-    //  '\<p\> tag should be preceded with an empty line.'
-    // 2 violations 8 lines above:
-    //  '\<p\> tag should be placed immediately before the first word'
-    //  '\<p\> tag should be preceded with an empty line.'
-    // violation 10 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
+    // violation 6 lines above '<p> tag should be preceded with an empty line.'
+    // violation 6 lines above '<p> tag should be preceded with an empty line.'
+    // violation 6 lines above 'Javadoc tag '@see' should be preceded with an empty line.'
     boolean emulated() {
       return false;
     }
@@ -98,7 +77,7 @@ class InputIncorrectJavadocParagraph {
   InnerInputCorrectJavaDocParagraphCheck anon =
       new InnerInputCorrectJavaDocParagraphCheck() {
 
-        // violation 2 lines below 'Redundant \<p\> tag.'
+        // violation 2 lines below 'Redundant <p> tag.'
         /**
          * <p>Some Javadoc.
          *
@@ -108,10 +87,8 @@ class InputIncorrectJavadocParagraph {
          */
         public static final byte NUL = 0;
 
-        // 2 violations 5 lines below:
-        //  '\<p\> tag should be placed immediately before the first word'
-        //  '\<p\> tag should be preceded with an empty line.'
-        // violation 4 lines below '\<p\> tag should be placed immediately before the first word'
+        // violation 3 lines below '<p> tag should be preceded with an empty line.'
+        // violation 4 lines below '<p> tag should be placed immediately before the first word'
         /**
          * /WARN/  Some Javadoc.<p>
          *
@@ -121,21 +98,21 @@ class InputIncorrectJavadocParagraph {
          *     Documentation about <p> GWT emulated source</a>
          */
         // 2 violations 2 lines above:
-        //  '\<p\> tag should be placed immediately before the first word'
-        //  '\<p\> tag should be preceded with an empty line.'
+        //  '<p> tag should be placed immediately before the first word'
+        //  '<p> tag should be preceded with an empty line.'
         boolean emulated() {
           return false;
         }
       };
 
-  /* 4 lines below, no violation until #15503 */
+  /* 4 lines below, no violation until #15685 */
   /**
    * Some summary.
    *
    * <p><h1>Testing...</h1></p>
    */
   class InnerPrecedingPtag {
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      * Some summary.
      *
@@ -149,7 +126,7 @@ class InputIncorrectJavadocParagraph {
      */
     public void foo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      *  Some summary.
      *
@@ -160,7 +137,7 @@ class InputIncorrectJavadocParagraph {
      */
     public void fooo() {}
 
-    /* 5 lines below, no violation until #15503 */
+    /* 5 lines below, no violation until #15685 */
     /**
      * Some summary.
      *

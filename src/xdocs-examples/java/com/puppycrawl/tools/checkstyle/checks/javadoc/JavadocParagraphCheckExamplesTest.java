@@ -36,7 +36,6 @@ public class JavadocParagraphCheckExamplesTest extends AbstractExamplesModuleTes
     public void testExample1() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_LINE_BEFORE),
-            "18: " + getCheckMessage(MSG_MISPLACED_TAG),
             "21: " + getCheckMessage(MSG_MISPLACED_TAG),
         };
 
@@ -47,6 +46,8 @@ public class JavadocParagraphCheckExamplesTest extends AbstractExamplesModuleTes
     public void testExample2() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_LINE_BEFORE),
+            "20: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "23: " + getCheckMessage(MSG_MISPLACED_TAG),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
