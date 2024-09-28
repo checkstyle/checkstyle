@@ -9,15 +9,15 @@ allowNewlineParagraph = (default)true
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
- * Some Javadoc.
+ * Some Summary.
  *
- * <p>Some Javadoc.
+ * <p>Some Paragraph.
  *
  */
 class InputJavadocParagraphCorrect {
 
     /**
-     * Some Javadoc.
+     * Some Summary.
      *   
      * <p>{@code function} will never be invoked with a null value.
      *
@@ -26,9 +26,9 @@ class InputJavadocParagraphCorrect {
     public static final byte NUL = 0;
 
     /**
-     * Some Javadoc.
+     * Some Summary.
      *
-     * <p>Some Javadoc.
+     * <p>Some Paragraph.
      *
      * <pre>
      * class Foo {
@@ -37,13 +37,13 @@ class InputJavadocParagraphCorrect {
      * }
      * </pre>
      *
-     * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+     * @see <a href="example.com">
      *     Documentation about GWT emulated source</a>
      */
     boolean emulated() {return false;}
 
     /**
-     * Some Javadoc.
+     * Some Summary.
      *
      *<pre>
      * Test
@@ -56,30 +56,30 @@ class InputJavadocParagraphCorrect {
     boolean test() {return false;}
 
     /**
-     * Some Javadoc.
+     * Some Summary.
      *
-     * <p>Some Javadoc.
+     * <p>Some Paragraph.
      *
      */
      class InnerInputJavadocParagraphCorrect {
 
         /**
-         * Some Javadoc.
+         * Some Summary.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
          * @since 8.0
          */
         public static final byte NUL = 0;
 
         /**
-         * Some Javadoc.
+         * Some Summary.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
-         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="example.com">
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
@@ -88,11 +88,11 @@ class InputJavadocParagraphCorrect {
      InnerInputJavadocParagraphCorrect anon = new InnerInputJavadocParagraphCorrect() {
 
             /**
-         * Some Javadoc.
+         * Some Summary.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
          * @since 8.0
          */
@@ -101,11 +101,11 @@ class InputJavadocParagraphCorrect {
         /** 
          * Some Javadoc with space at the end of first line.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
-         * <p>Some Javadoc.
+         * <p>Some Paragraph.
          *
-         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="example.com">
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
