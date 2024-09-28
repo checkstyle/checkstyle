@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -70,6 +74,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * {@code javadoc.paragraph.misplaced.tag}
  * </li>
  * <li>
+ * {@code javadoc.paragraph.preceded.block.tag}
+ * </li>
+ * <li>
  * {@code javadoc.paragraph.redundant.paragraph}
  * </li>
  * <li>
@@ -114,6 +121,20 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_EXTRA_TAG = "javadoc.paragraph.preceded.block.tag";
+
+    /**
+     * Set of block tags supported by this check.
+     */
+    private static final Set<String> BLOCK_TAGS = new HashSet<>(
+            Arrays.asList("address", "blockquote", "div", "dl",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "hr", "ol",
+                    "p", "pre", "table", "ul"));
 
     /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
@@ -181,11 +202,43 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
+
+        checkIfFollowedByBlockTag(tag);
+
         if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
         if (isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+        }
+    }
+
+    /**
+     * Determines whether or not the paragraph tag is followed by block tag.
+     *
+     * @param tag html tag.
+     */
+    private void checkIfFollowedByBlockTag(DetailNode tag) {
+        DetailNode htmlElement = JavadocUtil.getNextSibling(tag);
+        while (htmlElement != null && htmlElement.getType() != JavadocTokenTypes.HTML_ELEMENT) {
+            if (htmlElement.getType() == JavadocTokenTypes.TEXT
+                    && !CommonUtil.isBlank(htmlElement.getText())) {
+                htmlElement = null;
+                break;
+            }
+            htmlElement = JavadocUtil.getNextSibling(htmlElement);
+        }
+
+        if (htmlElement != null) {
+            final DetailNode htmlTag = JavadocUtil.getFirstChild(htmlElement);
+            final DetailNode htmlTagFirstChild = JavadocUtil.getFirstChild(htmlTag);
+            for (DetailNode child: htmlTagFirstChild.getChildren()) {
+                final String htmlTagName = child.getText();
+                if (BLOCK_TAGS.contains(htmlTagName)) {
+                    log(htmlElement.getLineNumber(), htmlElement.getColumnNumber(),
+                            MSG_EXTRA_TAG, htmlTagName);
+                }
+            }
         }
     }
 
