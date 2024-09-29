@@ -181,7 +181,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
             log(tag.getLineNumber(), MSG_LINE_BEFORE);
         }
-        if (allowNewlineParagraph && isImmediatelyFollowedByText(tag)) {
+        if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
+            log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+        }
+        if (isImmediatelyFollowedByText(tag)) {
             log(tag.getLineNumber(), MSG_MISPLACED_TAG);
         }
     }
@@ -271,9 +274,19 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
         final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
-        return nextSibling.getType() == JavadocTokenTypes.NEWLINE
-                || nextSibling.getType() == JavadocTokenTypes.EOF
+        return nextSibling.getType() == JavadocTokenTypes.EOF
                 || nextSibling.getText().startsWith(" ");
+    }
+
+    /**
+     * Tests whether the paragraph tag is immediately followed by the new line.
+     *
+     * @param tag html tag.
+     * @return true, if the paragraph tag is immediately followed by the text.
+     */
+    private static boolean isImmediatelyFollowedByNewLine(DetailNode tag) {
+        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
+        return nextSibling.getType() == JavadocTokenTypes.NEWLINE;
     }
 
 }
