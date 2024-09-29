@@ -84,13 +84,13 @@ public void guessTheOutput()
 public class Example1 {
   public void foo() {
     int myInteger = 0;
-    {                      // violation
+    {                      // violation 'Avoid nested blocks'
       myInteger = 2;
     }
     System.out.println(&quot;myInteger = &quot; + myInteger);
 
     switch (a) {
-      case 1: {                    // violation
+      case 1: {                    // violation 'Avoid nested blocks'
         System.out.println(&quot;Case 1&quot;);
         break;
       }
@@ -116,7 +116,7 @@ public class Example1 {
 public class Example2 {
   public void foo() {
     int myInteger = 0;
-    {                      // violation
+    {                      // violation 'Avoid nested blocks'
       myInteger = 2;
     }
     System.out.println(&quot;myInteger = &quot; + myInteger);
