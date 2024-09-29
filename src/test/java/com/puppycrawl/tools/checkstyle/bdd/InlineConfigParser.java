@@ -208,7 +208,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck",
             "com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck",
