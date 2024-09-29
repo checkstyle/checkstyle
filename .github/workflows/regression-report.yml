@@ -146,5 +146,5 @@ jobs:
           fail-on-cache-miss: true
 
       - name: check file
-        id: set_links
+        id: test
         run: file 1111.txt
