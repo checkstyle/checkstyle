@@ -18,7 +18,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
         int x = 0;
 
         // if (condition that is not important anymore)
-        { // violation
+        { // violation 'Avoid nested blocks'
             int z = 1;
             int y = z;
         }
@@ -40,7 +40,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
                 break;
             case 1:
                 // Not ok, SLIST is not complete case body
-                { // violation
+                { // violation 'Avoid nested blocks'
                     x = 1;
                 }
                 break;
@@ -54,7 +54,7 @@ class InputAvoidNestedBlocksAllowInSwitchCase
             default:
                 // Not ok, SLIST is not complete case body
                 System.identityHashCode("Hello");
-                { // violation
+                { // violation 'Avoid nested blocks'
                     x = 2;
                 }
         }
