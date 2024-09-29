@@ -2087,9 +2087,10 @@
             <!-- Excluded due to Maven Codehaus Plugin's issue #4:
                  https://github.com/mojohaus/mojohaus.github.io/issues/4 -->
             <excludedLink>http://mojo.codehaus.org/antlr-maven-plugin</excludedLink>
-            <!-- Excluded due to Maven JDepend Plugin's issue #2:
-                 https://github.com/mojohaus/jdepend-maven-plugin/issues/2 -->
-            <excludedLink>http://mojo.codehaus.org/jdepend-maven-plugin</excludedLink>
+            <!-- Excluded due to long lasting problem with link that they do not want to fix -->
+            <excludedLink>
+              https://www.mojohaus.org/jdepend-maven-plugin/jdepend-maven-plugin
+            </excludedLink>
             <!-- Excluded due to Maven Taglist Plugin's issue #3:
                  https://github.com/mojohaus/taglist-maven-plugin/issues/3 -->
             <excludedLink>http://mojo.codehaus.org/taglist-maven-plugin</excludedLink>
