@@ -10,6 +10,207 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.18.2">
+      <div class="releaseDate">29.09.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JavadocParagraph: allowNewlineParagraph should allow &#39;\n&#39; after P tag and
+            content start from new line.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15690">#15690</a>
+          </li>
+          <li>
+            google_checks: Section 4.1.3 should not be covered by EmptyBlock and EmptyCatchBlock.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15642">#15642</a>
+          </li>
+          <li>
+            google_checks SuppressionXpathSingleFilter for &#39;MethodName&#39; check is too
+            lenient in several ways.
+            Author: Mark Chesney
+            <a href="https://github.com/checkstyle/checkstyle/issues/15609">#15609</a>
+          </li>
+          <li>
+            MissingJavadocMethod does not give warning for missing javadoc for protected methods in
+            google_checks.xml.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15434">#15434</a>
+          </li>
+          <li>
+            False positive in FallThroughCheck on last case.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13553">#13553</a>
+          </li>
+          <li>
+            Suppression for long identifiers for `4.4 Column Limit: 100` rule of google java style
+            guide.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15233">#15233</a>
+          </li>
+          <li>
+            Google style: Javadoc is optional for &quot;simple, obvious&quot; members.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15414">#15414</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Chris, Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: Andrei Yusupau, Chris, Mohanad, Pakhi-7831
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: absolutely-sam, Chris, SteLeo1602, Mohanad, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Add new argument `--diffToolJarPath` to DiffTool command regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15691">#15691</a>
+          </li>
+          <li>
+            Investigate step `Setup local maven cache` in regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15634">#15634</a>
+          </li>
+          <li>
+            Incorporate the place for new_module_config.xml missing in regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15669">#15669</a>
+          </li>
+          <li>
+            Remove the existing comment option in regression-report.yml getting away with
+            contribution repository.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15675">#15675</a>
+          </li>
+          <li>
+            regression-report.yml should be independent of checkstyle/contribution and diff.groovy.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15665">#15665</a>
+          </li>
+          <li>
+            What happens when an import matches two or more ImportOrder groups?.
+            Author: Jay Bazuzi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15626">#15626</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Chris
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            RegexMultiline contains Example7 that is actually part of Example6.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15172">#15172</a>
+          </li>
+          <li>
+            Rename Example4.py to Example.cpp and change content to be some C.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15555">#15555</a>
+          </li>
+          <li>
+            Update XdocPagesTest to validate Google coverage table sections.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/14968">#14968</a>
+          </li>
+          <li>
+            Update ChekerTest.java to use `@TempDir` instead of java.io.File#createTempFile.
+            Author: Mark Chesney
+            <a href="https://github.com/checkstyle/checkstyle/issues/15636">#15636</a>
+          </li>
+          <li>
+            regression-report.yml doesnot handle two configs for execution .
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15648">#15648</a>
+          </li>
+          <li>
+            Update Tests to use new &#39;verifyXxxxxx&#39; method or &#39;execute&#39; that use
+            inlined config in Input files.
+            Author: SteLeo1602, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/11446">#11446</a>
+          </li>
+          <li>
+            regression-report.yml should generate label at handle_existing_config_bundle job.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15641">#15641</a>
+          </li>
+          <li>
+            Document System Variables usage for Windows OS.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15089">#15089</a>
+          </li>
+          <li>
+            InputEqualsHashCodeEqualsParameter.java has wrong location of violation comments.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/15256">#15256</a>
+          </li>
+          <li>
+            update TodoComment to show how to use ignore case in format property.
+            Author: piyush kumar sadangi, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15605">#15605</a>
+          </li>
+          <li>
+            regression-report.yml should generate label at handle_generated_config_bundle job.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15639">#15639</a>
+          </li>
+          <li>
+            regression-report.yml: &#39;for configs in PR description&#39; mode is not working.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15632">#15632</a>
+          </li>
+          <li>
+            Remove cache cleanup in regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15614">#15614</a>
+          </li>
+          <li>
+            regression-report.yml should use label for report comment that took config from Input.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15619">#15619</a>
+          </li>
+          <li>
+            create &quot;InputFormattedXxxxxx&quot; files for all Input files that are excluded from
+            formatting.
+            Author: Mauryan Kansara, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15340">#15340</a>
+          </li>
+          <li>
+            Add print logs and cleaning up cache in regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15606">#15606</a>
+          </li>
+          <li>
+            Language Feature Integration Document: JEPS.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/14923">#14923</a>
+          </li>
+          <li>
+            Minimize list of excludes in google-java-format.sh.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15449">#15449</a>
+          </li>
+          <li>
+            Re-enable no-error-pmd build.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15475">#15475</a>
+          </li>
+          <li>
+            Restoring the label feature in new workflow regression-report.yml.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15596">#15596</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.18.1">
       <div class="releaseDate">30.08.2024</div>
       <p>Bug fixes:</p>
