@@ -63,22 +63,6 @@ jobs:
       - name: Create .ci-temp directory
         run: mkdir -p .ci-temp
 
-      - name: Get PR branch and fork details
-        id: get_pr_details
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.issue.pull_request.url }}
-        run: |
-          PR_INFO="$(curl --fail-with-body -s -H "Authorization: token $GITHUB_TOKEN" "$PR_URL")"
-          BRANCH="$(echo "$PR_INFO" | jq -r .head.ref)"
-          FORK_REPO="$(echo "$PR_INFO" | jq -r .head.repo.full_name)"
-          COMMIT_SHA="$(echo "$PR_INFO" | jq -r .head.sha)"
-          {
-            echo "branch=$BRANCH"
-            echo "fork_repo=$FORK_REPO"
-            echo "commit_sha=$COMMIT_SHA"
-          } >> "$GITHUB_OUTPUT"
-
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
@@ -90,17 +74,6 @@ jobs:
         with:
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
-
-      - name: Setup Git remotes
-        run: |
-          cd .ci-temp/checkstyle
-          git remote add upstream https://github.com/checkstyle/checkstyle.git
-          git remote add forked https://github.com/${{ steps.get_pr_details.outputs.fork_repo }}.git
-          git fetch upstream
-          git fetch forked
-          git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
-               forked/${{ steps.get_pr_details.outputs.branch }}
-
 
       - name: Save cache
         uses: actions/cache/save@v4
