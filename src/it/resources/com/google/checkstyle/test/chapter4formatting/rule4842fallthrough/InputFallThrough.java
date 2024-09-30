@@ -21,23 +21,23 @@ public class InputFallThrough {
         case 6:
           continue;
         case 7:
-          { // violation 'should be on the previous line'
+          {
             break;
           }
         case 8:
-          { // violation 'should be on the previous line'
+          {
             return;
           }
         case 9:
-          { // violation 'should be on the previous line'
+          {
             throw new RuntimeException("");
           }
         case 10:
-          { // violation 'should be on the previous line'
+          {
             continue;
           }
         case 11:
-          { // violation 'should be on the previous line'
+          {
             i++;
           }
         case 12: // violation 'Fall through from previous branch of the switch statement.'
@@ -158,23 +158,23 @@ public class InputFallThrough {
         case 6:
           continue;
         case 7:
-          { // violation 'should be on the previous line'
+          {
             break;
           }
         case 8:
-          { // violation 'should be on the previous line'
+          {
             return;
           }
         case 9:
-          { // violation 'should be on the previous line'
+          {
             throw new RuntimeException("");
           }
         case 10:
-          { // violation 'should be on the previous line'
+          {
             continue;
           }
         case 11:
-          { // violation 'should be on the previous line'
+          {
             i++;
           }
           // fallthru
@@ -297,7 +297,7 @@ public class InputFallThrough {
           i++;
           // fallthru
         case 2:
-          { // violation 'should be on the previous line'
+          {
             i++;
           }
           // fallthru
