@@ -118,7 +118,6 @@ jobs:
           git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
                forked/${{ steps.get_pr_details.outputs.branch }}
 
-
       - name: Save cache
         uses: actions/cache/save@v4
         with:
@@ -619,8 +618,12 @@ jobs:
           || needs.download_configs.result == 'failure'
           || needs.handle_generated_config_bundle.result == 'failure')
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .
+          key: ${{ env.CACHE_KEY }}
+          fail-on-cache-miss: true
 
       - name: Get message
         env:
