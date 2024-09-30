@@ -97,14 +97,13 @@ jobs:
         id: parse
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
-        run: pwd && touch 1111.txt
+        run: pwd && touch 1111.txt && ls -la
 
       - name: Save cache
         uses: actions/cache/save@v4
         with:
           path: .
           key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
 
   check_cache:
     needs: [ make_file, checkout_and_cache ]
@@ -120,4 +119,4 @@ jobs:
 
       - name: check file
         id: test
-        run: pwd && file 1111.txt
+        run: pwd && ls -la && file 1111.txt
