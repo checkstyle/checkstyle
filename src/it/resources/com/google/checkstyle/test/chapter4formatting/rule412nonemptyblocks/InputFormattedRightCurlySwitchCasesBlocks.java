@@ -9,17 +9,18 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     switch (mode) {
       case 1:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 1;
           break;
         }
       case 2:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 0;
           break;
         }
       default:
+        {
+          int x = 0;
+        }
     }
   }
 
@@ -29,7 +30,6 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     switch (mode) {
       case 1:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 1;
           break;
         }
@@ -44,7 +44,6 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     switch (k) {
       case 1:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 1;
         }
         break;
@@ -64,10 +63,12 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
         break;
       case 2:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           break;
         }
       default:
+        {
+          break;
+        }
     }
   }
 
@@ -77,17 +78,81 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     switch (k) {
       case 1:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 1;
           break;
         }
       case 2:
         {
-          // violation above ''{' at column 9 should be on the previous line.'
           int x = 2;
         }
         break;
       default:
+        {
+          int x = 2;
+        }
+    }
+  }
+
+  /** some javadoc. */
+  public static void test4() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        {
+          int x = 1;
+          break;
+        }
+      default:
+        {
+          int x = 0;
+        }
+    }
+  }
+
+  /** some javadoc. */
+  public static void test5() {
+    int k = 0;
+    switch (k) {
+      case 1:
+        {
+          int x = 1;
+        }
+        break;
+      default:
+        {
+          int a = 2;
+        }
+    }
+  }
+
+  /** some javadoc. */
+  public static void test6() {
+    int mode = 0;
+    switch (mode) {
+      case 1:
+        int x = 1;
+        break;
+      case 2:
+        {
+          break;
+        }
+      default:
+    }
+  }
+
+  /** some javadoc. */
+  public static void test7() {
+    int k = 0;
+    switch (k) {
+      case 1:
+        {
+          int x = 1;
+          break;
+        }
+      default:
+        {
+          int x = 2;
+        }
     }
   }
 }
