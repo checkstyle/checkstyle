@@ -42,7 +42,6 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         foo1();
         // fall through
       case "10":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           if (true) {
             /* foo */
@@ -50,17 +49,14 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         }
         // fall through
       case "11":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
         // fall through
       case "28":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
         // fall through
       case "12":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           // odd indentation comment
 
@@ -68,33 +64,28 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         }
         break;
       case "13":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           // some comment in empty case block
         }
         break;
       case "14":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           // odd indentation comment
 
         }
         break;
       case "15":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           foo1();
           // odd indentation comment
         }
         break;
       case "16":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           int a;
         }
         // fall through
       case "17":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           int a;
         }
@@ -102,7 +93,6 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         // odd indentation comment
         break;
       case "18":
-        // violation below ''{' at column 9 should be on the previous line.'
         {
           System.lineSeparator();
         } // trailing comment
@@ -159,7 +149,6 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         i--;
         break;
       case 3:
-        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
         // fall through
@@ -238,7 +227,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
   public void foo7() {
     int a = 2;
     String s = "";
-    // violation 4 lines below '.* indentation should be the same level as line 246.'
+    // violation 4 lines below '.* indentation should be the same level as line 235.'
     switch (a) {
         // comment
         // comment
@@ -271,7 +260,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
   public void foo8() {
     int a = 2;
     String s = "";
-    // violation 4 lines below '.* indentation should be the same level as line 279.'
+    // violation 4 lines below '.* indentation should be the same level as line 268.'
     switch (a) {
         // comment
         // comment
@@ -331,7 +320,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
   /** some javadoc. */
   public void foo12() {
     int a = 5;
-    // violation 2 lines below '.* indentation should be the same level as line 337.'
+    // violation 2 lines below '.* indentation should be the same level as line 326.'
     switch (a) {
         // comment
       case 1:

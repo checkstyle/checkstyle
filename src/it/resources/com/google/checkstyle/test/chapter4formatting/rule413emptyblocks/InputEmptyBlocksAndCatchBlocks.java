@@ -63,8 +63,8 @@ class InputEmptyBlocksAndCatchBlocks {
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {;}
     // 3 violations above:
-    //  ''{' at column 43 should have line break after.'
     //  'WhitespaceAround: '{' is not followed by whitespace.'
+    //  ''{' at column 43 should have line break after.'
     //  'WhitespaceAround: '}' is not preceded with whitespace.'
   }
 
