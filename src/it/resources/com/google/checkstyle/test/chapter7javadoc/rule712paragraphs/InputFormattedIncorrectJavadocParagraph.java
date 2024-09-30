@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule712paragraphs;
 /**
  * Some Javadoc.
  *
- * <p>/^ WARN/ Some Javadoc.
+ * <p>Some Javadoc.
  *
  * <p>
  */
@@ -44,7 +44,7 @@ class InputFormattedIncorrectJavadocParagraph {
    *
    * <p>
    *
-   * <p>/^WARN/ Some Javadoc.
+   * <p>Some Javadoc.
    *
    * <p>
    */
@@ -60,11 +60,11 @@ class InputFormattedIncorrectJavadocParagraph {
     public static final byte NUL = 0;
 
     /**
-     * /^WARN/ Some Javadoc.
+     * Some Javadoc.
      *
-     * <p>/^WARN/
+     * <p>
      *
-     * <p>/^WARN/ Some Javadoc.
+     * <p>Some Javadoc.
      *
      * <p>
      *
@@ -90,7 +90,7 @@ class InputFormattedIncorrectJavadocParagraph {
         public static final byte NUL = 0;
 
         /**
-         * /WARN/ Some Javadoc.
+         * Some Javadoc.
          *
          * <p>
          *
