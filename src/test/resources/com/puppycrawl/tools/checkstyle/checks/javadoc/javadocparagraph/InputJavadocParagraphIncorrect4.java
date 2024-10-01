@@ -1,0 +1,64 @@
+/*
+JavadocParagraph
+violateExecutionOnNonTightHtml = (default)false
+allowNewlineParagraph = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
+
+/**
+ * Some summary.
+ *
+ * <p><h1>Testing...</h1>
+ */
+// violation 2 lines above 'block-level tag '<h1>' is preceded by <p> tag'
+public class InputJavadocParagraphIncorrect4 {
+    // violation 5 lines below '<p> tag should be placed immediately before the first word'
+    // violation 5 lines below 'block-level tag '<ul>' is preceded by <p> tag'
+    /**
+     * Some summary.
+     *
+     *<p>
+     *  <ul>
+     *    <p>
+     *      <li>1</li> // should NOT give violation as there is not empty line before
+     *  </ul>
+     *
+     *
+     * <p><b>testing</b> // ok, inline HTML tag. Not a block-level tag
+     */
+    // 2 violations 7 lines above:
+    //  '<p> tag should be placed immediately before the first word'
+    //  'tag should be preceded with an empty line.'
+    public void foo() {}
+
+    // violation 5 lines below '<p> tag should be placed immediately before the first word'
+    // violation 5 lines below 'block-level tag '<table>' is preceded by <p> tag'
+    /**
+     *  Some summary.
+     *
+     * <p>
+     *  <table>
+     *  </table>
+     *
+     * <p>This is allowed<h1>Testing....</h1>
+     */
+    public void fooo() {}
+
+    // violation 4 lines below '<p> tag should be placed immediately before the first word'
+    /**
+     * <h1>Testing....</h1>
+     *
+     * <p>     Test<h1>test</h1>
+     *
+     * <p>    <ol>test</ol>
+     *
+     * <p><b><h1>Nesting....</h1></b>
+     */
+    // 2 violations 4 lines above:
+    // '<p> tag should be placed immediately before the first word'
+    // 'block-level tag '<ol>' is preceded by <p> tag'
+    void foooo() {}
+}
