@@ -28,9 +28,7 @@ class InputFormattedCorrectJavadocParagraph {
    * }
    * </pre>
    *
-   * @see <a
-   *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-   *     Documentation about GWT emulated source</a>
+   * @see <a href="example.com">Documentation about GWT emulated source</a>
    */
   boolean emulated() {
     return false;
@@ -59,9 +57,7 @@ class InputFormattedCorrectJavadocParagraph {
      *
      * <p>Some Javadoc.
      *
-     * @see <a
-     *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-     *     Documentation about GWT emulated source</a>
+     * @see <a href="example.com">Documentation about GWT emulated source</a>
      */
     boolean emulated() {
       return false;
@@ -89,9 +85,7 @@ class InputFormattedCorrectJavadocParagraph {
          *
          * <p>Some Javadoc.
          *
-         * @see <a
-         *     href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
-         *     Documentation about GWT emulated source</a>
+         * @see <a href="example.com">Documentation about GWT emulated source</a>
          */
         boolean emulated() {
           return false;
