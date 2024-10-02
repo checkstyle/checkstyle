@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>RegexpCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck</mutatedClass>
+    <mutatedMethod>processRegexpMatches</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (!illegalPattern &amp;&amp; !checkForDuplicates) {</lineContent>
+  </mutation>
+</suppressedMutations>
