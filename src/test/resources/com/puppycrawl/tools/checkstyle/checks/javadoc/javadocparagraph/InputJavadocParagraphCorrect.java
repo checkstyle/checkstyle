@@ -109,6 +109,18 @@ class InputJavadocParagraphCorrect {
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}
+
+         /**
+          * Some Summary.
+          *
+          * <p>{@code com.company.MyClass$Nested#myMethod(String, int)}
+          * <ul>
+          *     <li>Item 1</li>
+          *     <li>Item 2</li>
+          *     <li>Item 3</li>
+          * </ul>
+          */
+         private static final String NAME2 = "Jesse Pinkman";
     };
 }
 
