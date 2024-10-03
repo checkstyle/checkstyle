@@ -180,10 +180,48 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     public void testJavadocParagraph() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_LINE_BEFORE),
-            "30: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "31: " + getCheckMessage(MSG_LINE_BEFORE),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphCheck1.java"), expected);
+    }
+
+    @Test
+    public void testJavadocParagraphOpenClosedTag() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "21: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28: " + getCheckMessage(MSG_LINE_BEFORE),
+            "29: " + getCheckMessage(MSG_LINE_BEFORE),
+            "35: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "36: " + getCheckMessage(MSG_TAG_AFTER),
+            "38: " + getCheckMessage(MSG_TAG_AFTER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrectOpenClosedTag.java"), expected);
+    }
+
+    @Test
+    public void testJavadocParagraphOpenClosedTag2() throws Exception {
+        final String[] expected = {
+            "14: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "21: " + getCheckMessage(MSG_LINE_BEFORE),
+            "30: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "30: " + getCheckMessage(MSG_LINE_BEFORE),
+            "31: " + getCheckMessage(MSG_LINE_BEFORE),
+            "37: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "38: " + getCheckMessage(MSG_TAG_AFTER),
+            "40: " + getCheckMessage(MSG_TAG_AFTER),
+            "50: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "61: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "84: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "88: " + getCheckMessage(MSG_MISPLACED_TAG),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrectOpenClosedTag2.java"), expected);
     }
 }
