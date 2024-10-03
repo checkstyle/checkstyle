@@ -150,7 +150,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
             checkEmptyLine(ast);
         }
         else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
+                && (JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START
+                || JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.PARAGRAPH)) {
             checkParagraphTag(ast);
         }
     }
@@ -273,7 +274,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if the paragraph tag is immediately followed by the text.
      */
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
-        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
+        final DetailNode nextSibling = getNextSibling(tag);
+
         return nextSibling.getType() == JavadocTokenTypes.EOF
                 || nextSibling.getText().startsWith(" ");
     }
@@ -282,11 +284,32 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * Tests whether the paragraph tag is immediately followed by the new line.
      *
      * @param tag html tag.
-     * @return true, if the paragraph tag is immediately followed by the text.
+     * @return true, if the paragraph tag is immediately followed by the new line.
      */
     private static boolean isImmediatelyFollowedByNewLine(DetailNode tag) {
-        final DetailNode nextSibling = JavadocUtil.getNextSibling(tag);
-        return nextSibling.getType() == JavadocTokenTypes.NEWLINE;
+        return getNextSibling(tag).getType() == JavadocTokenTypes.NEWLINE;
+    }
+
+    /**
+     * Custom getNextSibling method to handle different types of paragraph tag.
+     * It works for both {@code <p>} and {@code <p></p>} tags.
+     *
+     * @param tag HTML_ELEMENT tag.
+     * @return next sibling of the tag.
+     */
+    private static DetailNode getNextSibling(DetailNode tag) {
+        final DetailNode nextSibling;
+
+        if (JavadocUtil.getFirstChild(tag).getType() == JavadocTokenTypes.PARAGRAPH) {
+            final DetailNode paragraphToken = JavadocUtil.getFirstChild(tag);
+            final DetailNode paragraphStartTagToken = JavadocUtil.getFirstChild(paragraphToken);
+            nextSibling = JavadocUtil.getNextSibling(paragraphStartTagToken);
+        }
+        else {
+            nextSibling = JavadocUtil.getNextSibling(tag);
+        }
+
+        return nextSibling;
     }
 
 }

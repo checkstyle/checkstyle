@@ -23,6 +23,7 @@ public class InputJavadocParagraphCheck1 {
 // violation 4 lines above '<p> tag should be preceded with an empty line'
 class Check {
 
+   // violation 2 lines below 'Redundant <p> tag.'
    /**
     * <p>
     * Checks whether file contains code. Files which are considered to have no code:
