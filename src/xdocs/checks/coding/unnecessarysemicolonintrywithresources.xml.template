@@ -29,7 +29,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -37,16 +37,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
-          if closing paren is not on same line
+          if closing parenthesis is not on the same line
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -54,7 +54,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonintrywithresources/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
