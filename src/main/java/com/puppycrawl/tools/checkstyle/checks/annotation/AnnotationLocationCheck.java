@@ -27,17 +27,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
  * Checks location of annotation on language elements.
  * By default, Check enforce to locate annotations immediately after
  * documentation block and before target element, annotation should be located
  * on separate line from target element. This check also verifies that the annotations
  * are on the same indenting level as the annotated element if they are not on the same line.
- * </p>
+ *
  * <p>
  * Attention: Elements that cannot have JavaDoc comments like local variables are not in the
  * scope of this check even though a token type like {@code VARIABLE_DEF} would match them.
  * </p>
+ *
  * <p>
  * Attention: Annotations among modifiers are ignored (looks like false-negative)
  * as there might be a problem with annotations for return types:
@@ -45,10 +45,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * public @Nullable Long getStartTimeOrNull() { ... }
  * </pre>
+ *
  * <p>
  * Such annotations are better to keep close to type.
  * Due to limitations, Checkstyle can not examine the target of an annotation.
  * </p>
+ *
  * <p>
  * Example:
  * </p>
@@ -103,9 +105,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

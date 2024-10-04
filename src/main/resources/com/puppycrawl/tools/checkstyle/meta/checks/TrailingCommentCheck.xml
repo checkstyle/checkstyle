@@ -4,13 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck"
              name="TrailingComment"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
- The check to ensure that lines with code do not end with comment.
+         <description>The check to ensure that lines with code do not end with comment.
  For the case of {@code //} comments that means that the only thing that should precede
  it is whitespace. It doesn't check comments if they do not end a line; for example,
  it accepts the following: &lt;code&gt;Thread.sleep( 10 /*some comment here&amp;#42;/ );&lt;/code&gt;
  Format property is intended to deal with the &lt;code&gt;} // while&lt;/code&gt; example.
- &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Steve McConnell in &lt;cite&gt;Code Complete&lt;/cite&gt; suggests that endline
  comments are a bad practice. An end line comment would be one that is on
@@ -20,6 +19,7 @@
  a = b + c;      // Some insightful comment
  d = e / f;        // Another comment for this line
  &lt;/pre&gt;
+
  &lt;p&gt;
  Quoting &lt;cite&gt;Code Complete&lt;/cite&gt; for the justification:
  &lt;/p&gt;
@@ -52,6 +52,7 @@
  which hurts more than it helps."
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  McConnell's comments on being hard to maintain when the size of the line changes
  are even more important in the age of automated refactorings.

@@ -32,20 +32,21 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
  * Verifies that the annotation {@code @Deprecated} and the Javadoc tag
  * {@code @deprecated} are both present when either of them is present.
- * </p>
+ *
  * <p>
  * Both ways of flagging deprecation serve their own purpose.
  * The &#64;Deprecated annotation is used for compilers and development tools.
  * The &#64;deprecated javadoc tag is used to document why something is deprecated
  * and what, if any, alternatives exist.
  * </p>
+ *
  * <p>
  * In order to properly mark something as deprecated both forms of
  * deprecation should be present.
  * </p>
+ *
  * <p>
  * Package deprecation is an exception to the rule of always using the
  * javadoc tag and annotation to deprecate.  It is not clear if the javadoc
@@ -77,9 +78,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
