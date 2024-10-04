@@ -23,6 +23,7 @@ public class InputJavadocParagraphCheck1 {
 // violation 4 lines above '<p> tag should be preceded with an empty line'
 class Check {
 
+   // violation 2 lines below 'Redundant <p> tag.'
    /**
     * <p>
     * Checks whether file contains code. Files which are considered to have no code:
@@ -31,4 +32,27 @@ class Check {
     */
    // violation 2 lines above '<p> tag should be preceded with an empty line.'
     void inheritDocWithThrows() {}
+
+    /**
+     * Some summary.
+     *
+     * <p>The following package declaration:</p>
+     * <pre>
+     * package com.puppycrawl.tools.checkstyle;
+     * </pre>
+     */
+    int iamtoolazyyyyyyy = 45;
+
+    /**
+     * Some summary.
+     *
+     *<p>
+     *  <ul>
+     *    <p>
+     *      <li>1</li> should NOT give violation as there is not empty line before
+     *    </p>
+     *  </ul>
+     *</p>
+     */
+    public void foo() {}
 }
