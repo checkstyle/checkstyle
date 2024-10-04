@@ -47,9 +47,9 @@ class InputJavadocParagraphIncorrect2 {
     boolean emulated() {return false;}
 
     // 3 violations 7 lines below:
+    //  'Redundant <p> tag.'
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
-    //  'Redundant <p> tag.'
     // 2 violations 4 lines below:
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
@@ -57,10 +57,13 @@ class InputJavadocParagraphIncorrect2 {
      * <p>
      * <p><p>
      * <p>   Some paragraph.<p>*/
-    // 2 violations 2 lines above:
+    // 3 violations 2 lines above:
+    //  '<p> tag should be preceded with an empty line.'
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
-    // 2 violations 4 lines above:
+    // 4 violations 5 lines above:
+    //  '<p> tag should be placed immediately before the first word'
+    //  '<p> tag should be preceded with an empty line.'
     //  '<p> tag should be placed immediately before the first word'
     //  '<p> tag should be preceded with an empty line.'
      class InnerInputJavadocParagraphIncorrect {
@@ -97,8 +100,10 @@ class InputJavadocParagraphIncorrect2 {
         boolean emulated() {return false;}
 
       /**
-       * * <p>/^WARN/   Some Summary.<p>*/
-      // 2 violations above:
+       * * <p>   Some Summary.<p>*/
+      // 4 violations above:
+      //  '<p> tag should be placed immediately before the first word'
+      //  '<p> tag should be preceded with an empty line.'
       //  '<p> tag should be placed immediately before the first word'
       //  '<p> tag should be preceded with an empty line.'
       int yyy = 99;

@@ -41,15 +41,19 @@ class InputJavadocParagraphIncorrect {
     boolean emulated() {return false;}
 
     // 2 violations 4 lines below:
-    //  'tag should be preceded with an empty line.'
     //  'Redundant <p> tag.'
+    //  'tag should be preceded with an empty line.'
     // violation 2 lines below 'tag should be preceded with an empty line.'
     /**<p>Some summary.<p>
      * <p>
      * <p><p>
      * <p>   Some paragraph.<p>*/
-    // violation 2 lines above 'tag should be preceded with an empty line.'
     // 2 violations 2 lines above:
+    //  'tag should be preceded with an empty line.'
+    //  'tag should be preceded with an empty line.'
+    // 4 violations 4 lines above:
+    //  '<p> tag should be placed immediately before the first word'
+    //  'tag should be preceded with an empty line.'
     //  '<p> tag should be placed immediately before the first word'
     //  'tag should be preceded with an empty line.'
      class InnerInputJavadocParagraphIncorrect {
