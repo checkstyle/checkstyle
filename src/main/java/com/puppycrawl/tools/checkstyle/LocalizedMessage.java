@@ -139,10 +139,8 @@ public class LocalizedMessage {
     }
 
     /**
-     * <p>
      * Custom ResourceBundle.Control implementation which allows explicitly read
      * the properties files as UTF-8.
-     * </p>
      */
     public static class Utf8Control extends Control {
 

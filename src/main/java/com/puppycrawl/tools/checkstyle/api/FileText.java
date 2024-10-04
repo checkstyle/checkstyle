@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Represents the text contents of a file of arbitrary plain text type.
+ *
  * <p>
  * This class will be passed to instances of class FileSetCheck by
  * Checker.
