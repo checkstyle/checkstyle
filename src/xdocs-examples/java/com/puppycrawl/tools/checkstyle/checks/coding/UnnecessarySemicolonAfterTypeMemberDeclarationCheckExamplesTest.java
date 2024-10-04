@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -36,9 +36,14 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "12:3: " + getCheckMessage(MSG_SEMI),
+            "13:5: " + getCheckMessage(MSG_SEMI),
+            "14:12: " + getCheckMessage(MSG_SEMI),
+            "15:16: " + getCheckMessage(MSG_SEMI),
+            "16:19: " + getCheckMessage(MSG_SEMI),
+            "17:18: " + getCheckMessage(MSG_SEMI),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
