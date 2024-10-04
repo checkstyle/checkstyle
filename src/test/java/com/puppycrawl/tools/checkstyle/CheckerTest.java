@@ -78,6 +78,7 @@ import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckWhichThrowsError;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
@@ -1688,6 +1689,47 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         verify(checkerConfig, filePath, expected);
+    }
+
+    /**
+     * Reason of non-Input based testing:
+     * There are bunch of asserts that expects full path to file,
+     * usage of "basedir" make it stripped and we need put everywhere code like
+     * <pre>CommonUtil.relativizePath(checker.getConfiguration().getProperty("basedir"), file)</pre>
+     * but Checker object is not always available in code.
+     * Propagating it in all code methods will complicate code.
+     */
+    @Test
+    public void testRelativizedFileExclusion() throws Exception {
+        final DefaultConfiguration newLineAtEndOfFileConfig =
+                createModuleConfig(NewlineAtEndOfFileCheck.class);
+
+        final DefaultConfiguration beforeExecutionExclusionFileFilterConfig =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+
+        beforeExecutionExclusionFileFilterConfig.addProperty("fileNamePattern",
+                        "^(?!InputCheckerTestExcludeRelativizedFile.*\\.java).*");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+        checkerConfig.addChild(newLineAtEndOfFileConfig);
+        checkerConfig.addChild(beforeExecutionExclusionFileFilterConfig);
+
+        checkerConfig.addProperty("basedir",
+                temporaryFolder.getPath());
+
+        final String violationMessage =
+                getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
+
+        final String[] expected = {
+            "1: " + violationMessage,
+        };
+
+        final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+
+        final File[] processedFiles = {tempFile};
+
+        verify(createChecker(checkerConfig), processedFiles,
+                tempFile.getName(), expected);
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
