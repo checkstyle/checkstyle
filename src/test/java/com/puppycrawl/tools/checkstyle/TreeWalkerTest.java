@@ -147,7 +147,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
         final String[] expected = {
-            "7: " + getCheckMessage(JavadocParagraphCheck.class,
+            "7:5: " + getCheckMessage(JavadocParagraphCheck.class,
                     JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
         };
         final String path = getPath("InputTreeWalkerJavadoc.java");
