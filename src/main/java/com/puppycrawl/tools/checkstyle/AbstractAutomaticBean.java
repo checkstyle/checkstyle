@@ -90,6 +90,7 @@ public abstract class AbstractAutomaticBean
     /**
      * Provides a hook to finish the part of this component's setup that
      * was not handled by the bean introspection.
+     *
      * <p>
      * The default implementation does nothing.
      * </p>
@@ -284,6 +285,7 @@ public abstract class AbstractAutomaticBean
 
     /**
      * Called by configure() for every child of this component's Configuration.
+     *
      * <p>
      * The default implementation throws {@link CheckstyleException} if
      * {@code childConf} is {@code null} because it doesn't support children. It

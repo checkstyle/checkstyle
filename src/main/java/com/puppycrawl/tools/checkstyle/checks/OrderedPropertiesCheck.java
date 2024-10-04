@@ -37,7 +37,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>Detects if keys in properties files are in correct order.</p>
+ * Detects if keys in properties files are in correct order.
+ *
  * <p>
  *   Rationale: Sorted properties make it easy for people to find required properties by name
  *   in file. This makes it easier to merge. While there are no problems at runtime.
@@ -58,9 +59,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li></ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

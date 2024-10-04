@@ -53,13 +53,12 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
  * Ensures the correct translation of code by checking property files for consistency
  * regarding their keys. Two property files describing one and the same context
  * are consistent if they contain the same keys. TranslationCheck also can check
  * an existence of required translations which must exist in project, if
  * {@code requiredTranslations} option is used.
- * </p>
+ *
  * <p>
  * Consider the following properties file in the same directory:
  * </p>
@@ -72,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * hell=Hallo
  * ok=OK
  * </pre>
+ *
  * <p>
  * The Translation check will find the typo in the German {@code hello} key,
  * the missing {@code ok} key in the default resource file and the missing
@@ -83,6 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * messages.properties: Key 'hell' missing.
  * messages.properties: Key 'ok' missing.
  * </pre>
+ *
  * <p>
  * Language code for the property {@code requiredTranslations} is composed of
  * the lowercase, two-letter codes as defined by
@@ -92,16 +93,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * language code) of required translations the check will also check for existence
  * of default translation files in project.
  * </p>
+ *
  * <p>
  * Note: If your project uses preprocessed translation files and the original files do not have the
  * {@code properties} extension, you can specify additional file extensions
  * via the {@code fileExtensions} property.
  * </p>
+ *
  * <p>
  * Attention: the check will perform the validation of ISO codes if the option
  * is used. So, if you specify, for example, "mm" for language code,
  * TranslationCheck will rise violation that the language code is incorrect.
  * </p>
+ *
  * <p>
  * Attention: this Check could produce false-positives if it is used with
  * <a href="https://checkstyle.org/config.html#Checker">Checker</a> that use cache
@@ -129,9 +133,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

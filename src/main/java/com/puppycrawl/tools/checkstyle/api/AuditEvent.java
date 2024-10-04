@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 /**
  * Raw event for audit.
+ *
  * <p>
  * <i>
  * I'm not very satisfied about the design of this event since there are
