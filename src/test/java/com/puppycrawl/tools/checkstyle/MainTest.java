@@ -1355,7 +1355,7 @@ public class MainTest {
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]\"/>",
                 "<suppress-xpath",
                 "       files=\"InputMainComplexityOverflow.java\"",
-                "       checks=\"LeftCurlyCheck\"",
+                "       id=\"LeftCurlyEol\"",
                 "       query=\"/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputMainComplexityOverflow']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='provokeNpathIntegerOverflow']]/SLIST\"/>",
