@@ -4,8 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"
              name="AvoidEscapedUnicodeCharacters"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
- Restricts using
+         <description>Restricts using
  &lt;a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3"&gt;
  Unicode escapes&lt;/a&gt;
  (such as &amp;#92;u221e). It is possible to allow using escapes for
@@ -13,8 +12,7 @@
  non-printable, control characters&lt;/a&gt;.
  Also, this check can be configured to allow using escapes
  if trail comment is present. By the option it is possible to
- allow using escapes if literal contains only them.
- &lt;/p&gt;</description>
+ allow using escapes if literal contains only them.</description>
          <properties>
             <property default-value="false" name="allowByTailComment" type="boolean">
                <description>Allow use escapes if trail comment is present.</description>
