@@ -82,11 +82,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * |   `--IDENT -&gt; checkstyle
  * `--SEMI -&gt; ;
  * </pre>
+ *
  * <p>
  * See <a href="https://github.com/checkstyle/checkstyle/pull/10434">#10434</a>
  * for a good example of how
  * to make changes to Checkstyle's grammar and AST.
  * </p>
+ *
  * <p>
  * The order of {@code visit...} methods in {@code JavaAstVisitor.java} and production rules in
  * {@code JavaLanguageParser.g4} should be consistent to ease maintenance.

@@ -108,11 +108,13 @@ public abstract class AbstractViolationReporter
     /**
      * Returns the message bundle name resource bundle that contains the messages
      * used by this module.
+     *
      * <p>
      * The default implementation expects the resource files to be named
      * messages.properties, messages_de.properties, etc. The file must
      * be placed in the same package as the module implementation.
      * </p>
+     *
      * <p>
      * Example: If you write com/foo/MyCoolCheck, create resource files
      * com/foo/messages.properties, com/foo/messages_de.properties, etc.
