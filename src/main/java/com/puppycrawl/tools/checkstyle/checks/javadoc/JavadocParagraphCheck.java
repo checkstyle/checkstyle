@@ -185,7 +185,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nearestToken = getNearestNode(newline);
         if (nearestToken.getType() == JavadocTokenTypes.TEXT
                 && !CommonUtil.isBlank(nearestToken.getText())) {
-            log(newline.getLineNumber(), MSG_TAG_AFTER);
+            log(newline.getLineNumber(), newline.getColumnNumber(), MSG_TAG_AFTER);
         }
     }
 
@@ -197,22 +197,22 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private void checkParagraphTag(DetailNode tag) {
         final DetailNode newLine = getNearestEmptyLine(tag);
         if (isFirstParagraph(tag)) {
-            log(tag.getLineNumber(), MSG_REDUNDANT_PARAGRAPH);
+            log(tag.getLineNumber(), tag.getColumnNumber(), MSG_REDUNDANT_PARAGRAPH);
         }
         else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
-            log(tag.getLineNumber(), MSG_LINE_BEFORE);
+            log(tag.getLineNumber(), tag.getColumnNumber(), MSG_LINE_BEFORE);
         }
 
         final String blockTagName = findFollowedBlockTagName(tag);
         if (blockTagName != null) {
-            log(tag.getLineNumber(), MSG_PRECEDED_BLOCK_TAG, blockTagName);
+            log(tag.getLineNumber(), tag.getColumnNumber(), MSG_PRECEDED_BLOCK_TAG, blockTagName);
         }
 
         if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
-            log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+            log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
         }
         if (isImmediatelyFollowedByText(tag)) {
-            log(tag.getLineNumber(), MSG_MISPLACED_TAG);
+            log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
         }
     }
 
