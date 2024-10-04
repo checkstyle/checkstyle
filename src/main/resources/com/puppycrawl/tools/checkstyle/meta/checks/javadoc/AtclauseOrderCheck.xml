@@ -13,7 +13,7 @@
  Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="@author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version"
+            <property default-value="@author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated"
                       name="tagOrder"
                       type="java.lang.String[]">
                <description>Specify the order by tags.</description>

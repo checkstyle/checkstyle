@@ -33,7 +33,7 @@
               <td>tagOrder</td>
               <td>Specify the order by tags.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
-              <td><code>@author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version</code></td>
+              <td><code>@author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated</code></td>
               <td>6.0</td>
             </tr>
             <tr>
