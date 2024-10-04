@@ -49,10 +49,13 @@ class InputIncorrectJavadocParagraph {
    * <p><p>
    * <p> Some Javadoc.<p>
    */
-  // 2 violations 3 lines above:
+  // 3 violations 3 lines above:
+  //  '<p> tag should be preceded with an empty line.'
   //  '<p> tag should be placed immediately before the first word'
   //  '<p> tag should be preceded with an empty line.'
-  // 2 violations 5 lines above:
+  // 4 violations 6 lines above:
+  //  '<p> tag should be placed immediately before the first word'
+  //  '<p> tag should be preceded with an empty line.'
   //  '<p> tag should be placed immediately before the first word'
   //  '<p> tag should be preceded with an empty line.'
   class InnerInputCorrectJavaDocParagraphCheck {
