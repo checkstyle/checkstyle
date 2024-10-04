@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code allowWhenNoBraceAfterSemicolon} -
- * Allow unnecessary semicolon if closing paren is not on the same line.
+ * Allow unnecessary semicolon if closing parenthesis is not on the same line.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
@@ -60,7 +60,7 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
-    /** Allow unnecessary semicolon if closing paren is not on the same line. */
+    /** Allow unnecessary semicolon if closing parenthesis is not on the same line. */
     private boolean allowWhenNoBraceAfterSemicolon = true;
 
     @Override
@@ -81,7 +81,7 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
     }
 
     /**
-     * Setter to allow unnecessary semicolon if closing paren is not on the same line.
+     * Setter to allow unnecessary semicolon if closing parenthesis is not on the same line.
      *
      * @param allowWhenNoBraceAfterSemicolon a value to set.
      * @since 8.22

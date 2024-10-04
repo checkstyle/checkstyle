@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <td>allowWhenNoBraceAfterSemicolon</td>
-              <td>Allow unnecessary semicolon if closing paren is not on the same line.</td>
+              <td>Allow unnecessary semicolon if closing parenthesis is not on the same line.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.22</td>
@@ -50,21 +50,21 @@
           Example of violations
         </p>
         <source>
-class A {
-    void method() throws IOException {
-        try(Reader r1 = new PipedReader();){} // violation
-        try(Reader r4 = new PipedReader();Reader r5 = new PipedReader()
-        ;){} // violation
-        try(Reader r6 = new PipedReader();
-            Reader r7
-                   = new PipedReader();
-        ){}
-    }
+class Example1 {
+  void method() throws IOException {
+    try (Reader r1 = new PipedReader();) {} // violation, 'Unnecessary semicolon'
+    try (Reader r4 = new PipedReader(); Reader r5 = new PipedReader()
+         ;) {} // violation, 'Unnecessary semicolon'
+    try (Reader r6 = new PipedReader();
+         Reader r7
+           = new PipedReader(); // ok, closing parenthesis is not on the same line
+    ) {}
+  }
 }
         </source>
         <p id="Example2-config">
           To configure the check to detect unnecessary semicolon
-          if closing paren is not on same line
+          if closing parenthesis is not on the same line
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -79,13 +79,16 @@ class A {
           Example of exclusion
         </p>
         <source>
-class A {
-    void method() throws IOException {
-        try(Reader r1 = new PipedReader();){} // violation
-        try(Reader r6 = new PipedReader();
-            Reader r7 = new PipedReader(); // violation
-        ){}
-    }
+class Example2 {
+  void method() throws IOException {
+    try (Reader r1 = new PipedReader();) {} // violation, 'Unnecessary semicolon'
+    try (Reader r4 = new PipedReader(); Reader r5 = new PipedReader()
+         ;) {} // violation, 'Unnecessary semicolon'
+    try (Reader r6 = new PipedReader();
+         Reader r7
+           = new PipedReader(); // violation, 'Unnecessary semicolon'
+    ) {}
+  }
 }
         </source>
       </subsection>
