@@ -375,8 +375,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
-        return beforeExecutionFileFilters.accept(stripped);
+        return beforeExecutionFileFilters.accept(fileName);
     }
 
     /**
