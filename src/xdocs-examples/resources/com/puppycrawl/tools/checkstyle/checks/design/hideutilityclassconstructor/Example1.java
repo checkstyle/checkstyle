@@ -9,7 +9,8 @@
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 // xdoc section -- start
-class Example1 { // violation
+@java.lang.Deprecated // violation
+class Example1 {
 
   public Example1() {
   }
@@ -18,23 +19,24 @@ class Example1 { // violation
   }
 }
 
-class Foo { // OK
+class Foo1 {
 
-  private Foo() {
+  private Foo1() {
   }
 
   static int n;
 }
 
-class Bar { // OK
+class Bar1 {
 
-  protected Bar() {
+  protected Bar1() {
     // prevents calls from subclass
     throw new UnsupportedOperationException();
   }
 }
 
-class UtilityClass { // violation
+@SpringBootApplication // violation
+class ApplicationClass1 {
 
   static float f;
 }

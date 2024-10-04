@@ -30,6 +30,17 @@
    }
  }
  &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
+               <description>Ignore classes annotated
+ with the specified annotation(s). Annotation names provided in this property
+ must exactly match the annotation names on the classes. If the target class has annotations
+ specified with their fully qualified names (including package), the annotations in this
+ property should also be specified with their fully qualified names. Similarly, if the target
+ class has annotations specified with their simple names, this property should contain the
+ annotations with the same simple names.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="hide.utility.class"/>
          </message-keys>
