@@ -88,16 +88,16 @@ private static int checkCheckerFrameworkReport(final String profile) {
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
 
-    String newSuppresion = '<?xml version="1.0" encoding="UTF-8"?>\n<suppressedErrors>'
+    String newSuppression = '<?xml version="1.0" encoding="UTF-8"?>\n<suppressedErrors>'
     errors.each {
-        newSuppresion += it.toXmlString() + '\n'
+        newSuppression += it.toXmlString() + '\n'
     }
     if (errors.isEmpty()) {
-        newSuppresion += '\n'
+        newSuppression += '\n'
     }
-    newSuppresion += '</suppressedErrors>\n'
+    newSuppression += '</suppressedErrors>\n'
     final FileWriter writer = new FileWriter(suppressionFile)
-    writer.write(newSuppresion)
+    writer.write(newSuppression)
     writer.flush()
     writer.close()
 
