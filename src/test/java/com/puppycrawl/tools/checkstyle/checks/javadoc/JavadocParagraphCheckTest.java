@@ -188,10 +188,61 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     public void testJavadocParagraph() throws Exception {
         final String[] expected = {
             "19:4: " + getCheckMessage(MSG_LINE_BEFORE),
-            "30:7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "31:7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "64:8: " + getCheckMessage(MSG_LINE_BEFORE),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphCheck1.java"), expected);
+    }
+
+    @Test
+    public void testJavadocParagraphOpenClosedTag() throws Exception {
+        final String[] expected = {
+            "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "28:20: " + getCheckMessage(MSG_LINE_BEFORE),
+            "29:20: " + getCheckMessage(MSG_LINE_BEFORE),
+            "35:8: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "36:6: " + getCheckMessage(MSG_TAG_AFTER),
+            "38:6: " + getCheckMessage(MSG_TAG_AFTER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrectOpenClosedTag.java"), expected);
+    }
+
+    @Test
+    public void testJavadocParagraphOpenClosedTag2() throws Exception {
+        final String[] expected = {
+            "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
+            "30:20: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "30:20: " + getCheckMessage(MSG_LINE_BEFORE),
+            "31:20: " + getCheckMessage(MSG_LINE_BEFORE),
+            "37:8: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
+            "38:6: " + getCheckMessage(MSG_TAG_AFTER),
+            "40:6: " + getCheckMessage(MSG_TAG_AFTER),
+            "50:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "61:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "84:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "88:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrectOpenClosedTag2.java"), expected);
+    }
+
+    @Test
+    public void testJavadocParagraphOpenClosedTag3() throws Exception {
+        final String[] expected = {
+            "15:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "23:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "31:7: " + getCheckMessage(MSG_MISPLACED_TAG),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocParagraphIncorrectOpenClosedTag3.java"), expected);
     }
 }

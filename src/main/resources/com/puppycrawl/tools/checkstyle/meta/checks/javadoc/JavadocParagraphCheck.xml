@@ -14,7 +14,10 @@
  &lt;li&gt;There is one blank line between each of two paragraphs.&lt;/li&gt;
  &lt;li&gt;Each paragraph but the first has &amp;lt;p&amp;gt; immediately
  before the first word, with no space after.&lt;/li&gt;
- &lt;/ul&gt;</description>
+ &lt;/ul&gt;
+ &lt;p&gt;
+ <b>ATTENTION:</b> This Check ignores HTML comments.
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
                <description>Control whether the &amp;lt;p&amp;gt; tag
