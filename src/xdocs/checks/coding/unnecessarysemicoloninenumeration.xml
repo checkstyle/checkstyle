@@ -31,35 +31,32 @@
         </p>
         <source>
 enum One {
-    A,B; // violation
+    A,B; // violation, 'Unnecessary semicolon'
 }
+
 enum Two {
-    A,B,; // violation
+    A,B,; // violation, 'Unnecessary semicolon'
 }
+
 enum Three {
-    A,B(); // violation
+    A,B(); // violation, 'Unnecessary semicolon'
 }
+
 enum Four {
-    A,B{}; // violation
+    A,B{}; // violation, 'Unnecessary semicolon'
 }
+
 enum Five {
     A,
     B
-    ; // violation
+    ; // violation, 'Unnecessary semicolon'
 }
-        </source>
-        <p id="Example2-code">
-          Example of good cases
-        </p>
-        <source>
-enum Normal {
+
+enum Six {
     A,
     B,
-    ; // required &quot;;&quot;, no violation
-    Normal(){}
-}
-enum NoSemicolon {
-    A, B // only enum constants, no semicolon required
+    ; // ok, enum body contains constructor.
+  Six(){}
 }
         </source>
       </subsection>

@@ -21,7 +21,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -29,15 +29,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example2-code">
-          Example of good cases
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
