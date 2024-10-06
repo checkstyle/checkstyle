@@ -14,6 +14,8 @@
  &lt;li&gt;There is one blank line between each of two paragraphs.&lt;/li&gt;
  &lt;li&gt;Each paragraph but the first has &amp;lt;p&amp;gt; immediately
  before the first word, with no space after.&lt;/li&gt;
+ &lt;li&gt;First paragraph tag should not precede HTML block-tag,
+ nested paragraph tags are allowed to do that.&lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">

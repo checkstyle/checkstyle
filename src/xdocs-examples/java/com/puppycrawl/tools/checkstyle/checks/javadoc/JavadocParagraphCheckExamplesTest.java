@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_PRECEDED_BLOCK_TAG;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,5 +52,29 @@ public class JavadocParagraphCheckExamplesTest extends AbstractExamplesModuleTes
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "21:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+            "24:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "20:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "24:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "24:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+            "27:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "27:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
