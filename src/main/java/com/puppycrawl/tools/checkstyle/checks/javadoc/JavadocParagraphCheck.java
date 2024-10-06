@@ -40,6 +40,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <li>There is one blank line between each of two paragraphs.</li>
  * <li>Each paragraph but the first has &lt;p&gt; immediately
  * before the first word, with no space after.</li>
+ * <li>First paragraph tag should not precede
+ * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>,
+ * nested paragraph tags are allowed to do that.</li>
  * </ul>
  * <ul>
  * <li>
