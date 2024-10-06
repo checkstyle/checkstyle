@@ -23,6 +23,11 @@
             Each paragraph but the first has &lt;p&gt; immediately before the first word, with
             no space after.
           </li>
+          <li>
+            First paragraph tag should not precede
+            <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>,
+            nested paragraph tags are allowed to do that.
+          </li>
         </ul>
       </subsection>
 
@@ -119,6 +124,125 @@ public class Example1 {
 // violation 6 lines above 'tag should be placed immediately before the first word'
 // violation 4 lines above 'tag should be placed immediately before the first word'
 public class Example2 {
+}
+        </source>
+        <p id="Example3-config">
+          Paragraph tag preceding block-level tags, with default properties:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocParagraph&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+// violation 4 lines below '&lt;p&gt; tag should not precede HTML block-tag '&lt;h1&gt;''
+/**
+ * No tag (ok).
+ *
+ * &lt;p&gt;&lt;h1&gt;P tag is preceding block-tag h1, not allowed&lt;/h1&gt;
+ *
+ * &lt;p&gt;&lt;b&gt;P tag is preceding an inline-tag b, this is allowed&lt;/b&gt;
+ */
+public class Example3 {
+
+  // violation 4 lines below '&lt;p&gt; tag should not precede HTML block-tag '&lt;ul&gt;''
+  /**
+   * No tag (ok).
+   *
+   * &lt;p&gt;
+   * &lt;ul&gt;
+   * &lt;li&gt;item 1&lt;/li&gt;
+   * &lt;li&gt;item 2&lt;/li&gt;
+   * &lt;li&gt;item 3&lt;/li&gt;
+   * &lt;/ul&gt;
+   *
+   * &lt;p&gt;
+   * &lt;pre&gt;block-tag is preceded by P tag, not allowed.&lt;/pre&gt;
+   */
+  // violation 3 lines above '&lt;p&gt; tag should not precede HTML block-tag '&lt;pre&gt;''
+  void foo1() {}
+
+  /**
+   * No tag (ok).
+   *
+   * &lt;table&gt;
+   * &lt;tbody&gt;
+   * &lt;p&gt;
+   * &lt;tr&gt;
+   * nested paragraph preceding block tag, this allowed.
+   * &lt;/tr&gt;
+   * &lt;/tbody&gt;
+   * &lt;/table&gt;
+   *
+   */
+  void foo2() {}
+}
+        </source>
+        <p id="Example4-config">
+          Paragraph tag preceding block-level tags,
+          with <code>allowNewlineParagraph</code> set to false:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocParagraph&quot;&gt;
+      &lt;property name=&quot;allowNewlineParagraph&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          In case of <code>allowNewlineParagraph</code> set to <code>false</code>,
+          previous example will give some extra violations:
+        </p>
+        <source>
+// violation 4 lines below '&lt;p&gt; tag should not precede HTML block-tag '&lt;h1&gt;''
+/**
+ * No tag (ok).
+ *
+ * &lt;p&gt;&lt;h1&gt;P tag is preceding block-tag h1, not allowed&lt;/h1&gt;
+ *
+ * &lt;p&gt;&lt;b&gt;P tag is preceding an inline-tag b, this is allowed&lt;/b&gt;
+ */
+public class Example4 {
+
+  // 2 violations 6 lines below:
+  //  'tag should be placed immediately before the first word'
+  //  '&lt;p&gt; tag should not precede HTML block-tag '&lt;ul&gt;''
+  /**
+   * No tag (ok).
+   *
+   * &lt;p&gt;
+   * &lt;ul&gt;
+   * &lt;li&gt;item 1&lt;/li&gt;
+   * &lt;li&gt;item 2&lt;/li&gt;
+   * &lt;li&gt;item 3&lt;/li&gt;
+   * &lt;/ul&gt;
+   *
+   * &lt;p&gt;
+   * &lt;pre&gt;block-tag is preceded by P tag, not allowed.&lt;/pre&gt;
+   */
+  // 2 violations 3 lines above:
+  //  'tag should be placed immediately before the first word'
+  //  '&lt;p&gt; tag should not precede HTML block-tag '&lt;pre&gt;''
+  void foo1() {}
+
+  /**
+   * No tag (ok).
+   *
+   * &lt;table&gt;
+   * &lt;tbody&gt;
+   * &lt;p&gt;
+   * &lt;tr&gt;
+   * nested paragraph preceding block tag, this allowed.
+   * &lt;/tr&gt;
+   * &lt;/tbody&gt;
+   * &lt;/table&gt;
+   */
+  void foo2() {}
 }
         </source>
       </subsection>
