@@ -237,7 +237,7 @@
     <checkerframework.version>3.47.0</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
     <error-prone-support.version>0.15.0</error-prone-support.version>
-    <doxia.version>1.12.0</doxia.version>
+    <doxia.version>2.0.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
       -Xep:AssertJIsNull:ERROR
@@ -309,6 +309,13 @@
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
+      <exclusions>
+        <!-- conflict with doxia -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- test scope stuff -->
@@ -450,6 +457,11 @@
           <groupId>com.google.collections</groupId>
           <artifactId>google-collections</artifactId>
         </exclusion>
+        <!-- conflict with org.reflections:reflections:jar:0.10.2:compile -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -461,7 +473,17 @@
           <groupId>com.google.collections</groupId>
           <artifactId>google-collections</artifactId>
         </exclusion>
+        <!-- conflict with org.reflections:reflections:jar:0.10.2:compile -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-component-annotations</artifactId>
+      <version>${doxia.version}</version>
     </dependency>
   </dependencies>
 
