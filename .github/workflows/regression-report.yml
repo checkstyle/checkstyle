@@ -17,7 +17,7 @@ env:
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
   USER_LOGIN: ${{ github.event.issue.user.login }}
   # yamllint disable-line rule:line-length
-  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.properties"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
   EXTRACTOR_VERSION: 2024-08-27
   DIFF_TOOL_VERSION: "1.0-SNAPSHOT-all"
@@ -200,7 +200,7 @@ jobs:
           BASE_URL="${{ env.BASE_TEST_CONFIGS_URL }}"
           CONFIG_BUNDLE="${{ needs.parse_comment.outputs.config_bundle }}"
           CONFIG_LINK="$BASE_URL/$CONFIG_BUNDLE/config.xml"
-          PROJECTS_LINK="$BASE_URL/$CONFIG_BUNDLE/list-of-projects.properties"
+          PROJECTS_LINK="$BASE_URL/$CONFIG_BUNDLE/list-of-projects.yml"
           ./.ci/append-to-github-output.sh "config_link" "$CONFIG_LINK"
           ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_LINK"
 
@@ -274,8 +274,8 @@ jobs:
           CONFIG_FILE_NAME=$(basename "$FOUND_FILE" .java)_config.xml
           CONFIG_FILE_PATH="$OUTPUT_DIR/$CONFIG_FILE_NAME"
 
-          # Generate a name for the projects file
-          PROJECT_FILE_PATH="$OUTPUT_DIR/projects.properties"
+          # Generate a name for the projects YAML file
+          PROJECT_FILE_PATH="$OUTPUT_DIR/projects.yml"
 
           # Run the extractor
           java -jar extractor-all-${{env.EXTRACTOR_VERSION}}.jar \
@@ -386,7 +386,7 @@ jobs:
           echo "Config link: $DIFF_CONFIG_LINK"
           echo "Projects link: $DIFF_PROJECTS_LINK"
           cp "$DIFF_CONFIG_LINK" .ci-temp/diff_config.xml
-          cp "$DIFF_PROJECTS_LINK" .ci-temp/project.properties
+          cp "$DIFF_PROJECTS_LINK" .ci-temp/projects.yml
 
       - name: Download URL-based Config and Project File
         id: download_files
@@ -423,7 +423,8 @@ jobs:
         with:
           path: |
             .ci-temp/*.xml
-            .ci-temp/project.properties
+            .ci-temp/projects.yml
+            .ci-temp/projects.properties
           key: ${{ env.CACHE_KEY }}-config-files
 
   make_report:
@@ -445,7 +446,8 @@ jobs:
         with:
           path: |
             .ci-temp/*.xml
-            .ci-temp/project.properties
+            .ci-temp/projects.yml
+            .ci-temp/projects.properties
           key: ${{ env.CACHE_KEY }}-config-files
 
       - name: Restore local maven cache
@@ -457,7 +459,7 @@ jobs:
       - name: Download DiffTool JAR
         uses: robinraju/release-downloader@v1.8
         with:
-          repository: "checkstyle/test-configs"
+          repository: "relentless-pursuit/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
           fileName: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
           out-file-path: ".ci-temp"
@@ -495,16 +497,21 @@ jobs:
           fi
           echo "-------------------------"
 
-      - name: Print project.properties
+      - name: Print projects file
         run: |
-          echo "Contents of project.properties:"
-          echo "-------------------------------"
-          if [ -f .ci-temp/project.properties ]; then
-            cat .ci-temp/project.properties
+          if [ -f .ci-temp/projects.yml ]; then
+            echo "Contents of projects.yml:"
+            echo "-------------------------------"
+            cat .ci-temp/projects.yml
+            echo "-------------------------------"
+          elif [ -f .ci-temp/projects.properties ]; then
+            echo "Contents of projects.properties:"
+            echo "-------------------------------"
+            cat .ci-temp/projects.properties
+            echo "-------------------------------"
           else
-            echo "project.properties not found"
+            echo "No projects file found"
           fi
-          echo "-------------------------------"
 
       - name: Print patch_config.xml
         run: |
@@ -541,7 +548,16 @@ jobs:
           DIFF_CONFIG="${{ github.workspace }}/.ci-temp/diff_config.xml"
           PATCH_CONFIG="${{ github.workspace }}/.ci-temp/patch_config.xml"
           NEW_MODULE_CONFIG="${{ github.workspace }}/.ci-temp/new_module_config.xml"
-          PROJECT_PROPERTIES="${{ github.workspace }}/.ci-temp/project.properties"
+
+          # Determine the projects file path
+          if [ -f "${{ github.workspace }}/.ci-temp/projects.yml" ]; then
+            PROJECTS_FILE="${{ github.workspace }}/.ci-temp/projects.yml"
+          elif [ -f "${{ github.workspace }}/.ci-temp/projects.properties" ]; then
+            PROJECTS_FILE="${{ github.workspace }}/.ci-temp/projects.properties"
+          else
+            echo "Error: Projects file not found."
+            exit 1
+          fi
 
           # Paths to the JAR files
           DIFFTOOL_JAR="diff-java-tool-${{ env.DIFF_TOOL_VERSION }}.jar"
@@ -552,18 +568,18 @@ jobs:
           if [ -f "$NEW_MODULE_CONFIG" ]; then
             echo "Generating report for new module"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -p "$PR_BRANCH" -pc "$NEW_MODULE_CONFIG" \
-              -m single -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
+              -m single -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
               --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           elif [ -f "$PATCH_CONFIG" ]; then
             echo "Generating report with patch config"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" \
               -p "$PR_BRANCH" -bc "$DIFF_CONFIG" \
-              -pc "$PATCH_CONFIG" -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
+              -pc "$PATCH_CONFIG" -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
               --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           else
             echo "Generating standard diff report"
             java -jar "$DIFFTOOL_JAR" -r "$REPO" -b "$BASE_BRANCH" -p "$PR_BRANCH" \
-              -c "$DIFF_CONFIG" -l "$PROJECT_PROPERTIES" -xm "-Dcheckstyle.failsOnError=false" \
+              -c "$DIFF_CONFIG" -l "$PROJECTS_FILE" -xm "-Dcheckstyle.failsOnError=false" \
               --allowExcludes --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           fi
 
