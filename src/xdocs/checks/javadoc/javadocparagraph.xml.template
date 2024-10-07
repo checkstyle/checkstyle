@@ -23,6 +23,11 @@
             Each paragraph but the first has &lt;p&gt; immediately before the first word, with
             no space after.
           </li>
+          <li>
+            First paragraph tag should not precede
+            <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>,
+            nested paragraph tags are allowed to do that.
+          </li>
         </ul>
       </subsection>
 
@@ -66,6 +71,38 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+          Paragraph tag preceding block-level tags, with default properties:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example4-config">
+          Paragraph tag preceding block-level tags,
+          with <code>allowNewlineParagraph</code> set to false:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+          In case of <code>allowNewlineParagraph</code> set to <code>false</code>,
+          previous example will give some extra violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
