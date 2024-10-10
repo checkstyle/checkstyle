@@ -17,7 +17,15 @@
  &lt;li&gt;First paragraph tag should not precede
  &lt;a href="https://www.w3schools.com/html/html_blocks.asp"&gt;HTML block-tag&lt;/a&gt;,
  nested paragraph tags are allowed to do that.&lt;/li&gt;
- &lt;/ul&gt;</description>
+ &lt;/ul&gt;
+ &lt;p&gt;
+ &lt;b&gt;ATTENTION:&lt;/b&gt;
+ &lt;ul&gt;
+ &lt;li&gt;This Check ignores HTML comments.&lt;/li&gt;
+ &lt;li&gt;The Check ignores all the nested paragraph tags,
+ it will not give any kind of violation if the paragraph tag is nested.&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
                <description>Control whether the &amp;lt;p&amp;gt; tag
