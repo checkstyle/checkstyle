@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>Checker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.Checker</mutatedClass>
-    <mutatedMethod>acceptFileStarted</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/utils/CommonUtil::relativizePath with argument</description>
-    <lineContent>final String stripped = CommonUtil.relativizePath(basedir, fileName);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>LocalizedMessage.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
