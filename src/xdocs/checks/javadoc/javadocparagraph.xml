@@ -24,6 +24,9 @@
             no space after.
           </li>
         </ul>
+        <p>
+          <b>ATTENTION:</b> This Check ignores HTML comments.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">

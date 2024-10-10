@@ -1215,7 +1215,7 @@ public final class TokenTypes {
      * <pre>
      * new ArrayList(50);
      * </pre>
-     * <p> parses as:</p>
+     * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
      * |   `--LITERAL_NEW -&gt; new
@@ -5184,7 +5184,7 @@ public final class TokenTypes {
 
     /**
      * The type that refers to all types. This node has no children.
-     * <p> For example: </p>
+     * <p>For example: </p>
      * <pre>
      *
      * List&lt;?&gt; list;
