@@ -303,37 +303,40 @@ public class RegexpCheck extends AbstractCheck {
     }
 
     /**
-     * Recursive method that finds the matches.
+     * Finds the matches in the file.
      *
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (foundMatch) {
-            final FileText text = getFileContents().getText();
-            final LineColumn start = text.lineColumn(matcher.start());
-            final int startLine = start.getLine();
+        boolean valid = true;
+        while (valid) {
+            final boolean foundMatch = matcher.find();
+            if (foundMatch) {
+                final FileText text = getFileContents().getText();
+                final LineColumn start = text.lineColumn(matcher.start());
+                final int startLine = start.getLine();
 
-            final boolean ignore = isIgnore(startLine, text, start);
-
-            if (!ignore) {
-                matchCount++;
-                if (illegalPattern || checkForDuplicates
-                        && matchCount - 1 > duplicateLimit) {
-                    errorCount++;
-                    logMessage(startLine);
+                final boolean ignore = isIgnore(startLine, text, start);
+                if (!ignore) {
+                    matchCount++;
+                    if (illegalPattern || checkForDuplicates
+                            && matchCount - 1 > duplicateLimit) {
+                        errorCount++;
+                        logMessage(startLine);
+                    }
+                }
+                if (!canContinueValidation(ignore)) {
+                    valid = false;
                 }
             }
-            if (canContinueValidation(ignore)) {
-                findMatch();
+            else {
+                if (!illegalPattern && matchCount == 0) {
+                    final String msg = getMessage();
+                    log(1, MSG_REQUIRED_REGEXP, msg);
+                }
+                valid = false;
             }
-        }
-        else if (!illegalPattern && matchCount == 0) {
-            final String msg = getMessage();
-            log(1, MSG_REQUIRED_REGEXP, msg);
         }
     }
 
