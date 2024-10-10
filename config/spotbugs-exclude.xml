@@ -319,4 +319,17 @@
     <Method name="getBlockContainingLocalAnonInnerClass"/>
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
+  <Match>
+    <!-- until https://github.com/mebigfatguy/fb-contrib/issues/475 -->
+    <Class
+     name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck"/>
+    <Method name="isCatchParameterIdentifierCandidate"/>
+    <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE"/>
+  </Match>
+  <Match>
+    <!-- until https://github.com/mebigfatguy/fb-contrib/issues/475 -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl"/>
+    <Method name="matchesAtFrontNoRegex"/>
+    <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE"/>
+  </Match>
 </FindBugsFilter>
