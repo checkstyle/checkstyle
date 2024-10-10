@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 /**
  * Contains the common implementation of a loader, for loading a configuration
  * from an XML file.
+ *
  * <p>
  * The error handling policy can be described as being austere, dead set,
  * disciplinary, dour, draconian, exacting, firm, forbidding, grim, hard, hard-
