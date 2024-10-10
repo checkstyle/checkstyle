@@ -1161,11 +1161,60 @@
     <lineContent>tree.addTreeExpansionListener(new UpdatingTreeExpansionListener());</lineContent>
   </checkerFrameworkError>
 
-  <!-- Until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
     <lineContent>attributes.addAttribute(SinkEventAttributes.HREF, href);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>type.argument.inference.crashed</specifier>
+    <message>Type argument inference crashed for ArrayList constructor</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      error: An exception occurred: class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable cannot be cast to class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType (org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable and org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType are in unnamed module of loader java.net.URLClassLoader @15bb6bea)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>type.argument.inference.crashed</specifier>
+    <message>Type argument inference crashed for ArrayList constructor</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      error: An exception occurred: class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable cannot be cast to class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType (org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable and org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType are in unnamed module of loader java.net.URLClassLoader @15bb6bea)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>type.argument.inference.crashed</specifier>
+    <message>Type argument inference crashed for ArrayList constructor</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      error: An exception occurred: class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable cannot be cast to class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType (org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable and org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType are in unnamed module of loader java.net.URLClassLoader @15bb6bea)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>type.argument.inference.crashed</specifier>
+    <message>Type argument inference crashed for ArrayList constructor</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      error: An exception occurred: class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable cannot be cast to class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType (org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable and org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType are in unnamed module of loader java.net.URLClassLoader @15bb6bea)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
+    <specifier>type.argument.inference.crashed</specifier>
+    <message>Type argument inference crashed for ArrayList constructor</message>
+    <lineContent>this.items = new ArrayList&lt;&gt;(items);</lineContent>
+    <details>
+      error: An exception occurred: class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable cannot be cast to class org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType (org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedTypeVariable and org.checkerframework.framework.type.AnnotatedTypeMirror$AnnotatedWildcardType are in unnamed module of loader java.net.URLClassLoader @15bb6bea)
+    </details>
   </checkerFrameworkError>
 </suppressedErrors>
