@@ -114,7 +114,7 @@ try {
               <td>Allow empty switch blocks and block statements.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
-              <td>10.18.2</td>
+              <td>10.18.3</td>
             </tr>
             <tr>
               <td>allowEmptyTypes</td>
