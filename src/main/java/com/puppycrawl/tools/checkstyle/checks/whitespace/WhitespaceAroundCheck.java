@@ -486,7 +486,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to allow empty switch blocks and block statements.
      *
      * @param allow {@code true} to allow empty switch case and default blocks.
-     * @since 10.18.2
+     * @since 10.18.3
      */
     public void setAllowEmptySwitchBlockStatements(boolean allow) {
         allowEmptySwitchBlockStatements = allow;
@@ -758,15 +758,15 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             final boolean isEmptyCaseInSwitchRule =
                     isEmptyBlock(ast, parent.getType(), TokenTypes.SWITCH_RULE);
 
-            final boolean isEmptyCaseGroupCheckedFromLcurly = isEmptyBlock(ast,
-                    grandParent.getType(), TokenTypes.CASE_GROUP);
+            final boolean isEmptyCaseGroupCheckedFromLcurly =
+                    isEmptyBlock(ast, grandParent.getType(), TokenTypes.CASE_GROUP);
 
-            final boolean isEmptyCaseGroupCheckFromRcurly =
+            final boolean isEmptyCaseGroupCheckedFromRcurly =
                     parent.getFirstChild().getType() == TokenTypes.RCURLY
                       && grandParent.getParent().getType() == TokenTypes.CASE_GROUP;
 
             isEmptySwitchBlockStatement = isEmptyCaseInSwitchRule
-                    || isEmptyCaseGroupCheckedFromLcurly || isEmptyCaseGroupCheckFromRcurly;
+                    || isEmptyCaseGroupCheckedFromLcurly || isEmptyCaseGroupCheckedFromRcurly;
         }
         else {
             isEmptySwitchBlockStatement = false;
