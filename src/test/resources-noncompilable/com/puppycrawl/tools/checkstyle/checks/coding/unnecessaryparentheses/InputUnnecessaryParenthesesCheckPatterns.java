@@ -17,10 +17,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 public class InputUnnecessaryParenthesesCheckPatterns {
     void method() {
         Object o = "";
-
+        // violation below, 'Unnecessary parentheses around expression.'
         boolean result = (o instanceof String a) ?
                 (o instanceof String x) : (!(o instanceof String y));
-
+        // 2 violations above:
+        //  'Unnecessary parentheses around expression.'
+        //  'Unnecessary parentheses around expression.'
         boolean f =  (o instanceof String x);
         // violation above, 'Unnecessary parentheses around assignment right-hand side.'
 

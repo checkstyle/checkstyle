@@ -177,6 +177,8 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                     BOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
                     BAND</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+                    QUESTION</a>
                   .
               </td>
               <td>
@@ -262,6 +264,8 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
                     POST_INC</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                     POST_DEC</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+                    QUESTION</a>
                   .
               </td>
               <td>3.4</td>
