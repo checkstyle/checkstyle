@@ -9,9 +9,9 @@
     <section name="NewlineAtEndOfFile">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks whether files end with a line separator.
-        </p>
+        </div>
 
         <p>
           Rationale: Any source files and text files in general should

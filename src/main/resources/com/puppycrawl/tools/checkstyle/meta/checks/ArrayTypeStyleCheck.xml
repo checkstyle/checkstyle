@@ -4,14 +4,16 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"
              name="ArrayTypeStyle"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the style of array type definitions.
  Some like Java style: {@code public static void main(String[] args)}
  and some like C style: {@code public static void main(String args[])}.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  By default, the Check enforces Java style.
  &lt;/p&gt;
+
  &lt;p&gt;
  This check strictly enforces only Java style for method return types regardless
  of the value for 'javaStyle'. For example, {@code byte[] getData()}.

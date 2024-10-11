@@ -30,9 +30,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for restricted tokens beneath other tokens.
- * </p>
+ * </div>
+ *
  * <p>
  * WARNING: This is a very powerful and flexible check, but, at the same time,
  * it is low-level and very implementation-dependent because its results depend
@@ -92,9 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

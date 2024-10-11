@@ -9,7 +9,7 @@
     <section name="AvoidEscapedUnicodeCharacters">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Restricts using
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (such as \u221e).
@@ -19,7 +19,7 @@
           Also, this check can be configured to allow using escapes
           if trail comment is present. By the option it is possible to
           allow using escapes if literal contains only them.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
