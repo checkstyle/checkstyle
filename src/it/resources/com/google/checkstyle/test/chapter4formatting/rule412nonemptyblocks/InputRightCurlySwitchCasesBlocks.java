@@ -84,7 +84,7 @@ public class InputRightCurlySwitchCasesBlocks {
         }
       default:
         {
-          int x = 2; } // false-negative until #15324
+          int x = 2; } // false-negative until #15664
     }
   }
 
@@ -142,7 +142,7 @@ public class InputRightCurlySwitchCasesBlocks {
             break; // violation '.* incorrect indentation .* 12, expected .* following: 8, 10.'
         }
       default: { // violation ''{' at column 16 should be on a new line.'
-        int x = 2; } // false-negative until #15324
+        int x = 2; } // false-negative until #15664
     }
   }
 }
