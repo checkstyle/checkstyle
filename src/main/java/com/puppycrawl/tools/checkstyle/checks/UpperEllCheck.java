@@ -25,18 +25,19 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Checks that long constants are defined with an upper ell. That is {@code 'L'}
  * and not {@code 'l'}. This is in accordance with the Java Language Specification,
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.10.1">
  * Section 3.10.1</a>.
- * </p>
+ *
  * <p>
  * Rationale: The lower-case ell {@code 'l'} looks a lot like {@code 1}.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

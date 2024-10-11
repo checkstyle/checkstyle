@@ -30,9 +30,8 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Detects uncommented {@code main} methods.
- * </p>
+ *
  * <p>
  * Rationale: A {@code main} method is often used for debugging purposes.
  * When debugging is finished, developers often forget to remove the method,
@@ -48,9 +47,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "^$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -27,12 +27,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
  * Checks for {@code TODO:} comments. Actually it is a generic
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> matcher on Java comments. To check for other patterns
  * in Java comments, set the {@code format} property.
- * </p>
+ *
  * <p>
  * Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
  * Having them reported by Checkstyle makes it very hard to forget about them.
@@ -44,9 +43,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "TODO:"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
- * <p>
  * Restricts using
  * <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
  * Unicode escapes</a>
@@ -44,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Also, this check can be configured to allow using escapes
  * if trail comment is present. By the option it is possible to
  * allow using escapes if literal contains only them.
- * </p>
+ *
  * <ul>
  * <li>
  * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
@@ -69,9 +68,11 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
