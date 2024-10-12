@@ -285,6 +285,12 @@
       <property name="lineWrappingIndentation" value="4"/>
       <property name="arrayInitIndent" value="2"/>
     </module>
+    <!-- Suppression for block code until we find a way to detect them properly
+         https://github.com/checkstyle/checkstyle/issues/15769 -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="Indentation"/>
+      <property name="query" value="//SLIST/SLIST | //SLIST/SLIST/RCURLY"/>
+    </module>
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false"/>
       <property name="allowedAbbreviationLength" value="0"/>
