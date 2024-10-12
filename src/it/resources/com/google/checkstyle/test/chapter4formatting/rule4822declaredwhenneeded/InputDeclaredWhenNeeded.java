@@ -12,22 +12,22 @@ public class InputDeclaredWhenNeeded {
   static {
     int b = 0;
     int d = 0;
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    {
       d = ++b;
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
   }
 
   static {
     int c = 0;
     int a = 3;
     int b = 2;
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    {
       a = a + b;
       c = b;
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
+    {
       c--;
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
     a = 7;
   }
 
@@ -65,10 +65,10 @@ public class InputDeclaredWhenNeeded {
     int count;
     int a = 3;
     int b = 2;
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    {
       a = a + b - 5 + 2 * a;
       count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
   }
 
   /** Some javadoc. */
@@ -156,15 +156,15 @@ public class InputDeclaredWhenNeeded {
     int c = 0;
     int m = 0;
     int n = 0;
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    {
       c++;
       b++;
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
-    { // violation ''block lcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
+    {
       n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
       m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
       b++;
-    } // violation ''block rcurly' has incorrect indentation level 4, expected level should be 6.'
+    }
   }
 
   /** Some javadoc. */
