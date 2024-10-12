@@ -86,7 +86,18 @@ public class BlockIndentation2SpacesTest extends AbstractIndentationTestSupport 
     }
 
     @Test
+    public void testCodeBlocks() throws Exception {
+        verifyWithWholeConfig(getPath("InputIndentationCodeBlocks.java"));
+    }
+
+    @Test
+    public void testCodeBlocksFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedIndentationCodeBlocks.java"));
+    }
+
+    @Test
     public void testFastMatcher() throws Exception {
         verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
+
 }

@@ -95,13 +95,11 @@ public class InputRightCurlySwitchCasesBlocks {
       case 1: { // violation ''{' at column 15 should be on a new line.'
           int x = 1; // violation '.* incorrect indentation level 10, expected level should be 8.'
           break; // violation '.* incorrect indentation level 10, expected level should be 8.'
-          // 2 violations 3 lines below:
-          //  ''block rcurly' has incorrect indentation level 8, expected level should be 6.'
-          //  ''}' at column 9 should be alone on a line.'
+          // violation below ''}' at column 9 should be alone on a line.'
         } default:
-          { // violation '.* incorrect indentation level 10, expected level should be 8.'
+          {
                   int x = 0; // violation '.* incorrect indentation .*, expected .* 8, 10.'
-          } // violation '.* incorrect indentation level 10, expected level should be 8.'
+          }
     }
   }
 
@@ -127,7 +125,7 @@ public class InputRightCurlySwitchCasesBlocks {
         break;
       case 2: { // violation ''{' at column 15 should be on a new line.'
           break; // violation '.* incorrect indentation level 10, expected level should be 8.'
-        } // violation '.* incorrect indentation level 8, expected level should be 6.'
+        }
       default:
     }
   }
