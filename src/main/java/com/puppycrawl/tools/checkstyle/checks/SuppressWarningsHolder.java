@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  * It allows to prevent Checkstyle from reporting violations from parts of code that were
  * annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
@@ -43,7 +43,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * You can also use a {@code checkstyle:} prefix to prevent compiler
  * from processing these annotations.
  * You can also define aliases for check names that need to be suppressed.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code aliasList} - Specify aliases for check names that can be used in code
@@ -53,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

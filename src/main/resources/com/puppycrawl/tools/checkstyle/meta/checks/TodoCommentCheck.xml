@@ -4,12 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"
              name="TodoComment"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for {@code TODO:} comments. Actually it is a generic
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt; matcher on Java comments. To check for other patterns
  in Java comments, set the {@code format} property.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Using {@code TODO:} comments is a great way to keep track of tasks that need to be done.
  Having them reported by Checkstyle makes it very hard to forget about them.

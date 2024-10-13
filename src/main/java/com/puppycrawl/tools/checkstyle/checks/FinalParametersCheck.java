@@ -30,12 +30,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that parameters for methods, constructors, catch and for-each blocks are final.
  * Interface, abstract, and native methods are not checked: the final keyword
  * does not make sense for interface, abstract, and native method parameters as
  * there is no code that could modify the parameter.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Changing the value of parameters during the execution of the method's
  * algorithm can be confusing and should be avoided. A great way to let the Java compiler
@@ -65,9 +66,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,20 +4,23 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck"
              name="MissingDeprecated"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Verifies that the annotation {@code @Deprecated} and the Javadoc tag
  {@code @deprecated} are both present when either of them is present.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Both ways of flagging deprecation serve their own purpose.
  The &amp;#64;Deprecated annotation is used for compilers and development tools.
  The &amp;#64;deprecated javadoc tag is used to document why something is deprecated
  and what, if any, alternatives exist.
  &lt;/p&gt;
+
  &lt;p&gt;
  In order to properly mark something as deprecated both forms of
  deprecation should be present.
  &lt;/p&gt;
+
  &lt;p&gt;
  Package deprecation is an exception to the rule of always using the
  javadoc tag and annotation to deprecate.  It is not clear if the javadoc

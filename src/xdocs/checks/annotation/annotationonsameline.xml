@@ -10,10 +10,10 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationOnSameLine">
       <p>Since Checkstyle 8.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that annotations are located on the same line with their targets.
           Verifying with this check is not good practice, but it is using by some style guides.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">
