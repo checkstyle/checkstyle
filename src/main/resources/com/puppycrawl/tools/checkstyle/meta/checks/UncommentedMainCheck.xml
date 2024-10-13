@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck"
              name="UncommentedMain"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Detects uncommented {@code main} methods.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: A {@code main} method is often used for debugging purposes.
  When debugging is finished, developers often forget to remove the method,

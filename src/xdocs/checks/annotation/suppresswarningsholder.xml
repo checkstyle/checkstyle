@@ -10,7 +10,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
       <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Maintains a set of check suppressions from
           <code>@SuppressWarnings</code> annotations. It allows to
           prevent Checkstyle from reporting violations from parts of code
@@ -21,7 +21,7 @@
           You can also use a <code>checkstyle:</code> prefix to prevent compiler from
           processing these annotations. You can also define
           aliases for check names that need to be suppressed.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

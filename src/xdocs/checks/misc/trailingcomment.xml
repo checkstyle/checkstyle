@@ -9,14 +9,14 @@
     <section name="TrailingComment">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           The check to ensure that lines with code do not end with comment.
           For the case of <code>//</code> comments that means that the only thing
           that should precede it is whitespace. It doesn't check comments if
           they do not end a line; for example, it accepts the following:
           <code>Thread.sleep( 10 /*some comment here*/ );</code> Format
           property is intended to deal with the <code>} // while</code> example.
-        </p>
+        </div>
 
         <p>
           Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that

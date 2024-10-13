@@ -25,14 +25,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks the style of array type definitions.
  * Some like Java style: {@code public static void main(String[] args)}
  * and some like C style: {@code public static void main(String args[])}.
- * </p>
+ * </div>
+ *
  * <p>
  * By default, the Check enforces Java style.
  * </p>
+ *
  * <p>
  * This check strictly enforces only Java style for method return types regardless
  * of the value for 'javaStyle'. For example, {@code byte[] getData()}.
@@ -45,9 +47,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
