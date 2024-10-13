@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck"
              name="DescendantToken"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for restricted tokens beneath other tokens.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  WARNING: This is a very powerful and flexible check, but, at the same time,
  it is low-level and very implementation-dependent because its results depend
