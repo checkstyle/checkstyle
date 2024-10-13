@@ -30,13 +30,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * The check to ensure that lines with code do not end with comment.
  * For the case of {@code //} comments that means that the only thing that should precede
  * it is whitespace. It doesn't check comments if they do not end a line; for example,
  * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
  * Format property is intended to deal with the <code>} // while</code> example.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Steve McConnell in <cite>Code Complete</cite> suggests that endline
  * comments are a bad practice. An end line comment would be one that is on
@@ -46,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * a = b + c;      // Some insightful comment
  * d = e / f;        // Another comment for this line
  * </pre>
+ *
  * <p>
  * Quoting <cite>Code Complete</cite> for the justification:
  * </p>
@@ -78,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * which hurts more than it helps."
  * </li>
  * </ul>
+ *
  * <p>
  * McConnell's comments on being hard to maintain when the size of the line changes
  * are even more important in the age of automated refactorings.
@@ -95,9 +98,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code null}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

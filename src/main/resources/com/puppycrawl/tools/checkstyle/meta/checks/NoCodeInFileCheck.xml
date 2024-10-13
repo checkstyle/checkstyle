@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck"
              name="NoCodeInFile"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks whether file contains code.
  Java compiler is not raising errors on files with no code or all commented out.
  Files which are considered to have no code:
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;ul&gt;
  &lt;li&gt;
  File with no text

@@ -9,9 +9,9 @@
     <section name="UncommentedMain">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Detects uncommented <code>main</code> methods.
-        </p>
+        </div>
 
         <p>
           Rationale: A <code>main</code> method is often used for debugging

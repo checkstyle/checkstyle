@@ -25,11 +25,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks whether file contains code.
  * Java compiler is not raising errors on files with no code or all commented out.
  * Files which are considered to have no code:
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * File with no text
@@ -41,9 +42,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * File with a multi line comment(s).
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
