@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder"
              name="SuppressWarningsHolder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Maintains a set of check suppressions from {@code @SuppressWarnings} annotations.
  It allows to prevent Checkstyle from reporting violations from parts of code that were
  annotated with {@code @SuppressWarnings} and using name of the check to be excluded.
@@ -12,7 +12,7 @@
  You can also use a {@code checkstyle:} prefix to prevent compiler
  from processing these annotations.
  You can also define aliases for check names that need to be suppressed.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="" name="aliasList" type="java.lang.String[]">
                <description>Specify aliases for check names that can be used in code

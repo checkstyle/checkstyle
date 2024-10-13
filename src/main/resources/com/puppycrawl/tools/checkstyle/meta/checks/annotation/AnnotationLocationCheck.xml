@@ -4,17 +4,19 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
              name="AnnotationLocation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks location of annotation on language elements.
  By default, Check enforce to locate annotations immediately after
  documentation block and before target element, annotation should be located
  on separate line from target element. This check also verifies that the annotations
  are on the same indenting level as the annotated element if they are not on the same line.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Attention: Elements that cannot have JavaDoc comments like local variables are not in the
  scope of this check even though a token type like {@code } would match them.
  &lt;/p&gt;
+
  &lt;p&gt;
  Attention: Annotations among modifiers are ignored (looks like false-negative)
  as there might be a problem with annotations for return types:
@@ -22,10 +24,12 @@
  &lt;pre&gt;
  public @Nullable Long getStartTimeOrNull() { ... }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Such annotations are better to keep close to type.
  Due to limitations, Checkstyle can not examine the target of an annotation.
  &lt;/p&gt;
+
  &lt;p&gt;
  Example:
  &lt;/p&gt;
