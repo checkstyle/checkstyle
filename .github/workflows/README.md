@@ -39,7 +39,7 @@ GitHub, generate report by config from some/path/InputXxxxxx.java
 
 Workflow will find InputXxxxxx.java in repository, take config from it and will use for diff report
 generation. Workflow will use default list of projects that is located at
-[test-configs repository](https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml).
+[test-configs repository](https://github.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml).
 
 ### Diff Report by configuration at test-configs repository
 
@@ -50,7 +50,7 @@ GitHub, generate report for {{folder in https://github.com/checkstyle/test-confi
 ```
 
 Workflow will download config.xml and list-of-projects.yml from
-[test-configs repository](https://raw.githubusercontent.com/checkstyle/test-configs),
+[test-configs repository](https://github.com/checkstyle/test-configs),
 use then for diff report generation.
 
 ### Diff Report by configuration in Pull Request Description
