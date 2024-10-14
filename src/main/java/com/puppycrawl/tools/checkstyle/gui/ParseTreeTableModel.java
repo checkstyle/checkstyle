@@ -27,6 +27,7 @@ import javax.swing.tree.TreePath;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * The model that backs the parse tree in the GUI.
@@ -62,7 +63,7 @@ public class ParseTreeTableModel implements TreeModel {
         final Object[] path = {pModel.getRoot()};
         // no need to setup remaining info, as the call results in a
         // table structure changed event anyway - we just pass nulls
-        fireTreeStructureChanged(this, path, null, (Object[]) null);
+        fireTreeStructureChanged(this, path, null, CommonUtil.EMPTY_OBJECT_ARRAY);
     }
 
     /**
