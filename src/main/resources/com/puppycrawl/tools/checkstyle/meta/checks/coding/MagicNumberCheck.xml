@@ -4,13 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"
              name="MagicNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there are no
  &lt;a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29"&gt;
  &amp;quot;magic numbers&amp;quot;&lt;/a&gt; where a magic
  number is a numeric literal that is not defined as a constant.
  By default, -1, 0, 1, and 2 are not considered to be magic numbers.
- &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;p&gt;Constant definition is any variable/field that has 'final' modifier.
  It is fine to have one constant defining multiple numeric literals within one expression:

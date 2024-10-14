@@ -4,12 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"
              name="EqualsAvoidNull"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that any combination of String literals
  is on the left side of an {@code equals()} comparison.
  Also checks for String literals assigned to some field
  (such as {@code someString.equals(anotherString = "text")}).
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;Rationale: Calling the {@code equals()} method on String literals
  will avoid a potential {@code NullPointerException}. Also, it is
  pretty common to see null checks right before equals comparisons

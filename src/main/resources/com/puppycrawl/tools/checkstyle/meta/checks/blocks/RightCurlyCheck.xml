@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck"
              name="RightCurly"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the placement of right curly braces (&lt;code&gt;'}'&lt;/code&gt;) for code blocks. This check
  supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
   for-loops, method definitions, class definitions, constructor definitions,
@@ -14,7 +14,7 @@
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/5945"&gt;#5945&lt;/a&gt;.
  For right curly brace of enum constant please follow issue
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/7519"&gt;#7519&lt;/a&gt;.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="same"
                       name="option"

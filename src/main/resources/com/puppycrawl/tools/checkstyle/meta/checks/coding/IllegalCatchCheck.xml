@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck"
              name="IllegalCatch"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that certain exception types do not appear in a {@code catch} statement.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: catching {@code java.lang.Exception}, {@code java.lang.Error} or
  {@code java.lang.RuntimeException} is almost never acceptable.

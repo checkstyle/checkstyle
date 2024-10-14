@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck"
              name="FallThrough"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for fall-through in {@code switch} statements.
  Finds locations where a {@code case} &lt;b&gt;contains&lt;/b&gt; Java code but lacks a
  {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The check honors special comments to suppress the warning.
  By default, the texts
@@ -20,6 +21,7 @@
  the warning or on the same line before the {@code case}(ugly, but possible).
  Any other comment may follow on the same line.
  &lt;/p&gt;
+
  &lt;p&gt;
  Note: The check assumes that there is no unreachable code in the {@code case}.
  &lt;/p&gt;</description>

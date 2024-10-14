@@ -38,9 +38,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that classes are designed for extension (subclass creation).
- * </p>
+ * </div>
+ *
  * <p>
  * Nothing wrong could be with founded classes.
  * This check makes sense only for library projects (not application projects)
@@ -66,10 +67,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ignoredAnnotations set as in a subclass the method which has the annotation can also be
  * overridden in its subclass.
  * </p>
+ *
  * <p>
  * Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
  * "Item 17: Design and document for inheritance or else prohibit it".
  * </p>
+ *
  * <p>
  * Some quotes from book:
  * </p>
@@ -91,10 +94,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * In doing so, you’ll create a class that is reasonably safe to subclass. Overriding a
  * method will never affect the behavior of any other method.
  * </blockquote>
+ *
  * <p>
  * The check finds classes that have overridable methods (public or protected methods
  * that are non-static, not-final, non-abstract) and have non-empty implementation.
  * </p>
+ *
  * <p>
  * Rationale: This library design style protects superclasses against being broken
  * by subclasses. The downside is that subclasses are limited in their flexibility,
@@ -102,10 +107,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * also means that subclasses cannot corrupt the state of the superclass by forgetting
  * to call the superclass's method.
  * </p>
+ *
  * <p>
  * More specifically, it enforces a programming style where superclasses provide
  * empty "hooks" that can be implemented by subclasses.
  * </p>
+ *
  * <p>
  * Example of code that cause violation as it is designed for extension:
  * </p>
@@ -136,6 +143,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   }
  * }
  * </pre>
+ *
  * <p>
  * Example of code without violation:
  * </p>
@@ -169,9 +177,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ".*"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

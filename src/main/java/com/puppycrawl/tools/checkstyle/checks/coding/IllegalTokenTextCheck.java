@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks specified tokens text for matching an illegal pattern.
  * By default, no tokens are specified.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code format} - Define the RegExp for illegal pattern.
@@ -57,9 +57,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is: {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

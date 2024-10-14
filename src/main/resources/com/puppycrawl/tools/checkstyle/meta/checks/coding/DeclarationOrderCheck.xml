@@ -4,12 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
              name="DeclarationOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the parts of a class, record, or interface declaration appear in the order
  suggested by the
  &lt;a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"&gt;
  Code Conventions for the Java Programming Language&lt;/a&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  According to
  &lt;a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"&gt;
@@ -27,10 +28,12 @@
  &lt;li&gt; Constructors &lt;/li&gt;
  &lt;li&gt; Methods &lt;/li&gt;
  &lt;/ol&gt;
+
  &lt;p&gt;
  Purpose of &lt;b&gt;ignore*&lt;/b&gt; option is to ignore related violations,
  however it still impacts on other class members.
  &lt;/p&gt;
+
  &lt;p&gt;ATTENTION: the check skips class fields which have
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3"&gt;
  forward references &lt;/a&gt; from validation due to the fact that we have Checkstyle's limitations

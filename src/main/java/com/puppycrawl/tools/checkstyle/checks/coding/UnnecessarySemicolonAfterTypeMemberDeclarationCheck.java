@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks if unnecessary semicolon is used after type member declaration.
- * </p>
+ * </div>
+ *
  * <p>
  * This check is not applicable to empty statements (unnecessary semicolons inside methods or
  * init blocks),
@@ -70,9 +71,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,18 +4,21 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"
              name="NoClone"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the clone method is not overridden from the
  Object class.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check is almost exactly the same as the {@code NoFinalizerCheck}.
  &lt;/p&gt;
+
  &lt;p&gt;
  See
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone()"&gt;
  Object.clone()&lt;/a&gt;
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: The clone method relies on strange, hard to follow rules that
  are difficult to get right and do not work in all situations. In some cases,
@@ -24,6 +27,7 @@
  for the clone method and its issues, see Effective Java:
  Programming Language Guide First Edition by Joshua Bloch pages 45-52.
  &lt;/p&gt;
+
  &lt;p&gt;
  Below are some rules/reasons why the clone method should be avoided.
  &lt;/p&gt;
@@ -72,6 +76,7 @@
  are typed therefore no casting is necessary. Finally, they are more
  flexible since they can take interface types rather than concrete classes.
  &lt;/p&gt;
+
  &lt;p&gt;Sometimes a copy constructor or static factory is not an acceptable
  alternative to the clone method.  The example below highlights the
  limitation of a copy constructor (or static factory). Assume
@@ -81,6 +86,7 @@
  Shape s1 = new Square();
  System.out.println(s1 instanceof Square); //true
  &lt;/pre&gt;
+
  &lt;p&gt;
  ...assume at this point the code knows nothing of s1 being a Square
     that's the beauty of polymorphism but the code wants to copy
@@ -90,6 +96,7 @@
  Shape s2 = new Shape(s1); //using the copy constructor
  System.out.println(s2 instanceof Square); //false
  &lt;/pre&gt;
+
  &lt;p&gt;
  The working solution (without knowing about all subclasses and doing many
  casts) is to do the following (assuming correct clone implementation).
@@ -98,10 +105,12 @@
  Shape s2 = s1.clone();
  System.out.println(s2 instanceof Square); //true
  &lt;/pre&gt;
+
  &lt;p&gt;
  Just keep in mind if this type of polymorphic cloning is required
  then a properly implemented clone method may be the best choice.
  &lt;/p&gt;
+
  &lt;p&gt;Much of this information was taken from Effective Java:
  Programming Language Guide First Edition by Joshua Bloch
  pages 45-52.  Give Bloch credit for writing an excellent book.

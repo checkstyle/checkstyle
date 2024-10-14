@@ -9,10 +9,10 @@
     <section name="UnnecessaryParentheses">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks if unnecessary parentheses are used in a statement or expression.
           The check will flag the following with warnings:
-        </p>
+        </div>
         <source>
 return (x);          // parens around identifier
 return (x + 1);      // parens around return value

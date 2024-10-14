@@ -4,16 +4,18 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck"
              name="RegexpHeader"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the header of a source file against a header that contains a
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt; for each line of the source header.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: In some projects &lt;a href="https://checkstyle.org/checks/header/header.html#Header"&gt;
  checking against a fixed header&lt;/a&gt; is not sufficient, e.g. the header might
  require a copyright line where the year information is not static.
  &lt;/p&gt;
+
  &lt;p&gt;
  For example, consider the following header:
  &lt;/p&gt;
@@ -33,6 +35,7 @@
  line 13: ^ \*([^/]|$)
  line 14: ^ \*&amp;#47;
  &lt;/pre&gt;
+
  &lt;p&gt;
  Lines 1 and 6 demonstrate a more compact notation for 71 '/' characters.
  Line 4 enforces that the copyright notice includes a four digit year.
@@ -41,6 +44,7 @@
  conflict with and of javadoc comment). Lines 7, 9 and 11 will be treated
  as '^$' and will forcefully expect the line to be empty.
  &lt;/p&gt;
+
  &lt;p&gt;
  Different programming languages have different comment syntax rules,
  but all of them start a comment with a non-word character.
@@ -57,6 +61,7 @@
  line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
  line 6: ^\W*$
  &lt;/pre&gt;
+
  &lt;p&gt;
  Lines 1 and 2 leave room for technical header lines, e.g. the "#!/bin/sh"
  line in Unix shell scripts, or the XML file header of XML files.
@@ -64,6 +69,7 @@
  file types where they do no apply. Lines 3 through 6 define the actual header content.
  Note how lines 2, 4 and 5 use escapes for characters that have special regexp semantics.
  &lt;/p&gt;
+
  &lt;p&gt;
  In default configuration, if header is not specified, the default value
  of header is set to null and the check does not rise any violations.

@@ -22,10 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 
 /**
- * <p>
+ * <div>
  * Checks that an overriding {@code finalize()} method invokes {@code super.finalize()}.
  * Does not check native methods, as they have no possible java defined implementation.
- * </p>
+ * </div>
+ *
  * <p>
  * References:
  * <a href="https://www.oracle.com/technical-resources/articles/javase/finalization.html">
@@ -33,9 +34,11 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
  * 10 points on finalize method in Java</a>.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

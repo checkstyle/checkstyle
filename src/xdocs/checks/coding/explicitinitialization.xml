@@ -9,12 +9,12 @@
     <section name="ExplicitInitialization">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks if any class or object member is explicitly initialized to
           default for its type value (<code>null</code> for
           object references, zero for numeric types and <code>char</code> and <code>false</code> for
           <code>boolean</code>.
-        </p>
+        </div>
 
         <p>
           Rationale: Each instance variable gets initialized twice, to the

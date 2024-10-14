@@ -9,9 +9,9 @@
     <section name="UnnecessarySemicolonAfterOuterTypeDeclaration">
       <p>Since Checkstyle 8.31</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks if unnecessary semicolon is used after type declaration.
-        </p>
+        </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>

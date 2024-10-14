@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck"
              name="InterfaceIsType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Implements Joshua Bloch, Effective Java, Item 17 -
  Use Interfaces only to define types.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  According to Bloch, an interface should describe a &lt;em&gt;type&lt;/em&gt;. It is therefore
  inappropriate to define an interface that does not contain any methods
@@ -15,6 +16,7 @@
  &lt;a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html"&gt;
  javax.swing.SwingConstants&lt;/a&gt; is an example of an interface that would be flagged by this check.
  &lt;/p&gt;
+
  &lt;p&gt;
  The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
  that do not contain methods or constants at all.

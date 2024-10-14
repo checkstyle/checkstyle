@@ -33,11 +33,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for fall-through in {@code switch} statements.
  * Finds locations where a {@code case} <b>contains</b> Java code but lacks a
  * {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
- * </p>
+ * </div>
+ *
  * <p>
  * The check honors special comments to suppress the warning.
  * By default, the texts
@@ -49,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * the warning or on the same line before the {@code case}(ugly, but possible).
  * Any other comment may follow on the same line.
  * </p>
+ *
  * <p>
  * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
@@ -65,9 +67,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code "falls?[ -]?thr(u|ough)"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

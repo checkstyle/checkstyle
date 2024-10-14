@@ -33,9 +33,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Disallows assignment of parameters.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale:
  * Parameter assignment is often considered poor
@@ -44,9 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ensure that parameters are never assigned would give
  * the best of both worlds.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
