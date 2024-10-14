@@ -429,6 +429,14 @@
           </tr>
           <tr>
             <td>
+              <a href="parameteralignment.html#ParameterAlignment">
+                ParameterAlignment
+              </a>
+            </td>
+            <td>Checks alignment of parameters.</td>
+          </tr>
+          <tr>
+            <td>
               <a href="parameterassignment.html#ParameterAssignment">
                 ParameterAssignment
               </a>
@@ -436,6 +444,14 @@
             <td>
               Disallows assignment of parameters.
             </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="parameterplacement.html#ParameterPlacement">
+                ParameterPlacement
+              </a>
+            </td>
+            <td>Checks placement of parameters.</td>
           </tr>
           <tr>
             <td>
