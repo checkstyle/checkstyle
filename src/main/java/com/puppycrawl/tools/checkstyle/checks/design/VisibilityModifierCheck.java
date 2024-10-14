@@ -37,41 +37,49 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks visibility of class members. Only static final, immutable or annotated
  * by specified annotation members may be public;
  * other class members must be private unless the property {@code protectedAllowed}
  * or {@code packageAllowed} is set.
- * </p>
+ * </div>
+ *
  * <p>
  * Public members are not flagged if the name matches the public
  * member regular expression (contains {@code "^serialVersionUID$"} by
  * default).
  * </p>
+ *
  * <p>
  * Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z0-9]*$"} in the default pattern
  * to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
  * the default settings. With EJB 2.0 it is no longer necessary to have public access for
  * persistent fields, so the default has been changed.
  * </p>
+ *
  * <p>
  * Rationale: Enforce encapsulation.
  * </p>
+ *
  * <p>
  * Check also has options making it less strict:
  * </p>
+ *
  * <p>
  * <b>ignoreAnnotationCanonicalNames</b>- the list of annotations which ignore
  * variables in consideration. If user want to provide short annotation name that
  * type will match to any named the same type without consideration of package.
  * </p>
+ *
  * <p>
  * <b>allowPublicFinalFields</b>- which allows public final fields.
  * </p>
+ *
  * <p>
  * <b>allowPublicImmutableFields</b>- which allows immutable fields to be
  * declared as public if defined in final class.
  * </p>
+ *
  * <p>
  * Field is known to be immutable if:
  * </p>
@@ -80,15 +88,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>Has either a primitive type or instance of class user defined to be immutable
  * (such as String, ImmutableCollection from Guava, etc.)</li>
  * </ul>
+ *
  * <p>
  * Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b>
  * by their canonical names.
  * </p>
+ *
  * <p>
  * Property Rationale: Forcing all fields of class to have private modifier by default is
  * good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
  * One of such cases are immutable classes.
  * </p>
+ *
  * <p>
  * Restriction: Check doesn't check if class is immutable, there's no checking
  * if accessory methods are missing and all fields are immutable, we only check
@@ -98,6 +109,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Under the flag <b>allowPublicFinalFields</b>, the final modifier
  * on the enclosing class is optional.
  * </p>
+ *
  * <p>
  * Star imports are out of scope of this Check. So if one of type imported via
  * star import collides with user specified one by its short name - there
@@ -147,9 +159,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code "^serialVersionUID$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -440,6 +454,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks if current import is star import. E.g.:
+     *
      * <p>
      * {@code
      * import java.util.*;

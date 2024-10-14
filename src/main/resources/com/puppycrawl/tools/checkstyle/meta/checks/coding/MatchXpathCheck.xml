@@ -4,17 +4,19 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
              name="MatchXpath"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Evaluates Xpath query and report violation on all matching AST nodes. This check allows
  user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
  then the check does nothing.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  It is recommended to define custom message for violation to explain what is not allowed and what
  to use instead, default message might be too abstract. To customize a message you need to
  add {@code message} element with &lt;b&gt;matchxpath.match&lt;/b&gt; as {@code key} attribute and
  desired message as {@code value} attribute.
  &lt;/p&gt;
+
  &lt;p&gt;
  Please read more about Xpath syntax at
  &lt;a href="https://www.saxonica.com/html/documentation10/expressions/index.html"&gt;Xpath Syntax&lt;/a&gt;.

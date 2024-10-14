@@ -4,22 +4,24 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"
              name="SimplifyBooleanReturn"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for over-complicated boolean return or yield statements.
  For example the following code
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  if (valid())
    return false;
  else
    return true;
  &lt;/pre&gt;
+
  &lt;p&gt;
  could be written as
  &lt;/p&gt;
  &lt;pre&gt;
  return !valid();
  &lt;/pre&gt;
+
  &lt;p&gt;
  The idea for this Check has been shamelessly stolen from the equivalent
  &lt;a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns"&gt;

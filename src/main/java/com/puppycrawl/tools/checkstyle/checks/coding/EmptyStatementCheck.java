@@ -25,13 +25,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Detects empty statements (standalone {@code ";"} semicolon).
  * Empty statements often introduce bugs that are hard to spot
- * </p>
+ * </div>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

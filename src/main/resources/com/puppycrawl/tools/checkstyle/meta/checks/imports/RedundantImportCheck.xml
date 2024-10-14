@@ -4,10 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck"
              name="RedundantImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for redundant import statements. An import statement is
  considered redundant if:
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;ul&gt;
    &lt;li&gt;It is a duplicate of another import. This is, when a class is imported
    more than once.&lt;/li&gt;

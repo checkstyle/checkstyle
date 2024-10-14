@@ -9,9 +9,9 @@
     <section name="IllegalCatch">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
         Checks that certain exception types do not appear in a <code>catch</code> statement.
-        </p>
+        </div>
 
         <p>
           Rationale:

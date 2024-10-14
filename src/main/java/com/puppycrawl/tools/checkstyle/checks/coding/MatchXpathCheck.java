@@ -36,17 +36,19 @@ import net.sf.saxon.sxpath.XPathExpression;
 import net.sf.saxon.trans.XPathException;
 
 /**
- * <p>
+ * <div>
  * Evaluates Xpath query and report violation on all matching AST nodes. This check allows
  * user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
  * then the check does nothing.
- * </p>
+ * </div>
+ *
  * <p>
  * It is recommended to define custom message for violation to explain what is not allowed and what
  * to use instead, default message might be too abstract. To customize a message you need to
  * add {@code message} element with <b>matchxpath.match</b> as {@code key} attribute and
  * desired message as {@code value} attribute.
  * </p>
+ *
  * <p>
  * Please read more about Xpath syntax at
  * <a href="https://www.saxonica.com/html/documentation10/expressions/index.html">Xpath Syntax</a>.
@@ -64,9 +66,11 @@ import net.sf.saxon.trans.XPathException;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

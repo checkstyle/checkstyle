@@ -31,9 +31,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
@@ -101,9 +102,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

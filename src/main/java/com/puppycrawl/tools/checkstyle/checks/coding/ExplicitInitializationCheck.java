@@ -27,12 +27,13 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks if any class or object member is explicitly initialized
  * to default for its type value ({@code null} for object
  * references, zero for numeric types and {@code char}
  * and {@code false} for {@code boolean}.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Each instance variable gets
  * initialized twice, to the same value. Java
@@ -49,9 +50,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

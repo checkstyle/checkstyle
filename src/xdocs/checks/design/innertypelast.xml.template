@@ -9,11 +9,11 @@
     <section name="InnerTypeLast">
       <p>Since Checkstyle 5.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks nested (internal) classes/interfaces are declared at the bottom of the
           primary (top-level) class after all init and static init blocks,
           method, constructor and field declarations.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

@@ -9,9 +9,9 @@
     <section name="AvoidStarImport">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that there are no import statements that use the <code>*</code> notation.
-        </p>
+        </div>
 
         <p>
           Rationale: Importing all classes from a package or static

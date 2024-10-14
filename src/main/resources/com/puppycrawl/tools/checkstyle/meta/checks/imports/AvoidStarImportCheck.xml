@@ -4,15 +4,17 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"
              name="AvoidStarImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there are no import statements that use the {@code *} notation.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Importing all classes from a package or static
  members from a class leads to tight coupling between packages
  or classes and might lead to problems when a new version of a
  library introduces name clashes.
  &lt;/p&gt;
+
  &lt;p&gt;
  Note that property {@code excludes} is not recursive, subpackages of excluded
  packages are not automatically excluded.

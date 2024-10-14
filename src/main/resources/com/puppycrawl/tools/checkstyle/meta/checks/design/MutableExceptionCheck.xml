@@ -4,17 +4,19 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"
              name="MutableException"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Ensures that exception classes (classes with names conforming to some pattern
  and explicitly extending classes with names conforming to other
  pattern) are immutable, that is, that they have only final fields.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The current algorithm is very simple: it checks that all members of exception are final.
  The user can still mutate an exception's instance (e.g. Throwable has a method called
  {@code setStackTrace} which changes the exception's stack trace). But, at least, all
  information provided by this exception type is unchangeable.
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Exception instances should represent an error
  condition. Having non-final fields not only allows the state to be

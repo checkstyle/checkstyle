@@ -27,12 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a source file begins with a specified header.
  * Property {@code headerFile} specifies a file that contains the required header.
  * Alternatively, the header specification can be set directly in the
  * {@code header} property without the need for an external file.
- * </p>
+ * </div>
+ *
  * <p>
  * Property {@code ignoreLines} specifies the line numbers to ignore when matching
  * lines in a header file. This property is very useful for supporting headers
@@ -45,10 +46,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * line 4: // Copyright (C) 2002  Oliver Burn
  * line 5: ////////////////////////////////////////////////////////////////////
  * </pre>
+ *
  * <p>
  * Since the year information will change over time, you can tell Checkstyle
  * to ignore line 4 by setting property {@code ignoreLines} to {@code 4}.
  * </p>
+ *
  * <p>
  * In default configuration, if header is not specified, the default value
  * of header is set to {@code null} and the check does not rise any violations.
@@ -83,9 +86,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

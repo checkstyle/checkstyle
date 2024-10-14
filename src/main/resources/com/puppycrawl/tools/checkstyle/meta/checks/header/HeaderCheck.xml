@@ -4,12 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
              name="Header"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a source file begins with a specified header.
  Property {@code headerFile} specifies a file that contains the required header.
  Alternatively, the header specification can be set directly in the
  {@code header} property without the need for an external file.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Property {@code ignoreLines} specifies the line numbers to ignore when matching
  lines in a header file. This property is very useful for supporting headers
@@ -22,10 +23,12 @@
  line 4: // Copyright (C) 2002  Oliver Burn
  line 5: ////////////////////////////////////////////////////////////////////
  &lt;/pre&gt;
+
  &lt;p&gt;
  Since the year information will change over time, you can tell Checkstyle
  to ignore line 4 by setting property {@code ignoreLines} to {@code 4}.
  &lt;/p&gt;
+
  &lt;p&gt;
  In default configuration, if header is not specified, the default value
  of header is set to {@code null} and the check does not rise any violations.

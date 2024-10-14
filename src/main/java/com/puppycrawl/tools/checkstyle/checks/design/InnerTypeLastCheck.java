@@ -29,14 +29,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks nested (internal) classes/interfaces are declared at the bottom of the
  * primary (top-level) class after all init and static init blocks,
  * method, constructor and field declarations.
- * </p>
+ * </div>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

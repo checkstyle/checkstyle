@@ -29,14 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Restricts the number of return statements in methods, constructors and lambda expressions.
  * Ignores specified methods ({@code equals} by default).
- * </p>
+ * </div>
+ *
  * <p>
  * <b>max</b> property will only check returns in methods and lambdas that
  * return a specific value (Ex: 'return 1;').
  * </p>
+ *
  * <p>
  * <b>maxForVoid</b> property will only check returns in methods, constructors,
  * and lambdas that have no return type (IE 'return;'). It will only count
@@ -45,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * into account. To disallow "return;" in void return type methods, use a value
  * of 0.
  * </p>
+ *
  * <p>
  * Rationale: Too many return points can mean that code is
  * attempting to do too much or may be difficult to understand.
@@ -80,9 +83,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * LAMBDA</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

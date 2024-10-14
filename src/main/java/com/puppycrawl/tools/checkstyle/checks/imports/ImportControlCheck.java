@@ -32,10 +32,11 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Controls what can be imported in each package and file. Useful for ensuring
  * that application layering rules are not violated, especially on large projects.
- * </p>
+ * </div>
+ *
  * <p>
  * You can control imports based on the package name or based on the file name.
  * When controlling packages, all files and sub-packages in the declared package
@@ -45,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="https://checkstyle.org/config.html#TreeWalker">TreeWalker</a>.
  * The file's extension is ignored.
  * </p>
+ *
  * <p>
  * Short description of the behaviour:
  * </p>
@@ -88,12 +90,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * including the root level (import-control), then the import is disallowed by default.
  * </li>
  * </ul>
+ *
  * <p>
  * The DTD for an import control XML document is at
  * <a href="https://checkstyle.org/dtds/import_control_1_4.dtd">
  * https://checkstyle.org/dtds/import_control_1_4.dtd</a>.
  * It contains documentation on each of the elements and attributes.
  * </p>
+ *
  * <p>
  * The check validates a XML document when it loads the document. To validate against
  * the above DTD, include the following document type declaration in your XML document:
@@ -119,9 +123,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code ".*"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

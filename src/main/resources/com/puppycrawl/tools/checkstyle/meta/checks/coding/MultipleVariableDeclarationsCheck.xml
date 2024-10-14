@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck"
              name="MultipleVariableDeclarations"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that each variable declaration is in its own statement
  and on its own line.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: &lt;a
  href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992"&gt;

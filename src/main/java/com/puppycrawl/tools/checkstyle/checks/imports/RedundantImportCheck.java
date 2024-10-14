@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks for redundant import statements. An import statement is
  * considered redundant if:
- * </p>
+ * </div>
  * <ul>
  *   <li>It is a duplicate of another import. This is, when a class is imported
  *   more than once.</li>
@@ -41,9 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   <li>The class non-statically imported is from the same package as the
  *   current package.</li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

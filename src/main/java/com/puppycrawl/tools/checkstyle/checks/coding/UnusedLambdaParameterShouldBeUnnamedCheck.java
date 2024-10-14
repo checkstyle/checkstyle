@@ -30,9 +30,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Ensures that lambda parameters that are not used are declared as an unnamed variable.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale:
  * </p>
@@ -44,18 +45,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *         Follows Java conventions for denoting unused parameters with an underscore ({@code _}).
  *     </li>
  * </ul>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  * Java Language Specification</a> for more information about unnamed variables.
  * </p>
+ *
  * <p>
  * <b>Attention</b>: Unnamed variables are available as a preview feature in Java 21,
  * and became an official part of the language in Java 22.
  * This check should be activated only on source code which meets those requirements.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

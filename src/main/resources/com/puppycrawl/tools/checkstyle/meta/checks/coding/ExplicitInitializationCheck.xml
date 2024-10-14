@@ -4,12 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck"
              name="ExplicitInitialization"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks if any class or object member is explicitly initialized
  to default for its type value ({@code null} for object
  references, zero for numeric types and {@code char}
  and {@code false} for {@code boolean}.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Each instance variable gets
  initialized twice, to the same value. Java

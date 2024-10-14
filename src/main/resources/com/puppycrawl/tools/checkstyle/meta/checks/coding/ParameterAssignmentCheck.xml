@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck"
              name="ParameterAssignment"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Disallows assignment of parameters.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale:
  Parameter assignment is often considered poor

@@ -9,10 +9,10 @@
     <section name="FinalClass">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Ensures that identifies classes that can be effectively declared as final are explicitly
           marked as final. The following are different types of classes that can be identified:
-        </p>
+        </div>
         <ol>
           <li>
               Private classes with no declared constructors.

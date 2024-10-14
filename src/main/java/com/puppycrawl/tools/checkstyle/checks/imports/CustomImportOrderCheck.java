@@ -34,11 +34,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that the groups of import declarations appear in the order specified
  * by the user. If there is an import but its group is not specified in the
  * configuration such an import should be placed at the end of the import list.
- * </p>
+ * </div>
+ *
  * <p>
  * The rule consists of:
  * </p>
@@ -82,17 +83,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * user.
  * </li>
  * </ol>
+ *
  * <p>
  * Rules are configured as a comma-separated ordered list.
  * </p>
+ *
  * <p>
  * Note: '###' group separator is deprecated (in favor of a comma-separated list),
  * but is currently supported for backward compatibility.
  * </p>
+ *
  * <p>
  * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
  * thirdPartyPackageRegExp and standardPackageRegExp options.
  * </p>
+ *
  * <p>
  * Pretty often one import can match more than one group. For example, static import from standard
  * package or regular expressions are configured to allow one import match multiple groups.
@@ -114,9 +119,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * THIRD_PARTY has the least priority
  * </li>
  * </ol>
+ *
  * <p>
  * Few examples to illustrate "best match":
  * </p>
+ *
  * <p>
  * 1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
  * </p>
@@ -124,16 +131,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
  * </pre>
+ *
  * <p>
  * Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16.
  * Matching substring for STANDARD_JAVA_PACKAGE is 5.
  * </p>
+ *
  * <p>
  * 2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
  * </p>
  * <pre>
  * import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
  * </pre>
+ *
  * <p>
  * Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
  * patterns. However, "Avoid" position is lower than "Check" position.
@@ -172,9 +182,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ".*"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -880,6 +892,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Get import end line number from ast.
+         *
          * <p>
          * <b>Note:</b> It can be different from <b>startLineNumber</b> when import statement span
          * multiple lines.

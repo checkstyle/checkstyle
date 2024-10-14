@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck"
              name="DefaultComesLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Check that the {@code default} is after all the cases in a {@code switch} statement.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Java allows {@code default} anywhere within the
  {@code switch} statement. But it is more readable if it comes after the last {@code case}.

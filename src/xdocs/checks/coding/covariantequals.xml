@@ -9,14 +9,16 @@
     <section name="CovariantEquals">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that classes and records which define a covariant <code>equals()</code> method
           also override method <code>equals(Object)</code>.
-        </p>
+        </div>
+
         <p>
           Covariant <code>equals()</code> - method that is similar to <code>equals(Object)</code>,
           but with a covariant parameter type (any subtype of Object).
         </p>
+
         <p>
           <strong>Notice</strong>: the enums are also checked, even
           though they cannot override <code>equals(Object)</code>. The reason is

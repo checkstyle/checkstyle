@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck"
              name="IllegalImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for imports from a set of illegal packages.
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;p&gt;
  Note: By default, the check rejects all {@code sun.*} packages since programs
  that contain direct calls to the {@code sun.*} packages are
