@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"
              name="NeedBraces"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for braces around code blocks.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="allowEmptyLoopBody" type="boolean">
                <description>Allow loops with empty bodies.</description>

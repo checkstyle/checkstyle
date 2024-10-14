@@ -9,10 +9,10 @@
     <section name="HiddenField">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a local variable or a parameter does not shadow a field
           that is defined in the same class.
-        </p>
+        </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>

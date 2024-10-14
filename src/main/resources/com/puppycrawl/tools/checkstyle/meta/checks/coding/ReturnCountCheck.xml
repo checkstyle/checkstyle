@@ -4,14 +4,16 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck"
              name="ReturnCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Restricts the number of return statements in methods, constructors and lambda expressions.
  Ignores specified methods ({@code equals} by default).
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  &lt;b&gt;max&lt;/b&gt; property will only check returns in methods and lambdas that
  return a specific value (Ex: 'return 1;').
  &lt;/p&gt;
+
  &lt;p&gt;
  &lt;b&gt;maxForVoid&lt;/b&gt; property will only check returns in methods, constructors,
  and lambdas that have no return type (IE 'return;'). It will only count
@@ -20,6 +22,7 @@
  into account. To disallow "return;" in void return type methods, use a value
  of 0.
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Too many return points can mean that code is
  attempting to do too much or may be difficult to understand.

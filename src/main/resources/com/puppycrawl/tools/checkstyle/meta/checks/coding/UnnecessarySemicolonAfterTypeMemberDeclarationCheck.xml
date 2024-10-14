@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck"
              name="UnnecessarySemicolonAfterTypeMemberDeclaration"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks if unnecessary semicolon is used after type member declaration.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check is not applicable to empty statements (unnecessary semicolons inside methods or
  init blocks),

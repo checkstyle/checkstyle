@@ -4,25 +4,29 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"
              name="MissingOverride"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Verifies that the {@code @Override} annotation is present
  when the {@code @inheritDoc} javadoc tag is present.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: The &amp;#64;Override annotation helps
  compiler tools ensure that an override is actually occurring.  It is
  quite easy to accidentally overload a method or hide a static method
  and using the &amp;#64;Override annotation points out these problems.
  &lt;/p&gt;
+
  &lt;p&gt;
  This check will log a violation if using the &amp;#64;inheritDoc tag on a method that
  is not valid (ex: private, or static method).
  &lt;/p&gt;
+
  &lt;p&gt;
  There is a slight difference between the &amp;#64;Override annotation in Java 5 versus
  Java 6 and above. In Java 5, any method overridden from an interface cannot
  be annotated with &amp;#64;Override. In Java 6 this behavior is allowed.
  &lt;/p&gt;
+
  &lt;p&gt;
  As a result of the aforementioned difference between Java 5 and Java 6, a
  property called {@code javaFiveCompatibility} is available. This

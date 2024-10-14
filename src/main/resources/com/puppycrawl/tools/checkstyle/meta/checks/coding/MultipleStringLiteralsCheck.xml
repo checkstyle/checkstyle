@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck"
              name="MultipleStringLiterals"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for multiple occurrences of the same string literal within a single file.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Code duplication makes maintenance more difficult, so it can be better
  to replace the multiple occurrences with a constant.

@@ -9,10 +9,10 @@
     <section name="IllegalTokenText">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks specified tokens text for matching an illegal pattern.
           By default, no tokens are specified.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -9,10 +9,10 @@
     <section name="ReturnCount">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Restricts the number of return statements in methods, constructors and lambda expressions.
           Ignores specified methods (<code>equals</code> by default).
-        </p>
+        </div>
 
         <p>
           <b>max</b> property will only check returns in methods and lambdas that return a specific

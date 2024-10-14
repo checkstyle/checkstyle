@@ -4,10 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"
              name="UnnecessaryParentheses"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks if unnecessary parentheses are used in a statement or expression.
  The check will flag the following with warnings:
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  return (x);          // parens around identifier
  return (x + 1);      // parens around return value
@@ -19,6 +19,7 @@
  boolean b = (~a) &amp;gt; -27            // parens around ~a
              &amp;amp;&amp;amp; (a-- &amp;lt; 30);        // parens around expression
  &lt;/pre&gt;
+
  &lt;p&gt;
  The check is not "type aware", that is to say, it can't tell if parentheses
  are unnecessary based on the types in an expression. The check is partially aware about
@@ -31,6 +32,7 @@
  int q = 4;
  int r = 3;
  if (p == (q &amp;lt;= r)) {}&lt;/pre&gt;
+
  &lt;p&gt;
  In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
  all {@code int} variables, the parentheses around {@code a + b}
@@ -41,6 +43,7 @@
  and &lt;em&gt;r&lt;/em&gt; were {@code boolean} still there will be no violation
  raised as check is not "type aware".
  &lt;/p&gt;
+
  &lt;p&gt;
  The partial support for operator precedence includes cases of the following type:
  &lt;/p&gt;

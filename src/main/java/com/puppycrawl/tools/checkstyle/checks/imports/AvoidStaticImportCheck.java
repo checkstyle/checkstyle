@@ -27,19 +27,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that there are no static import statements.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Importing static members can lead to naming conflicts
  * between class' members. It may lead to poor code readability since it
  * may no longer be clear what class a member resides in (without looking
  * at the import statement).
  * </p>
+ *
  * <p>
  * If you exclude a starred import on a class this automatically excludes
  * each member individually.
  * </p>
+ *
  * <p>
  * For example: Excluding {@code java.lang.Math.*}. will allow the import
  * of each static member in the Math class individually like
@@ -55,9 +58,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

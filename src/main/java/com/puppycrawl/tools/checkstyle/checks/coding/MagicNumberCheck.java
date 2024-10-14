@@ -34,13 +34,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that there are no
  * <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
  * &quot;magic numbers&quot;</a> where a magic
  * number is a numeric literal that is not defined as a constant.
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
- * </p>
+ * </div>
  *
  * <p>Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
@@ -128,9 +128,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * NUM_LONG</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

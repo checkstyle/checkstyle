@@ -31,16 +31,18 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Allows to specify what warnings that
  * {@code @SuppressWarnings} is not allowed to suppress.
  * You can also specify a list of TokenTypes that
  * the configured warning(s) cannot be suppressed on.
- * </p>
+ * </div>
+ *
  * <p>
  * Limitations:  This check does not consider conditionals
  * inside the &#64;SuppressWarnings annotation.
  * </p>
+ *
  * <p>
  * For example:
  * {@code @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")}.
@@ -52,16 +54,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code @SuppressWarnings((String) "unused")} or
  * {@code @SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})}.
  * </p>
+ *
  * <p>
  * By default, any warning specified will be disallowed on
  * all legal TokenTypes unless otherwise specified via
  * the tokens property.
  * </p>
+ *
  * <p>
  * Also, by default warnings that are empty strings or all
  * whitespace (regex: ^$|^\s+$) are flagged.  By specifying,
  * the format property these defaults no longer apply.
  * </p>
+ *
  * <p>This check can be configured so that the "unchecked"
  * and "unused" warnings cannot be suppressed on
  * anything but variable and parameter declarations.
@@ -107,9 +112,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * PATTERN_VARIABLE_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

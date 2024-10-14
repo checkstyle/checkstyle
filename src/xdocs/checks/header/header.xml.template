@@ -9,13 +9,13 @@
     <section name="Header">
       <p>Since Checkstyle 6.9</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a source file begins with a specified header. Property
           <code>headerFile</code> specifies a file that contains
           the required header. Alternatively, the header specification can be
           set directly in the <code>header</code> property
           without the need for an external file.
-        </p>
+        </div>
 
         <p>
           Property <code>ignoreLines</code> specifies the line

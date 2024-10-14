@@ -9,10 +9,10 @@
     <section name="EmptyCatchBlock">
       <p>Since Checkstyle 6.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for empty catch blocks.
           By default, check allows empty catch block with any comment inside.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Notes" id="Notes">

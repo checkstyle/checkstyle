@@ -4,11 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck"
              name="InnerTypeLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks nested (internal) classes/interfaces are declared at the bottom of the
  primary (top-level) class after all init and static init blocks,
  method, constructor and field declarations.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <message-keys>
             <message-key key="arrangement.members.before.inner"/>
          </message-keys>

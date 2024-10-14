@@ -34,11 +34,11 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that specified types are not declared to be thrown.
  * Declaring that a method throws {@code java.lang.Error} or
  * {@code java.lang.RuntimeException} is almost never acceptable.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code ignoreOverriddenMethods} - Allow to ignore checking overridden methods
@@ -58,9 +58,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

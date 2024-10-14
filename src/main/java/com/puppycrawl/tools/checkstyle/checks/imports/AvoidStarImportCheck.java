@@ -29,15 +29,17 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that there are no import statements that use the {@code *} notation.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Importing all classes from a package or static
  * members from a class leads to tight coupling between packages
  * or classes and might lead to problems when a new version of a
  * library introduces name clashes.
  * </p>
+ *
  * <p>
  * Note that property {@code excludes} is not recursive, subpackages of excluded
  * packages are not automatically excluded.
@@ -62,9 +64,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,14 +4,16 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck"
              name="PackageDeclaration"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Ensures that a class has a package declaration, and (optionally) whether
  the package name matches the directory name for the source file.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Classes that live in the null package cannot be imported.
  Many novice developers are not aware of this.
  &lt;/p&gt;
+
  &lt;p&gt;
  Packages provide logical namespace to classes and should be stored in
  the form of directory levels to provide physical grouping to your classes.

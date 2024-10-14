@@ -27,19 +27,22 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that each variable declaration is in its own statement
  * and on its own line.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: <a
  * href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
  * the Java code conventions chapter 6.1</a> recommends that
  * declarations should be one per line/statement.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

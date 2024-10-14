@@ -25,13 +25,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Finds nested blocks (blocks that are used freely in the code).
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Nested blocks are often leftovers from the
  * debugging process, they confuse the reader.
  * </p>
+ *
  * <p>
  * For example, this check finds the obsolete braces in
  * </p>
@@ -45,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   System.out.println("value = " + whichIsWhich);
  * }
  * </pre>
+ *
  * <p>
  * and debugging / refactoring leftovers such as
  * </p>
@@ -54,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   System.out.println("unconditional");
  * }
  * </pre>
+ *
  * <p>
  * A case in a switch statement does not implicitly form a block.
  * Thus, to be able to introduce local variables that have case scope
@@ -69,9 +73,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

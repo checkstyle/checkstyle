@@ -22,18 +22,21 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 
 /**
- * <p>
+ * <div>
  * Checks that an overriding {@code clone()} method invokes {@code super.clone()}.
  * Does not check native methods, as they have no possible java defined implementation.
- * </p>
+ * </div>
+ *
  * <p>
  * Reference:
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone%28%29">
  * Object.clone()</a>.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

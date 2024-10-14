@@ -9,10 +9,10 @@
     <section name="MultipleVariableDeclarations">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that each variable declaration is in its own statement and on
           its own line.
-        </p>
+        </div>
 
         <p>
           Rationale:

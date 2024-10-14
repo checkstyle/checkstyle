@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck"
              name="IllegalToken"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for illegal tokens. By default, labels are prohibited.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Certain language features can harm readability, lead to
  confusion or are not obvious to novice developers. Other features

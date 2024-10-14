@@ -9,7 +9,7 @@
     <section name="ImportOrder">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>Checks the ordering/grouping of imports. Features are:</p>
+        <div>Checks the ordering/grouping of imports. Features are:</div>
         <ul>
           <li>groups type/static imports: ensures that groups of imports come in a
           specific order (e.g., java. comes first, javax. comes second,
