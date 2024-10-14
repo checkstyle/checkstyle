@@ -9,10 +9,10 @@
     <section name="LeftCurly">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for the placement of left curly braces
           (<code>'{'</code>) for code blocks.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

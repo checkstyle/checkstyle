@@ -25,9 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that sealed classes and interfaces have a permits list.
- * </p>
+ * </div>
+ *
  * <p>
  *     Rationale: When a permits clause is omitted from a sealed class,
  *     any class within the same compilation unit can extend it. This differs
@@ -37,13 +38,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     compilation unit, which can be challenging, especially in large files
  *     with complex class hierarchies.
  * </p>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2">
  * Java Language Specification</a> for more information about sealed classes.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

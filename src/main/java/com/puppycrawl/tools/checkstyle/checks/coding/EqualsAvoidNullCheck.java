@@ -32,12 +32,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that any combination of String literals
  * is on the left side of an {@code equals()} comparison.
  * Also checks for String literals assigned to some field
  * (such as {@code someString.equals(anotherString = "text")}).
- * </p>
+ * </div>
+ *
  * <p>Rationale: Calling the {@code equals()} method on String literals
  * will avoid a potential {@code NullPointerException}. Also, it is
  * pretty common to see null checks right before equals comparisons
@@ -51,9 +52,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

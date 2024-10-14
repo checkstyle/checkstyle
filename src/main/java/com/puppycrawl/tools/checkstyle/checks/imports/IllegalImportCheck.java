@@ -31,9 +31,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for imports from a set of illegal packages.
- * </p>
+ * </div>
  * <p>
  * Note: By default, the check rejects all {@code sun.*} packages since programs
  * that contain direct calls to the {@code sun.*} packages are

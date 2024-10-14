@@ -9,10 +9,10 @@
     <section name="UnnecessarySemicolonInEnumeration">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
             Checks if unnecessary semicolon is in enum definitions.
             Semicolon is not needed if enum body contains only enum constants.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

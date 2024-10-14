@@ -9,9 +9,9 @@
     <section name="AvoidNestedBlocks">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Finds nested blocks (blocks that are used freely in the code).
-        </p>
+        </div>
 
         <p>
           Rationale: Nested blocks are often leftovers from the

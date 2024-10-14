@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
  * supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
  *  for-loops, method definitions, class definitions, constructor definitions,
@@ -41,7 +41,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
  * For right curly brace of enum constant please follow issue
  * <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code option} - Specify the policy on placement of a right curly brace
@@ -66,9 +67,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LITERAL_ELSE</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

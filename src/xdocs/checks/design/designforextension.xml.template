@@ -9,9 +9,9 @@
     <section name="DesignForExtension">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that classes are designed for extension (subclass creation).
-        </p>
+        </div>
         <p>
           Nothing wrong could be with founded classes.
           This check makes sense only for library projects (not application projects)

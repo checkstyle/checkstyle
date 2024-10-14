@@ -30,27 +30,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Ensures that {@code when} is used instead of a single {@code if}
  * statement inside a case block.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Java 21 has introduced enhancements for switch statements and expressions
  * that allow the use of patterns in case labels. The {@code when} keyword is used to specify
  * condition for a case label, also called as guarded case labels. This syntax is more readable
  * and concise than the single {@code if} statement inside the pattern match block.
  * </p>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-Guard">
  * Java Language Specification</a> for more information about guarded case labels.
  * </p>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-14.html#jls-14.30">
  * Java Language Specification</a> for more information about patterns.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

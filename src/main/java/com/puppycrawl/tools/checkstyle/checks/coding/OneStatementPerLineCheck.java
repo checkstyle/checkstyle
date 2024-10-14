@@ -28,17 +28,20 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that there is only one statement per line.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: It's very difficult to read multiple statements on one line.
  * </p>
+ *
  * <p>
  * In the Java programming language, statements are the fundamental unit of
  * execution. All statements except blocks are terminated by a semicolon.
  * Blocks are denoted by open and close curly braces.
  * </p>
+ *
  * <p>
  * OneStatementPerLineCheck checks the following types of statements:
  * variable declaration statements, empty statements, import statements,
@@ -53,9 +56,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

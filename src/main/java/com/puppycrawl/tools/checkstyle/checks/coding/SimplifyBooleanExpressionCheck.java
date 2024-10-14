@@ -26,18 +26,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for over-complicated boolean expressions. Currently, it finds code like
  * {@code if (b == true)}, {@code b || true}, {@code !false},
  * {@code boolean a = q > 12 ? true : false},
  * etc.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Complex boolean logic makes code hard to understand and maintain.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

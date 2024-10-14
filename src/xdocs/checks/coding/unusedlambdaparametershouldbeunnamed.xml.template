@@ -9,9 +9,9 @@
     <section name="UnusedLambdaParameterShouldBeUnnamed">
       <p>Since Checkstyle 10.18.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Ensures that lambda parameters that are not used are declared as an unnamed variable.
-        </p>
+        </div>
         <p>
           Rationale:
         </p>

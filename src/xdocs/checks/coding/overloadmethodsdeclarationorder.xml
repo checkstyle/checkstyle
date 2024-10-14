@@ -9,11 +9,11 @@
     <section name="OverloadMethodsDeclarationOrder">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that overloaded methods are grouped together. Overloaded methods have the same
           name but different signatures where the signature can differ by the number of input
           parameters or type of input parameters or both.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

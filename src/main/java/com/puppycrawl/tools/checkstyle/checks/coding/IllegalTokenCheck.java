@@ -28,9 +28,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for illegal tokens. By default, labels are prohibited.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Certain language features can harm readability, lead to
  * confusion or are not obvious to novice developers. Other features
@@ -46,9 +47,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LABELED_STAT</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

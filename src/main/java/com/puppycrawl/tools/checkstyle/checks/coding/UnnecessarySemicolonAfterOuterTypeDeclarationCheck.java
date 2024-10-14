@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks if unnecessary semicolon is used after type declaration.
- * </p>
+ * </div>
+ *
  * <p>
  * This check is not applicable to nested type declarations,
  * <a
@@ -54,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

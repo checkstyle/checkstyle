@@ -26,18 +26,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  *  Checks that enum definition does not contain a trailing comma.
  *  Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
  *  them in other locations. To unify the coding style, the use of trailing commas should
  *  be prohibited.
- * </p>
+ * </div>
  * <pre>
  * enum Foo1 {
  *   FOO,
  *   BAR;
  * }
  * </pre>
+ *
  * <p>
  *  The check demands that there should not be any comma after last constant in
  *  enum definition.
@@ -48,9 +49,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   BAR, //violation
  * }
  * </pre>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

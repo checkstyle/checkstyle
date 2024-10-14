@@ -31,10 +31,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a given switch statement or expression that use a reference type in its selector
  * expression has a {@code null} case label.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: switch statements and expressions in Java throw a
  * {@code NullPointerException} if the selector expression evaluates to {@code null}.
@@ -42,25 +43,31 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * eliminating the risk of {@code NullPointerException} and simplifies the code
  * as there is no need for an external null check before entering the switch.
  * </p>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.28">
  * Java Language Specification</a> for more information about switch statements and expressions.
  * </p>
+ *
  * <p>
  * Specifically, this check validates switch statement or expression
  * that use patterns or strings in their case labels.
  * </p>
+ *
  * <p>
  * Due to Checkstyle not being type-aware, this check cannot validate other reference types,
  * such as enums; syntactically, these are no different from other constants.
  * </p>
+ *
  * <p>
  * <b>Attention</b>: this Check should be activated only on source code
  * that is compiled by jdk21 or above.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

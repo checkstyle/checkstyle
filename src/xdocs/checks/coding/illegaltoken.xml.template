@@ -9,9 +9,9 @@
     <section name="IllegalToken">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for illegal tokens. By default, labels are prohibited.
-        </p>
+        </div>
 
         <p>
           Rationale: Certain language features can harm readability, lead to
