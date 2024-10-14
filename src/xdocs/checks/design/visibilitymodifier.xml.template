@@ -9,11 +9,11 @@
     <section name="VisibilityModifier">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks visibility of class members. Only static final, immutable or annotated
           by specified annotation members may be public; other class members must be private
           unless the property <code>protectedAllowed</code> or <code>packageAllowed</code> is set.
-        </p>
+        </div>
 
         <p>
           Public members are not flagged if the name matches the public

@@ -25,20 +25,23 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Detects inline conditionals. Here is one example of an inline conditional:
- * </p>
+ * </div>
  * <pre>
  * String a = getParameter("a");
  * String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
  * </pre>
+ *
  * <p>
  * Rationale: Some developers find inline conditionals hard to read, so
  * their employer's coding standards forbid them.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

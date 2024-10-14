@@ -25,9 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Check that the {@code default} is after all the cases in a {@code switch} statement.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Java allows {@code default} anywhere within the
  * {@code switch} statement. But it is more readable if it comes after the last {@code case}.
@@ -40,9 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

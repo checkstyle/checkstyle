@@ -36,9 +36,10 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for multiple occurrences of the same string literal within a single file.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Code duplication makes maintenance more difficult, so it can be better
  * to replace the multiple occurrences with a constant.
@@ -66,9 +67,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code "^""$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

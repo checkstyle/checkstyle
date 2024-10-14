@@ -9,10 +9,10 @@
     <section name="IllegalInstantiation">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for illegal instantiations where a factory method is
           preferred.
-        </p>
+        </div>
 
         <p>
           Rationale: Depending on the project, for some classes it might be

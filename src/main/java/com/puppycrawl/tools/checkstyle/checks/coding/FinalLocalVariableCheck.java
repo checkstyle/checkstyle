@@ -36,10 +36,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that local variables that never have their values changed are declared final.
  * The check can be configured to also check that unchanged parameters are declared final.
- * </p>
+ * </div>
+ *
  * <p>
  * When configured to check parameters, the check ignores parameters of interface
  * methods and abstract methods.
@@ -68,9 +69,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * VARIABLE_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

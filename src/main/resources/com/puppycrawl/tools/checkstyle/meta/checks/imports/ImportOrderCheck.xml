@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"
              name="ImportOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the ordering/grouping of imports. Features are:
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;ul&gt;
  &lt;li&gt;
  groups type/static imports: ensures that groups of imports come in a specific order

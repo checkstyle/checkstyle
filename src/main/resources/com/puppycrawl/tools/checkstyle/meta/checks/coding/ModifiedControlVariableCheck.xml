@@ -4,21 +4,23 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck"
              name="ModifiedControlVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that for loop control variables are not modified
  inside the for block. An example is:
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  for (int i = 0; i &amp;lt; 1; i++) {
    i++; // violation
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Rationale: If the control variable is modified inside the loop
  body, the program flow becomes more difficult to follow.
  See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14"&gt;
  FOR statement&lt;/a&gt; specification for more details.
  &lt;/p&gt;
+
  &lt;p&gt;
  Such loop would be suppressed:
  &lt;/p&gt;
@@ -27,6 +29,7 @@
    i++;
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  NOTE:The check works with only primitive type variables.
  The check will not work for arrays used as control variable.An example is

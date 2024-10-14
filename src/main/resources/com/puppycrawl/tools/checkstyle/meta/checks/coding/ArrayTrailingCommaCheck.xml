@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck"
              name="ArrayTrailingComma"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that array initialization contains a trailing comma.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;pre&gt;
  int[] a = new int[]
  {
@@ -15,6 +16,7 @@
    3,
  };
  &lt;/pre&gt;
+
  &lt;p&gt;
  By default, the check demands a comma at the end if neither left nor right curly braces
  are on the same line as the last element of the array.
@@ -26,6 +28,7 @@
  return new int[] {
    0 };
  &lt;/pre&gt;
+
  &lt;p&gt;
  Rationale: Putting this comma in makes it easier to change the
  order of the elements or add new elements on the end. Main benefit of a trailing
@@ -43,6 +46,7 @@
    300000000000000000000,  // Just this line added, no other changes
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  If closing brace is on the same line as trailing comma, this benefit is gone
  (as the check does not demand a certain location of curly braces the following
@@ -56,6 +60,7 @@
   200000000000000000000, // Modified line
   300000000000000000000,} // Added line
  &lt;/pre&gt;
+
  &lt;p&gt;
  If opening brace is on the same line as trailing comma there's also (more arguable) problem:
  &lt;/p&gt;

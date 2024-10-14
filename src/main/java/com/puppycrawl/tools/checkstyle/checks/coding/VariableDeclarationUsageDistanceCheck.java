@@ -35,10 +35,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the distance between declaration of variable and its first usage.
  * Note : Variable declaration/initialization statements are not counted while calculating length.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code allowedDistance} - Specify distance between declaration
@@ -64,9 +64,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

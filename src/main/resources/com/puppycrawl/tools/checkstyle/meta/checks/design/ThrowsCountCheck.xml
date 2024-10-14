@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck"
              name="ThrowsCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Restricts throws statements to a specified count.
  Methods with "Override" or "java.lang.Override" annotation are skipped
  from validation as current class cannot change signature of these methods.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale:
  Exceptions form part of a method's interface. Declaring
@@ -26,6 +27,7 @@
  Programming Language Guide Second Edition
  by Joshua Bloch pages 264-273.
  &lt;/p&gt;
+
  &lt;p&gt;
  &lt;b&gt;ignorePrivateMethods&lt;/b&gt; - allows to skip private methods as they do
  not cause problems for other classes.

@@ -28,14 +28,16 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Ensures that a class has a package declaration, and (optionally) whether
  * the package name matches the directory name for the source file.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Classes that live in the null package cannot be imported.
  * Many novice developers are not aware of this.
  * </p>
+ *
  * <p>
  * Packages provide logical namespace to classes and should be stored in
  * the form of directory levels to provide physical grouping to your classes.
@@ -50,9 +52,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

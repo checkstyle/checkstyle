@@ -9,10 +9,10 @@
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Detects empty statements (standalone <code>&quot;;&quot;</code> semicolon).
           Empty statements often introduce bugs that are hard to spot
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

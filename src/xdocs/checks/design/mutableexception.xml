@@ -9,11 +9,11 @@
     <section name="MutableException">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Ensures that exception classes (classes with names conforming to some pattern
           and explicitly extending classes with names conforming to other
           pattern) are immutable, that is, that they have only final fields.
-        </p>
+        </div>
 
         <p>
           The current algorithm is very simple: it checks that all members of

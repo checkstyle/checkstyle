@@ -9,10 +9,10 @@
     <section name="DefaultComesLast">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Check that the <code>default</code> is after all the
           cases in a <code>switch</code> statement.
-        </p>
+        </div>
 
         <p>
           Rationale: Java allows <code>default</code> anywhere

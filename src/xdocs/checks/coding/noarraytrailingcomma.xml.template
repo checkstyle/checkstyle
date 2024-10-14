@@ -9,12 +9,12 @@
     <section name="NoArrayTrailingComma">
       <p>Since Checkstyle 8.28</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that array initialization do not contain a trailing comma.
           Rationale: JLS allows trailing commas in arrays and enumerations, but does not allow
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
-        </p>
+        </div>
         <source>
 int[] foo = new int[] {
   1,

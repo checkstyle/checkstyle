@@ -9,7 +9,7 @@
     <section name="StringLiteralEquality">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that string literals are not used with <code>==</code> or
           <code>!=</code>.
           Since <code>==</code> will compare the object references,
@@ -18,7 +18,7 @@
           More information can be found
           <a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/">
           in this article</a>.
-        </p>
+        </div>
 
         <p>
           Rationale: Novice Java programmers often use code like:

@@ -9,7 +9,7 @@
     <section name="ParameterAssignment">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p> Disallows assignment of parameters.</p>
+        <div> Disallows assignment of parameters.</div>
         <p>
           Rationale: Parameter assignment is often considered poor programming
           practice. Forcing developers to declare parameters as final is often

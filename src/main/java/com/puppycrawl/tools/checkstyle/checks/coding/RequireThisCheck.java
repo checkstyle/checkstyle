@@ -38,13 +38,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that references to instance variables and methods of the present
  * object are explicitly of the form "this.varName" or "this.methodName(args)"
  * and that those references don't rely on the default behavior when "this." is absent.
- * </p>
+ * </div>
+ *
  * <p>Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to 'false'
  * and not that actual nowadays.</p>
+ *
  * <p>Rationale:</p>
  * <ol>
  *   <li>
@@ -57,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     static and non-static methods).
  *   </li>
  * </ol>
+ *
  * <p>Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.
@@ -81,9 +84,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

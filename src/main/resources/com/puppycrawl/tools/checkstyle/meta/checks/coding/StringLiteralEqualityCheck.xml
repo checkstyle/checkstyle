@@ -4,20 +4,22 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck"
              name="StringLiteralEquality"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that string literals are not used with &lt;code&gt;==&lt;/code&gt; or &lt;code&gt;&amp;#33;=&lt;/code&gt;.
  Since &lt;code&gt;==&lt;/code&gt; will compare the object references, not the actual value of the strings,
  &lt;code&gt;String.equals()&lt;/code&gt; should be used.
  More information can be found
  &lt;a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/"&gt;
  in this article&lt;/a&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Novice Java programmers often use code like:
  &lt;/p&gt;
  &lt;pre&gt;
  if (x == "something")
  &lt;/pre&gt;
+
  &lt;p&gt;
  when they mean
  &lt;/p&gt;

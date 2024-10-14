@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck"
              name="EmptyCatchBlock"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for empty catch blocks.
  By default, check allows empty catch block with any comment inside.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  There are two options to make validation more precise: &lt;b&gt;exceptionVariableName&lt;/b&gt; and
  &lt;b&gt;commentFormat&lt;/b&gt;.

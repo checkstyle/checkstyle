@@ -32,12 +32,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that the parts of a class, record, or interface declaration appear in the order
  * suggested by the
  * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
  * Code Conventions for the Java Programming Language</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * According to
  * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
@@ -55,10 +56,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li> Constructors </li>
  * <li> Methods </li>
  * </ol>
+ *
  * <p>
  * Purpose of <b>ignore*</b> option is to ignore related violations,
  * however it still impacts on other class members.
  * </p>
+ *
  * <p>ATTENTION: the check skips class fields which have
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3">
  * forward references </a> from validation due to the fact that we have Checkstyle's limitations
@@ -83,9 +86,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

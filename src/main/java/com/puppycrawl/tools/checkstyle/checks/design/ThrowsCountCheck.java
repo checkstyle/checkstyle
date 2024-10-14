@@ -27,11 +27,12 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Restricts throws statements to a specified count.
  * Methods with "Override" or "java.lang.Override" annotation are skipped
  * from validation as current class cannot change signature of these methods.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale:
  * Exceptions form part of a method's interface. Declaring
@@ -49,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Programming Language Guide Second Edition
  * by Joshua Bloch pages 264-273.
  * </p>
+ *
  * <p>
  * <b>ignorePrivateMethods</b> - allows to skip private methods as they do
  * not cause problems for other classes.
@@ -65,9 +67,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 4}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

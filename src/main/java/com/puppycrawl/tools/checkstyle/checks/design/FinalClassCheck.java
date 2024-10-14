@@ -39,10 +39,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Ensures that identifies classes that can be effectively declared as final are explicitly
  * marked as final. The following are different types of classes that can be identified:
- * </p>
+ * </div>
  * <ol>
  *   <li>
  *       Private classes with no declared constructors.
@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       Classes with any modifier, and contains only private constructors.
  *   </li>
  * </ol>
+ *
  * <p>
  * Classes are skipped if:
  * </p>
@@ -62,9 +63,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       Class is extended by another class in the same file.
  *   </li>
  * </ol>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

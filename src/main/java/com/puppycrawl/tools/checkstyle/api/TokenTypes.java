@@ -2102,6 +2102,7 @@ public final class TokenTypes {
     /**
      * The {@code volatile} keyword. This may be used as a
      * modifier of a field.
+     *
      * <p>For example:</p>
      * <pre>
      * private volatile int x;
@@ -2510,6 +2511,7 @@ public final class TokenTypes {
     /**
      * The {@code :} (colon) operator.  This will appear as part
      * of the conditional operator ({@code ? :}).
+     *
      * <p>For example:</p>
      * <pre>
      * num = isValid ? 1 : 0;
@@ -3534,6 +3536,7 @@ public final class TokenTypes {
     public static final int DIV_ASSIGN = JavaLanguageLexer.DIV_ASSIGN;
     /**
      * The {@code %=} (remainder assignment) operator.
+     *
      * <p>For example:</p>
      * <pre>a %= 2;</pre>
      * <p>parses as:</p>
@@ -3958,6 +3961,7 @@ public final class TokenTypes {
      * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type or pattern.
+     *
      * <p>For example:</p>
      * <pre>
      * boolean isBuilderReferenceType = text instanceof StringBuilder; // reference type
@@ -4579,6 +4583,7 @@ public final class TokenTypes {
     /**
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
+     *
      * <p>For example:</p>
      * <pre>String str = "StringLiteral";</pre>
      *
@@ -5291,6 +5296,7 @@ public final class TokenTypes {
      * A type arguments to a type reference or a method/ctor invocation.
      * Children are either: type name or wildcard type with possible type
      * upper or lower bounds.
+     *
      * <p>For example:</p>
      * <pre>List&lt;? super List&gt; list;</pre>
      * <p>parses as:</p>
@@ -5355,6 +5361,7 @@ public final class TokenTypes {
      * An upper bounds on a wildcard type argument or type parameter.
      * This node has one child - the type that is being used for
      * the bounding.
+     *
      * <p>For example:</p>
      * <pre>List&lt;? extends Number&gt; list;</pre>
      *
@@ -5660,6 +5667,7 @@ public final class TokenTypes {
 
     /**
      * Beginning of block comment: '/*'.
+     *
      * <p>For example:</p>
      * <pre>
      * /&#42; Comment content
@@ -6627,6 +6635,7 @@ public final class TokenTypes {
 
     /**
      * An unnamed pattern variable definition. Appears as part of a pattern definition.
+     *
      * <p>For example:</p>
      * <pre>
      *    if (r instanceof R(_)) {}

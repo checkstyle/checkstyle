@@ -4,10 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
              name="IllegalTokenText"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks specified tokens text for matching an illegal pattern.
  By default, no tokens are specified.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="^$" name="format" type="java.util.regex.Pattern">
                <description>Define the RegExp for illegal pattern.</description>
