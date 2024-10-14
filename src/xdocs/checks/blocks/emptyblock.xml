@@ -9,7 +9,7 @@
     <section name="EmptyBlock">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p> Checks for empty blocks. This check does not validate sequential blocks. </p>
+        <div> Checks for empty blocks. This check does not validate sequential blocks. </div>
 
         <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
         <source>

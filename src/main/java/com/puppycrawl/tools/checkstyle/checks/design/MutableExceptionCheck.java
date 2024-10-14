@@ -29,17 +29,19 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Ensures that exception classes (classes with names conforming to some pattern
  * and explicitly extending classes with names conforming to other
  * pattern) are immutable, that is, that they have only final fields.
- * </p>
+ * </div>
+ *
  * <p>
  * The current algorithm is very simple: it checks that all members of exception are final.
  * The user can still mutate an exception's instance (e.g. Throwable has a method called
  * {@code setStackTrace} which changes the exception's stack trace). But, at least, all
  * information provided by this exception type is unchangeable.
  * </p>
+ *
  * <p>
  * Rationale: Exception instances should represent an error
  * condition. Having non-final fields not only allows the state to be
@@ -60,9 +62,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

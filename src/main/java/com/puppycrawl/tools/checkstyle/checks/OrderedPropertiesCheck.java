@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *     files="log4j.properties|ResourceBundle/Bug.*.properties|logging.properties"/&gt;
  *   }
  * </p>
+ *
  * <p>Known limitation: The key should not contain a newline.
  * The string compare will work, but not the line number reporting.</p>
  * <ul><li>

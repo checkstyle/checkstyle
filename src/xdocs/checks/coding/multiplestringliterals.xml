@@ -9,10 +9,10 @@
     <section name="MultipleStringLiterals">
       <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for multiple occurrences of the same string literal within a
           single file.
-        </p>
+        </div>
 
         <p>
           Rationale: Code duplication makes maintenance more difficult, so it

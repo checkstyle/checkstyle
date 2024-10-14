@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Abstract class for checking that an overriding method with no parameters
  * invokes the super method.
- * </p>
+ * </div>
  */
 @FileStatefulCheck
 public abstract class AbstractSuperCheck

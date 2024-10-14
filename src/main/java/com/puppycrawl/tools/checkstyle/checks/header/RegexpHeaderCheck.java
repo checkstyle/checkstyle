@@ -32,16 +32,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the header of a source file against a header that contains a
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> for each line of the source header.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: In some projects <a href="https://checkstyle.org/checks/header/header.html#Header">
  * checking against a fixed header</a> is not sufficient, e.g. the header might
  * require a copyright line where the year information is not static.
  * </p>
+ *
  * <p>
  * For example, consider the following header:
  * </p>
@@ -61,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * line 13: ^ \*([^/]|$)
  * line 14: ^ \*&#47;
  * </pre>
+ *
  * <p>
  * Lines 1 and 6 demonstrate a more compact notation for 71 '/' characters.
  * Line 4 enforces that the copyright notice includes a four digit year.
@@ -69,6 +72,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * conflict with and of javadoc comment). Lines 7, 9 and 11 will be treated
  * as '^$' and will forcefully expect the line to be empty.
  * </p>
+ *
  * <p>
  * Different programming languages have different comment syntax rules,
  * but all of them start a comment with a non-word character.
@@ -85,6 +89,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * line 5: ^\W*Licensed under the Apache License, Version 2\.0 \(the "License"\);$
  * line 6: ^\W*$
  * </pre>
+ *
  * <p>
  * Lines 1 and 2 leave room for technical header lines, e.g. the "#!/bin/sh"
  * line in Unix shell scripts, or the XML file header of XML files.
@@ -92,6 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * file types where they do no apply. Lines 3 through 6 define the actual header content.
  * Note how lines 2, 4 and 5 use escapes for characters that have special regexp semantics.
  * </p>
+ *
  * <p>
  * In default configuration, if header is not specified, the default value
  * of header is set to null and the check does not rise any violations.
@@ -129,9 +135,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

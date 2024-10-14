@@ -9,12 +9,12 @@
     <section name="EqualsAvoidNull">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that any combination of String literals
           is on the left side of an <code>equals()</code> comparison.
           Also checks for String literals assigned to some field
           (such as <code>someString.equals(anotherString = &quot;text&quot;)</code>).
-        </p>
+        </div>
 
         <p>
           Rationale: Calling the <code>equals()</code>

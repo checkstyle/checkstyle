@@ -26,30 +26,34 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for over-complicated boolean return or yield statements.
  * For example the following code
- * </p>
+ * </div>
  * <pre>
  * if (valid())
  *   return false;
  * else
  *   return true;
  * </pre>
+ *
  * <p>
  * could be written as
  * </p>
  * <pre>
  * return !valid();
  * </pre>
+ *
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
  * <a href="https://pmd.github.io/pmd/pmd_rules_java_design.html#simplifybooleanreturns">
  *     PMD</a> rule.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

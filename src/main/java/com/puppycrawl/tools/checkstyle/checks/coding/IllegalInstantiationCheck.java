@@ -32,25 +32,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for illegal instantiations where a factory method is preferred.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Depending on the project, for some classes it might be
  * preferable to create instances through factory methods rather than
  * calling the constructor.
  * </p>
+ *
  * <p>
  * A simple example is the {@code java.lang.Boolean} class.
  * For performance reasons, it is preferable to use the predefined constants
  * {@code TRUE} and {@code FALSE}.
  * Constructor invocations should be replaced by calls to {@code Boolean.valueOf()}.
  * </p>
+ *
  * <p>
  * Some extremely performance sensitive projects may require the use of factory
  * methods for other classes as well, to enforce the usage of number caches or
  * object pools.
  * </p>
+ *
  * <p>
  * There is a limitation that it is currently not possible to specify array classes.
  * </p>
@@ -61,9 +65,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code ""}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

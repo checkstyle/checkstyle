@@ -26,9 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that array initialization contains a trailing comma.
- * </p>
+ * </div>
+ *
  * <pre>
  * int[] a = new int[]
  * {
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   3,
  * };
  * </pre>
+ *
  * <p>
  * By default, the check demands a comma at the end if neither left nor right curly braces
  * are on the same line as the last element of the array.
@@ -48,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * return new int[] {
  *   0 };
  * </pre>
+ *
  * <p>
  * Rationale: Putting this comma in makes it easier to change the
  * order of the elements or add new elements on the end. Main benefit of a trailing
@@ -65,6 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   300000000000000000000,  // Just this line added, no other changes
  * }
  * </pre>
+ *
  * <p>
  * If closing brace is on the same line as trailing comma, this benefit is gone
  * (as the check does not demand a certain location of curly braces the following
@@ -78,6 +82,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *  200000000000000000000, // Modified line
  *  300000000000000000000,} // Added line
  * </pre>
+ *
  * <p>
  * If opening brace is on the same line as trailing comma there's also (more arguable) problem:
  * </p>
@@ -97,9 +102,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

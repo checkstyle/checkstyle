@@ -9,14 +9,15 @@
     <section name="ConstructorsDeclarationGrouping">
       <p>Since Checkstyle 10.17.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that all constructors are grouped together.
           If there is any non-constructor code separating constructors,
           this check identifies and logs a violation for those ungrouped constructors.
           The violation message will specify the line number
           of the last grouped constructor.
           Comments between constructors are allowed.
-        </p>
+        </div>
+
         <p>
         Rationale: Grouping constructors together in a class improves code readability
         and maintainability. It allows developers to easily understand

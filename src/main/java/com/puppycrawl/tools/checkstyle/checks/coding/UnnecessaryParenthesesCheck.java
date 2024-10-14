@@ -29,10 +29,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks if unnecessary parentheses are used in a statement or expression.
  * The check will flag the following with warnings:
- * </p>
+ * </div>
  * <pre>
  * return (x);          // parens around identifier
  * return (x + 1);      // parens around return value
@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * boolean b = (~a) &gt; -27            // parens around ~a
  *             &amp;&amp; (a-- &lt; 30);        // parens around expression
  * </pre>
+ *
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
  * are unnecessary based on the types in an expression. The check is partially aware about
@@ -56,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * int q = 4;
  * int r = 3;
  * if (p == (q &lt;= r)) {}</pre>
+ *
  * <p>
  * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
  * all {@code int} variables, the parentheses around {@code a + b}
@@ -66,6 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * and <em>r</em> were {@code boolean} still there will be no violation
  * raised as check is not "type aware".
  * </p>
+ *
  * <p>
  * The partial support for operator precedence includes cases of the following type:
  * </p>
@@ -179,9 +182,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * POST_DEC</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

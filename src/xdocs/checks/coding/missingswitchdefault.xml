@@ -9,9 +9,9 @@
     <section name="MissingSwitchDefault">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that switch statement has a <code>default</code> clause.
-        </p>
+        </div>
 
         <p>
           Rationale: It's usually a good idea to introduce a default case in

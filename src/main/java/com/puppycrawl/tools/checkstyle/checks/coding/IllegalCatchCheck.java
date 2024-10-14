@@ -32,9 +32,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that certain exception types do not appear in a {@code catch} statement.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: catching {@code java.lang.Exception}, {@code java.lang.Error} or
  * {@code java.lang.RuntimeException} is almost never acceptable.
@@ -50,9 +51,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

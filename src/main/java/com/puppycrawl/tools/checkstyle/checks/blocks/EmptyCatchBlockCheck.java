@@ -27,10 +27,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks for empty catch blocks.
  * By default, check allows empty catch block with any comment inside.
- * </p>
+ * </div>
+ *
  * <p>
  * There are two options to make validation more precise: <b>exceptionVariableName</b> and
  * <b>commentFormat</b>.
@@ -52,9 +53,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "^$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

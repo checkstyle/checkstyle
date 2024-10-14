@@ -9,7 +9,7 @@
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p> Checks for braces around code blocks. </p>
+        <div>Checks for braces around code blocks.</div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -9,10 +9,10 @@
     <section name="NoClone">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that the clone method is not overridden from the
           Object class.
-        </p>
+        </div>
         <p>
           This check is almost exactly the same as the <code>NoFinalizerCheck</code>.
         </p>

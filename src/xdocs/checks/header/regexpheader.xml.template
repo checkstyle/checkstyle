@@ -9,11 +9,11 @@
     <section name="RegexpHeader">
       <p>Since Checkstyle 6.9</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the header of a source file against a header that contains a
           <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
             pattern</a> for each line of the source header.
-        </p>
+        </div>
 
         <p>
           Rationale: In some projects <a href="header.html#Header">checking against a

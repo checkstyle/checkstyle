@@ -32,9 +32,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the ordering/grouping of imports. Features are:
- * </p>
+ * </div>
  * <ul>
  * <li>
  * groups type/static imports: ensures that groups of imports come in a specific order
@@ -134,9 +134,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -623,6 +625,7 @@ public class ImportOrderCheck
      * import static HttpHeaders.setHeader   =&gt; HttpHeaders
      * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
      * </pre>
+     *
      * <p>
      * According to this logic, HttpHeaders.Names would come after HttpHeaders.
      * For more details, see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=473629#c3">

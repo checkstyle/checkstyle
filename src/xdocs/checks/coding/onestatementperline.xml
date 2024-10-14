@@ -9,9 +9,9 @@
     <section name="OneStatementPerLine">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that there is only one statement per line.
-        </p>
+        </div>
         <p>
           Rationale: It's very difficult to read multiple statements on one line.
         </p>
