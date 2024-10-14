@@ -40,7 +40,7 @@ int x = 5;
 boolean foobar = (x == 5); // OK
 
 String text;
-text = (text == null) ? &quot;&quot; : text; // violation
+text = (text == null) ? &quot;&quot; : text; // violation 'Avoid inline conditionals'
 
 String b;
 if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
@@ -49,7 +49,7 @@ if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
     b = null;
 }
 
-b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
+b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation 'Avoid inline conditionals'
         </source>
       </subsection>
 
