@@ -211,7 +211,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding"
                     + ".AvoidNoArgumentSuperConstructorCallCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
