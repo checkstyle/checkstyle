@@ -565,6 +565,10 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.PackageDeclarationCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
                 BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
+        NAME_TO_FULL_MODULE_NAME.put("ParameterPlacementCheck",
+                BASE_PACKAGE + ".checks.coding.ParameterPlacementCheck");
+        NAME_TO_FULL_MODULE_NAME.put("ParameterAlignmentCheck",
+                BASE_PACKAGE + ".checks.coding.ParameterAlignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
                 BASE_PACKAGE + ".checks.coding.RequireThisCheck");
         NAME_TO_FULL_MODULE_NAME.put("ReturnCountCheck",
