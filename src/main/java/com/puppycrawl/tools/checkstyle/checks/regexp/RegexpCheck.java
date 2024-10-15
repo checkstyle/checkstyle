@@ -199,9 +199,6 @@ public class RegexpCheck extends AbstractCheck {
     /** Boolean to say if we should check for duplicates. */
     private boolean checkForDuplicates;
 
-    /** Tracks number of matches made. */
-    private int matchCount;
-
     /** Tracks number of errors. */
     private int errorCount;
 
@@ -297,43 +294,47 @@ public class RegexpCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         matcher = format.matcher(getFileContents().getText().getFullText());
-        matchCount = 0;
         errorCount = 0;
         findMatch();
     }
 
     /**
-     * Recursive method that finds the matches.
+     * Finds the matches in the file.
      *
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
     private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (foundMatch) {
-            final FileText text = getFileContents().getText();
-            final LineColumn start = text.lineColumn(matcher.start());
-            final int startLine = start.getLine();
+        boolean valid = true;
+        int matchCount = 0;
+        while (valid) {
+            final boolean foundMatch = matcher.find();
 
-            final boolean ignore = isIgnore(startLine, text, start);
+            if (foundMatch) {
+                final FileText text = getFileContents().getText();
+                final LineColumn start = text.lineColumn(matcher.start());
+                final int startLine = start.getLine();
 
-            if (!ignore) {
-                matchCount++;
-                if (illegalPattern || checkForDuplicates
-                        && matchCount - 1 > duplicateLimit) {
-                    errorCount++;
-                    logMessage(startLine);
+                final boolean ignore = isIgnore(startLine, text, start);
+                if (!ignore) {
+                    matchCount++;
+                    if (illegalPattern || checkForDuplicates
+                            && matchCount - 1 > duplicateLimit) {
+                        errorCount++;
+                        logMessage(startLine);
+                    }
+                }
+                if (!canContinueValidation(ignore)) {
+                    valid = false;
                 }
             }
-            if (canContinueValidation(ignore)) {
-                findMatch();
+            else {
+                if (!illegalPattern && matchCount == 0) {
+                    final String msg = getMessage();
+                    log(1, MSG_REQUIRED_REGEXP, msg);
+                }
+                valid = false;
             }
-        }
-        else if (!illegalPattern && matchCount == 0) {
-            final String msg = getMessage();
-            log(1, MSG_REQUIRED_REGEXP, msg);
         }
     }
 
