@@ -165,15 +165,6 @@
   <mutation unstable="false">
     <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
-    <mutatedMethod>setChecks</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable checks</description>
-    <lineContent>this.checks = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressionXpathSingleFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</mutatedClass>
     <mutatedMethod>setMessage</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable message</description>

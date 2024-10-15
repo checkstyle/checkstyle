@@ -413,7 +413,7 @@ public class SuppressionXpathSingleFilterTest
      * @throws Exception when there is problem to load Input file
      */
     @Test
-    public void testUpdateFilterSettingsInRunTime() throws Exception {
+    public void testUpdateFilterFileSettingInRunTime() throws Exception {
         final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
 
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
@@ -446,9 +446,50 @@ public class SuppressionXpathSingleFilterTest
         filter.setFiles(null);
         filter.finishLocalSetup();
 
-        assertWithMessage("match ia expected as 'files' is defaulted")
+        assertWithMessage("match is expected as 'files' is defaulted")
                 .that(filter.accept(ev))
                 .isFalse();
+    }
+
+    /**
+     * This test is required to cover pitest mutation
+     * for reset of 'checks' field in SuppressionXpathSingleFilter.
+     * This not possible to reproduce by natural execution of Checkstyle
+     * as config is never changed in runtime.
+     * Projects that use us by api can reproduce this case.
+     * We need to allow users to reset module property to default state.
+     *
+     * @throws Exception when there is problem to load Input file
+     */
+    @Test
+    public void testUpdateFilterChecksSettingInRunTime() throws Exception {
+        final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
+
+        final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+        filter.setChecks("MagicNumber");
+        filter.finishLocalSetup();
+
+        final Violation violation = new Violation(27, 21, TokenTypes.NUM_DOUBLE, "",
+                "", null, null, null,
+                MagicNumberCheck.class, null);
+
+        final FileContents fileContents =
+                new FileContents(new FileText(file, StandardCharsets.UTF_8.name()));
+
+        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
+                violation, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+
+        assertWithMessage("match is expected as 'checks' is set")
+                .that(filter.accept(ev))
+                .isFalse();
+
+        // reset checks to default value of filter
+        filter.setChecks(null);
+        filter.finishLocalSetup();
+
+        assertWithMessage("no match is expected as whole filter is defaulted (empty)")
+                .that(filter.accept(ev))
+                .isTrue();
     }
 
     private static SuppressionXpathSingleFilter createSuppressionXpathSingleFilter(
