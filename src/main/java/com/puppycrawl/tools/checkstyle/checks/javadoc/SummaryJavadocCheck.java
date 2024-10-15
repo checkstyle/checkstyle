@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
@@ -45,7 +45,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Summaries that contain a non-empty {@code {@return}} are allowed.
  * Check also violate Javadoc that does not contain first sentence, though with {@code {@return}} a
  * period is not required as the Javadoc tool adds it.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
@@ -68,9 +69,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

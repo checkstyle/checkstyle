@@ -4,12 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck"
              name="JavadocMissingWhitespaceAfterAsterisk"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there is at least one whitespace after the leading asterisk.
  Although spaces after asterisks are optional in the Javadoc comments, their absence
  makes the documentation difficult to read. It is the de facto standard to put at least
  one whitespace after the leading asterisk.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"

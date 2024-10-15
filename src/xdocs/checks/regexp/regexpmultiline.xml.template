@@ -9,10 +9,10 @@
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a specified pattern matches across multiple lines in
           any file type.
-        </p>
+        </div>
 
         <p>
           Rationale: This check can be used to when the regular

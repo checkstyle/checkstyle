@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck"
              name="JavadocVariable"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc

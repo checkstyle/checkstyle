@@ -9,9 +9,9 @@
     <section name="LineLength">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for long lines.
-        </p>
+        </div>
 
         <p>
           Rationale: Long lines are hard to read in printouts or if developers

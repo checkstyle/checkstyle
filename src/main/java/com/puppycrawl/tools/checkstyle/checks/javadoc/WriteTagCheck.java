@@ -32,11 +32,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  * To define the format for a tag, set property tagFormat to a regular expression.
  * Property tagSeverity is used for severity of events when the tag exists.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code tag} - Specify the name of tag.
@@ -70,9 +71,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -90,6 +90,7 @@ public final class ScopeUtil {
 
     /**
      * Returns the default {@code Scope} for a {@code DetailAST}.
+     *
      * <p>The following rules are taken into account:</p>
      * <ul>
      *     <li>enum constants are public</li>

@@ -9,7 +9,7 @@
     <section name="InvalidJavadocPosition">
       <p>Since Checkstyle 8.23</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that Javadocs are located at the correct position.
           As specified at
           <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
@@ -18,7 +18,7 @@
           interface, constructor, method, or field declarations. Any other position, like
           in the body of a method, will be ignored by the javadoc tool and is considered
           invalid by this check.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">

@@ -25,16 +25,18 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressWarningsFilter} uses annotation
  * {@code @SuppressWarnings} to suppress audit events.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Same as for {@code SuppressionCommentFilter}. In the contrary to it here,
  * comments are not used comments but the builtin syntax of {@code @SuppressWarnings}.
  * This can be perceived as a more elegant solution than using comments.
  * Also, this approach maybe supported by various IDE.
  * </p>
+ *
  * <p>
  * Usage: This filter only works in conjunction with a
  * <a href="https://checkstyle.org/checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
@@ -45,10 +47,12 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * Name of check in annotation is case-insensitive and should be written with
  * any dotted prefix or "Check" suffix removed.
  * </p>
+ *
  * <p>
  * SuppressWarningsFilter can suppress Checks that have Treewalker or
  * Checker as parent module.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>

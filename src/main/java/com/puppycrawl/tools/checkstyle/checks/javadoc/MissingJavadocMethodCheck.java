@@ -35,18 +35,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  * specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
  * another scope, set property scope to a different
  * <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override} annotation.
  * However, under Java 5 it is not possible to mark a method required for an interface (this
  * was <i>corrected</i> under Java 6). Hence, Checkstyle supports using the convention of using
  * a single {@code {@inheritDoc}} tag instead of all the other tags.
  * </p>
+ *
  * <p>
  * For getters and setters for the property {@code allowMissingPropertyJavadoc}, the methods must
  * match exactly the structures below.
@@ -118,9 +120,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

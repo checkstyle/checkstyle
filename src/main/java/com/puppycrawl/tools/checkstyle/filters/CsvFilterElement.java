@@ -26,10 +26,10 @@ import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
- * <p>
+ * <div>
  * This filter element is immutable and accepts an integer that matches a CSV value, where
  * each value is an integer or a range of integers.
- * </p>
+ * </div>
  */
 class CsvFilterElement implements IntFilterElement {
 

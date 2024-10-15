@@ -27,16 +27,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that method parameter names conform to a specified pattern.
  * By using {@code accessModifiers} property it is possible
  * to specify different formats for methods at different visibility levels.
- * </p>
+ * </div>
+ *
  * <p>
  * To validate {@code catch} parameters please use
  * <a href="https://checkstyle.org/checks/naming/catchparametername.html#CatchParameterName">
  * CatchParameterName</a>.
  * </p>
+ *
  * <p>
  * To validate lambda parameters please use
  * <a href="https://checkstyle.org/checks/naming/lambdaparametername.html#LambdaParameterName">
@@ -61,9 +63,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

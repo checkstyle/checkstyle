@@ -4,14 +4,15 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck"
              name="JavadocBlockTagLocation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags"&gt;
  javadoc block tag&lt;/a&gt; appears only at the beginning of a line, ignoring
  leading asterisks and white space. A block tag is a token that starts with
  {@code @} symbol and is preceded by a whitespace. This check ignores block
  tags in comments and inside inline tags {&amp;#64;code } and {&amp;#64;literal }.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: according to
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags"&gt;
@@ -21,6 +22,7 @@
  {@code @} symbol, and all non-escaped tags should be located at the beginning
  of the line. See NOTE section for details on how to escape.
  &lt;/p&gt;
+
  &lt;p&gt;
  To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
  &amp;amp;#64; or place it inside {@code {@code }}, for example:

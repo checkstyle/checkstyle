@@ -206,9 +206,8 @@ public final class TestUtil {
     }
 
     /**
-     * <p>
      * Returns the JDK version as a number that is easy to compare.
-     * </p>
+     *
      * <p>
      * For JDK "1.8" it will be 8; for JDK "11" it will be 11.
      * </p>
@@ -224,9 +223,8 @@ public final class TestUtil {
     }
 
     /**
-     * <p>
      * Adjusts the expected number of flushes for tests that call {@link OutputStream#close} method.
-     * </p>
+     *
      * <p>
      * After <a href="https://bugs.openjdk.java.net/browse/JDK-8220477">JDK-8220477</a>
      * there is one additional flush from {@code sun.nio.cs.StreamEncoder#implClose}.

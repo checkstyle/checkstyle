@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck"
              name="LocalFinalVariableName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that local final variable names conform to a specified pattern.
   A catch parameter and resources in try statements
  are considered to be a local, final variables.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check does not support final pattern variables. Instead, use
  &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName"&gt;

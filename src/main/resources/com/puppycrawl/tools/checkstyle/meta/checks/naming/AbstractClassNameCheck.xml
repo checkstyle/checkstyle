@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"
              name="AbstractClassName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Ensures that the names of abstract classes conforming to some pattern
  and check that {@code abstract} modifier exists.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Abstract classes are convenience base class implementations of
  interfaces. For this reason, it should be made obvious that a given class

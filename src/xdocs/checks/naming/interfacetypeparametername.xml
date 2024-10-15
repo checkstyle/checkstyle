@@ -9,9 +9,9 @@
     <section name="InterfaceTypeParameterName">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that interface type parameter names conform to a specified pattern.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

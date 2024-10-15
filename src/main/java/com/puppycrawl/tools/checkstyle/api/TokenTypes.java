@@ -37,6 +37,7 @@ public final class TokenTypes {
      * This is the root node for the source file.  It's children
      * are an optional package definition, zero or more import statements,
      * and zero or more type declarations.
+     *
      * <p>For example:</p>
      * <pre>
      * import java.util.List;
@@ -437,6 +438,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>boolean var = true;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -721,6 +723,7 @@ public final class TokenTypes {
      * A parameter declaration. The last parameter in a list of parameters may
      * be variable length (indicated by the ELLIPSIS child node immediately
      * after the TYPE child).
+     *
      * <p>For example</p>
      * <pre>
      *      void foo(SomeType SomeType.this, int firstParameter, int... secondParameter) {}
@@ -1077,6 +1080,7 @@ public final class TokenTypes {
      *       2,
      *     };
      * </pre>
+     *
      * <p>which parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1144,6 +1148,7 @@ public final class TokenTypes {
     public static final int IMPORT = JavaLanguageLexer.IMPORT;
     /**
      * The {@code -} (unary minus) operator.
+     *
      * <p>For example:</p>
      * <pre>
      * a = -b;
@@ -1167,6 +1172,7 @@ public final class TokenTypes {
     public static final int UNARY_MINUS = JavaLanguageLexer.UNARY_MINUS;
     /**
      * The {@code +} (unary plus) operator.
+     *
      * <p>For example:</p>
      * <pre>
      * a = + b;
@@ -1242,6 +1248,7 @@ public final class TokenTypes {
      * <pre>
      * new ArrayList(50);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -1626,6 +1633,7 @@ public final class TokenTypes {
      * <pre>
      * {@code void LITERAL_VOID(){}}
      * </pre>
+     *
      * <p>'void' parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2393,6 +2401,7 @@ public final class TokenTypes {
      *      `--IDENT -&gt; name
      * SEMI -&gt; ;
      * </pre>
+     *
      * <p>Also consider:</p>
      * <pre>
      * this(1, "NULL");
@@ -3066,6 +3075,7 @@ public final class TokenTypes {
      *         |       `--NUM_INT -&gt; 1
      *         `--SEMI -&gt; ;
      * </pre>
+     *
      * <p>For example:</p>
      * <pre>
      * switch(num){
@@ -3228,6 +3238,7 @@ public final class TokenTypes {
      * try (BufferedReader br = new BufferedReader(new FileReader(path))) {
      * }
      * </pre>
+     *
      * <p>which parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3539,6 +3550,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>a %= 2;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3715,6 +3727,7 @@ public final class TokenTypes {
      * if (a || b) {
      * }
      * </pre>
+     *
      * <p>
      * parses as:
      * </p>
@@ -5299,6 +5312,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>List&lt;? super List&gt; list;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5327,6 +5341,7 @@ public final class TokenTypes {
 
     /**
      * The type that refers to all types. This node has no children.
+     *
      * <p>For example: </p>
      * <pre>
      *

@@ -29,11 +29,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that the Javadoc content begins from the same position
  * for all Javadoc comments in the project. Any leading asterisks and spaces
  * are not counted as the beginning of the content and are therefore ignored.
- * </p>
+ * </div>
+ *
  * <p>
  * It is possible to enforce two different styles:
  * </p>
@@ -58,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * </li>
  * </ul>
+ *
  * <p>
  * This check does not validate the Javadoc summary itself nor its presence.
  * The check will not report any violations for missing or malformed javadoc summary.
@@ -65,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
  * SummaryJavadoc</a> check.
  * </p>
+ *
  * <p>
  * The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
  * Documentation Comment Specification</a> permits leading asterisks on the first line.
@@ -81,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   * Some text.
  *   *&#47;
  * </pre>
+ *
  * <p>
  * The documentation generated will be just "Some text." without any asterisks.
  * Since these asterisks will not appear in the generated documentation,
@@ -94,9 +98,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code second_line}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

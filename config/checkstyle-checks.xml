@@ -46,18 +46,6 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
-  <!--
-    Until we fully support opening-closing paragraph tag
-    https://github.com/checkstyle/checkstyle/issues/15763
-   -->
-  <module name="SuppressionSingleFilter">
-    <property name="checks" value="JavadocParagraph"/>
-    <property name="message" value="tag should be preceded with an empty line."/>
-  </module>
-  <module name="SuppressionSingleFilter">
-    <property name="checks" value="JavadocParagraph"/>
-    <property name="message" value="Redundant .* tag."/>
-  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--

@@ -9,13 +9,13 @@
     <section name="SingleSpaceSeparator">
       <p>Since Checkstyle 6.19</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that non-whitespace characters are separated by no more than one
           whitespace. Separating characters by tabs or multiple spaces will be
           reported. Currently, the check doesn't permit horizontal alignment. To inspect
           whitespaces before and after comments, set the property
           <code>validateComments</code> to true.
-        </p>
+        </div>
 
         <p>
           Setting <code>validateComments</code> to false will ignore cases like:

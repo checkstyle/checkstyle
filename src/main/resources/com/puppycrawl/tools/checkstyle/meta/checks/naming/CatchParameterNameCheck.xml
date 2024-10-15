@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck"
              name="CatchParameterName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that {@code catch} parameter names conform to a specified pattern.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Default pattern has the following characteristic:
  &lt;/p&gt;

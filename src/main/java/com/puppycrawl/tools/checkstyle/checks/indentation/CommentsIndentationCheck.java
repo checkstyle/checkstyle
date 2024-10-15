@@ -31,13 +31,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Controls the indentation between comments and surrounding code.
  * Comments are indented at the same level as the surrounding code.
  * Detailed info about such convention can be found
  * <a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s4.8.6.1-block-comment-style">
  * here</a>
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -50,9 +50,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * BLOCK_COMMENT_BEGIN</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -121,6 +123,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks comment indentations over surrounding code, e.g.:
+     *
      * <p>
      * {@code
      * // some comment - this is ok
@@ -348,6 +351,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     /**
      * Checks whether comment is a 'fall through' comment.
      * For example:
+     *
      * <p>
      * {@code
      *    ...
@@ -387,6 +391,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     /**
      * Checks whether comment is placed in the empty code block.
      * For example:
+     *
      * <p>
      * ...
      * {@code
@@ -417,6 +422,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * only case we can assume as a violation is when a single-line comment within the empty case
      * block has indentation level that is lower than the indentation level of the next case
      * token. For example:
+     *
      * <p>
      * {@code
      *    ...
@@ -444,6 +450,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Note, 'fall through' and similar comments can have indentation level as next or previous
      * statement.
      * For example:
+     *
      * <p>
      * {@code
      *    ...
@@ -456,6 +463,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      *    ...
      * }
      * </p>
+     *
      * <p>
      * {@code
      *    ...
@@ -484,6 +492,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * Handles a comment which is placed at the end of non-empty code block.
      * Note, if single-line comment is placed at the end of non-empty block the comment should have
      * the same indentation level as the previous statement. For example:
+     *
      * <p>
      * {@code
      *    if (a == true) {
@@ -546,6 +555,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * only case we can assume as a violation is when a single-line comment within the empty
      * code block has indentation level that is lower than the indentation level of the closing
      * right curly brace. For example:
+     *
      * <p>
      * {@code
      *    if (a == true) {
@@ -952,6 +962,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks if current single-line comment is trailing comment, e.g.:
+     *
      * <p>
      * {@code
      * double d = 3.14; // some comment
@@ -969,6 +980,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks if current comment block is trailing comment, e.g.:
+     *
      * <p>
      * {@code
      * double d = 3.14; /* some comment *&#47;
@@ -990,6 +1002,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     /**
      * Checks if the comment is inside a method call with same indentation of
      * first expression. e.g:
+     *
      * <p>
      * {@code
      * private final boolean myList = someMethod(

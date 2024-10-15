@@ -24,11 +24,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that local, non-{@code final} variable names conform to a specified pattern.
  * A catch parameter is considered to be
  * a local variable.
- * </p>
+ * </div>
+ *
  * <p>
  * This check does not support pattern variables. Instead, use
  * <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
@@ -49,9 +50,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

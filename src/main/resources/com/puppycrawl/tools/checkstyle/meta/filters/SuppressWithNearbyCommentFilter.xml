@@ -4,15 +4,17 @@
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter"
               name="SuppressWithNearbyCommentFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to suppress audit events.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Same as {@code SuppressionCommentFilter}.
  Whereas the SuppressionCommentFilter uses matched pairs of filters to turn
  on/off comment matching, {@code SuppressWithNearbyCommentFilter} uses single comments.
  This requires fewer lines to mark a region, and may be aesthetically preferable in some contexts.
  &lt;/p&gt;
+
  &lt;p&gt;
  Attention: This filter may only be specified within the TreeWalker module
  ({@code &amp;lt;module name="TreeWalker"/&amp;gt;}) and only applies to checks which are also
@@ -21,6 +23,7 @@
  &lt;a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter"&gt;
  SuppressWithPlainTextCommentFilter&lt;/a&gt; or similar filter must be used.
  &lt;/p&gt;
+
  &lt;p&gt;
  SuppressWithNearbyCommentFilter can suppress Checks that have
  Treewalker as parent module.

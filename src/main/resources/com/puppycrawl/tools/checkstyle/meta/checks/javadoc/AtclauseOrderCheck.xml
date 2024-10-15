@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck"
              name="AtclauseOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the order of
  &lt;a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF"&gt;
  javadoc block-tags or javadoc tags&lt;/a&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
  &lt;/p&gt;</description>

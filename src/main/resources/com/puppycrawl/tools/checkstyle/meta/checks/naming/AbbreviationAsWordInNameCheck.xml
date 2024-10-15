@@ -4,13 +4,15 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"
              name="AbbreviationAsWordInName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Validates abbreviations (consecutive capital letters) length in
  identifier name, it also allows to enforce camel case naming. Please read more at
  &lt;a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case"&gt;
  Google Style Guide&lt;/a&gt; to get to know how to avoid long abbreviations in names.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;'_' is considered as word separator in identifier name.&lt;/p&gt;
+
  &lt;p&gt;
  {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  allowed in the identifier.
@@ -21,6 +23,7 @@
  is what should be used to enforce strict camel casing. The identifier 'MyTest' would
  be allowed, but 'MyTEst' would not be.
  &lt;/p&gt;
+
  &lt;p&gt;
  {@code ignoreFinal}, {@code ignoreStatic}, and {@code ignoreStaticFinal}
  control whether variables with the respective modifiers are to be ignored.

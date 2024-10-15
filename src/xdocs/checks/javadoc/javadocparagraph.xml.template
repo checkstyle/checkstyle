@@ -9,9 +9,9 @@
     <section name="JavadocParagraph">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the Javadoc paragraph.
-        </p>
+        </div>
         <p>
           Checks that:
         </p>

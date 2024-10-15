@@ -9,12 +9,12 @@
     <section name="WhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a token is followed by whitespace, with the exception that it
           does not check for whitespace after the semicolon of an empty for iterator. Use Check
           <a href="emptyforiteratorpad.html#EmptyForIteratorPad">
           EmptyForIteratorPad</a> to validate empty for iterators.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

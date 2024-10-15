@@ -28,11 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the padding of an empty for iterator; that is whether a white
  * space is required at an empty for iterator, or such white space is
  * forbidden. No check occurs if there is a line wrap at the iterator, as in
- * </p>
+ * </div>
  * <pre>
  * for (Iterator foo = very.long.line.iterator();
  *     foo.hasNext();
@@ -45,9 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code nospace}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

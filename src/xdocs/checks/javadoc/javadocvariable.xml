@@ -9,10 +9,10 @@
     <section name="JavadocVariable">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code>
           fields.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -4,13 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"
              name="ConstantName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that constant names conform to a specified pattern.
  A &lt;em&gt;constant&lt;/em&gt; is a &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;final&lt;/strong&gt;
  field or an interface/annotation field, except
  &lt;strong&gt;serialVersionUID&lt;/strong&gt; and &lt;strong&gt;serialPersistentFields
  &lt;/strong&gt;.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="true" name="applyToPackage" type="boolean">
                <description>Control if check should apply to package-private members.</description>

@@ -131,7 +131,7 @@ public final class InlineConfigParser {
             .compile(".*//\\s*violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
 
     /**
-     * <p>
+     * <div>
      * Multiple violations for above line. Messages are X lines below.
      * {@code
      *   // X violations above:
@@ -140,13 +140,13 @@ public final class InlineConfigParser {
      * }
      *
      * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
-     * </p>
+     * </div>
      */
     private static final Pattern VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES = Pattern
             .compile(".*//\\s*(\\d+) violations above:$");
 
     /**
-     * <p>
+     * <div>
      * Multiple violations for line. Violations are Y lines above, messages are X lines below.
      * {@code
      *   // X violations Y lines above:
@@ -155,13 +155,13 @@ public final class InlineConfigParser {
      * }
      *
      * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
-     * </p>
+     * </div>
      */
     private static final Pattern VIOLATIONS_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*(\\d+) violations (\\d+) lines above:$");
 
     /**
-     * <p>
+     * <div>
      * Multiple violations for line. Violations are Y lines below, messages are X lines below.
      * {@code
      *   // X violations Y lines below:
@@ -170,7 +170,7 @@ public final class InlineConfigParser {
      * }
      *
      * Messages are matched by {@link InlineConfigParser#VIOLATION_MESSAGE_PATTERN}
-     * </p>
+     * </div>
      */
     private static final Pattern VIOLATIONS_SOME_LINES_BELOW_PATTERN = Pattern
             .compile(".*//\\s*(\\d+) violations (\\d+) lines below:$");
