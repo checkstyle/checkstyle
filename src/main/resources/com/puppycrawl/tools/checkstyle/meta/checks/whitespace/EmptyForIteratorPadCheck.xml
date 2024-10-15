@@ -4,11 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck"
              name="EmptyForIteratorPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the padding of an empty for iterator; that is whether a white
  space is required at an empty for iterator, or such white space is
  forbidden. No check occurs if there is a line wrap at the iterator, as in
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  for (Iterator foo = very.long.line.iterator();
      foo.hasNext();

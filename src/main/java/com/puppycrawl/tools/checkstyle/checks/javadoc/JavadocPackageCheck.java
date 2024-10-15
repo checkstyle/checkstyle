@@ -30,11 +30,12 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>
+ * <div>
  * Checks that each Java package has a Javadoc file used for commenting.
  * By default, it only allows a {@code package-info.java} file,
  * but can be configured to allow a {@code package.html} file.
- * </p>
+ * </div>
+ *
  * <p>
  * A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
  * </p>
@@ -50,9 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code .java}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

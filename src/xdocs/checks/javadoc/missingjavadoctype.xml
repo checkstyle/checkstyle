@@ -9,13 +9,13 @@
     <section name="MissingJavadocType">
       <p>Since Checkstyle 8.20</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for missing Javadoc comments for class, enum, interface, and annotation
           interface definitions. The scope to verify is specified using the <code>Scope</code>
           class and defaults to <code>Scope.PUBLIC</code>. To verify
           another scope, set property scope to one of the
           <code>Scope</code> constants.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

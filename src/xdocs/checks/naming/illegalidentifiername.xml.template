@@ -9,7 +9,7 @@
     <section name="IllegalIdentifierName">
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks identifiers with a pattern for a set of illegal names, such as those
           that are restricted or contextual keywords. Examples include "yield", "record",
           and "var". Please read more at
@@ -18,7 +18,7 @@
           </a>to get to know more about restricted keywords. Since this check uses a
           pattern to specify valid identifiers, users can also prohibit the usage
           of certain symbols, such as "$", or any non-ascii character.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

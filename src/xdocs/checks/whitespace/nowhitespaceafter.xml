@@ -9,13 +9,13 @@
     <section name="NoWhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that there is no whitespace after a token. More specifically,
           it checks that it is not followed by whitespace, or (if linebreaks
           are allowed) all characters on the line after are whitespace. To
           forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
           false</code>.
-        </p>
+        </div>
         <p>
           The check processes
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">

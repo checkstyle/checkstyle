@@ -4,13 +4,14 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
              name="ModifierOrder"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the order of modifiers conforms to the suggestions in the
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html"&gt;
  Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html"&gt;9.4&lt;/a&gt;.
  The correct order is:
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;ol&gt;
  &lt;li&gt; {@code public} &lt;/li&gt;
  &lt;li&gt; {@code protected} &lt;/li&gt;
@@ -27,14 +28,17 @@
  &lt;li&gt; {@code native} &lt;/li&gt;
  &lt;li&gt; {@code strictfp} &lt;/li&gt;
  &lt;/ol&gt;
+
  &lt;p&gt;
  In additional, modifiers are checked to ensure all annotations
  are declared before all other modifiers.
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Code is easier to read if everybody follows
  a standard.
  &lt;/p&gt;
+
  &lt;p&gt;
  ATTENTION: We skip
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;

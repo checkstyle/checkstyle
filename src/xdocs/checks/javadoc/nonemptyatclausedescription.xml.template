@@ -9,9 +9,9 @@
     <section name="NonEmptyAtclauseDescription">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that the block tag is followed by description.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

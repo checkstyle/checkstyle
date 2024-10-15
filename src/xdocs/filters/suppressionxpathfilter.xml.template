@@ -9,14 +9,14 @@
     <section name="SuppressionXpathFilter">
       <p>Since Checkstyle 8.6</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressionXpathFilter</code> works as
           <a href="suppressionfilter.html#SuppressionFilter">
           SuppressionFilter</a>.
           Additionally, filter processes <code>suppress-xpath</code> elements,
           which contains xpath-expressions. Xpath-expressions
           are queries for suppressed nodes inside the AST tree.
-        </p>
+        </div>
         <p>
           Currently, filter does not support the following checks:
         </p>

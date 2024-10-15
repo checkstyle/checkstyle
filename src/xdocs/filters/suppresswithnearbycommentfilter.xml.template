@@ -9,10 +9,10 @@
     <section name="SuppressWithNearbyCommentFilter">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressWithNearbyCommentFilter</code> uses
           nearby comments to suppress audit events.
-        </p>
+        </div>
         <p>
           Rationale: Same as <code>SuppressionCommentFilter</code>.
           Whereas the SuppressionCommentFilter uses matched pairs of

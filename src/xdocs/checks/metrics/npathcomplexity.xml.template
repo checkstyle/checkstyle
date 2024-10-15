@@ -9,9 +9,9 @@
     <section name="NPathComplexity">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the NPATH complexity against a specified limit.
-        </p>
+        </div>
         <p>
           The NPATH metric computes the number of possible execution
           paths through a function(method). It takes into account the nesting of

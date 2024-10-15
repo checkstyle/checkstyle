@@ -29,14 +29,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks cyclomatic complexity against a specified limit. It is a measure of
  * the minimum number of possible paths through the source and therefore the
  * number of required tests, it is not about quality of code! It is only
  * applied to methods, c-tors,
  * <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
  * static initializers and instance initializers</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * The complexity is equal to the number of decision points {@code + 1}.
  * Decision points:
@@ -53,16 +54,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  {@code when} expression in case labels, also known as guards.
  * </li>
  * </ul>
+ *
  * <p>
  * By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10 consider
  * re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
  * </p>
+ *
  * <p>
  * When it comes to code quality measurement by this metric level 10 is very
  * good level as a ultimate target (that is hard to archive). Do not be ashamed
  * to have complexity level 15 or even higher, but keep it below 20 to catch
  * really bad-designed code automatically.
  * </p>
+ *
  * <p>
  * Please use Suppression to avoid violations on cases that could not be split
  * in few methods without damaging readability of code or encapsulation.
@@ -108,9 +112,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * LITERAL_WHEN</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

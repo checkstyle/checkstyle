@@ -26,9 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for implicit modifiers on interface members and nested types.
- * </p>
+ * </div>
+ *
  * <p>
  * This check is effectively the opposite of
  * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
@@ -36,11 +37,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
  * specified even though they are actually redundant.
  * </p>
+ *
  * <p>
  * Methods in interfaces are {@code public} by default, however from Java 9 they can also be
  * {@code private}. This check provides the ability to enforce that {@code public} is explicitly
  * coded and not implicitly added by the compiler.
  * </p>
+ *
  * <p>
  * From Java 8, there are three types of methods in interfaces - static methods marked with
  * {@code static}, default methods marked with {@code default} and abstract methods which do not
@@ -48,11 +51,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {@code private}. This check provides the ability to enforce that {@code abstract} is
  * explicitly coded and not implicitly added by the compiler.
  * </p>
+ *
  * <p>
  * Fields in interfaces are always {@code public static final} and as such the compiler does not
  * require these modifiers. This check provides the ability to enforce that these modifiers are
  * explicitly coded and not implicitly added by the compiler.
  * </p>
+ *
  * <p>
  * Nested types within an interface are always {@code public static} and as such the compiler
  * does not require the {@code public static} modifiers. This check provides the ability to
@@ -84,6 +89,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ *
  * <p>
  * Rationale for this check: Methods, fields and nested types are treated differently
  * depending on whether they are part of an interface or part of a class. For example, by
@@ -137,9 +143,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

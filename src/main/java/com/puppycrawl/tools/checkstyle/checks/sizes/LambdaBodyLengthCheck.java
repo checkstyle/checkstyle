@@ -25,9 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks lambda body length.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Similar to anonymous inner classes, if lambda body becomes very long
  * it is hard to understand and to see the flow of the method
@@ -41,9 +42,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 10}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

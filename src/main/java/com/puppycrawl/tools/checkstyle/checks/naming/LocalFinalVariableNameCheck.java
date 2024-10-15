@@ -25,11 +25,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that local final variable names conform to a specified pattern.
  *  A catch parameter and resources in try statements
  * are considered to be a local, final variables.
- * </p>
+ * </div>
+ *
  * <p>
  * This check does not support final pattern variables. Instead, use
  * <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
@@ -54,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RESOURCE</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressWithPlainTextCommentFilter} uses plain text to suppress
  * audit events. The filter can be used only to suppress audit events received
  * from the checks which implement FileSetCheck interface. In other words, the
@@ -48,12 +48,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * AST, it treats only plain text comments and extracts the information required
  * for suppression from the plain text comments. Currently, the filter supports
  * only single-line comments.
- * </p>
+ * </div>
+ *
  * <p>
  * Please, be aware of the fact that, it is not recommended to use the filter
  * for Java code anymore, however you still are able to use it to suppress audit
  * events received from the checks which implement FileSetCheck interface.
  * </p>
+ *
  * <p>
  * Rationale: Sometimes there are legitimate reasons for violating a check.
  * When this is a matter of the code in question and not personal preference,
@@ -62,15 +64,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * a separate suppressions file, which must be kept up-to-date as the source
  * file is edited.
  * </p>
+ *
  * <p>
  * Note that the suppression comment should be put before the violation.
  * You can use more than one suppression comment each on separate line.
  * </p>
+ *
  * <p>
  * Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
  * </p>
+ *
  * <p>
  * SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
  * Checker as parent module.
@@ -104,6 +109,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code "// CHECKSTYLE:ON"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>

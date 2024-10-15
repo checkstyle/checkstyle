@@ -26,13 +26,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a token is followed by whitespace, with the exception that it
  * does not check for whitespace after the semicolon of an empty for iterator.
  * Use Check
  * <a href="https://checkstyle.org/checks/whitespace/emptyforiteratorpad.html#EmptyForIteratorPad">
  * EmptyForIteratorPad</a> to validate empty for iterators.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -81,9 +81,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_WHEN</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

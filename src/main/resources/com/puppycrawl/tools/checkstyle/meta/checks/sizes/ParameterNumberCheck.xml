@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"
              name="ParameterNumber"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the number of parameters of a method or constructor.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
                <description>Ignore methods and constructors

@@ -4,14 +4,15 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"
              name="CyclomaticComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks cyclomatic complexity against a specified limit. It is a measure of
  the minimum number of possible paths through the source and therefore the
  number of required tests, it is not about quality of code! It is only
  applied to methods, c-tors,
  &lt;a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html"&gt;
  static initializers and instance initializers&lt;/a&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The complexity is equal to the number of decision points {@code + 1}.
  Decision points:
@@ -28,16 +29,19 @@
   {@code when} expression in case labels, also known as guards.
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  By pure theory level 1-4 is considered easy to test, 5-7 OK, 8-10 consider
  re-factoring to ease testing, and 11+ re-factor now as testing will be painful.
  &lt;/p&gt;
+
  &lt;p&gt;
  When it comes to code quality measurement by this metric level 10 is very
  good level as a ultimate target (that is hard to archive). Do not be ashamed
  to have complexity level 15 or even higher, but keep it below 20 to catch
  really bad-designed code automatically.
  &lt;/p&gt;
+
  &lt;p&gt;
  Please use Suppression to avoid violations on cases that could not be split
  in few methods without damaging readability of code or encapsulation.

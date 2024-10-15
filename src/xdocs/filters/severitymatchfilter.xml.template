@@ -9,11 +9,11 @@
     <section name="SeverityMatchFilter">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SeverityMatchFilter</code> decides
           audit events according to the <a href="../config.html#Severity">severity
           level</a> of the event.
-        </p>
+        </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>

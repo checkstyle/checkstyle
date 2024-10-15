@@ -30,9 +30,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the Javadoc paragraph.
- * </p>
+ * </div>
+ *
  * <p>
  * Checks that:
  * </p>
@@ -44,8 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>,
  * nested paragraph tags are allowed to do that.</li>
  * </ul>
+ *
  * <p><b>ATTENTION:</b></p>
+ *
  * <p>This Check ignores HTML comments.</p>
+ *
  * <p>The Check ignores all the nested paragraph tags,
  * it will not give any kind of violation if the paragraph tag is nested.</p>
  * <ul>
@@ -64,9 +68,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

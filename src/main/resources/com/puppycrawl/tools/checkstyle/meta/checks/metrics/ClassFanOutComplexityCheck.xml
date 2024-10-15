@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck"
              name="ClassFanOutComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the number of other types a given class/record/interface/enum/annotation
  relies on. Also, the square of this has been shown to indicate the amount
  of maintenance required in functional programs (on a file basis) at least.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check processes files in the following way:
  &lt;/p&gt;

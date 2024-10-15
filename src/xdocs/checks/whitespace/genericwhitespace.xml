@@ -9,11 +9,11 @@
     <section name="GenericWhitespace">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that the whitespace around the Generic tokens (angle brackets)
           &quot;&lt;&quot; and &quot;&gt;&quot; are correct to the <i>typical</i> convention.
           The convention is not configurable.
-        </p>
+        </div>
         <p>
           Left angle bracket (&quot;&lt;&quot;):
         </p>

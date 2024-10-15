@@ -31,25 +31,29 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the NPATH complexity against a specified limit.
- * </p>
+ * </div>
+ *
  * <p>
  * The NPATH metric computes the number of possible execution paths through a
  * function(method). It takes into account the nesting of conditional statements
  * and multipart boolean expressions (A &amp;&amp; B, C || D, E ? F :G and
  * their combinations).
  * </p>
+ *
  * <p>
  * The NPATH metric was designed base on Cyclomatic complexity to avoid problem
  * of Cyclomatic complexity metric like nesting level within a function(method).
  * </p>
+ *
  * <p>
  * Metric was described at <a href="http://dl.acm.org/citation.cfm?id=42379">
  * "NPATH: a measure of execution pathcomplexity and its applications"</a>.
  * If you need detailed description of algorithm, please read that article,
  * it is well written and have number of examples and details.
  * </p>
+ *
  * <p>
  * Here is some quotes:
  * </p>
@@ -101,6 +105,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <tr><td>Empty block {}</td><td>1</td></tr><tr><td>Function call</td><td>1</td>
  * </tr><tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
  * </table>
+ *
  * <p>
  * <b>Rationale:</b> Nejmeh says that his group had an informal NPATH limit of
  * 200 on individual routines; functions(methods) that exceeded this value were
@@ -116,9 +121,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code 200}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

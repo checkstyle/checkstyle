@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck"
              name="LambdaBodyLength"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks lambda body length.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Similar to anonymous inner classes, if lambda body becomes very long
  it is hard to understand and to see the flow of the method

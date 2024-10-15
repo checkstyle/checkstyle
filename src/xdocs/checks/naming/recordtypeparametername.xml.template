@@ -9,7 +9,7 @@
     <section name="RecordTypeParameterName">
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
-        <p>Checks that record type parameter names conform to a specified pattern.</p>
+        <div>Checks that record type parameter names conform to a specified pattern.</div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

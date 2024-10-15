@@ -28,10 +28,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * <p>Note: it simply wraps the existing JDK methods to provide a workaround
+ * <div>Note: it simply wraps the existing JDK methods to provide a workaround
  * for Pitest survival on mutation for removal of immutable wrapping,
  * see #13127 for more details.
- * </p>
+ * </div>
  *
  */
 public final class UnmodifiableCollectionUtil {

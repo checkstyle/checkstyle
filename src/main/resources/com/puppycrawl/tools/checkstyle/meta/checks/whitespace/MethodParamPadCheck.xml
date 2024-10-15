@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck"
              name="MethodParamPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the padding between the identifier of a method definition,
  constructor definition, method call, constructor invocation, record, or record pattern;
  and the left parenthesis of the parameter list.
@@ -14,7 +14,7 @@
  If they are not on the same line, reports a violation, unless configured to
  allow line breaks. To allow linebreaks after the identifier, set property
  {@code allowLineBreaks} to {@code true}.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="allowLineBreaks" type="boolean">
                <description>Allow a line break between the identifier

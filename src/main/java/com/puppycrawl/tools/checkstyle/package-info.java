@@ -21,6 +21,7 @@
  * Contains the implementation of the Checkstyle framework. Developers of
  * plug-ins for Checkstyle should refer to this package to configure and run
  * it.
+ *
  * <p>
  * You should <strong>not be</strong> referring to this package if you are
  * implementing your own check.

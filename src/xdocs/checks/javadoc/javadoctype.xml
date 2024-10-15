@@ -9,7 +9,7 @@
     <section name="JavadocType">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the Javadoc comments for type definitions.
           By default, does not check for author or version tags. The
           scope to verify is specified using the <code>Scope</code>
@@ -20,7 +20,7 @@
           versionFormat respectively to a
           <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
             pattern</a>.
-        </p>
+        </div>
         <p>
           Does not perform checks for author and version tags for inner
           classes, as they should be redundant because of outer class.

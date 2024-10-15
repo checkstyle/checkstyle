@@ -9,10 +9,10 @@
     <section name="SuppressWarningsFilter">
       <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressWarningsFilter</code> uses annotation
           <code>@SuppressWarnings</code> to suppress audit events.
-        </p>
+        </div>
         <p>
           Rationale: Same as for
           <code>SuppressionCommentFilter</code>. In the contrary to it

@@ -39,9 +39,10 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress audit events.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale:
  * Sometimes there are legitimate reasons for violating a check. When
@@ -51,10 +52,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * This is sometimes superior to a separate suppressions file, which
  * must be kept up-to-date as the source file is edited.
  * </p>
+ *
  * <p>
  * Note that the suppression comment should be put before the violation.
  * You can use more than one suppression comment each on separate line.
  * </p>
+ *
  * <p>
  * Attention: This filter may only be specified within the TreeWalker module
  * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
@@ -62,11 +65,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html#SuppressWithPlainTextCommentFilter">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
+ *
  * <p>
  * {@code offCommentFormat} and {@code onCommentFormat} must have equal
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
  * </p>
+ *
  * <p>
  * SuppressionCommentFilter can suppress Checks that have Treewalker as parent module.
  * </p>
@@ -108,6 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code "CHECKSTYLE:ON"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

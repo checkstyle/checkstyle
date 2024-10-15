@@ -32,10 +32,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the number of methods declared in each type declaration by access modifier
  * or total count.
- * </p>
+ * </div>
+ *
  * <p>
  * This check can be configured to flag classes that define too many methods
  * to prevent the class from getting too complex. Counting can be customized
@@ -47,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {@code maxPackage} methods. A violation won't appear for 8 public methods,
  * but one will appear if there is also 3 private methods or any package-private methods.
  * </p>
+ *
  * <p>
  * Methods defined in anonymous classes are not counted towards any totals.
  * Counts only go towards the main type declaration parent, and are kept separate
@@ -117,9 +119,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -29,9 +29,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Restricts the number of executable statements to a specified limit.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
@@ -57,9 +57,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LAMBDA</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

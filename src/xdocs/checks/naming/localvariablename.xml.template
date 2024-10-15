@@ -9,10 +9,10 @@
     <section name="LocalVariableName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that local, non-<code>final</code> variable names conform to a specified pattern.
           A catch parameter is considered to be a local variable.
-        </p>
+        </div>
         <p>
           This check does not support pattern variables. Instead, use
           <a href="patternvariablename.html#PatternVariableName">

@@ -29,9 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>
+ * <div>
  * Checks that a specified pattern matches across multiple lines in any file type.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: This check can be used to when the regular expression can be span multiple lines.
  * </p>
@@ -74,9 +75,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code 0}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -9,10 +9,10 @@
     <section name="UnusedImports">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for unused import statements. An
           import statement is considered unused if:
-        </p>
+        </div>
 
         <ul>
           <li>

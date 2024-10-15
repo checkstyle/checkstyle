@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck"
              name="JavadocLeadingAsteriskAlign"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the alignment of
  &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
  leading asterisks&lt;/a&gt; in a Javadoc comment. The Check ensures that leading asterisks
@@ -14,7 +14,8 @@
  then it's alignment will be ignored.
  If the ending javadoc line contains a leading asterisk, then that leading asterisk's alignment
  will be considered, the closing Javadoc tag will be ignored.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  If you're using tabs then specify the the tab width in the
  &lt;a href="https://checkstyle.org/config.html#tabWidth"&gt;tabWidth&lt;/a&gt; property.

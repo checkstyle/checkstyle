@@ -9,10 +9,10 @@
     <section name="AbstractClassName">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Ensures that the names of abstract classes conforming to some pattern and
           check that <code>abstract</code> modifier exists.
-        </p>
+        </div>
         <p>
           Rationale: Abstract classes are convenience base class implementations of
           interfaces. For this reason, it should be made obvious that a given class

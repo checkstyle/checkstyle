@@ -4,25 +4,29 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"
              name="JavaNCSS"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Determines complexity of methods, classes and files by counting
  the Non Commenting Source Statements (NCSS). This check adheres to the
  &lt;a href="http://www.kclee.de/clemens/java/javancss/#specification"&gt;specification&lt;/a&gt;
  for the &lt;a href="http://www.kclee.de/clemens/java/javancss/"&gt;JavaNCSS-Tool&lt;/a&gt;
  written by &lt;b&gt;Chr. Clemens Lee&lt;/b&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Roughly said the NCSS metric is calculated by counting the source lines which are
  not comments, (nearly) equivalent to counting the semicolons and opening curly braces.
  &lt;/p&gt;
+
  &lt;p&gt;
  The NCSS for a class is summarized from the NCSS of all its methods, the NCSS
  of its nested classes and the number of member variable declarations.
  &lt;/p&gt;
+
  &lt;p&gt;
  The NCSS for a file is summarized from the ncss of all its top level classes,
  the number of imports and the package declaration.
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Too large methods and classes are hard to read and costly to maintain.
  A large NCSS number often means that a method or class has too many responsibilities

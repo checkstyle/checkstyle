@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck"
              name="RegexpMultiline"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a specified pattern matches across multiple lines in any file type.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: This check can be used to when the regular expression can be span multiple lines.
  &lt;/p&gt;</description>

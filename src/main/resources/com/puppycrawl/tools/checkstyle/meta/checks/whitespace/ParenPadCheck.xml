@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
              name="ParenPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the policy on the padding of parentheses; that is whether a space is required
  after a left parenthesis and before a right parenthesis, or such spaces are
  forbidden. No check occurs at the right parenthesis after an empty for
@@ -19,7 +19,7 @@
  Typecasts are also not checked, as there is
  &lt;a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad"&gt;
  TypecastParenPad&lt;/a&gt; to validate them.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="nospace"
                       name="option"

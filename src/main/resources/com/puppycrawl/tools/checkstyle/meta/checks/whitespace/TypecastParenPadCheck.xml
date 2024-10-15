@@ -4,11 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck"
              name="TypecastParenPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the policy on the padding of parentheses for typecasts. That is, whether a space
  is required after a left parenthesis and before a right parenthesis, or such
  spaces are forbidden.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="nospace"
                       name="option"

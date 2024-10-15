@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck"
              name="GenericWhitespace"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the whitespace around the Generic tokens (angle brackets)
  "&amp;lt;" and "&amp;gt;" are correct to the &lt;i&gt;typical&lt;/i&gt; convention.
  The convention is not configurable.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Left angle bracket ("&amp;lt;"):
  &lt;/p&gt;
@@ -20,6 +21,7 @@
  &lt;li&gt; should not be preceded with whitespace when following type name.&lt;/li&gt;
  &lt;li&gt; should not be followed with whitespace in all cases.&lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  Right angle bracket ("&amp;gt;"):
  &lt;/p&gt;

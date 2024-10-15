@@ -45,17 +45,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the Javadoc of a method or constructor.
- * </p>
+ * </div>
+ *
  * <p>
  * Violates parameters and type parameters for which no param tags are present can
  * be suppressed by defining property {@code allowMissingParamTags}.
  * </p>
+ *
  * <p>
  * Violates methods which return non-void but for which no return tag is present can
  * be suppressed by defining property {@code allowMissingReturnTag}.
  * </p>
+ *
  * <p>
  * Violates exceptions which are declared to be thrown (by {@code throws} in the method
  * signature or by {@code throw new} in the method body), but for which no throws tag is
@@ -74,11 +77,13 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * throw statements inside such classes are going to be evaluated, so they are ignored.
  * </li>
  * </ul>
+ *
  * <p>
  * ATTENTION: Checkstyle does not have information about hierarchy of exception types
  * so usage of base class is considered as separate exception type.
  * As workaround, you need to specify both types in javadoc (parent and exact type).
  * </p>
+ *
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override}
  * annotation. However, under Java 5 it is not possible to mark a method required
@@ -86,11 +91,13 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * supports using the convention of using a single {@code {@inheritDoc}} tag
  * instead of all the other tags.
  * </p>
+ *
  * <p>
  * Note that only inheritable items will allow the {@code {@inheritDoc}}
  * tag to be used in place of comments. Static methods at all visibilities,
  * private non-static methods and constructors are not inheritable.
  * </p>
+ *
  * <p>
  * For example, if the following method is implementing a method required by
  * an interface, then the Javadoc could be done as:
@@ -145,9 +152,11 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

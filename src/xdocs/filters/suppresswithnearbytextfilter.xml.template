@@ -9,11 +9,11 @@
     <section name="SuppressWithNearbyTextFilter">
       <p>Since Checkstyle 10.10.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
           nearby audit events. The filter can suppress all checks which have Checker
           as a parent module.
-        </p>
+        </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
