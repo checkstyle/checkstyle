@@ -9,9 +9,9 @@
     <section name="FileTabCharacter">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that there are no tab characters (<code>'\t'</code>) in the source code.
-        </p>
+        </div>
 
         <p>
           Rationale:

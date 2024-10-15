@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck"
              name="InterfaceMemberImpliedModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for implicit modifiers on interface members and nested types.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check is effectively the opposite of
  &lt;a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier"&gt;
@@ -14,11 +15,13 @@
  It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
  specified even though they are actually redundant.
  &lt;/p&gt;
+
  &lt;p&gt;
  Methods in interfaces are {@code public} by default, however from Java 9 they can also be
  {@code private}. This check provides the ability to enforce that {@code public} is explicitly
  coded and not implicitly added by the compiler.
  &lt;/p&gt;
+
  &lt;p&gt;
  From Java 8, there are three types of methods in interfaces - static methods marked with
  {@code static}, default methods marked with {@code default} and abstract methods which do not
@@ -26,11 +29,13 @@
  {@code private}. This check provides the ability to enforce that {@code abstract} is
  explicitly coded and not implicitly added by the compiler.
  &lt;/p&gt;
+
  &lt;p&gt;
  Fields in interfaces are always {@code public static final} and as such the compiler does not
  require these modifiers. This check provides the ability to enforce that these modifiers are
  explicitly coded and not implicitly added by the compiler.
  &lt;/p&gt;
+
  &lt;p&gt;
  Nested types within an interface are always {@code public static} and as such the compiler
  does not require the {@code public static} modifiers. This check provides the ability to
@@ -62,6 +67,7 @@
    }
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Rationale for this check: Methods, fields and nested types are treated differently
  depending on whether they are part of an interface or part of a class. For example, by

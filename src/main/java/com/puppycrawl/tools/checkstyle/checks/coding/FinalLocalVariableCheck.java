@@ -662,6 +662,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     /**
      * Checks if current variable is defined in
      *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
+     *
      * <p>
      * {@code
      * for (int i = 0, j = 0; i < j; i++) { . . . }

@@ -4,13 +4,13 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck"
              name="SingleSpaceSeparator"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that non-whitespace characters are separated by no more than one
  whitespace. Separating characters by tabs or multiple spaces will be
  reported. Currently, the check doesn't permit horizontal alignment. To inspect
  whitespaces before and after comments, set the property
  {@code validateComments} to true.
- &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;p&gt;
  Setting {@code validateComments} to false will ignore cases like:

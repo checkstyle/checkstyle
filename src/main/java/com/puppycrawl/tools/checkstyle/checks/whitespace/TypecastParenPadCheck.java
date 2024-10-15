@@ -23,11 +23,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks the policy on the padding of parentheses for typecasts. That is, whether a space
  * is required after a left parenthesis and before a right parenthesis, or such
  * spaces are forbidden.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad parentheses.
@@ -35,9 +35,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code nospace}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

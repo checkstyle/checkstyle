@@ -58,7 +58,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * <p>Configures the environment for each test.</p>
+     * Configures the environment for each test.
      * <ul>
      * <li>Start output capture for {@link System#err}</li>
      * </ul>

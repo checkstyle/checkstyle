@@ -29,11 +29,12 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that the whitespace around the Generic tokens (angle brackets)
  * "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
  * The convention is not configurable.
- * </p>
+ * </div>
+ *
  * <p>
  * Left angle bracket ("&lt;"):
  * </p>
@@ -45,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li> should not be preceded with whitespace when following type name.</li>
  * <li> should not be followed with whitespace in all cases.</li>
  * </ul>
+ *
  * <p>
  * Right angle bracket ("&gt;"):
  * </p>
@@ -53,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li> should be followed with whitespace in almost all cases,
  *   except diamond operators and when preceding a method name, constructor, or record header.</li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

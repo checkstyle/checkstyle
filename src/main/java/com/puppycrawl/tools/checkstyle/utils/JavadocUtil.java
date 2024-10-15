@@ -338,11 +338,13 @@ public final class JavadocUtil {
 
     /**
      * Checks Javadoc comment it's in right place.
+     *
      * <p>From Javadoc util documentation:
      * "Placement of comments - Documentation comments are recognized only when placed
      * immediately before class, interface, constructor, method, field or annotation field
      * declarations -- see the class example, method example, and field example.
      * Documentation comments placed in the body of a method are ignored."</p>
+     *
      * <p>If there are many documentation comments per declaration statement,
      * only the last one will be recognized.</p>
      *

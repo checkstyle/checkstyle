@@ -9,9 +9,9 @@
     <section name="TypeName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that type names conform to a specified pattern.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

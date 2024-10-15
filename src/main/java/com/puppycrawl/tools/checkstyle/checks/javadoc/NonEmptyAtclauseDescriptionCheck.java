@@ -26,9 +26,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that the block tag is followed by description.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
@@ -54,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * DEPRECATED_LITERAL</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

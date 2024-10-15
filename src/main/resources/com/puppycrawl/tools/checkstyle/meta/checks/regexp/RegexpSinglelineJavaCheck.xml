@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"
              name="RegexpSinglelineJava"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a specified pattern matches a single-line in Java files.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This class is variation on
  &lt;a href="https://checkstyle.org/checks/regexp/regexpsingleline.html#RegexpSingleline"&gt;

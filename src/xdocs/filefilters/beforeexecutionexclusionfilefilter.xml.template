@@ -9,10 +9,10 @@
     <section name="BeforeExecutionExclusionFileFilter">
       <p>Since Checkstyle 7.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
           excluded from being processed by the utility.
-        </p>
+        </div>
         <p>
           By default, Checkstyle includes all files and subdirectories in a directory to be
           processed and checked for violations. Users could have files that are in these

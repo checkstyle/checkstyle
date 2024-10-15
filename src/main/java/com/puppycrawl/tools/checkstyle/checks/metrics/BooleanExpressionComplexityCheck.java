@@ -29,20 +29,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Restricts the number of boolean operators ({@code &amp;&amp;}, {@code ||},
  * {@code &amp;}, {@code |} and {@code ^}) in an expression.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Too many conditions leads to code that is difficult to read
  * and hence debug and maintain.
  * </p>
+ *
  * <p>
  * Note that the operators {@code &amp;} and {@code |} are not only integer bitwise
  * operators, they are also the
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
  * non-shortcut versions</a> of the boolean operators {@code &amp;&amp;} and {@code ||}.
  * </p>
+ *
  * <p>
  * Note that {@code &amp;}, {@code |} and {@code ^} are not checked if they are part
  * of constructor or method call because they can be applied to non-boolean
@@ -72,9 +75,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * BXOR</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

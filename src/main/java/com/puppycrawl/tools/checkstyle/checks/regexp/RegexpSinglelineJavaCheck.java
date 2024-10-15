@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a specified pattern matches a single-line in Java files.
- * </p>
+ * </div>
+ *
  * <p>
  * This class is variation on
  * <a href="https://checkstyle.org/checks/regexp/regexpsingleline.html#RegexpSingleline">
@@ -70,9 +71,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code 0}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -23,9 +23,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that pattern variable names conform to a specified pattern.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
@@ -33,9 +33,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

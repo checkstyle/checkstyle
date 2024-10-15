@@ -9,10 +9,10 @@
     <section name="MethodCount">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the number of methods declared in each type declaration by access modifier or
           total count.
-        </p>
+        </div>
         <p>
           This check can be configured to flag classes that define too many methods to prevent the
           class from getting too complex.

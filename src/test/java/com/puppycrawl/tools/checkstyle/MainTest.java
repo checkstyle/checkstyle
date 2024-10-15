@@ -208,7 +208,7 @@ public class MainTest {
     }
 
     /**
-     * <p>Configures the environment for each test.</p>
+     * Configures the environment for each test.
      * <ul>
      * <li>Restore original logging level and HANDLERS to prevent bleeding into other tests;</li>
      * <li>Turn off colors for picocli to not conflict with tests if they are auto turned on.</li>

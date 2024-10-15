@@ -32,9 +32,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for long methods and constructors.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: If a method becomes very long it is hard to understand.
  * Therefore, long methods should usually be refactored into several
@@ -64,9 +65,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

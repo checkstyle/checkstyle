@@ -9,9 +9,9 @@
     <section name="ParameterNumber">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the number of parameters of a method or constructor.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

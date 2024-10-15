@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the Javadoc comments for type definitions. By default, does
  * not check for author or version tags. The scope to verify is specified using the {@code Scope}
  * class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
@@ -49,14 +49,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * tag or a version tag, set property authorFormat or versionFormat respectively to a
  * <a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">
  * pattern</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * Does not perform checks for author and version tags for inner classes,
  * as they should be redundant because of outer class.
  * </p>
+ *
  * <p>
  * Does not perform checks for type definitions that do not have any Javadoc comments.
  * </p>
+ *
  * <p>
  * Error messages about type parameters and record components for which no param tags are present
  * can be suppressed by defining property {@code allowMissingParamTags}.
@@ -118,9 +121,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

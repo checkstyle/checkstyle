@@ -28,10 +28,10 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>Abstract class for checking the padding of parentheses. That is whether a
+ * <div>Abstract class for checking the padding of parentheses. That is whether a
  * space is required after a left parenthesis and before a right parenthesis,
  * or such spaces are forbidden.
- * </p>
+ * </div>
  */
 @StatelessCheck
 public abstract class AbstractParenPadCheck

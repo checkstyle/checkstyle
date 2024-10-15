@@ -27,10 +27,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>Checks that chosen statements are not line-wrapped.
+ * <div>Checks that chosen statements are not line-wrapped.
  * By default, this Check restricts wrapping import and package statements,
  * but it's possible to check any statement.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -45,9 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * STATIC_IMPORT</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

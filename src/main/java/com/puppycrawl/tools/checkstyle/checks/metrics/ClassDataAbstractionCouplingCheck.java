@@ -22,14 +22,15 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Measures the number of distinct classes that are instantiated
  * within the given class or record. This type of coupling is not caused by inheritance or
  * the object-oriented paradigm. Generally speaking, any data type with other
  * data types as members or local variable that is an instantiation (object)
  * of another class has data abstraction coupling (DAC). The higher the DAC,
  * the more complex the structure of the class.
- * </p>
+ * </div>
+ *
  * <p>
  * This check processes files in the following way:
  * </p>
@@ -109,9 +110,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 7}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

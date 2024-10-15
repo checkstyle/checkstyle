@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for parents of blocks ('if', 'else', 'while', etc).
+ *
  * <P>
  * The "block" handler classes use a common superclass BlockParentHandler,
  * employing the Template Method pattern.

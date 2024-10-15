@@ -62,11 +62,9 @@ public class GeneratedJavaTokenTypesTest {
     );
 
     /**
-     * <p>
      * New tokens must be added onto the end of the list with new numbers, and
      * old tokens must remain and keep their current numbering. Old token
      * numberings are not allowed to change.
-     * </p>
      *
      * <p>
      * The reason behind this is Java inlines static final field values directly

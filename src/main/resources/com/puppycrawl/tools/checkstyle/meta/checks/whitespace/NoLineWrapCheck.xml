@@ -4,10 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck"
              name="NoLineWrap"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;Checks that chosen statements are not line-wrapped.
+         <description>&lt;div&gt;Checks that chosen statements are not line-wrapped.
  By default, this Check restricts wrapping import and package statements,
  but it's possible to check any statement.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT"
                       name="tokens"

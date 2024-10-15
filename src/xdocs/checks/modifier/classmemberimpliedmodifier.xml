@@ -9,9 +9,9 @@
     <section name="ClassMemberImpliedModifier">
       <p>Since Checkstyle 8.16</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for implicit modifiers on nested types in classes and records.
-        </p>
+        </div>
         <p>
           This check is effectively the opposite of
           <a href="redundantmodifier.html#RedundantModifier">RedundantModifier</a>.

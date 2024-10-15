@@ -4,11 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck"
              name="EmptyForInitializerPad"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the padding of an empty for initializer; that is whether a white
  space is required at an empty for initializer, or such white space is
  forbidden.  No check occurs if there is a line wrap at the initializer, as in
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  for (
      ; i &amp;lt; j; i++, j--)

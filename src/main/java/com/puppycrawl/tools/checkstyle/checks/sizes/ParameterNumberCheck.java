@@ -30,9 +30,9 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the number of parameters of a method or constructor.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code ignoreAnnotatedBy} - Ignore methods and constructors
@@ -62,9 +62,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

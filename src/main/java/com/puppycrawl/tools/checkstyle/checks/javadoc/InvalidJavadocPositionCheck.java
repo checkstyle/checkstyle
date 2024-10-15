@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that Javadocs are located at the correct position. As specified at
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
  * Documentation Comment Specification for the Standard Doclet</a>, Javadocs are recognized
@@ -34,10 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * constructor, method, or field declarations. Any other position, like in the
  * body of a method, will be ignored by the javadoc tool and is considered
  * invalid by this check.
- * </p>
+ * </div>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

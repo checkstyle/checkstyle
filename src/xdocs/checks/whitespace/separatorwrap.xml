@@ -9,9 +9,9 @@
     <section name="SeparatorWrap">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks line wrapping with separators.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

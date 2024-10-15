@@ -26,9 +26,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks lambda parameter names.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
@@ -36,9 +36,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -9,10 +9,10 @@
     <section name="BooleanExpressionComplexity">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Restricts the number of boolean operators (<code>&amp;&amp;</code>, <code>||</code>,
           <code>&amp;</code>, <code>|</code> and <code>^</code>) in an expression.
-        </p>
+        </div>
 
         <p>
           Rationale: Too many conditions leads to code that is difficult

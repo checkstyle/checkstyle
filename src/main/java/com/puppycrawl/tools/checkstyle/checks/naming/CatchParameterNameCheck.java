@@ -23,9 +23,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that {@code catch} parameter names conform to a specified pattern.
- * </p>
+ * </div>
+ *
  * <p>
  * Default pattern has the following characteristic:
  * </p>
@@ -48,9 +49,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

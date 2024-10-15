@@ -9,11 +9,11 @@
     <section name="ClassFanOutComplexity">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the number of other types a given class/record/interface/enum/annotation
           relies on. Also, the square of this has been shown to indicate the amount of
           maintenance required in functional programs (on a file basis) at least.
-        </p>
+        </div>
         <p>
           This check processes files in the following way:
         </p>

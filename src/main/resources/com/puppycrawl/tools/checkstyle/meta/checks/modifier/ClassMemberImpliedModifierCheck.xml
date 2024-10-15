@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck"
              name="ClassMemberImpliedModifier"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for implicit modifiers on nested types in classes and records.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  This check is effectively the opposite of
  &lt;a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier"&gt;
@@ -14,6 +15,7 @@
  It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
  are explicitly specified even though they are actually redundant.
  &lt;/p&gt;
+
  &lt;p&gt;
  Nested enums, interfaces, and records within a class are always {@code static} and as such the
  compiler does not require the {@code static} modifier. This check provides the ability to enforce
@@ -26,6 +28,7 @@
    }
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Rationale for this check: Nested enums, interfaces, and records are treated differently from
  nested classes as they are only allowed to be {@code static}. Developers should not need to

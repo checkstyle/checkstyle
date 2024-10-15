@@ -9,11 +9,11 @@
     <section name="LocalFinalVariableName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that local final variable names conform to a specified pattern.
           A catch parameter and resources in try statements
           are considered to be a local, final variables.
-        </p>
+        </div>
         <p>
           This check does not support final pattern variables. Instead, use
           <a href="patternvariablename.html#PatternVariableName">

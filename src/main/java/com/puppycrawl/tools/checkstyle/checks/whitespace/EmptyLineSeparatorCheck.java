@@ -35,15 +35,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for empty line separators before package, all import declarations,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.
- * </p>
+ * </div>
+ *
  * <p>
  * Checks for empty line separators before not only statements but
  * implementation and documentation comments and blocks as well.
  * </p>
+ *
  * <p>
  * ATTENTION: empty line separator is required between token siblings,
  * not after line where token is found.
@@ -101,9 +103,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

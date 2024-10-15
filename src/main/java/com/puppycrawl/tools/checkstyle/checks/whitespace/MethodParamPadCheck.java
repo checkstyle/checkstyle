@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the padding between the identifier of a method definition,
  * constructor definition, method call, constructor invocation, record, or record pattern;
  * and the left parenthesis of the parameter list.
@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * If they are not on the same line, reports a violation, unless configured to
  * allow line breaks. To allow linebreaks after the identifier, set property
  * {@code allowLineBreaks} to {@code true}.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Allow a line break between the identifier
@@ -77,9 +77,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

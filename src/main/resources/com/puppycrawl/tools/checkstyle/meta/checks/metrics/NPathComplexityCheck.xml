@@ -4,25 +4,29 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"
              name="NPathComplexity"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the NPATH complexity against a specified limit.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The NPATH metric computes the number of possible execution paths through a
  function(method). It takes into account the nesting of conditional statements
  and multipart boolean expressions (A &amp;amp;&amp;amp; B, C || D, E ? F :G and
  their combinations).
  &lt;/p&gt;
+
  &lt;p&gt;
  The NPATH metric was designed base on Cyclomatic complexity to avoid problem
  of Cyclomatic complexity metric like nesting level within a function(method).
  &lt;/p&gt;
+
  &lt;p&gt;
  Metric was described at &lt;a href="http://dl.acm.org/citation.cfm?id=42379"&gt;
  "NPATH: a measure of execution pathcomplexity and its applications"&lt;/a&gt;.
  If you need detailed description of algorithm, please read that article,
  it is well written and have number of examples and details.
  &lt;/p&gt;
+
  &lt;p&gt;
  Here is some quotes:
  &lt;/p&gt;
@@ -74,6 +78,7 @@
  &lt;tr&gt;&lt;td&gt;Empty block {}&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function call&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
  &lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function(Method) declaration or Block&lt;/td&gt;&lt;td&gt;P(i=1:i=N)NP(Statement[i])&lt;/td&gt;&lt;/tr&gt;
  &lt;/table&gt;
+
  &lt;p&gt;
  &lt;b&gt;Rationale:&lt;/b&gt; Nejmeh says that his group had an informal NPATH limit of
  200 on individual routines; functions(methods) that exceeded this value were

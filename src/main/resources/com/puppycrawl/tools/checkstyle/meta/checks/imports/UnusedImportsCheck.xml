@@ -4,10 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
              name="UnusedImports"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for unused import statements. An import statement
  is considered unused if:
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;ul&gt;
  &lt;li&gt;
  It is not referenced in the file. The algorithm does not support wild-card
@@ -34,6 +35,7 @@
  dependency would be to write the Javadoc comment as {@code {&amp;#64;link java.util.List}}.
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  The main limitation of this check is handling the cases where:
  &lt;/p&gt;

@@ -9,9 +9,9 @@
     <section name="RegexpSinglelineJava">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a specified pattern matches a single-line in Java files.
-        </p>
+        </div>
         <p>
           This class is variation on
           <a href="regexpsingleline.html#RegexpSingleline">RegexpSingleline</a> for detecting

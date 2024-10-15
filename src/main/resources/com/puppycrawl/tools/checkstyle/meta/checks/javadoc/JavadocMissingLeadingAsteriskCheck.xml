@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck"
              name="JavadocMissingLeadingAsterisk"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks if the javadoc has
  &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
  leading asterisks&lt;/a&gt; on each line.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The check does not require asterisks on the first line, nor on the last line if it is blank.
  All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.

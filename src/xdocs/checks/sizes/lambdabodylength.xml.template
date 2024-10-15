@@ -9,9 +9,9 @@
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks lambda body length.
-        </p>
+        </div>
 
         <p>
           Rationale: Similar to anonymous inner classes, if lambda body becomes very long

@@ -23,9 +23,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that type names conform to a specified pattern.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code applyToPackage} - Control if check should apply to package-private
@@ -71,9 +71,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

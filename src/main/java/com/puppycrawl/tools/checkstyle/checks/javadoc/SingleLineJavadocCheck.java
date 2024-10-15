@@ -29,10 +29,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a Javadoc block can fit in a single-line and doesn't contain block tags.
  * Javadoc comment that contains at least one block tag should be formatted in a few lines.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code ignoreInlineTags} - Control whether
@@ -56,9 +57,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

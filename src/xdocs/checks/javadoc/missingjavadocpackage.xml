@@ -9,9 +9,9 @@
     <section name="MissingJavadocPackage">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
             Checks for missing package definition Javadoc comments in package-info.java files.
-        </p>
+        </div>
 
         <p>
           Rationale: description and other related documentation for a package can be written up

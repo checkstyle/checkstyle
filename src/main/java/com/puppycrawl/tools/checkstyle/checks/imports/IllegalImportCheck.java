@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <div>
  * Checks for imports from a set of illegal packages.
  * </div>
+ *
  * <p>
  * Note: By default, the check rejects all {@code sun.*} packages since programs
  * that contain direct calls to the {@code sun.*} packages are
@@ -65,9 +66,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -9,7 +9,7 @@
     <section name="CyclomaticComplexity">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks cyclomatic complexity against a specified limit.
           It is a measure of the minimum number of
           possible paths through the source and therefore the number of
@@ -17,7 +17,7 @@
           It is only applied to methods, c-tors,
           <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html">
           static initializers and instance initializers</a>.
-        </p>
+        </div>
         <p>
           The complexity is equal to the number of decision points <code>+ 1</code>.
           Decision points:

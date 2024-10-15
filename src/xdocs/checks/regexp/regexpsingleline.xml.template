@@ -9,9 +9,9 @@
     <section name="RegexpSingleline">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a specified pattern matches a single-line in any file type.
-        </p>
+        </div>
 
         <p>
           Rationale: This check can be used to prototype checks and to

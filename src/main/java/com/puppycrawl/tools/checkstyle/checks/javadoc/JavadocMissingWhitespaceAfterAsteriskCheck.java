@@ -25,12 +25,12 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that there is at least one whitespace after the leading asterisk.
  * Although spaces after asterisks are optional in the Javadoc comments, their absence
  * makes the documentation difficult to read. It is the de facto standard to put at least
  * one whitespace after the leading asterisk.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
@@ -40,9 +40,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
