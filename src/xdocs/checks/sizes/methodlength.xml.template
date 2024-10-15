@@ -9,9 +9,9 @@
     <section name="MethodLength">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for long methods and constructors.
-        </p>
+        </div>
 
         <p>
           Rationale: If a method becomes very long it is hard to

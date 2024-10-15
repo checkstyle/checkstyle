@@ -9,9 +9,9 @@
     <section name="JavadocStyle">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Validates Javadoc comments to help ensure they are well formed.
-        </p>
+        </div>
         <p>
           The following checks are performed:
         </p>

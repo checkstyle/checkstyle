@@ -40,10 +40,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for unused import statements. An import statement
  * is considered unused if:
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * It is not referenced in the file. The algorithm does not support wild-card
@@ -70,6 +71,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
  * </li>
  * </ul>
+ *
  * <p>
  * The main limitation of this check is handling the cases where:
  * </p>
@@ -90,9 +92,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

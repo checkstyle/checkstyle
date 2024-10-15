@@ -24,13 +24,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that constant names conform to a specified pattern.
  * A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
  * field or an interface/annotation field, except
  * <strong>serialVersionUID</strong> and <strong>serialPersistentFields
  * </strong>.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code applyToPackage} - Control if check should apply to package-private members.
@@ -58,9 +59,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

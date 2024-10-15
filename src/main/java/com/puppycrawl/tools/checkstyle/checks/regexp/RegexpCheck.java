@@ -31,25 +31,29 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a specified pattern exists, exists less than
  * a set number of times, or does not exist in the file.
- * </p>
+ * </div>
+ *
  * <p>
  * This check combines all the functionality provided by
  * <a href="https://checkstyle.org/checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>
  * except supplying the regular expression from a file.
  * </p>
+ *
  * <p>
  * It differs from them in that it works in multiline mode. Its regular expression
  * can span multiple lines and it checks this against the whole file at once.
  * The others work in single-line mode. Their single or multiple regular expressions
  * can only span one line. They check each of these against each line in the file in turn.
  * </p>
+ *
  * <p>
  * <b>Note:</b> Because of the different mode of operation there may be some
  * changes in the regular expressions used to achieve a particular end.
  * </p>
+ *
  * <p>
  * In multiline mode...
  * </p>
@@ -70,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Each line in the file is terminated with a line feed character.
  * </li>
  * </ul>
+ *
  * <p>
  * <b>Note:</b> Not all regular expression engines are created equal.
  * Some provide extra functions that others do not and some elements
@@ -78,6 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * java.util.regex package</a>; please check its documentation for details
  * of how to construct a regular expression to achieve a particular goal.
  * </p>
+ *
  * <p>
  * <b>Note:</b> When entering a regular expression as a parameter in
  * the XML config file you must also take into account the XML rules. e.g.
@@ -121,9 +127,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code null}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

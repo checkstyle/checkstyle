@@ -30,11 +30,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the policy on how to wrap lines on
  * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">
  * operators</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-15.html#jls-15.20.2">
  * Java Language Specification</a> for more information about {@code instanceof} operator.
@@ -98,9 +99,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LITERAL_INSTANCEOF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

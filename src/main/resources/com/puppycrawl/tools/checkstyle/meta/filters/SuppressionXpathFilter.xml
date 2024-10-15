@@ -4,14 +4,15 @@
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter"
               name="SuppressionXpathFilter"
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Filter {@code SuppressionXpathFilter} works as
  &lt;a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter"&gt;
  SuppressionFilter&lt;/a&gt;.
  Additionally, filter processes {@code suppress-xpath} elements,
  which contains xpath-expressions. Xpath-expressions are queries for
  suppressed nodes inside the AST tree.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Currently, filter does not support the following checks:
  &lt;/p&gt;
@@ -28,6 +29,7 @@
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"&gt; #7759&lt;/a&gt;)
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
  &lt;/p&gt;
@@ -78,10 +80,12 @@
  WriteTag
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  Note, that support for these Checks will be available after resolving issue
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/5770"&gt;#5770&lt;/a&gt;.
  &lt;/p&gt;
+
  &lt;p&gt;
  Currently, filter supports the following xpath axes:
  &lt;/p&gt;
@@ -123,11 +127,13 @@
  self
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  You can use the command line helper tool to generate xpath suppressions based on your
  configuration file and input files. See &lt;a href="https://checkstyle.org/cmdline.html"&gt;here&lt;/a&gt;
  for more details.
  &lt;/p&gt;
+
  &lt;p&gt;
  The suppression file location is checked in following order:
  &lt;/p&gt;
@@ -143,6 +149,7 @@
  if no file found, then passed to the {@code ClassLoader.getResource()} method.
  &lt;/li&gt;
  &lt;/ol&gt;
+
  &lt;p&gt;
  SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
  &lt;/p&gt;</description>

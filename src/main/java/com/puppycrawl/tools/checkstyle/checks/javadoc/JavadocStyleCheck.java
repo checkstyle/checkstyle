@@ -41,9 +41,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Validates Javadoc comments to help ensure they are well formed.
- * </p>
+ * </div>
+ *
  * <p>
  * The following checks are performed:
  * </p>
@@ -83,6 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * "thead", "tr", "tt", "u", "ul", "var".
  * </li>
  * </ul>
+ *
  * <p>
  * These checks were patterned after the checks made by the
  * <a href="https://maven-doccheck.sourceforge.net">DocCheck</a> doclet
@@ -154,9 +156,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

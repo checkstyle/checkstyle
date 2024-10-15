@@ -9,10 +9,10 @@
     <section name="SuppressionCommentFilter">
       <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressionCommentFilter</code> uses
           pairs of comments to suppress audit events.
-        </p>
+        </div>
         <p>
           Rationale: Sometimes there are legitimate reasons for violating
           a check. When this is a matter of the code in question and not

@@ -9,7 +9,7 @@
     <section name="ParenPad">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the policy on the padding of parentheses; that is whether a
           space is required after a left parenthesis and before a right
           parenthesis, or such spaces are forbidden. No check occurs at
@@ -24,7 +24,7 @@
           Typecasts are also not checked, as there is
           <a href="typecastparenpad.html#TypecastParenPad">
           TypecastParenPad</a> to validate them.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

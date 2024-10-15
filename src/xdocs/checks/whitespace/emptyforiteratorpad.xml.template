@@ -9,12 +9,12 @@
     <section name="EmptyForIteratorPad">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the padding of an empty for iterator; that is whether a white
           space is required at an empty for iterator, or such white space is
           forbidden. No check occurs if there is a line wrap at the iterator,
           as in
-        </p>
+        </div>
         <source>
 for (Iterator foo = very.long.line.iterator();
       foo.hasNext();

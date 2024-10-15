@@ -26,24 +26,28 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressionXpathSingleFilter} suppresses audit events for Checks
  * violations in the specified file, class, checks, message, module id, and xpath.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: To allow users to use suppressions configured in the same config as other modules.
  * {@code SuppressionFilter} and {@code SuppressionXpathFilter} require a separate file.
  * </p>
+ *
  * <p>
  * Advice: If checkstyle configuration is used for several projects, single suppressions
  * on common files/folders is better to put in checkstyle configuration as common rule.
  * All suppression that are for specific file names is better to keep in project
  * specific config file.
  * </p>
+ *
  * <p>
  * Attention: This filter only supports single suppression, and will need multiple
  * instances if users wants to suppress multiple violations.
  * </p>
+ *
  * <p>
  * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
  * </p>
@@ -78,6 +82,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * Default value is {@code null}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

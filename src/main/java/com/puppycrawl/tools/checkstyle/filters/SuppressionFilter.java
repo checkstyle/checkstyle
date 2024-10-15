@@ -31,12 +31,13 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressionFilter} rejects audit events for Check violations according to a
  * <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML document</a>
  * in a file. If there is no configured suppressions file or the optional is set to true and
  * suppressions file was not found the Filter accepts all audit events.
- * </p>
+ * </div>
+ *
  * <p>
  * A <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML document</a>
  * contains a set of {@code suppress} elements, where each {@code suppress}
@@ -77,18 +78,22 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * It is optional.
  * </li>
  * </ul>
+ *
  * <p>
  * Each audit event is checked against each {@code suppress} element.
  * It is suppressed if all specified attributes match against the audit event.
  * </p>
+ *
  * <p>
  * ATTENTION: filtering by message is dependent on runtime locale.
  * If project is running in different languages it is better to avoid filtering by message.
  * </p>
+ *
  * <p>
  * You can download template of empty suppression filter
  * <a href="https://checkstyle.org/files/suppressions_none.xml">here</a>.
  * </p>
+ *
  * <p>
  * Location of the file defined in {@code file} property is checked in the following order:
  * </p>
@@ -104,6 +109,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * if no file found, then passed to the {@code ClassLoader.getResource()} method.
  * </li>
  * </ol>
+ *
  * <p>
  * SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
  * </p>
@@ -122,6 +128,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>

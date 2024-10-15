@@ -25,9 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: It is considered good practice to only define one outer type per file.
  * </p>
@@ -38,9 +39,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 1}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

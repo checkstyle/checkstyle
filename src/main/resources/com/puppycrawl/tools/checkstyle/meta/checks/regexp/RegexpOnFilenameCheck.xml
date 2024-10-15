@@ -4,12 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck"
              name="RegexpOnFilename"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a specified pattern matches based on file and/or folder path.
  It can also be used to verify files
  match specific naming patterns not covered by other checks (Ex: properties,
  xml, etc.).
- &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;p&gt;
  When customizing the check, the properties are applied in a specific order.

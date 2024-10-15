@@ -9,13 +9,13 @@
     <section name="MissingJavadocMethod">
       <p>Since Checkstyle 8.21</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for missing Javadoc comments for a method or constructor.
           The scope to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PUBLIC</code>. To verify another
           scope, set property scope to a different
           <a href="../../property_types.html#Scope">scope</a>.
-        </p>
+        </div>
 
         <p>
           Javadoc is not required on a method that is tagged with the

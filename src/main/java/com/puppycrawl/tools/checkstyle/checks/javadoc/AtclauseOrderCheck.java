@@ -34,11 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the order of
  * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
  * javadoc block-tags or javadoc tags</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
  * </p>
@@ -80,9 +81,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

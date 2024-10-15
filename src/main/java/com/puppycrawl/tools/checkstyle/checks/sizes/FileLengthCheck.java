@@ -26,9 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>
+ * <div>
  * Checks for long source files.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: If a source file becomes very long it is hard to understand.
  * Therefore, long classes should usually be refactored into several
@@ -46,9 +47,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code 2000}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

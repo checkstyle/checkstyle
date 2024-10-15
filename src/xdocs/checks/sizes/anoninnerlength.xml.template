@@ -9,9 +9,9 @@
     <section name="AnonInnerLength">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for long anonymous inner classes.
-        </p>
+        </div>
 
         <p>
           Rationale: If an anonymous inner class becomes very long it is hard

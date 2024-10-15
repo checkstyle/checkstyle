@@ -9,9 +9,9 @@
     <section name="FileLength">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks for long source files.
-        </p>
+        </div>
 
         <p>
           Rationale: If a source file becomes very long it is hard to

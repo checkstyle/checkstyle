@@ -9,7 +9,7 @@
     <section name="SuppressWithPlainTextCommentFilter">
       <p>Since Checkstyle 8.6</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
           audit events. The filter can be used only to suppress audit events received from
           the checks which implement FileSetCheck interface. In other words, the checks
@@ -17,7 +17,7 @@
           it treats only plain text comments and extracts the information required
           for suppression from the plain text comments. Currently, the filter supports
           only single-line comments.
-        </p>
+        </div>
         <p>
           Please, be aware of the fact that, it is not recommended to use the filter
           for Java code anymore, however you still are able to use it to suppress audit

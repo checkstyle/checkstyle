@@ -27,11 +27,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks if the javadoc has
  * <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
  * leading asterisks</a> on each line.
- * </p>
+ * </div>
+ *
  * <p>
  * The check does not require asterisks on the first line, nor on the last line if it is blank.
  * All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.
@@ -45,9 +46,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

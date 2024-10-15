@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck"
              name="SummaryJavadoc"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence"&gt;
  Javadoc summary sentence&lt;/a&gt; does not contain phrases that are not recommended to use.
@@ -12,7 +12,7 @@
  Summaries that contain a non-empty {@code {@return}} are allowed.
  Check also violate Javadoc that does not contain first sentence, though with {@code {@return}} a
  period is not required as the Javadoc tool adds it.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="^$"
                       name="forbiddenSummaryFragments"

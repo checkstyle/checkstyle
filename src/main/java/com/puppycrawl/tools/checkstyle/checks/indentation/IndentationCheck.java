@@ -29,9 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * <p>
+ * <div>
  * Checks correct indentation of Java code.
- * </p>
+ * </div>
+ *
  * <p>
  * The idea behind this is that while
  * pretty printers are sometimes convenient for bulk reformats of
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * case, this check should just ensure that a minimal set of indentation
  * rules is followed.
  * </p>
+ *
  * <p>
  * Basic offset indentation is used for indentation inside code blocks.
  * For any lines that span more than 1, line wrapping indentation is used for those lines
@@ -52,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * afterwards, in that new code block, are increased on top of the line wrap and any
  * indentations above it.
  * </p>
+ *
  * <p>
  * Example:
  * </p>
@@ -112,9 +115,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Default value is {@code 4}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

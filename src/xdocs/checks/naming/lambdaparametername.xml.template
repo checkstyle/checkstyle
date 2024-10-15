@@ -9,9 +9,9 @@
     <section name="LambdaParameterName">
       <p>Since Checkstyle 8.11</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks lambda parameter names.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

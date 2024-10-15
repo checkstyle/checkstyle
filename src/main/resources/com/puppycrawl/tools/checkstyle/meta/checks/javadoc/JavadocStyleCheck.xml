@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"
              name="JavadocStyle"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Validates Javadoc comments to help ensure they are well formed.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The following checks are performed:
  &lt;/p&gt;
@@ -46,6 +47,7 @@
  "thead", "tr", "tt", "u", "ul", "var".
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  These checks were patterned after the checks made by the
  &lt;a href="https://maven-doccheck.sourceforge.net"&gt;DocCheck&lt;/a&gt; doclet

@@ -28,25 +28,29 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Determines complexity of methods, classes and files by counting
  * the Non Commenting Source Statements (NCSS). This check adheres to the
  * <a href="http://www.kclee.de/clemens/java/javancss/#specification">specification</a>
  * for the <a href="http://www.kclee.de/clemens/java/javancss/">JavaNCSS-Tool</a>
  * written by <b>Chr. Clemens Lee</b>.
- * </p>
+ * </div>
+ *
  * <p>
  * Roughly said the NCSS metric is calculated by counting the source lines which are
  * not comments, (nearly) equivalent to counting the semicolons and opening curly braces.
  * </p>
+ *
  * <p>
  * The NCSS for a class is summarized from the NCSS of all its methods, the NCSS
  * of its nested classes and the number of member variable declarations.
  * </p>
+ *
  * <p>
  * The NCSS for a file is summarized from the ncss of all its top level classes,
  * the number of imports and the package declaration.
  * </p>
+ *
  * <p>
  * Rationale: Too large methods and classes are hard to read and costly to maintain.
  * A large NCSS number often means that a method or class has too many responsibilities
@@ -78,9 +82,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 150}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

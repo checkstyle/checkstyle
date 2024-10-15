@@ -4,12 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck"
              name="MissingJavadocType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks for missing Javadoc comments for class, enum, interface, and annotation interface
  definitions. The scope to verify is specified using the {@code Scope} class and defaults
  to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
  {@code Scope} constants.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are not

@@ -30,12 +30,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a specified pattern matches based on file and/or folder path.
  * It can also be used to verify files
  * match specific naming patterns not covered by other checks (Ex: properties,
  * xml, etc.).
- * </p>
+ * </div>
  *
  * <p>
  * When customizing the check, the properties are applied in a specific order.
@@ -94,9 +94,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code boolean}.
  * Default value is {@code true}.</li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

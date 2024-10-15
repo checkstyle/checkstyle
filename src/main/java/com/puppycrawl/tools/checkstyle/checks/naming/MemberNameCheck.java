@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that instance variable names conform to a specified pattern.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code applyToPackage} - Control if check should apply to package-private members.
@@ -54,9 +54,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

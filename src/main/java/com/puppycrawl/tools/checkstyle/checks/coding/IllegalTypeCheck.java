@@ -439,6 +439,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
     /**
      * Checks if current import is star import. E.g.:
+     *
      * <p>
      * {@code
      * import java.util.*;

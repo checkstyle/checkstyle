@@ -9,14 +9,14 @@
     <section name="SuppressionFilter">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Filter <code>SuppressionFilter</code> rejects
           audit events for Check violations according to
           a <a href="/dtds/suppressions_1_2.dtd">suppressions XML
           document</a> in a file. If there is no configured
           suppressions file or the optional is set to true and
           suppressions file was not found the Filter accepts all audit events.
-        </p>
+        </div>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

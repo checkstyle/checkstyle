@@ -30,14 +30,15 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that a
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
  * javadoc block tag</a> appears only at the beginning of a line, ignoring
  * leading asterisks and white space. A block tag is a token that starts with
  * {@code @} symbol and is preceded by a whitespace. This check ignores block
  * tags in comments and inside inline tags {&#64;code } and {&#64;literal }.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: according to
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html#block-tags">
@@ -47,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * {@code @} symbol, and all non-escaped tags should be located at the beginning
  * of the line. See NOTE section for details on how to escape.
  * </p>
+ *
  * <p>
  * To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
  * &amp;#64; or place it inside {@code {@code }}, for example:
@@ -71,9 +73,11 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

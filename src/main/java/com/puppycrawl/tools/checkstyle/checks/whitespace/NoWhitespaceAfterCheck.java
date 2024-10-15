@@ -28,13 +28,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that there is no whitespace after a token.
  * More specifically, it checks that it is not followed by whitespace,
  * or (if linebreaks are allowed) all characters on the line after are
  * whitespace. To forbid linebreaks after a token, set property
  * {@code allowLineBreaks} to {@code false}.
- * </p>
+ * </div>
+ *
  * <p>
  * The check processes
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
@@ -49,10 +50,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
  * INDEX_OP</a> will be ignored.
  * </p>
+ *
  * <p>
  * If the annotation is between the type and the array, like {@code char @NotNull [] param},
  * the check will skip validation for spaces.
  * </p>
+ *
  * <p>
  * Note: This check processes the
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
@@ -96,9 +99,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * INDEX_OP</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

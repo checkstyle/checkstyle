@@ -27,14 +27,14 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that there is no whitespace before a token.
  * More specifically, it checks that it is not preceded with whitespace,
  * or (if linebreaks are allowed) all characters on the line before are
  * whitespace. To allow linebreaks before a token, set property
  * {@code allowLineBreaks} to {@code true}. No check occurs before semicolons in empty
  * for loop initializers or conditions.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
@@ -61,9 +61,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LABELED_STAT</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for implicit modifiers on nested types in classes and records.
- * </p>
+ * </div>
+ *
  * <p>
  * This check is effectively the opposite of
  * <a href="https://checkstyle.org/checks/modifier/redundantmodifier.html#RedundantModifier">
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
  * are explicitly specified even though they are actually redundant.
  * </p>
+ *
  * <p>
  * Nested enums, interfaces, and records within a class are always {@code static} and as such the
  * compiler does not require the {@code static} modifier. This check provides the ability to enforce
@@ -49,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ *
  * <p>
  * Rationale for this check: Nested enums, interfaces, and records are treated differently from
  * nested classes as they are only allowed to be {@code static}. Developers should not need to
@@ -75,9 +78,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

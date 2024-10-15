@@ -9,9 +9,9 @@
     <section name="Indentation">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks correct indentation of Java code.
-        </p>
+        </div>
 
         <p>
           The idea behind this is that while pretty printers are

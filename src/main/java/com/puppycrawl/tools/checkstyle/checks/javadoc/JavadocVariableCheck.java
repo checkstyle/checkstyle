@@ -31,9 +31,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc
@@ -60,9 +60,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * ENUM_CONSTANT_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -26,10 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that a token is surrounded by whitespace. Empty constructor,
  * method, class, enum, interface, loop bodies (blocks), lambdas of the form
- * </p>
+ * </div>
  * <pre>
  * public MyClass() {}      // empty constructor
  * public void func() {}    // empty method
@@ -43,11 +43,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Runnable noop = () -&gt; {}; // empty lambda
  * public @interface Beta {} // empty annotation type
  * </pre>
+ *
  * <p>
  * may optionally be exempted from the policy using the {@code allowEmptyMethods},
  * {@code allowEmptyConstructors}, {@code allowEmptyTypes}, {@code allowEmptyLoops},
  * {@code allowEmptyLambdas} and {@code allowEmptyCatches} properties.
  * </p>
+ *
  * <p>
  * This check does not flag as violation double brace initialization like:
  * </p>
@@ -56,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     setProperty("key", "value");
  * }};
  * </pre>
+ *
  * <p>
  * Parameter allowEmptyCatches allows to suppress violations when token list
  * contains SLIST to check if beginning of block is surrounded by whitespace
@@ -66,11 +69,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     k = 5 / i;
  * } catch (ArithmeticException ex) {}
  * </pre>
+ *
  * <p>
  * With this property turned off, this raises violation because the beginning
  * of the catch block (left curly bracket) is not separated from the end
  * of the catch block (right curly bracket).
  * </p>
+ *
  * <p>
  * Note: <a href="https://openjdk.org/jeps/361">
  * Switch expressions</a> are ignored by this check.
@@ -224,9 +229,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LITERAL_WHEN</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

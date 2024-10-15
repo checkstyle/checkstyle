@@ -29,11 +29,11 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the padding of an empty for initializer; that is whether a white
  * space is required at an empty for initializer, or such white space is
  * forbidden.  No check occurs if there is a line wrap at the initializer, as in
- * </p>
+ * </div>
  * <pre>
  * for (
  *     ; i &lt; j; i++, j--)
@@ -45,9 +45,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code nospace}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

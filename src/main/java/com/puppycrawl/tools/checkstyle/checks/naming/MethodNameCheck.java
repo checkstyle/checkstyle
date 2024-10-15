@@ -24,9 +24,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that method names conform to a specified pattern.
- * </p>
+ * </div>
  *
  * <p>Also, checks if a method name has the same name as the residing class.
  * The default is false (it is not allowed). It is legal in Java to have
@@ -70,9 +70,11 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

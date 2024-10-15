@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck"
              name="JavadocContentLocation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the Javadoc content begins from the same position
  for all Javadoc comments in the project. Any leading asterisks and spaces
  are not counted as the beginning of the content and are therefore ignored.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  It is possible to enforce two different styles:
  &lt;/p&gt;
@@ -33,6 +34,7 @@
  &lt;/pre&gt;
  &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  This check does not validate the Javadoc summary itself nor its presence.
  The check will not report any violations for missing or malformed javadoc summary.
@@ -40,6 +42,7 @@
  &lt;a href="https://checkstyle.org/checks/javadoc/summaryjavadoc.html#SummaryJavadoc"&gt;
  SummaryJavadoc&lt;/a&gt; check.
  &lt;/p&gt;
+
  &lt;p&gt;
  The &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html"&gt;
  Documentation Comment Specification&lt;/a&gt; permits leading asterisks on the first line.
@@ -56,6 +59,7 @@
    * Some text.
    *&amp;#47;
  &lt;/pre&gt;
+
  &lt;p&gt;
  The documentation generated will be just "Some text." without any asterisks.
  Since these asterisks will not appear in the generated documentation,

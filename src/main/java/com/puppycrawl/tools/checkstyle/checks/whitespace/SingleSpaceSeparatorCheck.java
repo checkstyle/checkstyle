@@ -28,13 +28,13 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that non-whitespace characters are separated by no more than one
  * whitespace. Separating characters by tabs or multiple spaces will be
  * reported. Currently, the check doesn't permit horizontal alignment. To inspect
  * whitespaces before and after comments, set the property
  * {@code validateComments} to true.
- * </p>
+ * </div>
  *
  * <p>
  * Setting {@code validateComments} to false will ignore cases like:
@@ -64,9 +64,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

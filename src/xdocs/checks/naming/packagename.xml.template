@@ -9,9 +9,9 @@
     <section name="PackageName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that package names conform to a specified pattern.
-        </p>
+        </div>
 
         <p>
           The default value of <code>format</code> for module <code>PackageName</code> has been

@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the policy on the padding of parentheses; that is whether a space is required
  * after a left parenthesis and before a right parenthesis, or such spaces are
  * forbidden. No check occurs at the right parenthesis after an empty for
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Typecasts are also not checked, as there is
  * <a href="https://checkstyle.org/checks/whitespace/typecastparenpad.html#TypecastParenPad">
  * TypecastParenPad</a> to validate them.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad parentheses.
@@ -102,9 +102,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

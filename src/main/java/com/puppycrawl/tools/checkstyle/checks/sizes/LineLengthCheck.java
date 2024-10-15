@@ -28,9 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for long lines.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Long lines are hard to read in printouts or if developers
  * have limited screen space for the source code, e.g. if the IDE displays
@@ -75,9 +76,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code 80}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

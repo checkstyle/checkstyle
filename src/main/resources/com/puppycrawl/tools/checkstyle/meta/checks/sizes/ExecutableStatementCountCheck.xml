@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck"
              name="ExecutableStatementCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Restricts the number of executable statements to a specified limit.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="30" name="max" type="int">
                <description>Specify the maximum threshold allowed.</description>

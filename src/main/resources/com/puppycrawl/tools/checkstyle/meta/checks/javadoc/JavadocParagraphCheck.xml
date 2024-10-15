@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck"
              name="JavadocParagraph"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the Javadoc paragraph.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Checks that:
  &lt;/p&gt;
@@ -18,8 +19,11 @@
  &lt;a href="https://www.w3schools.com/html/html_blocks.asp"&gt;HTML block-tag&lt;/a&gt;,
  nested paragraph tags are allowed to do that.&lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;&lt;b&gt;ATTENTION:&lt;/b&gt;&lt;/p&gt;
+
  &lt;p&gt;This Check ignores HTML comments.&lt;/p&gt;
+
  &lt;p&gt;The Check ignores all the nested paragraph tags,
  it will not give any kind of violation if the paragraph tag is nested.&lt;/p&gt;</description>
          <properties>

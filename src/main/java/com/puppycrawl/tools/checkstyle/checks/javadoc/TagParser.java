@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * <p>
+ * <div>
  * Helper class used to parse HTML tags or generic type identifiers
  * from a single-line of text. Just the beginning of the HTML tag
  * is located.  No attempt is made to parse out the complete tag,
@@ -31,7 +31,7 @@ import java.util.List;
  * on the following line of text.  The {@code hasNextTag} and
  * {@code nextTag} methods are used to iterate through the HTML
  * tags or generic type identifiers that were found on the line of text.
- * </p>
+ * </div>
  *
  * <p>
  * This class isn't really specific to HTML tags. Currently, the only HTML

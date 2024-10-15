@@ -7,6 +7,7 @@
          <description>&lt;div&gt;
  Checks for imports from a set of illegal packages.
  &lt;/div&gt;
+
  &lt;p&gt;
  Note: By default, the check rejects all {@code sun.*} packages since programs
  that contain direct calls to the {@code sun.*} packages are

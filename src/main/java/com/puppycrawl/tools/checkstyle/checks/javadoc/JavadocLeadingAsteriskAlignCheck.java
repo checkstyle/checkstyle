@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks the alignment of
  * <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
  * leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
@@ -40,7 +40,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * then it's alignment will be ignored.
  * If the ending javadoc line contains a leading asterisk, then that leading asterisk's alignment
  * will be considered, the closing Javadoc tag will be ignored.
- * </p>
+ * </div>
+ *
  * <p>
  * If you're using tabs then specify the the tab width in the
  * <a href="https://checkstyle.org/config.html#tabWidth">tabWidth</a> property.
@@ -54,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

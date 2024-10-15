@@ -4,11 +4,12 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"
              name="JavadocPackage"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that each Java package has a Javadoc file used for commenting.
  By default, it only allows a {@code package-info.java} file,
  but can be configured to allow a {@code package.html} file.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
  &lt;/p&gt;</description>

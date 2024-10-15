@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck"
              name="NonEmptyAtclauseDescription"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that the block tag is followed by description.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"

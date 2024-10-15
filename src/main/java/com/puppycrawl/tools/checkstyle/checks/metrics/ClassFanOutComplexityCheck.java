@@ -22,11 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks the number of other types a given class/record/interface/enum/annotation
  * relies on. Also, the square of this has been shown to indicate the amount
  * of maintenance required in functional programs (on a file basis) at least.
- * </p>
+ * </div>
+ *
  * <p>
  * This check processes files in the following way:
  * </p>
@@ -76,9 +77,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code 20}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
