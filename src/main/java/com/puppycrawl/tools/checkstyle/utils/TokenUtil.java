@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -291,6 +292,18 @@ public final class TokenUtil {
             }
         }
         return matching;
+    }
+
+    /**
+     * Determines if the token type belongs to the given types.
+     *
+     * @param type the Token Type to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(int type, Set<Integer> types) {
+        return types.contains(type);
     }
 
     /**

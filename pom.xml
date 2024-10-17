@@ -4990,6 +4990,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest
+                </param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
