@@ -17,6 +17,7 @@ class InputEmptyFinallyBlocks {
       }
     } catch (Exception e) {
       /* ignore */
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally { // ok
       /* ignore */
     } // ok
@@ -27,8 +28,8 @@ class InputEmptyFinallyBlocks {
       if (!flag) {
         doSm();
       }
-      // violation below 'Empty catch block.'
     } catch (Exception e) {
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
     }
   }
@@ -45,6 +46,7 @@ class InputEmptyFinallyBlocks {
         }
       } catch (Exception e) {
         /* ignore */
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally { // ok
         /* ignore */
       } // ok
@@ -55,8 +57,8 @@ class InputEmptyFinallyBlocks {
         if (!flag) {
           doSm();
         }
-        // violation below 'Empty catch block.'
       } catch (Exception e) {
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally {
       }
     }
@@ -75,6 +77,7 @@ class InputEmptyFinallyBlocks {
             }
           } catch (Exception e) {
             /* ignore */
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally { // ok
             /* ignore */
           } // ok
@@ -85,8 +88,8 @@ class InputEmptyFinallyBlocks {
             if (!flag) {
               doSm();
             }
-            // violation below 'Empty catch block.'
           } catch (Exception e) {
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
           }
         }

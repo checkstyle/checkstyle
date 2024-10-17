@@ -52,6 +52,7 @@ public class InputFormattedWhitespaceAfterBad {
       /* foo */
     } catch (Exception e) {
       /* foo */
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       /* foo */
     }

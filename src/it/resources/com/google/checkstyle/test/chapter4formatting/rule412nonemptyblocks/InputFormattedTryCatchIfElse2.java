@@ -14,9 +14,12 @@ public class InputFormattedTryCatchIfElse2 {
     try {
       /* foo */
     } catch (NullPointerException e) {
-      // violation below 'Empty catch block.'
+      // 2 violations 3 lines below:
+      //  ''}' at column 5 should be alone on a line.'
+      //  'Empty catch block.'
     } catch (Exception e) {
     } finally {
+      // violation above ''}' at column 5 should be alone on a line.'
       after = true;
     }
 
