@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -176,15 +178,15 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if part of a switch expression
      */
     private static boolean isSwitchExpression(DetailAST ast) {
-        final int[] switchStatementParents = {
+        final List<Integer> switchStatementParents = List.of(
             TokenTypes.SLIST,
             TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_ELSE,
             TokenTypes.LITERAL_DO,
             TokenTypes.LITERAL_WHILE,
             TokenTypes.LITERAL_FOR,
-            TokenTypes.LABELED_STAT,
-        };
+            TokenTypes.LABELED_STAT
+        );
 
         return !TokenUtil.isOfType(ast.getParent(), switchStatementParents);
     }
