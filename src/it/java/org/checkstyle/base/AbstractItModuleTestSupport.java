@@ -35,10 +35,12 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -466,9 +468,18 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected void verifyWithItConfig(Configuration config, String filePath) throws Exception {
         final List<TestInputViolation> violations =
             InlineConfigParser.getViolationsFromInputFile(filePath);
-        final List<String> actualViolations = getActualViolationsForFile(config, filePath);
-
-        verifyViolations(filePath, violations, actualViolations);
+        List<String> actualViolations = getActualViolationsForFile(config, filePath);
+        List<String> distinctViolations = new ArrayList<>(actualViolations);
+        for (TestInputViolation violation : violations) {
+           for (String actualViolation : actualViolations) {
+              final String violationMsg = violation.toRegex();
+              if (actualViolation.matches(violationMsg)) {
+                  distinctViolations.remove(actualViolation);
+              }
+          }
+        }
+      verifyViolations(filePath, violations, actualViolations);
+      distinctViolations = null;
     }
 
     /**
