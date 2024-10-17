@@ -41,26 +41,33 @@ class InputEmptyBlocksAndCatchBlocks {
     int a = 90;
 
     if (a == 1) {
-    } else {} // false-negative until #15664
+    } else {}
+    // violation above ''}' at column 13 should be alone on a line.'
 
     if (a == 1) {
     } else { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 2 violations above:
+    //  'Empty blocks should have no spaces. .* may only be represented as {}'
+    //  ''}' at column 14 should be alone on a line.'
 
     try (MyResource r = new MyResource()) { }
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {}
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // false-negative above until #15664
+    // violation above ''}' at column 74 should be alone on a line.'
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 2 violations above:
+    //  'Empty blocks should have no spaces. .* may only be represented as {}'
+    //  ''}' at column 75 should be alone on a line.'
     try (MyResource r = new MyResource()) {
-
-    } catch (Exception expected) {} // false-negative until #15664
+      // violation below ''}' at column 35 should be alone on a line.'
+    } catch (Exception expected) {}
     try (MyResource r = new MyResource()) {
 
     } catch (Exception expected) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // 2 violations above:
+    //  'Empty blocks should have no spaces. .* may only be represented as {}'
+    //  ''}' at column 36 should be alone on a line.'
     try (MyResource r = new MyResource()) {;}
     // 3 violations above:
     //  'WhitespaceAround: '{' is not followed by whitespace.'
@@ -415,6 +422,7 @@ class TestingEmptyBlockCatch {
       }
     } catch (Exception e) {
       /* ignore */
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       /* ignore */
     }
@@ -425,8 +433,8 @@ class TestingEmptyBlockCatch {
       if (!flag) {
         doSm();
       }
-      // violation below 'Empty catch block.'
     } catch (Exception e) {
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
     }
   }
@@ -443,6 +451,7 @@ class TestingEmptyBlockCatch {
         }
       } catch (Exception e) {
         /* ignore */
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally {
         /* ignore */
       }
@@ -453,8 +462,8 @@ class TestingEmptyBlockCatch {
         if (!flag) {
           doSm();
         }
-        // violation below 'Empty catch block.'
       } catch (Exception e) {
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally {
       }
     }
@@ -473,6 +482,7 @@ class TestingEmptyBlockCatch {
             }
           } catch (Exception e) {
             /* ignore */
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             /* ignore */
           }
@@ -483,8 +493,8 @@ class TestingEmptyBlockCatch {
             if (!flag) {
               doSm();
             }
-            // violation below 'Empty catch block.'
           } catch (Exception e) {
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
           }
         }
