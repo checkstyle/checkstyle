@@ -80,6 +80,7 @@ public class InputFallThrough {
             break;
           } catch (RuntimeException e) {
             break;
+            // violation below ''}' at column 11 should be alone on a line.'
           } catch (Error e) {
             return;
           }
@@ -89,6 +90,7 @@ public class InputFallThrough {
             break;
           } catch (RuntimeException e) {
             // do nothing
+            // violation below ''}' at column 11 should be alone on a line.'
           } catch (Error e) {
             return;
           }
@@ -97,6 +99,7 @@ public class InputFallThrough {
             i++;
           } catch (RuntimeException e) {
             i--;
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             break;
           }
@@ -107,6 +110,7 @@ public class InputFallThrough {
           } catch (RuntimeException e) {
             i--;
             break;
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             i++;
           }
@@ -220,6 +224,7 @@ public class InputFallThrough {
             break;
           } catch (RuntimeException e) {
             break;
+            // violation below ''}' at column 11 should be alone on a line.'
           } catch (Error e) {
             return;
           }
@@ -229,6 +234,7 @@ public class InputFallThrough {
             break;
           } catch (RuntimeException e) {
             return;
+            // violation below ''}' at column 11 should be alone on a line.'
           } catch (Error e) {
             return;
           }
@@ -238,6 +244,7 @@ public class InputFallThrough {
             i++;
           } catch (RuntimeException e) {
             i--;
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             break;
           }
@@ -248,6 +255,7 @@ public class InputFallThrough {
           } catch (RuntimeException e) {
             i--;
             break;
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             i++;
           }

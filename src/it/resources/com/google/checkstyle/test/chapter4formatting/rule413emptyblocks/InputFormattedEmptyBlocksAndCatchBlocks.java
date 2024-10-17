@@ -412,6 +412,7 @@ class ExtraTestingEmptyBlockCatch {
       }
     } catch (Exception e) {
       /* ignore */
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       /* ignore */
     }
@@ -422,8 +423,8 @@ class ExtraTestingEmptyBlockCatch {
       if (!flag) {
         doSm();
       }
-      // violation below 'Empty catch block.'
     } catch (Exception e) {
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
     }
   }
@@ -440,6 +441,7 @@ class ExtraTestingEmptyBlockCatch {
         }
       } catch (Exception e) {
         /* ignore */
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally {
         /* ignore */
       }
@@ -450,8 +452,8 @@ class ExtraTestingEmptyBlockCatch {
         if (!flag) {
           doSm();
         }
-        // violation below 'Empty catch block.'
       } catch (Exception e) {
+        // violation below ''}' at column 7 should be alone on a line.'
       } finally {
       }
     }
@@ -470,6 +472,7 @@ class ExtraTestingEmptyBlockCatch {
             }
           } catch (Exception e) {
             /* ignore */
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
             /* ignore */
           }
@@ -480,8 +483,8 @@ class ExtraTestingEmptyBlockCatch {
             if (!flag) {
               doSm();
             }
-            // violation below 'Empty catch block.'
           } catch (Exception e) {
+            // violation below ''}' at column 11 should be alone on a line.'
           } finally {
           }
         }

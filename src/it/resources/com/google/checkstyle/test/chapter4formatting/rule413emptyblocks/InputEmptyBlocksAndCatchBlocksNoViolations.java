@@ -26,6 +26,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     } catch (Exception e) {
       System.identityHashCode(e);
       return;
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       return;
     }
@@ -40,6 +41,7 @@ public class InputEmptyBlocksAndCatchBlocksNoViolations {
     } catch (IllegalArgumentException e) {
       System.identityHashCode(e); // some comment
       return;
+      // violation below ''}' at column 5 should be alone on a line.'
     } catch (IllegalStateException ex) {
       System.identityHashCode(ex);
       return;
