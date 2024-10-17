@@ -313,7 +313,6 @@ public final class TokenUtil {
         return matching;
     }
 
-
     /**
      * Determines if the AST belongs to the given types.
      *
@@ -323,6 +322,18 @@ public final class TokenUtil {
      * @return true if type matches one of the given types.
      */
     public static boolean isOfType(DetailAST ast, int... types) {
+        return ast != null && isOfType(ast.getType(), types);
+    }
+
+    /**
+     * Determines if the AST belongs to the given types.
+     *
+     * @param ast the AST node to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, List<Integer> types) {
         return ast != null && isOfType(ast.getType(), types);
     }
 
