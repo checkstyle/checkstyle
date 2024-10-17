@@ -742,6 +742,11 @@
                   expression" will be addressed in the issue
                   <a href="https://github.com/checkstyle/checkstyle/issues/4006">
                     #4006</a>.
+                  <br />
+                  <br />
+                  Indentation violation for separate Code Blocks are suppressed, see
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15769">
+                    #15769</a> for more details.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation">
