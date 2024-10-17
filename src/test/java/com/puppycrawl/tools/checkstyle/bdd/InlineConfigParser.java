@@ -258,7 +258,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck",
