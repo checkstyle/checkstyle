@@ -20,12 +20,12 @@ class InputInterfaceIsTypeAllowMarker
     }
 
     // Marker interface, OK for some configurations
-    interface Marker // violation
+    interface Marker // violation, 'interfaces should describe a type and hence have methods.'
     {
     }
 
     // Always flagged
-    interface ConstantPool // violation
+    interface ConstantPool // violation, 'interfaces should describe a type and hence have methods.'
     {
         boolean BAD = true;
     }
