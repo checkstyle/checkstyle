@@ -8,20 +8,23 @@ public class InputTryCatchIfElse2 {
     try {
       /* foo */
     } finally { after = true; }
-    // violation above ''{' at column 15 should have line break after.'
+    // 2 violations above:
+    //  ''{' at column 15 should have line break after.'
+    //  ''}' at column 31 should be alone on a line.'
 
     try {
       /* foo */
     } catch (NullPointerException e) {
-      // violation below 'Empty catch block.'
+      // violation below ''}' at column 5 should be alone on a line.'
     } catch (Exception e) {
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       after = true;
     }
 
     if (after) {
       System.out.println("after");
-    } else {}
+    } else {} // violation ''}' at column 13 should be alone on a line.'
 
     if (after) {
       System.out.println("after");
