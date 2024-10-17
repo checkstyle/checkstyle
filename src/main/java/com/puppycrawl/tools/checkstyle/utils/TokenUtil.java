@@ -23,6 +23,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -283,6 +284,25 @@ public final class TokenUtil {
      * @return true if type matches one of the given types.
      */
     public static boolean isOfType(int type, int... types) {
+        boolean matching = false;
+        for (int tokenType : types) {
+            if (tokenType == type) {
+                matching = true;
+                break;
+            }
+        }
+        return matching;
+    }
+
+    /**
+     * Determines if the token type belongs to the given types.
+     *
+     * @param type the Token Type to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(int type, List<Integer> types) {
         boolean matching = false;
         for (int tokenType : types) {
             if (tokenType == type) {
