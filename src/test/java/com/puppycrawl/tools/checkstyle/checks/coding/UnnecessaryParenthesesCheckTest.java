@@ -357,4 +357,18 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnnecessaryParenthesesWhenExpressions.java"), expected);
     }
+
+    @Test
+    public void testUnnecessaryParenthesesConditionalExpression() throws Exception {
+        final String[] expected = {
+            "19:17: " + getCheckMessage(MSG_EXPR),
+            "19:29: " + getCheckMessage(MSG_LITERAL, "3"),
+            "19:35: " + getCheckMessage(MSG_LITERAL, "4"),
+            "25:18: " + getCheckMessage(MSG_EXPR),
+            "28:31: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
+
+    }
 }
