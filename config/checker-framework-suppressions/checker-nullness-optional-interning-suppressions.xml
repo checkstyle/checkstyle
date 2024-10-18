@@ -5649,21 +5649,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter childIndices of ParseTreeTableModel.fireTreeStructureChanged.</message>
-    <lineContent>fireTreeStructureChanged(this, path, null, (Object[]) null);</lineContent>
+    <lineContent>fireTreeStructureChanged(this, path, null, CommonUtil.EMPTY_OBJECT_ARRAY);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull int @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter children of ParseTreeTableModel.fireTreeStructureChanged.</message>
-    <lineContent>fireTreeStructureChanged(this, path, null, (Object[]) null);</lineContent>
-    <details>
-      found   : @Initialized @NonNull Object @FBCBottom @Nullable []
-      required: @Initialized @NonNull Object @Initialized @NonNull []
     </details>
   </checkerFrameworkError>
 

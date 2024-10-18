@@ -162,15 +162,9 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
      */
     private static boolean isCatchParameterIdentifierCandidate(DetailAST identifierAst) {
         // we should ignore the ident if it is in the exception declaration
-        final boolean isCatchParameterDeclaration =
-                identifierAst.getParent().getParent().getType() == TokenTypes.LITERAL_CATCH;
-
-        final boolean hasValidParentToken =
-                !TokenUtil.isOfType(identifierAst.getParent(), INVALID_CATCH_PARAM_IDENT_PARENTS);
-
-        final boolean isMethodInvocation = isMethodInvocation(identifierAst);
-
-        return !isCatchParameterDeclaration && (hasValidParentToken || isMethodInvocation);
+        return identifierAst.getParent().getParent().getType() != TokenTypes.LITERAL_CATCH
+            && (!TokenUtil.isOfType(identifierAst.getParent(), INVALID_CATCH_PARAM_IDENT_PARENTS)
+                 || isMethodInvocation(identifierAst));
     }
 
     /**
