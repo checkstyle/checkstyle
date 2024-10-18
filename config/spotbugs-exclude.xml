@@ -319,4 +319,10 @@
     <Method name="getBlockContainingLocalAnonInnerClass"/>
     <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
   </Match>
+  <Match>
+    <!-- conflicts with PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl"/>
+    <Method name="matchesAtFrontNoRegex"/>
+    <Bug pattern="BAS_BLOATED_ASSIGNMENT_SCOPE"/>
+  </Match>
 </FindBugsFilter>
