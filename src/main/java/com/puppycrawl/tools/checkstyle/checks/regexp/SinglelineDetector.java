@@ -40,9 +40,13 @@ class SinglelineDetector {
      */
     public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
 
-    /** The detection options to use. */
+    /**
+     * The detection options to use.
+     */
     private final DetectorOptions options;
-    /** Tracks the number of matches. */
+    /**
+     * Tracks the number of matches.
+     */
     private int currentMatches;
 
     /**
@@ -60,17 +64,19 @@ class SinglelineDetector {
      * @param fileText {@link FileText} object contains the lines to process.
      */
     public void processLines(FileText fileText) {
-        resetState();
+        currentMatches = 0;
         int lineNo = 0;
         for (int index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);
             lineNo++;
-            checkLine(lineNo, line, options.getPattern().matcher(line), 0);
+            checkLine(lineNo, options.getPattern().matcher(line));
         }
         finish();
     }
 
-    /** Perform processing at the end of a set of lines. */
+    /**
+     * Perform processing at the end of a set of lines.
+     */
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
@@ -84,26 +90,14 @@ class SinglelineDetector {
     }
 
     /**
-     * Reset the state of the detector.
-     */
-    private void resetState() {
-        currentMatches = 0;
-    }
-
-    /**
      * Check a line for matches.
      *
-     * @param lineNo the line number of the line to check
-     * @param line the line to check
-     * @param matcher the matcher to use
-     * @param startPosition the position to start searching from.
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
+     * @param lineNo        the line number of the line to check
+     * @param matcher       the matcher to use
      */
-    private void checkLine(int lineNo, String line, Matcher matcher,
-            int startPosition) {
-        final boolean foundMatch = matcher.find(startPosition);
-        if (foundMatch) {
+    private void checkLine(int lineNo, Matcher matcher) {
+        int startPosition = 0;
+        while (matcher.find(startPosition)) {
             // match is found, check for intersection with comment
             final int startCol = matcher.start(0);
             final int endCol = matcher.end(0);
@@ -111,9 +105,10 @@ class SinglelineDetector {
             // last matched character, but shouldSuppress()
             // needs column number of the last character.
             // So we need to use (endCol - 1) here.
+
             if (options.getSuppressor()
                     .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-                checkLine(lineNo, line, matcher, endCol);
+                startPosition = endCol;
             }
             else {
                 currentMatches++;
@@ -126,8 +121,8 @@ class SinglelineDetector {
                         options.getReporter().log(lineNo, options.getMessage());
                     }
                 }
+                break;
             }
         }
     }
-
 }

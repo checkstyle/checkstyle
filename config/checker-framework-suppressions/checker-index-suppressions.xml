@@ -2213,21 +2213,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/SinglelineDetector.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
+    <message>incompatible argument for parameter start of Matcher.find.</message>
+    <lineContent>while (matcher.find(startPosition))</lineContent>
     <details>
-      found   : int
+      found   : @GTENegativeOne int
       required: @NonNegative int
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/SinglelineDetector.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter start of Matcher.find.</message>
-    <lineContent>final boolean foundMatch = matcher.find(startPosition);</lineContent>
+    <message>incompatible argument for parameter endIndex of String.substring.</message>
+    <lineContent>result = str.substring(beginIndex, endIndex);</lineContent>
     <details>
       found   : int
       required: @NonNegative int
