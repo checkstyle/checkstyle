@@ -2227,9 +2227,9 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/SinglelineDetector.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter start of Matcher.find.</message>
-    <lineContent>final boolean foundMatch = matcher.find(startPosition);</lineContent>
+    <lineContent>while (matcher.find(startPosition)) {</lineContent>
     <details>
-      found   : int
+      found   : @GTENegativeOne int
       required: @NonNegative int
     </details>
   </checkerFrameworkError>
