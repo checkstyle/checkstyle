@@ -25,29 +25,33 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that string literals are not used with <code>==</code> or <code>&#33;=</code>.
  * Since <code>==</code> will compare the object references, not the actual value of the strings,
  * <code>String.equals()</code> should be used.
  * More information can be found
  * <a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/">
  * in this article</a>.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Novice Java programmers often use code like:
  * </p>
  * <pre>
  * if (x == "something")
  * </pre>
+ *
  * <p>
  * when they mean
  * </p>
  * <pre>
  * if ("something".equals(x))
  * </pre>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck"
              name="UnusedCatchParameterShouldBeUnnamed"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Ensures that catch parameters that are not used are declared as an unnamed variable.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale:
  &lt;/p&gt;
@@ -18,10 +19,12 @@
          Follows Java conventions for denoting unused parameters with an underscore ({@code _}).
      &lt;/li&gt;
  &lt;/ul&gt;
+
  &lt;p&gt;
  See the &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
  Java Language Specification&lt;/a&gt; for more information about unnamed variables.
  &lt;/p&gt;
+
  &lt;p&gt;
  &lt;b&gt;Attention&lt;/b&gt;: This check should be activated only on source code
  that is compiled by jdk21 or higher;

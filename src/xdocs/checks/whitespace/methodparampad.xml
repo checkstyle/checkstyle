@@ -9,7 +9,7 @@
     <section name="MethodParamPad">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the padding between the identifier of a method definition,
           constructor definition, method call, constructor invocation, record, or record pattern;
           and the left parenthesis of the parameter list. That is, if the
@@ -19,7 +19,7 @@
           unless configured to allow line breaks. To allow linebreaks after
           the identifier, set property <code>allowLineBreaks</code> to <code>
           true</code>.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

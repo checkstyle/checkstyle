@@ -9,9 +9,9 @@
     <section name="SealedShouldHavePermitsList">
       <p>Since Checkstyle 10.18.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that sealed classes and interfaces have a permits list.
-        </p>
+        </div>
         <p>
           Rationale: When a permits clause is omitted from a sealed class,
           any class within the same compilation unit can extend it. This differs

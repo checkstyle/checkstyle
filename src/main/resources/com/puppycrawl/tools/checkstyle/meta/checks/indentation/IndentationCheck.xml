@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"
              name="Indentation"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks correct indentation of Java code.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The idea behind this is that while
  pretty printers are sometimes convenient for bulk reformats of
@@ -16,6 +17,7 @@
  case, this check should just ensure that a minimal set of indentation
  rules is followed.
  &lt;/p&gt;
+
  &lt;p&gt;
  Basic offset indentation is used for indentation inside code blocks.
  For any lines that span more than 1, line wrapping indentation is used for those lines
@@ -27,6 +29,7 @@
  afterwards, in that new code block, are increased on top of the line wrap and any
  indentations above it.
  &lt;/p&gt;
+
  &lt;p&gt;
  Example:
  &lt;/p&gt;

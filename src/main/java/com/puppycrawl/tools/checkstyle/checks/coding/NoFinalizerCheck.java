@@ -25,23 +25,27 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that there is no method {@code finalize} with zero parameters.
- * </p>
+ * </div>
+ *
  * <p>
  * See
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()">
  * Object.finalize()</a>
  * </p>
+ *
  * <p>
  * Rationale: Finalizers are unpredictable, often dangerous, and generally unnecessary.
  * Their use can cause erratic behavior, poor performance, and portability problems.
  * For more information for the finalize method and its issues, see Effective Java:
  * Programming Language Guide Third Edition by Joshua Bloch, &#167;8.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

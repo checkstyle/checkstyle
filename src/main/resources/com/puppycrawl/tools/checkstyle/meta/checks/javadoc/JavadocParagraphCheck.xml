@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck"
              name="JavadocParagraph"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the Javadoc paragraph.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Checks that:
  &lt;/p&gt;
@@ -14,7 +15,17 @@
  &lt;li&gt;There is one blank line between each of two paragraphs.&lt;/li&gt;
  &lt;li&gt;Each paragraph but the first has &amp;lt;p&amp;gt; immediately
  before the first word, with no space after.&lt;/li&gt;
- &lt;/ul&gt;</description>
+ &lt;li&gt;First paragraph tag should not precede
+ &lt;a href="https://www.w3schools.com/html/html_blocks.asp"&gt;HTML block-tag&lt;/a&gt;,
+ nested paragraph tags are allowed to do that.&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;&lt;b&gt;ATTENTION:&lt;/b&gt;&lt;/p&gt;
+
+ &lt;p&gt;This Check ignores HTML comments.&lt;/p&gt;
+
+ &lt;p&gt;The Check ignores all the nested paragraph tags,
+ it will not give any kind of violation if the paragraph tag is nested.&lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
                <description>Control whether the &amp;lt;p&amp;gt; tag

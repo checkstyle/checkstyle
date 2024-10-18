@@ -30,22 +30,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that classes that either override {@code equals()} or {@code hashCode()} also
  * overrides the other.
  * This check only verifies that the method declarations match {@code Object.equals(Object)} and
  * {@code Object.hashCode()} exactly to be considered an override. This check does not verify
  * invalid method names, parameters other than {@code Object}, or anything else.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: The contract of {@code equals()} and {@code hashCode()} requires that
  * equal objects have the same hashCode. Therefore, whenever you override
  * {@code equals()} you must override {@code hashCode()} to ensure that your class can
  * be used in hash-based collections.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

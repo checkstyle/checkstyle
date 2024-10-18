@@ -4,13 +4,14 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidInlineConditionalsCheck"
              name="AvoidInlineConditionals"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Detects inline conditionals. Here is one example of an inline conditional:
- &lt;/p&gt;
+ &lt;/div&gt;
  &lt;pre&gt;
  String a = getParameter("a");
  String b = (a==null || a.length()&amp;lt;1) ? null : a.substring(1);
  &lt;/pre&gt;
+
  &lt;p&gt;
  Rationale: Some developers find inline conditionals hard to read, so
  their employer's coding standards forbid them.

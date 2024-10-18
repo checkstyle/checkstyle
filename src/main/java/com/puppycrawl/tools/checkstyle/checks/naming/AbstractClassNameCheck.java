@@ -27,10 +27,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Ensures that the names of abstract classes conforming to some pattern
  * and check that {@code abstract} modifier exists.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Abstract classes are convenience base class implementations of
  * interfaces. For this reason, it should be made obvious that a given class
@@ -54,9 +55,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

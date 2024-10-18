@@ -9,7 +9,7 @@
     <section name="RightCurly">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
           This check supports if-else, try-catch-finally blocks, switch statements, switch cases,
           while-loops, for-loops, method definitions, class definitions, constructor definitions,
@@ -19,7 +19,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
           For right curly brace of enum constant please follow issue
           <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

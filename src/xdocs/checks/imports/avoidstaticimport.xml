@@ -9,9 +9,9 @@
     <section name="AvoidStaticImport">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that there are no static import statements.
-        </p>
+        </div>
 
         <p>
           Rationale: Importing static members can lead to naming

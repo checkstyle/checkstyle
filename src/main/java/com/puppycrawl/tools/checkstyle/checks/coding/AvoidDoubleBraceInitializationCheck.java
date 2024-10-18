@@ -29,9 +29,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Detects double brace initialization.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Double brace initialization (set of
  * <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
@@ -48,9 +49,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * article</a> for more details.
  * Check ignores any comments and semicolons in class body.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

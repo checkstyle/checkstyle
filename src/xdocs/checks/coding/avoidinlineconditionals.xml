@@ -9,9 +9,9 @@
     <section name="AvoidInlineConditionals">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Detects inline conditionals. Here is one example of an inline conditional:
-        </p>
+        </div>
         <source>
 String a = getParameter(&quot;a&quot;);
 String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
@@ -40,7 +40,7 @@ int x = 5;
 boolean foobar = (x == 5); // OK
 
 String text;
-text = (text == null) ? &quot;&quot; : text; // violation
+text = (text == null) ? &quot;&quot; : text; // violation 'Avoid inline conditionals'
 
 String b;
 if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
@@ -49,7 +49,7 @@ if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
     b = null;
 }
 
-b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
+b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation 'Avoid inline conditionals'
         </source>
       </subsection>
 

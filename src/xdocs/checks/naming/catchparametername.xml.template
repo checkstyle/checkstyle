@@ -9,9 +9,9 @@
     <section name="CatchParameterName">
       <p>Since Checkstyle 6.14</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that <code>catch</code> parameter names conform to a specified pattern.
-        </p>
+        </div>
         <p>
           Default pattern has the following characteristic:
         </p>

@@ -9,10 +9,10 @@
     <section name="MissingNullCaseInSwitch">
       <p>Since Checkstyle 10.18.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that a given switch statement or expression that use a reference type
           in its selector expression has a <code>null</code> case label.
-        </p>
+        </div>
         <p>
           Rationale: switch statements and expressions in Java throw a
           <code>NullPointerException</code> if the selector expression evaluates

@@ -9,12 +9,12 @@
     <section name="RequireThis">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that references to instance variables and methods of the present
           object are explicitly of the form "this.varName" or
           "this.methodName(args)" and that those references don't
           rely on the default behavior when "this." is absent.
-        </p>
+        </div>
 
         <p>
            Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to

@@ -9,13 +9,13 @@
     <section name="AbbreviationAsWordInName">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Validates abbreviations (consecutive capital letters) length in identifier name,
           it also allows to enforce camel case naming. Please read more at
           <a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
           Google Style Guide</a>
           to get to know how to avoid long abbreviations in names.
-        </p>
+        </div>
 
         <p>'_' is considered as word separator in identifier name.</p>
 

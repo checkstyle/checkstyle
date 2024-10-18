@@ -37,6 +37,7 @@ public final class TokenTypes {
      * This is the root node for the source file.  It's children
      * are an optional package definition, zero or more import statements,
      * and zero or more type declarations.
+     *
      * <p>For example:</p>
      * <pre>
      * import java.util.List;
@@ -45,7 +46,9 @@ public final class TokenTypes {
      * interface MyInterface{}
      * ;
      * </pre>
+     *
      * <p>parses as:</p>
+     *
      * <pre>
      * COMPILATION_UNIT -&gt; COMPILATION_UNIT
      * |--IMPORT -&gt; import
@@ -85,10 +88,12 @@ public final class TokenTypes {
      * Modifiers for type, method, and field declarations.  The
      * modifiers element is always present even though it may have no
      * children.
+     *
      * <p>For example:</p>
      * <pre>
      * public int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -124,10 +129,12 @@ public final class TokenTypes {
      * annotation and enum constant declarations.
      * Also, object blocks are children of the new keyword when defining
      * anonymous inner types.
+     *
      * <p>For example:</p>
      * <pre>
      * class Test {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -163,6 +170,7 @@ public final class TokenTypes {
      *     c = 0;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
@@ -207,6 +215,7 @@ public final class TokenTypes {
      *   this.text = text;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CTOR_DEF -&gt; CTOR_DEF
@@ -314,6 +323,7 @@ public final class TokenTypes {
      * <pre>
      * final double PI = 3.14;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -348,6 +358,7 @@ public final class TokenTypes {
      *     {foo = 10;}
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -396,6 +407,7 @@ public final class TokenTypes {
      *   num = 10;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * STATIC_INIT -&gt; STATIC_INIT
@@ -426,6 +438,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>boolean var = true;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -465,6 +478,7 @@ public final class TokenTypes {
      * public class Test {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -576,6 +590,7 @@ public final class TokenTypes {
      * <pre>
      *   int[] x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -613,6 +628,7 @@ public final class TokenTypes {
      * public class Test extends ArrayList {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -648,6 +664,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -679,6 +696,7 @@ public final class TokenTypes {
      * <pre>
      * int start, int end
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * PARAMETERS -&gt; PARAMETERS
@@ -705,10 +723,12 @@ public final class TokenTypes {
      * A parameter declaration. The last parameter in a list of parameters may
      * be variable length (indicated by the ELLIPSIS child node immediately
      * after the TYPE child).
+     *
      * <p>For example</p>
      * <pre>
      *      void foo(SomeType SomeType.this, int firstParameter, int... secondParameter) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -765,6 +785,7 @@ public final class TokenTypes {
      *     i++;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LABELED_STAT -&gt; :
@@ -809,6 +830,7 @@ public final class TokenTypes {
      * <pre>
      * (String)it.next()
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * `--TYPECAST -&gt; (
@@ -839,6 +861,7 @@ public final class TokenTypes {
      * <pre>
      * arr[0] = 10;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -862,6 +885,7 @@ public final class TokenTypes {
      * <pre>
      * a++;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -884,6 +908,7 @@ public final class TokenTypes {
      * <pre>
      * a--;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -975,6 +1000,7 @@ public final class TokenTypes {
      * <pre>
      * int x = 4 + 2 * (5 % 3) + (1 &lt;&lt; 3) - 4 * 5;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1024,6 +1050,7 @@ public final class TokenTypes {
      *       2,
      *     };
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1053,6 +1080,7 @@ public final class TokenTypes {
      *       2,
      *     };
      * </pre>
+     *
      * <p>which parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1120,10 +1148,12 @@ public final class TokenTypes {
     public static final int IMPORT = JavaLanguageLexer.IMPORT;
     /**
      * The {@code -} (unary minus) operator.
+     *
      * <p>For example:</p>
      * <pre>
      * a = -b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -1142,10 +1172,12 @@ public final class TokenTypes {
     public static final int UNARY_MINUS = JavaLanguageLexer.UNARY_MINUS;
     /**
      * The {@code +} (unary plus) operator.
+     *
      * <p>For example:</p>
      * <pre>
      * a = + b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -1176,6 +1208,7 @@ public final class TokenTypes {
      *   x = 3;
      *   break;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CASE_GROUP -&gt; CASE_GROUP
@@ -1215,7 +1248,8 @@ public final class TokenTypes {
      * <pre>
      * new ArrayList(50);
      * </pre>
-     * <p> parses as:</p>
+     *
+     * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
      * |   `--LITERAL_NEW -&gt; new
@@ -1250,6 +1284,7 @@ public final class TokenTypes {
      * <pre>
      * for (int i = 0; i &lt; arr.length; i++) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -1296,6 +1331,7 @@ public final class TokenTypes {
      * <pre>
      * for (int i = 0; i &lt; arr.length; i++) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -1343,6 +1379,7 @@ public final class TokenTypes {
      * <pre>
      * for (int i = 0; i &lt; arr.length; i++) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -1390,6 +1427,7 @@ public final class TokenTypes {
      * <pre>
      * while(true);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_WHILE -&gt; while
@@ -1414,6 +1452,7 @@ public final class TokenTypes {
      * <pre>
      * public final int x = 0;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1441,6 +1480,7 @@ public final class TokenTypes {
      *  {
      *  }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * --CLASS_DEF
@@ -1486,6 +1526,7 @@ public final class TokenTypes {
      * <pre>
      * super(1);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * SUPER_CTOR_CALL -&gt; super
@@ -1512,6 +1553,7 @@ public final class TokenTypes {
      * <pre>
      * this(1);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CTOR_CALL -&gt; this
@@ -1538,6 +1580,7 @@ public final class TokenTypes {
      * <pre>
      * for(;;);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -1566,6 +1609,7 @@ public final class TokenTypes {
      * <pre>
      * int a[];
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1589,6 +1633,7 @@ public final class TokenTypes {
      * <pre>
      * {@code void LITERAL_VOID(){}}
      * </pre>
+     *
      * <p>'void' parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -1610,6 +1655,7 @@ public final class TokenTypes {
      * <pre>
      * public boolean flag;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1633,6 +1679,7 @@ public final class TokenTypes {
      * <pre>
      * public byte x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1656,6 +1703,7 @@ public final class TokenTypes {
      * <pre>
      * char a = 'A';
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1681,6 +1729,7 @@ public final class TokenTypes {
      * <pre>
      * public short x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1704,6 +1753,7 @@ public final class TokenTypes {
      * <pre>
      * public int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1725,6 +1775,7 @@ public final class TokenTypes {
      * <pre>
      * public float x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1748,6 +1799,7 @@ public final class TokenTypes {
      * <pre>
      * public long x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1771,6 +1823,7 @@ public final class TokenTypes {
      * <pre>
      * public double x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1795,6 +1848,7 @@ public final class TokenTypes {
      * <pre>
      * int a = 10;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1817,6 +1871,7 @@ public final class TokenTypes {
      * <pre>
      * return person.name;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * --LITERAL_RETURN -&gt; return
@@ -1840,6 +1895,7 @@ public final class TokenTypes {
      * <pre>
      * f = m * a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -1868,6 +1924,7 @@ public final class TokenTypes {
      * <pre>
      * private int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1891,6 +1948,7 @@ public final class TokenTypes {
      * <pre>
      * public int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1914,6 +1972,7 @@ public final class TokenTypes {
      * <pre>
      * protected int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1937,6 +1996,7 @@ public final class TokenTypes {
      * <pre>
      * public static int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1961,6 +2021,7 @@ public final class TokenTypes {
      * <pre>
      * transient int a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -1984,6 +2045,7 @@ public final class TokenTypes {
      * <pre>
      * native void foo(){}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2048,10 +2110,12 @@ public final class TokenTypes {
     /**
      * The {@code volatile} keyword. This may be used as a
      * modifier of a field.
+     *
      * <p>For example:</p>
      * <pre>
      * private volatile int x;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -2079,6 +2143,7 @@ public final class TokenTypes {
      * class Test {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -2093,6 +2158,7 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre> int.class
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * EXPR -&gt; EXPR
@@ -2149,6 +2215,7 @@ public final class TokenTypes {
      *   int num;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -2180,6 +2247,7 @@ public final class TokenTypes {
      * void foo(){}
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2207,6 +2275,7 @@ public final class TokenTypes {
      * <pre>
      * int a, b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -2241,6 +2310,7 @@ public final class TokenTypes {
      *     val += (-3);
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -2288,6 +2358,7 @@ public final class TokenTypes {
      * void check() {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2319,6 +2390,7 @@ public final class TokenTypes {
      * <pre>
      * this.name = name;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * EXPR -&gt; EXPR
@@ -2329,10 +2401,12 @@ public final class TokenTypes {
      *      `--IDENT -&gt; name
      * SEMI -&gt; ;
      * </pre>
+     *
      * <p>Also consider:</p>
      * <pre>
      * this(1, "NULL");
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CTOR_CALL -&gt; this
@@ -2360,6 +2434,7 @@ public final class TokenTypes {
      * <pre>
      * super.toString()；
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -2385,6 +2460,7 @@ public final class TokenTypes {
      * <pre>
      * a = b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -2409,6 +2485,7 @@ public final class TokenTypes {
      * void test() throws FileNotFoundException, EOFException {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2443,10 +2520,12 @@ public final class TokenTypes {
     /**
      * The {@code :} (colon) operator.  This will appear as part
      * of the conditional operator ({@code ? :}).
+     *
      * <p>For example:</p>
      * <pre>
      * num = isValid ? 1 : 0;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -2475,6 +2554,7 @@ public final class TokenTypes {
      * <pre>
      * Function&lt;Double, Double&gt; square = MyClass::square;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -2515,6 +2595,7 @@ public final class TokenTypes {
      *   message = "half empty";
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
@@ -2557,6 +2638,7 @@ public final class TokenTypes {
      * <pre>
      * for (int i = 0; i &lt; arr.length; i++) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -2609,6 +2691,7 @@ public final class TokenTypes {
      *     i++;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_WHILE -&gt; while
@@ -2639,6 +2722,7 @@ public final class TokenTypes {
      *   x = rand.nextInt();
      * } while (x &lt; 5);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_DO -&gt; do
@@ -2681,6 +2765,7 @@ public final class TokenTypes {
      *
      * } while (a &gt; 0);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * --LITERAL_DO -&gt; do
@@ -2709,6 +2794,7 @@ public final class TokenTypes {
      *     break;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -2742,6 +2828,7 @@ public final class TokenTypes {
      *     continue;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -2776,6 +2863,7 @@ public final class TokenTypes {
      *     return i+1;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_DEF -&gt; METHOD_DEF
@@ -2825,6 +2913,7 @@ public final class TokenTypes {
      *          background = Color.green;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_SWITCH -&gt; switch
@@ -2900,6 +2989,7 @@ public final class TokenTypes {
      * <pre>
      * throw new ArithmeticException(&quot;An exception occurred.&quot;);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_THROW -&gt; throw
@@ -2935,6 +3025,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
@@ -2968,6 +3059,7 @@ public final class TokenTypes {
      *      num = 1;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      *
@@ -2983,12 +3075,14 @@ public final class TokenTypes {
      *         |       `--NUM_INT -&gt; 1
      *         `--SEMI -&gt; ;
      * </pre>
+     *
      * <p>For example:</p>
      * <pre>
      * switch(num){
      *    case 1 -&gt; num = -1
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * SWITCH_RULE -&gt; SWITCH_RULE
@@ -3024,6 +3118,7 @@ public final class TokenTypes {
      *     x = 3;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_SWITCH -&gt; switch
@@ -3073,6 +3168,7 @@ public final class TokenTypes {
      * <pre>
      * try { } finally {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3100,6 +3196,7 @@ public final class TokenTypes {
      * try (Foo foo = new Foo(); Bar bar = new Bar()) {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3141,6 +3238,7 @@ public final class TokenTypes {
      * try (BufferedReader br = new BufferedReader(new FileReader(path))) {
      * }
      * </pre>
+     *
      * <p>which parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3191,6 +3289,7 @@ public final class TokenTypes {
      *     try (FileReader fr = new FileReader("config.xml")) {
      *     } finally {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3232,6 +3331,7 @@ public final class TokenTypes {
      * <pre>
      * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3285,6 +3385,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3333,6 +3434,7 @@ public final class TokenTypes {
      * <pre>
      * try {} finally {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_TRY -&gt; try
@@ -3356,6 +3458,7 @@ public final class TokenTypes {
      * <pre>
      * a += b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3378,6 +3481,7 @@ public final class TokenTypes {
      * <pre>
      * a -= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3402,6 +3506,7 @@ public final class TokenTypes {
      * <pre>
      * a *= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3424,6 +3529,7 @@ public final class TokenTypes {
      * <pre>
      * a /= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3441,8 +3547,10 @@ public final class TokenTypes {
     public static final int DIV_ASSIGN = JavaLanguageLexer.DIV_ASSIGN;
     /**
      * The {@code %=} (remainder assignment) operator.
+     *
      * <p>For example:</p>
      * <pre>a %= 2;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3466,6 +3574,7 @@ public final class TokenTypes {
      * <pre>
      * a &gt;&gt;= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3489,6 +3598,7 @@ public final class TokenTypes {
      * <pre>
      * a &gt;&gt;&gt;= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3520,6 +3630,7 @@ public final class TokenTypes {
      * <pre>
      * a &amp;= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3551,6 +3662,7 @@ public final class TokenTypes {
      * <pre>
      * a |= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3575,6 +3687,7 @@ public final class TokenTypes {
      * <pre>
      * String variable=(quantity==1)?"true":"false";
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -3614,6 +3727,7 @@ public final class TokenTypes {
      * if (a || b) {
      * }
      * </pre>
+     *
      * <p>
      * parses as:
      * </p>
@@ -3643,6 +3757,7 @@ public final class TokenTypes {
      * if (a &amp;&amp; b) {
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
@@ -3669,6 +3784,7 @@ public final class TokenTypes {
      * <pre>
      * a = a | b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3702,6 +3818,7 @@ public final class TokenTypes {
      * <pre>
      * c = a &amp; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3726,6 +3843,7 @@ public final class TokenTypes {
      * <pre>
      * a != b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3748,6 +3866,7 @@ public final class TokenTypes {
      * <pre>
      * return a == b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3767,6 +3886,7 @@ public final class TokenTypes {
      * <pre>
      * c = a &lt; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3788,6 +3908,7 @@ public final class TokenTypes {
      * <pre>
      * c = a &gt; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3809,6 +3930,7 @@ public final class TokenTypes {
      * <pre>
      * c = a &lt;= b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3830,6 +3952,7 @@ public final class TokenTypes {
      * <pre>
      *   boolean b = a &gt;= 3;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -3851,6 +3974,7 @@ public final class TokenTypes {
      * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type or pattern.
+     *
      * <p>For example:</p>
      * <pre>
      * boolean isBuilderReferenceType = text instanceof StringBuilder; // reference type
@@ -3859,6 +3983,7 @@ public final class TokenTypes {
      * boolean isBuilderEmpty = text instanceof
      *         (StringBuilder sb &amp;&amp; sb.isEmpty());  // guarded pattern, `PATTERN_DEF`
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -3937,6 +4062,7 @@ public final class TokenTypes {
      * <pre>
      * a = a &lt;&lt; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3961,6 +4087,7 @@ public final class TokenTypes {
      * <pre>
      * a = a &gt;&gt; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -3985,6 +4112,7 @@ public final class TokenTypes {
      * <pre>
      * a &gt;&gt;&gt; b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4007,6 +4135,7 @@ public final class TokenTypes {
      * <pre>
      * c = a + b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4031,6 +4160,7 @@ public final class TokenTypes {
      * <pre>
      * c = a - b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4055,6 +4185,7 @@ public final class TokenTypes {
      * <pre>
      * a = 4 / 2;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4079,6 +4210,7 @@ public final class TokenTypes {
      * <pre>
      * c = a % b;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * EXPR -&gt; EXPR
@@ -4103,6 +4235,7 @@ public final class TokenTypes {
      * <pre>
      * ++a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4125,6 +4258,7 @@ public final class TokenTypes {
      * <pre>
      * --a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4147,6 +4281,7 @@ public final class TokenTypes {
      * <pre>
      * a = ~ a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4170,6 +4305,7 @@ public final class TokenTypes {
      * <pre>
      * c = &#33; a;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4196,6 +4332,7 @@ public final class TokenTypes {
      * <pre>
      * boolean a = true;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -4225,6 +4362,7 @@ public final class TokenTypes {
      * <pre>
      * boolean a = false;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -4254,6 +4392,7 @@ public final class TokenTypes {
      * <pre>
      * String s = null;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -4412,6 +4551,7 @@ public final class TokenTypes {
      * <pre>
      * a = 3;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4436,6 +4576,7 @@ public final class TokenTypes {
      * <pre>
      * return 'a';
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * --LITERAL_RETURN -&gt; return
@@ -4455,6 +4596,7 @@ public final class TokenTypes {
     /**
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
+     *
      * <p>For example:</p>
      * <pre>String str = "StringLiteral";</pre>
      *
@@ -4487,6 +4629,7 @@ public final class TokenTypes {
      * <pre>
      * a = 3.14f;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4512,6 +4655,7 @@ public final class TokenTypes {
      * <pre>
      * a = 3l;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4537,6 +4681,7 @@ public final class TokenTypes {
      * <pre>
      * a = 3.14d;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--EXPR -&gt; EXPR
@@ -4562,6 +4707,7 @@ public final class TokenTypes {
      * <pre>
      * assert(x==4);
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_ASSERT -&gt; assert
@@ -4585,6 +4731,7 @@ public final class TokenTypes {
      * <pre>
      * import static java.io.IOException;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * STATIC_IMPORT -&gt; import
@@ -4627,6 +4774,7 @@ public final class TokenTypes {
      *     }
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ENUM_DEF -&gt; ENUM_DEF
@@ -4682,6 +4830,7 @@ public final class TokenTypes {
      * <pre>
      * public enum Count {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ENUM_DEF -&gt; ENUM_DEF
@@ -4717,6 +4866,7 @@ public final class TokenTypes {
      *     }
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ENUM_CONSTANT_DEF -&gt; ENUM_CONSTANT_DEF
@@ -4765,6 +4915,7 @@ public final class TokenTypes {
      *     doSmth();
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_FOR -&gt; for
@@ -4807,6 +4958,7 @@ public final class TokenTypes {
      *     int someValue();
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ANNOTATION_DEF -&gt; ANNOTATION_DEF
@@ -4927,6 +5079,7 @@ public final class TokenTypes {
      *     &#064;MyAnnotation(someField1 = "Hello",
      *                    someField2 = &#064;SomeOtherAnnotation)
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ANNOTATION -&gt; ANNOTATION
@@ -4968,6 +5121,7 @@ public final class TokenTypes {
      *     value="123"
      * )
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ANNOTATION -&gt; ANNOTATION
@@ -5002,6 +5156,7 @@ public final class TokenTypes {
      * <pre>
      * &#64;Annotation({1, 2})
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * ANNOTATION -&gt; ANNOTATION
@@ -5154,8 +5309,10 @@ public final class TokenTypes {
      * A type arguments to a type reference or a method/ctor invocation.
      * Children are either: type name or wildcard type with possible type
      * upper or lower bounds.
+     *
      * <p>For example:</p>
      * <pre>List&lt;? super List&gt; list;</pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5184,11 +5341,13 @@ public final class TokenTypes {
 
     /**
      * The type that refers to all types. This node has no children.
-     * <p> For example: </p>
+     *
+     * <p>For example: </p>
      * <pre>
      *
      * List&lt;?&gt; list;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5217,6 +5376,7 @@ public final class TokenTypes {
      * An upper bounds on a wildcard type argument or type parameter.
      * This node has one child - the type that is being used for
      * the bounding.
+     *
      * <p>For example:</p>
      * <pre>List&lt;? extends Number&gt; list;</pre>
      *
@@ -5400,6 +5560,7 @@ public final class TokenTypes {
      * <pre>
      * class Test&lt;T&gt; {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -5432,6 +5593,7 @@ public final class TokenTypes {
      * <pre>
      * class Test&lt;T&gt; {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -5463,6 +5625,7 @@ public final class TokenTypes {
      * <pre>
      * numbers.forEach((n) -&gt; System.out.println(n));
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * METHOD_CALL -&gt; (
@@ -5507,6 +5670,7 @@ public final class TokenTypes {
      * <pre>
      * // Comment content
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * SINGLE_LINE_COMMENT -&gt; //
@@ -5518,11 +5682,13 @@ public final class TokenTypes {
 
     /**
      * Beginning of block comment: '/*'.
+     *
      * <p>For example:</p>
      * <pre>
      * /&#42; Comment content
      * &#42;/
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * --BLOCK_COMMENT_BEGIN -&gt; /&#42;
@@ -5540,6 +5706,7 @@ public final class TokenTypes {
      * <pre>
      * /&#42;comment&#42;/
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * BLOCK_COMMENT_BEGIN -&gt; /&#42;
@@ -5562,6 +5729,7 @@ public final class TokenTypes {
      * this is multiline comment
      * &#42;/
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--SINGLE_LINE_COMMENT -&gt; //
@@ -5583,6 +5751,7 @@ public final class TokenTypes {
      * <pre>
      * if (obj instanceof String str) { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if
@@ -5615,6 +5784,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * RECORD_DEF -&gt; RECORD_DEF
@@ -5646,6 +5816,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * RECORD_DEF -&gt; RECORD_DEF
@@ -5674,6 +5845,7 @@ public final class TokenTypes {
      * <pre>
      * public record myRecord (Comp x, Comp y) { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * RECORD_DEF -&gt; RECORD_DEF
@@ -5716,6 +5888,7 @@ public final class TokenTypes {
      *
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * RECORD_DEF -&gt; RECORD_DEF
@@ -5758,6 +5931,7 @@ public final class TokenTypes {
      *     public myRecord{}
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * RECORD_DEF
@@ -5796,6 +5970,7 @@ public final class TokenTypes {
      *                 Hello, world!
      *                 """;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5827,6 +6002,7 @@ public final class TokenTypes {
      *                 Hello, world!
      *                 """;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5857,6 +6033,7 @@ public final class TokenTypes {
      *                 Hello, world!
      *                 """;
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5891,6 +6068,7 @@ public final class TokenTypes {
      *        yield - 1;
      * };
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--VARIABLE_DEF -&gt; VARIABLE_DEF
@@ -5960,6 +6138,7 @@ public final class TokenTypes {
      *     default -&gt; "Working day";
      * };
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_RETURN -&gt; return
@@ -6012,6 +6191,7 @@ public final class TokenTypes {
      * <pre>
      * non-sealed class Square extends Rectangle { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -6043,6 +6223,7 @@ public final class TokenTypes {
      * <pre>
      * public sealed class Shape permits Circle, Square, Rectangle { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -6079,6 +6260,7 @@ public final class TokenTypes {
      * <pre>
      * public sealed class Shape permits Circle, Square, Rectangle { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -6115,6 +6297,7 @@ public final class TokenTypes {
      * <pre>
      * public sealed class Shape permits Circle, Square, Rectangle { }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * CLASS_DEF -&gt; CLASS_DEF
@@ -6161,6 +6344,7 @@ public final class TokenTypes {
      *         break;
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_SWITCH -&gt; switch
@@ -6226,6 +6410,7 @@ public final class TokenTypes {
      *     default -&gt; 2;
      * };
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_RETURN -&gt; return
@@ -6287,6 +6472,7 @@ public final class TokenTypes {
      *     case R(String s) myRecord -&gt; {}
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--RECORD_DEF -&gt; RECORD_DEF
@@ -6376,6 +6562,7 @@ public final class TokenTypes {
      *     case R(String myComponent) when "component".equalsIgnoreCase(myComponent) -&gt; {}
      * }
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * |--RECORD_DEF -&gt; RECORD_DEF
@@ -6463,10 +6650,12 @@ public final class TokenTypes {
 
     /**
      * An unnamed pattern variable definition. Appears as part of a pattern definition.
+     *
      * <p>For example:</p>
      * <pre>
      *    if (r instanceof R(_)) {}
      * </pre>
+     *
      * <p>parses as:</p>
      * <pre>
      * LITERAL_IF -&gt; if

@@ -9,10 +9,10 @@
     <section name="UnnecessarySemicolonInEnumeration">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
             Checks if unnecessary semicolon is in enum definitions.
             Semicolon is not needed if enum body contains only enum constants.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">
@@ -21,7 +21,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -29,7 +29,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-code">
@@ -37,7 +37,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicoloninenumeration/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

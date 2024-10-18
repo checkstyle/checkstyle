@@ -33,12 +33,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for missing Javadoc comments for class, enum, interface, and annotation interface
  * definitions. The scope to verify is specified using the {@code Scope} class and defaults
  * to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
  * {@code Scope} constants.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are not
@@ -75,9 +75,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * RECORD_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

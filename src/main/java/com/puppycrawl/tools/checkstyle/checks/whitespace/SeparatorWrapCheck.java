@@ -30,9 +30,9 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks line wrapping with separators.
- * </p>
+ * </div>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to wrap lines.
@@ -50,9 +50,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * COMMA</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

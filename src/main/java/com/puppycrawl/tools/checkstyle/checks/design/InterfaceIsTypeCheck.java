@@ -25,10 +25,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Implements Joshua Bloch, Effective Java, Item 17 -
  * Use Interfaces only to define types.
- * </p>
+ * </div>
+ *
  * <p>
  * According to Bloch, an interface should describe a <em>type</em>. It is therefore
  * inappropriate to define an interface that does not contain any methods
@@ -36,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">
  * javax.swing.SwingConstants</a> is an example of an interface that would be flagged by this check.
  * </p>
+ *
  * <p>
  * The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
  * that do not contain methods or constants at all.
@@ -48,9 +50,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Default value is {@code true}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

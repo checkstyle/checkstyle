@@ -4,7 +4,7 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"
              name="JavadocType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks the Javadoc comments for type definitions. By default, does
  not check for author or version tags. The scope to verify is specified using the {@code Scope}
  class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
@@ -12,14 +12,17 @@
  tag or a version tag, set property authorFormat or versionFormat respectively to a
  &lt;a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt;.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Does not perform checks for author and version tags for inner classes,
  as they should be redundant because of outer class.
  &lt;/p&gt;
+
  &lt;p&gt;
  Does not perform checks for type definitions that do not have any Javadoc comments.
  &lt;/p&gt;
+
  &lt;p&gt;
  Error messages about type parameters and record components for which no param tags are present
  can be suppressed by defining property {@code allowMissingParamTags}.

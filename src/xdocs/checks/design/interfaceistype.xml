@@ -9,10 +9,10 @@
     <section name="InterfaceIsType">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
           define types.
-        </p>
+        </div>
 
         <p>
           According to Bloch, an interface should describe a <em>type</em>.

@@ -4,19 +4,22 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"
              name="HiddenField"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that a local variable or a parameter does not shadow
  a field that is defined in the same class.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  It is possible to configure the check to ignore all property setter methods.
  &lt;/p&gt;
+
  &lt;p&gt;
  A method is recognized as a setter if it is in the following form
  &lt;/p&gt;
  &lt;pre&gt;
  ${returnType} set${Name}(${anyType} ${name}) { ... }
  &lt;/pre&gt;
+
  &lt;p&gt;
  where ${anyType} is any primitive type, class or interface name;
  ${name} is name of the variable that is being set and ${Name} its
@@ -26,6 +29,7 @@
  &lt;pre&gt;
  void setTime(long time) { ... }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Any other return types will not let method match a setter pattern. However,
  by setting &lt;em&gt;setterCanReturnItsClass&lt;/em&gt; property to &lt;em&gt;true&lt;/em&gt;
@@ -37,6 +41,7 @@
    PageBuilder setName(String name) { ... }
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  Such methods are known as chain-setters and a common when Builder-pattern
  is used. Property &lt;em&gt;setterCanReturnItsClass&lt;/em&gt; has effect only if

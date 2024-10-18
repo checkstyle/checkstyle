@@ -27,10 +27,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that annotations are located on the same line with their targets.
  * Verifying with this check is not good practice, but it is using by some style guides.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -55,9 +56,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,9 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck"
              name="PackageName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that package names conform to a specified pattern.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The default value of {@code format} for module {@code PackageName} has been chosen to match
  the requirements in the

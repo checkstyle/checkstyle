@@ -36,9 +36,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>
+ * <div>
  * Detects duplicated keys in properties files.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Multiple property keys usually appear after merge or rebase of
  * several branches. While there are no problems in runtime, there can be a confusion
@@ -51,9 +52,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code .properties}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,13 +4,15 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.AvoidNestedBlocksCheck"
              name="AvoidNestedBlocks"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Finds nested blocks (blocks that are used freely in the code).
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Nested blocks are often leftovers from the
  debugging process, they confuse the reader.
  &lt;/p&gt;
+
  &lt;p&gt;
  For example, this check finds the obsolete braces in
  &lt;/p&gt;
@@ -24,6 +26,7 @@
    System.out.println("value = " + whichIsWhich);
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  and debugging / refactoring leftovers such as
  &lt;/p&gt;
@@ -33,6 +36,7 @@
    System.out.println("unconditional");
  }
  &lt;/pre&gt;
+
  &lt;p&gt;
  A case in a switch statement does not implicitly form a block.
  Thus, to be able to introduce local variables that have case scope

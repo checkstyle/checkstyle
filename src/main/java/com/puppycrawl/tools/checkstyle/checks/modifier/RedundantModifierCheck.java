@@ -31,14 +31,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for redundant modifiers.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: The Java Language Specification strongly discourages the usage
  * of {@code public} and {@code abstract} for method declarations in interface
  * definitions as a matter of style.
  * </p>
+ *
  * <p>The check validates:</p>
  * <ol>
  * <li>
@@ -68,14 +70,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {@code final} modifier on unnamed variables when using JDK 22 or later.
  * </li>
  * </ol>
+ *
  * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
  * </p>
+ *
  * <p>Type declarations nested under interfaces by definition are public and static,
  * so the {@code public} and {@code static} modifiers on nested type declarations are redundant.
  * On the other hand, classes inside of interfaces can be abstract or non abstract.
  * So, {@code abstract} modifier is allowed.
  * </p>
+ *
  * <p>Fields in interfaces and annotations are automatically
  * public, static and final, so these modifiers are redundant as
  * well.</p>
@@ -112,12 +117,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>Since these methods can be overridden in these situations, the final methods are not
  * marked as redundant even though they can't be extended by other classes/enums.</p>
+ *
  * <p>
  * Nested {@code enum} types are always static by default.
  * </p>
+ *
  * <p>Final classes by definition cannot be extended so the {@code final}
  * modifier on the method of a final class is redundant.
  * </p>
+ *
  * <p>Public modifier for constructors in non-public non-protected classes
  * is always obsolete: </p>
  *
@@ -193,9 +201,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LAMBDA</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

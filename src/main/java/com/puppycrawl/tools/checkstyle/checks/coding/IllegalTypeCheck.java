@@ -36,12 +36,14 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that particular classes or interfaces are never used.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Helps reduce coupling on concrete classes.
  * </p>
+ *
  * <p>
  * For additional restriction of type usage see also:
  * <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html#IllegalInstantiation">
@@ -49,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/checks/imports/illegalimport.html#IllegalImport">
  * IllegalImport</a>
  * </p>
+ *
  * <p>
  * It is possible to set illegal class names via short or
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">canonical</a>
@@ -62,9 +65,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ...
  * List list; //No violation here
  * </pre>
+ *
  * <p>
  * will be ok.
  * </p>
+ *
  * <p>
  * In most cases it's justified to put following classes to <b>illegalClassNames</b>:
  * </p>
@@ -75,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>LinkedList</li>
  * <li>Vector</li>
  * </ul>
+ *
  * <p>
  * as methods that are differ from interface methods are rarely used, so in most cases user will
  * benefit from checking for them.
@@ -148,9 +154,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * RECORD_PATTERN_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -431,6 +439,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
 
     /**
      * Checks if current import is star import. E.g.:
+     *
      * <p>
      * {@code
      * import java.util.*;

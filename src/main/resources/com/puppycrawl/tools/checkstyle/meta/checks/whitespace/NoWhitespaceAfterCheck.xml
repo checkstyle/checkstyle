@@ -4,13 +4,14 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck"
              name="NoWhitespaceAfter"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there is no whitespace after a token.
  More specifically, it checks that it is not followed by whitespace,
  or (if linebreaks are allowed) all characters on the line after are
  whitespace. To forbid linebreaks after a token, set property
  {@code allowLineBreaks} to {@code false}.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  The check processes
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR"&gt;
@@ -25,10 +26,12 @@
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP"&gt;
  INDEX_OP&lt;/a&gt; will be ignored.
  &lt;/p&gt;
+
  &lt;p&gt;
  If the annotation is between the type and the array, like {@code char @NotNull [] param},
  the check will skip validation for spaces.
  &lt;/p&gt;
+
  &lt;p&gt;
  Note: This check processes the
  &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED"&gt;

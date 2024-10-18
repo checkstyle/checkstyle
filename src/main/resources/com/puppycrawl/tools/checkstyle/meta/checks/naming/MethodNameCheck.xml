@@ -4,9 +4,9 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck"
              name="MethodName"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that method names conform to a specified pattern.
- &lt;/p&gt;
+ &lt;/div&gt;
 
  &lt;p&gt;Also, checks if a method name has the same name as the residing class.
  The default is false (it is not allowed). It is legal in Java to have

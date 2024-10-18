@@ -25,7 +25,7 @@ class InputInterfaceIsType
     }
 
     // Always flagged
-    interface ConstantPool // violation
+    interface ConstantPool // violation, 'interfaces should describe a type and hence have methods.'
     {
         boolean BAD = true;
     }

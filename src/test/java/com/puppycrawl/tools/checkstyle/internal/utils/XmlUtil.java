@@ -146,7 +146,7 @@ public final class XmlUtil {
     }
 
     /**
-     * <p>Sanitizes the given string for safe use in XML documents.</p>
+     * Sanitizes the given string for safe use in XML documents.
      * <ul>
      * <li>Removes all whitespaces at the beginning and at the end of the string;</li>
      * <li>Replaces repeated whitespaces in the middle of the string with a single space;</li>

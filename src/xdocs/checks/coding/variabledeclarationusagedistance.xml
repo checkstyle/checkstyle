@@ -9,11 +9,11 @@
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the distance between declaration of variable and its first usage.
           Note : Variable declaration/initialization statements are not counted
           while calculating length.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

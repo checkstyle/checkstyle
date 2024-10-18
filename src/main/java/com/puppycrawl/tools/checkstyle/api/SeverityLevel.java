@@ -22,9 +22,8 @@ package com.puppycrawl.tools.checkstyle.api;
 import java.util.Locale;
 
 /**
- * <p>
  * Severity level for a check violation.
- * </p>
+ *
  * <p>
  * Each violation of an audit check is assigned one of the severity levels
  * defined here.

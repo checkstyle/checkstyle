@@ -4,10 +4,11 @@
       <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter"
               name="SuppressWithNearbyTextFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
  nearby audit events. The filter can suppress all checks which have Checker as a parent module.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Setting {@code .*} value to {@code nearbyTextPattern} property will see &lt;b&gt;any&lt;/b&gt;
  text as a suppression and will likely suppress all audit events in the file. It is

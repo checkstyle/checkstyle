@@ -9,11 +9,11 @@
     <section name="AtclauseOrder">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the order of
           <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
             javadoc block-tags or javadoc tags</a>.
-        </p>
+        </div>
         <p>
           Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
         </p>

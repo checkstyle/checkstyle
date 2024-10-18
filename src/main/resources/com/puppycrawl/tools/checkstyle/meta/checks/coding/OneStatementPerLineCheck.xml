@@ -4,17 +4,20 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"
              name="OneStatementPerLine"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there is only one statement per line.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: It's very difficult to read multiple statements on one line.
  &lt;/p&gt;
+
  &lt;p&gt;
  In the Java programming language, statements are the fundamental unit of
  execution. All statements except blocks are terminated by a semicolon.
  Blocks are denoted by open and close curly braces.
  &lt;/p&gt;
+
  &lt;p&gt;
  OneStatementPerLineCheck checks the following types of statements:
  variable declaration statements, empty statements, import statements,

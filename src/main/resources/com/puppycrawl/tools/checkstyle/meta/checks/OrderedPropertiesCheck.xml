@@ -4,7 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"
              name="OrderedProperties"
              parent="com.puppycrawl.tools.checkstyle.Checker">
-         <description>&lt;p&gt;Detects if keys in properties files are in correct order.&lt;/p&gt;
+         <description>&lt;div&gt;
+ Detects if keys in properties files are in correct order.
+ &lt;/div&gt;
+
  &lt;p&gt;
    Rationale: Sorted properties make it easy for people to find required properties by name
    in file. This makes it easier to merge. While there are no problems at runtime.
@@ -18,6 +21,7 @@
      files="log4j.properties|ResourceBundle/Bug.*.properties|logging.properties"/&amp;gt;
    }
  &lt;/p&gt;
+
  &lt;p&gt;Known limitation: The key should not contain a newline.
  The string compare will work, but not the line number reporting.&lt;/p&gt;</description>
          <properties>

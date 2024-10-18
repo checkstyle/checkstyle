@@ -9,11 +9,11 @@
     <section name="NoLineWrap">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that chosen statements are not line-wrapped. By default, this
           Check restricts wrapping import and package statements, but it's possible to check
           any statement.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

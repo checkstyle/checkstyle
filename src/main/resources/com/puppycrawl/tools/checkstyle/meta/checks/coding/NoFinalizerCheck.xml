@@ -4,14 +4,16 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck"
              name="NoFinalizer"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there is no method {@code finalize} with zero parameters.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  See
  &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()"&gt;
  Object.finalize()&lt;/a&gt;
  &lt;/p&gt;
+
  &lt;p&gt;
  Rationale: Finalizers are unpredictable, often dangerous, and generally unnecessary.
  Their use can cause erratic behavior, poor performance, and portability problems.

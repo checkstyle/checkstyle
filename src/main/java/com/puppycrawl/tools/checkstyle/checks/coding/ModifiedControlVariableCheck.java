@@ -35,21 +35,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks that for loop control variables are not modified
  * inside the for block. An example is:
- * </p>
+ * </div>
  * <pre>
  * for (int i = 0; i &lt; 1; i++) {
  *   i++; // violation
  * }
  * </pre>
+ *
  * <p>
  * Rationale: If the control variable is modified inside the loop
  * body, the program flow becomes more difficult to follow.
  * See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
  * FOR statement</a> specification for more details.
  * </p>
+ *
  * <p>
  * Such loop would be suppressed:
  * </p>
@@ -58,6 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   i++;
  * }
  * </pre>
+ *
  * <p>
  * NOTE:The check works with only primitive type variables.
  * The check will not work for arrays used as control variable.An example is
@@ -76,9 +79,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

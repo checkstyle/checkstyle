@@ -34,25 +34,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
- * <p>
+ * <div>
  * Verifies that the {@code @Override} annotation is present
  * when the {@code @inheritDoc} javadoc tag is present.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: The &#64;Override annotation helps
  * compiler tools ensure that an override is actually occurring.  It is
  * quite easy to accidentally overload a method or hide a static method
  * and using the &#64;Override annotation points out these problems.
  * </p>
+ *
  * <p>
  * This check will log a violation if using the &#64;inheritDoc tag on a method that
  * is not valid (ex: private, or static method).
  * </p>
+ *
  * <p>
  * There is a slight difference between the &#64;Override annotation in Java 5 versus
  * Java 6 and above. In Java 5, any method overridden from an interface cannot
  * be annotated with &#64;Override. In Java 6 this behavior is allowed.
  * </p>
+ *
  * <p>
  * As a result of the aforementioned difference between Java 5 and Java 6, a
  * property called {@code javaFiveCompatibility} is available. This
@@ -69,9 +73,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

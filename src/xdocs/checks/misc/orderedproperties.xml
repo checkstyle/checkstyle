@@ -9,9 +9,10 @@
     <section name="OrderedProperties">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Detects if keys in properties files are in correct order.
-        </p>
+        </div>
+
         <p>
           Rationale: Sorted properties make it easy for people to find required properties by name
           in file. This makes it easier to merge. While there are no problems at runtime.
@@ -25,6 +26,7 @@
                   files=&quot;log4j.properties|ResourceBundle/Bug.*.properties|logging.properties&quot;/&gt;
           </code>
         </p>
+
         <p>
           Known limitation: The key should not contain a newline.
           The string compare will work, but not the line number reporting.

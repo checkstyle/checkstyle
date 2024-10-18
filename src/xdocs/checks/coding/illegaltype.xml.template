@@ -9,13 +9,14 @@
     <section name="IllegalType">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that particular classes or interfaces are never used.
-        </p>
+        </div>
 
         <p>
           Rationale: Helps reduce coupling on concrete classes.
         </p>
+
         <p>
           For additional restriction of type usage see also:
           <a href="illegalinstantiation.html#IllegalInstantiation">IllegalInstantiation</a>,

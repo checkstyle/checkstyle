@@ -29,9 +29,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * <p>
+ * <div>
  * Checks for braces around code blocks.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code allowEmptyLoopBody} - Allow loops with empty bodies.
@@ -60,9 +61,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LITERAL_WHILE</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -236,11 +239,13 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * if (obj.isValid()) return true;
      * }
      * </p>
+     *
      * <p>
      * {@code
      * while (obj.isValid()) return true;
@@ -284,6 +289,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current while statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * while (obj.isValid()) return true;
@@ -304,6 +310,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current do-while statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * do this.notify(); while (o != null);
@@ -324,6 +331,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current for statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * for (int i = 0; ; ) this.notify();
@@ -346,6 +354,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current if statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * if (obj.isValid()) return true;
@@ -374,6 +383,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current lambda statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * Runnable r = () -> System.out.println("Hello, world!");
@@ -404,6 +414,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current ast's parent is a switch rule, e.g.:
+     *
      * <p>
      * {@code
      * case 1 ->  monthString = "January";
@@ -439,6 +450,7 @@ public class NeedBracesCheck extends AbstractCheck {
     /**
      * Checks if switch member in case group (case or default statement)
      * is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * case 1: System.out.println("case one"); break;
@@ -464,6 +476,7 @@ public class NeedBracesCheck extends AbstractCheck {
     /**
      * Checks if switch member in switch rule (case or default statement) is
      * single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * case 1 -> System.out.println("case one");
@@ -483,6 +496,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current else statement is single-line statement, e.g.:
+     *
      * <p>
      * {@code
      * else doSomeStuff();

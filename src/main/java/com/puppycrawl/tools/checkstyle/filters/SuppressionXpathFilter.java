@@ -32,14 +32,15 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressionXpathFilter} works as
  * <a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter">
  * SuppressionFilter</a>.
  * Additionally, filter processes {@code suppress-xpath} elements,
  * which contains xpath-expressions. Xpath-expressions are queries for
  * suppressed nodes inside the AST tree.
- * </p>
+ * </div>
+ *
  * <p>
  * Currently, filter does not support the following checks:
  * </p>
@@ -56,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * </ul>
+ *
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
  * </p>
@@ -106,10 +108,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * WriteTag
  * </li>
  * </ul>
+ *
  * <p>
  * Note, that support for these Checks will be available after resolving issue
  * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a>.
  * </p>
+ *
  * <p>
  * Currently, filter supports the following xpath axes:
  * </p>
@@ -151,11 +155,13 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * self
  * </li>
  * </ul>
+ *
  * <p>
  * You can use the command line helper tool to generate xpath suppressions based on your
  * configuration file and input files. See <a href="https://checkstyle.org/cmdline.html">here</a>
  * for more details.
  * </p>
+ *
  * <p>
  * The suppression file location is checked in following order:
  * </p>
@@ -171,6 +177,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * if no file found, then passed to the {@code ClassLoader.getResource()} method.
  * </li>
  * </ol>
+ *
  * <p>
  * SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
  * </p>
@@ -188,6 +195,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Default value is {@code false}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>

@@ -34,13 +34,15 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Validates abbreviations (consecutive capital letters) length in
  * identifier name, it also allows to enforce camel case naming. Please read more at
  * <a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
- * </p>
+ * </div>
+ *
  * <p>'_' is considered as word separator in identifier name.</p>
+ *
  * <p>
  * {@code allowedAbbreviationLength} specifies how many consecutive capital letters are
  * allowed in the identifier.
@@ -51,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * is what should be used to enforce strict camel casing. The identifier 'MyTest' would
  * be allowed, but 'MyTEst' would not be.
  * </p>
+ *
  * <p>
  * {@code ignoreFinal}, {@code ignoreStatic}, and {@code ignoreStaticFinal}
  * control whether variables with the respective modifiers are to be ignored.
@@ -123,9 +126,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * RECORD_COMPONENT_DEF</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>
@@ -468,11 +473,13 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Gets the abbreviation, where {@code beginIndex} and {@code endIndex} are
      * inclusive indexes of a sequence of consecutive upper-case characters.
+     *
      * <p>
      * The character at {@code endIndex} is only included in the abbreviation if
      * it is the last character in the string; otherwise it is usually the first
      * capital in the next word.
      * </p>
+     *
      * <p>
      * For example, {@code getAbbreviation("getXMLParser", 3, 6)} returns "XML"
      * (not "XMLP"), and so does {@code getAbbreviation("parseXML", 5, 7)}.

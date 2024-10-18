@@ -76,7 +76,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     }
 
     /**
-     * <p>Configures the environment for each test.</p>
+     * <div>Configures the environment for each test.</div>
      * <ul>
      * <li>Start output capture for {@link System#err} and {@link System#out}</li>
      * <li>Turn off colors for picocli to not conflict with tests if they are auto turned on.</li>

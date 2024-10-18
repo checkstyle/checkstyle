@@ -10,9 +10,9 @@
       <p>Since Checkstyle 8.24</p>
       <subsection name="Description"
         id="Description">
-        <p>
+        <div>
           Checks if unnecessary semicolon is used after type member declaration.
-        </p>
+        </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
@@ -37,7 +37,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -45,7 +45,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unnecessarysemicolonaftertypememberdeclaration/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

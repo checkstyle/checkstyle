@@ -39,10 +39,11 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Filter {@code SuppressWithNearbyTextFilter} uses plain text to suppress
  * nearby audit events. The filter can suppress all checks which have Checker as a parent module.
- * </p>
+ * </div>
+ *
  * <p>
  * Setting {@code .*} value to {@code nearbyTextPattern} property will see <b>any</b>
  * text as a suppression and will likely suppress all audit events in the file. It is
@@ -82,6 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>

@@ -31,8 +31,8 @@ class InputAvoidInlineConditionals
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false; // violation
-        b = (1==2) ? false : true; // violation
+        boolean b = (1 == 2)?true:false; // violation 'Avoid inline conditionals'
+        b = (1==2) ? false : true; // violation 'Avoid inline conditionals'
     }
 
     /** assert statement test */
@@ -45,7 +45,7 @@ class InputAvoidInlineConditionals
         assert true : "Whups";
 
         // evil colons, should be OK
-        assert "OK".equals(null) ? false : true : "Whups"; // violation
+        assert "OK".equals(null) ? false : true : "Whups"; // violation 'Avoid inline conditionals'
 
         // missing WS around assert
         assert(true);

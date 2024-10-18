@@ -9,10 +9,10 @@
     <section name="UnnecessarySemicolonInEnumeration">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
             Checks if unnecessary semicolon is in enum definitions.
             Semicolon is not needed if enum body contains only enum constants.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Examples">
@@ -31,21 +31,21 @@
         </p>
         <source>
 enum One {
-    A,B; // violation
+    A,B; // violation, 'Unnecessary semicolon'
 }
 enum Two {
-    A,B,; // violation
+    A,B,; // violation, 'Unnecessary semicolon'
 }
 enum Three {
-    A,B(); // violation
+    A,B(); // violation, 'Unnecessary semicolon'
 }
 enum Four {
-    A,B{}; // violation
+    A,B{}; // violation, 'Unnecessary semicolon'
 }
 enum Five {
     A,
     B
-    ; // violation
+    ; // violation, 'Unnecessary semicolon'
 }
         </source>
         <p id="Example2-code">
@@ -55,11 +55,11 @@ enum Five {
 enum Normal {
     A,
     B,
-    ; // required &quot;;&quot;, no violation
-    Normal(){}
+    ; // ok, enum body contains constructor
+  Normal(){}
 }
 enum NoSemicolon {
-    A, B // only enum constants, no semicolon required
+    A, B // ok, only enum constants without semicolon
 }
         </source>
       </subsection>

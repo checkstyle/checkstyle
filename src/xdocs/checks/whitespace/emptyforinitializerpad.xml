@@ -9,12 +9,12 @@
     <section name="EmptyForInitializerPad">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the padding of an empty for initializer; that is whether
           a white space is required at an empty for initializer, or such white
           space is forbidden.  No check occurs if there is a line wrap at the
           initializer, as in
-        </p>
+        </div>
 
         <source>
 for (

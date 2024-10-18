@@ -9,10 +9,10 @@
     <section name="HideUtilityClassConstructor">
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Makes sure that utility classes (classes that contain only static
           methods or fields in their API) do not have a public constructor.
-        </p>
+        </div>
 
         <p>
           Rationale: Instantiating utility classes does not make sense. Hence,

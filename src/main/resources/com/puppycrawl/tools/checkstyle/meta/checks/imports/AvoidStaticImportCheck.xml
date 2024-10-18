@@ -4,19 +4,22 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck"
              name="AvoidStaticImport"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that there are no static import statements.
- &lt;/p&gt;
+ &lt;/div&gt;
+
  &lt;p&gt;
  Rationale: Importing static members can lead to naming conflicts
  between class' members. It may lead to poor code readability since it
  may no longer be clear what class a member resides in (without looking
  at the import statement).
  &lt;/p&gt;
+
  &lt;p&gt;
  If you exclude a starred import on a class this automatically excludes
  each member individually.
  &lt;/p&gt;
+
  &lt;p&gt;
  For example: Excluding {@code java.lang.Math.*}. will allow the import
  of each static member in the Math class individually like

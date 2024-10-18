@@ -9,9 +9,9 @@
     <section name="JavadocMethod">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks the Javadoc of a method or constructor.
-        </p>
+        </div>
 
         <p>
           Violates parameters and type parameters

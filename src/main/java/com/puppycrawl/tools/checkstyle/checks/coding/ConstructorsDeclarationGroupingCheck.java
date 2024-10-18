@@ -30,22 +30,25 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that all constructors are grouped together.
  * If there is any non-constructor code separating constructors,
  * this check identifies and logs a violation for those ungrouped constructors.
  * The violation message will specify the line number of the last grouped constructor.
  * Comments between constructors are allowed.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Grouping constructors together in a class improves code readability
  * and maintainability. It allows developers to easily understand
  * the different ways an object can be instantiated
  * and the tasks performed by each constructor.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

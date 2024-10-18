@@ -9,11 +9,11 @@
     <section name="FinalLocalVariable">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that local variables that never have their values changed are
           declared final. The check can be configured to also check that
           unchanged parameters are declared final.
-        </p>
+        </div>
       </subsection>
 
       <subsection name="Notes" id="Notes">

@@ -11,6 +11,10 @@
     files="outertypefilename[\\/]Example3.java"/>
   <suppress id="exampleClassName"
     files="outertypefilename[\\/]Example4.java"/>
+  <suppress id="exampleClassName"
+    files="unnecessarysemicoloninenumeration[\\/]Example1.java"/>
+  <suppress id="exampleClassName"
+    files="unnecessarysemicoloninenumeration[\\/]Example2.java"/>
 
   <!-- The file is used so examples can show how overridden methods are treated. -->
   <suppress id="exampleClassName"

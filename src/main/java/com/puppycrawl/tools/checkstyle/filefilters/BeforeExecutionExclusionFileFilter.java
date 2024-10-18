@@ -25,10 +25,10 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 
 /**
- * <p>
+ * <div>
  * File filter {@code BeforeExecutionExclusionFileFilter} decides which files should be
  * excluded from being processed by the utility.
- * </p>
+ * </div>
  *
  * <p>
  * By default, Checkstyle includes all files and subdirectories in a directory to be processed and
@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.</li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>

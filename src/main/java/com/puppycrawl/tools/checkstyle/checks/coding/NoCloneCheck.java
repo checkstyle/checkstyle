@@ -25,18 +25,21 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * <p>
+ * <div>
  * Checks that the clone method is not overridden from the
  * Object class.
- * </p>
+ * </div>
+ *
  * <p>
  * This check is almost exactly the same as the {@code NoFinalizerCheck}.
  * </p>
+ *
  * <p>
  * See
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone()">
  * Object.clone()</a>
  * </p>
+ *
  * <p>
  * Rationale: The clone method relies on strange, hard to follow rules that
  * are difficult to get right and do not work in all situations. In some cases,
@@ -45,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * for the clone method and its issues, see Effective Java:
  * Programming Language Guide First Edition by Joshua Bloch pages 45-52.
  * </p>
+ *
  * <p>
  * Below are some rules/reasons why the clone method should be avoided.
  * </p>
@@ -93,6 +97,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * are typed therefore no casting is necessary. Finally, they are more
  * flexible since they can take interface types rather than concrete classes.
  * </p>
+ *
  * <p>Sometimes a copy constructor or static factory is not an acceptable
  * alternative to the clone method.  The example below highlights the
  * limitation of a copy constructor (or static factory). Assume
@@ -102,6 +107,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Shape s1 = new Square();
  * System.out.println(s1 instanceof Square); //true
  * </pre>
+ *
  * <p>
  * ...assume at this point the code knows nothing of s1 being a Square
  *    that's the beauty of polymorphism but the code wants to copy
@@ -111,6 +117,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Shape s2 = new Shape(s1); //using the copy constructor
  * System.out.println(s2 instanceof Square); //false
  * </pre>
+ *
  * <p>
  * The working solution (without knowing about all subclasses and doing many
  * casts) is to do the following (assuming correct clone implementation).
@@ -119,17 +126,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Shape s2 = s1.clone();
  * System.out.println(s2 instanceof Square); //true
  * </pre>
+ *
  * <p>
  * Just keep in mind if this type of polymorphic cloning is required
  * then a properly implemented clone method may be the best choice.
  * </p>
+ *
  * <p>Much of this information was taken from Effective Java:
  * Programming Language Guide First Edition by Joshua Bloch
  * pages 45-52.  Give Bloch credit for writing an excellent book.
  * </p>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

@@ -4,11 +4,11 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck"
              name="IllegalThrows"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
+         <description>&lt;div&gt;
  Checks that specified types are not declared to be thrown.
  Declaring that a method throws {@code java.lang.Error} or
  {@code java.lang.RuntimeException} is almost never acceptable.
- &lt;/p&gt;</description>
+ &lt;/div&gt;</description>
          <properties>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
                <description>Allow to ignore checking overridden methods

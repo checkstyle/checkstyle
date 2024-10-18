@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
- * <p>
+ * <div>
  * Checks identifiers with a pattern for a set of illegal names, such as those
  * that are restricted or contextual keywords. Examples include "yield", "record", and
  * "var". Please read more at
@@ -33,7 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Java Language Specification</a> to get to know more about restricted keywords. Since this
  * check uses a pattern to specify valid identifiers, users can also prohibit the usage
  * of certain symbols, such as "$", or any non-ascii character.
- * </p>
+ * </div>
+ *
  * <ul>
  * <li>
  * Property {@code format} - Sets the pattern to match valid identifiers.
@@ -73,9 +74,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * LAMBDA</a>.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

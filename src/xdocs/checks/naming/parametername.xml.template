@@ -9,11 +9,11 @@
     <section name="ParameterName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Checks that method parameter names conform to a specified pattern.
           By using <code>accessModifiers</code> property it is possible
           to specify different formats for methods at different visibility levels.
-        </p>
+        </div>
         <p>
           To validate <code>catch</code> parameters please use
           <a href="catchparametername.html#CatchParameterName">

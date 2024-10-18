@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_PRECEDED_BLOCK_TAG;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +36,8 @@ public class JavadocParagraphCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_LINE_BEFORE),
-            "21: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "16:4: " + getCheckMessage(MSG_LINE_BEFORE),
+            "21:4: " + getCheckMessage(MSG_MISPLACED_TAG),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,11 +46,35 @@ public class JavadocParagraphCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_LINE_BEFORE),
-            "20: " + getCheckMessage(MSG_MISPLACED_TAG),
-            "23: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "18:4: " + getCheckMessage(MSG_LINE_BEFORE),
+            "20:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "23:4: " + getCheckMessage(MSG_MISPLACED_TAG),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "15:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "25:6: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "32:6: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "17:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "29:6: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "29:6: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
+            "36:6: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "36:6: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "pre"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

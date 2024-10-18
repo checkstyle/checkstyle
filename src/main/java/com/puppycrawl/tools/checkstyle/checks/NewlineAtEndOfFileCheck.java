@@ -29,14 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- * <p>
+ * <div>
  * Checks whether files end with a line separator.
- * </p>
+ * </div>
+ *
  * <p>
  * Rationale: Any source files and text files in general should end with a line
  * separator to let other easily add new content at the end of file and "diff"
  * command does not show previous lines as changed.
  * </p>
+ *
  * <p>
  * Example (the line with 'No newline at end of file' should not be in the diff):
  * </p>
@@ -50,24 +52,29 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
  * +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
  * </pre>
+ *
  * <p>
  * It can also trick the VCS to report the wrong owner for such lines.
  * An engineer who has added nothing but a newline character becomes the last
  * known author for the entire line. As a result, a mate can ask him a question
  * to which he will not give the correct answer.
  * </p>
+ *
  * <p>
  * Old Rationale: CVS source control management systems will even print
  * a warning when it encounters a file that doesn't end with a line separator.
  * </p>
+ *
  * <p>
  * Attention: property fileExtensions works with files that are passed by similar
  * property for at <a href="https://checkstyle.org/config.html#Checker">Checker</a>.
  * Please make sure required file extensions are mentioned at Checker's fileExtensions property.
  * </p>
+ *
  * <p>
  * This will check against the platform-specific default line separator.
  * </p>
+ *
  * <p>
  * It is also possible to enforce the use of a specific line-separator across
  * platforms, with the {@code lineSeparator} property.
@@ -84,9 +91,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Default value is {@code lf_cr_crlf}.
  * </li>
  * </ul>
+ *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
+ *
  * <p>
  * Violation Message Keys:
  * </p>

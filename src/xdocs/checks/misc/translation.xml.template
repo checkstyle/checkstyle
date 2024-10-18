@@ -9,14 +9,14 @@
     <section name="Translation">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <p>
+        <div>
           Ensures the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
           describing one and the same context are consistent if they
           contain the same keys. TranslationCheck also can check an existence of required
           translations which must exist in project, if <code>requiredTranslations</code>
           option is used.
-        </p>
+        </div>
 
         <p>
           Consider the following properties file in the same directory:

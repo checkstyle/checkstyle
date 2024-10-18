@@ -73,6 +73,7 @@ public final class XpathIteratorUtil {
 
     /**
      * Creates AST tree for iteration tests and returns root.
+     *
      * <p>
      * PACKAGE_DEF -> package [1:0]
      * |--ANNOTATIONS -> ANNOTATIONS [1:8]
