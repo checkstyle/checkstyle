@@ -43,13 +43,14 @@ public class BlockTagUtilTest {
             " * @bar def  ",
             "   @baz ghi  ",
             " * @qux jkl",
+            " * @mytag",
             " */",
         };
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertWithMessage("Invalid tags size")
             .that(tags)
-            .hasSize(4);
+            .hasSize(5);
 
         final TagInfo tag1 = tags.get(0);
         assertTagEquals(tag1, "foo", "abc", 1, 4);
@@ -62,6 +63,25 @@ public class BlockTagUtilTest {
 
         final TagInfo tag4 = tags.get(3);
         assertTagEquals(tag4, "qux", "jkl", 4, 3);
+
+        final TagInfo tag5 = tags.get(4);
+        assertTagEquals(tag5, "mytag", "", 5, 3);
+    }
+
+    @Test
+    public void testExtractBlockTagFirstLine() {
+        final String[] text = {
+            "/** @foo",
+            " */",
+        };
+
+        final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
+        assertWithMessage("Invalid tags size")
+            .that(tags)
+            .hasSize(1);
+
+        final TagInfo tag1 = tags.get(0);
+        assertTagEquals(tag1, "foo", "", 1, 4);
     }
 
     @Test
