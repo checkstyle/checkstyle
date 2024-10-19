@@ -7,6 +7,7 @@ public class InputFormattedTryCatchIfElse {
 
   void foo() throws Exception {
     int a = 90;
+    boolean test = true;
 
     if (a == 1) {
     } else {
@@ -20,6 +21,12 @@ public class InputFormattedTryCatchIfElse {
 
     if (a == 9) {
     } else {
+    }
+
+    if (a == 99) {
+      System.out.println("test");
+    } else {
+      System.out.println("before");
     }
 
     try (MyResource r = new MyResource()) {}
@@ -44,6 +51,42 @@ public class InputFormattedTryCatchIfElse {
 
     try (MyResource r = new MyResource()) {
       ;
+    }
+
+    try {
+      /* foo */
+    } catch (NullPointerException e) {
+      /* foo */
+    } catch (Exception e) {
+      /* foo */
+    } finally {
+      test = true;
+    }
+
+    try {
+      /* foo */
+    } catch (NullPointerException e) {
+      /* foo */
+    } catch (Exception e) {
+      /* foo */
+    } finally {
+      test = true;
+    }
+
+    try {
+      /* foo */
+    } catch (Exception e) {
+      /* foo */
+    } finally {
+      test = true;
+    }
+
+    try {
+      /* foo */
+    } catch (Exception e) {
+      /* foo */
+    } finally {
+      test = true;
     }
   }
 

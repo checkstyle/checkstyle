@@ -14,15 +14,11 @@ public class InputFormattedTryCatchIfElse2 {
     try {
       /* foo */
     } catch (NullPointerException e) {
-      // violation below 'Empty catch block.'
+      /* foo */
     } catch (Exception e) {
+      /* foo */
     } finally {
       after = true;
-    }
-
-    if (after) {
-      System.out.println("after");
-    } else {
     }
 
     if (after) {
@@ -42,6 +38,48 @@ public class InputFormattedTryCatchIfElse2 {
       System.out.println("before");
     } else if (!after) {
       /* foo */
+    } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("foo");
+    } else if (false) {
+      System.out.println("foo");
+    } else {
+      System.out.println("foo");
+    }
+
+    if (after) {
+      System.out.println("after");
+    } else if (after) {
+      System.out.println("before");
+    } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+    } else if (after) {
+      System.out.println("before");
+    } else if (after) {
+      System.out.println("before");
+    } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+    } else if (after) {
+      System.out.println("before");
+    } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+    } else if (after) {
+      System.out.println("before");
     } else {
       System.out.println("before");
     }
