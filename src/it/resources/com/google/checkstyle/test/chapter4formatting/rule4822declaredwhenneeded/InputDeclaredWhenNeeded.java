@@ -187,6 +187,7 @@ public class InputDeclaredWhenNeeded {
       result = true;
     } catch (Exception e) {
       result = false;
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       result = false;
     }
@@ -203,6 +204,7 @@ public class InputDeclaredWhenNeeded {
     } catch (Exception e) {
       b++;
       result = false; // DECLARATION OF VARIABLE 'result' SHOULD BE HERE (distance = 2)
+      // violation below ''}' at column 5 should be alone on a line.'
     } finally {
       a++;
     }

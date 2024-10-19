@@ -52,10 +52,11 @@ public class InputOneStatementPerLine {
       one++; two++; // violation 'Only one statement per line allowed.'
     }
     if (one != 1) { one++; } else { one--; }
-    // 3 violations above:
+    // 4 violations above:
     //  ''{' at column 19 should have line break after.'
     //  ''{' at column 35 should have line break after.'
     //  'Only one statement per line allowed.'
+    //  ''}' at column 44 should be alone on a line.'
     int n = 10;
 
     doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
@@ -104,10 +105,11 @@ public class InputOneStatementPerLine {
         one++; two++; // violation 'Only one statement per line allowed.'
       }
       if (one != 1) { one++; } else { one--; }
-      // 3 violations above:
+      // 4 violations above:
       //  ''{' at column 21 should have line break after.'
       //  ''{' at column 37 should have line break after.'
       //  'Only one statement per line allowed.'
+      //  ''}' at column 46 should be alone on a line.'
       int n = 10;
 
       doLegal(); doLegal(); // violation 'Only one statement per line allowed.'

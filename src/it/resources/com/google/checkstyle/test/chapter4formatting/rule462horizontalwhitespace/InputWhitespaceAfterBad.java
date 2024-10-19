@@ -90,7 +90,8 @@ public class InputWhitespaceAfterBad {
     } catch (Exception e) {
       /* foo */
     } finally{
-      // 3 violations above:
+      // 4 violations above:
+      //  ''}' at column 5 should be alone on a line.'
       //  ''finally' is not followed by whitespace.'
       //  ''finally' is not followed by whitespace.'
       //  ''{' is not preceded with whitespace.'
