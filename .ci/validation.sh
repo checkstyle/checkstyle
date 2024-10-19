@@ -313,6 +313,8 @@ no-error-xwiki)
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
+  # xwiki leacked CS violation, so we stay on commit before until they fix build
+  git checkout "815fa52c8ed3a""bc36614e2a3e91c2bf59f24f796"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
