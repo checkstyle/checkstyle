@@ -8,6 +8,8 @@ public class InputRightCurly {
     try {
       /* foo */
     } finally { after = true; }
-    // violation above ''{' at column 15 should have line break after.'
+    // 2 violations above
+    //  ''{' at column 15 should have line break after.'
+    //  ''}' at column 30 should be alone on a line.'
   }
 }
