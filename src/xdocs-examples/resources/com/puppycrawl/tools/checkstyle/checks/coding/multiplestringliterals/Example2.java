@@ -8,8 +8,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
+
 // xdoc section -- start
-public class MyClass {
+public class Example2 {
   String a = "StringContents";
   String a1 = "unchecked";
   @SuppressWarnings("unchecked") // OK, duplicate strings are ignored in annotations
