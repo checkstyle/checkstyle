@@ -13,15 +13,12 @@ public class InputTryCatchIfElse2 {
     try {
       /* foo */
     } catch (NullPointerException e) {
-      // violation below 'Empty catch block.'
+      /* foo */
     } catch (Exception e) {
+      /* foo */
     } finally {
       after = true;
     }
-
-    if (after) {
-      System.out.println("after");
-    } else {}
 
     if (after) {
       System.out.println("after");
@@ -38,6 +35,62 @@ public class InputTryCatchIfElse2 {
     } else if (after) {} else if (after) {
       System.out.println("before");
     } else if (!after) { /* foo */ } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("foo");
+    } else if (false) {
+      System.out.println("foo");
+    } else {
+      System.out.println("foo");
+    }
+
+    if (after) {
+      System.out.println("after");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else if (after) {
+      System.out.println("before");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else if (after) {
+      System.out.println("before");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else if (after) {
+      System.out.println("before");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else if (after) {
+      System.out.println("before");
+    } else {
+      System.out.println("before");
+    }
+
+    if (after) {
+      System.out.println("after");
+    } else if (after) {
+      System.out.println("before");
+      // violation below ''}' at column 5 should be on the same line as .* multi-block statement'
+    }
+    else {
       System.out.println("before");
     }
   }
