@@ -2,20 +2,22 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DeclarationOrder">
-      <property name="ignoreModifiers" value="true"/>
+      <property name="ignoreConstructors" value="true"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
+
 // xdoc section -- start
-public class Test {
+public class Example2 {
 
   public int a;
   protected int b;
-  public int c;            // OK, access modifiers not considered while validating
+  public int c;            // violation, variable access definition in wrong order
 
-  Test() {
+  Example2() {
     this.a = 0;
   }
 
@@ -23,7 +25,7 @@ public class Test {
     // This method does nothing
   }
 
-  Test(int a) {            // violation, constructor definition in wrong order
+  Example2(int a) {            // OK, validation of constructors ignored
     this.a = a;
   }
 

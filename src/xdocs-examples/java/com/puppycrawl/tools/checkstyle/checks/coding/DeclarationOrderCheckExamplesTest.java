@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_ACCESS;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class DeclarationOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +36,31 @@ public class DeclarationOrderCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:3: " + getCheckMessage(MSG_ACCESS),
+            "26:3: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "30:3: " + getCheckMessage(MSG_INSTANCE),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "18:3: " + getCheckMessage(MSG_ACCESS),
+            "32:3: " + getCheckMessage(MSG_INSTANCE),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "28:3: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "32:3: " + getCheckMessage(MSG_INSTANCE),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
