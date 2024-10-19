@@ -6,14 +6,16 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
+
 // xdoc section -- start
-public class Test {
+public class Example1 {
 
   public int a;
   protected int b;
   public int c;            // violation, variable access definition in wrong order
 
-  Test() {
+  Example1() {
     this.a = 0;
   }
 
@@ -21,7 +23,7 @@ public class Test {
     // This method does nothing
   }
 
-  Test(int a) {            // violation, constructor definition in wrong order
+  Example1(int a) {            // violation, constructor definition in wrong order
     this.a = a;
   }
 
