@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -915,8 +914,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     private void checkThrowsTags(List<JavadocTag> tags,
             List<ExceptionInfo> throwsList, boolean reportExpectedTags) {
         // Loop over the tags, checking to see they exist in the throws.
-        // The foundThrows used for performance only
-        final Set<String> foundThrows = new HashSet<>();
         final ListIterator<JavadocTag> tagIt = tags.listIterator();
         while (tagIt.hasNext()) {
             final JavadocTag tag = tagIt.next();
@@ -927,10 +924,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             // Loop looking for matching throw
-            final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
-                    .getColumnNo());
-            final ClassInfo documentedClassInfo = new ClassInfo(token);
-            processThrows(throwsList, documentedClassInfo, foundThrows);
+            processThrows(throwsList, tag.getFirstArg());
         }
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems
@@ -949,25 +943,16 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Verifies that documented exception is in throws.
      *
      * @param throwsIterable collection of throws
-     * @param documentedClassInfo documented exception class info
-     * @param foundThrows previously found throws
+     * @param documentedClassName documented exception class name
      */
     private static void processThrows(Iterable<ExceptionInfo> throwsIterable,
-                                      ClassInfo documentedClassInfo, Set<String> foundThrows) {
-        ExceptionInfo foundException = null;
-
-        // First look for matches on the exception name
+                                      String documentedClassName) {
         for (ExceptionInfo exceptionInfo : throwsIterable) {
             if (isClassNamesSame(exceptionInfo.getName().getText(),
-                    documentedClassInfo.getName().getText())) {
-                foundException = exceptionInfo;
+                    documentedClassName)) {
+                exceptionInfo.setFound();
                 break;
             }
-        }
-
-        if (foundException != null) {
-            foundException.setFound();
-            foundThrows.add(documentedClassInfo.getName().getText());
         }
     }
 
