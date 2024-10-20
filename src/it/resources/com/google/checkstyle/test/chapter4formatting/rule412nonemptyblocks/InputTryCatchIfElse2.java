@@ -5,10 +5,6 @@ public class InputTryCatchIfElse2 {
   /** some javadoc. */
   public static void main(String[] args) {
     boolean after = false;
-    try {
-      /* foo */
-    } finally { after = true; }
-    // violation above ''{' at column 15 should have line break after.'
 
     try {
       /* foo */

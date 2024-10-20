@@ -100,7 +100,7 @@
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
       <property name="tokens"
-               value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE,
+               value="LITERAL_TRY, LITERAL_CATCH, LITERAL_IF, LITERAL_ELSE,
                     LITERAL_DO"/>
     </module>
     <module name="RightCurly">
@@ -109,7 +109,7 @@
       <property name="tokens"
                value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
                     INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
-                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE"/>
+                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_FINALLY"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
       <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
