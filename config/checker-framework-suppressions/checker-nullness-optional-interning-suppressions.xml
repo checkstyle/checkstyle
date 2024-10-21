@@ -3993,9 +3993,9 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.java</fileName>
     <specifier>type.argument</specifier>
     <message>incompatible type argument for type parameter T of ThreadLocal.</message>
-    <lineContent>private static final ThreadLocal&lt;Map&lt;LineColumn, ParseStatus&gt;&gt; TREE_CACHE =</lineContent>
+    <lineContent>private static final ThreadLocal&lt;Map&lt;Integer, ParseStatus&gt;&gt; TREE_CACHE =</lineContent>
     <details>
-      found   : @Initialized @NonNull Map&lt;@Initialized @NonNull LineColumn, @Initialized @NonNull ParseStatus&gt;
+      found   : @Initialized @NonNull Map&lt;@Initialized @NonNull Integer, @Initialized @NonNull ParseStatus&gt;
       required: [extends @Initialized @Nullable Object super null (NullType)]
     </details>
   </checkerFrameworkError>
