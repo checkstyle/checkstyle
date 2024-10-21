@@ -97,7 +97,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "DesignForExtension",
             "HideUtilityClassConstructor",
             "LocalVariableName",
-            "MutableException",
             "RedundantModifier",
             "SeparatorWrap",
             "SuperFinalize");
