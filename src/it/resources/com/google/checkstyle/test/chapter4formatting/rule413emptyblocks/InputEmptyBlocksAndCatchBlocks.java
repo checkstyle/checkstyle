@@ -41,7 +41,7 @@ class InputEmptyBlocksAndCatchBlocks {
     int a = 90;
 
     if (a == 1) {
-    } else {} // false-negative until #15664
+    } else {} // false-negative until #15791
 
     if (a == 1) {
     } else { }
@@ -51,12 +51,12 @@ class InputEmptyBlocksAndCatchBlocks {
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {}
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // false-negative above until #15664
+    // false-negative above until #15792
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
     // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
     try (MyResource r = new MyResource()) {
 
-    } catch (Exception expected) {} // false-negative until #15664
+    } catch (Exception expected) {} // false-negative until #15792
     try (MyResource r = new MyResource()) {
 
     } catch (Exception expected) { }
