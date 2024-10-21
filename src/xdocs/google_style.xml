@@ -671,10 +671,14 @@
                   config</a>)
                   <br/>
                   <br/>
-                  The "Exception" part of the rule is not satisfied,
-                  it will be addressed in the issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/14294">
-                    #14294
+                  There are some false-negatives regarding <code>ELSE</code> &amp;
+                  <code>CATCH</code> statements, they're addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15791">
+                    #15791
+                  </a>
+                  and
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15792">
+                    #15792
                   </a>
                 </td>
                 <td>
