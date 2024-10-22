@@ -1,22 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////////////////////
-// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2024 the original author or authors.
-//
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-///////////////////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Matcher;
@@ -207,17 +188,13 @@ public class RegexpCheck extends AbstractCheck {
     /** Boolean to say if we should check for duplicates. */
     private boolean checkForDuplicates;
 
-    /** Tracks number of matches made. */
-    private int matchCount;
-
     /** Tracks number of errors. */
-    private int errorCount;
+//    private int errorCount;
 
     /** Specify the pattern to match against. */
     private Pattern format = Pattern.compile("^$", Pattern.MULTILINE);
 
     /** The matcher. */
-    private Matcher matcher;
 
     /**
      * Setter to specify message which is used to notify about violations,
@@ -304,56 +281,41 @@ public class RegexpCheck extends AbstractCheck {
     @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
-        matcher = format.matcher(getFileContents().getText().getFullText());
-        matchCount = 0;
-        errorCount = 0;
-        findMatch();
+        Matcher matcher = format.matcher(getFileContents().getText().getFullText());
+        processRegexpMatches(matcher);
     }
 
     /**
-     * Recursive method that finds the matches.
-     *
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
+     * Finds the matches in the file.
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
-    private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (foundMatch) {
+    private void processRegexpMatches(Matcher matcher) {
+        int errorCount = 0;
+        int matchCount = 0;
+        while (matcher.find() && errorCount <= errorLimit-1) {
             final FileText text = getFileContents().getText();
             final LineColumn start = text.lineColumn(matcher.start());
             final int startLine = start.getLine();
 
-            final boolean ignore = isIgnore(startLine, text, start);
-
+            final boolean ignore = isIgnore(startLine, text, start,matcher);
             if (!ignore) {
                 matchCount++;
                 if (illegalPattern || checkForDuplicates
                         && matchCount - 1 > duplicateLimit) {
                     errorCount++;
-                    logMessage(startLine);
+                    logMessage(startLine,errorCount);
                 }
             }
-            if (canContinueValidation(ignore)) {
-                findMatch();
+            if(!ignore && !illegalPattern && !checkForDuplicates) {
+                break;
             }
         }
-        else if (!illegalPattern && matchCount == 0) {
-            final String msg = getMessage();
+
+        if (!illegalPattern && matchCount == 0) {
+            final String msg = getMessage(errorCount);
             log(1, MSG_REQUIRED_REGEXP, msg);
         }
-    }
-
-    /**
-     * Check if we can stop validation.
-     *
-     * @param ignore flag
-     * @return true is we can continue
-     */
-    private boolean canContinueValidation(boolean ignore) {
-        return errorCount <= errorLimit - 1
-                && (ignore || illegalPattern || checkForDuplicates);
     }
 
     /**
@@ -366,7 +328,7 @@ public class RegexpCheck extends AbstractCheck {
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
-    private boolean isIgnore(int startLine, FileText text, LineColumn start) {
+    private boolean isIgnore(int startLine, FileText text, LineColumn start ,Matcher matcher) {
         final LineColumn end;
         if (matcher.end() == 0) {
             end = text.lineColumn(0);
@@ -391,8 +353,8 @@ public class RegexpCheck extends AbstractCheck {
      *
      * @param lineNumber the line number the message relates to.
      */
-    private void logMessage(int lineNumber) {
-        final String msg = getMessage();
+    private void logMessage(int lineNumber,int errorCount) {
+        final String msg = getMessage(errorCount);
 
         if (illegalPattern) {
             log(lineNumber, MSG_ILLEGAL_REGEXP, msg);
@@ -407,7 +369,7 @@ public class RegexpCheck extends AbstractCheck {
      *
      * @return message for violation.
      */
-    private String getMessage() {
+    private String getMessage(int errorCount) {
         String msg;
 
         if (message == null || message.isEmpty()) {
