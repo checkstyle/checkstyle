@@ -207,7 +207,7 @@
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
-    <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
+    <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.8.6.5</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.24.0</maven.pmd.plugin.version>
     <pmd.version>7.7.0</pmd.version>
