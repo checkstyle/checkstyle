@@ -57,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck
 import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
+import com.puppycrawl.tools.checkstyle.checks.coding.ParameterPlacementOption;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
@@ -99,7 +100,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("TrailingArrayCommaOption", AnnotationUseStyleCheck.TrailingArrayCommaOption.class)
             .put("URI", URI.class)
             .put("WrapOption", WrapOption.class)
-            .put("PARAM_LITERAL", int[].class).build();
+            .put("PARAM_LITERAL", int[].class)
+            .put("ParameterPlacementOption", ParameterPlacementOption.class).build();
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();

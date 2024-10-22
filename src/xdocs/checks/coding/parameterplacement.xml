@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ParameterPlacement</title>
+  </head>
+  <body>
+    <section name="ParameterPlacement">
+      <p>Since Checkstyle 10.18.3</p>
+      <subsection name="Description" id="Description">
+        <div> Checks placement of parameters.</div>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Specify policy for parameter placing.</td>
+              <td><a href="../../property_types.html#ParameterPlacementOption">ParameterPlacementOption</a></td>
+              <td><code>own_line_allow_single_line</code></td>
+              <td>10.18.3</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                    METHOD_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
+                    CTOR_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+                    SUPER_CTOR_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                    LITERAL_NEW</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+                    ANNOTATION</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                    METHOD_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
+                    CTOR_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
+                    SUPER_CTOR_CALL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                    LITERAL_NEW</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+                    ANNOTATION</a>
+                  .
+              </td>
+              <td>10.18.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check so that all parameters are on their own line:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterPlacement&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;own_line&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <source>
+class Example1
+{
+  // violation below 'Parameters must be placed on separate lines.'
+  Example1(int a) {
+  }
+
+  Example1(
+      char a) {
+  }
+
+  // violation below 'Parameters must be placed on separate lines.'
+  Example1(int a, int b) {
+  }
+
+  // violation below 'Parameters must be placed on separate lines.'
+  Example1(char a,
+      int b) {
+  }
+
+  Example1(
+      byte a,
+      // violation below 'Parameters must be placed on separate lines.'
+      int b, int c,
+      int d) {
+  }
+
+  Example1(
+      float a,
+      int b,
+      int c) {
+  }
+
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check so that all parameters are on their own line,
+          with single line of parameters allowed:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterPlacement&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;own_line_allow_single_line&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+class Example2
+{
+  Example2() {
+  }
+
+  Example2(int a) {
+  }
+
+  Example2(
+          char a) {
+  }
+
+  Example2(int a, int b) {
+
+  }
+
+  // violation below 'Parameters must be placed on separate lines.'
+  Example2(char a,
+          int b) {
+
+  }
+
+  Example2(
+          byte a,
+          // violation below 'Parameters must be placed on separate lines.'
+          int b, int c,
+          int d) {
+
+  }
+
+  Example2(
+          float a,
+          int b,
+          int c) {
+
+  }
+
+}
+        </source>
+        <p id="Example3-config">
+          To configure the check so that all parameters are on separate lines:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterPlacement&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;separate_line&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+class Example3
+{
+  Example3() {
+  }
+
+  Example3(int a) {
+  }
+
+  Example3(
+          char a) {
+  }
+
+  // violation below 'Parameters must be placed on separate lines.'
+  Example3(int a, int b) {
+  }
+
+  Example3(char a,
+          int b) {
+  }
+
+  Example3(
+          byte a,
+          // violation below 'Parameters must be placed on separate lines.'
+          int b, int c,
+          int d) {
+  }
+
+  Example3(
+          float a,
+          int b,
+          int c) {
+
+  }
+
+}
+        </source>
+        <p id="Example4-config">
+          To configure the check so that all parameters are on separate lines,
+          with single line of parameters allowed:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ParameterPlacement&quot;&gt;
+    &lt;property name=&quot;option&quot; value=&quot;separate_line_allow_single_line&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <source>
+class Example4
+{
+  Example4() {
+  }
+
+  Example4(int a) {
+  }
+
+  Example4(
+          char a) {
+  }
+
+  Example4(int a, int b) {
+  }
+
+  Example4(char a,
+          int b) {
+  }
+
+  Example4(
+          byte a,
+          // violation below 'Parameters must be placed on separate lines.'
+          int b, int c,
+          int d) {
+  }
+
+  Example4(
+          float a,
+          int b,
+          int c) {
+  }
+
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterPlacement">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22parameter.placement%22">
+              parameter.placement
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
