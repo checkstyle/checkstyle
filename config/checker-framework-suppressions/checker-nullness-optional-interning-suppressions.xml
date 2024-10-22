@@ -155,29 +155,11 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return children.toArray(</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable Configuration @Initialized @NonNull []
-      method return type: @Initialized @NonNull Configuration @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
     <lineContent>return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
     <details>
       type of expression: @Initialized @Nullable String @Initialized @NonNull []
       method return type: @Initialized @NonNull String @Initialized @NonNull []
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return children.toArray(</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
