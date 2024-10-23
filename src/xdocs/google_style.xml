@@ -671,11 +671,17 @@
                   config</a>)
                   <br/>
                   <br/>
-                  The "Exception" part of the rule is not satisfied,
-                  it will be addressed in the issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/14294">
-                    #14294
+                  There are some false-negatives regarding <code>ELSE</code> &amp;
+                  <code>CATCH</code> &amp; <code>DEFAULT</code> blocks, they will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15791">
+                    #15791
                   </a>
+                  and
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15792">
+                    #15792
+                  </a>
+                  and
+                  <a href="https://github.com/checkstyle/checkstyle/issues/14782">#14782</a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks">
@@ -705,7 +711,9 @@
                   <br/>
                   There are some false-negatives regarding K &amp; R style brackets
                   for empty blocks, they're addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15664">#15664</a>
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15791">#15791</a>
+                  and
+                  <a href="https://github.com/checkstyle/checkstyle/issues/15792">#15792</a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks">
@@ -734,16 +742,6 @@
                   <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
                   config</a>)
-                  <br />
-                  <br />
-                  The rule "A line is never broken adjacent to the arrow in a
-                  lambda, except that a break may come immediately after the arrow
-                  if the body of the lambda consists of a single unbraced
-                  expression" will be addressed in the issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/4006">
-                    #4006</a>.
-                  <br />
-                  <br />
                   Indentation violation for separate Code Blocks are suppressed, see
                   <a href="https://github.com/checkstyle/checkstyle/issues/15769">
                     #15769</a> for more details.
@@ -1026,13 +1024,6 @@
                     NoWhitespaceBeforeCaseDefaultColon</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
                   config</a>)
-                  <br />
-                  <br/>
-                  There are some false positive and negative cases for "{}" and "{ }".
-                  See issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15338">
-                    #15338</a>
-                  for more detailed explanation.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">
@@ -1721,12 +1712,6 @@
                   <a href="checks/naming/methodname.html#MethodName">MethodName</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
                   config</a>)
-                  <br/>
-                  <br/>
-                  No ability to distinguish verb at the beginning of name;
-                  distinguishing of Test method from others to allow "_" in test methods only
-                  will be done at
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15429">#15429</a>.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule523methodnames">
@@ -2168,11 +2153,6 @@
                   <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
                   config</a>)
-                  <br />
-                  <br />
-                  We don't have support to check for the extra preceding p tag before block tag;
-                  there is known issue to cover it fully:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/15011">#15011</a>
                   <br />
                   <br />
                   <span class="wrapper inline">

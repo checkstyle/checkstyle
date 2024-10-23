@@ -8,32 +8,32 @@ processJavadoc = (default)true
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.google.errorprone.annotations.*;
-import com.google.errorprone.annotations.concurrent.GuardedBy; //violation
+import com.google.errorprone.annotations.concurrent.GuardedBy; // violation 'Unused import - .*GuardedBy.'
 
 import java.io.*;
 import java.lang.*;
-import java.lang.String; // violation
+import java.lang.String; // violation 'Unused import - java.lang.String.'
 
-import java.util.List; // violation
-import java.util.List; // violation
+import java.util.List; // violation 'Unused import - java.util.List.'
+import java.util.List; // violation 'Unused import - java.util.List.'
 import java.lang.*;
 import java.util.Iterator;
-import java.util.Enumeration; // violation
+import java.util.Enumeration; // violation 'Unused import - java.util.Enumeration.'
 import java.util.Arrays;
 import javax.swing.JToolBar;
-import javax.swing.JToggleButton; // violation
+import javax.swing.JToggleButton; // violation 'Unused import - javax.swing.JToggleButton.'
 
-import javax.swing.BorderFactory; // violation
+import javax.swing.BorderFactory; // violation 'Unused import - javax.swing.BorderFactory.'
 
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static java.io.File. // violation
+import static java.io.File. // violation 'Unused import - java.io.File.createTempFile.'
     createTempFile;
 
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
-import java.awt.Label; // violation
+import java.awt.Label; // violation 'Unused import - java.awt.Label.'
 import java.util.Date;
 import java.util.Calendar;
 import java.util.BitSet;
@@ -45,7 +45,7 @@ import com.google.errorprone.annotations.concurrent.LazyInit;
 import com.google.errorprone.annotations.DoNotCall;
 import com.google.errorprone.annotations.CompileTimeConstant;
 import com.google.errorprone.annotations.FormatString;
-import com.google.errorprone.annotations.ForOverride; // violation
+import com.google.errorprone.annotations.ForOverride; // violation 'Unused import - .*ForOverride.'
 
 /**
  * Test case for imports

@@ -9,8 +9,8 @@ processJavadoc = (default)true
 
 import java.util.List;
 import java.util.List;
-import java.util.Arrays; // violation
-import java.lang.String; // violation
+import java.util.Arrays; // violation 'Unused import - java.util.Arrays.'
+import java.lang.String; // violation 'Unused import - java.lang.String.'
 import static java.lang.Math.PI;
 
 public class InputUnusedImportsFileInUnnamedPackage

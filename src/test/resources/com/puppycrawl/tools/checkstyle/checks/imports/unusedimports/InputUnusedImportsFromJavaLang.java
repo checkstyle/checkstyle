@@ -7,17 +7,17 @@ processJavadoc = (default)true
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import java.lang.String; // violation
-import java.lang.Math; // violation
-import java.lang.Class; // violation
-import java.lang.Exception; // violation
-import java.lang.Runnable; // violation
-import java.lang.RuntimeException; // violation
-import java.lang.ProcessBuilder; // violation
-import java.lang.Double; // violation
-import java.lang.Integer; // violation
-import java.lang.Float; // violation
-import java.lang.Short; // violation
+import java.lang.String; // violation 'Unused import - java.lang.String.'
+import java.lang.Math; // violation 'Unused import - java.lang.Math.'
+import java.lang.Class; // violation 'Unused import - java.lang.Class.'
+import java.lang.Exception; // violation 'Unused import - java.lang.Exception.'
+import java.lang.Runnable; // violation 'Unused import - java.lang.Runnable.'
+import java.lang.RuntimeException; // violation 'Unused import - java.lang.RuntimeException.'
+import java.lang.ProcessBuilder; // violation 'Unused import - java.lang.ProcessBuilder.'
+import java.lang.Double; // violation 'Unused import - java.lang.Double.'
+import java.lang.Integer; // violation 'Unused import - java.lang.Integer.'
+import java.lang.Float; // violation 'Unused import - java.lang.Float.'
+import java.lang.Short; // violation 'Unused import - java.lang.Short.'
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
