@@ -49,13 +49,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
         final int[] actual = javadocMethodCheck.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.INTERFACE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
         };
 
@@ -420,12 +416,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGetRequiredTokens() {
-        final int[] expected = {
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.RECORD_DEF,
-        };
+        final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
         assertWithMessage("Required tokens differ from expected")
