@@ -190,6 +190,20 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCache2() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache3.java"), expected);
+    }
+
+    @Test
+    public void testCache3() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
+        };
+        verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache4.java"), expected);
+    }
+
+    @Test
     public void testPositionOne() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -735,7 +749,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         @Override
         public void visitJavadocToken(DetailNode ast) {
             if (reportVisitJavadocToken) {
-                // We reusing messages from JavadocTypeCheck
+                // We're reusing messages from JavadocTypeCheck
                 // it is not possible to use test specific bundle of messages
                 log(ast.getLineNumber(), ast.getColumnNumber(), MSG_TAG_FORMAT, ast.getText());
             }
