@@ -9,11 +9,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import java.util.AbstractMap;
 import java.util.List;
-import java.util.Map; // violation
-import java.util.Set; // violation
+import java.util.Map; // violation 'Unused import - java.util.Map.'
+import java.util.Set; // violation 'Unused import - java.util.Set.'
 import java.util.concurrent.Callable;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed;
+// violation above 'Unused import - .*InputUnusedImportsShadowed.'
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Deprecated;
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Foo;
 import com.puppycrawl.tools.checkstyle.checks.imports.unusedimports.InputUnusedImportsShadowed.Inner;

@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import javax.swing.JToolBar; // violation
-import javax.swing.JToggleButton; // violation
+import javax.swing.JToolBar; // violation 'Unused import - javax.swing.JToolBar.'
+import javax.swing.JToggleButton; // violation 'Unused import - javax.swing.JToggleButton.'
 
 import org.w3c.dom.Node;
 
