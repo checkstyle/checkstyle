@@ -8,44 +8,44 @@ processJavadoc = false
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 import com.google.errorprone.annotations.*;
-import com.google.errorprone.annotations.concurrent.GuardedBy; //violation
+import com.google.errorprone.annotations.concurrent.GuardedBy; // violation 'Unused import - .*GuardedBy.'
 
 import java.io.*;
 import java.lang.*;
-import java.lang.String; // violation
+import java.lang.String; // violation 'Unused import - java.lang.String.'
 
-import java.util.List; // violation
-import java.util.List; // violation
+import java.util.List; // violation 'Unused import - java.util.List.'
+import java.util.List; // violation 'Unused import - java.util.List.'
 import java.lang.*;
 import java.util.Iterator;
-import java.util.Enumeration; // violation
+import java.util.Enumeration; // violation 'Unused import - java.util.Enumeration.'
 import java.util.Arrays;
 import javax.swing.JToolBar;
-import javax.swing.JToggleButton; // violation
+import javax.swing.JToggleButton; // violation 'Unused import - javax.swing.JToggleButton.'
 
-import javax.swing.BorderFactory; // violation
+import javax.swing.BorderFactory; // violation 'Unused import - javax.swing.BorderFactory.'
 
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static java.io.File. // violation
+import static java.io.File. // violation 'Unused import - java.io.File.createTempFile.'
     createTempFile;
 
-import java.awt.Graphics2D; // violation
-import java.awt.HeadlessException; // violation
-import java.awt.Label; // violation
-import java.util.Date; // violation
-import java.util.Calendar; // violation
-import java.util.BitSet; // violation
+import java.awt.Graphics2D; // violation 'Unused import - java.awt.Graphics2D.'
+import java.awt.HeadlessException; // violation 'Unused import - java.awt.HeadlessException.'
+import java.awt.Label; // violation 'Unused import - java.awt.Label.'
+import java.util.Date; // violation 'Unused import - java.util.Date.'
+import java.util.Calendar; // violation 'Unused import - java.util.Calendar.'
+import java.util.BitSet; // violation 'Unused import - java.util.BitSet.'
 
-import com.google.errorprone.annotations.CheckReturnValue; // violation
-import com.google.errorprone.annotations.CanIgnoreReturnValue; // violation
-import com.google.errorprone.annotations.CompatibleWith; // violation
-import com.google.errorprone.annotations.concurrent.LazyInit; // violation
-import com.google.errorprone.annotations.DoNotCall; // violation
-import com.google.errorprone.annotations.CompileTimeConstant; // violation
-import com.google.errorprone.annotations.FormatMethod; // violation
-import com.google.errorprone.annotations.FormatString; // violation
+import com.google.errorprone.annotations.CheckReturnValue; // violation 'Unused import - .*CheckReturnValue.'
+import com.google.errorprone.annotations.CanIgnoreReturnValue; // violation 'Unused import - .*CanIgnoreReturnValue.'
+import com.google.errorprone.annotations.CompatibleWith; // violation 'Unused import - .*CompatibleWith.'
+import com.google.errorprone.annotations.concurrent.LazyInit; // violation 'Unused import - .*LazyInit.'
+import com.google.errorprone.annotations.DoNotCall; // violation 'Unused import - .*DoNotCall.'
+import com.google.errorprone.annotations.CompileTimeConstant; // violation 'Unused import - .*CompileTimeConstant.'
+import com.google.errorprone.annotations.FormatMethod; // violation 'Unused import - .*FormatMethod.'
+import com.google.errorprone.annotations.FormatString; // violation 'Unused import - .*FormatString.'
 
 /**
  * Test case for imports

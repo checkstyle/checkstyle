@@ -267,7 +267,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc."
                     + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",

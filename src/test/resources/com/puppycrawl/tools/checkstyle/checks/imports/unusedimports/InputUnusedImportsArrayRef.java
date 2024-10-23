@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.ArrayList; // violation
+import java.util.ArrayList; // violation 'Unused import - java.util.ArrayList.'
 
 public class InputUnusedImportsArrayRef {
 
