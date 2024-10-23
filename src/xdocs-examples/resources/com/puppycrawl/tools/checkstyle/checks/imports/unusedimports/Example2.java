@@ -18,15 +18,15 @@ import java.awt.Component; //OK
 import static java.util.Map.copyOf; //OK
 import static java.util.Arrays.copyOf; //OK
 
-import java.lang.String; // violation
+import java.lang.String; // violation 'Unused import - java.lang.String.'
 
 import java.util.Stack;
-import java.util.Map;   // violation
+import java.util.Map;   // violation 'Unused import - java.util.Map.'
 
-import java.util.List; // violation
+import java.util.List; // violation 'Unused import - java.util.List.'
 import java.util.function.Function;
 
-import static java.lang.Integer.parseInt; // violation
+import static java.lang.Integer.parseInt; // violation 'Unused import - java.lang.Integer.parseInt.'
 
 /**
 * {@link List}
