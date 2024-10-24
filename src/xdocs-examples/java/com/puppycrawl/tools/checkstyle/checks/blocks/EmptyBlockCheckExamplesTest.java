@@ -55,9 +55,11 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     public void testExample3() throws Exception {
         final String[] expected = {
             "19:16: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "20:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "37:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "38:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "22:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "24:15: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "27:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "45:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
