@@ -9,17 +9,10 @@
     <section name="EmptyBlock">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div> Checks for empty blocks. This check does not validate sequential blocks. </div>
+        <div> Checks for empty blocks. </div>
 
-        <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
-        <source>
-switch (a) {
-  case 1:                          // no violation
-  case 2:                          // no violation
-  case 3: someMethod(); { }        // no violation
-  default: break;
-}
-        </source>
+        <p> This check does not validate sequential blocks. This check does not violate fallthrough.
+        </p>
 
         <p>
           NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
@@ -184,6 +177,13 @@ public class Example3 {
   private void testBadSwitchStatement(int a) {
     switch (a) {
       case 1 : { }  // violation, 'Must have at least one statement'
+      // the second empty block is 'sequential', skipped.
+      // violation below, 'Must have at least one statement'
+      case 2: {} {};
+      // violation below, 'Must have at least one statement'
+      case 3: {} {System.out.println();}
+      // the second empty block is 'sequential', skipped.
+      case 4: {System.out.println();} {}
       default : { }  // violation, 'Must have at least one statement'
     }
   }
