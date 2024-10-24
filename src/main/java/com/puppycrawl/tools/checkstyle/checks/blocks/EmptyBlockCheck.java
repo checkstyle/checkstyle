@@ -32,20 +32,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Checks for empty blocks. This check does not validate sequential blocks.
+ * Checks for empty blocks.
  * </div>
  *
  * <p>
- * Sequential blocks won't be checked. Also, no violations for fallthrough:
+ * This check does not validate sequential blocks. This check does not violate fallthrough.
  * </p>
- * <pre>
- * switch (a) {
- *   case 1:                          // no violation
- *   case 2:                          // no violation
- *   case 3: someMethod(); { }        // no violation
- *   default: break;
- * }
- * </pre>
  *
  * <p>
  * NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.

@@ -9,17 +9,10 @@
     <section name="EmptyBlock">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div> Checks for empty blocks. This check does not validate sequential blocks. </div>
+        <div> Checks for empty blocks. </div>
 
-        <p> Sequential blocks won't be checked. Also, no violations for fallthrough: </p>
-        <source>
-switch (a) {
-  case 1:                          // no violation
-  case 2:                          // no violation
-  case 3: someMethod(); { }        // no violation
-  default: break;
-}
-        </source>
+        <p> This check does not validate sequential blocks. This check does not violate fallthrough.
+        </p>
 
         <p>
           NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
