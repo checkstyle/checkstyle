@@ -13,7 +13,7 @@
     To completely disable a check, just comment it out or delete it from the file.
     To suppress certain violations please review suppression filters.
 
-    Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+    Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov, Mauryan Kansara ( Zops ).
  -->
 
 <module name="Checker">
