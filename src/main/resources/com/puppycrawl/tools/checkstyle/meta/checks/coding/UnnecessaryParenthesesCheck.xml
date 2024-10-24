@@ -52,7 +52,7 @@
  boolean c = false, d = false;
  if ((a &amp;amp;&amp;amp; b) || c) { // violation, unnecessary paren
  }
- if (a &amp;amp;&amp;amp; (b || c)) { // ok
+ if (a &amp;amp;&amp;amp; (b || c)) { 
  }
  if ((a == b) &amp;amp;&amp;amp; c) { // violation, unnecessary paren
  }
@@ -61,7 +61,7 @@
  }
  int f = 0;
  int g = 0;
- if (!(f &amp;gt;= g) // ok
+ if (!(f &amp;gt;= g) 
          &amp;amp;&amp;amp; (g &amp;gt; f)) { // violation, unnecessary paren
  }
  if ((++f) &amp;gt; g &amp;amp;&amp;amp; a) { // violation, unnecessary paren
