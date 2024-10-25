@@ -78,7 +78,7 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert">
+  <rule ref="category/java/bestpractices.xml/UnitTestShouldIncludeAssert">
     <!-- PMD cannot find assert if it is located in private method of this class called from
            the test method or method of another class. -->
     <properties>
@@ -132,14 +132,14 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation">
+  <rule ref="category/java/bestpractices.xml/UnitTestShouldUseBeforeAnnotation">
     <properties>
       <!-- A false positive. -->
       <property name="violationSuppressXPath"
                value="//ClassDeclaration[@SimpleName='CommitValidationTest']"/>
     </properties>
   </rule>
-  <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+  <rule ref="category/java/bestpractices.xml/UnitTestContainsTooManyAsserts">
     <properties>
       <property name="maximumAsserts" value="11"/>
       <!-- GeneratedJavadocTokenTypesTest.testTokenNumbers and
