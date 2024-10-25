@@ -72,7 +72,7 @@ section {
   position: relative;
 }
 
-p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #navcolumn h5,
+div, p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #navcolumn h5,
   #navcolumn li, #footer, div.tip b, .releaseDate, .xright {
   font-size: 15px;
 }
