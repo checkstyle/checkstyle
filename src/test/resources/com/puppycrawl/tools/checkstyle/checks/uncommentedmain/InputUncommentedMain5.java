@@ -18,7 +18,7 @@ public class InputUncommentedMain5
 class PC {
 
     // uncommented main with depth 2
-    public static void main(String[] args) // violation
+    public static void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("PC.main()");
     }
