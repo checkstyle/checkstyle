@@ -6,8 +6,11 @@
 </module>
 */
 
+
+package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
+
 // xdoc section -- start
-public class Test {
+public class Example1 {
 
   public void foo1() {
     int num;        // violation, distance = 4
