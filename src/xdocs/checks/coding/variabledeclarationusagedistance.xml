@@ -71,7 +71,7 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
+public class Example1 {
 
   public void foo1() {
     int num;        // violation, distance = 4
@@ -149,7 +149,7 @@ cal.set(Calendar.MINUTE, minutes);
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
+public class Example2 {
 
   public void foo1() {
     int num;        // OK, distance = 4
@@ -192,7 +192,7 @@ public class Test {
         </p>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
+public class Example3 {
 
   public void foo1() {
     int num;        // OK, variable ignored
@@ -232,7 +232,7 @@ public class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
+public class Example4 {
 
   public void foo1() {
     int num;        // violation, distance = 4
@@ -272,7 +272,7 @@ public class Test {
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-public class Test {
+public class Example5 {
 
   public void foo1() {
     int num;        // violation, distance = 4
