@@ -8,11 +8,11 @@
 
 // xdoc section -- start
 public class Game {
-   public static void main(String... args){}   // violation
+   public static void main(String... args){}   // violation 'Uncommented main method found'
 }
 
 public class Main {
-   public static void main(String[] args){}   // violation
+   public static void main(String[] args){}   // violation 'Uncommented main method found'
 }
 
 public class Launch {
@@ -24,7 +24,7 @@ public class Start {
 }
 
 public record MyRecord1 {
-    public void main(){}                       // violation
+    public void main(){}                       // violation 'Uncommented main method found'
 }
 
 public record MyRecord2 {

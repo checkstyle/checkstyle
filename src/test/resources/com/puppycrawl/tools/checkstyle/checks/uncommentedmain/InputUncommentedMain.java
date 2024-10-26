@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 public class InputUncommentedMain
 {
     // uncommented main
-    public static void main(String[] args) // violation
+    public static void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("InputUncommentedMain.main()");
     }
@@ -23,7 +23,7 @@ public class InputUncommentedMain
 class Main1
 {
     // uncommented main in class Main
-    public static void main(String[] args) // violation
+    public static void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("Main.main()");
     }
@@ -32,7 +32,7 @@ class Main1
 class UncommentedMainTest1
 {
     // one more uncommented main
-    public static void main(java.lang.String[] args) // violation
+    public static void main(java.lang.String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("test1.main()");
     }
@@ -96,7 +96,7 @@ class UncommentedMainTest7
 class UncommentedMainTest8
 {
 
-    public static void main(String... args) // violation
+    public static void main(String... args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("test8.main()");
     }
