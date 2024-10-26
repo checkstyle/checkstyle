@@ -35,10 +35,20 @@ public class HideUtilityClassConstructorCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY),
-            "37:1: " + getCheckMessage(MSG_KEY),
+            "13:1: " + getCheckMessage(MSG_KEY),
+            "39:1: " + getCheckMessage(MSG_KEY),
+            "45:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "42:1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
