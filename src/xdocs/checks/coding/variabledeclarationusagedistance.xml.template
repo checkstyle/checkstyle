@@ -31,13 +31,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -83,13 +83,13 @@ cal.set(Calendar.MINUTE, minutes);
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -97,7 +97,7 @@ cal.set(Calendar.MINUTE, minutes);
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p>
@@ -106,7 +106,7 @@ cal.set(Calendar.MINUTE, minutes);
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -114,13 +114,13 @@ cal.set(Calendar.MINUTE, minutes);
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -128,13 +128,13 @@ cal.set(Calendar.MINUTE, minutes);
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
