@@ -10,6 +10,159 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.19.0">
+      <div class="releaseDate">26.10.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            WhitespaceAround: new property allowEmptySwitchBlockStatements.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/9540">#9540</a>
+          </li>
+          <li>
+            UnnecessaryParenthesesCheck does not flag unnecessary parentheses in conditional
+            expression.
+            Author: Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/15263">#15263</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            false-negative in google_checks.xml for not being able to detect requirement of K &amp;
+            R style for FINALLY.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15664">#15664</a>
+          </li>
+          <li>
+            google_checks.xml: remove xpath suppression and false-positive indentation violations
+            for block codes.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15769">#15769</a>
+          </li>
+          <li>
+            JavadocParagraph does not work when paragraphs have their corresponding closing tag.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15685">#15685</a>
+          </li>
+          <li>
+            Enforce preceding line break for opening braces of a case/default under switch in
+            google_checks.xml.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15324">#15324</a>
+          </li>
+          <li>
+            JavadocParagraph: report violation with column .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15733">#15733</a>
+          </li>
+          <li>
+            JavadocParagraph: violate preceding P tag before block-level HTML tags.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15503">#15503</a>
+          </li>
+          <li>
+            google_checks.xml: JavadocParagraph should have allowNewlineParagraph as false .
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15716">#15716</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enable examples tests.
+            Author: ahmedyoussefg, Konstantinos Koutsilis, akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Add upwards compat for deprecated classes in maven-check….
+            Author: Michael Osipov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14954">#14954</a>
+          </li>
+          <li>
+            Create README for Java grammar updates.
+            Author: nick mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10618">#10618</a>
+          </li>
+          <li>
+            Small font for first sentence of Check description.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15809">#15809</a>
+          </li>
+          <li>
+            doc: update doc for EmptyBlock and extend example.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Chris, Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Review google style coverage table to remove links to closed issues.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15797">#15797</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: ahmedyoussefg, akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: SteLeo1602, Konstantinos Koutsilis, akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            New isOfType Method that Accepts List as its Parameter.
+            Author: ahmedyoussefg
+            <a href="https://github.com/checkstyle/checkstyle/issues/15541">#15541</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Fix all violations of JavadocParagrath check in checkstyle code base.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15763">#15763</a>
+          </li>
+          <li>
+            Enhance Command Line documentation by organizing options in Tabular format.
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/14759">#14759</a>
+          </li>
+          <li>
+            JavadocParagraph: update documentation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15734">#15734</a>
+          </li>
+          <li>
+            regression-report.yml should use yml files for list of projects.
+            Author: piyush kumar sadangi
+            <a href="https://github.com/checkstyle/checkstyle/issues/15743">#15743</a>
+          </li>
+          <li>
+            Create documentation of usage for regression-report.yml workflow .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15380">#15380</a>
+          </li>
+          <li>
+            spelling: suppresion -&gt; suppression.
+            Author: Mark Chesney
+          </li>
+          <li>
+            doc: Fix wording in SuppressionSingleFilter and SuppressionXpathSingleFilter.
+            Author: Martin VÁŇA
+          </li>
+          <li>
+            update JavadocParagraph&#39;s input files.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15713">#15713</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.18.2">
       <div class="releaseDate">29.09.2024</div>
       <p>Bug fixes:</p>
