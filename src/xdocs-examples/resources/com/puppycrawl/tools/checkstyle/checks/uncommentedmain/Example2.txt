@@ -10,7 +10,7 @@
 
 // xdoc section -- start
 public class Game {
-   public static void main(String... args){}   // violation
+   public static void main(String... args){}   // violation 'Uncommented main method found'
 }
 
 public class Main {
