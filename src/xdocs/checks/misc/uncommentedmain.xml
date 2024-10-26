@@ -58,11 +58,11 @@
         <p id="Example1-code">Example:</p>
         <source>
 public class Game {
-   public static void main(String... args){}   // violation 'Uncommented main method found'
+   public static void main(String... args){}   // violation
 }
 
 public class Main {
-   public static void main(String[] args){}   // violation 'Uncommented main method found'
+   public static void main(String[] args){}   // violation
 }
 
 public class Launch {
@@ -74,7 +74,7 @@ public class Start {
 }
 
 public record MyRecord1 {
-    public void main(){}                       // violation 'Uncommented main method found'
+    public void main(){}                       // violation
 }
 
 public record MyRecord2 {
@@ -97,7 +97,7 @@ public record MyRecord2 {
         <p id="Example2-code">Example:</p>
         <source>
 public class Game {
-   public static void main(String... args){}   // violation 'Uncommented main method found'
+   public static void main(String... args){}   // violation
 }
 
 public class Main {
