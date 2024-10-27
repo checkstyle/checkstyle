@@ -5,8 +5,8 @@ OuterTypeFilename
 */
 
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
-
-class Class1 { // violation
+// violation below 'The name of the outer type and the file do not match.'
+class Class1 {
     public interface NestedInterface {}
     public enum NestedEnum {}
     class NestedClass {}
