@@ -92,7 +92,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // till https://github.com/checkstyle/checkstyle/issues/6207
     private static final Set<String> MISSING_CHECK_NAMES = Set.of(
             "ClassFanOutComplexity",
-            "ClassTypeParameterName",
             "DescendantToken",
             "DesignForExtension",
             "HideUtilityClassConstructor",
