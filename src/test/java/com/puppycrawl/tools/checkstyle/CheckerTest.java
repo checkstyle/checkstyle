@@ -76,8 +76,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionFilter;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.CheckWhichThrowsError;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.DebugAuditAdapter;
@@ -1688,6 +1690,38 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         verify(checkerConfig, filePath, expected);
+    }
+
+    @Test
+    public void testRelativizedFileExclusion() throws Exception {
+        final DefaultConfiguration finalLocalVariableCheck =
+                createModuleConfig(FinalLocalVariableCheck.class);
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addChild(finalLocalVariableCheck);
+
+        final DefaultConfiguration beforeExecutionExclusionFileFilterConfig =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+
+        beforeExecutionExclusionFileFilterConfig.addProperty("fileNamePattern",
+                        "^(?!InputCheckerTestExcludeRelativizedFile\\.java$).*");
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        checkerConfig.addChild(treeWalkerConfig);
+        checkerConfig.addChild(beforeExecutionExclusionFileFilterConfig);
+
+        checkerConfig.addProperty("basedir",
+                System.getProperty("user.dir")
+                        + "/src/test/resources/com/puppycrawl/tools/checkstyle/checker");
+
+        final String[] expected = {
+            "5:13: " + getCheckMessage(FinalLocalVariableCheck.class,
+                    FinalLocalVariableCheck.MSG_KEY, "i"),
+        };
+        final File file = new File(getPath("InputCheckerTestExcludeRelativizedFile.java"));
+        final File[] processedFiles = {file};
+        verify(createChecker(checkerConfig), processedFiles,
+                "InputCheckerTestExcludeRelativizedFile.java", expected);
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {
