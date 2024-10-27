@@ -670,13 +670,15 @@ public class HiddenFieldCheck
          *
          * @param field the field to check
          * @return true if this FieldFrame contains static field
-         * @noinspection TailRecursion
-         * @noinspectionreason TailRecursion - until issue #14814
          */
         public boolean containsStaticField(String field) {
-            return staticFields.contains(field)
-                    || parent != null
-                    && parent.containsStaticField(field);
+            FieldFrame currentParent = parent;
+            boolean contains = staticFields.contains(field);
+            while (currentParent != null && !contains) {
+                contains = currentParent.staticFields.contains(field);
+                currentParent = currentParent.parent;
+            }
+            return contains;
         }
 
         /**
