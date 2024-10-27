@@ -8,5 +8,6 @@
 package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
 
 // xdoc section -- start
-enum Example4ButNotSameName {} // violation
+// violation below 'The name of the outer type and the file do not match.'
+enum Example4ButNotSameName {}
 // xdoc section -- end

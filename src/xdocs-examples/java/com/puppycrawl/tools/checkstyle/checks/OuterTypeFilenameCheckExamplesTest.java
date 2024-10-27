@@ -43,7 +43,7 @@ public class OuterTypeFilenameCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY),
+            "12:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -52,7 +52,7 @@ public class OuterTypeFilenameCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY),
+            "12:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -61,7 +61,7 @@ public class OuterTypeFilenameCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY),
+            "12:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -70,7 +70,7 @@ public class OuterTypeFilenameCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_KEY),
+            "12:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
