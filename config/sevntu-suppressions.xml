@@ -41,6 +41,8 @@
   <suppress checks="CheckstyleTestMakeup" files="[\\/]RightCurlyTest\.java"/>
   <suppress checks="CheckstyleTestMakeup" files="[\\/]ClassAnnotationsTest\.java"/>
   <suppress checks="CheckstyleTestMakeup" files="[\\/]MethodsAndConstructorsAnnotationsTest\.java"/>
+  <!-- Required to get basedir's temporary folder name in runtime -->
+  <suppress checks="CheckstyleTestMakeup" files="[\\/]CheckerTest\.java"/>
 
   <!-- No need for constructor with cause -->
   <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
