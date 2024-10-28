@@ -42,6 +42,27 @@ public class StringUtils // not final to allow subclassing
         </source>
       </subsection>
 
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreAnnotatedBy</td>
+              <td>Ignore classes annotated with the specified annotation(s). Annotation names provided in this property must exactly match the annotation names on the classes. If the target class has annotations specified with their fully qualified names (including package), the annotations in this property should also be specified with their fully qualified names. Similarly, if the target class has annotations specified with their simple names, this property should contain the annotations with the same simple names.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>10.20.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
           To configure the check:
@@ -55,7 +76,9 @@ public class StringUtils // not final to allow subclassing
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-class Example1 { // violation
+// violation below, 'should not have a public or default constructor'
+@java.lang.Deprecated
+class Example1 {
 
   public Example1() {
   }
@@ -64,7 +87,7 @@ class Example1 { // violation
   }
 }
 
-class Foo { // OK
+class Foo {
 
   private Foo() {
   }
@@ -72,7 +95,7 @@ class Foo { // OK
   static int n;
 }
 
-class Bar { // OK
+class Bar {
 
   protected Bar() {
     // prevents calls from subclass
@@ -80,9 +103,74 @@ class Bar { // OK
   }
 }
 
-class UtilityClass { // violation
+@Deprecated // violation, 'should not have a public or default constructor'
+class UtilityClass {
 
   static float f;
+}
+// violation below, 'should not have a public or default constructor'
+@SpringBootApplication
+class Application1 {
+
+  public static void main(String[] args) {
+  }
+}
+        </source>
+
+        <p id="Example2-config">
+          To configure the check to ignore classes annotated with <code>SpringBootApplication</code>
+          or <code>java.lang.Deprecated</code>.
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;HideUtilityClassConstructor&quot;&gt;
+      &lt;property name=&quot;ignoreAnnotatedBy&quot;
+        value=&quot;SpringBootApplication, java.lang.Deprecated&quot; /&gt;
+    &lt;/module&gt;
+   &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+// ok below, skipped by annotation
+@java.lang.Deprecated
+class Example2 {
+
+  public Example2() {
+  }
+
+  public static void fun() {
+  }
+}
+
+class Foo2 {
+
+  private Foo2() {
+  }
+
+  static int n;
+}
+
+class Bar2 {
+
+  protected Bar2() {
+    // prevents calls from subclass
+    throw new UnsupportedOperationException();
+  }
+}
+
+@Deprecated // violation, 'should not have a public or default constructor'
+class UtilityClass2 {
+
+  static float f;
+}
+// ok below, skipped by annotation
+@SpringBootApplication
+class Application2 {
+
+  public static void main(String[] args) {
+  }
 }
         </source>
       </subsection>

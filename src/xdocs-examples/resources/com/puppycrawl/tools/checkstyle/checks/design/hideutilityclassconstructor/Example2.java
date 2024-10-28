@@ -1,52 +1,54 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="HideUtilityClassConstructor"/>
-  </module>
+    <module name="HideUtilityClassConstructor">
+      <property name="ignoreAnnotatedBy"
+        value="SpringBootApplication, java.lang.Deprecated" />
+    </module>
+   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 // xdoc section -- start
-// violation below, 'should not have a public or default constructor'
+// ok below, skipped by annotation
 @java.lang.Deprecated
-class Example1 {
+class Example2 {
 
-  public Example1() {
+  public Example2() {
   }
 
   public static void fun() {
   }
 }
 
-class Foo {
+class Foo2 {
 
-  private Foo() {
+  private Foo2() {
   }
 
   static int n;
 }
 
-class Bar {
+class Bar2 {
 
-  protected Bar() {
+  protected Bar2() {
     // prevents calls from subclass
     throw new UnsupportedOperationException();
   }
 }
 
 @Deprecated // violation, 'should not have a public or default constructor'
-class UtilityClass {
+class UtilityClass2 {
 
   static float f;
 }
-// violation below, 'should not have a public or default constructor'
+// ok below, skipped by annotation
 @SpringBootApplication
-class Application1 {
+class Application2 {
 
   public static void main(String[] args) {
   }
 }
 // xdoc section -- end
-@interface SpringBootApplication {}
