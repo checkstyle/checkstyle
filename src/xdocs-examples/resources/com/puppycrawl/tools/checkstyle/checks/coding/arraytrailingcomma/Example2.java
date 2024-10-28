@@ -12,26 +12,26 @@ package com.puppycrawl.tools.checkstyle.checks.coding.arraytrailingcomma;
 
 // xdoc section -- start
 public class Example2 {
-  int[] numbers = {1, 2, 3}; // violation
+  int[] numbers = {1, 2, 3}; // violation 'Array should contain trailing comma.'
   boolean[] bools = {
     true,
     true,
-    false // violation
+    false // violation 'Array should contain trailing comma.'
   };
 
   String[][] text = {{},{},};
 
   double[][] decimals = {
     {0.5, 2.3, 1.1,},
-    {1.7, 1.9, 0.6}, // violation
-    {0.8, 7.4, 6.5,} // violation
+    {1.7, 1.9, 0.6}, // violation 'Array should contain trailing comma.'
+    {0.8, 7.4, 6.5,} // violation 'Array should contain trailing comma.'
   };
 
-  char[] chars = {'a', 'b', 'c'  // violation
+  char[] chars = {'a', 'b', 'c'  // violation 'Array should contain trailing comma.'
   };
 
   String[] letters = {
-    "a", "b", "c"}; // violation
+    "a", "b", "c"}; // violation 'Array should contain trailing comma.'
 
   int[] a1 = new int[]{
     1,
