@@ -4575,13 +4575,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field matcher</message>
-    <lineContent>private Matcher matcher;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field message</message>
     <lineContent>private String message;</lineContent>
   </checkerFrameworkError>

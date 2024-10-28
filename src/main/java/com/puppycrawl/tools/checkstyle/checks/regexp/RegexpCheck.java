@@ -204,20 +204,14 @@ public class RegexpCheck extends AbstractCheck {
      */
     private int duplicateLimit;
 
+    /** Tracks errors. */
+    private int errorCount;
+
     /** Boolean to say if we should check for duplicates. */
     private boolean checkForDuplicates;
 
-    /** Tracks number of matches made. */
-    private int matchCount;
-
-    /** Tracks number of errors. */
-    private int errorCount;
-
     /** Specify the pattern to match against. */
     private Pattern format = Pattern.compile("^$", Pattern.MULTILINE);
-
-    /** The matcher. */
-    private Matcher matcher;
 
     /**
      * Setter to specify message which is used to notify about violations,
@@ -300,33 +294,32 @@ public class RegexpCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
-        matcher = format.matcher(getFileContents().getText().getFullText());
-        matchCount = 0;
-        errorCount = 0;
-        findMatch();
+        final int totalMatches = processRegexpMatches();
+        if (!illegalPattern && totalMatches == 0) {
+            final String msg = getMessage();
+            log(1, MSG_REQUIRED_REGEXP, msg);
+        }
     }
 
     /**
-     * Recursive method that finds the matches.
+     * Processes the regexp matches and logs the number of errors in the file.
      *
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
+     * @return number of matches
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
-    private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (foundMatch) {
-            final FileText text = getFileContents().getText();
+    private int processRegexpMatches() {
+        final Matcher matcher = format.matcher(getFileContents().getText().getFullText());
+        errorCount = 0;
+        int matchCount = 0;
+        final FileText text = getFileContents().getText();
+        while (errorCount < errorLimit && matcher.find()) {
             final LineColumn start = text.lineColumn(matcher.start());
             final int startLine = start.getLine();
 
-            final boolean ignore = isIgnore(startLine, text, start);
-
+            final boolean ignore = isIgnore(startLine, text, start, matcher);
             if (!ignore) {
                 matchCount++;
                 if (illegalPattern || checkForDuplicates
@@ -334,26 +327,13 @@ public class RegexpCheck extends AbstractCheck {
                     errorCount++;
                     logMessage(startLine);
                 }
-            }
-            if (canContinueValidation(ignore)) {
-                findMatch();
+                if (!illegalPattern && !checkForDuplicates) {
+                    break;
+                }
             }
         }
-        else if (!illegalPattern && matchCount == 0) {
-            final String msg = getMessage();
-            log(1, MSG_REQUIRED_REGEXP, msg);
-        }
-    }
+        return matchCount;
 
-    /**
-     * Check if we can stop validation.
-     *
-     * @param ignore flag
-     * @return true is we can continue
-     */
-    private boolean canContinueValidation(boolean ignore) {
-        return errorCount <= errorLimit - 1
-                && (ignore || illegalPattern || checkForDuplicates);
     }
 
     /**
@@ -362,11 +342,12 @@ public class RegexpCheck extends AbstractCheck {
      * @param startLine position of line
      * @param text file text
      * @param start line column
+     * @param matcher The matcher
      * @return true is that need to be ignored
      */
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @SuppressWarnings("deprecation")
-    private boolean isIgnore(int startLine, FileText text, LineColumn start) {
+    private boolean isIgnore(int startLine, FileText text, LineColumn start, Matcher matcher) {
         final LineColumn end;
         if (matcher.end() == 0) {
             end = text.lineColumn(0);
@@ -423,5 +404,4 @@ public class RegexpCheck extends AbstractCheck {
 
         return msg;
     }
-
 }
