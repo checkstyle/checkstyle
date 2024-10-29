@@ -5,10 +5,11 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 // xdoc section -- start
-class Test {
-  public boolean equals(Test i) {  // violation
+public class Example1 {
+  public boolean equals(Example1 i) {  // violation
     return false;
   }
 }

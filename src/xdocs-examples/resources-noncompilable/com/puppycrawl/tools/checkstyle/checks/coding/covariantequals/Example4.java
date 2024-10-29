@@ -5,15 +5,20 @@
   </module>
 </module>
 */
+//non-compiled with javac: Compilable with Java17
+package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 // xdoc section -- start
-record Test(String str) {
+public class Example4 {
+
+  record Test(String str) {
     public boolean equals(Test r) {  // no violation
-        return false;
+      return false;
     }
 
     public boolean equals(Object r) {
-        return false;
+      return false;
     }
+  }
 }
 // xdoc section -- end
