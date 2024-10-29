@@ -79,9 +79,15 @@ public boolean equals(Foo obj) {...}
           For example:
         </p>
         <source>
-class Test {
-  public boolean equals(Test i) {  // violation
+public class Example1 {
+  public boolean equals(Example1 same) {  // violation
     return false;
+  }
+
+  record Test(String str) {
+    public boolean equals(Test same) {  // violation
+      return false;
+    }
   }
 }
         </source>
@@ -89,38 +95,24 @@ class Test {
           The same class without violations:
         </p>
         <source>
-class Test {
-  public boolean equals(Test i) {  // no violation
+public class Example2 {
+  public boolean equals(Example2 same) {  // no violation
     return false;
   }
 
-  public boolean equals(Object i) {
+  public boolean equals(Object o) {
     return false;
   }
-}
-        </source>
-        <p id="Example3-code">
-          Another example:
-        </p>
-        <source>
-record Test(String str) {
-    public boolean equals(Test r) {  // violation
-        return false;
-    }
-}
-        </source>
-        <p id="Example4-code">
-          The same record without violations:
-        </p>
-        <source>
-record Test(String str) {
-    public boolean equals(Test r) {  // no violation
-        return false;
+
+  record Test(String str) {
+    public boolean equals(Test same) {  // no violation
+      return false;
     }
 
-    public boolean equals(Object r) {
-        return false;
+    public boolean equals(Object o) {
+      return false;
     }
+  }
 }
         </source>
       </subsection>
