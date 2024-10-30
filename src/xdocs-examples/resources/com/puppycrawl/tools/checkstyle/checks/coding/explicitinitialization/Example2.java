@@ -7,9 +7,10 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 // xdoc section -- start
-public class Test {
+public class Example2 {
   private int intField1 = 0; // ignored
   private int intField2 = 1;
   private int intField3;
@@ -22,9 +23,9 @@ public class Test {
   private boolean boolField2 = true;
   private boolean boolField3;
 
-  private Obj objField1 = null; // violation
-  private Obj objField2 = new Obj();
-  private Obj objField3;
+  private Object objField1 = null; // violation
+  private Object objField2 = new Object();
+  private Object objField3;
 
   private int arrField1[] = null; // violation
   private int arrField2[] = new int[10];
