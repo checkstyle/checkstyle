@@ -69,7 +69,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -78,7 +78,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-code">
@@ -86,23 +86,7 @@ public boolean equals(Foo obj) {...}
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example3-code">
-          Another example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example3.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example4-code">
-          The same record without violations:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example4.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/covariantequals/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
