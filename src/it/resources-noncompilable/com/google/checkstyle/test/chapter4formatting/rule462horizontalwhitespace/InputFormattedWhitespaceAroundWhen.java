@@ -87,5 +87,28 @@ class InputFormattedWhitespaceAroundWhen {
     }
   }
 
+  void emptySwitchStatements() {
+    switch ('a') {
+      case 'e' -> System.out.println("e");
+      case 'i' -> System.out.println("i");
+      case 'o' -> System.out.println("o");
+      default -> {}
+    }
+    switch ('a') {
+      case 'e' -> System.out.println("e");
+      case 'i' -> System.out.println("i");
+      case 'o' -> System.out.println("o");
+      default -> {}
+    }
+    switch ('a') {
+      case 'e' -> System.out.println("e");
+      case 'i' -> System.out.println("i");
+      case 'o' -> System.out.println("o");
+      default -> {
+        System.out.println("default");
+      }
+    }
+  }
+
   record Point(int x, int y) {}
 }
