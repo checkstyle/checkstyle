@@ -23,7 +23,8 @@
       <p>New:</p>
         <ul>
           <li>
-            HideUtilityClassConstructor - Add option to skip validation based on list of annotations.
+            HideUtilityClassConstructor:
+            Add option to skip validation for specified annotations.
             Author: Konstantinos Koutsilis
             <a href="https://github.com/checkstyle/checkstyle/issues/14424">#14424</a>
           </li>
@@ -50,7 +51,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
           </li>
           <li>
-            Missing test class for ConstructorsDeclarationGroupingCheck&#39;s documentation examples.
+            Missing test class
+            for ConstructorsDeclarationGroupingCheck&#39;s documentation examples.
             Author: akanksha
             <a href="https://github.com/checkstyle/checkstyle/issues/15829">#15829</a>
           </li>
