@@ -144,22 +144,22 @@ class PageBuilder {
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example1 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  public Example1(String testField) { // violation
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
-  public void setTestField(String testField) { // violation, 'testField' param
-                                               // hides 'testField' field
-      this.field = field;
+  public void setTestField(String testField) { // violation
+    this.field = field;
   }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
+  public Example1 setField(String field) { // violation
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -179,21 +179,22 @@ public class SomeClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example2 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
+  public Example2(String testField) { // OK, 'testField' param doesn't hide any field
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
+  public void setTestField(String testField) { // OK
+    this.field = field;
   }
-  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
-      this.field = field;
+  public Example2 setField(String field) { // OK
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -213,21 +214,23 @@ public class SomeClass {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example3 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // OK, because it match ignoreFormat
+  public Example3(String testField) { // OK, because it match ignoreFormat
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // OK, because it match ignoreFormat
-      this.field = field;
+    this.field = field;
   }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
+
+  public Example3 setField(String field) { // violation
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -246,22 +249,24 @@ public class SomeClass {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example4 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // OK, 'testField' param doesn't hide any field
+  public Example4(String testField) { // OK, 'testField' param doesn't hide any field
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
   public void setTestField(String testField) { // violation, 'testField' variable
-                                               // hides 'testField' field
-      this.field = field;
+    // hides 'testField' field
+    this.field = field;
   }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
+
+  public Example4 setField(String field) { // violation
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -281,21 +286,23 @@ public class SomeClass {
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example5 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  public Example5(String testField) { // violation
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
+  public void setTestField(String testField) { // OK
+    this.field = field;
   }
-  public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
-      this.field = field;
+
+  public Example5 setField(String field) { // violation
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -317,21 +324,22 @@ public class SomeClass {
         </source>
         <p id="Example6-code">Example:</p>
         <source>
-public class SomeClass {
+public class Example6 {
 
   private String field;
   private String testField;
 
-  public SomeClass(String testField) { // violation, 'testField' param hides 'testField' field
+  public Example6(String testField) { // violation
   }
   public void method(String param) { // OK
-      String field = param; // violation, 'field' variable hides 'field' field
+    String field = param; // violation, 'field' variable hides 'field' field
   }
-  public void setTestField(String testField) { // OK, 'testField' param doesn't hide any field
-      this.field = field;
+  public void setTestField(String testField) { // OK
+    this.field = field;
   }
-  public SomeClass setField(String field) { // OK, 'field' param doesn't hide any field
-      this.field = field;
+  public Example6 setField(String field) { // OK
+    this.field = field;
+    return null;
   }
 }
         </source>
@@ -349,17 +357,17 @@ public class SomeClass {
         </source>
         <p id="Example7-code">Example:</p>
         <source>
-abstract class SomeClass {
+abstract class Example7 {
 
   private String field;
 
-  public SomeClass(int field) { // violation, 'field' param hides a 'field' field
+  public Example7(int field) { // violation, 'field' param hides a 'field' field
     float field; // violation, 'field' variable hides a 'field' field
   }
   public abstract int method(String field); // OK
 }
 
-public class Demo extends SomeClass {
+public class Demo extends Example7 {
 
   public int method(String param){
     return param;
