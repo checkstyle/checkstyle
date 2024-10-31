@@ -66,13 +66,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -82,13 +82,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -98,13 +98,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -113,13 +113,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -129,13 +129,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -146,13 +146,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example7-config">
@@ -160,13 +160,13 @@ class PageBuilder {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/hiddenfield/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
