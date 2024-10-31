@@ -10,6 +10,67 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.20.0">
+      <div class="releaseDate">31.10.2024</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            JavadocMethodCheck: removed unnecessary tokens from acceptable.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/15687">#15687</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            HideUtilityClassConstructor - Add option to skip validation based on list of annotations.
+            Author: Konstantinos Koutsilis
+            <a href="https://github.com/checkstyle/checkstyle/issues/14424">#14424</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            google_checks.xml not allowing eol left curly for switch statement with lambda-like
+            construct.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/15831">#15831</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve `TailRecursion` inspection violations by replacing tail recursive calls.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14814">#14814</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            Missing test class for ConstructorsDeclarationGroupingCheck&#39;s documentation examples.
+            Author: akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/15829">#15829</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Pakhi-7831
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.19.0">
       <div class="releaseDate">26.10.2024</div>
       <p>New:</p>
