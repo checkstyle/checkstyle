@@ -23,8 +23,8 @@
       <p>New:</p>
         <ul>
           <li>
-            HideUtilityClassConstructor:
-            Add option to skip validation for specified annotations.
+            HideUtilityClassConstructor -
+            Add option to skip validation based on list of annotations.
             Author: Konstantinos Koutsilis
             <a href="https://github.com/checkstyle/checkstyle/issues/14424">#14424</a>
           </li>
