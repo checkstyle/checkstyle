@@ -341,7 +341,6 @@ public class HiddenFieldCheck
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
-
             if ((frame.containsStaticField(name) || isInstanceField(ast, name))
                     && !isMatchingRegexp(name)
                     && !isIgnoredParam(ast, name)) {
@@ -670,13 +669,18 @@ public class HiddenFieldCheck
          *
          * @param field the field to check
          * @return true if this FieldFrame contains static field
-         * @noinspection TailRecursion
-         * @noinspectionreason TailRecursion - until issue #14814
          */
         public boolean containsStaticField(String field) {
-            return staticFields.contains(field)
-                    || parent != null
-                    && parent.containsStaticField(field);
+            FieldFrame currentParent = parent;
+            boolean parentContains = true;
+            while (currentParent != null) {
+                parentContains = parentContains && currentParent.staticFields.contains(field);
+                if (parentContains) {
+                    break;
+                }
+                currentParent = currentParent.parent;
+            }
+            return staticFields.contains(field) || parentContains;
         }
 
         /**
