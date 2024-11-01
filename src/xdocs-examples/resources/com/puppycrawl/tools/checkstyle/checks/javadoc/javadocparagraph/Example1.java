@@ -10,18 +10,43 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 // xdoc section -- start
 // violation 5 lines below '<p> tag should be preceded with an empty line'
 /**
- * No tag (ok).
+ * No tag
  *
- * <p>Tag immediately before the text (ok).
- * <p>No blank line before the tag (violation).
+ * <p>Tag immediately before the text
+ * <p>No blank line before the tag
  *
  * <p>
- * New line after tag (violation).
+ * New line after tag
  *
- * <p> Whitespace after tag (violation).
+ * <p> Whitespace after tag
  *
+ * <p><b>p tag before inline tag B, this is ok</b></p>
  */
-// violation 3 lines above 'tag should be placed immediately before the first word'
+// violation 4 lines above 'tag should be placed immediately before the first word'
 public class Example1 {
+  // violation 4 lines below '<p> tag should not precede HTML block-tag '<pre>''
+  /**
+   * No tag
+   *
+   * <p>
+   * <pre>item 1</pre>
+   */
+  void foo1() {}
+
+  // violation 2 lines below 'Redundant <p> tag'
+  /**
+   * <p>
+   * Checks whether a redundant tag is present
+   * </p>
+   */
+  void foo2() {}
+
+  // violation 3 lines below 'Empty line should be followed by <p> tag'
+  /**
+   * Double newline.
+   *
+   * Some Paragraph.
+   */
+  void foo3() {}
 }
 // xdoc section -- end
