@@ -13,5 +13,7 @@
 public class Test {
   /** some doc */
   void foo() {}
+
+  public void method() {}
 }
 // xdoc section -- end
