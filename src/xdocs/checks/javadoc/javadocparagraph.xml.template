@@ -53,15 +53,15 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">By default, the check will report a violation if there is a new line
-          or whitespace after the &lt;p&gt; tag: </p>
+        <p id="Example1-code">By default, the check will report a violation if there is
+          no empty line before or whitespace after the &lt;p&gt; tag: </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
-          To allow newlines and spaces immediately after the &lt;p&gt; tag:
+          To not allow newlines and spaces immediately after the &lt;p&gt; tag:
         </p>
         <macro name="example">
           <param name="path"
@@ -70,43 +70,11 @@
         </macro>
         <p id="Example2-code">
           In case of <code>allowNewlineParagraph</code> set to <code>false</code>
-          the following example will not have any violations:
+          the following example will have violations:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example3-config">
-          Paragraph tag preceding block-level tags, with default properties:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example3.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example3.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example4-config">
-          Paragraph tag preceding block-level tags,
-          with <code>allowNewlineParagraph</code> set to false:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example4.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example4-code">
-          In case of <code>allowNewlineParagraph</code> set to <code>false</code>,
-          previous example will give some extra violations:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocparagraph/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
