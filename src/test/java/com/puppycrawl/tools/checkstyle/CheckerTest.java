@@ -1714,6 +1714,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checkerConfig.addChild(newLineAtEndOfFileConfig);
         checkerConfig.addChild(beforeExecutionExclusionFileFilterConfig);
 
+        // -@cs[CheckstyleTestMakeup] Needs to be fixed.
         checkerConfig.addProperty("basedir",
                 temporaryFolder.getPath());
 
