@@ -73,14 +73,14 @@
       </p>
 
       <p>
-        Generate maven standard jar: <code>mvn install</code>
+        Generate maven standard jar: <code>mvn clean install</code>
         <br/>
         Generate maven standard jar and skip all validations/verifications:
-        <code>mvn -P no-validations install</code>
+        <code>mvn -P no-validations clean install</code>
         <br/>
         Generate uber jar (checkstyle-all-X.XX.jar) to use our
         <a href="/cmdline.html">command line</a>:
-        <code>mvn -P assembly package</code>
+        <code>mvn -P assembly clean package</code>
       </p>
     </section>
 
@@ -99,7 +99,8 @@
         should ideally execute each line in the code, code coverage should be 100%. To generate the
         JaCoCo report, run the Maven command:
         <br/>
-        <code>mvn test jacoco:restore-instrumented-classes jacoco:report@default-report</code>.
+        <code>mvn clean test jacoco:restore-instrumented-classes jacoco:report@default-report</code>
+        .
         <br/>
         Check the results of the report in target/site/jacoco/index.html in the project's root
         folder.
