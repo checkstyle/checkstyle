@@ -62,6 +62,12 @@
   <suppress checks="FileLength"
     files="whitespaceafter[\\/]Example1.java"/>
 
+  <!-- Examples contains important violations that need to be shown -->
+  <suppress checks="FileLength"
+    files="javadocparagraph[\\/]Example1.java"/>
+  <suppress checks="FileLength"
+    files="javadocparagraph[\\/]Example2.java"/>
+
   <!-- Examples need spacing to be more readable -->
   <suppress checks="FileLength"
     files="visibilitymodifier[\\/]Example\d+.java"/>
