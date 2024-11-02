@@ -16,7 +16,6 @@ acm
 Aconfig
 actionlint
 addons
-adf
 admins
 adr
 AFilter
@@ -90,7 +89,7 @@ awt
 azurewebsites
 backport
 Backquote
-Backticks
+backticks
 BADN
 badpackage
 baeldung
@@ -519,6 +518,8 @@ groovyism
 groupcdg
 groupon
 grp
+GSo
+gsoc
 Gsp
 GString
 Gtk
@@ -682,6 +683,7 @@ jdt
 jedit
 jenkins
 jep
+jessesquires
 jetbrains
 JFile
 JFrame
@@ -834,6 +836,7 @@ mixin
 mkdir
 mkordas
 MLINKCHECK
+moby
 mockit
 mockito
 modifiedcontrolvariable
@@ -859,6 +862,7 @@ mutableexception
 mutationtest
 MVC
 mvn
+mvnrepository
 mvnw
 Mycheckstyle
 mycompany
@@ -960,6 +964,7 @@ OAuth
 objblock
 oburn
 OCP
+octocat
 ogg
 OI
 olddomain
@@ -1271,6 +1276,7 @@ sudo
 suitebuilder
 sukhodolsky
 summaryjavadoc
+summerofcode
 superclasses
 superclone
 superfinalize
@@ -1322,6 +1328,7 @@ throwable
 throwscount
 Thymeleaf
 tidelift
+timeline
 TKN
 Tls
 tmp
@@ -1448,6 +1455,7 @@ wiki
 wikipedia
 wiktionary
 windowsservercore
+withgoogle
 wnd
 WOC
 woff
