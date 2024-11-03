@@ -111,23 +111,24 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF[.//LITERAL_PRIVATE and
-              following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]&quot;/&gt;
+      &lt;property name=&quot;query&quot;
+       value=&quot;//METHOD_DEF[.//LITERAL_PRIVATE and
+       following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]&quot;/&gt;
       &lt;message key=&quot;matchxpath.match&quot;
-              value=&quot;Private methods must appear after public methods&quot;/&gt;
+       value=&quot;Private methods must appear after public methods&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
+public class Example1 {
   public void method1() { }
   private void method2() { } // violation
   public void method3() { }
   private void method4() { } // violation
   public void method5() { }
-  private void method6() { } // ok
+  private void method6() { }
 }
         </source>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
@@ -135,21 +136,21 @@ public class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//CTOR_DEF[count(./PARAMETERS/*)
-              &gt; 0]&quot;/&gt;
+      &lt;property name=&quot;query&quot;
+       value=&quot;//CTOR_DEF[count(./PARAMETERS/*) &gt; 0]&quot;/&gt;
       &lt;message key=&quot;matchxpath.match&quot;
-              value=&quot;Parameterized constructors are not allowed, there should be only default
-              ctor&quot;/&gt;
+      value=&quot;Parameterized constructors are not allowed,
+      there should be only default ctor&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
-  public Test(Object c) { } // violation
-  public Test(int a, HashMap&lt;String, Integer&gt; b) { } // violation
-  public Test() { } // ok
+public class Example2 {
+  public Example2(Object c) { } // violation
+  public Example2(int a, HashMap&lt;String, Integer&gt; b) { } // violation
+  public Example2() { }
 }
         </source>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
@@ -157,21 +158,21 @@ public class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF[./IDENT[@text='test'
-              or @text='foo']]&quot;/&gt;
+      &lt;property name=&quot;query&quot;
+       value=&quot;//METHOD_DEF[./IDENT[@text='test' or @text='foo']]&quot;/&gt;
       &lt;message key=&quot;matchxpath.match&quot;
-              value=&quot;Method name should not be 'test' or 'foo'&quot;/&gt;
+      value=&quot;Method name should not be 'test' or 'foo'&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
+public class Example3 {
   public void test() {} // violation
-  public void getName() {} // ok
+  public void getName() {}
   public void foo() {} // violation
-  public void sayHello() {} // ok
+  public void sayHello() {}
 }
         </source>
         <p id="Example4-config">
@@ -181,21 +182,22 @@ public class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MatchXpath&quot;&gt;
-      &lt;property name=&quot;query&quot; value=&quot;//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
-              and not(./TYPE/IDENT[@text='var'])]&quot;/&gt;
+      &lt;property name=&quot;query&quot;
+       value=&quot;//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW and
+       not(./TYPE/IDENT[@text='var'])]&quot;/&gt;
       &lt;message key=&quot;matchxpath.match&quot;
-              value=&quot;New instances should be created via 'var' keyword to avoid duplication of
-              type reference in statement&quot;/&gt;
+      value=&quot;New instances should be created via 'var' keyword
+      to avoid duplication of type reference in statement&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
+public class Example4 {
   public void foo() {
-    SomeObject a = new SomeObject(); // violation
-    var b = new SomeObject(); // OK
+    Object a = new Object(); // violation
+    var b = new Object();
   }
 }
         </source>
