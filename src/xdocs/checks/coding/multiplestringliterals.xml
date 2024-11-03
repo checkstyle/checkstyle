@@ -71,14 +71,14 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
+public class Example1 {
+  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
   String a1 = &quot;unchecked&quot;;
   @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a2 = &quot;StringContents&quot;;
+    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;;
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
@@ -98,14 +98,14 @@ public class MyClass {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
+public class Example2 {
+  String a = &quot;StringContents&quot;; // OK, two occurrences are allowed
   String a1 = &quot;unchecked&quot;;
   @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;; // OK, two occurrences are allowed
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // OK, two occurrences are allowed
-    String a4 = &quot;SingleString&quot;; // OK
+    String a2 = &quot;StringContents&quot;;
+    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // OK, two occurrences are allowed
+    String a4 = &quot;SingleString&quot;;
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, three occurrences are NOT allowed
   }
 }
@@ -125,14 +125,14 @@ public class MyClass {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
+public class Example3 {
+  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
   String a1 = &quot;unchecked&quot;;
   @SuppressWarnings(&quot;unchecked&quot;) // OK, duplicate strings are ignored in annotations
   public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a2 = &quot;StringContents&quot;;
+    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;;
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // OK, multiple occurrences of &quot;, &quot; are allowed
   }
 }
@@ -153,14 +153,14 @@ public class MyClass {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class MyClass {
-  String a = &quot;StringContents&quot;;
-  String a1 = &quot;unchecked&quot;;
-  @SuppressWarnings(&quot;unchecked&quot;) // violation, &quot;unchecked&quot; occurs twice
+public class Example4 {
+  String a = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
+  String a1 = &quot;unchecked&quot;; // // violation, &quot;unchecked&quot; occurs twice
+  @SuppressWarnings(&quot;unchecked&quot;)
   public void myTest() {
-    String a2 = &quot;StringContents&quot;; // violation, &quot;StringContents&quot; occurs twice
-    String a3 = &quot;DoubleString&quot; + &quot;DoubleString&quot;; // violation, &quot;DoubleString&quot; occurs twice
-    String a4 = &quot;SingleString&quot;; // OK
+    String a2 = &quot;StringContents&quot;;
+    String a3 = &quot;DuoString&quot; + &quot;DuoString&quot;; // violation, &quot;DuoString&quot; occurs twice
+    String a4 = &quot;SingleString&quot;;
     String a5 = &quot;, &quot; + &quot;, &quot; + &quot;, &quot;; // violation, &quot;, &quot; occurs three times
   }
 }
