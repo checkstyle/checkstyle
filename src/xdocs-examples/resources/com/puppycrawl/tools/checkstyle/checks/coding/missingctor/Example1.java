@@ -5,24 +5,25 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.missingctor;
 
 // xdoc section -- start
-class ExampleOk { // OK
+public class Example1 {
   private int a;
-  ExampleOk(int a) {
+  Example1(int a) {
     this.a = a;
   }
 }
-class ExampleDefaultCtor { // OK
+class ExampleDefaultCtor {
   private String s;
   ExampleDefaultCtor() {
     s = "foobar";
   }
 }
-class InvalidExample { // violation, class must have a constructor.
+class InvalidExample { // violation, 'Class should define a constructor'
   public void test() {}
 }
-abstract class AbstractExample { // OK
-  public abstract void test() {}
+abstract class AbstractExample {
+  public abstract void test();
 }
 // xdoc section -- end
