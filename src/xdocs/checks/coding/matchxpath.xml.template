@@ -97,37 +97,37 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           should come before the private ones:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">To violate if there are any parametrized constructors</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -135,13 +135,13 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
