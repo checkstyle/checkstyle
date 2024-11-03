@@ -106,6 +106,7 @@
 
   <!-- Examples are not intended to be formatted -->
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
+  <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
 
   <!-- these are legacy use cases until #11166 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="FallThroughCheck.java"/>
