@@ -5,18 +5,18 @@
       <property name="query" value="//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
               and not(./TYPE/IDENT[@text='var'])]"/>
       <message key="matchxpath.match"
-              value="New instances should be created via 'var' keyword to avoid duplication of
-              type reference in statement"/>
+              value="Illegal code structure detected."/>
     </module>
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 // xdoc section -- start
-public class Test {
+public class Example4 {
   public void foo() {
-    SomeObject a = new SomeObject(); // violation
-    var b = new SomeObject(); // OK
+    Object a = new Object(); // violation, 'Illegal code structure'
+    var b = new Object();
   }
 }
 // xdoc section -- end
