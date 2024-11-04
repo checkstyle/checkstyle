@@ -35,17 +35,17 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
-
-    protected void finalize() throws Throwable { // violation
-        try {
-           System.out.println(&quot;overriding finalize()&quot;);
-        } catch (Throwable t) {
-           throw t;
-        } finally {
-           super.finalize();
-        }
+public class Example1 {
+  // violation below, 'Avoid using finalizer method'
+  protected void finalize() throws Throwable {
+    try {
+      System.out.println(&quot;overriding finalize()&quot;);
+    } catch (Throwable t) {
+      throw t;
+    } finally {
+      super.finalize();
     }
+  }
 }
         </source>
       </subsection>
