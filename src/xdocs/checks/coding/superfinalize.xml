@@ -37,16 +37,15 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class A {
-      protected void finalize() throws Throwable {
-            System.out.println(&quot;In finalize block&quot;);
-            super.finalize(); // OK, calls super.finalize()
-      }
+class Example1 {
+  protected void finalize() throws Throwable {
+    super.finalize(); // OK, calls super.finalize()
+  }
 }
-public class B {
-      protected void finalize() throws Throwable { // violation
-            System.out.println(&quot;In finalize block&quot;);
-      }
+class InvalidExample {
+  // violation below, 'Method 'finalize' should call 'super.finalize''
+  protected void finalize() throws Throwable {
+  }
 }
         </source>
 
