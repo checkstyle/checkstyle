@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +32,42 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "19:3: " + "Private methods must appear after public methods",
+            "21:3: " + "Private methods must appear after public methods",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "20:3: " + "Parameterized constructors are not allowed,    "
+                     + "  there should be only default ctor",
+            "21:3: " + "Parameterized constructors are not allowed,    "
+                     + "  there should be only default ctor",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "17:3: " + "Method name should not be test or foo",
+            "19:3: " + "Method name should not be test or foo",
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "20:5: " + "New instances should be created via var keyword      "
+                     + "to avoid duplication of type reference in statement",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
