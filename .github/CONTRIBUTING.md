@@ -45,35 +45,11 @@ This project and everyone participating in it is governed by the
   and finally https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
   before taking up some bug fixes or features. Always make sure that the issue you select
   has the https://github.com/checkstyle/checkstyle/labels/approved label.
-
-## Opening an Issue
-
-A great way to contribute to the project is to create a detailed issue when you encounter
-a problem or would like to suggest a feature. We always appreciate a well-written,
-thorough issue description. :brain:
-
-Some points to consider when opening an issue:
-
-- **Make sure you are using the latest Checkstyle version.**
-  Before [Opening an Issue](https://github.com/checkstyle/checkstyle/issues),
-  check if you are using the latest version of the project,
-  [found here](https://github.com/checkstyle/checkstyle/releases). If you are not up-to-date,
-  check to see if updating to the latest release fixes your issue.
-- **Do not open a duplicate feature request.** Search for existing feature requests first. If you
-  find your feature (or one very similar) previously requested, comment on that issue.
-- **Fully complete the provided issue template.** The bug report and feature request templates
-  specify all the information we need to quickly and efficiently address your issue. Be clear,
-  concise, and descriptive.
-  Provide as much information as you can, including steps to reproduce, stack traces, etc.
-- **Use [GitHub-flavored Markdown](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).**
-  Especially put code blocks and console outputs in backticks (```). This improves readability.
-
-## Reporting Security Issues
-
-**Do not file a public issue for security vulnerabilities.** Please contact the
-maintainers directly.
-see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md)
-for more information.
+- When you decide which issue you would like to take up,
+  please comment on the issue to let others know that you are working on it ("I am on it.").
+  It is completely ok to change a mind, please try to remove comment.
+  If you see such comment created long time ago but issue is still open and no Pull created, please
+  feel free to make a comment that you will try to do it.
 
 ## Submitting Pull Requests
 
@@ -111,6 +87,35 @@ Here are some general guidelines to follow when submitting a pull request:
   respectful in your comments and reviews.
 - **Be open to feedback.** If a reviewer asks for changes, be open to their feedback. Remember that
   the goal is to improve the project, and feedback is an important part of that process.
+
+## Opening an Issue
+
+A great way to contribute to the project is to create a detailed issue when you encounter
+a problem or would like to suggest a feature. We always appreciate a well-written,
+thorough issue description. :brain:
+
+Some points to consider when opening an issue:
+
+- **Make sure you are using the latest Checkstyle version.**
+  Before [Opening an Issue](https://github.com/checkstyle/checkstyle/issues),
+  check if you are using the latest version of the project,
+  [found here](https://github.com/checkstyle/checkstyle/releases). If you are not up-to-date,
+  check to see if updating to the latest release fixes your issue.
+- **Do not open a duplicate feature request.** Search for existing feature requests first. If you
+  find your feature (or one very similar) previously requested, comment on that issue.
+- **Fully complete the provided issue template.** The bug report and feature request templates
+  specify all the information we need to quickly and efficiently address your issue. Be clear,
+  concise, and descriptive.
+  Provide as much information as you can, including steps to reproduce, stack traces, etc.
+- **Use [GitHub-flavored Markdown](https://help.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax).**
+  Especially put code blocks and console outputs in backticks (```). This improves readability.
+
+## Reporting Security Issues
+
+**Do not file a public issue for security vulnerabilities.** Please contact the
+maintainers directly.
+see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md)
+for more information.
 
 ## Google Summer of Code
 
