@@ -46,16 +46,21 @@ String[] foo = new String[] {
           Which results in the following violations:
         </p>
         <source>
-String[] foo1 = {
-  &quot;FOO&quot;, // OK
-  &quot;BAR&quot;, // violation
-};
-String[] foo2 = { &quot;FOO&quot;, &quot;BAR&quot;, }; // violation
-String[] foo3 = {
-  &quot;FOO&quot;, // OK
-  &quot;BAR&quot; // OK
-};
-String[] foo4 = { &quot;FOO&quot;, &quot;BAR&quot; }; // OK
+class Example1 {
+  void InvalidExample() {
+    String[] foo1 = {
+      &quot;FOO&quot;,
+      &quot;BAR&quot;, // violation, 'Array should not contain trailing comma'
+    };
+    // violation below, 'Array should not contain trailing comma'
+    String[] foo2 = { &quot;FOO&quot;, &quot;BAR&quot;, };
+    String[] foo3 = {
+      &quot;FOO&quot;,
+      &quot;BAR&quot;
+    };
+    String[] foo4 = { &quot;FOO&quot;, &quot;BAR&quot; };
+  }
+}
         </source>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">

@@ -37,7 +37,7 @@ String[] foo = new String[] {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -45,7 +45,7 @@ String[] foo = new String[] {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/noarraytrailingcomma/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
