@@ -333,7 +333,7 @@ public final class JavadocTokenTypes {
      * <pre>{@code @author Baratali Izmailov}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   --JAVADOC_TAG -> JAVADOC_TAG
+     *   JAVADOC_TAG -> JAVADOC_TAG
      *      |--AUTHOR_LITERAL -> @author
      *      |--WS ->
      *      `--DESCRIPTION -> DESCRIPTION
@@ -357,11 +357,11 @@ public final class JavadocTokenTypes {
      * <pre>{@code @myJavadocTag some magic}</pre>
      * <b>Tree:</b>
      * <pre>{@code
-     *   |--JAVADOC_TAG[3x0] : [@myJavadocTag some magic]
-     *       |--CUSTOM_NAME[3x0] : [@myJavadocTag]
-     *       |--WS[3x13] : [ ]
-     *       |--DESCRIPTION[3x14] : [some magic]
-     *           |--TEXT[3x14] : [some magic]
+     *   JAVADOC_TAG --> JAVADOC_TAG
+     *       |--CUSTOM_NAME --> @myJavadocTag
+     *       |--WS -->
+     *       `--DESCRIPTION --> DESCRIPTION
+     *           |--TEXT --> some magic
      * }</pre>
      */
     public static final int CUSTOM_NAME = JavadocParser.CUSTOM_NAME;
