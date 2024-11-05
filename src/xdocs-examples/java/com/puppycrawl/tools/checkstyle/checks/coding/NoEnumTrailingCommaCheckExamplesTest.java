@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class NoEnumTrailingCommaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +32,13 @@ public class NoEnumTrailingCommaCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "22:8: " + getCheckMessage(NoEnumTrailingCommaCheck.MSG_KEY),
+            "26:8: " + getCheckMessage(NoEnumTrailingCommaCheck.MSG_KEY),
+            "30:8: " + getCheckMessage(NoEnumTrailingCommaCheck.MSG_KEY),
+            "32:23: " + getCheckMessage(NoEnumTrailingCommaCheck.MSG_KEY),
+            "33:23: " + getCheckMessage(NoEnumTrailingCommaCheck.MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
