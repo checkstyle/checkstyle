@@ -36,20 +36,23 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-int x = 5;
-boolean foobar = (x == 5); // OK
-
-String text;
-text = (text == null) ? &quot;&quot; : text; // violation 'Avoid inline conditionals'
-
-String b;
-if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
-    b = a.substring(1);
-} else {
-    b = null;
+public class Example1 {
+  public void InvalidExample( String str) {
+    int x = 5;
+    boolean foobar = (x == 5);
+    String text=null;
+    text = (text == null) ? &quot;&quot; : text; // violation 'Avoid inline conditionals'
+    String b;
+    if (str != null &amp;&amp; str.length() &gt;= 1) {
+      b = str.substring(1);
+    }
+    else {
+      b = null;
+    }
+    // violation below, 'Avoid inline conditionals'
+    b = (str != null &amp;&amp; str.length() &gt;= 1) ? str.substring(1) : null;
+  }
 }
-
-b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation 'Avoid inline conditionals'
         </source>
       </subsection>
 
