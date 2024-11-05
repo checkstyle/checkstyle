@@ -19,16 +19,18 @@ public class InputArrayTypeStyleNestedGenerics {
         >[]
     >[] values3b;
 
-    protected Pair<Integer, Object> values1b[]; // violation
-    protected Pair<Integer, Pair<String, Object>[]> values2b[]; // violation
-    protected Pair<Integer, Pair<String, Pair<String, Object>>[]> values3ab[]; // violation
+    protected Pair<Integer, Object> values1b[]; // violation 'Array brackets at illegal position'
+    protected Pair<Integer, Pair<String, Object>[]> values2b[];
+    // violation above 'Array brackets at illegal position'
+    protected Pair<Integer, Pair<String, Pair<String, Object>>[]> values3ab[];
+    // violation above 'Array brackets at illegal position'
     protected Pair<
         Integer,
         Pair<
             String,
             Pair<String, Object>
         >[]
-    > values3bb[]; // violation
+    > values3bb[]; // violation 'Array brackets at illegal position'
 
     protected static class Pair<L, R> {
         protected L key;
