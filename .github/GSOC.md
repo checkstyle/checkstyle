@@ -41,30 +41,19 @@ not already done so, please read through the following documentation provided by
   This is a great place to ask questions and get to know the community.
   Join the Checkstyle group on [Google Groups](https://groups.google.com/forum/#!forum/checkstyle).
   This is another place to ask questions and get to know the community.
-- **Start contributing.** We have a list of issues labeled as
-  https://github.com/checkstyle/checkstyle/labels/good%20first%20issue. These are a great place to
-  start. Once you complete a few of these, you will have a better understanding of the project and
-  be ready to move on to https://github.com/checkstyle/checkstyle/labels/good%20second%20issue,
-  and so on. Once you have completed a few of these, you will be ready to start working on some
-  more challenging issues, like bug fixes and new features.
+- **Start contributing.** Please read [CONTRIBUTING doc](CONTRIBUTING.md).
 - **Take a Look at Our Project Ideas.** We have a list of project ideas that we think would be
   great for GSoC. You can find them in our wiki [Checkstyle Wiki](https://github.com/checkstyle/checkstyle/wiki).
   You can also propose your own project idea. We are open to new ideas and would love to hear
   what you are interested in working on.
-- **Create a Draft Proposal.** Once you have a good understanding of the project and have an idea
+- **Create a Draft Proposal.** Once you have completed a few issues,
+  you will be ready to start working on some
+  more challenging issues, like bug fixes and new features.
+  Once you have a good understanding of the project and have an idea
   of what you would like to work on, create a draft proposal. We are happy to help you refine your
   proposal and provide feedback. The best way to share your draft proposal is through Google docs.
 - **Submit Your Proposal.** Now that you have refined your proposal, submit it through the
   GSoC website **before the final submission deadline**.
-
-## Additional Tips
-
-- **Start Early.** The earlier you start, the more time you will have to get to know the project,
-    accumulate contributions, and refine your proposal.
-- **Communicate Effectively.** We are looking for participants who can communicate effectively. This
-    includes using clear and concise language, being responsive to feedback, and being proactive.
-- **Contribute, Contribute, Contribute.** This is the single best way to show us that you are
-    serious becoming a valuable member of our community.
 
 ## Your Proposal
 
@@ -79,15 +68,9 @@ taken the time to understand the project and have a clear plan for how you will 
 
 All projects aim to solve a problem or improve something. Start your proposal by introducing the
 problem you are trying to solve or the improvement you are trying to make. This is your opportunity
-to show us that you understand the problem, why it is important, and why it is worth solving.
+to show us that you understand the problem.
 Include any relevant background information that will help us understand the problem, like
 statistics, examples, references to existing issues, etc.
-
-#### Project Goals
-
-This should be concise and to the point. What are you trying to accomplish? What are the
-deliverables? What are the success criteria? What are the key milestones? Effective goals are
-specific, measurable, and achievable. This section may be a bulleted list or outline.
 
 #### Implementation Plan
 
@@ -98,19 +81,19 @@ solve it.
 
 #### Timeline
 
-Show us that you can break down your project into manageable tasks and that you have a clear plan
-for how you will accomplish your goals. This should be a timeline that shows what you will be
+Demonstrate your ability to break down your project into actionable tasks
+and outline a clear timeline for completion. This should be a timeline that shows what you will be
 working on each week. It should include milestones and deliverables. An effective way to present
 this is in a table.
 
 #### About You
 
 Tell us about yourself. what time zone are you located in?
-What is your background? What are your interests?
-What are your career goals?
-This is your opportunity to show us that you are a good fit for the project and that
-you are excited to work with us. **You must include a list of links to your Checkstyle contributions
+What is your background?
+**Share list of links to your Checkstyle contributions
 to be considered for GSoC; this is one of the most important selection criteria.**
+This is your opportunity to show us that you are a good fit for the project and that
+you are excited to work with us.
 
 ### Proposal Tips
 
@@ -120,6 +103,13 @@ to be considered for GSoC; this is one of the most important selection criteria.
   We want to see that you have a clear plan.
 - Be Professional. We are looking for a proposal that is well-written and professional.
 - One Proposal <-> One Project. Do not create a proposal that spans multiple projects.
-- Proposal Title. If creating a proposal based on our project ideas, please use the title of the
-  project idea as the title of your proposal. If you are proposing your own project idea, please
-  create a title that is descriptive and concise.
+- Proposal Title. Please use the title of the project idea from our page of projects.
+
+## Additional Tips
+
+- **Start Early.** The earlier you start, the more time you will have to get to know the project,
+    accumulate contributions, and refine your proposal.
+- **Communicate Effectively.** We are looking for participants who can communicate effectively. This
+    includes using clear and concise language, being responsive to feedback, and being proactive.
+- **Contribute, Contribute, Contribute.** This is the single best way to show us that you are
+    serious becoming a valuable member of our community.
