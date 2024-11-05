@@ -65,20 +65,42 @@
           The following examples will be flagged as a violation:
         </p>
         <source>
-//Each line causes violation:
-int var1; int var2;
-var1 = 1; var2 = 2;
-int var1 = 1; int var2 = 2;
-var1++; var2++;
-Object obj1 = new Object(); Object obj2 = new Object();
-import java.io.EOFException; import java.io.BufferedReader;
-;; //two empty statements on the same line.
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PipedOutputStream;
+import java.io.Reader;
+import java.io.PipedReader;
+import java.io.BufferedReader; import java.io.EOFException;
+// violation above 'Only one statement per line allowed.'
 
-//Multi-line statements:
-int var1 = 1
-; var2 = 2; //violation here
-int o = 1, p = 2,
-r = 5; int t; //violation here
+public class Example1 {
+
+  public void method1() {
+    int var1; int var2; // violation, 'Only one statement per line allowed.'
+    var1 = 1; var2 = 2; // violation, 'Only one statement per line allowed.'
+  }
+
+  public void method2() {
+    int var2;
+    // violation below 'Only one statement per line allowed.'
+    Object obj1 = new Object(); Object obj2 = new Object();
+    int var1 = 1
+    ; var2 = 2; // violation, 'Only one statement per line allowed.'
+    int o = 1, p = 2
+    , r = 5; int t; // violation, 'Only one statement per line allowed.'
+  }
+
+  public void method3() throws IOException {
+    final OutputStream s1 = new PipedOutputStream();
+    final OutputStream s2 = new PipedOutputStream();
+    try (s1; s2; OutputStream s3 = new PipedOutputStream()) {
+    }
+
+    try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader()) {
+    }
+  }
+
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check to treat resources
@@ -104,14 +126,40 @@ r = 5; int t; //violation here
           The following examples will illustrate difference:
         </p>
         <source>
-OutputStream s1 = new PipedOutputStream();
-OutputStream s2 = new PipedOutputStream();
-// only one statement(variable definition) with two variable references
-try (s1; s2; OutputStream s3 = new PipedOutputStream();) // OK
-{}
-// two statements with variable definitions
-try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
-) {}
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PipedOutputStream;
+import java.io.Reader;
+import java.io.PipedReader;
+import java.io.BufferedReader; import java.io.EOFException;
+// violation above 'Only one statement per line allowed.'
+
+public class Example2 {
+  public void method1() {
+    int var1; int var2; // violation, 'Only one statement per line allowed.'
+    var1 = 1; var2 = 2; // violation, 'Only one statement per line allowed.'
+  }
+
+  public void method2() {
+    int var2;
+    // violation below 'Only one statement per line allowed.'
+    Object obj1 = new Object(); Object obj2 = new Object();
+    int var1 = 1
+    ; var2 = 2; // violation, 'Only one statement per line allowed.'
+    int o = 1, p = 2
+    , r = 5; int t; // violation, 'Only one statement per line allowed.'
+  }
+
+  public void method3() throws IOException {
+    final OutputStream s1 = new PipedOutputStream();
+    final OutputStream s2 = new PipedOutputStream();
+    try (s1; s2; OutputStream s3 = new PipedOutputStream()) {
+    }
+    // violation below 'Only one statement per line allowed.'
+    try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader()) {
+    }
+  }
+}
         </source>
       </subsection>
 
