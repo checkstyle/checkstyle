@@ -54,8 +54,8 @@ public class ArrayTypeStyleCheckTest
             "44:33: " + getCheckMessage(MSG_KEY),
             "49:34: " + getCheckMessage(MSG_KEY),
             "49:36: " + getCheckMessage(MSG_KEY),
-            "55:27: " + getCheckMessage(MSG_KEY),
-            "55:29: " + getCheckMessage(MSG_KEY),
+            "58:27: " + getCheckMessage(MSG_KEY),
+            "58:29: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyle.java"), expected);
@@ -67,13 +67,13 @@ public class ArrayTypeStyleCheckTest
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
             "16:39: " + getCheckMessage(MSG_KEY),
-            "22:18: " + getCheckMessage(MSG_KEY),
-            "30:20: " + getCheckMessage(MSG_KEY),
-            "44:33: " + getCheckMessage(MSG_KEY),
-            "49:34: " + getCheckMessage(MSG_KEY),
-            "49:36: " + getCheckMessage(MSG_KEY),
-            "55:27: " + getCheckMessage(MSG_KEY),
-            "55:29: " + getCheckMessage(MSG_KEY),
+            "23:18: " + getCheckMessage(MSG_KEY),
+            "31:20: " + getCheckMessage(MSG_KEY),
+            "45:33: " + getCheckMessage(MSG_KEY),
+            "50:34: " + getCheckMessage(MSG_KEY),
+            "50:36: " + getCheckMessage(MSG_KEY),
+            "59:27: " + getCheckMessage(MSG_KEY),
+            "59:29: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyleOff.java"), expected);
@@ -85,8 +85,8 @@ public class ArrayTypeStyleCheckTest
         final String[] expected = {
             "22:45: " + getCheckMessage(MSG_KEY),
             "23:61: " + getCheckMessage(MSG_KEY),
-            "24:76: " + getCheckMessage(MSG_KEY),
-            "31:16: " + getCheckMessage(MSG_KEY),
+            "25:76: " + getCheckMessage(MSG_KEY),
+            "33:16: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputArrayTypeStyleNestedGenerics.java"), expected);
