@@ -77,16 +77,12 @@ jobs:
       - name: Patch command for pitest-${{ matrix.profile }}
         if: failure()
         run: |
-          printf "\nTo patch suppression list run:\n\n"
-          GIT_DIFF=$(git diff)
-          printf "patch -p1 << EOF\n%s\nEOF" "$GIT_DIFF"
-          exit 1
+          ./.ci/print-diff-as-patch.sh target/pitest-${{ matrix.profile }}.patch
 
       - name: Stage results
         if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
-          git diff && git diff > target/pitest-${{ matrix.profile }}.patch
 
       - name: Archive code coverage results
         if: failure() || github.ref == 'refs/heads/master'

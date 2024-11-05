@@ -55,7 +55,7 @@ jobs:
 
       - name: Git Diff on fail
         if: failure()
-        run: git diff && git diff > target/checker-${{ matrix.profile }}.patch
+        run: ./.ci/print-diff-as-patch.sh target/checker-${{ matrix.profile }}.patch
 
       - name: Share patch as artifact to apply on local
         if: failure()
