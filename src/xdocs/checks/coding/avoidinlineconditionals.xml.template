@@ -29,13 +29,13 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/avoidinlineconditionals/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
