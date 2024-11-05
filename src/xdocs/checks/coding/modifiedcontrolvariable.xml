@@ -80,12 +80,16 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
           Example:
         </p>
         <source>
-for(int i=0;i &lt; 8;i++) {
-  i++; // violation, control variable modified
-}
-String args1[]={&quot;Coding&quot;, &quot;block&quot;};
-for (String arg: args1) {
-  arg = arg.trim(); // violation, control variable modified
+class Example1 {
+  void InvalidExample() {
+    for(int i=0;i &lt; 8;i++) {
+      i++; // violation, control variable modified
+    }
+    String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+    for (String arg: args1) {
+      arg = arg.trim(); // violation, control variable modified
+    }
+  }
 }
         </source>
         <p>
@@ -111,12 +115,16 @@ for (String arg: args1) {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-for(int i=0;i &lt; 8;i++) {
-  i++; // violation, control variable modified
-}
-String args1[]={&quot;Coding&quot;, &quot;block&quot;};
-for (String arg: args1) {
-  arg = arg.trim(); // ok
+class Example2 {
+  void InvalidExample() {
+    for(int i=0;i &lt; 8;i++) {
+      i++; // violation, control variable modified
+    }
+    String args1[]={&quot;Coding&quot;, &quot;block&quot;};
+    for (String arg: args1) {
+      arg = arg.trim();
+    }
+  }
 }
         </source>
       </subsection>
