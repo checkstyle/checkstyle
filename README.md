@@ -18,12 +18,13 @@
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
-[![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 [![][release notes/version img]][release notes/version]
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
 [![][milestone img]][milestone]
+
+[![][mavenbadge img]][mavenbadge]
 
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
