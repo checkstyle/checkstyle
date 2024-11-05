@@ -46,16 +46,33 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) { // violation, max allowed nested loop number is 1
-        }
-    }
-}
+public class Example1 {
 
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) { // ok
+  public void myTest() {
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+      }
     }
+
+    // violation 3 lines below 'Nested for depth is 2 (max allowed is 1).'
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+        for(int k=0; k&lt;j; k++) {
+        }
+      }
+    }
+
+    // violation 4 lines below 'Nested for depth is 2 (max allowed is 1).'
+    // violation 4 lines below 'Nested for depth is 3 (max allowed is 1).'
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+        for(int k=0; k&lt;j; k++) {
+          for(int l=0; l&lt;k; l++) {
+          }
+        }
+      }
+    }
+  }
 }
         </source>
         <p id="Example2-config">
@@ -72,20 +89,31 @@ for(int i=0; i&lt;10; i++) {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) {
-            for(int l=0; l&lt;k; l++) { // violation, max allowed nested loop number is 2
-            }
-        }
-    }
-}
+public class Example2 {
 
-for(int i=0; i&lt;10; i++) {
-    for(int j=0; j&lt;i; j++) {
-        for(int k=0; k&lt;j; k++) { // ok
-        }
+  public void myTest() {
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+      }
     }
+
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+        for(int k=0; k&lt;j; k++) {
+        }
+      }
+    }
+
+    // violation 4 lines below 'Nested for depth is 3 (max allowed is 2).'
+    for(int i=0; i&lt;10; i++) {
+      for(int j=0; j&lt;i; j++) {
+        for(int k=0; k&lt;j; k++) {
+          for(int l=0; l&lt;k; l++) {
+          }
+        }
+      }
+    }
+  }
 }
         </source>
       </subsection>
