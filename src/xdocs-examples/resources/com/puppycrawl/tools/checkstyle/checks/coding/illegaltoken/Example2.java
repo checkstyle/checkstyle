@@ -7,7 +7,10 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
 // xdoc section -- start
-public native void myTest(); // violation
+class Example2 {
+  native void InvalidExample(); // violation, 'Using 'native' is not allowed'
+}
 // xdoc section -- end
