@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class AvoidInlineConditionalsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +32,10 @@ public class AvoidInlineConditionalsCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:27: " + getCheckMessage(AvoidInlineConditionalsCheck.MSG_KEY),
+            "25:44: " + getCheckMessage(AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
