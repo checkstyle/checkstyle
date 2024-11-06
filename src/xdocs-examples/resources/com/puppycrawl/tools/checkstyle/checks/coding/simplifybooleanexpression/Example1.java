@@ -5,30 +5,24 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanexpression;
 
 // xdoc section -- start
-public class Test {
-
-  public void bar() {
-
-    boolean a, b;
-    Foo c, d, e;
-
+class Example1 {
+  void InvalidExample() {
+    boolean a=true,b=true;
+    Object c=null, d=null, e=null;
     if (!false) {};       // violation, can be simplified to true
-
     if (a == true) {};    // violation, can be simplified to a
-    if (a == b) {};       // OK
+    if (a == b) {};
     if (a == false) {};   // violation, can be simplified to !a
     if (!(a != true)) {}; // violation, can be simplified to a
-
-    e = (a || b) ? c : d;     // OK
+    e = (a || b) ? c : d;
     e = (a || false) ? c : d; // violation, can be simplified to a
-    e = (a && b) ? c : d;     // OK
-
+    e = (a && b) ? c : d;
     int s = 12;
     boolean m = s > 1 ? true : false; // violation, can be simplified to s > 1
-    boolean f = c == null ? false : c.someMethod(); // OK
+    boolean f = c == null ? false : c.equals(d);
   }
-
 }
 // xdoc section -- end
