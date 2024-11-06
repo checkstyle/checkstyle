@@ -15,8 +15,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
+
 // xdoc section -- start
-public class Test {
+public class Example4 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"

@@ -12,8 +12,10 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
+
 // xdoc section -- start
-public class Test {
+public class Example3 {
   int a; // SUPPRESS CHECKSTYLE
   int b; // NOPMD
   int c; // NOSONAR
