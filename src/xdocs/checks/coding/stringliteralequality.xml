@@ -48,20 +48,24 @@ if (&quot;something&quot;.equals(x))
           Examples of violations:
         </p>
         <source>
-String status = &quot;pending&quot;;
-
-if (status == &quot;done&quot;) {} // violation
-
-while (status != &quot;done&quot;) {} // violation
-
-boolean flag = (status == &quot;done&quot;); // violation
-
-boolean flag = (status.equals(&quot;done&quot;)); // OK
-
-String name = &quot;X&quot;;
-
-if (name == getName()) {}
-// OK, limitation that check cannot tell runtime type returned from method call
+class Example1 {
+  String getName(){
+    return &quot;Y&quot;;
+  }
+  void InvalidExample(){
+    String status = &quot;pending&quot;;
+    // violation below, 'Literal Strings should be compared using equals(), not '==''
+    if (status == &quot;done&quot;) {}
+    // violation below, 'Literal Strings should be compared using equals(), not '!=''
+    while (status != &quot;done&quot;) {}
+    // violation below, 'Literal Strings should be compared using equals(), not '==''
+    boolean flag = (status == &quot;done&quot;);
+    boolean flag1 = (status.equals(&quot;done&quot;));
+    String name = &quot;X&quot;;
+    if (name == getName()) {}
+    // OK, limitation that check cannot tell runtime type returned from method call
+  }
+}
         </source>
       </subsection>
 
