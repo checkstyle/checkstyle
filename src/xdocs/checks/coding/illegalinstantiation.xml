@@ -76,19 +76,19 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class MyTest {
+public class Example1 {
   public class Boolean {
     boolean a;
-
     public Boolean (boolean a) { this.a = a; }
   }
 
-  public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // OK
-    java.lang.Boolean d = new java.lang.Boolean(a); // OK
+  public void Example1 (boolean a, int b) {
+    Boolean c = new Boolean(a);
+    java.lang.Boolean d = new java.lang.Boolean(a);
 
-    Integer e = new Integer(b); // OK
-    Integer f = Integer.valueOf(b); // OK
+    Integer e = new Integer(b);
+
+    Integer f = Integer.valueOf(b);
   }
 }
         </source>
@@ -100,29 +100,27 @@ public class MyTest {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalInstantiation&quot;&gt;
-      &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
-        java.lang.Integer&quot;/&gt;
+      &lt;property name=&quot;classes&quot;
+           value=&quot;java.lang.Boolean, java.lang.Integer&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class MyTest {
+public class Example2 {
   public class Boolean {
     boolean a;
-
     public Boolean (boolean a) { this.a = a; }
   }
 
-  public void myTest (boolean a, int b) {
-    Boolean c = new Boolean(a); // OK
-    java.lang.Boolean d = new java.lang.Boolean(a); // violation, instantiation of
-                                                    // java.lang.Boolean should be avoided
-
-    Integer e = new Integer(b); // violation, instantiation of
-                                // java.lang.Integer should be avoided
-    Integer f = Integer.valueOf(b); // OK
+  public void Example2 (boolean a, int b) {
+    Boolean c = new Boolean(a);
+    java.lang.Boolean d = new java.lang.Boolean(a);
+    // violation above, 'Instantiation of java.lang.Boolean should be avoided'
+    Integer e = new Integer(b);
+    // violation above, 'Instantiation of java.lang.Integer should be avoided'
+    Integer f = Integer.valueOf(b);
   }
 }
         </source>
@@ -133,18 +131,18 @@ public class MyTest {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalInstantiation&quot;&gt;
-      &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean[],
-         Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
+      &lt;property name=&quot;classes&quot;
+           value=&quot;java.lang.Boolean[], Boolean[], java.lang.Integer[], Integer[]&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class MyTest {
-  public void myTest () {
-    Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
-    Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+public class Example3 {
+  public void Example3 () {
+    Boolean[] newBoolArray = new Boolean[]{true,true,false};
+    Integer[] newIntArray = new Integer[]{1,2,3};
   }
 }
         </source>
