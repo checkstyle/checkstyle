@@ -8,12 +8,13 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
 // xdoc section -- start
-public class MyTest {
-  public void myTest () {
-    Boolean[] newBoolArray = new Boolean[]{true,true,false}; // OK
-    Integer[] newIntArray = new Integer[]{1,2,3}; // OK
+public class Example3 {
+  public void Example3 () {
+    Boolean[] newBoolArray = new Boolean[]{true,true,false};
+    Integer[] newIntArray = new Integer[]{1,2,3};
   }
 }
 // xdoc section -- end
