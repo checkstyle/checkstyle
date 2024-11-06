@@ -115,12 +115,21 @@ d = e / f;        // Another comment for this line
           Example:
         </p>
         <source>
-// OK
-if (/* OK */ x &gt; 5) {}
-int a = 5; // violation
-doSomething(
-  param1
-); // OK, by default such trailing of method/code-block ending is allowed
+public class Example1 {
+  public static void main(String[] args) {
+    int x = 10;
+    // OK
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // violation
+    doSomething(
+            &quot;param1&quot;
+    ); // OK, by default such trailing of method/code-block ending is allowed
+
+  }
+
+  private static void doSomething(String param) {
+  }
+}
         </source>
 
         <p id="Example2-config">
@@ -140,12 +149,20 @@ doSomething(
           Example:
         </p>
         <source>
-// OK
-if (/* OK, this comment does not end the line */ x &gt; 5) {}
-int a = 5; // violation, line content before comment should match pattern &quot;^\s*$&quot;
-doSomething(
-  param1
-); // violation, line content before comment should match pattern &quot;^\s*$&quot;
+public class Example2 {
+  public static void main(String[] args) {
+    int x = new Random().nextInt(100);
+    // OK
+    if (/* OK, this comment does not end the line */ x &gt; 5) {}
+    int a = 5; // violation, line content before comment should match pattern &quot;^\s*$&quot;
+    doSomething(
+            &quot;param1&quot;
+    ); // violation, line content before comment should match pattern &quot;^\s*$&quot;
+  }
+
+  private static void doSomething(String param) {
+  }
+}
         </source>
 
         <p id="Example3-config">
@@ -171,7 +188,7 @@ doSomething(
           Example for trailing comments check to suppress specific trailing comment:
         </p>
         <source>
-public class Test {
+public class Example3 {
   int a; // SUPPRESS CHECKSTYLE
   int b; // NOPMD
   int c; // NOSONAR
@@ -204,7 +221,7 @@ public class Test {
           Example:
         </p>
         <source>
-public class Test {
+public class Example4 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with &quot; SUPPRESS CHECKSTYLE&quot;
   int b; // NOPMD - OK, comment starts with &quot; NOPMD&quot;
   int c; // NOSONAR - OK, comment starts with &quot; NOSONAR&quot;
