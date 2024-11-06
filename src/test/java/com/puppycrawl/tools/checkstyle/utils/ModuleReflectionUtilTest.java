@@ -385,17 +385,12 @@ public class ModuleReflectionUtilTest {
         }
 
         /**
-         * Method has tail recursive call.
+         * Increments the field.
          *
          * @param data of int type.
-         * @noinspection TailRecursion
-         * @noinspectionreason TailRecursion - until issue #14814
          */
         public final void method(int data) {
-            field++;
-            if (data > 0) {
-                method(data - 1);
-            }
+            field = data + 1;
         }
 
         public int getField() {
