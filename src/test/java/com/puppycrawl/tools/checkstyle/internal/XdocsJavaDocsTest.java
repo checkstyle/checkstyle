@@ -123,14 +123,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         checker = createChecker(checkConfig);
     }
 
-    /**
-     * Validates check javadocs and xdocs for consistency.
-     *
-     * @noinspection JUnitTestMethodWithNoAssertions, TestMethodWithoutAssertion
-     * @noinspectionreason JUnitTestMethodWithNoAssertions - asserts in callstack,
-     *      but not in this method
-     * @noinspectionreason TestMethodWithoutAssertion - until issue #14625
-     */
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
@@ -157,12 +149,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                     continue;
                 }
 
-                examineCheckSection(moduleFactory, fileName, sectionName, section);
+                assertCheckSection(moduleFactory, fileName, sectionName, section);
             }
         }
     }
 
-    private static void examineCheckSection(ModuleFactory moduleFactory, String fileName,
+    private static void assertCheckSection(ModuleFactory moduleFactory, String fileName,
             String sectionName, Node section) throws Exception {
         final Object instance;
 
@@ -178,7 +170,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         CHECK_PROPERTY_DOC.clear();
         checkName = sectionName;
 
-        examineCheckSectionChildren(section);
+        assertCheckSectionChildren(section);
 
         final List<File> files = new ArrayList<>();
         files.add(new File("src/main/java/" + instance.getClass().getName().replace(".", "/")
@@ -187,7 +179,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         checker.process(files);
     }
 
-    private static void examineCheckSectionChildren(Node section) {
+    private static void assertCheckSectionChildren(Node section) {
         for (Node subSection : XmlUtil.getChildrenElements(section)) {
             if (!"subsection".equals(subSection.getNodeName())) {
                 final String text = getNodeText(subSection);
