@@ -57,7 +57,6 @@ class InputFormattedWhitespaceAroundWhen {
       case 'i' -> System.out.println("i");
       case 'o' -> System.out.println("o");
       default -> {
-        // violation above ''{' at column 18 should be on a new line.'
         System.out.println("default");
       }
     }

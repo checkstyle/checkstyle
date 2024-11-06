@@ -97,6 +97,11 @@
       <property name="tokens"
                 value="LITERAL_CASE, LITERAL_DEFAULT"/>
     </module>
+    <module name="SuppressionXpathSingleFilter">
+      <!-- LITERAL_CASE, LITERAL_DEFAULT are reused in SWITCH_RULE  -->
+      <property name="id" value="LeftCurlyNl"/>
+      <property name="query" value="//SWITCH_RULE/SLIST"/>
+    </module>
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
       <property name="tokens"
