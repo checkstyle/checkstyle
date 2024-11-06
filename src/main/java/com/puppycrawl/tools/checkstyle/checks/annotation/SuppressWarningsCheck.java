@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -313,24 +315,27 @@ public class SuppressWarningsCheck extends AbstractCheck {
     }
 
     /**
-     * Recursively walks a conditional expression checking the left
+     * Walks a conditional expression checking the left
      * and right sides, checking for matches and
      * logging violations.
      *
      * @param cond a Conditional type
      *     {@link TokenTypes#QUESTION QUESTION}
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
      */
     private void walkConditional(final DetailAST cond) {
-        if (cond.getType() == TokenTypes.QUESTION) {
-            walkConditional(getCondLeft(cond));
-            walkConditional(getCondRight(cond));
-        }
-        else {
-            final String warningText =
-                    removeQuotes(cond.getText());
-            logMatch(cond, warningText);
+       final Deque<DetailAST> condStack = new ArrayDeque<>();
+        condStack.push(cond);
+
+        while (!condStack.isEmpty()) {
+            final DetailAST currentCond = condStack.pop();
+            if (currentCond.getType() == TokenTypes.QUESTION) {
+                condStack.push(getCondRight(currentCond));
+                condStack.push(getCondLeft(currentCond));
+            }
+            else {
+                final String warningText = removeQuotes(currentCond.getText());
+                logMatch(currentCond, warningText);
+            }
         }
     }
 
