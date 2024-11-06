@@ -60,30 +60,46 @@
           Example:
         </p>
         <source>
-try {
-    // some code here
-} catch (Exception e) { // violation
+class Example1 {
+  void exampleMethod1() {
+    try {
+      // some code here
+    } catch (Exception e) {
+      // violation above, 'Catching 'Exception' is not allowed'
+    }
+  }
 
-}
+  void exampleMethod2() {
+    try {
+      // some code here
+    } catch (ArithmeticException e) {
+    } catch (Exception e) {
+      // violation above, 'Catching 'Exception' is not allowed'
+      //order of catch blocks doesn't matter
+    }
+  }
 
-try {
-    // some code here
-} catch (ArithmeticException e) { // OK
+  void exampleMethod3() {
+    try {
+      // some code here
+    } catch (NullPointerException e) {
+    } catch (OutOfMemoryError e) {
+    }
+  }
 
-} catch (Exception e) { // violation, catching Exception is illegal
-                          and order of catch blocks doesn't matter
-}
+  void exampleMethod4() {
+    try {
+      // some code here
+    } catch (ArithmeticException | NullPointerException e) {
+    }
+  }
 
-try {
-    // some code here
-} catch (ArithmeticException | Exception e) { // violation, catching Exception is illegal
-
-}
-
-try {
-    // some code here
-} catch (ArithmeticException e) { // OK
-
+  void exampleMethod5() {
+    try {
+      // some code here
+    } catch (OutOfMemoryError e) {
+    }
+  }
 }
         </source>
         <p id="Example2-config">
@@ -104,36 +120,49 @@ try {
             Example:
         </p>
         <source>
-try {
-    // some code here
-} catch (OutOfMemoryError e) { // violation
+class Example2 {
+  void exampleMethod1() {
+    try {
+      // some code here
+    } catch (Exception e) {
+    }
+  }
 
-}
+  void exampleMethod2() {
+    try {
+      // some code here
+    } catch (ArithmeticException e) {
+      // violation above, 'Catching 'ArithmeticException' is not allowed'
+      //order of catch blocks doesn't matter
+    }
+    catch(Exception e){
+    }
+  }
 
-try {
-    // some code here
-} catch (ArithmeticException e) { // violation
+  void exampleMethod3() {
+    try {
+      // some code here
+    } catch (NullPointerException e) {
+    } catch (OutOfMemoryError e) {
+      // violation above, 'Catching 'OutOfMemoryError' is not allowed'
+    }
+  }
 
-}
+  void exampleMethod4() {
+    try {
+      // some code here
+    } catch (ArithmeticException | NullPointerException e) {
+      // violation above, 'Catching 'ArithmeticException' is not allowed'
+    }
+  }
 
-try {
-    // some code here
-} catch (NullPointerException e) { // OK
-
-} catch (OutOfMemoryError e) { // violation
-
-}
-
-try {
-    // some code here
-} catch (ArithmeticException | Exception e) {  // violation
-
-}
-
-try {
-    // some code here
-} catch (Exception e) { // OK
-
+  void exampleMethod5(){
+    try {
+      // some code here
+    } catch (OutOfMemoryError e) {
+      // violation above, 'Catching 'OutOfMemoryError' is not allowed'
+    }
+  }
 }
         </source>
       </subsection>
