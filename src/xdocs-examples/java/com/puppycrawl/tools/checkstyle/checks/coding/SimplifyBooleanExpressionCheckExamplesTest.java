@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SimplifyBooleanExpressionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +32,14 @@ public class SimplifyBooleanExpressionCheckExamplesTest extends AbstractExamples
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:9: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
+            "16:11: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
+            "18:11: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
+            "19:13: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
+            "21:12: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
+            "24:23: " + getCheckMessage(SimplifyBooleanExpressionCheck.MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
