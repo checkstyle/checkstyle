@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck.MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class DefaultComesLastCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,18 +35,21 @@ public class DefaultComesLastCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "34:7: " + getCheckMessage(MSG_KEY),
+            "50:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "36:7: " + getCheckMessage(MSG_KEY),
+            "45:7: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "52:7: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }

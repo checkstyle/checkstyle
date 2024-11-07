@@ -55,37 +55,49 @@
           Example:
         </p>
         <source>
-switch (i) {
-  case 1:
-    break;
-  case 2:
-    break;
-  default: // OK
-    break;
-}
+public class Example1 {
 
-switch (i) {
-  case 1:
-    break;
-  case 2:
-    break; // OK, no default
-}
+  public void method() {
+    int i = 2, x;
+    switch (i) {
+      case 1:
+        break;
+      case 2:
+        break;
+      default:
+        break;
+    }
 
-switch (i) {
-  case 1:
-    break;
-  default: // violation, 'default' before 'case'
-    break;
-  case 2:
-    break;
-}
+    switch (i) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
 
-switch (i) {
-  case 1:
-  default: // violation, 'default' before 'case'
-    break;
-  case 2:
-    break;
+    switch (i) {
+      case 1:
+        break;
+      default: // violation, 'Default should be last label in the switch'
+        break;
+      case 2:
+        break;
+    }
+
+    switch (i) {
+      case 1:
+        break;
+      default:
+      case 2:
+        break;
+    }
+
+    switch (i) {
+      case 1: x = 9;
+      default: x = 10; // violation, 'Default should be last label in the switch'
+      case 2: x = 32;
+    }
+  }
 }
         </source>
         <p id="Example2-config">
@@ -104,29 +116,49 @@ switch (i) {
           Example:
         </p>
         <source>
-switch (i) {
-  case 1:
-    break;
-  case 2:
-  default: // OK
-    break;
-  case 3:
-    break;
-}
+public class Example2 {
 
-switch (i) {
-  case 1:
-    break;
-  default: // violation
-  case 2:
-    break;
-}
+  public void method() {
+    int i = 2, x;
+    switch (i) {
+      case 1:
+        break;
+      case 2:
+        break;
+      default:
+        break;
+    }
 
-// Switch rules are not subject to fall through, so this is still a violation:
-switch (i) {
-case 1 -&gt; x = 9;
-default -&gt; x = 10; // violation
-case 2 -&gt; x = 32;
+    switch (i) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    switch (i) {
+      case 1:
+        break;
+      default: // violation, 'Default should be last label in the switch'
+        break;
+      case 2:
+        break;
+    }
+
+    switch (i) {
+      case 1:
+        break;
+      default: // violation, 'Default should be last label in the case group'
+      case 2:
+        break;
+    }
+
+    switch (i) {
+      case 1: x = 9;
+      default: x = 10; // violation, 'Default should be last label in the switch'
+      case 2: x = 32;
+    }
+  }
 }
         </source>
       </subsection>
