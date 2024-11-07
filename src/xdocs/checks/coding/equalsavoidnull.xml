@@ -62,11 +62,17 @@
          Example:
         </p>
         <source>
-String nullString = null;
-nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
-nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+public class Example1 {
+  public void foo() {
+    String nullString = null;
+    // violation below 'String literal expressions should be on the left side'
+    nullString.equals(&quot;My_Sweet_String&quot;);
+    &quot;My_Sweet_String&quot;.equals(nullString);
+    // violation below 'String literal expressions should be on the left side'
+    nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);
+    &quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);
+  }
+}
         </source>
 
         <p id="Example2-config">
@@ -85,11 +91,16 @@ nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // violation
          Example:
         </p>
         <source>
-String nullString = null;
-nullString.equals(&quot;My_Sweet_String&quot;);            // violation
-&quot;My_Sweet_String&quot;.equals(nullString);            // OK
-nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);  // OK
-&quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);  // OK
+public class Example2 {
+  public void foo() {
+    String nullString = null;
+    // violation below 'String literal expressions should be on the left side'
+    nullString.equals(&quot;My_Sweet_String&quot;);
+    &quot;My_Sweet_String&quot;.equals(nullString);
+    nullString.equalsIgnoreCase(&quot;My_Sweet_String&quot;);
+    &quot;My_Sweet_String&quot;.equalsIgnoreCase(nullString);
+  }
+}
         </source>
       </subsection>
 
