@@ -44,6 +44,7 @@ class Example3 {
     // ok above, because single line FOR statement is allowed in config.
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }

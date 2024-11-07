@@ -9,7 +9,8 @@
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>Checks for braces around code blocks.</div>
+        <div> Checks for braces around code blocks. </div>
+        <p> Attention: The break in case blocks is not counted to allow compact view. </p>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -119,6 +120,7 @@ class Example1 {
     // violation above, ''while' construct must use '{}'s.'
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }
@@ -170,6 +172,7 @@ class Example2 {
     // ok above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }
@@ -223,6 +226,7 @@ class Example3 {
     // ok above, because single line FOR statement is allowed in config.
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }
@@ -278,6 +282,7 @@ class Example4 {
     // ok above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }
@@ -329,6 +334,7 @@ class Example5 {
     // ok above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }

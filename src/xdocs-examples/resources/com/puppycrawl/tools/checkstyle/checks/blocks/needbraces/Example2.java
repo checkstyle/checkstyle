@@ -42,6 +42,7 @@ class Example2 {
     // ok above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
     }
     return true;
   }
