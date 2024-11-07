@@ -10,6 +10,69 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.20.1">
+      <div class="releaseDate">07.11.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            google_checks: False positive on left curly brace in switch statement with lambda-like
+            construct.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15851">#15851</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enable examples tests.
+            Author: Amit Kumar Deohoria, Devarsh Mavani, akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Kushagra-sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            IDEA inspection suppressions resulted from migration to v2022.3.3.
+            Author: Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/14625">#14625</a>
+          </li>
+          <li>
+            update GSOC.md and CONTRIBUTING.md.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15845">#15845</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: Devarsh Mavani
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Resolve `TailRecursion` inspection violations by replacing tail recursive calls.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14814">#14814</a>
+          </li>
+          <li>
+            JavadocParagraph documentation example s should be updated to same by structure .
+            Author: akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/15760">#15760</a>
+          </li>
+          <li>
+            doc: BEGINNING_DEVELOPMENT.md.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            doc: improve README.md add CONTRIBUTING.md add GSOC.md.
+            Author: Nick Mancuso
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.20.0">
       <div class="releaseDate">31.10.2024</div>
       <p>Breaking backward compatibility:</p>
