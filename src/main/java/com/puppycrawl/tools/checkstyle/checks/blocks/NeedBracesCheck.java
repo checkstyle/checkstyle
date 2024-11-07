@@ -33,6 +33,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks for braces around code blocks.
  * </div>
  *
+ * <p>
+ * Attention: The break in case blocks is not counted to allow compact view.
+ * </p>
  * <ul>
  * <li>
  * Property {@code allowEmptyLoopBody} - Allow loops with empty bodies.
