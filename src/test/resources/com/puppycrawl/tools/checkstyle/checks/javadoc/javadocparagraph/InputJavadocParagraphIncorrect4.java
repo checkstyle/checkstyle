@@ -57,4 +57,30 @@ public class InputJavadocParagraphIncorrect4 {
     // '<p> tag should be placed immediately before the first word'
     // '<p> tag should not precede HTML block-tag '<ol>''
     void foooo() {}
+
+    /**
+     * Plugin to standardize all directions to their appropriate abbreviation.
+     *
+     * <p><div style="padding: 1em 1em 1em">
+     *
+     * <table>
+     * <caption></caption>
+     * <thead>
+     * <tr>
+     * <th scope="col" style="padding: .3em 4em 0 0; text-align: left">Direction
+     * <th scope="col" style="padding: .3em 4em 0 0; text-align: left">Abbreviation
+     * </tr>
+     * </thead>
+     * <tbody>
+     * <tr>
+     * <td>East</td> <td>E</td>
+     * </tr>
+     * </tbody>
+     * </table>
+     *
+     * </div>
+     *
+     * <p>This plugin assumes numbered streets have the correct suffix, when applicable.
+     */
+    void plugin() {}
 }
