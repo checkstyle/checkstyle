@@ -76,6 +76,12 @@
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile[\\/]Example\d+.*"/>
 
+  <!-- Examples must show violation message -->
+  <suppress checks="LineLength"
+    files="equalsavoidnull[\\/]Example1.java"/>
+  <suppress checks="LineLength"
+    files="equalsavoidnull[\\/]Example2.java"/>
+
   <!-- Example must show line length violations and suppressed violations -->
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
