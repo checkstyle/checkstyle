@@ -154,7 +154,7 @@ class Foo5
     /* Some for-each clauses */
     public void Bar()
     {
-        for(String s : someExpression()) // violation
+        for(String s : someExpression()) // violation, 's' should be final
         {
 
         }
@@ -162,7 +162,7 @@ class Foo5
         {
 
         }
-        for(@MyAnnotation33 String s : someExpression()) // violation
+        for(@MyAnnotation33 String s : someExpression()) // violation, 's' should be final
         {
 
         }

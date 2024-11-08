@@ -106,10 +106,10 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "14:22: " + getCheckMessage(MSG_KEY, "k"),
             "15:15: " + getCheckMessage(MSG_KEY, "s"),
             "15:25: " + getCheckMessage(MSG_KEY, "o"),
-            "16:15: " + getCheckMessage(MSG_KEY, "array"),
-            "17:31: " + getCheckMessage(MSG_KEY, "s"),
-            "18:22: " + getCheckMessage(MSG_KEY, "l"),
-            "18:32: " + getCheckMessage(MSG_KEY, "s"),
+            "19:15: " + getCheckMessage(MSG_KEY, "array"),
+            "20:31: " + getCheckMessage(MSG_KEY, "s"),
+            "21:22: " + getCheckMessage(MSG_KEY, "l"),
+            "21:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes.java"), expected);
@@ -122,16 +122,16 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "14:15: " + getCheckMessage(MSG_KEY, "i"),
             "14:22: " + getCheckMessage(MSG_KEY, "k"),
             "14:32: " + getCheckMessage(MSG_KEY, "s"),
-            "15:15: " + getCheckMessage(MSG_KEY, "s"),
-            "15:25: " + getCheckMessage(MSG_KEY, "o"),
-            "15:35: " + getCheckMessage(MSG_KEY, "l"),
-            "16:15: " + getCheckMessage(MSG_KEY, "array"),
-            "17:15: " + getCheckMessage(MSG_KEY, "i"),
-            "17:22: " + getCheckMessage(MSG_KEY, "x"),
-            "17:31: " + getCheckMessage(MSG_KEY, "s"),
-            "18:15: " + getCheckMessage(MSG_KEY, "x"),
-            "18:22: " + getCheckMessage(MSG_KEY, "l"),
-            "18:32: " + getCheckMessage(MSG_KEY, "s"),
+            "19:15: " + getCheckMessage(MSG_KEY, "s"),
+            "19:25: " + getCheckMessage(MSG_KEY, "o"),
+            "19:35: " + getCheckMessage(MSG_KEY, "l"),
+            "24:15: " + getCheckMessage(MSG_KEY, "array"),
+            "25:15: " + getCheckMessage(MSG_KEY, "i"),
+            "25:22: " + getCheckMessage(MSG_KEY, "x"),
+            "25:31: " + getCheckMessage(MSG_KEY, "s"),
+            "30:15: " + getCheckMessage(MSG_KEY, "x"),
+            "30:22: " + getCheckMessage(MSG_KEY, "l"),
+            "30:32: " + getCheckMessage(MSG_KEY, "s"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersPrimitiveTypes2.java"), expected);
