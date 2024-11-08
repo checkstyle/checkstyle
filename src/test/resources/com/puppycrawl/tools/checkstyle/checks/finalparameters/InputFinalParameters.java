@@ -24,7 +24,7 @@ class InputFinalParameters
     }
 
     /** non final param constructor */
-    InputFinalParameters(String s) // violation
+    InputFinalParameters(String s) // violation, 's' should be final
     {
     }
 
@@ -39,12 +39,12 @@ class InputFinalParameters
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters(@MyAnnotation33 Boolean i) // violation
+    InputFinalParameters(@MyAnnotation33 Boolean i) // violation, 'i' should be final
     {
     }
 
     /** mixed */
-    InputFinalParameters(String s, final Integer i) // violation
+    InputFinalParameters(String s, final Integer i) // violation, 's' should be final
     {
     }
 
@@ -54,7 +54,7 @@ class InputFinalParameters
     }
 
     /** non final param method */
-    void method(String s) // violation
+    void method(String s) // violation, 's' should be final
     {
     }
 
@@ -70,13 +70,13 @@ class InputFinalParameters
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation33 Class<Object> s) // violation
+    void method(@MyAnnotation33 Class<Object> s) // violation, 's' should be final
     {
 
     }
 
     /** mixed */
-    void method(String s, final Integer i) // violation
+    void method(String s, final Integer i) // violation, 's' should be final
     {
     }
 
@@ -91,10 +91,10 @@ class InputFinalParameters
     {
         Action a = new AbstractAction()
             {
-                public void actionPerformed(ActionEvent e) // violation
+                public void actionPerformed(ActionEvent e) // violation, 'e' should be final
                 {
                 }
-                void somethingElse(@MyAnnotation33 ActionEvent e) // violation
+                void somethingElse(@MyAnnotation33 ActionEvent e) // violation, 'e' should be final
                 {
                 }
             };
@@ -111,13 +111,13 @@ class InputFinalParameters
     }
 
     /** methods with complicated types of the parameters. */
-    void methodA(java.lang.String aParam) { // violation
+    void methodA(java.lang.String aParam) { // violation, 'aParam' should be final
     }
 
-    void methodB(String[] args) { // violation
+    void methodB(String[] args) { // violation, 'args' should be final
     }
 
-    void methodC(java.lang.String[] args) { // violation
+    void methodC(java.lang.String[] args) { // violation, 'args' should be final
     }
 
     /** some catch blocks */
