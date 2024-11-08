@@ -260,7 +260,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.design.SealedShouldHavePermitsListCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck",

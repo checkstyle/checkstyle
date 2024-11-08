@@ -25,7 +25,7 @@ class InputFinalParameters2
     }
 
     /** non final param constructor */
-    InputFinalParameters2(String s) // violation
+    InputFinalParameters2(String s) // violation, 's' should be final
     {
     }
 
@@ -40,12 +40,12 @@ class InputFinalParameters2
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters2(@MyAnnotation33 Boolean i) // violation
+    InputFinalParameters2(@MyAnnotation33 Boolean i) // violation, 'i' should be final
     {
     }
 
     /** mixed */
-    InputFinalParameters2(String s, final Integer i) // violation
+    InputFinalParameters2(String s, final Integer i) // violation, 's' should be final
     {
     }
 
