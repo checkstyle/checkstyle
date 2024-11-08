@@ -41,8 +41,8 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "16:11: " + getCheckMessage(MSG_KEY, "Throwable"),
             "22:11: " + getCheckMessage(MSG_KEY, "java.lang.RuntimeException"),
-            "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
-            "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
+            "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
+            "26:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
         verifyWithInlineConfigParser(
@@ -55,7 +55,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
             "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "15:11: " + getCheckMessage(MSG_KEY, "Throwable"),
             "22:11: " + getCheckMessage(MSG_KEY, "java.lang.Exception"),
-            "23:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
+            "24:11: " + getCheckMessage(MSG_KEY, "java.lang.Throwable"),
         };
 
         verifyWithInlineConfigParser(
@@ -79,15 +79,15 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "15:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "18:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
-            "18:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "18:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
-            "21:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
             "21:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "21:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "24:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
-            "24:11: " + getCheckMessage(MSG_KEY, "SQLException"),
-            "24:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "21:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "28:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "28:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
+            "28:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "35:11: " + getCheckMessage(MSG_KEY, "OneMoreException"),
+            "35:11: " + getCheckMessage(MSG_KEY, "SQLException"),
+            "35:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
         };
 
         verifyWithInlineConfigParser(
