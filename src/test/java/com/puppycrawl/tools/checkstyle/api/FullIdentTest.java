@@ -211,6 +211,42 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNewTypeTag() throws Exception {
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setType(TokenTypes.TYPE);
+        parent.setColumnNo(1);
+        parent.setLineNo(1);
+        parent.setText("Parent");
+
+        final DetailAstImpl ast1 = new DetailAstImpl();
+        ast1.setType(TokenTypes.LITERAL_NEW);
+        ast1.setColumnNo(2);
+        ast1.setLineNo(2);
+        ast1.setText("new1");
+
+        final DetailAstImpl child1 = new DetailAstImpl();
+        child1.setType(TokenTypes.TYPE);
+        child1.setColumnNo(2);
+        child1.setLineNo(5);
+        child1.setText("child1");
+
+        final DetailAstImpl child2 = new DetailAstImpl();
+        child2.setType(TokenTypes.TYPE);
+        child2.setColumnNo(2);
+        child2.setLineNo(13);
+        child2.setText("child2");
+
+        parent.addChild(ast1);
+        ast1.addChild(child1);
+        ast1.addChild(child2);
+
+        final FullIdent ident = FullIdent.createFullIdent(parent.getFirstChild());
+        assertWithMessage("invalid FullIdent")
+                .that(ident.getText())
+                .isEqualTo("child1");
+    }
+
+    @Test
     public void testReturnNoAnnotation() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentReturnNoAnnotation.java")).getAbsoluteFile(),
