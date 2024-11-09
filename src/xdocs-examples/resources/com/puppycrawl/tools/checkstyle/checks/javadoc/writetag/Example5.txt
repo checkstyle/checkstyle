@@ -1,0 +1,16 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WriteTag"/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+class InputWriteTagNoJavadoc
+{
+    public void method()
+    {
+    }
+}
+// xdoc section -- end
