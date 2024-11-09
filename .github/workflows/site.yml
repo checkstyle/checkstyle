@@ -76,8 +76,10 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message}}
     steps:
-      - name: Checkout repository from origin
+      - name: Checkout master branch
         uses: actions/checkout@v4
+        with:
+          repository: checkstyle/checkstyle
 
       # fetch-depth - number of commits to fetch.
       # 0 indicates all history for all branches and tags.
