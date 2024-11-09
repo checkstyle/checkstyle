@@ -24,9 +24,15 @@
             no space after.
           </li>
           <li>
-            First paragraph tag should not precede
-            <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>,
-            nested paragraph tags are allowed to do that.
+            The outer most paragraph tags should not preceded
+            <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>.
+            Javadoc support only following block-tags:
+            &lt;address&gt;,&lt;blockquote&gt;
+            ,&lt;div&gt;,&lt;dl&gt;
+            ,&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,&lt;h6&gt;,&lt;hr&gt;
+            ,&lt;ol&gt;,&lt;p&gt;,&lt;pre&gt;
+            ,&lt;table&gt;,&lt;ul&gt;.
+            Nested paragraph tags are allowed to do that.
           </li>
         </ul>
         <p><b>ATTENTION:</b></p>
