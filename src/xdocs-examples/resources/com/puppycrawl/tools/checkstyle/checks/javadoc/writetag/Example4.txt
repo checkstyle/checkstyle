@@ -22,5 +22,7 @@ public class Test {
   * @since violation
   */
   void foo() {}
+
+  public void method() {}
 }
 // xdoc section -- end

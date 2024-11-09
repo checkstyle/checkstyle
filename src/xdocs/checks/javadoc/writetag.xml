@@ -13,6 +13,7 @@
          Requires user defined Javadoc tag to be present in Javadoc comment with
          defined format. To define the format for a tag, set property tagFormat to a regular
          expression. Property tagSeverity is used for severity of events when the tag exists.
+         No violation reported in case there is no javadoc.
         </div>
       </subsection>
 
@@ -113,6 +114,8 @@
 public class Test {
   /** some doc */
   void foo() {}
+
+  public void method() {}
 }
         </source>
         <p id="Example2-config">
@@ -138,6 +141,8 @@ public class Test {
 public class Test { // violation as required tag is missed
   /** some doc */
   void foo() {} // OK, as methods are not checked by default
+
+  public void method() {}
 }
         </source>
         <p id="Example3-config">
@@ -165,6 +170,8 @@ public class Test { // violation as required tag is missed
 public class Test { // violation as required tag is missed
   /** some doc */
   void foo() {} // violation as required tag is missed
+
+  public void method() {}
 }
         </source>
         <p id="Example4-config">
@@ -199,6 +206,8 @@ public class Test {
   * @since violation
   */
   void foo() {}
+
+  public void method() {}
 }
         </source>
       </subsection>
