@@ -87,11 +87,7 @@ jobs:
       # ref - branch to checkout.
       - name: Download checkstyle for PR
         uses: actions/checkout@v4
-        env:
-          USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
-          repository: ${{ env.USER_LOGIN }}/checkstyle
-          ref: ${{needs.parse_pr_info.outputs.branch}}
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
