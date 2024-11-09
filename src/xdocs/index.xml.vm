@@ -270,6 +270,17 @@
             </td>
             <td/>
           </tr>
+          <tr>
+            <td>
+              <a href="https://github.com/tfij/check-tfij-style">check-tfij-style</a>
+            </td>
+            <td>
+              <a href="https://github.com/tfij/check-tfij-style/releases">
+                check-tfij-style
+              </a>
+            </td>
+            <td/>
+          </tr>
         </table>
       </div>
     </section>
