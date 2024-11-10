@@ -188,19 +188,59 @@ List list; //No violation here
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test extends TreeSet { // violation
-  public &lt;T extends java.util.HashSet&gt; void method() { // violation
-
-    LinkedHashMap&lt;Integer, String&gt; lhmap =
-        new LinkedHashMap&lt;Integer, String&gt;(); // violation
-    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;(); // violation
-    Test t; // OK
-    HashMap&lt;String, String&gt; hmap; // violation
-    Queue&lt;Integer&gt; intqueue; // OK
-
-    java.lang.IllegalArgumentException illegalex; // OK
-    java.util.TreeSet treeset; // violation
+// violation below 'Usage of type 'TreeSet' is not allowed'
+public class Example1 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
+    // violation below 'Usage of type 'LinkedHashMap' is not allowed'
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+    // violation below 'Usage of type 'TreeMap' is not allowed'
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+    // violation below 'Usage of type 'java.util.TreeSet' is not allowed'
+    java.util.TreeSet treeset;
   }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
 }
         </source>
@@ -218,18 +258,58 @@ public class Test extends TreeSet { // violation
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test extends TreeSet { // OK
-  public &lt;T extends java.util.HashSet&gt; void method() { // violation
+public class Example2 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
 
-    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;(); // OK
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
 
-    java.lang.IllegalArgumentException illegalex; // OK
-    java.util.TreeSet treeset; // Ok
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+
+    java.util.TreeSet treeset;
+  }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
   }
 
-  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {} // violation
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
 
-  public void fullName(TreeSet a) {} // OK
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
 }
         </source>
@@ -240,21 +320,67 @@ public class Test extends TreeSet { // OK
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalType&quot;&gt;
-      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function&quot;/&gt;
+      &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function1, function2&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
-  public HashMap&lt;String, String&gt; function() { // OK
-    // code
+// violation below 'Usage of type 'TreeSet' is not allowed'
+public class Example3 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
+    // violation below 'Usage of type 'LinkedHashMap' is not allowed'
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+    // violation below 'Usage of type 'TreeMap' is not allowed'
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+    // violation below 'Usage of type 'java.util.TreeSet' is not allowed'
+    java.util.TreeSet treeset;
+  }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
   }
 
-  public HashMap&lt;String, String&gt; function1() { // violation
-    // code
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
   }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+
 }
         </source>
         <p id="Example4-config">
@@ -272,10 +398,60 @@ public class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-class Test extends Gitter { // violation
-}
+// violation below 'Usage of type 'TreeSet' is not allowed'
+public class Example4 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
+    // violation below 'Usage of type 'LinkedHashMap' is not allowed'
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+    // violation below 'Usage of type 'TreeMap' is not allowed'
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+    // violation below 'Usage of type 'java.util.TreeSet' is not allowed'
+    java.util.TreeSet treeset;
+  }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
 
-class Test1 extends Github { // OK
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+  // violation below 'Usage of type 'Gitter' is not allowed'
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+
 }
         </source>
         <p id="Example5-config">
@@ -286,30 +462,67 @@ class Test1 extends Github { // OK
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;IllegalType&quot;&gt;
-      &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
-        LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
+    &lt;property name=&quot;memberModifiers&quot;
+           value=&quot;LITERAL_PUBLIC, LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-public class Test {
-  public HashMap&lt;String, String&gt; function1() { // violation
-    // code
+// violation below 'Usage of type 'TreeSet' is not allowed'
+public class Example5 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
+
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+
+    java.util.TreeSet treeset;
+  }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
   }
 
-  private HashMap&lt;String, String&gt; function2() { // OK
-    // code
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
   }
 
-  protected HashMap&lt;Integer, String&gt; function3() { // violation
-    // code
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
   }
 
-  public static TreeMap&lt;Integer, String&gt; function4() { // violation
-    // code
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
   }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
 
 }
         </source>
@@ -328,26 +541,59 @@ public class Test {
 
         <p id="Example6-code">Example:</p>
         <source>
-public class Test {
+public class Example6 extends TreeSet {
 
-  public Set&lt;Boolean&gt; set; // violation
-  public java.util.List&lt;Map&lt;Boolean, Foo&gt;&gt; list; // violation
+  public &lt;T extends java.util.HashSet&gt; void method() {
 
-  private void method(List&lt;Foo&gt; list, Boolean value) { // violation
-    SomeType.&lt;Boolean&gt;foo(); // violation
-    final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo; // violation
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+
+    java.util.TreeSet treeset;
   }
 
-  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {} // violation
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
 
-  public void fullName(java.util.ArrayList&lt;? super Boolean&gt; a) {} // violation
-
-  public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a); // violation
-
-  public Set&lt;? extends Foo&gt; typeArgument() { // violation
-    return new TreeSet&lt;Foo&lt;Boolean&gt;&gt;();
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
   }
 
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+  // violation below 'Usage of type 'Boolean' is not allowed'
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+    // violation below 'Usage of type 'Boolean' is not allowed'
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+    // violation above 'Usage of type 'Boolean' is not allowed'
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+  // violation below 'Usage of type 'Foo' is not allowed'
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+  // violation above 'Usage of type 'Boolean' is not allowed'
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+  // violation below 'Usage of type 'Foo' is not allowed'
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+  // violation above 'Usage of type 'Boolean' is not allowed'
 }
         </source>
         <p id="Example7-config">
@@ -370,22 +616,59 @@ public class Test {
         </source>
         <p id="Example7-code">Example:</p>
         <source>
-import java.util.Optional;
+public class Example7 extends TreeSet {
 
-public class Main {
+  public &lt;T extends java.util.HashSet&gt; void method() {
 
-  static int field1 = 4; // OK
-  public Optional&lt;String&gt; field2; // violation, usage of type 'Optional' is not allowed
-  protected String field3; // OK
-  Optional&lt;String&gt; field4; // violation, usage of type 'Optional' is not allowed
-  private Optional&lt;String&gt; field5; // violation, usage of type 'Optional' is not allowed
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+
+    java.util.TreeSet treeset;
+  }
+
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+  // violation below 'Usage of type 'Optional' is not allowed'
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4; // violation, 'Usage of type 'Optional' is not allowed'
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
 
   void foo() {
-    Optional&lt;String&gt; i; // OK
+    Optional&lt;String&gt; i;
   }
-  public &lt;T extends java.util.Optional&gt; void method(T t) { // OK
-    Optional&lt;T&gt; i; // OK
-  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+
 }
         </source>
       </subsection>

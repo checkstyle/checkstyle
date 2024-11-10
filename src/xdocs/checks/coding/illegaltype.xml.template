@@ -75,13 +75,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
@@ -89,13 +89,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
@@ -103,13 +103,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
@@ -117,13 +117,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example5-config">
@@ -132,13 +132,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-config">
@@ -146,14 +146,14 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
 
         <p id="Example6-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example7-config">
@@ -161,13 +161,13 @@ List list; //No violation here
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
