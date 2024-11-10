@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,63 +32,101 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "22:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "24:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "26:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
+            "28:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
+            "31:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
+            "34:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "36:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "40:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "44:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "25:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "35:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "37:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "41:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "45:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "23:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "25:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "27:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
+            "29:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
+            "32:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
+            "35:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "45:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "24:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "26:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "28:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
+            "30:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
+            "33:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
+            "36:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "38:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "42:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "46:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "62:19: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Gitter"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "24:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "26:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "36:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "38:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "46:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "48:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "56:25: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "56:56: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "67:28: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
+            "67:39: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
+            "73:18: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Foo"),
+            "73:38: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "71:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+            "73:3: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 }
