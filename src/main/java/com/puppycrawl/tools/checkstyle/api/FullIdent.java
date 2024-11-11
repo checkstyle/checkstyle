@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -70,43 +72,85 @@ public final class FullIdent {
     }
 
     /**
-     * Recursively extract a FullIdent.
+     * Extracts a FullIdent.
      *
      * @param full the FullIdent to add to
-     * @param ast the node to recurse from
-     * @noinspection TailRecursion
-     * @noinspectionreason TailRecursion - until issue #14814
+     * @param ast the node
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
-        if (ast != null) {
-            final DetailAST nextSibling = ast.getNextSibling();
+        final Deque<DetailAST> identStack = new ArrayDeque<>();
+        pushToIdentStack(identStack, ast);
+        boolean bracketsExist = false;
+        int dotCounter = 0;
+        while (!identStack.isEmpty()) {
+            final DetailAST currentAst = identStack.pop();
+
+            final DetailAST nextSibling = currentAst.getNextSibling();
 
             // Here we want type declaration, but not initialization
             final boolean isArrayTypeDeclarationStart = nextSibling != null
                     && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
-                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
+                    || nextSibling.getType() == TokenTypes.ANNOTATIONS)
                     && isArrayTypeDeclaration(nextSibling);
 
-            final int typeOfAst = ast.getType();
-            if (typeOfAst == TokenTypes.LITERAL_NEW
-                    && ast.hasChildren()) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
+            final int typeOfAst = currentAst.getType();
+            bracketsExist = bracketsExist || isArrayTypeDeclarationStart;
+            final DetailAST firstChild = currentAst.getFirstChild();
+
+            if (typeOfAst == TokenTypes.LITERAL_NEW && currentAst.hasChildren()) {
+                pushToIdentStack(identStack, firstChild);
             }
             else if (typeOfAst == TokenTypes.DOT) {
-                final DetailAST firstChild = ast.getFirstChild();
-                extractFullIdent(full, firstChild);
+                pushToIdentStack(identStack, firstChild.getNextSibling());
+                pushToIdentStack(identStack, firstChild);
+                dotCounter++;
+            }
+            else {
+                dotCounter = appendToFull(full, currentAst, dotCounter,
+                        bracketsExist, isArrayTypeDeclarationStart);
+            }
+        }
+    }
+
+    /**
+     * Populates the FullIdent node.
+     *
+     * @param full the FullIdent to add to
+     * @param ast the node
+     * @param dotCounter no of dots
+     * @param bracketsExist yes if true
+     * @param isArrayTypeDeclarationStart true if array type declaration start
+     * @return updated value of dotCounter
+     */
+    private static int appendToFull(FullIdent full, DetailAST ast,
+                int dotCounter, boolean bracketsExist, boolean isArrayTypeDeclarationStart) {
+        int lDotCounter = dotCounter;
+        if (isArrayTypeDeclarationStart) {
+            full.append(ast);
+            appendBrackets(full, ast);
+        }
+        else if (ast.getType() != TokenTypes.ANNOTATIONS) {
+            full.append(ast);
+            if (dotCounter > 0) {
                 full.append(".");
-                extractFullIdent(full, firstChild.getNextSibling());
-                appendBrackets(full, ast);
+                lDotCounter--;
             }
-            else if (isArrayTypeDeclarationStart) {
-                full.append(ast);
-                appendBrackets(full, ast);
+            if (bracketsExist) {
+                appendBrackets(full, ast.getParent());
             }
-            else if (typeOfAst != TokenTypes.ANNOTATIONS) {
-                full.append(ast);
-            }
+        }
+        return lDotCounter;
+    }
+
+    /**
+     * Pushes to stack if ast is not null.
+     *
+     * @param stack stack to push into
+     * @param ast node to push into stack
+     */
+    private static void pushToIdentStack(Deque<DetailAST> stack, DetailAST ast) {
+        if (ast != null) {
+            stack.push(ast);
         }
     }
 
@@ -136,8 +180,7 @@ public final class FullIdent {
      * @param ast the type ast we are building a {@code FullIdent} for
      */
     private static void appendBrackets(FullIdent full, DetailAST ast) {
-        final int bracketCount =
-                ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
+        final int bracketCount = ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
         for (int i = 0; i < bracketCount; i++) {
             full.append("[]");
         }
