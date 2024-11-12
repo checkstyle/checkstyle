@@ -61,41 +61,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example2-config">
-          To configure the check for fields only:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.txt"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example3-config">
-            To configure the check for methods only:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.txt"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -103,19 +75,48 @@
           because methods cannot be overlapped in java.
         </p>
         <p id="Example4-config">
-            To configure the check to validate for non-overlapping fields and methods:
+            To configure the check demand methods and fields to have 'this.'
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example2-config">
+          To configure the check demand fields only to have 'this.'
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
+            To configure the check demand methods only to have 'this.'
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
         <p>
           Please, be aware of the following logic, which is implemented in the check:
         </p>
@@ -125,7 +126,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example6-code">
@@ -134,7 +135,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

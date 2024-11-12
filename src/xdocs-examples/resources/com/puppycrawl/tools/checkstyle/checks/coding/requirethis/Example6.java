@@ -7,19 +7,15 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 // xdoc section -- start
-public class C {
-  private int scale;
-  private int x;
+class Example6 {
+  String prefix;
 
-  public void foo(int scale) {
-    scale = this.scale;      // no violation
-
-    if (scale > 0) {
-      scale = -scale;        // no violation
-    }
-    x *= scale;
+  String modifyPrefix(String prefix) {
+    prefix = "^" + prefix + "$";  //OK, because method parameter is returned
+    return prefix;
   }
 }
 // xdoc section -- end
