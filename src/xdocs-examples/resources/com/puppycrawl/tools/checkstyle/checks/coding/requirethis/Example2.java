@@ -1,0 +1,28 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="RequireThis">
+      <property name="checkMethods" value="false"/>
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
+
+// xdoc section -- start
+class Example2 {
+  int a,b,c;
+
+  Example2(int a) {
+    // overlapping by constructor argument
+    this.a = a; // OK, this keyword used
+    b = 0; // OK, no overlap
+    foo(5); // OK, no validation for methods
+  }
+
+  void foo(int c) {
+    // overlapping by method argument
+    c = c; // violation, reference to instance variable "c" requires "this"
+  }
+}
+// xdoc section -- end
