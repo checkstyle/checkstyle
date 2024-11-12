@@ -27,23 +27,29 @@
         </source>
         <p id="Example1-code">Example of correct grouping of overloaded methods:</p>
         <source>
-public void foo(int i) {}
-// comments between overloaded methods are allowed.
-public void foo(String s) {}
-public void foo(String s, int i) {}
-public void foo(int i, String s) {}
-public void notFoo() {}
-private interface ExampleInterface() {}
+class Example1 {
+  void same(int i) {}
+  // comments between overloaded methods are allowed.
+  void same(String s) {}
+  void same(String s, int i) {}
+  void same(int i, String s) {}
+  void notSame() {}
+  interface notSame{}
+}
         </source>
         <p id="Example2-code">Example of incorrect grouping of overloaded methods:</p>
         <source>
-public void foo(int i) {} // OK
-// comments between overloaded methods are allowed.
-public void foo(String s) {} // OK
-public void notFoo() {} // violation. Have to be after foo(String s, int i)
-public void foo(int i, String s) {}
-private interface ExampleInterface() {}
-public void foo(String s, int i) {} // violation. Have to be after foo(int i, String s)
+class Example2 {
+  void same(int i) {}
+  // comments between overloaded methods are allowed.
+  void same(String s) {}
+  void notSame() {}
+  // violation below, 'All overloaded methods should be placed next to each other'
+  void same(int i, String s) {}
+  interface notSame{}
+  // violation below, 'All overloaded methods should be placed next to each other'
+  void same(String s, int i) {}
+}
         </source>
       </subsection>
 
