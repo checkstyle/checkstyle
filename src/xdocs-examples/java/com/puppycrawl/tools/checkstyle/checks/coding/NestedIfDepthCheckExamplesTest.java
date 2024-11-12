@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class NestedIfDepthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,36 +32,25 @@ public class NestedIfDepthCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "20:9: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 2, 1),
+            "27:9: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 2, 1),
+            "28:11: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 3, 1),
+            "36:9: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 2, 1),
+            "37:11: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 3, 1),
+            "38:13: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 4, 1),
+            "39:15: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 5, 1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "40:13: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 4, 3),
+            "41:15: " + getCheckMessage(NestedIfDepthCheck.MSG_KEY, 5, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
-    }
-
-    @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
