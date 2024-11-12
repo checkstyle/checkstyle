@@ -44,58 +44,84 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Valid code example:</p>
+        <p id="Example1-code">Example:</p>
         <source>
-if (true) {
-    if (true) {} // OK
-    else {}
-}
-        </source>
-        <p id="Example2-code">Invalid code example:</p>
-        <source>
-if (true) {
+class Example1 {
+  void Example1() {
     if (true) {
-        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-        }
+      if (true) {}
+      else {}
     }
-}
-        </source>
-        <p id="Example3-config">
-          To configure the check to allow nesting depth 3:
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;NestedIfDepth&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p id="Example3-code">Valid code example:</p>
-        <source>
-if (true) {
-   if (true) {
+
+    if (true) {
       if (true) {
-         if (true) {} // OK
-         else {}
+        if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
+        else{}
       }
-   }
-}
-        </source>
-        <p id="Example4-code">Invalid code example:</p>
-        <source>
-if (true) {
-   if (true) {
+    }
+
+    if (true) {
       if (true) {
-         if (true) {
-            if (true) { // violation, nested if-else depth is 4 (max allowed is 3)
-               if (true) {} // violation, nested if-else depth is 5 (max allowed is 3)
-               else {}
+        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
+          if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
+          else {}
+        }
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
+          if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
+            if (true) { // violation, nested if-else depth is 4 (max allowed is 1)
+              if (true) {} // violation, nested if-else depth is 5 (max allowed is 1)
+              else {}
             }
-         }
+          }
+        }
       }
-   }
+    }
+  }
+}
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  void Example2() {
+    if (true) {
+      if (true) {}
+      else {}
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {}
+        else{}
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {}
+          else {}
+        }
+      }
+    }
+
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) { // violation, nested if-else depth is 4 (max allowed is 3)
+              if (true) {} // violation, nested if-else depth is 5 (max allowed is 3)
+              else {}
+            }
+          }
+        }
+      }
+    }
+  }
 }
         </source>
       </subsection>
