@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocMissingWhitespaceAfterAsteriskCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -36,9 +36,10 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "14:5: " + getCheckMessage(MSG_KEY),
+            "22:6: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }
