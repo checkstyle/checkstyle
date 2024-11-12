@@ -94,21 +94,19 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example1 {
+  int a,b,c;
 
-  public Test(int a) {
+  Example1(int a) {
     // overlapping by constructor argument
-    this.a = a;       // OK, this keyword used
-    b = 0;            // OK, no overlap
-    foo(5);           // OK
+    this.a = a; // OK, this keyword used
+    b = 0; // OK, no overlap
+    foo(5);  // OK
   }
 
-  public void foo(int c) {
+  void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+    c = c; // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -126,21 +124,19 @@ public class Test {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example2 {
+  int a,b,c;
 
-  public Test(int a) {
+  Example2(int a) {
     // overlapping by constructor argument
-    this.a = a;       // OK, this keyword used
-    b = 0;            // OK, no overlap
-    foo(5);           // OK, no validation for methods
+    this.a = a; // OK, this keyword used
+    b = 0; // OK, no overlap
+    foo(5); // OK, no validation for methods
   }
 
-  public void foo(int c) {
+  void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+    c = c; // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -158,21 +154,19 @@ public class Test {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example3 {
+  int a,b,c;
 
-  public Test(int a) {
+  Example3(int a) {
     // overlapping by constructor argument
-    this.a = a;       // OK, no validation for fields
-    b = 0;            // OK, no validation for fields
-    foo(5);           // OK, no overlap
+    this.a = a; // OK, no validation for fields
+    b = 0; // OK, no validation for fields
+    foo(5); // OK, no overlap
   }
 
-  public void foo(int c) {
+  void foo(int c) {
     // overlapping by method argument
-    c = c;            // OK, no validation for fields
+    c = c; // OK, no validation for fields
   }
 }
         </source>
@@ -194,21 +188,19 @@ public class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example4 {
+  int a,b,c;
 
-  public Test(int a) {
+  Example4(int a) {
     // overlapping by constructor argument
-    this.a = a;       // OK, no validation for fields
-    b = 0;            // violation, reference to instance variable &quot;b&quot; requires &quot;this&quot;
-    foo(5);           // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
+    this.a = a; // OK, no validation for fields
+    b = 0; // violation, reference to instance variable &quot;b&quot; requires &quot;this&quot;
+    foo(5); // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
   }
 
-  public void foo(int c) {
+  void foo(int c) {
     // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+    c = c; // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -220,17 +212,16 @@ public class Test {
           variables which use 'this' to reference a class field, for example:
         </p>
         <source>
-public class C {
-  private int scale;
-  private int x;
+class Example5 {
+  int a,b;
 
-  public void foo(int scale) {
-    scale = this.scale;      // no violation
+  public void foo(int a) {
+    a = this.a; // no violation
 
-    if (scale &gt; 0) {
-      scale = -scale;        // no violation
+    if (a &gt; 0) {
+      a = -a; // no violation
     }
-    x *= scale;
+    b *= a; // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
   }
 }
         </source>
@@ -239,11 +230,11 @@ public class C {
              returned variable/parameter, for example:
         </p>
         <source>
-public class D {
-  private String prefix;
+class Example6 {
+  String prefix;
 
-  public String modifyPrefix(String prefix) {
-    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  // no violation, because method parameter is returned
+  String modifyPrefix(String prefix) {
+    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  //OK, because method parameter is returned
     return prefix;
   }
 }
