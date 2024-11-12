@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
@@ -251,6 +252,17 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(getPath("InputFullIdent.java"),
+                expected);
+    }
+
+    @Test
+    public void testLiteralNewCondition() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+                    UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "j"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputFullIdentLiteralNewCondition.java"),
                 expected);
     }
 }
