@@ -47,51 +47,43 @@ return !valid();
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
+class Example1 {
 
- private boolean cond;
- private Foo a;
- private Foo b;
+  boolean cond;
+  int a,b;
 
- public boolean check1() {
-  if (cond) { // violation, can be simplified
-    return true;
+  boolean check1() {
+    if (cond) { // violation, 'Conditional logic can be removed
+      return true;
+    } else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
- }
 
- // Ok, simplified version of check1()
- public boolean check2() {
-  return cond;
- }
-
- // violations, can be simplified
- public boolean check3() {
-  if (cond == true) { // can be simplified to &quot;if (cond)&quot;
-    return false;
+  boolean check1Simplified() {
+    return cond;
   }
-  else {
-    return true; // can be simplified to &quot;return !cond&quot;
-  }
- }
 
- // Ok, can be simplified but doesn't return a Boolean
- public Foo choose1() {
-  if (cond) {
-    return a;
+  boolean check2() {
+    if (cond == true) { // violation, 'Conditional logic can be removed'
+      return false;
+    } else {
+      return true;
+    }
   }
-  else {
-    return b;
+
+  // Ok, can be simplified but doesn't return a Boolean
+  int choose1() {
+    if (cond) {
+      return a;
+    } else {
+      return b;
+    }
   }
- }
 
- // Ok, simplified version of choose1()
- public Foo choose2() {
-  return cond ? a: b;
- }
-
+  int choose1Simplified() {
+    return cond ? a: b;
+  }
 }
         </source>
       </subsection>
