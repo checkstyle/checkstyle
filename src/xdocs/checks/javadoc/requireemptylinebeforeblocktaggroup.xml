@@ -52,12 +52,14 @@
           block tag, like in the example below.
         </p>
         <source>
-/**
- * testMethod's javadoc.
- * @return something (violation)
- */
-public boolean testMethod() {
+class Example1 {
+  /**
+   * testMethod's javadoc.
+   * @return something
+   */ // violation above, ''@return' should be preceded with an empty line'
+  boolean testMethod() {
     return false;
+  }
 }
         </source>
         <p>
@@ -65,14 +67,15 @@ public boolean testMethod() {
           other tags like in the example below.
         </p>
         <source>
-/**
-* testMethod's javadoc.
-*
-* @param firstParam
-* @return something
-*/
-public boolean testMethod(int firstParam) {
+class Example1 {
+  /**
+   * testMethod's javadoc.
+   *
+   * @return something
+   */
+  boolean testMethod() {
     return false;
+  }
 }
         </source>
       </subsection>
