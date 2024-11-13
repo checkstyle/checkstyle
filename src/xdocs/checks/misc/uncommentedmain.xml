@@ -57,28 +57,30 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Game {
-   public static void main(String... args){}   // violation 'Uncommented main method found'
+class Example1 {
+  // violation below, 'Uncommented main method found'
+  public static void main(String... args){}
 }
 
-public class Main {
-   public static void main(String[] args){}   // violation 'Uncommented main method found'
+class Main {
+  // violation below, 'Uncommented main method found'
+  public static void main(String[] args){}
 }
 
-public class Launch {
-   //public static void main(String[] args){} // OK
+class Launch {
+  //public static void main(String[] args){}
 }
 
-public class Start {
-   public void main(){}                       // OK
+class Start {
+  public void main(){}
 }
 
-public record MyRecord1 {
-    public void main(){}                       // violation 'Uncommented main method found'
+record MyRecord1() {
+  public void main(){}
 }
 
-public record MyRecord2 {
-    //public void main(){}                     // OK
+record MyRecord2() {
+  //public void main(){}
 }
         </source>
         <p id="Example2-config">
@@ -96,24 +98,30 @@ public record MyRecord2 {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Game {
-   public static void main(String... args){}   // violation 'Uncommented main method found'
+class Example2 {
+  // violation below, 'Uncommented main method found'
+  public static void main(String... args){}
 }
 
-public class Main {
-   public static void main(String[] args){}   // OK
+class Main {
+
+  public static void main(String[] args){}
 }
 
-public class Launch {
-   //public static void main(String[] args){} // OK
+class Launch {
+  //public static void main(String[] args){}
 }
 
-public class Start {
-   public void main(){}                       // OK
+class Start {
+  public void main(){}
 }
 
-public record MyRecord1 {
-    public void main(){}                      // OK
+record MyRecord1() {
+  public void main(){}
+}
+
+record MyRecord2() {
+  //public void main(){}
 }
         </source>
       </subsection>
