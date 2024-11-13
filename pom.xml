@@ -209,7 +209,7 @@
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.8.6.6</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.24.0</maven.pmd.plugin.version>
+    <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
     <pmd.version>7.7.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.12</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
