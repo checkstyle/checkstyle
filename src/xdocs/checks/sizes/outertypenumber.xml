@@ -52,6 +52,20 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;// violation, Outer types defined is '3' (max allowed is '1')
+
+public class Example1 {
+}
+
+class Example {
+    void exampleMethod() {}
+}
+
+enum Outertype {
+}
+        </source>
 
         <p id="Example2-config">
           To configure the check to accept 2 outer types per file:
@@ -60,10 +74,24 @@
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;OuterTypeNumber&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+
+public class Example2 {
+}
+
+class Examples {
+    void exampleMethod() {}
+}
+
+enum Outertype1 {
+}
         </source>
 
       </subsection>
