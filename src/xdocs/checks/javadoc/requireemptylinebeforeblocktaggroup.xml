@@ -48,31 +48,26 @@
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-          By default, the check will report a violation if there is no blank line before the
+          The check will report a violation if there is no blank line before the
           block tag, like in the example below.
         </p>
         <source>
-/**
- * testMethod's javadoc.
- * @return something (violation)
- */
-public boolean testMethod() {
+class Example1 {
+  /**
+   * ValidMethod's javadoc.
+   *
+   * @return something
+   */
+  boolean methodWithValidJavadoc() {
     return false;
-}
-        </source>
-        <p>
-          Valid javadoc should have a blank line separating the parameters, return, throw, or
-          other tags like in the example below.
-        </p>
-        <source>
-/**
-* testMethod's javadoc.
-*
-* @param firstParam
-* @return something
-*/
-public boolean testMethod(int firstParam) {
+  }
+  /**
+   * InvalidMethod's javadoc.
+   * @return something
+   */ // violation above, ''@return' should be preceded with an empty line'
+  boolean methodWithInvalidJavadoc() {
     return false;
+  }
 }
         </source>
       </subsection>
