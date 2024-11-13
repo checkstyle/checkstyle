@@ -6,7 +6,8 @@ SealedShouldHavePermitsList
 //non-compiled with javac: Compilable with Java17
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
-public sealed class InputSealedShouldHavePermitsListTopLevelSealedClass { // violation
+public sealed class InputSealedShouldHavePermitsListTopLevelSealedClass {
+    // violation above 'Sealed classes or interfaces should explicitly declare'
     final class B extends InputSealedShouldHavePermitsListTopLevelSealedClass {}
     final class C extends InputSealedShouldHavePermitsListTopLevelSealedClass {}
     final class D { }
