@@ -29,7 +29,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -38,7 +38,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/requireemptylinebeforeblocktaggroup/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -46,14 +46,15 @@
           other tags like in the example below.
         </p>
         <source>
-/**
-* testMethod's javadoc.
-*
-* @param firstParam
-* @return something
-*/
-public boolean testMethod(int firstParam) {
+class Example1 {
+  /**
+   * testMethod's javadoc.
+   *
+   * @return something
+   */
+  boolean testMethod() {
     return false;
+  }
 }
         </source>
       </subsection>
