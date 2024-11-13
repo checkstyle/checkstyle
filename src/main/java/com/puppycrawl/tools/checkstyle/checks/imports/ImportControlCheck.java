@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
@@ -215,19 +216,12 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         return new int[] {TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
+        final String fullFileName = getFilePath();
         currentImportControl = null;
-        processCurrentFile = path.matcher(getFilePath()).find();
-        fileName = getFileContents().getText().getFile().getName();
-
-        final int period = fileName.lastIndexOf('.');
-
-        if (period != -1) {
-            fileName = fileName.substring(0, period);
-        }
+        processCurrentFile = path.matcher(fullFileName).find();
+        fileName = CommonUtil.getFileNameWithoutExtension(fullFileName);
     }
 
     @Override
@@ -324,5 +318,4 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     public void setPath(Pattern pattern) {
         path = pattern;
     }
-
 }
