@@ -84,6 +84,22 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+
+        <p id="Example1-code"> Code: </p>
+        <source>
+public class Example1 {
+    public static final int MAX_VALUE = 100;
+    
+    // violation below &quot;'private' modifier out of order with the JLS suggestions&quot;
+    final private String example = &quot;Example&quot;;
+
+    //violation below &quot;'@Deprecated' annotation modifier does not precede non-annotation modifiers&quot;
+    public @Deprecated class example {
+        
+    }
+}
+        </source>
+        
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
