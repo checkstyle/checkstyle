@@ -8,7 +8,7 @@
 
 // xdoc section -- start
 // Generic methods definitions
-public void <K, V extends Number> boolean foo(K, V) {}
+public void <K, V extends Number> boolean foo(K, V) {return true;}
 // Generic type definition
 class name<T1, T2, ..., Tn> {}
 // Generic type reference
