@@ -49,38 +49,27 @@
           Examples with correct spacing:
         </p>
         <source>
-// Generic methods definitions
-public void &lt;K, V extends Number&gt; boolean foo(K, V) {}
-// Generic type definition
-class name&lt;T1, T2, ..., Tn&gt; {}
-// Generic type reference
-OrderedPair&lt;String, Box&lt;Integer&gt;&gt; p;
-// Generic preceded method name
-boolean same = Util.&lt;Integer, String&gt;compare(p1, p2);
-// Diamond operator
-Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, &quot;apple&quot;);
-// Method reference
-List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
-// Method reference
-sort(list, Comparable::&lt;String&gt;compareTo);
-// Constructor call
-MyClass obj = new &lt;String&gt;MyClass();
-// Record header
-record License&lt;T&gt;() {}
+class Example1 {
+  List&lt;String&gt; l;
+  public &lt;T&gt; void foo() {}
+  List a = new ArrayList&lt;&gt;();
+  Map&lt;Integer, String&gt; m;
+  HashSet&lt;Integer&gt; set;
+  record License&lt;T&gt;() {}
+}
         </source>
         <p id="Example2-code">
           Examples with incorrect spacing:
         </p>
         <source>
-List&lt; String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
-Box b = Box. &lt;String&gt;of(&quot;foo&quot;); // violation, &quot;&lt;&quot; preceded with whitespace
-public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
-
-List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
-Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
-Pair&lt;Integer, Integer &gt; p; // violation, &quot;&gt;&quot; preceded with whitespace
-
-record License&lt;T&gt; () {} // violation, &quot;&gt;&quot; followed by whitespace
+class Example2 {
+  List &lt;String&gt; l; // violation, &quot;&lt;&quot; followed by whitespace
+  public&lt;T&gt; void foo() {} // violation, &quot;&lt;&quot; not preceded with whitespace
+  List a = new ArrayList&lt;&gt; (); // violation, &quot;&gt;&quot; followed by whitespace
+  Map&lt;Integer, String&gt;m; // violation, &quot;&gt;&quot; not followed by whitespace
+  HashSet&lt;Integer &gt; set; // violation, &quot;&gt;&quot; preceded with whitespace
+  record License&lt;T&gt; () {} // violation, &quot;&gt;&quot; followed by whitespace
+}
         </source>
       </subsection>
 
