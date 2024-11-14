@@ -13,12 +13,14 @@
 </module>
 */
 
-// xdoc section -- start
-public record MyRecord1(int x, int y, String str) { // ok, public record definition allowed 10
-   ...
-}
+//non-compiled with javac: Compilable with Java17
+package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
-private record MyRecord2(int x, int y, String str, Node node) { // violation
-   ...                                // private record definition allowed 3 components
+// xdoc section -- start
+class Example3 {
+  public record MyRecord1(int x, int y, String str) {} // ok, 3 components
+
+  private record MyRecord2(int x, int y, // violation, 4 components
+                           String str, double d) {}
 }
 // xdoc section -- end
