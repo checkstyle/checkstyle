@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class OuterTypeNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/outertypenumber";
@@ -34,10 +35,10 @@ public class OuterTypeNumberCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "9:1: " + getCheckMessage(MSG_KEY, 3, 1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,6 +47,6 @@ public class OuterTypeNumberCheckExamplesTest extends AbstractExamplesModuleTest
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
