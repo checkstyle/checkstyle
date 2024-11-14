@@ -7,7 +7,7 @@ SealedShouldHavePermitsList
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
 public class InputSealedShouldHavePermitsListInnerInterface {
-    sealed interface A {} // violation
+    sealed interface A {} // violation 'Sealed classes or interfaces should explicitly declare'
     final class B implements A {}
     final class C implements A {}
     final class D { } // this can implement A, so as any other class in the compilation unit

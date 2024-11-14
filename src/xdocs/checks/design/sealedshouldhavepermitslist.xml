@@ -46,7 +46,8 @@ public class Example1 {
 
   // imagine hundreds of lines of code...
 
-  sealed class A {} // violation
+  sealed class A {}
+  // violation above 'Sealed classes or interfaces should explicitly declare'
   final class B extends A {}
   final class C extends A {}
   final class D { } // this can extend A, so as any other class in the same file
