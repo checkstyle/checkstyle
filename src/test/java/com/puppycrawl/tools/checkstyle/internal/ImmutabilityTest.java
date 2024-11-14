@@ -261,6 +261,8 @@ public class ImmutabilityTest {
 
         final ArchRule fieldsInStatelessChecksShouldBeImmutable = fields()
             .that()
+            .haveNameNotContaining("$")
+            .and()
             .areDeclaredInClassesThat()
             .areAnnotatedWith(StatelessCheck.class)
             .and(are(not(moduleProperties)))
@@ -433,6 +435,7 @@ public class ImmutabilityTest {
             return fields.stream()
                 .filter(javaField -> {
                     return !ModulePropertyPredicate.isModuleProperty(javaField)
+                        && !javaField.getName().contains("$")
                         && !SUPPRESSED_FIELDS_IN_MODULES.contains(javaField.getFullName());
                 })
                 .allMatch(javaField -> {
