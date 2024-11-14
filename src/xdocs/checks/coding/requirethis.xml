@@ -94,53 +94,22 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example1 {
+  int field1,field2,field3;
 
-  public Test(int a) {
-    // overlapping by constructor argument
-    this.a = a;       // OK, this keyword used
-    b = 0;            // OK, no overlap
-    foo(5);           // OK
+  Example1(int field1) {
+    this.field1 = field1;
+    field2 = 0;
+    foo(5); // OK, methods cannot be overlapped in java.
   }
 
-  public void foo(int c) {
-    // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
-  }
-}
-        </source>
-        <p id="Example2-config">
-          To configure the check for fields only:
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RequireThis&quot;&gt;
-      &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p id="Example2-code">Example:</p>
-        <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
-
-  public Test(int a) {
-    // overlapping by constructor argument
-    this.a = a;       // OK, this keyword used
-    b = 0;            // OK, no overlap
-    foo(5);           // OK, no validation for methods
+  void method2(int i) {
+    foo(i); // OK, methods cannot be overlapped in java.
   }
 
-  public void foo(int c) {
-    // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+  void foo(int field3) {
+    // violation below, reference to instance variable &quot;field3&quot; requires &quot;this&quot;
+    field3 = field3;
   }
 }
         </source>
@@ -158,21 +127,22 @@ public class Test {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example3 {
+  int field1,field2,field3;
 
-  public Test(int a) {
-    // overlapping by constructor argument
-    this.a = a;       // OK, no validation for fields
-    b = 0;            // OK, no validation for fields
-    foo(5);           // OK, no overlap
+  Example3(int field1) {
+    this.field1 = field1;
+    field2 = 0;
+    foo(5); // OK, methods cannot be overlapped in java.
   }
 
-  public void foo(int c) {
-    // overlapping by method argument
-    c = c;            // OK, no validation for fields
+  void method2(int i) {
+    foo(i); // OK, methods cannot be overlapped in java.
+  }
+
+  void foo(int field3) {
+
+    field3 = field3;
   }
 }
         </source>
@@ -181,7 +151,7 @@ public class Test {
           because methods cannot be overlapped in java.
         </p>
         <p id="Example4-config">
-            To configure the check to validate for non-overlapping fields and methods:
+            To configure the check demand all fields only to have 'this.'
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -194,21 +164,56 @@ public class Test {
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
-  private int a;
-  private int b;
-  private int c;
+class Example4 {
+  int field1,field2,field3;
 
-  public Test(int a) {
-    // overlapping by constructor argument
-    this.a = a;       // OK, no validation for fields
-    b = 0;            // violation, reference to instance variable &quot;b&quot; requires &quot;this&quot;
-    foo(5);           // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
+  Example4(int field1) {
+    this.field1 = field1;
+    field2 = 0; // violation, reference to instance variable &quot;field2&quot; requires &quot;this&quot;
+    foo(5); // violation, method call &quot;foo(5)&quot; requires &quot;this&quot;
   }
 
-  public void foo(int c) {
-    // overlapping by method argument
-    c = c;            // violation, reference to instance variable &quot;c&quot; requires &quot;this&quot;
+  void method2(int i) {
+    foo(i); // violation, 'Method call to 'foo' needs &quot;this.&quot;.'
+  }
+
+  void foo(int field3) {
+    // violation below, reference to instance variable &quot;field3&quot; requires &quot;this&quot;
+    field3 = field3;
+  }
+}
+        </source>
+        <p id="Example2-config">
+          To configure the check demand all fields only to have 'this.'
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;RequireThis&quot;&gt;
+      &lt;property name=&quot;validateOnlyOverlapping&quot; value=&quot;false&quot;/&gt;
+      &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 {
+  int field1,field2,field3;
+
+  Example2(int field1) {
+    this.field1 = field1;
+    field2 = 0; // violation, reference to instance variable &quot;field2&quot; requires &quot;this&quot;
+    foo(5); // OK, methods cannot be overlapped in java.
+  }
+
+  void method2(int i) {
+    foo(i); // OK, methods cannot be overlapped in java.
+  }
+
+  void foo(int field3) {
+    // violation below, reference to instance variable &quot;field3&quot; requires &quot;this&quot;
+    field3 = field3;
   }
 }
         </source>
@@ -220,17 +225,17 @@ public class Test {
           variables which use 'this' to reference a class field, for example:
         </p>
         <source>
-public class C {
-  private int scale;
-  private int x;
+class Example5 {
+  int field1,field2;
 
-  public void foo(int scale) {
-    scale = this.scale;      // no violation
+  public void foo(int field1) {
+    field1 = this.field1;
 
-    if (scale &gt; 0) {
-      scale = -scale;        // no violation
+    if (field1 &gt; 0) {
+      field1 = -field1;
     }
-    x *= scale;
+    // violation below, reference to instance variable &quot;field2&quot; requires &quot;this&quot;
+    field2 *= field1;
   }
 }
         </source>
@@ -239,11 +244,11 @@ public class C {
              returned variable/parameter, for example:
         </p>
         <source>
-public class D {
-  private String prefix;
+class Example6 {
+  String prefix;
 
-  public String modifyPrefix(String prefix) {
-    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  // no violation, because method parameter is returned
+  String modifyPrefix(String prefix) {
+    prefix = &quot;^&quot; + prefix + &quot;$&quot;;  //OK, because method parameter is returned
     return prefix;
   }
 }
