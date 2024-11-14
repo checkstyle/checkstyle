@@ -1,0 +1,21 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="GenericWhitespace"/>
+  </module>
+</module>
+*/
+//non-compiled with javac: Compilable with Java17
+package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
+
+// xdoc section -- start
+class Example2 {
+  List <String> l; // violation, "<" followed by whitespace
+  Box b = Box. <String>of("foo"); // violation, "<" preceded with whitespace
+  public<T> void foo() {} // violation, "<" not preceded with whitespace
+  List a = new ArrayList<> (); // violation, ">" followed by whitespace
+  Map<Integer, String>m; // violation, ">" not followed by whitespace
+  Pair<Integer, Integer > p; // violation, ">" preceded with whitespace
+  record License<T> () {} // violation, ">" followed by whitespace
+}
+// xdoc section -- end
