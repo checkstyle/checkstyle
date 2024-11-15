@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RequireThisCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,54 +33,56 @@ public class RequireThisCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "26:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field3", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "19:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field2", ""),
+            "29:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field3", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "20:5: " + getCheckMessage(RequireThisCheck.MSG_METHOD, "foo", ""),
+            "24:5: " + getCheckMessage(RequireThisCheck.MSG_METHOD, "foo", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "18:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field2", ""),
+            "19:5: " + getCheckMessage(RequireThisCheck.MSG_METHOD, "foo", ""),
+            "23:5: " + getCheckMessage(RequireThisCheck.MSG_METHOD, "foo", ""),
+            "28:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field3", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "23:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field2", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }
