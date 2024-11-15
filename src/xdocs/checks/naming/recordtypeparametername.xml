@@ -44,6 +44,16 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
+  record Record1&lt;T&gt;() {}
+
+  record Record2&lt;t&gt;() {} // violation, Name &quot;t&quot; must match pattern '^[A-Z]$'
+
+  record Record3&lt;abc&gt;() {} // violation, Name &quot;abc&quot; must match pattern '^[A-Z]$'
+}
+        </source>
         <p>
           An example of how to configure the check for names that are only a single letter is:
         </p>
@@ -59,10 +69,13 @@
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-record MyRecord1&lt;T&gt; {} // OK
-record MyRecord2&lt;t&gt; {} // OK
-record MyRecord3&lt;abc&gt; {} // violation, the record type parameter
-// name should match the regular expression &quot;^[a-zA-Z]$&quot;
+class Example2 {
+  record Record1&lt;T&gt;() {}
+
+  record Record2&lt;t&gt;() {}
+
+  record Record3&lt;abc&gt;() {} // violation, Name &quot;abc&quot; must match pattern '^[A-Z]$'
+}
         </source>
       </subsection>
 
