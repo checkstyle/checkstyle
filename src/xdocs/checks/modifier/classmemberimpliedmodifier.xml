@@ -93,27 +93,29 @@ public final class Person {
           Code:
         </p>
         <source>
-public final class Person {
-  static interface Address1 {  // valid
+public final class Example1 {
+  static interface Address1 {
   }
 
-  interface Address2 {  // violation
+  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
   }
 
-  static enum Age1 {  // valid
+  static enum Age1 {
     CHILD, ADULT
   }
 
-  enum Age2 {  // violation
+  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
     CHILD, ADULT
   }
 
-  public static record GoodRecord() {} // valid
-  public record BadRecord() {} // violation
+  public static record GoodRecord() {}
+  // violation below, 'Implied modifier 'static' should be explicit'
+  public record BadRecord() {}
 
   public static record OuterRecord() {
-    static record InnerRecord1(){} // valid
-    record InnerRecord2(){} // violation
+    static record InnerRecord1(){}
+    // violation below, 'Implied modifier 'static' should be explicit'
+    record InnerRecord2(){}
   }
 }
         </source>
