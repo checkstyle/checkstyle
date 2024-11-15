@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,9 +34,13 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:3: " + getCheckMessage(MSG_KEY, "static"),
+            "23:3: " + getCheckMessage(MSG_KEY, "static"),
+            "29:3: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "static"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example1.java"), expected);
     }
 }
