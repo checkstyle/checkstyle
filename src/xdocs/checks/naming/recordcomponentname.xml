@@ -46,11 +46,14 @@
         </source>
         <p id="Example1-code">Example:</p>
         <source>
-record MyRecord1(String value, int otherComponentName) {} // OK
-record MyRecord2(String... Values) {} // violation, the record component name
-                                    // should match the regular expression &quot;^[a-z][a-zA-Z0-9]*$&quot;
-record MyRecord3(double my_number) {} // violation, the record component name
-                                    // should match the regular expression &quot;^[a-z][a-zA-Z0-9]*$&quot;
+class Example1 {
+  record Rec1(int other) {}
+
+  record Rec2(String Values){} // violation, Name must match '^[a-z][a-zA-Z0-9]*$'
+
+  record Rec3(double myNumber){}
+
+}
         </source>
         <p>
           An example of how to configure the check for names that are only letters in lowercase:
@@ -67,10 +70,13 @@ record MyRecord3(double my_number) {} // violation, the record component name
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-record MyRecord1(String value, int other) {} // OK
-record MyRecord2(String... strings) {} // OK
-record MyRecord3(double myNumber) {} // violation, the record component name
-                             // should match the regular expression &quot;^[a-z]+$&quot;
+class Example2 {
+  record Rec1(int other) {}
+
+  record Rec2(String Values) {} // violation, Name must match '^[a-z]+$'
+
+  record Rec3(double myNumber) {} // violation, Name must match '^[a-z]+$'
+}
         </source>
       </subsection>
 
