@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,19 +33,26 @@ public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
 
+        final String pattern = "^[A-Z]$";
+
+        final String[] expected = {
+            "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
 
+        final String pattern = "^[a-zA-Z]$";
+
+        final String[] expected = {
+            "19:20: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
 }
