@@ -148,35 +148,101 @@ public class ExampleClass {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example:</p>
+        <source>
+class Example1 {
 
+  public void outerMethod1(int i){}
+  public void outerMethod2(){}
+  public void outerMethod3(String str){}
+
+  private void outerMethod4(){
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards ExampleClass
+    });
+  }
+
+  private void outerMethod5(int i){}
+  void outerMethod6(int i , int j){}
+
+  public static class InnerExample{
+    public void InnerMethod1(){} // NOT counted towards ExampleClass,
+    public void InnerMethod2(){} // NOT counted towards ExampleClass,
+  }
+}
+        </source>
         <p id="Example2-config">
-          To configure the check to allow no more than 30 methods per type declaration:
+          To configure the check to allow no more than 5 methods per type declaration:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MethodCount&quot;&gt;
-      &lt;property name=&quot;maxTotal&quot; value=&quot;30&quot;/&gt;
+      &lt;property name=&quot;maxTotal&quot; value=&quot;5&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example2-code">Example:</p>
+        <source>
+class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
 
+  public void outerMethod1(int i){}
+  public void outerMethod2(){}
+  public void outerMethod3(String str){}
+
+  private void outerMethod4(){
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards ExampleClass
+    });
+  }
+
+  private void outerMethod5(int i){}
+  void outerMethod6(int i , int j){}
+
+  public static class InnerExample{
+    public void InnerMethod1(){} // NOT counted towards ExampleClass,
+    public void InnerMethod2(){} // NOT counted towards ExampleClass,
+  }
+}
+        </source>
         <p id="Example3-config">
-          To configure the check to allow no more than 10 public methods per
-          type declaration, and 40 methods in total:
+          To configure the check to allow no more than 2 public methods per
+          type declaration, and 6 methods in total:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MethodCount&quot;&gt;
-      &lt;property name=&quot;maxPublic&quot; value=&quot;10&quot;/&gt;
-      &lt;property name=&quot;maxTotal&quot; value=&quot;40&quot;/&gt;
+      &lt;property name=&quot;maxPublic&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;maxTotal&quot; value=&quot;6&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example3-code">Example:</p>
+        <source>
+class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)'
 
+  public void outerMethod1(int i){}
+  public void outerMethod2(){}
+  public void outerMethod3(String str){}
+
+  private void outerMethod4(){
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards ExampleClass
+    });
+  }
+
+  private void outerMethod5(int i){}
+  void outerMethod6(int i , int j){}
+
+  public static class InnerExample{
+    public void InnerMethod1(){} // NOT counted towards ExampleClass,
+    public void InnerMethod2(){} // NOT counted towards ExampleClass,
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">
