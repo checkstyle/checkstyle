@@ -45,49 +45,37 @@
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-            case 1: Example of code with violation:
+          Example1:
         </p>
         <source>
-try {
+public class Example1 {
+  void testMethod() {
     try {
-        try { // violation, current depth is 2, default max allowed depth is 1
-        } catch (Exception e) {
-        }
-    } catch (Exception e) {
-    }
-} catch (Exception e) {
+      try {} // OK, current depth is 1, default max allowed depth is also 1
+      catch (Exception e) {}
+    }catch (Exception e) {}
+
+    try {
+      try {
+        try {} // violation, current depth is 2, default max allowed depth is 1
+        catch (Exception e) {}
+      }catch (Exception e) {}
+    }catch (Exception e) {}
+
+    try {
+      try {
+        try { // violation, current depth is 4, max allowed depth is 1
+          try { // violation, current depth is 4, max allowed depth is 1
+            try {} // violation, current depth is 4, max allowed depth is 1
+            catch (Exception e) {}
+          }catch (Exception e) {}
+        }catch (Exception e) {}
+      }catch (Exception e) {}
+    } catch (Exception e) {}
+  }
 }
         </source>
-        <p id="Example2-code">
-          case 1: Example of compliant code:
-        </p>
-        <source>
-try {
-    try { // OK, current depth is 1, default max allowed depth is also 1
-    } catch (Exception e) {
-    }
-} catch (Exception e) {
-}
-        </source>
-        <p id="Example3-code">case 2: Example of code for handling unique and general exceptions</p>
-        <source>
-try {
-    try { // OK, current depth is 1, default max allowed depth is also 1
-            // any more nesting could cause code violation!
-            throw ArithmeticException();
-    } catch (ArithmeticException e) { // catches arithmetic exceptions
-    } catch (NumberFormatException e) { // catches number-format exceptions
-    } catch (Exception e) { // catches general exceptions other than stated above
-    }
-} catch (
-  ArithmeticException
-  | NumberFormatException
-  | ArrayIndexOutOfBoundsException e) { // catches any of the 3 exception
-} catch (Exception e) { // catches general exception
-} finally { // do something when try-catch block finished execution
-}
-        </source>
-        <p id="Example4-config">
+        <p id="Example2-config">
           To configure the check to allow nesting depth 3:
         </p>
         <source>
@@ -99,41 +87,35 @@ try {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">
-            Example of code with violation:
+        <p id="Example2-code">
+          Example2:
         </p>
         <source>
-try {
+public class Example2 {
+  void testMethod(){
     try {
-        try {
-            try {
-                try { // violation, current depth is 4, max allowed depth is 3
-                } catch (Exception e) {
-                }
-            } catch (Exception e) {
-            }
-        } catch (Exception e) {
-        }
-    } catch (Exception e) {
-    }
-} catch (Exception e) {
-}
-        </source>
-        <p id="Example5-code">
-            Example of compliant code:
-        </p>
-        <source>
-try {
+      try {} // OK, current depth is 1, default max allowed depth is also 1
+      catch (Exception e) {}
+    }catch (Exception e) {}
+
     try {
+      try {
+        try {} // OK, current depth is 2, default max allowed depth is also 1
+        catch (Exception e) {}
+      }catch (Exception e) {}
+    }catch (Exception e) {}
+
+    try {
+      try {
         try {
-            try { // OK, current depth is 3, max allowed depth is also 3
-            } catch (Exception e) {
-            }
-        } catch (Exception e) {
-        }
-    } catch (Exception e) {
-    }
-} catch (Exception e) {
+          try {
+            try {} // violation, current depth is 4, max allowed depth is 3
+            catch (Exception e) {}
+          }catch (Exception e) {}
+        }catch (Exception e) {}
+      }catch (Exception e) {}
+    } catch (Exception e) {}
+  }
 }
         </source>
       </subsection>
