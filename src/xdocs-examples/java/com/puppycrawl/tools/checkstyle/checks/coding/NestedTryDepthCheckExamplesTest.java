@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class NestedTryDepthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,45 +32,21 @@ public class NestedTryDepthCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "22:9: " + getCheckMessage(NestedTryDepthCheck.MSG_KEY, 2, 1),
+            "32:9: " + getCheckMessage(NestedTryDepthCheck.MSG_KEY, 2, 1),
+            "33:11: " + getCheckMessage(NestedTryDepthCheck.MSG_KEY, 3, 1),
+            "34:13: " + getCheckMessage(NestedTryDepthCheck.MSG_KEY, 4, 1),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "36:13: " + getCheckMessage(NestedTryDepthCheck.MSG_KEY, 4, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
-    }
-
-    @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
