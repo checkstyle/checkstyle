@@ -20,12 +20,13 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck;
 
 public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
@@ -44,10 +45,10 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "4:17: " + getCheckMessage(SuperFinalizeCheck.class,
-                                        SuperFinalizeCheck.MSG_KEY, "finalize"),
+                                        AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathSuperFinalizeNoFinalize']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
@@ -63,10 +64,10 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "14:20: " + getCheckMessage(SuperFinalizeCheck.class,
-                                        SuperFinalizeCheck.MSG_KEY, "finalize"),
+                                        AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='ClassWithFinalizer']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
