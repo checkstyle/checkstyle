@@ -492,6 +492,47 @@ public class SuppressionXpathSingleFilterTest
                 .isTrue();
     }
 
+    /**
+     * This test is required to cover pitest mutation
+     * for reset of 'message' field in SuppressionXpathSingleFilter.
+     * This not possible to reproduce by natural execution of Checkstyle
+     * as config is never changed in runtime.
+     * Projects that use us by api can reproduce this case.
+     * We need to allow users to reset module property to default state.
+     *
+     * @throws Exception when there is problem to load Input file
+     */
+
+    @Test
+    public void testSetMessageHandlesNullCorrectly() throws Exception {
+        final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
+
+        final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
+        filter.setMessage("MagicNumber");
+        filter.finishLocalSetup();
+
+        final Violation violation = new Violation(27, 21, TokenTypes.NUM_DOUBLE, "",
+                "", null, null, null,
+                MagicNumberCheck.class, "MagicNumber");
+
+        final FileContents fileContents =
+                new FileContents(new FileText(file, StandardCharsets.UTF_8.name()));
+
+        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
+                violation, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+
+        assertWithMessage("match is expected as 'message' is set")
+                .that(filter.accept(ev))
+                .isFalse();
+
+        filter.setMessage(null);
+        filter.finishLocalSetup();
+
+        assertWithMessage("no match is expected as whole filter is defaulted (empty)")
+                .that(filter.accept(ev))
+                .isTrue();
+    }
+
     private static SuppressionXpathSingleFilter createSuppressionXpathSingleFilter(
             String files, String checks, String message, String moduleId, String query) {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
