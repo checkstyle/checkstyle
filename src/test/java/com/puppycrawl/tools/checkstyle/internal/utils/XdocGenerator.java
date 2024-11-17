@@ -48,7 +48,7 @@ public final class XdocGenerator {
     private XdocGenerator() {
     }
 
-    public static void generateXdocContent() throws Exception {
+    public static void generateXdocContent(File temporaryFolder) throws Exception {
         final PlexusContainer plexus = new DefaultPlexusContainer();
         final Set<Path> templatesFilePaths = XdocUtil.getXdocsTemplatesFilePaths();
 
@@ -56,7 +56,7 @@ public final class XdocGenerator {
             final String pathToFile = path.toString();
             final File inputFile = new File(pathToFile);
             final File outputFile = new File(pathToFile.replace(".template", ""));
-            final File tempFile = File.createTempFile(outputFile.getName(), "");
+            final File tempFile = new File(temporaryFolder, outputFile.getName());
             tempFile.deleteOnExit();
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
                     plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
