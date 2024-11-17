@@ -58,6 +58,7 @@ import java.util.stream.Stream;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -228,6 +229,9 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    @TempDir
+    private static File temporaryFolder;
+
     /**
      * Generate xdoc content from templates before validation.
      * This method will be removed once
@@ -237,7 +241,7 @@ public class XdocsPagesTest {
      */
     @BeforeAll
     public static void generateXdocContent() throws Exception {
-        XdocGenerator.generateXdocContent();
+        XdocGenerator.generateXdocContent(temporaryFolder);
     }
 
     @Test
