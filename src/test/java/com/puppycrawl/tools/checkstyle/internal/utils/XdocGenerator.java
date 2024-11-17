@@ -55,7 +55,8 @@ public final class XdocGenerator {
         for (Path path : templatesFilePaths) {
             final String pathToFile = path.toString();
             final File inputFile = new File(pathToFile);
-            final File tempFile = File.createTempFile(pathToFile.replace(".template", ""), "");
+            final File outputFile = new File(pathToFile.replace(".template", ""));
+            final File tempFile = File.createTempFile(outputFile.getName(), "");
             tempFile.deleteOnExit();
             final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
                     plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
@@ -70,7 +71,6 @@ public final class XdocGenerator {
             finally {
                 sink.close();
             }
-            final File outputFile = new File(pathToFile.replace(".template", ""));
             final StandardCopyOption copyOption = StandardCopyOption.REPLACE_EXISTING;
             Files.copy(tempFile.toPath(), outputFile.toPath(), copyOption);
         }
