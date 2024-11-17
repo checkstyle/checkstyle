@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,18 +33,18 @@ public class NPathComplexityCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "28:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 217, 200),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "14:3: " + getCheckMessage(NPathComplexityCheck.MSG_KEY, 128, 100),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
