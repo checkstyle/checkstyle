@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,90 +32,87 @@ public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "18:7: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_BLOCK, 21, 6, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "19:9: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 18, 8, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "17:5: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 20, 4, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "21:2: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 22, 1, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "21:13: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 22, 12, 8),
+            "30:6: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, "29, 31", 5, "6, 6"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "15:5: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 16, 4, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "22:15: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 25, 14, 4),
+            "23:10: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 25, 9, 4),
+            "24:8: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 25, 7, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-
+            "24:6: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, "23, 25", 5, "6, 4"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
-    @Test
-    public void testExample9() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
-    }
-
-    @Test
-    public void testExample10() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example10.txt"), expected);
-    }
 }
