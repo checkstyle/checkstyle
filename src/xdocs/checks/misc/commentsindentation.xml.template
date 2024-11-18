@@ -28,38 +28,53 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>Please take a look at the following examples to understand how the check works:</p>
-
-        <p id="Example1-code">Example #1: Block comments.</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example1.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example2-code">
-          Example #2: Comment is placed at the end of the block and has previous statement.
+        <p id="Example1-config">
+          To configure the Check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example1-code">
+        Example #1:demonstrates the default behavior of the CommentsIndentation module,
+        where both single-line and block comments are checked for indentation violations.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <p id="Example2-config">
+          To configure the Check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example2-code">
+          Example #2: how the configuration is restricted to check only single-line
+          comments for indentation violations.Block comments are excluded from analysis.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p>Please take a look at the following examples to understand how the check works:</p>
         <p id="Example3-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example4-code">Example #4: Comment has distributed previous statement.</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example4.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example5-code">
-          Example #5: Single line block comment is placed within an empty code block.
+        <p id="Example4-code">
+          Example #4: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
           only case we can assume as a violation is when a single-line comment within the empty
@@ -68,57 +83,43 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example6-code">Example #6: 'fallthrough' comments and similar.</p>
+        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+           comments  placed within an empty case block.Note, if comment is placed
+           at the end of the empty case block,  we have Checkstyle limitations to
+           clearly detect user intention of explanation target - above or below.
+           The only case we can assume as a violation is when a single-line comment
+           within the empty case block has indentation level that is lower than the
+           indentation level of the next case.
+          token.</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example7-code">Example #7: Comment is placed within a distributed statement.</p>
+        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example7-code">
+          Example #7: Single line block comment has previous and next statement.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example8-code">
-          Example #8: Comment is placed within an empty case block.
-          Note, if comment is placed at the end of the empty case block, we have Checkstyle's
-          limitations to clearly detect user intention of explanation target - above or below. The
-          only case we can assume as a violation is when a single-line comment within the empty case
-          block has indentation level that is lower than the indentation level of the next case
-          token.
+          Example #8: Comment within the block tries to describe the next code block.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example8.java"/>
           <param name="type" value="code"/>
-        </macro>
-        <p id="Example9-code">
-          Example #9: Single line block comment has previous and next statement.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example9.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example10-code">
-          Example #10: Comment within the block tries to describe the next code block.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example10.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example1-config">
-          To configure the Check:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example1.txt"/>
-          <param name="type" value="config"/>
         </macro>
       </subsection>
 
