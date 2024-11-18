@@ -58,6 +58,10 @@
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator[\\/]Example2.java"/>
 
+  <!-- violation required by to show behavior of Check -->
+  <suppress checks="CommentsIndentation"
+    files="commentsindentation[\\/]Example[1-9].java"/>
+
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
     files="illegaltype[\\/]Example\d+.*"/>
