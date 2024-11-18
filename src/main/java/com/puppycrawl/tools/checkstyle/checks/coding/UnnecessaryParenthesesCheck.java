@@ -182,7 +182,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>.
+ * POST_DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+ * TYPECAST</a>.
  * </li>
  * </ul>
  *
@@ -394,6 +396,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -445,6 +448,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BOR,
             TokenTypes.BAND,
             TokenTypes.QUESTION,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -467,42 +471,85 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 .forEach(unnecessaryChild -> log(unnecessaryChild, MSG_EXPR));
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            final int type = ast.getType();
-            final boolean surrounded = isSurrounded(ast);
-            // An identifier surrounded by parentheses.
-            if (surrounded && type == TokenTypes.IDENT) {
-                parentToSkip = ast.getParent();
-                log(ast, MSG_IDENT, ast.getText());
-            }
-            // A literal (numeric or string) surrounded by parentheses.
-            else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
-                parentToSkip = ast.getParent();
-                if (type == TokenTypes.STRING_LITERAL) {
-                    log(ast, MSG_STRING,
-                        chopString(ast.getText()));
-                }
-                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single-line, add
-                    // quotes to make string consistent with STRING_LITERAL
-                    final String logString = QUOTE
-                        + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
-                        + QUOTE;
-                    log(ast, MSG_STRING, chopString(logString));
-                }
-                else {
-                    log(ast, MSG_LITERAL, ast.getText());
-                }
-            }
-            // The rhs of an assignment surrounded by parentheses.
-            else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
-                assignDepth++;
-                final DetailAST last = ast.getLastChild();
-                if (last.getType() == TokenTypes.RPAREN) {
-                    log(ast, MSG_ASSIGN);
-                }
+            findUnnecessaryParenthesesInAst(ast);
+        }
+    }
+
+    /**
+     * Finds and logs if {@code LITERAL},{@code IDENT}, {@code ASSIGNMENT}
+     * and {@code TYPECAST} are surrounded by parentheses.
+     *
+     * @param ast the {@code DetailAST} to check.
+     */
+    private void findUnnecessaryParenthesesInAst(DetailAST ast) {
+        final int type = ast.getType();
+        final boolean surrounded = isSurrounded(ast);
+        // An identifier surrounded by parentheses.
+        if (surrounded && type == TokenTypes.IDENT) {
+            parentToSkip = ast.getParent();
+            log(ast, MSG_IDENT, ast.getText());
+        }
+        // A literal (numeric or string) surrounded by parentheses.
+        else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
+            findUnnecessaryParenthesesAroundLiterals(ast);
+        }
+        // The rhs of an assignment surrounded by parentheses.
+        else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
+            assignDepth++;
+            final DetailAST last = ast.getLastChild();
+            if (last.getType() == TokenTypes.RPAREN) {
+                log(ast, MSG_ASSIGN);
             }
         }
+        // A typecast surrounded by parentheses.
+        else if (surrounded && type == TokenTypes.TYPECAST
+                && isTypeCastSurrounded(ast)) {
+            log(ast, MSG_EXPR);
+        }
+    }
+
+    /**
+     * Checks and logs if the given {@code LITERAL} is surrounded by parentheses.
+     *
+     * @param ast the {@code DetailAST} to check.
+     */
+    private void findUnnecessaryParenthesesAroundLiterals(DetailAST ast) {
+        final int type = ast.getType();
+        parentToSkip = ast.getParent();
+        if (type == TokenTypes.STRING_LITERAL) {
+            log(ast, MSG_STRING,
+                    chopString(ast.getText()));
+        }
+        else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+            // Strip newline control characters to keep message as single-line, add
+            // quotes to make string consistent with STRING_LITERAL
+            final String logString = QUOTE
+                    + NEWLINE.matcher(
+                    ast.getFirstChild().getText()).replaceAll("\\\\n")
+                    + QUOTE;
+            log(ast, MSG_STRING, chopString(logString));
+        }
+        else {
+            log(ast, MSG_LITERAL, ast.getText());
+        }
+    }
+
+    /**
+     * Checks if the given {@code TYPECAST} is surrounded by parentheses.
+     *
+     * @param ast the {@code DetailAST} to check if it is surrounded by
+     *        parentheses.
+     * @return {@code true} if is surrounded by
+     *         parentheses.
+     */
+    private static boolean isTypeCastSurrounded(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        return parentType != TokenTypes.DOT
+                && parentType != TokenTypes.EXPR
+                && parentType != TokenTypes.INDEX_OP
+                && parentType != TokenTypes.METHOD_REF
+                && !TokenUtil.isOfType(parentType, ASSIGNMENTS);
     }
 
     @Override
