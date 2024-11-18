@@ -22,12 +22,16 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -40,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
@@ -530,6 +535,41 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("cachedFileAbsolutePath has not changed")
                 .that(cachedFileAbsolutePath1)
                 .isNotEqualTo(cachedFileAbsolutePath2);
+    }
+
+    /**
+     * Calls the filter on two real input files and verifies that the
+     * filter caches the file path only once. Ensures 'cachedFileAbsolutePath' remains
+     * unchanged and validates a single call to retrieve file text.
+     *
+     * @throws IOException if an error occurs while formatting the path to the input file.
+     */
+    @Test
+    public void testCacheFilePathCalledOnlyOnce() throws IOException {
+        final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
+        final String cachedFileAbsolutePath = getCachedFileAbsolutePathAfterExecution(
+                filter,
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java")
+        );
+
+        try (MockedStatic<FilterUtil> mockStatic = mockStatic(FilterUtil.class)) {
+            final AuditEvent dummyEvent1 = buildDummyAuditEvent(
+                getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java"));
+            final AuditEvent dummyEvent2 = buildDummyAuditEvent(
+                getPath("InputSuppressWithNearbyTextFilterOneLineText.txt"));
+            filter.accept(dummyEvent1);
+            filter.accept(dummyEvent2);
+
+            mockStatic.verify(() -> FilterUtil.getFileText(any(String.class)), times(1));
+            final String cachedFileAbsolutePathAfterEvent = getCachedFileAbsolutePathAfterExecution(
+                    filter,
+                    getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java")
+            );
+
+            assertWithMessage("cachedFileAbsolutePath has not changed")
+                    .that(cachedFileAbsolutePath)
+                    .isEqualTo(cachedFileAbsolutePathAfterEvent);
+        }
     }
 
     /**

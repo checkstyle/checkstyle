@@ -19,9 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
 
 /**
  * <div>
@@ -199,7 +197,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
         if (event.getViolation() != null) {
-            final FileText fileText = getFileText(event.getFileName());
+            final FileText fileText = FilterUtil.getFileText(event.getFileName());
             if (fileText != null) {
                 final List<Suppression> suppressions = getSuppressions(fileText);
                 accepted = getNearestSuppression(suppressions, event) == null;
@@ -211,30 +209,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     @Override
     protected void finishLocalSetup() {
         // No code by default
-    }
-
-    /**
-     * Returns {@link FileText} instance created based on the given file name.
-     *
-     * @param fileName the name of the file.
-     * @return {@link FileText} instance.
-     * @throws IllegalStateException if the file could not be read.
-     */
-    private static FileText getFileText(String fileName) {
-        final File file = new File(fileName);
-        FileText result = null;
-
-        // some violations can be on a directory, instead of a file
-        if (!file.isDirectory()) {
-            try {
-                result = new FileText(file, StandardCharsets.UTF_8.name());
-            }
-            catch (IOException ex) {
-                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
-            }
-        }
-
-        return result;
     }
 
     /**
