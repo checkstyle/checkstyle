@@ -101,6 +101,28 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCasts1() throws Exception {
+
+        final String[] expected = {
+            "23:18: " + getCheckMessage(MSG_EXPR),
+            "23:43: " + getCheckMessage(MSG_EXPR),
+            "30:11: " + getCheckMessage(MSG_ASSIGN),
+            "32:11: " + getCheckMessage(MSG_ASSIGN),
+            "32:22: " + getCheckMessage(MSG_EXPR),
+            "45:18: " + getCheckMessage(MSG_EXPR),
+            "61:15: " + getCheckMessage(MSG_EXPR),
+            "66:31: " + getCheckMessage(MSG_EXPR),
+            "71:40: " + getCheckMessage(MSG_EXPR),
+            "78:22: " + getCheckMessage(MSG_EXPR),
+            "89:14: " + getCheckMessage(MSG_EXPR),
+            "95:28: " + getCheckMessage(MSG_EXPR),
+            "100:26: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnnecessaryParenthesesCasts.java"), expected);
+    }
+
+    @Test
     public void test15Extensions() throws Exception {
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_EXPR),
