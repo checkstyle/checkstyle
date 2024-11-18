@@ -19,10 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * Utility methods for suppression filters.
@@ -32,6 +35,29 @@ public final class FilterUtil {
 
     /** Stop instances being created. **/
     private FilterUtil() {
+    }
+
+    /**
+     * Returns {@link FileText} instance created based on the given file name.
+     *
+     * @param fileName the name of the file.
+     * @return {@link FileText} instance.
+     * @throws IllegalStateException if the file could not be read.
+     */
+    public static FileText getFileText(String fileName) {
+        final File file = new File(fileName);
+        FileText result = null;
+        // some violations can be on a directory, instead of a file
+        if (!file.isDirectory()) {
+            try {
+                result = new FileText(file, StandardCharsets.UTF_8.name());
+            }
+            catch (IOException ex) {
+                throw new IllegalStateException("Cannot read source file: " + fileName, ex);
+            }
+        }
+
+        return result;
     }
 
     /**
