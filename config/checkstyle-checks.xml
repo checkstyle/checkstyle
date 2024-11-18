@@ -577,7 +577,7 @@
                        SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND,
                        LOR, LITERAL_INSTANCEOF, GT, LT, GE, LE, EQUAL, NOT_EQUAL, UNARY_MINUS,
                        UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, BOR, BXOR, BAND,
-                       QUESTION"/>
+                       QUESTION, TYPECAST"/>
     </module>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
