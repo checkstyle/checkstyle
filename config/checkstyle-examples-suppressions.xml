@@ -62,6 +62,10 @@
   <suppress checks="CommentsIndentation"
     files="commentsindentation[\\/]Example[1-9].java"/>
 
+  <!-- violation required by to show behavior of Check -->
+  <suppress checks="FileLength"
+    files="cyclomaticcomplexity[\\/]Example\d+.*"/>
+
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
     files="illegaltype[\\/]Example\d+.*"/>

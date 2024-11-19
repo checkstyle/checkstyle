@@ -7,12 +7,33 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 // xdoc section -- start
-class CyclomaticComplexity {
+class Example3 {
   // Cyclomatic Complexity = 11
   int a, b, c, d, e, n;
-  public void foo() { // 1, function declaration
+
+  public void testMethod1() {
+    while (a < b
+      && a > c) {
+      fun5();
+    }
+    if (a == b) {
+      do {
+        fun5();
+      } while (d==a);
+    } else if (c == d) {
+      while (c > 0) {
+        fun5();
+      }
+      do {
+        fun5();
+      } while (a==d);
+    }
+  }
+  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
+  public void testMethod2() { // 1, function declaration
     if (a == b) { // 2, if
       fun1();
     } else if (a == 0 // 3, if
@@ -36,11 +57,24 @@ class CyclomaticComplexity {
         case 2:
           fun2();
           break;
+        case 3: // 10, case
+          fun3();
+          break;
         default:
           break;
       }
     }
     a = a > 0 ? b : c; // 11, ternary operator
   }
+
+  private void fun5() {}
+
+  private void fun4() {}
+
+  private void fun3() {}
+
+  private void fun2() {}
+
+  private void fun1() {}
 }
 // xdoc section -- end
