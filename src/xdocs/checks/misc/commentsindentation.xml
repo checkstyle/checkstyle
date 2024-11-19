@@ -52,174 +52,6 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>Please take a look at the following examples to understand how the check works:</p>
-
-        <p id="Example1-code">Example #1: Block comments.</p>
-        <source>
-1   /*
-2    * it is Ok
-3    */
-4   boolean bool = true;
-5
-6     /* violation
-7      * (block comment should have the same indentation level as line 9)
-8      */
-9   double d = 3.14;
-        </source>
-        <p id="Example2-code">
-          Example #2: Comment is placed at the end of the block and has previous statement.
-        </p>
-        <source>
-1   public void foo1() {
-2     foo2();
-3     // it is OK
-4   }
-5
-6   public void foo2() {
-7     foo3();
-8       // violation (comment should have the same indentation level as line 7)
-9   }
-        </source>
-        <p id="Example3-code">
-          Example #3: Comment is used as a single-line border to separate groups of methods.
-        </p>
-        <source>
-1   /////////////////////////////// it is OK
-2
-3   public void foo7() {
-4     int a = 0;
-5   }
-6
-7     ///////////////////////////// violation (should have the same indentation level as line 9)
-8
-9   public void foo8() {}
-        </source>
-        <p id="Example4-code">Example #4: Comment has distributed previous statement.</p>
-        <source>
-1   public void foo11() {
-2     CheckUtil
-3       .getFirstNode(new DetailAST())
-4       .getFirstChild()
-5       .getNextSibling();
-6     // it is OK
-7   }
-8
-9   public void foo12() {
-10    CheckUtil
-11      .getFirstNode(new DetailAST())
-12      .getFirstChild()
-13      .getNextSibling();
-14              // violation (should have the same indentation level as line 10)
-15  }
-        </source>
-        <p id="Example5-code">
-          Example #5: Single line block comment is placed within an empty code block.
-          Note, if comment is placed at the end of the empty code block, we have Checkstyle's
-          limitations to clearly detect user intention of explanation target - above or below. The
-          only case we can assume as a violation is when a single-line comment within the empty
-          code block has indentation level that is lower than the indentation level of the closing
-          right curly brace.
-        </p>
-        <source>
-1   public void foo46() {
-2     // comment
-3     // block
-4     // it is OK (we cannot clearly detect user intention of explanation target)
-5   }
-6
-7   public void foo46() {
-8  // comment
-9  // block
-10 // violation (comment should have the same indentation level as line 11)
-11  }
-        </source>
-        <p id="Example6-code">Example #6: 'fallthrough' comments and similar.</p>
-        <source>
-0   switch(a) {
-1     case &quot;1&quot;:
-2       int k = 7;
-3       // it is OK
-4     case &quot;2&quot;:
-5       int k = 7;
-6     // it is OK
-7     case &quot;3&quot;:
-8       if (true) {}
-9           // violation (should have the same indentation level as line 8 or 10)
-10    case &quot;4&quot;:
-11    case &quot;5&quot;: {
-12      int a;
-13    }
-14    // fall through (it is OK)
-15    case &quot;12&quot;: {
-16      int a;
-17    }
-18    default:
-19      // it is OK
-20  }
-        </source>
-        <p id="Example7-code">Example #7: Comment is placed within a distributed statement.</p>
-        <source>
-1   String breaks = &quot;J&quot;
-2   // violation (comment should have the same indentation level as line 3)
-3       + &quot;A&quot;
-4       // it is OK
-5       + &quot;V&quot;
-6       + &quot;A&quot;
-7   // it is OK
-8   ;
-        </source>
-        <p id="Example8-code">
-          Example #8: Comment is placed within an empty case block.
-          Note, if comment is placed at the end of the empty case block, we have Checkstyle's
-          limitations to clearly detect user intention of explanation target - above or below. The
-          only case we can assume as a violation is when a single-line comment within the empty case
-          block has indentation level that is lower than the indentation level of the next case
-          token.
-        </p>
-        <source>
-1   case 4:
-2     // it is OK
-3   case 5:
-4  // violation (should have the same indentation level as line 3 or 5)
-5   case 6:
-        </source>
-        <p id="Example9-code">
-          Example #9: Single line block comment has previous and next statement.
-        </p>
-        <source>
-1   String s1 = &quot;Clean code!&quot;;
-2      s.toString().toString().toString();
-3   // single-line
-4   // block
-5   // comment (it is OK)
-6   int a = 5;
-7
-8   String s2 = &quot;Code complete!&quot;;
-9    s.toString().toString().toString();
-10            // violation (should have the same indentation level as line 11)
-11       // violation (should have the same indentation level as line 12)
-12     // violation (should have the same indentation level as line 13)
-13  int b = 18;
-        </source>
-        <p id="Example10-code">
-          Example #10: Comment within the block tries to describe the next code block.
-        </p>
-        <source>
-1   public void foo42() {
-2     int a = 5;
-3     if (a == 5) {
-4       int b;
-5       // it is OK
-6      } else if (a ==6) { ... }
-7   }
-8
-9   public void foo43() {
-10    try {
-11      int a;
-12     // Why do we catch exception here? - violation (not the same indentation as line 11)
-13     } catch (Exception e) { ... }
-14  }
-        </source>
         <p id="Example1-config">
           To configure the Check:
         </p>
@@ -229,6 +61,222 @@
     &lt;module name=&quot;CommentsIndentation&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+
+        <p id="Example1-code">
+        Example #1:demonstrates the default behavior of the CommentsIndentation module,
+        where both single-line and block comments are checked for indentation violations.
+        </p>
+        <source>
+public class Example1 {
+  void testMethod() {
+    /*
+     * it is Ok
+     */
+    boolean bool = true;
+      // violation below, 'Block comment has incorrect indentation level 6'
+      /*
+       * It is not okay
+       */
+    double d = 3.14;
+  }
+
+  public void foo1() {
+    foo2();
+    // it is OK
+  }
+
+  public void foo2() {
+    foo3();
+        // It is not OK
+  }
+  // violation 2 lines above  'Comment has incorrect indentation level 8'
+  public void foo3(){}
+}
+        </source>
+        <p id="Example2-config">
+          To configure the Check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CommentsIndentation&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;SINGLE_LINE_COMMENT&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;CommentsIndentation&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;BLOCK_COMMENT_BEGIN&quot;/&gt;
+      &lt;property name=&quot;severity&quot; value=&quot;ignore&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-code">
+          Example #2: how the configuration is restricted to check only single-line
+          comments for indentation violations.Block comments are excluded from analysis.
+        </p>
+        <source>
+public class Example2 {
+  void testMethod() {
+    /*
+     * it is Ok
+     */
+    boolean bool = true;
+
+      /*
+       * It is not okay
+       */
+    double d = 3.14;
+  }
+
+  public void foo1() {
+    foo2();
+    // it is OK
+  }
+
+  public void foo2() {
+    foo3();
+        // It is not OK
+  }
+  // violation 2 lines above  'Comment has incorrect indentation level 8'
+  public void foo3(){}
+}
+        </source>
+        <p>Please take a look at the following examples to understand how the check works:</p>
+        <p id="Example3-code">
+          Example #3: Comment is used as a single-line border to separate groups of methods.
+        </p>
+        <source>
+public class Example3 {
+  /////////////////////////////// it is OK
+
+  public void foo1() {
+    int a = 0;
+  }
+    ///////////////////////////// It is not OK
+
+  // violation 2 lines above 'Comment has incorrect indentation level 4'
+  public void foo2() {}
+}
+        </source>
+        <p id="Example4-code">
+          Example #4: Single line block comment is placed within an empty code block.
+          Note, if comment is placed at the end of the empty code block, we have Checkstyle's
+          limitations to clearly detect user intention of explanation target - above or below. The
+          only case we can assume as a violation is when a single-line comment within the empty
+          code block has indentation level that is lower than the indentation level of the closing
+          right curly brace.
+        </p>
+        <source>
+public class Example4 {
+  public void foo1() {
+    // comment
+    // block
+    // it is OK (we cannot clearly detect user intention of explanation target)
+  }
+  // violation 4 lines below 'Comment has incorrect indentation level 1'
+  public void foo2() {
+ // comment
+ // block
+ // It is not OK
+  }
+}
+        </source>
+        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+           comments  placed within an empty case block.Note, if comment is placed
+           at the end of the empty case block,  we have Checkstyle limitations to
+           clearly detect user intention of explanation target - above or below.
+           The only case we can assume as a violation is when a single-line comment
+           within the empty case block has indentation level that is lower than the
+           indentation level of the next case.
+          token.</p>
+        <source>
+public class Example5 {
+  void testMethod(String a) {
+    switch(a) {
+      case &quot;1&quot;:
+        int j = 7;
+        // it is OK
+        break;
+      case &quot;3&quot;: // violation 2 lines below 'Comment has incorrect indentation level'
+        if (true) {}
+            //It is not OK
+        break;
+      // fall through (it is OK)
+      case &quot;5&quot;:
+        // it is OK
+      case &quot;6&quot;:
+     // It is not OK
+      case &quot;7&quot;:
+       // violation 2 lines above 'Comment has incorrect indentation level 5'
+      default:
+    }
+  }
+}
+        </source>
+        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
+        <source>
+public class Example6 {
+  void testMethod() {
+    // violation 2 lines below 'Comment has incorrect indentation level 4'
+    String breaks = &quot;J&quot;
+    // It is not OK
+        + &quot;A&quot;
+        // it is OK
+        + &quot;V&quot;
+        + &quot;A&quot;
+    // it is OK
+    ;
+
+  }
+}
+        </source>
+        <p id="Example7-code">
+          Example #7: Single line block comment has previous and next statement.
+        </p>
+        <source>
+public class Example7 {
+  void testMethod() {
+    String s1 = &quot;Clean code!&quot;;
+    s1.toString().toString().toString();
+    // single-line
+    // block
+    // comment (it is OK)
+    int a = 5;
+
+    String s2 = &quot;Code complete!&quot;;
+    s1.toString().toString().toString();
+              // It is Not OK1
+         //It is Not OK2
+       //It is Not OK3
+    int b = 18;
+    // violation 4 lines above 'Comment has incorrect indentation level 14'
+    // violation 4 lines above 'Comment has incorrect indentation level 9'
+    // violation 4 lines above 'Comment has incorrect indentation level 7'
+  }
+}
+        </source>
+        <p id="Example8-code">
+          Example #8: Comment within the block tries to describe the next code block.
+        </p>
+        <source>
+public class Example8 {
+  public void foo42() {
+    int a = 5;
+    if (a == 5) {
+      int b;
+      // it is OK
+    } else if (a ==6) {}
+  }
+
+  public void foo43() {
+    // violation 3 lines below 'Comment has incorrect indentation level 5'
+    try {
+      int a;
+     // It is not OK
+    } catch (Exception e) {  }
+  }
+}
         </source>
       </subsection>
 
