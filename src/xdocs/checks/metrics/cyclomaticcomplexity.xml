@@ -148,39 +148,61 @@
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
-  // Cyclomatic Complexity = 11
-  int a, b, c, d, n;
-  public void foo() { // 1, function declaration
-    if (a == 1) { // 2, if
+class Example1 {
+  int a, b, c, d, e, n;
+
+  public void testMethod1() {
+    while (a &lt; b &amp;&amp; a &gt; c) {
       fun1();
-    } else if (a == b // 3, if
-      &amp;&amp; a == c) { // 4, &amp;&amp; operator
-      if (c == 2) { // 5, if
-        fun2();
+    }
+    if (a == b) {
+      do {
+        fun1();
+      } while (d==a);
+    } else if (c == d) {
+      while (c &gt; 0) {
+        fun1();
       }
-    } else if (a == d) { // 6, if
+      do {
+        fun1();
+      } while (a==d);
+    }
+  }
+  // violation below, 'Cyclomatic Complexity is 13 (max allowed is 10)'
+  public void testMethod2() { // 1, function declaration
+    if (a == b) { // 2, if
+      fun1();
+    } else if (a == 0 // 3, if
+      &amp;&amp; b == c) { // 4, &amp;&amp; operator
+      if (c == -1) { // 5, if
+        fun1();
+      }
+    } else if (a == c // 6, if
+      || a == d) { // 7, || operator
+      fun1();
+    } else if (d == e) { //8, if
       try {
-        fun4();
-      } catch (Exception e) { // 7, catch
+        fun1();
+      } catch (Exception e) { // 9, catch
       }
     } else {
       switch(n) {
-        case 1: // 8, case
+        case 1: // 10, case
           fun1();
           break;
-        case 2: // 9, case
-          fun2();
+        case 2: // 11, case
+          fun1();
           break;
-        case 3: // 10, case
-          fun3();
+        case 3: // 12, case
+          fun1();
           break;
         default:
           break;
       }
     }
-    d = a &lt; 0 ? -1 : 1; // 11, ternary operator
+    a = a &gt; 0 ? b : c; // 13, ternary operator
   }
+  private void fun1() {}
 }
         </source>
         <p id="Example2-config">
@@ -200,27 +222,61 @@ class CyclomaticComplexity {
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
-  // Cyclomatic Complexity = 5
-  int a, b, c, d;
-  public void foo() { // 1, function declaration
-    while (a &lt; b // 2, while
-      &amp;&amp; a &gt; c) {
-      fun();
+class Example2 {
+  int a, b, c, d, e, n;
+  // violation below, 'Cyclomatic Complexity is 5 (max allowed is 4)'
+  public void testMethod1() { // 1, function declaration
+    while (a &lt; b &amp;&amp; a &gt; c) { // 2, while
+      fun1();
     }
     if (a == b) {
       do { // 3, do
-        fun();
-      } while (d);
+        fun1();
+      } while (d==a);
     } else if (c == d) {
       while (c &gt; 0) { // 4, while
-        fun();
+        fun1();
       }
       do { // 5, do-while
-        fun();
-      } while (a);
+        fun1();
+      } while (a==d);
     }
   }
+
+  public void testMethod2() {
+    if (a == b) {
+      fun1();
+    } else if (a == 0
+      &amp;&amp; b == c) {
+      if (c == -1) {
+        fun1();
+      }
+    } else if (a == c
+      || a == d) {
+      fun1();
+    } else if (d == e) {
+      try {
+        fun1();
+      } catch (Exception e) {
+      }
+    } else {
+      switch(n) {
+        case 1:
+          fun1();
+          break;
+        case 2:
+          fun1();
+          break;
+        case 3:
+          fun1();
+          break;
+        default:
+          break;
+      }
+    }
+    a = a &gt; 0 ? b : c;
+  }
+  private void fun1() {}
 }
         </source>
         <p id="Example3-config">
@@ -239,23 +295,41 @@ class CyclomaticComplexity {
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
-  // Cyclomatic Complexity = 11
+class Example3 {
   int a, b, c, d, e, n;
-  public void foo() { // 1, function declaration
+
+  public void testMethod1() {
+    while (a &lt; b &amp;&amp; a &gt; c) {
+      fun1();
+    }
+    if (a == b) {
+      do {
+        fun1();
+      } while (d==a);
+    } else if (c == d) {
+      while (c &gt; 0) {
+        fun1();
+      }
+      do {
+        fun1();
+      } while (a==d);
+    }
+  }
+  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
+  public void testMethod2() { // 1, function declaration
     if (a == b) { // 2, if
       fun1();
     } else if (a == 0 // 3, if
       &amp;&amp; b == c) { // 4, &amp;&amp; operator
       if (c == -1) { // 5, if
-        fun2();
+        fun1();
       }
     } else if (a == c // 6, if
       || a == d) { // 7, || operator
-      fun3();
+      fun1();
     } else if (d == e) { // 8, if
       try {
-        fun4();
+        fun1();
       } catch (Exception e) { // 9, catch
       }
     } else {
@@ -264,7 +338,10 @@ class CyclomaticComplexity {
           fun1();
           break;
         case 2:
-          fun2();
+          fun1();
+          break;
+        case 3: // 10, case
+          fun1();
           break;
         default:
           break;
@@ -272,6 +349,7 @@ class CyclomaticComplexity {
     }
     a = a &gt; 0 ? b : c; // 11, ternary operator
   }
+  private void fun1() {}
 }
         </source>
       </subsection>
