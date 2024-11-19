@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class CyclomaticComplexityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,27 +32,27 @@ public class CyclomaticComplexityCheckExamplesTest extends AbstractExamplesModul
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "15:3: " + getCheckMessage(CyclomaticComplexityCheck.MSG_KEY, 11, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "18:3: " + getCheckMessage(CyclomaticComplexityCheck.MSG_KEY, 5, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "17:3: " + getCheckMessage(CyclomaticComplexityCheck.MSG_KEY, 11, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }

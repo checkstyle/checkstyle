@@ -5,11 +5,13 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 // xdoc section -- start
-class CyclomaticComplexity {
+class Example1 {
   // Cyclomatic Complexity = 11
   int a, b, c, d, n;
+  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
   public void foo() { // 1, function declaration
     if (a == 1) { // 2, if
       fun1();
@@ -40,5 +42,13 @@ class CyclomaticComplexity {
     }
     d = a < 0 ? -1 : 1; // 11, ternary operator
   }
+
+  private void fun3() {}
+
+  private void fun4() {}
+
+  private void fun2() {}
+
+  private void fun1() {}
 }
 // xdoc section -- end

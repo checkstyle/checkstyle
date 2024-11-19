@@ -148,9 +148,10 @@
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
+class Example1 {
   // Cyclomatic Complexity = 11
   int a, b, c, d, n;
+  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
   public void foo() { // 1, function declaration
     if (a == 1) { // 2, if
       fun1();
@@ -181,6 +182,14 @@ class CyclomaticComplexity {
     }
     d = a &lt; 0 ? -1 : 1; // 11, ternary operator
   }
+
+  private void fun3() {}
+
+  private void fun4() {}
+
+  private void fun2() {}
+
+  private void fun1() {}
 }
         </source>
         <p id="Example2-config">
@@ -200,9 +209,10 @@ class CyclomaticComplexity {
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
+class Example2 {
   // Cyclomatic Complexity = 5
   int a, b, c, d;
+  // violation below, 'Cyclomatic Complexity is 5 (max allowed is 4)'
   public void foo() { // 1, function declaration
     while (a &lt; b // 2, while
       &amp;&amp; a &gt; c) {
@@ -211,16 +221,18 @@ class CyclomaticComplexity {
     if (a == b) {
       do { // 3, do
         fun();
-      } while (d);
+      } while (d==a);
     } else if (c == d) {
       while (c &gt; 0) { // 4, while
         fun();
       }
       do { // 5, do-while
         fun();
-      } while (a);
+      } while (a==d);
     }
   }
+
+  public void fun() {}
 }
         </source>
         <p id="Example3-config">
@@ -239,9 +251,10 @@ class CyclomaticComplexity {
           Example:
         </p>
         <source>
-class CyclomaticComplexity {
+class Example3 {
   // Cyclomatic Complexity = 11
   int a, b, c, d, e, n;
+  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
   public void foo() { // 1, function declaration
     if (a == b) { // 2, if
       fun1();
@@ -272,6 +285,14 @@ class CyclomaticComplexity {
     }
     a = a &gt; 0 ? b : c; // 11, ternary operator
   }
+
+  private void fun4() {}
+
+  private void fun3() {}
+
+  private void fun2() {}
+
+  private void fun1() {}
 }
         </source>
       </subsection>
