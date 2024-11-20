@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,37 +32,49 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "17: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "20: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "25: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
+        final String pattern = "[1-9\\.]";
         final String[] expected = {
-
+            "28: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String pattern = "[1-9\\.]";
+        final String[] expected = {
+            "21: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.2"),
+            "28: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }
