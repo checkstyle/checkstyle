@@ -111,11 +111,11 @@
 /**
 * Some class
 */
-public class Test {
+public class Example1 {
   /** some doc */
-  void foo() {}
+  void testMethod1() {}
 
-  public void method() {}
+  public void testMethod2() {}
 }
         </source>
         <p id="Example2-config">
@@ -138,11 +138,11 @@ public class Test {
 /**
 * Some class
 */
-public class Test { // violation as required tag is missed
+public class Example2 { // violation, 'Type Javadoc comment is missing @since tag'
   /** some doc */
-  void foo() {} // OK, as methods are not checked by default
+  void testMethod1() {} // OK, as methods are not checked by default
 
-  public void method() {}
+  public void testMethod2() {}
 }
         </source>
         <p id="Example3-config">
@@ -155,7 +155,8 @@ public class Test { // violation as required tag is missed
     &lt;module name=&quot;WriteTag&quot;&gt;
       &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
       &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
+                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -167,11 +168,11 @@ public class Test { // violation as required tag is missed
 /**
 * Some class
 */
-public class Test { // violation as required tag is missed
+public class Example3 { // violation, 'Type Javadoc comment is missing @since tag'
   /** some doc */
-  void foo() {} // violation as required tag is missed
+  void testMethod1() {} // violation, 'Type Javadoc comment is missing @since tag'
 
-  public void method() {}
+  public void testMethod2() {}
 }
         </source>
         <p id="Example4-config">
@@ -186,7 +187,8 @@ public class Test { // violation as required tag is missed
     &lt;module name=&quot;WriteTag&quot;&gt;
       &lt;property name=&quot;tag&quot; value=&quot;@since&quot;/&gt;
       &lt;property name=&quot;tokens&quot;
-                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
+                value=&quot;INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF&quot; /&gt;
       &lt;property name=&quot;tagFormat&quot; value=&quot;[1-9\.]&quot;/&gt;
       &lt;property name=&quot;tagSeverity&quot; value=&quot;ignore&quot;/&gt;
     &lt;/module&gt;
@@ -201,13 +203,14 @@ public class Test { // violation as required tag is missed
 * Some class
 * @since 1.2
 */
-public class Test {
+public class Example4 {
+  // violation 2 lines below 'Type Javadoc tag @since'
   /** some doc
-  * @since violation
+  * @since
   */
-  void foo() {}
+  void testMethod1() {}
 
-  public void method() {}
+  public void testMethod2() {}
 }
         </source>
       </subsection>

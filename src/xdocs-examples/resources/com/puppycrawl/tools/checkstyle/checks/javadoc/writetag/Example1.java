@@ -5,15 +5,16 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
 /**
 * Some class
 */
-public class Test {
+public class Example1 {
   /** some doc */
-  void foo() {}
+  void testMethod1() {}
 
-  public void method() {}
+  public void testMethod2() {}
 }
 // xdoc section -- end

@@ -7,15 +7,16 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
 /**
 * Some class
 */
-public class Test { // violation as required tag is missed
+public class Example2 { // violation, 'Type Javadoc comment is missing @since tag'
   /** some doc */
-  void foo() {} // OK, as methods are not checked by default
+  void testMethod1() {} // OK, as methods are not checked by default
 
-  public void method() {}
+  public void testMethod2() {}
 }
 // xdoc section -- end
