@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocTagContinuationIndentationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,27 +33,30 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "13: " + getCheckMessage(JavadocTagContinuationIndentationCheck.MSG_KEY, 4),
+            "14: " + getCheckMessage(JavadocTagContinuationIndentationCheck.MSG_KEY, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "15: " + getCheckMessage(JavadocTagContinuationIndentationCheck.MSG_KEY, 2),
+            "17: " + getCheckMessage(JavadocTagContinuationIndentationCheck.MSG_KEY, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "14: " + getCheckMessage(
+                    JavadocTagContinuationIndentationCheck.MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
