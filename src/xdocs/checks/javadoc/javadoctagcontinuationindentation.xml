@@ -64,12 +64,26 @@
         </p>
         <source>
 /**
- * @tag comment
- *  Indentation spacing is 1. Line with violation
- *   Indentation spacing is 2. Line with violation
- *     Indentation spacing is 4. OK
+ * &lt;p&gt; 'p' tag is unclosed
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
  */
-public class Test {
+class Example1 {
+
+  /**
+   * @tag comment
+   *     Indentation spacing is 4
+   */
+  public void testMethod1(String input) {
+    // OK, Default expected Indentation is 4
+  }
+
+  /**
+   * @tag comment
+   *   Indentation spacing is 2
+   */
+  public void testMethod2(String input) {
+    // violation 3 lines above 'Line continuation have incorrect indentation level'
+  }
 }
         </source>
         <p id="Example2-config">
@@ -89,12 +103,26 @@ public class Test {
         </p>
         <source>
 /**
- * @tag comment
- * Indentation spacing is 0. Line with violation
- *   Indentation spacing is 2. OK
- *  Indentation spacing is 1. Line with violation
+ * &lt;p&gt; 'p' tag is unclosed
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
  */
-public class Test {
+class Example2 {
+
+  /**
+   * @tag comment
+   *     Indentation spacing is 4
+   */
+  public void testMethod1(String input) {
+    // OK, Indentation above 1 is fine as offset value is 2
+  }
+
+  /**
+   * @tag comment
+   *   Indentation spacing is 2
+   */
+  public void testMethod2(String input) {
+    // OK, Indentation above 1 is fine as offset value is 2
+  }
 }
         </source>
         <p id="Example3-config">
@@ -114,10 +142,26 @@ public class Test {
         </p>
         <source>
 /**
- * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
- * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ * &lt;p&gt; 'p' tag is unclosed
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
  */
-public class Test {
+class Example3 {
+  // violation 4 lines above 'Unclosed HTML tag found: p'
+  /**
+   * @tag comment
+   *     Indentation spacing is 4
+   */
+  public void testMethod1(String input) {
+    // OK, Default expected Indentation is 4
+  }
+
+  /**
+   * @tag comment
+   *  Indentation spacing is 1
+   */
+  public void testMethod2(String input) {
+    // violation 3 lines above 'Line continuation have incorrect indentation level'
+  }
 }
         </source>
       </subsection>
