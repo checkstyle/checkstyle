@@ -7,12 +7,15 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 // xdoc section -- start
 /**
- * <p> 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
- * <p> 'p' tag is closed</p>. OK
+ * <p> 'p' tag is unclosed
+ * <p> 'p' tag is closed</p>
  */
-public class Test {
+class Example3 {
+  // violation 4 lines above 'Unclosed HTML tag found: p'
+
 }
 // xdoc section -- end
