@@ -65,11 +65,13 @@
         <source>
 /**
  * @tag comment
- *  Indentation spacing is 1. Line with violation
- *   Indentation spacing is 2. Line with violation
- *     Indentation spacing is 4. OK
+ *  Indentation spacing is 1
+ *   Indentation spacing is 2
+ *     Indentation spacing is 4
  */
-public class Test {
+class Example1 {
+  // violation 5 lines above 'Line continuation have incorrect indentation level'
+  // violation 5 lines above 'Line continuation have incorrect indentation level'
 }
         </source>
         <p id="Example2-config">
@@ -90,11 +92,13 @@ public class Test {
         <source>
 /**
  * @tag comment
- * Indentation spacing is 0. Line with violation
- *   Indentation spacing is 2. OK
- *  Indentation spacing is 1. Line with violation
+ * Indentation spacing is 0
+ *   Indentation spacing is 2
+ *  Indentation spacing is 1
  */
-public class Test {
+class Example2 {
+  // violation 5 lines above 'Line continuation have incorrect indentation level'
+  // violation 4 lines above 'Line continuation have incorrect indentation level'
 }
         </source>
         <p id="Example3-config">
@@ -114,10 +118,12 @@ public class Test {
         </p>
         <source>
 /**
- * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
- * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ * &lt;p&gt; 'p' tag is unclosed
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
  */
-public class Test {
+public class Example3 {
+  // violation 4 lines above 'Unclosed HTML tag found: p'
+
 }
         </source>
       </subsection>
