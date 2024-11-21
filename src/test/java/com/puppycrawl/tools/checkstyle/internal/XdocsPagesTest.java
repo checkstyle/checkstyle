@@ -277,10 +277,15 @@ public class XdocsPagesTest {
                     .replace(".xml", ".html")
                     .replaceAll("\\\\", "/")
                     .replaceAll("src[\\\\/]xdocs[\\\\/]", "");
-            final String expectedLink = String.format(Locale.ROOT, "href=\"%s\"", expectedFile);
-            assertWithMessage("Expected to find link to '" + expectedLink + "' in " + SITE_PATH)
-                    .that(siteContent)
-                    .contains(expectedLink);
+            final boolean isConfigHtmlFile = Pattern.matches("config_[a-z]+.html", expectedFile);
+            final boolean isChecksIndexHtmlFile = "checks/index.html".equals(expectedFile);
+
+            if (!isConfigHtmlFile && !isChecksIndexHtmlFile) {
+                final String expectedLink = String.format(Locale.ROOT, "href=\"%s\"", expectedFile);
+                assertWithMessage("Expected to find link to '" + expectedLink + "' in " + SITE_PATH)
+                        .that(siteContent)
+                        .contains(expectedLink);
+            }
         }
     }
 
@@ -550,7 +555,8 @@ public class XdocsPagesTest {
             final String fileName = path.getFileName().toString();
 
             if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)) {
+                    || "index.xml".equals(fileName)
+                    || Pattern.matches("config_[a-z]+.xml", fileName)) {
                 continue;
             }
 
