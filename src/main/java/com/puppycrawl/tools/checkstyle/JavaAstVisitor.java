@@ -1172,10 +1172,18 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitVariableAccess(JavaLanguageParser.VariableAccessContext ctx) {
-        final DetailAstImpl resource;
+        final DetailAstImpl resource = createImaginary(TokenTypes.RESOURCE);
+
+        final DetailAstImpl childNode;
+        if (ctx.LITERAL_THIS() == null) {
+            childNode = visit(ctx.id());
+        }
+        else {
+            childNode = create(ctx.LITERAL_THIS());
+        }
+
         if (ctx.accessList.isEmpty()) {
-            resource = createImaginary(TokenTypes.RESOURCE);
-            resource.addChild(visit(ctx.id()));
+            resource.addChild(childNode);
         }
         else {
             final DetailAstPair currentAst = new DetailAstPair();
@@ -1183,14 +1191,8 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 DetailAstPair.addAstChild(currentAst, visit(fieldAccess.expr()));
                 DetailAstPair.makeAstRoot(currentAst, create(fieldAccess.DOT()));
             });
-            resource = createImaginary(TokenTypes.RESOURCE);
             resource.addChild(currentAst.root);
-            if (ctx.LITERAL_THIS() == null) {
-                resource.getFirstChild().addChild(visit(ctx.id()));
-            }
-            else {
-                resource.getFirstChild().addChild(create(ctx.LITERAL_THIS()));
-            }
+            resource.getFirstChild().addChild(childNode);
         }
         return resource;
     }
