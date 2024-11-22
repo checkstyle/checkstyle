@@ -20,14 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import javax.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -210,19 +207,27 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        final Optional<DetailNode> inlineTag = getInlineTagNode(ast);
-        final DetailNode inlineTagNode = inlineTag.orElse(null);
-        if (inlineTag.isPresent()
-            && isSummaryTag(inlineTagNode)
-            && isDefinedFirst(inlineTagNode)) {
-            validateSummaryTag(inlineTagNode);
+        final int index = getInlineTagNodeIndex(ast);
+        boolean shouldValidateUntaggedSummary = true;
+        if (index > -1) {
+            DetailNode inlineTagNode = ast.getChildren()[index];
+            inlineTagNode = getInlineTagNodeForAst(inlineTagNode);
+
+            if (isSummaryTag(inlineTagNode)
+                    && isDefinedFirst(inlineTagNode)) {
+                shouldValidateUntaggedSummary = false;
+                validateSummaryTag(inlineTagNode);
+            }
+            else if (isInlineReturnTag(inlineTagNode)) {
+                shouldValidateUntaggedSummary = false;
+                validateInlineReturnTag(inlineTagNode);
+            }
         }
-        else if (inlineTag.isPresent() && isInlineReturnTag(inlineTagNode)) {
-            validateInlineReturnTag(inlineTagNode);
-        }
-        else if (!startsWithInheritDoc(ast)) {
+        if (shouldValidateUntaggedSummary
+                && !startsWithInheritDoc(ast)) {
             validateUntaggedSummary(ast);
         }
+
     }
 
     /**
@@ -237,11 +242,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else if (!period.isEmpty()) {
             if (summaryDoc.contains(period)) {
-                final String firstSentence = getFirstSentenceOrNull(ast, period);
-                if (firstSentence == null) {
+                final Optional<String> firstSentence = getFirstSentence(ast, period);
+                if (firstSentence.isEmpty()) {
                     log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
                 }
-                else if (containsForbiddenFragment(firstSentence)) {
+                else if (containsForbiddenFragment(firstSentence.orElseThrow())) {
                     log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                 }
             }
@@ -252,16 +257,20 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Gets the node for the inline tag if present.
+     * Gets the index of the node for the inline tag if present.
      *
      * @param javadoc javadoc root node.
-     * @return the node for the inline tag if present.
+     * @return the index of node for the inline tag if present else -1.
      */
-    private static Optional<DetailNode> getInlineTagNode(DetailNode javadoc) {
-        return Arrays.stream(javadoc.getChildren())
-            .filter(SummaryJavadocCheck::isInlineTagPresent)
-            .findFirst()
-            .map(SummaryJavadocCheck::getInlineTagNodeForAst);
+    private static int getInlineTagNodeIndex(DetailNode javadoc) {
+        int result = -1;
+        for (DetailNode child : javadoc.getChildren()) {
+            if (isInlineTagPresent(child)) {
+                result = child.getIndex();
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -601,24 +610,27 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      *
      * @param ast The Javadoc root node.
      * @param period The configured period symbol.
-     * @return The first sentence up to and excluding the period, or null if no ending was found.
+     * @return An Optional containing the first sentence
+     *     up to and including the period, or empty
+     *     Optional string if no ending was found.
      */
-    @Nullable
-    private static String getFirstSentenceOrNull(DetailNode ast, String period) {
+    private static Optional<String> getFirstSentence(DetailNode ast, String period) {
         final List<String> sentenceParts = new ArrayList<>();
-        String sentence = null;
+        Optional<String> result = Optional.empty();
         for (String text : (Iterable<String>) streamTextParts(ast)::iterator) {
-            final String sentenceEnding = findSentenceEndingOrNull(text, period);
-            if (sentenceEnding != null) {
-                sentenceParts.add(sentenceEnding);
-                sentence = String.join("", sentenceParts);
-                break;
-            }
-            else {
+            final String sentenceEnding = findSentenceEnding(text, period);
+
+            if (sentenceEnding.isEmpty()) {
                 sentenceParts.add(text);
             }
+            else {
+                sentenceParts.add(sentenceEnding);
+                final String sentence = String.join("", sentenceParts);
+                result = Optional.of(sentence);
+                break;
+            }
         }
-        return sentence;
+        return result;
     }
 
     /**
@@ -646,12 +658,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      *
      * @param text The string to search.
      * @param period The period character to find.
-     * @return The string up to and excluding the period, or null if no ending was found.
+     * @return The string up to and including the period,
+     *     or empty string if no ending was found.
      */
-    @Nullable
-    private static String findSentenceEndingOrNull(String text, String period) {
+    private static String findSentenceEnding(String text, String period) {
         int periodIndex = text.indexOf(period);
-        String sentenceEnding = null;
+        String sentenceEnding = "";
         while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
 
@@ -660,7 +672,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (!DEFAULT_PERIOD.equals(period)
                 || afterPeriodIndex >= text.length()
                 || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
-                sentenceEnding = text.substring(0, periodIndex);
+                final String resultStr = text.substring(0, periodIndex);
+                // empty resultStr means we've reached the ending
+                if (resultStr.isEmpty()) {
+                    sentenceEnding = period;
+                }
+                else {
+                    sentenceEnding = resultStr;
+                }
                 break;
             }
             else {
