@@ -1175,7 +1175,12 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl resource;
         if (ctx.accessList.isEmpty()) {
             resource = createImaginary(TokenTypes.RESOURCE);
-            resource.addChild(visit(ctx.id()));
+
+            final DetailAstImpl child = Optional.ofNullable(ctx.id())
+                    .map(this::visit)
+                    .orElseGet(() -> create(ctx.LITERAL_THIS()));
+
+            resource.addChild(child);
         }
         else {
             final DetailAstPair currentAst = new DetailAstPair();
