@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MagicNumber">
-        <property name="ignoreFieldDeclaration" value="false"/>
+        <property name="ignoreFieldDeclaration" value="true"/>
     </module>
   </module>
 </module>
