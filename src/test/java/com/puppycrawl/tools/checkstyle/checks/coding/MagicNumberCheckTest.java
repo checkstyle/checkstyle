@@ -756,4 +756,46 @@ public class MagicNumberCheckTest
                 getNonCompilablePath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
                 expected);
     }
+
+    @Test
+    public void testMagicNumberWithBitwiseOperatorsWithIgnoreFieldsTrue() throws Exception {
+        final String[] expected = {
+            "29:35: " + getCheckMessage(MSG_KEY, "3"),
+            "30:35: " + getCheckMessage(MSG_KEY, "3"),
+            "31:36: " + getCheckMessage(MSG_KEY, "3"),
+            "32:34: " + getCheckMessage(MSG_KEY, "3"),
+            "33:34: " + getCheckMessage(MSG_KEY, "3"),
+            "34:34: " + getCheckMessage(MSG_KEY, "3"),
+            "35:34: " + getCheckMessage(MSG_KEY, "3"),
+            "36:31: " + getCheckMessage(MSG_KEY, "3"),
+            "48:25: " + getCheckMessage(MSG_KEY, "3"),
+            "49:25: " + getCheckMessage(MSG_KEY, "3"),
+            "50:26: " + getCheckMessage(MSG_KEY, "3"),
+            "51:24: " + getCheckMessage(MSG_KEY, "3"),
+            "52:24: " + getCheckMessage(MSG_KEY, "3"),
+            "53:24: " + getCheckMessage(MSG_KEY, "3"),
+            "54:24: " + getCheckMessage(MSG_KEY, "3"),
+            "55:21: " + getCheckMessage(MSG_KEY, "3"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberWithBitwiseOperatorsWithIgnoreFieldsTrue.java"),
+                expected);
+    }
+
+    @Test
+    public void testMagicNumberWithBitwiseOperatorsWithIgnoreFieldsFalse() throws Exception {
+        final String[] expected = {
+            "48:25: " + getCheckMessage(MSG_KEY, "3"),
+            "49:25: " + getCheckMessage(MSG_KEY, "3"),
+            "50:26: " + getCheckMessage(MSG_KEY, "3"),
+            "51:24: " + getCheckMessage(MSG_KEY, "3"),
+            "52:24: " + getCheckMessage(MSG_KEY, "3"),
+            "53:24: " + getCheckMessage(MSG_KEY, "3"),
+            "54:24: " + getCheckMessage(MSG_KEY, "3"),
+            "55:21: " + getCheckMessage(MSG_KEY, "3"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberWithBitwiseOperatorsWithIgnoreFieldsFalse.java"),
+                expected);
+    }
 }
