@@ -24,7 +24,7 @@
  static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="ARRAY_INIT,ASSIGN,DIV,ELIST,EXPR,LITERAL_NEW,METHOD_CALL,MINUS,PLUS,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
+            <property default-value="ARRAY_INIT,ASSIGN,BAND,BNOT,BOR,BSR,BXOR,COLON,DIV,ELIST,EQUAL,EXPR,GE,GT,LE,LITERAL_NEW,LT,METHOD_CALL,MINUS,MOD,NOT_EQUAL,PLUS,QUESTION,SL,SR,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
                       name="constantWaiverParentToken"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
