@@ -171,7 +171,14 @@ public class MagicNumberCheck extends AbstractCheck {
         TokenTypes.STAR,
         TokenTypes.DIV,
         TokenTypes.PLUS,
-        TokenTypes.MINUS
+        TokenTypes.MINUS,
+        TokenTypes.SR,
+        TokenTypes.BSR,
+        TokenTypes.SL,
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BAND,
+        TokenTypes.BNOT
     );
 
     /** Specify non-magic numbers. */
