@@ -81,15 +81,28 @@
         </source>
 
         <p id="Example2-config">
-          To configure the check with a threshold of 20 for constructor and
-          method definitions:
+          To configure the check with a threshold of 2 for constructor:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;ExecutableStatementCount&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;20&quot;/&gt;
-      &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF,METHOD_DEF&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example3-config">
+          To configure the check with a threshold of 2 for method definitions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ExecutableStatementCount&quot;&gt;
+      &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
