@@ -85,7 +85,39 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
  * UNARY_MINUS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
- * UNARY_PLUS</a>.
+ * UNARY_PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+ * QUESTION</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COLON">
+ * COLON</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">
+ * EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NOT_EQUAL">
+ * NOT_EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD">
+ * MOD</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR">
+ * SR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR">
+ * BSR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">
+ * GE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
+ * GT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL">
+ * SL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LE">
+ * LE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LT">
+ * LT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
+ * BXOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
+ * BOR</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">
+ * BNOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+ * BAND</a>.
  * </li>
  * <li>
  * Property {@code ignoreAnnotation} - Ignore magic numbers in annotation declarations.
@@ -171,7 +203,23 @@ public class MagicNumberCheck extends AbstractCheck {
         TokenTypes.STAR,
         TokenTypes.DIV,
         TokenTypes.PLUS,
-        TokenTypes.MINUS
+        TokenTypes.MINUS,
+        TokenTypes.QUESTION,
+        TokenTypes.COLON,
+        TokenTypes.EQUAL,
+        TokenTypes.NOT_EQUAL,
+        TokenTypes.MOD,
+        TokenTypes.SR,
+        TokenTypes.BSR,
+        TokenTypes.GE,
+        TokenTypes.GT,
+        TokenTypes.SL,
+        TokenTypes.LE,
+        TokenTypes.LT,
+        TokenTypes.BXOR,
+        TokenTypes.BOR,
+        TokenTypes.BNOT,
+        TokenTypes.BAND
     );
 
     /** Specify non-magic numbers. */
