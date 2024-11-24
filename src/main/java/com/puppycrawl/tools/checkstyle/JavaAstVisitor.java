@@ -1192,7 +1192,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 DetailAstPair.addAstChild(currentAst, visit(fieldAccess.expr()));
                 DetailAstPair.makeAstRoot(currentAst, create(fieldAccess.DOT()));
             });
-            resource.addChild(currentAst.root);
+            resource.addChild(currentAst.getRoot());
             resource.getFirstChild().addChild(childNode);
         }
         return resource;
