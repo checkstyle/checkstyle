@@ -254,6 +254,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
                 getPath("InputAstRegressionManyAlternativesInMultiCatch.java"));
     }
 
+    @Test
+    public void testTryWithResourcesOnAutoCloseable() throws Exception {
+        verifyAst(getPath("ExpectedAstRegressionTryWithResourcesOnAutoCloseable.txt"),
+                getPath("InputAstRegressionTryWithResourcesOnAutoCloseable.java"));
+    }
+
     private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
             throws Exception {
         verifyAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
