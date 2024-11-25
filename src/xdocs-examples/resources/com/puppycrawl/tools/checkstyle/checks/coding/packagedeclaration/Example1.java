@@ -7,8 +7,7 @@
 */
 
 // xdoc section -- start
-package com.puppycrawl.tools.checkstyle.checks; //Violation
-public class AnnotationLocationCheck extends AbstractCheck {
-  //...
+public class Example1{ // violation, 'Missing package declaration'
+  String str = "Some Content";
 }
 // xdoc section -- end
