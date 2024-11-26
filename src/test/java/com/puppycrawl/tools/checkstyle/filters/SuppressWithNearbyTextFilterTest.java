@@ -23,11 +23,15 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -39,11 +43,18 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.filters.utils.FileRemovalFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
     private static final String REGEXP_SINGLELINE_CHECK_FORMAT = "this should not appear";
+
+    /**
+     * The temporary folder to hold intermediate files.
+     */
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -530,6 +541,56 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("cachedFileAbsolutePath has not changed")
                 .that(cachedFileAbsolutePath1)
                 .isNotEqualTo(cachedFileAbsolutePath2);
+    }
+
+    /**
+     * Calls the filter on a real input file and verifies that the
+     * filter caches the file path only once. Ensures 'cachedFileAbsolutePath' remains
+     * unchanged after the first violation and that the file text is retrieved only once.
+     *
+     * @throws IOException if an error occurs while formatting the path to the input file.
+     */
+    @Test
+    public void testCacheFilePathCalledOnlyOnce() throws IOException {
+        final SuppressWithNearbyTextFilter targetFilter = new SuppressWithNearbyTextFilter();
+        final FileRemovalFilter fileRemovalFilter = new FileRemovalFilter();
+
+        final String originalInputPath = getPath(
+                "InputSuppressWithNearbyTextFilterDefaultConfig.java");
+
+        final File tempInputFile = new File(temporaryFolder,
+                "InputSuppressWithNearbyTextFilterDefaultConfig.java");
+        Files.copy(new File(originalInputPath).toPath(),
+                tempInputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        final String cachedFileAbsolutePath = getCachedFileAbsolutePathAfterExecution(
+                targetFilter, tempInputFile.getPath());
+
+        final AuditEvent dummyEvent1 = buildDummyAuditEvent(tempInputFile.getPath());
+        final AuditEvent dummyEvent2 = buildDummyAuditEvent(tempInputFile.getPath());
+
+        targetFilter.accept(dummyEvent1);
+        fileRemovalFilter.accept(dummyEvent1);
+        assertWithMessage("The file should exist before"
+                + " processing the second violation.")
+                .that(tempInputFile.exists())
+                .isTrue();
+
+        targetFilter.accept(dummyEvent2);
+        fileRemovalFilter.accept(dummyEvent2);
+        assertWithMessage("The file should be deleted"
+                + " after the second violation.")
+                .that(tempInputFile.exists())
+                .isFalse();
+
+        final String cachedFileAbsolutePathAfterFirstViolation =
+                getCachedFileAbsolutePathAfterExecution(targetFilter,
+                        tempInputFile.getPath());
+
+        assertWithMessage("The cached file path should remain"
+                + " consistent before file deletion.")
+                .that(cachedFileAbsolutePath)
+                .isEqualTo(cachedFileAbsolutePathAfterFirstViolation);
     }
 
     /**

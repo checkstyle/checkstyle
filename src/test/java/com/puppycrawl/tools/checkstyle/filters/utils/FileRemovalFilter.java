@@ -1,0 +1,43 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2024 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.filters.utils;
+
+import java.io.File;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.Filter;
+
+public final class FileRemovalFilter implements Filter {
+
+    private final AtomicInteger violationCount = new AtomicInteger(0);
+
+    @Override
+    public boolean accept(AuditEvent event) {
+        final int currentCount = violationCount.incrementAndGet();
+
+        boolean result = true;
+        if (currentCount == 2) {
+            final File file = new File(event.getFileName());
+            result = !file.exists() || file.delete();
+        }
+        return result;
+    }
+}
