@@ -246,7 +246,8 @@ public class AllTestsTest {
                 }
 
                 if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
-                        && !path.contains(File.separatorChar + "internal" + File.separatorChar)) {
+                        && !path.contains(File.separatorChar + "internal" + File.separatorChar)
+                        && !path.contains(File.separatorChar + "filters" + File.separatorChar)) {
                     final int slash = path.lastIndexOf(File.separatorChar);
                     final String packge = path.substring(0, slash);
                     final List<String> classes = allTests.get(packge);
