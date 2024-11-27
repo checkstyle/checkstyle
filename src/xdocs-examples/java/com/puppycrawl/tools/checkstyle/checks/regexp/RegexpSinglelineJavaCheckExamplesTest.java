@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,64 +34,70 @@ public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModul
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "25: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.out\\.println"),
+            "48: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.out\\.println"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "20: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Example3"),
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Example3"),
+            "42: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Example3"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "5: " + "IO found",
+            "30: " + "IO found",
+            "33: " + "IO found",
+            "37: " + "IO found",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "44: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "\\.info(.*)"),
+            "45: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "\\.info(.*)"),
+            "47: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "\\.info(.*)"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "42: " + "public member found",
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "23: " + "private member found",
+            "30: " + "private member found",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 }
