@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 public class InputSuppressWarningsPatternVariables {
 
-    void test(Object o) {
+    void test(Object o) {F
         // violation below, 'The warning '' cannot be suppressed at this location.'
         if (o instanceof ColoredPoint(@SuppressWarnings("")int x, int y, int z)) { }
 
