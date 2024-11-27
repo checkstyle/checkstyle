@@ -23,11 +23,15 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -39,11 +43,18 @@ import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.FileRemovalAfterFirstUsageFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport {
 
     private static final String REGEXP_SINGLELINE_CHECK_FORMAT = "this should not appear";
+
+    /**
+     * The temporary folder to hold intermediate files.
+     */
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -530,6 +541,63 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("cachedFileAbsolutePath has not changed")
                 .that(cachedFileAbsolutePath1)
                 .isNotEqualTo(cachedFileAbsolutePath2);
+    }
+
+    /**
+     * Calls the filter on a real input file and verifies that the
+     * filter caches the file path only once. Ensures 'cachedFileAbsolutePath' remains
+     * unchanged after the first violation and that the file text is retrieved only once.
+     *
+     * @throws IOException if an error occurs while formatting the path to the input file.
+     */
+    @Test
+    public void testCacheFilePathCalledOnlyOnce() throws IOException {
+        final SuppressWithNearbyTextFilter targetFilter = new SuppressWithNearbyTextFilter();
+        final FileRemovalAfterFirstUsageFilter fileRemovalFilter =
+                new FileRemovalAfterFirstUsageFilter();
+
+        final String originalInputPath = getPath(
+            "InputSuppressWithNearbyTextFilterDefaultConfig.java");
+        final File tempInputFile = new File(temporaryFolder,
+            "InputSuppressWithNearbyTextFilterDefaultConfig.java");
+        Files.copy(new File(originalInputPath).toPath(),
+                tempInputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        assertWithMessage("Temporary input file should exist after copying.")
+                .that(tempInputFile.exists())
+                .isTrue();
+
+        final String cachedFileAbsolutePath = getCachedFileAbsolutePathAfterExecution(
+                targetFilter, tempInputFile.getPath());
+        assertWithMessage("Cached file path should not be null or empty.")
+                .that(cachedFileAbsolutePath)
+                .isNotEmpty();
+
+        final AuditEvent auditEvent1 = new AuditEvent(
+                tempInputFile.getPath(), tempInputFile.getPath(),
+                new Violation(1, null, null, null, null, Object.class, null));
+        targetFilter.accept(auditEvent1);
+        fileRemovalFilter.accept(auditEvent1);
+
+        assertWithMessage("File should exist after processing the first violation.")
+                .that(tempInputFile.exists())
+                .isTrue();
+
+        final AuditEvent auditEvent2 = new AuditEvent(
+                tempInputFile.getPath(), tempInputFile.getPath(),
+                new Violation(2, null, null, null, null, Object.class, null));
+        targetFilter.accept(auditEvent2);
+        fileRemovalFilter.accept(auditEvent2);
+
+        assertWithMessage("File should not exist after processing the second violation.")
+                .that(tempInputFile.exists())
+                .isFalse();
+
+        final String cachedFileAbsolutePathAfterDeletion = getCachedFileAbsolutePathAfterExecution(
+                targetFilter, tempInputFile.getPath());
+        assertWithMessage("Cached file path should remain consistent before and after deletion.")
+                .that(cachedFileAbsolutePath)
+                .isEqualTo(cachedFileAbsolutePathAfterDeletion);
     }
 
     /**
