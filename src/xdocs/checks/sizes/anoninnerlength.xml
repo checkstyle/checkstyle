@@ -45,7 +45,7 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          To configure the check to accept anonymous classes with up to 20 lines:
+          To configure the check to accept anonymous classes with up to 20 lines by default:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -54,17 +54,67 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
+        <p id="Example1-code">Example1:</p>
+        <source>
+class Example1 {
+  void testMethod() {
+    Runnable shortAnonClass = new Runnable() {
+      @Override
+      public void run() {
+        System.out.println(&quot;Short anonymous class.&quot;);
+      }
+    };
+    shortAnonClass.run();
+
+    Runnable longAnonClass = new Runnable() {
+      @Override
+      public void run() {
+        System.out.println(&quot;This is a lengthy anonymous class.&quot;);
+        System.out.println(&quot;It has too many lines of code.&quot;);
+        System.out.println(&quot;Exceeding the length limit.&quot;);
+        System.out.println(&quot;This would trigger the AnonInnerLength rule.&quot;);
+      }
+    };
+    longAnonClass.run();
+  }
+}
+        </source>
         <p id="Example2-config">
-          To configure the check to accept anonymous classes with up to 60 lines:
+          To configure the check to accept anonymous classes with up to 7 lines:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;AnonInnerLength&quot;&gt;
-      &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+      &lt;property name=&quot;max&quot; value=&quot;7&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+        </source>
+        <p id="Example2-code">Example2:</p>
+        <source>
+class Example2 {
+  void testMethod() {
+    Runnable shortAnonClass = new Runnable() {
+      @Override
+      public void run() {
+        System.out.println(&quot;Short anonymous class.&quot;);
+      }
+    };
+    shortAnonClass.run();
+    // violation below, 'Anonymous inner class length is 9 lines (max allowed is 7)'
+    Runnable longAnonClass = new Runnable() {
+      @Override
+      public void run() {
+        System.out.println(&quot;This is a lengthy anonymous class.&quot;);
+        System.out.println(&quot;It has too many lines of code.&quot;);
+        System.out.println(&quot;Exceeding the length limit.&quot;);
+        System.out.println(&quot;This would trigger the AnonInnerLength rule.&quot;);
+      }
+    };
+    longAnonClass.run();
+  }
+}
         </source>
       </subsection>
 
