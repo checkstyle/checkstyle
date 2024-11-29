@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="RegexpMultiline">
+    <property name="matchAcrossLines" value="true"/>
+    <property name="format" value="System\.out.*?print\("/>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+void method() {
+  System.out.print("Example");  // violation
+  System.err.println("Example");
+  System.out.print              // violation
+    ("Example");
+  System.err.println
+    ("Example");
+  System
+  .out.print("Example");
+  System
+  .err.println("Example");
+  System.
+  out.print("Example");
+  System.
+  err.println("Example");
+}
+// xdoc section -- end

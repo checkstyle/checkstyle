@@ -65,28 +65,6 @@
   &lt;module name=&quot;LineLength&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">
-          Example1:
-        </p>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-
-/**
- * This is a short Javadoc comment.
- * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
- */
-class Example1 {
-  //violation 3 lines above 'Line is longer than 80 characters'
-  void testMethod(String str) {
-    str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
-    // violation below, 'Line is longer than 80 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
-  }
-}
-        </source>
 
         <p id="Example2-config">
           To configure the check to accept lines up to 120 characters long:
@@ -97,28 +75,6 @@ class Example1 {
     &lt;property name=&quot;max&quot; value=&quot;120&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-        </source>
-        <p id="Example2-code">
-          Example2:
-        </p>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-
-/**
- * This is a short Javadoc comment.
- * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
- */
-class Example2 {
-
-  void testMethod(String str) {
-    str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
-
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
-  }
-}
         </source>
 
         <p id="Example3-config">
@@ -132,30 +88,19 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">
-          Example3:
-        </p>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-// violation below, 'Line is longer than 80 characters'
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-
-/**
- * This is a short Javadoc comment.
- * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
- */
-class Example3 {
-
-  void testMethod(String str) {
-    str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
-    // violation below, 'Line is longer than 80 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
-  }
-}
-        </source>
 
         <p id="Example4-config">
+          To configure the check to only validate java files and ignore other extensions:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;LineLength&quot;&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;java&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example5-config">
           To configure the check to only validate xml and property files and ignore other
           extensions:
         </p>
@@ -166,62 +111,29 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">
-          Example4:
-        </p>
-        <source>
-package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-
-/**
- * This is a short Javadoc comment.
- * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
- */
-class Example4 {
-
-  void testMethod(String str) {
-    str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
-
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
-  }
-}
-        </source>
-
-        <p id="Example5-config">
-          To configure check to validate <code>import</code> statements:
+        <p id="Example6-config">
+          To configure check to validate <code>import</code> and <code>package</code>
+          statements:
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;LineLength&quot;&gt;
-    &lt;property name=&quot;ignorePattern&quot;
-              value=&quot;^(import) &quot;/&gt;
-    &lt;property name=&quot;max&quot; value=&quot;60&quot;/&gt;
+    &lt;property name=&quot;ignorePattern&quot; value=&quot;^$&quot;/&gt;
+    &lt;property name=&quot;max&quot; value=&quot;50&quot;/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example5-code">
+        <p id="Example6-code">
           Example:
         </p>
         <source>
-package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-// violation above, 'Line is longer than 60 characters'
-import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+// violation below 'Line is longer than 50 characters (found 54)'
+package com.puppycrawl.tools.checkstyle.checks.design;
 
-/**
- * This is a short Javadoc comment.
- * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
- */
-class Example5 {
-  // violation 3 lines above 'Line is longer'
-  void testMethod(String str) {
-    str = MSG_KEY;
-    System.out.println(&quot;This is a short line.&quot;);
-    // violation below, 'Line is longer than 60 characters'
-    System.out.println(&quot;This line is long and exceeds the default limit of 80 characters.&quot;);
-  }
-}
+// violation below 'Line is longer than 50 characters (found 86)'
+import com.puppycrawl.tools.checkstyle.grammar.comments.InputFullOfSinglelineComments;
+
+import java.util.Arrays; // ok
         </source>
       </subsection>
 

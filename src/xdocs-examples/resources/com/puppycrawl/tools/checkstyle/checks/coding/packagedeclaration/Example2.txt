@@ -8,10 +8,10 @@
 </module>
 */
 
-
 // xdoc section -- start
-package com.nonexistent.packages;
-public class Example2{
-  String str = "Some Content";
+package com.puppycrawl.tools.checkstyle.checks;  //No Violation
+
+public class AnnotationLocationCheck extends AbstractCheck {
+  //...
 }
 // xdoc section -- end
