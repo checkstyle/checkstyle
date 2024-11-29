@@ -87,39 +87,11 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example1:</p>
-        <source>
-class Example1 {
-
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
-  }
-}
-        </source>
+        <p>
+          This configuration does not match to anything,
+          so we do not provide any code example for it
+          as no violation will ever be reported.
+        </p>
         <p id="Example2-config">
           To configure the check for calls to <code>System.out.println</code>, except in comments:
         </p>
@@ -135,38 +107,12 @@ class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example2:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-class Example2 {
-
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;); // violation, 'Line matches the illegal pattern'
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example2.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;); // violation, 'Line matches the illegal pattern'
-    logger.info(&quot;fifth&quot;);
-  }
-}
+System.out.println(&quot;&quot;); // violation, instruction matches illegal pattern
+System.out.
+println(&quot;&quot;); // OK
+/* System.out.println */ // OK, comments are ignored
         </source>
         <p id="Example3-config">
           To configure the check to find case-insensitive occurrences of
@@ -178,43 +124,16 @@ class Example2 {
     &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
       &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
       &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">Example3:</p>
+        <p id="Example3-code">Example:</p>
         <source>
-class Example3 {
-
-  private void testMethod1() {
-    int debug = 0; // violation, 'Line matches the illegal pattern'
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
-  }
-}
+int debug = 0; // violation, variable name matches illegal pattern
+public class Debug { // violation, class name matches illegal pattern
+/* this is for de
+   bug only; */ // OK
         </source>
         <p id="Example4-config">
           To configure the check to find occurrences of
@@ -231,38 +150,17 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example4:</p>
+        <p id="Example4-code">Example:</p>
         <source>
-class Example4 {
-
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read(); // violation, 'IO found'
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read(); // violation, 'IO found'
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;); // violation, 'IO found'
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
-  }
+FileReader in = new FileReader(&quot;path/to/input&quot;);
+int ch = in.read(); // violation
+while(ch != -1) {
+  System.out.print((char)ch);
+  ch = in.read(); // violation
 }
+
+FileWriter out = new FileWriter(&quot;path/to/output&quot;);
+out.write(&quot;something&quot;); // violation
         </source>
         <p id="Example5-config">
           To configure the check to find occurrences of
@@ -272,42 +170,21 @@ class Example4 {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;\.info(.*)&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;\.log(.*)&quot;/&gt;
       &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example5-code">Example5:</p>
+        <p id="Example5-code">Example:</p>
         <source>
-class Example5 {
-
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example5.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;); // violation, 'Line matches the illegal pattern'
-    logger.info(&quot;third&quot;);  // violation, 'Line matches the illegal pattern'
+public class Foo{
+  public void bar(){
+    Logger.log(&quot;first&quot;); // OK, first occurrence is allowed
+    Logger.log(&quot;second&quot;); // OK, second occurrence is allowed
+    Logger.log(&quot;third&quot;); // violation
     System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);  // violation, 'Line matches the illegal pattern'
+    Logger.log(&quot;fifth&quot;); // violation
   }
 }
         </source>
@@ -315,102 +192,36 @@ class Example5 {
           To configure the check to find all occurrences of
           &quot;public&quot;. We want to ignore comments,
           display &quot;public member found&quot; for each violation
-          and say if less than 1 occurrences.
-        </p>
-        <source>
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
-      &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
-      &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-        </source>
-        <p id="Example6-code">Example6:</p>
-        <source>
-class Example6 {
-
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-  // violation below, 'public member found'
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
-  }
-}
-        </source>
-        <p id="Example7-config">
-          To configure the check to find all occurrences of
-          &quot;private&quot;. We want to ignore comments,
-          display &quot;private member found&quot; for each violation
           and say if less than 2 occurrences.
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
-      &lt;property name=&quot;format&quot; value=&quot;private&quot;/&gt;
+      &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
       &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
-      &lt;property name=&quot;message&quot; value=&quot;private member found&quot;/&gt;
+      &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
       &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example7-code">Example7:</p>
+        <p id="Example6-code">Example:</p>
         <source>
-class Example7 {
-  // violation below, 'private member found'
-  private void testMethod1() {
-    int debug = 0;
-    System.out.println(&quot;&quot;);
-    System.out.
-    println(&quot;&quot;);
-  }
-  // violation below, 'private member found'
-  private void testMethod2() throws IOException {
-    FileReader in = new FileReader(&quot;path/to/input&quot;);
-    int ch = in.read();
-    while(ch != -1) {
-      System.out.print((char)ch);
-      ch = in.read();
-    }
-
-    FileWriter out = new FileWriter(&quot;path/to/output&quot;);
-    out.write(&quot;something&quot;);
-  }
-
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
-    logger.info(&quot;first&quot;);
-    logger.info(&quot;second&quot;);
-    logger.info(&quot;third&quot;);
-    System.out.println(&quot;fourth&quot;);
-    logger.info(&quot;fifth&quot;);
-  }
+class Foo{ // violation, file contains less than 2 occurrences of &quot;public&quot;
+  private int a;
+  /* public comment */ // OK, comment is ignored
+  private void bar1() {}
+  public  void bar2() {} // violation
+}
+        </source>
+        <p id="Example7-code">Example:</p>
+        <source>
+class Foo{
+  private int a;
+  /* public comment */ // OK, comment is ignored
+  public void bar1() {} // violation
+  public void bar2() {} // violation
 }
         </source>
       </subsection>

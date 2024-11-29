@@ -1,0 +1,12 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AnonInnerLength">
+      <property name="max" value="60"/>
+    </module>
+  </module>
+</module>
+*/
+
+// xdoc section -- start
+// xdoc section -- end

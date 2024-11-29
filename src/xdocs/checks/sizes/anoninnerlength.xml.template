@@ -33,32 +33,20 @@
 
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
-          To configure the check to accept anonymous classes with up to 20 lines by default:
+          To configure the check to accept anonymous classes with up to 20 lines:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example1.txt"/>
           <param name="type" value="config"/>
-        </macro>
-        <p id="Example1-code">Example1:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example1.java"/>
-          <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
-          To configure the check to accept anonymous classes with up to 7 lines:
+          To configure the check to accept anonymous classes with up to 60 lines:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example2.txt"/>
           <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example2:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength/Example2.java"/>
-          <param name="type" value="code"/>
         </macro>
       </subsection>
 
