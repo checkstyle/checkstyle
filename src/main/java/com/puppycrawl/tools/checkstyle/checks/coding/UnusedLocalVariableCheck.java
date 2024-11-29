@@ -562,7 +562,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
-                obtainedClass = getTheNearestClass(
+                obtainedClass = getTheNearestClassOfAnonInnerClass(
                         anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
                         typeDeclWithSameName);
             }
@@ -631,10 +631,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
      * @return the nearest class
      */
-    private static TypeDeclDesc getTheNearestClass(String outerTypeDeclName,
+    private static TypeDeclDesc getTheNearestClassOfAnonInnerClass(String outerTypeDeclName,
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
-            return getTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
+            return getAnonTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
         });
     }
 
@@ -647,13 +647,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param secondTypeDecl second input type declaration
      * @return difference between type declaration name matching count
      */
-    private static int getTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
+    private static int getAnonTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
                                                                TypeDeclDesc firstTypeDecl,
                                                                TypeDeclDesc secondTypeDecl) {
         int diff = Integer.compare(
-            CheckUtil.typeDeclarationNameMatchingCount(
+            CheckUtil.getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, secondTypeDecl.getQualifiedName()),
-            CheckUtil.typeDeclarationNameMatchingCount(
+            CheckUtil.getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, firstTypeDecl.getQualifiedName()));
         if (diff == 0) {
             diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
