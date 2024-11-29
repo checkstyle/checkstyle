@@ -497,6 +497,49 @@ public final class CheckUtil {
     }
 
     /**
+     * Calculates and returns the type declaration matching count when
+     * {@code typeDeclarationToBeMatched} is considered to be super class of an anonymous inner
+     * class.
+     *
+     * <p>
+     * Suppose our pattern class is {@code Main.ClassOne} and class to be matched is
+     * {@code Main.ClassOne.ClassTwo.ClassThree} then type declaration name matching count would
+     * be calculated by comparing every character, and updating main counter when we hit "." or
+     * when it is the last character of the pattern class and certain conditions are met. This is
+     * done so that matching count is 13 instead of 5. This is due to the fact that pattern class
+     * can contain anonymous inner class object of a nested class which isn't true in case of
+     * extending classes as you can't extend nested classes.
+     * </p>
+     *
+     * @param patternTypeDeclaration type declaration against which the given type declaration has
+     *                               to be matched
+     * @param typeDeclarationToBeMatched type declaration to be matched
+     * @return type declaration matching count
+     */
+    public static int getAnonSuperTypeMatchingCount(String patternTypeDeclaration,
+                                                     String typeDeclarationToBeMatched) {
+        final int typeDeclarationToBeMatchedLength = typeDeclarationToBeMatched.length();
+        final int minLength = Math
+            .min(typeDeclarationToBeMatchedLength, patternTypeDeclaration.length());
+        final boolean shouldCountBeUpdatedAtLastCharacter =
+            typeDeclarationToBeMatchedLength > minLength
+                && typeDeclarationToBeMatched.charAt(minLength) == PACKAGE_SEPARATOR;
+
+        int result = 0;
+        for (int idx = 0;
+             idx < minLength
+                 && patternTypeDeclaration.charAt(idx) == typeDeclarationToBeMatched.charAt(idx);
+             idx++) {
+
+            if (idx == minLength - 1 && shouldCountBeUpdatedAtLastCharacter
+                || patternTypeDeclaration.charAt(idx) == PACKAGE_SEPARATOR) {
+                result = idx;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Get the qualified name of type declaration by combining {@code packageName},
      * {@code outerClassQualifiedName} and {@code className}.
      *
