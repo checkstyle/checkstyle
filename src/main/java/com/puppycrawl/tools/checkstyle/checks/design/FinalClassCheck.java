@@ -263,13 +263,42 @@ public class FinalClassCheck
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
             final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
-                return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
+                return typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
             };
             getNearestClassWithSameName(superClassName, nestedClassCountProvider)
                 .or(() -> Optional.ofNullable(innerClasses.get(superClassName)))
                 .ifPresent(ClassDesc::registerNestedSubclass);
         }
+    }
+
+    /**
+     * Calculates and returns the type declaration name matching count.
+     *
+     * <p>
+     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
+     * {@code foo.a.ball} then type declaration name matching count would be calculated by
+     * comparing every character, and updating main counter when we hit "." to prevent matching
+     * "a.b" with "a.ball". In this case type declaration name matching count
+     * would be equal to 6 and not 7 (b of ball is not counted).
+     * </p>
+     *
+     * @param patternClass class against which the given class has to be matched
+     * @param classToBeMatched class to be matched
+     * @return class name matching count
+     */
+    private static int typeDeclarationNameMatchingCount(String patternClass,
+                                                        String classToBeMatched) {
+        final int length = Math.min(classToBeMatched.length(), patternClass.length());
+        int result = 0;
+        for (int idx = 0;
+             idx < length && patternClass.charAt(idx) == classToBeMatched.charAt(idx);
+             ++idx) {
+            if (patternClass.charAt(idx) == PACKAGE_SEPARATOR.charAt(0)) {
+                result = idx;
+            }
+        }
+        return result;
     }
 
     /**
