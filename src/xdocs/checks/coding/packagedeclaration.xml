@@ -57,14 +57,20 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example1:</p>
+        <p id="Example1-code">
+          Let us consider the class AnnotationLocationCheck which is in the directory
+          /com/puppycrawl/tools/checkstyle/checks/annotations/
+        </p>
         <source>
-public class Example1{ // violation, 'Missing package declaration'
-  String str = &quot;Some Content&quot;;
+package com.puppycrawl.tools.checkstyle.checks; //Violation
+public class AnnotationLocationCheck extends AbstractCheck {
+  //...
 }
         </source>
         <p id="Example2-config">
           Example of how the check works when matchDirectoryStructure option is set to false.
+          Let us again consider the AnnotationLocationCheck class located at directory
+          /com/puppycrawl/tools/checkstyle/checks/annotations/ along with the following setup,
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
@@ -75,11 +81,12 @@ public class Example1{ // violation, 'Missing package declaration'
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example2:</p>
+        <p id="Example2-code">Example:</p>
         <source>
-package com.nonexistent.packages;
-public class Example2{
-  String str = &quot;Some Content&quot;;
+package com.puppycrawl.tools.checkstyle.checks;  //No Violation
+
+public class AnnotationLocationCheck extends AbstractCheck {
+  //...
 }
         </source>
       </subsection>

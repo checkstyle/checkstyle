@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class ExecutableStatementCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -32,26 +34,18 @@ public class ExecutableStatementCountCheckExamplesTest extends AbstractExamplesM
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16:3: " + getCheckMessage(ExecutableStatementCountCheck.MSG_KEY, 3, 2),
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
-    }
-
-    @Test
-    public void testExample3() throws Exception {
-        final String[] expected = {
-            "21:3: " + getCheckMessage(ExecutableStatementCountCheck.MSG_KEY, 3, 2),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
     }
 }

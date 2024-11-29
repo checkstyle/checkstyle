@@ -19,13 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
-import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
-
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,55 +33,55 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "16: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "20: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "24: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "29: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "31: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "33: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "36: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "38: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
-            "40: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.out.*?print\\("),
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "40: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
-            "42: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
-            "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
-            "41: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
+
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
     }
 }

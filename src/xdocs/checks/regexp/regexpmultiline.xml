@@ -96,37 +96,9 @@
         Example:
         </p>
         <source>
-class Example1 {
-  void testMethod1() {
-
-    System.out.print(&quot;Example&quot;);
-
-    System.err.println(&quot;Example&quot;);
-    System
-    .out.print(&quot;Example&quot;);
-    System
-    .err.println(&quot;Example&quot;);
-    System.
-    out.print(&quot;Example&quot;);
-    System.
-    err.println(&quot;Example&quot;);
-  }
-
-  void testMethod2() {
-
-    System.out.println(&quot;Test #1: this is a test string&quot;);
-
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
-
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
-    int i = 5;
-
-    System.out.println(&quot;Value of i: &quot; + i);
-
-    System.out.println(&quot;Test #4: This is a test string&quot;);
-
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
-  }
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
 }
         </source>
         <p id="Example2-config">
@@ -143,37 +115,21 @@ class Example1 {
           Example:
         </p>
         <source>
-class Example2 {
-  void testMethod1() {
-    // violation below, 'Line matches the illegal pattern'
-    System.out.print(&quot;Example&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.err.println(&quot;Example&quot;);
-    System
-      .out.print(&quot;Example&quot;);
-    System
-      .err.println(&quot;Example&quot;); // violation, 'Line matches the illegal pattern'
-    System.
-      out.print(&quot;Example&quot;);
-    System.
-      err.println(&quot;Example&quot;); // violation, 'Line matches the illegal pattern'
-  }
-
-  void testMethod2() {
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #1: this is a test string&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
-    int i = 5;
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Value of i: &quot; + i);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
-  }
+void method() {
+  System.out.print(&quot;Example&quot;);   // violation
+  System.err.println(&quot;Example&quot;); // violation
+  System.out.print
+    (&quot;Example&quot;);                 // violation
+  System.err.println
+    (&quot;Example&quot;);          // OK
+  System
+  .out.print(&quot;Example&quot;);  // OK
+  System
+  .err.println(&quot;Example&quot;);       // violation
+  System.
+  out.print(&quot;Example&quot;);   // OK
+  System.
+  err.println(&quot;Example&quot;);        // violation
 }
         </source>
         <p id="Example3-config">
@@ -192,37 +148,21 @@ class Example2 {
           Example:
         </p>
         <source>
-class Example3 {
-  void testMethod1() {
-    // violation below, 'Line matches the illegal pattern'
-    System.out.print(&quot;Example&quot;);
-
-    System.err.println(&quot;Example&quot;);
-    System
-    .out.print(&quot;Example&quot;);
-    System
-    .err.println(&quot;Example&quot;);
-    System.
-    out.print(&quot;Example&quot;);
-    System.
-    err.println(&quot;Example&quot;);
-  }
-
-  void testMethod2() {
-
-    System.out.println(&quot;Test #1: this is a test string&quot;);
-
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
-
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
-    int i = 5;
-
-    System.out.println(&quot;Value of i: &quot; + i);
-
-    System.out.println(&quot;Test #4: This is a test string&quot;);
-
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
-  }
+void method() {
+  System.out.print(&quot;Example&quot;);  // violation
+  System.err.println(&quot;Example&quot;);
+  System.out.print              // violation
+    (&quot;Example&quot;);
+  System.err.println
+    (&quot;Example&quot;);
+  System
+  .out.print(&quot;Example&quot;);
+  System
+  .err.println(&quot;Example&quot;);
+  System.
+  out.print(&quot;Example&quot;);
+  System.
+  err.println(&quot;Example&quot;);
 }
         </source>
         <p>
@@ -249,37 +189,14 @@ class Example3 {
           Example:
         </p>
         <source>
-class Example4 {
-  void testMethod1() {
-
-    System.out.print(&quot;Example&quot;);
-
-    System.err.println(&quot;Example&quot;);
-    System
-    .out.print(&quot;Example&quot;);
-    System
-    .err.println(&quot;Example&quot;);
-    System.
-    out.print(&quot;Example&quot;);
-    System.
-    err.println(&quot;Example&quot;);
-  }
-
-  void testMethod2() {
-
-    System.out.println(&quot;Test #1: this is a test string&quot;);
-
-    System.out.println(&quot;TeSt #2: This is a test string&quot;);
-
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
-    int i = 5;
-
-    System.out.println(&quot;Value of i: &quot; + i);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;TEst #5: This is a test string&quot;);
-  }
+void method() {
+  System.out.println(&quot;Test #1: this is a test string&quot;); // OK
+  System.out.println(&quot;TeSt #2: This is a test string&quot;); // OK
+  System.out.println(&quot;TEST #3: This is a test string&quot;); // OK
+  int i = 5;
+  System.out.println(&quot;Value of i: &quot; + i);
+  System.out.println(&quot;Test #4: This is a test string&quot;); // violation
+  System.out.println(&quot;TEst #5: This is a test string&quot;); // violation
 }
         </source>
         <p id="Example5-config">
@@ -297,37 +214,13 @@ class Example4 {
           Example:
         </p>
         <source>
-class Example5 {
-  void testMethod1() {
-
-    System.out.print(&quot;Example&quot;);
-
-    System.err.println(&quot;Example&quot;);
-    System
-    .out.print(&quot;Example&quot;);
-    System
-    .err.println(&quot;Example&quot;);
-    System.
-    out.print(&quot;Example&quot;);
-    System.
-    err.println(&quot;Example&quot;);
-  }
-
-  void testMethod2() {
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #1: this is a test string&quot;);
-
-    System.out.println(&quot;TEST #2: This is a test string&quot;);
-
-    System.out.println(&quot;TEST #3: This is a test string&quot;);
-    int i = 5;
-
-    System.out.println(&quot;Value of i: &quot; + i);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #3: This is a test string&quot;);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println(&quot;Test #4: This is a test string&quot;);
-  }
+void method() {
+  System.out.println(&quot;Test #1: this is a test string&quot;); // violation
+  System.out.println(&quot;TEST #2: This is a test string&quot;); // OK, &quot;ignoreCase&quot; is false by default
+  int i = 5;
+  System.out.println(&quot;Value of i: &quot; + i);
+  System.out.println(&quot;Test #3: This is a test string&quot;); // violation
+  System.out.println(&quot;Test #4: This is a test string&quot;); // violation
 }
         </source>
         <p id="Example6-config">
