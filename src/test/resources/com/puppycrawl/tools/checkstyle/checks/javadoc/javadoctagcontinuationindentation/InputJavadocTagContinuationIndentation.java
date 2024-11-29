@@ -339,7 +339,7 @@ interface FooIn1 {}
 
 /**
  * <p>Testing javadoc with spanning tag {@linkplain #DEFAULT default mapping
- * factory}.</p> // ok
+ * factory}.</p>
  */
 interface FooIn2 {}
 class ShortNextLine {
