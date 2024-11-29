@@ -50,7 +50,7 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      *
      * @param x input
      * @return itself
-     * */ // ok
+     * */
     public int identity(int x) {
         return x;
     }
@@ -58,9 +58,9 @@ public class InputJavadocTagContinuationIndentationBlockTag {
     /**
      * Javadoc.
      *
-     * @param args // ok
+     * @param args
      * {@code this} line is not correctly indented // violation
-     *     {@code this} // ok
+     *     {@code this}
      * <pre>this line is not correctly indented</pre> // violation
      */
     public void multipleLines1(String args) {
@@ -70,7 +70,7 @@ public class InputJavadocTagContinuationIndentationBlockTag {
     /**
      * Javadoc.
      *
-     * @return false always // ok
+     * @return false always
      * {@code this} line is not correctly indented // violation
      * {@code this} line is not correctly indented // violation
      * <pre>this line is not correctly indented</pre> // violation
@@ -98,12 +98,12 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * <li>cvsroot</li> // violation
      * <li>noexec</li> // violation
      *     <li>
-     *     another item // ok
+     *     another item
      *     </li>
-     *     <li> yet another item </li> // ok
+     *     <li> yet another item </li>
      * </ul> // violation
      * some text <i>word</i> more text. // violation
-     *     some text <i>word</i> more text. // ok
+     *     some text <i>word</i> more text.
      */
     public String regressionNestedHtml(CharSequence c) {
         return "";
