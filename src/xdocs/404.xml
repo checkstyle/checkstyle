@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>404</title>
+    <script type="text/javascript">
+      window.onload = () => {
+        const currentUrl = window.location.href;
+        switch (currentUrl) {
+          case "https://checkstyle.org/checks/":
+            window.location.href = "https://checkstyle.org/checks";
+            break;
+          case "https://checkstyle.org/config_coding.html":
+            window.location.href = "https://checkstyle.org/checks/coding/";
+            break;
+          case "https://checkstyle.org/config_coding.html#VariableDeclarationUsageDistance":
+            window.location.href = "https://checkstyle.org/checks/coding/variabledeclarationusagedistance.html";
+            break;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <section name="redirect">
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <h1>
+          404 - page not found
+        </h1>
+        <p>
+          This is our main website: <a href="https://checkstyle.org">https://checkstyle.org</a>,
+          you can find all the information you need there.
+        </p>
+      </div>
+    </section>
+  </body>
+</document>
