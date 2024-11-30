@@ -58,13 +58,15 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
-package com; // OK
+
+
 package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-zA-Z_]\w*)*$'
-package com.checkstyle.checks; // OK
-package com.A.checkstyle.checks; // OK
-package com.checkstyle1.checks; // OK
-package com.checkSTYLE.checks; // OK
-package com._checkstyle.checks_; // OK
+
+
+
+public class Example1 {
+
+}
         </source>
         <p id="Example2-config">
           An example of how to configure the check to ensure with packages start with a lowercase
@@ -82,16 +84,15 @@ package com._checkstyle.checks_; // OK
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
-package com; // OK
+
+
 package COM; // violation, name 'COM' must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
-package com.checkstyle.checks; // OK
-package com.A.checkstyle.checks; // violation, name 'com.A.checkstyle' must match
-                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
-package com.checkstyle1.checks; // OK
-package com.checkSTYLE.checks; // violation, name 'com.checkSTYLE.checks' must
-                               // match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
-package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
-                                 // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+
+
+
+public class Example2 {
+
+}
         </source>
       </subsection>
 
