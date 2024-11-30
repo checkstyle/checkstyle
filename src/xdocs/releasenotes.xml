@@ -10,6 +10,113 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.20.2">
+      <div class="releaseDate">30.11.2024</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ArrayIndexOutOfBoundsException on indentation check of try-with-resources.
+            Author: nick mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/15943">#15943</a>
+          </li>
+          <li>
+            Solving parsing errors for missing description in block tags.
+            Author: Omar Bakry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13061">#13061</a>
+          </li>
+          <li>
+            JavadocType: False negative for unknown tag with no description.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14573">#14573</a>
+          </li>
+          <li>
+            WriteTag reports violation with confusing message when there is no javadoc.
+            Author: Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/11584">#11584</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: Ivan Babushkin
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+          <li>
+            Enable examples tests.
+            Author: Amit Kumar Deohoria, SteLeo1602, akanksha, Kushagra-Sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            doc: Fix Example3 in MagicNumberCheck Docs.
+            Author: mahfouz72
+          </li>
+          <li>
+            Forbid Files.createTempDirectory in Checkstyle and replace with @TempDir.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/14220">#14220</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: akanksha, Kushagra-Sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            avoid reliance on `File.createTempFile` implementation d….
+            Author: Stephan Schroevers
+            <a href="https://github.com/checkstyle/checkstyle/issues/15937">#15937</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: akanksha
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Fix existing cases of `getFileContents()` usage.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/11166">#11166</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: Mostafahassen1, Kushagra-sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            OuterTypeNumber: provide java code snippets in documentation .
+            Author: Kushagra-sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/15905">#15905</a>
+          </li>
+          <li>
+            JavadocParagraph: define in documentation list of validated block-tags.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15865">#15865</a>
+          </li>
+          <li>
+            Resolve `TailRecursion` inspection violations by replacing tail recursive calls.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14814">#14814</a>
+          </li>
+          <li>
+            doc: add check-tfij-style project to &#39;Additional Checks&#39;.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Print patch command line for changes detected by checkerfrawork.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/15837">#15837</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Kushagra-sedwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            NeedBraces need clear description of allowSingleLineStatement.
+            Author: Mohanad
+            <a href="https://github.com/checkstyle/checkstyle/issues/3619">#3619</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.20.1">
       <div class="releaseDate">07.11.2024</div>
       <p>Bug fixes:</p>
