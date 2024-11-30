@@ -6,10 +6,10 @@ public class InputFormattedSeparatorWrap {
   public void goodCase() {
     int i = 0;
     String s = "ffffooooString";
-    s.isEmpty(); // ok
+    s.isEmpty();
     s.isEmpty();
 
-    foo(i, s); // ok
+    foo(i, s);
   }
 
   /** Some javadoc. */
