@@ -258,7 +258,7 @@ class EnumContainer2 {
 
 // violation below 'Top-level class WithArrays2 has to reside in its own source file.'
 class WithArrays2 {
-  String[] test = {""}
+  String[] test = {""};
   String[] empty = {};
   String[] s1 = {
     "foo", "foo",
