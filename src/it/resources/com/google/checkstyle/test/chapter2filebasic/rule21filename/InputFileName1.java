@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 // violation below 'Top-level class MyAnnotation1 has to reside in its own source file.'
-@interface MyAnnotation1 { // ok
+@interface MyAnnotation1 {
   String name();
 
   int version();
@@ -9,7 +9,7 @@ package com.google.checkstyle.test.chapter2filebasic.rule21filename;
 
 /** Some javadoc. */
 @MyAnnotation1(name = "ABC", version = 1)
-public class InputFileName1 {} // ok
+public class InputFileName1 {}
 
 // violation below 'Top-level class Enum1 has to reside in its own source file.'
 enum Enum1 {
@@ -25,7 +25,7 @@ enum Enum1 {
 }
 
 // violation below 'Top-level class TestRequireThisEnum has to reside in its own source file.'
-interface TestRequireThisEnum { // ok
+interface TestRequireThisEnum {
   enum DayOfWeek {
     SUNDAY,
     MONDAY,
