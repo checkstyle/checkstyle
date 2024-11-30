@@ -330,7 +330,6 @@
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
         </item>
       </item>
-
       <item name="Filters" href="filters/index.html" collapse="true">
         <item name="SeverityMatchFilter" href="filters/severitymatchfilter.html"/>
         <item name="SuppressionCommentFilter" href="filters/suppressioncommentfilter.html"/>
