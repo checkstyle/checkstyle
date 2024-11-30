@@ -123,23 +123,23 @@ class EnumContainerLeft2 {
     HEARTS,
     SPADES,
     DIAMONDS
-  } // ok
+  }
 }
 
 // violation below 'Top-level class WithArraysLeft2 has to reside in its own source file.'
-class WithArraysLeft2 { // ok
-  String[] s1 = {""}; // ok
-  String[] empty = {}; // ok
-  String[] s2 = { // ok
+class WithArraysLeft2 {
+  String[] s1 = {""};
+  String[] empty = {};
+  String[] s2 = {
     "foo", "foo",
   };
-  String[] s3 = { // ok
+  String[] s3 = {
     "foo", "foo",
   };
-  String[] s4 = { // ok
+  String[] s4 = {
     "foo", "foo",
   };
-  String[] s5 = {"foo", "foo"}; // ok
+  String[] s5 = {"foo", "foo"};
 }
 
 // violation below 'Top-level class InputRightCurlyOther22 has to reside in its own source file.'
@@ -156,51 +156,51 @@ class InputRightCurlyOther22 {
       try {
         if (x > 0) {
           break;
-        } else if (x < 0) { // ok
+        } else if (x < 0) {
 
           ;
         } else {
           break;
-        } // ok
+        }
         switch (a) {
           case 0:
             break;
           default:
             break;
-        } // ok
+        }
       } catch (Exception e) {
         break;
-      } // ok
-    } // ok
+      }
+    }
 
     synchronized (this) {
       do {
         x = 2;
-      } while (x == 2); // ok
-    } // ok
+      } while (x == 2);
+    }
 
     this.wait(666); // Bizarre, but legal
 
     for (int k = 0; k < 1; k++) {
       String innerBlockVariable = "";
-    } // ok
+    }
 
     if (System.currentTimeMillis() > 1000) {
       return 1;
     } else {
       return 2;
     }
-  } // ok
+  }
 
   static {
     int x = 1;
-  } // ok
+  }
 
   /** some javadoc. */
   public enum GreetingsEnum {
     HELLO,
     GOODBYE
-  } // ok
+  }
 
   void method2() {
     boolean flag = true;
@@ -213,8 +213,8 @@ class InputRightCurlyOther22 {
     if (flag) {
       System.identityHashCode("some foo");
     }
-  } // ok
-} // ok
+  }
+}
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a constructor.
@@ -244,7 +244,7 @@ class FooInner2 {
   class InnerFoo {
     public void fooInnerMethod() {}
   }
-} // ok
+}
 
 // violation below 'Top-level class EnumContainer2 has to reside in its own source file.'
 class EnumContainer2 {
@@ -253,21 +253,21 @@ class EnumContainer2 {
     HEARTS,
     SPADES,
     DIAMONDS
-  } // ok
+  }
 }
 
 // violation below 'Top-level class WithArrays2 has to reside in its own source file.'
 class WithArrays2 {
-  String[] test = {""}; // ok
-  String[] empty = {}; // ok
+  String[] test = {""}
+  String[] empty = {};
   String[] s1 = {
     "foo", "foo",
-  }; // ok
+  };
   String[] s2 = {
     "foo", "foo",
-  }; // ok
+  };
   String[] s3 = {
     "foo", "foo",
-  }; // ok
-  String[] s4 = {"foo", "foo"}; // ok
+  };
+  String[] s4 = {"foo", "foo"};
 }
