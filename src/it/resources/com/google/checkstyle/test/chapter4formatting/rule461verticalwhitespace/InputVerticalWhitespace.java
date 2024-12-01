@@ -70,30 +70,30 @@ class InputVerticalWhitespace { // violation ''CLASS_DEF' should be separated fr
     }
   }
 
-  class InnerClass2 { // ok
-    private InnerClass2() { // ok
+  class InnerClass2 {
+    private InnerClass2() {
       // empty
     }
   }
 
-  class InnerClass3 { // ok
-    public int compareTo(InputVerticalWhitespace obj) { // ok
+  class InnerClass3 {
+    public int compareTo(InputVerticalWhitespace obj) {
       int number = 0;
       return 0;
     }
   }
 
-  class Clazz { // ok
-    private Clazz() {} // ok
+  class Clazz {
+    private Clazz() {}
   }
   class Class2 { // violation ''CLASS_DEF' should be separated from previous line.'
-    public int compareTo(InputVerticalWhitespace obj) { // ok
+    public int compareTo(InputVerticalWhitespace obj) {
       int number = 0;
       return 0;
     }
     Class2 anon = // violation ''VARIABLE_DEF' should be separated from previous line.'
             new Class2() {
-              public int compareTo(InputVerticalWhitespace obj) { // ok
+              public int compareTo(InputVerticalWhitespace obj) {
                 int number = 0;
                 return 0;
               }

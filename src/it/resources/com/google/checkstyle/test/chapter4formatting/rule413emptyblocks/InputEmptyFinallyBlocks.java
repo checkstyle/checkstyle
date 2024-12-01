@@ -17,9 +17,9 @@ class InputEmptyFinallyBlocks {
       }
     } catch (Exception e) {
       /* ignore */
-    } finally { // ok
+    } finally {
       /* ignore */
-    } // ok
+    }
   }
 
   void foo2() {
@@ -45,9 +45,9 @@ class InputEmptyFinallyBlocks {
         }
       } catch (Exception e) {
         /* ignore */
-      } finally { // ok
+      } finally {
         /* ignore */
-      } // ok
+      }
     }
 
     void foo2() {
@@ -75,9 +75,9 @@ class InputEmptyFinallyBlocks {
             }
           } catch (Exception e) {
             /* ignore */
-          } finally { // ok
+          } finally {
             /* ignore */
-          } // ok
+          }
         }
 
         void foo2() {
