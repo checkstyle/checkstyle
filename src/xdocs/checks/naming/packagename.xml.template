@@ -34,33 +34,35 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config">
+        <p id="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example1-config">
           To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/Example1.txt"/>
+                 value="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Code Example:</p>
+        <p id="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example1-code">
+        Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/Example1.txt"/>
+                 value="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example2-config">
+        <p id="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example2-config">
           An example of how to configure the check to ensure with packages start with a lowercase
           letter and only contains lowercase letters or numbers is:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/Example2.txt"/>
+                 value="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Code Example:</p>
+        <p id="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example2-code">
+        Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/packagename/Example2.txt"/>
+                 value="resources\com\puppycrawl\tools\checkstyle\checks\naming\packagename\Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
