@@ -37,7 +37,7 @@ public class InputNonAsciiCharacters {
   public void multiplyString() {
     String unitAbbrev2 = "asd\u03bcsasd";
     // violation above 'Unicode escape(s) usage should be avoided.'
-    String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s"*/ // ok
+    String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s"*/
     String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
     // violation above 'Unicode escape(s) usage should be avoided.'
     String allCharactersEscaped = "\u03bc\u03bc";

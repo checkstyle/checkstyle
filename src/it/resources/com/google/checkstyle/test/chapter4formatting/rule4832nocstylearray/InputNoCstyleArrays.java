@@ -6,14 +6,14 @@ public class InputNoCstyleArrays {
   private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
 
   /** some javadoc. */
-  public static void mainJava(String[] javastyle) {} // ok
+  public static void mainJava(String[] javastyle) {}
 
   /** some javadoc. */
   public static void mainC(String cstyle[]) { // violation 'Array brackets at illegal position.'
-    final int[] blah = new int[0]; // ok
-    final boolean isok1 = cstyle instanceof String[]; // ok
-    final boolean isok2 = cstyle instanceof java.lang.String[]; // ok
-    final boolean isok3 = blah instanceof int[]; // ok
+    final int[] blah = new int[0];
+    final boolean isok1 = cstyle instanceof String[];
+    final boolean isok2 = cstyle instanceof java.lang.String[];
+    final boolean isok3 = blah instanceof int[];
     int[] array[] = new int[2][2]; // violation 'Array brackets at illegal position.'
     int array2[][][] = new int[3][3][3];
     // 3 violations above:
@@ -24,13 +24,13 @@ public class InputNoCstyleArrays {
 
   /** some javadoc. */
   public class Test {
-    public Test[] variable; // ok
+    public Test[] variable;
 
     public Test[] getTests() {
       return null;
     }
 
-    public Test[] getNewTest() { // ok
+    public Test[] getNewTest() {
       return null;
     }
 
@@ -49,7 +49,7 @@ public class InputNoCstyleArrays {
       return null;
     }
 
-    public Test[][] getTests2() { // ok
+    public Test[][] getTests2() {
       return null;
     }
   }
