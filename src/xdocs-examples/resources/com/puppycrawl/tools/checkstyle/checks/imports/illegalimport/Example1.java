@@ -6,5 +6,9 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
+
 // xdoc section -- start
 // xdoc section -- end
+
+public class Example1 {}
