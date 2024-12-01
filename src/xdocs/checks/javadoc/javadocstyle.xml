@@ -193,28 +193,53 @@
 &lt;/module&gt;
         </source>
 
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <source>
-public class Test {
-    /**
-     * Some description here. // OK
-     */
-    private void methodWithValidCommentStyle() {}
-
-    // ok below, @return tag automatically inserts a period after the text
-    /**
-     * {@return {@code true} if this object
-     * has been initialized, {@code false} otherwise}
-     */
-    private boolean isInitialized()
-    {
-       return true;
-    }
-
-    /**
-     * Some description here // violation, the sentence must end with a proper punctuation
-     */
-    private void methodWithInvalidCommentStyle() {}
+/**
+ * Some description here
+ */
+public class Example1 {
+  Example1() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() { // violation 4 lines above 'should end with a period'
+    // violation 3 lines above 'Incomplete HTML tag found'
+  }
 }
         </source>
 
@@ -230,18 +255,53 @@ public class Test {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-code">Example2:</p>
         <source>
-public class Test {
-    /**
-     * Some description here // violation, the sentence must end with a proper punctuation
-     */
-    public void test1() {}
+/**
+ * Some description here
+ */
+public class Example2 {
+  Example2() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
 
-    /**
-     * Some description here // OK
-     */
-    private void test2() {}
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() {
+
+  }
 }
         </source>
 
@@ -260,18 +320,53 @@ public class Test {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <source>
-public class Test {
-    /**
-     * Some description here // violation, the sentence must end with a proper punctuation
-     */
-    private void test1() {}
+/**
+ * Some description here
+ */
+public class Example3 {
+  Example3() {
 
-    /**
-     * Some description here // OK
-     */
-    void test2() {}
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() { // violation 4 lines above 'should end with a period'
+    // violation 3 lines above 'Incomplete HTML tag'
+  }
 }
         </source>
 
@@ -288,14 +383,53 @@ public class Test {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <source>
-public class Test {
-    /**
-     * Some description here // OK
-     * Second line of description // violation, the sentence must end with a proper punctuation
-     */
-    private void test1() {}
+/**
+ * Some description here
+ */
+public class Example4 {
+  Example4() {
+
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() {
+    // violation 3 lines above 'Incomplete HTML tag'
+  }
 }
         </source>
 
@@ -312,14 +446,53 @@ public class Test {
 &lt;/module&gt;
         </source>
 
-        <p id="Example5-code">Example:</p>
+        <p id="Example5-code">Example5:</p>
         <source>
-public class Test {
-    /**
-     * Some description here // violation, the sentence must end with a proper punctuation
-     * &lt;p // OK
-     */
-    private void test1() {}
+/**
+ * Some description here
+ */
+public class Example5 {
+  Example5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() { // violation 4 lines above 'should end with a period'
+
+  }
 }
         </source>
 
@@ -336,16 +509,53 @@ public class Test {
 &lt;/module&gt;
         </source>
 
-        <p id="Example6-code">Example:</p>
+        <p id="Example6-code">Example6:</p>
         <source>
 /**
- * Some description here // violation, the sentence must end with a proper punctuation
+ * Some description here
  */
-public class Test {
-    /**
-     * Some description here // OK
-     */
-    private void test1() {}
+public class Example6 {
+  Example6() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() {
+
+  }
 }
         </source>
       </subsection>
