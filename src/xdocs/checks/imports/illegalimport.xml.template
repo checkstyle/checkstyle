@@ -40,8 +40,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example1.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+            The following example shows class with no illegal imports
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
 
         <p id="Example2-config">
@@ -50,18 +58,10 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
-            The following example shows class with no illegal imports
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example3-code">
           The following example shows class with two illegal imports
         </p>
         <ul>
@@ -70,28 +70,20 @@
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example3.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
-        <p id="Example4-config">
+        <p id="Example3-config">
           To configure the check so that it rejects classes <code>java.util.Date</code> and
           <code>java.sql.Connection</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
-          The following example shows class with no illegal imports
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example5-code">
+        <p id="Example3-code">
           The following example shows class with two illegal imports
         </p>
         <ul>
@@ -100,26 +92,18 @@
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example5.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
-        <p id="Example6-config">
+        <p id="Example4-config">
           To configure the check so that it rejects packages not satisfying to regular
           expression <code>java\.util</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.java"/>
           <param name="type" value="config"/>
-        </macro>
-        <p id="Example6-code">
-          The following example shows class with no illegal imports
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.txt"/>
-          <param name="type" value="code"/>
         </macro>
         <p>
           The following example shows class with four illegal imports
@@ -130,34 +114,26 @@
           <li><b>java.util.Arrays</b></li>
           <li><b>java.util.Date</b></li>
         </ul>
-        <p id="Example7-code">
+        <p id="Example4-code">
           All four imports match "java\.util" regular expression
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example7.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
-        <p id="Example8-config">
+        <p id="Example5-config">
           To configure the check so that it rejects class names not satisfying to regular
           expression <code>^java\.util\.(List|Arrays)</code> and
           <code>^java\.sql\.Connection</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example8.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example8-code">
-          The following example shows class with no illegal imports
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example8.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example9-code">
+        <p id="Example5-code">
           The following example shows class with three illegal imports
         </p>
         <ul>
@@ -167,7 +143,7 @@
         </ul>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example9.txt"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

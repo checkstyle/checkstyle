@@ -8,14 +8,18 @@
 </module>
 */
 
+//non-compiled with javac: Compilable with Java8
+package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
+
 // xdoc section -- start
-import java.io.*;           // violation
+import java.io.*; // violation, import of illegal package
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation
+import java.sql.Connection; // violation, import class of illegal package
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
+import java.util.Date;
 import sun.applet.*;
 
-public class InputIllegalImport { }
+public class Example2 {}
 // xdoc section -- end
