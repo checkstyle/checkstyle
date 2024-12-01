@@ -4330,28 +4330,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter javadocInlineTag of SummaryJavadocCheck.isInlineReturnTag.</message>
-    <lineContent>else if (inlineTag.isPresent() &amp;&amp; isInlineReturnTag(inlineTagNode)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailNode
-      required: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter javadocInlineTag of SummaryJavadocCheck.isSummaryTag.</message>
-    <lineContent>&amp;&amp; isSummaryTag(inlineTagNode)</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailNode
-      required: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return result;</lineContent>
