@@ -2,20 +2,20 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalImport">
-      <property name="regexp" value="true"/>
-      <property name="illegalClasses"
-        value="^java\.util\.(List|Arrays), ^java\.sql\.Connection"/>
+      <property name="illegalPkgs" value="java.io, java.sql"/>
     </module>
   </module>
 </module>
 */
 
-// xdoc section -- start
-import java.io.*;
-import java.lang.ArithmeticException;
-import java.util.Enumeration;
-import java.util.Date;
-import sun.applet.*;
+package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-public class InputIllegalImport { }
+// xdoc section -- start
+import java.lang.ArithmeticException;
+import java.util.List;
+import java.util.Enumeration;
+import java.util.Arrays;
+
+public class Example2 {}
 // xdoc section -- end
+
