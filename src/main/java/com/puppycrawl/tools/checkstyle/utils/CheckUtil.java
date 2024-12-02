@@ -470,33 +470,6 @@ public final class CheckUtil {
     }
 
     /**
-     * Calculates and returns the type declaration name matching count.
-     *
-     * <p>
-     * Suppose our pattern class is {@code foo.a.b} and class to be matched is
-     * {@code foo.a.ball} then type declaration name matching count would be calculated by
-     * comparing every character, and updating main counter when we hit "." to prevent matching
-     * "a.b" with "a.ball". In this case type declaration name matching count
-     * would be equal to 6 and not 7 (b of ball is not counted).
-     * </p>
-     *
-     * @param patternClass class against which the given class has to be matched
-     * @param classToBeMatched class to be matched
-     * @return class name matching count
-     */
-    public static int typeDeclarationNameMatchingCount(String patternClass,
-                                                       String classToBeMatched) {
-        final int length = Math.min(classToBeMatched.length(), patternClass.length());
-        int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
-                result = i;
-            }
-        }
-        return result;
-    }
-
-    /**
      * Get the qualified name of type declaration by combining {@code packageName},
      * {@code outerClassQualifiedName} and {@code className}.
      *
