@@ -615,12 +615,13 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;literal #compare(Object)}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> |--JAVADOC_INLINE_TAG --&gt; {&#64;literal #compare(Object)}
-     *        |--JAVADOC_INLINE_TAG_START --&gt; {
-     *        |--LITERAL_LITERAL --&gt; @literal
-     *        |--WS[1x9] --&gt;
-     *        |--TEXT[1x10] --&gt; #compare(Object)
-     *        |--JAVADOC_INLINE_TAG_END --&gt;}
+     * <code>
+     *     |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG [5:27]
+     *        |--JAVADOC_INLINE_TAG_START -> { [5:27]
+     *        |--LITERAL_LITERAL -> @literal [5:28]
+     *        |--WS ->   [5:36]
+     *        |--TEXT -> #compare(Object) [5:37]
+     *        `--JAVADOC_INLINE_TAG_END -> } [5:54]
      * </code>
      * </pre>
      *
