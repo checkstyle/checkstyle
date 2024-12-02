@@ -3,22 +3,22 @@
   <module name="TreeWalker">
     <module name="IllegalImport">
       <property name="regexp" value="true"/>
-      <property name="illegalClasses"
-        value="^java\.util\.(List|Arrays), ^java\.sql\.Connection"/>
+      <property name="illegalPkgs" value="java\.util"/>
     </module>
   </module>
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
+
 // xdoc section -- start
 import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection;     // violation
+import java.sql.Connection;
 import java.util.List;          // violation
-import java.util.Enumeration;
+import java.util.Enumeration;   // violation
 import java.util.Arrays;        // violation
-import java.util.Date;
-import sun.applet.*;
+import java.util.Date;          // violation
 
-public class InputIllegalImport { }
+public class Example7 { }
 // xdoc section -- end

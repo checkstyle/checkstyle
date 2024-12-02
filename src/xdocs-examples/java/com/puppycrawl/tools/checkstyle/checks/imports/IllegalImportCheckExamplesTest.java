@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -37,7 +37,7 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -46,16 +46,18 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
 
+            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -64,16 +66,17 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "17:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
@@ -82,16 +85,19 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "19:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "20:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
@@ -100,15 +106,17 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-
+            "18:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
+            "19:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 }
