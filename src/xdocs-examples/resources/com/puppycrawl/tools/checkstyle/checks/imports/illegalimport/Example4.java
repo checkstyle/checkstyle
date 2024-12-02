@@ -9,11 +9,16 @@
 </module>
 */
 
+package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
+
 // xdoc section -- start
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
-import sun.applet.*;
+import java.util.List;          // violation
+import java.util.Enumeration;   // violation
+import java.util.Arrays;        // violation
+import java.util.Date;          // violation
 
-public class InputIllegalImport { }
+public class Example4 {}
 // xdoc section -- end
