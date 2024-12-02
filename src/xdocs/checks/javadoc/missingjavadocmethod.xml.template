@@ -64,7 +64,7 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -72,7 +72,7 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -82,13 +82,13 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -98,13 +98,13 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -113,13 +113,13 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -128,13 +128,13 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -143,13 +143,13 @@ public boolean isSomething()
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocmethod/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
