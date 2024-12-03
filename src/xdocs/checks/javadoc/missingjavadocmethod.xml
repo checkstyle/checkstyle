@@ -147,22 +147,22 @@ public boolean isSomething()
           Example:
         </p>
         <source>
-public class Test {
-  public Test() {} // violation, missing javadoc for constructor
-  public void test() {} // violation, missing javadoc for method
+public class Example1 {
+  public Example1() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
-  public void test2() {} // OK
+  public void testMethod2() {}
 
   @Override
-  public String toString() { // OK
+  public String toString() {
     return &quot;Some string&quot;;
   }
 
-  private void test1() {} // OK
-  protected void test2() {} // OK
-  void test3() {} // OK
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
 }
         </source>
 
@@ -181,8 +181,22 @@ public class Test {
         </source>
         <p id="Example2-code">Example:</p>
         <source>
-public class Test {
-  private void test1() {} // violation, the private method is missing javadoc
+public class Example2 {
+  public Example2() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return &quot;Some string&quot;;
+  }
+
+  private void testMethod3() {} // violation, 'Missing a Javadoc comment'
+  protected void testMethod4() {} // violation, 'Missing a Javadoc comment'
+  void testMethod5() {} // violation, 'Missing a Javadoc comment'
 }
         </source>
 
@@ -202,13 +216,22 @@ public class Test {
         </source>
         <p id="Example3-code">Example:</p>
         <source>
-public class Test {
-  private void test1() {} // violation, the private method is missing javadoc
+public class Example3 {
+  public Example3() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
   /**
-   * Some description here
+   * Some description here.
    */
-  private void test1() {} // OK
-  protected void test2() {} // OK
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return &quot;Some string&quot;;
+  }
+
+  private void testMethod3() {} // violation, 'Missing a Javadoc comment'
+  protected void testMethod4() {}
+  void testMethod5() {} // violation, 'Missing a Javadoc comment'
 }
         </source>
 
@@ -219,17 +242,29 @@ public class Test {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MissingJavadocMethod&quot;&gt;
-      &lt;property name=&quot;ignoreMethodNamesRegex&quot; value=&quot;^foo.*$&quot;/&gt;
+      &lt;property name=&quot;ignoreMethodNamesRegex&quot; value=&quot;^testMethod.*$&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example4-code">Example:</p>
         <source>
-public class Test {
-  public void test1() {} // violation, method is missing javadoc
-  public void foo() {} // OK
-  public void foobar() {} // OK
+public class Example4 {
+  public Example4() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {}
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return &quot;Some string&quot;;
+  }
+
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
 }
         </source>
 
@@ -247,12 +282,22 @@ public class Test {
         </source>
         <p id="Example5-code">Example:</p>
         <source>
-public class Test {
-  private String text;
+public class Example5 {
+  public Example5() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
 
-  public void test() {} // violation, method is missing javadoc
-  public String getText() { return text; } // OK
-  public void setText(String text) { this.text = text; } // OK
+  @Override
+  public String toString() {
+    return &quot;Some string&quot;;
+  }
+
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
 }
         </source>
 
@@ -270,19 +315,22 @@ public class Test {
         </source>
         <p id="Example6-code">Example:</p>
         <source>
-public class Test {
-  public void test() {} // violation, method is missing javadoc
-  @Override
-  public void test1() {} // OK
-  @Deprecated
-  public void test2() {} // OK
-  @SuppressWarnings
-  public void test3() {} // violation, method is missing javadoc
+public class Example6 {
+  public Example6() {} // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
-  @SuppressWarnings
-  public void test4() {} // OK
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return &quot;Some string&quot;;
+  }
+
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
 }
         </source>
       </subsection>
