@@ -70,7 +70,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
     public void testBadPackageAnnotation() throws Exception {
 
         final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_KEY),
+            "11:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(

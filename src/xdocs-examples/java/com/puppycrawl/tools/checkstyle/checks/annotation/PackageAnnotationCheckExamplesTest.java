@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.PackageAnnotatio
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -34,7 +35,7 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY),
+            "14:1: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
@@ -42,18 +43,14 @@ public class PackageAnnotationCheckExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("example3/package-info.java"), expected);
     }

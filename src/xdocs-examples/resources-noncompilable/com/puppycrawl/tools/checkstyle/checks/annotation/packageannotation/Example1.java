@@ -9,7 +9,8 @@
 //non-compiled with javac: Compilable with Java7
 
 // xdoc section -- start
-@Deprecated // violation below
+@Deprecated
+// violation below, 'Package annotations must be in the package-info.java info.'
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 class Example1 {}
