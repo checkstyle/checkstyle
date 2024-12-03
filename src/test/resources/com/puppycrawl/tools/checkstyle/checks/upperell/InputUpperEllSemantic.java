@@ -93,7 +93,7 @@ class InputUpperEllSemantic
     }
 
     /** test **/
-    private static final long IGNORE = 666l + 666L; // violation
+    private static final long IGNORE = 666l + 666L; // violation, Using lowercase 'l' for long literals can be confused with the digit '1'. Use uppercase 'L' for clarity.
 
 
 
