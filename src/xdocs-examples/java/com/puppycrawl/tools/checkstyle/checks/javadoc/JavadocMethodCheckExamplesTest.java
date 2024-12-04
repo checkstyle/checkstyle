@@ -19,12 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,63 +36,72 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "22: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "22:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "30: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "38:25: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "25: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "24:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "40:25: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+            "24: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+            "24:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+            "40:25: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "30:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
+            "63:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "66:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+            "79:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 }

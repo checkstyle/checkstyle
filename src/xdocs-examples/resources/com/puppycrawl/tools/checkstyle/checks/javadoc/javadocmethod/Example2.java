@@ -8,21 +8,22 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 // xdoc section -- start
-public class Test {
+public class Example2 {
 
   /**
    *
    */
-  Test(int x) {             // ok, only public methods checked
+  Example2(int x) {
   }
 
   /**
    *
    */
-  public int foo(int p1) {  // ok, missing param tags allowed
-      return p1;            // violation, return tag missing
+  public int testMethod1(int p1) { // violation, '@return tag should be present'
+    return p1;
   }
 
   /**
@@ -30,14 +31,14 @@ public class Test {
    * @param p1 The first number
    */
   @Deprecated
-  private int boo(int p1) {
-      return p1;            // ok, only public methods checked
+  private int testMethod2(int p1) {
+    return p1;
   }
 
   /**
    *
    */
-  void bar(int p1) {        // ok, missing param tags allowed
-  }                         // ok, no return tag for void method
+  void testMethdod3(int p1) {
+  }
 }
 // xdoc section -- end
