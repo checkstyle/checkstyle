@@ -32,25 +32,25 @@ public class InputJavadocMethodSurroundingAccessModifier //comment test
     }
 
     /**
-     * @return // ok
+     * @return
      */
     public void foo5() {
     }
 
     /**
-     * @return // ok
+     * @return
      */
     protected void foo6() {
     }
 
     /**
-     * @return // ok
+     * @return
      */
     void foo7() {
     }
 
     /**
-     * @return // ok
+     * @return
      */
     private void foo8() {
     }
