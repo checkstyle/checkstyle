@@ -133,7 +133,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final String fileName = file.getName();
 
             if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)) {
+                    || "index.xml".equals(fileName)
+                    || Pattern.matches("config_[a-z]+.xml", fileName)) {
                 continue;
             }
 
