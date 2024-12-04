@@ -75,7 +75,6 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     } // no violation
 
     // Should not have
-    // ok
     public void testNoViolationMethod3() {
 
 
@@ -331,7 +330,6 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     public
 
-    // ok
     static
 
     enum Enum6 { }
@@ -365,7 +363,6 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
     /* no violation */
 
-    // ok
     {
         int i = 1;
     }
@@ -387,7 +384,6 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
 
 
         // no
-        // ok
     }
 
     // no violation
