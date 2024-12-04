@@ -17,6 +17,29 @@ window.addEventListener("load", function () {
     });
 });
 
+window.addEventListener("load", function () {
+    const currentUrl = window.location.href;
+
+    if (currentUrl.endsWith("/checks/") || currentUrl.endsWith("/checks/index.html")) {
+        window.location.replace("../checks.html");
+    }
+    else if (document.title.startsWith("checkstyle – Redirecting to checks/")) {
+        const urlObj = new URL(currentUrl);
+        const pathSegments = urlObj.pathname.split("/");
+        const configHtmlFile = pathSegments[pathSegments.length - 1]; // config_xxxx.html
+        const checkType = /config_([a-z]+).html/.exec(configHtmlFile)[1]; // example: from config_coding.html to coding
+        const checkName = urlObj.hash.substring(1).toLowerCase(); // example: from #VariableDeclarationUsageDistance to variabledeclarationusagedistance.html
+
+        if (checkName) {
+            window.location.replace(`./checks/${checkType}/${checkName}.html`);
+        }
+        else {
+            window.location.replace(`./checks/${checkType}`);
+        }
+    }
+});
+
+
 window.addEventListener("scroll", function () {
     "use strict";
     if (document.documentElement.scrollTop > scrollDistanceToButtonVisibility) {
