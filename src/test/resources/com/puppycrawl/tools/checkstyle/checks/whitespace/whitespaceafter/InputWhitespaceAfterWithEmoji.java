@@ -16,6 +16,7 @@ class InputWhitespaceAfterWithEmoji {
     void foo1() {
 
         int i = 0, count = 0;
+        // ok
         do {
             count += "🎄🧐".charAt(i) == "🤩🎄".charAt(i) ? 1 : 0;
         }
@@ -24,9 +25,8 @@ class InputWhitespaceAfterWithEmoji {
         while ("🤩".isEmpty()) ;
         while ("🎄".equals("0sda"));
         while (true)
-            if ("🎄🎄".equals("🎄dsaewwrrw🧐")) { 
-                String b = "🎄🎄";
-                return; // violation '';' is not followed by whitespace'
+            if ("🎄🎄".equals("🎄dsaewwrrw🧐")) { // ok
+                String b = "🎄🎄";return; // violation '';' is not followed by whitespace'
             } else {
                 if (!!"🎄🎄".equals("🎄dsaewwrrw🧐")) return;
             }
@@ -37,7 +37,7 @@ class InputWhitespaceAfterWithEmoji {
         obj = (java.lang.
                 Object)"🎄"; // violation ''typecast' is not followed by whitespace'
         obj = (java.lang.
-            Object) "🎄"; 
+            Object) "🎄"; // ok
     }
 
     void foo3() {
@@ -50,3 +50,4 @@ class InputWhitespaceAfterWithEmoji {
 
     }
 }
+
