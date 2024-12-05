@@ -94,7 +94,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "ClassFanOutComplexity",
             "DescendantToken",
             "DesignForExtension",
-            "HideUtilityClassConstructor",
             "RedundantModifier");
 
     // Modules that will never have xpath support ever because they not report violations
