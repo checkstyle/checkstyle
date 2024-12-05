@@ -66,6 +66,10 @@
   <suppress checks="FileLength"
     files="cyclomaticcomplexity[\\/]Example\d+.*"/>
 
+  <!-- violation required by to show behavior of Check -->
+  <suppress checks="FileLength"
+    files="javadocmethod[\\/]Example7.java"/>
+
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
     files="illegaltype[\\/]Example\d+.*"/>
