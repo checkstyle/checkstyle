@@ -330,15 +330,8 @@
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
         </item>
       </item>
-
       <item name="Filters" href="filters/index.html" collapse="true">
         <item name="SeverityMatchFilter" href="filters/severitymatchfilter.html"/>
-        <item name="SuppressionCommentFilter" href="filters/suppressioncommentfilter.html"/>
-        <item name="SuppressionFilter" href="filters/suppressionfilter.html"/>
-        <item name="SuppressionSingleFilter" href="filters/suppressionsinglefilter.html"/>
-        <item name="SuppressionXpathFilter" href="filters/suppressionxpathfilter.html"/>
-        <item name="SuppressionXpathSingleFilter"
-              href="filters/suppressionxpathsinglefilter.html"/>
         <item name="SuppressWarningsFilter" href="filters/suppresswarningsfilter.html"/>
         <item name="SuppressWithNearbyCommentFilter"
               href="filters/suppresswithnearbycommentfilter.html"/>
@@ -346,7 +339,14 @@
               href="filters/suppresswithnearbytextfilter.html"/>
         <item name="SuppressWithPlainTextCommentFilter"
               href="filters/suppresswithplaintextcommentfilter.html"/>
+        <item name="SuppressionCommentFilter" href="filters/suppressioncommentfilter.html"/>
+        <item name="SuppressionFilter" href="filters/suppressionfilter.html"/>
+        <item name="SuppressionSingleFilter" href="filters/suppressionsinglefilter.html"/>
+        <item name="SuppressionXpathFilter" href="filters/suppressionxpathfilter.html"/>
+        <item name="SuppressionXpathSingleFilter"
+              href="filters/suppressionxpathsinglefilter.html"/>
       </item>
+
       <item name="File Filters" href="filefilters/index.html" collapse="true">
         <item name="BeforeExecutionExclusionFileFilter"
               href="filefilters/beforeexecutionexclusionfilefilter.html"/>
