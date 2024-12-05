@@ -16,7 +16,6 @@ class InputWhitespaceAfterWithEmoji {
     void foo1() {
 
         int i = 0, count = 0;
-        // ok
         do {
             count += "🎄🧐".charAt(i) == "🤩🎄".charAt(i) ? 1 : 0;
         }
