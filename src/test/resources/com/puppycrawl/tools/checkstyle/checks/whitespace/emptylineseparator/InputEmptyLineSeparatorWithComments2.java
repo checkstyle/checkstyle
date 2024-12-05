@@ -177,10 +177,8 @@ public class InputEmptyLineSeparatorWithComments2 {
     public
     static class Class5 { }
 
-
-    public
     /* javadoc  */
-    static class Class6 { }
+    public static class Class6 { }
 
     /*
      * Should not have
@@ -216,9 +214,9 @@ public class InputEmptyLineSeparatorWithComments2 {
 
 
     public interface Interface2 { }
-    public // violation ''INTERFACE_DEF' should be separated from previous line.'
+    // violation ''INTERFACE_DEF' should be separated from previous line.'
     // .
-    interface Interface3 { }
+    public interface Interface3 { }
 
 
     /* something */
