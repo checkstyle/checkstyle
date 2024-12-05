@@ -6,7 +6,6 @@ validateThrows = true
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-// ok
 interface Input {
 
     void setHeader(String header);
@@ -20,6 +19,7 @@ public class InputJavadocMethod3 implements Input {
      * (even on platforms with a different line separator).
      * For header lines containing {@code "\n\n"} checkstyle will forcefully
      * expect an empty line to exist. See examples below.
+
      * Regular expressions must not span multiple lines.
      *
      * @param header the header value to validate and set (in that order)
