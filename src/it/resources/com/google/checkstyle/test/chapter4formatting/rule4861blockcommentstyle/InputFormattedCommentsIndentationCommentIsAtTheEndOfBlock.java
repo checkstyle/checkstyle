@@ -382,6 +382,7 @@ public class InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock {
   public void foo49() {
     // comment
     // block
+    // ok
   }
 
   /** some javadoc. */
