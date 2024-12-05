@@ -25,7 +25,8 @@ class InputWhitespaceAfterWithEmoji {
         while ("🎄".equals("0sda"));
         while (true)
             if ("🎄🎄".equals("🎄dsaewwrrw🧐")) { 
-                String b = "🎄🎄";return; // violation '';' is not followed by whitespace'
+                String b = "🎄🎄";
+                return; // violation '';' is not followed by whitespace'
             } else {
                 if (!!"🎄🎄".equals("🎄dsaewwrrw🧐")) return;
             }
