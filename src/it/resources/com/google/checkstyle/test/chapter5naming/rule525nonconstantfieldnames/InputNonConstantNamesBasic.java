@@ -12,10 +12,10 @@ public class InputNonConstantNamesBasic {
   int package_; // violation 'Member name 'package_' must match pattern'
   private int priva$te; // violation 'Member name 'priva\$te' must match pattern'
 
-  public int ppublic; // ok
-  protected int pprotected; // ok
-  int ppackage; // ok
-  private int pprivate; // ok
+  public int ppublic;
+  protected int pprotected;
+  int ppackage;
+  private int pprivate;
 
   int ABC = 0;
   // 2 violations above:

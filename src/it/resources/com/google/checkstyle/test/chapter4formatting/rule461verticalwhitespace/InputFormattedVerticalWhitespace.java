@@ -75,32 +75,32 @@ class InputFormattedVerticalWhitespace {
     }
   }
 
-  class InnerClass2 { // ok
-    private InnerClass2() { // ok
+  class InnerClass2 {
+    private InnerClass2() {
       // empty
     }
   }
 
-  class InnerClass3 { // ok
-    public int compareTo(InputFormattedVerticalWhitespace obj) { // ok
+  class InnerClass3 {
+    public int compareTo(InputFormattedVerticalWhitespace obj) {
       int number = 0;
       return 0;
     }
   }
 
-  class Clazz { // ok
-    private Clazz() {} // ok
+  class Clazz {
+    private Clazz() {}
   }
 
   class Class2 {
-    public int compareTo(InputFormattedVerticalWhitespace obj) { // ok
+    public int compareTo(InputFormattedVerticalWhitespace obj) {
       int number = 0;
       return 0;
     }
 
     Class2 anon =
         new Class2() {
-          public int compareTo(InputFormattedVerticalWhitespace obj) { // ok
+          public int compareTo(InputFormattedVerticalWhitespace obj) {
             int number = 0;
             return 0;
           }

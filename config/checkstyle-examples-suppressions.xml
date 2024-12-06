@@ -66,6 +66,10 @@
   <suppress checks="FileLength"
     files="cyclomaticcomplexity[\\/]Example\d+.*"/>
 
+  <!-- violation required by to show behavior of Check -->
+  <suppress checks="FileLength"
+    files="javadocmethod[\\/]Example7.java"/>
+
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
     files="illegaltype[\\/]Example\d+.*"/>
@@ -91,10 +95,14 @@
   <!-- Example must show line length violations and suppressed violations -->
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
+  <suppress checks="LineLength"
+    files="linelength[\\/]Example\d+.*"/>
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
 
-
+  <!-- Example must show PackageDeclaration violations -->
+  <suppress checks="PackageDeclaration"
+    files="packagedeclaration[\\/]Example\d+.*"/>
 
 </suppressions>

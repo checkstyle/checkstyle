@@ -7,11 +7,11 @@ public class InputSeparatorWrap {
     int i = 0;
     String s = "ffffooooString";
     s
-        .isEmpty(); // ok
+        .isEmpty();
     s.isEmpty();
 
     foo(i,
-            s); // ok
+            s);
   }
 
   /** Some javadoc. */

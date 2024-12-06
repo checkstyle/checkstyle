@@ -36,8 +36,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example1.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Example1:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example1.java"/>
+          <param name="type" value="code"/>
         </macro>
 
         <p id="Example2-config">
@@ -45,8 +53,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
 
         <p id="Example3-config">
@@ -55,43 +71,50 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-
-        <p id="Example4-config">
-          To configure the check to only validate java files and ignore other extensions:
+        <p id="Example3-code">
+          Example3:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example4.txt"/>
-          <param name="type" value="config"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
 
-        <p id="Example5-config">
+        <p id="Example4-config">
           To configure the check to only validate xml and property files and ignore other
           extensions:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-config">
-          To configure check to validate <code>import</code> and <code>package</code>
-          statements:
+        <p id="Example4-code">
+          Example4:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+
+        <p id="Example5-config">
+          To configure check to validate <code>import</code> statements:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">
+        <p id="Example5-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

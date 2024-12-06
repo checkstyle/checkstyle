@@ -42,8 +42,9 @@
         </source>
         <p id="Example1-code">Example of class with violation:</p>
         <source>
-@Deprecated // violation below
+@Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
+// violation above, 'Package annotations must be in the package-info.java info.'
 
 class Example1 {}
         </source>
