@@ -234,7 +234,7 @@
     <junit.version>5.11.3</junit.version>
     <forbiddenapis.version>3.8</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.48.2</checkerframework.version>
+    <checkerframework.version>3.48.3</checkerframework.version>
     <error-prone.version>2.31.0</error-prone.version>
     <error-prone-support.version>0.15.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -1880,7 +1880,7 @@
       <plugin>
         <groupId>edu.illinois</groupId>
         <artifactId>nondex-maven-plugin</artifactId>
-        <version>2.1.7</version>
+        <version>2.2.1</version>
       </plugin>
 
       <plugin>
@@ -5061,7 +5061,7 @@
         <dependency>
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>org.eclipse.jdt.annotation</artifactId>
-          <version>2.3.0</version>
+          <version>2.3.100</version>
         </dependency>
       </dependencies>
       <build>
