@@ -66,5 +66,4 @@
           files="[\\/]packageobjectfactory[\\/]abc[\\/]FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="[\\/]packageobjectfactory[\\/]zoo[\\/]FooCheck.java"/>
-
 </suppressions>
