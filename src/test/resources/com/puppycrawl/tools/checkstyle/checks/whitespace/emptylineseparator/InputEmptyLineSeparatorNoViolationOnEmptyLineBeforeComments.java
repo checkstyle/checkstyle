@@ -75,7 +75,6 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments { // ok
     } // no violation
 
     // Should not have
-    // ok
     public void testNoViolationMethod3() {
 
 
