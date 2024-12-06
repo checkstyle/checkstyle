@@ -1,21 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-@FunctionalInterface
-interface Function <A, B> {
-    public B apply (A a, B b);
-}
-
-@FunctionalInterface
-interface SomeFunction<One, Two> {
-    public Two apply(One one, Two two);
-}
-
+/**
+ * A functional interface representing a function with no parameters that produces a String result.
+ */
 @FunctionalInterface
 public interface Foo {
-    public String apply();
-}
-
-@FunctionalInterface
-interface FunctionWithComplexGenerics<One, Two> {
-    public Two foo(One one, Two two);
+    /**
+     * Applies the function and returns a String result.
+     *
+     * @return the result as a String
+     */
+    String apply();
 }

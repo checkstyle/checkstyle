@@ -1,34 +1,30 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InputHiddenFieldLambdas3 {
 
-    
-   
-    /**
+
+
+  /**
      * Example 9: lambda parameter 'letter' on line 109
      * does not hide a field 'letter' on line 106, because
      * field 'letter' can not be referenced from a static context.
      */
-    String letter = new String("a");
-    private static void foo5() {
-        List<String> acceptableAlphabet = Arrays.asList("a", "b", "c");
-        acceptableAlphabet.forEach(letter -> String.valueOf(letter));
-    }
+  String letter = new String("a");
+  private static void foo5() {
+    List<String> acceptableAlphabet = Arrays.asList("a", "b", "c");
+    acceptableAlphabet.forEach(letter -> String.valueOf(letter));
+  }
 
-   
-
-    /**
+  /**
      * Example 10: typed parameters - two hide fields
      */
-    String stringValue = "248.3";
-    int intValue = 2;
-    {
-        Function <String, Integer> m = (String stringValue, Integer intValue) -> { // 2 violations
+  String stringValue = "248.3";
+  int intValue = 2;
+  {
+      Function <String, Integer> m = (String stringValue, Integer intValue) -> { // 2 violations
             return Integer.parseInt(stringValue) + intValue;
         };
         String.valueOf(m.apply ("22.4", 2));
@@ -65,16 +61,12 @@ public class InputHiddenFieldLambdas3 {
         Function<Integer, Character> turnToZ = (first, second) -> 'z'; // violation
     }
 
- 
+
     /**
      * Example 12: case when no parameters are given
      */
     {
         Foo foo = () -> "";
-    }
-    @FunctionalInterface
-    interface FunctionWithOneParameter<One> {
-        public One apply(One one);
     }
 
     /**
@@ -88,5 +80,5 @@ public class InputHiddenFieldLambdas3 {
         });
     }
 
-   
+
 }
