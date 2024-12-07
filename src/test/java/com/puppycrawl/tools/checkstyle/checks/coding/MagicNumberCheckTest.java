@@ -756,4 +756,46 @@ public class MagicNumberCheckTest
                 getNonCompilablePath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
                 expected);
     }
+
+    @Test
+    public void testMagicNumberWithOperatorsWithIgnoreFieldsTrue() throws Exception {
+        final String[] expected = {
+            "35:35: " + getCheckMessage(MSG_KEY, "3"),
+            "36:35: " + getCheckMessage(MSG_KEY, "3"),
+            "37:36: " + getCheckMessage(MSG_KEY, "3"),
+            "38:34: " + getCheckMessage(MSG_KEY, "3"),
+            "39:34: " + getCheckMessage(MSG_KEY, "3"),
+            "40:34: " + getCheckMessage(MSG_KEY, "3"),
+            "41:34: " + getCheckMessage(MSG_KEY, "3"),
+            "42:31: " + getCheckMessage(MSG_KEY, "3"),
+            "55:25: " + getCheckMessage(MSG_KEY, "3"),
+            "54:25: " + getCheckMessage(MSG_KEY, "3"),
+            "56:26: " + getCheckMessage(MSG_KEY, "3"),
+            "57:24: " + getCheckMessage(MSG_KEY, "3"),
+            "58:24: " + getCheckMessage(MSG_KEY, "3"),
+            "59:24: " + getCheckMessage(MSG_KEY, "3"),
+            "60:24: " + getCheckMessage(MSG_KEY, "3"),
+            "61:21: " + getCheckMessage(MSG_KEY, "3"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsTrue.java"),
+                expected);
+    }
+
+    @Test
+    public void testMagicNumberWithOperatorsWithIgnoreFieldsFalse() throws Exception {
+        final String[] expected = {
+            "54:25: " + getCheckMessage(MSG_KEY, "3"),
+            "55:25: " + getCheckMessage(MSG_KEY, "3"),
+            "56:26: " + getCheckMessage(MSG_KEY, "3"),
+            "57:24: " + getCheckMessage(MSG_KEY, "3"),
+            "58:24: " + getCheckMessage(MSG_KEY, "3"),
+            "59:24: " + getCheckMessage(MSG_KEY, "3"),
+            "60:24: " + getCheckMessage(MSG_KEY, "3"),
+            "61:21: " + getCheckMessage(MSG_KEY, "3"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsFalse.java"),
+                expected);
+    }
 }
