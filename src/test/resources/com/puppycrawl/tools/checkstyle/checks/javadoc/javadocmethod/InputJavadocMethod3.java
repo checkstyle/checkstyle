@@ -6,7 +6,6 @@ validateThrows = true
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-// ok
 interface Input {
 
     void setHeader(String header);
