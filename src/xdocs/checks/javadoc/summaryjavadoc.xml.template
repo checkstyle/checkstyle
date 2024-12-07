@@ -36,65 +36,42 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">
-          Example of <code>{@inheritDoc}</code> without summary.
-        </p>
+        <p id="Example1-code"> Example1: </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="Example2-code">
-              Example of non permitted empty javadoc for Inline Summary Javadoc.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example2.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example3-config">
+        <p id="Example2-config">
           To ensure that summary does not contain phrase like "This method returns", use
           following config:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-config">
+        <p id="Example2-code"> Example2: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example3-config">
           To specify period symbol at the end of first javadoc sentence:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
-          Example of period property.
-        </p>
-
+        <p id="Example3-code"> Example3: </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example4.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example5-code">
-          Example of period property for inline summary javadoc.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example5.txt"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p id="Example6-code">
-          Example of inline summary javadoc with HTML tags.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
