@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_FIRST_SENTENCE;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck.MSG_SUMMARY_MISSING_PERIOD;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,54 +37,39 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "18: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "22: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "27: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "42: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "25: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "30: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "39: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "45: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "20: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "29: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "38: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "49: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
