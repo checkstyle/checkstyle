@@ -562,7 +562,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
-                obtainedClass = getTheNearestClass(
+                obtainedClass = getTheNearestClassOfAnonInnerClass(
                         anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
                         typeDeclWithSameName);
             }
@@ -631,10 +631,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
      * @return the nearest class
      */
-    private static TypeDeclDesc getTheNearestClass(String outerTypeDeclName,
+    private static TypeDeclDesc getTheNearestClassOfAnonInnerClass(String outerTypeDeclName,
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
-            return getTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
+            return getAnonTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
         });
     }
 
@@ -647,18 +647,58 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param secondTypeDecl second input type declaration
      * @return difference between type declaration name matching count
      */
-    private static int getTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
+    private static int getAnonTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
                                                                TypeDeclDesc firstTypeDecl,
                                                                TypeDeclDesc secondTypeDecl) {
         int diff = Integer.compare(
-            CheckUtil.typeDeclarationNameMatchingCount(
+            getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, secondTypeDecl.getQualifiedName()),
-            CheckUtil.typeDeclarationNameMatchingCount(
+            getAnonSuperTypeMatchingCount(
                 outerTypeDeclName, firstTypeDecl.getQualifiedName()));
         if (diff == 0) {
             diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
         }
         return diff;
+    }
+
+    /**
+     * Calculates the type declaration matching count for the superclass of an anonymous inner
+     * class.
+     *
+     * <p>
+     * For example, if the pattern class is {@code Main.ClassOne} and the class to be matched is
+     * {@code Main.ClassOne.ClassTwo.ClassThree}, then the matching count would be calculated by
+     * comparing the characters at each position, and updating the count whenever a '.'
+     * is encountered.
+     * This is necessary because pattern class can include anonymous inner classes, unlike regular
+     * inheritance where nested classes cannot be extended.
+     * </p>
+     *
+     * @param patternQualifiedName type declaration to match against
+     * @param matchingQualifiedName type declaration to be matched
+     * @return the type declaration matching count
+     */
+    private static int getAnonSuperTypeMatchingCount(String patternQualifiedName,
+                                                    String matchingQualifiedName) {
+        final int typeDeclarationToBeMatchedLength = matchingQualifiedName.length();
+        final int minLength = Math
+                .min(typeDeclarationToBeMatchedLength, patternQualifiedName.length());
+        final boolean shouldCountBeUpdatedAtLastCharacter =
+                typeDeclarationToBeMatchedLength > minLength
+                && matchingQualifiedName.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
+
+        int result = 0;
+        for (int idx = 0;
+             idx < minLength
+                && patternQualifiedName.charAt(idx) == matchingQualifiedName.charAt(idx);
+             idx++) {
+
+            if (shouldCountBeUpdatedAtLastCharacter
+                    || patternQualifiedName.charAt(idx) == PACKAGE_SEPARATOR.charAt(0)) {
+                result = idx;
+            }
+        }
+        return result;
     }
 
     /**
