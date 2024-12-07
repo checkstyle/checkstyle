@@ -153,24 +153,43 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
 &lt;/module&gt;
         </source>
         <p id="Example1-code">
-          results is following violations:
+          results in the following violations:
         </p>
         <source>
-@MyAnnotation(6) // violation
-class MyClass {
-  private field = 7; // violation
+@Example1.Annotation(6) // violation, ''6' is a magic number.'
+public class Example1 {
+  private int field = 7; // violation, ''7' is a magic number.'
 
-  void foo() {
-    int i = i + 1; // no violation
-    int j = j + 8; // violation
+  void method1() {
+    int i = 1;
+    int j = 8; // violation, ''8' is a magic number.'
   }
-
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+    final int f = 3 * 4;
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
   public int hashCode() {
-    return 10;    // violation
+    return 10; // violation, ''10' is a magic number.'
   }
-}
-@interface anno {
-  int value() default 10; // no violation
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
+  }
 }
         </source>
 
@@ -191,16 +210,42 @@ class MyClass {
 &lt;/module&gt;
         </source>
         <p id="Example2-code">
-          results is following violations:
+          results in no violations:
         </p>
         <source>
-@MyAnnotation(6) // no violation
-class MyClass {
-  private field = 7; // no violation
+@Example2.Annotation(6)
+public class Example2 {
+  private int field = 7;
 
-  void foo() {
-    int i = i + 1; // no violation
-    int j = j + 8; // violation
+  void method1() {
+    int i = 1;
+    int j = 8;
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+    final int f = 3 * 4;
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10;
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
   }
 }
         </source>
@@ -220,13 +265,40 @@ class MyClass {
           results in the following violations:
         </p>
         <source>
-public record MyRecord() {
-    private static int myInt = 7; // ok, field declaration
+@Example3.Annotation(6) // violation, ''6' is a magic number.'
+public class Example3 {
+  private int field = 7;
 
-    void foo() {
-        int i = myInt + 1; // no violation, 1 is defined as non-magic
-        int j = myInt + 8; // violation
-    }
+  void method1() {
+    int i = 1;
+    int j = 8; // violation, ''8' is a magic number.'
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+    final int f = 3 * 4;
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10; // violation, ''10' is a magic number.'
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
+  }
 }
         </source>
         <p id="Example4-config">
@@ -242,12 +314,43 @@ public record MyRecord() {
 &lt;/module&gt;
         </source>
         <p id="Example4-code">
-        results in following violations:
+          results in the following violations:
         </p>
         <source>
-@interface anno {
-  int value() default 10; // violation
-  int[] value2() default {10}; // violation
+@Example4.Annotation(6) // violation, ''6' is a magic number.'
+public class Example4 {
+  private int field = 7; // violation, ''7' is a magic number.'
+
+  void method1() {
+    int i = 1;
+    int j = 8; // violation, ''8' is a magic number.'
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+    final int f = 3 * 4;
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10; // violation, ''10' is a magic number.'
+  }
+  @interface Annotation {
+    int value() default 10; // violation, ''10' is a magic number.'
+    int[] value2() default {10}; // violation, ''10' is a magic number.'
+  }
+  class TestClass {
+    TestClass(int field) {}
+  }
 }
         </source>
         <p id="Example5-config">
@@ -257,27 +360,57 @@ public record MyRecord() {
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;MagicNumber&quot;&gt;
-      &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN,ARRAY_INIT,EXPR,
-      UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS &quot;/&gt;
+      &lt;property name=&quot;constantWaiverParentToken&quot; value=&quot;ASSIGN, ARRAY_INIT, EXPR,
+      UNARY_PLUS, UNARY_MINUS, TYPECAST, ELIST, DIV, PLUS&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example5-code">result is following violation:</p>
+        <p id="Example5-code">results in the following violations:</p>
         <source>
-class TestMethodCall {
+@Example5.Annotation(6) // violation, ''6' is a magic number.'
+public class Example5 {
+  private int field = 7; // violation, ''7' is a magic number.'
+
+  void method1() {
+    int i = 1;
+    int j = 8; // violation, ''8' is a magic number.'
+  }
   public void method2() {
-    final TestMethodCall dummyObject = new TestMethodCall(62);    //violation
-    final int a = 3;        // ok as waiver is ASSIGN
-    final int [] b = {4, 5} // ok as waiver is ARRAY_INIT
-    final int c = -3;       // ok as waiver is UNARY_MINUS
-    final int d = +4;       // ok as waiver is UNARY_PLUS
-    final int e = method(1, 2) // ELIST is there but violation due to METHOD_CALL
-    final int x = 3 * 4;    // violation
-    final int y = 3 / 4;    // ok as waiver is DIV
-    final int z = 3 + 4;    // ok as waiver is PLUS
-    final int w = 3 - 4;    // violation
-    final int x = (int)(3.4);    //ok as waiver is TYPECAST
+    final TestClass testObject = new TestClass(62);
+    // violation above, ''62' is a magic number.'
+    final int a = 3; // ok as waiver is ASSIGN
+    final int[] b = {4, 5}; // ok as waiver is ARRAY_INIT
+    final int c = -3; // ok as waiver is UNARY_MINUS
+    final int d = +4; // ok as waiver is UNARY_PLUS
+    final int e = method3(10, 20);
+    // 2 violations above:
+    //  ''10' is a magic number.'
+    //  ''20' is a magic number.'
+    final int f = 3 * 4;
+    // 2 violations above:
+    //  ''3' is a magic number.'
+    //  ''4' is a magic number.'
+    final int g = 3 / 4; // ok as waiver is DIV
+    final int h = 3 + 4; // ok as waiver is PLUS
+    final int i = 3 - 4;
+    // 2 violations above:
+    //  ''3' is a magic number.'
+    //  ''4' is a magic number.'
+    final int j = (int) 3.4; //ok as waiver is TYPECAST
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10; // violation, ''10' is a magic number.'
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
   }
 }
         </source>
@@ -294,11 +427,41 @@ class TestMethodCall {
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example6-code">result is no violation:</p>
+        <p id="Example6-code">results in the following violations:</p>
         <source>
-class TestHashCode {
+@Example6.Annotation(6) // violation, ''6' is a magic number.'
+public class Example6 {
+  private int field = 7; // violation, ''7' is a magic number.'
+
+  void method1() {
+    int i = 1;
+    int j = 8; // violation, ''8' is a magic number.'
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+    final int f = 3 * 4;
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
   public int hashCode() {
-    return 10;              // OK
+    return 10;
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
   }
 }
         </source>

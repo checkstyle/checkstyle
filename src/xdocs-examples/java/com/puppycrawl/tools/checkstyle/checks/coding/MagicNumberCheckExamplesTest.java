@@ -19,23 +19,28 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Test;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTestSupport.getCheckMessage;
 
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import org.junit.Test;
 
-public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
-    @Override
-    protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";
-    }
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
+
+public class MagicNumberCheckExamplesTest {
 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            // ok, because this line follows the standard
+            "12:22: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "14:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "18:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "37:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -44,42 +49,84 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
             // violation, magic number used directly
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            // ok, because this line adheres to the standard
+            "14:22: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "39:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            // violation, magic number used directly
+            "14:22: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "39:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
+            "42:25: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
+            "43:29: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            // ok, because this line follows the standard
+            "15:22: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "17:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "21:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "24:48: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 62),
+            "30:27: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
+            "30:31: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 20),
+            "34:19: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 3),
+            "34:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 4),
+            "40:19: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 3),
+            "40:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 4),
+            "50:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            // violation, magic number used directly
+            "14:22: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }
