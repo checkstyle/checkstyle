@@ -148,6 +148,8 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationFirstLine.java"/>
   <suppress id="UnnecessaryOkComment"
+            files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethod3.java"/>
+  <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrimOptionProperty.java"/>
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]javadoc[\\/]javadocmethod[\\/]InputJavadocMethodAllowedAnnotations.java"/>
