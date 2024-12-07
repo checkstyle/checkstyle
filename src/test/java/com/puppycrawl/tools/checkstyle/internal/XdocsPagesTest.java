@@ -356,6 +356,83 @@ public class XdocsPagesTest {
         }
     }
 
+    @Test
+    public void testAlphabetOrderInNames() throws Exception {
+        final String input = Files.readString(SITE_PATH);
+        final Document document = XmlUtil.getRawXml(SITE_PATH.toString(), input, input);
+        final NodeList nodes = document.getElementsByTagName("item");
+
+        for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
+            final Node current = nodes.item(nodeIndex);
+
+            if ("Checks".equals(XmlUtil.getNameAttributeOfNode(current))) {
+                final List<String> groupNames = getNames(current);
+                final List<String> groupNamesSorted = groupNames.stream()
+                        .sorted()
+                        .collect(Collectors.toList());
+
+                assertWithMessage("Group names must be in alphabetical order.")
+                        .that(groupNames)
+                        .containsExactlyElementsIn(groupNamesSorted)
+                        .inOrder();
+
+                Node groupNode = current.getFirstChild();
+                int index = 0;
+                final int totalGroups = XmlUtil.getChildrenElements(current).size();
+                while (index < totalGroups) {
+                    if ("item".equals(groupNode.getNodeName())) {
+                        final List<String> checkNames = getNames(groupNode);
+                        final List<String> checkNamesSorted = checkNames.stream()
+                                .sorted()
+                                .collect(Collectors.toList());
+                        assertWithMessage("Check Names must be in alphabetical Order.")
+                                .that(checkNames)
+                                .containsExactlyElementsIn(checkNamesSorted)
+                                .inOrder();
+                        index++;
+                    }
+                    groupNode = groupNode.getNextSibling();
+                }
+            }
+            if ("Filters".equals(XmlUtil.getNameAttributeOfNode(current))) {
+                final List<String> filterNames = getNames(current);
+                final List<String> filterNamesSorted = filterNames.stream()
+                        .sorted()
+                        .collect(Collectors.toList());
+                assertWithMessage("Filter Names must be in alphabetical order.")
+                        .that(filterNames)
+                        .containsExactlyElementsIn(filterNamesSorted)
+                        .inOrder();
+            }
+            if ("File Filters".equals(XmlUtil.getNameAttributeOfNode(current))) {
+                final List<String> fileFilterNames = getNames(current);
+                final List<String> fileFilterNamesSorted = fileFilterNames.stream()
+                        .sorted()
+                        .collect(Collectors.toList());
+                assertWithMessage("File Filter Names must be in alphabetical order.")
+                        .that(fileFilterNames)
+                        .containsExactlyElementsIn(fileFilterNamesSorted)
+                        .inOrder();
+            }
+        }
+    }
+
+    private static List<String> getNames(Node node) {
+        final Set<Node> children = XmlUtil.getChildrenElements(node);
+        final List<String> result = new ArrayList<>();
+        Node current = node.getFirstChild();
+        int index = 0;
+        while (index < children.size()) {
+            if ("item".equals(current.getNodeName())) {
+                final String name = XmlUtil.getNameAttributeOfNode(current);
+                result.add(name);
+                index++;
+            }
+            current = current.getNextSibling();
+        }
+        return result;
+    }
+
     private static Map<String, String> readSummaries() throws Exception {
         final String fileName = AVAILABLE_CHECKS_PATH.getFileName().toString();
         final String input = Files.readString(AVAILABLE_CHECKS_PATH);
