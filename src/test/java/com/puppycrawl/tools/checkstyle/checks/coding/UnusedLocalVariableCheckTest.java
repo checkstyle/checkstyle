@@ -557,4 +557,24 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                         Objects::isNull))
                 .isTrue();
     }
+
+    @Test
+    public void testUnusedLocalVarInAnonInnerClasses2() throws Exception {
+        final String[] expected = {
+            "20:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableAnonInnerClasses2.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarInAnonInnerClasses3() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
+                expected);
+    }
 }

@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/14894 -->
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>getAnonSuperTypeMatchingCount</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/Math::min with argument</description>
+    <lineContent>.min(typeDeclarationToBeMatchedLength, patternTypeDeclaration.length());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
+    <mutatedMethod>getAnonSuperTypeMatchingCount</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (idx == minLength - 1 &amp;&amp; shouldCountBeUpdatedAtLastCharacter</lineContent>
+  </mutation>
+
   <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
