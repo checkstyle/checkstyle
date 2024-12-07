@@ -19,16 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import org.junit.jupiter.api.Test;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTestSupport.getCheckMessage;
 
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.junit.Test;
 
-public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
-    @Override
-    protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";
-    }
+import com.puppycrawl.tools.checkstyle.api.CommonUtil;
+
+public class MagicNumberCheckExamplesTest {
 
     @Test
     public void testExample1() throws Exception {
@@ -48,7 +45,9 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            // violation, magic number used directly
+        };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
