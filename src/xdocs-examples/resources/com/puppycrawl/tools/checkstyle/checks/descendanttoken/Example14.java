@@ -11,24 +11,28 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Test {
-  public void foo() {
-    if (this == null) { // violation
+class Example14 {
+  void testMethod1() {
+    // violation below, 'Total count of 2 exceeds maximum count 1'
+    if (this == null) {
       System.out.println("xyz");
     }
-    if (this != null) { // violation
+    if (this != null) {
+      // violation above, 'Total count of 2 exceeds maximum count 1'
       System.out.println("xyz");
     }
 
     Object obj = new Object();
-    if (obj == null) { // ok
+    if (obj == null) {
       System.out.println("xyz");
     }
-    if (obj != null) { // ok
+    if (obj != null) {
       System.out.println("xyz");
     }
   }
 }
 // xdoc section -- end
+
