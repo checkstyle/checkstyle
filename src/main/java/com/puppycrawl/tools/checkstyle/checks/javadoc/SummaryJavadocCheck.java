@@ -210,17 +210,20 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        final Optional<DetailNode> inlineTag = getInlineTagNode(ast);
-        final DetailNode inlineTagNode = inlineTag.orElse(null);
-        if (inlineTag.isPresent()
-            && isSummaryTag(inlineTagNode)
-            && isDefinedFirst(inlineTagNode)) {
-            validateSummaryTag(inlineTagNode);
+        final Optional<DetailNode> inlineTagNode = getInlineTagNode(ast);
+        boolean shouldValidateUntaggedSummary = true;
+        if (inlineTagNode.isPresent()) {
+            DetailNode node = inlineTagNode.get();
+            if (isSummaryTag(node) && isDefinedFirst(node)) {
+                shouldValidateUntaggedSummary = false;
+                validateSummaryTag(node);
+            }
+            else if (isInlineReturnTag(node)) {
+                shouldValidateUntaggedSummary = false;
+                validateInlineReturnTag(node);
+            }
         }
-        else if (inlineTag.isPresent() && isInlineReturnTag(inlineTagNode)) {
-            validateInlineReturnTag(inlineTagNode);
-        }
-        else if (!startsWithInheritDoc(ast)) {
+        if (shouldValidateUntaggedSummary && !startsWithInheritDoc(ast)) {
             validateUntaggedSummary(ast);
         }
     }
