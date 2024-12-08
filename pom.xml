@@ -734,6 +734,10 @@
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
+          <exclusionPatterns>
+            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
+            <exclusionPattern>java/util/Optional.get:()Ljava/lang/Object;</exclusionPattern>
+          </exclusionPatterns>
         </configuration>
         <executions>
           <execution>
