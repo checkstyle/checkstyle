@@ -10,15 +10,16 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Test {
-  public void foo() {
+class Example15 {
+  void testMethod1() {
     String str = "abc";
-    if (str.equals("abc")) { // ok
+    if (str.equals("abc")) {
       System.out.println("equal.");
     }
-    if (str == "abc") { // violation
+    if (str == "abc") { // violation, 'Count of 1 for 'EQUAL' descendant'
       System.out.println("equal.");
     }
   }

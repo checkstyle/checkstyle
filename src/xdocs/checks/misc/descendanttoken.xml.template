@@ -39,7 +39,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -47,7 +47,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -56,7 +56,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -64,7 +64,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -74,7 +74,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">
@@ -82,7 +82,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -92,7 +92,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -100,7 +100,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -111,7 +111,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example5-code">
@@ -119,7 +119,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -129,7 +129,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example6-code">
@@ -137,7 +137,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -147,7 +147,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example7-code">
@@ -155,7 +155,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -165,7 +165,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-code">
@@ -173,7 +173,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -183,7 +183,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example9-code">
@@ -191,7 +191,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -201,7 +201,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example10-code">
@@ -209,7 +209,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -219,7 +219,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example11-code">
@@ -227,7 +227,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -236,7 +236,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example12-code">
@@ -244,7 +244,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -254,7 +254,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example13-code">
@@ -262,7 +262,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -272,7 +272,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example14-code">
@@ -280,7 +280,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -290,7 +290,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example15-code">
@@ -298,7 +298,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -308,7 +308,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example16-code">
@@ -316,7 +316,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

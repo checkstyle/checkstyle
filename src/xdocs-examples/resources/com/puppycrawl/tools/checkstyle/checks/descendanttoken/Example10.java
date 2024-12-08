@@ -9,16 +9,17 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Foo {
-  public void foo() throws ArithmeticException { // ok
+class Example10 {
+  void testMethod1() throws ArithmeticException {
+      // ...
+  }
+  // violation below, 'Count of 2 for 'LITERAL_THROWS' descendant'
+  void testMethod2() throws ArithmeticException, ArithmeticException {
       // ...
   }
 }
-class Boo {
-  public void boo() throws ArithmeticException, ArithmeticException { // violation
-      // ...
-  }
-}
+
 // xdoc section -- end

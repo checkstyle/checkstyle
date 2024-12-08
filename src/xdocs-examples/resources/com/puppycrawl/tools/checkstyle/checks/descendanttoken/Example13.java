@@ -10,24 +10,28 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class A { // ok
+class Example13 {
   private int field1;
 
   // Some code
 }
-class B { // violation
+// violation below, 'Count of 2 for 'CLASS_DEF' descendant'
+class ExampleTest {
   private int field1;
   private int field2;
 
   // Some code
 }
-interface C { // ok
+interface Test1 {
   int FIELD_1 = 1;
 }
-interface D { // violation
+// violation below,'Count of 2 for 'INTERFACE_DEF' descendant'
+interface Test2 {
   int FIELD_1 = 1;
   int FIELD_2 = 2;
 }
 // xdoc section -- end
+

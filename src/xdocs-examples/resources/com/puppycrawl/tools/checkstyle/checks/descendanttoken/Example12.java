@@ -12,14 +12,15 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Test {
-  public void foo() { // ok
-      System.out.println("Hello");
+class Example12 {
+  void testMethod1 () {
+    System.out.println("Hello");
   }
-  public void boo() {
-      ; // violation
+  void testMethod2() {
+      ; // violation, 'Empty statement is not allowed'
   }
 }
 // xdoc section -- end

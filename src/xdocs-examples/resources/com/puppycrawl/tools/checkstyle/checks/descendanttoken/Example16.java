@@ -12,14 +12,16 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Test {
-  public void foo() {
+class Example16 {
+  void testMethod1() {
     int a = 5;
-    assert a++ == 0 : "is not"; // violation
+    // violation below, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    assert a++ == 0 : "is not";
     System.out.println(a);
-    assert a == 0 : "is not"; // ok
+    assert a == 0 : "is not";
   }
 }
 // xdoc section -- end
