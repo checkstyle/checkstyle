@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -210,19 +211,35 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        final Optional<DetailNode> inlineTag = getInlineTagNode(ast);
-        final DetailNode inlineTagNode = inlineTag.orElse(null);
-        if (inlineTag.isPresent()
-            && isSummaryTag(inlineTagNode)
-            && isDefinedFirst(inlineTagNode)) {
-            validateSummaryTag(inlineTagNode);
-        }
-        else if (inlineTag.isPresent() && isInlineReturnTag(inlineTagNode)) {
-            validateInlineReturnTag(inlineTagNode);
-        }
-        else if (!startsWithInheritDoc(ast)) {
+        final Optional<DetailNode> inlineTagNode = getInlineTagNode(ast);
+        final AtomicBoolean shouldValidateUntaggedSummary = new AtomicBoolean(true);
+
+        inlineTagNode.ifPresent(node -> {
+            shouldValidateUntaggedSummary.set(validateInlineTagNode(node));
+        });
+        if (shouldValidateUntaggedSummary.get() && !startsWithInheritDoc(ast)) {
             validateUntaggedSummary(ast);
         }
+    }
+
+    /**
+     * Validates InlineTag present in javadoc.
+     *
+     * @param node InlineTagNode
+     * @return True if there is no tag in javadoc summary
+     *     and further processing needs to be made on the ast.
+     */
+    private boolean validateInlineTagNode(DetailNode node) {
+        boolean isSummaryUntagged = true;
+        if (isSummaryTag(node) && isDefinedFirst(node)) {
+            isSummaryUntagged = false;
+            validateSummaryTag(node);
+        }
+        else if (isInlineReturnTag(node)) {
+            isSummaryUntagged = false;
+            validateInlineReturnTag(node);
+        }
+        return isSummaryUntagged;
     }
 
     /**
