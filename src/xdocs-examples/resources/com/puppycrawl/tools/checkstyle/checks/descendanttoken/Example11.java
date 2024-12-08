@@ -9,19 +9,19 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
-class Foo {
-  public void foo() { // ok
-      int x = 1;
-      int z = x + 2;
+class Example11 {
+  void testMethod1() {
+    int x = 1;
+    int z = x + 2;
   }
-}
-class Boo {
-  public void boo() { // violation
-      int x = 1;
-      int y = 2;
-      int z = x + y;
+  // violation below, 'Count of 3 for 'METHOD_DEF' descendant'
+  void testMethod2() {
+    int x = 1;
+    int y = 2;
+    int z = x + y;
   }
 }
 // xdoc section -- end
