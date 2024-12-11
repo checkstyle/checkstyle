@@ -47,7 +47,7 @@ jobs:
 
       - name: Download target java source
         run: |
-            curl --fail-with-body -X GET "${{ inputs.java-source-url }}}" \
+            curl --fail-with-body -X GET "${{ inputs.java-source-url }}" \
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -o "Test.java"
