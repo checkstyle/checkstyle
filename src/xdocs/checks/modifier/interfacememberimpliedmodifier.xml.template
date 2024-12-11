@@ -100,7 +100,7 @@ public interface AddressFactory {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -108,7 +108,7 @@ public interface AddressFactory {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p>
@@ -120,7 +120,7 @@ public interface AddressFactory {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
@@ -128,7 +128,7 @@ public interface AddressFactory {
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

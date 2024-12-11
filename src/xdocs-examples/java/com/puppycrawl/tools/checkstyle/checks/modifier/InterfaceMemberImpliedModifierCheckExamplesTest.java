@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class InterfaceMemberImpliedModifierCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
@@ -35,18 +35,32 @@ public class InterfaceMemberImpliedModifierCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "16:3: " + getCheckMessage(MSG_KEY, "final"),
+            "16:3: " + getCheckMessage(MSG_KEY, "public"),
+            "16:3: " + getCheckMessage(MSG_KEY, "static"),
+            "24:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:3: " + getCheckMessage(MSG_KEY, "public"),
+            "28:3: " + getCheckMessage(MSG_KEY, "public"),
+            "28:3: " + getCheckMessage(MSG_KEY, "static"),
+            "32:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "32:5: " + getCheckMessage(MSG_KEY, "public"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "19:3: " + getCheckMessage(MSG_KEY, "final"),
+            "19:3: " + getCheckMessage(MSG_KEY, "public"),
+            "19:3: " + getCheckMessage(MSG_KEY, "static"),
+            "27:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:3: " + getCheckMessage(MSG_KEY, "public"),
+            "35:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "35:5: " + getCheckMessage(MSG_KEY, "public"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
