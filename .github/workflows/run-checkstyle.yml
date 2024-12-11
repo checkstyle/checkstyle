@@ -37,6 +37,7 @@ jobs:
         with:
           repository: 'checkstyle/checkstyle'
           latest: true
+          fileName: 'checkstyle-*.*.*-all.jar'
 
       - name: Download config
         run: |
@@ -54,6 +55,7 @@ jobs:
 
       - name: Run checkstyle
         run: |
+            pwd
             ls -la
             JAR_NAME=$(find . -name "*-all.jar")
             java -jar "$JAR_NAME" -c config.xml Test.java
