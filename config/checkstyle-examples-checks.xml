@@ -120,7 +120,7 @@
     <!-- Regexp -->
     <module name="RegexpSinglelineJava">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="class Example\d+"/>
+      <property name="format" value="(class|interface|record|enum) Example\d+"/>
       <property name="minimum" value="1"/>
       <property name="maximum" value="1"/>
       <message key="regexp.minimum"
