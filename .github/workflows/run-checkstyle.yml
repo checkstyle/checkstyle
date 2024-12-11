@@ -54,5 +54,6 @@ jobs:
 
       - name: Run checkstyle
         run: |
+            ls -la
             JAR_NAME=$(find . -name "*-all.jar")
             java -jar "$JAR_NAME" -c config.xml Test.java
