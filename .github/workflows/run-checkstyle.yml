@@ -36,6 +36,7 @@ jobs:
       - uses: robinraju/release-downloader@v1
         with:
           repository: 'checkstyle/checkstyle'
+          latest: true
 
       - name: Download config
         run: |
