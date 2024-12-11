@@ -57,5 +57,7 @@ jobs:
         run: |
             pwd
             ls -la
+            cat config.xml
+            cat Test.java
             JAR_NAME=$(find . -name "*-all.jar")
             java -jar "$JAR_NAME" -c config.xml Test.java
