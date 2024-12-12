@@ -163,21 +163,29 @@ public interface AddressFactory {
           Code:
         </p>
         <source>
-public interface AddressFactory {
+public interface Example1 {
 
-  public static final String UNKNOWN = &quot;Unknown&quot;;  // valid
+  public static final String UNKNOWN = &quot;Unknown&quot;;
+  String OTHER = &quot;Other&quot;;
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Example1 instance() { return null; }
 
-  String OTHER = &quot;Other&quot;;  // violation
-
-  public static AddressFactory instance();  // valid
-
-  public abstract Address createAddress(String addressLine, String city);  // valid
-
-  List&lt;Address&gt; findAddresses(String city);  // violation
-
-  interface Address {  // violation
-
-    String getCity();  // violation
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
   }
 }
         </source>
@@ -202,13 +210,29 @@ public interface AddressFactory {
           Code:
         </p>
         <source>
-public interface RoadFeature {
+public interface Example2 {
 
-  String STOP = &quot;Stop&quot;;  // violation
+  public static final String UNKNOWN = &quot;Unknown&quot;;
+  String OTHER = &quot;Other&quot;;
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Example2 instance() { return null; }
 
-  enum Lights {  // valid because of configured properties
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // OK above because of configured properties
+    // OK above because of configured properties
 
-    RED, YELLOW, GREEN;
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
   }
 }
         </source>
