@@ -33,6 +33,7 @@ public class PackageNameCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample1() throws Exception {
+
         final String[] expected = {
 
         };
@@ -46,7 +47,7 @@ public class PackageNameCheckExamplesTest extends AbstractExamplesModuleTestSupp
         final String pattern = "^[A-Z]+(\\.[a-z][a-z0-9]*)*$";
 
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_KEY,
+            "13:9: " + getCheckMessage(MSG_KEY,
                     "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
 
         };

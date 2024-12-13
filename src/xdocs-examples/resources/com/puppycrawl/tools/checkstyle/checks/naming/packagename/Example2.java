@@ -9,9 +9,9 @@
 </module>
 */
 
+// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // violation
 
-// xdoc section -- start
 public class Example2 {}
 // xdoc section -- end
 

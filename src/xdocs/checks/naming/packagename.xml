@@ -58,6 +58,8 @@
         </source>
         <p id="Example1-code">Code Example:</p>
         <source>
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
+
 public class Example1 {}
         </source>
         <p id="Example2-config">
@@ -76,6 +78,8 @@ public class Example1 {}
         </source>
         <p id="Example2-code">Code Example:</p>
         <source>
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // violation
+
 public class Example2 {}
         </source>
       </subsection>
