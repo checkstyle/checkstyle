@@ -772,19 +772,19 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code |--JAVADOC_TAG[1x0] : [@see #method(Processor, String)]
-     *        |--SEE_LITERAL[1x0] : [@see]
-     *        |--WS[1x4] : [ ]
-     *        |--REFERENCE[1x5] : [#method(Processor, String)]
-     *            |--HASH[1x5] : [#]
-     *            |--MEMBER[1x6] : [method]
-     *            |--PARAMETERS[1x12] : [(Processor, String)]
-     *                |--LEFT_BRACE[1x12] : [(]
-     *                |--ARGUMENT[1x13] : [Processor]
-     *                |--COMMA[1x22] : [,]
-     *                |--WS[1x23] : [ ]
-     *                |--ARGUMENT[1x24] : [String]
-     *                |--RIGHT_BRACE[1x30] : [)]
+     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
+     *         |--SEE_LITERAL -&gt @see
+     *         |--WS -&gt
+     *         |--REFERENCE -&gt REFERENCE
+     *         |   |--HASH -&gt #
+     *         |   |--MEMBER -&gt method
+     *         |   `--PARAMETERS -&gt PARAMETERS
+     *         |       |--LEFT_BRACE -&gt (
+     *         |       |--ARGUMENT -&gt Processor
+     *         |       |--COMMA -&gt ,
+     *         |       |--WS -&gt
+     *         |       |--ARGUMENT -&gt String
+     *         |       `--RIGHT_BRACE -&gt )
      * }
      * </pre>
      */
