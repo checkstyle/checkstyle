@@ -10,6 +10,66 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 10.21.0">
+      <div class="releaseDate">12.12.2024</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Expand Default Value of `constantWaiverParentToken` in MagicNumberCheck with All
+            Operators.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/15985">#15985</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Enable examples tests.
+            Author: Amit Kumar Deohoria, Ivan Babushkin
+            <a href="https://github.com/checkstyle/checkstyle/issues/13345">#13345</a>
+          </li>
+          <li>
+            GitHub action to execute latest checkstyle release on provided conf and source .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/15955">#15955</a>
+          </li>
+          <li>
+            https://checkstyle.org/checks/ Gives a 404.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/13494">#13494</a>
+          </li>
+          <li>
+            Refactor SummaryJavadoc to avoid null usage .
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14881">#14881</a>
+          </li>
+          <li>
+            Test to ensure website checks/filters are in alphabetical order.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14840">#14840</a>
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: Ivan Babushkin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            Define violation messages for all violations..
+            Author: Ivan Babushkin
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: RawanWgih
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Remove &#39;//ok&#39; comments from Input files .
+            Author: malakelbanna
+            <a href="https://github.com/checkstyle/checkstyle/issues/13213">#13213</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.20.2">
       <div class="releaseDate">30.11.2024</div>
       <p>Bug fixes:</p>

@@ -55,59 +55,59 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
-          Example:
+          Example1:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example2-config">
-          To configure the check with 40 allowed non commented lines for a method:
+          To configure the check with 4 allowed non commented lines for a method:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">
-          Example:
+          Example2:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example3-config">
-          To configure the check to set limit of non commented lines in class to 100:
+          To configure the check to set limit of non commented lines in class to 10:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
         <p id="Example4-config">
-          To configure the check to set limit of non commented lines in file to 200:
+          To configure the check to set limit of non commented lines in file to 10:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/metrics/javancss/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
