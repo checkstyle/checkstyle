@@ -141,6 +141,10 @@ workflows:
 #          name: "no-error-pmd"
 #          image-name: *cs_img
 #          command: "./.ci/validation.sh no-error-pmd"
+      - validate-with-maven-script:
+          name: "no-error-kafka"
+          image-name: "cimg/openjdk:21.0.5"
+          command: "./.ci/validation.sh no-error-kafka"
 #      - validate-with-maven-script:
 #          name: "no-exception-struts"
 #          image-name: *cs_img
