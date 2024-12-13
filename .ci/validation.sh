@@ -840,6 +840,21 @@ no-error-spotbugs)
   removeFolderWithProtectedFiles spotbugs
   ;;
 
+no-error-kafka)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo CS_version: "${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from https://github.com/apache/kafka
+  cd .ci-temp/kafka
+  echo "allprojects { repositories { mavenLocal() } }" > localRepo.gradle
+  ./gradlew --stacktrace --info --no-daemon checkstyleMain checkstyleTest -x test \
+    -PcheckstyleVersion="${CS_POM_VERSION}" \
+    -I localRepo.gradle
+  cd ../
+  removeFolderWithProtectedFiles kafka
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
