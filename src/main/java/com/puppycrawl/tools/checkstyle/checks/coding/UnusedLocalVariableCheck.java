@@ -562,7 +562,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else {
             final List<TypeDeclDesc> typeDeclWithSameName = typeDeclWithSameName(shortNameOfClass);
             if (!typeDeclWithSameName.isEmpty()) {
-                obtainedClass = getTheNearestClass(
+                obtainedClass = getClosestMatchingTypeDeclaration(
                         anonInnerAstToTypeDeclDesc.get(literalNewAst).getQualifiedName(),
                         typeDeclWithSameName);
             }
@@ -631,10 +631,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param typeDeclWithSameName typeDeclarations which have the same name as the super class
      * @return the nearest class
      */
-    private static TypeDeclDesc getTheNearestClass(String outerTypeDeclName,
+    private static TypeDeclDesc getClosestMatchingTypeDeclaration(String outerTypeDeclName,
             List<TypeDeclDesc> typeDeclWithSameName) {
         return Collections.min(typeDeclWithSameName, (first, second) -> {
-            return getTypeDeclarationNameMatchingCountDiff(outerTypeDeclName, first, second);
+            return calculateTypeDeclarationDistance(outerTypeDeclName, first, second);
         });
     }
 
@@ -642,23 +642,69 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Get the difference between type declaration name matching count. If the
      * difference between them is zero, then their depth is compared to obtain the result.
      *
-     * @param outerTypeDeclName outer type declaration of anonymous inner class
-     * @param firstTypeDecl first input type declaration
-     * @param secondTypeDecl second input type declaration
+     * @param outerTypeName outer type declaration of anonymous inner class
+     * @param firstType first input type declaration
+     * @param secondType second input type declaration
      * @return difference between type declaration name matching count
      */
-    private static int getTypeDeclarationNameMatchingCountDiff(String outerTypeDeclName,
-                                                               TypeDeclDesc firstTypeDecl,
-                                                               TypeDeclDesc secondTypeDecl) {
-        int diff = Integer.compare(
-            CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, secondTypeDecl.getQualifiedName()),
-            CheckUtil.typeDeclarationNameMatchingCount(
-                outerTypeDeclName, firstTypeDecl.getQualifiedName()));
-        if (diff == 0) {
-            diff = Integer.compare(firstTypeDecl.getDepth(), secondTypeDecl.getDepth());
+    private static int calculateTypeDeclarationDistance(String outerTypeName,
+                                                        TypeDeclDesc firstType,
+                                                        TypeDeclDesc secondType) {
+        final int firstMatchCount =
+                countMatchingQualifierChars(outerTypeName, firstType.getQualifiedName());
+        final int secondMatchCount =
+                countMatchingQualifierChars(outerTypeName, secondType.getQualifiedName());
+        final int matchDistance = Integer.compare(secondMatchCount, firstMatchCount);
+
+        final int distance;
+        if (matchDistance == 0) {
+            distance = Integer.compare(firstType.getDepth(), secondType.getDepth());
         }
-        return diff;
+        else {
+            distance = matchDistance;
+        }
+
+        return distance;
+    }
+
+    /**
+     * Calculates the type declaration matching count for the superclass of an anonymous inner
+     * class.
+     *
+     * <p>
+     * For example, if the pattern class is {@code Main.ClassOne} and the class to be matched is
+     * {@code Main.ClassOne.ClassTwo.ClassThree}, then the matching count would be calculated by
+     * comparing the characters at each position, and updating the count whenever a '.'
+     * is encountered.
+     * This is necessary because pattern class can include anonymous inner classes, unlike regular
+     * inheritance where nested classes cannot be extended.
+     * </p>
+     *
+     * @param pattern type declaration to match against
+     * @param candidate type declaration to be matched
+     * @return the type declaration matching count
+     */
+    private static int countMatchingQualifierChars(String pattern,
+                                                   String candidate) {
+        final int typeDeclarationToBeMatchedLength = candidate.length();
+        final int minLength = Math
+                .min(typeDeclarationToBeMatchedLength, pattern.length());
+        final boolean shouldCountBeUpdatedAtLastCharacter =
+                typeDeclarationToBeMatchedLength > minLength
+                && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
+
+        int result = 0;
+        for (int idx = 0;
+             idx < minLength
+                && pattern.charAt(idx) == candidate.charAt(idx);
+             idx++) {
+
+            if (shouldCountBeUpdatedAtLastCharacter
+                    || pattern.charAt(idx) == PACKAGE_SEPARATOR.charAt(0)) {
+                result = idx;
+            }
+        }
+        return result;
     }
 
     /**
