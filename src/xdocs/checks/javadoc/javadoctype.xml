@@ -141,33 +141,42 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example1 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example2-config">
@@ -182,33 +191,42 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-code">Example2:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example2 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {}
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-private class ClassE&lt;T&gt; {} // OK
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example3-config">
@@ -223,33 +241,42 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example3 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK, as author tag check is ignored for inner class
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // violation, as author format with only whitespace or new line is invalid
-
-/** */
-public class ClassD {} // violation, as author tag is missing
-
-/** */
-private class ClassE {} // violation, as author tag is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example4-config">
@@ -264,33 +291,42 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example4 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK, as version tag check is ignored for inner class
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // violation, as version format is invalid
-
-/** */
-public class ClassD {} // violation, as version tag is missing
-
-/** */
-private class ClassE {} // violation, as version tag is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example5-config">
@@ -306,33 +342,42 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example5-code">Example:</p>
+        <p id="Example5-code">Example5:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example5 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {}
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // OK
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // OK
-
-/** */
-private class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example6-config">
@@ -347,33 +392,42 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example6-code">Example:</p>
+        <p id="Example6-code">Example6:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example6 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
     /** */
-    private class ClassB {} // OK
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {}
+
+  /** */
+  private class ClassF&lt;T&gt; {}
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // violation
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD&lt;T&gt; {} // OK, as missing param tag is allowed
-
-/** */
-private class ClassE&lt;T&gt; {} // OK, as missing param tag is allowed
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example7-config">
@@ -388,60 +442,95 @@ public class ClassF&lt;T&gt; {} // OK
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-code">Example7:</p>
         <source>
 /**
  * @author a
  * @version $Revision1$
  */
-public class ClassA { // OK
+public class Example7 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
+    /** */
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+
   /** */
-  private class ClassB {} // OK
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated
+  public class ClassG&lt;T&gt; {}
 }
-
-/**
- * @author
- * @version abc
- * @unknownTag value // OK, as unknown tag is allowed
- */
-public class ClassC {} // OK
-
-/** */
-public class ClassD {} // OK
-
-/** */
-private class ClassE {} // OK
-
-/** */
-@Generated
-public class ClassF&lt;T&gt; {} // OK
         </source>
 
         <p id="Example8-config">
           To configure a check that allows skipping validation at all
-          for classes annotated with <code>@SpringBootApplication</code>
-          and <code>@Configuration</code>:
+          for classes annotated with <code>@unknownTag</code>
         </p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;JavadocType&quot;&gt;
-      &lt;property name=&quot;allowedAnnotations&quot; value=&quot;SpringBootApplication,Configuration&quot;/&gt;
+      &lt;property name=&quot;allowedAnnotations&quot; value=&quot;unknownTag&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example8-code">
-          Example:
+          Example8:
         </p>
         <source>
-/** */
-@SpringBootApplication // no violations about missing param tag on class
-public class Application&lt;T&gt; {}
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class Example8 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
+    /** */
+    private class ClassB {}
+  }
 
-/** */
-@Configuration // no violations about missing param tag on class
-class DatabaseConfiguration&lt;T&gt; {}
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
+  public class ClassG&lt;T&gt; {}
+}
         </source>
       </subsection>
 
