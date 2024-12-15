@@ -51,13 +51,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -66,13 +66,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-code">Example2:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -81,13 +81,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -96,13 +96,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -111,13 +111,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="Example5-code">Example5:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -126,13 +126,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Example:</p>
+        <p id="Example6-code">Example6:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
 
@@ -141,32 +141,31 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example:</p>
+        <p id="Example7-code">Example7:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example7.java"/>
           <param name="type" value="code"/>
         </macro>
 
         <p id="Example8-config">
           To configure a check that allows skipping validation at all
-          for classes annotated with <code>@SpringBootApplication</code>
-          and <code>@Configuration</code>:
+          for classes annotated with <code>@unknownTag</code>
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example8-code">
-          Example:
+          Example8:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/Example8.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,72 +35,84 @@ public class JavadocTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "28:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "36:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "39:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
+            "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-
+            "42:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-
+            "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-
+            "30:6: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknownTag"),
+            "38:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "41:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "44:3: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 }
