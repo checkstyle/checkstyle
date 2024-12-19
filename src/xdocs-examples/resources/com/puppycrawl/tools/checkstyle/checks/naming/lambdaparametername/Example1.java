@@ -14,6 +14,6 @@ import java.util.function.Function;
 class Example1 {
   Function<String, String> function1 = s -> s.toLowerCase();
   Function<String, String> function2 =
-          S -> S.toLowerCase(); // violation
+          S -> S.toLowerCase(); // violation 'Name 'S' must match pattern'
 }
 // xdoc section -- end

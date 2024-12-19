@@ -70,7 +70,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
             "18:66: " + getCheckMessage(MSG_INVALID_PATTERN, "st", pattern),
             "21:65: " + getCheckMessage(MSG_INVALID_PATTERN, "s1", pattern),
             "22:65: " + getCheckMessage(MSG_INVALID_PATTERN, "s2", pattern),
-            "25:21: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
+            "26:21: " + getCheckMessage(MSG_INVALID_PATTERN, "s", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLambdaParameterName.java"), expected);
