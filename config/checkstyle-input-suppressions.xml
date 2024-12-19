@@ -1710,8 +1710,6 @@
   <suppress id="UnnecessaryOkComment"
             files="checks[\\/]whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundKeywordsAndOperators.java"/>
   <suppress id="UnnecessaryOkComment"
-            files="filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter10.java"/>
-  <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilterNullViolation.java"/>
   <suppress id="UnnecessaryOkComment"
             files="filters[\\/]suppresswithnearbycommentfilter[\\/]InputSuppressWithNearbyCommentFilterByCheckAndInfluence.java"/>
