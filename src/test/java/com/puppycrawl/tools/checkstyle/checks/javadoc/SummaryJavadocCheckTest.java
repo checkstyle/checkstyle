@@ -318,6 +318,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testForbidden4() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocTestForbiddenFragments4.java"), expected);
+    }
+
+    @Test
     public void testForbidden2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
