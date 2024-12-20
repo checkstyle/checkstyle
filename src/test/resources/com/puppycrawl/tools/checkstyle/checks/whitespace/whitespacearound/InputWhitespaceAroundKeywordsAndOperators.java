@@ -93,18 +93,18 @@ class InputWhitespaceAroundKeywordsAndOperators
         }
         else
         {
-            return 2; // this is ok
+            return 2;
         }
     }
 
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
+        Object o = (Object) new Object();
         o = (Object)o;
-        o = ( Object ) o; // ok
+        o = ( Object ) o;
         o = (Object)
-            o; // ok
+            o;
     }
 
     /** test questions **/
@@ -156,10 +156,8 @@ class InputWhitespaceAroundKeywordsAndOperators
     /** assert statement test */
     public void assertTest()
     {
-        // OK
         assert true;
 
-        // OK
         assert true : "Whups";
 
         // evil colons, should be OK
