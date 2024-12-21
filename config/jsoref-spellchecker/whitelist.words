@@ -22,6 +22,7 @@ AFilter
 aggregators
 allchecks
 allclasses
+allprojects
 alot
 amazonaws
 androidx
@@ -734,6 +735,7 @@ jtree
 junit
 junitpioneer
 jvm
+jvmargs
 jxr
 kailasam
 Kansara
