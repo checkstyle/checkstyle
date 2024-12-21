@@ -27,8 +27,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -240,12 +238,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         else if (!period.isEmpty()) {
             if (summaryDoc.contains(period)) {
-                final String firstSentence = getFirstSentenceOrNull(ast, period);
-                if (firstSentence == null) {
+                final String firstSentence = getFirstSentence(ast, period);
+                if (firstSentence.isEmpty()) {
                     log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
                 }
-                else if (containsForbiddenFragment(firstSentence)) {
-                    log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+                else {
+                    final String firstSentenceWithoutPeriod =
+                            firstSentence.substring(0, firstSentence.length() - 1);
+                    if (containsForbiddenFragment(firstSentenceWithoutPeriod)) {
+                        log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+                    }
                 }
             }
             else {
@@ -604,21 +606,21 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      *
      * @param ast The Javadoc root node.
      * @param period The configured period symbol.
-     * @return The first sentence up to and excluding the period, or null if no ending was found.
+     * @return The first sentence up to and including the period,
+     *         or empty if no sentence with a period was found.
      */
-    @Nullable
-    private static String getFirstSentenceOrNull(DetailNode ast, String period) {
+    private static String getFirstSentence(DetailNode ast, String period) {
         final List<String> sentenceParts = new ArrayList<>();
-        String sentence = null;
+        String sentence = "";
         for (String text : (Iterable<String>) streamTextParts(ast)::iterator) {
-            final String sentenceEnding = findSentenceEndingOrNull(text, period);
-            if (sentenceEnding != null) {
-                sentenceParts.add(sentenceEnding);
-                sentence = String.join("", sentenceParts);
-                break;
+            final String sentenceToPeriod = getSentenceToPeriod(text, period);
+            if (sentenceToPeriod.isEmpty()) {
+                sentenceParts.add(text);
             }
             else {
-                sentenceParts.add(text);
+                sentenceParts.add(sentenceToPeriod);
+                sentence = String.join("", sentenceParts);
+                break;
             }
         }
         return sentence;
@@ -643,18 +645,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Finds the end of a sentence. If a sentence ending period was found, returns the whole string
-     * up to and excluding that period. The end of sentence detection here could be replaced in the
+     * Finds a sentence to period. If a sentence ending period was found, returns the whole string
+     * up to and including that period. The end of sentence detection here could be replaced in the
      * future by Java's built-in BreakIterator class.
      *
      * @param text The string to search.
      * @param period The period character to find.
-     * @return The string up to and excluding the period, or null if no ending was found.
+     * @return The string up to and including the period,
+     *         or empty if no sentence with a period was found.
      */
-    @Nullable
-    private static String findSentenceEndingOrNull(String text, String period) {
+    private static String getSentenceToPeriod(String text, String period) {
         int periodIndex = text.indexOf(period);
-        String sentenceEnding = null;
+        String sentenceEnding = "";
         while (periodIndex >= 0) {
             final int afterPeriodIndex = periodIndex + period.length();
 
@@ -663,7 +665,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (!DEFAULT_PERIOD.equals(period)
                 || afterPeriodIndex >= text.length()
                 || Character.isWhitespace(text.charAt(afterPeriodIndex))) {
-                sentenceEnding = text.substring(0, periodIndex);
+                sentenceEnding = text.substring(0, afterPeriodIndex);
                 break;
             }
             else {
