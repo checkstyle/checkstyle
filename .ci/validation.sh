@@ -851,7 +851,7 @@ no-error-kafka)
   ./gradlew --stacktrace --info --console=plain --no-daemon checkstyleMain checkstyleTest -x test \
     -PcheckstyleVersion="${CS_POM_VERSION}" \
     -I localRepo.gradle \
-    "-Dorg.gradle.jvmargs=-Xmx4g"
+    "-Dorg.gradle.jvmargs=-Xmx8192M -Dkotlin.daemon.jvm.options=-Xmx8192M"
   cd ../
   removeFolderWithProtectedFiles kafka
   ;;
