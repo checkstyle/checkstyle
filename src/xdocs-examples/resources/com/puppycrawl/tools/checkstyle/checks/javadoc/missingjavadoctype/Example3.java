@@ -8,10 +8,14 @@
   </module>
 </module>
 */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
-public class PublicClass {}
-private class PublicClass {} // violation
-protected class PublicClass {}
-class PackagePrivateClass {}
+class Example3 {
+  public class testClass1 {}
+  private class testClass2 {} // violation, 'Missing a Javadoc comment'
+  protected class testClass3 {}
+  class testClass4 {}
+
+}
 // xdoc section -- end
