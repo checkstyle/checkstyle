@@ -97,12 +97,16 @@
 &lt;/module&gt;
         </source>
 
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <source>
-public class PublicClass {} // violation
-private class PublicClass {}
-protected class PublicClass {}
-class PackagePrivateClass {}
+class Example1 {
+  /** Javadoc.*/
+  public class testClass0 {}
+  public class testClass1 {}
+  private class testClass2 {}
+  protected class testClass3 {}
+  class testClass4 {}
+}
         </source>
 
         <p id="Example2-config">
@@ -118,12 +122,16 @@ class PackagePrivateClass {}
 &lt;/module&gt;
         </source>
 
-        <p id="Example2-code">Example:</p>
+        <p id="Example2-code">Example2:</p>
         <source>
-public class PublicClass {} // violation
-private class PublicClass {} // violation
-protected class PublicClass {} // violation
-class PackagePrivateClass {} // violation
+class Example2 { // violation, 'Missing a Javadoc comment'
+  /** Javadoc.*/
+  public class testClass0 {}
+  public class testClass1 {} // violation, 'Missing a Javadoc comment'
+  private class testClass2 {} // violation, 'Missing a Javadoc comment'
+  protected class testClass3 {} // violation, 'Missing a Javadoc comment'
+  class testClass4 {} // violation, 'Missing a Javadoc comment'
+}
         </source>
 
         <p id="Example3-config">
@@ -140,12 +148,17 @@ class PackagePrivateClass {} // violation
 &lt;/module&gt;
         </source>
 
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">Example3:</p>
         <source>
-public class PublicClass {}
-private class PublicClass {} // violation
-protected class PublicClass {}
-class PackagePrivateClass {}
+class Example3 {
+  /** Javadoc.*/
+  public class testClass0 {}
+  public class testClass1 {}
+  private class testClass2 {} // violation, 'Missing a Javadoc comment'
+  protected class testClass3 {}
+  class testClass4 {}
+
+}
         </source>
 
         <p id="Example4-config">
@@ -161,7 +174,7 @@ class PackagePrivateClass {}
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example4-code">Example:</p>
+        <p id="Example4-code">Example4:</p>
         <source>
 @SpringBootApplication // no violations about missing comment on class
 public class Application {}
@@ -184,7 +197,7 @@ class DatabaseConfiguration {}
 &lt;/module&gt;
         </source>
         <p id="Example5-code">
-          Example:
+          Example5:
         </p>
         <source>
 @Annotation // ok

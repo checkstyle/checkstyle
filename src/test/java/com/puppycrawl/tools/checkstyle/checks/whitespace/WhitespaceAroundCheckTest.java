@@ -82,14 +82,14 @@ public class WhitespaceAroundCheckTest
             "140:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "/"),
             "141:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "/"),
             "141:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "/"),
-            "169:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "assert"),
-            "172:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
-            "172:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
-            "278:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
-            "307:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
-            "307:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
-            "307:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
-            "307:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "167:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "assert"),
+            "170:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
+            "170:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ":"),
+            "276:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "305:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "305:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
+            "305:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "+"),
+            "305:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "+"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAroundKeywordsAndOperators.java"), expected);
