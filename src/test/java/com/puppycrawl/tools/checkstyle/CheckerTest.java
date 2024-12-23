@@ -71,9 +71,9 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.api.ViolationDispatcher;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -1436,12 +1436,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetFileSetCheckSetsMessageDispatcher() {
+    public void testSetFileSetCheckSetsViolationDispatcher() {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);
-        assertWithMessage("Message dispatcher was not expected")
-            .that(fileSet.getInternalMessageDispatcher())
+        assertWithMessage("Violation dispatcher was not expected")
+            .that(fileSet.getInternalViolationDispatcher())
             .isEqualTo(checker);
     }
 
@@ -1974,8 +1974,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             return initCalled;
         }
 
-        public MessageDispatcher getInternalMessageDispatcher() {
-            return getMessageDispatcher();
+        public ViolationDispatcher getInternalViolationDispatcher() {
+            return getViolationDispatcher();
         }
 
     }

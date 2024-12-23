@@ -48,8 +48,8 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.api.ViolationDispatcher;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -218,9 +218,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         // in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
-        final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
+        final TestViolationDispatcher dispatcher = new TestViolationDispatcher();
         check.configure(checkConfig);
-        check.setMessageDispatcher(dispatcher);
+        check.setViolationDispatcher(dispatcher);
 
         final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
                 new File(".no.such.file"));
@@ -246,9 +246,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         // in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
-        final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
+        final TestViolationDispatcher dispatcher = new TestViolationDispatcher();
         check.configure(checkConfig);
-        check.setMessageDispatcher(dispatcher);
+        check.setViolationDispatcher(dispatcher);
         check.setId("ID1");
 
         final Exception exception = new IOException("test exception");
@@ -630,7 +630,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             .getChildrenElements(actual).size();
     }
 
-    private static final class TestMessageDispatcher implements MessageDispatcher {
+    private static final class TestViolationDispatcher implements ViolationDispatcher {
 
         private Set<Violation> savedErrors;
 

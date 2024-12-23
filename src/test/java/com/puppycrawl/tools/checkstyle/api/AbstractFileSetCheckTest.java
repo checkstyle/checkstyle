@@ -206,13 +206,13 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetMessageDispatcher() {
+    public void testGetViolationDispatcher() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         final Checker checker = new Checker();
-        check.setMessageDispatcher(checker);
+        check.setViolationDispatcher(checker);
 
         assertWithMessage("Invalid message dispatcher")
-                .that(check.getMessageDispatcher())
+                .that(check.getViolationDispatcher())
                 .isSameInstanceAs(checker);
     }
 
@@ -228,8 +228,8 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testMultiFileFireErrors() throws Exception {
         final MultiFileViolationFileSetCheck check = new MultiFileViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
-        final ViolationDispatcher dispatcher = new ViolationDispatcher();
-        check.setMessageDispatcher(dispatcher);
+        final ViolationDispatcherClass dispatcher = new ViolationDispatcherClass();
+        check.setViolationDispatcher(dispatcher);
 
         check.finishProcessing();
 
@@ -335,7 +335,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    public static class ViolationDispatcher implements MessageDispatcher {
+    public static class ViolationDispatcherClass implements ViolationDispatcher {
         private String name;
         private SortedSet<Violation> errorList;
 

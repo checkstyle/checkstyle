@@ -50,17 +50,17 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.api.ViolationDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * This class provides the functionality to check a set of files.
  */
-public class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
+public class Checker extends AbstractAutomaticBean implements ViolationDispatcher, RootModule {
 
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
@@ -513,7 +513,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param fileSetCheck the additional FileSetCheck
      */
     public void addFileSetCheck(FileSetCheck fileSetCheck) {
-        fileSetCheck.setMessageDispatcher(this);
+        fileSetCheck.setViolationDispatcher(this);
         fileSetChecks.add(fileSetCheck);
     }
 
