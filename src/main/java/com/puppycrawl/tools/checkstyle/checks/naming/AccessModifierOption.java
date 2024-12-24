@@ -53,6 +53,17 @@ public enum AccessModifierOption {
     }
 
     /**
+     * Checks if this access modifier is a sub access modifier of another access modifier.
+     * Example: PUBLIC is a sub access modifier of PRIVATE.
+     *
+     * @param accessModifierOption a {@code AccessModifierOption} value
+     * @return if {@code this} is a sub access modifier of {@code accessModifierOption}.
+     */
+    public boolean isIn(AccessModifierOption accessModifierOption) {
+        return compareTo(accessModifierOption) <= 0;
+    }
+
+    /**
      * Factory method which returns an AccessModifier instance that corresponds to the
      * given access modifier name represented as a {@link String}.
      * The access modifier name can be formatted both as lower case or upper case string.

@@ -1,10 +1,8 @@
 /*
 JavadocVariable
-scope = (default)private
-excludeScope = (default)null
+accessModifiers = (default)private
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF
-
 
 */
 
