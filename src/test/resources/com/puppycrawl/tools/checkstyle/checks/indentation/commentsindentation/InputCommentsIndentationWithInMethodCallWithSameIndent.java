@@ -13,7 +13,7 @@ public class InputCommentsIndentationWithInMethodCallWithSameIndent {
         // Some comment here
         s1,
         s2
-        // ok
+        // Correct indentation for this comment
     );
 
     private final boolean isEqualsTwo = equals(
