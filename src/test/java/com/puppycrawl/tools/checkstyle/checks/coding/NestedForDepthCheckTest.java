@@ -47,9 +47,9 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     public void testNestedForDepthCheckCustomMaxLevelTwo() throws Exception {
 
         final String[] expected = {
-            "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
-            "33:13: " + getCheckMessage(MSG_KEY, 4, 2),
-            "36:13: " + getCheckMessage(MSG_KEY, 4, 2),
+            "33:11: " + getCheckMessage(MSG_KEY, 3, 2),
+            "35:13: " + getCheckMessage(MSG_KEY, 4, 2),
+            "39:13: " + getCheckMessage(MSG_KEY, 5, 2),
         };
 
         verifyWithInlineConfigParser(
@@ -69,8 +69,10 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testNestedForDepthCheckCustomMaxLevelFour() throws Exception {
+        final String[] expected = {
+            "39:9: " + getCheckMessage(MSG_KEY, 5, 4),
+        };
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
                 getPath("InputNestedForDepthCheckCustomMaxLevelFour.java"),
