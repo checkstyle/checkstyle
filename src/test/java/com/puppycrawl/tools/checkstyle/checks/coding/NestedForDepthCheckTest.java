@@ -70,7 +70,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedForDepthCheckCustomMaxLevelFour() throws Exception {
         final String[] expected = {
-            "37:9: " + getCheckMessage(MSG_KEY, 5, 4),
+            "39:9: " + getCheckMessage(MSG_KEY, 5, 4),
         };
 
 
@@ -96,7 +96,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNestedForDepthCheckDefaultMaxLevel() throws Exception {
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_KEY, 2, 1),
+            "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(
