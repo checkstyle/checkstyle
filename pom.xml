@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.20.3-SNAPSHOT</version>
+  <version>10.21.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -535,7 +535,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.11.1</version>
+          <version>3.11.2</version>
           <configuration>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
@@ -734,6 +734,10 @@
         <configuration>
           <javaVersion>${java.version}</javaVersion>
           <includeTestClasses>false</includeTestClasses>
+          <exclusionPatterns>
+            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
+            <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
+          </exclusionPatterns>
         </configuration>
         <executions>
           <execution>
