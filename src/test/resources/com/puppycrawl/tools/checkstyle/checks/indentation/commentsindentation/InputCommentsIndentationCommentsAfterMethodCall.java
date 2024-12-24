@@ -11,14 +11,14 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 public class InputCommentsIndentationCommentsAfterMethodCall {
     public static void main() {
         InputCommentsIndentationCommentsAfterMethodCall.flatMap(4,5)
-           // ok
+           // Correct indentation for this method call chain
            .flatMap()
            .flatMap();
-        // ok
+        // Correct indentation for standalone comment
     }
     public static void main1() {
         InputCommentsIndentationCommentsAfterMethodCall.flatMap(4,5)
-                // ok
+                // Correct indentation for this method call chain
                 .flatMap()
                 .flatMap();
                // violation '.* incorrect .* level 15, expected is 8, .* same .* as line 20.'
