@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck.MSG_KEY;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -37,15 +39,19 @@ public class PackageNameCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
 
+        final String pattern = "^[A-Z]+(\\.[a-z][a-z0-9]*)*$";
+
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_KEY,
+                    "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
