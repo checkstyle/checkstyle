@@ -8,10 +8,14 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings({"memberName"})
+
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
+public class Example1 {
+    @SuppressWarnings("memberName")
 private int J; // should NOT fail MemberNameCheck
 
-@SuppressWarnings({"MemberName"})
-@SuppressWarnings({"NoWhitespaceAfter"})
+@SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
 private int [] ARRAY; // should NOT fail MemberNameCheck and NoWhitespaceAfterCheck
+}
 // xdoc section -- end
