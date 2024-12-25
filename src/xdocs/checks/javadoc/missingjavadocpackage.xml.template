@@ -27,18 +27,24 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config">
+        <p id="javadoc-package-info-config">
             To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/nojavadoc/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
