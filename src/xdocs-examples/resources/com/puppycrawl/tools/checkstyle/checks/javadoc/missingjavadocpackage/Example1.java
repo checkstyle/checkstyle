@@ -5,14 +5,13 @@
   </module>
 </module>
 */
-
 // xdoc section -- start
 /**
-* Provides API classes
-*/
-package com.checkstyle.api; // no violation
-/*
-* Block comment is not a javadoc
-*/
-package com.checkstyle.api; // violation
+ * Provides API classes
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage;
+
+public class Example1 {
+  String str="some content";
+}
 // xdoc section -- end

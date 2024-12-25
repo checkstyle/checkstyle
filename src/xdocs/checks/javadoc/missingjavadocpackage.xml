@@ -37,16 +37,27 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <source>
 /**
-* Provides API classes
-*/
-package com.checkstyle.api; // no violation
+ * Provides API classes
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage;
+
+public class Example1 {
+  String str=&quot;some content&quot;;
+}
+        </source>
+        <p id="Example2-code">Example2:</p>
+        <source>
 /*
-* Block comment is not a javadoc
-*/
-package com.checkstyle.api; // violation
+ * Block comment is not a javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage;
+
+public class Example2 {
+  String str=&quot;some content&quot;;
+}
         </source>
       </subsection>
 
