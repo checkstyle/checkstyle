@@ -14,8 +14,13 @@
 */
 
 // xdoc section -- start
-@SuppressWarnings("checkstyle:systemout")
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
+public class Example2 {
+   @SuppressWarnings("checkstyle:systemout") // This suppresses the RegexpSinglelineJava check
 public static void foo() {
-  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+    System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+}
+
 }
 // xdoc section -- end
