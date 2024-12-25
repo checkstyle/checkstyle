@@ -16,7 +16,6 @@ class Example1 {
 
 }; // violation 'Unnecessary semicolon after outer type declaration'
 
-
 interface B {
 
 }; // violation 'Unnecessary semicolon after outer type declaration'
