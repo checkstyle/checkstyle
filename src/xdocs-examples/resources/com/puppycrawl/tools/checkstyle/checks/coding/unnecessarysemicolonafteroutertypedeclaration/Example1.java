@@ -14,17 +14,17 @@ class Example1 {
 
   }; // OK, nested type declarations are ignored
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 interface B {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 enum C {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 @interface D {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 // xdoc section -- end
