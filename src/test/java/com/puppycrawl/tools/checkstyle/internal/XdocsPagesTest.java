@@ -2119,10 +2119,18 @@ public class XdocsPagesTest {
         final String id = idAttribute.getTextContent();
         final String expectedId = String.format(Locale.ROOT, "%s-%s", exampleName,
                 exampleType);
-        assertWithMessage(fileName
+        if (expectedId.startsWith("package-info")) {
+            assertWithMessage(fileName
+                + ": paragraph before example macro should have the expected id value")
+                .that(id)
+                .endsWith(expectedId);
+        }
+        else {
+            assertWithMessage(fileName
                 + ": paragraph before example macro should have the expected id value")
                 .that(id)
                 .isEqualTo(expectedId);
+        }
     }
 
     private static Node getPrecedingParagraph(Node macro) {
