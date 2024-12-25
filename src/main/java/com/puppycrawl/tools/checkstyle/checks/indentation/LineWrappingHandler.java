@@ -262,9 +262,13 @@ public class LineWrappingHandler {
             }
 
             final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
+            final boolean isTextBlockLiteral =
+                    curNode.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
+                    || curNode.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END
+                    || curNode.getType() == TokenTypes.TEXT_BLOCK_CONTENT;
 
-            if (firstTokenOnLine == null
-                || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
+            if (!isTextBlockLiteral && (firstTokenOnLine == null
+                    || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode))) {
                 result.put(curNode.getLineNo(), curNode);
             }
             curNode = getNextCurNode(curNode);
