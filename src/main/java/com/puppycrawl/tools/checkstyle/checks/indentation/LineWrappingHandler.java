@@ -164,7 +164,8 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)) {
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
+                    || !shouldProcessTextBlockLiteral(node)) {
                 continue;
             }
             if (currentType == TokenTypes.RPAREN) {
@@ -268,6 +269,34 @@ public class LineWrappingHandler {
                 result.put(curNode.getLineNo(), curNode);
             }
             curNode = getNextCurNode(curNode);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether warning needs be raised for
+     *     {@code TEXT_BLOCK_LITERAL_END}.
+     *
+     * @param node the node
+     * @return true if above is the case or
+     *     node is {@code TEXT_BLOCK_LITERAL_BEGIN}.
+     */
+    private static boolean shouldProcessTextBlockLiteral(DetailAST node) {
+        boolean result = true;
+        if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END) {
+            result = false;
+            final String blockContent = node.getPreviousSibling().toString();
+            // skipping AST's [XX:XX] block
+            int index = blockContent.lastIndexOf('[') - 1;
+            char character = blockContent.charAt(index);
+            while (Character.isWhitespace(character)) {
+                if (character == '\n') {
+                    result = true;
+                    break;
+                }
+                index--;
+                character = blockContent.charAt(index);
+            }
         }
         return result;
     }
