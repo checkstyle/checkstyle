@@ -85,19 +85,20 @@ class Example1 {
 
   }; // OK, nested type declarations are ignored
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
+
 
 interface B {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 enum C {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 @interface D {
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
         </source>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
@@ -121,7 +122,7 @@ class Example2 {
 
   }; // OK, nested type declarations are ignored
 
-}; // violation
+}; // violation 'Unnecessary semicolon after outer type declaration'
 
 interface T {
 
