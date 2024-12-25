@@ -19,12 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -33,10 +32,13 @@ public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModu
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
 
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }

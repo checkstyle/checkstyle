@@ -32,13 +32,19 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Example1:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.txt"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <p id="Example2-code">Example2:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
