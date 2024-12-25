@@ -12,10 +12,18 @@
   <module name="SuppressWarningsFilter" />
 </module>
 */
+// violation 6 lines above 'use SLF4J instead.'
 
 // xdoc section -- start
-@SuppressWarnings("checkstyle:systemout")
-public static void foo() {
-  System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
+public class Example2 {
+  @SuppressWarnings("checkstyle:systemout")
+  public static void foo() {
+    System.out.println("Debug info."); // ok, because there is annotation
+  }
+  public static void boo() {
+    System.out.println("Some info."); // violation 'use SLF4J instead.'
+  }
 }
 // xdoc section -- end

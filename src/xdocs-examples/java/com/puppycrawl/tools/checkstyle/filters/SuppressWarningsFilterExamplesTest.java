@@ -19,12 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
     protected String getPackageLocation() {
@@ -34,18 +32,21 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "21:7: 'int' is followed by whitespace.",
+            "21:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "9: Dont use System.out/err, use SLF4J instead.",
+            "26: Dont use System.out/err, use SLF4J instead.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }
