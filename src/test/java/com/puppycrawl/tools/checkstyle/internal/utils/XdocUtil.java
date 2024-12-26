@@ -46,7 +46,7 @@ import org.xml.sax.SAXException;
  */
 public final class XdocUtil {
 
-    public static final String DIRECTORY_PATH = "src/xdocs";
+    public static final String DIRECTORY_PATH = "src/site/xdoc";
 
     private XdocUtil() {
     }
@@ -100,7 +100,7 @@ public final class XdocUtil {
             final String fileName = entry.getFileName().toString();
             // until https://github.com/checkstyle/checkstyle/issues/13132
             if (fileName.startsWith("config_")
-                    || !entry.getParent().toString().matches("src[\\\\/]xdocs")
+                    || !entry.getParent().toString().matches("src[\\\\/]site[\\\\/]xdocs")
                     && fileName.endsWith(".xml")) {
                 xdocs.add(entry);
             }

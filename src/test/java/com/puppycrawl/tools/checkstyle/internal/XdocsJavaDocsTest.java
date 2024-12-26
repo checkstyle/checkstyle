@@ -132,9 +132,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final File file = path.toFile();
             final String fileName = file.getName();
 
-            if ("config_system_properties.xml".equals(fileName)
-                    || "index.xml".equals(fileName)
-                    || Pattern.matches("config_[a-z]+.xml", fileName)) {
+            if (XdocsPagesTest.isNonModulePage(fileName)) {
                 continue;
             }
 
@@ -544,7 +542,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         .resolve(Paths.get(value))
                         .normalize()
                         .toString()
-                        .replaceAll("src[\\\\/]xdocs[\\\\/]", "")
+                        .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "")
                         .replaceAll("\\\\", "/");
             }
 

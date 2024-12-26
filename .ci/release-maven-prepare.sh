@@ -21,9 +21,9 @@ if [ "$TARGET_VERSION" != "$CURRENT_VERSION" ]; then
   exit 1;
 fi
 
-if [[ $(grep "<section name=\"Release $TARGET_VERSION\">" src/xdocs/releasenotes.xml \
+if [[ $(grep "<section name=\"Release $TARGET_VERSION\">" src/site/xdoc/releasenotes.xml \
            | cat | wc -l) -eq 0 ]]; then
-  echo "src/xdocs/releasenotes.xml do not have section for $TARGET_VERSION"
+  echo "src/site/xdoc/releasenotes.xml do not have section for $TARGET_VERSION"
   exit 1
 fi
 
