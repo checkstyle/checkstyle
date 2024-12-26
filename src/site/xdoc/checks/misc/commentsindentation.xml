@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>CommentsIndentation</title>
+  </head>
+  <body>
+    <section name="CommentsIndentation">
+      <p>Since Checkstyle 6.10</p>
+      <subsection name="Description" id="Description">
+        <div>
+          Controls the indentation between comments and surrounding code.
+          Comments are indented at the same level as the surrounding code.
+          Detailed info about such convention can be found
+          <a href="../../styleguides/google-java-style-20220203/javaguide.html#s4.8.6.1-block-comment-style">
+          here</a>
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                    SINGLE_LINE_COMMENT</a>
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SINGLE_LINE_COMMENT">
+                    SINGLE_LINE_COMMENT</a>
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BLOCK_COMMENT_BEGIN">
+                    BLOCK_COMMENT_BEGIN</a>
+                  .
+              </td>
+              <td>6.10</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the Check
+          where both single-line and block comments are checked for indentation violations:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CommentsIndentation&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example1-code">
+        Example:
+        </p>
+        <source>
+public class Example1 {
+  void testMethod() {
+    /*
+     * it is Ok
+     */
+    boolean bool = true;
+      // violation below, 'Block comment has incorrect indentation level 6'
+      /*
+       * It is not okay
+       */
+    double d = 3.14;
+  }
+
+  public void foo1() {
+    foo2();
+    // it is OK
+  }
+
+  public void foo2() {
+    int i;
+        // It is not okay
+  }
+  // violation 2 lines above  'Comment has incorrect indentation level 8'
+}
+        </source>
+        <p id="Example2-config">
+          To configure the Check to validate only single-line comments:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;CommentsIndentation&quot;&gt;
+      &lt;property name=&quot;tokens&quot; value=&quot;SINGLE_LINE_COMMENT&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+
+        <p id="Example2-code">
+          Example:
+        </p>
+        <source>
+public class Example2 {
+  void testMethod() {
+    /*
+     * it is Ok
+     */
+    boolean bool = true;
+
+      /*
+       * It is not okay
+       */
+    double d = 3.14;
+  }
+
+  public void foo1() {
+    foo2();
+    // it is OK
+  }
+
+  public void foo2() {
+    int i;
+        // It is not okay
+  }
+  // violation 2 lines above  'Comment has incorrect indentation level 8'
+}
+        </source>
+        <p>Please take a look at the following examples to understand how the check works:</p>
+        <p id="Example3-code">
+          Example #3: Comment is used as a single-line border to separate groups of methods.
+        </p>
+        <source>
+public class Example3 {
+  /////////////////////////////// it is OK
+
+  public void foo1() {
+    int a = 0;
+  }
+    ///////////////////////////// It is not okay
+
+  // violation 2 lines above 'Comment has incorrect indentation level 4'
+  public void foo2() {}
+}
+        </source>
+        <p id="Example4-code">
+          Example #4: Single line block comment is placed within an empty code block.
+          Note, if comment is placed at the end of the empty code block, we have Checkstyle's
+          limitations to clearly detect user intention of explanation target - above or below. The
+          only case we can assume as a violation is when a single-line comment within the empty
+          code block has indentation level that is lower than the indentation level of the closing
+          right curly brace.
+        </p>
+        <source>
+public class Example4 {
+  public void foo1() {
+    // comment
+    // block
+    // it is OK (we cannot clearly detect user intention of explanation target)
+  }
+  // violation 4 lines below 'Comment has incorrect indentation level 1'
+  public void foo2() {
+ // comment
+ // block
+ // It is not okay
+  }
+}
+        </source>
+        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+           comments  placed within an empty case block.Note, if comment is placed
+           at the end of the empty case block,  we have Checkstyle limitations to
+           clearly detect user intention of explanation target - above or below.
+           The only case we can assume as a violation is when a single-line comment
+           within the empty case block has indentation level that is lower than the
+           indentation level of the next case.
+          token.</p>
+        <source>
+public class Example5 {
+  void testMethod(String a) {
+    switch(a) {
+      case &quot;1&quot;:
+        int j = 7;
+        // it is OK
+        break;
+      case &quot;3&quot;: // violation 2 lines below 'Comment has incorrect indentation level'
+        if (true) {}
+            //It is not okay
+        break;
+      // fall through (it is OK)
+      case &quot;5&quot;:
+        // it is OK
+      case &quot;6&quot;:
+     // It is not okay
+      case &quot;7&quot;:
+       // violation 2 lines above 'Comment has incorrect indentation level 5'
+      default:
+    }
+  }
+}
+        </source>
+        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
+        <source>
+public class Example6 {
+  void testMethod() {
+    // violation 2 lines below 'Comment has incorrect indentation level 4'
+    String breaks = &quot;J&quot;
+    // It is not okay
+        + &quot;A&quot;
+        // it is OK
+        + &quot;V&quot;
+        + &quot;A&quot;
+    // it is OK
+    ;
+
+  }
+}
+        </source>
+        <p id="Example7-code">
+          Example #7: Single line block comment has previous and next statement.
+        </p>
+        <source>
+public class Example7 {
+  void testMethod() {
+    String s1 = &quot;Clean code!&quot;;
+    s1.toString().toString().toString();
+    // single-line
+    // block
+    // comment (it is OK)
+    int a = 5;
+
+    String s2 = &quot;Code complete!&quot;;
+    s1.toString().toString().toString();
+              // It is not okay1
+         //It is not okay2
+       //It is not okay3
+    int b = 18;
+    // violation 4 lines above 'Comment has incorrect indentation level 14'
+    // violation 4 lines above 'Comment has incorrect indentation level 9'
+    // violation 4 lines above 'Comment has incorrect indentation level 7'
+  }
+}
+        </source>
+        <p id="Example8-code">
+          Example #8: Comment within the block tries to describe the next code block.
+        </p>
+        <source>
+public class Example8 {
+  public void foo42() {
+    int a = 5;
+    if (a == 5) {
+      int b;
+      // it is OK
+    } else if (a ==6) {}
+  }
+
+  public void foo43() {
+    // violation 3 lines below 'Comment has incorrect indentation level 5'
+    try {
+      int a;
+     // It is not okay
+    } catch (Exception e) {  }
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
+              comments.indentation.block
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.single%22">
+              comments.indentation.single
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.indentation
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
