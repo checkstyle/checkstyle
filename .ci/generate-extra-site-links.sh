@@ -24,11 +24,11 @@ GITHUB_API_RESPONSE=$(curl --fail-with-body -Ls \
   "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100")
 echo "GITHUB_API_RESPONSE=$GITHUB_API_RESPONSE"
 
-# Extract a list of the changed xdocs in the pull request. For example 'src/xdocs/config_misc.xml'.
+# Extract a list of the changed xdocs in the pull request. For example 'xdoc/config_misc.xml'.
 # We ignore template files and deleted files.
 CHANGED_XDOCS_PATHS=$(echo "$GITHUB_API_RESPONSE" \
   | jq -r '.[] | select(.status != "removed") | .filename' \
-  | grep src/xdocs/ \
+  | grep src/site/xdoc/ \
   | grep -v '.*xml.template$' \
   || true)
 echo "CHANGED_XDOCS_PATHS=$CHANGED_XDOCS_PATHS"

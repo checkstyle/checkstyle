@@ -47,7 +47,7 @@ public class CliOptionsXdocsSyncTest {
 
     @Test
     public void validateCliDocSections() throws Exception {
-        final NodeList sections = getSectionsFromXdoc("src/xdocs/cmdline.xml.vm");
+        final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
         final Node cmdUsageSection = sections.item(2);
         final Map<String, String> cmdOptions = getOptions(cmdUsageSection);
 
@@ -82,7 +82,7 @@ public class CliOptionsXdocsSyncTest {
 
     @Test
     public void validateCliUsageSection() throws Exception {
-        final NodeList sections = getSectionsFromXdoc("src/xdocs/cmdline.xml.vm");
+        final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
         final Node usageSource = XmlUtil.getFirstChildElement(sections.item(2));
         final String usageText = XmlUtil.getFirstChildElement(usageSource).getTextContent();
 
