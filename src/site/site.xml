@@ -34,7 +34,7 @@
     <logo name="GoogleGroups"
           href="https://groups.google.com/forum/#!forum/checkstyle"
           >
-       <image src="images/groups.png" alt="GoogleGroups"/>
+      <image src="images/groups.png" alt="GoogleGroups"/>
     </logo>
     <logo name="JProfiler"
           href="https://www.ej-technologies.com/products/jprofiler/overview.html"

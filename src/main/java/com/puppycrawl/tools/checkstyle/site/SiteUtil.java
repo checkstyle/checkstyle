@@ -505,7 +505,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an I/O error occurs.
      */
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
-        final Path directory = Paths.get("src/xdocs");
+        final Path directory = Paths.get("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()

@@ -1672,6 +1672,8 @@
           </execution>
         </executions>
         <configuration>
+          <!-- until #15799 -->
+          <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
           <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
@@ -1684,9 +1686,11 @@
                 <include>**/*.xml.vm</include>
               </includes>
               <excludes>
+                <!-- until #15799 -->
+                <exclude>src/site/site.xml</exclude>
                 <!-- The <b>{</b> tag requires more indentation than the enclosing <pre> tag,
                      which results in too much indentation to the right -->
-                <exclude>src/xdocs/property_types.xml</exclude>
+                <exclude>src/site/xdoc/property_types.xml</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>
                 <exclude>.ci-temp/**</exclude>
@@ -1694,8 +1698,8 @@
                 <exclude>src/test/resources/**</exclude>
                 <exclude>src/xdocs-examples/resources/**</exclude>
                 <!-- Generated files -->
-                <exclude>src/xdocs/releasenotes.xml</exclude>
-                <exclude>src/xdocs/releasenotes_old*.xml</exclude>
+                <exclude>src/site/xdoc/releasenotes.xml</exclude>
+                <exclude>src/site/xdoc/releasenotes_old*.xml</exclude>
                 <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**</exclude>
               </excludes>
             </formatFileSet>
