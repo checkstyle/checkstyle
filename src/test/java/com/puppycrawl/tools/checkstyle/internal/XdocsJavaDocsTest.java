@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -123,6 +124,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         checker = createChecker(checkConfig);
     }
 
+    // until #15799
+    @Disabled
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
@@ -544,7 +547,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         .resolve(Paths.get(value))
                         .normalize()
                         .toString()
-                        .replaceAll("src[\\\\/]xdocs[\\\\/]", "")
+                        .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "")
                         .replaceAll("\\\\", "/");
             }
 

@@ -100,9 +100,10 @@
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
   <!-- usage of div class="wrap-content" render even indented content properly -->
-  <suppress id="noIndentationConfigExamples" files="[\\/]src[\\/]xdocs[\\/]writingchecks.xml"/>
   <suppress id="noIndentationConfigExamples"
-    files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
+            files="[\\/]src[\\/]site[\\/]xdoc[\\/]writingchecks.xml"/>
+  <suppress id="noIndentationConfigExamples"
+    files="[\\/]src[\\/]site[\\/]xdoc[\\/]beginning_development.xml"/>
 
   <!-- Examples are not intended to be formatted -->
   <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
@@ -189,11 +190,11 @@
        make the lines long. We still validate index.xml and template files.
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLengthXml"
-            files="[\\/]src[\\/]xdocs[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+            files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
   <!-- The file is generated -->
   <suppress checks="FileTabCharacter"
-    files="src[\\/]xdocs[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
+    files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
 
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
