@@ -16,7 +16,6 @@ acm
 Aconfig
 actionlint
 addons
-admins
 adr
 AFilter
 aggregators
@@ -1072,7 +1071,6 @@ Popup
 Postgresql
 ppc
 prebuilts
-prefs
 PRESIZE
 printf
 println
