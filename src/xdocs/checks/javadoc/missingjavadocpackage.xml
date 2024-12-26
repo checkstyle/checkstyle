@@ -27,7 +27,7 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p id="Example1-config">
+        <p id="package-info-config">
             To configure the check:
         </p>
         <source>
@@ -37,16 +37,21 @@
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
-        <p id="Example1-code">Example:</p>
+        <p id="package-info-code">Example1:</p>
         <source>
-/**
-* Provides API classes
-*/
-package com.checkstyle.api; // no violation
 /*
-* Block comment is not a javadoc
-*/
-package com.checkstyle.api; // violation
+ * Block comment is not a javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc;
+// violation above 'Missing javadoc for package-info.java file'
+        </source>
+        <p id="package-info-code">Example2:</p>
+        <source>
+/*
+ * Block comment is not a javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc;
+// violation above 'Missing javadoc for package-info.java file'
         </source>
       </subsection>
 
