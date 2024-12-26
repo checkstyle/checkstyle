@@ -28,21 +28,21 @@
             <tr>
               <td>format</td>
               <td>Define the RegExp for illegal pattern.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot;</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when matching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>message</td>
               <td>Define the message which is used to notify about violations; if empty then the default message is used.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String">String</a></td>
               <td><code>&quot;&quot;</code></td>
               <td>3.2</td>
             </tr>
@@ -50,23 +50,23 @@
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
                     NUM_DOUBLE</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
                     NUM_FLOAT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
                     NUM_INT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
                     NUM_LONG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
                     IDENT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
                     COMMENT_CONTENT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
                     STRING_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
                     CHAR_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
                     TEXT_BLOCK_CONTENT</a>
                   .
               </td>
@@ -214,7 +214,7 @@ public class Example4 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

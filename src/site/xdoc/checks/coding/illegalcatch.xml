@@ -37,7 +37,7 @@
             <tr>
               <td>illegalClassNames</td>
               <td>Specify exception class names to reject.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
               <td>3.2</td>
             </tr>
@@ -202,7 +202,7 @@ class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

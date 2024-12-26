@@ -55,7 +55,7 @@
             <tr>
               <td>classes</td>
               <td>Specify fully qualified class names that should not be instantiated.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>3.0</td>
             </tr>
@@ -208,7 +208,7 @@ class Example3 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

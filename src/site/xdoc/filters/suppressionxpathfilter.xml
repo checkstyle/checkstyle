@@ -108,14 +108,14 @@
             <tr>
               <td>file</td>
               <td>Specify the location of the <em>suppressions XML document</em> file.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../../../xdocs/property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.6</td>
             </tr>
             <tr>
               <td>optional</td>
               <td>Control what to do when the file is not existing. If optional is set to false the file must exist, or else it ends with error. On the other hand if optional is true and file is not found, the filter accepts all audit events.</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.6</td>
             </tr>
@@ -465,7 +465,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

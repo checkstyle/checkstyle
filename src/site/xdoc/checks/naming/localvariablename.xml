@@ -34,14 +34,14 @@
               <td>allowOneCharVarInForLoop</td>
               <td>Allow one character variable name in <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  initialization expressions</a> in FOR loop if one char variable name is prohibited by <code>format</code> regexp.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;</code></td>
               <td>3.0</td>
             </tr>
@@ -213,7 +213,7 @@ class Example5 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

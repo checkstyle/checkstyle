@@ -37,7 +37,7 @@
             <tr>
               <td>aliasList</td>
               <td>Specify aliases for check names that can be used in code within <code>SuppressWarnings</code> in a format of comma separated attribute=value entries. The attribute is the fully qualified name of the Check and value is its alias.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.7</td>
             </tr>
@@ -145,7 +145,7 @@ class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
 

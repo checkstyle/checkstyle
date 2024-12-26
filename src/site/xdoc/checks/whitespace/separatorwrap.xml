@@ -27,7 +27,7 @@
             <tr>
               <td>option</td>
               <td>Specify policy on how to wrap lines.</td>
-              <td><a href="../../property_types.html#WrapOption">WrapOption</a></td>
+              <td><a href="../../../../xdocs/property_types.html#WrapOption">WrapOption</a></td>
               <td><code>eol</code></td>
               <td>5.8</td>
             </tr>
@@ -35,32 +35,32 @@
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
                     DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
                     COMMA</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SEMI">
                     SEMI</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                     ELLIPSIS</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#AT">
                     AT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LPAREN">
                     LPAREN</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RPAREN">
                     RPAREN</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
                     ARRAY_DECLARATOR</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RBRACK">
                     RBRACK</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                     METHOD_REF</a>
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
                     DOT</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
                     COMMA</a>
                   .
               </td>
@@ -213,7 +213,7 @@ class Example3 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

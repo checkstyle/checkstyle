@@ -25,7 +25,7 @@
             <tr>
               <td>format</td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[A-Z]$&quot;</code></td>
               <td>8.36</td>
             </tr>
@@ -115,7 +115,7 @@ class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

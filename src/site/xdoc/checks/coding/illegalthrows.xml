@@ -29,21 +29,21 @@
             <tr>
               <td>ignoreOverriddenMethods</td>
               <td>Allow to ignore checking overridden methods (marked with <code>Override</code> or <code>java.lang.Override</code> annotation).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td>ignoredMethodNames</td>
               <td>Specify names of methods to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>finalize</code></td>
               <td>5.4</td>
             </tr>
             <tr>
               <td>illegalClassNames</td>
               <td>Specify throw class names to reject.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable</code></td>
               <td>4.0</td>
             </tr>
@@ -192,7 +192,7 @@ public class Example4 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

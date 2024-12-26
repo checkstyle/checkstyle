@@ -84,14 +84,14 @@ d = e / f;        // Another comment for this line
             <tr>
               <td>format</td>
               <td>Specify pattern for strings allowed before the comment.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[\s});]*$&quot;</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>legalComment</td>
               <td>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
@@ -263,7 +263,7 @@ public class Example4 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

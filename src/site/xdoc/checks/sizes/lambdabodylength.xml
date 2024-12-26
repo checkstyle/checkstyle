@@ -34,7 +34,7 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>10</code></td>
               <td>8.37</td>
             </tr>
@@ -165,7 +165,7 @@ class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

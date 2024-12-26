@@ -49,49 +49,49 @@
             <tr>
               <td>allowMissingParamTags</td>
               <td>Control whether to ignore violations when a class has type parameters but does not have matching param tags in the Javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>allowUnknownTags</td>
               <td>Control whether to ignore violations when a Javadoc tag is not recognised.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>allowedAnnotations</td>
               <td>Specify annotations that allow skipping validation at all. Only short names are allowed, e.g. <code>Generated</code>.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../../../xdocs/property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
               <td>8.15</td>
             </tr>
             <tr>
               <td>authorFormat</td>
               <td>Specify the pattern for <code>@author</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>versionFormat</td>
               <td>Specify the pattern for <code>@version</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
@@ -99,28 +99,28 @@
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                     INTERFACE_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                     ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                     ANNOTATION_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                     INTERFACE_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
                     ENUM_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                     ANNOTATION_DEF</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                , <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
                   .
               </td>
@@ -590,7 +590,7 @@ public class Example8 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

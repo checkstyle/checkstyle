@@ -33,7 +33,7 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum number of outer types allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>5.0</td>
             </tr>
@@ -126,7 +126,7 @@ enum outer1 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

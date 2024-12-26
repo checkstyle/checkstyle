@@ -37,7 +37,7 @@
             <tr>
               <td>onlyObjectReferences</td>
               <td>Control whether only explicit initializations made to null for objects should be checked.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
             </tr>
@@ -151,7 +151,7 @@ public class Example2 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

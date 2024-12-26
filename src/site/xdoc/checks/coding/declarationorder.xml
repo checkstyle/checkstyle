@@ -73,14 +73,14 @@ public class A {
             <tr>
               <td>ignoreConstructors</td>
               <td>Control whether to ignore constructors.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
             <tr>
               <td>ignoreModifiers</td>
               <td>Control whether to ignore modifiers (fields, ...).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
@@ -241,7 +241,7 @@ public class Example3 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

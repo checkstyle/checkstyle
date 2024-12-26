@@ -33,16 +33,16 @@
             <tr>
               <td>allowedDuplicates</td>
               <td>Specify the maximum number of occurrences to allow without generating a warning.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../../../xdocs/property_types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td>ignoreOccurrenceContext</td>
               <td>Specify token type names where duplicate strings are ignored even if they don't match ignoredStringsRegexp. This allows you to exclude syntactical contexts like annotations or static initializers from the check.</td>
-              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <td>subset of tokens <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
+                <a href="../../../../xdocs/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
                     ANNOTATION</a>
               </td>
               <td>4.4</td>
@@ -50,7 +50,7 @@
             <tr>
               <td>ignoreStringsRegexp</td>
               <td>Specify RegExp for ignored strings (with quotation marks).</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../../../xdocs/property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^&quot;&quot;$&quot;</code></td>
               <td>4.0</td>
             </tr>
@@ -199,7 +199,7 @@ public class Example4 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>

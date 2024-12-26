@@ -31,7 +31,7 @@
               <td>allowUnnamedVariables</td>
               <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed variables</a> in Java 21+).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../../../xdocs/property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
@@ -203,7 +203,7 @@ class Example1 {
 
       <subsection name="Parent Module" id="Parent_Module">
         <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
+          <a href="../../../../xdocs/config.html#TreeWalker">TreeWalker</a>
         </p>
       </subsection>
     </section>
