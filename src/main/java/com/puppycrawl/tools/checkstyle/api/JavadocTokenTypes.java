@@ -425,12 +425,11 @@ public final class JavadocTokenTypes {
      * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
      * <b>Tree:</b>
      * <pre>
-     * <code> |--JAVADOC_INLINE_TAG[3x0] : [{&#64;code Comparable&lt;E&gt;}]
-     *         |--JAVADOC_INLINE_TAG_START[3x0] : [{]
-     *         |--CODE_LITERAL[3x1] : [@code]
-     *         |--WS[3x6] : [ ]
-     *         |--TEXT[3x7] : [Comparable&lt;E&gt;]
-     *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
+     * <code>JAVADOC_TAG -&gt; JAVADOC_TAG
+     *        |--CUSTOM_NAME -&gt; @code
+     *        |--WS -&gt;
+     *        `--DESCRIPTION -&gt; DESCRIPTION
+     *            |--TEXT -&gt; Comparable&lt;E&gt;
      * </code>
      * </pre>
      *
