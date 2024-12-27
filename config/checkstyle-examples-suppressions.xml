@@ -61,6 +61,8 @@
   <!-- violation required by to show behavior of Check -->
   <suppress checks="CommentsIndentation"
     files="commentsindentation[\\/]Example[1-9].java"/>
+  <suppress checks="Indentation"
+    files="indentation[\\/]Example[1-5].java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="FileLength"
