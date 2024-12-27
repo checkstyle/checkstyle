@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import org.junit.jupiter.api.Disabled;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/13345")
 public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
@@ -33,37 +34,31 @@ public class IndentationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.txt"), expected);
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example2.txt"), expected);
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "26:22: " + getCheckMessage(MSG_ERROR, "int", 21, 8),
+            "41:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "42:17: " + getCheckMessage(MSG_ERROR, "||", 16, 12),
+            "44:18: " + getCheckMessage(MSG_ERROR, ".", 17, 16),
+            "45:18: " + getCheckMessage(MSG_ERROR, ".", 17, 16),
         };
-
-        verifyWithInlineConfigParser(getPath("Example3.txt"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.txt"), expected);
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }
