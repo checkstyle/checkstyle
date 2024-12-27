@@ -62,9 +62,16 @@ function setBodyColumnMargin() {
     const leftColumn = document.querySelector('#leftColumn');
     const bodyColumn = document.querySelector('#bodyColumn');
 
+    if (window.innerWidth > 823 && document.querySelector("#hamburger")) {
+        resetStyling();
+    }
+
     // If in mobile view use margin as defined in site.css
     if (window.innerWidth < 823) {
         bodyColumn.style.marginLeft = '1.5em';
+        if (!document.querySelector("#hamburger")) {
+            setCollapsableMenuButton();
+        }
         return;
     }
 
@@ -73,5 +80,51 @@ function setBodyColumnMargin() {
     bodyColumn.style.marginLeft = `${leftColumnWidth + 27}px`;
 }
 
-window.addEventListener('load', setBodyColumnMargin);
-window.addEventListener('resize', setBodyColumnMargin);
+function setCollapsableMenuButton() {
+    const hamburger = document.createElement("div");
+    hamburger.id = "hamburger";
+
+    for (let i = 0; i < 3; i++) {
+        const line = document.createElement("span");
+        hamburger.appendChild(line);
+    }
+
+    const xright = document.querySelector(".xright");
+    xright.appendChild(document.createTextNode(" | "));
+    xright.appendChild(hamburger);
+
+    hamburger.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const menu = document.querySelector("#leftColumn");
+        const breadcrumbs = document.querySelector("#breadcrumbs");
+        const body = document.querySelector("body");
+
+        menu.style.top = `${breadcrumbs.offsetHeight + 10}px`;
+        menu.style.height = `calc(100vh - ${breadcrumbs.offsetHeight + 10}px)`;
+
+        if (hamburger.classList.contains("openMenu")) {
+            hamburger.classList.remove("openMenu");
+            menu.style.display = "none";
+            body.removeAttribute("style");
+        } else {
+            hamburger.classList.add("openMenu");
+            menu.style.display = "block";
+            body.style.overflow = "hidden";
+        }
+    });
+}
+
+function resetStyling() {
+    document.querySelector("#leftColumn").removeAttribute("style");
+    document.querySelector("body").removeAttribute("style");
+
+    const hamburger = document.querySelector("#hamburger");
+    hamburger.remove();
+
+    const xright = document.querySelector(".xright");
+    xright.lastChild.remove();
+}
+
+window.addEventListener("load", setBodyColumnMargin);
+window.addEventListener("resize", setBodyColumnMargin);
