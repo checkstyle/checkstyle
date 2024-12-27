@@ -26,11 +26,11 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
+              <td>accessModifiers</td>
+              <td>Access modifiers of methods where parameters are checked.</td>
+              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><code>public, protected, package, private</code></td>
+              <td>11.0.0</td>
             </tr>
             <tr>
               <td>ignoreNamePattern</td>
@@ -38,13 +38,6 @@
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.8</td>
-            </tr>
-            <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
             </tr>
             <tr>
               <td>tokens</td>
@@ -78,7 +71,7 @@
         </source>
         <p id="Example1-code">
           By default, this setting will report a violation if
-          there is no javadoc for any scope member.
+          there is no javadoc for a member with any access modifier.
         </p>
         <source>
 public class Example1 {
@@ -96,15 +89,15 @@ public class Example1 {
         </source>
 
         <p id="Example2-config">
-          To configure the check for <code>public</code>
-          scope:
+          To configure the check <code>public</code>
+          access modifier:
         </p>
 
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;JavadocVariable&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -128,24 +121,22 @@ public class Example2 {
         </source>
 
         <p id="Example3-config">
-          To configure the check for members which are in <code>private</code>, but not in
-          <code>protected</code> scope:
+          To configure the check for members which are in <code>private</code> or
+          <code>package</code> access modifier:
         </p>
 
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;module name=&quot;TreeWalker&quot;&gt;
     &lt;module name=&quot;JavadocVariable&quot;&gt;
-      &lt;property name=&quot;scope&quot; value=&quot;private&quot;/&gt;
-      &lt;property name=&quot;excludeScope&quot; value=&quot;protected&quot;/&gt;
+      &lt;property name=&quot;accessModifiers&quot; value=&quot;private,package&quot;/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
         </source>
         <p id="Example3-code">
           This setting will report a violation if there is no
-          javadoc for <code>private</code> member and
-          ignores <code>protected</code> member.
+          javadoc for <code>private</code>  or <code>package</code> member.
         </p>
         <source>
 public class Example3 {
