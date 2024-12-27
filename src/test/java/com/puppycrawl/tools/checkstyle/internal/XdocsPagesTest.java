@@ -449,6 +449,76 @@ public class XdocsPagesTest {
         }
     }
 
+    @Test
+    public void testAlphabetOrderAtIndexPages() throws Exception {
+        final Path allChecks = Paths.get("src/site/xdoc/checks.xml");
+        validateOrder(allChecks, "Check");
+
+        final String[] groupNames = {"annotation", "blocks", "design",
+            "coding", "header", "imports", "javadoc", "metrics",
+            "misc", "modifier", "naming", "regexp", "sizes", "whitespace"};
+        for (String name : groupNames) {
+            final Path checks = Paths.get("src/site/xdoc/checks/" + name + "/index.xml");
+            validateOrder(checks, "Check");
+        }
+        final Path filters = Paths.get("src/site/xdoc/filters/index.xml");
+        validateOrder(filters, "Filter");
+
+        final Path fileFilters = Paths.get("src/site/xdoc/filefilters/index.xml");
+        validateOrder(fileFilters, "File Filter");
+    }
+
+    public static void validateOrder(Path path, String name) throws Exception {
+        final String input = Files.readString(path);
+        final Document document = XmlUtil.getRawXml(path.toString(), input, input);
+        final NodeList nodes = document.getElementsByTagName("div");
+
+        for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
+            final Node current = nodes.item(nodeIndex);
+            final List<String> names = getNamesFromIndexPage(current);
+            final List<String> namesSorted = names.stream()
+                    .sorted()
+                    .collect(Collectors.toUnmodifiableList());
+
+            assertWithMessage(name + " Names must be in alphabetical order.")
+                    .that(names)
+                    .containsExactlyElementsIn(namesSorted)
+                    .inOrder();
+        }
+    }
+
+    private static List<String> getNamesFromIndexPage(Node node) {
+        final List<String> result = new ArrayList<>();
+        final Set<Node> children = XmlUtil.findChildElementsByTag(node, "a");
+
+        Node current = node.getFirstChild();
+        Node treeNode = current;
+        boolean getFirstChild = false;
+        int index = 0;
+        while (current != null && index < children.size()) {
+            if ("tr".equals(current.getNodeName())) {
+                treeNode = current.getNextSibling();
+            }
+            if ("a".equals(current.getNodeName())) {
+                final String name = current.getFirstChild().getTextContent()
+                    .replace(" ", "").replace("\n", "");
+                result.add(name);
+                current = treeNode;
+                getFirstChild = false;
+                index++;
+            }
+            else if (getFirstChild) {
+                current = current.getFirstChild();
+                getFirstChild = false;
+            }
+            else {
+                current = current.getNextSibling();
+                getFirstChild = true;
+            }
+        }
+        return result;
+    }
+
     private static List<String> getNames(Node node) {
         final Set<Node> children = XmlUtil.getChildrenElements(node);
         final List<String> result = new ArrayList<>();
