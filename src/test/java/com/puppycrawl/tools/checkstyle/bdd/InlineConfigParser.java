@@ -542,6 +542,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck");
         moduleMappings.put("ParameterName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
+        moduleMappings.put("RegexpSinglelineJava",
+                "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck");
         moduleMappings.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
         moduleMappings.put("SuppressionXpathSingleFilter",
