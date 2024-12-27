@@ -336,7 +336,6 @@ doxia
 Dpi
 Dpmd
 Dpom
-Dpuppycrawl
 Dpush
 dropbox
 dropdown
@@ -493,7 +492,6 @@ funmodifiablecollection
 Fwhitespace
 Fx
 gav
-gcp
 Gdrox
 generalform
 genericwhitespace
@@ -510,7 +508,6 @@ gnupg
 google
 googleapis
 googleblog
-googlecloudplatform
 googleecommon
 googlegroups
 googlesource
@@ -757,6 +754,7 @@ KDoc
 keygen
 keyname
 keyscan
+kkoutsilis
 konstantinos
 Kordas
 Kotlin
